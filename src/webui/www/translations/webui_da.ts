@@ -1873,7 +1873,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Grænseflade</translation>
     </message>
     <message>
         <source>Light</source>

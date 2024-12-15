@@ -1868,23 +1868,23 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Sombre</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Modèle de couleur :</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interface</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Clair</translation>
     </message>
 </context>
 <context>

@@ -1113,7 +1113,7 @@
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation>Tỷ lệ tải lên dựa trên</translation>
+        <translation>Dựa trên tỉ lệ tải lên</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
@@ -1121,7 +1121,7 @@
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation>Kích thước tồn đọng socket</translation>
+        <translation>Kích thước tồn đọng socket:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -1133,7 +1133,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>Bộ nhớ vượt trội khi kiểm tra torrent:</translation>
+        <translation>Bộ nhớ vượt mức khi kiểm tra torrents:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1221,7 +1221,7 @@
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation>Vị trí cố định</translation>
+        <translation>Cố định số lượng</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1869,23 +1869,23 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Tối</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Tự động</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Bảng màu:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Giao diện</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Sáng</translation>
     </message>
 </context>
 <context>

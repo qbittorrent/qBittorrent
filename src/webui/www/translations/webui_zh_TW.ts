@@ -1869,23 +1869,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>深色</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>自動</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>配色方案：</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>界面</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>淺色</translation>
     </message>
 </context>
 <context>

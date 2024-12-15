@@ -1873,7 +1873,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automātiski</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Saskarne</translation>
     </message>
     <message>
         <source>Light</source>

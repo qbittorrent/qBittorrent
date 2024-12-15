@@ -1873,7 +1873,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>تلقائي</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>الواجهة</translation>
     </message>
     <message>
         <source>Light</source>

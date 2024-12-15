@@ -1869,23 +1869,23 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Mörkt</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatisk</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Färgschema:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Gränssnitt</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Ljust</translation>
     </message>
 </context>
 <context>

@@ -2122,17 +2122,17 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
         <translation>Nie można włączyć trybu dziennikowania zapisu z wyprzedzeniem (WAL). Błąd: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="662"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="686"/>
         <source>Couldn&apos;t obtain query result.</source>
         <translation>Nie można uzyskać wyniku zapytania.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>WAL mode is probably unsupported due to filesystem limitations.</source>
         <translation>Tryb WAL prawdopodobnie nie jest obsługiwany ze względu na ograniczenia systemu plików.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="715"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="739"/>
         <source>Couldn&apos;t begin transaction. Error: %1</source>
         <translation>Nie można rozpocząć transakcji. Błąd: %1</translation>
     </message>
@@ -2140,22 +2140,22 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="844"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="868"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Nie można zapisać metdanych torrenta. Błąd: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="899"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="923"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Nie można przechować danych wznawiania torrenta &apos;%1&apos;. Błąd: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="927"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="951"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Nie można usunąć danych wznawiania torrenta &apos;%1&apos;. Błąd: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="961"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="985"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Nie można przechować pozycji w kolejce torrentów. Błąd: %1</translation>
     </message>
@@ -2163,488 +2163,488 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
 <context>
     <name>BitTorrent::SessionImpl</name>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <source>Distributed Hash Table (DHT) support: %1</source>
         <translation>Obsługa rozproszonej tablicy mieszającej (DHT): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>ON</source>
         <translation>WŁ.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>OFF</source>
         <translation>WYŁ.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <source>Local Peer Discovery support: %1</source>
         <translation>Obsługa wykrywania partnerów w sieci lokalnej: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="725"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="726"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
         <translation>Ponowne uruchomienie jest wymagane, aby przełączyć obsługę wymiany partnerów (PeX)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1394"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1395"/>
         <source>Failed to resume torrent. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Nie udało się wznowić torrenta. Torrent: &quot;%1&quot;. Powód: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1448"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1458"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1449"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1459"/>
         <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
         <translation>Nie udało się wznowić torrenta: wykryto niespójny identyfikator torrenta. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1492"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1493"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Wykryto niespójne dane: brak kategorii w pliku konfiguracyjnym. Kategoria zostanie przywrócona, ale jej ustawienia zostaną zresetowane do wartości domyślnych. Torrent: &quot;%1&quot;. Kategoria: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1499"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1500"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Wykryto niespójne dane: nieprawidłowa kategoria. Torrent: &quot;%1&quot;.  Kategoria: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1514"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1515"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Wykryto niezgodność między ścieżkami zapisu odzyskanej kategorii i bieżącą ścieżką zapisu torrenta. Torrent jest teraz przełączony w tryb ręczny. Torrent: &quot;%1&quot;. Kategoria: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1528"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1529"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>Wykryto niespójne dane: w pliku konfiguracyjnym brakuje znacznika. Znacznik zostanie odzyskany. Torrent: &quot;%1&quot;. Znacznik: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1534"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1535"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>Wykryto niespójne dane: nieprawidłowy znacznik. Torrent: &quot;%1&quot;.  Znacznik: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1605"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1606"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
         <translation>Wykryto zdarzenie wybudzenia systemu. Rozgłaszam wszystkim trackerom...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1674"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1675"/>
         <source>Peer ID: &quot;%1&quot;</source>
         <translation>Identyfikator partnera: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1675"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
         <source>HTTP User-Agent: &quot;%1&quot;</source>
         <translation>Agent użytkownika HTTP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <source>Peer Exchange (PeX) support: %1</source>
         <translation>Obsługa wymiany partnerów (PeX): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>Anonymous mode: %1</source>
         <translation>Tryb anonimowy: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3671"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
         <source>Encryption support: %1</source>
         <translation>Obsługa szyfrowania: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
         <source>FORCED</source>
         <translation>WYMUSZONE</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2118"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2119"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
         <translation>Nie mozna uzyskać GUID interfejsu sieciowego. Interfejs: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2135"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2136"/>
         <source>Trying to listen on the following list of IP addresses: &quot;%1&quot;</source>
         <translation>Próbuję nasłuchiwać na poniższej liście adresów IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2282"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2283"/>
         <source>Torrent reached the share ratio limit.</source>
         <translation>Torrent osiągnął limit współczynnika udziału.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2299"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2300"/>
         <source>Torrent: &quot;%1&quot;.</source>
         <translation>Torrent: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2742"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2751"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
         <translation>Wykryto próbę dodania duplikatu torrenta. Istniejący torrent: %1. Wynik: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2736"/>
         <source>Merging of trackers is disabled</source>
         <translation>Scalanie trackerów jest wyłączone</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
         <translation>Nie można scalić trackerów, ponieważ jest to prywatny torrent</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2753"/>
         <source>Trackers are merged from new source</source>
         <translation>Trackery zostały scalone z nowego źródła</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6348"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6345"/>
         <source>Failed to remove partfile. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;.</source>
         <translation>Nie udało się usunąć pliku partfile. Torrent: &quot;%1&quot;. Powód: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2320"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2321"/>
         <source>Super seeding enabled.</source>
         <translation>Super-seedowanie włączone.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2288"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2289"/>
         <source>Torrent reached the seeding time limit.</source>
         <translation>Torrent osiągnął limit czasu seedowania.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2294"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2295"/>
         <source>Torrent reached the inactive seeding time limit.</source>
         <translation>Torrent osiągnął limit nieaktywnego czasu seedowania.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5540"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5539"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Nie udało się załadować torrenta. Powód: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6195"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6194"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation>Błąd I2P. Komunikat: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2956"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2957"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>Obsługa UPnP/NAT-PMP: WŁ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="655"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="656"/>
         <source>Saving resume data completed.</source>
         <translation>Zapisywanie danych wznowienia zostało zakończone.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="665"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="666"/>
         <source>BitTorrent session successfully finished.</source>
         <translation>Sesja BitTorrent zakończona pomyślnie.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="667"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="668"/>
         <source>Session shutdown timed out.</source>
         <translation>Upłynął limit czasu zamknięcia sesji.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2304"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2305"/>
         <source>Removing torrent.</source>
         <translation>Usuwanie torrenta.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2309"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2310"/>
         <source>Removing torrent and deleting its content.</source>
         <translation>Usuwanie torrenta i kasowanie jego zawartości.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2315"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2316"/>
         <source>Torrent stopped.</source>
         <translation>Torrent zatrzymano.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2354"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2355"/>
         <source>Torrent content removed. Torrent: &quot;%1&quot;</source>
         <translation>Usunięto zawartość torrenta. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2358"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2359"/>
         <source>Failed to remove torrent content. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nie udało się usunąć zawartości torrenta. Torrent: &quot;%1&quot;. Błąd: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2470"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2471"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent usunięto. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2975"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2976"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>Obsługa UPnP/NAT-PMP: WYŁ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3105"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3106"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Nie udało się wyeksportować torrenta. Torrent: &quot;%1&quot;. Cel: &quot;%2&quot;. Powód: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3148"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3149"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Przerwano zapisywanie danych wznowienia. Liczba zaległych torrentów: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3270"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3271"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>Skonfigurowany adres sieciowy jest nieprawidłowy. Adres: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3311"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3345"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3312"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3346"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation>Nie udało się znaleźć skonfigurowanego adresu sieciowego do nasłuchu. Adres: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3324"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3325"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>Skonfigurowany interfejs sieciowy jest nieprawidłowy. Interfejs: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3992"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3993"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation>Odrzucono nieprawidłowy adres IP podczas stosowania listy zbanowanych adresów IP. Adres IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5046"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5047"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Dodano tracker do torrenta. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5053"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5054"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Usunięto tracker z torrenta. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5065"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5066"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Dodano adres URL seeda do torrenta. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5071"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5072"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Usunięto adres URL seeda z torrenta. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5100"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5101"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent wznowiono. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5251"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5252"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>Torrenta pobieranie zakończyło się. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5165"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5166"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Anulowano przenoszenie torrenta. Torrent: &quot;%1&quot;. Źródło: &quot;%2&quot;. Cel: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5094"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5095"/>
         <source>Torrent stopped. Torrent: &quot;%1&quot;</source>
         <translation>Torrent zatrzymano. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5176"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5177"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>Nie udało się zakolejkować przenoszenia torrenta. Torrent: &quot;%1&quot;. Źródło: &quot;%2&quot;. Cel: &quot;%3&quot;. Powód: torrent obecnie przenosi się do celu</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5186"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>Nie udało się zakolejkować przenoszenia torrenta. Torrent: &quot;%1&quot;. Źródło: &quot;%2&quot;. Cel: &quot;%3&quot;. Powód: obie ścieżki prowadzą do tej samej lokalizacji</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5193"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5194"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Przenoszenie zakolejkowanego torrenta. Torrent: &quot;%1&quot;. Źródło: &quot;%2&quot;. Cel: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5210"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5211"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Rozpoczęcie przenoszenia torrenta. Torrent: &quot;%1&quot;. Cel: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5285"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5286"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nie udało się zapisać konfiguracji kategorii. Plik: &quot;%1&quot; Błąd: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5332"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5333"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Nie udało się przetworzyć konfiguracji kategorii. Plik: &quot;%1&quot;. Błąd: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5459"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5460"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>Pomyślnie przetworzono plik filtra IP. Liczba zastosowanych reguł: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5469"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5470"/>
         <source>Failed to parse the IP filter file</source>
         <translation>Nie udało się przetworzyć pliku filtra IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5777"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5776"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Przywrócono torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5781"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5780"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>Dodano nowy torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5787"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5786"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Torrent wadliwy. Torrent: &quot;%1&quot;.  Błąd: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5835"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5834"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Torrentowi brakuje parametrów SSL. Torrent: &quot;%1&quot;. Komunikat: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5885"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5884"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Alert błędu pliku. Torrent: &quot;%1&quot;. Plik: &quot;%2&quot;. Powód: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5896"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5895"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>Mapowanie portu UPnP/NAT-PMP nie powiodło się. Komunikat: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5902"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5901"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>Mapowanie portu UPnP/NAT-PMP powiodło się. Komunikat: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5911"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5910"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>Filtr IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5914"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>port filtrowany (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5919"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>port uprzywilejowany (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5993"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5992"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation>Sesja BitTorrent napotkała poważny błąd. Powód: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6184"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>Błąd proxy SOCKS5. Adres: %1. Komunikat: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5917"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5916"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 ograniczenia trybu mieszanego</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5324"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5325"/>
         <source>Failed to load Categories. %1</source>
         <translation>Nie udało się załadować kategorii. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5339"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5340"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>Nie udało się załadować konfiguracji kategorii. Plik: &quot;%1&quot;. Błąd: &quot;Nieprawidłowy format danych&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5923"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5922"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 jest wyłączone</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5926"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5925"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 jest wyłączone</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5950"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5949"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Wyszukanie DNS adresu URL seeda nie powiodło się. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Błąd: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5956"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5955"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>Odebrano komunikat o błędzie URL seeda. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Komunikat: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5965"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5964"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>Pomyślne nasłuchiwanie IP. Adres IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5972"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5971"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Nie udało się nasłuchiwać IP. Adres IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Powód: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5980"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5979"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>Wykryto zewnętrzny IP. Adres IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6095"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6094"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Błąd: wewnętrzna kolejka alertów jest pełna, a alerty są odrzucane, może wystąpić spadek wydajności. Porzucony typ alertu: &quot;%1&quot;. Komunikat: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6117"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6116"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Przeniesiono torrent pomyślnie. Torrent: &quot;%1&quot;. Cel: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6140"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6139"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Nie udało się przenieść torrenta. Torrent: &quot;%1&quot;. Źródło: &quot;%2&quot;. Cel: &quot;%3&quot;. Powód &quot;%4&quot;</translation>
     </message>
@@ -2660,13 +2660,13 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
 <context>
     <name>BitTorrent::TorrentCreator</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="92"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="93"/>
         <source>Operation aborted</source>
         <translation>Operacja przerwana</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="236"/>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="240"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="249"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="253"/>
         <source>Create new torrent file failed. Reason: %1.</source>
         <translation>Utworzenie nowego pliku torrent nie powiodło się. Powód: %1.</translation>
     </message>
@@ -2674,67 +2674,67 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="814"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="825"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Nie powiodło się dodanie partnera &quot;%1&quot; do torrenta &quot;%2&quot;. Powód: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="819"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="830"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Partner &quot;%1&quot; został dodany do torrenta &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="879"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="890"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation>Wykryto nieoczekiwane dane. Torrent: %1. Dane: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1252"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1308"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation>Nie udało się zapisać do pliku. Powód: &quot;%1&quot;. Torrent jest teraz w trybie &quot;tylko przesyłanie&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1698"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1705"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Pobierz najpierw część pierwszą i ostatnią: %1, torrent: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1706"/>
         <source>On</source>
         <translation>Wł.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1706"/>
         <source>Off</source>
         <translation>Wył.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1916"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1923"/>
         <source>Failed to reload torrent. Torrent: %1. Reason: %2</source>
         <translation>Nie udało się ponownie załadować torrenta. Torrent: %1. Powód: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2269"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2276"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Nie udało się wygenerować danych wznowienia. Torrent: &quot;%1&quot;. Powód: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2278"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2285"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Nie udało się przywrócić torrenta. Pliki zostały prawdopodobnie przeniesione lub pamięć jest niedostępna. Torrent: &quot;%1&quot;. Powód: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2869"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2888"/>
         <source>Missing metadata</source>
         <translation>Brakujące metadane</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2357"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2364"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Zmiana nazwy pliku nie powiodła się. Torrent: &quot;%1&quot;, plik: &quot;%2&quot;, powód: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2429"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2436"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>Alert wydajności: %1. Więcej informacji: %2</translation>
     </message>
@@ -8554,12 +8554,12 @@ Te wtyczki zostały wyłączone.</translation>
 <context>
     <name>RSS::Private::Parser</name>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="595"/>
+        <location filename="../base/rss/rss_parser.cpp" line="593"/>
         <source>Invalid RSS feed.</source>
         <translation>Nieprawidłowy kanał RSS.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="589"/>
+        <location filename="../base/rss/rss_parser.cpp" line="587"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
         <translation>%1 (wiersz: %2, kolumna: %3, rozstaw: %4).</translation>
     </message>

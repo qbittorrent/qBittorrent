@@ -1870,23 +1870,23 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>fosc</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Esquema de color:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interfície</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>clar</translation>
     </message>
 </context>
 <context>

@@ -808,7 +808,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="553"/>
         <source>Outstanding memory when checking torrents</source>
-        <translation>Bộ nhớ vượt trội khi kiểm tra torrent</translation>
+        <translation>Bộ nhớ vượt mức khi kiểm tra torrents</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="569"/>
@@ -1264,7 +1264,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="881"/>
         <source>Fixed slots</source>
-        <translation>Các vị trí cố định</translation>
+        <translation>Cố định số lượng</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="882"/>
@@ -2122,17 +2122,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Không thể bật chế độ ghi nhật ký Ghi-Trước (WAL). Lỗi: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="662"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="686"/>
         <source>Couldn&apos;t obtain query result.</source>
         <translation>Không thể nhận được kết quả truy vấn.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>WAL mode is probably unsupported due to filesystem limitations.</source>
         <translation>Chế độ WAL có thể không được hỗ trợ do hạn chế của hệ thống tệp.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="715"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="739"/>
         <source>Couldn&apos;t begin transaction. Error: %1</source>
         <translation>Không thể bắt đầu giao dịch. Lỗi: %1</translation>
     </message>
@@ -2140,22 +2140,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="844"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="868"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Không thể lưu dữ liệu mô tả torrent. Lỗi: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="899"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="923"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Không thể lưu trữ dữ liệu tiếp tục cho torrent &apos;%1&apos;. Lỗi: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="927"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="951"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Không thể xóa dữ liệu tiếp tục của torrent &apos;%1&apos;. Lỗi: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="961"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="985"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Không thể lưu được vị trí hàng đợi torrent. Lỗi: %1</translation>
     </message>
@@ -2163,488 +2163,488 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::SessionImpl</name>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <source>Distributed Hash Table (DHT) support: %1</source>
         <translation>Hỗ trợ Bảng Băm Phân Tán (DHT): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>ON</source>
         <translation>BẬT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>OFF</source>
         <translation>TẮT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <source>Local Peer Discovery support: %1</source>
         <translation>Hỗ trợ tìm kiếm ngang hàng địa phương: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="725"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="726"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
         <translation>Khởi động lại là bắt buộc để chuyển đổi hỗ trợ trao đổi ngang hàng (PeX)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1394"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1395"/>
         <source>Failed to resume torrent. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Tiếp tục tải xuống torrent thất bại/không thành công. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1448"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1458"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1449"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1459"/>
         <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
         <translation>Tiếp tục tải xuống torrent thất bại/không thành công: ID torrent không nhất quán đã được phát hiện/bị phát hiện/được nhận dạng. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1492"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1493"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Đã phát hiện dữ liệu không nhất quán: danh mục bị thiếu trong tệp cấu hình. Danh mục sẽ được khôi phục nhưng cài đặt của nó sẽ được đặt lại về mặc định. Torrent: &quot;%1&quot;. Danh mục: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1499"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1500"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Đã phát hiện dữ liệu không nhất quán: danh mục không hợp lệ. Torrent: &quot;%1&quot;. Danh mục: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1514"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1515"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Đã phát hiện sự không khớp giữa các đường dẫn lưu của danh mục đã khôi phục và đường dẫn lưu hiện tại của torrent. Torrent hiện đã được chuyển sang chế độ Thủ công. Torrent: &quot;%1&quot;. Danh mục: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1528"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1529"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>Đã phát hiện dữ liệu không nhất quán: thiếu thẻ trong tệp cấu hình. Thẻ sẽ được phục hồi. Torrent: &quot;%1&quot;. Thẻ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1534"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1535"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>Đã phát hiện dữ liệu không nhất quán: thẻ không hợp lệ. Torrent: &quot;%1&quot;. Thẻ: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1605"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1606"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
         <translation>Đã phát hiện sự kiện đánh thức hệ thống. Thông báo lại cho tất cả các máy theo dõi...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1674"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1675"/>
         <source>Peer ID: &quot;%1&quot;</source>
         <translation>ID Ngang hàng: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1675"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
         <source>HTTP User-Agent: &quot;%1&quot;</source>
         <translation>Tác nhân Người dùng HTTP: &apos;%1&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <source>Peer Exchange (PeX) support: %1</source>
         <translation>Hỗ trợ trao đổi ngang hàng (PeX): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>Anonymous mode: %1</source>
         <translation>Chế độ ẩn danh: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3671"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
         <source>Encryption support: %1</source>
         <translation>Hỗ trợ mã hóa: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
         <source>FORCED</source>
         <translation>BẮT BUỘC</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2118"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2119"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
         <translation>Không thể tìm thấy GUID của giao diện mạng. Giao diện: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2135"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2136"/>
         <source>Trying to listen on the following list of IP addresses: &quot;%1&quot;</source>
         <translation>Đang cố nghe danh sách địa chỉ IP sau: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2282"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2283"/>
         <source>Torrent reached the share ratio limit.</source>
         <translation>Torrent đạt đến giới hạn tỷ lệ chia sẻ.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2299"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2300"/>
         <source>Torrent: &quot;%1&quot;.</source>
         <translation>Torrent: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2742"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2751"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
         <translation>Đã phát hiện nỗ lực thêm torrent trùng lặp. Torrent hiện có: %1. Kết quả: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2736"/>
         <source>Merging of trackers is disabled</source>
         <translation>Gộp các máy theo dõi bị tắt</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
         <translation>Không thể hợp nhất máy theo dõi vì đây là torrent riêng tư</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2753"/>
         <source>Trackers are merged from new source</source>
         <translation>Máy theo dõi được gộp từ ​​nguồn mới</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6348"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6345"/>
         <source>Failed to remove partfile. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;.</source>
         <translation>Xóa partfile thất bại. Torrent: &quot;%1&quot;. Lý do: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2320"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2321"/>
         <source>Super seeding enabled.</source>
         <translation>Đã bật siêu chia sẻ.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2288"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2289"/>
         <source>Torrent reached the seeding time limit.</source>
         <translation>Torrent đã đạt đến giới hạn thời gian chia sẻ.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2294"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2295"/>
         <source>Torrent reached the inactive seeding time limit.</source>
         <translation>Torrent đã đạt đến giới hạn thời gian chia sẻ không hoạt động.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5540"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5539"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Không tải được torrent. Lý do: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6195"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6194"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation>Lỗi I2P. Thông báo: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2956"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2957"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>Hỗ trợ UPnP/NAT-PMP: BẬT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="655"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="656"/>
         <source>Saving resume data completed.</source>
         <translation>Lưu dữ liệu hồi phục đã hoàn tất.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="665"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="666"/>
         <source>BitTorrent session successfully finished.</source>
         <translation>Phiên BitTorrent đã kết thúc thành công.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="667"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="668"/>
         <source>Session shutdown timed out.</source>
         <translation>Đã hết thời gian tắt phiên.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2304"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2305"/>
         <source>Removing torrent.</source>
         <translation>Đang xóa torrent.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2309"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2310"/>
         <source>Removing torrent and deleting its content.</source>
         <translation>Đang xóa torrent và nội dung của nó.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2315"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2316"/>
         <source>Torrent stopped.</source>
         <translation>Torrent đã dừng.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2354"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2355"/>
         <source>Torrent content removed. Torrent: &quot;%1&quot;</source>
         <translation>Đã xóa nội dung torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2358"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2359"/>
         <source>Failed to remove torrent content. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Xnội dung torrent thất bại. Torrent: &quot;%1&quot;. Lỗi: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2470"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2471"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Đã xóa torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2975"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2976"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>Hỗ trợ UPnP/NAT-PMP: TẮT</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3105"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3106"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Không xuất được torrent. Dòng chảy: &quot;%1&quot;. Điểm đến: &quot;%2&quot;. Lý do: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3148"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3149"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Đã hủy lưu dữ liệu tiếp tục. Số lượng torrent đang giải quyết: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3270"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3271"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>Địa chỉ mạng đã cấu hình không hợp lệ. Địa chỉ: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3311"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3345"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3312"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3346"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation>Không thể tìm thấy địa chỉ mạng được định cấu hình để nghe. Địa chỉ: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3324"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3325"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>Giao diện mạng được cấu hình không hợp lệ. Giao diện: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3992"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3993"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation>Đã từ chối địa chỉ IP không hợp lệ trong khi áp dụng danh sách các địa chỉ IP bị cấm. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5046"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5047"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Đã thêm máy theo dõi vào torrent. Torrent: &quot;%1&quot;. Máy theo dõi: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5053"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5054"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Đã xóa máy theo dõi khỏi torrent. Torrent: &quot;%1&quot;. Máy theo dõi: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5065"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5066"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Đã thêm URL chia sẻ vào torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5071"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5072"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Đã URL seed khỏi torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5100"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5101"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent đã tiếp tục. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5251"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5252"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>Tải xuống torrent đã hoàn tất. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5165"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5166"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Di chuyển Torrent bị hủy bỏ. Torrent: &quot;%1&quot;. Nguồn: &quot;%2&quot;. Đích đến: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5094"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5095"/>
         <source>Torrent stopped. Torrent: &quot;%1&quot;</source>
         <translation>Torrent đã dừng lại. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5176"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5177"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>Không thể xếp hàng di chuyển torrent. Torrent: &quot;%1&quot;. Nguồn: &quot;%2&quot;. Đích đến: &quot;%3&quot;. Lý do: torrent hiện đang di chuyển đến đích</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5186"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>Không thể xếp hàng di chuyển torrent. Torrent: &quot;%1&quot;. Nguồn: &quot;%2&quot; Đích đến: &quot;%3&quot;. Lý do: hai đường dẫn trỏ đến cùng một vị trí</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5193"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5194"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Đã xếp hàng di chuyển torent. Torrent: &quot;%1&quot;. Nguồn: &quot;%2&quot;. Đích đến: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5210"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5211"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Bắt đầu di chuyển torrent. Torrent: &quot;%1&quot;. Đích đến: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5285"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5286"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Không lưu được cấu hình Danh mục. Tập tin: &quot;%1&quot;. Lỗi: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5332"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5333"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Không thể phân tích cú pháp cấu hình Danh mục. Tập tin: &quot;%1&quot;. Lỗi: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5459"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5460"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>Đã phân tích cú pháp thành công tệp bộ lọc IP. Số quy tắc được áp dụng: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5469"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5470"/>
         <source>Failed to parse the IP filter file</source>
         <translation>Không thể phân tích cú pháp tệp bộ lọc IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5777"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5776"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Đã khôi phục torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5781"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5780"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>Đã thêm torrent mới. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5787"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5786"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Torrent đã bị lỗi. Torrent: &quot;%1&quot;. Lỗi: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5835"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5834"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Torrent thiếu tham số SSL. Torrent: &quot;%1&quot;. Thông báo: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5885"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5884"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Cảnh báo lỗi tập tin. Torrent: &quot;%1&quot;. Tập tin: &quot;%2&quot;. Lý do: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5896"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5895"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>Ánh xạ cổng UPnP/NAT-PMP không thành công. Thông báo: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5902"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5901"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>Ánh xạ cổng UPnP/NAT-PMP đã thành công. Thông báo: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5911"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5910"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>Lọc IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5914"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>đã lọc cổng (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5919"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>cổng đặc quyền (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5993"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5992"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation>Phiên BitTorrent gặp lỗi nghiêm trọng. Lý do: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6184"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>Lỗi proxy SOCKS5. Địa chỉ %1. Thông báo: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5917"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5916"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 hạn chế chế độ hỗn hợp</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5324"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5325"/>
         <source>Failed to load Categories. %1</source>
         <translation>Không tải được Danh mục. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5339"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5340"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>Không tải được cấu hình Danh mục. Tập tin: &quot;%1&quot;. Lỗi: &quot;Định dạng dữ liệu không hợp lệ&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5923"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5922"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 đã tắt</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5926"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5925"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 đã tắt</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5950"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5949"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Tra cứu DNS URL chia sẻ không thành công. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Lỗi: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5956"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5955"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>Đã nhận được thông báo lỗi từ URL chia sẻ. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Thông báo: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5965"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5964"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>Nghe thành công trên IP. IP: &quot;%1&quot;. Cổng: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5972"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5971"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Không nghe được trên IP. IP: &quot;%1&quot;. Cổng: &quot;%2/%3&quot;. Lý do: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5980"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5979"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>Đã phát hiện IP bên ngoài. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6095"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6094"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Lỗi: Hàng đợi cảnh báo nội bộ đã đầy và cảnh báo bị xóa, bạn có thể thấy hiệu suất bị giảm sút. Loại cảnh báo bị giảm: &quot;%1&quot;. Tin nhắn: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6117"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6116"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Đã chuyển torrent thành công. Torrent: &quot;%1&quot;. Đích đến: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6140"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6139"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Không thể di chuyển torrent. Torrent: &quot;%1&quot;. Nguồn: &quot;%2&quot;. Đích đến: &quot;%3&quot;. Lý do: &quot;%4&quot;</translation>
     </message>
@@ -2660,13 +2660,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreator</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="92"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="93"/>
         <source>Operation aborted</source>
         <translation>Thao tác bị hủy bỏ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="236"/>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="240"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="249"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="253"/>
         <source>Create new torrent file failed. Reason: %1.</source>
         <translation>Tạo tệp torrent mới thất bại. Lý do: %1.</translation>
     </message>
@@ -2674,67 +2674,67 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="814"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="825"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Thất bại thêm máy ngang hàng &quot;%1&quot; vào torrent &quot;%2&quot;. Lý do: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="819"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="830"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Máy ngang hàng &quot;%1&quot; được thêm vào torrent &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="879"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="890"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation>Đã phát hiện dữ liệu không mong muốn. Torrent: %1. Dữ liệu: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1252"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1308"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation>Không thể ghi vào tệp. Lý do: &quot;%1&quot;. Torrent hiện ở chế độ &quot;chỉ tải lên&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1698"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1705"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Tải về phần đầu và phần cuối trước: %1, torrent: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1706"/>
         <source>On</source>
         <translation>Mở</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1706"/>
         <source>Off</source>
         <translation>Tắt</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1916"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1923"/>
         <source>Failed to reload torrent. Torrent: %1. Reason: %2</source>
         <translation>Không thể tải lại torrent. Torrent: %1. Lý do: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2269"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2276"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Tạo dữ liệu tiếp tục không thành công. Torrent: &quot;%1&quot;. Lý do: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2278"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2285"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Khôi phục torrent thất bại. Các tệp có thể đã được di chuyển hoặc không thể truy cập bộ nhớ. Torrent: &quot;%1&quot;. Lý do: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2869"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2888"/>
         <source>Missing metadata</source>
         <translation>Thiếu dữ liệu mô tả</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2357"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2364"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Đổi tên tệp thất bại. Torrent: &quot;%1&quot;, tệp: &quot;%2&quot;, lý do: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2429"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2436"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>Cảnh báo hiệu suất: %1. Thông tin khác: %2</translation>
     </message>
@@ -8554,12 +8554,12 @@ Các plugin đó đã bị vô hiệu hóa.</translation>
 <context>
     <name>RSS::Private::Parser</name>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="595"/>
+        <location filename="../base/rss/rss_parser.cpp" line="593"/>
         <source>Invalid RSS feed.</source>
         <translation>Luồng RSS không hợp lệ.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="589"/>
+        <location filename="../base/rss/rss_parser.cpp" line="587"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
         <translation>%1 (dòng: %2, cột: %3, bù đắp: %4).</translation>
     </message>
@@ -11987,7 +11987,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../gui/uithememanager.cpp" line="80"/>
         <source>Set app style failed. Unknown style: &quot;%1&quot;</source>
-        <translation>Đặt kiểu dáng ứng dụng thất bại. Kiểu không xác định: &quot;%1&quot;</translation>
+        <translation>Đặt kiểu dáng ứng dụng thất bại. Không rõ kiểu: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="96"/>

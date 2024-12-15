@@ -1869,23 +1869,23 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Mørk</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Palett:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Grensesnitt</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Lys</translation>
     </message>
 </context>
 <context>

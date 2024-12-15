@@ -1874,7 +1874,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1882,7 +1882,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interface</translation>
     </message>
     <message>
         <source>Light</source>

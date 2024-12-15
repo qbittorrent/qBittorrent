@@ -2122,17 +2122,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Не вдалося ввімкнути режим журналювання Write-Ahead Logging (WAL). Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="662"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="686"/>
         <source>Couldn&apos;t obtain query result.</source>
         <translation>Не вдалося отримати результат запиту.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>WAL mode is probably unsupported due to filesystem limitations.</source>
         <translation>Можливо, режим WAL не підтримується через обмеження файлової системи.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="715"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="739"/>
         <source>Couldn&apos;t begin transaction. Error: %1</source>
         <translation>Не вдалося почати трансакцію. Помилка: %1</translation>
     </message>
@@ -2140,22 +2140,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::ResumeDataStorage</name>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="844"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="868"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
         <translation>Не вдалося зберегти метадані торрента. Помилка: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="899"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="923"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
         <translation>Не вдалося зберегти дані відновлення торрента &apos;%1&apos;. Помилка: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="927"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="951"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
         <translation>Не вдалося видалити дані відновлення торрента &apos;%1&apos;. Помилка: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="961"/>
+        <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="985"/>
         <source>Couldn&apos;t store torrents queue positions. Error: %1</source>
         <translation>Не вдалося зберегти черговість торрентів. Помилка: %1</translation>
     </message>
@@ -2163,488 +2163,488 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::SessionImpl</name>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <source>Distributed Hash Table (DHT) support: %1</source>
         <translation>Підтримка розподіленої хеш-таблиці (DHT): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>ON</source>
         <translation>УВІМКНЕНО</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="696"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="697"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>OFF</source>
         <translation>ВИМКНЕНО</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="711"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1677"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="712"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
         <source>Local Peer Discovery support: %1</source>
         <translation>Підтримка локального виявлення пірів: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="725"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="726"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
         <translation>Щоб увімкнути підтримку обміну пірами (PeX), потрібен перезапуск</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1394"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1395"/>
         <source>Failed to resume torrent. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Не вдалося відновити торрент. Торрент: &quot;%1&quot;. Причина: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1448"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1458"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1449"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1459"/>
         <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
         <translation>Не вдалося відновити торрент: виявлено невідповідний ідентифікатор торрента. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1492"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1493"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Виявлено неузгоджені дані: категорія відсутня у файлі конфігурації. Категорію буде відновлено, але її налаштування буде скинуто до стандартних. Торрент: &quot;%1&quot;. Категорія: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1499"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1500"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Виявлено суперечливі дані: недійсна категорія. Торрент: &quot;%1&quot;. Категорія: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1514"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1515"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
         <translation>Виявлено невідповідність між шляхами збереження відновленої категорії та поточним шляхом збереження торрента. Торрент тепер переведено в ручний режим. Торрент: &quot;%1&quot;. Категорія: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1528"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1529"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>Виявлено суперечливі дані: тег відсутній у файлі конфігурації. Тег буде відновлено. Торрент: &quot;%1&quot;. Тег: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1534"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1535"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
         <translation>Виявлено суперечливі дані: недійсний тег. Торрент: &quot;%1&quot;. Тег: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1605"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1606"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
         <translation>Виявлено подію пробудження системи. Повторний анонс всіх трекерів...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1674"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1675"/>
         <source>Peer ID: &quot;%1&quot;</source>
         <translation>ID піра: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1675"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1676"/>
         <source>HTTP User-Agent: &quot;%1&quot;</source>
         <translation>Агент користувача HTTP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1678"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
         <source>Peer Exchange (PeX) support: %1</source>
         <translation>Підтримка Peer Exchange (PeX): %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1679"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="4531"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="4532"/>
         <source>Anonymous mode: %1</source>
         <translation>Анонімний режим: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3671"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
         <source>Encryption support: %1</source>
         <translation>Підтримка шифрування: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="1680"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3672"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="1681"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3673"/>
         <source>FORCED</source>
         <translation>ПРИМУШЕНИЙ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2118"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2119"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
         <translation>Не вдалося знайти GUID мережевого інтерфейсу. Інтерфейс: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2135"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2136"/>
         <source>Trying to listen on the following list of IP addresses: &quot;%1&quot;</source>
         <translation>Пробую слухати на наступних IP адресах: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2282"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2283"/>
         <source>Torrent reached the share ratio limit.</source>
         <translation>Торрент досяг ліміту співвідношення часток.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2299"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2300"/>
         <source>Torrent: &quot;%1&quot;.</source>
         <translation>Торрент: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2734"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2742"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2751"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
         <translation>Виявлено спробу додати дублікат торрента. Існуючий торрент: %1. Результат: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2735"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2736"/>
         <source>Merging of trackers is disabled</source>
         <translation>Об&apos;єднання трекерів вимкнено</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2743"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2744"/>
         <source>Trackers cannot be merged because it is a private torrent</source>
         <translation>Трекери не можна об’єднати, оскільки це приватний торрент</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2752"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2753"/>
         <source>Trackers are merged from new source</source>
         <translation>Трекери об’єднані з нового джерела</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6348"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6345"/>
         <source>Failed to remove partfile. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;.</source>
         <translation>Не вдалося видалити файл частини. Торрент: &quot;%1&quot;. Причина: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2320"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2321"/>
         <source>Super seeding enabled.</source>
         <translation>Суперсид увімкнено</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2288"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2289"/>
         <source>Torrent reached the seeding time limit.</source>
         <translation>Торрент досяг ліміту часу заповнення.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2294"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2295"/>
         <source>Torrent reached the inactive seeding time limit.</source>
         <translation>Торрент досяг обмеження часу бездіяльності роздачі.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5540"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5539"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Не вдалося завантажити торрент. Причина: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6195"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6194"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation>Помилка I2P. Повідомлення: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2956"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2957"/>
         <source>UPnP/NAT-PMP support: ON</source>
         <translation>Підтримка UPnP/NAT-PMP: УВІМК</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="655"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="656"/>
         <source>Saving resume data completed.</source>
         <translation>Збереження даних резюме завершено.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="665"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="666"/>
         <source>BitTorrent session successfully finished.</source>
         <translation>Сеанс BitTorrent успішно завершено.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="667"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="668"/>
         <source>Session shutdown timed out.</source>
         <translation>Час очікування завершення сеансу минув.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2304"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2305"/>
         <source>Removing torrent.</source>
         <translation>Видалення торрента.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2309"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2310"/>
         <source>Removing torrent and deleting its content.</source>
         <translation>Видалення торрента і видалення його вмісту.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2315"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2316"/>
         <source>Torrent stopped.</source>
         <translation>Торрент зупинився.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2354"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2355"/>
         <source>Torrent content removed. Torrent: &quot;%1&quot;</source>
         <translation>Вміст торрента видалено. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2358"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2359"/>
         <source>Failed to remove torrent content. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Не вдалося видалити торрент-контент. Торрент: &quot;%1&quot;. Помилка: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2470"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2471"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Торрент видалено. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="2975"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="2976"/>
         <source>UPnP/NAT-PMP support: OFF</source>
         <translation>Підтримка UPnP/NAT-PMP: ВИМК</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3105"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3106"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Не вдалося експортувати торрент. Торрент: &quot;%1&quot;. Призначення: &quot;%2&quot;. Причина: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3148"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3149"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
         <translation>Перервано збереження відновлених даних. Кількість непотрібних торрентів: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3270"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3271"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
         <translation>Налаштована мережева адреса недійсна. Адреса: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3311"/>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3345"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3312"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3346"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
         <translation>Не вдалося знайти налаштовану мережеву адресу для прослуховування. Адреса: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3324"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3325"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
         <translation>Налаштований мережевий інтерфейс недійсний. Інтерфейс: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="3992"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="3993"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
         <translation>Відхилено недійсну IP-адресу під час застосування списку заборонених IP-адрес. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5046"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5047"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Додав трекер в торрент. Торрент: &quot;%1&quot;. Трекер: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5053"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5054"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
         <translation>Видалений трекер з торрента. Торрент: &quot;%1&quot;. Трекер: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5065"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5066"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Додано початкову URL-адресу до торрента. Торрент: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5071"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5072"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
         <translation>Вилучено початкову URL-адресу з торрента. Торрент: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5100"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5101"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
         <translation>Торрент відновлено. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5251"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5252"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
         <translation>Завантаження торрента завершено. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5165"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5166"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Переміщення торрента скасовано. Торрент: &quot;%1&quot;. Джерело: &quot;%2&quot;. Пункт призначення: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5094"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5095"/>
         <source>Torrent stopped. Torrent: &quot;%1&quot;</source>
         <translation>Торрент зупинився. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5176"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5177"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
         <translation>Не вдалося поставити торрент у чергу. Торрент: &quot;%1&quot;. Джерело: &quot;%2&quot;. Призначення: &quot;%3&quot;. Причина: торрент зараз рухається до місця призначення</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5186"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
         <translation>Не вдалося поставити торрент у чергу. Торрент: &quot;%1&quot;. Джерело: &quot;%2&quot; Місце призначення: &quot;%3&quot;. Причина: обидва шляхи вказують на одне місце</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5193"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5194"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
         <translation>Переміщення торрента в черзі. Торрент: &quot;%1&quot;. Джерело: &quot;%2&quot;. Пункт призначення: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5210"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5211"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Почати переміщення торрента. Торрент: &quot;%1&quot;. Пункт призначення: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5285"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5286"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Не вдалося зберегти конфігурацію категорій. Файл: &quot;%1&quot;. Помилка: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5332"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5333"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Не вдалося проаналізувати конфігурацію категорій. Файл: &quot;%1&quot;. Помилка: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5459"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5460"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
         <translation>Файл IP-фільтра успішно проаналізовано. Кількість застосованих правил: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5469"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5470"/>
         <source>Failed to parse the IP filter file</source>
         <translation>Не вдалося проаналізувати файл IP-фільтра</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5777"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5776"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Відновлений торрент. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5781"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5780"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>Додано новий торрент. Торрент: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5787"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5786"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Помилка торрента. Торрент: &quot;%1&quot;. Помилка: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5835"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5834"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>У торенті відсутні параметри SSL. Торрент: &quot;%1&quot;. Повідомлення: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5885"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5884"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Сповіщення про помилку файлу. Торрент: &quot;%1&quot;. Файл: &quot;%2&quot;. Причина: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5896"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5895"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>Помилка зіставлення портів UPnP/NAT-PMP. Повідомлення: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5902"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5901"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>Зіставлення порту UPnP/NAT-PMP виконано успішно. Повідомлення: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5911"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5910"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>IP фільтр</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5914"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5913"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>відфільтрований порт (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5920"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5919"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>привілейований порт (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5993"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5992"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation>Під час сеансу BitTorrent сталася серйозна помилка. Причина: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6185"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6184"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>Помилка проксі SOCKS5. Адреса: %1. Повідомлення: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5917"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5916"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 обмеження змішаного режиму</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5324"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5325"/>
         <source>Failed to load Categories. %1</source>
         <translation>Не вдалося завантажити категорії. %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5339"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5340"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
         <translation>Не вдалося завантажити конфігурацію категорій. Файл: &quot;%1&quot;. Помилка: &quot;Неправильний формат даних&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5923"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5922"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 вимкнено</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5926"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5925"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 вимкнено</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5950"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5949"/>
         <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation>Помилка DNS-пошуку початкового URL-адреси. Торрент: &quot;%1&quot;. URL: &quot;%2&quot;. Помилка: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5956"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5955"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>Отримано повідомлення про помилку від початкового URL-адреси. Торрент: &quot;%1&quot;. URL: &quot;%2&quot;. Повідомлення: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5965"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5964"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>Успішне прослуховування IP. IP: &quot;%1&quot;. Порт: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5972"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5971"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Не вдалося прослухати IP. IP: &quot;%1&quot;. Порт: &quot;%2/%3&quot;. Причина: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5980"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5979"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>Виявлено зовнішній IP. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6095"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6094"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Помилка: внутрішня черга сповіщень заповнена, сповіщення видаляються, ви можете спостерігати зниження продуктивності. Тип видаленого сповіщення: &quot;%1&quot;. Повідомлення: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6117"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6116"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Торрент успішно перенесено. Торрент: &quot;%1&quot;. Пункт призначення: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6140"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6139"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Не вдалося перемістити торрент. Торрент: &quot;%1&quot;. Джерело: &quot;%2&quot;. Призначення: &quot;%3&quot;. Причина: &quot;%4&quot;</translation>
     </message>
@@ -2660,13 +2660,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentCreator</name>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="92"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="93"/>
         <source>Operation aborted</source>
         <translation>Операцію перервано</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="236"/>
-        <location filename="../base/bittorrent/torrentcreator.cpp" line="240"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="249"/>
+        <location filename="../base/bittorrent/torrentcreator.cpp" line="253"/>
         <source>Create new torrent file failed. Reason: %1.</source>
         <translation>Не вдалось створити новий торрент файл. Підстава: %1.</translation>
     </message>
@@ -2674,67 +2674,67 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="814"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="825"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Не вдалося додати піра &quot;%1&quot; до торрента &quot;%2&quot;. Причина: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="819"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="830"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Піра &quot;%1&quot; додано до торрента &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="879"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="890"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
         <translation>Виявлено несподівані дані. Торрент: %1. Дані: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1252"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1308"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation>Не вдалося записати у файл. Причина: &quot;%1&quot;. Торрент зараз у режимі &quot;тільки завантаження&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1698"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1705"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Завантажувати з першої та останньої частини: %1, торрент: &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1706"/>
         <source>On</source>
         <translation>Увімк.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1699"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1706"/>
         <source>Off</source>
         <translation>Вимк.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1916"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1923"/>
         <source>Failed to reload torrent. Torrent: %1. Reason: %2</source>
         <translation>Не вдалося перезавантажити торрент. Торрент: %1. Причина: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2269"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2276"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Не вдалося створити , відновити дані. Торрент: &quot;%1&quot;. Причина: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2278"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2285"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
         <translation>Не вдалося відновити торрент. Файли були мабуть переміщенні, або сховище недоступне. Торрент: &quot;%1&quot;. Причина: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2869"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2888"/>
         <source>Missing metadata</source>
         <translation>Відсутні метадані</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2357"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2364"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Перейменування файлу не вдалося. Торрент: &quot;%1&quot;, файл: &quot;%2&quot;, причина: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="2429"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="2436"/>
         <source>Performance alert: %1. More info: %2</source>
         <translation>Попередження продуктивності: %1. Більше інформації: %2</translation>
     </message>
@@ -8554,12 +8554,12 @@ Those plugins were disabled.</source>
 <context>
     <name>RSS::Private::Parser</name>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="595"/>
+        <location filename="../base/rss/rss_parser.cpp" line="593"/>
         <source>Invalid RSS feed.</source>
         <translation>Некоректна RSS подача.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="589"/>
+        <location filename="../base/rss/rss_parser.cpp" line="587"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
         <translation>%1 (рядок: %2, стовпець: %3, зсув: %4).</translation>
     </message>

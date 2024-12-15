@@ -1585,7 +1585,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation>Место данных возобновления (нужен перезапуск):</translation>
+        <translation>Хранилище данных возобновления (нужен перезапуск):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
@@ -1725,7 +1725,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation>Хранить невыбранные файлы в папке «.unwanted»</translation>
+        <translation>Помещать невыбранные файлы в папку «.unwanted»</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
@@ -1869,23 +1869,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Тёмная</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Авто</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Цветовая схема:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Интерфейс</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Светлая</translation>
     </message>
 </context>
 <context>

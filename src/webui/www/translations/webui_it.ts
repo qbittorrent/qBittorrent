@@ -1872,23 +1872,23 @@ Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Scuro</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatico</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Schema colori:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interfaccia</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Chiaro</translation>
     </message>
 </context>
 <context>

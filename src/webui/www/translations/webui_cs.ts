@@ -1869,23 +1869,23 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Tmavé</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Schéma barev:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Rozhraní</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Světlé</translation>
     </message>
 </context>
 <context>

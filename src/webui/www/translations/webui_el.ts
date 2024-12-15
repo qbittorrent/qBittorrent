@@ -1861,31 +1861,31 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Αγνόηση σφαλμάτων SSL:</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>Απλό pread/pwrite</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Σκοτεινό</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Αυτόματο</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Σχέδιο χρωμάτων:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Διεπαφή</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Φωτεινό</translation>
     </message>
 </context>
 <context>

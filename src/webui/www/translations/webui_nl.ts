@@ -1869,23 +1869,23 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Donker</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatisch</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Kleurenschema</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interface</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Licht</translation>
     </message>
 </context>
 <context>

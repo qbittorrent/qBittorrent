@@ -1873,7 +1873,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>自動</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>インターフェース</translation>
     </message>
     <message>
         <source>Light</source>

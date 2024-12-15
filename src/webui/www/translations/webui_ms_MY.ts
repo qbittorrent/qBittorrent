@@ -1873,7 +1873,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Antara Muka</translation>
     </message>
     <message>
         <source>Light</source>

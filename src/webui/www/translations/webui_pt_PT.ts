@@ -1873,7 +1873,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interface</translation>
     </message>
     <message>
         <source>Light</source>

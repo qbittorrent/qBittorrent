@@ -787,7 +787,7 @@
     </message>
     <message>
         <source>Type:</source>
-        <translation>Türü:</translation>
+        <translation>Tür:</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -1869,23 +1869,23 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Koyu</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Otomatik</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Renk şeması:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Arayüz</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Açık</translation>
     </message>
 </context>
 <context>

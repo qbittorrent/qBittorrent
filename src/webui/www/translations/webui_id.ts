@@ -1873,7 +1873,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Otomatis</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Antarmuka</translation>
     </message>
     <message>
         <source>Light</source>

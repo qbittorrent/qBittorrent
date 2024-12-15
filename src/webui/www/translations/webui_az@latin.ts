@@ -1873,7 +1873,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Avtomatik</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>İnterfeys</translation>
     </message>
     <message>
         <source>Light</source>

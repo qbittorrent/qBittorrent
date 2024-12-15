@@ -369,7 +369,7 @@
     </message>
     <message>
         <source>%1 has been shutdown</source>
-        <translation type="unfinished" />
+        <translation>%1 išjungta</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Nepavyko susisiekti su qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
@@ -1767,7 +1767,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>I2P (Experimental)</source>
-        <translation type="unfinished" />
+        <translation>I2P (Eksperimentinis)</translation>
     </message>
     <message>
         <source>Disk IO type (requires restart):</source>
@@ -1815,7 +1815,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Customize application instance name:</source>
-        <translation type="unfinished" />
+        <translation>Tinkinti programos egzemplioriaus pavadinimą:</translation>
     </message>
     <message>
         <source>Send test email</source>
@@ -1831,19 +1831,19 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Stabdyti torentą</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Perkelti failus į šiukšlinę (jei įmanoma)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Torentų turinio šalinimo veiksena:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Ištrinti failus visam laikui</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -1871,23 +1871,23 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Tamsus</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>nustatyti automatiškai</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Spalvų rinkinys:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Sąsaja</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Šviesus</translation>
     </message>
 </context>
 <context>
@@ -4011,7 +4011,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation type="unfinished" />
+        <translation>Pridėti žymių:</translation>
     </message>
     <message>
         <source>Add Stopped:</source>

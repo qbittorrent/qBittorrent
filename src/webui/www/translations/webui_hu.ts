@@ -1869,23 +1869,23 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Sötét</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Színséma:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interfész</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Világos</translation>
     </message>
 </context>
 <context>

@@ -1873,7 +1873,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Samodejno</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Vmesnik</translation>
     </message>
     <message>
         <source>Light</source>

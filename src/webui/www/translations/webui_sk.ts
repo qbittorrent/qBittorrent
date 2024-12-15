@@ -1873,7 +1873,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1881,7 +1881,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Rozhranie</translation>
     </message>
     <message>
         <source>Light</source>

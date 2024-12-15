@@ -1869,7 +1869,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Sjálfgefið</translation>
     </message>
     <message>
         <source>Color scheme:</source>

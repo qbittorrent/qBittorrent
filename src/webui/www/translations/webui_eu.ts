@@ -1861,31 +1861,31 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Ezikusi SSL erroreak:</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>pread/pwrite sinplea</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Iluna</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Berez</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Kolore-eskema:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interfazea</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Argia</translation>
     </message>
 </context>
 <context>

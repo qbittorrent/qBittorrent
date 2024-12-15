@@ -1869,23 +1869,23 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Tamna</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Tema:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Sučelje</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Svijetla</translation>
     </message>
 </context>
 <context>

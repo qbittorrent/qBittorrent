@@ -1869,23 +1869,23 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Ciemny</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatyczny</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Schemat kolorów:</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interfejs</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Jasny</translation>
     </message>
 </context>
 <context>
