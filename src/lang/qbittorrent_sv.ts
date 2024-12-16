@@ -245,7 +245,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="313"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfiler som har metadata kommer initialt att läggas till som stoppade.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
@@ -455,7 +455,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="600"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
-        <translation>Det gick inte att exportera torrentmetadatafilen &quot;%1&quot;. Orsak: %2</translation>
+        <translation>Det gick inte att exportera torrentmetadatafilen &quot;%1&quot;. Orsak: %2.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="779"/>
@@ -596,7 +596,7 @@
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="354"/>
         <source>Torrent share limits</source>
-        <translation type="unfinished">Torrentdelningsgränser</translation>
+        <translation>Torrentdelningsgränser</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.cpp" line="78"/>
@@ -705,12 +705,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="367"/>
         <source> (disabled)</source>
-        <translation>(inaktiverat)</translation>
+        <translation> (inaktiverat)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="369"/>
         <source> (auto)</source>
-        <translation>(automatisk)</translation>
+        <translation> (automatisk)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="657"/>
@@ -792,7 +792,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="476"/>
         <source>Physical memory (RAM) usage limit</source>
-        <translation>Användningsgräns för fysiskt minne (RAM).</translation>
+        <translation>Användningsgräns för fysiskt minne (RAM)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="506"/>
@@ -831,7 +831,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="559"/>
         <source>Disk cache expiry interval</source>
-        <translation>Intervall för diskcache utgångsdatum:</translation>
+        <translation>Intervall för diskcache utgångsdatum</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="567"/>
@@ -915,7 +915,7 @@
         <location filename="../gui/advancedsettings.cpp" line="635"/>
         <location filename="../gui/advancedsettings.cpp" line="643"/>
         <source> KiB</source>
-        <translation>KiB</translation>
+        <translation> KiB</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="379"/>
@@ -925,7 +925,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="381"/>
         <source> (system default)</source>
-        <translation>(systemstandard)</translation>
+        <translation> (systemstandard)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="474"/>
@@ -1067,7 +1067,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="720"/>
         <source>Server-side request forgery (SSRF) mitigation</source>
-        <translation>Begränsning av förfalskning av förfrågningar på serversidan (SSRF):</translation>
+        <translation>Begränsning av förfalskning av förfrågningar på serversidan (SSRF)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="725"/>
@@ -1077,12 +1077,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="731"/>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Det lägger till texten till fönsterraden för att hjälpa att särskilja qBittorrent-instanser</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="732"/>
         <source>Customize application instance name</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassa programinstansen namn</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="738"/>
@@ -1147,7 +1147,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="888"/>
         <source>Peer turnover disconnect percentage</source>
-        <translation>Procentandel för bortkoppling av peer-omsättning:</translation>
+        <translation>Procentandel för bortkoppling av peer-omsättning</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="894"/>
@@ -1644,7 +1644,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="279"/>
         <source> days</source>
-        <translation>dagar</translation>
+        <translation> dagar</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="354"/>
@@ -1659,12 +1659,12 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="402"/>
         <source>&amp;Import...</source>
-        <translation>Importera...</translation>
+        <translation>&amp;Importera...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="412"/>
         <source>&amp;Export...</source>
-        <translation>Exportera...</translation>
+        <translation>E&amp;xportera...</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="107"/>
@@ -1674,18 +1674,18 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="107"/>
         <source>Example: </source>
-        <translation>Exempel:</translation>
+        <translation>Exempel: </translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="108"/>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
         <comment>example X will match</comment>
-        <translation>kommer matcha 2, 5, 8 genom 15, 30 och framåt på avsnittet säsong ett</translation>
+        <translation> kommer matcha 2, 5, 8 genom 15, 30 och framåt på avsnittet säsong ett</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="109"/>
         <source>Episode filter rules: </source>
-        <translation>Regler för avsnittsfilter:</translation>
+        <translation>Regler för avsnittsfilter: </translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="109"/>
@@ -1700,7 +1700,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="112"/>
         <source>Three range types for episodes are supported: </source>
-        <translation>Tre olika typer av avsnitt stöds:</translation>
+        <translation>Tre olika typer av avsnitt stöds: </translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="113"/>
@@ -1920,12 +1920,12 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="696"/>
         <source> will match all articles.</source>
-        <translation>kommer att matcha alla artiklar.</translation>
+        <translation> kommer att matcha alla artiklar.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="697"/>
         <source> will exclude all articles.</source>
-        <translation>kommer exkludera alla artiklar.</translation>
+        <translation> kommer exkludera alla artiklar.</translation>
     </message>
 </context>
 <context>
@@ -1993,12 +1993,12 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="412"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>Det gick inte att spara torrentmetadata till &quot;%1&quot;. Fel: %2</translation>
+        <translation>Det gick inte att spara torrentmetadata till &quot;%1&quot;. Fel: %2.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="446"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>Det gick inte att spara återupptagningsdata för torrent till &quot;%1&quot;. Fel: %2</translation>
+        <translation>Det gick inte att spara återupptagningsdata för torrent till &quot;%1&quot;. Fel: %2.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="188"/>
@@ -2065,7 +2065,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="836"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
-        <translation>Det gick inte att spara torrentmetadata. Fel: %1</translation>
+        <translation>Det gick inte att spara torrentmetadata. Fel: %1.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="890"/>
@@ -2126,7 +2126,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="686"/>
         <source>Restart is required to toggle Peer Exchange (PeX) support</source>
-        <translation>Omstart krävs för att växla stöd för jämlikeutbyte (PeX).</translation>
+        <translation>Omstart krävs för att växla stöd för jämlikeutbyte (PeX)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1355"/>
@@ -2422,7 +2422,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5722"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfilen saknar SSL-parametrar. Torrent: &quot;%1&quot;. Meddelande: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5772"/>
@@ -2465,7 +2465,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6072"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
-        <translation>SOCKS5 proxy-fel. Adress 1. Meddelande: &quot;%2&quot;.</translation>
+        <translation>SOCKS5-proxyfel. Adress %1. Meddelande: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5804"/>
@@ -2546,7 +2546,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/torrentcreationtask.cpp" line="71"/>
         <source>Failed to start seeding.</source>
-        <translation type="unfinished"></translation>
+        <translation>Misslyckades med att starta distribution.</translation>
     </message>
 </context>
 <context>
@@ -2560,7 +2560,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/torrentcreator.cpp" line="236"/>
         <location filename="../base/bittorrent/torrentcreator.cpp" line="240"/>
         <source>Create new torrent file failed. Reason: %1.</source>
-        <translation>Skapande av ny torrentfil misslyckades. Orsak: %1</translation>
+        <translation>Skapande av ny torrentfil misslyckades. Orsak: %1.</translation>
     </message>
 </context>
 <context>
@@ -2708,7 +2708,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../app/cmdoptions.cpp" line="500"/>
         <source>Confirm the legal notice</source>
-        <translation>Bekräfta juridiska informationen </translation>
+        <translation>Bekräfta juridiska informationen</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="501"/>
@@ -2821,7 +2821,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../app/cmdoptions.cpp" line="539"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
-        <translation>Altenativvärden kan levereras via miljövariabler. För alternativ som heter &quot;parameter-name&quot; är miljövariabelnamnet &quot;QBT_PARAMETER_NAME&quot; (i övre fallet är &quot;-&quot; ersatt med &quot;_&quot;). För att skicka flaggvärden anger du variabeln till &quot;1&quot; eller &quot;TRUE&quot;. Till exempel, för att inaktivera startskärmen:</translation>
+        <translation>Alternativvärden kan levereras via miljövariabler. För alternativ som heter &quot;parameter-name&quot; är miljövariabelnamnet &quot;QBT_PARAMETER_NAME&quot; (i övre fallet är &quot;-&quot; ersatt med &quot;_&quot;). För att skicka flaggvärden anger du variabeln till &quot;1&quot; eller &quot;TRUE&quot;. Till exempel, för att inaktivera startskärmen: </translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="544"/>
@@ -3393,7 +3393,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../app/main.cpp" line="103"/>
         <source>Bad command line: </source>
-        <translation>Ogiltig kommandorad:</translation>
+        <translation>Ogiltig kommandorad: </translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="117"/>
@@ -3877,7 +3877,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../gui/mainwindow.cpp" line="1515"/>
         <source>[D: %1, U: %2] %3</source>
         <comment>D = Download; U = Upload; %3 is the rest of the window title</comment>
-        <translation type="unfinished"></translation>
+        <translation>[Ner: %1, Upp: %2] %3</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1659"/>
@@ -4116,7 +4116,7 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="227"/>
         <source>Redirected to magnet URI</source>
-        <translation>Omdirigeras till magnet-URI.</translation>
+        <translation>Omdirigeras till magnet-URI</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
@@ -5445,7 +5445,7 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="392"/>
         <source>Virgin Islands, U.S.</source>
-        <translation>Amerikanska Jungfruöarna</translation>
+        <translation>Amerikanska Jungfruöarna.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="394"/>
@@ -5781,7 +5781,7 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1087"/>
         <source>Keep unselected files in &quot;.unwanted&quot; folder</source>
-        <translation>Behåll omarkerade filer i mappen &quot;.unwanted&quot;.</translation>
+        <translation>Behåll omarkerade filer i mappen &quot;.unwanted&quot;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1390"/>
@@ -5791,7 +5791,7 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1400"/>
         <source>Options..</source>
-        <translation>Alternativ...</translation>
+        <translation>Alternativ..</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1410"/>
@@ -5836,7 +5836,7 @@ Installera den manuellt.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2030"/>
         <source>If checked, hostname lookups are done via the proxy</source>
-        <translation>Vid aktivering, görs värdnamnsuppslag via proxy.</translation>
+        <translation>Vid aktivering, görs värdnamnsuppslag via proxy</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2033"/>
@@ -5957,7 +5957,7 @@ Inaktivera kryptering: Anslut endast till jämlikar utan protokollkryptering</tr
     <message>
         <location filename="../gui/optionsdialog.ui" line="3160"/>
         <source>Same host request delay:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fördröjning av värdbegäran:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3206"/>
@@ -6955,7 +6955,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
         <location filename="../gui/optionsdialog.ui" line="3573"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
-        <translation>sek</translation>
+        <translation> s</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2918"/>
@@ -7272,7 +7272,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.cpp" line="529"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrentfiler som har metadata kommer initialt att läggas till som stoppade.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="878"/>
@@ -8624,7 +8624,7 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="510"/>
         <source>Date: </source>
-        <translation>Datum:</translation>
+        <translation>Datum: </translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="512"/>
@@ -9417,7 +9417,7 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
         <source>Read cache hits:</source>
-        <translation>Läscache träffar: </translation>
+        <translation>Läscache träffar:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="184"/>
@@ -9462,7 +9462,7 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/statsdialog.ui" line="170"/>
         <source>Queued I/O jobs:</source>
-        <translation>Köade in/ut-jobb: </translation>
+        <translation>Köade in/ut-jobb:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="177"/>
@@ -9477,7 +9477,7 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/statsdialog.ui" line="198"/>
         <source>Total queued size:</source>
-        <translation>Total köstorlek: </translation>
+        <translation>Total köstorlek:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="112"/>
@@ -10074,17 +10074,17 @@ Välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="141"/>
         <source>Too many active tasks</source>
-        <translation type="unfinished"></translation>
+        <translation>För många aktiva åtgärder</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="228"/>
         <source>Torrent creation is still unfinished.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapandet av torrent är inte färdigställt än.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="231"/>
         <source>Torrent creation failed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapandet av torrent misslyckades.</translation>
     </message>
 </context>
 <context>
@@ -10509,26 +10509,26 @@ Välj ett annat namn och försök igen.</translation>
         <location filename="../gui/torrentsharelimitswidget.ui" line="57"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="109"/>
         <source>Default</source>
-        <translation type="unfinished">Standard</translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="40"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="62"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="114"/>
         <source>Unlimited</source>
-        <translation type="unfinished"></translation>
+        <translation>Obegränsat</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="45"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="67"/>
         <location filename="../gui/torrentsharelimitswidget.ui" line="119"/>
         <source>Set to</source>
-        <translation type="unfinished"></translation>
+        <translation>Ställ in till</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="75"/>
         <source>Seeding time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Distribtuionstid:</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="85"/>
@@ -10537,17 +10537,17 @@ Välj ett annat namn och försök igen.</translation>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="84"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
-        <translation type="unfinished"> min</translation>
+        <translation> min</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="98"/>
         <source>Inactive seeding time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Inaktiv distributionstid:</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="159"/>
         <source>Ratio:</source>
-        <translation type="unfinished"></translation>
+        <translation>Förhållande:</translation>
     </message>
 </context>
 <context>
@@ -10876,7 +10876,7 @@ Välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/trackerlist/trackerlistwidget.cpp" line="277"/>
         <source>The tracker URL already exists.</source>
-        <translation>Spårar-URL finns redan. </translation>
+        <translation>Spårar-URL finns redan.</translation>
     </message>
     <message>
         <location filename="../gui/trackerlist/trackerlistwidget.cpp" line="343"/>
