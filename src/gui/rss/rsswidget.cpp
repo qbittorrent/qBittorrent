@@ -53,10 +53,12 @@
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
 #include "ui_rsswidget.h"
+
 namespace
 {
     void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl);
 }
+
 RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::RSSWidget}
