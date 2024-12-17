@@ -653,11 +653,8 @@ namespace
             if (relativePath.startsWith(u'/'))
                 relativePath = relativePath.mid(1);
 
-            QString absoluteUrl;
-            if (!host.isEmpty())
-                absoluteUrl = defaultScheme + u":" + host;
-            else
-                absoluteUrl = normalizedBaseUrl + relativePath;
+            const QString absoluteUrl = !host.isEmpty()
+                    ? (defaultScheme + u":" + host) : (normalizedBaseUrl + relativePath);
             const QString fullMatch = match.captured(0);
             const QString prefix = match.captured(1);
             const QString suffix = match.captured(7);
