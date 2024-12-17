@@ -313,10 +313,20 @@
           <string>Fields</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_announce_url">
+            <property name="text">
+             <string>Tracker URLs:</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="QTextEdit" name="trackersList">
             <property name="toolTip">
              <string>You can separate tracker tiers / groups with an empty line.</string>
+            </property>
+            <property name="tabChangesFocus">
+             <bool>true</bool>
             </property>
             <property name="acceptRichText">
              <bool>false</bool>
@@ -332,22 +342,11 @@
           </item>
           <item row="1" column="1">
            <widget class="QTextEdit" name="URLSeedsList">
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
             <property name="acceptRichText">
              <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QTextEdit" name="txtComment">
-            <property name="acceptRichText">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="lbl_announce_url">
-            <property name="text">
-             <string>Tracker URLs:</string>
             </property>
            </widget>
           </item>
@@ -355,6 +354,16 @@
            <widget class="QLabel" name="lbl_comment">
             <property name="text">
              <string>Comments:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QTextEdit" name="txtComment">
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
+            <property name="acceptRichText">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -413,23 +422,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>textInputPath</tabstop>
-  <tabstop>addFileButton</tabstop>
-  <tabstop>addFolderButton</tabstop>
-  <tabstop>comboTorrentFormat</tabstop>
-  <tabstop>comboPieceSize</tabstop>
-  <tabstop>buttonCalcTotalPieces</tabstop>
-  <tabstop>checkPrivate</tabstop>
-  <tabstop>checkStartSeeding</tabstop>
-  <tabstop>checkIgnoreShareLimits</tabstop>
-  <tabstop>checkOptimizeAlignment</tabstop>
-  <tabstop>spinPaddedFileSizeLimit</tabstop>
-  <tabstop>trackersList</tabstop>
-  <tabstop>URLSeedsList</tabstop>
-  <tabstop>txtComment</tabstop>
-  <tabstop>lineEditSource</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

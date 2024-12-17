@@ -182,22 +182,11 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="labelMustNotContain">
-             <property name="text">
-              <string>Must Not Contain:</string>
-             </property>
-            </widget>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineContains"/>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="lblEFilter">
-             <property name="text">
-              <string>Episode Filter:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QLabel" name="lblEFilterStat">
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelMustStat">
              <property name="maximumSize">
               <size>
                <width>18</width>
@@ -205,6 +194,16 @@
               </size>
              </property>
             </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelMustNotContain">
+             <property name="text">
+              <string>Must Not Contain:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineNotContains"/>
            </item>
            <item row="1" column="2">
             <widget class="QLabel" name="labelMustNotStat">
@@ -216,11 +215,18 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="lineContains"/>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lblEFilter">
+             <property name="text">
+              <string>Episode Filter:</string>
+             </property>
+            </widget>
            </item>
-           <item row="0" column="2">
-            <widget class="QLabel" name="labelMustStat">
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEFilter"/>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="lblEFilterStat">
              <property name="maximumSize">
               <size>
                <width>18</width>
@@ -238,12 +244,6 @@
               </size>
              </property>
             </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="lineNotContains"/>
-           </item>
-           <item row="2" column="1">
-            <widget class="QLineEdit" name="lineEFilter"/>
            </item>
           </layout>
          </item>
@@ -427,20 +427,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>renameRuleBtn</tabstop>
-  <tabstop>removeRuleBtn</tabstop>
-  <tabstop>addRuleBtn</tabstop>
-  <tabstop>ruleList</tabstop>
-  <tabstop>lineContains</tabstop>
-  <tabstop>lineNotContains</tabstop>
-  <tabstop>lineEFilter</tabstop>
-  <tabstop>spinIgnorePeriod</tabstop>
-  <tabstop>listFeeds</tabstop>
-  <tabstop>matchingArticlesTree</tabstop>
-  <tabstop>importBtn</tabstop>
-  <tabstop>exportBtn</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

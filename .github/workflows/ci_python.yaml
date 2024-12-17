@@ -34,7 +34,7 @@ jobs:
       - name: Lint code (auxiliary scripts)
         run: |
           pyflakes $PY_FILES
-          bandit --skip B314,B405 $PY_FILES
+          bandit --skip B101,B314,B405 $PY_FILES
 
       - name: Format code (auxiliary scripts)
         run: |
@@ -61,7 +61,7 @@ jobs:
           echo $PY_FILES
           echo "PY_FILES=$PY_FILES" >> "$GITHUB_ENV"
 
-      - name: Check typings  (search engine)
+      - name: Check typings (search engine)
         run: |
           MYPYPATH="src/searchengine/nova3" \
           mypy \

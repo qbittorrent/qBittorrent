@@ -361,6 +361,19 @@
                     </item>
                    </widget>
                   </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_12">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="lblUploadList">
                     <property name="text">
@@ -396,19 +409,6 @@
                      </property>
                     </item>
                    </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <spacer name="horizontalSpacer_12">
-                    <property name="orientation">
-                     <enum>Qt::Orientation::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                  </layout>
                 </widget>
@@ -1496,6 +1496,9 @@ readme.txt: filter exact file name.
 ?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
 readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</string>
                  </property>
+                 <property name="tabChangesFocus">
+                  <bool>true</bool>
+                 </property>
                  <property name="lineWrapMode">
                   <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                  </property>
@@ -1518,8 +1521,18 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
               <layout class="QVBoxLayout" name="verticalLayout_171">
                <item>
                 <layout class="QGridLayout" name="gridLayout_9">
-                 <item row="1" column="1">
-                  <widget class="QLineEdit" name="lineEditDestEmail"/>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_25">
+                   <property name="toolTip">
+                    <string>Sender</string>
+                   </property>
+                   <property name="text">
+                    <string comment="From sender">From:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QLineEdit" name="senderEmailTxt"/>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_2">
@@ -1531,6 +1544,9 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    </property>
                   </widget>
                  </item>
+                 <item row="1" column="1">
+                  <widget class="QLineEdit" name="lineEditDestEmail"/>
+                 </item>
                  <item row="2" column="0">
                   <widget class="QLabel" name="label_3">
                    <property name="text">
@@ -1540,19 +1556,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </item>
                  <item row="2" column="1">
                   <widget class="QLineEdit" name="lineEditSmtpServer"/>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QLineEdit" name="senderEmailTxt"/>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_25">
-                   <property name="toolTip">
-                    <string>Sender</string>
-                   </property>
-                   <property name="text">
-                    <string comment="From sender">From:</string>
-                   </property>
-                  </widget>
                  </item>
                 </layout>
                </item>
@@ -1824,26 +1827,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <string>Connections Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout">
-               <item row="3" column="1">
-                <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
-                 <property name="maximum">
-                  <number>500</number>
-                 </property>
-                 <property name="value">
-                  <number>4</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QCheckBox" name="checkMaxConnectionsPerTorrent">
-                 <property name="text">
-                  <string>Maximum number of connections per torrent:</string>
-                 </property>
-                 <property name="checked">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="0">
                 <widget class="QCheckBox" name="checkMaxConnections">
                  <property name="text">
@@ -1870,6 +1853,29 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item row="0" column="2">
+                <spacer name="horizontalSpacer_3">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="0">
+                <widget class="QCheckBox" name="checkMaxConnectionsPerTorrent">
+                 <property name="text">
+                  <string>Maximum number of connections per torrent:</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="1">
                 <widget class="QSpinBox" name="spinMaxConnecPerTorrent">
                  <property name="minimum">
@@ -1880,13 +1886,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                  <property name="value">
                   <number>100</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
-                 <property name="text">
-                  <string>Maximum number of upload slots per torrent:</string>
                  </property>
                 </widget>
                </item>
@@ -1907,18 +1906,22 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
-               <item row="0" column="2">
-                <spacer name="horizontalSpacer_3">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
+               <item row="3" column="0">
+                <widget class="QCheckBox" name="checkMaxUploadsPerTorrent">
+                 <property name="text">
+                  <string>Maximum number of upload slots per torrent:</string>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
+                 <property name="maximum">
+                  <number>500</number>
                  </property>
-                </spacer>
+                 <property name="value">
+                  <number>4</number>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1985,7 +1988,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item>
                 <widget class="QCheckBox" name="checkI2PMixed">
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &amp;quot;mixed mode&amp;quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &quot;mixed mode&quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
                   <string>Mixed mode</string>
@@ -2294,6 +2297,16 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <string>Global Rate Limits</string>
               </property>
               <layout class="QGridLayout" name="rateLimitBoxLayout">
+               <item row="0" column="0" rowspan="2">
+                <widget class="QLabel" name="labelGlobalRate"/>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_10">
+                 <property name="text">
+                  <string>Upload:</string>
+                 </property>
+                </widget>
+               </item>
                <item row="0" column="2">
                 <widget class="QSpinBox" name="spinUploadLimit">
                  <property name="specialValueText">
@@ -2310,6 +2323,26 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                  <property name="value">
                   <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="3">
+                <spacer name="horizontalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_11">
+                 <property name="text">
+                  <string>Download:</string>
                  </property>
                 </widget>
                </item>
@@ -2332,36 +2365,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0" rowspan="2">
-                <widget class="QLabel" name="labelGlobalRate"/>
-               </item>
-               <item row="0" column="3">
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="label_10">
-                 <property name="text">
-                  <string>Upload:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="label_11">
-                 <property name="text">
-                  <string>Download:</string>
-                 </property>
-                </widget>
-               </item>
               </layout>
              </widget>
             </item>
@@ -2371,143 +2374,14 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <string>Alternative Rate Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_6">
-               <item row="1" column="2">
-                <widget class="QSpinBox" name="spinDownloadLimitAlt">
-                 <property name="specialValueText">
-                  <string>∞</string>
-                 </property>
-                 <property name="suffix">
-                  <string> KiB/s</string>
-                 </property>
-                 <property name="maximum">
-                  <number>2000000</number>
-                 </property>
-                 <property name="stepType">
-                  <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
-                 </property>
-                 <property name="value">
-                  <number>10</number>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="0" rowspan="2">
                 <widget class="QLabel" name="labelAltRate"/>
                </item>
-               <item row="2" column="0" colspan="4">
-                <widget class="QGroupBox" name="groupBoxSchedule">
-                 <property name="title">
-                  <string>Schedule &amp;the use of alternative rate limits</string>
+               <item row="0" column="1">
+                <widget class="QLabel" name="label_13">
+                 <property name="text">
+                  <string>Upload:</string>
                  </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_7">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_6">
-                    <property name="toolTip">
-                     <string>Start time</string>
-                    </property>
-                    <property name="text">
-                     <string comment="From start time">From:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QTimeEdit" name="timeEditScheduleTo">
-                    <property name="wrapping">
-                     <bool>true</bool>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="time">
-                     <time>
-                      <hour>20</hour>
-                      <minute>0</minute>
-                      <second>0</second>
-                     </time>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QLabel" name="label_17">
-                    <property name="toolTip">
-                     <string>End time</string>
-                    </property>
-                    <property name="text">
-                     <string comment="To end time">To:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QTimeEdit" name="timeEditScheduleFrom">
-                    <property name="wrapping">
-                     <bool>true</bool>
-                    </property>
-                    <property name="displayFormat">
-                     <string notr="true">hh:mm</string>
-                    </property>
-                    <property name="calendarPopup">
-                     <bool>false</bool>
-                    </property>
-                    <property name="time">
-                     <time>
-                      <hour>8</hour>
-                      <minute>0</minute>
-                      <second>0</second>
-                     </time>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_18">
-                    <property name="text">
-                     <string>When:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1" colspan="3">
-                   <widget class="QComboBox" name="comboBoxScheduleDays">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <item>
-                     <property name="text">
-                      <string>Every day</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Weekdays</string>
-                     </property>
-                    </item>
-                    <item>
-                     <property name="text">
-                      <string>Weekends</string>
-                     </property>
-                    </item>
-                   </widget>
-                  </item>
-                  <item row="0" column="4">
-                   <spacer name="horizontalSpacer_8">
-                    <property name="orientation">
-                     <enum>Qt::Orientation::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
-                  </item>
-                 </layout>
                 </widget>
                </item>
                <item row="0" column="2">
@@ -2542,18 +2416,147 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </spacer>
                </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="label_13">
-                 <property name="text">
-                  <string>Upload:</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="1">
                 <widget class="QLabel" name="label_14">
                  <property name="text">
                   <string>Download:</string>
                  </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QSpinBox" name="spinDownloadLimitAlt">
+                 <property name="specialValueText">
+                  <string>∞</string>
+                 </property>
+                 <property name="suffix">
+                  <string> KiB/s</string>
+                 </property>
+                 <property name="maximum">
+                  <number>2000000</number>
+                 </property>
+                 <property name="stepType">
+                  <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+                 </property>
+                 <property name="value">
+                  <number>10</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="4">
+                <widget class="QGroupBox" name="groupBoxSchedule">
+                 <property name="title">
+                  <string>Schedule &amp;the use of alternative rate limits</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_7">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_6">
+                    <property name="toolTip">
+                     <string>Start time</string>
+                    </property>
+                    <property name="text">
+                     <string comment="From start time">From:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QTimeEdit" name="timeEditScheduleFrom">
+                    <property name="wrapping">
+                     <bool>true</bool>
+                    </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
+                    </property>
+                    <property name="calendarPopup">
+                     <bool>false</bool>
+                    </property>
+                    <property name="time">
+                     <time>
+                      <hour>8</hour>
+                      <minute>0</minute>
+                      <second>0</second>
+                     </time>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLabel" name="label_17">
+                    <property name="toolTip">
+                     <string>End time</string>
+                    </property>
+                    <property name="text">
+                     <string comment="To end time">To:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QTimeEdit" name="timeEditScheduleTo">
+                    <property name="wrapping">
+                     <bool>true</bool>
+                    </property>
+                    <property name="displayFormat">
+                     <string notr="true">hh:mm</string>
+                    </property>
+                    <property name="time">
+                     <time>
+                      <hour>20</hour>
+                      <minute>0</minute>
+                      <second>0</second>
+                     </time>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_18">
+                    <property name="text">
+                     <string>When:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1" colspan="3">
+                   <widget class="QComboBox" name="comboBoxScheduleDays">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <item>
+                     <property name="text">
+                      <string>Every day</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Weekdays</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Weekends</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -2750,6 +2753,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    <property name="openExternalLinks">
                     <bool>true</bool>
                    </property>
+                   <property name="textInteractionFlags">
+                    <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
+                   </property>
                   </widget>
                  </item>
                  <item>
@@ -2839,6 +2845,19 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
+               <item row="0" column="2">
+                <spacer name="horizontalSpacer_7">
+                 <property name="orientation">
+                  <enum>Qt::Orientation::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_max_active_up">
                  <property name="text">
@@ -2879,19 +2898,6 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="2">
-                <spacer name="horizontalSpacer_7">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
                <item row="3" column="0" colspan="3">
                 <widget class="QGroupBox" name="checkIgnoreSlowTorrentsForQueueing">
                  <property name="title">
@@ -2904,6 +2910,13 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <bool>false</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_13">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelDownloadRateForSlowTorrents">
+                    <property name="text">
+                     <string>Download rate threshold:</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="0" column="1">
                    <widget class="QSpinBox" name="spinDownloadRateForSlowTorrents">
                     <property name="suffix">
@@ -2917,6 +2930,26 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     </property>
                     <property name="value">
                      <number>2</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_9">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelUploadRateForSlowTorrents">
+                    <property name="text">
+                     <string>Upload rate threshold:</string>
                     </property>
                    </widget>
                   </item>
@@ -2936,32 +2969,12 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="labelUploadRateForSlowTorrents">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="labelSlowTorrentInactivityTimer">
                     <property name="text">
-                     <string>Upload rate threshold:</string>
+                     <string>Torrent inactivity timer:</string>
                     </property>
                    </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="labelDownloadRateForSlowTorrents">
-                    <property name="text">
-                     <string>Download rate threshold:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <spacer name="horizontalSpacer_9">
-                    <property name="orientation">
-                     <enum>Qt::Orientation::Horizontal</enum>
-                    </property>
-                    <property name="sizeHint" stdset="0">
-                     <size>
-                      <width>40</width>
-                      <height>20</height>
-                     </size>
-                    </property>
-                   </spacer>
                   </item>
                   <item row="2" column="1">
                    <widget class="QSpinBox" name="spinSlowTorrentsInactivityTimer">
@@ -2976,13 +2989,6 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                     </property>
                     <property name="value">
                      <number>60</number>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="labelSlowTorrentInactivityTimer">
-                    <property name="text">
-                     <string>Torrent inactivity timer:</string>
                     </property>
                    </widget>
                   </item>
@@ -3133,7 +3139,11 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_16">
                <item row="0" column="0">
-                <widget class="QPlainTextEdit" name="textTrackers"/>
+                <widget class="QPlainTextEdit" name="textTrackers">
+                 <property name="tabChangesFocus">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3208,26 +3218,6 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinRSSFetchDelay">
-                   <property name="suffix">
-                    <string> sec</string>
-                   </property>
-                   <property name="maximum">
-                    <number>2147483646</number>
-                   </property>
-                   <property name="value">
-                    <number>2</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="labelRSSFetchDelay">
-                   <property name="text">
-                    <string>Same host request delay:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="1">
                   <widget class="QSpinBox" name="spinRSSRefreshInterval">
                    <property name="suffix">
@@ -3257,13 +3247,23 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                    </property>
                   </spacer>
                  </item>
-                 <item row="2" column="1">
-                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="labelRSSFetchDelay">
+                   <property name="text">
+                    <string>Same host request delay:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="spinRSSFetchDelay">
+                   <property name="suffix">
+                    <string> sec</string>
+                   </property>
                    <property name="maximum">
                     <number>2147483646</number>
                    </property>
                    <property name="value">
-                    <number>100</number>
+                    <number>2</number>
                    </property>
                   </widget>
                  </item>
@@ -3271,6 +3271,16 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <widget class="QLabel" name="label_12">
                    <property name="text">
                     <string>Maximum number of articles per feed:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
+                   <property name="maximum">
+                    <number>2147483646</number>
+                   </property>
+                   <property name="value">
+                    <number>100</number>
                    </property>
                   </widget>
                  </item>
@@ -3323,7 +3333,11 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 </widget>
                </item>
                <item>
-                <widget class="QPlainTextEdit" name="textSmartEpisodeFilters"/>
+                <widget class="QPlainTextEdit" name="textSmartEpisodeFilters">
+                 <property name="tabChangesFocus">
+                  <bool>true</bool>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3462,12 +3476,8 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                   <bool>false</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_11">
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="lblWebUIKey">
-                    <property name="text">
-                     <string>Key:</string>
-                    </property>
-                   </widget>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="lblSslCertStatus"/>
                   </item>
                   <item row="0" column="1">
                    <widget class="QLabel" name="lblWebUICrt">
@@ -3476,11 +3486,21 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="lblSslCertStatus"/>
+                  <item row="0" column="2">
+                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsCert" native="true"/>
                   </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="lblSslKeyStatus"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="lblWebUIKey">
+                    <property name="text">
+                     <string>Key:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsKey" native="true"/>
                   </item>
                   <item row="2" column="0" colspan="3">
                    <widget class="QLabel" name="lblWebUICertInfo">
@@ -3490,13 +3510,10 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <property name="openExternalLinks">
                      <bool>true</bool>
                     </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
+                    </property>
                    </widget>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsCert" native="true"/>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="FileSystemPathLineEdit" name="textWebUIHttpsKey" native="true"/>
                   </item>
                  </layout>
                 </widget>
@@ -3574,6 +3591,16 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                       </property>
                      </widget>
                     </item>
+                    <item row="0" column="1">
+                     <widget class="QSpinBox" name="spinBanCounter">
+                      <property name="specialValueText">
+                       <string>Never</string>
+                      </property>
+                      <property name="maximum">
+                       <number>2147483647</number>
+                      </property>
+                     </widget>
+                    </item>
                     <item row="0" column="2">
                      <spacer name="horizontalSpacer_15">
                       <property name="orientation">
@@ -3586,16 +3613,6 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                        </size>
                       </property>
                      </spacer>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QSpinBox" name="spinBanCounter">
-                      <property name="specialValueText">
-                       <string>Never</string>
-                      </property>
-                      <property name="maximum">
-                       <number>2147483647</number>
-                      </property>
-                     </widget>
                     </item>
                     <item row="1" column="0">
                      <widget class="QLabel" name="lblBanDuration">
@@ -3696,6 +3713,9 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                     <property name="openExternalLinks">
                      <bool>true</bool>
                     </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -3776,6 +3796,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                  <layout class="QVBoxLayout" name="verticalLayout_8">
                   <item>
                    <widget class="QPlainTextEdit" name="textWebUICustomHTTPHeaders">
+                    <property name="tabChangesFocus">
+                     <bool>true</bool>
+                    </property>
                     <property name="lineWrapMode">
                      <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
                     </property>
@@ -3817,7 +3840,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   <item>
                    <widget class="QLabel" name="labelReverseProxyLink">
                     <property name="text">
-                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki#reverse-proxy-setup-for-webui-access&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Reverse proxy setup examples&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                     <string>&lt;a href=https://github.com/qbittorrent/qBittorrent/wiki#reverse-proxy-setup-for-webui-access&gt;Reverse proxy setup examples&lt;/a&gt;</string>
+                    </property>
+                    <property name="openExternalLinks">
+                     <bool>true</bool>
+                    </property>
+                    <property name="textInteractionFlags">
+                     <set>Qt::TextInteractionFlag::LinksAccessibleByKeyboard|Qt::TextInteractionFlag::LinksAccessibleByMouse</set>
                     </property>
                    </widget>
                   </item>
@@ -3967,206 +3996,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
    <container>1</container>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>tabOption</tabstop>
-  <tabstop>tabSelection</tabstop>
-  <tabstop>comboLanguage</tabstop>
-  <tabstop>comboStyle</tabstop>
-  <tabstop>comboColorScheme</tabstop>
-  <tabstop>checkUseCustomTheme</tabstop>
-  <tabstop>customThemeFilePath</tabstop>
-  <tabstop>checkUseSystemIcon</tabstop>
-  <tabstop>buttonCustomizeUITheme</tabstop>
-  <tabstop>confirmDeletion</tabstop>
-  <tabstop>checkAltRowColors</tabstop>
-  <tabstop>checkHideZero</tabstop>
-  <tabstop>comboHideZero</tabstop>
-  <tabstop>actionTorrentDlOnDblClBox</tabstop>
-  <tabstop>actionTorrentFnOnDblClBox</tabstop>
-  <tabstop>checkBoxHideZeroStatusFilters</tabstop>
-  <tabstop>checkStartup</tabstop>
-  <tabstop>checkShowSplash</tabstop>
-  <tabstop>windowStateComboBox</tabstop>
-  <tabstop>checkProgramExitConfirm</tabstop>
-  <tabstop>checkProgramAutoExitConfirm</tabstop>
-  <tabstop>checkShowSystray</tabstop>
-  <tabstop>checkMinimizeToSysTray</tabstop>
-  <tabstop>checkCloseToSystray</tabstop>
-  <tabstop>comboTrayIcon</tabstop>
-  <tabstop>checkAssociateTorrents</tabstop>
-  <tabstop>checkAssociateMagnetLinks</tabstop>
-  <tabstop>checkProgramUpdates</tabstop>
-  <tabstop>checkPreventFromSuspendWhenDownloading</tabstop>
-  <tabstop>checkPreventFromSuspendWhenSeeding</tabstop>
-  <tabstop>checkFileLog</tabstop>
-  <tabstop>textFileLogPath</tabstop>
-  <tabstop>checkFileLogBackup</tabstop>
-  <tabstop>spinFileLogSize</tabstop>
-  <tabstop>checkFileLogDelete</tabstop>
-  <tabstop>spinFileLogAge</tabstop>
-  <tabstop>comboFileLogAgeType</tabstop>
-  <tabstop>checkBoxPerformanceWarning</tabstop>
-  <tabstop>scrollArea</tabstop>
-  <tabstop>checkAdditionDialog</tabstop>
-  <tabstop>checkAdditionDialogFront</tabstop>
-  <tabstop>contentLayoutComboBox</tabstop>
-  <tabstop>checkAddToQueueTop</tabstop>
-  <tabstop>checkAddStopped</tabstop>
-  <tabstop>stopConditionComboBox</tabstop>
-  <tabstop>checkMergeTrackers</tabstop>
-  <tabstop>checkConfirmMergeTrackers</tabstop>
-  <tabstop>deleteTorrentBox</tabstop>
-  <tabstop>deleteCancelledTorrentBox</tabstop>
-  <tabstop>checkPreallocateAll</tabstop>
-  <tabstop>checkAppendqB</tabstop>
-  <tabstop>checkUnwantedFolder</tabstop>
-  <tabstop>checkRecursiveDownload</tabstop>
-  <tabstop>comboSavingMode</tabstop>
-  <tabstop>comboTorrentCategoryChanged</tabstop>
-  <tabstop>comboCategoryDefaultPathChanged</tabstop>
-  <tabstop>comboCategoryChanged</tabstop>
-  <tabstop>checkUseSubcategories</tabstop>
-  <tabstop>checkUseCategoryPaths</tabstop>
-  <tabstop>textSavePath</tabstop>
-  <tabstop>checkUseDownloadPath</tabstop>
-  <tabstop>textDownloadPath</tabstop>
-  <tabstop>checkExportDir</tabstop>
-  <tabstop>textExportDir</tabstop>
-  <tabstop>checkExportDirFin</tabstop>
-  <tabstop>textExportDirFin</tabstop>
-  <tabstop>scanFoldersView</tabstop>
-  <tabstop>addWatchedFolderButton</tabstop>
-  <tabstop>editWatchedFolderButton</tabstop>
-  <tabstop>removeWatchedFolderButton</tabstop>
-  <tabstop>groupExcludedFileNames</tabstop>
-  <tabstop>textExcludedFileNames</tabstop>
-  <tabstop>groupMailNotification</tabstop>
-  <tabstop>senderEmailTxt</tabstop>
-  <tabstop>lineEditDestEmail</tabstop>
-  <tabstop>lineEditSmtpServer</tabstop>
-  <tabstop>checkSmtpSSL</tabstop>
-  <tabstop>groupMailNotifAuth</tabstop>
-  <tabstop>mailNotifUsername</tabstop>
-  <tabstop>mailNotifPassword</tabstop>
-  <tabstop>sendTestEmail</tabstop>
-  <tabstop>groupBoxRunOnAdded</tabstop>
-  <tabstop>lineEditRunOnAdded</tabstop>
-  <tabstop>groupBoxRunOnFinished</tabstop>
-  <tabstop>lineEditRunOnFinished</tabstop>
-  <tabstop>autoRunConsole</tabstop>
-  <tabstop>scrollArea_2</tabstop>
-  <tabstop>comboProtocol</tabstop>
-  <tabstop>spinPort</tabstop>
-  <tabstop>randomButton</tabstop>
-  <tabstop>checkUPnP</tabstop>
-  <tabstop>checkMaxConnections</tabstop>
-  <tabstop>spinMaxConnec</tabstop>
-  <tabstop>checkMaxConnectionsPerTorrent</tabstop>
-  <tabstop>spinMaxConnecPerTorrent</tabstop>
-  <tabstop>checkMaxUploads</tabstop>
-  <tabstop>spinMaxUploads</tabstop>
-  <tabstop>checkMaxUploadsPerTorrent</tabstop>
-  <tabstop>spinMaxUploadsPerTorrent</tabstop>
-  <tabstop>groupI2P</tabstop>
-  <tabstop>textI2PHost</tabstop>
-  <tabstop>spinI2PPort</tabstop>
-  <tabstop>checkI2PMixed</tabstop>
-  <tabstop>comboProxyType</tabstop>
-  <tabstop>textProxyIP</tabstop>
-  <tabstop>spinProxyPort</tabstop>
-  <tabstop>checkProxyHostnameLookup</tabstop>
-  <tabstop>checkProxyAuth</tabstop>
-  <tabstop>textProxyUsername</tabstop>
-  <tabstop>textProxyPassword</tabstop>
-  <tabstop>checkProxyBitTorrent</tabstop>
-  <tabstop>checkProxyPeerConnections</tabstop>
-  <tabstop>checkProxyRSS</tabstop>
-  <tabstop>checkProxyMisc</tabstop>
-  <tabstop>checkIPFilter</tabstop>
-  <tabstop>textFilterPath</tabstop>
-  <tabstop>IpFilterRefreshBtn</tabstop>
-  <tabstop>banListButton</tabstop>
-  <tabstop>checkIpFilterTrackers</tabstop>
-  <tabstop>scrollArea_3</tabstop>
-  <tabstop>spinUploadLimit</tabstop>
-  <tabstop>spinDownloadLimit</tabstop>
-  <tabstop>spinUploadLimitAlt</tabstop>
-  <tabstop>spinDownloadLimitAlt</tabstop>
-  <tabstop>groupBoxSchedule</tabstop>
-  <tabstop>timeEditScheduleFrom</tabstop>
-  <tabstop>timeEditScheduleTo</tabstop>
-  <tabstop>comboBoxScheduleDays</tabstop>
-  <tabstop>checkLimituTPConnections</tabstop>
-  <tabstop>checkLimitTransportOverhead</tabstop>
-  <tabstop>checkLimitLocalPeerRate</tabstop>
-  <tabstop>scrollArea_9</tabstop>
-  <tabstop>checkDHT</tabstop>
-  <tabstop>checkPeX</tabstop>
-  <tabstop>checkLSD</tabstop>
-  <tabstop>comboEncryption</tabstop>
-  <tabstop>checkAnonymousMode</tabstop>
-  <tabstop>spinBoxMaxActiveCheckingTorrents</tabstop>
-  <tabstop>checkEnableQueueing</tabstop>
-  <tabstop>spinMaxActiveDownloads</tabstop>
-  <tabstop>spinMaxActiveUploads</tabstop>
-  <tabstop>spinMaxActiveTorrents</tabstop>
-  <tabstop>checkIgnoreSlowTorrentsForQueueing</tabstop>
-  <tabstop>spinDownloadRateForSlowTorrents</tabstop>
-  <tabstop>spinUploadRateForSlowTorrents</tabstop>
-  <tabstop>spinSlowTorrentsInactivityTimer</tabstop>
-  <tabstop>checkMaxRatio</tabstop>
-  <tabstop>spinMaxRatio</tabstop>
-  <tabstop>checkMaxSeedingMinutes</tabstop>
-  <tabstop>spinMaxSeedingMinutes</tabstop>
-  <tabstop>checkMaxInactiveSeedingMinutes</tabstop>
-  <tabstop>spinMaxInactiveSeedingMinutes</tabstop>
-  <tabstop>comboRatioLimitAct</tabstop>
-  <tabstop>checkEnableAddTrackers</tabstop>
-  <tabstop>textTrackers</tabstop>
-  <tabstop>scrollArea_4</tabstop>
-  <tabstop>checkRSSEnable</tabstop>
-  <tabstop>spinRSSRefreshInterval</tabstop>
-  <tabstop>spinRSSFetchDelay</tabstop>
-  <tabstop>spinRSSMaxArticlesPerFeed</tabstop>
-  <tabstop>checkRSSAutoDownloaderEnable</tabstop>
-  <tabstop>btnEditRules</tabstop>
-  <tabstop>checkSmartFilterDownloadRepacks</tabstop>
-  <tabstop>textSmartEpisodeFilters</tabstop>
-  <tabstop>scrollArea_5</tabstop>
-  <tabstop>checkWebUI</tabstop>
-  <tabstop>textWebUIAddress</tabstop>
-  <tabstop>spinWebUIPort</tabstop>
-  <tabstop>checkWebUIUPnP</tabstop>
-  <tabstop>checkWebUIHttps</tabstop>
-  <tabstop>textWebUIHttpsCert</tabstop>
-  <tabstop>textWebUIHttpsKey</tabstop>
-  <tabstop>textWebUIUsername</tabstop>
-  <tabstop>textWebUIPassword</tabstop>
-  <tabstop>checkBypassLocalAuth</tabstop>
-  <tabstop>checkBypassAuthSubnetWhitelist</tabstop>
-  <tabstop>IPSubnetWhitelistButton</tabstop>
-  <tabstop>spinBanCounter</tabstop>
-  <tabstop>spinBanDuration</tabstop>
-  <tabstop>spinSessionTimeout</tabstop>
-  <tabstop>groupAltWebUI</tabstop>
-  <tabstop>textWebUIRootFolder</tabstop>
-  <tabstop>checkClickjacking</tabstop>
-  <tabstop>checkCSRFProtection</tabstop>
-  <tabstop>checkSecureCookie</tabstop>
-  <tabstop>groupHostHeaderValidation</tabstop>
-  <tabstop>textServerDomains</tabstop>
-  <tabstop>groupWebUIAddCustomHTTPHeaders</tabstop>
-  <tabstop>textWebUICustomHTTPHeaders</tabstop>
-  <tabstop>groupEnableReverseProxySupport</tabstop>
-  <tabstop>textTrustedReverseProxiesList</tabstop>
-  <tabstop>checkDynDNS</tabstop>
-  <tabstop>comboDNSService</tabstop>
-  <tabstop>registerDNSBtn</tabstop>
-  <tabstop>domainNameTxt</tabstop>
-  <tabstop>DNSUsernameTxt</tabstop>
-  <tabstop>DNSPasswordTxt</tabstop>
-  <tabstop>scrollArea_7</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>
