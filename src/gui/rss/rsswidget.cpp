@@ -654,7 +654,7 @@ namespace
                 relativePath = relativePath.mid(1);
 
             const QString absoluteUrl = !host.isEmpty()
-                    ? (defaultScheme + u":" + host) : (normalizedBaseUrl + relativePath);
+                    ? QString(defaultScheme + u":" + host) : QString(normalizedBaseUrl + relativePath);
             const QString fullMatch = match.captured(0);
             const QString prefix = match.captured(1);
             const QString suffix = match.captured(7);
