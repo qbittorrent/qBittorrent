@@ -56,8 +56,6 @@
 
 namespace
 {
-    void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl);
-    
     void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl)
     {
         const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
