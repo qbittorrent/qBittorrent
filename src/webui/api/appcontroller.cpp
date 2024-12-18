@@ -470,6 +470,7 @@ void AppController::preferencesAction()
     data[u"announce_to_all_trackers"_s] = session->announceToAllTrackers();
     data[u"announce_to_all_tiers"_s] = session->announceToAllTiers();
     data[u"announce_ip"_s] = session->announceIP();
+    data[u"announce_port"_s] = session->announcePort();
     data[u"max_concurrent_http_announces"_s] = session->maxConcurrentHTTPAnnounces();
     data[u"stop_tracker_timeout"_s] = session->stopTrackerTimeout();
     // Peer Turnover
@@ -1137,6 +1138,8 @@ void AppController::setPreferencesAction()
         const QHostAddress announceAddr {it.value().toString().trimmed()};
         session->setAnnounceIP(announceAddr.isNull() ? QString {} : announceAddr.toString());
     }
+    if (hasKey(u"announce_port"_s))
+        session->setAnnouncePort(it.value().toInt());
     if (hasKey(u"max_concurrent_http_announces"_s))
         session->setMaxConcurrentHTTPAnnounces(it.value().toInt());
     if (hasKey(u"stop_tracker_timeout"_s))
