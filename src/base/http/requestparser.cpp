@@ -164,7 +164,7 @@ bool RequestParser::parseStartLines(const QStringView data)
         if (line.at(0).isSpace() && !requestLines.isEmpty())
         {
             // continuation of previous line
-            requestLines.last() += line.toString();
+            requestLines.last() += line;
         }
         else
         {
@@ -225,9 +225,7 @@ bool RequestParser::parseRequestLine(const QString &line)
             const QByteArrayView valueComponent = param.mid(eqCharPos + 1);
             const QString paramName = QString::fromUtf8(
                 QByteArray::fromPercentEncoding(asQByteArray(nameComponent)).replace('+', ' '));
-            const QByteArray paramValue = valueComponent.isNull()
-                ? QByteArray("")
-                : QByteArray::fromPercentEncoding(asQByteArray(valueComponent)).replace('+', ' ');
+            const QByteArray paramValue = QByteArray::fromPercentEncoding(asQByteArray(valueComponent)).replace('+', ' ');
 
             m_request.query[paramName] = paramValue;
         }
@@ -337,7 +335,7 @@ bool RequestParser::parseFormData(const QByteArrayView data)
         }
         else
         {
-            if (!parseHeaderLine(line.toString(), headersMap))
+            if (!parseHeaderLine(line, headersMap))
                 return false;
         }
     }
@@ -348,7 +346,8 @@ bool RequestParser::parseFormData(const QByteArrayView data)
 
     if (headersMap.contains(filename))
     {
-        m_request.files.append({headersMap[filename], headersMap[HEADER_CONTENT_TYPE], payload.toByteArray()});
+        m_request.files.append({.filename = headersMap[filename], .type = headersMap[HEADER_CONTENT_TYPE]
+            , .data = payload.toByteArray()});
     }
     else if (headersMap.contains(name))
     {
