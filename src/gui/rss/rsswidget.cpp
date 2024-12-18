@@ -63,7 +63,7 @@ namespace
         const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
             , QRegularExpression::CaseInsensitiveOption};
 
-        const QString normalizedBaseUrl = baseUrl.endsWith(u'/') ? baseUrl : baseUrl + u'/';
+        const QString normalizedBaseUrl = baseUrl.endsWith(u'/') ? baseUrl : (baseUrl + u'/');
         const QUrl url {normalizedBaseUrl};
         const QString defaultScheme = url.scheme();
         QRegularExpressionMatchIterator iter = rx.globalMatch(html);
@@ -87,7 +87,7 @@ namespace
                 relativePath = relativePath.mid(1);
 
             const QString absoluteUrl = !host.isEmpty()
-                    ? QString(defaultScheme + u":" + host) : QString(normalizedBaseUrl + relativePath);
+                    ? QString(defaultScheme + u':' + host) : (normalizedBaseUrl + relativePath);
             const QString fullMatch = match.captured(0);
             const QString prefix = match.captured(1);
             const QString suffix = match.captured(7);
