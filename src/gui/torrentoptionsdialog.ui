@@ -52,6 +52,13 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelCategory">
+       <property name="text">
+        <string>Category:</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="1">
       <widget class="QComboBox" name="comboCategory">
        <property name="sizePolicy">
@@ -71,13 +78,6 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelCategory">
-       <property name="text">
-        <string>Category:</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
@@ -86,26 +86,17 @@
       <string>Torrent Speed Limits</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label">
         <property name="text">
-         <string>Download:</string>
+         <string>Upload:</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="2">
-       <widget class="QSpinBox" name="spinDownloadLimit">
-        <property name="specialValueText">
-         <string>∞</string>
-        </property>
-        <property name="suffix">
-         <string> KiB/s</string>
-        </property>
-        <property name="maximum">
-         <number>2000000</number>
-        </property>
-        <property name="stepType">
-         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+      <item row="0" column="1">
+       <widget class="QSlider" name="sliderUploadLimit">
+        <property name="orientation">
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -125,24 +116,10 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2">
-       <widget class="QLabel" name="labelWarning">
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>These will not exceed the global limits</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Upload:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QSlider" name="sliderUploadLimit">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
+         <string>Download:</string>
         </property>
        </widget>
       </item>
@@ -150,6 +127,29 @@
        <widget class="QSlider" name="sliderDownloadLimit">
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QSpinBox" name="spinDownloadLimit">
+        <property name="specialValueText">
+         <string>∞</string>
+        </property>
+        <property name="suffix">
+         <string> KiB/s</string>
+        </property>
+        <property name="maximum">
+         <number>2000000</number>
+        </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QLabel" name="labelWarning">
+        <property name="text">
+         <string>These will not exceed the global limits</string>
         </property>
        </widget>
       </item>
@@ -256,23 +256,6 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <tabstops>
-  <tabstop>checkAutoTMM</tabstop>
-  <tabstop>savePath</tabstop>
-  <tabstop>checkUseDownloadPath</tabstop>
-  <tabstop>downloadPath</tabstop>
-  <tabstop>comboCategory</tabstop>
-  <tabstop>sliderUploadLimit</tabstop>
-  <tabstop>spinUploadLimit</tabstop>
-  <tabstop>sliderDownloadLimit</tabstop>
-  <tabstop>spinDownloadLimit</tabstop>
-  <tabstop>torrentShareLimitsBox</tabstop>
-  <tabstop>checkDisableDHT</tabstop>
-  <tabstop>checkSequential</tabstop>
-  <tabstop>checkDisablePEX</tabstop>
-  <tabstop>checkFirstLastPieces</tabstop>
-  <tabstop>checkDisableLSD</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

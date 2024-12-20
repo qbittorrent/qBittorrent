@@ -86,12 +86,6 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>whitelistedIPSubnetList</tabstop>
-  <tabstop>txtIPSubnet</tabstop>
-  <tabstop>buttonWhitelistIPSubnet</tabstop>
-  <tabstop>buttonDeleteIPSubnet</tabstop>
- </tabstops>
  <resources/>
  <connections/>
 </ui>

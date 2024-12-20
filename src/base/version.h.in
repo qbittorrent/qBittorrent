@@ -32,7 +32,7 @@
 #define QBT_VERSION_MINOR 1
 #define QBT_VERSION_BUGFIX 0
 #define QBT_VERSION_BUILD 0
-#define QBT_VERSION_STATUS "alpha1"  // Should be empty for stable releases!
+#define QBT_VERSION_STATUS "beta1"  // Should be empty for stable releases!
 
 #define QBT__STRINGIFY(x) #x
 #define QBT_STRINGIFY(x) QBT__STRINGIFY(x)

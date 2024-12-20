@@ -378,6 +378,26 @@
               <string>Torrent information</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QLabel" name="labelSize">
+                <property name="text">
+                 <string>Size:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLabel" name="labelSizeData"/>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="labelDate">
+                <property name="text">
+                 <string>Date:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLabel" name="labelDateData"/>
+              </item>
               <item row="2" column="0">
                <widget class="QLabel" name="labelInfohash1">
                 <property name="text">
@@ -385,11 +405,36 @@
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QLabel" name="labelSizeData"/>
+              <item row="2" column="1">
+               <widget class="QLabel" name="labelInfohash1Data">
+                <property name="textInteractionFlags">
+                 <set>Qt::TextInteractionFlag::TextSelectableByMouse</set>
+                </property>
+               </widget>
               </item>
-              <item row="1" column="1">
-               <widget class="QLabel" name="labelDateData"/>
+              <item row="3" column="0">
+               <widget class="QLabel" name="labelInfohash2">
+                <property name="text">
+                 <string>Info hash v2:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLabel" name="labelInfohash2Data">
+                <property name="textInteractionFlags">
+                 <set>Qt::TextInteractionFlag::TextSelectableByMouse</set>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="labelComment">
+                <property name="text">
+                 <string>Comment:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+                </property>
+               </widget>
               </item>
               <item row="4" column="1">
                <widget class="QScrollArea" name="scrollArea">
@@ -439,57 +484,12 @@
                      <bool>true</bool>
                     </property>
                     <property name="textInteractionFlags">
-                     <set>Qt::TextInteractionFlag::TextBrowserInteraction</set>
+                     <set>Qt::TextInteractionFlag::TextSelectableByKeyboard|Qt::TextInteractionFlag::TextSelectableByMouse</set>
                     </property>
                    </widget>
                   </item>
                  </layout>
                 </widget>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="labelComment">
-                <property name="text">
-                 <string>Comment:</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="labelSize">
-                <property name="text">
-                 <string>Size:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QLabel" name="labelInfohash1Data">
-                <property name="textInteractionFlags">
-                 <set>Qt::TextInteractionFlag::TextSelectableByMouse</set>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="labelDate">
-                <property name="text">
-                 <string>Date:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="labelInfohash2">
-                <property name="text">
-                 <string>Info hash v2:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLabel" name="labelInfohash2Data">
-                <property name="textInteractionFlags">
-                 <set>Qt::TextInteractionFlag::TextSelectableByMouse</set>
-                </property>
                </widget>
               </item>
              </layout>
