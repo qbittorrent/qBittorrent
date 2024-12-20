@@ -107,6 +107,7 @@ ol {
 
 /* Forms */
 
+input[type="search"],
 input[type="text"],
 input[type="number"],
 input[type="password"],
@@ -503,13 +504,13 @@ a.propButton img {
 #torrentsFilterInput {
     background-color: var(--color-background-default);
     background-image: url("../images/edit-find.svg");
-    background-position: left;
+    background-position: 2px;
     background-repeat: no-repeat;
     background-size: 1.5em;
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
-    min-width: 160px;
-    padding: 2px 12px 2px 25px;
+    min-width: 170px;
+    padding: 2px 2px 2px 25px;
 }
 
 #torrentsFilterRegexBox {
@@ -555,7 +556,7 @@ a.propButton img {
 
 #torrentFilesFilterInput {
     background-image: url("../images/edit-find.svg");
-    background-position: left;
+    background-position: 1px;
     background-repeat: no-repeat;
     background-size: 1.5em;
     margin-top: -1px;

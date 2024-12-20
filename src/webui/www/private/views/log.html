@@ -43,9 +43,9 @@
     #filterTextInput {
         background-image: url("../images/edit-find.svg");
         background-repeat: no-repeat;
-        background-position: left;
+        background-position: 2px;
         background-size: 1.5em;
-        padding: 2px 12px 2px 2em;
+        padding: 2px 2px 2px 2em;
         margin-left: .3em;
         width: 237px;
         border: 1px solid var(--color-border-default);
@@ -96,7 +96,7 @@
                 <option value="8">QBT_TR(Critical Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
             </select>
 
-            <input type="text" id="filterTextInput" oninput="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" aria-label="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none">
+            <input type="search" id="filterTextInput" oninput="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" aria-label="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none">
             <button type="button" title="Clear input" onclick="javascript:document.getElementById('filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</button>
         </div>
 

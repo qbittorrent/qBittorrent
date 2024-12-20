@@ -4,10 +4,10 @@
         background-image: url("images/edit-find.svg");
         background-repeat: no-repeat;
         background-size: 1.5em;
-        background-position: left;
+        background-position: 3px;
         border: 1px solid var(--color-border-default);
         border-radius: 3px;
-        padding: 0 0 0 25px;
+        padding: 0 4px 0 25px;
     }
 
     #categorySelect {
@@ -36,7 +36,7 @@
     }
 
     #searchInNameFilter {
-        width: 150px;
+        width: 160px;
         margin-right: 20px;
     }
 
@@ -89,7 +89,7 @@
 <div id="searchResults">
     <div style="overflow: hidden; height: 60px;">
         <div style="display: flex; flex-wrap: wrap; gap: 5px; margin: 20px 0 10px 0; height: 24px;">
-            <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()">
+            <input type="search" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()">
             <select id="categorySelect" class="searchInputField" aria-label="QBT_TR(Select category)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.categorySelected()"></select>
             <select id="pluginsSelect" class="searchInputField" aria-label="QBT_TR(Select plugins)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.pluginSelected()"></select>
             <button type="button" id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">
@@ -132,7 +132,7 @@
     </div>
 
     <div id="searchResultsFilters" class="invisible">
-        <input type="text" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none">
+        <input type="search" id="searchInNameFilter" placeholder="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Filter)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none">
 
         <span>QBT_TR(Results)QBT_TR[CONTEXT=SearchEngineWidget] (QBT_TR(showing)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsVisible" class="numSearchResults">0</span> QBT_TR(out of)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numSearchResultsTotal" class="numSearchResults">0</span>):</span>
 
