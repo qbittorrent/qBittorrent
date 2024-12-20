@@ -26,20 +26,22 @@
 
                 let completionCount = 0;
                 paths.forEach((path) => {
-                    new Request({
-                        url: "api/v2/rss/removeItem",
-                        method: "post",
-                        data: {
-                            path: decodeURIComponent(path)
-                        },
-                        onComplete: (response) => {
+                    fetch("api/v2/rss/removeItem", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                "path": decodeURIComponent(path)
+                            })
+                        })
+                        .then((response) => {
+                            if (!response.ok)
+                                return;
+
                             ++completionCount;
                             if (completionCount === paths.length) {
                                 window.parent.qBittorrent.Rss.updateRssFeedList();
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
-                        }
-                    }).send();
+                        });
                 });
             });
         });

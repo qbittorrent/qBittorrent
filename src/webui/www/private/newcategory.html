@@ -72,72 +72,77 @@
                         if ((uriHashes === "") || !verifyCategoryName(categoryName))
                             return;
 
-                        new Request({
-                            url: "api/v2/torrents/createCategory",
-                            method: "post",
-                            data: {
-                                category: categoryName,
-                                savePath: savePath
-                            },
-                            onSuccess: () => {
-                                new Request({
-                                    url: "api/v2/torrents/setCategory",
-                                    method: "post",
-                                    data: {
-                                        hashes: uriHashes,
-                                        category: categoryName
-                                    },
-                                    onSuccess: () => {
+                        fetch("api/v2/torrents/createCategory", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    "category": categoryName,
+                                    "savePath": savePath
+                                })
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] " + window.qBittorrent.Misc.escapeHtml(categoryName));
+                                    return;
+                                }
+
+                                fetch("api/v2/torrents/setCategory", {
+                                        method: "POST",
+                                        body: new URLSearchParams({
+                                            "hashes": uriHashes,
+                                            "category": categoryName
+                                        })
+                                    })
+                                    .then((response) => {
+                                        if (!response.ok) {
+                                            alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
+                                            return;
+                                        }
+
                                         window.parent.updateMainData();
                                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                                    },
-                                    onFailure: () => {
-                                        alert("QBT_TR(Unable to set category)QBT_TR[CONTEXT=Category]");
-                                    }
-                                }).send();
-                            },
-                            onFailure: () => {
-                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] " + window.qBittorrent.Misc.escapeHtml(categoryName));
-                            }
-                        }).send();
+                                    });
+                            });
                         break;
+
                     case "create":
                     case "createSubcategory":
                         if (!verifyCategoryName(categoryName))
                             return;
+                        fetch("api/v2/torrents/createCategory", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    "category": categoryName,
+                                    "savePath": savePath
+                                })
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
+                                    return;
+                                }
 
-                        new Request({
-                            url: "api/v2/torrents/createCategory",
-                            method: "post",
-                            data: {
-                                category: categoryName,
-                                savePath: savePath
-                            },
-                            onSuccess: () => {
                                 window.parent.updateMainData();
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
-                            },
-                            onFailure: () => {
-                                alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category]");
-                            }
-                        }).send();
+                            });
                         break;
+
                     case "edit":
-                        new Request({
-                            url: "api/v2/torrents/editCategory",
-                            method: "post",
-                            data: {
-                                category: uriCategoryName, // category name can't be changed
-                                savePath: savePath
-                            },
-                            onSuccess: () => {
+                        fetch("api/v2/torrents/editCategory", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    "category": uriCategoryName, // category name can't be changed
+                                    "savePath": savePath
+                                })
+                            })
+                            .then((response) => {
+                                if (!response.ok) {
+                                    alert("QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
+                                    return;
+                                }
+
                                 window.parent.updateMainData();
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
-                            },
-                            onFailure: () => {
-                                alert("QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
-                            }
-                        }).send();
+                            });
                         break;
                 }
             });

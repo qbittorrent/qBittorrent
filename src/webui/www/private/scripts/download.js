@@ -36,26 +36,28 @@ window.qBittorrent.Download ??= (() => {
     let defaultSavePath = "";
 
     const getCategories = () => {
-        new Request.JSON({
-            url: "api/v2/torrents/categories",
-            method: "get",
-            noCache: true,
-            onSuccess: (data) => {
-                if (data) {
-                    categories = data;
-                    for (const i in data) {
-                        if (!Object.hasOwn(data, i))
-                            continue;
+        fetch("api/v2/torrents/categories", {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
 
-                        const category = data[i];
-                        const option = document.createElement("option");
-                        option.value = category.name;
-                        option.textContent = category.name;
-                        $("categorySelect").appendChild(option);
-                    }
+                const data = await response.json();
+
+                categories = data;
+                for (const i in data) {
+                    if (!Object.hasOwn(data, i))
+                        continue;
+
+                    const category = data[i];
+                    const option = document.createElement("option");
+                    option.value = category.name;
+                    option.textContent = category.name;
+                    $("categorySelect").appendChild(option);
                 }
-            }
-        }).send();
+            });
     };
 
     const getPreferences = () => {

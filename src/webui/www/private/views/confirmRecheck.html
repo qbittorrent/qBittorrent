@@ -28,20 +28,21 @@
             window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
         });
         confirmButton.addEventListener("click", (e) => {
-            new Request({
-                url: "api/v2/torrents/recheck",
-                method: "post",
-                data: {
-                    hashes: hashes.join("|"),
-                },
-                onSuccess: () => {
+            fetch("api/v2/torrents/recheck", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        "hashes": hashes.join("|")
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
                     updateMainData();
                     window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
-                },
-                onFailure: () => {
-                    alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
-                }
-            }).send();
+                });
         });
 
         // set tabindex so window element receives keydown events

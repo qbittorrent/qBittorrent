@@ -50,18 +50,21 @@
                 }
 
                 $("renameButton").disabled = true;
-                new Request({
-                    url: "api/v2/rss/renameRule",
-                    method: "post",
-                    data: {
-                        ruleName: oldName,
-                        newRuleName: newName
-                    },
-                    onSuccess: (response) => {
+
+                fetch("api/v2/rss/renameRule", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "ruleName": oldName,
+                            "newRuleName": newName
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
                         window.parent.qBittorrent.RssDownloader.updateRulesList();
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    }
-                }).send();
+                    });
             });
         });
     </script>

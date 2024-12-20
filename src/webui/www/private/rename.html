@@ -44,17 +44,19 @@
 
                 const hash = new URI().getData("hash");
                 if (hash) {
-                    new Request({
-                        url: "api/v2/torrents/rename",
-                        method: "post",
-                        data: {
-                            hash: hash,
-                            name: name
-                        },
-                        onComplete: () => {
+                    fetch("api/v2/torrents/rename", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                "hash": hash,
+                                "name": name
+                            })
+                        })
+                        .then((response) => {
+                            if (!response.ok)
+                                return;
+
                             window.parent.qBittorrent.Client.closeFrameWindow(window);
-                        }
-                    }).send();
+                        });
                 }
             });
         });

@@ -77,23 +77,24 @@
                 ? torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker)
                 : torrentsTable.selectedRowsIds();
 
-            new Request({
-                url: "api/v2/torrents/delete",
-                method: "post",
-                data: {
-                    "hashes": hashes.join("|"),
-                    "deleteFiles": deleteCB.checked
-                },
-                onSuccess: () => {
+            fetch("api/v2/torrents/delete", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        "hashes": hashes.join("|"),
+                        "deleteFiles": deleteCB.checked
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
                     torrentsTable.deselectAll();
                     updateMainData();
                     updatePropertiesPanel();
                     window.qBittorrent.Client.closeWindow(document.getElementById("confirmDeletionPage"));
-                },
-                onFailure: () => {
-                    alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
-                },
-            }).send();
+                });
         });
     })();
 </script>

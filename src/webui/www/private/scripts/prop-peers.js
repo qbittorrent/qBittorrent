@@ -56,44 +56,45 @@ window.qBittorrent.PropPeers ??= (() => {
             clearTimeout(loadTorrentPeersTimer);
             return;
         }
-        const url = new URI("api/v2/sync/torrentPeers");
-        url.setData("rid", syncTorrentPeersLastResponseId);
-        url.setData("hash", current_hash);
-        new Request.JSON({
-            url: url,
-            method: "get",
-            noCache: true,
-            onComplete: () => {
-                clearTimeout(loadTorrentPeersTimer);
-                loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
-            },
-            onSuccess: (response) => {
+        const url = new URI("api/v2/sync/torrentPeers")
+            .setData("rid", syncTorrentPeersLastResponseId)
+            .setData("hash", current_hash);
+        fetch(url, {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const responseJSON = await response.json();
+
                 $("error_div").textContent = "";
-                if (response) {
-                    const full_update = (response["full_update"] === true);
+                if (responseJSON) {
+                    const full_update = (responseJSON["full_update"] === true);
                     if (full_update)
                         torrentPeersTable.clear();
-                    if (response["rid"])
-                        syncTorrentPeersLastResponseId = response["rid"];
-                    if (response["peers"]) {
-                        for (const key in response["peers"]) {
-                            if (!Object.hasOwn(response["peers"], key))
+                    if (responseJSON["rid"])
+                        syncTorrentPeersLastResponseId = responseJSON["rid"];
+                    if (responseJSON["peers"]) {
+                        for (const key in responseJSON["peers"]) {
+                            if (!Object.hasOwn(responseJSON["peers"], key))
                                 continue;
 
-                            response["peers"][key]["rowId"] = key;
-                            torrentPeersTable.updateRowData(response["peers"][key]);
+                            responseJSON["peers"][key]["rowId"] = key;
+                            torrentPeersTable.updateRowData(responseJSON["peers"][key]);
                         }
                     }
-                    if (response["peers_removed"]) {
-                        response["peers_removed"].each((hash) => {
+                    if (responseJSON["peers_removed"]) {
+                        responseJSON["peers_removed"].each((hash) => {
                             torrentPeersTable.removeRow(hash);
                         });
                     }
                     torrentPeersTable.updateTable(full_update);
 
-                    if (response["show_flags"]) {
-                        if (show_flags !== response["show_flags"]) {
-                            show_flags = response["show_flags"];
+                    if (responseJSON["show_flags"]) {
+                        if (show_flags !== responseJSON["show_flags"]) {
+                            show_flags = responseJSON["show_flags"];
                             torrentPeersTable.columns["country"].force_hide = !show_flags;
                             torrentPeersTable.updateColumn("country");
                         }
@@ -102,8 +103,12 @@ window.qBittorrent.PropPeers ??= (() => {
                 else {
                     torrentPeersTable.clear();
                 }
-            }
-        }).send();
+
+            })
+            .finally(() => {
+                clearTimeout(loadTorrentPeersTimer);
+                loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
+            });
     };
 
     const updateData = () => {
@@ -146,14 +151,13 @@ window.qBittorrent.PropPeers ??= (() => {
                     return;
 
                 if (confirm("QBT_TR(Are you sure you want to permanently ban the selected peers?)QBT_TR[CONTEXT=PeerListWidget]")) {
-                    new Request({
-                        url: "api/v2/transfer/banPeers",
-                        method: "post",
-                        data: {
-                            hash: torrentsTable.getCurrentTorrentID(),
-                            peers: selectedPeers.join("|")
-                        }
-                    }).send();
+                    fetch("api/v2/transfer/banPeers", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "hash": torrentsTable.getCurrentTorrentID(),
+                            "peers": selectedPeers.join("|")
+                        })
+                    });
                 }
             }
         },

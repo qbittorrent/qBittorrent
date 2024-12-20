@@ -42,23 +42,24 @@
 
                 $("submitButton").disabled = true;
 
-                new Request({
-                    url: "api/v2/rss/addFeed",
-                    method: "post",
-                    data: {
-                        url: feedURL,
-                        path: path ? (path + "\\" + feedURL) : ""
-                    },
-                    onSuccess: (response) => {
+                fetch("api/v2/rss/addFeed", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "url": feedURL,
+                            "path": path ? (path + "\\" + feedURL) : ""
+                        })
+                    })
+                    .then(async (response) => {
+                        if (!response.ok) {
+                            if (response.status === 409)
+                                alert(await response.text());
+                            $("submitButton").disabled = false;
+                            return;
+                        }
+
                         window.parent.qBittorrent.Rss.updateRssFeedList();
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    },
-                    onFailure: (response) => {
-                        if (response.status === 409)
-                            alert(response.responseText);
-                        $("submitButton").disabled = false;
-                    }
-                }).send();
+                    });
             });
         });
     </script>
