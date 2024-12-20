@@ -40,8 +40,8 @@ const submitLoginForm = (event) => {
     fetch("api/v2/auth/login", {
             method: "POST",
             body: new URLSearchParams({
-                "username": usernameElement.value,
-                "password": passwordElement.value
+                username: usernameElement.value,
+                password: passwordElement.value
             })
         })
         .then(async (response) => {

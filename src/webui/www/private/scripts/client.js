@@ -724,25 +724,25 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     const statusSortOrder = Object.freeze({
-        "unknown": -1,
-        "forcedDL": 0,
-        "downloading": 1,
-        "forcedMetaDL": 2,
-        "metaDL": 3,
-        "stalledDL": 4,
-        "forcedUP": 5,
-        "uploading": 6,
-        "stalledUP": 7,
-        "checkingResumeData": 8,
-        "queuedDL": 9,
-        "queuedUP": 10,
-        "checkingUP": 11,
-        "checkingDL": 12,
-        "stoppedDL": 13,
-        "stoppedUP": 14,
-        "moving": 15,
-        "missingFiles": 16,
-        "error": 17
+        unknown: -1,
+        forcedDL: 0,
+        downloading: 1,
+        forcedMetaDL: 2,
+        metaDL: 3,
+        stalledDL: 4,
+        forcedUP: 5,
+        uploading: 6,
+        stalledUP: 7,
+        checkingResumeData: 8,
+        queuedDL: 9,
+        queuedUP: 10,
+        checkingUP: 11,
+        checkingDL: 12,
+        stoppedDL: 13,
+        stoppedUP: 14,
+        moving: 15,
+        missingFiles: 16,
+        error: 17
     });
 
     let syncMainDataTimeoutID = -1;

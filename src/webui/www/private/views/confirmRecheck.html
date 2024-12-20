@@ -31,7 +31,7 @@
             fetch("api/v2/torrents/recheck", {
                     method: "POST",
                     body: new URLSearchParams({
-                        "hashes": hashes.join("|")
+                        hashes: hashes.join("|")
                     })
                 })
                 .then((response) => {

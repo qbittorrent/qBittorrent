@@ -59,8 +59,8 @@
                         fetch("api/v2/torrents/addTags", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    "hashes": uriHashes,
-                                    "tags": tagName
+                                    hashes: uriHashes,
+                                    tags: tagName
                                 })
                             })
                             .then(async (response) => {
@@ -78,7 +78,7 @@
                         fetch("api/v2/torrents/createTags", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    "tags": tagName
+                                    tags: tagName
                                 })
                             })
                             .then(async (response) => {

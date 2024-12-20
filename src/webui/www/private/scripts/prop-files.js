@@ -311,9 +311,9 @@ window.qBittorrent.PropFiles ??= (() => {
         fetch("api/v2/torrents/filePrio", {
                 method: "POST",
                 body: new URLSearchParams({
-                    "hash": current_hash,
-                    "id": fileIds.join("|"),
-                    "priority": priority
+                    hash: current_hash,
+                    id: fileIds.join("|"),
+                    priority: priority
                 })
             })
             .then((response) => {
@@ -580,7 +580,7 @@ window.qBittorrent.PropFiles ??= (() => {
             paddingHorizontal: 0,
             width: 800,
             height: 420,
-            resizeLimit: { "x": [800], "y": [420] }
+            resizeLimit: { x: [800], y: [420] }
         });
     };
 

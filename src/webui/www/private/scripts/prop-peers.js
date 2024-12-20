@@ -154,8 +154,8 @@ window.qBittorrent.PropPeers ??= (() => {
                     fetch("api/v2/transfer/banPeers", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hash": torrentsTable.getCurrentTorrentID(),
-                            "peers": selectedPeers.join("|")
+                            hash: torrentsTable.getCurrentTorrentID(),
+                            peers: selectedPeers.join("|")
                         })
                     });
                 }

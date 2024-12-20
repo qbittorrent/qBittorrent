@@ -48,8 +48,8 @@
                 fetch("api/v2/torrents/setLocation", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hashes": new URI().getData("hashes"),
-                            "location": location
+                            hashes: new URI().getData("hashes"),
+                            location: location
                         })
                     })
                     .then(async (response) => {

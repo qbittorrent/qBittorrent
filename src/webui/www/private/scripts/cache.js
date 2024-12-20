@@ -121,7 +121,7 @@ window.qBittorrent.Cache ??= (() => {
             fetch("api/v2/app/setPreferences", {
                     method: "POST",
                     body: new URLSearchParams({
-                        "json": JSON.stringify(obj.data)
+                        json: JSON.stringify(obj.data)
                     })
                 })
                 .then(async (response) => {

@@ -39,8 +39,8 @@
                 fetch("api/v2/torrents/addPeers", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hashes": hash,
-                            "peers": peers.join("|")
+                            hashes: hash,
+                            peers: peers.join("|")
                         })
                     })
                     .then((response) => {

@@ -30,7 +30,7 @@
                     fetch("api/v2/rss/removeRule", {
                             method: "POST",
                             body: new URLSearchParams({
-                                "ruleName": decodeURIComponent(rule)
+                                ruleName: decodeURIComponent(rule)
                             })
                         })
                         .then((response) => {

@@ -75,8 +75,8 @@
                         fetch("api/v2/torrents/createCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    "category": categoryName,
-                                    "savePath": savePath
+                                    category: categoryName,
+                                    savePath: savePath
                                 })
                             })
                             .then((response) => {
@@ -88,8 +88,8 @@
                                 fetch("api/v2/torrents/setCategory", {
                                         method: "POST",
                                         body: new URLSearchParams({
-                                            "hashes": uriHashes,
-                                            "category": categoryName
+                                            hashes: uriHashes,
+                                            category: categoryName
                                         })
                                     })
                                     .then((response) => {
@@ -111,8 +111,8 @@
                         fetch("api/v2/torrents/createCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    "category": categoryName,
-                                    "savePath": savePath
+                                    category: categoryName,
+                                    savePath: savePath
                                 })
                             })
                             .then((response) => {
@@ -130,8 +130,8 @@
                         fetch("api/v2/torrents/editCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    "category": uriCategoryName, // category name can't be changed
-                                    "savePath": savePath
+                                    category: uriCategoryName, // category name can't be changed
+                                    savePath: savePath
                                 })
                             })
                             .then((response) => {

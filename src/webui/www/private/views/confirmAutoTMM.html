@@ -29,8 +29,8 @@
             fetch("api/v2/torrents/setAutoManagement", {
                     method: "POST",
                     body: new URLSearchParams({
-                        "hashes": hashes.join("|"),
-                        "enable": enable
+                        hashes: hashes.join("|"),
+                        enable: enable
                     })
                 })
                 .then((response) => {

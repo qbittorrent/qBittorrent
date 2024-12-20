@@ -63,9 +63,9 @@
                 fetch((isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile"), {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hash": hash,
-                            "oldPath": oldPath,
-                            "newPath": newPath
+                            hash: hash,
+                            oldPath: oldPath,
+                            newPath: newPath
                         })
                     })
                     .then((response) => {

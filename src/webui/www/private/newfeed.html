@@ -45,8 +45,8 @@
                 fetch("api/v2/rss/addFeed", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "url": feedURL,
-                            "path": path ? (path + "\\" + feedURL) : ""
+                            url: feedURL,
+                            path: path ? (path + "\\" + feedURL) : ""
                         })
                     })
                     .then(async (response) => {

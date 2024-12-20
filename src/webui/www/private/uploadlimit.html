@@ -53,7 +53,7 @@
                 fetch("api/v2/transfer/setUploadLimit", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "limit": limit
+                            limit: limit
                         })
                     })
                     .then((response) => {
@@ -68,8 +68,8 @@
                 fetch("api/v2/torrents/setUploadLimit", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hashes": hashes.join("|"),
-                            "limit": limit
+                            hashes: hashes.join("|"),
+                            limit: limit
                         })
                     })
                     .then((response) => {

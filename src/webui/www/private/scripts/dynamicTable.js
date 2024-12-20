@@ -64,7 +64,7 @@ window.qBittorrent.DynamicTable ??= (() => {
     };
 
     let DynamicTableHeaderContextMenuClass = null;
-    let ProgressColumnWidth = -1;
+    let progressColumnWidth = -1;
 
     const DynamicTable = new Class({
 
@@ -772,8 +772,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             if (!this.rows.has(rowId)) {
                 row = {
-                    "full_data": {},
-                    "rowId": rowId
+                    full_data: {},
+                    rowId: rowId
                 };
                 this.rows.set(rowId, row);
             }
@@ -1231,16 +1231,16 @@ window.qBittorrent.DynamicTable ??= (() => {
                     const div = td.getChildren("div")[0];
                     if (td.resized) {
                         td.resized = false;
-                        div.setWidth(ProgressColumnWidth - 5);
+                        div.setWidth(progressColumnWidth - 5);
                     }
                     if (div.getValue() !== progressFormatted)
                         div.setValue(progressFormatted);
                 }
                 else {
-                    if (ProgressColumnWidth < 0)
-                        ProgressColumnWidth = td.offsetWidth;
+                    if (progressColumnWidth < 0)
+                        progressColumnWidth = td.offsetWidth;
                     td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted.toFloat(), {
-                        "width": ProgressColumnWidth - 5
+                        width: progressColumnWidth - 5
                     }));
                     td.resized = false;
                 }
@@ -1249,11 +1249,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["progress"].onResize = function(columnName) {
                 const pos = this.getColumnPos(columnName);
                 const trs = this.tableBody.getElements("tr");
-                ProgressColumnWidth = -1;
+                progressColumnWidth = -1;
                 for (let i = 0; i < trs.length; ++i) {
                     const td = trs[i].getElements("td")[pos];
-                    if (ProgressColumnWidth < 0)
-                        ProgressColumnWidth = td.offsetWidth;
+                    if (progressColumnWidth < 0)
+                        progressColumnWidth = td.offsetWidth;
                     td.resized = true;
                     this.columns[columnName].updateTd(td, this.rows.get(trs[i].rowId));
                 }
@@ -3265,7 +3265,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         initColumnsFunctions: function() {
             this.columns["timestamp"].updateTd = function(td, row) {
                 const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
-                td.set({ "text": date, "title": date });
+                td.set({ text: date, title: date });
             };
 
             this.columns["type"].updateTd = function(td, row) {
@@ -3293,7 +3293,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         addClass = "logUnknown";
                         break;
                 }
-                td.set({ "text": logLevel, "title": logLevel });
+                td.set({ text: logLevel, title: logLevel });
                 td.closest("tr").className = `logTableRow${addClass}`;
             };
         },
@@ -3340,7 +3340,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.columns["timestamp"].updateTd = function(td, row) {
                 const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
-                td.set({ "text": date, "title": date });
+                td.set({ text: date, title: date });
             };
 
             this.columns["blocked"].updateTd = function(td, row) {
@@ -3353,7 +3353,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     status = "QBT_TR(Banned)QBT_TR[CONTEXT=ExecutionLogWidget]";
                     addClass = "peerBanned";
                 }
-                td.set({ "text": status, "title": status });
+                td.set({ text: status, title: status });
                 td.closest("tr").className = `logTableRow${addClass}`;
             };
         },
