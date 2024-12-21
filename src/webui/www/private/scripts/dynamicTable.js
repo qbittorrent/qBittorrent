@@ -190,16 +190,16 @@ window.qBittorrent.DynamicTable ??= (() => {
                     if ((brect.width - mouseXRelative) < 5) {
                         this.resizeTh = e.target;
                         this.canResize = true;
-                        e.target.getParent("tr").style.cursor = "col-resize";
+                        e.target.closest("tr").style.cursor = "col-resize";
                     }
                     else if ((mouseXRelative < 5) && e.target.getPrevious('[class=""]')) {
                         this.resizeTh = e.target.getPrevious('[class=""]');
                         this.canResize = true;
-                        e.target.getParent("tr").style.cursor = "col-resize";
+                        e.target.closest("tr").style.cursor = "col-resize";
                     }
                     else {
                         this.canResize = false;
-                        e.target.getParent("tr").style.cursor = "";
+                        e.target.closest("tr").style.cursor = "";
                     }
                 }
                 if (this.currentHeaderAction === "drag") {
@@ -215,7 +215,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         this.dropSide = "left";
                     }
 
-                    e.target.getParent("tr").style.cursor = "move";
+                    e.target.closest("tr").style.cursor = "move";
 
                     if (!previousVisibleSibling) { // right most column
                         borderChangeElement = e.target;
@@ -1949,14 +1949,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (value) {
                     td.textContent = "QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.title = "QBT_TR(Yes)QBT_TR[CONTEXT=SearchPluginsTable]";
-                    td.getParent("tr").classList.add("green");
-                    td.getParent("tr").classList.remove("red");
+                    td.closest("tr").classList.add("green");
+                    td.closest("tr").classList.remove("red");
                 }
                 else {
                     td.textContent = "QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]";
                     td.title = "QBT_TR(No)QBT_TR[CONTEXT=SearchPluginsTable]";
-                    td.getParent("tr").classList.add("red");
-                    td.getParent("tr").classList.remove("green");
+                    td.closest("tr").classList.add("red");
+                    td.closest("tr").classList.remove("green");
                 }
             };
         },
@@ -3294,7 +3294,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         break;
                 }
                 td.set({ "text": logLevel, "title": logLevel });
-                td.getParent("tr").className = `logTableRow${addClass}`;
+                td.closest("tr").className = `logTableRow${addClass}`;
             };
         },
 
@@ -3354,7 +3354,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     addClass = "peerBanned";
                 }
                 td.set({ "text": status, "title": status });
-                td.getParent("tr").className = `logTableRow${addClass}`;
+                td.closest("tr").className = `logTableRow${addClass}`;
             };
         },
 
