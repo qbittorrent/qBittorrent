@@ -308,18 +308,20 @@ window.qBittorrent.PropFiles ??= (() => {
         clearTimeout(loadTorrentFilesDataTimer);
         loadTorrentFilesDataTimer = -1;
 
-        new Request({
-            url: "api/v2/torrents/filePrio",
-            method: "post",
-            data: {
-                "hash": current_hash,
-                "id": fileIds.join("|"),
-                "priority": priority
-            },
-            onComplete: () => {
+        fetch("api/v2/torrents/filePrio", {
+                method: "POST",
+                body: new URLSearchParams({
+                    "hash": current_hash,
+                    "id": fileIds.join("|"),
+                    "priority": priority
+                })
+            })
+            .then((response) => {
+                if (!response.ok)
+                    return;
+
                 loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
-            }
-        }).send();
+            });
 
         const ignore = (priority === FilePriority.Ignored);
         ids.forEach((_id) => {
@@ -352,16 +354,16 @@ window.qBittorrent.PropFiles ??= (() => {
             current_hash = new_hash;
             loadedNewTorrent = true;
         }
-        const url = new URI("api/v2/torrents/files?hash=" + current_hash);
-        new Request.JSON({
-            url: url,
-            method: "get",
-            noCache: true,
-            onComplete: () => {
-                clearTimeout(loadTorrentFilesDataTimer);
-                loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
-            },
-            onSuccess: (files) => {
+        fetch(new URI("api/v2/torrents/files").setData("hash", current_hash), {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const files = await response.json();
+
                 clearTimeout(torrentFilesFilterInputTimer);
                 torrentFilesFilterInputTimer = -1;
 
@@ -373,8 +375,11 @@ window.qBittorrent.PropFiles ??= (() => {
                     if (loadedNewTorrent)
                         collapseAllNodes();
                 }
-            }
-        }).send();
+            })
+            .finally(() => {
+                clearTimeout(loadTorrentFilesDataTimer);
+                loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
+            });
     };
 
     const updateData = () => {

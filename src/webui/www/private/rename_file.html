@@ -60,22 +60,23 @@
                 const newPath = parentPath
                     ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
                     : newName;
-                new Request({
-                    url: isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile",
-                    method: "post",
-                    data: {
-                        hash: hash,
-                        oldPath: oldPath,
-                        newPath: newPath
-                    },
-                    onSuccess: () => {
+                fetch((isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile"), {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            "hash": hash,
+                            "oldPath": oldPath,
+                            "newPath": newPath
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]");
+                            $("renameButton").disabled = false;
+                            return;
+                        }
+
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
-                    },
-                    onFailure: () => {
-                        alert("QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]");
-                        $("renameButton").disabled = false;
-                    }
-                }).send();
+                    });
             });
         });
     </script>

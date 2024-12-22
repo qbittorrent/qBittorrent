@@ -748,199 +748,199 @@ window.addEventListener("DOMContentLoaded", () => {
     let syncMainDataTimeoutID = -1;
     let syncRequestInProgress = false;
     const syncMainData = () => {
-        const url = new URI("api/v2/sync/maindata");
-        url.setData("rid", syncMainDataLastResponseId);
-        const request = new Request.JSON({
-            url: url,
-            noCache: true,
-            method: "get",
-            onFailure: () => {
-                const errorDiv = $("error_div");
-                if (errorDiv)
-                    errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
-                syncRequestInProgress = false;
-                syncData(2000);
-            },
-            onSuccess: (response) => {
-                $("error_div").textContent = "";
-                if (response) {
-                    clearTimeout(torrentsFilterInputTimer);
-                    torrentsFilterInputTimer = -1;
+        syncRequestInProgress = true;
+        fetch(new URI("api/v2/sync/maindata").setData("rid", syncMainDataLastResponseId), {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                    if (response.ok) {
+                        $("error_div").textContent = "";
 
-                    let torrentsTableSelectedRows;
-                    let updateStatuses = false;
-                    let update_categories = false;
-                    let updateTags = false;
-                    let updateTrackers = false;
-                    let updateTorrents = false;
-                    const full_update = (response["full_update"] === true);
-                    if (full_update) {
-                        torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
-                        updateStatuses = true;
-                        update_categories = true;
-                        updateTags = true;
-                        updateTrackers = true;
-                        updateTorrents = true;
-                        torrentsTable.clear();
-                        category_list.clear();
-                        tagList.clear();
-                        trackerList.clear();
-                    }
-                    if (response["rid"])
-                        syncMainDataLastResponseId = response["rid"];
-                    if (response["categories"]) {
-                        for (const key in response["categories"]) {
-                            if (!Object.hasOwn(response["categories"], key))
-                                continue;
+                        const responseJSON = await response.json();
 
-                            const responseCategory = response["categories"][key];
-                            const categoryHash = window.qBittorrent.Misc.genHash(key);
-                            const category = category_list.get(categoryHash);
-                            if (category !== undefined) {
-                                // only the save path can change for existing categories
-                                category.savePath = responseCategory.savePath;
-                            }
-                            else {
-                                category_list.set(categoryHash, {
-                                    name: responseCategory.name,
-                                    savePath: responseCategory.savePath,
-                                    torrents: new Set()
-                                });
-                            }
-                        }
-                        update_categories = true;
-                    }
-                    if (response["categories_removed"]) {
-                        response["categories_removed"].each((category) => {
-                            const categoryHash = window.qBittorrent.Misc.genHash(category);
-                            category_list.delete(categoryHash);
-                        });
-                        update_categories = true;
-                    }
-                    if (response["tags"]) {
-                        for (const tag of response["tags"]) {
-                            const tagHash = window.qBittorrent.Misc.genHash(tag);
-                            if (!tagList.has(tagHash)) {
-                                tagList.set(tagHash, {
-                                    name: tag,
-                                    torrents: new Set()
-                                });
-                            }
-                        }
-                        updateTags = true;
-                    }
-                    if (response["tags_removed"]) {
-                        for (let i = 0; i < response["tags_removed"].length; ++i) {
-                            const tagHash = window.qBittorrent.Misc.genHash(response["tags_removed"][i]);
-                            tagList.delete(tagHash);
-                        }
-                        updateTags = true;
-                    }
-                    if (response["trackers"]) {
-                        for (const [tracker, torrents] of Object.entries(response["trackers"])) {
-                            const host = window.qBittorrent.Misc.getHost(tracker);
-                            const hash = window.qBittorrent.Misc.genHash(host);
+                        clearTimeout(torrentsFilterInputTimer);
+                        torrentsFilterInputTimer = -1;
 
-                            let trackerListItem = trackerList.get(hash);
-                            if (trackerListItem === undefined) {
-                                trackerListItem = { host: host, trackerTorrentMap: new Map() };
-                                trackerList.set(hash, trackerListItem);
-                            }
-                            trackerListItem.trackerTorrentMap.set(tracker, new Set(torrents));
+                        let torrentsTableSelectedRows;
+                        let updateStatuses = false;
+                        let update_categories = false;
+                        let updateTags = false;
+                        let updateTrackers = false;
+                        let updateTorrents = false;
+                        const fullUpdate = (responseJSON["fullUpdate"] === true);
+                        if (fullUpdate) {
+                            torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
+                            updateStatuses = true;
+                            update_categories = true;
+                            updateTags = true;
+                            updateTrackers = true;
+                            updateTorrents = true;
+                            torrentsTable.clear();
+                            category_list.clear();
+                            tagList.clear();
+                            trackerList.clear();
                         }
-                        updateTrackers = true;
-                    }
-                    if (response["trackers_removed"]) {
-                        for (let i = 0; i < response["trackers_removed"].length; ++i) {
-                            const tracker = response["trackers_removed"][i];
-                            const host = window.qBittorrent.Misc.getHost(tracker);
-                            const hash = window.qBittorrent.Misc.genHash(host);
-                            const trackerListEntry = trackerList.get(hash);
-                            if (trackerListEntry) {
-                                trackerListEntry.trackerTorrentMap.delete(tracker);
-                                // Remove unused trackers
-                                if (trackerListEntry.trackerTorrentMap.size === 0) {
-                                    trackerList.delete(hash);
-                                    if (selectedTracker === hash) {
-                                        selectedTracker = TRACKERS_ALL;
-                                        LocalPreferences.set("selected_tracker", selectedTracker.toString());
+                        if (responseJSON["rid"])
+                            syncMainDataLastResponseId = responseJSON["rid"];
+                        if (responseJSON["categories"]) {
+                            for (const key in responseJSON["categories"]) {
+                                if (!Object.hasOwn(responseJSON["categories"], key))
+                                    continue;
+
+                                const responseCategory = responseJSON["categories"][key];
+                                const categoryHash = window.qBittorrent.Misc.genHash(key);
+                                const category = category_list.get(categoryHash);
+                                if (category !== undefined) {
+                                    // only the save path can change for existing categories
+                                    category.savePath = responseCategory.savePath;
+                                }
+                                else {
+                                    category_list.set(categoryHash, {
+                                        name: responseCategory.name,
+                                        savePath: responseCategory.savePath,
+                                        torrents: new Set()
+                                    });
+                                }
+                            }
+                            update_categories = true;
+                        }
+                        if (responseJSON["categories_removed"]) {
+                            responseJSON["categories_removed"].each((category) => {
+                                const categoryHash = window.qBittorrent.Misc.genHash(category);
+                                category_list.delete(categoryHash);
+                            });
+                            update_categories = true;
+                        }
+                        if (responseJSON["tags"]) {
+                            for (const tag of responseJSON["tags"]) {
+                                const tagHash = window.qBittorrent.Misc.genHash(tag);
+                                if (!tagList.has(tagHash)) {
+                                    tagList.set(tagHash, {
+                                        name: tag,
+                                        torrents: new Set()
+                                    });
+                                }
+                            }
+                            updateTags = true;
+                        }
+                        if (responseJSON["tags_removed"]) {
+                            for (let i = 0; i < responseJSON["tags_removed"].length; ++i) {
+                                const tagHash = window.qBittorrent.Misc.genHash(responseJSON["tags_removed"][i]);
+                                tagList.delete(tagHash);
+                            }
+                            updateTags = true;
+                        }
+                        if (responseJSON["trackers"]) {
+                            for (const [tracker, torrents] of Object.entries(responseJSON["trackers"])) {
+                                const host = window.qBittorrent.Misc.getHost(tracker);
+                                const hash = window.qBittorrent.Misc.genHash(host);
+
+                                let trackerListItem = trackerList.get(hash);
+                                if (trackerListItem === undefined) {
+                                    trackerListItem = { host: host, trackerTorrentMap: new Map() };
+                                    trackerList.set(hash, trackerListItem);
+                                }
+                                trackerListItem.trackerTorrentMap.set(tracker, new Set(torrents));
+                            }
+                            updateTrackers = true;
+                        }
+                        if (responseJSON["trackers_removed"]) {
+                            for (let i = 0; i < responseJSON["trackers_removed"].length; ++i) {
+                                const tracker = responseJSON["trackers_removed"][i];
+                                const host = window.qBittorrent.Misc.getHost(tracker);
+                                const hash = window.qBittorrent.Misc.genHash(host);
+                                const trackerListEntry = trackerList.get(hash);
+                                if (trackerListEntry) {
+                                    trackerListEntry.trackerTorrentMap.delete(tracker);
+                                    // Remove unused trackers
+                                    if (trackerListEntry.trackerTorrentMap.size === 0) {
+                                        trackerList.delete(hash);
+                                        if (selectedTracker === hash) {
+                                            selectedTracker = TRACKERS_ALL;
+                                            LocalPreferences.set("selected_tracker", selectedTracker.toString());
+                                        }
                                     }
                                 }
                             }
+                            updateTrackers = true;
                         }
-                        updateTrackers = true;
-                    }
-                    if (response["torrents"]) {
-                        for (const key in response["torrents"]) {
-                            if (!Object.hasOwn(response["torrents"], key))
-                                continue;
+                        if (responseJSON["torrents"]) {
+                            for (const key in responseJSON["torrents"]) {
+                                if (!Object.hasOwn(responseJSON["torrents"], key))
+                                    continue;
 
-                            response["torrents"][key]["hash"] = key;
-                            response["torrents"][key]["rowId"] = key;
-                            if (response["torrents"][key]["state"]) {
-                                const state = response["torrents"][key]["state"];
-                                response["torrents"][key]["status"] = state;
-                                response["torrents"][key]["_statusOrder"] = statusSortOrder[state];
-                                updateStatuses = true;
+                                responseJSON["torrents"][key]["hash"] = key;
+                                responseJSON["torrents"][key]["rowId"] = key;
+                                if (responseJSON["torrents"][key]["state"]) {
+                                    const state = responseJSON["torrents"][key]["state"];
+                                    responseJSON["torrents"][key]["status"] = state;
+                                    responseJSON["torrents"][key]["_statusOrder"] = statusSortOrder[state];
+                                    updateStatuses = true;
+                                }
+                                torrentsTable.updateRowData(responseJSON["torrents"][key]);
+                                if (addTorrentToCategoryList(responseJSON["torrents"][key]))
+                                    update_categories = true;
+                                if (addTorrentToTagList(responseJSON["torrents"][key]))
+                                    updateTags = true;
+                                updateTorrents = true;
                             }
-                            torrentsTable.updateRowData(response["torrents"][key]);
-                            if (addTorrentToCategoryList(response["torrents"][key]))
-                                update_categories = true;
-                            if (addTorrentToTagList(response["torrents"][key]))
-                                updateTags = true;
+                        }
+                        if (responseJSON["torrents_removed"]) {
+                            responseJSON["torrents_removed"].each((hash) => {
+                                torrentsTable.removeRow(hash);
+                                removeTorrentFromCategoryList(hash);
+                                update_categories = true; // Always to update All category
+                                removeTorrentFromTagList(hash);
+                                updateTags = true; // Always to update All tag
+                            });
                             updateTorrents = true;
+                            updateStatuses = true;
                         }
-                    }
-                    if (response["torrents_removed"]) {
-                        response["torrents_removed"].each((hash) => {
-                            torrentsTable.removeRow(hash);
-                            removeTorrentFromCategoryList(hash);
-                            update_categories = true; // Always to update All category
-                            removeTorrentFromTagList(hash);
-                            updateTags = true; // Always to update All tag
-                        });
-                        updateTorrents = true;
-                        updateStatuses = true;
-                    }
 
-                    // don't update the table unnecessarily
-                    if (updateTorrents)
-                        torrentsTable.updateTable(full_update);
+                        // don't update the table unnecessarily
+                        if (updateTorrents)
+                            torrentsTable.updateTable(fullUpdate);
 
-                    if (response["server_state"]) {
-                        const tmp = response["server_state"];
-                        for (const k in tmp) {
-                            if (!Object.hasOwn(tmp, k))
-                                continue;
-                            serverState[k] = tmp[k];
+                        if (responseJSON["server_state"]) {
+                            const tmp = responseJSON["server_state"];
+                            for (const k in tmp) {
+                                if (!Object.hasOwn(tmp, k))
+                                    continue;
+                                serverState[k] = tmp[k];
+                            }
+                            processServerState();
                         }
-                        processServerState();
+
+                        if (updateStatuses)
+                            updateFiltersList();
+
+                        if (update_categories) {
+                            updateCategoryList();
+                            window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(category_list);
+                        }
+                        if (updateTags) {
+                            updateTagList();
+                            window.qBittorrent.TransferList.contextMenu.updateTagsSubMenu(tagList);
+                        }
+                        if (updateTrackers)
+                            updateTrackerList();
+
+                        if (fullUpdate)
+                            // re-select previously selected rows
+                            torrentsTable.reselectRows(torrentsTableSelectedRows);
                     }
 
-                    if (updateStatuses)
-                        updateFiltersList();
-
-                    if (update_categories) {
-                        updateCategoryList();
-                        window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(category_list);
-                    }
-                    if (updateTags) {
-                        updateTagList();
-                        window.qBittorrent.TransferList.contextMenu.updateTagsSubMenu(tagList);
-                    }
-                    if (updateTrackers)
-                        updateTrackerList();
-
-                    if (full_update)
-                        // re-select previously selected rows
-                        torrentsTable.reselectRows(torrentsTableSelectedRows);
-                }
-                syncRequestInProgress = false;
-                syncData(window.qBittorrent.Client.getSyncMainDataInterval());
-            }
-        });
-        syncRequestInProgress = true;
-        request.send();
+                    syncRequestInProgress = false;
+                    syncData(window.qBittorrent.Client.getSyncMainDataInterval());
+                },
+                (error) => {
+                    const errorDiv = $("error_div");
+                    if (errorDiv)
+                        errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                    syncRequestInProgress = false;
+                    syncData(2000);
+                });
     };
 
     updateMainData = () => {
@@ -1101,18 +1101,19 @@ window.addEventListener("DOMContentLoaded", () => {
         // Change icon immediately to give some feedback
         updateAltSpeedIcon(!alternativeSpeedLimits);
 
-        new Request({
-            url: "api/v2/transfer/toggleSpeedLimitsMode",
-            method: "post",
-            onComplete: () => {
+        fetch("api/v2/transfer/toggleSpeedLimitsMode", {
+                method: "POST"
+            })
+            .then((response) => {
+                if (!response.ok) {
+                    // Restore icon in case of failure
+                    updateAltSpeedIcon(alternativeSpeedLimits);
+                    return;
+                }
+
                 alternativeSpeedLimits = !alternativeSpeedLimits;
                 updateMainData();
-            },
-            onFailure: () => {
-                // Restore icon in case of failure
-                updateAltSpeedIcon(alternativeSpeedLimits);
-            }
-        }).send();
+            });
     });
 
     $("DlInfos").addEventListener("click", () => { globalDownloadLimitFN(); });
