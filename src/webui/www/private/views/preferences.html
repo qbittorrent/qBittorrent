@@ -1888,16 +1888,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const sendTestEmail = () => {
-            new Request({
-                url: "api/v2/app/sendTestEmail",
-                method: "post",
-                onFailure: () => {
-                    alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
-                },
-                onSuccess: () => {
+            fetch("api/v2/app/sendTestEmail", {
+                    method: "POST"
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
                     alert("QBT_TR(Attempted to send email. Check your inbox to confirm success)QBT_TR[CONTEXT=OptionsDialog]");
-                }
-            }).send();
+                });
         };
 
         const updateAutoRunOnTorrentAdded = () => {
@@ -2078,16 +2079,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         // Advanced Tab
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
-            const url = "api/v2/app/networkInterfaceList";
             $("networkInterface").getChildren().each(c => c.destroy());
-            new Request.JSON({
-                url: url,
-                method: "get",
-                noCache: true,
-                onFailure: () => {
-                    alert("Could not contact qBittorrent");
-                },
-                onSuccess: (ifaces) => {
+            fetch("api/v2/app/networkInterfaceList", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        alert("Could not contact qBittorrent");
+                        return;
+                    }
+
+                    const ifaces = await response.json();
                     if (!Array.isArray(ifaces))
                         return;
 
@@ -2100,24 +2103,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $("networkInterface").options.add(new Option(item.name, item.value));
                     });
                     $("networkInterface").value = default_iface;
-                }
-            }).send();
+                });
         };
 
         const updateInterfaceAddresses = (iface, default_addr) => {
-            const url = "api/v2/app/networkInterfaceAddressList";
             $("optionalIPAddressToBind").getChildren().each(c => c.destroy());
-            new Request.JSON({
-                url: url,
-                method: "get",
-                noCache: true,
-                data: {
-                    iface: iface
-                },
-                onFailure: () => {
-                    alert("Could not contact qBittorrent");
-                },
-                onSuccess: (addresses) => {
+            const url = new URL("api/v2/app/networkInterfaceAddressList", window.location);
+            url.search = new URLSearchParams({
+                iface: iface
+            });
+            fetch(url, {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        alert("Could not contact qBittorrent");
+                        return;
+                    }
+
+                    const addresses = await response.json();
                     if (!addresses)
                         return;
 
@@ -2128,8 +2133,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $("optionalIPAddressToBind").options.add(new Option(item, item));
                     });
                     $("optionalIPAddressToBind").value = default_addr;
-                }
-            }).send();
+                });
         };
 
         const updateWebuiLocaleSelect = (selected) => {

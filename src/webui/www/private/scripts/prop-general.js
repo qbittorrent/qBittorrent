@@ -88,7 +88,11 @@ window.qBittorrent.PropGeneral ??= (() => {
             return;
         }
 
-        fetch(new URI("api/v2/torrents/properties").setData("hash", current_id), {
+        const propertiesURL = new URL("api/v2/torrents/properties", window.location);
+        propertiesURL.search = new URLSearchParams({
+            hash: current_id
+        });
+        fetch(propertiesURL, {
                 method: "GET",
                 cache: "no-store"
             })
@@ -230,7 +234,11 @@ window.qBittorrent.PropGeneral ??= (() => {
                 loadTorrentDataTimer = loadTorrentData.delay(5000);
             });
 
-        fetch(new URI("api/v2/torrents/pieceStates").setData("hash", current_id), {
+        const pieceStatesURL = new URL("api/v2/torrents/pieceStates", window.location);
+        pieceStatesURL.search = new URLSearchParams({
+            hash: current_id
+        });
+        fetch(pieceStatesURL, {
                 method: "GET",
                 cache: "no-store"
             })

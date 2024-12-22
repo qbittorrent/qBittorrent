@@ -67,16 +67,18 @@
         const newPluginOk = () => {
             const path = $("newPluginPath").value.trim();
             if (path) {
-                new Request({
-                    url: "api/v2/search/installPlugin",
-                    method: "post",
-                    data: {
-                        sources: path,
-                    },
-                    onRequest: () => {
+                fetch("api/v2/search/installPlugin", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            sources: path
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
                         window.qBittorrent.Client.closeWindow(document.getElementById("installSearchPlugin"));
-                    }
-                }).send();
+                    });
             }
         };
 

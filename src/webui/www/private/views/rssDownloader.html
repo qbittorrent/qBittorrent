@@ -437,31 +437,41 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 }
             });
             // get all categories and add to combobox
-            new Request.JSON({
-                url: "api/v2/torrents/categories",
-                method: "get",
-                noCache: true,
-                onSuccess: (response) => {
+            fetch("api/v2/torrents/categories", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return;
+
+                    const responseJSON = await response.json();
+
                     const combobox = $("assignCategoryCombobox");
-                    for (const cat in response) {
-                        if (!Object.hasOwn(response, cat))
+                    for (const cat in responseJSON) {
+                        if (!Object.hasOwn(responseJSON, cat))
                             continue;
 
                         const option = document.createElement("option");
                         option.text = option.value = cat;
                         combobox.add(option);
                     }
-                }
-            }).send();
+                });
             // get all rss feed
-            new Request.JSON({
-                url: "api/v2/rss/items",
-                method: "get",
-                noCache: true,
-                data: {
-                    withData: false
-                },
-                onSuccess: (response) => {
+            const url = new URL("api/v2/rss/items", window.location);
+            url.search = new URLSearchParams({
+                withData: false
+            });
+            fetch(url, {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return;
+
+                    const responseJSON = await response.json();
+
                     feedList = [];
                     const flatten = (root) => {
                         for (const child in root) {
@@ -471,9 +481,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                                 flatten(root[child]);
                         }
                     };
-                    flatten(response);
-                }
-            }).send();
+                    flatten(responseJSON);
+                });
             $("savetoDifferentDir").addEventListener("click", () => {
                 $("saveToText").disabled = !$("savetoDifferentDir").checked;
             });
@@ -482,41 +491,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const updateRulesList = () => {
             // get all rules
-            new Request.JSON({
-                url: "api/v2/rss/rules",
-                method: "get",
-                noCache: true,
-                onSuccess: (response) => {
+            fetch("api/v2/rss/rules", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return;
+
+                    const responseJSON = await response.json();
+
                     rssDownloaderRulesTable.clear();
                     let rowCount = 0;
-                    for (const rule in response) {
-                        if (!Object.hasOwn(response, rule))
+                    for (const rule in responseJSON) {
+                        if (!Object.hasOwn(responseJSON, rule))
                             continue;
                         rssDownloaderRulesTable.updateRowData({
                             rowId: rowCount++,
-                            checked: response[rule].enabled,
+                            checked: responseJSON[rule].enabled,
                             name: rule
                         });
                     }
                     rssDownloaderRulesTable.updateTable(false);
-                    rulesList = response;
-                }
-            }).send();
+                    rulesList = responseJSON;
+                });
         };
 
         const modifyRuleState = (rule, setting, newState, callback = () => {}) => {
             rulesList[rule][setting] = newState;
-            new Request({
-                url: "api/v2/rss/setRule",
-                method: "post",
-                data: {
-                    ruleName: rule,
-                    ruleDef: JSON.stringify(rulesList[rule])
-                },
-                onSuccess: () => {
+            fetch("api/v2/rss/setRule", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        ruleName: rule,
+                        ruleDef: JSON.stringify(rulesList[rule])
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok)
+                        return;
+
                     callback();
-                }
-            }).send();
+                });
         };
 
         const addRule = () => {
@@ -639,39 +654,47 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     break;
             }
 
-            new Request({
-                url: "api/v2/rss/setRule",
-                method: "post",
-                data: {
-                    ruleName: rule,
-                    ruleDef: JSON.stringify(rulesList[rule])
-                },
-                onSuccess: () => {
+            fetch("api/v2/rss/setRule", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        ruleName: rule,
+                        ruleDef: JSON.stringify(rulesList[rule])
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok)
+                        return;
+
                     updateMatchingArticles(rule);
-                }
-            }).send();
+                });
         };
 
         const updateMatchingArticles = (ruleName) => {
-            new Request.JSON({
-                url: "api/v2/rss/matchingArticles",
-                method: "get",
-                noCache: true,
-                data: {
-                    ruleName: ruleName
-                },
-                onSuccess: (response) => {
+            const url = new URL("api/v2/rss/matchingArticles", window.location);
+            url.search = new URLSearchParams({
+                ruleName: ruleName
+            });
+            fetch(url, {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return;
+
+                    const responseJSON = await response.json();
+
                     rssDownloaderArticlesTable.clear();
                     let rowCount = 0;
-                    for (const feed in response) {
-                        if (!Object.hasOwn(response, feed))
+                    for (const feed in responseJSON) {
+                        if (!Object.hasOwn(responseJSON, feed))
                             continue;
                         rssDownloaderArticlesTable.updateRowData({
                             rowId: rowCount++,
                             name: feed,
                             isFeed: true
                         });
-                        response[feed].each((article) => {
+                        responseJSON[feed].each((article) => {
                             rssDownloaderArticlesTable.updateRowData({
                                 rowId: rowCount++,
                                 name: article,
@@ -680,8 +703,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                         });
                     }
                     rssDownloaderArticlesTable.updateTable(false);
-                }
-            }).send();
+                });
         };
 
         const showRule = (ruleName) => {
