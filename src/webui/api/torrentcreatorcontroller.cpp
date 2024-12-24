@@ -244,4 +244,6 @@ void TorrentCreatorController::deleteTaskAction()
 
     if (!m_torrentCreationManager->deleteTask(id))
         throw APIError(APIErrorType::NotFound);
+
+    setResult(QString());
 }
