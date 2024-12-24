@@ -163,6 +163,7 @@ namespace
         ANNOUNCE_ALL_TRACKERS,
         ANNOUNCE_ALL_TIERS,
         ANNOUNCE_IP,
+        ANNOUNCE_PORT,
         MAX_CONCURRENT_HTTP_ANNOUNCES,
         STOP_TRACKER_TIMEOUT,
         PEER_TURNOVER,
@@ -309,6 +310,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Construct a QHostAddress to filter malformed strings
     const QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
     session->setAnnounceIP(addr.toString());
+    // Announce Port
+    session->setAnnouncePort(m_spinBoxAnnouncePort.value());
     // Max concurrent HTTP announces
     session->setMaxConcurrentHTTPAnnounces(m_spinBoxMaxConcurrentHTTPAnnounces.value());
     // Stop tracker timeout
@@ -801,6 +804,13 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(ANNOUNCE_IP, (tr("IP address reported to trackers (requires restart)")
         + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#announce_ip", u"(?)"))
         , &m_lineEditAnnounceIP);
+    // Announce port
+    m_spinBoxAnnouncePort.setMinimum(0);
+    m_spinBoxAnnouncePort.setMaximum(65535);
+    m_spinBoxAnnouncePort.setValue(session->announcePort());
+    addRow(ANNOUNCE_PORT, (tr("Port reported to trackers (requires restart) [0: listening port]")
+        + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#announce_port", u"(?)"))
+        , &m_spinBoxAnnouncePort);
     // Max concurrent HTTP announces
     m_spinBoxMaxConcurrentHTTPAnnounces.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxMaxConcurrentHTTPAnnounces.setValue(session->maxConcurrentHTTPAnnounces());
