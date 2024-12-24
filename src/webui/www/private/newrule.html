@@ -43,8 +43,8 @@
                 fetch("api/v2/rss/setRule", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "ruleName": name,
-                            "ruleDef": "{}"
+                            ruleName: name,
+                            ruleDef: "{}"
                         })
                     })
                     .then((response) => {

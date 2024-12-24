@@ -36,18 +36,18 @@ window.qBittorrent.ProgressBar ??= (() => {
         };
     };
 
-    let ProgressBars = 0;
+    let progressBars = 0;
     const ProgressBar = new Class({
         initialize: (value, parameters) => {
             const vals = {
-                "id": "progressbar_" + (ProgressBars++),
-                "value": [value, 0].pick(),
-                "width": 0,
-                "height": 0,
-                "darkbg": "var(--color-background-blue)",
-                "darkfg": "var(--color-text-white)",
-                "lightbg": "var(--color-background-default)",
-                "lightfg": "var(--color-text-default)"
+                id: "progressbar_" + (progressBars++),
+                value: [value, 0].pick(),
+                width: 0,
+                height: 0,
+                darkbg: "var(--color-background-blue)",
+                darkfg: "var(--color-text-white)",
+                lightbg: "var(--color-background-default)",
+                lightfg: "var(--color-text-default)"
             };
             if (parameters && (typeOf(parameters) === "object"))
                 Object.append(vals, parameters);

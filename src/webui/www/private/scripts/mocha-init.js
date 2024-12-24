@@ -600,7 +600,7 @@ const initializeWindows = () => {
                     url: "api/v2/torrents/recheck",
                     method: "post",
                     data: {
-                        "hashes": hashes.join("|"),
+                        hashes: hashes.join("|"),
                     },
                     onSuccess: () => {
                         updateMainData();
@@ -694,7 +694,7 @@ const initializeWindows = () => {
                     paddingHorizontal: 0,
                     width: 800,
                     height: 420,
-                    resizeLimit: { "x": [800], "y": [420] }
+                    resizeLimit: { x: [800], y: [420] }
                 });
             }
         }

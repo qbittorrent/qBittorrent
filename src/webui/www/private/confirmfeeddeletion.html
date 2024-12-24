@@ -29,7 +29,7 @@
                     fetch("api/v2/rss/removeItem", {
                             method: "POST",
                             body: new URLSearchParams({
-                                "path": decodeURIComponent(path)
+                                path: decodeURIComponent(path)
                             })
                         })
                         .then((response) => {

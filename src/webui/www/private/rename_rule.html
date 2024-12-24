@@ -54,8 +54,8 @@
                 fetch("api/v2/rss/renameRule", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "ruleName": oldName,
-                            "newRuleName": newName
+                            ruleName: oldName,
+                            newRuleName: newName
                         })
                     })
                     .then((response) => {

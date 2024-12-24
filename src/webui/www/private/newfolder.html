@@ -46,7 +46,7 @@
                 fetch("api/v2/rss/addFolder", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "path": path ? (path + "\\" + folderName) : folderName
+                            path: path ? (path + "\\" + folderName) : folderName
                         })
                     })
                     .then(async (response) => {

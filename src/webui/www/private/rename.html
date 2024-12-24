@@ -47,8 +47,8 @@
                     fetch("api/v2/torrents/rename", {
                             method: "POST",
                             body: new URLSearchParams({
-                                "hash": hash,
-                                "name": name
+                                hash: hash,
+                                name: name
                             })
                         })
                         .then((response) => {

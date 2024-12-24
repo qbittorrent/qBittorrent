@@ -103,10 +103,10 @@
                 fetch("api/v2/torrents/setShareLimits", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hashes": hashesList.join("|"),
-                            "ratioLimit": ratioLimitValue,
-                            "seedingTimeLimit": seedingTimeLimitValue,
-                            "inactiveSeedingTimeLimit": inactiveSeedingTimeLimitValue
+                            hashes: hashesList.join("|"),
+                            ratioLimit: ratioLimitValue,
+                            seedingTimeLimit: seedingTimeLimitValue,
+                            inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue
                         })
                     })
                     .then(async (response) => {

@@ -54,8 +54,8 @@
                 fetch("api/v2/rss/setFeedURL", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "path": new URI().getData("path"),
-                            "url": newUrl
+                            path: new URI().getData("path"),
+                            url: newUrl
                         })
                     })
                     .then(async (response) => {

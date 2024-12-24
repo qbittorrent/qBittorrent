@@ -10,9 +10,9 @@ window.qBittorrent.MultiRename ??= (() => {
     };
 
     const AppliesTo = {
-        "FilenameExtension": "FilenameExtension",
-        "Filename": "Filename",
-        "Extension": "Extension"
+        FilenameExtension: "FilenameExtension",
+        Filename: "Filename",
+        Extension: "Extension"
     };
 
     const RenameFiles = new Class({

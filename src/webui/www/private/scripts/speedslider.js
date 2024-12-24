@@ -90,7 +90,7 @@ MochaUI.extend({
                         fetch("api/v2/torrents/uploadLimit", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    "hashes": hashes.join("|")
+                                    hashes: hashes.join("|")
                                 })
                             })
                             .then(async (response) => {
@@ -199,7 +199,7 @@ MochaUI.extend({
                         fetch("api/v2/torrents/downloadLimit", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    "hashes": hashes.join("|")
+                                    hashes: hashes.join("|")
                                 })
                             })
                             .then(async (response) => {

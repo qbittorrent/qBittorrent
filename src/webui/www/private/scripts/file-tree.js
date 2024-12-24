@@ -41,18 +41,18 @@ window.qBittorrent.FileTree ??= (() => {
     };
 
     const FilePriority = {
-        "Ignored": 0,
-        "Normal": 1,
-        "High": 6,
-        "Maximum": 7,
-        "Mixed": -1
+        Ignored: 0,
+        Normal: 1,
+        High: 6,
+        Maximum: 7,
+        Mixed: -1
     };
     Object.freeze(FilePriority);
 
     const TriState = {
-        "Unchecked": 0,
-        "Checked": 1,
-        "Partial": 2
+        Unchecked: 0,
+        Checked: 1,
+        Partial: 2
     };
     Object.freeze(TriState);
 

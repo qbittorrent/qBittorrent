@@ -64,11 +64,11 @@
             new Keyboard({
                 defaultEventType: "keydown",
                 events: {
-                    "Escape": function(event) {
+                    Escape: (event) => {
                         window.qBittorrent.Client.closeWindow(windowEl);
                         event.preventDefault();
                     },
-                    "Esc": function(event) {
+                    Esc: (event) => {
                         window.qBittorrent.Client.closeWindow(windowEl);
                         event.preventDefault();
                     }

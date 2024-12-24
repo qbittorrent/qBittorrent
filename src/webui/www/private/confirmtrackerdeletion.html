@@ -28,8 +28,8 @@
                 fetch("api/v2/torrents/removeTrackers", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hash": "*",
-                            "urls": urls
+                            hash: "*",
+                            urls: urls
                         })
                     })
                     .then((response) => {

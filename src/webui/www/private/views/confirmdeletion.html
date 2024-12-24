@@ -59,7 +59,7 @@
         rememberButton.addEventListener("click", (e) => {
             window.qBittorrent.Cache.preferences.set({
                 data: {
-                    "delete_torrent_content_files": deleteCB.checked
+                    delete_torrent_content_files: deleteCB.checked
                 },
                 onSuccess: () => {
                     prefDeleteContentFiles = deleteCB.checked;
@@ -80,8 +80,8 @@
             fetch("api/v2/torrents/delete", {
                     method: "POST",
                     body: new URLSearchParams({
-                        "hashes": hashes.join("|"),
-                        "deleteFiles": deleteCB.checked
+                        hashes: hashes.join("|"),
+                        deleteFiles: deleteCB.checked
                     })
                 })
                 .then((response) => {

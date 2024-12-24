@@ -40,9 +40,9 @@
                 fetch("api/v2/torrents/editTracker", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "hash": new URI().getData("hash"),
-                            "origUrl": currentUrl,
-                            "newUrl": $("trackerUrl").value
+                            hash: new URI().getData("hash"),
+                            origUrl: currentUrl,
+                            newUrl: $("trackerUrl").value
                         })
                     })
                     .then((response) => {

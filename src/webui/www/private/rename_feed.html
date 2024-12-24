@@ -54,8 +54,8 @@
                 fetch("api/v2/rss/moveItem", {
                         method: "POST",
                         body: new URLSearchParams({
-                            "itemPath": oldPath,
-                            "destPath": newPath
+                            itemPath: oldPath,
+                            destPath: newPath
                         })
                     })
                     .then(async (response) => {
