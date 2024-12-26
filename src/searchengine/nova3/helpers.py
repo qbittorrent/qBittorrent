@@ -35,6 +35,7 @@ import os
 import re
 import socket
 import socks
+import ssl
 import sys
 import tempfile
 import urllib.error
@@ -76,12 +77,12 @@ if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
 htmlentitydecode = html.unescape
 
 
-def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data: Optional[Any] = None) -> str:
+def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None) -> str:
     """ Return the content of the url page as a string """
 
     request = urllib.request.Request(url, request_data, {**headers, **custom_headers})
     try:
-        response = urllib.request.urlopen(request)
+        response = urllib.request.urlopen(request, context=ssl_context)
     except urllib.error.URLError as errno:
         print(f"Connection error: {errno.reason}", file=sys.stderr)
         return ""
@@ -104,14 +105,14 @@ def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data:
     return dataStr
 
 
-def download_file(url: str, referer: Optional[str] = None) -> str:
+def download_file(url: str, referer: Optional[str] = None, ssl_context: Optional[ssl.SSLContext] = None) -> str:
     """ Download file at url and write it to a file, return the path to the file and the url """
 
     # Download url
     request = urllib.request.Request(url, headers=headers)
     if referer is not None:
         request.add_header('referer', referer)
-    response = urllib.request.urlopen(request)
+    response = urllib.request.urlopen(request, context=ssl_context)
     data = response.read()
 
     # Check if it is gzipped
