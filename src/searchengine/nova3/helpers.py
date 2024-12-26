@@ -1,4 +1,4 @@
-#VERSION: 1.49
+#VERSION: 1.50
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -29,7 +29,7 @@
 
 import datetime
 import gzip
-import html.entities
+import html
 import io
 import os
 import re
@@ -72,21 +72,8 @@ if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
         socket.socket = socks.socksocket  # type: ignore[misc]
 
 
-def htmlentitydecode(s: str) -> str:
-    # First convert alpha entities (such as &eacute;)
-    # (Inspired from http://mail.python.org/pipermail/python-list/2007-June/443813.html)
-    def entity2char(m: re.Match[str]) -> str:
-        entity = m.group(1)
-        if entity in html.entities.name2codepoint:
-            return chr(html.entities.name2codepoint[entity])
-        return " "  # Unknown entity: We replace with a space.
-    t = re.sub('&(%s);' % '|'.join(html.entities.name2codepoint), entity2char, s)
-
-    # Then convert numerical entities (such as &#233;)
-    t = re.sub(r'&#(\d+);', lambda x: chr(int(x.group(1))), t)
-
-    # Then convert hexa entities (such as &#x00E9;)
-    return re.sub(r'&#x(\w+);', lambda x: chr(int(x.group(1), 16)), t)
+# This is only provided for backward compatibility, new code should not use it
+htmlentitydecode = html.unescape
 
 
 def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data: Optional[Any] = None) -> str:
