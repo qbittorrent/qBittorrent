@@ -113,6 +113,10 @@ def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data:
         pass
 
     dataStr = data.decode(charset, 'replace')
+
+    # better do it here than in htmlentitydecode which shouldn't make specific exceptions in its task
+    dataStr = dataStr.replace('&quot;', '\\"')
+
     dataStr = htmlentitydecode(dataStr)
     return dataStr
 
