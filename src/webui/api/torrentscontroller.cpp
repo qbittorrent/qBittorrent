@@ -880,7 +880,13 @@ void TorrentsController::removeTrackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const QStringList urls = params()[u"urls"_s].split(u'|');
+    const QStringList urlsParam = params()[u"urls"_s].split(u'|', Qt::SkipEmptyParts);
+
+    QStringList urls;
+    urls.reserve(urlsParam.size());
+    for (const QString &urlStr : urlsParam)
+        urls << QUrl::fromPercentEncoding(urlStr.toLatin1());
+
     torrent->removeTrackers(urls);
 
     if (!torrent->isStopped())
