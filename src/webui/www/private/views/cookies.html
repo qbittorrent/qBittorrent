@@ -122,38 +122,43 @@
                     expirationDate: expDate,
                 };
             });
+            fetch("api/v2/app/setCookies", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        cookies: JSON.stringify(cookies)
+                    })
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        let error = "Unable to save cookies";
+                        const responseText = await response.text();
+                        if (responseText.length > 0)
+                            error += `: ${responseText}`;
+                        alert(error);
+                        return;
+                    }
 
-            new Request({
-                url: "api/v2/app/setCookies",
-                method: "post",
-                noCache: true,
-                data: {
-                    cookies: JSON.stringify(cookies)
-                },
-                onFailure: (response) => {
-                    let error = "Unable to save cookies";
-                    if (response?.responseText)
-                        error += `: ${response.responseText}`;
-                    alert(error);
-                },
-                onSuccess: (response) => {
                     window.qBittorrent.Client.closeWindow(document.getElementById("cookiesPage"));
-                }
-            }).send();
+                });
         };
 
         const loadCookies = () => {
-            new Request.JSON({
-                url: "api/v2/app/cookies",
-                method: "get",
-                onFailure: (response) => {
-                    let error = "Unable to load cookies";
-                    if (response?.responseText)
-                        error += `: ${response.responseText}`;
-                    alert(error);
-                },
-                onSuccess: (response) => {
-                    for (const cookie of response) {
+            fetch("api/v2/app/cookies", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        let error = "Unable to load cookies";
+                        const responseText = await response.text();
+                        if (responseText.length > 0)
+                            error += `: ${responseText}`;
+                        alert(error);
+                        return;
+                    }
+
+                    const responseJSON = await response.json();
+                    for (const cookie of responseJSON) {
                         const row = addCookie();
                         row.querySelector("td.domain input").value = cookie.domain;
                         row.querySelector("td.path input").value = cookie.path;
@@ -167,8 +172,7 @@
                             row.querySelector("td.expDate input").valueAsNumber = date.getTime();
                         }
                     }
-                }
-            }).send();
+                });
         };
 
         const setup = () => {

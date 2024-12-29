@@ -354,7 +354,12 @@ window.qBittorrent.PropFiles ??= (() => {
             current_hash = new_hash;
             loadedNewTorrent = true;
         }
-        fetch(new URI("api/v2/torrents/files").setData("hash", current_hash), {
+
+        const url = new URL("api/v2/torrents/files", window.location);
+        url.search = new URLSearchParams({
+            hash: current_hash
+        });
+        fetch(url, {
                 method: "GET",
                 cache: "no-store"
             })

@@ -454,14 +454,20 @@
         };
 
         const updateRssFeedList = () => {
-            new Request.JSON({
-                url: "api/v2/rss/items",
-                method: "get",
-                noCache: true,
-                data: {
-                    withData: true
-                },
-                onSuccess: (response) => {
+            const url = new URL("api/v2/rss/items", window.location);
+            url.search = new URLSearchParams({
+                withData: true
+            });
+            fetch(url, {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return;
+
+                    const responseJSON = await response.json();
+
                     // flatten folder structure
                     const flattenedResp = [];
                     const recFlatten = (current, name = "", depth = 0, fullName = "") => {
@@ -488,7 +494,7 @@
                             }
                         }
                     };
-                    recFlatten(response);
+                    recFlatten(responseJSON);
 
                     // check if rows matches flattened response
                     const rssFeedRows = [...rssFeedTable.getRowValues()];
@@ -687,8 +693,7 @@
                         rssFeedTable.updateTable(false);
                         rssFeedTable.updateIcons();
                     }
-                }
-            }).send();
+                });
         };
 
         const refreshFeed = (feedUid) => {
@@ -699,17 +704,19 @@
             }
             rssFeedTable.updateIcons();
 
-            new Request({
-                url: "api/v2/rss/refreshItem",
-                method: "post",
-                data: {
-                    itemPath: pathByFeedId.get(feedUid)
-                },
-                onFailure: (response) => {
-                    if (response.status === 409)
-                        alert(response.responseText);
-                }
-            }).send();
+            fetch("api/v2/rss/refreshItem", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        itemPath: pathByFeedId.get(feedUid)
+                    })
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        if (response.status === 409)
+                            alert(await response.text());
+                        return;
+                    }
+                });
         };
 
         const refreshAllFeeds = () => {
@@ -802,17 +809,19 @@
             rssFeedTable.updateTable(true);
 
             // send request
-            new Request({
-                url: "api/v2/rss/markAsRead",
-                method: "post",
-                data: {
-                    itemPath: path
-                },
-                onFailure: (response) => {
-                    if (response.status === 409)
-                        alert(response.responseText);
-                }
-            }).send();
+            fetch("api/v2/rss/markAsRead", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        itemPath: path
+                    })
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        if (response.status === 409)
+                            alert(await response.text());
+                        return;
+                    }
+                });
         };
 
         const markArticleAsRead = (path, id) => {
@@ -843,18 +852,20 @@
 
                 rssFeedTable.updateTable(true);
 
-                new Request({
-                    url: "api/v2/rss/markAsRead",
-                    method: "post",
-                    data: {
-                        itemPath: path,
-                        articleId: id
-                    },
-                    onFailure: (response) => {
-                        if (response.status === 409)
-                            alert(response.responseText);
-                    }
-                }).send();
+                fetch("api/v2/rss/markAsRead", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            itemPath: path,
+                            articleId: id
+                        })
+                    })
+                    .then(async (response) => {
+                        if (!response.ok) {
+                            if (response.status === 409)
+                                alert(await response.text());
+                            return;
+                        }
+                    });
             }
         };
 

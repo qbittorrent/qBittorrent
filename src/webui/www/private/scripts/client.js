@@ -749,7 +749,11 @@ window.addEventListener("DOMContentLoaded", () => {
     let syncRequestInProgress = false;
     const syncMainData = () => {
         syncRequestInProgress = true;
-        fetch(new URI("api/v2/sync/maindata").setData("rid", syncMainDataLastResponseId), {
+        const url = new URL("api/v2/sync/maindata", window.location);
+        url.search = new URLSearchParams({
+            rid: syncMainDataLastResponseId
+        });
+        fetch(url, {
                 method: "GET",
                 cache: "no-store"
             })

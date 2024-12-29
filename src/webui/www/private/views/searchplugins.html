@@ -130,15 +130,12 @@
         };
 
         const uninstallPlugin = () => {
-            const plugins = searchPluginsTable.selectedRowsIds().join("|");
-            const url = new URI("api/v2/search/uninstallPlugin");
-            new Request({
-                url: url,
-                method: "post",
-                data: {
-                    names: plugins,
-                }
-            }).send();
+            fetch("api/v2/search/uninstallPlugin", {
+                method: "POST",
+                body: new URLSearchParams({
+                    names: searchPluginsTable.selectedRowsIds().join("|")
+                })
+            });
         };
 
         const enablePlugin = () => {
@@ -147,23 +144,19 @@
             if (plugins && plugins.length)
                 enable = !window.qBittorrent.Search.getPlugin(plugins[0]).enabled;
 
-            const url = new URI("api/v2/search/enablePlugin");
-            new Request({
-                url: url,
-                method: "post",
-                data: {
+            fetch("api/v2/search/enablePlugin", {
+                method: "POST",
+                body: new URLSearchParams({
                     names: plugins.join("|"),
                     enable: enable
-                }
-            }).send();
+                })
+            });
         };
 
         const checkForUpdates = () => {
-            const url = new URI("api/v2/search/updatePlugins");
-            new Request({
-                url: url,
-                method: "post"
-            }).send();
+            fetch("api/v2/search/updatePlugins", {
+                method: "POST"
+            });
         };
 
         const calculateContextMenuOffsets = () => {

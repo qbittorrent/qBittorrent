@@ -267,8 +267,8 @@
                 }
                 setupTable(selectedRows);
             };
-            fileRenamer.onRenameError = (err, row) => {
-                if (err.xhr.status === 409)
+            fileRenamer.onRenameError = (response, row) => {
+                if (response.status === 409)
                     $("rename_error").textContent = `QBT_TR(Rename failed: file or folder already exists)QBT_TR[CONTEXT=PropertiesWidget] \`${row.renamed}\``;
             };
             $("renameOptions").addEventListener("change", (e) => {
@@ -379,7 +379,11 @@
             };
 
             const setupTable = (selectedRows) => {
-                fetch(new URI("api/v2/torrents/files").setData("hash", data.hash), {
+                const url = new URL("api/v2/torrents/files", window.location);
+                url.search = new URLSearchParams({
+                    hash: data.hash
+                });
+                fetch(url, {
                         method: "GET",
                         cache: "no-store"
                     })

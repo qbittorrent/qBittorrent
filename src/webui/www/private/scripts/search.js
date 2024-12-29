@@ -247,13 +247,12 @@ window.qBittorrent.Search ??= (() => {
 
         tab.destroy();
 
-        new Request({
-            url: new URI("api/v2/search/delete"),
-            method: "post",
-            data: {
+        fetch("api/v2/search/delete", {
+            method: "POST",
+            body: new URLSearchParams({
                 id: searchId
-            },
-        }).send();
+            })
+        });
 
         const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
         const jobIndex = searchJobs.findIndex((job) => job.id === searchId);
@@ -395,42 +394,45 @@ window.qBittorrent.Search ??= (() => {
 
     const startSearch = (pattern, category, plugins) => {
         searchPatternChanged = false;
+        fetch("api/v2/search/start", {
+                method: "POST",
+                body: new URLSearchParams({
+                    pattern: pattern,
+                    category: category,
+                    plugins: plugins
+                })
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
 
-        const url = new URI("api/v2/search/start");
-        new Request.JSON({
-            url: url,
-            method: "post",
-            data: {
-                pattern: pattern,
-                category: category,
-                plugins: plugins
-            },
-            onSuccess: (response) => {
+                const responseJSON = await response.json();
+
                 document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
-                const searchId = response.id;
+                const searchId = responseJSON.id;
                 createSearchTab(searchId, pattern);
 
                 const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
                 searchJobs.push({ id: searchId, pattern: pattern });
                 LocalPreferences.set("search_jobs", JSON.stringify(searchJobs));
-            }
-        }).send();
+            });
     };
 
     const stopSearch = (searchId) => {
-        const url = new URI("api/v2/search/stop");
-        new Request({
-            url: url,
-            method: "post",
-            data: {
-                id: searchId
-            },
-            onSuccess: (response) => {
+        fetch("api/v2/search/stop", {
+                method: "POST",
+                body: new URLSearchParams({
+                    id: searchId
+                })
+            })
+            .then((response) => {
+                if (!response.ok)
+                    return;
+
                 resetSearchState(searchId);
                 // not strictly necessary to do this when the tab is being closed, but there's no harm in it
                 updateStatusIconElement(searchId, "QBT_TR(Search aborted)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-reject.svg");
-            }
-        }).send();
+            });
     };
 
     const getSelectedSearchId = () => {
@@ -638,11 +640,16 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const getPlugins = () => {
-        new Request.JSON({
-            url: new URI("api/v2/search/plugins"),
-            method: "get",
-            noCache: true,
-            onSuccess: (response) => {
+        fetch("api/v2/search/plugins", {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const responseJSON = await response.json();
+
                 const createOption = (text, value, disabled = false) => {
                     const option = document.createElement("option");
                     if (value !== undefined)
@@ -652,10 +659,10 @@ window.qBittorrent.Search ??= (() => {
                     return option;
                 };
 
-                if (response !== prevSearchPluginsResponse) {
-                    prevSearchPluginsResponse = response;
+                if (prevSearchPluginsResponse !== responseJSON) {
+                    prevSearchPluginsResponse = responseJSON;
                     searchPlugins.length = 0;
-                    response.forEach((plugin) => {
+                    responseJSON.forEach((plugin) => {
                         searchPlugins.push(plugin);
                     });
 
@@ -697,8 +704,7 @@ window.qBittorrent.Search ??= (() => {
 
                     reselectPlugin();
                 }
-            }
-        }).send();
+            });
     };
 
     const getPlugin = (name) => {
@@ -766,30 +772,30 @@ window.qBittorrent.Search ??= (() => {
 
     const loadSearchResultsData = function(searchId) {
         const state = searchState.get(searchId);
+        const url = new URL("api/v2/search/results", window.location);
+        url.search = new URLSearchParams({
+            id: searchId,
+            limit: 500,
+            offset: state.rowId
+        });
+        fetch(url, {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok) {
+                    if ((response.status === 400) || (response.status === 404)) {
+                        // bad params. search id is invalid
+                        resetSearchState(searchId);
+                        updateStatusIconElement(searchId, "QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                    }
+                    else {
+                        clearTimeout(state.loadResultsTimer);
+                        state.loadResultsTimer = loadSearchResultsData.delay(3000, this, searchId);
+                    }
+                    return;
+                }
 
-        const maxResults = 500;
-        const url = new URI("api/v2/search/results");
-        new Request.JSON({
-            url: url,
-            method: "get",
-            noCache: true,
-            data: {
-                id: searchId,
-                limit: maxResults,
-                offset: state.rowId
-            },
-            onFailure: function(response) {
-                if ((response.status === 400) || (response.status === 404)) {
-                    // bad params. search id is invalid
-                    resetSearchState(searchId);
-                    updateStatusIconElement(searchId, "QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
-                }
-                else {
-                    clearTimeout(state.loadResultsTimer);
-                    state.loadResultsTimer = loadSearchResultsData.delay(3000, this, searchId);
-                }
-            },
-            onSuccess: function(response) {
                 $("error_div").textContent = "";
 
                 const state = searchState.get(searchId);
@@ -800,12 +806,13 @@ window.qBittorrent.Search ??= (() => {
                     return;
                 }
 
-                if (response) {
+                const responseJSON = await response.json();
+                if (responseJSON) {
                     const state = searchState.get(searchId);
                     const newRows = [];
 
-                    if (response.results) {
-                        const results = response.results;
+                    if (responseJSON.results) {
+                        const results = responseJSON.results;
                         for (let i = 0; i < results.length; ++i) {
                             const result = results[i];
                             const row = {
@@ -838,7 +845,7 @@ window.qBittorrent.Search ??= (() => {
                         searchResultsTable.updateTable();
                     }
 
-                    if ((response.status === "Stopped") && (state.rowId >= response.total)) {
+                    if ((responseJSON.status === "Stopped") && (state.rowId >= responseJSON.total)) {
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, "QBT_TR(Search has finished)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-complete.svg");
                         return;
@@ -847,8 +854,7 @@ window.qBittorrent.Search ??= (() => {
 
                 clearTimeout(state.loadResultsTimer);
                 state.loadResultsTimer = loadSearchResultsData.delay(2000, this, searchId);
-            }
-        }).send();
+            });
     };
 
     const updateSearchResultsData = function(searchId) {
