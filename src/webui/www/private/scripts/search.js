@@ -385,7 +385,7 @@ window.qBittorrent.Search ??= (() => {
     const updateStatusIconElement = (searchId, text, image) => {
         const searchTab = $(`${searchTabIdPrefix}${searchId}`);
         if (searchTab) {
-            const statusIcon = searchTab.getElement(".statusIcon");
+            const statusIcon = searchTab.querySelector(".statusIcon");
             statusIcon.alt = text;
             statusIcon.title = text;
             statusIcon.src = image;
@@ -436,7 +436,7 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const getSelectedSearchId = () => {
-        const selectedTab = $("searchTabs").getElement("li.selected");
+        const selectedTab = $("searchTabs").querySelector("li.selected");
         return selectedTab ? getSearchIdFromTab(selectedTab) : null;
     };
 
