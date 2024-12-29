@@ -428,14 +428,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     showRule("");
                 }
             });
-            $("rulesTable").addEventListener("contextmenu", (e) => {
-                if (e.toElement.nodeName === "DIV") {
-                    rssDownloaderRulesTable.deselectAll();
-                    rssDownloaderRulesTable.deselectRow();
-                    rssDownloaderRuleContextMenu.updateMenuItems();
-                    showRule("");
-                }
-            });
             // get all categories and add to combobox
             fetch("api/v2/torrents/categories", {
                     method: "GET",
