@@ -1,0 +1,43 @@
+login:
+  post:
+    summary: Login
+    description: Login and get SID cookie
+    security: [ ]
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+            required: ['username', 'password']
+    responses:
+      '200':
+        description: Login success or failure based on the response string. If login succeeded, the authorization cookie will be set. The cookie name might be configured to a different name by the user.
+        headers:
+          SID:
+            required: false
+        content:
+          text/plain; charset=UTF-8:
+            schema:
+              oneOf:
+                - type: string
+                  const: 'Ok.'
+                - type: string
+                  const: 'Fails.'
+      '403':
+        $ref: 'main.yml#/components/responses/403forbidden'
+logout:
+  get:
+    summary: Logout
+    description: Logout and unset auth cookie. The cookie name might be configured to a different name by the user.
+    responses:
+      '200':
+        description: OK
+        headers:
+          SID:
+            required: false
