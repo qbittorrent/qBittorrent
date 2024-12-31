@@ -3149,6 +3149,49 @@ Disable encryption: Only connect to peers without protocol encryption</string>
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="checkAddTrackersFromURL">
+              <property name="title">
+               <string>Automatically append trackers from URL to new downloads:</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <layout class="QVBoxLayout" name="checkAddTrackersFromURLLayout">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_21">
+                 <item>
+                  <widget class="QLabel" name="labelCustomizeTrackersListUrl">
+                   <property name="text">
+                    <string>URL:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="textTrackersURL"/>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="labeltrackersFromURL">
+                 <property name="text">
+                  <string>Fetched trackers</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPlainTextEdit" name="textTrackersFromURL">
+                 <property name="readOnly">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_8">
               <property name="orientation">
                <enum>Qt::Orientation::Vertical</enum>

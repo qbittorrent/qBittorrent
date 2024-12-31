@@ -825,6 +825,23 @@
         </legend>
         <textarea id="add_trackers_textarea" rows="5" cols="70" aria-labelledby="addTrackersLabel"></textarea>
     </fieldset>
+
+    <fieldset class="settings">
+        <legend>
+            <input type="checkbox" id="addTrackersFromURLCheckbox" onclick="qBittorrent.Preferences.updateAddTrackersFromURLEnabled();">
+            <label for="addTrackersFromURLCheckbox">QBT_TR(Automatically append trackers from URL to new downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div class="formRow">
+            <label for="addTrackersURL">QBT_TR(URL:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="addTrackersURL" style="width: 40em;">
+        </div>
+        <div class="formRow">
+            <fieldset class="settings">
+                <legend id="fetchedTrackersFromURLLabel">QBT_TR(Fetched trackers)QBT_TR[CONTEXT=OptionsDialog]</legend>
+                <textarea id="addTrackersURLListTextarea" aria-labelledby="fetchedTrackersFromURLLabel" rows="5" cols="70" readonly></textarea>
+            </fieldset>
+        </div>
+    </fieldset>
 </div>
 
 <div id="RSSTab" class="PrefTab invisible">
@@ -1736,6 +1753,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateSlowTorrentsSettings: updateSlowTorrentsSettings,
                 updateMaxRatioTimeEnabled: updateMaxRatioTimeEnabled,
                 updateAddTrackersEnabled: updateAddTrackersEnabled,
+                updateAddTrackersFromURLEnabled: updateAddTrackersFromURLEnabled,
                 updateHttpsSettings: updateHttpsSettings,
                 updateBypasssAuthSettings: updateBypasssAuthSettings,
                 updateAlternativeWebUISettings: updateAlternativeWebUISettings,
@@ -2014,6 +2032,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateAddTrackersEnabled = () => {
             const isAddTrackersEnabled = $("add_trackers_checkbox").checked;
             $("add_trackers_textarea").disabled = !isAddTrackersEnabled;
+        };
+
+        const updateAddTrackersFromURLEnabled = () => {
+            const isAddTrackersFromURLEnabled = $("addTrackersFromURLCheckbox").checked;
+            $("addTrackersURL").disabled = !isAddTrackersFromURLEnabled;
         };
 
         // WebUI tab
@@ -2442,7 +2465,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Add trackers
                     $("add_trackers_checkbox").checked = pref.add_trackers_enabled;
                     $("add_trackers_textarea").value = pref.add_trackers;
+                    $("addTrackersFromURLCheckbox").checked = pref.add_trackers_from_url_enabled;
+                    $("addTrackersURLListTextarea").value = pref.add_trackers_url_list;
+                    $("addTrackersURL").value = pref.add_trackers_url;
                     updateAddTrackersEnabled();
+                    updateAddTrackersFromURLEnabled();
 
                     // RSS Tab
                     $("enable_fetching_rss_feeds_checkbox").checked = pref.rss_processing_enabled;
@@ -2876,6 +2903,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Add trackers
             settings["add_trackers_enabled"] = $("add_trackers_checkbox").checked;
             settings["add_trackers"] = $("add_trackers_textarea").value;
+            settings["add_trackers_from_url_enabled"] = $("addTrackersFromURLCheckbox").checked;
+            settings["add_trackers_url"] = $("addTrackersURL").value;
 
             // RSS Tab
             settings["rss_processing_enabled"] = $("enable_fetching_rss_feeds_checkbox").checked;
