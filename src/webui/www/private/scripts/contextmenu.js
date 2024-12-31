@@ -246,24 +246,24 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         setItemChecked(item, checked) {
-            this.menu.getElement("a[href$=" + item + "]").firstElementChild.style.opacity =
+            this.menu.querySelector(`a[href$="${item}"]`).firstElementChild.style.opacity =
                 checked ? "1" : "0";
             return this;
         }
 
         getItemChecked(item) {
-            return this.menu.getElement("a[href$=" + item + "]").firstElementChild.style.opacity !== "0";
+            return this.menu.querySelector(`a[href$="${item}"]`).firstElementChild.style.opacity !== "0";
         }
 
         // hide an item
         hideItem(item) {
-            this.menu.getElement("a[href$=" + item + "]").parentNode.classList.add("invisible");
+            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.add("invisible");
             return this;
         }
 
         // show an item
         showItem(item) {
-            this.menu.getElement("a[href$=" + item + "]").parentNode.classList.remove("invisible");
+            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.remove("invisible");
             return this;
         }
 
@@ -405,7 +405,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             if (all_are_downloaded) {
                 this.hideItem("downloadLimit");
-                this.menu.getElement("a[href$=uploadLimit]").parentNode.classList.add("separator");
+                this.menu.querySelector("a[href$=uploadLimit]").parentNode.classList.add("separator");
                 this.hideItem("sequentialDownload");
                 this.hideItem("firstLastPiecePrio");
                 this.showItem("superSeeding");
@@ -415,7 +415,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const show_seq_dl = (all_are_seq_dl || !there_are_seq_dl);
                 const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
 
-                this.menu.getElement("a[href$=firstLastPiecePrio]").parentNode.classList.toggle("separator", (!show_seq_dl && show_f_l_piece_prio));
+                this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode.classList.toggle("separator", (!show_seq_dl && show_f_l_piece_prio));
 
                 if (show_seq_dl)
                     this.showItem("sequentialDownload");
@@ -431,7 +431,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.setItemChecked("firstLastPiecePrio", all_are_f_l_piece_prio);
 
                 this.showItem("downloadLimit");
-                this.menu.getElement("a[href$=uploadLimit]").parentNode.classList.remove("separator");
+                this.menu.querySelector("a[href$=uploadLimit]").parentNode.classList.remove("separator");
                 this.hideItem("superSeeding");
             }
 
@@ -458,7 +458,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const contextTagList = $("contextTagList");
             tagList.forEach((tag, tagHash) => {
-                const checkbox = contextTagList.getElement(`a[href="#Tag/${tag.name}"] input[type="checkbox"]`);
+                const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag.name}"] input[type="checkbox"]`);
                 const count = tagCount.get(tag.name);
                 const hasCount = (count !== undefined);
                 const isLesser = (count < selectedRows.length);
@@ -658,11 +658,11 @@ window.qBittorrent.ContextMenu ??= (() => {
     class RssFeedContextMenu extends ContextMenu {
         updateMenuItems() {
             const selectedRows = window.qBittorrent.Rss.rssFeedTable.selectedRowsIds();
-            this.menu.getElement("a[href$=newSubscription]").parentNode.classList.add("separator");
+            this.menu.querySelector("a[href$=newSubscription]").parentNode.classList.add("separator");
             switch (selectedRows.length) {
                 case 0:
                     // remove separator on top of newSubscription entry to avoid double line
-                    this.menu.getElement("a[href$=newSubscription]").parentNode.classList.remove("separator");
+                    this.menu.querySelector("a[href$=newSubscription]").parentNode.classList.remove("separator");
                     // menu when nothing selected
                     this.hideItem("update");
                     this.hideItem("markRead");

@@ -2305,7 +2305,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     node.checked = 0;
                     node.full_data.checked = 0;
 
-                    const checkbox = tr.children[0].getElement("input");
+                    const checkbox = tr.querySelector(".RenamingCB");
                     checkbox.state = "checked";
                     checkbox.indeterminate = false;
                     checkbox.checked = true;
