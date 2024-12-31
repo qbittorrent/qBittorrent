@@ -710,6 +710,17 @@ td.generalLabel {
     width: 1px;
 }
 
+td.fullWidth {
+    box-sizing: border-box;
+    max-width: none;
+    width: 100%;
+    word-break: break-all;
+}
+
+td.noWrap {
+    white-space: nowrap;
+}
+
 #tristate_cb {
     margin-bottom: 0;
     margin-top: 0;
@@ -886,7 +897,8 @@ td.statusBarSeparator {
     color: var(--color-text-green);
 }
 
-#torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
+#torrentFilesTableDiv .dynamicTable tr.nonAlt:hover,
+#addTorrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
     background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }

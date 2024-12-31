@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024 Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,51 +28,29 @@
 
 #pragma once
 
-#include <QtContainerFwd>
+#include <optional>
+
+#include <QHash>
 #include <QObject>
-#include <QString>
-#include <QVariant>
+#include <QSet>
 
-#include "base/applicationcomponent.h"
-#include "apistatus.h"
+#include "base/bittorrent/infohash.h"
 
-using DataMap = QHash<QString, QByteArray>;
-using StringMap = QHash<QString, QString>;
-
-struct APIResult
-{
-    QVariant data;
-    QString mimeType;
-    QString filename;
-    APIStatus status = APIStatus::Ok;
-
-    void clear();
-};
-
-class APIController : public ApplicationComponent<QObject>
+class TorrentSourceCache : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(APIController)
+    Q_DISABLE_COPY_MOVE(TorrentSourceCache)
 
 public:
-    explicit APIController(IApplication *app, QObject *parent = nullptr);
+    using QObject::QObject;
 
-    APIResult run(const QString &action, const StringMap &params, const DataMap &data = {});
-
-protected:
-    const StringMap &params() const;
-    const DataMap &data() const;
-    void requireParams(const QList<QString> &requiredParams) const;
-
-    void setResult(const QString &result);
-    void setResult(const QJsonArray &result);
-    void setResult(const QJsonObject &result);
-    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
-
-    void setStatus(APIStatus status);
+    std::optional<BitTorrent::InfoHash> get(const QString &source);
+    bool contains(const QString &source) const;
+    void add(const QString &source);
+    void update(const QString &source, const BitTorrent::InfoHash &infoHash);
+    void remove(const QString &source);
 
 private:
-    StringMap m_params;
-    DataMap m_data;
-    APIResult m_result;
+    QHash<QString, BitTorrent::InfoHash> m_torrentSource;
+    QSet<QString> m_torrentSourcesWithoutInfoHash;
 };
