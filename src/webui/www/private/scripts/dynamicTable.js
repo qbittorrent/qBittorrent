@@ -1451,7 +1451,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
         },
 
-        applyFilter: (row, filterName, categoryHash, tagHash, trackerHash, filterTerms) => {
+        applyFilter: (row, filterName, category, tag, tracker, filterTerms) => {
             const state = row["full_data"].state;
             let inactive = false;
 
@@ -1515,59 +1515,64 @@ window.qBittorrent.DynamicTable ??= (() => {
                     break;
             }
 
-            switch (categoryHash) {
+            switch (category) {
                 case CATEGORIES_ALL:
                     break; // do nothing
+
                 case CATEGORIES_UNCATEGORIZED:
-                    if (row["full_data"].category.length !== 0)
+                    if (row["full_data"].category.length > 0)
                         return false;
                     break; // do nothing
-                default:
+
+                default: {
                     if (!useSubcategories) {
-                        if (categoryHash !== window.qBittorrent.Misc.genHash(row["full_data"].category))
+                        if (category !== row["full_data"].category)
                             return false;
                     }
                     else {
-                        const selectedCategory = category_list.get(categoryHash);
+                        const selectedCategory = categoryMap.get(category);
                         if (selectedCategory !== undefined) {
-                            const selectedCategoryName = selectedCategory.name + "/";
-                            const torrentCategoryName = row["full_data"].category + "/";
+                            const selectedCategoryName = `${category}/`;
+                            const torrentCategoryName = `${row["full_data"].category}/`;
                             if (!torrentCategoryName.startsWith(selectedCategoryName))
                                 return false;
                         }
                     }
                     break;
+                }
             }
 
-            switch (tagHash) {
+            switch (tag) {
                 case TAGS_ALL:
                     break; // do nothing
 
                 case TAGS_UNTAGGED:
-                    if (row["full_data"].tags.length !== 0)
+                    if (row["full_data"].tags.length > 0)
                         return false;
                     break; // do nothing
 
                 default: {
-                    const tagHashes = row["full_data"].tags.split(", ").map(tag => window.qBittorrent.Misc.genHash(tag));
-                    if (!tagHashes.contains(tagHash))
+                    const tags = row["full_data"].tags.split(", ");
+                    if (!tags.contains(tag))
                         return false;
                     break;
                 }
             }
 
-            switch (trackerHash) {
+            switch (tracker) {
                 case TRACKERS_ALL:
                     break; // do nothing
+
                 case TRACKERS_TRACKERLESS:
-                    if (row["full_data"].trackers_count !== 0)
+                    if (row["full_data"].trackers_count > 0)
                         return false;
                     break;
+
                 default: {
-                    const tracker = trackerList.get(trackerHash);
-                    if (tracker) {
+                    const trackerTorrentMap = trackerMap.get(tracker);
+                    if (trackerTorrentMap !== undefined) {
                         let found = false;
-                        for (const torrents of tracker.trackerTorrentMap.values()) {
+                        for (const torrents of trackerTorrentMap.values()) {
                             if (torrents.has(row["full_data"].rowId)) {
                                 found = true;
                                 break;
@@ -1596,17 +1601,17 @@ window.qBittorrent.DynamicTable ??= (() => {
             return true;
         },
 
-        getFilteredTorrentsNumber: function(filterName, categoryHash, tagHash, trackerHash) {
+        getFilteredTorrentsNumber: function(filterName, category, tag, tracker) {
             let cnt = 0;
 
             for (const row of this.rows.values()) {
-                if (this.applyFilter(row, filterName, categoryHash, tagHash, trackerHash, null))
+                if (this.applyFilter(row, filterName, category, tag, tracker, null))
                     ++cnt;
             }
             return cnt;
         },
 
-        getFilteredTorrentsHashes: function(filterName, categoryHash, tagHash, trackerHash) {
+        getFilteredTorrentsHashes: function(filterName, category, tag, tracker) {
             const rowsHashes = [];
             const useRegex = document.getElementById("torrentsFilterRegexBox").checked;
             const filterText = document.getElementById("torrentsFilterInput").value.trim().toLowerCase();
@@ -1621,7 +1626,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             for (const row of this.rows.values()) {
-                if (this.applyFilter(row, filterName, categoryHash, tagHash, trackerHash, filterTerms))
+                if (this.applyFilter(row, filterName, category, tag, tracker, filterTerms))
                     rowsHashes.push(row["rowId"]);
             }
 

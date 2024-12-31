@@ -457,25 +457,25 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.setEnabled("copyInfohash2", thereAreV2Hashes);
 
             const contextTagList = $("contextTagList");
-            tagList.forEach((tag, tagHash) => {
-                const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag.name}"] input[type="checkbox"]`);
-                const count = tagCount.get(tag.name);
+            for (const tag of tagMap.keys()) {
+                const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`);
+                const count = tagCount.get(tag);
                 const hasCount = (count !== undefined);
                 const isLesser = (count < selectedRows.length);
                 checkbox.indeterminate = (hasCount ? isLesser : false);
                 checkbox.checked = (hasCount ? !isLesser : false);
-            });
+            }
 
             const contextCategoryList = document.getElementById("contextCategoryList");
-            category_list.forEach((category, categoryHash) => {
-                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category.name}"] img`);
-                const count = categoryCount.get(category.name);
+            for (const category of categoryMap.keys()) {
+                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category}"] img`);
+                const count = categoryCount.get(category);
                 const isEqual = ((count !== undefined) && (count === selectedRows.length));
                 categoryIcon.classList.toggle("highlightedCategoryIcon", isEqual);
-            });
+            }
         }
 
-        updateCategoriesSubMenu(categoryList) {
+        updateCategoriesSubMenu(categories) {
             const contextCategoryList = $("contextCategoryList");
             contextCategoryList.getChildren().each(c => c.destroy());
 
@@ -495,24 +495,19 @@ window.qBittorrent.ContextMenu ??= (() => {
                 return item;
             };
             contextCategoryList.appendChild(createMenuItem("QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", torrentNewCategoryFN));
-            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", () => { torrentSetCategoryFN(0); }));
+            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", () => { torrentSetCategoryFN(""); }));
 
-            const sortedCategories = [];
-            categoryList.forEach((category, hash) => sortedCategories.push({
-                categoryName: category.name,
-                categoryHash: hash
-            }));
-            sortedCategories.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(
-                left.categoryName, right.categoryName));
+            const sortedCategories = [...categories.keys()];
+            sortedCategories.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
 
             let first = true;
-            for (const { categoryName, categoryHash } of sortedCategories) {
+            for (const categoryName of sortedCategories) {
                 const anchor = document.createElement("a");
                 anchor.href = `#Category/${categoryName}`;
                 anchor.textContent = categoryName;
                 anchor.addEventListener("click", (event) => {
                     event.preventDefault();
-                    torrentSetCategoryFN(categoryHash);
+                    torrentSetCategoryFN(categoryName);
                 });
 
                 const img = document.createElement("img");
@@ -530,7 +525,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             }
         }
 
-        updateTagsSubMenu(tagList) {
+        updateTagsSubMenu(tags) {
             const contextTagList = $("contextTagList");
             contextTagList.replaceChildren();
 
@@ -552,15 +547,11 @@ window.qBittorrent.ContextMenu ??= (() => {
             contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", torrentAddTagsFN));
             contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", torrentRemoveAllTagsFN));
 
-            const sortedTags = [];
-            tagList.forEach((tag, hash) => sortedTags.push({
-                tagName: tag.name,
-                tagHash: hash
-            }));
-            sortedTags.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.tagName, right.tagName));
+            const sortedTags = [...tags.keys()];
+            sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
 
             for (let i = 0; i < sortedTags.length; ++i) {
-                const { tagName, tagHash } = sortedTags[i];
+                const tagName = sortedTags[i];
 
                 const input = document.createElement("input");
                 input.type = "checkbox";
@@ -573,7 +564,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 anchor.textContent = tagName;
                 anchor.addEventListener("click", (event) => {
                     event.preventDefault();
-                    torrentSetTagsFN(tagHash, !input.checked);
+                    torrentSetTagsFN(tagName, !input.checked);
                 });
                 anchor.prepend(input);
 
@@ -595,7 +586,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class CategoriesFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
-            const id = Number(this.options.element.id);
+            const id = this.options.element.id;
             if ((id !== CATEGORIES_ALL) && (id !== CATEGORIES_UNCATEGORIZED)) {
                 this.showItem("editCategory");
                 this.showItem("deleteCategory");
@@ -616,7 +607,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class TagsFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
-            const id = Number(this.options.element.id);
+            const id = this.options.element.id;
             if ((id !== TAGS_ALL) && (id !== TAGS_UNTAGGED))
                 this.showItem("deleteTag");
             else
@@ -628,7 +619,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class TrackersFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
-            const id = Number(this.options.element.id);
+            const id = this.options.element.id;
             if ((id !== TRACKERS_ALL) && (id !== TRACKERS_TRACKERLESS))
                 this.showItem("deleteTracker");
             else

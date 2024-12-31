@@ -780,39 +780,36 @@ const initializeWindows = () => {
     };
 
     torrentNewCategoryFN = () => {
-        const action = "set";
-        const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            new MochaUI.Window({
-                id: "newCategoryPage",
-                icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]",
-                loadMethod: "iframe",
-                contentURL: new URI("newcategory.html").setData("action", action).setData("hashes", hashes.join("|")).toString(),
-                scrollbars: false,
-                resizable: true,
-                maximizable: false,
-                paddingVertical: 0,
-                paddingHorizontal: 0,
-                width: 400,
-                height: 150
-            });
-        }
-    };
-
-    torrentSetCategoryFN = (categoryHash) => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length <= 0)
             return;
 
-        const categoryName = category_list.has(categoryHash)
-            ? category_list.get(categoryHash).name
-            : "";
+        new MochaUI.Window({
+            id: "newCategoryPage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: "iframe",
+            contentURL: new URI("newcategory.html").setData("action", "set").setData("hashes", hashes.join("|")).toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 400,
+            height: 150
+        });
+    };
+
+    torrentSetCategoryFN = (category) => {
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length <= 0)
+            return;
+
         fetch("api/v2/torrents/setCategory", {
                 method: "POST",
                 body: new URLSearchParams({
                     hashes: hashes.join("|"),
-                    category: categoryName
+                    category: category
                 })
             })
             .then((response) => {
@@ -824,13 +821,12 @@ const initializeWindows = () => {
     };
 
     createCategoryFN = () => {
-        const action = "create";
         new MochaUI.Window({
             id: "newCategoryPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newcategory.html").setData("action", action).toString(),
+            contentURL: new URI("newcategory.html").setData("action", "create").toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -841,15 +837,13 @@ const initializeWindows = () => {
         });
     };
 
-    createSubcategoryFN = (categoryHash) => {
-        const action = "createSubcategory";
-        const categoryName = category_list.get(categoryHash).name + "/";
+    createSubcategoryFN = (category) => {
         new MochaUI.Window({
             id: "newSubcategoryPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newcategory.html").setData("action", action).setData("categoryName", categoryName).toString(),
+            contentURL: new URI("newcategory.html").setData("action", "createSubcategory").setData("categoryName", `${category}/`).toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -860,15 +854,13 @@ const initializeWindows = () => {
         });
     };
 
-    editCategoryFN = (categoryHash) => {
-        const action = "edit";
-        const category = category_list.get(categoryHash);
+    editCategoryFN = (category) => {
         new MochaUI.Window({
             id: "editCategoryPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newcategory.html").setData("action", action).setData("categoryName", category.name).setData("savePath", category.savePath).toString(),
+            contentURL: new URI("newcategory.html").setData("action", "edit").setData("categoryName", category).setData("savePath", categoryMap.get(category).savePath).toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -879,11 +871,11 @@ const initializeWindows = () => {
         });
     };
 
-    removeCategoryFN = (categoryHash) => {
+    removeCategoryFN = (category) => {
         fetch("api/v2/torrents/removeCategories", {
                 method: "POST",
                 body: new URLSearchParams({
-                    categories: category_list.get(categoryHash).name
+                    categories: category
                 })
             })
             .then((response) => {
@@ -897,10 +889,10 @@ const initializeWindows = () => {
 
     deleteUnusedCategoriesFN = () => {
         const categories = [];
-        category_list.forEach((category, hash) => {
-            if (torrentsTable.getFilteredTorrentsNumber("all", hash, TAGS_ALL, TRACKERS_ALL) === 0)
-                categories.push(category.name);
-        });
+        for (const category of categoryMap.keys()) {
+            if (torrentsTable.getFilteredTorrentsNumber("all", category, TAGS_ALL, TRACKERS_ALL) === 0)
+                categories.push(category);
+        }
         fetch("api/v2/torrents/removeCategories", {
                 method: "POST",
                 body: new URLSearchParams({
@@ -917,27 +909,27 @@ const initializeWindows = () => {
     };
 
     torrentAddTagsFN = () => {
-        const action = "set";
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            new MochaUI.Window({
-                id: "newTagPage",
-                icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Add tags)QBT_TR[CONTEXT=TransferListWidget]",
-                loadMethod: "iframe",
-                contentURL: new URI("newtag.html").setData("action", action).setData("hashes", hashes.join("|")).toString(),
-                scrollbars: false,
-                resizable: true,
-                maximizable: false,
-                paddingVertical: 0,
-                paddingHorizontal: 0,
-                width: 250,
-                height: 100
-            });
-        }
+        if (hashes.length <= 0)
+            return;
+
+        new MochaUI.Window({
+            id: "newTagPage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Add tags)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: "iframe",
+            contentURL: new URI("newtag.html").setData("action", "set").setData("hashes", hashes.join("|")).toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 250,
+            height: 100
+        });
     };
 
-    torrentSetTagsFN = (tagHash, isSet) => {
+    torrentSetTagsFN = (tag, isSet) => {
         const hashes = torrentsTable.selectedRowsIds();
         if (hashes.length <= 0)
             return;
@@ -946,7 +938,7 @@ const initializeWindows = () => {
             method: "POST",
             body: new URLSearchParams({
                 hashes: hashes.join("|"),
-                tags: (tagList.get(tagHash)?.name || "")
+                tags: tag
             })
         });
     };
@@ -964,13 +956,12 @@ const initializeWindows = () => {
     };
 
     createTagFN = () => {
-        const action = "create";
         new MochaUI.Window({
             id: "newTagPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(New Tag)QBT_TR[CONTEXT=TagFilterWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newtag.html").setData("action", action).toString(),
+            contentURL: new URI("newtag.html").setData("action", "create").toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -982,11 +973,11 @@ const initializeWindows = () => {
         updateMainData();
     };
 
-    removeTagFN = (tagHash) => {
+    removeTagFN = (tag) => {
         fetch("api/v2/torrents/deleteTags", {
             method: "POST",
             body: new URLSearchParams({
-                tags: tagList.get(tagHash).name
+                tags: tag
             })
         });
         setTagFilter(TAGS_ALL);
@@ -994,10 +985,10 @@ const initializeWindows = () => {
 
     deleteUnusedTagsFN = () => {
         const tags = [];
-        tagList.forEach((tag, hash) => {
-            if (torrentsTable.getFilteredTorrentsNumber("all", CATEGORIES_ALL, hash, TRACKERS_ALL) === 0)
-                tags.push(tag.name);
-        });
+        for (const tag of tagMap.keys()) {
+            if (torrentsTable.getFilteredTorrentsNumber("all", CATEGORIES_ALL, tag, TRACKERS_ALL) === 0)
+                tags.push(tag);
+        }
         fetch("api/v2/torrents/deleteTags", {
             method: "POST",
             body: new URLSearchParams({
@@ -1007,20 +998,16 @@ const initializeWindows = () => {
         setTagFilter(TAGS_ALL);
     };
 
-    deleteTrackerFN = (trackerHash) => {
-        const trackerHashInt = Number(trackerHash);
-        if ((trackerHashInt === TRACKERS_ALL) || (trackerHashInt === TRACKERS_TRACKERLESS))
+    deleteTrackerFN = (trackerHost) => {
+        if ((trackerHost === TRACKERS_ALL) || (trackerHost === TRACKERS_TRACKERLESS))
             return;
 
-        const tracker = trackerList.get(trackerHashInt);
-        const host = tracker.host;
-        const urls = [...tracker.trackerTorrentMap.keys()];
-
+        const trackerURLs = [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|");
         new MochaUI.Window({
             id: "confirmDeletionPage",
             title: "QBT_TR(Remove tracker)QBT_TR[CONTEXT=confirmDeletionDlg]",
             loadMethod: "iframe",
-            contentURL: new URI("confirmtrackerdeletion.html").setData("host", host).setData("urls", urls.map(encodeURIComponent).join("|")).toString(),
+            contentURL: new URI("confirmtrackerdeletion.html").setData("host", trackerHost).setData("urls", trackerURLs).toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
