@@ -6328,7 +6328,7 @@ void SessionImpl::loadStatistics()
 
 void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
 {
-    invokeAsync([this, torrentHandle = std::move(torrentHandle)]() mutable
+    invokeAsync([this, torrentHandle = std::move(torrentHandle)]()
     {
         try
         {

@@ -3117,7 +3117,7 @@ void TorrentImpl::invokeAsync(Func func, Callback resultHandler) const
     m_session->invokeAsync([session = m_session
                            , func = std::move(func)
                            , resultHandler = std::move(resultHandler)
-                           , thisTorrent = QPointer<const TorrentImpl>(this)]() mutable
+                           , thisTorrent = QPointer<const TorrentImpl>(this)]()
     {
         session->invoke([result = func(), thisTorrent, resultHandler = std::move(resultHandler)]
         {
