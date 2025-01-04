@@ -6628,12 +6628,12 @@ readme[0-9].txt: filtra &apos;readme1.txt&apos;, &apos;readme2.txt&apos; pero no
     <message>
         <location filename="../gui/optionsdialog.ui" line="1581"/>
         <source>Run on torrent added</source>
-        <translation>Seguir ejecutando torrent añadido</translation>
+        <translation>Ejecutar al añadir torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1599"/>
         <source>Run on torrent finished</source>
-        <translation>Seguir ejecutando torrent finalizado</translation>
+        <translation>Ejecutar al finalizar torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1617"/>
