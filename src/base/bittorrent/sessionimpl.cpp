@@ -6328,7 +6328,7 @@ void SessionImpl::loadStatistics()
 
 void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
 {
-    invokeAsync([this, torrentHandle = std::move(torrentHandle)]() mutable
+    invokeAsync([this, torrentHandle = std::move(torrentHandle)]
     {
         try
         {
@@ -6338,9 +6338,9 @@ void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
             QHash<std::string, QHash<lt::tcp::endpoint, QMap<int, int>>> updatedTrackers = m_updatedTrackerStatuses.take(torrentHandle);
             updatedTrackerStatusesLocker.unlock();
 
-            invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers), updatedTrackers = std::move(updatedTrackers)]
+            invoke([this, infoHash = torrentHandle.info_hash(), nativeTrackers = std::move(nativeTrackers), updatedTrackers = std::move(updatedTrackers)]
             {
-                TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
+                TorrentImpl *torrent = m_torrents.value(infoHash);
                 if (!torrent || torrent->isStopped())
                     return;
 
