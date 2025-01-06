@@ -32,7 +32,6 @@ window.qBittorrent ??= {};
 window.qBittorrent.Misc ??= (() => {
     const exports = () => {
         return {
-            genHash: genHash,
             getHost: getHost,
             createDebounceHandler: createDebounceHandler,
             friendlyUnit: friendlyUnit,
@@ -52,16 +51,6 @@ window.qBittorrent.Misc ??= (() => {
             FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
         };
-    };
-
-    const genHash = (string) => {
-        // origins:
-        // https://stackoverflow.com/a/8831937
-        // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
-        let hash = 0;
-        for (let i = 0; i < string.length; ++i)
-            hash = ((Math.imul(hash, 31) + string.charCodeAt(i)) | 0);
-        return hash;
     };
 
     // getHost emulate the GUI version `QString getHost(const QString &url)`
