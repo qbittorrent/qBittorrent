@@ -1,4 +1,4 @@
-#VERSION: 1.50
+#VERSION: 1.51
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -77,7 +77,7 @@ if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
 htmlentitydecode = html.unescape
 
 
-def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None) -> str:
+def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None, unescape_html_entities: bool = True) -> str:
     """ Return the content of the url page as a string """
 
     request = urllib.request.Request(url, request_data, {**headers, **custom_headers})
@@ -101,7 +101,10 @@ def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data:
         pass
 
     dataStr = data.decode(charset, 'replace')
-    dataStr = htmlentitydecode(dataStr)
+
+    if unescape_html_entities:
+        dataStr = html.unescape(dataStr)
+
     return dataStr
 
 
