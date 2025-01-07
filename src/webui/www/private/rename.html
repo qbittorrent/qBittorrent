@@ -27,9 +27,10 @@
                 }
             });
 
-            const name = new URI().getData("name");
+            const searchParams = new URLSearchParams(window.location.search);
+            const name = searchParams.get("name");
             // set text field to current value
-            if (name)
+            if (name !== null)
                 $("rename").value = name;
 
             $("rename").focus();
@@ -42,8 +43,8 @@
                 if ((name === null) || (name === ""))
                     return;
 
-                const hash = new URI().getData("hash");
-                if (hash) {
+                const hash = searchParams.get("hash");
+                if (hash !== null) {
                     fetch("api/v2/torrents/rename", {
                             method: "POST",
                             body: new URLSearchParams({

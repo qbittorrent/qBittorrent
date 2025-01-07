@@ -26,7 +26,8 @@
                 }
             });
 
-            const origUrl = new URI().getData("url");
+            const searchParams = new URLSearchParams(window.location.search);
+            const origUrl = searchParams.get("url");
             $("url").value = decodeURIComponent(origUrl);
             $("url").focus();
 
@@ -36,7 +37,7 @@
                 fetch("api/v2/torrents/editWebSeed", {
                         method: "POST",
                         body: new URLSearchParams({
-                            hash: new URI().getData("hash"),
+                            hash: searchParams.get("hash"),
                             origUrl: origUrl,
                             newUrl: encodeURIComponent($("url").value.trim())
                         })

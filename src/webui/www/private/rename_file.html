@@ -28,9 +28,10 @@
                 }
             });
 
-            const hash = new URI().getData("hash");
-            const oldPath = new URI().getData("path");
-            const isFolder = ((new URI().getData("isFolder")) === "true");
+            const searchParams = new URLSearchParams(window.location.search);
+            const hash = searchParams.get("hash");
+            const oldPath = searchParams.get("path");
+            const isFolder = ((searchParams.get("isFolder")) === "true");
 
             const oldName = window.qBittorrent.Filesystem.fileName(oldPath);
             $("rename").value = oldName;

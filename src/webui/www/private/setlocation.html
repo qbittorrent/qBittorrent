@@ -27,10 +27,11 @@
                 }
             });
 
-            const path = new URI().getData("path");
+            const searchParams = new URLSearchParams(window.location.search);
+            const path = searchParams.get("path");
 
             // set text field to current value
-            if (path)
+            if (path !== null)
                 $("setLocation").value = decodeURIComponent(path);
 
             $("setLocation").focus();
@@ -48,7 +49,7 @@
                 fetch("api/v2/torrents/setLocation", {
                         method: "POST",
                         body: new URLSearchParams({
-                            hashes: new URI().getData("hashes"),
+                            hashes: searchParams.get("hashes"),
                             location: location
                         })
                     })

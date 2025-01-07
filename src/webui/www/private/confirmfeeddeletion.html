@@ -13,7 +13,6 @@
         "use strict";
 
         window.addEventListener("DOMContentLoaded", () => {
-            const paths = new URI().getData("paths").split("|");
             $("cancelBtn").focus();
             $("cancelBtn").addEventListener("click", (e) => {
                 e.preventDefault();
@@ -25,7 +24,8 @@
                 e.stopPropagation();
 
                 let completionCount = 0;
-                paths.forEach((path) => {
+                const paths = new URLSearchParams(window.location.search).get("paths").split("|");
+                for (const path of paths) {
                     fetch("api/v2/rss/removeItem", {
                             method: "POST",
                             body: new URLSearchParams({
@@ -42,7 +42,7 @@
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
                         });
-                });
+                }
             });
         });
     </script>
