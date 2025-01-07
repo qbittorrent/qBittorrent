@@ -119,7 +119,23 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     m_ui->tabWidget->setIconSize(iconSize);
 #endif
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
-    connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
+    connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::currentTabChanged);
+
+    connect(m_ui->tabWidget, &QTabWidget::tabBarDoubleClicked, this, [this](const int tabIndex)
+    {
+        if (tabIndex < 0)
+            return;
+
+        // Reset current search pattern
+        auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(tabIndex));
+        const QString pattern = searchJobWidget->searchPattern();
+        if (pattern != m_ui->lineEditSearchPattern->text())
+        {
+            m_ui->lineEditSearchPattern->setText(pattern);
+            m_isNewQueryString = false;
+            adjustSearchButton();
+        }
+    });
 
     const auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
@@ -162,16 +178,19 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
 
         const auto *mouseEvent = static_cast<QMouseEvent *>(event);
         const int tabIndex = m_ui->tabWidget->tabBar()->tabAt(mouseEvent->pos());
-        if ((mouseEvent->button() == Qt::MiddleButton) && (tabIndex >= 0))
+        if (tabIndex >= 0)
         {
-            closeTab(tabIndex);
-            return true;
-        }
+            if (mouseEvent->button() == Qt::MiddleButton)
+            {
+                closeTab(tabIndex);
+                return true;
+            }
 
-        if (mouseEvent->button() == Qt::RightButton)
-        {
-            showTabMenu(tabIndex);
-            return true;
+            if (mouseEvent->button() == Qt::RightButton)
+            {
+                showTabMenu(tabIndex);
+                return true;
+            }
         }
 
         return false;
@@ -266,7 +285,7 @@ SearchWidget::~SearchWidget()
     delete m_ui;
 }
 
-void SearchWidget::tabChanged(const int index)
+void SearchWidget::currentTabChanged(const int index)
 {
     // when we switch from a tab that is not empty to another that is empty
     // the download button doesn't have to be available
@@ -274,19 +293,13 @@ void SearchWidget::tabChanged(const int index)
         ? static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(index))
         : nullptr;
 
+    if (!m_currentSearchTab)
+        m_isNewQueryString = true;
+
     if (!m_isNewQueryString)
-    {
-        if (m_currentSearchTab && (m_currentSearchTab->status() == SearchJobWidget::Status::Ongoing))
-        {
-            m_ui->searchButton->hide();
-            m_ui->stopButton->show();
-        }
-        else
-        {
-            m_ui->stopButton->hide();
-            m_ui->searchButton->show();
-        }
-    }
+        m_ui->lineEditSearchPattern->setText(m_currentSearchTab->searchPattern());
+
+    adjustSearchButton();
 }
 
 void SearchWidget::selectMultipleBox([[maybe_unused]] const int index)
@@ -307,6 +320,27 @@ void SearchWidget::toggleFocusBetweenLineEdits()
     {
         m_ui->lineEditSearchPattern->setFocus();
         m_ui->lineEditSearchPattern->selectAll();
+    }
+}
+
+void SearchWidget::adjustSearchButton()
+{
+    if (!m_isNewQueryString
+            && (m_currentSearchTab && (m_currentSearchTab->status() == SearchJobWidget::Status::Ongoing)))
+    {
+        if (m_ui->searchButton->isVisible())
+        {
+            m_ui->searchButton->hide();
+            m_ui->stopButton->show();
+        }
+    }
+    else
+    {
+        if (m_ui->stopButton->isVisible())
+        {
+            m_ui->stopButton->hide();
+            m_ui->searchButton->show();
+        }
     }
 }
 
@@ -339,11 +373,13 @@ void SearchWidget::pluginsButtonClicked()
     dlg->show();
 }
 
-void SearchWidget::searchTextEdited(const QString &)
+void SearchWidget::searchTextEdited(const QString &text)
 {
-    // Enable search button
-    m_ui->searchButton->setText(tr("Search"));
-    m_isNewQueryString = true;
+    if (m_currentSearchTab)
+    {
+        m_isNewQueryString = m_currentSearchTab->searchPattern() != text;
+        adjustSearchButton();
+    }
 }
 
 void SearchWidget::giveFocusToSearchInput()
@@ -391,8 +427,6 @@ void SearchWidget::searchButtonClicked()
 void SearchWidget::stopButtonClicked()
 {
     m_currentSearchTab->cancelSearch();
-    m_ui->stopButton->hide();
-    m_ui->searchButton->show();
 }
 
 void SearchWidget::tabStatusChanged(SearchJobWidget *tab)
@@ -405,10 +439,7 @@ void SearchWidget::tabStatusChanged(SearchJobWidget *tab)
     if (tab->status() != SearchJobWidget::Status::Ongoing)
     {
         if (tab == m_currentSearchTab)
-        {
-            m_ui->stopButton->hide();
-            m_ui->searchButton->show();
-        }
+            adjustSearchButton();
 
         emit searchFinished(tab->status() == SearchJobWidget::Status::Error);
     }
@@ -437,10 +468,5 @@ void SearchWidget::refreshTab(SearchJobWidget *searchJobWidget)
     // Re-launch search
     auto *searchHandler = SearchPluginManager::instance()->startSearch(searchJobWidget->searchPattern(), selectedCategory(), selectedPlugins());
     searchJobWidget->assignSearchHandler(searchHandler);
-    if (!m_isNewQueryString && (m_ui->tabWidget->currentWidget() == searchJobWidget))
-    {
-        m_ui->searchButton->hide();
-        m_ui->stopButton->show();
-    }
     tabStatusChanged(searchJobWidget);
 }
