@@ -550,7 +550,7 @@ Element.implement({
 			morph.cancel();
 			var oldOptions = morph.options;
 		}
-		var morph = this.get('morph',{
+		var morph = this.retrieve('morph',{
 			duration:50,
 			link:'chain'
 		});
