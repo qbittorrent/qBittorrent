@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -66,9 +66,13 @@ private slots:
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
     void tabChanged(int index);
+    void tabStatusChanged(QWidget *tab);
+
     void closeTab(int index);
     void closeAllTabs();
-    void tabStatusChanged(QWidget *tab);
+    void refreshTab(SearchJobWidget *searchJobWidget);
+    void showTabMenu(int index);
+
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
 
@@ -78,7 +82,7 @@ private:
     void searchTextEdited(const QString &);
 
     QString selectedCategory() const;
-    QString selectedPlugin() const;
+    QStringList selectedPlugins() const;
 
     Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab

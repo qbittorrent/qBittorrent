@@ -359,7 +359,7 @@ SearchHandler *SearchPluginManager::startSearch(const QString &pattern, const QS
     // No search pattern entered
     Q_ASSERT(!pattern.isEmpty());
 
-    return new SearchHandler {pattern, category, usedPlugins, this};
+    return new SearchHandler(pattern, category, usedPlugins, this);
 }
 
 QString SearchPluginManager::categoryFullName(const QString &categoryName)
