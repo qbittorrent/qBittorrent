@@ -307,6 +307,9 @@ void AppController::preferencesAction()
     // Add trackers
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
     data[u"add_trackers"_s] = session->additionalTrackers();
+    data[u"add_trackers_from_url_enabled"_s] = session->isAddTrackersFromURLEnabled();
+    data[u"add_trackers_url"_s] = session->additionalTrackersURL();
+    data[u"add_trackers_url_list"_s] = session->additionalTrackersFromURL();
 
     // WebUI
     // HTTP Server
@@ -863,6 +866,10 @@ void AppController::setPreferencesAction()
         session->setAddTrackersEnabled(it.value().toBool());
     if (hasKey(u"add_trackers"_s))
         session->setAdditionalTrackers(it.value().toString());
+    if (hasKey(u"add_trackers_from_url_enabled"_s))
+        session->setAddTrackersFromURLEnabled(it.value().toBool());
+    if (hasKey(u"add_trackers_url"_s))
+        session->setAdditionalTrackersURL(it.value().toString());
 
     // WebUI
     // HTTP Server
