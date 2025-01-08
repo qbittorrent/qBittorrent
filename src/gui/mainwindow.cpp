@@ -739,7 +739,7 @@ void MainWindow::displaySearchTab(bool enable)
         if (!m_searchWidget)
         {
             m_searchWidget = new SearchWidget(app(), this);
-            connect(m_searchWidget, &SearchWidget::activeSearchFinished, this, [this](const bool failed)
+            connect(m_searchWidget, &SearchWidget::searchFinished, this, [this](const bool failed)
             {
                 if (app()->desktopIntegration()->isNotificationsEnabled() && (currentTabWidget() != m_searchWidget))
                 {
