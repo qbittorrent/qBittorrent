@@ -1145,6 +1145,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("infohash_v2", "", "QBT_TR(Info Hash v2)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("percent_selected", "", "QBT_TR(Percent Selected)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
             this.columns["state_icon"].dataProperties[0] = "state";
             this.columns["name"].dataProperties.push("state");
