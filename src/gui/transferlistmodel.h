@@ -88,6 +88,7 @@ public:
         TR_REANNOUNCE,
         TR_PRIVATE,
         TR_CREATE_DATE,
+        TR_PERCENT_SELECTED,
 
         NB_COLUMNS
     };
