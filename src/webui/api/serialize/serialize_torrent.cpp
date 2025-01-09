@@ -107,6 +107,12 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
             : (QDateTime::currentSecsSinceEpoch() - timeSinceActivity);
     };
 
+    const auto getSelectedPercentage = [&torrent]() -> QString
+    {
+        auto percent = ((torrent.wantedSize() * 100)/torrent.totalSize());
+        return QString::number(percent) + u'%';
+    };
+
     return {
         {KEY_TORRENT_ID, torrent.id().toString()},
         {KEY_TORRENT_INFOHASHV1, torrent.infoHash().v1().toString()},
@@ -166,6 +172,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_COMMENT, torrent.comment()},
         {KEY_TORRENT_PRIVATE, (torrent.hasMetadata() ? torrent.isPrivate() : QVariant())},
         {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()},
-        {KEY_TORRENT_HAS_METADATA, torrent.hasMetadata()}
+        {KEY_TORRENT_HAS_METADATA, torrent.hasMetadata()},
+        {KEY_TORRENT_PERCENT_SELECTED, getSelectedPercentage()}
     };
 }

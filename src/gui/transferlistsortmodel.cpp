@@ -208,6 +208,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_RATIO:
     case TransferListModel::TR_RATIO_LIMIT:
     case TransferListModel::TR_POPULARITY:
+    case TransferListModel::TR_PERCENT_SELECTED:
         return customCompare(leftValue.toReal(), rightValue.toReal());
 
     case TransferListModel::TR_STATUS:
@@ -241,7 +242,6 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
             const auto totalR = right.data(TransferListModel::AdditionalUnderlyingDataRole).toInt();
             return threeWayCompare(totalL, totalR);
         }
-
     default:
         Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparison case");
         break;
