@@ -242,6 +242,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
             const auto totalR = right.data(TransferListModel::AdditionalUnderlyingDataRole).toInt();
             return threeWayCompare(totalL, totalR);
         }
+
     default:
         Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparison case");
         break;

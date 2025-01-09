@@ -447,6 +447,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_PERCENT_SELECTED:
         return QString::number((torrent->wantedSize() * 100) / torrent->totalSize()) + u'%';
     }
+
     return {};
 }
 
