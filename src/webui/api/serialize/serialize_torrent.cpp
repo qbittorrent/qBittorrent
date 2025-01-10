@@ -109,7 +109,9 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
 
     const auto getSelectedPercentage = [&torrent]() -> QString
     {
-        auto percent = ((torrent.wantedSize() * 100)/torrent.totalSize());
+        if (!torrent.hasMetadata())
+            return u"N/A"_s;
+        auto percent = ((torrent.wantedSize() * 100) / torrent.totalSize());
         return QString::number(percent) + u'%';
     };
 
