@@ -6073,7 +6073,7 @@ void SessionImpl::handleUrlSeedAlert(const lt::url_seed_alert *alert)
 
     if (alert->error)
     {
-        LogMsg(tr("URL seed DNS lookup failed. Torrent: \"%1\". URL: \"%2\". Error: \"%3\"")
+        LogMsg(tr("URL seed connection failed. Torrent: \"%1\". URL: \"%2\". Error: \"%3\"")
             .arg(torrent->name(), QString::fromUtf8(alert->server_url()), QString::fromStdString(alert->message()))
             , Log::WARNING);
     }
