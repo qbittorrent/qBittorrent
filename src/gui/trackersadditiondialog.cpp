@@ -74,14 +74,35 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
     delete m_ui;
 }
 
+int TrackersAdditionDialog::isValidEndpoint(const QStringView &endpoint) const
+{
+    if (endpoint.isEmpty())
+        return 0;
+    QUrl url(endpoint.toString());
+    if (!url.isValid())
+        return 0;
+    if (url.scheme().isEmpty())
+        return 0;
+    if (url.host().isEmpty())
+        return 0;
+    return 1;
+}
+
 void TrackersAdditionDialog::onAccepted() const
 {
     const QList<BitTorrent::TrackerEntryStatus> currentTrackers = m_torrent->trackers();
     const int baseTier = !currentTrackers.isEmpty() ? (currentTrackers.last().tier + 1) : 0;
 
     QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText());
-    for (BitTorrent::TrackerEntry &entry : entries)
+    for (BitTorrent::TrackerEntry &entry : entries) {
+        auto isValid = isValidEndpoint(entry.url);
+        if (!isValid)
+        {
+            QMessageBox::warning(const_cast<TrackersAdditionDialog *>(this), tr("Invalid tracker URL"), tr("The tracker URL \"%1\" is invalid").arg(entry.url));
+            return;
+        }
         entry.tier = Utils::Number::clampingAdd(entry.tier, baseTier);
+    }
 
     m_torrent->addTrackers(entries);
 }
@@ -109,17 +130,17 @@ void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadRe
     m_ui->downloadButton->setEnabled(true);
     setCursor(Qt::ArrowCursor);
 
-    if (!result.contentType.contains(u"text/plain"_s, Qt::CaseInsensitive))
-    {
-        QMessageBox::warning(this, tr("Download trackers list error")
-            , tr("The content type of the downloaded file is not plain text. Content-Type: \"%1\"").arg(result.contentType));
-        return;
-    }
-
     if (result.status != Net::DownloadStatus::Success)
     {
         QMessageBox::warning(this, tr("Download trackers list error")
             , tr("Error occurred when downloading the trackers list. Reason: \"%1\"").arg(result.errorString));
+        return;
+    }
+
+    if (!result.contentType.contains(u"text/plain"_s, Qt::CaseInsensitive))
+    {
+        QMessageBox::warning(this, tr("Download trackers list error")
+            , tr("The content type of the downloaded file is not plain text. Content-Type: \"%1\"").arg(result.contentType));
         return;
     }
 
