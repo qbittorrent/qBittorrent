@@ -305,7 +305,7 @@ void TorrentsController::countAction()
 //   - tag (string): torrent tag for filtering by it (empty string means "untagged"; no "tag" param presented means "any tag")
 //   - hashes (string): filter by hashes, can contain multiple hashes separated by |
 //   - private (bool): filter torrents that are from private trackers (true) or not (false). Empty means any torrent (no filtering)
-//   - includeTrackers (bool): include trackers in list outout (true) or not (false). Empty means not included
+//   - includeTrackers (bool): include trackers in list output (true) or not (false). Empty means not included
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
 //   - limit (int): set limit number of torrents returned (if greater than 0, otherwise - unlimited)
@@ -321,7 +321,7 @@ void TorrentsController::infoAction()
     int offset {params()[u"offset"_s].toInt()};
     const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
     const std::optional<bool> isPrivate = parseBool(params()[u"private"_s]);
-    const std::optional<bool> includeTrackers = parseBool(params()[u"includeTrackers"_s]);
+    const bool includeTrackers = parseBool(params()[u"includeTrackers"_s]).value_or(false);
 
     std::optional<TorrentIDSet> idSet;
     if (!hashes.isEmpty())
@@ -335,8 +335,9 @@ void TorrentsController::infoAction()
     QVariantList torrentList;
     for (const BitTorrent::Torrent *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {
-        if (torrentFilter.match(torrent))
-        {
+        if (!torrentFilter.match(torrent))
+            continue;
+        
         	QVariantMap serializedTorrent = serialize(*torrent);
 
           	if (includeTrackers)
@@ -366,7 +367,6 @@ void TorrentsController::infoAction()
 
             torrentList.append(serializedTorrent);
         }
-    }
 
     if (torrentList.isEmpty())
     {
