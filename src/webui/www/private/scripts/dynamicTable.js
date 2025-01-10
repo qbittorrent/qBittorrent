@@ -1555,6 +1555,18 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = string;
                 td.title = string;
             };
+
+            // percent_selected
+            this.columns["percent_selected"].updateTd = function(td, row) {
+                if (this.getRowValue(row) === -1) {
+                    td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    return;
+                }
+                const value = window.qBittorrent.Misc.toFixedPointString(this.getRowValue(row), 2) + "%";
+                td.textContent = value;
+                td.title = value;
+            };
         }
 
         applyFilter(row, filterName, category, tag, trackerHost, filterTerms) {

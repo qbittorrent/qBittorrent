@@ -178,6 +178,14 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_LAST_ACTIVITY_TIME, getLastActivityTime()},
         {KEY_TORRENT_AVAILABILITY, torrent.distributedCopies()},
         {KEY_TORRENT_REANNOUNCE, torrent.nextAnnounce()},
+<<<<<<< HEAD
         {KEY_TORRENT_COMMENT, torrent.comment()}
+=======
+        {KEY_TORRENT_COMMENT, torrent.comment()},
+        {KEY_TORRENT_PRIVATE, (torrent.hasMetadata() ? torrent.isPrivate() : QVariant())},
+        {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()},
+        {KEY_TORRENT_HAS_METADATA, torrent.hasMetadata()},
+        {KEY_TORRENT_PERCENT_SELECTED, torrent.hasMetadata() ? (torrent.wantedSize() * 100) / torrent.totalSize() : -1},
+>>>>>>> ba7b726ce (Pass number to WebUI instead of text and use float when comparing.)
     };
 }
