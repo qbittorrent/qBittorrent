@@ -107,6 +107,7 @@ namespace Net
         QByteArray data;
         Path filePath;
         QString magnetURI;
+        QString contentType;
     };
 
     class DownloadHandler : public QObject
