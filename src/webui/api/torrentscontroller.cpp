@@ -249,6 +249,34 @@ namespace
         return {dht, pex, lsd};
     }
 
+    QJsonArray getAllTrackers(const BitTorrent::Torrent *const torrent, const bool includeSticky)
+    {
+		QJsonArray trackerList;
+
+        if (includeSticky)
+        	trackerList << getStickyTrackers(torrent);
+
+        for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
+        {
+            const bool isNotWorking = (tracker.state == BitTorrent::TrackerEndpointState::NotWorking)
+                    || (tracker.state == BitTorrent::TrackerEndpointState::TrackerError)
+                    || (tracker.state == BitTorrent::TrackerEndpointState::Unreachable);
+            trackerList << QJsonObject
+            {
+                {KEY_TRACKER_URL, tracker.url},
+                {KEY_TRACKER_TIER, tracker.tier},
+                {KEY_TRACKER_STATUS, static_cast<int>((isNotWorking ? BitTorrent::TrackerEndpointState::NotWorking : tracker.state))},
+                {KEY_TRACKER_MSG, tracker.message},
+                {KEY_TRACKER_PEERS_COUNT, tracker.numPeers},
+                {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
+                {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
+                {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded}
+            };
+        }
+
+        return trackerList;
+    }
+
     QList<BitTorrent::TorrentID> toTorrentIDs(const QStringList &idStrings)
     {
         QList<BitTorrent::TorrentID> idList;
@@ -341,29 +369,7 @@ void TorrentsController::infoAction()
         	QVariantMap serializedTorrent = serialize(*torrent);
 
           	if (includeTrackers)
-            {
-                QJsonArray trackerList = getStickyTrackers(torrent);
-
-                for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
-                {
-                    const bool isNotWorking = (tracker.state == BitTorrent::TrackerEndpointState::NotWorking)
-                            || (tracker.state == BitTorrent::TrackerEndpointState::TrackerError)
-                            || (tracker.state == BitTorrent::TrackerEndpointState::Unreachable);
-                    trackerList << QJsonObject
-                    {
-                        {KEY_TRACKER_URL, tracker.url},
-                        {KEY_TRACKER_TIER, tracker.tier},
-                        {KEY_TRACKER_STATUS, static_cast<int>((isNotWorking ? BitTorrent::TrackerEndpointState::NotWorking : tracker.state))},
-                        {KEY_TRACKER_MSG, tracker.message},
-                        {KEY_TRACKER_PEERS_COUNT, tracker.numPeers},
-                        {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
-                        {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
-                        {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded}
-                    };
-                }
-
-                serializedTorrent.insert(KEY_PROP_TRACKERS, trackerList);
-            }
+            serializedTorrent.insert(KEY_PROP_TRACKERS, getAllTrackers(torrent, false));
 
             torrentList.append(serializedTorrent);
         }
@@ -563,27 +569,7 @@ void TorrentsController::trackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    QJsonArray trackerList = getStickyTrackers(torrent);
-
-    for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
-    {
-        const bool isNotWorking = (tracker.state == BitTorrent::TrackerEndpointState::NotWorking)
-                || (tracker.state == BitTorrent::TrackerEndpointState::TrackerError)
-                || (tracker.state == BitTorrent::TrackerEndpointState::Unreachable);
-        trackerList << QJsonObject
-        {
-            {KEY_TRACKER_URL, tracker.url},
-            {KEY_TRACKER_TIER, tracker.tier},
-            {KEY_TRACKER_STATUS, static_cast<int>((isNotWorking ? BitTorrent::TrackerEndpointState::NotWorking : tracker.state))},
-            {KEY_TRACKER_MSG, tracker.message},
-            {KEY_TRACKER_PEERS_COUNT, tracker.numPeers},
-            {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
-            {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
-            {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded}
-        };
-    }
-
-    setResult(trackerList);
+    setResult(getAllTrackers(torrent, true));
 }
 
 // Returns the web seeds for a torrent in JSON format.
