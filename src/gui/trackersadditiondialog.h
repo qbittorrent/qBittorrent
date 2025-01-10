@@ -65,6 +65,7 @@ private slots:
 private:
     void saveSettings();
     void loadSettings();
+    int isValidEndpoint(const QStringView &endpoint) const;
 
     Ui::TrackersAdditionDialog *m_ui = nullptr;
     BitTorrent::Torrent *const m_torrent = nullptr;
