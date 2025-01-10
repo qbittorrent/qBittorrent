@@ -109,6 +109,13 @@ void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadRe
     m_ui->downloadButton->setEnabled(true);
     setCursor(Qt::ArrowCursor);
 
+    if (!result.contentType.contains(u"text/plain"_s, Qt::CaseInsensitive))
+    {
+        QMessageBox::warning(this, tr("Download trackers list error")
+            , tr("The content type of the downloaded file is not plain text. Content-Type: \"%1\"").arg(result.contentType));
+        return;
+    }
+
     if (result.status != Net::DownloadStatus::Success)
     {
         QMessageBox::warning(this, tr("Download trackers list error")
