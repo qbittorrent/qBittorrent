@@ -700,7 +700,7 @@ QString WebApplication::generateSid() const
 
 bool WebApplication::isAuthNeeded()
 {
-    if (!m_isLocalAuthEnabled && m_clientAddress.isLoopback())
+    if (m_isLocalAuthEnabled && m_clientAddress.isLoopback())
         return false;
     if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
         return false;
