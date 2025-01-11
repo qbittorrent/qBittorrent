@@ -251,10 +251,10 @@ namespace
 
     QJsonArray getAllTrackers(const BitTorrent::Torrent *const torrent, const bool includeSticky)
     {
-		QJsonArray trackerList;
+        QJsonArray trackerList;
 
         if (includeSticky)
-        	trackerList << getStickyTrackers(torrent);
+            trackerList << getStickyTrackers(torrent);
 
         for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
         {
@@ -365,14 +365,14 @@ void TorrentsController::infoAction()
     {
         if (!torrentFilter.match(torrent))
             continue;
-        
-        	QVariantMap serializedTorrent = serialize(*torrent);
 
-          	if (includeTrackers)
+        QVariantMap serializedTorrent = serialize(*torrent);
+
+        if (includeTrackers)
             serializedTorrent.insert(KEY_PROP_TRACKERS, getAllTrackers(torrent, false));
 
-            torrentList.append(serializedTorrent);
-        }
+        torrentList.append(serializedTorrent);
+    }
 
     if (torrentList.isEmpty())
     {
