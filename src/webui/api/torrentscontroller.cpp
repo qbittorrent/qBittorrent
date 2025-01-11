@@ -249,12 +249,9 @@ namespace
         return {dht, pex, lsd};
     }
 
-    QJsonArray getAllTrackers(const BitTorrent::Torrent *const torrent, const bool includeSticky)
+    QJsonArray getTrackers(const BitTorrent::Torrent *const torrent)
     {
-        QJsonArray trackerList;
-
-        if (includeSticky)
-            trackerList << getStickyTrackers(torrent);
+        QJsonArray trackerList = getStickyTrackers(torrent);
 
         for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
         {
@@ -369,7 +366,7 @@ void TorrentsController::infoAction()
         QVariantMap serializedTorrent = serialize(*torrent);
 
         if (includeTrackers)
-            serializedTorrent.insert(KEY_PROP_TRACKERS, getAllTrackers(torrent, false));
+            serializedTorrent.insert(KEY_PROP_TRACKERS, getTrackers(torrent));
 
         torrentList.append(serializedTorrent);
     }
@@ -569,7 +566,7 @@ void TorrentsController::trackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    setResult(getAllTrackers(torrent, true));
+    setResult(getTrackers(torrent));
 }
 
 // Returns the web seeds for a torrent in JSON format.
