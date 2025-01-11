@@ -57,16 +57,17 @@ public:
     void giveFocusToSearchInput();
 
 signals:
-    void activeSearchFinished(bool failed);
-
-private slots:
-    void on_searchButton_clicked();
-    void on_pluginsButton_clicked();
+    void searchFinished(bool failed);
 
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
+
+    void pluginsButtonClicked();
+    void searchButtonClicked();
+    void stopButtonClicked();
+
     void tabChanged(int index);
-    void tabStatusChanged(QWidget *tab);
+    void tabStatusChanged(SearchJobWidget *tab);
 
     void closeTab(int index);
     void closeAllTabs();
@@ -86,6 +87,5 @@ private:
 
     Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
-    QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
     bool m_isNewQueryString = false;
 };
