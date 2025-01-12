@@ -544,6 +544,8 @@ SessionImpl::SessionImpl(QObject *parent)
     m_asyncWorker->setMaxThreadCount(1);
     m_asyncWorker->setObjectName("SessionImpl m_asyncWorker");
 
+    m_alerts.reserve(1024);
+
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
     if (sslPort() < 0)
@@ -3187,10 +3189,10 @@ void SessionImpl::saveResumeData()
             break;
         }
 
-        const std::vector<lt::alert *> alerts = getPendingAlerts(waitTime);
+        fetchPendingAlerts(waitTime);
 
         bool hasWantedAlert = false;
-        for (const lt::alert *alert : alerts)
+        for (const lt::alert *alert : m_alerts)
         {
             if (const int alertType = alert->type();
                 (alertType == lt::save_resume_data_alert::alert_type) || (alertType == lt::save_resume_data_failed_alert::alert_type)
@@ -5603,14 +5605,13 @@ void SessionImpl::handleIPFilterError()
     emit IPFilterParsed(true, 0);
 }
 
-std::vector<lt::alert *> SessionImpl::getPendingAlerts(const lt::time_duration time) const
+void SessionImpl::fetchPendingAlerts(const lt::time_duration time)
 {
     if (time > lt::time_duration::zero())
         m_nativeSession->wait_for_alert(time);
 
-    std::vector<lt::alert *> alerts;
-    m_nativeSession->pop_alerts(&alerts);
-    return alerts;
+    m_alerts.clear();
+    m_nativeSession->pop_alerts(&m_alerts);
 }
 
 TorrentContentLayout SessionImpl::torrentContentLayout() const
@@ -5626,7 +5627,7 @@ void SessionImpl::setTorrentContentLayout(const TorrentContentLayout value)
 // Read alerts sent by libtorrent session
 void SessionImpl::readAlerts()
 {
-    const std::vector<lt::alert *> alerts = getPendingAlerts();
+    fetchPendingAlerts();
 
     Q_ASSERT(m_loadedTorrents.isEmpty());
     Q_ASSERT(m_receivedAddTorrentAlertsCount == 0);
@@ -5634,7 +5635,7 @@ void SessionImpl::readAlerts()
     if (!isRestored())
         m_loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
 
-    for (const lt::alert *a : alerts)
+    for (const lt::alert *a : m_alerts)
         handleAlert(a);
 
     if (m_receivedAddTorrentAlertsCount > 0)

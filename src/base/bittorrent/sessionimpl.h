@@ -604,7 +604,7 @@ namespace BitTorrent
 
         void populateAdditionalTrackersFromURL();
 
-        std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
+        void fetchPendingAlerts(lt::time_duration time = lt::time_duration::zero());
 
         void moveTorrentStorage(const MoveStorageJob &job) const;
         void handleMoveTorrentStorageJobFinished(const Path &newPath);
@@ -811,6 +811,7 @@ namespace BitTorrent
         QMap<QString, CategoryOptions> m_categories;
         TagSet m_tags;
 
+        std::vector<lt::alert *> m_alerts;  // make it a class variable so it can preserve its allocated `capacity`
         qsizetype m_receivedAddTorrentAlertsCount = 0;
         QList<Torrent *> m_loadedTorrents;
 
