@@ -179,17 +179,20 @@ const initializeWindows = () => {
 
     showDownloadPage = (urls) => {
         const id = "downloadPage";
-        const contentUri = new URI("download.html");
+        const contentURL = new URL("download.html", window.location);
 
-        if (urls && (urls.length > 0))
-            contentUri.setData("urls", urls.map(encodeURIComponent).join("|"));
+        if (urls && (urls.length > 0)) {
+            contentURL.search = new URLSearchParams({
+                urls: urls.map(encodeURIComponent).join("|")
+            });
+        }
 
         new MochaUI.Window({
             id: id,
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: "iframe",
-            contentURL: contentUri.toString(),
+            contentURL: contentURL.toString(),
             addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
@@ -216,7 +219,7 @@ const initializeWindows = () => {
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
             loadMethod: "xhr",
             toolbar: true,
-            contentURL: new URI("views/preferences.html").toString(),
+            contentURL: "views/preferences.html",
             require: {
                 css: ["css/Tabs.css"]
             },
@@ -242,7 +245,7 @@ const initializeWindows = () => {
             id: id,
             title: "QBT_TR(Manage Cookies)QBT_TR[CONTEXT=CookiesDialog]",
             loadMethod: "xhr",
-            contentURL: new URI("views/cookies.html").toString(),
+            contentURL: "views/cookies.html",
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
@@ -264,7 +267,7 @@ const initializeWindows = () => {
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
             loadMethod: "iframe",
-            contentURL: new URI("upload.html").toString(),
+            contentURL: "upload.html",
             addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
@@ -280,12 +283,16 @@ const initializeWindows = () => {
     });
 
     globalUploadLimitFN = () => {
+        const contentURL = new URL("uploadlimit.html", window.location);
+        contentURL.search = new URLSearchParams({
+            hashes: "global"
+        });
         new MochaUI.Window({
             id: "uploadLimitPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Global Upload Speed Limit)QBT_TR[CONTEXT=MainWindow]",
             loadMethod: "iframe",
-            contentURL: new URI("uploadlimit.html").setData("hashes", "global").toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: false,
             maximizable: false,
@@ -298,63 +305,73 @@ const initializeWindows = () => {
 
     uploadLimitFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            new MochaUI.Window({
-                id: "uploadLimitPage",
-                icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
-                loadMethod: "iframe",
-                contentURL: new URI("uploadlimit.html").setData("hashes", hashes.join("|")).toString(),
-                scrollbars: false,
-                resizable: false,
-                maximizable: false,
-                paddingVertical: 0,
-                paddingHorizontal: 0,
-                width: 424,
-                height: 100
-            });
-        }
+        if (hashes.length <= 0)
+            return;
+
+        const contentURL = new URL("uploadlimit.html", window.location);
+        contentURL.search = new URLSearchParams({
+            hashes: hashes.join("|")
+        });
+        new MochaUI.Window({
+            id: "uploadLimitPage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Torrent Upload Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: "iframe",
+            contentURL: contentURL.toString(),
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 424,
+            height: 100
+        });
     };
 
     shareRatioFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            let shareRatio = null;
-            let torrentsHaveSameShareRatio = true;
+        if (hashes.length <= 0)
+            return;
 
-            // check if all selected torrents have same share ratio
-            for (let i = 0; i < hashes.length; ++i) {
-                const hash = hashes[i];
-                const row = torrentsTable.getRow(hash).full_data;
-                const origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.inactive_seeding_time_limit + "|"
-                    + row.max_ratio + "|" + row.max_seeding_time + "|" + row.max_inactive_seeding_time;
+        let shareRatio = null;
+        let torrentsHaveSameShareRatio = true;
 
-                // initialize value
-                if (shareRatio === null)
-                    shareRatio = origValues;
+        // check if all selected torrents have same share ratio
+        for (let i = 0; i < hashes.length; ++i) {
+            const hash = hashes[i];
+            const row = torrentsTable.getRow(hash).full_data;
+            const origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.inactive_seeding_time_limit + "|"
+                + row.max_ratio + "|" + row.max_seeding_time + "|" + row.max_inactive_seeding_time;
 
-                if (origValues !== shareRatio) {
-                    torrentsHaveSameShareRatio = false;
-                    break;
-                }
+            // initialize value
+            if (shareRatio === null)
+                shareRatio = origValues;
+
+            if (origValues !== shareRatio) {
+                torrentsHaveSameShareRatio = false;
+                break;
             }
-
-            // if all torrents have same share ratio, display that share ratio. else use the default
-            const orig = torrentsHaveSameShareRatio ? shareRatio : "";
-            new MochaUI.Window({
-                id: "shareRatioPage",
-                icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]",
-                loadMethod: "iframe",
-                contentURL: new URI("shareratio.html").setData("hashes", hashes.join("|")).setData("orig", orig).toString(),
-                scrollbars: false,
-                maximizable: false,
-                paddingVertical: 0,
-                paddingHorizontal: 0,
-                width: 424,
-                height: 220
-            });
         }
+
+        const contentURL = new URL("shareratio.html", window.location);
+        contentURL.search = new URLSearchParams({
+            hashes: hashes.join("|"),
+            // if all torrents have same share ratio, display that share ratio. else use the default
+            orig: torrentsHaveSameShareRatio ? shareRatio : ""
+        });
+        new MochaUI.Window({
+            id: "shareRatioPage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]",
+            loadMethod: "iframe",
+            contentURL: contentURL.toString(),
+            scrollbars: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 424,
+            height: 220
+        });
     };
 
     toggleSequentialDownloadFN = () => {
@@ -412,12 +429,16 @@ const initializeWindows = () => {
     };
 
     globalDownloadLimitFN = () => {
+        const contentURL = new URL("downloadlimit.html", window.location);
+        contentURL.search = new URLSearchParams({
+            hashes: "global"
+        });
         new MochaUI.Window({
             id: "downloadLimitPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Global Download Speed Limit)QBT_TR[CONTEXT=MainWindow]",
             loadMethod: "iframe",
-            contentURL: new URI("downloadlimit.html").setData("hashes", "global").toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: false,
             maximizable: false,
@@ -435,7 +456,7 @@ const initializeWindows = () => {
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]",
             loadMethod: "xhr",
-            contentURL: new URI("views/statistics.html").toString(),
+            contentURL: "views/statistics.html",
             maximizable: false,
             padding: 10,
             width: loadWindowWidth(id, 285),
@@ -448,22 +469,27 @@ const initializeWindows = () => {
 
     downloadLimitFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            new MochaUI.Window({
-                id: "downloadLimitPage",
-                icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
-                loadMethod: "iframe",
-                contentURL: new URI("downloadlimit.html").setData("hashes", hashes.join("|")).toString(),
-                scrollbars: false,
-                resizable: false,
-                maximizable: false,
-                paddingVertical: 0,
-                paddingHorizontal: 0,
-                width: 424,
-                height: 100
-            });
-        }
+        if (hashes.length <= 0)
+            return;
+
+        const contentURL = new URL("downloadlimit.html", window.location);
+        contentURL.search = new URLSearchParams({
+            hashes: hashes.join("|")
+        });
+        new MochaUI.Window({
+            id: "downloadLimitPage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Torrent Download Speed Limiting)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: "iframe",
+            contentURL: contentURL.toString(),
+            scrollbars: false,
+            resizable: false,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 424,
+            height: 100
+        });
     };
 
     deleteSelectedTorrentsFN = (forceDeleteFiles = false) => {
@@ -625,49 +651,58 @@ const initializeWindows = () => {
 
     setLocationFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length) {
-            const hash = hashes[0];
-            const row = torrentsTable.getRow(hash);
+        if (hashes.length <= 0)
+            return;
 
-            new MochaUI.Window({
-                id: "setLocationPage",
-                icon: "images/qbittorrent-tray.svg",
-                title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
-                loadMethod: "iframe",
-                contentURL: new URI("setlocation.html").setData("hashes", hashes.join("|")).setData("path", encodeURIComponent(row.full_data.save_path)).toString(),
-                scrollbars: false,
-                resizable: true,
-                maximizable: false,
-                paddingVertical: 0,
-                paddingHorizontal: 0,
-                width: 400,
-                height: 130
-            });
-        }
+        const contentURL = new URL("setlocation.html", window.location);
+        contentURL.search = new URLSearchParams({
+            hashes: hashes.join("|"),
+            path: encodeURIComponent(torrentsTable.getRow(hashes[0]).full_data.save_path)
+        });
+        new MochaUI.Window({
+            id: "setLocationPage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: "iframe",
+            contentURL: contentURL.toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 400,
+            height: 130
+        });
     };
 
     renameFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length === 1) {
-            const hash = hashes[0];
-            const row = torrentsTable.getRow(hash);
-            if (row) {
-                new MochaUI.Window({
-                    id: "renamePage",
-                    icon: "images/qbittorrent-tray.svg",
-                    title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
-                    loadMethod: "iframe",
-                    contentURL: new URI("rename.html").setData("hash", hash).setData("name", row.full_data.name).toString(),
-                    scrollbars: false,
-                    resizable: true,
-                    maximizable: false,
-                    paddingVertical: 0,
-                    paddingHorizontal: 0,
-                    width: 400,
-                    height: 100
-                });
-            }
-        }
+        if (hashes.length !== 1)
+            return;
+
+        const row = torrentsTable.getRow(hashes[0]);
+        if (!row)
+            return;
+
+        const contentURL = new URL("rename.html", window.location);
+        contentURL.search = new URLSearchParams({
+            hash: hashes[0],
+            name: row.full_data.name
+        });
+        new MochaUI.Window({
+            id: "renamePage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Rename)QBT_TR[CONTEXT=TransferListWidget]",
+            loadMethod: "iframe",
+            contentURL: contentURL.toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 400,
+            height: 100
+        });
     };
 
     renameFilesFN = () => {
@@ -784,12 +819,17 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
+        const contentURL = new URL("newcategory.html", window.location);
+        contentURL.search = new URLSearchParams({
+            action: "set",
+            hashes: hashes.join("|")
+        });
         new MochaUI.Window({
             id: "newCategoryPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newcategory.html").setData("action", "set").setData("hashes", hashes.join("|")).toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -821,12 +861,16 @@ const initializeWindows = () => {
     };
 
     createCategoryFN = () => {
+        const contentURL = new URL("newcategory.html", window.location);
+        contentURL.search = new URLSearchParams({
+            action: "create"
+        });
         new MochaUI.Window({
             id: "newCategoryPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newcategory.html").setData("action", "create").toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -838,12 +882,17 @@ const initializeWindows = () => {
     };
 
     createSubcategoryFN = (category) => {
+        const contentURL = new URL("newcategory.html", window.location);
+        contentURL.search = new URLSearchParams({
+            action: "createSubcategory",
+            categoryName: `${category}/`
+        });
         new MochaUI.Window({
             id: "newSubcategoryPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newcategory.html").setData("action", "createSubcategory").setData("categoryName", `${category}/`).toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -855,12 +904,18 @@ const initializeWindows = () => {
     };
 
     editCategoryFN = (category) => {
+        const contentURL = new URL("newcategory.html", window.location);
+        contentURL.search = new URLSearchParams({
+            action: "edit",
+            categoryName: category,
+            savePath: categoryMap.get(category).savePath
+        });
         new MochaUI.Window({
             id: "editCategoryPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Edit Category)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newcategory.html").setData("action", "edit").setData("categoryName", category).setData("savePath", categoryMap.get(category).savePath).toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -913,12 +968,17 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
+        const contentURL = new URL("newtag.html", window.location);
+        contentURL.search = new URLSearchParams({
+            action: "set",
+            hashes: hashes.join("|")
+        });
         new MochaUI.Window({
             id: "newTagPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Add tags)QBT_TR[CONTEXT=TransferListWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newtag.html").setData("action", "set").setData("hashes", hashes.join("|")).toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -956,12 +1016,16 @@ const initializeWindows = () => {
     };
 
     createTagFN = () => {
+        const contentURL = new URL("newtag.html", window.location);
+        contentURL.search = new URLSearchParams({
+            action: "create"
+        });
         new MochaUI.Window({
             id: "newTagPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(New Tag)QBT_TR[CONTEXT=TagFilterWidget]",
             loadMethod: "iframe",
-            contentURL: new URI("newtag.html").setData("action", "create").toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -1002,12 +1066,16 @@ const initializeWindows = () => {
         if ((trackerHost === TRACKERS_ALL) || (trackerHost === TRACKERS_TRACKERLESS))
             return;
 
-        const trackerURLs = [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|");
+        const contentURL = new URL("confirmtrackerdeletion.html", window.location);
+        contentURL.search = new URLSearchParams({
+            host: trackerHost,
+            urls: [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|")
+        });
         new MochaUI.Window({
             id: "confirmDeletionPage",
             title: "QBT_TR(Remove tracker)QBT_TR[CONTEXT=confirmDeletionDlg]",
             loadMethod: "iframe",
-            contentURL: new URI("confirmtrackerdeletion.html").setData("host", trackerHost).setData("urls", trackerURLs).toString(),
+            contentURL: contentURL.toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -1099,7 +1167,10 @@ const initializeWindows = () => {
                 continue;
 
             const name = row.full_data.name;
-            const url = new URI("api/v2/torrents/export").setData("hash", hash).toString();
+            const url = new URL("api/v2/torrents/export", window.location);
+            url.search = new URLSearchParams({
+                hash: hash
+            });
 
             // download response to file
             await window.qBittorrent.Misc.downloadFile(url, `${name}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=MainWindow]");
@@ -1190,7 +1261,7 @@ const initializeWindows = () => {
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]",
             loadMethod: "xhr",
-            contentURL: new URI("views/about.html").toString(),
+            contentURL: "views/about.html",
             require: {
                 css: ["css/Tabs.css"]
             },

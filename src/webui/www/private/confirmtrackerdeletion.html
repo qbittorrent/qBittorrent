@@ -13,9 +13,10 @@
         "use strict";
 
         window.addEventListener("DOMContentLoaded", () => {
-            const host = new URI().getData("host");
-            const urls = new URI().getData("urls");
-            $("confirmDeleteTrackerText").textContent = "QBT_TR(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", `"${host}"`);
+            const searchParams = new URLSearchParams(window.location.search);
+            const host = searchParams.get("host");
+
+            $("confirmDeleteTrackerText").textContent = "QBT_TR(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
 
             $("cancelBtn").focus();
             $("cancelBtn").addEventListener("click", (e) => {
@@ -29,7 +30,7 @@
                         method: "POST",
                         body: new URLSearchParams({
                             hash: "*",
-                            urls: urls
+                            urls: searchParams.get("urls")
                         })
                     })
                     .then((response) => {

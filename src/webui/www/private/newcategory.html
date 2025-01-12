@@ -28,10 +28,11 @@
                 }
             });
 
-            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData("action"));
-            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
-            const uriCategoryName = window.qBittorrent.Misc.safeTrim(new URI().getData("categoryName"));
-            const uriSavePath = window.qBittorrent.Misc.safeTrim(new URI().getData("savePath"));
+            const searchParams = new URLSearchParams(window.location.search);
+            const uriAction = window.qBittorrent.Misc.safeTrim(searchParams.get("action"));
+            const uriHashes = window.qBittorrent.Misc.safeTrim(searchParams.get("hashes"));
+            const uriCategoryName = window.qBittorrent.Misc.safeTrim(searchParams.get("categoryName"));
+            const uriSavePath = window.qBittorrent.Misc.safeTrim(searchParams.get("savePath"));
 
             if (uriAction === "edit") {
                 if (!uriCategoryName)

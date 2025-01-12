@@ -30,8 +30,8 @@
                 }
             });
 
-            const hashesList = new URI().getData("hashes").split("|");
-            const origValues = new URI().getData("orig").split("|");
+            const searchParams = new URLSearchParams(window.location.search);
+            const origValues = searchParams.get("orig").split("|");
 
             const values = {
                 ratioLimit: window.qBittorrent.Misc.friendlyFloat(origValues[0], 2),
@@ -103,7 +103,7 @@
                 fetch("api/v2/torrents/setShareLimits", {
                         method: "POST",
                         body: new URLSearchParams({
-                            hashes: hashesList.join("|"),
+                            hashes: searchParams.get("hashes"),
                             ratioLimit: ratioLimitValue,
                             seedingTimeLimit: seedingTimeLimitValue,
                             inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue

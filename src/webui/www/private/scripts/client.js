@@ -1656,7 +1656,7 @@ window.addEventListener("DOMContentLoaded", () => {
                     icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
                     loadMethod: "iframe",
-                    contentURL: new URI("upload.html").toString(),
+                    contentURL: "upload.html",
                     addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
                     scrollbars: true,
                     maximizable: false,
@@ -1693,13 +1693,16 @@ window.addEventListener("DOMContentLoaded", () => {
                     return;
 
                 const id = "downloadPage";
-                const contentURI = new URI("download.html").setData("urls", urls.map(encodeURIComponent).join("|"));
+                const contentURL = new URL("download.html", window.location);
+                contentURL.search = new URLSearchParams({
+                    urls: urls.map(encodeURIComponent).join("|")
+                });
                 new MochaUI.Window({
                     id: id,
                     icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
                     loadMethod: "iframe",
-                    contentURL: contentURI.toString(),
+                    contentURL: contentURL.toString(),
                     addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
                     scrollbars: true,
                     maximizable: false,
