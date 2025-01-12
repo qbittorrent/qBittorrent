@@ -251,7 +251,7 @@ namespace
 
     QJsonArray getTrackers(const BitTorrent::Torrent *const torrent)
     {
-        QJsonArray trackerList = getStickyTrackers(torrent);
+        QJsonArray trackerList;
 
         for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
         {
@@ -566,7 +566,14 @@ void TorrentsController::trackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    setResult(getTrackers(torrent));
+    QJsonArray trackersList = getStickyTrackers(torrent);
+    QJsonArray trackers = getTrackers(torrent);
+
+    // merge QJsonArray
+    for (auto &&tracker : trackers)
+        trackersList.append(std::move(tracker));
+
+    setResult(trackersList);
 }
 
 // Returns the web seeds for a torrent in JSON format.
