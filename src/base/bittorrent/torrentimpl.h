@@ -131,6 +131,7 @@ namespace BitTorrent
         TagSet tags() const override;
         bool hasTag(const Tag &tag) const override;
         bool addTag(const Tag &tag) override;
+        bool setTags(const TagSet &newTags) override;
         bool removeTag(const Tag &tag) override;
         void removeAllTags() override;
 

@@ -60,6 +60,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/tagset.h"
 #include "base/types.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
@@ -934,6 +935,24 @@ bool TorrentImpl::addTag(const Tag &tag)
     m_tags.insert(tag);
     deferredRequestResumeData();
     m_session->handleTorrentTagAdded(this, tag);
+    return true;
+}
+
+bool TorrentImpl::setTags(const TagSet &newTags)
+{
+    // Identify tags to add
+    for (const Tag &tag : newTags)
+    {
+        if (!hasTag(tag))
+            addTag(tag);
+    }
+
+    // Identify tags to remove
+    for (const Tag &tag : asConst(m_tags))
+    {
+        if (!newTags.contains(tag))
+            removeTag(tag);
+    }
     return true;
 }
 

@@ -209,6 +209,7 @@ namespace BitTorrent
         virtual TagSet tags() const = 0;
         virtual bool hasTag(const Tag &tag) const = 0;
         virtual bool addTag(const Tag &tag) = 0;
+        virtual bool setTags(const TagSet &newTags) = 0;
         virtual bool removeTag(const Tag &tag) = 0;
         virtual void removeAllTags() = 0;
 

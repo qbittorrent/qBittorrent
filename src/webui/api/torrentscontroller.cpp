@@ -1475,6 +1475,25 @@ void TorrentsController::addTagsAction()
     }
 }
 
+void TorrentsController::setTagsAction()
+{
+    requireParams({u"hashes"_s, u"tags"_s});
+
+    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
+
+    // Convert QStringList to TagSet
+    TagSet newTags;
+    for (const QString &tagStr : tags)
+        newTags.insert(Tag(tagStr));
+
+    // Apply the new tags to the selected torrents
+    applyToTorrents(hashes, [&newTags](BitTorrent::Torrent *const torrent)
+    {
+        torrent->setTags(newTags);
+    });
+}
+
 void TorrentsController::removeTagsAction()
 {
     requireParams({u"hashes"_s});

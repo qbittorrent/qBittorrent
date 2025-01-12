@@ -212,6 +212,7 @@ private:
         {{u"torrents"_s, u"setShareLimits"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSSLParameters"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSuperSeeding"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"setTags"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::METHOD_POST},

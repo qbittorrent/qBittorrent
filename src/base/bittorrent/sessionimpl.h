@@ -49,6 +49,7 @@
 
 #include "base/path.h"
 #include "base/settingvalue.h"
+#include "base/tagset.h"
 #include "base/utils/thread.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
