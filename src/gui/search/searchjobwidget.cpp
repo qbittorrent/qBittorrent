@@ -286,6 +286,7 @@ void SearchJobWidget::cancelSearch()
         return;
 
     m_searchHandler->cancelSearch();
+    setStatus(Status::Aborted);
 }
 
 void SearchJobWidget::downloadTorrents(const AddTorrentOption option)

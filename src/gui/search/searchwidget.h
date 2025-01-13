@@ -65,8 +65,9 @@ private:
     void pluginsButtonClicked();
     void searchButtonClicked();
     void stopButtonClicked();
+    void searchTextEdited(const QString &text);
+    void currentTabChanged(int index);
 
-    void tabChanged(int index);
     void tabStatusChanged(SearchJobWidget *tab);
 
     void closeTab(int index);
@@ -76,11 +77,11 @@ private:
 
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
+    void adjustSearchButton();
 
     void fillCatCombobox();
     void fillPluginComboBox();
     void selectActivePage();
-    void searchTextEdited(const QString &);
 
     QString selectedCategory() const;
     QStringList selectedPlugins() const;
