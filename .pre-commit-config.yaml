@@ -108,8 +108,3 @@ repos:
       exclude_types:
         - svg
         - ts
-
-  - repo: https://github.com/woodruffw/zizmor-pre-commit
-    rev: v1.0.1
-    hooks:
-    - id: zizmor
