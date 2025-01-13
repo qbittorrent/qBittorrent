@@ -567,11 +567,10 @@ void TorrentsController::trackersAction()
         throw APIError(APIErrorType::NotFound);
 
     QJsonArray trackersList = getStickyTrackers(torrent);
-    QJsonArray trackers = getTrackers(torrent);
 
     // merge QJsonArray
-    for (auto &&tracker : trackers)
-        trackersList.append(std::move(tracker));
+    for (const auto &tracker : asConst(getTrackers(torrent)))
+        trackersList.append(tracker);
 
     setResult(trackersList);
 }
