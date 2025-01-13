@@ -83,6 +83,7 @@
 #include "watchedfolderoptionsdialog.h"
 #include "watchedfoldersmodel.h"
 #include "webui/webui.h"
+#include "base/net/downloadmanager.h"
 
 #ifndef DISABLE_WEBUI
 #include "base/net/dnsupdater.h"
@@ -1232,8 +1233,42 @@ void OptionsDialog::saveBittorrentTabOptions() const
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
 
+    auto enabledAddTrackers = m_ui->checkAddTrackersFromURL->isChecked();
+    auto url = m_ui->textTrackersURL->text();
+    if (!url.isEmpty() && enabledAddTrackers)
+    {
+        Net::DownloadManager::instance()->download(url, Preferences::instance()->useProxyForGeneralPurposes()
+            , this, &OptionsDialog::onAddTrackersDownload);
+    }
+    else
+    {
+        session->setAddTrackersFromURLEnabled(enabledAddTrackers);
+        session->setAdditionalTrackersURL(url);
+    }
+}
+
+void OptionsDialog::onAddTrackersDownload(const Net::DownloadResult &result)
+{
+    if (result.status != Net::DownloadStatus::Success)
+    {
+        QMessageBox::warning(this, tr("Download trackers list error")
+            , tr("Error occurred when downloading the trackers list. Reason: \"%1\"").arg(result.errorString));
+        return;
+    }
+
+    if (!result.contentType.contains(u"text/plain"_s, Qt::CaseInsensitive))
+    {
+        QMessageBox::warning(this, tr("Download trackers list error")
+            , tr("The content type of the downloaded file is not plain text. Content-Type: \"%1\"").arg(result.contentType));
+        return;
+    }
+
+    auto *session = BitTorrent::Session::instance();
+
     session->setAddTrackersFromURLEnabled(m_ui->checkAddTrackersFromURL->isChecked());
     session->setAdditionalTrackersURL(m_ui->textTrackersURL->text());
+
+    return;
 }
 
 void OptionsDialog::loadRSSTabOptions()
