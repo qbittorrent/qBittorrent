@@ -34,6 +34,7 @@
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
+#include "base/net/downloadmanager.h"
 
 class QListWidgetItem;
 
