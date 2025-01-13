@@ -22,8 +22,8 @@
                 }
             });
 
-            const hash = new URI().getData("hash");
-            if (!hash)
+            const hash = new URLSearchParams(window.location.search).get("hash");
+            if (hash === null)
                 return;
 
             $("peers").focus();

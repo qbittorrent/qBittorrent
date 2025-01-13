@@ -13,8 +13,6 @@
         "use strict";
 
         window.addEventListener("DOMContentLoaded", () => {
-            const rules = new URI().getData("rules").split("|");
-
             $("cancelBtn").focus();
             $("cancelBtn").addEventListener("click", (e) => {
                 e.preventDefault();
@@ -26,7 +24,8 @@
                 e.stopPropagation();
 
                 let completionCount = 0;
-                rules.forEach((rule) => {
+                const rules = new URLSearchParams(window.location.search).get("rules").split("|");
+                for (const rule of rules) {
                     window.parent.qBittorrent.RssDownloader.modifyRuleState(decodeURIComponent(rule), "previouslyMatchedEpisodes", [], () => {
                         ++completionCount;
                         if (completionCount === rules.length) {
@@ -34,7 +33,7 @@
                             window.parent.qBittorrent.Client.closeFrameWindow(window);
                         }
                     });
-                });
+                }
             });
         });
     </script>

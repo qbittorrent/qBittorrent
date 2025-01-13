@@ -743,12 +743,17 @@
         };
 
         const editUrl = (path, url) => {
+            const contentURL = new URL("editfeedurl.html", window.location);
+            contentURL.search = new URLSearchParams({
+                path: path,
+                url: url
+            });
             new MochaUI.Window({
                 id: "editFeedURL",
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: new URI("editfeedurl.html").setData("path", path).setData("url", url).toString(),
+                contentURL: contentURL.toString(),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,

@@ -340,20 +340,23 @@
                 curTab = currentSelectedTab;
 
             let url;
-            if (curTab === "main") {
-                url = new URI("api/v2/log/main");
-                url.setData({
-                    normal: selectedLogLevels.includes("1"),
-                    info: selectedLogLevels.includes("2"),
-                    warning: selectedLogLevels.includes("4"),
-                    critical: selectedLogLevels.includes("8")
-                });
-            }
-            else {
-                url = new URI("api/v2/log/peers");
+            switch (curTab) {
+                case "main":
+                    url = new URL("api/v2/log/main", window.location);
+                    url.search = new URLSearchParams({
+                        normal: selectedLogLevels.includes("1"),
+                        info: selectedLogLevels.includes("2"),
+                        warning: selectedLogLevels.includes("4"),
+                        critical: selectedLogLevels.includes("8")
+                    });
+                    break;
+
+                case "peer":
+                    url = new URL("api/v2/log/peers", window.location);
+                    break;
             }
 
-            url.setData("last_known_id", tableInfo[curTab].last_id);
+            url.searchParams.set("last_known_id", tableInfo[curTab].last_id);
             tableInfo[curTab].progress = true;
 
             fetch(url, {

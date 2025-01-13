@@ -88,6 +88,8 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     , m_ui {new Ui::SearchWidget()}
 {
     m_ui->setupUi(this);
+
+    m_ui->stopButton->hide();
     m_ui->tabWidget->tabBar()->installEventFilter(this);
 
     const QString searchPatternHint = u"<html><head/><body><p>"
@@ -117,7 +119,23 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     m_ui->tabWidget->setIconSize(iconSize);
 #endif
     connect(m_ui->tabWidget, &QTabWidget::tabCloseRequested, this, &SearchWidget::closeTab);
-    connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::tabChanged);
+    connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::currentTabChanged);
+
+    connect(m_ui->tabWidget, &QTabWidget::tabBarDoubleClicked, this, [this](const int tabIndex)
+    {
+        if (tabIndex < 0)
+            return;
+
+        // Reset current search pattern
+        auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(tabIndex));
+        const QString pattern = searchJobWidget->searchPattern();
+        if (pattern != m_ui->lineEditSearchPattern->text())
+        {
+            m_ui->lineEditSearchPattern->setText(pattern);
+            m_isNewQueryString = false;
+            adjustSearchButton();
+        }
+    });
 
     const auto *searchManager = SearchPluginManager::instance();
     const auto onPluginChanged = [this]()
@@ -134,6 +152,9 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     // Fill in category combobox
     onPluginChanged();
 
+    connect(m_ui->pluginsButton, &QPushButton::clicked, this, &SearchWidget::pluginsButtonClicked);
+    connect(m_ui->searchButton, &QPushButton::clicked, this, &SearchWidget::searchButtonClicked);
+    connect(m_ui->stopButton, &QPushButton::clicked, this, &SearchWidget::stopButtonClicked);
     connect(m_ui->lineEditSearchPattern, &LineEdit::returnPressed, m_ui->searchButton, &QPushButton::click);
     connect(m_ui->lineEditSearchPattern, &LineEdit::textEdited, this, &SearchWidget::searchTextEdited);
     connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
@@ -157,20 +178,21 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
 
         const auto *mouseEvent = static_cast<QMouseEvent *>(event);
         const int tabIndex = m_ui->tabWidget->tabBar()->tabAt(mouseEvent->pos());
-        if ((mouseEvent->button() == Qt::MiddleButton) && (tabIndex >= 0))
+        if (tabIndex >= 0)
         {
-            closeTab(tabIndex);
-            return true;
+            if (mouseEvent->button() == Qt::MiddleButton)
+            {
+                closeTab(tabIndex);
+                return true;
+            }
+
+            if (mouseEvent->button() == Qt::RightButton)
+            {
+                showTabMenu(tabIndex);
+                return true;
+            }
         }
-        if (mouseEvent->button() == Qt::RightButton)
-        {
-            QMenu *menu = new QMenu(this);
-            menu->setAttribute(Qt::WA_DeleteOnClose);
-            menu->addAction(tr("Close tab"), this, [this, tabIndex]() { closeTab(tabIndex); });
-            menu->addAction(tr("Close all tabs"), this, &SearchWidget::closeAllTabs);
-            menu->popup(QCursor::pos());
-            return true;
-        }
+
         return false;
     }
 
@@ -184,7 +206,8 @@ void SearchWidget::fillCatCombobox()
 
     using QStrPair = std::pair<QString, QString>;
     QList<QStrPair> tmpList;
-    for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
+    const auto selectedPlugin = m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
+    for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin)))
         tmpList << std::make_pair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
@@ -223,9 +246,17 @@ QString SearchWidget::selectedCategory() const
     return m_ui->comboCategory->itemData(m_ui->comboCategory->currentIndex()).toString();
 }
 
-QString SearchWidget::selectedPlugin() const
+QStringList SearchWidget::selectedPlugins() const
 {
-    return m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
+    const auto itemText = m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
+
+    if (itemText == u"all")
+        return SearchPluginManager::instance()->allPlugins();
+
+    if ((itemText == u"enabled") || (itemText == u"multi"))
+        return SearchPluginManager::instance()->enabledPlugins();
+
+    return {itemText};
 }
 
 void SearchWidget::selectActivePage()
@@ -254,19 +285,28 @@ SearchWidget::~SearchWidget()
     delete m_ui;
 }
 
-void SearchWidget::tabChanged(const int index)
+void SearchWidget::currentTabChanged(const int index)
 {
     // when we switch from a tab that is not empty to another that is empty
     // the download button doesn't have to be available
     m_currentSearchTab = (index >= 0)
         ? static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(index))
         : nullptr;
+
+    if (!m_currentSearchTab)
+        m_isNewQueryString = true;
+
+    if (!m_isNewQueryString)
+        m_ui->lineEditSearchPattern->setText(m_currentSearchTab->searchPattern());
+
+    adjustSearchButton();
 }
 
 void SearchWidget::selectMultipleBox([[maybe_unused]] const int index)
 {
-    if (selectedPlugin() == u"multi")
-        on_pluginsButton_clicked();
+    const auto itemText = m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
+    if (itemText == u"multi")
+        pluginsButtonClicked();
 }
 
 void SearchWidget::toggleFocusBetweenLineEdits()
@@ -283,18 +323,63 @@ void SearchWidget::toggleFocusBetweenLineEdits()
     }
 }
 
-void SearchWidget::on_pluginsButton_clicked()
+void SearchWidget::adjustSearchButton()
+{
+    if (!m_isNewQueryString
+            && (m_currentSearchTab && (m_currentSearchTab->status() == SearchJobWidget::Status::Ongoing)))
+    {
+        if (m_ui->searchButton->isVisible())
+        {
+            m_ui->searchButton->hide();
+            m_ui->stopButton->show();
+        }
+    }
+    else
+    {
+        if (m_ui->stopButton->isVisible())
+        {
+            m_ui->stopButton->hide();
+            m_ui->searchButton->show();
+        }
+    }
+}
+
+void SearchWidget::showTabMenu(const int index)
+{
+    QMenu *menu = new QMenu(this);
+
+    if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(index));
+            searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
+    {
+        menu->addAction(tr("Refresh"), this, [this, searchJobWidget] { refreshTab(searchJobWidget); });
+    }
+    else
+    {
+        menu->addAction(tr("Stop"), this, [searchJobWidget] { searchJobWidget->cancelSearch(); });
+    }
+
+    menu->addSeparator();
+    menu->addAction(tr("Close tab"), this, [this, index] { closeTab(index); });
+    menu->addAction(tr("Close all tabs"), this, &SearchWidget::closeAllTabs);
+
+    menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->popup(QCursor::pos());
+}
+
+void SearchWidget::pluginsButtonClicked()
 {
     auto *dlg = new PluginSelectDialog(SearchPluginManager::instance(), this);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->show();
 }
 
-void SearchWidget::searchTextEdited(const QString &)
+void SearchWidget::searchTextEdited(const QString &text)
 {
-    // Enable search button
-    m_ui->searchButton->setText(tr("Search"));
-    m_isNewQueryString = true;
+    if (m_currentSearchTab)
+    {
+        m_isNewQueryString = m_currentSearchTab->searchPattern() != text;
+        adjustSearchButton();
+    }
 }
 
 void SearchWidget::giveFocusToSearchInput()
@@ -303,24 +388,8 @@ void SearchWidget::giveFocusToSearchInput()
 }
 
 // Function called when we click on search button
-void SearchWidget::on_searchButton_clicked()
+void SearchWidget::searchButtonClicked()
 {
-    if (!Utils::ForeignApps::pythonInfo().isValid())
-    {
-        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
-        return;
-    }
-
-    if (m_activeSearchTab)
-    {
-        m_activeSearchTab->cancelSearch();
-        if (!m_isNewQueryString)
-        {
-            m_ui->searchButton->setText(tr("Search"));
-            return;
-        }
-    }
-
     m_isNewQueryString = false;
 
     const QString pattern = m_ui->lineEditSearchPattern->text().trimmed();
@@ -331,20 +400,16 @@ void SearchWidget::on_searchButton_clicked()
         return;
     }
 
-    const QString plugin = selectedPlugin();
-
-    QStringList plugins;
-    if (plugin == u"all")
-        plugins = SearchPluginManager::instance()->allPlugins();
-    else if ((plugin == u"enabled") || (plugin == u"multi"))
-        plugins = SearchPluginManager::instance()->enabledPlugins();
-    else
-        plugins << plugin;
+    if (!Utils::ForeignApps::pythonInfo().isValid())
+    {
+        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        return;
+    }
 
     qDebug("Search with category: %s", qUtf8Printable(selectedCategory()));
 
     // Launch search
-    auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), plugins);
+    auto *searchHandler = SearchPluginManager::instance()->startSearch(pattern, selectedCategory(), selectedPlugins());
 
     // Tab Addition
     auto *newTab = new SearchJobWidget(searchHandler, app(), this);
@@ -356,35 +421,33 @@ void SearchWidget::on_searchButton_clicked()
 
     connect(newTab, &SearchJobWidget::statusChanged, this, [this, newTab]() { tabStatusChanged(newTab); });
 
-    m_ui->searchButton->setText(tr("Stop"));
-    m_activeSearchTab = newTab;
     tabStatusChanged(newTab);
 }
 
-void SearchWidget::tabStatusChanged(QWidget *tab)
+void SearchWidget::stopButtonClicked()
+{
+    m_currentSearchTab->cancelSearch();
+}
+
+void SearchWidget::tabStatusChanged(SearchJobWidget *tab)
 {
     const int tabIndex = m_ui->tabWidget->indexOf(tab);
     m_ui->tabWidget->setTabToolTip(tabIndex, tab->statusTip());
     m_ui->tabWidget->setTabIcon(tabIndex, UIThemeManager::instance()->getIcon(
-                                 statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
+            statusIconName(static_cast<SearchJobWidget *>(tab)->status())));
 
-    if ((tab == m_activeSearchTab) && (m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing))
+    if (tab->status() != SearchJobWidget::Status::Ongoing)
     {
-        Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);
+        if (tab == m_currentSearchTab)
+            adjustSearchButton();
 
-        emit activeSearchFinished(m_activeSearchTab->status() == SearchJobWidget::Status::Error);
-
-        m_activeSearchTab = nullptr;
-        m_ui->searchButton->setText(tr("Search"));
+        emit searchFinished(tab->status() == SearchJobWidget::Status::Error);
     }
 }
 
 void SearchWidget::closeTab(const int index)
 {
     const QWidget *tab = m_ui->tabWidget->widget(index);
-    if (tab == m_activeSearchTab)
-        m_ui->searchButton->setText(tr("Search"));
-
     delete tab;
 }
 
@@ -392,4 +455,18 @@ void SearchWidget::closeAllTabs()
 {
     for (int i = (m_ui->tabWidget->count() - 1); i >= 0; --i)
         closeTab(i);
+}
+
+void SearchWidget::refreshTab(SearchJobWidget *searchJobWidget)
+{
+    if (!Utils::ForeignApps::pythonInfo().isValid())
+    {
+        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        return;
+    }
+
+    // Re-launch search
+    auto *searchHandler = SearchPluginManager::instance()->startSearch(searchJobWidget->searchPattern(), selectedCategory(), selectedPlugins());
+    searchJobWidget->assignSearchHandler(searchHandler);
+    tabStatusChanged(searchJobWidget);
 }

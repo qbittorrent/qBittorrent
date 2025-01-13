@@ -27,7 +27,8 @@
                 }
             });
 
-            const currentUrl = new URI().getData("url");
+            const searchParams = new URLSearchParams(window.location.search);
+            const currentUrl = searchParams.get("url");
 
             $("url").value = currentUrl;
             $("url").focus();
@@ -54,7 +55,7 @@
                 fetch("api/v2/rss/setFeedURL", {
                         method: "POST",
                         body: new URLSearchParams({
-                            path: new URI().getData("path"),
+                            path: searchParams.get("path"),
                             url: newUrl
                         })
                     })

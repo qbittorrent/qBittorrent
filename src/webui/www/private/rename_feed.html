@@ -27,7 +27,7 @@
                 }
             });
 
-            const oldPath = new URI().getData("oldPath");
+            const oldPath = new URLSearchParams(window.location.search).get("oldPath");
 
             $("rename").value = oldPath;
             $("rename").focus();

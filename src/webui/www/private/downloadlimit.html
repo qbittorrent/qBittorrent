@@ -46,7 +46,7 @@
             }
         });
 
-        const hashes = new URI().getData("hashes").split("|");
+        const hashes = new URLSearchParams(window.location.search).get("hashes").split("|");
         const setDlLimit = () => {
             const limit = Number($("dllimitUpdatevalue").value) * 1024;
             if (hashes[0] === "global") {

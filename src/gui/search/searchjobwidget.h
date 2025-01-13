@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -79,10 +79,12 @@ public:
     SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent = nullptr);
     ~SearchJobWidget() override;
 
+    QString searchPattern() const;
     Status status() const;
     int visibleResultsCount() const;
     LineEdit *lineEditSearchResultsFilter() const;
 
+    void assignSearchHandler(SearchHandler *searchHandler);
     void cancelSearch();
 
 signals:
@@ -124,8 +126,6 @@ private:
     void copyTorrentDownloadLinks() const;
     void copyTorrentNames() const;
     void copyField(int column) const;
-
-    static QString statusText(Status st);
 
     Ui::SearchJobWidget *m_ui = nullptr;
     SearchHandler *m_searchHandler = nullptr;

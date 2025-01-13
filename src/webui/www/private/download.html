@@ -163,13 +163,10 @@
     <script>
         "use strict";
 
-        const encodedUrls = new URI().getData("urls");
-        if (encodedUrls) {
-            const urls = encodedUrls.split("|").map((url) => {
-                return decodeURIComponent(url);
-            });
-
-            if (urls.length)
+        const encodedUrls = new URLSearchParams(window.location.search).get("urls");
+        if (encodedUrls !== null) {
+            const urls = encodedUrls.split("|").map(decodeURIComponent);
+            if (urls.length > 0)
                 $("urls").value = urls.join("\n");
         }
 

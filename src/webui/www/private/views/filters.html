@@ -118,13 +118,13 @@
                     createCategoryFN();
                 },
                 createSubcategory: (element, ref) => {
-                    createSubcategoryFN(Number(element.id));
+                    createSubcategoryFN(element.id);
                 },
                 editCategory: (element, ref) => {
-                    editCategoryFN(Number(element.id));
+                    editCategoryFN(element.id);
                 },
                 deleteCategory: (element, ref) => {
-                    removeCategoryFN(Number(element.id));
+                    removeCategoryFN(element.id);
                 },
                 deleteUnusedCategories: (element, ref) => {
                     deleteUnusedCategoriesFN();
@@ -160,7 +160,7 @@
                     createTagFN();
                 },
                 deleteTag: (element, ref) => {
-                    removeTagFN(Number(element.id));
+                    removeTagFN(element.id);
                 },
                 deleteUnusedTags: (element, ref) => {
                     deleteUnusedTagsFN();
