@@ -31,8 +31,10 @@
 #pragma once
 
 #include <QPointer>
+#include <QSet>
 #include <QWidget>
 
+#include "base/utils/thread.h"
 #include "gui/guiapplicationcomponent.h"
 
 class QEvent;
@@ -62,6 +64,8 @@ signals:
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
 
+    void onPreferencesChanged();
+
     void pluginsButtonClicked();
     void searchButtonClicked();
     void stopButtonClicked();
@@ -86,7 +90,22 @@ private:
     QString selectedCategory() const;
     QStringList selectedPlugins() const;
 
+    QString generateTabID() const;
+    int addTab(const QString &tabID, SearchJobWidget *searchJobWdget);
+
+    void saveSession() const;
+    void restoreSession();
+
     Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
     bool m_isNewQueryString = false;
+    QHash<QString, SearchJobWidget *> m_tabWidgets;
+
+    bool m_storeOpenedTabs = false;
+    bool m_storeOpenedTabsResults = false;
+
+    Utils::Thread::UniquePtr m_ioThread;
+
+    class DataStorage;
+    DataStorage *m_dataStorage = nullptr;
 };
