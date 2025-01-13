@@ -34,6 +34,7 @@
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
+#include "base/net/downloadmanager.h"
 
 class QListWidgetItem;
 
@@ -135,6 +136,8 @@ private:
 
     void loadRSSTabOptions();
     void saveRSSTabOptions() const;
+
+    void onAddTrackersDownload(const Net::DownloadResult &result);
 
 #ifndef DISABLE_WEBUI
     void loadWebUITabOptions();
