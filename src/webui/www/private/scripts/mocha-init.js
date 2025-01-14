@@ -152,16 +152,16 @@ let exportTorrentFN = () => {};
 const initializeWindows = () => {
     saveWindowSize = (windowId) => {
         const size = $(windowId).getSize();
-        LocalPreferences.set("window_" + windowId + "_width", size.x);
-        LocalPreferences.set("window_" + windowId + "_height", size.y);
+        LocalPreferences.set(`window_${windowId}_width`, size.x);
+        LocalPreferences.set(`window_${windowId}_height`, size.y);
     };
 
     loadWindowWidth = (windowId, defaultValue) => {
-        return LocalPreferences.get("window_" + windowId + "_width", defaultValue);
+        return LocalPreferences.get(`window_${windowId}_width`, defaultValue);
     };
 
     loadWindowHeight = (windowId, defaultValue) => {
-        return LocalPreferences.get("window_" + windowId + "_height", defaultValue);
+        return LocalPreferences.get(`window_${windowId}_height`, defaultValue);
     };
 
     const addClickEvent = (el, fn) => {
@@ -340,8 +340,8 @@ const initializeWindows = () => {
         for (let i = 0; i < hashes.length; ++i) {
             const hash = hashes[i];
             const row = torrentsTable.getRow(hash).full_data;
-            const origValues = row.ratio_limit + "|" + row.seeding_time_limit + "|" + row.inactive_seeding_time_limit + "|"
-                + row.max_ratio + "|" + row.max_seeding_time + "|" + row.max_inactive_seeding_time;
+            const origValues = `${row.ratio_limit}|${row.seeding_time_limit}|${row.inactive_seeding_time_limit}|${row.max_ratio}`
+                + `|${row.max_seeding_time}|${row.max_inactive_seeding_time}`;
 
             // initialize value
             if (shareRatio === null)

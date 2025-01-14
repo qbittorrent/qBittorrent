@@ -88,9 +88,10 @@ window.qBittorrent.Client ??= (() => {
     const mainTitle = () => {
         const emDash = "\u2014";
         const qbtVersion = window.qBittorrent.Cache.qbtVersion.get();
-        const suffix = window.qBittorrent.Cache.preferences.get()["app_instance_name"] || "";
-        const title = `qBittorrent ${qbtVersion} QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]`
-            + ((suffix.length > 0) ? ` ${emDash} ${suffix}` : "");
+        let suffix = window.qBittorrent.Cache.preferences.get()["app_instance_name"] || "";
+        if (suffix.length > 0)
+            suffix = ` ${emDash} ${suffix}`;
+        const title = `qBittorrent ${qbtVersion} QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]${suffix}`;
         return title;
     };
 
@@ -952,13 +953,13 @@ window.addEventListener("DOMContentLoaded", () => {
     const processServerState = () => {
         let transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true);
         if (serverState.dl_rate_limit > 0)
-            transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_rate_limit, true) + "]";
-        transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_data, false) + ")";
+            transfer_info += ` [${window.qBittorrent.Misc.friendlyUnit(serverState.dl_rate_limit, true)}]`;
+        transfer_info += ` (${window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_data, false)})`;
         $("DlInfos").textContent = transfer_info;
         transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true);
         if (serverState.up_rate_limit > 0)
-            transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true) + "]";
-        transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false) + ")";
+            transfer_info += ` [${window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true)}]`;
+        transfer_info += ` (${window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false)})`;
         $("UpInfos").textContent = transfer_info;
 
         document.title = (speedInTitle
@@ -1010,12 +1011,12 @@ window.addEventListener("DOMContentLoaded", () => {
             $("TotalWastedSession").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_wasted_session, false);
             $("GlobalRatio").textContent = serverState.global_ratio;
             $("TotalPeerConnections").textContent = serverState.total_peer_connections;
-            $("ReadCacheHits").textContent = serverState.read_cache_hits + "%";
+            $("ReadCacheHits").textContent = `${serverState.read_cache_hits}%`;
             $("TotalBuffersSize").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_buffers_size, false);
-            $("WriteCacheOverload").textContent = serverState.write_cache_overload + "%";
-            $("ReadCacheOverload").textContent = serverState.read_cache_overload + "%";
+            $("WriteCacheOverload").textContent = `${serverState.write_cache_overload}%`;
+            $("ReadCacheOverload").textContent = `${serverState.read_cache_overload}%`;
             $("QueuedIOJobs").textContent = serverState.queued_io_jobs;
-            $("AverageTimeInQueue").textContent = serverState.average_time_queue + " ms";
+            $("AverageTimeInQueue").textContent = `${serverState.average_time_queue} ms`;
             $("TotalQueuedSize").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_queued_size, false);
         }
 
@@ -1149,8 +1150,7 @@ window.addEventListener("DOMContentLoaded", () => {
         hashParams.set("download", "");
 
         const templateHashString = hashParams.toString().replace("download=", "download=%s");
-        const templateUrl = location.origin + location.pathname
-            + location.search + "#" + templateHashString;
+        const templateUrl = `${location.origin}${location.pathname}${location.search}#${templateHashString}`;
 
         navigator.registerProtocolHandler("magnet", templateUrl,
             "qBittorrent WebUI magnet handler");
