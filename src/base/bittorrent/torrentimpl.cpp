@@ -942,17 +942,14 @@ bool TorrentImpl::setTags(const TagSet &newTags)
 {
     // Identify tags to add
     for (const Tag &tag : newTags)
-    {
         if (!hasTag(tag))
             addTag(tag);
-    }
 
     // Identify tags to remove
-    for (const Tag &tag : asConst(m_tags))
-    {
+    for (const Tag &tag : asConst(tags()))
         if (!newTags.contains(tag))
             removeTag(tag);
-    }
+
     return true;
 }
 
