@@ -44,7 +44,7 @@
             bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu);
 
             // Inject checkbox into the first column of the table header
-            const tableHeaders = $$("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
+            const tableHeaders = document.querySelectorAll("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
             if (tableHeaders.length > 0) {
                 const checkboxHeader = document.createElement("input");
                 checkboxHeader.type = "checkbox";
