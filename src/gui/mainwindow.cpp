@@ -130,6 +130,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     , m_ui {new Ui::MainWindow}
     , m_downloadRate {Utils::Misc::friendlyUnit(0, true)}
     , m_uploadRate {Utils::Misc::friendlyUnit(0, true)}
+    , m_pwr {new PowerManagement}
+    , m_preventTimer {new QTimer(this)}
     , m_storeExecutionLogEnabled {EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_s)}
     , m_storeDownloadTrackerFavicon {SETTINGS_KEY(u"DownloadTrackerFavicon"_s)}
     , m_storeExecutionLogTypes {EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL}
@@ -336,8 +338,6 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
 
     // Initialise system sleep inhibition timer
-    m_pwr = new PowerManagement(this);
-    m_preventTimer = new QTimer(this);
     m_preventTimer->setSingleShot(true);
     connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::updatePowerManagementState);
     connect(pref, &Preferences::changed, this, &MainWindow::updatePowerManagementState);
@@ -837,6 +837,7 @@ void MainWindow::cleanup()
     delete m_executableWatcher;
 
     m_preventTimer->stop();
+    delete m_pwr;
 
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     if (m_programUpdateTimer)
@@ -1826,7 +1827,7 @@ void MainWindow::updatePowerManagementState() const
 
         return torrent->isMoving();
     });
-    m_pwr->setActivityState(inhibitSuspend);
+    m_pwr->setActivityState(inhibitSuspend ? PowerManagement::ActivityState::Busy : PowerManagement::ActivityState::Idle);
 
     m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
 }

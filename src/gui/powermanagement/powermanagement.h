@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,38 +29,26 @@
 
 #pragma once
 
-#include <QObject>
+class Inhibitor;
 
-#ifdef Q_OS_MACOS
-// Require Mac OS X >= 10.5
-#include <IOKit/pwr_mgt/IOPMLib.h>
-#endif
-
-#ifdef QBT_USES_DBUS
-class PowerManagementInhibitor;
-#endif
-
-class PowerManagement final : public QObject
+class PowerManagement final
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PowerManagement)
-
 public:
-    PowerManagement(QObject *parent = nullptr);
-    ~PowerManagement() override;
+    enum class ActivityState
+    {
+        Busy,
+        Idle
+    };
 
-    void setActivityState(bool busy);
+    PowerManagement();
+    ~PowerManagement();
+
+    void setActivityState(ActivityState state);
 
 private:
     void setBusy();
     void setIdle();
 
-    bool m_busy = false;
-
-#ifdef QBT_USES_DBUS
-    PowerManagementInhibitor *m_inhibitor = nullptr;
-#endif
-#ifdef Q_OS_MACOS
-    IOPMAssertionID m_assertionID {};
-#endif
+    ActivityState m_state = ActivityState::Idle;
+    Inhibitor *m_inhibitor = nullptr;
 };

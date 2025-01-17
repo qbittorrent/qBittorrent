@@ -27,63 +27,20 @@
  * exception statement from your version.
  */
 
-#include "powermanagement.h"
-
-#include <QtSystemDetection>
-
-#if defined(Q_OS_MACOS)
 #include "inhibitormacos.h"
-using InhibitorImpl = InhibitorMacOS;
-#elif defined(Q_OS_WIN)
-#include "inhibitorwindows.h"
-using InhibitorImpl = InhibitorWindows;
-#elif defined(QBT_USES_DBUS)
-#include "inhibitordbus.h"
-using InhibitorImpl = InhibitorDBus;
-#else
-#include "inhibitor.h"
-using InhibitorImpl = Inhibitor;
-#endif
 
-PowerManagement::PowerManagement()
-    : m_inhibitor {new InhibitorImpl}
+#include <QScopeGuard>
+
+bool InhibitorMacOS::requestBusy()
 {
+    const CFStringRef assertName = tr("PMMacOS", "qBittorrent is active").toCFString();
+    [[maybe_unused]] const auto assertNameGuard = qScopeGuard([&assertName] { ::CFRelease(assertName); });
+    const IOReturn result = ::IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
+        , assertName, &m_assertionID);
+    return result == kIOReturnSuccess;
 }
 
-PowerManagement::~PowerManagement()
+bool InhibitorMacOS::requestIdle()
 {
-    setIdle();
-    delete m_inhibitor;
-}
-
-void PowerManagement::setActivityState(const ActivityState state)
-{
-    switch (state)
-    {
-    case ActivityState::Busy:
-        setBusy();
-        break;
-
-    case ActivityState::Idle:
-        setIdle();
-        break;
-    };
-}
-
-void PowerManagement::setBusy()
-{
-    if (m_state == ActivityState::Busy)
-        return;
-
-    if (m_inhibitor->requestBusy())
-        m_state = ActivityState::Busy;
-}
-
-void PowerManagement::setIdle()
-{
-    if (m_state == ActivityState::Idle)
-        return;
-
-    if (m_inhibitor->requestIdle())
-        m_state = ActivityState::Idle;
+    return ::IOPMAssertionRelease(m_assertionID) == kIOReturnSuccess;
 }
