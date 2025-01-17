@@ -387,7 +387,7 @@ void TorrentsController::infoAction()
     if (offset < 0)
         offset = size + offset;
     if ((offset >= size) || (offset < 0))
-        offset = 0;
+        throw APIError(APIErrorType::Conflict, tr("Offset is out of range"));
     // normalize limit
     if (limit <= 0)
         limit = -1; // unlimited
