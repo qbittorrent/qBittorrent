@@ -32,6 +32,7 @@
 
 #ifdef Q_OS_MACOS
 #include <IOKit/pwr_mgt/IOPMLib.h>
+#include <QScopeGuard>
 #endif
 
 #ifdef Q_OS_WIN
@@ -74,8 +75,10 @@ void PowerManagement::setBusy()
 #elif defined(QBT_USES_DBUS)
     m_inhibitor->requestBusy();
 #elif defined(Q_OS_MACOS)
+    const CFStringRef assertName = tr("qBittorrent is active").toCFString();
+    [[maybe_unused]] const auto assertNameGuard = qScopeGuard([&assertName] { ::CFRelease(assertName); });
     const IOReturn success = ::IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
-        , tr("qBittorrent is active").toCFString(), &m_assertionID);
+        , assertName, &m_assertionID);
     if (success != kIOReturnSuccess)
         m_busy = false;
 #endif
