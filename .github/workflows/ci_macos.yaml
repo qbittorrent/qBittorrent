@@ -2,8 +2,7 @@ name: CI - macOS
 
 on: [pull_request, push]
 
-permissions:
-  actions: write
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -13,6 +12,8 @@ jobs:
   ci:
     name: Build
     runs-on: macos-latest
+    permissions:
+      actions: write
 
     strategy:
       fail-fast: false

@@ -2,9 +2,7 @@ name: CI - Ubuntu
 
 on: [pull_request, push]
 
-permissions:
-  actions: write
-  security-events: write
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -14,6 +12,9 @@ jobs:
   ci:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      security-events: write
 
     strategy:
       fail-fast: false

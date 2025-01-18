@@ -4,12 +4,13 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
-permissions:
-  pull-requests: write
+permissions: {}
 
 jobs:
   stale:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Mark and close stale PRs
         uses: actions/stale@v9
