@@ -123,13 +123,13 @@ window.qBittorrent.Misc ??= (() => {
 
         let ret;
         if (i === 0) {
-            ret = value + " " + units[i];
+            ret = `${value} ${units[i]}`;
         }
         else {
             const precision = friendlyUnitPrecision(i);
             const offset = Math.pow(10, precision);
             // Don't round up
-            ret = (Math.floor(offset * value) / offset).toFixed(precision) + " " + units[i];
+            ret = `${(Math.floor(offset * value) / offset).toFixed(precision)} ${units[i]}`;
         }
 
         if (isSpeed)
@@ -169,7 +169,7 @@ window.qBittorrent.Misc ??= (() => {
             percentage = 0;
         if (percentage > 100)
             percentage = 100;
-        return percentage.toFixed(1) + "%";
+        return `${percentage.toFixed(1)}%`;
     };
 
     const friendlyFloat = (value, precision) => {
