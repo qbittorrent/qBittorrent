@@ -1490,7 +1490,15 @@ void TorrentsController::setTagsAction()
     // Apply the new tags to the selected torrents
     applyToTorrents(hashes, [&newTags](BitTorrent::Torrent *const torrent)
     {
-        torrent->setTags(newTags);
+        // Identify tags to add
+        for (const Tag &tag : newTags)
+            if (!torrent->hasTag(tag))
+                torrent->addTag(tag);
+
+        // Identify tags to remove
+        for (const Tag &tag : asConst(torrent->tags()))
+            if (!newTags.contains(tag))
+                torrent->removeTag(tag);
     });
 }
 
