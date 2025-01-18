@@ -271,8 +271,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                     let width = this.startWidth + (event.event.pageX - this.dragStartX);
                     if (width < 16)
                         width = 16;
-                    this.columns[this.resizeTh.columnName].width = width;
-                    this.updateColumn(this.resizeTh.columnName);
+
+                    this._setColumnWidth(this.resizeTh.columnName, width);
                 }
             }.bind(this);
 
@@ -371,6 +371,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns[columnName].visible = show ? "1" : "0";
             LocalPreferences.set(`column_${columnName}_visible_${this.dynamicTableDivId}`, show ? "1" : "0");
             this.updateColumn(columnName);
+            this.columns[columnName].onVisibilityChange?.(columnName);
         },
 
         _calculateColumnBodyWidth: function(column) {
@@ -397,6 +398,18 @@ window.qBittorrent.DynamicTable ??= (() => {
             return longestTd.width + 10;
         },
 
+        _setColumnWidth: function(columnName, width) {
+            const column = this.columns[columnName];
+            column.width = width;
+
+            const pos = this.getColumnPos(column.name);
+            const style = `width: ${column.width}px; ${column.style}`;
+            this.getRowCells(this.hiddenTableHeader)[pos].style.cssText = style;
+            this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
+
+            column.onResize?.(column.name);
+        },
+
         autoResizeColumn: function(columnName) {
             const column = this.columns[columnName];
 
@@ -418,8 +431,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 width = Math.max(headTextWidth, bodyTextWidth);
             }
 
-            column.width = width;
-            this.updateColumn(column.name);
+            this._setColumnWidth(column.name, width);
             this.saveColumnWidth(column.name);
         },
 
@@ -545,7 +557,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = value;
                 td.title = value;
             };
+            column["isVisible"] = function() {
+                return (this.visible === "1") && !this.force_hide;
+            };
             column["onResize"] = null;
+            column["onVisibilityChange"] = null;
             column["staticWidth"] = null;
             column["calculateBuffer"] = () => 0;
             this.columns.push(column);
@@ -612,31 +628,21 @@ window.qBittorrent.DynamicTable ??= (() => {
             return -1;
         },
 
-        updateColumn: function(columnName) {
+        updateColumn: function(columnName, updateCellData = false) {
+            const column = this.columns[columnName];
             const pos = this.getColumnPos(columnName);
-            const visible = ((this.columns[pos].visible !== "0") && !this.columns[pos].force_hide);
-            const ths = this.hiddenTableHeader.getElements("th");
-            const fths = this.fixedTableHeader.getElements("th");
-            const trs = this.tableBody.getElements("tr");
-            const style = `width: ${this.columns[pos].width}px; ${this.columns[pos].style}`;
+            const ths = this.getRowCells(this.hiddenTableHeader);
+            const fths = this.getRowCells(this.fixedTableHeader);
+            const action = column.isVisible() ? "remove" : "add";
+            ths[pos].classList[action]("invisible");
+            fths[pos].classList[action]("invisible");
 
-            ths[pos].style.cssText = style;
-            fths[pos].style.cssText = style;
-
-            if (visible) {
-                ths[pos].classList.remove("invisible");
-                fths[pos].classList.remove("invisible");
-                for (let i = 0; i < trs.length; ++i)
-                    trs[i].getElements("td")[pos].classList.remove("invisible");
+            for (const tr of this.getTrs()) {
+                const td = this.getRowCells(tr)[pos];
+                td.classList[action]("invisible");
+                if (updateCellData)
+                    column.updateTd(td, this.rows.get(tr.rowId));
             }
-            else {
-                ths[pos].classList.add("invisible");
-                fths[pos].classList.add("invisible");
-                for (let j = 0; j < trs.length; ++j)
-                    trs[j].getElements("td")[pos].classList.add("invisible");
-            }
-            if (this.columns[pos].onResize !== null)
-                this.columns[pos].onResize(columnName);
         },
 
         getSortedColumn: function() {
@@ -789,6 +795,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
         },
 
+        getTrs: function() {
+            return this.tableBody.querySelectorAll("tr");
+        },
+
+        getRowCells: (tr) => {
+            return tr.querySelectorAll("td, th");
+        },
+
         getRow: function(rowId) {
             return this.rows.get(rowId);
         },
@@ -895,9 +909,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             const row = this.rows.get(tr.rowId);
             const data = row[fullUpdate ? "full_data" : "data"];
 
-            const tds = tr.getElements("td");
+            const tds = this.getRowCells(tr);
             for (let i = 0; i < this.columns.length; ++i) {
-                if (Object.hasOwn(data, this.columns[i].dataProperties[0]))
+                if (this.columns[i].dataProperties.some(prop => Object.hasOwn(data, prop)))
                     this.columns[i].updateTd(tds[i], row);
             }
             row["data"] = {};
@@ -988,7 +1002,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumns: function() {
             this.newColumn("priority", "", "#", 30, true);
-            this.newColumn("state_icon", "cursor: default", "", 22, true);
+            this.newColumn("state_icon", "", "QBT_TR(Status Icon)QBT_TR[CONTEXT=TransferListModel]", 30, false);
             this.newColumn("name", "", "QBT_TR(Name)QBT_TR[CONTEXT=TransferListModel]", 200, true);
             this.newColumn("size", "", "QBT_TR(Size)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("total_size", "", "QBT_TR(Total Size)QBT_TR[CONTEXT=TransferListModel]", 100, false);
@@ -1026,9 +1040,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
-            this.columns["state_icon"].onclick = "";
             this.columns["state_icon"].dataProperties[0] = "state";
-
+            this.columns["name"].dataProperties.push("state");
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
@@ -1037,82 +1050,91 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         initColumnsFunctions: function() {
-
-            // state_icon
-            this.columns["state_icon"].updateTd = function(td, row) {
-                let state = this.getRowValue(row);
-                let img_path;
+            const getStateIconClasses = (state) => {
+                let stateClass = "stateUnknown";
                 // normalize states
                 switch (state) {
                     case "forcedDL":
                     case "metaDL":
                     case "forcedMetaDL":
                     case "downloading":
-                        state = "downloading";
-                        img_path = "images/downloading.svg";
+                        stateClass = "stateDownloading";
                         break;
                     case "forcedUP":
                     case "uploading":
-                        state = "uploading";
-                        img_path = "images/upload.svg";
+                        stateClass = "stateUploading";
                         break;
                     case "stalledUP":
-                        state = "stalledUP";
-                        img_path = "images/stalledUP.svg";
+                        stateClass = "stateStalledUP";
                         break;
                     case "stalledDL":
-                        state = "stalledDL";
-                        img_path = "images/stalledDL.svg";
+                        stateClass = "stateStalledDL";
                         break;
                     case "stoppedDL":
-                        state = "torrent-stop";
-                        img_path = "images/stopped.svg";
+                        stateClass = "stateStoppedDL";
                         break;
                     case "stoppedUP":
-                        state = "checked-completed";
-                        img_path = "images/checked-completed.svg";
+                        stateClass = "stateStoppedUP";
                         break;
                     case "queuedDL":
                     case "queuedUP":
-                        state = "queued";
-                        img_path = "images/queued.svg";
+                        stateClass = "stateQueued";
                         break;
                     case "checkingDL":
                     case "checkingUP":
                     case "queuedForChecking":
                     case "checkingResumeData":
-                        state = "force-recheck";
-                        img_path = "images/force-recheck.svg";
+                        stateClass = "stateChecking";
                         break;
                     case "moving":
-                        state = "moving";
-                        img_path = "images/set-location.svg";
+                        stateClass = "stateMoving";
                         break;
                     case "error":
                     case "unknown":
                     case "missingFiles":
-                        state = "error";
-                        img_path = "images/error.svg";
+                        stateClass = "stateError";
                         break;
                     default:
                         break; // do nothing
                 }
 
-                if (td.getChildren("img").length > 0) {
-                    const img = td.getChildren("img")[0];
-                    if (!img.src.includes(img_path)) {
-                        img.src = img_path;
-                        img.title = state;
-                    }
-                }
-                else {
-                    const img = document.createElement("img");
-                    img.src = img_path;
-                    img.className = "stateIcon";
-                    img.title = state;
-                    td.append(img);
-                }
+                return `stateIcon ${stateClass}`;
             };
+
+            // state_icon
+            this.columns["state_icon"].updateTd = function(td, row) {
+                const state = this.getRowValue(row);
+                let div = td.firstElementChild;
+                if (div === null) {
+                    div = document.createElement("div");
+                    td.append(div);
+                }
+
+                div.className = `${getStateIconClasses(state)} stateIconColumn`;
+            };
+
+            this.columns["state_icon"].onVisibilityChange = (columnName) => {
+                // show state icon in name column only when standalone
+                // state icon column is hidden
+                this.updateColumn("name", true);
+            };
+
+            // name
+            this.columns["name"].updateTd = function(td, row) {
+                const name = this.getRowValue(row, 0);
+                const state = this.getRowValue(row, 1);
+                let span = td.firstElementChild;
+                if (span === null) {
+                    span = document.createElement("span");
+                    td.append(span);
+                }
+
+                span.className = this.isStateIconShown() ? `${getStateIconClasses(state)}` : "";
+                span.textContent = name;
+                td.title = name;
+            };
+
+            this.columns["name"].isStateIconShown = () => !this.columns["state_icon"].isVisible();
 
             // status
             this.columns["status"].updateTd = function(td, row) {
