@@ -73,7 +73,7 @@ repos:
     hooks:
     - id: codespell
       name: Check spelling (codespell)
-      args: ["--ignore-words-list", "additionals,categor,curren,fo,ist,ket,notin,searchin,sectionin,superseeding,te,ths"]
+      args: ["--ignore-words-list", "additionals,categor,curren,fo,indexIn,ist,ket,notin,searchin,sectionin,superseeding,te,ths"]
       exclude: |
         (?x)^(
           .*\.desktop |

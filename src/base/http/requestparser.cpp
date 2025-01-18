@@ -279,7 +279,7 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
 
         // split data by "dash-boundary"
         const QByteArray dashDelimiter = QByteArray("--") + delimiter + CRLF;
-        QList<QByteArrayView> multipart = splitToViews(data, dashDelimiter, Qt::SkipEmptyParts);
+        QList<QByteArrayView> multipart = splitToViews(data, dashDelimiter);
         if (multipart.isEmpty())
         {
             qWarning() << Q_FUNC_INFO << "multipart empty";

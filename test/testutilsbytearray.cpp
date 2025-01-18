@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -26,10 +27,11 @@
  * exception statement from your version.
  */
 
+#include <QByteArray>
+#include <QLatin1StringView>
 #include <QObject>
 #include <QTest>
 
-#include "base/global.h"
 #include "base/utils/bytearray.h"
 
 class TestUtilsByteArray final : public QObject
@@ -41,8 +43,50 @@ public:
     TestUtilsByteArray() = default;
 
 private slots:
-    void testBase32Encode() const
+    void testSplitToViews() const
     {
+        using BAViews = QList<QByteArrayView>;
+
+        const auto check = [](const QByteArrayView in, const QByteArrayView sep, const BAViews expected)
+        {
+            // verify it works
+            QCOMPARE(Utils::ByteArray::splitToViews(in, sep), expected);
+
+            // verify it has the same behavior as `split(Qt::SkipEmptyParts)`
+            using Latin1Views = QList<QLatin1StringView>;
+
+            const Latin1Views reference = QLatin1StringView(in)
+                .tokenize(QLatin1StringView(sep), Qt::SkipEmptyParts).toContainer();
+            Latin1Views expectedStrings;
+            for (const auto &string : expected)
+                expectedStrings.append(QLatin1StringView(string));
+            QCOMPARE(reference, expectedStrings);
+        };
+
+        check({}, {}, {});
+        check({}, "/", {});
+        check("/", "/", {});
+        check("/a", "/", {"a"});
+        check("/a/", "/", {"a"});
+        check("/a/b", "/", (BAViews {"a", "b"}));
+        check("/a/b/", "/", (BAViews {"a", "b"}));
+        check("/a/b", "//", {"/a/b"});
+        check("//a/b", "//", {"a/b"});
+        check("//a//b", "//", (BAViews {"a", "b"}));
+        check("//a//b/", "//", (BAViews {"a", "b/"}));
+        check("//a//b//", "//", (BAViews {"a", "b"}));
+        check("///a//b//", "//", (BAViews {"/a", "b"}));
+    }
+
+    void testAsQByteArray() const
+    {
+        QCOMPARE(Utils::ByteArray::asQByteArray(""), "");
+        QCOMPARE(Utils::ByteArray::asQByteArray("12345"), "12345");
+    }
+
+    void testToBase32() const
+    {
+        QCOMPARE(Utils::ByteArray::toBase32({}), QByteArray());
         QCOMPARE(Utils::ByteArray::toBase32(""), "");
         QCOMPARE(Utils::ByteArray::toBase32("0123456789"), "GAYTEMZUGU3DOOBZ");
         QCOMPARE(Utils::ByteArray::toBase32("ABCDE"), "IFBEGRCF");
