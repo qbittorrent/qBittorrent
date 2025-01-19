@@ -1482,23 +1482,14 @@ void TorrentsController::setTagsAction()
     const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
-    // Convert QStringList to TagSet
-    TagSet newTags;
-    for (const QString &tagStr : tags)
-        newTags.insert(Tag(tagStr));
-
-    // Apply the new tags to the selected torrents
+    const TagSet newTags {tags.begin(), tags.end()};
     applyToTorrents(hashes, [&newTags](BitTorrent::Torrent *const torrent)
     {
-        // Identify tags to add
-        for (const Tag &tag : newTags)
-            if (!torrent->hasTag(tag))
-                torrent->addTag(tag);
-
-        // Identify tags to remove
         for (const Tag &tag : asConst(torrent->tags()))
             if (!newTags.contains(tag))
                 torrent->removeTag(tag);
+        for (const Tag &tag : newTags)
+            torrent->addTag(tag);
     });
 }
 
