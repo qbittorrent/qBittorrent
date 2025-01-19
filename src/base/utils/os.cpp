@@ -316,7 +316,11 @@ bool Utils::OS::applyMarkOfTheWeb(const Path &file, const QString &url)
 
     ::CFDictionarySetValue(properties, kLSQuarantineTypeKey, kLSQuarantineTypeOtherDownload);
     if (!url.isEmpty())
-        ::CFDictionarySetValue(properties, kLSQuarantineDataURLKey, url.toCFString());
+    {
+        const CFStringRef urlCFString = url.toCFString();
+        [[maybe_unused]] const auto urlStringGuard = qScopeGuard([&urlCFString] { ::CFRelease(urlCFString); });
+        ::CFDictionarySetValue(properties, kLSQuarantineDataURLKey, urlCFString);
+    }
 
     const Boolean success = ::CFURLSetResourcePropertyForKey(fileURL, kCFURLQuarantinePropertiesKey
         , properties, NULL);
