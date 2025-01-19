@@ -1479,7 +1479,7 @@ void TorrentsController::setTagsAction()
 {
     requireParams({u"hashes"_s, u"tags"_s});
 
-    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
     // Convert QStringList to TagSet
