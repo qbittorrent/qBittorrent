@@ -1313,10 +1313,10 @@ const initializeWindows = () => {
     });
 
     // Deactivate menu header links
-    $$("a.returnFalse").each((el) => {
+    for (const el of document.querySelectorAll("a.returnFalse")) {
         el.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
         });
-    });
+    }
 };

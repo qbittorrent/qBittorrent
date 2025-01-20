@@ -666,7 +666,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         setSortedColumnIcon: function(newColumn, oldColumn, isReverse) {
             const getCol = (headerDivId, colName) => {
-                const colElem = $$(`#${headerDivId} .column_${colName}`);
+                const colElem = document.querySelectorAll(`#${headerDivId} .column_${colName}`);
                 if (colElem.length === 1)
                     return colElem[0];
                 return null;
@@ -2140,7 +2140,7 @@ window.qBittorrent.DynamicTable ??= (() => {
          */
         toggleGlobalCheckbox: function() {
             const checkbox = $("rootMultiRename_cb");
-            const checkboxes = $$("input.RenamingCB");
+            const checkboxes = document.querySelectorAll("input.RenamingCB");
 
             for (let i = 0; i < checkboxes.length; ++i) {
                 const node = this.getNode(i);
@@ -2180,22 +2180,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateGlobalCheckbox: () => {
             const checkbox = $("rootMultiRename_cb");
-            const checkboxes = $$("input.RenamingCB");
-            const isAllChecked = () => {
-                for (let i = 0; i < checkboxes.length; ++i) {
-                    if (!checkboxes[i].checked)
-                        return false;
-                }
-                return true;
-            };
-            const isAllUnchecked = () => {
-                for (let i = 0; i < checkboxes.length; ++i) {
-                    if (checkboxes[i].checked)
-                        return false;
-                }
-                return true;
-            };
-            if (isAllChecked()) {
+            const checkboxes = document.querySelectorAll("input.RenamingCB");
+            const isAllChecked = Array.prototype.every.call(checkboxes, (checkbox => checkbox.checked));
+            const isAllUnchecked = (() => Array.prototype.every.call(checkboxes, (checkbox => !checkbox.checked)));
+            if (isAllChecked) {
                 checkbox.state = "checked";
                 checkbox.indeterminate = false;
                 checkbox.checked = true;

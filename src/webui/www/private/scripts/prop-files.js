@@ -283,23 +283,9 @@ window.qBittorrent.PropFiles ??= (() => {
         checkbox.indeterminate = true;
     };
 
-    const isAllCheckboxesChecked = () => {
-        const checkboxes = $$("input.DownloadedCB");
-        for (let i = 0; i < checkboxes.length; ++i) {
-            if (!checkboxes[i].checked)
-                return false;
-        }
-        return true;
-    };
+    const isAllCheckboxesChecked = () => Array.prototype.every.call(document.querySelectorAll("input.DownloadedCB"), (checkbox => checkbox.checked));
 
-    const isAllCheckboxesUnchecked = () => {
-        const checkboxes = $$("input.DownloadedCB");
-        for (let i = 0; i < checkboxes.length; ++i) {
-            if (checkboxes[i].checked)
-                return false;
-        }
-        return true;
-    };
+    const isAllCheckboxesUnchecked = () => Array.prototype.every.call(document.querySelectorAll("input.DownloadedCB"), (checkbox => !checkbox.checked));
 
     const setFilePriority = (ids, fileIds, priority) => {
         if (current_hash === "")
@@ -630,7 +616,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     torrentFilesTable.setup("torrentFilesTableDiv", "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu);
     // inject checkbox into table header
-    const tableHeaders = $$("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
+    const tableHeaders = document.querySelectorAll("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
     if (tableHeaders.length > 0) {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
