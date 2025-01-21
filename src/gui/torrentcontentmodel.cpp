@@ -400,7 +400,9 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
             const bool hasIgnored = std::any_of(childItems.cbegin(), childItems.cend()
                          , [](const TorrentContentModelItem *childItem)
             {
-                return (childItem->priority() == BitTorrent::DownloadPriority::Ignored);
+                const auto prio = childItem->priority();
+                return ((prio == BitTorrent::DownloadPriority::Ignored)
+                    || (prio == BitTorrent::DownloadPriority::Mixed));
             });
 
             return hasIgnored ? Qt::PartiallyChecked : Qt::Checked;
