@@ -1483,7 +1483,7 @@ void TorrentsController::setTagsAction()
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
 
     TagSet newTags {tags.begin(), tags.end()};
-    applyToTorrents(hashes, [&newTags](BitTorrent::Torrent *const torrent)
+    applyToTorrents(hashes, [newTags](BitTorrent::Torrent *const torrent)
     {
         for (const Tag &tag : asConst(torrent->tags()))
         {
