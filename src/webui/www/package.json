@@ -7,7 +7,7 @@
   },
   "scripts": {
     "format": "js-beautify -r *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && prettier --write **.css",
-    "lint": "eslint *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css && html-validate private public"
+    "lint": "eslint --cache *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint --cache **/*.css && html-validate private public"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "*",
