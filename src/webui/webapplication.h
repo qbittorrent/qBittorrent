@@ -54,7 +54,7 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 11, 3};
+inline const Utils::Version<3, 2> API_VERSION {2, 11, 4};
 
 class QTimer;
 
@@ -212,6 +212,7 @@ private:
         {{u"torrents"_s, u"setShareLimits"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSSLParameters"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSuperSeeding"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"setTags"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::METHOD_POST},
