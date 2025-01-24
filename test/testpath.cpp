@@ -63,6 +63,10 @@ private slots:
         QVERIFY(Path(uR"(\\?\C:\)"_s) == Path(std::string(R"(\\?\C:\)")));
 
         QVERIFY(Path(uR"(\\?\C:\abc)"_s) == Path(std::string(R"(\\?\C:\abc)")));
+
+        QVERIFY(Path(uR"(\\nas01\drive)"_s) == Path(std::string(R"(\\nas01\drive)")));
+        QVERIFY(Path(uR"(\\nas01\drive\xxx)"_s) == Path(std::string(R"(\\nas01\drive\xxx)")));
+        QVERIFY(Path(uR"(\\nas01\drive\xxx\\)"_s) == Path(std::string(R"(\\nas01\drive\xxx)")));
 #endif
     }
 
@@ -109,11 +113,31 @@ private slots:
         QCOMPARE(Path(u"<"_s).isValid(), false);
         QCOMPARE(Path(u">"_s).isValid(), false);
         QCOMPARE(Path(u"|"_s).isValid(), false);
+
+        QCOMPARE(Path(uR"(\\nas01\drive)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx\\)"_s).isValid(), true);
 #else
         QCOMPARE(Path(u"\0"_s).isValid(), false);
 #endif
     }
 
+#ifdef Q_OS_WIN
+    void testIsUNCPath() const
+    {
+        QCOMPARE(Path(uR"(\\)"_s).isUNCPath, false);
+        QCOMPARE(Path(uR"(\\\)"_s).isUNCPath, false);
+
+        QCOMPARE(Path(uR"(\\nas01\drive)"_s).isUNCPath, true);
+        QCOMPARE(Path(uR"(\\nas01\drive\)"_s).isUNCPath, true);
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx)"_s).isUNCPath, true);
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx\)"_s).isUNCPath, true);
+
+        QCOMPARE(Path(uR"(\\C:\\drive\xxx)"_s).isUNCPath, false);
+        QCOMPARE(Path(uR"(\\nas01\drive\?)"_s).isUNCPath, false);
+        QCOMPARE(Path(uR"(\\nas01\?\xxx)"_s).isUNCPath, false);
+    }
+#endif
     void testIsEmpty() const
     {
         QCOMPARE(Path().isEmpty(), true);
@@ -247,6 +271,10 @@ private slots:
         QCOMPARE(Path(uR"(c:\)"_s).rootItem(), Path(uR"(c:/)"_s));
         QCOMPARE(Path(uR"(c:\a)"_s).rootItem(), Path(uR"(c:\)"_s));
         QCOMPARE(Path(uR"(c:\a\b)"_s).rootItem(), Path(uR"(c:\)"_s));
+
+        QCOMPARE(Path(uR"(\\nas01\drive)"_s).rootItem(), Path(uR"(\\nas01\drive)"_s));
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx)"_s).rootItem(), Path(uR"(\\nas01\drive)"_s));
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx\yyy)"_s).rootItem(), Path(uR"(\\nas01\drive)"_s));
 #else
         QCOMPARE(Path(uR"(\a)"_s).rootItem(), Path(uR"(\a)"_s));
         QCOMPARE(Path(uR"(\\a)"_s).rootItem(), Path(uR"(\\a)"_s));
@@ -280,6 +308,10 @@ private slots:
         QCOMPARE(Path(uR"(c:\)"_s).parentPath(), Path());
         QCOMPARE(Path(uR"(c:\a)"_s).parentPath(), Path(uR"(c:\)"_s));
         QCOMPARE(Path(uR"(c:\a\b)"_s).parentPath(), Path(uR"(c:\a)"_s));
+
+        QCOMPARE(Path(uR"(\\nas01\drive)"_s).parentPath(), Path(uR"(\\nas01\drive)"_s));
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx)"_s).parentPath(), Path(uR"(\\nas01\drive)"_s));
+        QCOMPARE(Path(uR"(\\nas01\drive\xxx\yyy)"_s).parentPath(), Path(uR"(\\nas01\drive\xxx)"_s));
 #else
         QCOMPARE(Path(uR"(\a)"_s).parentPath(), Path());
         QCOMPARE(Path(uR"(\\a)"_s).parentPath(), Path());

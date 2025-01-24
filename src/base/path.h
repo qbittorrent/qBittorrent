@@ -50,6 +50,12 @@ public:
     bool isEmpty() const;
     bool isAbsolute() const;
     bool isRelative() const;
+    bool isUNCPath = false;
+
+#if defined(Q_OS_WIN)
+    bool validateUNCPath() const;
+    bool validateUNCPath(const QString &pathStr) const;
+#endif
 
     bool exists() const;
 
@@ -86,9 +92,14 @@ public:
 private:
     // this constructor doesn't perform any checks
     // so it's intended for internal use only
-    static Path createUnchecked(const QString &pathStr);
+    static Path createUnchecked(const QString &pathStr, const bool isUNCPath = false);
 
     QString m_pathStr;
+
+#if defined(Q_OS_WIN)
+    QString rootStr;
+    QPair<QString, QString> splitUNCPath(const QString &pathStr) const;
+#endif
 };
 
 Q_DECLARE_METATYPE(Path)
