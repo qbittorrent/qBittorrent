@@ -41,7 +41,3 @@ src/icons/skin/build-icons/icons/*.png
 
 # CMake build directory
 build/
-
-# Web UI tools
-node_modules
-package-lock.json
