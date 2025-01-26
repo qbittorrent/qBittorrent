@@ -39,6 +39,7 @@
 
 class QEvent;
 class QObject;
+class QStringListModel;
 
 class SearchJobWidget;
 
@@ -93,8 +94,12 @@ private:
     QString generateTabID() const;
     int addTab(const QString &tabID, SearchJobWidget *searchJobWdget);
 
-    void saveSession() const;
+    void loadHistory();
     void restoreSession();
+    void updateHistory(const QString &newSearchPattern);
+    void saveSession() const;
+
+    void createSearchPatternCompleter();
 
     Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
@@ -103,9 +108,12 @@ private:
 
     bool m_storeOpenedTabs = false;
     bool m_storeOpenedTabsResults = false;
+    int m_historyLength = 0;
 
     Utils::Thread::UniquePtr m_ioThread;
 
     class DataStorage;
     DataStorage *m_dataStorage = nullptr;
+
+    QStringListModel *m_searchPatternCompleterModel = nullptr;
 };

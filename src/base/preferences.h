@@ -173,6 +173,8 @@ public:
     void setSearchEnabled(bool enabled);
 
     // Search UI
+    int searchHistoryLength() const;
+    void setSearchHistoryLength(int length);
     bool storeOpenedSearchTabs() const;
     void setStoreOpenedSearchTabs(bool enabled);
     bool storeOpenedSearchTabResults() const;
