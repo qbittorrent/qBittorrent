@@ -164,6 +164,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_s, u"folder-download"_s));
     m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s, u"chronometer"_s));
     m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
+    m_ui->tabSelection->item(TAB_SEARCH)->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
 #ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #else
@@ -190,6 +191,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     loadSpeedTabOptions();
     loadBittorrentTabOptions();
     loadRSSTabOptions();
+    loadSearchTabOptions();
 #ifndef DISABLE_WEBUI
     loadWebUITabOptions();
 #endif
@@ -1273,6 +1275,25 @@ void OptionsDialog::saveRSSTabOptions() const
     autoDownloader->setDownloadRepacks(m_ui->checkSmartFilterDownloadRepacks->isChecked());
 }
 
+void OptionsDialog::loadSearchTabOptions()
+{
+    const auto *pref = Preferences::instance();
+
+    m_ui->groupStoreOpenedTabs->setChecked(pref->storeOpenedSearchTabs());
+    m_ui->checkStoreTabsSearchResults->setChecked(pref->storeOpenedSearchTabResults());
+
+    connect(m_ui->groupStoreOpenedTabs, &QGroupBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->checkStoreTabsSearchResults, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+}
+
+void OptionsDialog::saveSearchTabOptions() const
+{
+    auto *pref = Preferences::instance();
+
+    pref->setStoreOpenedSearchTabs(m_ui->groupStoreOpenedTabs->isChecked());
+    pref->setStoreOpenedSearchTabResults(m_ui->checkStoreTabsSearchResults->isChecked());
+}
+
 #ifndef DISABLE_WEBUI
 void OptionsDialog::loadWebUITabOptions()
 {
@@ -1465,6 +1486,7 @@ void OptionsDialog::saveOptions() const
     saveSpeedTabOptions();
     saveBittorrentTabOptions();
     saveRSSTabOptions();
+    saveSearchTabOptions();
 #ifndef DISABLE_WEBUI
     saveWebUITabOptions();
 #endif
