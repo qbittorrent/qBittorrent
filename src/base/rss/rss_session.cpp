@@ -28,7 +28,7 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  */
-
+#include <memory> 
 #include "rss_session.h"
 
 #include <chrono>
@@ -432,9 +432,11 @@ Folder *Session::addSubfolder(const QString &name, Folder *parentFolder)
 
 Feed *Session::addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder)
 {
-    auto *feed = new Feed(uid, url, Item::joinPath(parentFolder->path(), name), this);
-    addItem(feed, parentFolder);
-    return feed;
+    auto feed = std::make_unique<Feed>(uid, url, Item::joinPath(parentFolder->path(), name), this);
+    Feed *feedPtr = feed.get();
+    addItem(feedPtr, parentFolder);
+    feed.release();
+    return feedPtr;
 }
 
 void Session::addItem(Item *item, Folder *destFolder)
