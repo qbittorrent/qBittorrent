@@ -67,7 +67,9 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // option diffs menu
             this.menu = $(this.options.menu);
-            this.targets = $$(this.options.targets);
+            this.targets = (this.options.targets.length > 0)
+                ? Array.from(document.querySelectorAll(this.options.targets))
+                : [];
 
             // fx
             this.fx = new Fx.Tween(this.menu, {
@@ -197,9 +199,8 @@ window.qBittorrent.ContextMenu ??= (() => {
         // get things started
         startListener() {
             /* all elements */
-            this.targets.each((el) => {
+            for (const el of this.targets)
                 this.setupEventListeners(el);
-            }, this);
 
             /* menu items */
             this.menu.addEventListener("click", (e) => {

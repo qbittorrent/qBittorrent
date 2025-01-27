@@ -105,10 +105,10 @@ div:has(> div.dynamicTableFixedHeaderDiv):not(.invisible) {
 }
 
 .dynamicTableDiv thead th {
-    height: 0px !important;
-    line-height: 0px !important;
-    padding-bottom: 0px !important;
-    padding-top: 0px !important;
+    height: 0 !important;
+    line-height: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
 }
 
 /* Trackers table */

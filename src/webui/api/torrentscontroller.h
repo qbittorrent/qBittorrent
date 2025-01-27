@@ -61,6 +61,7 @@ private slots:
     void removeCategoriesAction();
     void categoriesAction();
     void addTagsAction();
+    void setTagsAction();
     void removeTagsAction();
     void createTagsAction();
     void deleteTagsAction();

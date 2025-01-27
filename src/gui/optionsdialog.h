@@ -74,6 +74,7 @@ class OptionsDialog final : public GUIApplicationComponent<QDialog>
         TAB_CONNECTION,
         TAB_SPEED,
         TAB_BITTORRENT,
+        TAB_SEARCH,
         TAB_RSS,
         TAB_WEBUI,
         TAB_ADVANCED
@@ -138,6 +139,10 @@ private:
     void saveRSSTabOptions() const;
 
     void onAddTrackersDownload(const Net::DownloadResult &result);
+
+    void loadSearchTabOptions();
+    void saveSearchTabOptions() const;
+
 
 #ifndef DISABLE_WEBUI
     void loadWebUITabOptions();

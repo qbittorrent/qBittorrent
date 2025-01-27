@@ -159,7 +159,7 @@ window.qBittorrent.MultiRename ??= (() => {
                 // Get file extension and reappend the "." (only when the file has an extension)
                 let fileExtension = window.qBittorrent.Filesystem.fileExtension(row.original);
                 if (fileExtension)
-                    fileExtension = "." + fileExtension;
+                    fileExtension = `.${fileExtension}`;
 
                 const fileNameWithoutExt = row.original.slice(0, row.original.lastIndexOf(fileExtension));
 

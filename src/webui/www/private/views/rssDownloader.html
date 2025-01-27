@@ -375,17 +375,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             // recalculate height
             const warningHeight = $("rssDownloaderDisabled").getBoundingClientRect().height;
 
-            $("leftRssDownloaderColumn").style.height = "calc(100% - " + warningHeight + "px)";
-            $("centerRssDownloaderColumn").style.height = "calc(100% - " + warningHeight + "px)";
-            $("rightRssDownloaderColumn").style.height = "calc(100% - " + warningHeight + "px)";
+            $("leftRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
+            $("centerRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
+            $("rightRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
 
-            $("rulesTable").style.height = "calc(100% - " + $("rulesTableDesc").getBoundingClientRect().height + "px)";
-            $("rssDownloaderArticlesTable").style.height = "calc(100% - " + $("articleTableDesc").getBoundingClientRect().height + "px)";
+            $("rulesTable").style.height = `calc(100% - ${$("rulesTableDesc").getBoundingClientRect().height}px)`;
+            $("rssDownloaderArticlesTable").style.height = `calc(100% - ${$("articleTableDesc").getBoundingClientRect().height}px)`;
 
             const centerRowNotTableHeight = $("saveButton").getBoundingClientRect().height
                 + $("ruleSettings").getBoundingClientRect().height + 15;
 
-            $("rssDownloaderFeeds").style.height = "calc(100% - " + centerRowNotTableHeight + "px)";
+            $("rssDownloaderFeeds").style.height = `calc(100% - ${centerRowNotTableHeight}px)`;
 
             // firefox calculates the height of the table inside fieldset differently and thus doesn't need the offset
             if (navigator.userAgent.toLowerCase().includes("firefox")) {
@@ -393,7 +393,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             }
             else {
                 const outsideTableHeight = ($("rssDownloaderFeedsTable").getBoundingClientRect().top - $("rssDownloaderFeeds").getBoundingClientRect().top) - 10;
-                $("rssDownloaderFeedsTable").style.height = "calc(100% - " + outsideTableHeight + "px)";
+                $("rssDownloaderFeedsTable").style.height = `calc(100% - ${outsideTableHeight}px)`;
             }
 
             const rssDownloaderRuleContextMenu = new window.qBittorrent.ContextMenu.RssDownloaderRuleContextMenu({
@@ -547,7 +547,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
-                contentURL: "rename_rule.html?rule=" + encodeURIComponent(rule),
+                contentURL: `rename_rule.html?rule=${encodeURIComponent(rule)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -570,7 +570,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
-                contentURL: "confirmruledeletion.html?rules=" + encodeURIComponent(encodedRules.join("|")),
+                contentURL: `confirmruledeletion.html?rules=${encodeURIComponent(encodedRules.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -586,7 +586,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
-                contentURL: "confirmruleclear.html?rules=" + encodeURIComponent(encodedRules.join("|")),
+                contentURL: `confirmruleclear.html?rules=${encodeURIComponent(encodedRules.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -818,8 +818,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const secondPart = "QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]"
                 .replace("%1", "|").replace("%2", "expr|");
 
-            $("mustContainText").title = mainPart + secondPart + "QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]";
-            $("mustNotContainText").title = mainPart + secondPart + "QBT_TR( will exclude all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]";
+            $("mustContainText").title = `${mainPart}${secondPart}QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]`;
+            $("mustNotContainText").title = `${mainPart}${secondPart}QBT_TR( will exclude all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]`;
 
             let episodeFilterTitle = "QBT_TR(Matches articles based on episode filter.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
                 + "QBT_TR(Example: )QBT_TR[CONTEXT=AutomatedRssDownloader]"

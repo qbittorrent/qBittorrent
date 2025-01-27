@@ -7,13 +7,13 @@
   },
   "scripts": {
     "format": "js-beautify -r *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && prettier --write **.css",
-    "lint": "eslint *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint **/*.css && html-validate private public"
+    "lint": "eslint --cache *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js && stylelint --cache **/*.css && html-validate private public"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "*",
     "eslint": "*",
     "eslint-plugin-html": "*",
-    "eslint-plugin-prefer-arrow-functions": "3.4.2",
+    "eslint-plugin-prefer-arrow-functions": "*",
     "eslint-plugin-regexp": "*",
     "html-validate": "*",
     "js-beautify": "*",

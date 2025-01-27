@@ -579,7 +579,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
     const QString logMsg = tr("Running external program. Torrent: \"%1\". Command: `%2`");
     const QString logMsgError = tr("Failed to run external program. Torrent: \"%1\". Command: `%2`");
 
-    // The processing sequenece is different for Windows and other OS, this is intentional
+    // The processing sequence is different for Windows and other OS, this is intentional
 #if defined(Q_OS_WIN)
     const QString program = replaceVariables(programTemplate);
     const std::wstring programWStr = program.toStdWString();

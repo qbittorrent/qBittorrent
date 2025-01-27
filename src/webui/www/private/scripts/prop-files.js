@@ -127,13 +127,13 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const isDownloadCheckboxExists = (id) => {
-        return $("cbPrio" + id) !== null;
+        return $(`cbPrio${id}`) !== null;
     };
 
     const createDownloadCheckbox = (id, fileId, checked) => {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        checkbox.id = "cbPrio" + id;
+        checkbox.id = `cbPrio${id}`;
         checkbox.setAttribute("data-id", id);
         checkbox.setAttribute("data-file-id", fileId);
         checkbox.className = "DownloadedCB";
@@ -144,7 +144,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const updateDownloadCheckbox = (id, checked) => {
-        const checkbox = $("cbPrio" + id);
+        const checkbox = $(`cbPrio${id}`);
         updateCheckbox(checkbox, checked);
     };
 
@@ -163,7 +163,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const isPriorityComboExists = (id) => {
-        return $("comboPrio" + id) !== null;
+        return $(`comboPrio${id}`) !== null;
     };
 
     const createPriorityCombo = (id, fileId, selectedPriority) => {
@@ -176,7 +176,7 @@ window.qBittorrent.PropFiles ??= (() => {
         };
 
         const select = document.createElement("select");
-        select.id = "comboPrio" + id;
+        select.id = `comboPrio${id}`;
         select.setAttribute("data-id", id);
         select.setAttribute("data-file-id", fileId);
         select.classList.add("combo_priority");
@@ -196,7 +196,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const updatePriorityCombo = (id, selectedPriority) => {
-        const combobox = $("comboPrio" + id);
+        const combobox = $(`comboPrio${id}`);
         if (Number(combobox.value) !== selectedPriority)
             selectComboboxPriority(combobox, selectedPriority);
     };
@@ -283,23 +283,9 @@ window.qBittorrent.PropFiles ??= (() => {
         checkbox.indeterminate = true;
     };
 
-    const isAllCheckboxesChecked = () => {
-        const checkboxes = $$("input.DownloadedCB");
-        for (let i = 0; i < checkboxes.length; ++i) {
-            if (!checkboxes[i].checked)
-                return false;
-        }
-        return true;
-    };
+    const isAllCheckboxesChecked = () => Array.prototype.every.call(document.querySelectorAll("input.DownloadedCB"), (checkbox => checkbox.checked));
 
-    const isAllCheckboxesUnchecked = () => {
-        const checkboxes = $$("input.DownloadedCB");
-        for (let i = 0; i < checkboxes.length; ++i) {
-            if (checkboxes[i].checked)
-                return false;
-        }
-        return true;
-    };
+    const isAllCheckboxesUnchecked = () => Array.prototype.every.call(document.querySelectorAll("input.DownloadedCB"), (checkbox => !checkbox.checked));
 
     const setFilePriority = (ids, fileIds, priority) => {
         if (current_hash === "")
@@ -324,10 +310,10 @@ window.qBittorrent.PropFiles ??= (() => {
             });
 
         const ignore = (priority === FilePriority.Ignored);
-        ids.forEach((_id) => {
-            torrentFilesTable.setIgnored(_id, ignore);
+        ids.forEach((id) => {
+            torrentFilesTable.setIgnored(id, ignore);
 
-            const combobox = $("comboPrio" + _id);
+            const combobox = $(`comboPrio${id}`);
             if (combobox !== null)
                 selectComboboxPriority(combobox, priority);
         });
@@ -522,7 +508,7 @@ window.qBittorrent.PropFiles ??= (() => {
         const rowIds = [];
         const fileIds = [];
         selectedRows.forEach((rowId) => {
-            const elem = $("comboPrio" + rowId);
+            const elem = $(`comboPrio${rowId}`);
             rowIds.push(rowId);
             fileIds.push(elem.getAttribute("data-file-id"));
         });
@@ -558,8 +544,7 @@ window.qBittorrent.PropFiles ??= (() => {
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             loadMethod: "iframe",
-            contentURL: "rename_file.html?hash=" + hash + "&isFolder=" + node.isFolder
-                + "&path=" + encodeURIComponent(path),
+            contentURL: `rename_file.html?hash=${hash}&isFolder=${node.isFolder}&path=${encodeURIComponent(path)}`,
             scrollbars: false,
             resizable: true,
             maximizable: false,
@@ -631,7 +616,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     torrentFilesTable.setup("torrentFilesTableDiv", "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu);
     // inject checkbox into table header
-    const tableHeaders = $$("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
+    const tableHeaders = document.querySelectorAll("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
     if (tableHeaders.length > 0) {
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
@@ -673,7 +658,7 @@ window.qBittorrent.PropFiles ??= (() => {
      * Show/hide a node's row
      */
     const _hideNode = (node, shouldHide) => {
-        const span = $("filesTablefileName" + node.rowId);
+        const span = $(`filesTablefileName${node.rowId}`);
         // span won't exist if row has been filtered out
         if (span === null)
             return;
@@ -685,7 +670,7 @@ window.qBittorrent.PropFiles ??= (() => {
      * Update a node's collapsed state and icon
      */
     const _updateNodeState = (node, isCollapsed) => {
-        const span = $("filesTablefileName" + node.rowId);
+        const span = $(`filesTablefileName${node.rowId}`);
         // span won't exist if row has been filtered out
         if (span === null)
             return;
@@ -700,7 +685,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const _isCollapsed = (node) => {
-        const span = $("filesTablefileName" + node.rowId);
+        const span = $(`filesTablefileName${node.rowId}`);
         if (span === null)
             return true;
 

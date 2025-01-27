@@ -40,7 +40,7 @@ window.qBittorrent.ProgressBar ??= (() => {
     const ProgressBar = new Class({
         initialize: (value, parameters) => {
             const vals = {
-                id: "progressbar_" + (progressBars++),
+                id: `progressbar_${progressBars++}`,
                 value: [value, 0].pick(),
                 width: 0,
                 height: 0,

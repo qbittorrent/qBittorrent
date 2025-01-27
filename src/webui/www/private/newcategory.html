@@ -82,7 +82,7 @@
                             })
                             .then((response) => {
                                 if (!response.ok) {
-                                    alert("QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] " + window.qBittorrent.Misc.escapeHtml(categoryName));
+                                    alert(`QBT_TR(Unable to create category)QBT_TR[CONTEXT=Category] ${window.qBittorrent.Misc.escapeHtml(categoryName)}`);
                                     return;
                                 }
 

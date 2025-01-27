@@ -1824,42 +1824,42 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const addWatchFolder = (folder = "", sel = "default_folder", other = "") => {
             const pos = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-            const myinput = "<input id='text_watch_" + pos + "' type='text' value='" + folder + "'>";
+            const myinput = `<input id='text_watch_${pos}' type='text' value='${folder}'>`;
             const disableInput = (sel !== "other");
-            const mycb = "<div class='select-watched-folder-editable'>"
-                + "<select id ='cb_watch_" + pos + "' onchange='qBittorrent.Preferences.changeWatchFolderSelect(this)'>"
-                + "<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-                + "<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-                + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
-                + "</select>"
-                + "<input id='cb_watch_txt_" + pos + "' type='text' " + (disableInput ? "hidden " : "") + "/>"
-                + "<img src='images/list-add.svg' id='addFolderImg_" + pos + "' alt='Add' style='padding-left:170px;width:16px;cursor:pointer;' onclick='qBittorrent.Preferences.addWatchFolder();'>"
-                + "</div>";
+            const mycb = `<div class='select-watched-folder-editable'>`
+                + `<select id ='cb_watch_${pos}' onchange='qBittorrent.Preferences.changeWatchFolderSelect(this);'>`
+                + `<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>`
+                + `<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>`
+                + `<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]</option>`
+                + `</select>`
+                + `<input id='cb_watch_txt_${pos}' type='text' ${disableInput ? "hidden " : ""}/>`
+                + `<img src='images/list-add.svg' id='addFolderImg_${pos}' alt='Add' style='padding-left:170px;width:16px;cursor:pointer;' onclick='qBittorrent.Preferences.addWatchFolder();'>`
+                + `</div>`;
 
             watchedFoldersTable.push([myinput, mycb]);
-            $("cb_watch_" + pos).value = sel;
+            $(`cb_watch_${pos}`).value = sel;
             if (disableInput) {
-                const elt = $("cb_watch_" + pos);
+                const elt = $(`cb_watch_${pos}`);
                 other = elt.options[elt.selectedIndex].textContent;
             }
-            $("cb_watch_txt_" + pos).value = other;
+            $(`cb_watch_txt_${pos}`).value = other;
 
             // hide previous img
             if (pos > 0)
-                $("addFolderImg_" + (pos - 1)).style.display = "none";
+                $(`addFolderImg_${pos - 1}`).style.display = "none";
         };
 
         const getWatchedFolders = () => {
             const nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
             const folders = new Hash();
             for (let i = 0; i < nb_folders; ++i) {
-                const fpath = $("text_watch_" + i).value.trim();
+                const fpath = $(`text_watch_${i}`).value.trim();
                 if (fpath.length > 0) {
-                    const sel = $("cb_watch_" + i).value.trim();
+                    const sel = $(`cb_watch_${i}`).value.trim();
 
                     let other;
                     if (sel === "other")
-                        other = $("cb_watch_txt_" + i).value.trim();
+                        other = $(`cb_watch_txt_${i}`).value.trim();
                     else
                         other = (sel === "watch_folder") ? 0 : 1;
 
@@ -2096,7 +2096,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const time_padding = (val) => {
             let ret = val.toString();
             if (ret.length === 1)
-                ret = "0" + ret;
+                ret = `0${ret}`;
             return ret;
         };
 

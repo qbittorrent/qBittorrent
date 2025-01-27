@@ -28,7 +28,7 @@ body {
 }
 
 #error_msg {
-    color: #f00;
+    color: #ff0000;
     white-space: pre;
 }
 

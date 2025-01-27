@@ -82,10 +82,11 @@ namespace
     }
 }
 
-SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent)
+SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
-    , m_ui {new Ui::SearchJobWidget}
     , m_nameFilteringMode {u"Search/FilteringMode"_s}
+    , m_id {id}
+    , m_ui {new Ui::SearchJobWidget}
 {
     m_ui->setupUi(this);
 
@@ -151,9 +152,6 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &SearchJobWidget::saveSettings);
 
     fillFilterComboBoxes();
-    setStatusTip(statusText(m_status));
-
-    assignSearchHandler(searchHandler);
 
     m_lineEditSearchResultsFilter = new LineEdit(this);
     m_lineEditSearchResultsFilter->setPlaceholderText(tr("Filter search results..."));
@@ -186,19 +184,42 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &SearchJobWidget::onUIThemeChanged);
 }
 
+SearchJobWidget::SearchJobWidget(const QString &id, const QString &searchPattern
+        , const QList<SearchResult> &searchResults, IGUIApplication *app, QWidget *parent)
+    : SearchJobWidget(id, app, parent)
+{
+    m_searchPattern = searchPattern;
+    m_proxyModel->setNameFilter(m_searchPattern);
+    updateFilter();
+
+    appendSearchResults(searchResults);
+}
+
+SearchJobWidget::SearchJobWidget(const QString &id, SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent)
+    : SearchJobWidget(id, app, parent)
+{
+    assignSearchHandler(searchHandler);
+}
+
 SearchJobWidget::~SearchJobWidget()
 {
     saveSettings();
     delete m_ui;
 }
 
+QString SearchJobWidget::id() const
+{
+    return m_id;
+}
+
 QString SearchJobWidget::searchPattern() const
 {
-    Q_ASSERT(m_searchHandler);
-    if (!m_searchHandler) [[unlikely]]
-        return {};
+    return m_searchPattern;
+}
 
-    return m_searchHandler->pattern();
+QList<SearchResult> SearchJobWidget::searchResults() const
+{
+    return m_searchResults;
 }
 
 void SearchJobWidget::onItemDoubleClicked(const QModelIndex &index)
@@ -264,6 +285,7 @@ void SearchJobWidget::assignSearchHandler(SearchHandler *searchHandler)
     if (!searchHandler) [[unlikely]]
         return;
 
+    m_searchResults.clear();
     m_searchListModel->removeRows(0, m_searchListModel->rowCount());
     delete m_searchHandler;
 
@@ -273,7 +295,9 @@ void SearchJobWidget::assignSearchHandler(SearchHandler *searchHandler)
     connect(m_searchHandler, &SearchHandler::searchFinished, this, &SearchJobWidget::searchFinished);
     connect(m_searchHandler, &SearchHandler::searchFailed, this, &SearchJobWidget::searchFailed);
 
-    m_proxyModel->setNameFilter(m_searchHandler->pattern());
+    m_searchPattern = m_searchHandler->pattern();
+
+    m_proxyModel->setNameFilter(m_searchPattern);
     updateFilter();
 
     setStatus(Status::Ongoing);
@@ -281,8 +305,7 @@ void SearchJobWidget::assignSearchHandler(SearchHandler *searchHandler)
 
 void SearchJobWidget::cancelSearch()
 {
-    Q_ASSERT(m_searchHandler);
-    if (!m_searchHandler) [[unlikely]]
+    if (!m_searchHandler)
         return;
 
     m_searchHandler->cancelSearch();
@@ -363,7 +386,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
     }
     else
     {
-        SearchDownloadHandler *downloadHandler = m_searchHandler->manager()->downloadTorrent(engineName, torrentUrl);
+        SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(engineName, torrentUrl);
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished
             , this, [this, option](const QString &source) { addTorrentToSession(source, option); });
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
@@ -605,6 +628,7 @@ void SearchJobWidget::appendSearchResults(const QList<SearchResult> &results)
         setModelData(SearchSortModel::PUB_DATE, QLocale().toString(result.pubDate.toLocalTime(), QLocale::ShortFormat), result.pubDate);
     }
 
+    m_searchResults.append(results);
     updateResultsCount();
 }
 

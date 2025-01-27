@@ -343,7 +343,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "newfeed.html?path=" + encodeURIComponent(path),
+                contentURL: `newfeed.html?path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -371,7 +371,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "newfolder.html?path=" + encodeURIComponent(path),
+                contentURL: `newfolder.html?path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -449,7 +449,7 @@
                 // Place in iframe with sandbox attribute to prevent js execution
                 const torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $("rssDetailsView").append(torrentDescription);
-                document.getElementById("rssDescription").srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>' + article.description + "</body></html>";
+                document.getElementById("rssDescription").srcdoc = `<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>${article.description}</body></html>`;
             }
         };
 
@@ -475,7 +475,7 @@
                             if (!Object.hasOwn(current, child))
                                 continue;
 
-                            const currentFullName = fullName ? (fullName + "\\" + child) : child;
+                            const currentFullName = fullName ? `${fullName}\\${child}` : child;
                             if (current[child].uid !== undefined) {
                                 current[child].name = child;
                                 current[child].isFolder = false;
@@ -733,7 +733,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "rename_feed.html?oldPath=" + encodeURIComponent(oldPath),
+                contentURL: `rename_feed.html?oldPath=${encodeURIComponent(oldPath)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -769,7 +769,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "confirmfeeddeletion.html?paths=" + encodeURIComponent(encodedPaths.join("|")),
+                contentURL: `confirmfeeddeletion.html?paths=${encodeURIComponent(encodedPaths.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,

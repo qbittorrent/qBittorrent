@@ -42,7 +42,7 @@ window.qBittorrent.pathAutofill ??= (() => {
 
     const showInputSuggestions = (inputElement, names) => {
         const datalist = document.createElement("datalist");
-        datalist.id = inputElement.id + "Suggestions";
+        datalist.id = `${inputElement.id}Suggestions`;
         for (const name of names) {
             const option = document.createElement("option");
             option.value = name;
