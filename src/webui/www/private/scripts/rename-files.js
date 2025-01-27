@@ -130,7 +130,7 @@ window.qBittorrent.MultiRename ??= (() => {
                 regexFlags += "i";
 
             // Setup regex search
-            const regexEscapeExp = new RegExp(/[/\-\\^$*+?.()|[\]{}]/g);
+            const regexEscapeExp = /[/\-\\^$*+?.()|[\]{}]/g;
             const standardSearch = new RegExp(this._inner_search.replace(regexEscapeExp, "\\$&"), regexFlags);
             let regexSearch;
             try {
