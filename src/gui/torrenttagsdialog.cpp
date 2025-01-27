@@ -25,7 +25,7 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  */
-
+#include <memory>
 #include "torrenttagsdialog.h"
 
 #include <QCheckBox>
@@ -53,18 +53,18 @@ TorrentTagsDialog::TorrentTagsDialog(const TagSet &initialTags, QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    auto *tagsLayout = new FlowLayout(m_ui->scrollArea->widget());
+    auto tagsLayout = std::make_unique<FlowLayout>(m_ui->scrollArea->widget());
     for (const Tag &tag : asConst(initialTags.united(BitTorrent::Session::instance()->tags())))
     {
-        auto *tagWidget = new QCheckBox(Utils::Gui::tagToWidgetText(tag));
+        auto tagWidget = std::make_unique<QCheckBox>(Utils::Gui::tagToWidgetText(tag));
         if (initialTags.contains(tag))
             tagWidget->setChecked(true);
-        tagsLayout->addWidget(tagWidget);
+        tagsLayout->addWidget(tagWidget.release());
     }
 
-    auto *addTagButton = new QPushButton(u"+"_s);
-    connect(addTagButton, &QPushButton::clicked, this, &TorrentTagsDialog::addNewTag);
-    tagsLayout->addWidget(addTagButton);
+    auto addTagButton = std::make_unique<QPushButton>(u"+"_s);
+    connect(addTagButton.get(), &QPushButton::clicked, this, &TorrentTagsDialog::addNewTag);
+    tagsLayout->addWidget(addTagButton.release());
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
