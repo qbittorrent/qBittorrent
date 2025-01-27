@@ -429,7 +429,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 }
             });
            // get all categories and add to combobox
-       fetch("api/v2/torrents/categories", {
+     fetch("api/v2/torrents/categories", {
     method: "GET",
     cache: "no-store"
 })
@@ -438,15 +438,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
     const responseJSON = await response.json();
 
-    const combobox = $("assignCategoryCombobox");
-    for (const cat in responseJSON) {
-        if (!Object.hasOwn(responseJSON, cat)) continue;
+    const combobox = document.getElementById("assignCategoryCombobox");
+    responseJSON.forEach((category) => {
+       
+        const safeCategory = document.createTextNode(category).textContent;
+
         const option = document.createElement("option");
-        option.value = cat;
-        option.textContent = cat;
+        option.value = safeCategory;
+        option.textContent = safeCategory;
+
         combobox.add(option);
-    }
+    });
 });
+
 
             // get all rss feed
             const url = new URL("api/v2/rss/items", window.location);
