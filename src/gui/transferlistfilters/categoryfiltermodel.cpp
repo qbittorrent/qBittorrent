@@ -25,7 +25,7 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  */
-
+#include <memory> 
 #include "categoryfiltermodel.h"
 
 #include <QHash>
@@ -333,8 +333,12 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
 
     const int row = parent->childCount();
     beginInsertRows(index(parent), row, row);
-    new CategoryModelItem(
-            parent, m_isSubcategoriesEnabled ? shortName(categoryName) : categoryName);
+    std::unique_ptr<CategoryModelItem> newItem = std::make_unique<CategoryModelItem>(
+        parent, m_isSubcategoriesEnabled ? shortName(categoryName) : categoryName
+    );
+
+    parent->addChild(std::move(newItem));
+
     endInsertRows();
 }
 
