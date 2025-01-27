@@ -386,8 +386,10 @@ void TorrentsController::infoAction()
     // normalize offset
     if (offset < 0)
         offset = size + offset;
-    if ((offset >= size) || (offset < 0))
-        throw APIError(APIErrorType::Conflict, tr("Offset is out of range"));
+    if ((offset >= size) || (offset < 0)) {
+        setResult(QJsonArray {});
+        return;
+    }
     // normalize limit
     if (limit <= 0)
         limit = -1; // unlimited
