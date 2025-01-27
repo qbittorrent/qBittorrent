@@ -433,17 +433,16 @@ void CategoryFilterModel::populate()
     m_isSubcategoriesEnabled = session->isSubcategoriesEnabled();
 
     // All torrents
-    m_rootItem->addChild(CategoryModelItem::UID_ALL
-            , new CategoryModelItem(nullptr, tr("All"), torrents.count()));
+    m_rootItem->addChild(CategoryModelItem::UID_ALL,
+                         std::make_unique<CategoryModelItem>(nullptr, tr("All"), torrents.count()));
 
     // Uncategorized torrents
     using Torrent = BitTorrent::Torrent;
-    const int torrentsCount = std::count_if(torrents.begin(), torrents.end()
-            , [](Torrent *torrent) { return torrent->category().isEmpty(); });
-    m_rootItem->addChild(CategoryModelItem::UID_UNCATEGORIZED
-            , new CategoryModelItem(nullptr, tr("Uncategorized"), torrentsCount));
+    const int torrentsCount = std::count_if(torrents.begin(), torrents.end(),
+                                            [](Torrent *torrent) { return torrent->category().isEmpty(); });
+    m_rootItem->addChild(CategoryModelItem::UID_UNCATEGORIZED,
+                         std::make_unique<CategoryModelItem>(nullptr, tr("Uncategorized"), torrentsCount));
 
-    using BitTorrent::Torrent;
     if (m_isSubcategoriesEnabled)
     {
         for (const QString &categoryName : asConst(session->categories()))
@@ -454,9 +453,9 @@ void CategoryFilterModel::populate()
                 const QString subcatName = shortName(subcat);
                 if (!parent->hasChild(subcatName))
                 {
-                    const int torrentsCount = std::count_if(torrents.cbegin(), torrents.cend()
-                            , [subcat](Torrent *torrent) { return torrent->category() == subcat; });
-                    new CategoryModelItem(parent, subcatName, torrentsCount);
+                    const int torrentsCount = std::count_if(torrents.cbegin(), torrents.cend(),
+                                                            [subcat](Torrent *torrent) { return torrent->category() == subcat; });
+                    parent->addChild(subcatName, std::make_unique<CategoryModelItem>(parent, subcatName, torrentsCount));
                 }
                 parent = parent->child(subcatName);
             }
@@ -466,12 +465,13 @@ void CategoryFilterModel::populate()
     {
         for (const QString &categoryName : asConst(session->categories()))
         {
-            const int torrentsCount = std::count_if(torrents.begin(), torrents.end()
-                    , [categoryName](Torrent *torrent) { return torrent->belongsToCategory(categoryName); });
-            new CategoryModelItem(m_rootItem, categoryName, torrentsCount);
+            const int torrentsCount = std::count_if(torrents.begin(), torrents.end(),
+                                                    [categoryName](Torrent *torrent) { return torrent->belongsToCategory(categoryName); });
+            m_rootItem->addChild(categoryName, std::make_unique<CategoryModelItem>(m_rootItem, categoryName, torrentsCount));
         }
     }
 }
+
 
 CategoryModelItem *CategoryFilterModel::findItem(const QString &fullName) const
 {
