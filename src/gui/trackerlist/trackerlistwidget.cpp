@@ -26,7 +26,7 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  */
-
+#include <memory>
 #include "trackerlistwidget.h"
 
 #include <QAction>
@@ -210,10 +210,9 @@ void TrackerListWidget::openAddTrackersDialog()
 {
     if (!torrent())
         return;
-
-    auto *dialog = new TrackersAdditionDialog(this, torrent());
+    std::unique_ptr<TrackersAdditionDialog> dialog = std::make_unique<TrackersAdditionDialog>(this, torrent());
     dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->open();
+    dialog.release()->open();
 }
 
 void TrackerListWidget::copyTrackerUrl()
