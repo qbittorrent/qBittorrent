@@ -2461,12 +2461,12 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
         m_removingTorrents[torrentID] = {torrentName, torrent->actualStorageLocation(), {}, deleteOption};
 
         const lt::torrent_handle nativeHandle {torrent->nativeHandle()};
-        const auto iter = std::find_if(m_moveStorageQueue.begin(), m_moveStorageQueue.end()
+        const auto iter = std::find_if(m_moveStorageQueue.cbegin(), m_moveStorageQueue.cend()
             , [&nativeHandle](const MoveStorageJob &job)
         {
             return job.torrentHandle == nativeHandle;
         });
-        if (iter != m_moveStorageQueue.end())
+        if (iter != m_moveStorageQueue.cend())
         {
             // We shouldn't actually remove torrent until existing "move storage jobs" are done
             torrentQueuePositionBottom(nativeHandle);
@@ -2486,12 +2486,12 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
         {
             // Delete "move storage job" for the deleted torrent
             // (note: we shouldn't delete active job)
-            const auto iter = std::find_if((m_moveStorageQueue.begin() + 1), m_moveStorageQueue.end()
+            const auto iter = std::find_if((m_moveStorageQueue.cbegin() + 1), m_moveStorageQueue.cend()
                 , [torrent](const MoveStorageJob &job)
             {
                 return job.torrentHandle == torrent->nativeHandle();
             });
-            if (iter != m_moveStorageQueue.end())
+            if (iter != m_moveStorageQueue.cend())
                 m_moveStorageQueue.erase(iter);
         }
 
@@ -2508,8 +2508,8 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
 
 bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
 {
-    const auto downloadedMetadataIter = m_downloadedMetadata.find(id);
-    if (downloadedMetadataIter == m_downloadedMetadata.end())
+    const auto downloadedMetadataIter = m_downloadedMetadata.constFind(id);
+    if (downloadedMetadataIter == m_downloadedMetadata.cend())
         return false;
 
     const lt::torrent_handle nativeHandle = downloadedMetadataIter.value();
@@ -5268,8 +5268,8 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
 {
     m_resumeDataStorage->store(torrent->id(), data);
-    const auto iter = m_changedTorrentIDs.find(torrent->id());
-    if (iter != m_changedTorrentIDs.end())
+    const auto iter = m_changedTorrentIDs.constFind(torrent->id());
+    if (iter != m_changedTorrentIDs.cend())
     {
         m_resumeDataStorage->remove(iter.value());
         m_changedTorrentIDs.erase(iter);
@@ -5302,11 +5302,11 @@ bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &new
 
     const lt::torrent_handle torrentHandle = torrent->nativeHandle();
     const Path currentLocation = torrent->actualStorageLocation();
-    const bool torrentHasActiveJob = !m_moveStorageQueue.isEmpty() && (m_moveStorageQueue.first().torrentHandle == torrentHandle);
+    const bool torrentHasActiveJob = !m_moveStorageQueue.isEmpty() && (m_moveStorageQueue.constFirst().torrentHandle == torrentHandle);
 
     if (m_moveStorageQueue.size() > 1)
     {
-        auto iter = std::find_if((m_moveStorageQueue.begin() + 1), m_moveStorageQueue.end()
+        auto iter = std::find_if((m_moveStorageQueue.cbegin() + 1), m_moveStorageQueue.cend()
                 , [&torrentHandle](const MoveStorageJob &job)
         {
             return job.torrentHandle == torrentHandle;
@@ -5325,7 +5325,7 @@ bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &new
     {
         // if there is active job for this torrent prevent creating meaningless
         // job that will move torrent to the same location as current one
-        if (m_moveStorageQueue.first().path == newPath)
+        if (m_moveStorageQueue.constFirst().path == newPath)
         {
             LogMsg(tr("Failed to enqueue torrent move. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\". Reason: torrent is currently moving to the destination")
                    .arg(torrent->name(), currentLocation.toString(), newPath.toString()));
@@ -5370,7 +5370,7 @@ void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)
 {
     const MoveStorageJob finishedJob = m_moveStorageQueue.takeFirst();
     if (!m_moveStorageQueue.isEmpty())
-        moveTorrentStorage(m_moveStorageQueue.first());
+        moveTorrentStorage(m_moveStorageQueue.constFirst());
 
     const auto iter = std::find_if(m_moveStorageQueue.cbegin(), m_moveStorageQueue.cend()
             , [&finishedJob](const MoveStorageJob &job)
@@ -5696,14 +5696,14 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
 #else
         const InfoHash infoHash {(hasMetadata ? params.ti->info_hash() : params.info_hash)};
 #endif
-        if (const auto loadingTorrentsIter = m_loadingTorrents.find(TorrentID::fromInfoHash(infoHash))
-                ; loadingTorrentsIter != m_loadingTorrents.end())
+        if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(TorrentID::fromInfoHash(infoHash))
+                ; loadingTorrentsIter != m_loadingTorrents.cend())
         {
             emit addTorrentFailed(infoHash, msg);
             m_loadingTorrents.erase(loadingTorrentsIter);
         }
-        else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(TorrentID::fromInfoHash(infoHash))
-                 ; downloadedMetadataIter != m_downloadedMetadata.end())
+        else if (const auto downloadedMetadataIter = m_downloadedMetadata.constFind(TorrentID::fromInfoHash(infoHash))
+                 ; downloadedMetadataIter != m_downloadedMetadata.cend())
         {
             m_downloadedMetadata.erase(downloadedMetadataIter);
             if (infoHash.isHybrid())
@@ -5724,8 +5724,8 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
 #endif
     const auto torrentID = TorrentID::fromInfoHash(infoHash);
 
-    if (const auto loadingTorrentsIter = m_loadingTorrents.find(torrentID)
-            ; loadingTorrentsIter != m_loadingTorrents.end())
+    if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(torrentID)
+            ; loadingTorrentsIter != m_loadingTorrents.cend())
     {
         const LoadTorrentParams params = loadingTorrentsIter.value();
         m_loadingTorrents.erase(loadingTorrentsIter);
@@ -5988,7 +5988,7 @@ void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
     const TorrentID torrentID {alert->handle.info_hash()};
 
     bool found = false;
-    if (const auto iter = m_downloadedMetadata.find(torrentID); iter != m_downloadedMetadata.end())
+    if (const auto iter = m_downloadedMetadata.constFind(torrentID); iter != m_downloadedMetadata.cend())
     {
         found = true;
         m_downloadedMetadata.erase(iter);
@@ -5998,7 +5998,7 @@ void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
     if (infoHash.isHybrid())
     {
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-        if (const auto iter = m_downloadedMetadata.find(altID); iter != m_downloadedMetadata.end())
+        if (const auto iter = m_downloadedMetadata.constFind(altID); iter != m_downloadedMetadata.cend())
         {
             found = true;
             m_downloadedMetadata.erase(iter);
@@ -6260,7 +6260,7 @@ void SessionImpl::handleStorageMovedAlert(const lt::storage_moved_alert *alert)
 {
     Q_ASSERT(!m_moveStorageQueue.isEmpty());
 
-    const MoveStorageJob &currentJob = m_moveStorageQueue.first();
+    const MoveStorageJob &currentJob = m_moveStorageQueue.constFirst();
     Q_ASSERT(currentJob.torrentHandle == alert->handle);
 
     const Path newPath {QString::fromUtf8(alert->storage_path())};
@@ -6283,7 +6283,7 @@ void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_a
 {
     Q_ASSERT(!m_moveStorageQueue.isEmpty());
 
-    const MoveStorageJob &currentJob = m_moveStorageQueue.first();
+    const MoveStorageJob &currentJob = m_moveStorageQueue.constFirst();
     Q_ASSERT(currentJob.torrentHandle == alert->handle);
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -6497,8 +6497,8 @@ void SessionImpl::updateTrackerEntryStatuses(lt::torrent_handle torrentHandle)
 
 void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString &partfileRemoveError)
 {
-    const auto removingTorrentDataIter = m_removingTorrents.find(torrentID);
-    if (removingTorrentDataIter == m_removingTorrents.end())
+    const auto removingTorrentDataIter = m_removingTorrents.constFind(torrentID);
+    if (removingTorrentDataIter == m_removingTorrents.cend())
         return;
 
     if (!partfileRemoveError.isEmpty())

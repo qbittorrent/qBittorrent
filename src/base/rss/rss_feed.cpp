@@ -327,9 +327,9 @@ bool Feed::addArticle(const QVariantHash &articleData)
 
     // Insertion sort
     const int maxArticles = m_session->maxArticlesPerFeed();
-    const auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
-                                       , articleData.value(Article::KeyDate).toDateTime(), Article::articleDateRecentThan);
-    if ((lowerBound - m_articlesByDate.begin()) >= maxArticles)
+    const auto lowerBound = std::lower_bound(m_articlesByDate.cbegin(), m_articlesByDate.cend()
+        , articleData.value(Article::KeyDate).toDateTime(), Article::articleDateRecentThan);
+    if ((lowerBound - m_articlesByDate.cbegin()) >= maxArticles)
         return false; // we reach max articles
 
     auto *article = new Article(this, articleData);

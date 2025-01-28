@@ -103,8 +103,8 @@ void AuthController::logoutAction() const
 
 bool AuthController::isBanned() const
 {
-    const auto failedLoginIter = m_clientFailedLogins.find(m_sessionManager->clientId());
-    if (failedLoginIter == m_clientFailedLogins.end())
+    const auto failedLoginIter = m_clientFailedLogins.constFind(m_sessionManager->clientId());
+    if (failedLoginIter == m_clientFailedLogins.cend())
         return false;
 
     bool isBanned = (failedLoginIter->banTimer.remainingTime() >= 0);
