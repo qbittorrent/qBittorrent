@@ -332,6 +332,8 @@ namespace BitTorrent
         virtual void setHashingThreads(int num) = 0;
         virtual int filePoolSize() const = 0;
         virtual void setFilePoolSize(int size) = 0;
+        virtual int requestTimeout() const = 0;
+        virtual void setRequestTimeout(int size) = 0;
         virtual int checkingMemUsage() const = 0;
         virtual void setCheckingMemUsage(int size) = 0;
         virtual int diskCacheSize() const = 0;

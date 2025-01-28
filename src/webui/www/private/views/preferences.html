@@ -1345,6 +1345,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="requestTimeout">QBT_TR(Request timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#request_timeout" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="requestTimeout" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="outstandMemoryWhenCheckingTorrents">QBT_TR(Outstanding memory when checking torrents:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#checking_mem_usage" target="_blank">(?)</a></label>
                     </td>
                     <td>
@@ -2559,6 +2567,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("asyncIOThreads").value = pref.async_io_threads;
                     $("hashingThreads").value = pref.hashing_threads;
                     $("filePoolSize").value = pref.file_pool_size;
+                    $("requestTimeout").value = pref.requestTimeout;
                     $("outstandMemoryWhenCheckingTorrents").value = pref.checking_memory_use;
                     $("diskCache").value = pref.disk_cache;
                     $("diskCacheExpiryInterval").value = pref.disk_cache_ttl;
@@ -3027,6 +3036,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["async_io_threads"] = Number($("asyncIOThreads").value);
             settings["hashing_threads"] = Number($("hashingThreads").value);
             settings["file_pool_size"] = Number($("filePoolSize").value);
+            settings["request_timeout"] = Number($("requestTimeout").value);
             settings["checking_memory_use"] = Number($("outstandMemoryWhenCheckingTorrents").value);
             settings["disk_cache"] = Number($("diskCache").value);
             settings["disk_cache_ttl"] = Number($("diskCacheExpiryInterval").value);

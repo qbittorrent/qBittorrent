@@ -301,6 +301,8 @@ namespace BitTorrent
         void setHashingThreads(int num) override;
         int filePoolSize() const override;
         void setFilePoolSize(int size) override;
+        int requestTimeout() const override;
+        void setRequestTimeout(int size) override;
         int checkingMemUsage() const override;
         void setCheckingMemUsage(int size) override;
         int diskCacheSize() const override;
@@ -637,6 +639,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_asyncIOThreads;
         CachedSettingValue<int> m_hashingThreads;
         CachedSettingValue<int> m_filePoolSize;
+        CachedSettingValue<int> m_requestTimeout;
         CachedSettingValue<int> m_checkingMemUsage;
         CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<int> m_diskCacheTTL;

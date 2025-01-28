@@ -415,6 +415,8 @@ void AppController::preferencesAction()
     data[u"hashing_threads"_s] = session->hashingThreads();
     // File pool size
     data[u"file_pool_size"_s] = session->filePoolSize();
+    // Request timeout
+    data[u"request_timeout"_s] = session->requestTimeout()();
     // Checking memory usage
     data[u"checking_memory_use"_s] = session->checkingMemUsage();
     // Disk write cache
@@ -1051,6 +1053,9 @@ void AppController::setPreferencesAction()
     // File pool size
     if (hasKey(u"file_pool_size"_s))
         session->setFilePoolSize(it.value().toInt());
+    // Request timeout
+    if (hasKey(u"request_timeout"_s))
+        session->setRequestTimeout(it.value().toInt());
     // Checking Memory Usage
     if (hasKey(u"checking_memory_use"_s))
         session->setCheckingMemUsage(it.value().toInt());

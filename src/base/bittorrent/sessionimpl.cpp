@@ -408,6 +408,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY(u"AsyncIOThreadsCount"_s), 10)
     , m_hashingThreads(BITTORRENT_SESSION_KEY(u"HashingThreadsCount"_s), 1)
     , m_filePoolSize(BITTORRENT_SESSION_KEY(u"FilePoolSize"_s), 100)
+    , m_requestTimeout(BITTORRENT_SESSION_KEY(u"RequestTimeout"_s), 60)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY(u"CheckingMemUsageSize"_s), 32)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY(u"DiskCacheSize"_s), -1)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY(u"DiskCacheTTL"_s), 60)
@@ -1916,6 +1917,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
 #endif
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
+    settingsPack.set_int(lt::settings_pack::request_timeout, requestTimeout());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
     settingsPack.set_int(lt::settings_pack::checking_mem_usage, checkingMemUsageSize);
@@ -4409,6 +4411,20 @@ void SessionImpl::setFilePoolSize(const int size)
         return;
 
     m_filePoolSize = size;
+    configureDeferred();
+}
+
+int SessionImpl::requestTimeout() const
+{
+    return m_requestTimeout;
+}
+
+void SessionImpl::setRequestTimeout(const int size)
+{
+    if (size == m_requestTimeout)
+        return;
+
+    m_requestTimeout = size;
     configureDeferred();
 }
 

@@ -121,6 +121,7 @@ namespace
         HASHING_THREADS,
 #endif
         FILE_POOL_SIZE,
+        REQUEST_TIMEOUT,
         CHECKING_MEM_USAGE,
 #ifndef QBT_USES_LIBTORRENT2
         // cache
@@ -226,6 +227,8 @@ void AdvancedSettings::saveAdvancedSettings() const
 #endif
     // File pool size
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
+    // Request timeout
+    session->setRequestTimeout(m_spinBoxRequestTimeout.value());
     // Checking Memory Usage
     session->setCheckingMemUsage(m_spinBoxCheckingMemUsage.value());
 #ifndef QBT_USES_LIBTORRENT2
@@ -542,6 +545,10 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxFilePoolSize.setValue(session->filePoolSize());
     addRow(FILE_POOL_SIZE, (tr("File pool size") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#file_pool_size", u"(?)"))
         , &m_spinBoxFilePoolSize);
+    // Timouts
+    m_spinBoxRequestTimeout.setValue(session->requestTimeout());
+    addRow(REQUEST_TIMEOUT, (tr("Request timeout") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#request_timeout", u"(?)"))
+        , &m_spinBoxRequestTimeout);
 
     // Checking Memory Usage
     m_spinBoxCheckingMemUsage.setMinimum(1);
