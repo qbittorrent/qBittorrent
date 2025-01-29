@@ -73,7 +73,7 @@ void RSS::Private::FeedSerializer::store(const Path &dataFileName, const QList<Q
         arr << jsonObj;
     }
 
-    const nonstd::expected<void, QString> result = Utils::IO::saveToFile(dataFileName, QJsonDocument(arr).toJson());
+    const nonstd::expected<void, QString> result = Utils::IO::saveToFile(dataFileName, QJsonDocument(arr).toJson(QJsonDocument::Compact));
     if (!result)
     {
        LogMsg(tr("Failed to save RSS feed in '%1', Reason: %2").arg(dataFileName.toString(), result.error())

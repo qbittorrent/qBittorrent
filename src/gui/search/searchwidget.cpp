@@ -873,7 +873,7 @@ void SearchWidget::DataStorage::storeSession(const SessionData &sessionData)
     };
 
     const Path sessionFilePath = makeDataFilePath(SESSION_FILE_NAME);
-    const auto saveResult = Utils::IO::saveToFile(sessionFilePath, QJsonDocument(sessionObj).toJson());
+    const auto saveResult = Utils::IO::saveToFile(sessionFilePath, QJsonDocument(sessionObj).toJson(QJsonDocument::Compact));
     if (!saveResult)
     {
         LogMsg(tr("Failed to save Search UI state. File: \"%1\". Error: \"%2\"")
@@ -905,7 +905,7 @@ void SearchWidget::DataStorage::storeTab(const QString &tabID, const QList<Searc
     }
 
     const Path filePath = makeDataFilePath(tabID + u".json");
-    const auto saveResult = Utils::IO::saveToFile(filePath, QJsonDocument(searchResultsArray).toJson());
+    const auto saveResult = Utils::IO::saveToFile(filePath, QJsonDocument(searchResultsArray).toJson(QJsonDocument::Compact));
     if (!saveResult)
     {
         LogMsg(tr("Failed to save search results. Tab: \"%1\". File: \"%2\". Error: \"%3\"")
