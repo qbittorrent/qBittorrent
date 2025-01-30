@@ -478,7 +478,8 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         updateCategoriesSubMenu(categories) {
             const contextCategoryList = $("contextCategoryList");
-            contextCategoryList.getChildren().each(c => c.destroy());
+            for (const category of contextCategoryList.querySelectorAll("li"))
+                category.destroy();
 
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
@@ -633,7 +634,7 @@ window.qBittorrent.ContextMenu ??= (() => {
     class SearchPluginsTableContextMenu extends ContextMenu {
         updateMenuItems() {
             const enabledColumnIndex = (text) => {
-                const columns = $("searchPluginsTableFixedHeaderRow").getChildren("th");
+                const columns = document.querySelectorAll("#searchPluginsTableFixedHeaderRow th");
                 for (let i = 0; i < columns.length; ++i) {
                     if (columns[i].textContent === "Enabled")
                         return i;
@@ -641,7 +642,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             };
 
             this.showItem("Enabled");
-            this.setItemChecked("Enabled", (this.options.element.getChildren("td")[enabledColumnIndex()].textContent === "Yes"));
+            this.setItemChecked("Enabled", (this.options.element.children[enabledColumnIndex()].textContent === "Yes"));
 
             this.showItem("Uninstall");
         }

@@ -1247,8 +1247,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if ((progressFormatted === 100.0) && (progress !== 1.0))
                     progressFormatted = 99.9;
 
-                if (td.getChildren("div").length > 0) {
-                    const div = td.getChildren("div")[0];
+                const div = td.firstElementChild;
+                if (div !== null) {
                     if (td.resized) {
                         td.resized = false;
                         div.setWidth(progressColumnWidth - 5);

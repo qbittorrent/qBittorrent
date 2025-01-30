@@ -417,13 +417,19 @@
                     });
                 });
 
-            $("rssDetailsView").getChildren().each(c => c.destroy());
+            clearDetails();
             rssArticleTable.updateTable(false);
+        };
+
+        const clearDetails = () => {
+            for (const element of [...document.getElementById("rssDetailsView").children])
+                element.destroy();
         };
 
         const showDetails = (feedUid, articleID) => {
             markArticleAsRead(pathByFeedId.get(feedUid), articleID);
-            $("rssDetailsView").getChildren().each(c => c.destroy());
+            clearDetails();
+
             const article = feedData[feedUid].filter((article) => article.id === articleID)[0];
             if (article) {
                 $("rssDetailsView").append((() => {
