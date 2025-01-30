@@ -34,6 +34,7 @@
 
 #include <utility>
 
+#include <QCompleter>
 #include <QDebug>
 #include <QEvent>
 #include <QJsonArray>
@@ -48,6 +49,9 @@
 #include <QObject>
 #include <QRegularExpression>
 #include <QShortcut>
+#include <QSortFilterProxyModel>
+#include <QStringList>
+#include <QStringListModel>
 #include <QThread>
 
 #include "base/global.h"
@@ -56,6 +60,8 @@
 #include "base/profile.h"
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
+#include "base/utils/bytearray.h"
+#include "base/utils/compare.h"
 #include "base/utils/datetime.h"
 #include "base/utils/fs.h"
 #include "base/utils/foreignapps.h"
@@ -67,7 +73,12 @@
 #include "searchjobwidget.h"
 #include "ui_searchwidget.h"
 
+const int HISTORY_FILE_MAX_SIZE = 10 * 1024 * 1024;
+const int SESSION_FILE_MAX_SIZE = 10 * 1024 * 1024;
+const int RESULTS_FILE_MAX_SIZE = 10 * 1024 * 1024;
+
 const QString DATA_FOLDER_NAME = u"SearchUI"_s;
+const QString HISTORY_FILE_NAME = u"History.txt"_s;
 const QString SESSION_FILE_NAME = u"Session.json"_s;
 
 const QString KEY_SESSION_TABS = u"Tabs"_s;
@@ -86,6 +97,24 @@ const QString KEY_RESULT_PUBDATE = u"PubDate"_s;
 
 namespace
 {
+    class SearchHistorySortModel final : public QSortFilterProxyModel
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(SearchHistorySortModel)
+
+    public:
+        using QSortFilterProxyModel::QSortFilterProxyModel;
+
+    private:
+        bool lessThan(const QModelIndex &left, const QModelIndex &right) const override
+        {
+            const int result = m_naturalCompare(left.data(sortRole()).toString(), right.data(sortRole()).toString());
+            return result < 0;
+        }
+
+        Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_naturalCompare;
+    };
+
     struct TabData
     {
         QString tabID;
@@ -132,10 +161,27 @@ namespace
         return tabName;
     }
 
+    nonstd::expected<QStringList, QString> loadHistory(const Path &filePath)
+    {
+        const auto readResult = Utils::IO::readFile(filePath, HISTORY_FILE_MAX_SIZE);
+        if (!readResult)
+        {
+            if (readResult.error().status == Utils::IO::ReadError::NotExist)
+                return {};
+
+            return nonstd::make_unexpected(readResult.error().message);
+        }
+
+        QStringList history;
+        for (const QByteArrayView line : asConst(Utils::ByteArray::splitToViews(readResult.value(), "\n")))
+            history.append(QString::fromUtf8(line));
+
+        return history;
+    }
+
     nonstd::expected<SessionData, QString> loadSession(const Path &filePath)
     {
-        const int fileMaxSize = 10 * 1024 * 1024;
-        const auto readResult = Utils::IO::readFile(filePath, fileMaxSize);
+        const auto readResult = Utils::IO::readFile(filePath, SESSION_FILE_MAX_SIZE);
         if (!readResult)
         {
             if (readResult.error().status == Utils::IO::ReadError::NotExist)
@@ -191,8 +237,7 @@ namespace
 
     nonstd::expected<QList<SearchResult>, QString> loadSearchResults(const Path &filePath)
     {
-        const int fileMaxSize = 10 * 1024 * 1024;
-        const auto readResult = Utils::IO::readFile(filePath, fileMaxSize);
+        const auto readResult = Utils::IO::readFile(filePath, RESULTS_FILE_MAX_SIZE);
         if (!readResult)
         {
             if (readResult.error().status != Utils::IO::ReadError::NotExist)
@@ -285,8 +330,12 @@ public:
     void removeSession();
     void storeTab(const QString &tabID, const QList<SearchResult> &searchResults);
     void removeTab(const QString &tabID);
+    void loadHistory();
+    void storeHistory(const QStringList &history);
+    void removeHistory();
 
 signals:
+    void historyLoaded(const QStringList &history);
     void sessionLoaded(const SessionData &sessionData);
     void tabLoaded(const QString &tabID, const QString &searchPattern, const QList<SearchResult> &searchResults);
 };
@@ -295,7 +344,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::SearchWidget()}
     , m_ioThread {new QThread}
-    , m_dataStorage {new DataStorage(this)}
+    , m_dataStorage {new DataStorage}
 {
     m_ui->setupUi(this);
 
@@ -379,6 +428,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     const auto *focusSearchHotkeyAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), this);
     connect(focusSearchHotkeyAlternative, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 
+    m_historyLength = Preferences::instance()->searchHistoryLength();
     m_storeOpenedTabs = Preferences::instance()->storeOpenedSearchTabs();
     m_storeOpenedTabsResults = Preferences::instance()->storeOpenedSearchTabResults();
     connect(Preferences::instance(), &Preferences::changed, this, &SearchWidget::onPreferencesChanged);
@@ -388,6 +438,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     m_ioThread->setObjectName("SearchWidget m_ioThread");
     m_ioThread->start();
 
+    loadHistory();
     restoreSession();
 }
 
@@ -437,7 +488,7 @@ void SearchWidget::onPreferencesChanged()
         }
         else
         {
-            QMetaObject::invokeMethod(m_dataStorage, [this] { m_dataStorage->removeSession(); });
+            QMetaObject::invokeMethod(m_dataStorage, &SearchWidget::DataStorage::removeSession);
         }
     }
 
@@ -468,6 +519,36 @@ void SearchWidget::onPreferencesChanged()
                 QMetaObject::invokeMethod(m_dataStorage, [this, tabID = tab->id()] { m_dataStorage->removeTab(tabID); });
             }
         }
+    }
+
+    const int historyLength = pref->searchHistoryLength();
+    if (historyLength != m_historyLength)
+    {
+        if (m_historyLength <= 0)
+        {
+            createSearchPatternCompleter();
+        }
+        else
+        {
+            if (historyLength <= 0)
+            {
+                m_searchPatternCompleterModel->removeRows(0, m_searchPatternCompleterModel->rowCount());
+                QMetaObject::invokeMethod(m_dataStorage, &SearchWidget::DataStorage::removeHistory);
+            }
+            else if (historyLength < m_historyLength)
+            {
+                if (const int rowCount = m_searchPatternCompleterModel->rowCount(); rowCount > historyLength)
+                {
+                    m_searchPatternCompleterModel->removeRows(0, (rowCount - historyLength));
+                    QMetaObject::invokeMethod(m_dataStorage, [this]
+                    {
+                        m_dataStorage->storeHistory(m_searchPatternCompleterModel->stringList());
+                    });
+                }
+            }
+        }
+
+        m_historyLength = historyLength;
     }
 }
 
@@ -552,6 +633,54 @@ int SearchWidget::addTab(const QString &tabID, SearchJobWidget *searchJobWdget)
     return m_ui->tabWidget->addTab(searchJobWdget, makeTabName(searchJobWdget));
 }
 
+void SearchWidget::updateHistory(const QString &newSearchPattern)
+{
+    if (m_historyLength <= 0)
+        return;
+
+    if (m_searchPatternCompleterModel->stringList().contains(newSearchPattern))
+        return;
+
+    const int rowNum = m_searchPatternCompleterModel->rowCount();
+    m_searchPatternCompleterModel->insertRow(rowNum);
+    m_searchPatternCompleterModel->setData(m_searchPatternCompleterModel->index(rowNum, 0), newSearchPattern);
+    if (m_searchPatternCompleterModel->rowCount() > m_historyLength)
+        m_searchPatternCompleterModel->removeRow(0);
+
+    QMetaObject::invokeMethod(m_dataStorage, [this, history = m_searchPatternCompleterModel->stringList()]
+    {
+        m_dataStorage->storeHistory(history);
+    });
+}
+
+void SearchWidget::loadHistory()
+{
+    if (m_historyLength <= 0)
+        return;
+
+    createSearchPatternCompleter();
+
+    connect(m_dataStorage, &DataStorage::historyLoaded, this, [this](const QStringList &storedHistory)
+    {
+        if (m_historyLength <= 0)
+            return;
+
+        QStringList history = storedHistory;
+        for (const QString &newPattern : asConst(m_searchPatternCompleterModel->stringList()))
+        {
+            if (!history.contains(newPattern))
+                history.append(newPattern);
+        }
+
+        if (history.size() > m_historyLength)
+            history = history.mid(history.size() - m_historyLength);
+
+        m_searchPatternCompleterModel->setStringList(history);
+    });
+
+    QMetaObject::invokeMethod(m_dataStorage, &SearchWidget::DataStorage::loadHistory);
+}
+
 void SearchWidget::saveSession() const
 {
     if (!m_storeOpenedTabs)
@@ -568,6 +697,20 @@ void SearchWidget::saveSession() const
     }
 
     QMetaObject::invokeMethod(m_dataStorage, [this, sessionData] { m_dataStorage->storeSession(sessionData); });
+}
+
+void SearchWidget::createSearchPatternCompleter()
+{
+    Q_ASSERT(!m_ui->lineEditSearchPattern->completer());
+
+    m_searchPatternCompleterModel = new QStringListModel(this);
+    auto *sortModel = new SearchHistorySortModel(this);
+    sortModel->setSourceModel(m_searchPatternCompleterModel);
+    sortModel->sort(0);
+    auto *completer = new QCompleter(sortModel, this);
+    completer->setCaseSensitivity(Qt::CaseInsensitive);
+    completer->setModelSorting(QCompleter::CaseInsensitivelySortedModel);
+    m_ui->lineEditSearchPattern->setCompleter(completer);
 }
 
 void SearchWidget::restoreSession()
@@ -750,6 +893,7 @@ void SearchWidget::searchButtonClicked()
     m_ui->tabWidget->setTabIcon(tabIndex, UIThemeManager::instance()->getIcon(statusIconName(newTab->status())));
     m_ui->tabWidget->setCurrentWidget(newTab);
     adjustSearchButton();
+    updateHistory(pattern);
     saveSession();
 }
 
@@ -916,6 +1060,36 @@ void SearchWidget::DataStorage::storeTab(const QString &tabID, const QList<Searc
 void SearchWidget::DataStorage::removeTab(const QString &tabID)
 {
     Utils::Fs::removeFile(makeDataFilePath(tabID + u".json"));
+}
+
+void SearchWidget::DataStorage::loadHistory()
+{
+    const Path historyFilePath = makeDataFilePath(HISTORY_FILE_NAME);
+    const auto loadResult = ::loadHistory(historyFilePath);
+    if (!loadResult)
+    {
+        LogMsg(tr("Failed to load Search UI history. File: \"%1\". Error: \"%2\"")
+                .arg(historyFilePath.toString(), loadResult.error()), Log::WARNING);
+        return;
+    }
+
+    emit historyLoaded(loadResult.value());
+}
+
+void SearchWidget::DataStorage::storeHistory(const QStringList &history)
+{
+    const Path filePath = makeDataFilePath(HISTORY_FILE_NAME);
+    const auto saveResult = Utils::IO::saveToFile(filePath, history.join(u'\n').toUtf8());
+    if (!saveResult)
+    {
+        LogMsg(tr("Failed to save search history. File: \"%1\". Error: \"%2\"")
+                .arg(filePath.toString(), saveResult.error()), Log::WARNING);
+    }
+}
+
+void SearchWidget::DataStorage::removeHistory()
+{
+    Utils::Fs::removeFile(makeDataFilePath(HISTORY_FILE_NAME));
 }
 
 #include "searchwidget.moc"
