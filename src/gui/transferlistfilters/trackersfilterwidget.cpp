@@ -444,6 +444,16 @@ void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torren
                 trackerErrorHashesIt = m_trackerErrors.insert(id, {});
             trackerErrorHashesIt->insert(trackerEntryStatus.url);
         }
+        else if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::NotContacted)
+        {
+            // remove tracker from "error", "tracker error" and  "warning" categories
+            if (warningHashesIt != m_warnings.end())
+                warningHashesIt->remove(trackerEntryStatus.url);
+            if (errorHashesIt != m_errors.end())
+                errorHashesIt->remove(trackerEntryStatus.url);
+            if (trackerErrorHashesIt != m_trackerErrors.end())
+                trackerErrorHashesIt->remove(trackerEntryStatus.url);
+        }
     }
 
     if ((errorHashesIt != m_errors.end()) && errorHashesIt->isEmpty())
