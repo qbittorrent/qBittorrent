@@ -478,8 +478,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         updateCategoriesSubMenu(categories) {
             const contextCategoryList = $("contextCategoryList");
-            for (const category of contextCategoryList.querySelectorAll("li"))
-                category.destroy();
+            [...contextCategoryList.children].forEach((el) => { el.destroy(); });
 
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
@@ -635,10 +634,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         updateMenuItems() {
             const enabledColumnIndex = (text) => {
                 const columns = document.querySelectorAll("#searchPluginsTableFixedHeaderRow th");
-                for (let i = 0; i < columns.length; ++i) {
-                    if (columns[i].textContent === "Enabled")
-                        return i;
-                }
+                return Array.prototype.findIndex.call(columns, (column => column.textContent === "Enabled"));
             };
 
             this.showItem("Enabled");

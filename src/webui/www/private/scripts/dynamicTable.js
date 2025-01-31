@@ -819,11 +819,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         getTrByRowId: function(rowId) {
-            for (const tr of this.getTrs()) {
-                if (tr.rowId === rowId)
-                    return tr;
-            }
-            return null;
+            return Array.prototype.find.call(this.getTrs(), (tr => tr.rowId === rowId));
         },
 
         updateTable: function(fullUpdate = false) {
@@ -943,11 +939,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         selectNextRow: function() {
-            const visibleRows = [];
-            for (const tr of this.getTrs()) {
-                if (!tr.classList.contains("invisible") && (tr.style.display !== "none"))
-                    visibleRows.push(tr);
-            }
+            const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
             const selectedRowId = this.getSelectedRowId();
 
             let selectedIndex = -1;
@@ -969,11 +961,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         selectPreviousRow: function() {
-            const visibleRows = [];
-            for (const tr of this.getTrs()) {
-                if (!tr.classList.contains("invisible") && (tr.style.display !== "none"))
-                    visibleRows.push(tr);
-            }
+            const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
             const selectedRowId = this.getSelectedRowId();
 
             let selectedIndex = -1;

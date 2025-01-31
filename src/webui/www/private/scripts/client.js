@@ -491,8 +491,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (!categoryList)
             return;
 
-        for (const category of categoryList.querySelectorAll("li"))
-            category.destroy();
+        [...categoryList.children].forEach((el) => { el.destroy(); });
 
         const categoryItemTemplate = document.getElementById("categoryFilterItem");
 
@@ -613,8 +612,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (tagFilterList === null)
             return;
 
-        for (const tag of tagFilterList.querySelectorAll("li"))
-            tag.destroy();
+        [...tagFilterList.children].forEach((el) => { el.destroy(); });
 
         const tagItemTemplate = document.getElementById("tagFilterItem");
 
@@ -667,8 +665,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (trackerFilterList === null)
             return;
 
-        for (const tracker of trackerFilterList.querySelectorAll("li"))
-            tracker.destroy();
+        [...trackerFilterList.children].forEach((el) => { el.destroy(); });
 
         const trackerItemTemplate = document.getElementById("trackerFilterItem");
 

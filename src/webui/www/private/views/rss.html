@@ -422,8 +422,7 @@
         };
 
         const clearDetails = () => {
-            for (const element of [...document.getElementById("rssDetailsView").children])
-                element.destroy();
+            [...document.getElementById("rssDetailsView").children].forEach((el) => { el.destroy(); });
         };
 
         const showDetails = (feedUid, articleID) => {
