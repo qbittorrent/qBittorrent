@@ -67,9 +67,6 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // option diffs menu
             this.menu = $(this.options.menu);
-            this.targets = (this.options.targets.length > 0)
-                ? Array.from(document.querySelectorAll(this.options.targets))
-                : [];
 
             // fx
             this.fx = new Fx.Tween(this.menu, {
@@ -169,15 +166,18 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         addTarget(t) {
+            if (t.hasEventListeners)
+                return;
+
             // prevent long press from selecting this text
             t.style.userSelect = "none";
-
-            this.targets[this.targets.length] = t;
+            t.hasEventListeners = true;
             this.setupEventListeners(t);
         }
 
         searchAndAddTargets() {
-            document.querySelectorAll(this.options.targets).forEach((target) => { this.addTarget(target); });
+            if (this.options.targets.length > 0)
+                document.querySelectorAll(this.options.targets).forEach((target) => { this.addTarget(target); });
         }
 
         triggerMenu(e, el) {
@@ -199,8 +199,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         // get things started
         startListener() {
             /* all elements */
-            for (const el of this.targets)
-                this.setupEventListeners(el);
+            this.searchAndAddTargets();
 
             /* menu items */
             this.menu.addEventListener("click", (e) => {
@@ -222,6 +221,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             // hide on body click
             $(document.body).addEventListener("click", () => {
                 this.hide();
+                this.options.element = null;
             });
         }
 
