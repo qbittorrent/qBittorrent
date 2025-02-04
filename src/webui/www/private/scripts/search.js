@@ -166,7 +166,7 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const numSearchTabs = () => {
-        return $("searchTabs").getElements("li").length;
+        return document.querySelectorAll("#searchTabs li").length;
     };
 
     const getSearchIdFromTab = (tab) => {
