@@ -399,13 +399,13 @@
     <fieldset class="settings">
         <legend>QBT_TR(Listening Port)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow">
-            <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="port_value" style="width: 6em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]">
+            <label for="portValue">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="portValue" style="width: 6em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]">
             <button type="button" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="upnp_checkbox">
-            <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="upnpCheckbox">
+            <label for="upnpCheckbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 
@@ -415,31 +415,31 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="checkbox" id="max_connec_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecEnabled();">
-                        <label id="maxConnectionsLabel" for="max_connec_checkbox">QBT_TR(Global maximum number of connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxConnectionsCheckbox" onclick="qBittorrent.Preferences.updateMaxConnecEnabled();">
+                        <label id="maxConnectionsLabel" for="maxConnectionsCheckbox">QBT_TR(Global maximum number of connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_connec_value" aria-labelledby="maxConnectionsLabel" style="width: 6em;"></td>
+                    <td><input type="text" id="maxConnectionsValue" aria-labelledby="maxConnectionsLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" id="max_connec_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxConnecPerTorrentEnabled();">
-                        <label id="maxConnectionsPerTorrentLabel" for="max_connec_per_torrent_checkbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxConnectionsPerTorrentCheckbox" onclick="qBittorrent.Preferences.updateMaxConnecPerTorrentEnabled();">
+                        <label id="maxConnectionsPerTorrentLabel" for="maxConnectionsPerTorrentCheckbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_connec_per_torrent_value" aria-labelledby="maxConnectionsPerTorrentLabel" style="width: 6em;"></td>
+                    <td><input type="text" id="maxConnectionsPerTorrentValue" aria-labelledby="maxConnectionsPerTorrentLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" id="max_uploads_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsEnabled();">
-                        <label id="maxUploadsLabel" for="max_uploads_checkbox">QBT_TR(Global maximum number of upload slots:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxUploadsCheckbox" onclick="qBittorrent.Preferences.updateMaxUploadsEnabled();">
+                        <label id="maxUploadsLabel" for="maxUploadsCheckbox">QBT_TR(Global maximum number of upload slots:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td><input type="text" id="max_uploads_value" aria-labelledby="maxUploadsLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" id="max_uploads_per_torrent_checkbox" onclick="qBittorrent.Preferences.updateMaxUploadsPerTorrentEnabled();">
-                        <label id="maxUploadsPerTorrentLabel" for="max_uploads_per_torrent_checkbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxUploadsPerTorrentCheckbox" onclick="qBittorrent.Preferences.updateMaxUploadsPerTorrentEnabled();">
+                        <label id="maxUploadsPerTorrentLabel" for="maxUploadsPerTorrentCheckbox">QBT_TR(Maximum number of upload slots per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="max_uploads_per_torrent_value" aria-labelledby="maxUploadsPerTorrentLabel" style="width: 6em;"></td>
+                    <td><input type="text" id="maxUploadsPerTorrentValue" aria-labelledby="maxUploadsPerTorrentLabel" style="width: 6em;"></td>
                 </tr>
             </tbody>
         </table>
@@ -592,12 +592,12 @@
                     <td rowspan="2">
                         <img src="images/slow_off.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                     </td>
-                    <td><label for="up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="up_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><label for="upLimitValue">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><input type="number" id="upLimitValue" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
                 <tr>
-                    <td><label for="dl_limit_value">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="dl_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><label for="dlLimitValue">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><input type="number" id="dlLimitValue" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
             </tbody>
         </table>
@@ -612,12 +612,12 @@
                     <td rowspan="2">
                         <img src="images/slow.svg" style="height: 2.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                     </td>
-                    <td><label for="alt_up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="alt_up_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><label for="altUpLimitValue">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><input type="number" id="altUpLimitValue" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
                 <tr>
-                    <td><label for="alt_dl_limit_value">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                    <td><input type="number" id="alt_dl_limit_value" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
+                    <td><label for="altDlLimitValue">QBT_TR(Download:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td><input type="number" id="altDlLimitValue" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
                 </tr>
             </tbody>
         </table>
@@ -705,66 +705,66 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="queueing_checkbox" onclick="qBittorrent.Preferences.updateQueueingSystem();">
-            <label for="queueing_checkbox">QBT_TR(Torrent Queueing)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="queueingCheckbox" onclick="qBittorrent.Preferences.updateQueueingSystem();">
+            <label for="queueingCheckbox">QBT_TR(Torrent Queueing)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <table>
             <tbody>
                 <tr>
                     <td>
-                        <label for="max_active_dl_value">QBT_TR(Maximum active downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="maxActiveDlValue">QBT_TR(Maximum active downloads:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_active_dl_value" style="width: 6em;">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="max_active_up_value">QBT_TR(Maximum active uploads:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <input type="text" id="max_active_up_value" style="width: 6em;">
+                        <input type="text" id="maxActiveDlValue" style="width: 6em;">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="max_active_to_value">QBT_TR(Maximum active torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="maxActiveUpValue">QBT_TR(Maximum active uploads:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_active_to_value" style="width: 6em;">
+                        <input type="text" id="maxActiveUpValue" style="width: 6em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="maxActiveToValue">QBT_TR(Maximum active torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="maxActiveToValue" style="width: 6em;">
                     </td>
                 </tr>
             </tbody>
         </table>
         <fieldset class="settings">
             <legend>
-                <input type="checkbox" id="dont_count_slow_torrents_checkbox" onclick="qBittorrent.Preferences.updateSlowTorrentsSettings();">
-                <label for="dont_count_slow_torrents_checkbox">QBT_TR(Do not count slow torrents in these limits)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="checkbox" id="dontCountSlowTorrentsCheckbox" onclick="qBittorrent.Preferences.updateSlowTorrentsSettings();">
+                <label for="dontCountSlowTorrentsCheckbox">QBT_TR(Do not count slow torrents in these limits)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <table>
                 <tbody>
                     <tr>
                         <td>
-                            <label for="dl_rate_threshold">QBT_TR(Download rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                            <label for="dlRateThresholdValue">QBT_TR(Download rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="text" id="dl_rate_threshold" style="width: 6em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="ul_rate_threshold">QBT_TR(Upload rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                        </td>
-                        <td>
-                            <input type="text" id="ul_rate_threshold" style="width: 6em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
+                            <input type="text" id="dlRateThresholdValue" style="width: 6em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="torrent_inactive_timer">QBT_TR(Torrent inactivity timer:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                            <label for="ulRateThresholdValue">QBT_TR(Upload rate threshold:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="text" id="torrent_inactive_timer" style="width: 6em;">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]
+                            <input type="text" id="ulRateThresholdValue" style="width: 6em;">&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="torrentInactiveTimerValue">QBT_TR(Torrent inactivity timer:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="torrentInactiveTimerValue" style="width: 6em;">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]
                         </td>
                     </tr>
                 </tbody>
@@ -778,35 +778,35 @@
             <tbody>
                 <tr>
                     <td>
-                        <input type="checkbox" id="max_ratio_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
-                        <label id="maxRatioLabel" for="max_ratio_checkbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxRatioCheckbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
+                        <label id="maxRatioLabel" for="maxRatioCheckbox">QBT_TR(When ratio reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_ratio_value" style="width: 6em;" aria-labelledby="maxRatioLabel">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox" id="max_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
-                        <label id="maxSeedingTimeLabel" for="max_seeding_time_checkbox">QBT_TR(When total seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <input type="text" id="max_seeding_time_value" style="width: 6em;" aria-labelledby="maxSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="maxRatioValue" style="width: 6em;" aria-labelledby="maxRatioLabel">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" id="max_inactive_seeding_time_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
-                        <label id="maxInactiveSeedingTimeLabel" for="max_inactive_seeding_time_checkbox">QBT_TR(When inactive seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxSeedingTimeCheckbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
+                        <label id="maxSeedingTimeLabel" for="maxSeedingTimeCheckbox">QBT_TR(When total seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="max_inactive_seeding_time_value" style="width: 6em;" aria-labelledby="maxInactiveSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="maxSeedingTimeValue" style="width: 6em;" aria-labelledby="maxSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
-                    <td style="text-align: right;"><label for="max_ratio_act">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td>
-                        <select id="max_ratio_act">
+                        <input type="checkbox" id="maxInactiveSeedingTimeCheckbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();">
+                        <label id="maxInactiveSeedingTimeLabel" for="maxInactiveSeedingTimeCheckbox">QBT_TR(When inactive seeding time reaches)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="maxInactiveSeedingTimeValue" style="width: 6em;" aria-labelledby="maxInactiveSeedingTimeLabel">QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: right;"><label for="maxRatioSelect">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="maxRatioSelect">
                             <option value="0">QBT_TR(Stop torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="1">QBT_TR(Remove torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="3">QBT_TR(Remove torrent and its files)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -909,19 +909,19 @@
             <tbody>
                 <tr>
                     <td>
-                        <label for="webui_address_value">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <label for="webuiAddressValue">QBT_TR(IP address:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="webui_address_value">
-                        <label for="webui_port_value" style="margin-left: 10px;">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                        <input type="text" id="webui_port_value" style="width: 6em;">
+                        <input type="text" id="webuiAddressValue">
+                        <label for="webuiPortValue" style="margin-left: 10px;">QBT_TR(Port:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="text" id="webuiPortValue" style="width: 6em;">
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="formRow">
-            <input type="checkbox" id="webui_upnp_checkbox">
-            <label for="webui_upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="webuiUpnpCheckbox">
+            <label for="webuiUpnpCheckbox">QBT_TR(Use UPnP / NAT-PMP to forward the port from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <fieldset class="settings">
             <legend>
@@ -1043,10 +1043,10 @@
                     <tbody>
                         <tr>
                             <td>
-                                <label for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                                <label for="webuiDomainTextarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label>
                             </td>
                             <td>
-                                <textarea id="webui_domain_textarea" rows="1" cols="60" title="QBT_TR(Whitelist for filtering HTTP Host header values.
+                                <textarea id="webuiDomainTextarea" rows="1" cols="60" title="QBT_TR(Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
@@ -1940,23 +1940,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         // Connection tab
 
         const updateMaxConnecEnabled = () => {
-            const isMaxConnecEnabled = $("max_connec_checkbox").checked;
-            $("max_connec_value").disabled = !isMaxConnecEnabled;
+            const isMaxConnecEnabled = $("maxConnectionsCheckbox").checked;
+            $("maxConnectionsValue").disabled = !isMaxConnecEnabled;
         };
 
         const updateMaxConnecPerTorrentEnabled = () => {
-            const isMaxConnecPerTorrentEnabled = $("max_connec_per_torrent_checkbox").checked;
-            $("max_connec_per_torrent_value").disabled = !isMaxConnecPerTorrentEnabled;
+            const isMaxConnecPerTorrentEnabled = $("maxConnectionsPerTorrentCheckbox").checked;
+            $("maxConnectionsPerTorrentValue").disabled = !isMaxConnecPerTorrentEnabled;
         };
 
         const updateMaxUploadsEnabled = () => {
-            const isMaxUploadsEnabled = $("max_uploads_checkbox").checked;
+            const isMaxUploadsEnabled = $("maxUploadsCheckbox").checked;
             $("max_uploads_value").disabled = !isMaxUploadsEnabled;
         };
 
         const updateMaxUploadsPerTorrentEnabled = () => {
-            const isMaxUploadsPerTorrentEnabled = $("max_uploads_per_torrent_checkbox").checked;
-            $("max_uploads_per_torrent_value").disabled = !isMaxUploadsPerTorrentEnabled;
+            const isMaxUploadsPerTorrentEnabled = $("maxUploadsPerTorrentCheckbox").checked;
+            $("maxUploadsPerTorrentValue").disabled = !isMaxUploadsPerTorrentEnabled;
         };
 
         const updateI2PSettingsEnabled = () => {
@@ -2009,32 +2009,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         // Bittorrent tab
         const updateQueueingSystem = () => {
-            const isQueueingEnabled = $("queueing_checkbox").checked;
-            $("max_active_dl_value").disabled = !isQueueingEnabled;
-            $("max_active_up_value").disabled = !isQueueingEnabled;
-            $("max_active_to_value").disabled = !isQueueingEnabled;
-            $("dont_count_slow_torrents_checkbox").disabled = !isQueueingEnabled;
+            const isQueueingEnabled = $("queueingCheckbox").checked;
+            $("maxActiveDlValue").disabled = !isQueueingEnabled;
+            $("maxActiveUpValue").disabled = !isQueueingEnabled;
+            $("maxActiveToValue").disabled = !isQueueingEnabled;
+            $("dontCountSlowTorrentsCheckbox").disabled = !isQueueingEnabled;
             updateSlowTorrentsSettings();
         };
 
         const updateSlowTorrentsSettings = () => {
-            const isDontCountSlowTorrentsEnabled = (!$("dont_count_slow_torrents_checkbox").disabled) && $("dont_count_slow_torrents_checkbox").checked;
-            $("dl_rate_threshold").disabled = !isDontCountSlowTorrentsEnabled;
-            $("ul_rate_threshold").disabled = !isDontCountSlowTorrentsEnabled;
-            $("torrent_inactive_timer").disabled = !isDontCountSlowTorrentsEnabled;
+            const isDontCountSlowTorrentsEnabled = (!$("dontCountSlowTorrentsCheckbox").disabled) && $("dontCountSlowTorrentsCheckbox").checked;
+            $("dlRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
+            $("ulRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
+            $("torrentInactiveTimerValue").disabled = !isDontCountSlowTorrentsEnabled;
         };
 
         const updateMaxRatioTimeEnabled = () => {
-            const isMaxRatioEnabled = $("max_ratio_checkbox").checked;
-            $("max_ratio_value").disabled = !isMaxRatioEnabled;
+            const isMaxRatioEnabled = $("maxRatioCheckbox").checked;
+            $("maxRatioValue").disabled = !isMaxRatioEnabled;
 
-            const isMaxSeedingTimeEnabled = $("max_seeding_time_checkbox").checked;
-            $("max_seeding_time_value").disabled = !isMaxSeedingTimeEnabled;
+            const isMaxSeedingTimeEnabled = $("maxSeedingTimeCheckbox").checked;
+            $("maxSeedingTimeValue").disabled = !isMaxSeedingTimeEnabled;
 
-            const isMaxInactiveSeedingTimeEnabled = $("max_inactive_seeding_time_checkbox").checked;
-            $("max_inactive_seeding_time_value").disabled = !isMaxInactiveSeedingTimeEnabled;
+            const isMaxInactiveSeedingTimeEnabled = $("maxInactiveSeedingTimeCheckbox").checked;
+            $("maxInactiveSeedingTimeValue").disabled = !isMaxInactiveSeedingTimeEnabled;
 
-            $("max_ratio_act").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
+            $("maxRatioSelect").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
         };
 
         const updateAddTrackersEnabled = () => {
@@ -2066,7 +2066,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const updateHostHeaderValidationSettings = () => {
             const isHostHeaderValidationEnabled = $("host_header_validation_checkbox").checked;
-            $("webui_domain_textarea").disabled = !isHostHeaderValidationEnabled;
+            $("webuiDomainTextarea").disabled = !isHostHeaderValidationEnabled;
         };
 
         const updateWebUICustomHTTPHeadersSettings = () => {
@@ -2098,7 +2098,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const min = 1024;
             const max = 65535;
             const port = Math.floor(Math.random() * (max - min + 1) + min);
-            $("port_value").value = port;
+            $("portValue").value = port;
         };
 
         const time_padding = (val) => {
@@ -2329,48 +2329,51 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     // Connection tab
                     // Listening Port
-                    $("port_value").value = Number(pref.listen_port);
-                    $("upnp_checkbox").checked = pref.upnp;
+                    $("portValue").value = Number(pref.listen_port);
+                    $("upnpCheckbox").checked = pref.upnp;
 
                     // Connections Limits
-                    const max_connec = Number(pref.max_connec);
-                    if (max_connec <= 0) {
-                        $("max_connec_checkbox").checked = false;
-                        $("max_connec_value").value = 500;
+                    const maxConnec = Number(pref.max_connec);
+                    if (maxConnec <= 0) {
+                        $("maxConnectionsCheckbox").checked = false;
+                        $("maxConnectionsValue").value = 500;
                     }
                     else {
-                        $("max_connec_checkbox").checked = true;
-                        $("max_connec_value").value = max_connec;
+                        $("maxConnectionsCheckbox").checked = true;
+                        $("maxConnectionsValue").value = maxConnec;
                     }
                     updateMaxConnecEnabled();
-                    const max_connec_per_torrent = Number(pref.max_connec_per_torrent);
-                    if (max_connec_per_torrent <= 0) {
-                        $("max_connec_per_torrent_checkbox").checked = false;
-                        $("max_connec_per_torrent_value").value = 100;
+
+                    const maxConnecPerTorrent = Number(pref.max_connec_per_torrent);
+                    if (maxConnecPerTorrent <= 0) {
+                        $("maxConnectionsPerTorrentCheckbox").checked = false;
+                        $("maxConnectionsPerTorrentValue").value = 100;
                     }
                     else {
-                        $("max_connec_per_torrent_checkbox").checked = true;
-                        $("max_connec_per_torrent_value").value = max_connec_per_torrent;
+                        $("maxConnectionsPerTorrentCheckbox").checked = true;
+                        $("maxConnectionsPerTorrentValue").value = maxConnecPerTorrent;
                     }
                     updateMaxConnecPerTorrentEnabled();
-                    const max_uploads = Number(pref.max_uploads);
-                    if (max_uploads <= 0) {
-                        $("max_uploads_checkbox").checked = false;
+
+                    const maxUploads = Number(pref.max_uploads);
+                    if (maxUploads <= 0) {
+                        $("maxUploadsCheckbox").checked = false;
                         $("max_uploads_value").value = 8;
                     }
                     else {
-                        $("max_uploads_checkbox").checked = true;
-                        $("max_uploads_value").value = max_uploads;
+                        $("maxUploadsCheckbox").checked = true;
+                        $("max_uploads_value").value = maxUploads;
                     }
                     updateMaxUploadsEnabled();
-                    const max_uploads_per_torrent = Number(pref.max_uploads_per_torrent);
-                    if (max_uploads_per_torrent <= 0) {
-                        $("max_uploads_per_torrent_checkbox").checked = false;
-                        $("max_uploads_per_torrent_value").value = 4;
+
+                    const maxUploadsPerTorrent = Number(pref.max_uploads_per_torrent);
+                    if (maxUploadsPerTorrent <= 0) {
+                        $("maxUploadsPerTorrentCheckbox").checked = false;
+                        $("maxUploadsPerTorrentValue").value = 4;
                     }
                     else {
-                        $("max_uploads_per_torrent_checkbox").checked = true;
-                        $("max_uploads_per_torrent_value").value = max_uploads_per_torrent;
+                        $("maxUploadsPerTorrentCheckbox").checked = true;
+                        $("maxUploadsPerTorrentValue").value = maxUploadsPerTorrent;
                     }
                     updateMaxUploadsPerTorrentEnabled();
 
@@ -2404,11 +2407,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     // Speed tab
                     // Global Rate Limits
-                    $("up_limit_value").value = (Number(pref.up_limit) / 1024);
-                    $("dl_limit_value").value = (Number(pref.dl_limit) / 1024);
+                    $("upLimitValue").value = (Number(pref.up_limit) / 1024);
+                    $("dlLimitValue").value = (Number(pref.dl_limit) / 1024);
                     // Alternative Global Rate Limits
-                    $("alt_up_limit_value").value = (Number(pref.alt_up_limit) / 1024);
-                    $("alt_dl_limit_value").value = (Number(pref.alt_dl_limit) / 1024);
+                    $("altUpLimitValue").value = (Number(pref.alt_up_limit) / 1024);
+                    $("altDlLimitValue").value = (Number(pref.alt_dl_limit) / 1024);
 
                     $("enable_protocol_combobox").value = pref.bittorrent_protocol;
                     $("limit_utp_rate_checkbox").checked = pref.limit_utp_rate;
@@ -2436,23 +2439,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("maxActiveCheckingTorrents").value = pref.max_active_checking_torrents;
 
                     // Torrent Queueing
-                    $("queueing_checkbox").checked = pref.queueing_enabled;
-                    $("max_active_dl_value").value = Number(pref.max_active_downloads);
-                    $("max_active_up_value").value = Number(pref.max_active_uploads);
-                    $("max_active_to_value").value = Number(pref.max_active_torrents);
-                    $("dont_count_slow_torrents_checkbox").checked = pref.dont_count_slow_torrents;
-                    $("dl_rate_threshold").value = Number(pref.slow_torrent_dl_rate_threshold);
-                    $("ul_rate_threshold").value = Number(pref.slow_torrent_ul_rate_threshold);
-                    $("torrent_inactive_timer").value = Number(pref.slow_torrent_inactive_timer);
+                    $("queueingCheckbox").checked = pref.queueing_enabled;
+                    $("maxActiveDlValue").value = Number(pref.max_active_downloads);
+                    $("maxActiveUpValue").value = Number(pref.max_active_uploads);
+                    $("maxActiveToValue").value = Number(pref.max_active_torrents);
+                    $("dontCountSlowTorrentsCheckbox").checked = pref.dont_count_slow_torrents;
+                    $("dlRateThresholdValue").value = Number(pref.slow_torrent_dl_rate_threshold);
+                    $("ulRateThresholdValue").value = Number(pref.slow_torrent_ul_rate_threshold);
+                    $("torrentInactiveTimerValue").value = Number(pref.slow_torrent_inactive_timer);
                     updateQueueingSystem();
 
                     // Share Limiting
-                    $("max_ratio_checkbox").checked = pref.max_ratio_enabled;
-                    $("max_ratio_value").value = (pref.max_ratio_enabled ? pref.max_ratio : 1);
-                    $("max_seeding_time_checkbox").checked = pref.max_seeding_time_enabled;
-                    $("max_seeding_time_value").value = (pref.max_seeding_time_enabled ? Number(pref.max_seeding_time) : 1440);
-                    $("max_inactive_seeding_time_checkbox").checked = pref.max_inactive_seeding_time_enabled;
-                    $("max_inactive_seeding_time_value").value = (pref.max_inactive_seeding_time_enabled ? Number(pref.max_inactive_seeding_time) : 1440);
+                    $("maxRatioCheckbox").checked = pref.max_ratio_enabled;
+                    $("maxRatioValue").value = (pref.max_ratio_enabled ? pref.max_ratio : 1);
+                    $("maxSeedingTimeCheckbox").checked = pref.max_seeding_time_enabled;
+                    $("maxSeedingTimeValue").value = (pref.max_seeding_time_enabled ? Number(pref.max_seeding_time) : 1440);
+                    $("maxInactiveSeedingTimeCheckbox").checked = pref.max_inactive_seeding_time_enabled;
+                    $("maxInactiveSeedingTimeValue").value = (pref.max_inactive_seeding_time_enabled ? Number(pref.max_inactive_seeding_time) : 1440);
                     let maxRatioAct = 0;
                     switch (Number(pref.max_ratio_act)) {
                         case 0: // Stop
@@ -2469,7 +2472,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             maxRatioAct = 2;
                             break;
                     }
-                    $("max_ratio_act").getChildren("option")[maxRatioAct].selected = true;
+                    $("maxRatioSelect").getChildren("option")[maxRatioAct].selected = true;
                     updateMaxRatioTimeEnabled();
 
                     // Add trackers
@@ -2492,10 +2495,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     // WebUI tab
                     // HTTP Server
-                    $("webui_domain_textarea").value = pref.web_ui_domain_list;
-                    $("webui_address_value").value = pref.web_ui_address;
-                    $("webui_port_value").value = pref.web_ui_port;
-                    $("webui_upnp_checkbox").checked = pref.web_ui_upnp;
+                    $("webuiDomainTextarea").value = pref.web_ui_domain_list;
+                    $("webuiAddressValue").value = pref.web_ui_address;
+                    $("webuiPortValue").value = pref.web_ui_port;
+                    $("webuiUpnpCheckbox").checked = pref.web_ui_upnp;
                     $("use_https_checkbox").checked = pref.use_https;
                     $("ssl_cert_text").value = pref.web_ui_https_cert_path;
                     $("ssl_key_text").value = pref.web_ui_https_key_path;
@@ -2705,51 +2708,54 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Connection tab
             // Listening Port
-            const listen_port = Number($("port_value").value);
-            if (isNaN(listen_port) || (listen_port < 0) || (listen_port > 65535)) {
+            const listenPort = Number($("portValue").value);
+            if (Number.isNaN(listenPort) || (listenPort < 0) || (listenPort > 65535)) {
                 alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings["listen_port"] = listen_port;
-            settings["upnp"] = $("upnp_checkbox").checked;
+            settings["listen_port"] = listenPort;
+            settings["upnp"] = $("upnpCheckbox").checked;
 
             // Connections Limits
-            let max_connec = -1;
-            if ($("max_connec_checkbox").checked) {
-                max_connec = Number($("max_connec_value").value);
-                if (isNaN(max_connec) || (max_connec <= 0)) {
+            let maxConnec = -1;
+            if ($("maxConnectionsCheckbox").checked) {
+                maxConnec = Number($("maxConnectionsValue").value);
+                if (Number.isNaN(maxConnec) || (maxConnec <= 0)) {
                     alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_connec"] = max_connec;
-            let max_connec_per_torrent = -1;
-            if ($("max_connec_per_torrent_checkbox").checked) {
-                max_connec_per_torrent = Number($("max_connec_per_torrent_value").value);
-                if (isNaN(max_connec_per_torrent) || (max_connec_per_torrent <= 0)) {
+            settings["max_connec"] = maxConnec;
+
+            let maxConnecPerTorrent = -1;
+            if ($("maxConnectionsPerTorrentCheckbox").checked) {
+                maxConnecPerTorrent = Number($("maxConnectionsPerTorrentValue").value);
+                if (Number.isNaN(maxConnecPerTorrent) || (maxConnecPerTorrent <= 0)) {
                     alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_connec_per_torrent"] = max_connec_per_torrent;
-            let max_uploads = -1;
-            if ($("max_uploads_checkbox").checked) {
-                max_uploads = Number($("max_uploads_value").value);
-                if (isNaN(max_uploads) || (max_uploads <= 0)) {
+            settings["max_connec_per_torrent"] = maxConnecPerTorrent;
+
+            let maxUploads = -1;
+            if ($("maxUploadsCheckbox").checked) {
+                maxUploads = Number($("max_uploads_value").value);
+                if (Number.isNaN(maxUploads) || (maxUploads <= 0)) {
                     alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_uploads"] = max_uploads;
-            let max_uploads_per_torrent = -1;
-            if ($("max_uploads_per_torrent_checkbox").checked) {
-                max_uploads_per_torrent = Number($("max_uploads_per_torrent_value").value);
-                if (isNaN(max_uploads_per_torrent) || (max_uploads_per_torrent <= 0)) {
+            settings["max_uploads"] = maxUploads;
+
+            let maxUploadsPerTorrent = -1;
+            if ($("maxUploadsPerTorrentCheckbox").checked) {
+                maxUploadsPerTorrent = Number($("maxUploadsPerTorrentValue").value);
+                if (Number.isNaN(maxUploadsPerTorrent) || (maxUploadsPerTorrent <= 0)) {
                     alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_uploads_per_torrent"] = max_uploads_per_torrent;
+            settings["max_uploads_per_torrent"] = maxUploadsPerTorrent;
 
             // I2P
             settings["i2p_enabled"] = $("i2pEnabledCheckbox").checked;
@@ -2778,34 +2784,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Speed tab
             // Global Rate Limits
-            const up_limit = Number($("up_limit_value").value) * 1024;
-            if (isNaN(up_limit) || (up_limit < 0)) {
+            const upLimit = Number($("upLimitValue").value) * 1024;
+            if (Number.isNaN(upLimit) || (upLimit < 0)) {
                 alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings["up_limit"] = up_limit;
+            settings["up_limit"] = upLimit;
 
-            const dl_limit = Number($("dl_limit_value").value) * 1024;
-            if (isNaN(dl_limit) || (dl_limit < 0)) {
+            const dlLimit = Number($("dlLimitValue").value) * 1024;
+            if (Number.isNaN(dlLimit) || (dlLimit < 0)) {
                 alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings["dl_limit"] = dl_limit;
+            settings["dl_limit"] = dlLimit;
 
             // Alternative Global Rate Limits
-            const alt_up_limit = Number($("alt_up_limit_value").value) * 1024;
-            if (isNaN(alt_up_limit) || (alt_up_limit < 0)) {
+            const altUpLimit = Number($("altUpLimitValue").value) * 1024;
+            if (Number.isNaN(altUpLimit) || (altUpLimit < 0)) {
                 alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings["alt_up_limit"] = alt_up_limit;
+            settings["alt_up_limit"] = altUpLimit;
 
-            const alt_dl_limit = Number($("alt_dl_limit_value").value) * 1024;
-            if (isNaN(alt_dl_limit) || (alt_dl_limit < 0)) {
+            const altDlLimit = Number($("altDlLimitValue").value) * 1024;
+            if (Number.isNaN(altDlLimit) || (altDlLimit < 0)) {
                 alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings["alt_dl_limit"] = alt_dl_limit;
+            settings["alt_dl_limit"] = altDlLimit;
 
             settings["bittorrent_protocol"] = Number($("enable_protocol_combobox").value);
             settings["limit_utp_rate"] = $("limit_utp_rate_checkbox").checked;
@@ -2813,9 +2819,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["limit_lan_peers"] = $("limit_lan_peers_checkbox").checked;
 
             // Scheduler
-            const scheduling_enabled = $("limitSchedulingCheckbox").checked;
-            settings["scheduler_enabled"] = scheduling_enabled;
-            if (scheduling_enabled) {
+            const schedulingEnabled = $("limitSchedulingCheckbox").checked;
+            settings["scheduler_enabled"] = schedulingEnabled;
+            if (schedulingEnabled) {
                 settings["schedule_from_hour"] = Number($("schedule_from_hour").value);
                 settings["schedule_from_min"] = Number($("schedule_from_min").value);
                 settings["schedule_to_hour"] = Number($("schedule_to_hour").value);
@@ -2834,82 +2840,86 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_active_checking_torrents"] = Number($("maxActiveCheckingTorrents").value);
 
             // Torrent Queueing
-            settings["queueing_enabled"] = $("queueing_checkbox").checked;
-            if ($("queueing_checkbox").checked) {
-                const max_active_downloads = Number($("max_active_dl_value").value);
-                if (isNaN(max_active_downloads) || (max_active_downloads < -1)) {
+            settings["queueing_enabled"] = $("queueingCheckbox").checked;
+            if ($("queueingCheckbox").checked) {
+                const maxActiveDownloads = Number($("maxActiveDlValue").value);
+                if (Number.isNaN(maxActiveDownloads) || (maxActiveDownloads < -1)) {
                     alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings["max_active_downloads"] = max_active_downloads;
-                const max_active_uploads = Number($("max_active_up_value").value);
-                if (isNaN(max_active_uploads) || (max_active_uploads < -1)) {
+                settings["max_active_downloads"] = maxActiveDownloads;
+
+                const maxActiveUploads = Number($("maxActiveUpValue").value);
+                if (Number.isNaN(maxActiveUploads) || (maxActiveUploads < -1)) {
                     alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings["max_active_uploads"] = max_active_uploads;
-                const max_active_torrents = Number($("max_active_to_value").value);
-                if (isNaN(max_active_torrents) || (max_active_torrents < -1)) {
+                settings["max_active_uploads"] = maxActiveUploads;
+
+                const maxActiveTorrents = Number($("maxActiveToValue").value);
+                if (Number.isNaN(maxActiveTorrents) || (maxActiveTorrents < -1)) {
                     alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings["max_active_torrents"] = max_active_torrents;
-                settings["dont_count_slow_torrents"] = $("dont_count_slow_torrents_checkbox").checked;
-                const dl_rate_threshold = Number($("dl_rate_threshold").value);
-                if (isNaN(dl_rate_threshold) || (dl_rate_threshold < 1)) {
+                settings["max_active_torrents"] = maxActiveTorrents;
+                settings["dont_count_slow_torrents"] = $("dontCountSlowTorrentsCheckbox").checked;
+
+                const dlRateThreshold = Number($("dlRateThresholdValue").value);
+                if (Number.isNaN(dlRateThreshold) || (dlRateThreshold < 1)) {
                     alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings["slow_torrent_dl_rate_threshold"] = dl_rate_threshold;
-                const ul_rate_threshold = Number($("ul_rate_threshold").value);
-                if (isNaN(ul_rate_threshold) || (ul_rate_threshold < 1)) {
+                settings["slow_torrent_dl_rate_threshold"] = dlRateThreshold;
+
+                const ulRateThreshold = Number($("ulRateThresholdValue").value);
+                if (Number.isNaN(ulRateThreshold) || (ulRateThreshold < 1)) {
                     alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings["slow_torrent_ul_rate_threshold"] = ul_rate_threshold;
-                const torrent_inactive_timer = Number($("torrent_inactive_timer").value);
-                if (isNaN(torrent_inactive_timer) || (torrent_inactive_timer < 1)) {
+                settings["slow_torrent_ul_rate_threshold"] = ulRateThreshold;
+
+                const torrentInactiveTimer = Number($("torrentInactiveTimerValue").value);
+                if (Number.isNaN(torrentInactiveTimer) || (torrentInactiveTimer < 1)) {
                     alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
-                settings["slow_torrent_inactive_timer"] = torrent_inactive_timer;
+                settings["slow_torrent_inactive_timer"] = torrentInactiveTimer;
             }
 
             // Share Ratio Limiting
-            let max_ratio = -1;
-            if ($("max_ratio_checkbox").checked) {
-                max_ratio = Number($("max_ratio_value").value);
-                if (isNaN(max_ratio) || (max_ratio < 0) || (max_ratio > 9998)) {
+            let maxRatio = -1;
+            if ($("maxRatioCheckbox").checked) {
+                maxRatio = Number($("maxRatioValue").value);
+                if (isNaN(maxRatio) || (maxRatio < 0) || (maxRatio > 9998)) {
                     alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_ratio_enabled"] = $("max_ratio_checkbox").checked;
-            settings["max_ratio"] = max_ratio;
+            settings["max_ratio_enabled"] = $("maxRatioCheckbox").checked;
+            settings["max_ratio"] = maxRatio;
 
-            let max_seeding_time = -1;
-            if ($("max_seeding_time_checkbox").checked) {
-                max_seeding_time = Number($("max_seeding_time_value").value);
-                if (isNaN(max_seeding_time) || (max_seeding_time < 0) || (max_seeding_time > 525600)) {
+            let maxSeedingTime = -1;
+            if ($("maxSeedingTimeCheckbox").checked) {
+                maxSeedingTime = Number($("maxSeedingTimeValue").value);
+                if (Number.isNaN(maxSeedingTime) || (maxSeedingTime < 0) || (maxSeedingTime > 525600)) {
                     alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_seeding_time_enabled"] = $("max_seeding_time_checkbox").checked;
-            settings["max_seeding_time"] = max_seeding_time;
-            settings["max_ratio_act"] = Number($("max_ratio_act").value);
+            settings["max_seeding_time_enabled"] = $("maxSeedingTimeCheckbox").checked;
+            settings["max_seeding_time"] = maxSeedingTime;
 
-            let max_inactive_seeding_time = -1;
-            if ($("max_inactive_seeding_time_checkbox").checked) {
-                max_inactive_seeding_time = Number($("max_inactive_seeding_time_value").value);
-                if (isNaN(max_inactive_seeding_time) || (max_inactive_seeding_time < 0) || (max_inactive_seeding_time > 525600)) {
+            let maxInactiveSeedingTime = -1;
+            if ($("maxInactiveSeedingTimeCheckbox").checked) {
+                maxInactiveSeedingTime = Number($("maxInactiveSeedingTimeValue").value);
+                if (Number.isNaN(maxInactiveSeedingTime) || (maxInactiveSeedingTime < 0) || (maxInactiveSeedingTime > 525600)) {
                     alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_inactive_seeding_time_enabled"] = $("max_inactive_seeding_time_checkbox").checked;
-            settings["max_inactive_seeding_time"] = max_inactive_seeding_time;
-            settings["max_ratio_act"] = Number($("max_ratio_act").value);
+            settings["max_inactive_seeding_time_enabled"] = $("maxInactiveSeedingTimeCheckbox").checked;
+            settings["max_inactive_seeding_time"] = maxInactiveSeedingTime;
+            settings["max_ratio_act"] = Number($("maxRatioSelect").value);
 
             // Add trackers
             settings["add_trackers_enabled"] = $("add_trackers_checkbox").checked;
@@ -2928,16 +2938,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // WebUI tab
             // HTTP Server
-            settings["web_ui_domain_list"] = $("webui_domain_textarea").value;
-            const web_ui_address = $("webui_address_value").value.toString();
-            const web_ui_port = Number($("webui_port_value").value);
-            if (isNaN(web_ui_port) || (web_ui_port < 1) || (web_ui_port > 65535)) {
+            settings["web_ui_domain_list"] = $("webuiDomainTextarea").value;
+            const webUIAddress = $("webuiAddressValue").value.toString();
+            const webUIPort = Number($("webuiPortValue").value);
+            if (Number.isNaN(webUIPort) || (webUIPort < 1) || (webUIPort > 65535)) {
                 alert("QBT_TR(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings["web_ui_address"] = web_ui_address;
-            settings["web_ui_port"] = web_ui_port;
-            settings["web_ui_upnp"] = $("webui_upnp_checkbox").checked;
+            settings["web_ui_address"] = webUIAddress;
+            settings["web_ui_port"] = webUIPort;
+            settings["web_ui_upnp"] = $("webuiUpnpCheckbox").checked;
 
             const useHTTPS = $("use_https_checkbox").checked;
             settings["use_https"] = useHTTPS;

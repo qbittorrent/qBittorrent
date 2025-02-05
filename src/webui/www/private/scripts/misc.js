@@ -164,7 +164,7 @@ window.qBittorrent.Misc ??= (() => {
 
     const friendlyPercentage = (value) => {
         let percentage = (value * 100).round(1);
-        if (isNaN(percentage) || (percentage < 0))
+        if (Number.isNaN(percentage) || (percentage < 0))
             percentage = 0;
         if (percentage > 100)
             percentage = 100;
@@ -189,7 +189,7 @@ window.qBittorrent.Misc ??= (() => {
 
         const tryToNumber = (str) => {
             const num = Number(str);
-            return (isNaN(num) ? str : num);
+            return (Number.isNaN(num) ? str : num);
         };
 
         const ver = versionString.split(".", 4).map(val => tryToNumber(val));

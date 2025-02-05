@@ -117,7 +117,7 @@ window.qBittorrent.ProgressBar ??= (() => {
 
     function ProgressBar_setValue(value) {
         value = parseFloat(value);
-        if (isNaN(value))
+        if (Number.isNaN(value))
             value = 0;
         value = Math.min(Math.max(value, 0), 100);
         this.vals.value = value;
