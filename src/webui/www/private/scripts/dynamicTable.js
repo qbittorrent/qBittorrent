@@ -1247,7 +1247,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 else {
                     if (progressColumnWidth < 0)
                         progressColumnWidth = td.offsetWidth;
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted.toFloat(), {
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted, {
                         width: progressColumnWidth - 5
                     }));
                     td.resized = false;
@@ -2598,17 +2598,17 @@ window.qBittorrent.DynamicTable ??= (() => {
             // progress
             this.columns["progress"].updateTd = function(td, row) {
                 const id = row.rowId;
-                const value = this.getRowValue(row);
+                const value = Number(this.getRowValue(row));
 
                 const progressBar = $(`pbf_${id}`);
                 if (progressBar === null) {
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(value.toFloat(), {
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(value, {
                         id: `pbf_${id}`,
                         width: 80
                     }));
                 }
                 else {
-                    progressBar.setValue(value.toFloat());
+                    progressBar.setValue(value);
                 }
             };
             this.columns["progress"].staticWidth = 100;

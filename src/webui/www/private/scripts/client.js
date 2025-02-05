@@ -1515,7 +1515,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
     let prop_h = LocalPreferences.get("properties_height_rel");
     if (prop_h !== null)
-        prop_h = prop_h.toFloat() * Window.getSize().y;
+        prop_h = Number(prop_h) * Window.getSize().y;
     else
         prop_h = Window.getSize().y / 2.0;
     new MochaUI.Panel({
