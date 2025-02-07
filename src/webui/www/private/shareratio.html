@@ -9,7 +9,6 @@
     <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
-    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
     <script>
         "use strict";
 
@@ -34,10 +33,10 @@
             const origValues = searchParams.get("orig").split("|");
 
             const values = {
-                ratioLimit: window.qBittorrent.Misc.friendlyFloat(origValues[0], 2),
+                ratioLimit: Number(origValues[0]),
                 seedingTimeLimit: Number(origValues[1]),
                 inactiveSeedingTimeLimit: Number(origValues[2]),
-                maxRatio: window.qBittorrent.Misc.friendlyFloat(origValues[3], 2),
+                maxRatio: Number(origValues[3]),
                 maxSeedingTime: Number(origValues[4]),
                 maxInactiveSeedingTime: Number(origValues[5])
             };
@@ -58,7 +57,7 @@
                 setSelectedRadioValue("shareLimit", "custom");
                 if (values.ratioLimit >= 0) {
                     $("setRatio").checked = true;
-                    $("ratio").value = values.ratioLimit;
+                    $("ratio").value = values.ratioLimit.toFixed(2);
                 }
                 if (values.seedingTimeLimit >= 0) {
                     $("setTotalMinutes").checked = true;

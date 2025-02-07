@@ -37,7 +37,6 @@ window.qBittorrent.Misc ??= (() => {
             friendlyUnit: friendlyUnit,
             friendlyDuration: friendlyDuration,
             friendlyPercentage: friendlyPercentage,
-            friendlyFloat: friendlyFloat,
             parseHtmlLinks: parseHtmlLinks,
             parseVersion: parseVersion,
             escapeHtml: escapeHtml,
@@ -170,10 +169,6 @@ window.qBittorrent.Misc ??= (() => {
         if (percentage > 100)
             percentage = 100;
         return `${percentage.toFixed(1)}%`;
-    };
-
-    const friendlyFloat = (value, precision) => {
-        return parseFloat(value).toFixed(precision);
     };
 
     /*
