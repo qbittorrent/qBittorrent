@@ -392,68 +392,81 @@ void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torren
 
     for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : updatedTrackers)
     {
-        if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::Working)
+        switch (trackerEntryStatus.state)
         {
-            // remove tracker from "error" and "tracker error" categories
-            if (errorHashesIt != m_errors.end())
-                errorHashesIt->remove(trackerEntryStatus.url);
-            if (trackerErrorHashesIt != m_trackerErrors.end())
-                trackerErrorHashesIt->remove(trackerEntryStatus.url);
+        case BitTorrent::TrackerEndpointState::Working:
+            {
+                // remove tracker from "error" and "tracker error" categories
+                if (errorHashesIt != m_errors.end())
+                    errorHashesIt->remove(trackerEntryStatus.url);
+                if (trackerErrorHashesIt != m_trackerErrors.end())
+                    trackerErrorHashesIt->remove(trackerEntryStatus.url);
 
-            const bool hasNoWarningMessages = std::all_of(trackerEntryStatus.endpoints.cbegin(), trackerEntryStatus.endpoints.cend()
-                , [](const BitTorrent::TrackerEndpointStatus &endpointEntry)
-            {
-                return endpointEntry.message.isEmpty() || (endpointEntry.state != BitTorrent::TrackerEndpointState::Working);
-            });
-            if (hasNoWarningMessages)
-            {
-                if (warningHashesIt != m_warnings.end())
+                const bool hasNoWarningMessages = std::all_of(trackerEntryStatus.endpoints.cbegin(), trackerEntryStatus.endpoints.cend()
+                    , [](const BitTorrent::TrackerEndpointStatus &endpointEntry)
                 {
-                    warningHashesIt->remove(trackerEntryStatus.url);
+                    return endpointEntry.message.isEmpty() || (endpointEntry.state != BitTorrent::TrackerEndpointState::Working);
+                });
+                if (hasNoWarningMessages)
+                {
+                    if (warningHashesIt != m_warnings.end())
+                    {
+                        warningHashesIt->remove(trackerEntryStatus.url);
+                    }
+                }
+                else
+                {
+                    if (warningHashesIt == m_warnings.end())
+                        warningHashesIt = m_warnings.insert(id, {});
+                    warningHashesIt->insert(trackerEntryStatus.url);
                 }
             }
-            else
+            break;
+
+        case BitTorrent::TrackerEndpointState::NotWorking:
+        case BitTorrent::TrackerEndpointState::Unreachable:
             {
-                if (warningHashesIt == m_warnings.end())
-                    warningHashesIt = m_warnings.insert(id, {});
-                warningHashesIt->insert(trackerEntryStatus.url);
+                // remove tracker from "tracker error" and  "warning" categories
+                if (warningHashesIt != m_warnings.end())
+                    warningHashesIt->remove(trackerEntryStatus.url);
+                if (trackerErrorHashesIt != m_trackerErrors.end())
+                    trackerErrorHashesIt->remove(trackerEntryStatus.url);
+
+                if (errorHashesIt == m_errors.end())
+                    errorHashesIt = m_errors.insert(id, {});
+                errorHashesIt->insert(trackerEntryStatus.url);
             }
-        }
-        else if ((trackerEntryStatus.state == BitTorrent::TrackerEndpointState::NotWorking)
-            || (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::Unreachable))
-        {
-            // remove tracker from "tracker error" and  "warning" categories
-            if (warningHashesIt != m_warnings.end())
-                warningHashesIt->remove(trackerEntryStatus.url);
-            if (trackerErrorHashesIt != m_trackerErrors.end())
-                trackerErrorHashesIt->remove(trackerEntryStatus.url);
+            break;
 
-            if (errorHashesIt == m_errors.end())
-                errorHashesIt = m_errors.insert(id, {});
-            errorHashesIt->insert(trackerEntryStatus.url);
-        }
-        else if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::TrackerError)
-        {
-            // remove tracker from "error" and  "warning" categories
-            if (warningHashesIt != m_warnings.end())
-                warningHashesIt->remove(trackerEntryStatus.url);
-            if (errorHashesIt != m_errors.end())
-                errorHashesIt->remove(trackerEntryStatus.url);
+        case BitTorrent::TrackerEndpointState::TrackerError:
+            {
+                // remove tracker from "error" and  "warning" categories
+                if (warningHashesIt != m_warnings.end())
+                    warningHashesIt->remove(trackerEntryStatus.url);
+                if (errorHashesIt != m_errors.end())
+                    errorHashesIt->remove(trackerEntryStatus.url);
 
-            if (trackerErrorHashesIt == m_trackerErrors.end())
-                trackerErrorHashesIt = m_trackerErrors.insert(id, {});
-            trackerErrorHashesIt->insert(trackerEntryStatus.url);
-        }
-        else if (trackerEntryStatus.state == BitTorrent::TrackerEndpointState::NotContacted)
-        {
-            // remove tracker from "error", "tracker error" and  "warning" categories
-            if (warningHashesIt != m_warnings.end())
-                warningHashesIt->remove(trackerEntryStatus.url);
-            if (errorHashesIt != m_errors.end())
-                errorHashesIt->remove(trackerEntryStatus.url);
-            if (trackerErrorHashesIt != m_trackerErrors.end())
-                trackerErrorHashesIt->remove(trackerEntryStatus.url);
-        }
+                if (trackerErrorHashesIt == m_trackerErrors.end())
+                    trackerErrorHashesIt = m_trackerErrors.insert(id, {});
+                trackerErrorHashesIt->insert(trackerEntryStatus.url);
+            }
+            break;
+
+        case BitTorrent::TrackerEndpointState::NotContacted:
+            {
+                // remove tracker from "error", "tracker error" and  "warning" categories
+                if (warningHashesIt != m_warnings.end())
+                    warningHashesIt->remove(trackerEntryStatus.url);
+                if (errorHashesIt != m_errors.end())
+                    errorHashesIt->remove(trackerEntryStatus.url);
+                if (trackerErrorHashesIt != m_trackerErrors.end())
+                    trackerErrorHashesIt->remove(trackerEntryStatus.url);
+            }
+            break;
+
+        case BitTorrent::TrackerEndpointState::Updating:
+            break;
+        };
     }
 
     if ((errorHashesIt != m_errors.end()) && errorHashesIt->isEmpty())
