@@ -2878,7 +2878,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Share Ratio Limiting
             let max_ratio = -1;
             if ($("max_ratio_checkbox").checked) {
-                max_ratio = $("max_ratio_value").value.toFloat();
+                max_ratio = Number($("max_ratio_value").value);
                 if (isNaN(max_ratio) || (max_ratio < 0) || (max_ratio > 9998)) {
                     alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR[CONTEXT=HttpServer]");
                     return;
