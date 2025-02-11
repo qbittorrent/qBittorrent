@@ -74,7 +74,6 @@ window.qBittorrent.ContextMenu = (function() {
 
             // option diffs menu
             this.menu = $(this.options.menu);
-            this.targets = $$(this.options.targets);
 
             // fx
             this.fx = new Fx.Tween(this.menu, {
@@ -185,11 +184,14 @@ window.qBittorrent.ContextMenu = (function() {
         },
 
         addTarget: function(t) {
+            if (t.hasEventListeners)
+                return;
+
             // prevent long press from selecting this text
             t.style.setProperty("user-select", "none");
             t.style.setProperty("-webkit-user-select", "none");
+            t.hasEventListeners = true;
 
-            this.targets[this.targets.length] = t;
             this.setupEventListeners(t);
         },
 
@@ -210,8 +212,8 @@ window.qBittorrent.ContextMenu = (function() {
         // get things started
         startListener: function() {
             /* all elements */
-            this.targets.each((el) => {
-                this.setupEventListeners(el);
+            $$(this.options.targets).each((el) => {
+                this.addTarget(el);
             }, this);
 
             /* menu items */
