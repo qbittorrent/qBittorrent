@@ -421,8 +421,6 @@ void TorrentsController::infoAction()
     // normalize offset
     if (offset < 0)
         offset = size + offset;
-    if ((offset >= size) || (offset < 0))
-        offset = 0;
     // normalize limit
     if (limit <= 0)
         limit = -1; // unlimited
