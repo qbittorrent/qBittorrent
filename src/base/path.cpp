@@ -54,6 +54,7 @@ namespace
 {
     QString cleanPath(const QString &path)
     {
+
         const bool hasSeparator = std::any_of(path.cbegin(), path.cend(), [](const QChar c)
         {
             return (c == u'/') || (c == u'\\');
@@ -74,8 +75,18 @@ namespace
 static_assert(Stringable<Path>);
 
 Path::Path(const QString &pathStr)
-    : m_pathStr {cleanPath(pathStr)}
 {
+#if defined(Q_OS_WIN)
+    if (validateUNCPath(pathStr))
+    {
+        auto [rootPath, filename] = splitUNCPath(pathStr);
+        isUNCPath = true;
+        rootStr = rootPath;
+        m_pathStr = cleanPath(filename).replace(u"/"_s, u"\\"_s);
+        return;
+    }
+#endif
+    m_pathStr = cleanPath(pathStr);
 }
 
 Path::Path(const std::string &pathStr)
@@ -85,13 +96,14 @@ Path::Path(const std::string &pathStr)
 
 bool Path::isValid() const
 {
-    // does not support UNC path
-
     if (isEmpty())
         return false;
 
     // https://stackoverflow.com/a/31976060
 #if defined(Q_OS_WIN)
+    if (isUNCPath)
+        return true;
+
     QStringView view = m_pathStr;
     if (hasDriveLetter(view))
         view = view.mid(3);
@@ -109,7 +121,7 @@ bool Path::isValid() const
 
 bool Path::isEmpty() const
 {
-    return m_pathStr.isEmpty();
+    return isUNCPath ? false : m_pathStr.isEmpty();
 }
 
 bool Path::isAbsolute() const
@@ -128,6 +140,36 @@ bool Path::isRelative() const
     return QDir::isRelativePath(m_pathStr);
 }
 
+#if defined(Q_OS_WIN)
+bool Path::validateUNCPath() const
+{
+    return validateUNCPath(data());
+}
+
+bool Path::validateUNCPath(const QString &pathStr) const
+{
+    const QRegularExpression forbidden {u"[\\0-\\37:?\"*<>|:/]"_s}; // no drive letter allowed C:/
+    const QRegularExpression pattern{uR"(^\\(\\[^\\]+){2,}[\\]*$)"_s}; // need raw \\ to match back slash
+    return pattern.match(pathStr).hasMatch() && !pathStr.contains(forbidden);
+}
+
+QPair<QString, QString> Path::splitUNCPath(const QString &pathStr) const
+{
+    // only call this only if validateUNCPath() returns true
+    int slashCount = 0;
+    int index = 0;
+    for (index = 0; index < pathStr.size(); ++index)
+    {
+        if (pathStr[index] == u'\\')
+        {
+            if (++slashCount == 4)
+                break;
+        }
+    }
+    return {pathStr.left(index), pathStr.right(pathStr.size() - index)};
+}
+#endif
+
 bool Path::exists() const
 {
     return !isEmpty() && QFileInfo::exists(m_pathStr);
@@ -135,8 +177,10 @@ bool Path::exists() const
 
 Path Path::rootItem() const
 {
-    // does not support UNC path
-
+#ifdef Q_OS_WIN
+    if (isUNCPath)
+        return createUnchecked(rootStr, true);
+#endif
     const int slashIndex = m_pathStr.indexOf(u'/');
     if (slashIndex < 0)
         return *this;
@@ -154,8 +198,14 @@ Path Path::rootItem() const
 
 Path Path::parentPath() const
 {
-    // does not support UNC path
-
+#ifdef Q_OS_WIN
+    if (isUNCPath)
+    {
+        const int backSlashIndex = m_pathStr.lastIndexOf(u'\\');
+        const QString parent = rootStr + m_pathStr.left(backSlashIndex);
+        return createUnchecked(parent, true);
+    }
+#endif
     const int slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return {};
@@ -241,12 +291,12 @@ Path Path::removedExtension(const QStringView ext) const
 
 QString Path::data() const
 {
-    return m_pathStr;
+    return (isUNCPath ? (rootStr + m_pathStr) : m_pathStr);
 }
 
 QString Path::toString() const
 {
-    return QDir::toNativeSeparators(m_pathStr);
+    return QDir::toNativeSeparators(data());
 }
 
 std::filesystem::path Path::toStdFsPath() const
@@ -333,11 +383,11 @@ void Path::addRootFolder(PathList &filePaths, const Path &rootFolder)
         filePath = rootFolder / filePath;
 }
 
-Path Path::createUnchecked(const QString &pathStr)
+Path Path::createUnchecked(const QString &pathStr, const bool isUNC)
 {
     Path path;
     path.m_pathStr = pathStr;
-
+    path.isUNCPath = isUNC;
     return path;
 }
 
