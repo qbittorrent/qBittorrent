@@ -2058,7 +2058,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                         break;
                 }
 
-                td.className = statusClass;
+                for (const c of [...td.classList]) {
+                    if (c.startsWith("tracker"))
+                        td.classList.remove(c);
+                }
+                td.classList.add(statusClass);
                 td.textContent = status;
                 td.title = status;
             };
