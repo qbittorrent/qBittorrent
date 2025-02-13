@@ -97,8 +97,8 @@ window.qBittorrent.Search ??= (() => {
             }
         },
         offsets: {
-            x: -15,
-            y: -53
+            x: 2,
+            y: -60
         },
         onShow: function() {
             setActiveTab(this.options.element);
