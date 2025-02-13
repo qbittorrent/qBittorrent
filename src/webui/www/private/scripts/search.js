@@ -109,7 +109,7 @@ window.qBittorrent.Search ??= (() => {
         // load "Search in" preference from local storage
         $("searchInTorrentName").value = (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-            targets: "#searchResultsTableDiv tr",
+            targets: "#searchResultsTableDiv tbody tr",
             menu: "searchResultsTableMenu",
             actions: {
                 Download: downloadSearchTorrent,
