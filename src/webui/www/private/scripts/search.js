@@ -184,7 +184,10 @@ window.qBittorrent.Search ??= (() => {
         closeTabElem.src = "images/application-exit.svg";
         closeTabElem.width = "10";
         closeTabElem.height = "10";
-        closeTabElem.addEventListener("click", function(e) { qBittorrent.Search.closeSearchTab(this); });
+        closeTabElem.addEventListener("click", function(e) {
+            e.stopPropagation();
+            closeSearchTab(this);
+        });
 
         tabElem.prepend(closeTabElem);
         tabElem.appendChild(getStatusIconElement("QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
