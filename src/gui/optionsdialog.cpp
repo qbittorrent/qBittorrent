@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -456,10 +456,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setLocale(locale);
 
 #ifdef Q_OS_WIN
-    if (const QVariant systemStyle = m_ui->comboStyle->currentData(); systemStyle.isValid())
-        pref->setStyle(systemStyle.toString());
-    else
-        pref->setStyle(m_ui->comboStyle->currentText());
+    pref->setStyle(m_ui->comboStyle->currentData().toString());
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
@@ -1695,18 +1692,20 @@ void OptionsDialog::initializeStyleCombo()
 {
 #ifdef Q_OS_WIN
     m_ui->labelStyleHint->setText(tr("%1 is recommended for best compatibility with Windows dark mode"
-                        , "Fusion is recommended for best compatibility with Windows dark mode").arg(u"Fusion"_s));
+            , "Fusion is recommended for best compatibility with Windows dark mode").arg(u"Fusion"_s));
     m_ui->comboStyle->addItem(tr("System", "System default Qt style"), u"system"_s);
     m_ui->comboStyle->setItemData(0, tr("Let Qt decide the style for this system"), Qt::ToolTipRole);
     m_ui->comboStyle->insertSeparator(1);
 
     QStringList styleNames = QStyleFactory::keys();
     std::sort(styleNames.begin(), styleNames.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
-    m_ui->comboStyle->addItems(styleNames);
+    for (const QString &styleName : asConst(styleNames))
+        m_ui->comboStyle->addItem(styleName, styleName);
 
     const QString prefStyleName = Preferences::instance()->getStyle();
     const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
-    m_ui->comboStyle->setCurrentIndex(m_ui->comboStyle->findText(selectedStyleName, Qt::MatchFixedString));
+    const int styleIndex = m_ui->comboStyle->findData(selectedStyleName, Qt::UserRole, Qt::MatchFixedString);
+    m_ui->comboStyle->setCurrentIndex(std::max(0, styleIndex));
 #else
     m_ui->labelStyle->hide();
     m_ui->comboStyle->hide();
