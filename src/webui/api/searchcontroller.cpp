@@ -131,8 +131,8 @@ void SearchController::stopAction()
 
     const int id = params()[u"id"_s].toInt();
 
-    const auto iter = m_searchHandlers.find(id);
-    if (iter == m_searchHandlers.end())
+    const auto iter = m_searchHandlers.constFind(id);
+    if (iter == m_searchHandlers.cend())
         throw APIError(APIErrorType::NotFound);
 
     const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
@@ -176,8 +176,8 @@ void SearchController::resultsAction()
     int limit = params()[u"limit"_s].toInt();
     int offset = params()[u"offset"_s].toInt();
 
-    const auto iter = m_searchHandlers.find(id);
-    if (iter == m_searchHandlers.end())
+    const auto iter = m_searchHandlers.constFind(id);
+    if (iter == m_searchHandlers.cend())
         throw APIError(APIErrorType::NotFound);
 
     const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
@@ -207,8 +207,8 @@ void SearchController::deleteAction()
 
     const int id = params()[u"id"_s].toInt();
 
-    const auto iter = m_searchHandlers.find(id);
-    if (iter == m_searchHandlers.end())
+    const auto iter = m_searchHandlers.constFind(id);
+    if (iter == m_searchHandlers.cend())
         throw APIError(APIErrorType::NotFound);
 
     const std::shared_ptr<SearchHandler> &searchHandler = iter.value();

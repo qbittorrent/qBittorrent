@@ -864,7 +864,7 @@ void SyncController::onTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent)
 
     for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
     {
-        auto iter = m_knownTrackers.find(status.url);
+        const auto iter = m_knownTrackers.find(status.url);
         Q_ASSERT(iter != m_knownTrackers.end());
         if (iter == m_knownTrackers.end()) [[unlikely]]
             continue;

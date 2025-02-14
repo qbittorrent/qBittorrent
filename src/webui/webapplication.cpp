@@ -339,8 +339,8 @@ void WebApplication::doProcessRequest()
     }
 
     // Filter HTTP methods
-    const auto allowedMethodIter = m_allowedMethod.find({scope, action});
-    if (allowedMethodIter == m_allowedMethod.end())
+    const auto allowedMethodIter = m_allowedMethod.constFind({scope, action});
+    if (allowedMethodIter == m_allowedMethod.cend())
     {
         // by default allow both GET, POST methods
         if ((m_request.method != Http::METHOD_GET) && (m_request.method != Http::METHOD_POST))

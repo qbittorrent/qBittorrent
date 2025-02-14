@@ -97,7 +97,7 @@ void TorrentContentModelFolder::updatePriority()
     // If all children have the same priority
     // then the folder should have the same
     // priority
-    const BitTorrent::DownloadPriority prio = m_childItems.first()->priority();
+    const BitTorrent::DownloadPriority prio = m_childItems.constFirst()->priority();
     for (int i = 1; i < m_childItems.size(); ++i)
     {
         if (m_childItems.at(i)->priority() != prio)
