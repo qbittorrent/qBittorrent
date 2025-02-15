@@ -32,7 +32,7 @@
 #include <QTreeView>
 
 MacOSShiftClickHandler::MacOSShiftClickHandler(QTreeView *treeView)
-    : QObject(treeView), m_treeView{treeView}
+    : QObject(treeView), m_treeView{treeView}, m_lastClickedIndex{}
 {
     treeView->installEventFilter(this);
 }
