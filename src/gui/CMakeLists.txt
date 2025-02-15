@@ -287,10 +287,10 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macosdockbadge/badger.mm
         macosdockbadge/badgeview.h
         macosdockbadge/badgeview.mm
-        macutilities.h
-        macutilities.mm
         macosshiftclickhandler.h
         macosshiftclickhandler.cpp
+        macutilities.h
+        macutilities.mm
     )
     target_link_libraries(qbt_gui PRIVATE objc)
 endif()

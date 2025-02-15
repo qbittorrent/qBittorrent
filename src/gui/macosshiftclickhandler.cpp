@@ -42,7 +42,7 @@ bool MacOSShiftClickHandler::eventFilter(QObject *watched, QEvent *event)
 {
     if ((watched == m_treeView) && (event->type() == QEvent::MouseButtonPress))
     {
-        auto *mouseEvent = static_cast<QMouseEvent *>(event);
+        const auto *mouseEvent = static_cast<QMouseEvent *>(event);
         if (mouseEvent->button() != Qt::LeftButton)
             return false;
 
@@ -52,20 +52,20 @@ bool MacOSShiftClickHandler::eventFilter(QObject *watched, QEvent *event)
 
         const Qt::KeyboardModifiers modifiers = mouseEvent->modifiers();
         const bool shiftPressed = modifiers.testFlag(Qt::ShiftModifier);
-        const bool commandPressed = modifiers.testFlag(Qt::ControlModifier);
-
+        
         if (shiftPressed && m_lastClickedIndex.isValid())
         {
             const QItemSelection selection(m_lastClickedIndex, clickedIndex);
+            const bool commandPressed = modifiers.testFlag(Qt::ControlModifier);
             if (commandPressed)
-                m_treeView->selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+                m_treeView->selectionModel()->select(selection, (QItemSelectionModel::Select | QItemSelectionModel::Rows));
             else
-                m_treeView->selectionModel()->select(selection, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+                m_treeView->selectionModel()->select(selection, (QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows));
             m_treeView->selectionModel()->setCurrentIndex(clickedIndex, QItemSelectionModel::NoUpdate);
             return true;
         }
 
-        if (!(modifiers & (Qt::AltModifier | Qt::MetaModifier)))
+        if (!modifiers.testFlags(Qt::AltModifier | Qt::MetaModifier))
             m_lastClickedIndex = clickedIndex;
     }
 

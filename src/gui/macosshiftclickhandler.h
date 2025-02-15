@@ -45,6 +45,6 @@ public:
 private:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
-    TransferListWidget *m_treeView;
+    TransferListWidget *m_treeView = nullptr;
     QPersistentModelIndex m_lastClickedIndex;
 };

@@ -74,8 +74,8 @@
 #include "utils.h"
 
 #ifdef Q_OS_MACOS
-#include "macutilities.h"
 #include "macosshiftclickhandler.h"
+#include "macutilities.h"
 #endif
 
 namespace
