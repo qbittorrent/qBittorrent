@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -26,7 +27,7 @@
  * exception statement from your version.
  */
 
-#include "powermanagement_x11.h"
+#include "inhibitordbus.h"
 
 #include <QDBusConnection>
 #include <QDBusInterface>
@@ -36,7 +37,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 
-PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
+InhibitorDBus::InhibitorDBus(QObject *parent)
     : QObject(parent)
     , m_busInterface {new QDBusInterface(u"org.gnome.SessionManager"_s, u"/org/gnome/SessionManager"_s
         , u"org.gnome.SessionManager"_s, QDBusConnection::sessionBus(), this)}
@@ -70,38 +71,26 @@ PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
     }
     else
     {
+        m_state = Error;
         LogMsg(tr("Power management error. Did not found suitable D-Bus interface."), Log::WARNING);
     }
 }
 
-void PowerManagementInhibitor::requestIdle()
-{
-    m_intendedState = Idle;
-    if ((m_state == Error) || (m_state == Idle) || (m_state == RequestIdle) || (m_state == RequestBusy))
-        return;
-
-    if (m_manager == ManagerType::Systemd)
-    {
-        m_fd = {};
-        m_state = Idle;
-        return;
-    }
-
-    m_state = RequestIdle;
-
-    const QString method = (m_manager == ManagerType::Gnome)
-        ? u"Uninhibit"_s
-        : u"UnInhibit"_s;
-    const QDBusPendingCall pcall = m_busInterface->asyncCall(method, m_cookie);
-    const auto *watcher = new QDBusPendingCallWatcher(pcall, this);
-    connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::onAsyncReply);
-}
-
-void PowerManagementInhibitor::requestBusy()
+bool InhibitorDBus::requestBusy()
 {
     m_intendedState = Busy;
-    if ((m_state == Error) || (m_state == Busy) || (m_state == RequestBusy) || (m_state == RequestIdle))
-        return;
+
+    switch (m_state)
+    {
+    case Busy:
+    case RequestBusy:
+        return true;
+    case Error:
+    case RequestIdle:
+        return false;
+    case Idle:
+        break;
+    };
 
     m_state = RequestBusy;
 
@@ -123,10 +112,45 @@ void PowerManagementInhibitor::requestBusy()
 
     const QDBusPendingCall pcall = m_busInterface->asyncCallWithArgumentList(u"Inhibit"_s, args);
     const auto *watcher = new QDBusPendingCallWatcher(pcall, this);
-    connect(watcher, &QDBusPendingCallWatcher::finished, this, &PowerManagementInhibitor::onAsyncReply);
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, &InhibitorDBus::onAsyncReply);
+    return true;
 }
 
-void PowerManagementInhibitor::onAsyncReply(QDBusPendingCallWatcher *call)
+bool InhibitorDBus::requestIdle()
+{
+    m_intendedState = Idle;
+
+    switch (m_state)
+    {
+    case Idle:
+    case RequestIdle:
+        return true;
+    case Error:
+    case RequestBusy:
+        return false;
+    case Busy:
+        break;
+    };
+
+    if (m_manager == ManagerType::Systemd)
+    {
+        m_fd = {};
+        m_state = Idle;
+        return true;
+    }
+
+    m_state = RequestIdle;
+
+    const QString method = (m_manager == ManagerType::Gnome)
+        ? u"Uninhibit"_s
+        : u"UnInhibit"_s;
+    const QDBusPendingCall pcall = m_busInterface->asyncCall(method, m_cookie);
+    const auto *watcher = new QDBusPendingCallWatcher(pcall, this);
+    connect(watcher, &QDBusPendingCallWatcher::finished, this, &InhibitorDBus::onAsyncReply);
+    return true;
+}
+
+void InhibitorDBus::onAsyncReply(QDBusPendingCallWatcher *call)
 {
     call->deleteLater();
 

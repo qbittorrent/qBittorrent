@@ -69,6 +69,7 @@ add_library(qbt_gui STATIC
     log/logmodel.h
     mainwindow.h
     optionsdialog.h
+    powermanagement/inhibitor.h
     powermanagement/powermanagement.h
     previewlistdelegate.h
     previewselectdialog.h
@@ -167,6 +168,7 @@ add_library(qbt_gui STATIC
     log/logmodel.cpp
     mainwindow.cpp
     optionsdialog.cpp
+    powermanagement/inhibitor.cpp
     powermanagement/powermanagement.cpp
     previewlistdelegate.cpp
     previewselectdialog.cpp
@@ -259,8 +261,8 @@ if (DBUS)
         notifications/dbusnotifier.cpp
         notifications/dbusnotificationsinterface.h
         notifications/dbusnotificationsinterface.cpp
-        powermanagement/powermanagement_x11.h
-        powermanagement/powermanagement_x11.cpp
+        powermanagement/inhibitordbus.h
+        powermanagement/inhibitordbus.cpp
     )
 endif()
 
@@ -274,13 +276,6 @@ if (STACKTRACE)
     )
 endif()
 
-if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
-    target_sources(qbt_gui PRIVATE
-        programupdater.h
-        programupdater.cpp
-    )
-endif()
-
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     target_sources(qbt_gui PRIVATE
         macosdockbadge/badger.h
@@ -289,6 +284,19 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macosdockbadge/badgeview.mm
         macutilities.h
         macutilities.mm
+        powermanagement/inhibitormacos.h
+        powermanagement/inhibitormacos.cpp
+        programupdater.h
+        programupdater.cpp
     )
     target_link_libraries(qbt_gui PRIVATE objc)
+endif()
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(qbt_gui PRIVATE
+        powermanagement/inhibitorwindows.h
+        powermanagement/inhibitorwindows.cpp
+        programupdater.h
+        programupdater.cpp
+    )
 endif()

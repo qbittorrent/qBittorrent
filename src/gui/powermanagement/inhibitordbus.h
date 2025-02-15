@@ -27,63 +27,52 @@
  * exception statement from your version.
  */
 
-#include "powermanagement.h"
+#pragma once
 
-#include <QtSystemDetection>
+#include <QDBusUnixFileDescriptor>
+#include <QObject>
 
-#if defined(Q_OS_MACOS)
-#include "inhibitormacos.h"
-using InhibitorImpl = InhibitorMacOS;
-#elif defined(Q_OS_WIN)
-#include "inhibitorwindows.h"
-using InhibitorImpl = InhibitorWindows;
-#elif defined(QBT_USES_DBUS)
-#include "inhibitordbus.h"
-using InhibitorImpl = InhibitorDBus;
-#else
 #include "inhibitor.h"
-using InhibitorImpl = Inhibitor;
-#endif
 
-PowerManagement::PowerManagement()
-    : m_inhibitor {new InhibitorImpl}
-{
-}
+class QDBusInterface;
+class QDBusPendingCallWatcher;
 
-PowerManagement::~PowerManagement()
+class InhibitorDBus final : public QObject, public Inhibitor
 {
-    setIdle();
-    delete m_inhibitor;
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(InhibitorDBus)
 
-void PowerManagement::setActivityState(const ActivityState state)
-{
-    switch (state)
+public:
+    InhibitorDBus(QObject *parent = nullptr);
+
+    bool requestBusy() override;
+    bool requestIdle() override;
+
+private slots:
+    void onAsyncReply(QDBusPendingCallWatcher *call);
+
+private:
+    enum State
     {
-    case ActivityState::Busy:
-        setBusy();
-        break;
-
-    case ActivityState::Idle:
-        setIdle();
-        break;
+        Error,
+        Idle,
+        RequestBusy,
+        Busy,
+        RequestIdle
     };
-}
 
-void PowerManagement::setBusy()
-{
-    if (m_state == ActivityState::Busy)
-        return;
+    enum class ManagerType
+    {
+        Freedesktop,  // https://www.freedesktop.org/wiki/Specifications/power-management-spec/
+        Gnome,  // https://github.com/GNOME/gnome-settings-daemon/blob/master/gnome-settings-daemon/org.gnome.SessionManager.xml
+        Systemd // https://www.freedesktop.org/software/systemd/man/org.freedesktop.login1.html
+    };
 
-    if (m_inhibitor->requestBusy())
-        m_state = ActivityState::Busy;
-}
+    QDBusInterface *m_busInterface = nullptr;
+    ManagerType m_manager = ManagerType::Gnome;
 
-void PowerManagement::setIdle()
-{
-    if (m_state == ActivityState::Idle)
-        return;
-
-    if (m_inhibitor->requestIdle())
-        m_state = ActivityState::Idle;
-}
+    enum State m_state = Error;
+    enum State m_intendedState = Idle;
+    uint m_cookie = 0;
+    QDBusUnixFileDescriptor m_fd;
+};
