@@ -21,7 +21,7 @@
             } = window.MUI.Windows.instances["multiRenamePage"];
 
             const bulkRenameFilesContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-                targets: "#bulkRenameFilesTableDiv tr",
+                targets: "#bulkRenameFilesTableDiv tbody tr",
                 menu: "multiRenameFilesMenu",
                 actions: {
                     ToggleSelection: (element, ref) => {
