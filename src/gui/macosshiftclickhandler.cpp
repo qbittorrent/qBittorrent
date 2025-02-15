@@ -29,11 +29,10 @@
 #include "macosshiftclickhandler.h"
 
 #include <QMouseEvent>
-#include "transferlistwidget.h"
+#include <QTreeView>
 
-MacOSShiftClickHandler::MacOSShiftClickHandler(TransferListWidget *treeView)
-    : QObject(treeView)
-    , m_treeView {treeView}
+MacOSShiftClickHandler::MacOSShiftClickHandler(QTreeView *treeView)
+    : QObject(treeView), m_treeView{treeView}
 {
     treeView->installEventFilter(this);
 }

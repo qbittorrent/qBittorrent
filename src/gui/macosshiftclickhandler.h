@@ -31,7 +31,7 @@
 #include <QObject>
 #include <QPersistentModelIndex>
 
-class TransferListWidget;
+class QTreeView;
 
 // Workaround for QTBUG-115838: Shift-click range selection not working properly on macOS
 class MacOSShiftClickHandler final : public QObject
@@ -40,11 +40,11 @@ class MacOSShiftClickHandler final : public QObject
     Q_DISABLE_COPY_MOVE(MacOSShiftClickHandler)
 
 public:
-    explicit MacOSShiftClickHandler(TransferListWidget *treeView);
+    explicit MacOSShiftClickHandler(QTreeView *treeView);
 
 private:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
-    TransferListWidget *m_treeView = nullptr;
+    QTreeView *m_treeView = nullptr;
     QPersistentModelIndex m_lastClickedIndex;
 };
