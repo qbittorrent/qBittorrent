@@ -92,6 +92,9 @@ window.qBittorrent.Misc ??= (() => {
      * JS counterpart of the function in src/misc.cpp
      */
     const friendlyUnit = (value, isSpeed) => {
+        if ((value === undefined) || (value === null) || Number.isNaN(value) || (value < 0))
+            return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
+
         const units = [
             "QBT_TR(B)QBT_TR[CONTEXT=misc]",
             "QBT_TR(KiB)QBT_TR[CONTEXT=misc]",
@@ -102,15 +105,6 @@ window.qBittorrent.Misc ??= (() => {
             "QBT_TR(EiB)QBT_TR[CONTEXT=misc]"
         ];
 
-        if ((value === undefined) || (value === null) || (value < 0))
-            return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
-
-        let i = 0;
-        while ((value >= 1024.0) && (i < 6)) {
-            value /= 1024.0;
-            ++i;
-        }
-
         const friendlyUnitPrecision = (sizeUnit) => {
             if (sizeUnit <= 2) // KiB, MiB
                 return 1;
@@ -120,15 +114,20 @@ window.qBittorrent.Misc ??= (() => {
                 return 3;
         };
 
+        let i = 0;
+        while ((value >= 1024) && (i < 6)) {
+            value /= 1024;
+            ++i;
+        }
+
         let ret;
         if (i === 0) {
             ret = `${value} ${units[i]}`;
         }
         else {
             const precision = friendlyUnitPrecision(i);
-            const offset = Math.pow(10, precision);
             // Don't round up
-            ret = `${(Math.floor(offset * value) / offset).toFixed(precision)} ${units[i]}`;
+            ret = `${toFixedPointString(value, precision)} ${units[i]}`;
         }
 
         if (isSpeed)
@@ -163,12 +162,12 @@ window.qBittorrent.Misc ??= (() => {
     };
 
     const friendlyPercentage = (value) => {
-        let percentage = (value * 100).round(1);
+        let percentage = value * 100;
         if (Number.isNaN(percentage) || (percentage < 0))
             percentage = 0;
         if (percentage > 100)
             percentage = 100;
-        return `${percentage.toFixed(1)}%`;
+        return `${toFixedPointString(percentage, 1)}%`;
     };
 
     /*
@@ -225,13 +224,27 @@ window.qBittorrent.Misc ??= (() => {
     };
 
     const toFixedPointString = (number, digits) => {
-        // Do not round up number
-        const power = Math.pow(10, digits);
-        return (Math.floor(power * number) / power).toFixed(digits);
+        if (Number.isNaN(number))
+            return number.toString();
+
+        const sign = (number < 0) ? "-" : "";
+        // Do not round up `number`
+        // Small floating point numbers are imprecise, thus process as a String
+        const tmp = Math.trunc(`${Math.abs(number)}e${digits}`).toString();
+        if (digits <= 0) {
+            return (tmp === "0") ? tmp : `${sign}${tmp}`;
+        }
+        else if (digits < tmp.length) {
+            const idx = tmp.length - digits;
+            return `${sign}${tmp.slice(0, idx)}.${tmp.slice(idx)}`;
+        }
+        else {
+            const zeros = "0".repeat(digits - tmp.length);
+            return `${sign}0.${zeros}${tmp}`;
+        }
     };
 
     /**
-     *
      * @param {String} text the text to search
      * @param {Array<String>} terms terms to search for within the text
      * @returns {Boolean} true if all terms match the text, false otherwise

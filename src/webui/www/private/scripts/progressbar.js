@@ -116,13 +116,13 @@ window.qBittorrent.ProgressBar ??= (() => {
     }
 
     function ProgressBar_setValue(value) {
-        value = parseFloat(value);
+        value = Number(value);
         if (Number.isNaN(value))
             value = 0;
         value = Math.min(Math.max(value, 0), 100);
         this.vals.value = value;
 
-        const displayedValue = `${value.round(1).toFixed(1)}%`;
+        const displayedValue = `${window.qBittorrent.Misc.toFixedPointString(value, 1)}%`;
         this.vals.dark.textContent = displayedValue;
         this.vals.light.textContent = displayedValue;
 

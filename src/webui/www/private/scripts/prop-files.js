@@ -383,25 +383,18 @@ window.qBittorrent.PropFiles ??= (() => {
         is_seed = (files.length > 0) ? files[0].is_seed : true;
 
         const rows = files.map((file, index) => {
-            let progress = (file.progress * 100).round(1);
-            if ((progress === 100) && (file.progress < 1))
-                progress = 99.9;
-
             const ignore = (file.priority === FilePriority.Ignored);
-            const checked = (ignore ? TriState.Unchecked : TriState.Checked);
-            const remaining = (ignore ? 0 : (file.size * (1.0 - file.progress)));
             const row = {
                 fileId: index,
-                checked: checked,
+                checked: (ignore ? TriState.Unchecked : TriState.Checked),
                 fileName: file.name,
                 name: window.qBittorrent.Filesystem.fileName(file.name),
                 size: file.size,
-                progress: progress,
+                progress: window.qBittorrent.Misc.toFixedPointString((file.progress * 100), 1),
                 priority: normalizePriority(file.priority),
-                remaining: remaining,
+                remaining: (ignore ? 0 : (file.size * (1 - file.progress))),
                 availability: file.availability
             };
-
             return row;
         });
 

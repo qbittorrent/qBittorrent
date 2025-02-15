@@ -34,7 +34,12 @@ jobs:
         run: |
           npm install
           npm ls
+          echo "::group::npm ls --all"
           npm ls --all
+          echo "::endgroup::"
+
+      - name: Run tests
+        run: npm test
 
       - name: Lint code
         run: npm run lint

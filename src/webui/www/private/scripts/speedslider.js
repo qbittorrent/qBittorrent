@@ -64,7 +64,7 @@ MochaUI.extend({
                         new Slider($("uplimitSliderarea"), $("uplimitSliderknob"), {
                             steps: maximum,
                             offset: 0,
-                            initialStep: up_limit.round(),
+                            initialStep: Math.round(up_limit),
                             onChange: (pos) => {
                                 if (pos > 0) {
                                     $("uplimitUpdatevalue").value = pos;
@@ -82,7 +82,7 @@ MochaUI.extend({
                             $("upLimitUnit").style.visibility = "hidden";
                         }
                         else {
-                            $("uplimitUpdatevalue").value = up_limit.round();
+                            $("uplimitUpdatevalue").value = Math.round(up_limit);
                             $("upLimitUnit").style.visibility = "visible";
                         }
                     }
@@ -111,7 +111,7 @@ MochaUI.extend({
                                 new Slider($("uplimitSliderarea"), $("uplimitSliderknob"), {
                                     steps: maximum,
                                     offset: 0,
-                                    initialStep: (up_limit / 1024.0).round(),
+                                    initialStep: Math.round(up_limit / 1024),
                                     onChange: (pos) => {
                                         if (pos > 0) {
                                             $("uplimitUpdatevalue").value = pos;
@@ -129,7 +129,7 @@ MochaUI.extend({
                                     $("upLimitUnit").style.visibility = "hidden";
                                 }
                                 else {
-                                    $("uplimitUpdatevalue").value = (up_limit / 1024.0).round();
+                                    $("uplimitUpdatevalue").value = Math.round(up_limit / 1024);
                                     $("upLimitUnit").style.visibility = "visible";
                                 }
                             });
@@ -173,7 +173,7 @@ MochaUI.extend({
                         new Slider($("dllimitSliderarea"), $("dllimitSliderknob"), {
                             steps: maximum,
                             offset: 0,
-                            initialStep: dl_limit.round(),
+                            initialStep: Math.round(dl_limit),
                             onChange: (pos) => {
                                 if (pos > 0) {
                                     $("dllimitUpdatevalue").value = pos;
@@ -191,7 +191,7 @@ MochaUI.extend({
                             $("dlLimitUnit").style.visibility = "hidden";
                         }
                         else {
-                            $("dllimitUpdatevalue").value = dl_limit.round();
+                            $("dllimitUpdatevalue").value = Math.round(dl_limit);
                             $("dlLimitUnit").style.visibility = "visible";
                         }
                     }
@@ -220,7 +220,7 @@ MochaUI.extend({
                                 new Slider($("dllimitSliderarea"), $("dllimitSliderknob"), {
                                     steps: maximum,
                                     offset: 0,
-                                    initialStep: (dl_limit / 1024.0).round(),
+                                    initialStep: Math.round(dl_limit / 1024),
                                     onChange: (pos) => {
                                         if (pos > 0) {
                                             $("dllimitUpdatevalue").value = pos;
@@ -238,7 +238,7 @@ MochaUI.extend({
                                     $("dlLimitUnit").style.visibility = "hidden";
                                 }
                                 else {
-                                    $("dllimitUpdatevalue").value = (dl_limit / 1024.0).round();
+                                    $("dllimitUpdatevalue").value = Math.round(dl_limit / 1024);
                                     $("dlLimitUnit").style.visibility = "visible";
                                 }
                             });
