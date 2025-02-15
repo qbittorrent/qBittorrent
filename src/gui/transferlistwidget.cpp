@@ -159,7 +159,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     setDropIndicatorShown(true);
 #if defined(Q_OS_MACOS)
     setAttribute(Qt::WA_MacShowFocusRect, false);
-    m_shiftClickHandler = new MacOSShiftClickHandler(this);
+    new MacOSShiftClickHandler(this);
 #endif
     header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false);
