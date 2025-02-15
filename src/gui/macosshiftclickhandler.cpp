@@ -46,7 +46,7 @@ bool MacOSShiftClickHandler::eventFilter(QObject *watched, QEvent *event)
         if (mouseEvent->button() != Qt::LeftButton)
             return false;
 
-        const QModelIndex clickedIndex = m_treeView->indexAt(mouseEvent->pos());
+        const QModelIndex clickedIndex = m_treeView->indexAt(mouseEvent->position());
         if (!clickedIndex.isValid())
             return false;
 
