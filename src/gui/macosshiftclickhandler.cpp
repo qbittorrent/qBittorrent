@@ -69,5 +69,5 @@ bool MacOSShiftClickHandler::eventFilter(QObject *watched, QEvent *event)
             m_lastClickedIndex = clickedIndex;
     }
 
-    return false;
+    return QObject::eventFilter(obj, event);
 }
