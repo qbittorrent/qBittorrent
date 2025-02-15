@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2025  Luke Memet <lukemmtt@users.noreply.github.com>
+ * Copyright (C) 2025  Luke Memet (lukemmtt)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
