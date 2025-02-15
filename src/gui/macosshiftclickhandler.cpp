@@ -52,7 +52,7 @@ bool MacOSShiftClickHandler::eventFilter(QObject *watched, QEvent *event)
 
         const Qt::KeyboardModifiers modifiers = mouseEvent->modifiers();
         const bool shiftPressed = modifiers.testFlag(Qt::ShiftModifier);
-        
+
         if (shiftPressed && m_lastClickedIndex.isValid())
         {
             const QItemSelection selection(m_lastClickedIndex, clickedIndex);
