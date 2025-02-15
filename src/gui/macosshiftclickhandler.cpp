@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
  
- #include "macosshiftclickhandler.h"
+#include "macosshiftclickhandler.h"
 
 #include <QMouseEvent>
 #include "transferlistwidget.h"
