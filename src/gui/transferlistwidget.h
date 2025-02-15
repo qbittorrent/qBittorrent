@@ -52,6 +52,10 @@ enum class CopyInfohashPolicy
     Version2
 };
 
+#ifdef Q_OS_MACOS
+class MacOSShiftClickHandler;  // Forward declaration
+#endif
+
 class TransferListWidget final : public GUIApplicationComponent<QTreeView>
 {
     Q_OBJECT
@@ -136,6 +140,10 @@ private:
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QList<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
+
+#ifdef Q_OS_MACOS
+    MacOSShiftClickHandler *m_shiftClickHandler = nullptr;
+#endif
 
     TransferListModel *m_listModel = nullptr;
     TransferListSortModel *m_sortFilterModel = nullptr;
