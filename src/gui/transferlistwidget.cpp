@@ -1446,3 +1446,38 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
 
     QTreeView::wheelEvent(event);  // event delegated to base class
 }
+
+#ifdef Q_OS_MACOS
+void TransferListWidget::mousePressEvent(QMouseEvent *event)
+{
+    const QModelIndex clickedIndex = indexAt(event->pos());
+    if (!clickedIndex.isValid())
+    {
+        QTreeView::mousePressEvent(event);
+        return;
+    }
+
+    const Qt::KeyboardModifiers modifiers = event->modifiers();
+    const bool shiftPressed = modifiers.testFlag(Qt::ShiftModifier);
+    const bool cmdPressed = modifiers.testFlag(Qt::ControlModifier);  // Command key on macOS
+
+    if (shiftPressed && m_lastClickedIndex.isValid())
+    {
+        // Handle shift-click range selection
+        const QItemSelection selection(m_lastClickedIndex, clickedIndex);
+        if (cmdPressed)
+            selectionModel()->select(selection, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+        else
+            selectionModel()->select(selection, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+        selectionModel()->setCurrentIndex(clickedIndex, QItemSelectionModel::NoUpdate);
+        event->accept();
+        return;
+    }
+
+    // For non-shift clicks, update the last clicked index
+    if (!(modifiers & (Qt::AltModifier | Qt::MetaModifier)))  // Ignore if Alt/Meta is pressed
+        m_lastClickedIndex = clickedIndex;
+
+    QTreeView::mousePressEvent(event);
+}
+#endif

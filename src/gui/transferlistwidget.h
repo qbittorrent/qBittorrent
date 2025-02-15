@@ -118,11 +118,14 @@ private slots:
     void askNewCategoryForSelection();
     void saveSettings();
 
-private:
+protected:
     void dragEnterEvent(QDragEnterEvent *event) override;
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+
+private:
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndexList mapToSource(const QModelIndexList &indexes) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;
@@ -139,4 +142,7 @@ private:
 
     TransferListModel *m_listModel = nullptr;
     TransferListSortModel *m_sortFilterModel = nullptr;
+#ifdef Q_OS_MACOS
+    QPersistentModelIndex m_lastClickedIndex;  // For handling shift-click selection on macOS
+#endif
 };
