@@ -170,7 +170,7 @@ bool SettingsStorage::writeNativeSettings() const
     // between deleting the file and recreating it. This is a safety measure.
     // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
     // replace qBittorrent.ini/qBittorrent.conf with it.
-    for (auto i = m_data.begin(); i != m_data.end(); ++i)
+    for (auto i = m_data.cbegin(); i != m_data.cend(); ++i)
         nativeSettings->setValue(i.key(), i.value());
 
     nativeSettings->sync(); // Important to get error status
