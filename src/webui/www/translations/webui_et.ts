@@ -1865,7 +1865,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Tume</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1881,7 +1881,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Hele</translation>
     </message>
 </context>
 <context>

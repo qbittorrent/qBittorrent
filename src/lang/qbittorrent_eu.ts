@@ -6635,19 +6635,19 @@ Eskuzkoa: Torrent ezaugarri ugari (adib. gordetze helburua) eskuz esleitu behar 
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="959"/>
-        <location filename="../gui/optionsdialog.cpp" line="544"/>
+        <location filename="../gui/optionsdialog.cpp" line="541"/>
         <source>None</source>
         <translation>(Bat ere ez)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="964"/>
-        <location filename="../gui/optionsdialog.cpp" line="545"/>
+        <location filename="../gui/optionsdialog.cpp" line="542"/>
         <source>Metadata received</source>
         <translation>Metadatuak jaso dira</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="969"/>
-        <location filename="../gui/optionsdialog.cpp" line="547"/>
+        <location filename="../gui/optionsdialog.cpp" line="544"/>
         <source>Files checked</source>
         <translation>Fitxategiak egiaztatuta</translation>
     </message>
@@ -6840,17 +6840,17 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <translation>Mota:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="881"/>
+        <location filename="../gui/optionsdialog.cpp" line="878"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="882"/>
+        <location filename="../gui/optionsdialog.cpp" line="879"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="883"/>
+        <location filename="../gui/optionsdialog.cpp" line="880"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
@@ -7205,12 +7205,12 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <translation>Domeinu izena:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="572"/>
+        <location filename="../gui/optionsdialog.cpp" line="569"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
         <translation>Aukera hauek gaituz, &lt;strong&gt;atzerabiderik gabe galdu&lt;/strong&gt; ditzakezu zure .torrent fitxategiak!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="579"/>
+        <location filename="../gui/optionsdialog.cpp" line="576"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
         <translation>Bigarren aukera gaitzen baduzu (&amp;ldquo;Baita gehitzea ezeztatutakoan&amp;rdquo;) .torrent fitxategia &lt;strong&gt;ezabatu egingo da&lt;/strong&gt; baita &amp;ldquo;&lt;strong&gt;Ezeztatu&lt;/strong&gt;&amp;rdquo; sakatzen baduzu ere &amp;ldquo;Gehitu torrenta&amp;rdquo; elkarrizketan</translation>
     </message>
@@ -7220,12 +7220,12 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <translation>Hautatu qBittorrent EI Azalgai fitxategia</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1268"/>
+        <location filename="../gui/optionsdialog.cpp" line="1265"/>
         <source>Choose Alternative UI files location</source>
         <translation>Hautatu EI fitxategi kokaleku alternatiboa</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="652"/>
+        <location filename="../gui/optionsdialog.cpp" line="649"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Sostengatutako parametroak (hizki xehe-larriak bereiziz)</translation>
     </message>
@@ -7245,165 +7245,165 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <translation>Desgaituta dago sistemaren erretiluaren presentzia detektatu ez delako</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="544"/>
+        <location filename="../gui/optionsdialog.cpp" line="541"/>
         <source>No stop condition is set.</source>
         <translation>Ez da gelditze-egoerarik ezarri.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="545"/>
+        <location filename="../gui/optionsdialog.cpp" line="542"/>
         <source>Torrent will stop after metadata is received.</source>
         <translation>Torrent gelditu egingo da metadatuak jaso ondoren.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="547"/>
+        <location filename="../gui/optionsdialog.cpp" line="544"/>
         <source>Torrent will stop after files are initially checked.</source>
         <translation>Torrent-a gelditu egingo da fitxategiak aztertu ondoren.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="548"/>
+        <location filename="../gui/optionsdialog.cpp" line="545"/>
         <source>This will also download metadata if it wasn&apos;t there initially.</source>
         <translation>Honek metadatuak deskargatu ditu ez bazeuden hasieratik.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="653"/>
+        <location filename="../gui/optionsdialog.cpp" line="650"/>
         <source>%N: Torrent name</source>
         <translation>%N: Torrentaren izena</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="654"/>
+        <location filename="../gui/optionsdialog.cpp" line="651"/>
         <source>%L: Category</source>
         <translation>%L: Kategoria</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="656"/>
+        <location filename="../gui/optionsdialog.cpp" line="653"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Eduki helburua (torrent anitzerako erro helburua bezala)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="657"/>
+        <location filename="../gui/optionsdialog.cpp" line="654"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Erro helburua (lehen torrent azpizuzenbide helburua)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="658"/>
+        <location filename="../gui/optionsdialog.cpp" line="655"/>
         <source>%D: Save path</source>
         <translation>%D: Gordetze helburua</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="659"/>
+        <location filename="../gui/optionsdialog.cpp" line="656"/>
         <source>%C: Number of files</source>
         <translation>%C: Fitxategi zenbatekoa</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="660"/>
+        <location filename="../gui/optionsdialog.cpp" line="657"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Torrentaren neurria (byte)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="661"/>
+        <location filename="../gui/optionsdialog.cpp" line="658"/>
         <source>%T: Current tracker</source>
         <translation>%T: Oraingo aztarnaria</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="665"/>
+        <location filename="../gui/optionsdialog.cpp" line="662"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Aholkua: Enkapsulatu parametroa adartxo artean idazkia zuriune batekin ebakia izatea saihesteko (adib., &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="730"/>
+        <location filename="../gui/optionsdialog.cpp" line="727"/>
         <source>Test email</source>
         <translation>Test posta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="730"/>
+        <location filename="../gui/optionsdialog.cpp" line="727"/>
         <source>Attempted to send email. Check your inbox to confirm success</source>
         <translation>Posta elektronikoa bidaltzen saiatu da. Egiaztatu sarrera-ontzia arrakasta berresteko</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="880"/>
+        <location filename="../gui/optionsdialog.cpp" line="877"/>
         <source>(None)</source>
         <translation>(Bat ere ez)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1079"/>
+        <location filename="../gui/optionsdialog.cpp" line="1076"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
         <translation>Torrent bat astirotzat hartuko da bere deskarga eta igoera neurriak balio hauen azpitik badaude &quot;Torrent jardungabe denboragailu&quot; segunduz</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1262"/>
+        <location filename="../gui/optionsdialog.cpp" line="1259"/>
         <source>Certificate</source>
         <translation>Ziurtagiria</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1263"/>
+        <location filename="../gui/optionsdialog.cpp" line="1260"/>
         <source>Select certificate</source>
         <translation>Hautatu egiaztagiria</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1265"/>
+        <location filename="../gui/optionsdialog.cpp" line="1262"/>
         <source>Private key</source>
         <translation>Giltza pribatua</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1266"/>
+        <location filename="../gui/optionsdialog.cpp" line="1263"/>
         <source>Select private key</source>
         <translation>Hautatu giltza pribatua</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1271"/>
+        <location filename="../gui/optionsdialog.cpp" line="1268"/>
         <source>WebUI configuration failed. Reason: %1</source>
         <translation>WebUI konfigurazioak huts egin du. Arrazoia: %1</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1697"/>
+        <location filename="../gui/optionsdialog.cpp" line="1694"/>
         <source>%1 is recommended for best compatibility with Windows dark mode</source>
         <comment>Fusion is recommended for best compatibility with Windows dark mode</comment>
         <translation>%1 gomendatzen da bateragarritasun handiena lortzeko Windows modu ilunarekin</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1699"/>
+        <location filename="../gui/optionsdialog.cpp" line="1696"/>
         <source>System</source>
         <comment>System default Qt style</comment>
         <translation>Sistema</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1700"/>
+        <location filename="../gui/optionsdialog.cpp" line="1697"/>
         <source>Let Qt decide the style for this system</source>
         <translation>Utzi Qt-k sistemaren estiloa erabakitzen</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1832"/>
+        <location filename="../gui/optionsdialog.cpp" line="1831"/>
         <source>Select folder to monitor</source>
         <translation>Hautatu monitorizatzeko karpeta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1854"/>
+        <location filename="../gui/optionsdialog.cpp" line="1853"/>
         <source>Adding entry failed</source>
         <translation>Hutsegitea sarrera gehitzean</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1953"/>
+        <location filename="../gui/optionsdialog.cpp" line="1952"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>WebUI erabiltzaile-izenak 3 karaktere izan behar ditu gutxienez.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1960"/>
+        <location filename="../gui/optionsdialog.cpp" line="1959"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation>WebUI pasahitzak 6 karaktere izan behar ditu gutxienez.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1970"/>
+        <location filename="../gui/optionsdialog.cpp" line="1969"/>
         <source>Location Error</source>
         <translation>Kokaleku Akatsa</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="609"/>
-        <location filename="../gui/optionsdialog.cpp" line="617"/>
+        <location filename="../gui/optionsdialog.cpp" line="606"/>
+        <location filename="../gui/optionsdialog.cpp" line="614"/>
         <source>Choose export directory</source>
         <translation>Hautatu esportatzeko zuzenbidea</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="574"/>
+        <location filename="../gui/optionsdialog.cpp" line="571"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
         <translation>Aukera hauek gaitzen direnean, qBittorent-ek .torrent fitxategiak &lt;strong&gt;ezabatuko&lt;/strong&gt; ditu beren deskarga lerrora ongi (lehen aukera) edo ez (bigarren aukera) gehitutakoan. Hau &lt;strong&gt;ez da bakarrik&lt;/strong&gt; &amp;ldquo;Gehitu torrenta&amp;rdquo; menu ekintzaren bidez irekitako agirietan ezarriko, baita &lt;strong&gt;fitxategi mota elkarketa&lt;/strong&gt; bidez irekitakoetan ere.</translation>
     </message>
@@ -7413,69 +7413,69 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <translation>qBittorrent UI gaiaren fitxategia (*.qbtheme config.json)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="655"/>
+        <location filename="../gui/optionsdialog.cpp" line="652"/>
         <source>%G: Tags (separated by comma)</source>
         <translation>%G: Etiketak (kakotxaz bananduta)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="662"/>
+        <location filename="../gui/optionsdialog.cpp" line="659"/>
         <source>%I: Info hash v1 (or &apos;-&apos; if unavailable)</source>
         <translation>%I: info hash v1 (edo &apos;-&apos; erabilgarri ez badago)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="663"/>
+        <location filename="../gui/optionsdialog.cpp" line="660"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
         <translation>%J: info hash v2 (edo &apos;-&apos; erabilgarri ez badago)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="664"/>
+        <location filename="../gui/optionsdialog.cpp" line="661"/>
         <source>%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)</source>
         <translation>%K: Torrent IDa (sha-1 info hash v1 torrenterako edo sha-256 info hash moztua v2/hybrid torrenterako)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="338"/>
-        <location filename="../gui/optionsdialog.cpp" line="597"/>
-        <location filename="../gui/optionsdialog.cpp" line="602"/>
+        <location filename="../gui/optionsdialog.cpp" line="594"/>
+        <location filename="../gui/optionsdialog.cpp" line="599"/>
         <source>Choose a save directory</source>
         <translation>Hautatu gordetzeko zuzenbide bat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="546"/>
+        <location filename="../gui/optionsdialog.cpp" line="543"/>
         <source>Torrents that have metadata initially will be added as stopped.</source>
         <translation>Hasieran metadatuak dituzten torrentak geldituta gehituko dira.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="900"/>
+        <location filename="../gui/optionsdialog.cpp" line="897"/>
         <source>Choose an IP filter file</source>
         <translation>Hautatu IP iragazki fitxategi bat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="902"/>
+        <location filename="../gui/optionsdialog.cpp" line="899"/>
         <source>All supported filters</source>
         <translation>Sostengatutako iragazki guztiak</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1970"/>
+        <location filename="../gui/optionsdialog.cpp" line="1969"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation>Ordezko WebUIaren fitxategien kokalekua ezin da hutsik egon.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2007"/>
+        <location filename="../gui/optionsdialog.cpp" line="2006"/>
         <source>Parsing error</source>
         <translation>Azterketa akatsa</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2007"/>
+        <location filename="../gui/optionsdialog.cpp" line="2006"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>IP iragazkien fitxategia analizatzeak huts egin du</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2009"/>
+        <location filename="../gui/optionsdialog.cpp" line="2008"/>
         <source>Successfully refreshed</source>
         <translation>Ongi freskatuta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2009"/>
+        <location filename="../gui/optionsdialog.cpp" line="2008"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Emandako IP iragazkia ongi aztertu da: %1 araua ezarri dira.</translation>
@@ -7486,18 +7486,18 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <translation>Hobespenak</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2018"/>
+        <location filename="../gui/optionsdialog.cpp" line="2017"/>
         <source>Time Error</source>
         <translation>Ordu-errorea</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2018"/>
+        <location filename="../gui/optionsdialog.cpp" line="2017"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Hasiera ordua eta amaiera ordua ezin dira berdinak izan.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1953"/>
-        <location filename="../gui/optionsdialog.cpp" line="1960"/>
+        <location filename="../gui/optionsdialog.cpp" line="1952"/>
+        <location filename="../gui/optionsdialog.cpp" line="1959"/>
         <source>Length Error</source>
         <translation>Luzera errorea</translation>
     </message>
@@ -7739,7 +7739,7 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <translation>&quot;%1&quot; hartzailea eskuz eragotzia</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="443"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="444"/>
         <source>N/A</source>
         <translation>E/G</translation>
     </message>
@@ -10792,73 +10792,73 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Akatsa: &apos;%1&apos; ez da baliozko torrent fitxategia.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="952"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="958"/>
         <source>Priority must be an integer</source>
         <translation>Lehetasuna zenbaki oso bat izan behar da</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="955"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="961"/>
         <source>Priority is not valid</source>
         <translation>Lehentasuna ez da baliozkoa</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="961"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="967"/>
         <source>Torrent&apos;s metadata has not yet downloaded</source>
         <translation>Torrentaren metadatuak ez dira deskargatu oraindik</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="970"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="976"/>
         <source>File IDs must be integers</source>
         <translation>Fitxategi ID-ak zenbaki osoak izan behar dute</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="972"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="978"/>
         <source>File ID is not valid</source>
         <translation>Fitxategi ID-a ez da baliozkoa</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1117"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1128"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1139"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1150"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1123"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1134"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1145"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1156"/>
         <source>Torrent queueing must be enabled</source>
         <translation>Torrent lerrokapena gaituta egon behar da</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1164"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1187"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1170"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1193"/>
         <source>Save path cannot be empty</source>
         <translation>Gordetze helburua ezin da hutsik egon</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1191"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1215"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1197"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1221"/>
         <source>Cannot create target directory</source>
         <translation>Ezin da helburuko direktorioa sortu</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1296"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1321"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1302"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1327"/>
         <source>Category cannot be empty</source>
         <translation>Kategoria ezin da hutsik egon</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1312"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1318"/>
         <source>Unable to create category</source>
         <translation>Ezinezkoa kategoria sortzea</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1334"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1340"/>
         <source>Unable to edit category</source>
         <translation>Ezinezkoa kategoria editatzea</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1487"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1493"/>
         <source>Unable to export torrent file. Error: %1</source>
         <translation>Ezin da torrent fitxategia esportatu. Errorea: %1</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1168"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1174"/>
         <source>Cannot make save path</source>
         <translation>Ezin da gordetze helburua egin</translation>
     </message>
@@ -10878,24 +10878,24 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>%1 indizea mugetatik kanpo dago.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1195"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1219"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1201"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1225"/>
         <source>Cannot write to directory</source>
         <translation>Ezin da direktoriora idatzi</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1172"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1178"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation>WebEI Ezarpen kokalekua: mugitzen &quot;%1&quot;, hemendik &quot;%2&quot; hona &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1237"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1243"/>
         <source>Incorrect torrent name</source>
         <translation>Torrent izen okerra</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1286"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1299"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1292"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1305"/>
         <source>Incorrect category name</source>
         <translation>Kategoria izen okerra</translation>
     </message>
@@ -11186,37 +11186,37 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Bestelako errorea (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="575"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="585"/>
         <source>Remove tracker</source>
         <translation>Kendu aztarnaria</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="580"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="590"/>
         <source>Start torrents</source>
         <translation>Hasi torrentak</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="582"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="592"/>
         <source>Stop torrents</source>
         <translation>Gelditu torrentak</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="584"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="594"/>
         <source>Remove torrents</source>
         <translation>Kendu torrentak</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="649"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="659"/>
         <source>Removal confirmation</source>
         <translation>Kentze berrespena</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="650"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="660"/>
         <source>Are you sure you want to remove tracker &quot;%1&quot; from all torrents?</source>
         <translation>Ziur &quot;%1&quot; aztarnaria kendu nahi duzula torrent guztietatik?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="652"/>
+        <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="662"/>
         <source>Don&apos;t ask me again.</source>
         <translation>Ez galdetu berriro.</translation>
     </message>

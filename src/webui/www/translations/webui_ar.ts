@@ -1833,7 +1833,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>نقل الملفات إلى سلة المهملات (إذا كان ذلك ممكنا)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1841,7 +1841,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>حذف الملفات نهائيا</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -1865,7 +1865,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation> pread/pwrite بسيطة</translation>
     </message>
     <message>
         <source>Dark</source>

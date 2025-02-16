@@ -285,7 +285,7 @@
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation>qBittorrent istemcisine ulaşılamıyor</translation>
+        <translation>qBittorrent istemcisi ulaşılabilir değil</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -397,7 +397,7 @@
     </message>
     <message>
         <source>Login</source>
-        <translation>Oturum Aç</translation>
+        <translation>Oturum aç</translation>
     </message>
 </context>
 <context>
@@ -1289,7 +1289,7 @@
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation>Üstbilgi: değer çiftleri, satır başına bir</translation>
+        <translation>Üstbilgi: değer çiftleri, her satıra bir tane</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
@@ -1493,7 +1493,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation>En fazla eşzamanlı HTTP duyurusu:</translation>
+        <translation>En fazla eşzamanlı HTTP duyurma:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -2089,7 +2089,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>Yeniden Duyuru Süresi:</translation>
+        <translation>Yeniden Duyurma Süresi:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -2644,7 +2644,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation>Yeniden Duyuru Süresi</translation>
+        <translation>Yeniden Duyurma Süresi</translation>
     </message>
     <message>
         <source>Popularity</source>
@@ -2790,7 +2790,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <name>TrackersAdditionDialog</name>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>Eklemek için izleyicilerin listesi (her satıra bir tane):</translation>
+        <translation>Eklenecek izleyicilerin listesi (her satıra bir tane):</translation>
     </message>
     <message>
         <source>Add trackers</source>
@@ -3409,7 +3409,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Published On</source>
-        <translation>Published On</translation>
+        <translation>Yayınlanma Tarihi</translation>
     </message>
 </context>
 <context>
@@ -3451,7 +3451,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Eklemek için kişilerin listesi (her satıra bir IP):</translation>
+        <translation>Eklenecek kişilerin listesi (her satıra bir IP):</translation>
     </message>
     <message>
         <source>Ok</source>

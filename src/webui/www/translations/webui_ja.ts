@@ -1753,7 +1753,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Use alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>別のWebUIを使用する</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
@@ -1785,7 +1785,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>WebUI</source>
-        <translation type="unfinished" />
+        <translation>WebUI</translation>
     </message>
     <message>
         <source>The WebUI password must be at least 6 characters long.</source>
@@ -1869,7 +1869,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>ダーク</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1877,7 +1877,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>配色:</translation>
     </message>
     <message>
         <source>Interface</source>
@@ -1885,7 +1885,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation> ライト</translation>
     </message>
 </context>
 <context>

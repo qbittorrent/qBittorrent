@@ -2644,7 +2644,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>הכרז מחדש בעוד</translation>
     </message>
     <message>
         <source>Popularity</source>
@@ -3139,7 +3139,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>הסר גם את קבצי התוכן</translation>
     </message>
 </context>
 <context>

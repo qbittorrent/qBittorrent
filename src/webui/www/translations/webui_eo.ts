@@ -28,7 +28,7 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Enhava aranĝo:</translation>
     </message>
     <message>
         <source>Original</source>
@@ -79,7 +79,7 @@
     </message>
     <message>
         <source>Uncategorized</source>
-        <translation type="unfinished" />
+        <translation>Senkategoriaj</translation>
     </message>
 </context>
 <context>
@@ -102,7 +102,7 @@
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Redakti kategorion...</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -572,11 +572,11 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS-legilo</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Filters Sidebar</source>
@@ -679,7 +679,7 @@
     </message>
     <message>
         <source>IP address:</source>
-        <translation type="unfinished" />
+        <translation>IP-adreso:</translation>
     </message>
     <message>
         <source>Server domains:</source>
@@ -1237,7 +1237,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Fontsendaj limoj</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1313,7 +1313,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1321,7 +1321,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS-legilo</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
@@ -1545,7 +1545,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>Lanĉi eksteran programon</translation>
     </message>
     <message>
         <source>Files checked</source>
@@ -1573,7 +1573,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Ekzemple: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
@@ -1593,7 +1593,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>tagoj</translation>
     </message>
     <message>
         <source>Log file</source>
@@ -1613,7 +1613,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>jaroj</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -1621,7 +1621,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>monatoj</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1729,7 +1729,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> sec</source>
-        <translation type="unfinished" />
+        <translation> sek</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -2437,35 +2437,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj alŝutataj (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj elŝutataj (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj elŝutataj (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj alŝutataj (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Kontrolataj (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Kontrolataj (0)</translation>
     </message>
     <message>
         <source>Moving (%1)</source>
@@ -2806,11 +2806,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Translokigata</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[F] Fontsendata</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -3046,7 +3046,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Aldoni...</translation>
     </message>
     <message>
         <source>Info hash v1</source>
@@ -3074,7 +3074,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Alinomado</translation>
     </message>
     <message>
         <source>Comment</source>
@@ -3142,7 +3142,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation type="unfinished" />
+        <translation>Elŝuti el URL-oj</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3311,7 +3311,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Averto</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -3466,7 +3466,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Aldoni etikedon...</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3505,7 +3505,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>Senetikedaj</translation>
     </message>
 </context>
 <context>
@@ -3657,7 +3657,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Alinomado</translation>
     </message>
     <message>
         <source>New name:</source>
@@ -4089,7 +4089,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Averto</translation>
     </message>
     <message>
         <source>Information Messages</source>

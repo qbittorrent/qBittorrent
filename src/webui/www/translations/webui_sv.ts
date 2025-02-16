@@ -173,7 +173,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Det gick inte att spara programinställningarna. qBittorrent är antagligen inte nåbar.</translation>
+        <translation>Det går inte att spara programinställningarna. qBittorrent är antagligen inte nåbar.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -377,7 +377,7 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Det gick inte att logga in. qBittorrent är troligtvis inte nåbart.</translation>
+        <translation>Det går inte att logga in. qBittorrent är troligtvis inte nåbart.</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
@@ -1133,7 +1133,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>Enastående minne när du kontrollerar torrenter:</translation>
+        <translation>Enastående minne vid kontroll av torrenter:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1305,7 +1305,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation>Procenttröskelandel av peer-omsättning:</translation>
+        <translation>Procenttröskelandel av jämlikeomsättning:</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1337,7 +1337,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation>Procentandel för bortkoppling av peer-omsättning:</translation>
+        <translation>Procentandel för bortkoppling av jämlikeomsättning:</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1349,7 +1349,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>Intervall för bortkoppling av peer-omsättning:</translation>
+        <translation>Intervall för bortkoppling av jämlikeomsättning:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1725,7 +1725,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation>Behåll omarkerade filer i mappen ".unwanted".</translation>
+        <translation>Behåll omarkerade filer i mappen ".unwanted"</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
@@ -1733,7 +1733,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source> sec</source>
-        <translation>sek</translation>
+        <translation> sek</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -2322,7 +2322,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Read cache hits:</source>
-        <translation>Läscache träffar: </translation>
+        <translation>Läscache träffar:</translation>
     </message>
     <message>
         <source>Average time in queue:</source>
@@ -2358,7 +2358,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation>Köade in/ut-jobb: </translation>
+        <translation>Köade in/ut-jobb:</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
@@ -2897,7 +2897,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation>Fäll ut/in</translation>
+        <translation>Komprimera/expandera</translation>
     </message>
 </context>
 <context>
@@ -3532,7 +3532,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation>Nuvarande utvecklare</translation>
+        <translation>Aktuell utvecklare</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -3672,7 +3672,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation>Datum:</translation>
+        <translation>Datum: </translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -3847,7 +3847,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Example: </source>
-        <translation>Exempel:</translation>
+        <translation>Exempel: </translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -3879,7 +3879,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>Tre intervalltyper för avsnitt stöds:</translation>
+        <translation>Tre intervalltyper för avsnitt stöds: </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -3911,7 +3911,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation> kommer att matcha 2, 5, 8 till 15, 30 och senare avsnitt av säsong ett</translation>
+        <translation> kommer att matcha avsnitten 2, 5, 8 till 15, 30 och framåt av säsong ett</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>

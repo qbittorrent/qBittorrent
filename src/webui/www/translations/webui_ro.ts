@@ -1841,7 +1841,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Combină urmăritoarele unui torent existent</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
@@ -2640,7 +2640,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Reannounce In</source>
-        <translation type="unfinished" />
+        <translation>Reanunțare în</translation>
     </message>
     <message>
         <source>Popularity</source>
@@ -3117,7 +3117,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>minute totale</translation>
     </message>
     <message>
         <source>inactive minutes</source>

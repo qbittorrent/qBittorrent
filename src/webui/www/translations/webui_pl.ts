@@ -1137,7 +1137,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation>Anty-pijawka</translation>
+        <translation>Antypijawka</translation>
     </message>
     <message>
         <source>When ratio reaches</source>

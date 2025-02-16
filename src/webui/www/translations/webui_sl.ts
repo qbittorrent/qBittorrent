@@ -1113,7 +1113,7 @@
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>Temelji na stopnji nalaganja</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
@@ -1137,7 +1137,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Proti odjemalcem</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1221,7 +1221,7 @@
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>Fiksne reže</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1245,7 +1245,7 @@
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Krožen</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1693,7 +1693,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation type="unfinished" />
+        <translation>Ponastavi na privzeto, če je prazno</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>

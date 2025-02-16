@@ -3520,7 +3520,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Spjallborð</translation>
     </message>
     <message>
         <source>E-mail:</source>
