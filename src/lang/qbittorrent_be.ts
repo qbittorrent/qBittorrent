@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Аўтарскае права %1 2006-2024 The qBittorrent project</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Аўтарскае права %1 2006-2025 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -7903,7 +7903,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/search/pluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation>Некаторыя плагіны нельга выдаліць, бо яны - частка qBittorrent. Можна выдаліць толькі дададзеныя вамі. 
+        <translation>Некаторыя плагіны нельга выдаліць, бо яны - частка qBittorrent. Можна выдаліць толькі дададзеныя вамі.
 Гэтыя плагіны будуць адключаныя.</translation>
     </message>
     <message>

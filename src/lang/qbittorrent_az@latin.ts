@@ -91,8 +91,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Müəllif Hüquqları: %1 2006-2024 qBittorrent layihəsi</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Müəllif Hüquqları: %1 2006-2025 qBittorrent layihəsi</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -6228,7 +6228,7 @@ you should put in domain names used by WebUI server.
 
 Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
         <translation>HTTP Host başlıqlarının göstəricilərini filtrləmək üçün ağ siyahı.
-DNS ilə təkrar bağlantı hücumundan qorunmaq üçün WebUI 
+DNS ilə təkrar bağlantı hücumundan qorunmaq üçün WebUI
 serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
 
 Çoxsaylı elementləri bölmək üçün &apos;;&apos; istifadə edin. &apos;*&apos; ümumi nişanından istifadə edə bilərsiniz</translation>

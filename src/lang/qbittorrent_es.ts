@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2024 El Proyecto qBittorrent</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Copyright %1 2006-2025 El Proyecto qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -6186,7 +6186,7 @@ Deshabilitar encriptación: Solo conectar a pares sin encriptación de protocolo
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
         <translation>Dirección IP que la interfaz Web escuchará.
-Especifique una dirección IPv4 o IPv6. 
+Especifique una dirección IPv4 o IPv6.
 &quot;0.0.0.0&quot; para cualquier dirección IPv4.
 &quot;::&quot; para cualquier dirección IPv6.
 &quot;*&quot; para cualquier dirección IPv4 O IPv6</translation>
