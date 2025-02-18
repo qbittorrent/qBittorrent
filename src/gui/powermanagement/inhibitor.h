@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2025  Mike Tzou (Chocobo1)
- * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,63 +26,13 @@
  * exception statement from your version.
  */
 
-#include "powermanagement.h"
+#pragma once
 
-#include <QtSystemDetection>
-
-#if defined(Q_OS_MACOS)
-#include "inhibitormacos.h"
-using InhibitorImpl = InhibitorMacOS;
-#elif defined(Q_OS_WIN)
-#include "inhibitorwindows.h"
-using InhibitorImpl = InhibitorWindows;
-#elif defined(QBT_USES_DBUS)
-#include "inhibitordbus.h"
-using InhibitorImpl = InhibitorDBus;
-#else
-#include "inhibitor.h"
-using InhibitorImpl = Inhibitor;
-#endif
-
-PowerManagement::PowerManagement()
-    : m_inhibitor {new InhibitorImpl}
+class Inhibitor
 {
-}
+public:
+    virtual ~Inhibitor() = default;
 
-PowerManagement::~PowerManagement()
-{
-    setIdle();
-    delete m_inhibitor;
-}
-
-void PowerManagement::setActivityState(const ActivityState state)
-{
-    switch (state)
-    {
-    case ActivityState::Busy:
-        setBusy();
-        break;
-
-    case ActivityState::Idle:
-        setIdle();
-        break;
-    };
-}
-
-void PowerManagement::setBusy()
-{
-    if (m_state == ActivityState::Busy)
-        return;
-
-    if (m_inhibitor->requestBusy())
-        m_state = ActivityState::Busy;
-}
-
-void PowerManagement::setIdle()
-{
-    if (m_state == ActivityState::Idle)
-        return;
-
-    if (m_inhibitor->requestIdle())
-        m_state = ActivityState::Idle;
-}
+    virtual bool requestBusy();
+    virtual bool requestIdle();
+};
