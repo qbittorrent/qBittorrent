@@ -1,3 +1,14 @@
+Tue Feb 18th 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.4
+    - BUGFIX: Fix cannot remove trackers via WebAPI (Chocobo1)
+    - BUGFIX: Fix torrent content checkbox state under certain conditions (thalieht)
+    - BUGFIX: Hide zero and infinity values in peer list only when that setting is set to `Always` (thalieht)
+    - BUGFIX: Remove stopped torrent from "error" tracker filter (glassez)
+    - WEBUI: Fix memory leak in context menus (skomerko)
+    - WEBAPI: Don't trim string parameters (glassez)
+    - WINDOWS: Handle Qt style options uniformly (glassez)
+    - WINDOWS: NSIS: Update Portuguese translation (Hugo Carvalho)
+    - MACOS: Avoid memory leak (Chocobo1)
+
 Mon Dec 16th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.3
     - BUGFIX: Discard obsolete "state update" events after torrent is reloaded (glassez)
     - BUGFIX: Fix incorrect SQL column definition (glassez)
