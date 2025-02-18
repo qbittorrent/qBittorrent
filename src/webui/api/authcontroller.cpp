@@ -81,7 +81,7 @@ void AuthController::loginAction()
     {
         m_clientFailedLogins.remove(clientAddr);
 
-        m_sessionManager->sessionStart();
+        m_sessionManager->sessionStart(true);
         setResult(u"Ok."_s);
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }
