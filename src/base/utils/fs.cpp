@@ -209,6 +209,17 @@ Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
 {
+#if defined(Q_OS_WIN)
+    const auto wStrPath = path.data().toStdWString();
+    if (path.isUNCPath)
+    {
+        ULARGE_INTEGER FreeBytesAvailable = {0};
+        const BOOL ok = GetDiskFreeSpaceEx(wStrPath.c_str(), &FreeBytesAvailable, nullptr, nullptr);
+        if (ok)
+            return FreeBytesAvailable.QuadPart;
+    }
+#endif
+
     return QStorageInfo(path.data()).bytesAvailable();
 }
 
