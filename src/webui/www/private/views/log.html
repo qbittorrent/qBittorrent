@@ -206,7 +206,7 @@
             });
 
             const logTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-                targets: ":is(#logMessageView, #logPeerView) tr",
+                targets: ":is(#logMessageTableDiv, #logPeerTableDiv) tbody tr",
                 menu: "logTableMenu",
                 actions: {
                     Clear: () => {
