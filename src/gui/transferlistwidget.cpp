@@ -74,6 +74,7 @@
 #include "utils.h"
 
 #ifdef Q_OS_MACOS
+#include "macosshiftclickhandler.h"
 #include "macutilities.h"
 #endif
 
@@ -158,6 +159,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     setDropIndicatorShown(true);
 #if defined(Q_OS_MACOS)
     setAttribute(Qt::WA_MacShowFocusRect, false);
+    new MacOSShiftClickHandler(this);
 #endif
     header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false);
