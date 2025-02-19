@@ -287,6 +287,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macosdockbadge/badger.mm
         macosdockbadge/badgeview.h
         macosdockbadge/badgeview.mm
+        macosshiftclickhandler.h
+        macosshiftclickhandler.cpp
         macutilities.h
         macutilities.mm
     )
