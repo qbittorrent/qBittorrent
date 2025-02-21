@@ -3262,7 +3262,8 @@ window.qBittorrent.DynamicTable ??= (() => {
         initColumnsFunctions: function() {
             this.columns["timestamp"].updateTd = function(td, row) {
                 const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
-                td.set({ text: date, title: date });
+                td.textContent = date;
+                td.title = date;
             };
 
             this.columns["type"].updateTd = function(td, row) {
@@ -3290,7 +3291,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                         addClass = "logUnknown";
                         break;
                 }
-                td.set({ text: logLevel, title: logLevel });
+                td.textContent = logLevel;
+                td.title = logLevel;
                 td.closest("tr").className = `logTableRow${addClass}`;
             };
         },
@@ -3337,7 +3339,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.columns["timestamp"].updateTd = function(td, row) {
                 const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
-                td.set({ text: date, title: date });
+                td.textContent = date;
+                td.title = date;
             };
 
             this.columns["blocked"].updateTd = function(td, row) {
@@ -3350,7 +3353,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                     status = "QBT_TR(Banned)QBT_TR[CONTEXT=ExecutionLogWidget]";
                     addClass = "peerBanned";
                 }
-                td.set({ text: status, title: status });
+                td.textContent = status;
+                td.title = status;
                 td.closest("tr").className = `logTableRow${addClass}`;
             };
         },
