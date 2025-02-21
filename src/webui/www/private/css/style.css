@@ -100,6 +100,7 @@ ol {
     .dynamicTableDiv,
     .mochaContentWrapper,
     .panel,
+    .scrollableMenu,
     #rssDetailsView {
         scrollbar-width: thin;
     }
