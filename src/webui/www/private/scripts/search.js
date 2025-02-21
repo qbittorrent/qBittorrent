@@ -97,8 +97,8 @@ window.qBittorrent.Search ??= (() => {
             }
         },
         offsets: {
-            x: -15,
-            y: -53
+            x: 2,
+            y: -60
         },
         onShow: function() {
             setActiveTab(this.options.element);
@@ -109,7 +109,7 @@ window.qBittorrent.Search ??= (() => {
         // load "Search in" preference from local storage
         $("searchInTorrentName").value = (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-            targets: "#searchResultsTableDiv tr",
+            targets: "#searchResultsTableDiv tbody tr",
             menu: "searchResultsTableMenu",
             actions: {
                 Download: downloadSearchTorrent,
@@ -184,7 +184,10 @@ window.qBittorrent.Search ??= (() => {
         closeTabElem.src = "images/application-exit.svg";
         closeTabElem.width = "10";
         closeTabElem.height = "10";
-        closeTabElem.addEventListener("click", function(e) { qBittorrent.Search.closeSearchTab(this); });
+        closeTabElem.addEventListener("click", function(e) {
+            e.stopPropagation();
+            closeSearchTab(this);
+        });
 
         tabElem.prepend(closeTabElem);
         tabElem.appendChild(getStatusIconElement("QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
