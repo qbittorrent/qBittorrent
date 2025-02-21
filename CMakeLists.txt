@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16 FATAL_ERROR) # Policies <= CMP0097 default to NEW
+cmake_minimum_required(VERSION 3.22 FATAL_ERROR) # Policies <= CMP0128 default to NEW
 
 project(qBittorrent
     DESCRIPTION "The qBittorrent BitTorrent client"
