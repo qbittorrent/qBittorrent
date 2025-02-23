@@ -89,7 +89,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.setupCommonEvents();
             this.setupHeaderEvents();
             this.setupHeaderMenu();
-            this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === "1"));
             this.setupAltRow();
         },
 
@@ -601,19 +600,21 @@ window.qBittorrent.DynamicTable ??= (() => {
         updateTableHeaders: function() {
             this.updateHeader(this.hiddenTableHeader);
             this.updateHeader(this.fixedTableHeader);
+            this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === "1"));
         },
 
         updateHeader: function(header) {
             const ths = this.getRowCells(header);
             for (let i = 0; i < ths.length; ++i) {
                 const th = ths[i];
-                th._this = this;
-                th.title = this.columns[i].caption;
-                th.textContent = this.columns[i].caption;
-                th.style.cssText = `width: ${this.columns[i].width}px; ${this.columns[i].style}`;
-                th.columnName = this.columns[i].name;
-                th.classList.add(`column_${th.columnName}`);
-                th.classList.toggle("invisible", ((this.columns[i].visible === "0") || this.columns[i].force_hide));
+                if (th.columnName !== this.columns[i].name) {
+                    th.title = this.columns[i].caption;
+                    th.textContent = this.columns[i].caption;
+                    th.style.cssText = `width: ${this.columns[i].width}px; ${this.columns[i].style}`;
+                    th.columnName = this.columns[i].name;
+                    th.className = `column_${th.columnName}`;
+                    th.classList.toggle("invisible", ((this.columns[i].visible === "0") || this.columns[i].force_hide));
+                }
             }
         },
 
