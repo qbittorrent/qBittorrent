@@ -447,6 +447,7 @@
         <file>public/images/qbittorrent-tray.svg</file>
         <file>public/images/qbittorrent32.png</file>
         <file>public/index.html</file>
+        <file>public/robots.txt</file>
         <file>public/scripts/login.js</file>
     </qresource>
 </RCC>
