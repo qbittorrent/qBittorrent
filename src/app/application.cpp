@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -124,6 +124,28 @@ namespace
     const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
 #endif
 
+    const QString PARAM_ADDSTOPPED = u"@addStopped"_s;
+    const QString PARAM_CATEGORY = u"@category"_s;
+    const QString PARAM_FIRSTLASTPIECEPRIORITY = u"@firstLastPiecePriority"_s;
+    const QString PARAM_SAVEPATH = u"@savePath"_s;
+    const QString PARAM_SEQUENTIAL = u"@sequential"_s;
+    const QString PARAM_SKIPCHECKING = u"@skipChecking"_s;
+    const QString PARAM_SKIPDIALOG = u"@skipDialog"_s;
+
+    QString bindParamValue(const QStringView paramName, const QStringView paramValue)
+    {
+        return paramName + u'=' + paramValue;
+    }
+
+    std::pair<QStringView, QStringView> parseParam(const QStringView param)
+    {
+        const qsizetype sepIndex = param.indexOf(u'=');
+        if (sepIndex >= 0)
+            return {param.first(sepIndex), param.sliced(sepIndex + 1)};
+
+        return {param, {}};
+    }
+
     QString serializeParams(const QBtCommandLineParameters &params)
     {
         QStringList result;
@@ -138,85 +160,86 @@ namespace
         const BitTorrent::AddTorrentParams &addTorrentParams = params.addTorrentParams;
 
         if (!addTorrentParams.savePath.isEmpty())
-            result.append(u"@savePath=" + addTorrentParams.savePath.data());
+            result.append(bindParamValue(PARAM_SAVEPATH, addTorrentParams.savePath.data()));
 
         if (addTorrentParams.addStopped.has_value())
-            result.append(*addTorrentParams.addStopped ? u"@addStopped=1"_s : u"@addStopped=0"_s);
+            result.append(bindParamValue(PARAM_ADDSTOPPED, (*addTorrentParams.addStopped ? u"1" : u"0")));
 
         if (addTorrentParams.skipChecking)
-            result.append(u"@skipChecking"_s);
+            result.append(PARAM_SKIPCHECKING);
 
         if (!addTorrentParams.category.isEmpty())
-            result.append(u"@category=" + addTorrentParams.category);
+            result.append(bindParamValue(PARAM_CATEGORY, addTorrentParams.category));
 
         if (addTorrentParams.sequential)
-            result.append(u"@sequential"_s);
+            result.append(PARAM_SEQUENTIAL);
 
         if (addTorrentParams.firstLastPiecePriority)
-            result.append(u"@firstLastPiecePriority"_s);
+            result.append(PARAM_FIRSTLASTPIECEPRIORITY);
 
         if (params.skipDialog.has_value())
-            result.append(*params.skipDialog ? u"@skipDialog=1"_s : u"@skipDialog=0"_s);
+            result.append(bindParamValue(PARAM_SKIPDIALOG, (*params.skipDialog ? u"1" : u"0")));
 
         result += params.torrentSources;
 
         return result.join(PARAMS_SEPARATOR);
     }
 
-    QBtCommandLineParameters parseParams(const QString &str)
+    QBtCommandLineParameters parseParams(const QStringView str)
     {
         QBtCommandLineParameters parsedParams;
         BitTorrent::AddTorrentParams &addTorrentParams = parsedParams.addTorrentParams;
 
-        for (QString param : asConst(str.split(PARAMS_SEPARATOR, Qt::SkipEmptyParts)))
+        for (QStringView param : asConst(str.split(PARAMS_SEPARATOR, Qt::SkipEmptyParts)))
         {
             param = param.trimmed();
+            const auto [paramName, paramValue] = parseParam(param);
 
             // Process strings indicating options specified by the user.
 
-            if (param.startsWith(u"@savePath="))
+            if (paramName == PARAM_SAVEPATH)
             {
-                addTorrentParams.savePath = Path(param.mid(10));
+                addTorrentParams.savePath = Path(paramValue.toString());
                 continue;
             }
 
-            if (param.startsWith(u"@addStopped="))
+            if (paramName == PARAM_ADDSTOPPED)
             {
-                addTorrentParams.addStopped = (QStringView(param).mid(11).toInt() != 0);
+                addTorrentParams.addStopped = (paramValue.toInt() != 0);
                 continue;
             }
 
-            if (param == u"@skipChecking")
+            if (paramName == PARAM_SKIPCHECKING)
             {
                 addTorrentParams.skipChecking = true;
                 continue;
             }
 
-            if (param.startsWith(u"@category="))
+            if (paramName == PARAM_CATEGORY)
             {
-                addTorrentParams.category = param.mid(10);
+                addTorrentParams.category = paramValue.toString();
                 continue;
             }
 
-            if (param == u"@sequential")
+            if (paramName == PARAM_SEQUENTIAL)
             {
                 addTorrentParams.sequential = true;
                 continue;
             }
 
-            if (param == u"@firstLastPiecePriority")
+            if (paramName == PARAM_FIRSTLASTPIECEPRIORITY)
             {
                 addTorrentParams.firstLastPiecePriority = true;
                 continue;
             }
 
-            if (param.startsWith(u"@skipDialog="))
+            if (paramName == PARAM_SKIPDIALOG)
             {
-                parsedParams.skipDialog = (QStringView(param).mid(12).toInt() != 0);
+                parsedParams.skipDialog = (paramValue.toInt() != 0);
                 continue;
             }
 
-            parsedParams.torrentSources.append(param);
+            parsedParams.torrentSources.append(param.toString());
         }
 
         return parsedParams;
