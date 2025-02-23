@@ -138,8 +138,6 @@ window.qBittorrent.PropTrackers ??= (() => {
                 addTrackerFN();
             },
             EditTracker: (element, ref) => {
-                // only allow editing of one row
-                element.firstElementChild.click();
                 editTrackerFN(element);
             },
             RemoveTracker: (element, ref) => {
@@ -162,7 +160,11 @@ window.qBittorrent.PropTrackers ??= (() => {
                 this.hideItem("CopyTrackerUrl");
             }
             else {
-                this.showItem("EditTracker");
+                if (selectedTrackers.length === 1)
+                    this.showItem("EditTracker");
+                else
+                    this.hideItem("EditTracker");
+
                 this.showItem("RemoveTracker");
                 this.showItem("CopyTrackerUrl");
             }
