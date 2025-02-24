@@ -115,8 +115,7 @@ QByteArray DefaultThemeSource::readStyleSheet()
 QColor DefaultThemeSource::getColor(const QString &colorId, const ColorMode colorMode) const
 {
     const auto iter = m_colors.constFind(colorId);
-    Q_ASSERT(iter != m_colors.constEnd());
-    if (iter == m_colors.constEnd()) [[unlikely]]
+    if (iter == m_colors.constEnd())
         return {};
 
     return (colorMode == ColorMode::Light)
