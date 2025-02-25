@@ -67,6 +67,7 @@ jobs:
               "set(VCPKG_BUILD_TYPE release)")
           # clear buildtrees after each package installation to reduce disk space requirements
           $packages = `
+            "boost-build:x64-windows-static-md-release",
             "openssl:x64-windows-static-md-release",
             "zlib:x64-windows-static-md-release"
           ${{ env.vcpkg_path }}/vcpkg.exe upgrade `
@@ -95,8 +96,12 @@ jobs:
           }
           move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
           cd "${{ env.boost_path }}"
-          .\bootstrap.bat
-          .\b2.exe stage --stagedir=.\ --with-headers
+          #.\bootstrap.bat
+          ${{ env.vcpkg_path }}/installed/x64-windows-static-md-release/tools/boost-build/b2.exe `
+            stage `
+            toolset=msvc `
+            --stagedir=.\ `
+            --with-headers
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
