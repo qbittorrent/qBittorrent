@@ -47,7 +47,7 @@ jobs:
           store_cache: ${{ github.ref == 'refs/heads/master' }}
           update_packager_index: false
           ccache_options: |
-            max_size=2G
+            max_size=1G
 
       - name: Install boost
         env:
