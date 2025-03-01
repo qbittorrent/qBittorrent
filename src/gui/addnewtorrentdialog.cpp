@@ -134,7 +134,7 @@ namespace
         else
             pathList.prepend(path.toString());
 
-        settings()->storeValue(settingsKey, QStringList(pathList.mid(0, maxLength)));
+        settings()->storeValue(settingsKey, pathList.mid(0, maxLength));
     }
 }
 

@@ -49,12 +49,13 @@ namespace Utils::String
     template <typename T>
     T unquote(const T &str, const QString &quotes = u"\""_s)
     {
-        if (str.length() < 2) return str;
+        if (str.length() < 2)
+            return str;
 
         for (const QChar quote : quotes)
         {
             if (str.startsWith(quote) && str.endsWith(quote))
-                return str.mid(1, (str.length() - 2));
+                return str.sliced(1, (str.length() - 2));
         }
 
         return str;

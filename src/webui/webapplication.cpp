@@ -94,8 +94,8 @@ namespace
             if (idx < 0)
                 continue;
 
-            const QString name = cookie.left(idx).trimmed().toString();
-            const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed()).toString();
+            const QString name = cookie.first(idx).trimmed().toString();
+            const QString value = Utils::String::unquote(cookie.sliced(idx + 1).trimmed()).toString();
             ret.insert(name, value);
         }
         return ret;
@@ -135,7 +135,11 @@ namespace
 
         for (const QString &langFile : langFiles)
         {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+            const auto langCode = QStringView(langFile).slice(6).chopped(3); // remove "webui_" and ".qm"
+#else
             const auto langCode = QStringView(langFile).sliced(6).chopped(3); // remove "webui_" and ".qm"
+#endif
             const QString entry = u"<option value=\"%1\">%2</option>"_s
                 .arg(langCode, Utils::Misc::languageToLocalizedString(langCode));
             languages.append(entry);
@@ -488,8 +492,8 @@ void WebApplication::configure()
                 continue;
             }
 
-            const QString header = line.left(idx).trimmed().toString();
-            const QString value = line.mid(idx + 1).trimmed().toString();
+            const QString header = line.first(idx).trimmed().toString();
+            const QString value = line.sliced(idx + 1).trimmed().toString();
             m_prebuiltHeaders.push_back({header, value});
         }
     }
