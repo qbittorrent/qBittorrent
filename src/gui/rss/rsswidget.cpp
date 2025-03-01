@@ -82,7 +82,13 @@ namespace
 
             QString relativePath = match.captured(6);
             if (relativePath.startsWith(u'/'))
-                relativePath = relativePath.mid(1);
+            {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+                relativePath.slice(1);
+#else
+                relativePath.remove(0, 1);
+#endif
+            }
 
             const QString absoluteUrl = !host.isEmpty()
                     ? QString(defaultScheme + u':' + host) : (normalizedBaseUrl + relativePath);

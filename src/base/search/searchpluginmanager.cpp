@@ -469,9 +469,9 @@ void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &resu
     }
     else
     {
-        const QString url = result.url;
-        QString pluginName = url.mid(url.lastIndexOf(u'/') + 1);
-        pluginName.replace(u".py"_s, u""_s, Qt::CaseInsensitive);
+        const QString &url = result.url;
+        const QString pluginName = url.sliced(url.lastIndexOf(u'/') + 1)
+            .replace(u".py"_s, u""_s, Qt::CaseInsensitive);
 
         if (pluginInfo(pluginName))
             emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
@@ -653,7 +653,7 @@ PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
         const auto line = QString::fromUtf8(pluginFile.readLine(lineMaxLength)).remove(u' ');
         if (!line.startsWith(u"#VERSION:", Qt::CaseInsensitive)) continue;
 
-        const QString versionStr = line.mid(9);
+        const QString versionStr = line.sliced(9);
         const auto version = PluginVersion::fromString(versionStr);
         if (version.isValid())
             return version;

@@ -465,13 +465,13 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
     return result;
 }
 
-QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN, int wrapAtColumn = WRAP_AT_COLUMN)
+QString wrapText(const QString &text, const int initialIndentation = USAGE_TEXT_COLUMN, const int wrapAtColumn = WRAP_AT_COLUMN)
 {
-    QStringList words = text.split(u' ');
+    const QStringList words = text.split(u' ');
     QStringList lines = {words.first()};
     int currentLineMaxLength = wrapAtColumn - initialIndentation;
 
-    for (const QString &word : asConst(words.mid(1)))
+    for (const QString &word : asConst(words.sliced(1)))
     {
         if (lines.last().length() + word.length() + 1 < currentLineMaxLength)
         {
