@@ -294,6 +294,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.updateTableHeaders();
                     this.tableBody.replaceChildren();
                     this.updateTable(true);
+                    this.reselectRows(this.selectedRowsIds());
                 }
                 if (this.currentHeaderAction === "drag") {
                     resetElementBorderStyle(el);
@@ -750,10 +751,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         reselectRows: function(rowIds) {
             this.deselectAll();
             this.selectedRows = rowIds.slice();
-            for (const tr of this.getTrs()) {
-                if (rowIds.includes(tr.rowId))
-                    tr.classList.add("selected");
-            }
+            this.setRowClass();
         },
 
         setRowClass: function() {
