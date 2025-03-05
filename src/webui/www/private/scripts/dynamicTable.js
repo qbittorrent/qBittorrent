@@ -1455,7 +1455,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
         },
 
-        applyFilter: (row, filterName, category, tag, tracker, filterTerms) => {
+        applyFilter: (row, filterName, category, tag, trackerHost, filterTerms) => {
             const state = row["full_data"].state;
             let inactive = false;
 
@@ -1563,7 +1563,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
             }
 
-            switch (tracker) {
+            switch (trackerHost) {
                 case TRACKERS_ALL:
                     break; // do nothing
 
@@ -1572,8 +1572,23 @@ window.qBittorrent.DynamicTable ??= (() => {
                         return false;
                     break;
 
+                case TRACKERS_ERROR:
+                    if (!row["full_data"].trackers_statuses.includes("error"))
+                        return false;
+                    break;
+
+                case TRACKERS_OTHER_ERROR:
+                    if (!row["full_data"].trackers_statuses.includes("other_error"))
+                        return false;
+                    break;
+
+                case TRACKERS_WARNING:
+                    if (!row["full_data"].trackers_statuses.includes("warning"))
+                        return false;
+                    break;
+
                 default: {
-                    const trackerTorrentMap = trackerMap.get(tracker);
+                    const trackerTorrentMap = trackerMap.get(trackerHost);
                     if (trackerTorrentMap !== undefined) {
                         let found = false;
                         for (const torrents of trackerTorrentMap.values()) {
