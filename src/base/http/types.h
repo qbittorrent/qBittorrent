@@ -29,7 +29,10 @@
 
 #pragma once
 
+#include <QByteArray>
+#include <QHash>
 #include <QHostAddress>
+#include <QMap>
 #include <QString>
 #include <QVector>
 
