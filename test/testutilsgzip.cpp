@@ -58,7 +58,7 @@ private slots:
         bool ok = false;
         const QByteArray compressedData = Utils::Gzip::compress(data, 6, &ok);
         QVERIFY(ok);
-        QVERIFY(compressedData != data);
+        QCOMPARE_NE(compressedData, data);
 
         ok = false;
         const QByteArray decompressedData = Utils::Gzip::decompress(compressedData, &ok);

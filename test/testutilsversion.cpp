@@ -169,26 +169,26 @@ private slots:
     {
         using ThreeDigits = Utils::Version<3>;
 
-        QVERIFY(ThreeDigits() == ThreeDigits());
+        QCOMPARE_EQ(ThreeDigits(), ThreeDigits());
         QVERIFY(!(ThreeDigits() != ThreeDigits()));
-        QVERIFY(ThreeDigits() <= ThreeDigits());
-        QVERIFY(ThreeDigits() >= ThreeDigits());
+        QCOMPARE_LE(ThreeDigits(), ThreeDigits());
+        QCOMPARE_GE(ThreeDigits(), ThreeDigits());
 
-        QVERIFY(ThreeDigits() != ThreeDigits(1, 2, 3));
-        QVERIFY(ThreeDigits() < ThreeDigits(1, 2, 3));
-        QVERIFY(ThreeDigits() <= ThreeDigits(1, 2, 3));
+        QCOMPARE_NE(ThreeDigits(), ThreeDigits(1, 2, 3));
+        QCOMPARE_LT(ThreeDigits(), ThreeDigits(1, 2, 3));
+        QCOMPARE_LE(ThreeDigits(), ThreeDigits(1, 2, 3));
 
-        QVERIFY(ThreeDigits(1, 2, 3) != ThreeDigits());
-        QVERIFY(ThreeDigits(1, 2, 3) > ThreeDigits());
-        QVERIFY(ThreeDigits(1, 2, 3) >= ThreeDigits());
+        QCOMPARE_NE(ThreeDigits(1, 2, 3), ThreeDigits());
+        QCOMPARE_GT(ThreeDigits(1, 2, 3), ThreeDigits());
+        QCOMPARE_GE(ThreeDigits(1, 2, 3), ThreeDigits());
 
-        QVERIFY(ThreeDigits(1, 3, 3) != ThreeDigits(2, 2, 3));
-        QVERIFY(ThreeDigits(1, 3, 3) < ThreeDigits(2, 2, 3));
-        QVERIFY(ThreeDigits(1, 3, 3) <= ThreeDigits(2, 2, 3));
+        QCOMPARE_NE(ThreeDigits(1, 3, 3), ThreeDigits(2, 2, 3));
+        QCOMPARE_LT(ThreeDigits(1, 3, 3), ThreeDigits(2, 2, 3));
+        QCOMPARE_LE(ThreeDigits(1, 3, 3), ThreeDigits(2, 2, 3));
 
-        QVERIFY(ThreeDigits(1, 2, 3) != ThreeDigits(1, 2, 4));
-        QVERIFY(ThreeDigits(1, 2, 3) < ThreeDigits(1, 2, 4));
-        QVERIFY(ThreeDigits(1, 2, 3) <= ThreeDigits(1, 2, 4));
+        QCOMPARE_NE(ThreeDigits(1, 2, 3), ThreeDigits(1, 2, 4));
+        QCOMPARE_LT(ThreeDigits(1, 2, 3), ThreeDigits(1, 2, 4));
+        QCOMPARE_LE(ThreeDigits(1, 2, 3), ThreeDigits(1, 2, 4));
     }
 };
 
