@@ -211,6 +211,12 @@ void WebApplication::sendWebUIFile()
         throw BadRequestHTTPError();
     }
 
+    if (m_isAltUIUsed && request().path == u"/" && request().query.contains(QStringLiteral(u"resetui")))
+    {
+        Preferences::instance()->setAltWebUIEnabled(false);
+        configure();
+    }
+
     const QString path = (request().path != u"/")
         ? request().path
         : u"/index.html"_s;
