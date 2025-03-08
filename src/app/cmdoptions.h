@@ -55,6 +55,7 @@ struct QBtCommandLineParameters
     bool shouldDaemonize = false;
 #endif
     int webUIPort = -1;
+    bool forceDefaultWebUI = false;
     int torrentingPort = -1;
     std::optional<bool> skipDialog;
     Path profileDir;

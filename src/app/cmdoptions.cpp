@@ -315,6 +315,7 @@ namespace
     constexpr const BoolOption NO_SPLASH_OPTION {u"no-splash"};
 #endif
     constexpr const IntOption WEBUI_PORT_OPTION {u"webui-port"};
+    constexpr const BoolOption FORCE_DEFAULT_WEBUI_OPTION {u"force-default-webui"};
     constexpr const IntOption TORRENTING_PORT_OPTION {u"torrenting-port"};
     constexpr const StringOption PROFILE_OPTION {u"profile"};
     constexpr const StringOption CONFIGURATION_OPTION {u"configuration"};
@@ -382,6 +383,10 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 if ((result.webUIPort < 1) || (result.webUIPort > 65535))
                     throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "%1 must specify a valid port (1 to 65535).")
                                                     .arg(u"--webui-port"_s));
+            }
+            else if (arg == FORCE_DEFAULT_WEBUI_OPTION)
+            {
+                result.forceDefaultWebUI = true;
             }
             else if (arg == TORRENTING_PORT_OPTION)
             {
@@ -503,6 +508,7 @@ QString makeUsage(const QString &prgName)
         + WEBUI_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
         + wrapText(QCoreApplication::translate("CMD Options", "Change the WebUI port"))
         + u'\n'
+        + FORCE_DEFAULT_WEBUI_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Disable alternative WebUI and use the default")) + u'\n'
         + TORRENTING_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
         + wrapText(QCoreApplication::translate("CMD Options", "Change the torrenting port"))
         + u'\n'
