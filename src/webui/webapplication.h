@@ -119,6 +119,7 @@ private:
 
     void sendFile(const Path &path);
     void sendWebUIFile();
+    void fallbackAltUI(const QString &path);
 
     void translateDocument(QString &data) const;
 
