@@ -96,9 +96,9 @@ void DNSUpdater::ipRequestFinished(const DownloadResult &result)
     const QRegularExpressionMatch ipRegexMatch = QRegularExpression(u"Current IP Address:\\s+([^<]+)</body>"_s).match(QString::fromUtf8(result.data));
     if (ipRegexMatch.hasMatch())
     {
-        QString ipStr = ipRegexMatch.captured(1);
+        const QString ipStr = ipRegexMatch.captured(1);
         qDebug() << Q_FUNC_INFO << "Regular expression captured the following IP:" << ipStr;
-        QHostAddress newIp(ipStr);
+        const QHostAddress newIp {ipStr};
         if (!newIp.isNull())
         {
             if (m_lastIP != newIp)

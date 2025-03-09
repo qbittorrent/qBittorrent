@@ -184,14 +184,10 @@ QString computeEpisodeName(const QString &article)
     for (int i = 1; i <= match.lastCapturedIndex(); ++i)
     {
         const QString cap = match.captured(i);
-
         if (cap.isEmpty())
             continue;
 
-        bool isInt = false;
-        const int x = cap.toInt(&isInt);
-
-        ret.append(isInt ? QString::number(x) : cap);
+        ret.append(cap);
     }
     return ret.join(u'x');
 }
@@ -293,11 +289,11 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
     if (!matcher.hasMatch())
         return false;
 
-    const QString season {matcher.captured(1)};
-    const QStringList episodes {matcher.captured(2).split(u';')};
+    const QStringView season {matcher.capturedView(1)};
+    const QList<QStringView> episodes {matcher.capturedView(2).split(u';')};
     const int seasonOurs {season.toInt()};
 
-    for (QString episode : episodes)
+    for (QStringView episode : episodes)
     {
         if (episode.isEmpty())
             continue;
@@ -308,11 +304,11 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
             episode.slice(1);
 #else
-            episode.remove(0, 1);
+            episode = episode.sliced(1);
 #endif
         }
 
-        if (episode.indexOf(u'-') != -1)
+        if (episode.contains(u'-'))
         { // Range detected
             const QString partialPattern1 {u"\\bs0?(\\d{1,4})[ -_\\.]?e(0?\\d{1,4})(?:\\D|\\b)"_s};
             const QString partialPattern2 {u"\\b(\\d{1,4})x(0?\\d{1,4})(?:\\D|\\b)"_s};
@@ -329,8 +325,8 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
 
             if (matched)
             {
-                const int seasonTheirs {matcher.captured(1).toInt()};
-                const int episodeTheirs {matcher.captured(2).toInt()};
+                const int seasonTheirs {matcher.capturedView(1).toInt()};
+                const int episodeTheirs {matcher.capturedView(2).toInt()};
 
                 if (episode.endsWith(u'-'))
                 { // Infinite range
@@ -340,13 +336,14 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
                 }
                 else
                 { // Normal range
-                    const QStringList range {episode.split(u'-')};
+                    const QList<QStringView> range {episode.split(u'-')};
                     Q_ASSERT(range.size() == 2);
-                    if (range.first().toInt() > range.last().toInt())
-                        continue; // Ignore this subrule completely
 
                     const int episodeOursFirst {range.first().toInt()};
                     const int episodeOursLast {range.last().toInt()};
+                    if (episodeOursFirst > episodeOursLast)
+                        continue; // Ignore this subrule completely
+
                     if ((seasonTheirs == seasonOurs) && ((episodeOursFirst <= episodeTheirs) && (episodeOursLast >= episodeTheirs)))
                         return true;
                 }
