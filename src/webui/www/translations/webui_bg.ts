@@ -317,8 +317,7 @@
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Невалидно име на категория:
-Моля не използвайте никакви специални символи в името на категорията.</translation>
+        <translation>Невалидно име на категория:\nМоля не използвайте никакви специални символи в името на категорията.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
