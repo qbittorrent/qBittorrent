@@ -359,6 +359,19 @@ void Preferences::setStatusbarDisplayed(const bool displayed)
     setValue(u"Preferences/General/StatusbarDisplayed"_s, displayed);
 }
 
+bool Preferences::isStatusbarFreeDiskSpaceDisplayed() const
+{
+    return value(u"Preferences/General/StatusbarFreeDiskSpaceDisplayed"_s, false);
+}
+
+void Preferences::setStatusbarFreeDiskSpaceDisplayed(const bool displayed)
+{
+    if (displayed == isStatusbarFreeDiskSpaceDisplayed())
+        return;
+
+    setValue(u"Preferences/General/StatusbarFreeDiskSpaceDisplayed"_s, displayed);
+}
+
 bool Preferences::isStatusbarExternalIPDisplayed() const
 {
     return value(u"Preferences/General/StatusbarExternalIPDisplayed"_s, false);

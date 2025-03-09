@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -27,18 +27,29 @@
  * exception statement from your version.
  */
 
-#include "freediskspacechecker.h"
+#pragma once
 
-#include "base/bittorrent/session.h"
-#include "base/utils/fs.h"
+#include <QObject>
 
-qint64 FreeDiskSpaceChecker::lastResult() const
+#include "base/path.h"
+
+class FreeDiskSpaceChecker final : public QObject
 {
-    return m_lastResult;
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(FreeDiskSpaceChecker)
 
-void FreeDiskSpaceChecker::check()
-{
-    m_lastResult = Utils::Fs::freeDiskSpaceOnPath(BitTorrent::Session::instance()->savePath());
-    emit checked(m_lastResult);
-}
+public:
+    FreeDiskSpaceChecker(const Path &pathToCheck);
+
+    Path pathToCheck() const;
+    void setPathToCheck(const Path &newPathToCheck);
+
+public slots:
+    void check();
+
+signals:
+    void checked(qint64 freeSpaceSize);
+
+private:
+    Path m_pathToCheck;
+};

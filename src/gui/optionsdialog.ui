@@ -820,6 +820,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
+              <property name="text">
+               <string>Show free disk space in status bar</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
               <property name="text">
                <string>Show external IP in status bar</string>
