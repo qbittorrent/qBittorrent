@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  *
  * This program is free software; you can redistribute it and/or
@@ -43,10 +43,10 @@
 #include <QNetworkCookie>
 #include <QRegularExpression>
 #include <QThread>
-#include <QTimer>
 #include <QUrl>
 
 #include "base/algorithm.h"
+#include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentcreationmanager.h"
 #include "base/http/httperror.h"
 #include "base/logger.h"
@@ -67,7 +67,6 @@
 #include "api/torrentcreatorcontroller.h"
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
-#include "freediskspacechecker.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
@@ -75,10 +74,6 @@ const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
 const QString WWW_FOLDER = u":/www"_s;
 const QString PUBLIC_FOLDER = u"/public"_s;
 const QString PRIVATE_FOLDER = u"/private"_s;
-
-using namespace std::chrono_literals;
-
-const std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
 
 namespace
 {
@@ -161,9 +156,6 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
     , m_authController {new AuthController(this, app, this)}
-    , m_workerThread {new QThread}
-    , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker}
-    , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
 {
     declarePublicAPI(u"auth/login"_s);
@@ -181,17 +173,6 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
         }
         m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME;
     }
-
-    m_freeDiskSpaceChecker->moveToThread(m_workerThread.get());
-    connect(m_workerThread.get(), &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
-    m_workerThread->setObjectName("WebApplication m_workerThread");
-    m_workerThread->start();
-
-    m_freeDiskSpaceCheckingTimer->setInterval(FREEDISKSPACE_CHECK_TIMEOUT);
-    m_freeDiskSpaceCheckingTimer->setSingleShot(true);
-    connect(m_freeDiskSpaceCheckingTimer, &QTimer::timeout, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
-    connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, m_freeDiskSpaceCheckingTimer, qOverload<>(&QTimer::start));
-    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
 }
 
 WebApplication::~WebApplication()
@@ -739,9 +720,10 @@ void WebApplication::sessionStart()
     m_currentSession->registerAPIController(u"torrents"_s, new TorrentsController(app(), m_currentSession));
     m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), m_currentSession));
 
+    const auto *btSession = BitTorrent::Session::instance();
     auto *syncController = new SyncController(app(), m_currentSession);
-    syncController->updateFreeDiskSpace(m_freeDiskSpaceChecker->lastResult());
-    connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, syncController, &SyncController::updateFreeDiskSpace);
+    syncController->updateFreeDiskSpace(btSession->freeDiskSpace());
+    connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
 
     QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -76,6 +76,7 @@
 #include <QUuid>
 
 #include "base/algorithm.h"
+#include "base/freediskspacechecker.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -115,6 +116,7 @@ using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
+const std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
 
 namespace
 {
@@ -540,6 +542,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_ioThread {new QThread}
     , m_asyncWorker {new QThreadPool(this)}
     , m_recentErroredTorrentsTimer {new QTimer(this)}
+    , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker(savePath())}
+    , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
 {
     // It is required to perform async access to libtorrent sequentially
     m_asyncWorker->setMaxThreadCount(1);
@@ -600,6 +604,18 @@ SessionImpl::SessionImpl(QObject *parent)
         , &Net::ProxyConfigurationManager::proxyConfigurationChanged
         , this, &SessionImpl::configureDeferred);
 
+    m_freeDiskSpaceChecker->moveToThread(m_ioThread.get());
+    connect(m_ioThread.get(), &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
+    m_freeDiskSpaceCheckingTimer->setInterval(FREEDISKSPACE_CHECK_TIMEOUT);
+    m_freeDiskSpaceCheckingTimer->setSingleShot(true);
+    connect(m_freeDiskSpaceCheckingTimer, &QTimer::timeout, m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
+    connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, [this](const qint64 value)
+    {
+        m_freeDiskSpace = value;
+        m_freeDiskSpaceCheckingTimer->start();
+        emit freeDiskSpaceChecked(m_freeDiskSpace);
+    });
+
     m_fileSearcher = new FileSearcher;
     m_fileSearcher->moveToThread(m_ioThread.get());
     connect(m_ioThread.get(), &QThread::finished, m_fileSearcher, &QObject::deleteLater);
@@ -612,6 +628,8 @@ SessionImpl::SessionImpl(QObject *parent)
 
     m_ioThread->setObjectName("SessionImpl m_ioThread");
     m_ioThread->start();
+
+    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check);
 
     initMetrics();
     loadStatistics();
@@ -3266,6 +3284,14 @@ void SessionImpl::setSavePath(const Path &path)
     m_savePath = newPath;
     for (TorrentImpl *const torrent : asConst(m_torrents))
         torrent->handleCategoryOptionsChanged();
+
+    m_freeDiskSpace = -1;
+    m_freeDiskSpaceCheckingTimer->stop();
+    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, [checker = m_freeDiskSpaceChecker, pathToCheck = m_savePath]
+    {
+        checker->setPathToCheck(pathToCheck);
+        checker->check();
+    });
 }
 
 void SessionImpl::setDownloadPath(const Path &path)
@@ -5111,6 +5137,11 @@ QString SessionImpl::lastExternalIPv4Address() const
 QString SessionImpl::lastExternalIPv6Address() const
 {
     return m_lastExternalIPv6Address;
+}
+
+qint64 SessionImpl::freeDiskSpace() const
+{
+    return m_freeDiskSpace;
 }
 
 bool SessionImpl::isListening() const

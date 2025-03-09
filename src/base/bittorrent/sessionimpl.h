@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -64,6 +64,7 @@ class QUrl;
 class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
+class FreeDiskSpaceChecker;
 class NativeSessionExtension;
 
 namespace BitTorrent
@@ -447,6 +448,8 @@ namespace BitTorrent
 
         QString lastExternalIPv4Address() const override;
         QString lastExternalIPv6Address() const override;
+
+        qint64 freeDiskSpace() const override;
 
         // Torrent interface
         void handleTorrentResumeDataRequested(const TorrentImpl *torrent);
@@ -849,6 +852,10 @@ namespace BitTorrent
         QElapsedTimer m_wakeupCheckTimestamp;
 
         QList<TorrentImpl *> m_pendingFinishedTorrents;
+
+        FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
+        QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
+        qint64 m_freeDiskSpace = -1;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

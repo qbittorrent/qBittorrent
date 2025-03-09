@@ -119,6 +119,8 @@ public:
     void setHideZeroComboValues(int n);
     bool isStatusbarDisplayed() const;
     void setStatusbarDisplayed(bool displayed);
+    bool isStatusbarFreeDiskSpaceDisplayed() const;
+    void setStatusbarFreeDiskSpaceDisplayed(bool displayed);
     bool isStatusbarExternalIPDisplayed() const;
     void setStatusbarExternalIPDisplayed(bool displayed);
     bool isToolbarDisplayed() const;
