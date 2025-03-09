@@ -44,6 +44,19 @@
 #include "uithememanager.h"
 #include "utils.h"
 
+namespace
+{
+    QWidget *createSeparator(QWidget *parent)
+    {
+        QFrame *separator = new QFrame(parent);
+        separator->setFrameStyle(QFrame::VLine);
+    #ifndef Q_OS_MACOS
+        separator->setFrameShadow(QFrame::Raised);
+    #endif
+        return separator;
+    }
+}
+
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
@@ -87,11 +100,17 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setStyleSheet(u"text-align:left;"_s);
     m_upSpeedLbl->setMinimumWidth(200);
 
+    m_freeDiskSpaceLbl = new QLabel(tr("Free space: N/A"));
+    m_freeDiskSpaceLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_freeDiskSpaceSeparator = createSeparator(m_freeDiskSpaceLbl);
+
     m_lastExternalIPsLbl = new QLabel(tr("External IP: N/A"));
     m_lastExternalIPsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_lastExternalIPsSeparator = createSeparator(m_lastExternalIPsLbl);
 
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_DHTSeparator = createSeparator(m_DHTLbl);
 
     m_altSpeedsBtn = new QPushButton(this);
     m_altSpeedsBtn->setFlat(true);
@@ -113,52 +132,42 @@ StatusBar::StatusBar(QWidget *parent)
     m_connecStatusLblIcon->setMaximumWidth(Utils::Gui::largeIconSize().width());
     m_altSpeedsBtn->setMaximumWidth(Utils::Gui::largeIconSize().width());
 
-    QFrame *statusSep1 = new QFrame(this);
-    statusSep1->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MACOS
-    statusSep1->setFrameShadow(QFrame::Raised);
-#endif
-    QFrame *statusSep2 = new QFrame(this);
-    statusSep2->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MACOS
-    statusSep2->setFrameShadow(QFrame::Raised);
-#endif
-    QFrame *statusSep3 = new QFrame(this);
-    statusSep3->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MACOS
-    statusSep3->setFrameShadow(QFrame::Raised);
-#endif
-    QFrame *statusSep4 = new QFrame(this);
-    statusSep4->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MACOS
-    statusSep4->setFrameShadow(QFrame::Raised);
-#endif
-    QFrame *statusSep5 = new QFrame(this);
-    statusSep5->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MACOS
-    statusSep5->setFrameShadow(QFrame::Raised);
-#endif
+    layout->addWidget(m_freeDiskSpaceLbl);
+    layout->addWidget(m_freeDiskSpaceSeparator);
+
     layout->addWidget(m_lastExternalIPsLbl);
-    layout->addWidget(statusSep1);
+    layout->addWidget(m_lastExternalIPsSeparator);
+
     layout->addWidget(m_DHTLbl);
-    layout->addWidget(statusSep2);
+    layout->addWidget(m_DHTSeparator);
+
     layout->addWidget(m_connecStatusLblIcon);
-    layout->addWidget(statusSep3);
+    layout->addWidget(createSeparator(m_connecStatusLblIcon));
+
     layout->addWidget(m_altSpeedsBtn);
-    layout->addWidget(statusSep4);
+    layout->addWidget(createSeparator(m_altSpeedsBtn));
+
     layout->addWidget(m_dlSpeedLbl);
-    layout->addWidget(statusSep5);
+    layout->addWidget(createSeparator(m_dlSpeedLbl));
+
     layout->addWidget(m_upSpeedLbl);
 
     addPermanentWidget(container);
     setStyleSheet(u"QWidget {margin: 0;}"_s);
     container->adjustSize();
     adjustSize();
+    updateFreeDiskSpaceVisibility();
     updateExternalAddressesVisibility();
     // Is DHT enabled
-    m_DHTLbl->setVisible(session->isDHTEnabled());
+    const bool isDHTVisible = session->isDHTEnabled();
+    m_DHTLbl->setVisible(isDHTVisible);
+    m_DHTSeparator->setVisible(isDHTVisible);
     refresh();
     connect(session, &BitTorrent::Session::statsUpdated, this, &StatusBar::refresh);
+
+    updateFreeDiskSpaceLabel(session->freeDiskSpace());
+    connect(session, &BitTorrent::Session::freeDiskSpaceChecked, this, &StatusBar::updateFreeDiskSpaceLabel);
+
     connect(Preferences::instance(), &Preferences::changed, this, &StatusBar::optionsSaved);
 }
 
@@ -216,13 +225,26 @@ void StatusBar::updateDHTNodesNumber()
     if (BitTorrent::Session::instance()->isDHTEnabled())
     {
         m_DHTLbl->setVisible(true);
-        m_DHTLbl->setText(tr("DHT: %1 nodes")
-                          .arg(BitTorrent::Session::instance()->status().dhtNodes));
+        m_DHTSeparator->setVisible(true);
+        m_DHTLbl->setText(tr("DHT: %1 nodes").arg(BitTorrent::Session::instance()->status().dhtNodes));
     }
     else
     {
         m_DHTLbl->setVisible(false);
+        m_DHTSeparator->setVisible(false);
     }
+}
+
+void StatusBar::updateFreeDiskSpaceLabel(const qint64 value)
+{
+    m_freeDiskSpaceLbl->setText(tr("Free space: ") + Utils::Misc::friendlyUnit(value));
+}
+
+void StatusBar::updateFreeDiskSpaceVisibility()
+{
+    const bool isVisible = Preferences::instance()->isStatusbarFreeDiskSpaceDisplayed();
+    m_freeDiskSpaceLbl->setVisible(isVisible);
+    m_freeDiskSpaceSeparator->setVisible(isVisible);
 }
 
 void StatusBar::updateExternalAddressesLabel()
@@ -244,7 +266,9 @@ void StatusBar::updateExternalAddressesLabel()
 
 void StatusBar::updateExternalAddressesVisibility()
 {
-    m_lastExternalIPsLbl->setVisible(Preferences::instance()->isStatusbarExternalIPDisplayed());
+    const bool isVisible = Preferences::instance()->isStatusbarExternalIPDisplayed();
+    m_lastExternalIPsLbl->setVisible(isVisible);
+    m_lastExternalIPsSeparator->setVisible(isVisible);
 }
 
 void StatusBar::updateSpeedLabels()
@@ -300,5 +324,6 @@ void StatusBar::capSpeed()
 
 void StatusBar::optionsSaved()
 {
+    updateFreeDiskSpaceVisibility();
     updateExternalAddressesVisibility();
 }
