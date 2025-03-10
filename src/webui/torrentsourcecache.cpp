@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024 Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,53 +26,41 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "torrentsourcecache.h"
 
-#include <QtContainerFwd>
-#include <QObject>
-#include <QString>
-#include <QVariant>
+#include <QtAssert>
 
-#include "base/applicationcomponent.h"
-#include "apistatus.h"
-
-using DataMap = QHash<QString, QByteArray>;
-using StringMap = QHash<QString, QString>;
-
-struct APIResult
+std::optional<BitTorrent::InfoHash> TorrentSourceCache::get(const QString &source)
 {
-    QVariant data;
-    QString mimeType;
-    QString filename;
-    APIStatus status = APIStatus::Ok;
+    if (const auto iter = m_torrentSource.constFind(source); iter != m_torrentSource.constEnd())
+        return iter.value();
+    else
+        return std::nullopt;
+}
 
-    void clear();
-};
-
-class APIController : public ApplicationComponent<QObject>
+bool TorrentSourceCache::contains(const QString &source) const
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(APIController)
+    return m_torrentSource.contains(source) || m_torrentSourcesWithoutInfoHash.contains(source);
+}
 
-public:
-    explicit APIController(IApplication *app, QObject *parent = nullptr);
+void TorrentSourceCache::add(const QString &source)
+{
+    m_torrentSourcesWithoutInfoHash.insert(source);
+}
 
-    APIResult run(const QString &action, const StringMap &params, const DataMap &data = {});
+void TorrentSourceCache::update(const QString &source, const BitTorrent::InfoHash &infoHash)
+{
+    Q_ASSERT(infoHash != BitTorrent::InfoHash {});
 
-protected:
-    const StringMap &params() const;
-    const DataMap &data() const;
-    void requireParams(const QList<QString> &requiredParams) const;
+    if (m_torrentSourcesWithoutInfoHash.contains(source))
+    {
+        m_torrentSource.insert(source, infoHash);
+        m_torrentSourcesWithoutInfoHash.remove(source);
+    }
+}
 
-    void setResult(const QString &result);
-    void setResult(const QJsonArray &result);
-    void setResult(const QJsonObject &result);
-    void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
-
-    void setStatus(APIStatus status);
-
-private:
-    StringMap m_params;
-    DataMap m_data;
-    APIResult m_result;
-};
+void TorrentSourceCache::remove(const QString &source)
+{
+    m_torrentSource.remove(source);
+    m_torrentSourcesWithoutInfoHash.remove(source);
+}

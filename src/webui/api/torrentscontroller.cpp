@@ -32,6 +32,7 @@
 #include <functional>
 
 #include <QBitArray>
+#include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
@@ -47,18 +48,20 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sslparameters.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/torrentdescriptor.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/interfaces/iapplication.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/net/downloadmanager.h"
+#include "base/preferences.h"
 #include "base/torrentfilter.h"
 #include "base/utils/datetime.h"
 #include "base/utils/fs.h"
 #include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 #include "apierror.h"
+#include "apistatus.h"
 #include "serialize/serialize_torrent.h"
 
 // Tracker keys
@@ -129,6 +132,16 @@ const QString KEY_FILE_PRIORITY = u"priority"_s;
 const QString KEY_FILE_IS_SEED = u"is_seed"_s;
 const QString KEY_FILE_PIECE_RANGE = u"piece_range"_s;
 const QString KEY_FILE_AVAILABILITY = u"availability"_s;
+
+// Torrent info
+const QString KEY_TORRENTINFO_FILE_LENGTH = u"length"_s;
+const QString KEY_TORRENTINFO_FILE_PATH = u"path"_s;
+const QString KEY_TORRENTINFO_FILES = u"files"_s;
+const QString KEY_TORRENTINFO_INFO = u"info"_s;
+const QString KEY_TORRENTINFO_LENGTH = u"length"_s;
+const QString KEY_TORRENTINFO_PIECE_LENGTH = u"piece_length"_s;
+const QString KEY_TORRENTINFO_TRACKERS = u"trackers"_s;
+const QString KEY_TORRENTINFO_WEBSEEDS = u"webseeds"_s;
 
 namespace
 {
@@ -296,6 +309,110 @@ namespace
 
         return url;
     }
+
+    QJsonObject serializeInfoHash(const BitTorrent::InfoHash &infoHash)
+    {
+        return QJsonObject {
+            {KEY_TORRENT_INFOHASHV1, infoHash.v1().toString()},
+            {KEY_TORRENT_INFOHASHV2, infoHash.v2().toString()},
+            {KEY_TORRENT_ID, infoHash.toTorrentID().toString()},
+        };
+    }
+
+    QJsonObject serializeTorrentInfo(const BitTorrent::TorrentInfo &info)
+    {
+        qlonglong torrentSize = 0;
+        QJsonArray files;
+        for (int fileIndex = 0; fileIndex < info.filesCount(); ++fileIndex)
+        {
+            const qlonglong fileSize = info.fileSize(fileIndex);
+            torrentSize += fileSize;
+            files << QJsonObject
+            {
+                // use platform-independent separators
+                {KEY_TORRENTINFO_FILE_PATH, info.filePath(fileIndex).data()},
+                {KEY_TORRENTINFO_FILE_LENGTH, fileSize}
+            };
+        }
+
+        return QJsonObject {
+            {KEY_TORRENT_INFOHASHV1, info.infoHash().v1().toString()},
+            {KEY_TORRENT_INFOHASHV2, info.infoHash().v2().toString()},
+            {KEY_TORRENT_ID, info.infoHash().toTorrentID().toString()},
+            {KEY_TORRENTINFO_INFO, QJsonObject {
+                {KEY_TORRENTINFO_FILES, files},
+                {KEY_TORRENTINFO_LENGTH, torrentSize},
+                {KEY_TORRENT_NAME, info.name()},
+                {KEY_TORRENTINFO_PIECE_LENGTH, info.pieceLength()},
+                {KEY_PROP_PIECES_NUM, info.piecesCount()},
+                {KEY_PROP_PRIVATE, info.isPrivate()},
+            }},
+        };
+    }
+
+    QJsonObject serializeTorrentInfo(const BitTorrent::TorrentDescriptor &torrentDescr)
+    {
+        QJsonObject info = serializeTorrentInfo(torrentDescr.info().value());
+
+        QJsonArray trackers;
+        for (const BitTorrent::TrackerEntry &tracker : torrentDescr.trackers())
+        {
+            trackers << QJsonObject
+            {
+                {KEY_TRACKER_URL, tracker.url},
+                {KEY_TRACKER_TIER, tracker.tier}
+            };
+        }
+        info.insert(KEY_TORRENTINFO_TRACKERS, trackers);
+
+        QJsonArray webseeds;
+        for (const QUrl &webseed : torrentDescr.urlSeeds())
+        {
+            webseeds << webseed.toString();
+        }
+        info.insert(KEY_TORRENTINFO_WEBSEEDS, webseeds);
+
+        info.insert(KEY_PROP_CREATED_BY, torrentDescr.creator());
+        info.insert(KEY_PROP_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(torrentDescr.creationDate()));
+        info.insert(KEY_PROP_COMMENT, torrentDescr.comment());
+
+        return info;
+    }
+
+    QJsonObject serializeTorrentInfo(const BitTorrent::Torrent &torrent)
+    {
+        QJsonObject info = serializeTorrentInfo(torrent.info());
+
+        QJsonArray trackers;
+        for (const BitTorrent::TrackerEntryStatus &tracker : torrent.trackers())
+        {
+            trackers << QJsonObject
+            {
+                {KEY_TRACKER_URL, tracker.url},
+                {KEY_TRACKER_TIER, tracker.tier}
+            };
+        }
+        info.insert(KEY_TORRENTINFO_TRACKERS, trackers);
+
+        QJsonArray webseeds;
+        for (const QUrl &webseed : torrent.urlSeeds())
+        {
+            webseeds << webseed.toString();
+        }
+        info.insert(KEY_TORRENTINFO_WEBSEEDS, webseeds);
+
+        info.insert(KEY_PROP_CREATED_BY, torrent.creator());
+        info.insert(KEY_PROP_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(torrent.creationDate()));
+        info.insert(KEY_PROP_COMMENT, torrent.comment());
+
+        return info;
+    }
+}
+
+TorrentsController::TorrentsController(IApplication *app, QObject *parent)
+    : APIController(app, parent)
+{
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &TorrentsController::onMetadataDownloaded);
 }
 
 void TorrentsController::countAction()
@@ -808,7 +925,7 @@ void TorrentsController::pieceStatesAction()
 
 void TorrentsController::addAction()
 {
-    const QString urls = params()[u"urls"_s];
+    const QStringList urls = params()[u"urls"_s].split(u'\n', Qt::SkipEmptyParts);
 
     const bool skipChecking = parseBool(params()[u"skip_checking"_s]).value_or(false);
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_s]).value_or(false);
@@ -840,7 +957,31 @@ void TorrentsController::addAction()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
 
-    const BitTorrent::AddTorrentParams addTorrentParams
+    const DataMap &torrents = data();
+
+    QList<BitTorrent::DownloadPriority> filePriorities;
+    const QStringList filePrioritiesParam = params()[u"filePriorities"_s].split(u',', Qt::SkipEmptyParts);
+    if ((urls.size() > 1) && !filePrioritiesParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("You cannot specify filePriorities when adding multiple torrents"));
+    if (!torrents.isEmpty() && !filePrioritiesParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("You cannot specify filePriorities when uploading torrent files"));
+    if (!filePrioritiesParam.isEmpty())
+    {
+        filePriorities.reserve(filePrioritiesParam.size());
+        for (const QString &priorityStr : filePrioritiesParam)
+        {
+            bool ok = false;
+            const auto priority = static_cast<BitTorrent::DownloadPriority>(priorityStr.toInt(&ok));
+            if (!ok)
+                throw APIError(APIErrorType::BadParams, tr("Priority must be an integer"));
+            if (!BitTorrent::isValidDownloadPriority(priority))
+                throw APIError(APIErrorType::BadParams, tr("Priority is not valid"));
+
+            filePriorities << priority;
+        }
+    }
+
+    BitTorrent::AddTorrentParams addTorrentParams
     {
         // TODO: Check if destination actually exists
         .name = torrentName,
@@ -874,17 +1015,45 @@ void TorrentsController::addAction()
         }
     };
 
+
     bool partialSuccess = false;
-    for (QString url : asConst(urls.split(u'\n')))
+    for (QString url : urls)
     {
         url = url.trimmed();
-        if (!url.isEmpty())
+        if (url.isEmpty())
+            continue;
+
+        BitTorrent::InfoHash infoHash;
+        if (const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(url))
+            infoHash = sourceTorrentDescr.value().infoHash();
+        else if (const auto cachedInfoHash = m_torrentSourceCache.get(url))
+            infoHash = cachedInfoHash.value();
+
+        if (const auto torrentDescr = m_torrentMetadataCache.get(infoHash))
         {
+            if (!filePriorities.isEmpty())
+            {
+                const BitTorrent::TorrentInfo &info = torrentDescr.value().info().value();
+                if (filePriorities.size() != info.filesCount())
+                    throw APIError(APIErrorType::BadParams, tr("Length of filePriorities must equal number of files in torrent"));
+
+                addTorrentParams.filePriorities = filePriorities;
+            }
+
+            partialSuccess |= BitTorrent::Session::instance()->addTorrent(torrentDescr.value(), addTorrentParams);
+        }
+        else
+        {
+            if (!filePriorities.isEmpty())
+                throw APIError(APIErrorType::BadParams, tr("filePriorities may only be specified when metadata has already been fetched"));
+
             partialSuccess |= app()->addTorrentManager()->addTorrent(url, addTorrentParams);
         }
+        m_torrentSourceCache.remove(url);
+        m_torrentMetadataCache.remove(infoHash);
     }
 
-    const DataMap &torrents = data();
+    // process uploaded .torrent files
     for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
     {
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
@@ -1664,4 +1833,205 @@ void TorrentsController::setSSLParametersAction()
         throw APIError(APIErrorType::BadData);
 
     torrent->setSSLParameters(sslParams);
+}
+
+void TorrentsController::fetchMetadataAction()
+{
+    requireParams({u"source"_s});
+
+    const QString sourceParam = params()[u"source"_s].trimmed();
+    // must provide some value to parse
+    if (sourceParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
+
+    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
+    const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source);
+
+    BitTorrent::InfoHash infoHash;
+    if (sourceTorrentDescr)
+        infoHash = sourceTorrentDescr.value().infoHash();
+    else if (const auto cachedInfoHash = m_torrentSourceCache.get(source))
+        infoHash = cachedInfoHash.value();
+
+    if (infoHash != BitTorrent::InfoHash {})
+    {
+        // check metadata cache
+        if (const auto torrentDescr = m_torrentMetadataCache.get(infoHash))
+        {
+            setResult(serializeTorrentInfo(torrentDescr.value()));
+        }
+        // check transfer list
+        else if (const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash); torrent && torrent->info().isValid())
+        {
+            setResult(serializeTorrentInfo(*torrent));
+        }
+        // check request cache
+        else if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+        {
+            setResult(serializeInfoHash(infoHash));
+            setStatus(APIStatus::Async);
+        }
+        // request torrent's metadata
+        else
+        {
+            qDebug("Fetching metadata for %s", qUtf8Printable(infoHash.toTorrentID().toString()));
+
+            if (!BitTorrent::Session::instance()->downloadMetadata(sourceTorrentDescr.value())) [[unlikely]]
+            {
+                qDebug("Unable to fetch metadata for %s", qUtf8Printable(infoHash.toTorrentID().toString()));
+                throw APIError(APIErrorType::BadParams, tr("Unable to download metadata for '%1'").arg(infoHash.toTorrentID().toString()));
+            }
+
+            m_torrentMetadataCache.add(infoHash, sourceTorrentDescr.value());
+
+            setResult(serializeInfoHash(infoHash));
+            setStatus(APIStatus::Async);
+        }
+    }
+    // http(s) url
+    else if (Net::DownloadManager::hasSupportedScheme(source))
+    {
+        if (!m_torrentSourceCache.contains(source))
+        {
+            qDebug("Fetching torrent %s", qUtf8Printable(source));
+            const auto *pref = Preferences::instance();
+
+            Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(pref->getTorrentFileSizeLimit())
+                    , pref->useProxyForGeneralPurposes(), this, &TorrentsController::onDownloadFinished);
+
+            m_torrentSourceCache.add(source);
+        }
+
+        setResult(QJsonObject {});
+        setStatus(APIStatus::Async);
+    }
+    else
+    {
+        throw APIError(APIErrorType::BadParams, tr("Unable to parse '%1'").arg(source));
+    }
+}
+
+void TorrentsController::parseMetadataAction()
+{
+    const DataMap &uploadedTorrents = data();
+    // must provide some value to parse
+    if (uploadedTorrents.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Must specify torrent file(s)"));
+
+    QJsonObject result;
+    for (auto it = uploadedTorrents.constBegin(); it != uploadedTorrents.constEnd(); ++it)
+    {
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
+        {
+            const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
+            m_torrentMetadataCache.add(torrentDescr.infoHash(), torrentDescr);
+
+            const QString &fileName = it.key();
+            result.insert(fileName, serializeTorrentInfo(torrentDescr));
+        }
+        else
+        {
+            throw APIError(APIErrorType::BadData, tr("'%1' is not a valid torrent file.").arg(it.key()));
+        }
+    }
+
+    setResult(result);
+}
+
+void TorrentsController::saveMetadataAction()
+{
+    requireParams({u"source"_s});
+
+    const QString sourceParam = params()[u"source"_s].trimmed();
+    if (sourceParam.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
+
+    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
+
+    BitTorrent::InfoHash infoHash;
+    if (const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source))
+        infoHash = sourceTorrentDescr.value().infoHash();
+    else if (const auto cachedInfoHash = m_torrentSourceCache.get(source))
+        infoHash = cachedInfoHash.value();
+
+    if (infoHash != BitTorrent::InfoHash {})
+    {
+        if (const auto torrentDescr = m_torrentMetadataCache.get(infoHash))
+        {
+            const nonstd::expected<QByteArray, QString> result = torrentDescr.value().saveToBuffer();
+            if (!result)
+                throw APIError(APIErrorType::Conflict, tr("Unable to export torrent metadata. Error: %1").arg(result.error()));
+
+            setResult(result.value(), u"application/x-bittorrent"_s, (infoHash.toTorrentID().toString() + u".torrent"));
+        }
+        else
+        {
+            throw APIError(APIErrorType::Conflict, tr("Metadata is not yet available"));
+        }
+    }
+    else
+    {
+        throw APIError(APIErrorType::NotFound);
+    }
+}
+
+void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
+{
+    const QString source = result.url;
+
+    switch (result.status)
+    {
+    case Net::DownloadStatus::Success:
+        qDebug("Received torrent from %s", qUtf8Printable(source));
+
+        // use the info directly from the .torrent file
+        if (const auto loadResult = BitTorrent::TorrentDescriptor::load(result.data))
+        {
+            const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
+            const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
+            m_torrentSourceCache.update(source, infoHash);
+            m_torrentMetadataCache.add(infoHash, torrentDescr);
+        }
+        else
+        {
+            qDebug("Unable to parse torrent from %s", qUtf8Printable(source));
+            m_torrentSourceCache.remove(source);
+        }
+        break;
+    case Net::DownloadStatus::RedirectedToMagnet:
+        if (const auto parseResult = BitTorrent::TorrentDescriptor::parse(result.magnetURI))
+        {
+            const BitTorrent::TorrentDescriptor &torrentDescr = parseResult.value();
+            const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
+            m_torrentSourceCache.update(source, infoHash);
+
+            if (!m_torrentMetadataCache.contains(infoHash) && !BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+            {
+                qDebug("Fetching metadata for %s", qUtf8Printable(infoHash.toTorrentID().toString()));
+                if (BitTorrent::Session::instance()->downloadMetadata(torrentDescr))
+                    m_torrentMetadataCache.add(infoHash, torrentDescr);
+                else [[unlikely]]
+                    qDebug("Unable to fetch metadata for %s", qUtf8Printable(infoHash.toTorrentID().toString()));
+            }
+        }
+        else {
+            qDebug("Unable to parse magnet URI %s", qUtf8Printable(result.magnetURI));
+            m_torrentSourceCache.remove(source);
+        }
+        break;
+    default:
+        // allow metadata to be re-downloaded on next request
+        m_torrentSourceCache.remove(source);
+        break;
+    }
+}
+
+void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &info)
+{
+    Q_ASSERT(info.isValid());
+    if (!info.isValid()) [[unlikely]]
+        return;
+
+    const BitTorrent::InfoHash infoHash = info.infoHash();
+    m_torrentMetadataCache.update(infoHash, info);
 }
