@@ -174,9 +174,9 @@ namespace
 {
     QString shortName(const QString &fullName)
     {
-        int pos = fullName.lastIndexOf(u'/');
+        const int pos = fullName.lastIndexOf(u'/');
         if (pos >= 0)
-            return fullName.mid(pos + 1);
+            return fullName.sliced(pos + 1);
         return fullName;
     }
 }

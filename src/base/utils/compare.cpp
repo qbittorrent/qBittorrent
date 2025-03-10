@@ -64,7 +64,7 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
                 const int start = pos;
                 while ((pos < str.size()) && str[pos].isDigit())
                     ++pos;
-                return str.mid(start, (pos - start));
+                return str.sliced(start, (pos - start));
             };
 
             const QStringView numViewL = numberView(left, posL);

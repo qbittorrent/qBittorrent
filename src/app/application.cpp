@@ -659,7 +659,13 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
     {
         // strip redundant quotes
         if (arg.startsWith(u'"') && arg.endsWith(u'"'))
-            arg = arg.mid(1, (arg.size() - 2));
+        {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+            arg.slice(1, (arg.size() - 2));
+#else
+            arg = arg.sliced(1, (arg.size() - 2));
+#endif
+        }
 
         arg = replaceVariables(arg);
     }
