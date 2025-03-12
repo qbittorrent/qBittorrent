@@ -455,6 +455,8 @@ void AppController::preferencesAction()
     data[u"peer_tos"_s] = session->peerToS();
     // uTP-TCP mixed mode
     data[u"utp_tcp_mixed_mode"_s] = static_cast<int>(session->utpMixedMode());
+    // Hostname resolver cache TTL
+    data[u"hostname_cache_ttl"_s] = session->hostnameCacheTTL();
     // Support internationalized domain name (IDN)
     data[u"idn_support_enabled"_s] = session->isIDNSupportEnabled();
     // Multiple connections per IP
@@ -1114,6 +1116,9 @@ void AppController::setPreferencesAction()
     // uTP-TCP mixed mode
     if (hasKey(u"utp_tcp_mixed_mode"_s))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
+    // Hostname resolver cache TTL
+    if (hasKey(u"hostname_cache_ttl"_s))
+        session->setHostnameCacheTTL(it.value().toInt());
     // Support internationalized domain name (IDN)
     if (hasKey(u"idn_support_enabled"_s))
         session->setIDNSupportEnabled(it.value().toBool());
