@@ -40,7 +40,6 @@
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
-#include "gui/addnewtorrentdialog.h"
 #include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "interfaces/iguiapplication.h"
@@ -151,6 +150,7 @@ namespace
         UPNP_LEASE_DURATION,
         PEER_TOS,
         UTP_MIX_MODE,
+        HOSTNAME_CACHE_TTL,
         IDN_SUPPORT,
         MULTI_CONNECTIONS_PER_IP,
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
@@ -278,6 +278,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setPeerToS(m_spinBoxPeerToS.value());
     // uTP-TCP mixed mode
     session->setUtpMixedMode(m_comboBoxUtpMixedMode.currentData().value<BitTorrent::MixedModeAlgorithm>());
+    // Hostname resolver cache TTL
+    session->setHostnameCacheTTL(m_spinBoxHostnameCacheTTL.value());
     // Support internationalized domain name (IDN)
     session->setIDNSupportEnabled(m_checkBoxIDNSupport.isChecked());
     // multiple connections per IP
@@ -732,6 +734,14 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(UTP_MIX_MODE, (tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP)
             + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm", u"(?)"))
             , &m_comboBoxUtpMixedMode);
+    // Hostname resolver cache TTL
+    m_spinBoxHostnameCacheTTL.setMinimum(0);
+    m_spinBoxHostnameCacheTTL.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxHostnameCacheTTL.setValue(session->hostnameCacheTTL());
+    m_spinBoxHostnameCacheTTL.setSuffix(tr(" s", " seconds"));
+    addRow(HOSTNAME_CACHE_TTL, (tr("Internal hostname resolver cache expiry interval")
+            + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#resolver_cache_timeout", u"(?)"))
+            , &m_spinBoxHostnameCacheTTL);
     // Support internationalized domain name (IDN)
     m_checkBoxIDNSupport.setChecked(session->isIDNSupportEnabled());
     addRow(IDN_SUPPORT, (tr("Support internationalized domain name (IDN)")

@@ -391,6 +391,8 @@ namespace BitTorrent
         void setUTPRateLimited(bool limited) override;
         MixedModeAlgorithm utpMixedMode() const override;
         void setUtpMixedMode(MixedModeAlgorithm mode) override;
+        int hostnameCacheTTL() const override;
+        void setHostnameCacheTTL(int value) override;
         bool isIDNSupportEnabled() const override;
         void setIDNSupportEnabled(bool enabled) override;
         bool multiConnectionsPerIpEnabled() const override;
@@ -686,6 +688,7 @@ namespace BitTorrent
         CachedSettingValue<BTProtocol> m_btProtocol;
         CachedSettingValue<bool> m_isUTPRateLimited;
         CachedSettingValue<MixedModeAlgorithm> m_utpMixedMode;
+        CachedSettingValue<int> m_hostnameCacheTTL;
         CachedSettingValue<bool> m_IDNSupportEnabled;
         CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
         CachedSettingValue<bool> m_validateHTTPSTrackerCertificate;
