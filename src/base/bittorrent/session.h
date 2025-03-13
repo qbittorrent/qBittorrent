@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -479,6 +479,8 @@ namespace BitTorrent
         virtual QString lastExternalIPv4Address() const = 0;
         virtual QString lastExternalIPv6Address() const = 0;
 
+        virtual qint64 freeDiskSpace() const = 0;
+
     signals:
         void startupProgressUpdated(int progress);
         void addTorrentFailed(const InfoHash &infoHash, const QString &reason);
@@ -519,5 +521,6 @@ namespace BitTorrent
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
         void trackerEntryStatusesUpdated(Torrent *torrent, const QHash<QString, TrackerEntryStatus> &updatedTrackers);
+        void freeDiskSpaceChecked(qint64 result);
     };
 }
