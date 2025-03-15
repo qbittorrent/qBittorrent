@@ -71,6 +71,10 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 {
     // Load environment variables (proxy)
     m_searchProcess->setEnvironment(QProcess::systemEnvironment());
+    m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
+#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+    m_searchProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+#endif
 
     const QStringList params
     {
@@ -79,9 +83,6 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
         m_usedPlugins.join(u','),
         m_category
     };
-
-    // Launch search
-    m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
     m_searchProcess->setArguments(params + m_pattern.split(u' '));
 
     connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
@@ -93,6 +94,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     connect(m_searchTimeout, &QTimer::timeout, this, &SearchHandler::cancelSearch);
     m_searchTimeout->start(3min);
 
+    // Launch search
     // deferred start allows clients to handle starting-related signals
     QMetaObject::invokeMethod(this, [this]() { m_searchProcess->start(QIODevice::ReadOnly); }
         , Qt::QueuedConnection);
