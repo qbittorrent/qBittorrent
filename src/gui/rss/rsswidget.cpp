@@ -69,8 +69,8 @@ namespace
         while (iter.hasNext())
         {
             const QRegularExpressionMatch match = iter.next();
-            const QString scheme = match.captured(4);
-            const QString host = match.captured(5);
+            const QStringView scheme = match.capturedView(4);
+            const QStringView host = match.capturedView(5);
             if (!scheme.isEmpty())
             {
                 if (host.isEmpty())
@@ -80,21 +80,21 @@ namespace
                 continue;
             }
 
-            QString relativePath = match.captured(6);
+            QStringView relativePath = match.capturedView(6);
             if (relativePath.startsWith(u'/'))
             {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
                 relativePath.slice(1);
 #else
-                relativePath.remove(0, 1);
+                relativePath = relativePath.sliced(1);
 #endif
             }
 
             const QString absoluteUrl = !host.isEmpty()
                     ? QString(defaultScheme + u':' + host) : (normalizedBaseUrl + relativePath);
             const QString fullMatch = match.captured(0);
-            const QString prefix = match.captured(1);
-            const QString suffix = match.captured(7);
+            const QStringView prefix = match.capturedView(1);
+            const QStringView suffix = match.capturedView(7);
 
             html.replace(fullMatch, (prefix + absoluteUrl + suffix));
         }
