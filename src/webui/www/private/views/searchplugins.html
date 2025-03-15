@@ -94,7 +94,7 @@
         const setup = () => {
             searchPluginsTable = new window.qBittorrent.DynamicTable.SearchPluginsTable();
             searchPluginsTableContextMenu = new window.qBittorrent.ContextMenu.SearchPluginsTableContextMenu({
-                targets: "#searchPluginsTableDiv tr",
+                targets: "#searchPluginsTableDiv tbody tr",
                 menu: "searchPluginsTableMenu",
                 actions: {
                     Enabled: enablePlugin,

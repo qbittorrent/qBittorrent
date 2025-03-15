@@ -30,8 +30,10 @@
 #pragma once
 
 #include <QByteArray>
+#include <QHash>
 #include <QHostAddress>
 #include <QList>
+#include <QMap>
 #include <QString>
 
 #include "base/global.h"

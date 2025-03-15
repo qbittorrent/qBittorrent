@@ -294,6 +294,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     this.updateTableHeaders();
                     this.tableBody.replaceChildren();
                     this.updateTable(true);
+                    this.reselectRows(this.selectedRowsIds());
                 }
                 if (this.currentHeaderAction === "drag") {
                     resetElementBorderStyle(el);
@@ -750,10 +751,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         reselectRows: function(rowIds) {
             this.deselectAll();
             this.selectedRows = rowIds.slice();
-            for (const tr of this.getTrs()) {
-                if (rowIds.includes(tr.rowId))
-                    tr.classList.add("selected");
-            }
+            this.setRowClass();
         },
 
         setRowClass: function() {
@@ -1752,7 +1750,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(span);
                 }
 
-                span.style.backgroundImage = `url('images/flags/${country_code ?? "xx"}.svg')`;
+                span.style.backgroundImage = `url('images/flags/${country_code || "xx"}.svg')`;
                 span.textContent = country;
                 td.title = country;
             };
@@ -2058,7 +2056,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                         break;
                 }
 
-                td.className = statusClass;
+                for (const c of [...td.classList]) {
+                    if (c.startsWith("tracker"))
+                        td.classList.remove(c);
+                }
+                td.classList.add(statusClass);
                 td.textContent = status;
                 td.title = status;
             };
