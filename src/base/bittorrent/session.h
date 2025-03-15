@@ -421,6 +421,8 @@ namespace BitTorrent
         virtual void setUTPRateLimited(bool limited) = 0;
         virtual MixedModeAlgorithm utpMixedMode() const = 0;
         virtual void setUtpMixedMode(MixedModeAlgorithm mode) = 0;
+        virtual int hostnameCacheTTL() const = 0;
+        virtual void setHostnameCacheTTL(int value) = 0;
         virtual bool isIDNSupportEnabled() const = 0;
         virtual void setIDNSupportEnabled(bool enabled) = 0;
         virtual bool multiConnectionsPerIpEnabled() const = 0;

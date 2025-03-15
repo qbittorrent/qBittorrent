@@ -460,6 +460,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isUTPRateLimited(BITTORRENT_SESSION_KEY(u"uTPRateLimited"_s), true)
     , m_utpMixedMode(BITTORRENT_SESSION_KEY(u"uTPMixedMode"_s), MixedModeAlgorithm::TCP
         , clampValue(MixedModeAlgorithm::TCP, MixedModeAlgorithm::Proportional))
+    , m_hostnameCacheTTL(BITTORRENT_SESSION_KEY(u"HostnameCacheTTL"_s), 1200)
     , m_IDNSupportEnabled(BITTORRENT_SESSION_KEY(u"IDNSupportEnabled"_s), false)
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY(u"MultiConnectionsPerIp"_s), false)
     , m_validateHTTPSTrackerCertificate(BITTORRENT_SESSION_KEY(u"ValidateHTTPSTrackerCertificate"_s), true)
@@ -2071,6 +2072,8 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_int(lt::settings_pack::mixed_mode_algorithm, lt::settings_pack::peer_proportional);
         break;
     }
+
+    settingsPack.set_int(lt::settings_pack::resolver_cache_timeout, hostnameCacheTTL());
 
     settingsPack.set_bool(lt::settings_pack::allow_idna, isIDNSupportEnabled());
 
@@ -5047,6 +5050,20 @@ void SessionImpl::setUtpMixedMode(const MixedModeAlgorithm mode)
     if (mode == m_utpMixedMode) return;
 
     m_utpMixedMode = mode;
+    configureDeferred();
+}
+
+int SessionImpl::hostnameCacheTTL() const
+{
+    return m_hostnameCacheTTL;
+}
+
+void SessionImpl::setHostnameCacheTTL(const int value)
+{
+    if (value == hostnameCacheTTL())
+        return;
+
+    m_hostnameCacheTTL = value;
     configureDeferred();
 }
 
