@@ -234,14 +234,14 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
     const int closeBracePos = val.indexOf(u')', (openBracePos + 1));
     if ((openBracePos > 0) && (closeBracePos > 0) && (closeBracePos > openBracePos + 2))
     {
-        QString filterString = val.mid(openBracePos + 1, closeBracePos - openBracePos - 1);
+        const QString filterString = val.sliced((openBracePos + 1), (closeBracePos - openBracePos - 1));
         if (filterString == u"*")
         {        // no filters
             d->m_editor->setFilenameFilters({});
         }
         else
         {
-            QStringList filters = filterString.split(u' ', Qt::SkipEmptyParts);
+            const QStringList filters = filterString.split(u' ', Qt::SkipEmptyParts);
             d->m_editor->setFilenameFilters(filters);
         }
     }

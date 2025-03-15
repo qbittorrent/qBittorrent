@@ -89,8 +89,8 @@ namespace
             if (idx < 0)
                 continue;
 
-            const QString name = cookie.left(idx).trimmed().toString();
-            const QString value = Utils::String::unquote(cookie.mid(idx + 1).trimmed()).toString();
+            const QString name = cookie.first(idx).trimmed().toString();
+            const QString value = Utils::String::unquote(cookie.sliced(idx + 1).trimmed()).toString();
             ret.insert(name, value);
         }
         return ret;
@@ -469,8 +469,8 @@ void WebApplication::configure()
                 continue;
             }
 
-            const QString header = line.left(idx).trimmed().toString();
-            const QString value = line.mid(idx + 1).trimmed().toString();
+            const QString header = line.first(idx).trimmed().toString();
+            const QString value = line.sliced(idx + 1).trimmed().toString();
             m_prebuiltHeaders.push_back({header, value});
         }
     }

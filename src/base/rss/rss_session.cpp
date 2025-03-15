@@ -385,8 +385,14 @@ void Session::loadLegacy()
     uint i = 0;
     for (QString legacyPath : legacyFeedPaths)
     {
-        if (Item::PathSeparator == legacyPath[0])
+        if (legacyPath.startsWith(Item::PathSeparator))
+        {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+            legacyPath.slice(1);
+#else
             legacyPath.remove(0, 1);
+#endif
+        }
         const QString parentFolderPath = Item::parentPath(legacyPath);
         const QString feedUrl = Item::relativeName(legacyPath);
 

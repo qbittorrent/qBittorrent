@@ -1859,10 +1859,10 @@ void OptionsDialog::setLocale(const QString &localeStr)
     if (index < 0)
     {
         //Attempt to find a language match without a country
-        int pos = name.indexOf(u'_');
+        const int pos = name.indexOf(u'_');
         if (pos > -1)
         {
-            QString lang = name.left(pos);
+            const QString lang = name.first(pos);
             index = m_ui->comboLanguage->findData(lang, Qt::UserRole);
         }
     }

@@ -122,7 +122,7 @@ namespace
         fsPathEdit->setCurrentIndex(existingIndex);
     }
 
-    void updatePathHistory(const QString &settingsKey, const Path &path, const int maxLength)
+    void updatePathHistory(const QString &settingsKey, const Path &path, const qsizetype maxLength)
     {
         // Add last used save path to the front of history
 
@@ -134,7 +134,10 @@ namespace
         else
             pathList.prepend(path.toString());
 
-        settings()->storeValue(settingsKey, QStringList(pathList.mid(0, maxLength)));
+        if (pathList.size() > maxLength)
+            pathList.resize(maxLength);
+
+        settings()->storeValue(settingsKey, pathList);
     }
 }
 
@@ -375,8 +378,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     connect(Preferences::instance(), &Preferences::changed, []
     {
         const int length = Preferences::instance()->addNewTorrentDialogSavePathHistoryLength();
-        settings()->storeValue(KEY_SAVEPATHHISTORY
-                , QStringList(settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY).mid(0, length)));
+        settings()->storeValue(KEY_SAVEPATHHISTORY, settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY).mid(0, length));
     });
 
     setCurrentContext(std::make_shared<Context>(Context {torrentDescr, inParams}));

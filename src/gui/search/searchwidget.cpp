@@ -675,7 +675,7 @@ void SearchWidget::loadHistory()
         }
 
         if (history.size() > m_historyLength)
-            history = history.mid(history.size() - m_historyLength);
+            history.remove(0, (history.size() - m_historyLength));
 
         m_searchPatternCompleterModel->setStringList(history);
     });

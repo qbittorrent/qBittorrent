@@ -555,7 +555,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
     {
         if (result.url.endsWith(u".ico", Qt::CaseInsensitive))
         {
-            const QString faviconURL = result.url.left(result.url.size() - 4) + u".png";
+            const QString faviconURL = QStringView(result.url).chopped(4) + u".png";
             for (const auto &trackerHost : trackerHosts)
             {
                 if (m_trackers.contains(trackerHost))

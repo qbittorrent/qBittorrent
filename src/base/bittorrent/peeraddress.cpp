@@ -39,7 +39,11 @@ PeerAddress PeerAddress::parse(const QStringView address)
     if (address.startsWith(u'[') && address.contains(u"]:"))
     {  // IPv6
         ipPort = address.split(u"]:");
-        ipPort[0] = ipPort[0].mid(1);  // chop '['
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        ipPort[0].slice(1);  // chop '['
+#else
+        ipPort[0] = ipPort[0].sliced(1);  // chop '['
+#endif
     }
     else if (address.contains(u':'))
     {  // IPv4

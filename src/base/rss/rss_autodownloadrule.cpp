@@ -304,7 +304,13 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
 
         // We need to trim leading zeroes, but if it's all zeros then we want episode zero.
         while ((episode.size() > 1) && episode.startsWith(u'0'))
-            episode = episode.right(episode.size() - 1);
+        {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+            episode.slice(1);
+#else
+            episode.remove(0, 1);
+#endif
+        }
 
         if (episode.indexOf(u'-') != -1)
         { // Range detected
@@ -328,7 +334,7 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
 
                 if (episode.endsWith(u'-'))
                 { // Infinite range
-                    const int episodeOurs {QStringView(episode).left(episode.size() - 1).toInt()};
+                    const int episodeOurs {QStringView(episode).chopped(1).toInt()};
                     if (((seasonTheirs == seasonOurs) && (episodeTheirs >= episodeOurs)) || (seasonTheirs > seasonOurs))
                         return true;
                 }

@@ -365,7 +365,7 @@ QString Session::subcategoryName(const QString &category)
 {
     const int sepIndex = category.lastIndexOf(u'/');
     if (sepIndex >= 0)
-        return category.mid(sepIndex + 1);
+        return category.sliced(sepIndex + 1);
 
     return category;
 }
@@ -374,7 +374,7 @@ QString Session::parentCategoryName(const QString &category)
 {
     const int sepIndex = category.lastIndexOf(u'/');
     if (sepIndex >= 0)
-        return category.left(sepIndex);
+        return category.first(sepIndex);
 
     return {};
 }
@@ -385,7 +385,7 @@ QStringList Session::expandCategory(const QString &category)
     int index = 0;
     while ((index = category.indexOf(u'/', index)) >= 0)
     {
-        result << category.left(index);
+        result << category.first(index);
         ++index;
     }
     result << category;
