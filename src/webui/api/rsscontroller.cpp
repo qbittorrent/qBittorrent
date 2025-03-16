@@ -49,7 +49,7 @@ void RSSController::addFolderAction()
 {
     requireParams({u"path"_s});
 
-    const QString path = params()[u"path"_s].trimmed();
+    const QString path = params()[u"path"_s];
     const nonstd::expected<void, QString> result = RSS::Session::instance()->addFolder(path);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
@@ -59,8 +59,8 @@ void RSSController::addFeedAction()
 {
     requireParams({u"url"_s, u"path"_s});
 
-    const QString url = params()[u"url"_s].trimmed();
-    const QString path = params()[u"path"_s].trimmed();
+    const QString url = params()[u"url"_s];
+    const QString path = params()[u"path"_s];
     const nonstd::expected<void, QString> result = RSS::Session::instance()->addFeed(url, (path.isEmpty() ? url : path));
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
@@ -70,8 +70,8 @@ void RSSController::setFeedURLAction()
 {
     requireParams({u"path"_s, u"url"_s});
 
-    const QString path = params()[u"path"_s].trimmed();
-    const QString url = params()[u"url"_s].trimmed();
+    const QString path = params()[u"path"_s];
+    const QString url = params()[u"url"_s];
     const nonstd::expected<void, QString> result = RSS::Session::instance()->setFeedURL(path, url);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
@@ -81,7 +81,7 @@ void RSSController::removeItemAction()
 {
     requireParams({u"path"_s});
 
-    const QString path = params()[u"path"_s].trimmed();
+    const QString path = params()[u"path"_s];
     const nonstd::expected<void, QString> result = RSS::Session::instance()->removeItem(path);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
@@ -91,8 +91,8 @@ void RSSController::moveItemAction()
 {
     requireParams({u"itemPath"_s, u"destPath"_s});
 
-    const QString itemPath = params()[u"itemPath"_s].trimmed();
-    const QString destPath = params()[u"destPath"_s].trimmed();
+    const QString itemPath = params()[u"itemPath"_s];
+    const QString destPath = params()[u"destPath"_s];
     const nonstd::expected<void, QString> result = RSS::Session::instance()->moveItem(itemPath, destPath);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
@@ -146,8 +146,8 @@ void RSSController::setRuleAction()
 {
     requireParams({u"ruleName"_s, u"ruleDef"_s});
 
-    const QString ruleName {params()[u"ruleName"_s].trimmed()};
-    const QByteArray ruleDef {params()[u"ruleDef"_s].trimmed().toUtf8()};
+    const QString ruleName {params()[u"ruleName"_s]};
+    const QByteArray ruleDef {params()[u"ruleDef"_s].toUtf8()};
 
     const auto jsonObj = QJsonDocument::fromJson(ruleDef).object();
     RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule::fromJsonObject(jsonObj, ruleName));
@@ -157,8 +157,8 @@ void RSSController::renameRuleAction()
 {
     requireParams({u"ruleName"_s, u"newRuleName"_s});
 
-    const QString ruleName {params()[u"ruleName"_s].trimmed()};
-    const QString newRuleName {params()[u"newRuleName"_s].trimmed()};
+    const QString ruleName {params()[u"ruleName"_s]};
+    const QString newRuleName {params()[u"newRuleName"_s]};
 
     RSS::AutoDownloader::instance()->renameRule(ruleName, newRuleName);
 }
@@ -167,7 +167,7 @@ void RSSController::removeRuleAction()
 {
     requireParams({u"ruleName"_s});
 
-    const QString ruleName {params()[u"ruleName"_s].trimmed()};
+    const QString ruleName {params()[u"ruleName"_s]};
     RSS::AutoDownloader::instance()->removeRule(ruleName);
 }
 

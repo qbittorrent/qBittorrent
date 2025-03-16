@@ -80,7 +80,33 @@ inline QHash<QString, UIThemeColor> defaultUIThemeColors()
         {u"TransferList.StoppedUploading"_s, {Color::Primer::Light::doneFg, Color::Primer::Dark::doneFg}},
         {u"TransferList.Moving"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.MissingFiles"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
-        {u"TransferList.Error"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}}
+        {u"TransferList.Error"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
+
+        {u"Palette.Window"_s, {{}, {}}},
+        {u"Palette.WindowText"_s, {{}, {}}},
+        {u"Palette.Base"_s, {{}, {}}},
+        {u"Palette.AlternateBase"_s, {{}, {}}},
+        {u"Palette.Text"_s, {{}, {}}},
+        {u"Palette.ToolTipBase"_s, {{}, {}}},
+        {u"Palette.ToolTipText"_s, {{}, {}}},
+        {u"Palette.BrightText"_s, {{}, {}}},
+        {u"Palette.Highlight"_s, {{}, {}}},
+        {u"Palette.HighlightedText"_s, {{}, {}}},
+        {u"Palette.Button"_s, {{}, {}}},
+        {u"Palette.ButtonText"_s, {{}, {}}},
+        {u"Palette.Link"_s, {{}, {}}},
+        {u"Palette.LinkVisited"_s, {{}, {}}},
+        {u"Palette.Light"_s, {{}, {}}},
+        {u"Palette.Midlight"_s, {{}, {}}},
+        {u"Palette.Mid"_s, {{}, {}}},
+        {u"Palette.Dark"_s, {{}, {}}},
+        {u"Palette.Shadow"_s, {{}, {}}},
+        {u"Palette.WindowTextDisabled"_s, {{}, {}}},
+        {u"Palette.TextDisabled"_s, {{}, {}}},
+        {u"Palette.ToolTipTextDisabled"_s, {{}, {}}},
+        {u"Palette.BrightTextDisabled"_s, {{}, {}}},
+        {u"Palette.HighlightedTextDisabled"_s, {{}, {}}},
+        {u"Palette.ButtonTextDisabled"_s, {{}, {}}}
     };
 }
 

@@ -196,7 +196,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         if (current_hash.length === 0)
             return;
 
-        const trackerUrl = encodeURIComponent(element.childNodes[1].textContent);
+        const trackerUrl = encodeURIComponent(torrentTrackersTable.selectedRowsIds()[0]);
         new MochaUI.Window({
             id: "trackersPage",
             icon: "images/qbittorrent-tray.svg",

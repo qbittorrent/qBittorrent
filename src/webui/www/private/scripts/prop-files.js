@@ -575,7 +575,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const torrentFilesContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-        targets: "#torrentFilesTableDiv tr",
+        targets: "#torrentFilesTableDiv tbody tr",
         menu: "torrentFilesMenu",
         actions: {
             Rename: (element, ref) => {
