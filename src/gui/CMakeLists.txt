@@ -18,6 +18,7 @@ qt_wrap_ui(UI_HEADERS
     properties/peersadditiondialog.ui
     properties/propertieswidget.ui
     rss/automatedrssdownloader.ui
+    rss/rssfeeddialog.ui
     rss/rsswidget.ui
     search/pluginselectdialog.ui
     search/pluginsourcedialog.ui
@@ -89,6 +90,7 @@ add_library(qbt_gui STATIC
     rss/automatedrssdownloader.h
     rss/feedlistwidget.h
     rss/htmlbrowser.h
+    rss/rssfeeddialog.h
     rss/rsswidget.h
     search/pluginselectdialog.h
     search/pluginsourcedialog.h
@@ -188,6 +190,7 @@ add_library(qbt_gui STATIC
     rss/automatedrssdownloader.cpp
     rss/feedlistwidget.cpp
     rss/htmlbrowser.cpp
+    rss/rssfeeddialog.cpp
     rss/rsswidget.cpp
     search/pluginselectdialog.cpp
     search/pluginsourcedialog.cpp

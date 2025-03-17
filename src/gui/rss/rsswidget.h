@@ -70,7 +70,7 @@ private slots:
     void displayRSSListMenu(const QPoint &pos);
     void displayItemsListMenu();
     void renameSelectedRSSItem();
-    void editSelectedRSSFeedURL();
+    void editSelectedRSSFeed();
     void refreshSelectedItems();
     void copySelectedFeedsURL();
     void handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem);

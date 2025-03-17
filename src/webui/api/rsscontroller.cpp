@@ -50,7 +50,7 @@ void RSSController::addFolderAction()
     requireParams({u"path"_s});
 
     const QString path = params()[u"path"_s];
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFolder(path);
+    const nonstd::expected<RSS::Folder *, QString> result = RSS::Session::instance()->addFolder(path);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
 }
@@ -61,7 +61,8 @@ void RSSController::addFeedAction()
 
     const QString url = params()[u"url"_s];
     const QString path = params()[u"path"_s];
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFeed(url, (path.isEmpty() ? url : path));
+    const auto refreshInterval = std::max<qint64>(params()[u"refreshInterval"_s].toLongLong(), 0);
+    const nonstd::expected<RSS::Feed *, QString> result = RSS::Session::instance()->addFeed(url, (path.isEmpty() ? url : path), std::chrono::seconds(refreshInterval));
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
 }
@@ -75,6 +76,23 @@ void RSSController::setFeedURLAction()
     const nonstd::expected<void, QString> result = RSS::Session::instance()->setFeedURL(path, url);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
+}
+
+void RSSController::setFeedRefreshIntervalAction()
+{
+    requireParams({u"path"_s, u"refreshInterval"_s});
+
+    bool ok = false;
+    const auto refreshInterval = params()[u"refreshInterval"_s].toLongLong(&ok);
+    if (!ok || (refreshInterval < 0))
+        throw APIError(APIErrorType::BadParams, tr("Invalid 'refreshInterval' value"));
+
+    const QString path = params()[u"path"_s];
+    auto *feed = qobject_cast<RSS::Feed *>(RSS::Session::instance()->itemByPath(path));
+    if (!feed)
+        throw APIError(APIErrorType::Conflict, tr("Feed doesn't exist: %1.").arg(path));
+
+    feed->setRefreshInterval(std::chrono::seconds(refreshInterval));
 }
 
 void RSSController::removeItemAction()
