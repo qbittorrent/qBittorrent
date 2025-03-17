@@ -204,7 +204,7 @@ bool RequestParser::parseRequestLine(const QString &line)
     m_request.method = match.captured(1);
 
     // Request Target
-    const QByteArray url {match.captured(2).toLatin1()};
+    const QByteArray url {match.capturedView(2).toLatin1()};
     const int sepPos = url.indexOf('?');
     const QByteArrayView pathComponent = ((sepPos == -1) ? url : QByteArrayView(url).first(sepPos));
 

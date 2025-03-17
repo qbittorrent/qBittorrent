@@ -237,15 +237,15 @@ void WebApplication::translateDocument(QString &data) const
         i = data.indexOf(regex, i, &regexMatch);
         if (i >= 0)
         {
-            const QString sourceText = regexMatch.captured(1);
-            const QString context = regexMatch.captured(3);
+            const QStringView sourceText = regexMatch.capturedView(1);
+            const QStringView context = regexMatch.capturedView(3);
 
             const QString loadedText = m_translationFileLoaded
                 ? m_translator.translate(context.toUtf8().constData(), sourceText.toUtf8().constData())
                 : QString();
             // `loadedText` is empty when translation is not provided
             // it should fallback to `sourceText`
-            QString translation = loadedText.isEmpty() ? sourceText : loadedText;
+            QString translation = loadedText.isEmpty() ? sourceText.toString() : loadedText;
 
             // Escape quotes to workaround issues with HTML attributes
             // FIXME: this is a dirty workaround to deal with broken translation strings:
