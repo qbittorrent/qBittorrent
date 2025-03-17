@@ -992,7 +992,7 @@
                     </tr>
                     <tr>
                         <td style="text-align: right;"><label for="webUIBanDurationInput">QBT_TR(ban for:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                        <td><input type="number" id="webUIBanDurationInput" style="width: 6em;" min="1">QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]</td>
+                        <td><input type="number" id="webUIBanDurationInput" style="width: 6em;" min="1">QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]</td>
                     </tr>
                 </tbody>
             </table>
@@ -1000,7 +1000,7 @@
                 <tbody>
                     <tr>
                         <td><label for="webUISessionTimeoutInput">QBT_TR(Session timeout:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                        <td><input type="number" id="webUISessionTimeoutInput" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(seconds)QBT_TR[CONTEXT=OptionsDialog]</td>
+                        <td><input type="number" id="webUISessionTimeoutInput" style="width: 6em;" min="0">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]</td>
                     </tr>
                 </tbody>
             </table>
@@ -1364,7 +1364,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="diskCacheExpiryInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(s)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="diskCacheExpiryInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -1512,7 +1512,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="UPnPLeaseDuration">QBT_TR(UPnP lease duration [0: permanent lease]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="UPnPLeaseDuration" style="width: 15em;">
+                        <input type="text" id="UPnPLeaseDuration" style="width: 15em;">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -1532,6 +1532,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             <option value="0">QBT_TR(Prefer TCP)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="1">QBT_TR(Peer proportional (throttles TCP))QBT_TR[CONTEXT=OptionsDialog]</option>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="hostnameCacheTTL">QBT_TR(Internal hostname resolver cache expiry interval)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#resolver_cache_timeout" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="hostnameCacheTTL" style="width: 15em;">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -1642,7 +1650,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout [0: disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="stopTrackerTimeout" style="width: 15em;">
+                        <input type="text" id="stopTrackerTimeout" style="width: 15em;">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -1666,7 +1674,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="peerTurnoverInterval">QBT_TR(Peer turnover disconnect interval:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_turnover" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="peerTurnoverInterval" style="width: 15em;">&nbsp;&nbsp;s
+                        <input type="text" id="peerTurnoverInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(sec)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -2594,6 +2602,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("UPnPLeaseDuration").value = pref.upnp_lease_duration;
                     $("peerToS").value = pref.peer_tos;
                     $("utpTCPMixedModeAlgorithm").value = pref.utp_tcp_mixed_mode;
+                    $("hostnameCacheTTL").value = pref.hostname_cache_ttl;
                     $("IDNSupportCheckbox").checked = pref.idn_support_enabled;
                     $("allowMultipleConnectionsFromTheSameIPAddress").checked = pref.enable_multi_connections_from_same_ip;
                     $("validateHTTPSTrackerCertificate").checked = pref.validate_https_tracker_certificate;
@@ -3070,6 +3079,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["upnp_lease_duration"] = Number($("UPnPLeaseDuration").value);
             settings["peer_tos"] = Number($("peerToS").value);
             settings["utp_tcp_mixed_mode"] = Number($("utpTCPMixedModeAlgorithm").value);
+            settings["hostname_cache_ttl"] = Number($("hostnameCacheTTL").value);
             settings["idn_support_enabled"] = $("IDNSupportCheckbox").checked;
             settings["enable_multi_connections_from_same_ip"] = $("allowMultipleConnectionsFromTheSameIPAddress").checked;
             settings["validate_https_tracker_certificate"] = $("validateHTTPSTrackerCertificate").checked;
