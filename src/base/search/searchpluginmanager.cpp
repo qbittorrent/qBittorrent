@@ -95,8 +95,6 @@ SearchPluginManager::SearchPluginManager()
 
     connect(Net::ProxyConfigurationManager::instance(), &Net::ProxyConfigurationManager::proxyConfigurationChanged
             , this, &SearchPluginManager::applyProxySettings);
-    connect(Preferences::instance(), &Preferences::changed
-            , this, &SearchPluginManager::applyProxySettings);
     applyProxySettings();
 
     updateNova();
