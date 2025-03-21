@@ -70,7 +70,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     , m_searchTimeout {new QTimer(this)}
 {
     // Load environment variables (proxy)
-    m_searchProcess->setEnvironment(QProcess::systemEnvironment());
+    m_searchProcess->setProcessEnvironment(m_manager->proxyEnvironment());
     m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
 #if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
     m_searchProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
