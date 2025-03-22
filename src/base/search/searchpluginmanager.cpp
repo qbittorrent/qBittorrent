@@ -520,6 +520,9 @@ void SearchPluginManager::update()
 {
     QProcess nova;
     nova.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
+#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+    nova.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+#endif
 
     const QStringList params
     {
