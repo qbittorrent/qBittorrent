@@ -105,6 +105,7 @@ let saveWindowSize = () => {};
 let loadWindowWidth = () => {};
 let loadWindowHeight = () => {};
 let showDownloadPage = () => {};
+let showCreateTorrentPage = () => {};
 let globalUploadLimitFN = () => {};
 let uploadLimitFN = () => {};
 let shareRatioFN = () => {};
@@ -206,6 +207,57 @@ const initializeWindows = () => {
             })
         });
         updateMainData();
+    };
+
+    addClickEvent("torrentCreator", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const id = "torrentCreatorPage";
+        new MochaUI.Window({
+            id: id,
+            icon: "images/torrent-creator.svg",
+            title: "QBT_TR(Torrent Creator)QBT_TR[CONTEXT=TorrentCreator]",
+            loadMethod: "xhr",
+            contentURL: "views/torrentcreator.html",
+            scrollbars: true,
+            maximizable: true,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: loadWindowWidth(id, 900),
+            height: loadWindowHeight(id, 400),
+            onResize: () => {
+                saveWindowSize(id);
+            },
+            onClose: () => {
+                window.qBittorrent.TorrentCreator.unload();
+            }
+        });
+    });
+
+    showCreateTorrentPage = () => {
+        const id = "createTorrentPage";
+
+        new MochaUI.Window({
+            id: id,
+            icon: "images/list-add.svg",
+            title: "QBT_TR(Create New Torrent)QBT_TR[CONTEXT=TorrentCreator]",
+            loadMethod: "xhr",
+            contentURL: "views/createtorrent.html",
+            scrollbars: true,
+            maximizable: false,
+            closable: true,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: loadWindowWidth(id, 500),
+            height: loadWindowHeight(id, 600),
+            onResize: () => {
+                saveWindowSize(id);
+            },
+            onClose: () => {
+                window.qBittorrent.CreateTorrent.unload();
+            }
+        });
     };
 
     addClickEvent("preferences", (e) => {
