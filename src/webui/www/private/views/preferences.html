@@ -1866,22 +1866,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const getWatchedFolders = () => {
-            const nb_folders = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
-            const folders = new Hash();
-            for (let i = 0; i < nb_folders; ++i) {
+            const folders = {};
+
+            const entryCount = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+            for (let i = 0; i < entryCount; ++i) {
                 const fpath = $(`text_watch_${i}`).value.trim();
-                if (fpath.length > 0) {
-                    const sel = $(`cb_watch_${i}`).value.trim();
+                if (fpath.length <= 0)
+                    continue;
 
-                    let other;
-                    if (sel === "other")
+                const sel = $(`cb_watch_${i}`).value.trim();
+
+                let other;
+                switch (sel) {
+                    case "watch_folder":
+                        other = 0;
+                        break;
+                    case "default_folder":
+                        other = 1;
+                        break;
+                    case "other":
                         other = $(`cb_watch_txt_${i}`).value.trim();
-                    else
-                        other = (sel === "watch_folder") ? 0 : 1;
+                        break;
+                };
 
-                    folders.set(fpath, other);
-                }
+                folders[fpath] = other;
             }
+
             return folders;
         };
 
@@ -2297,14 +2307,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             continue;
 
                         const folderType = pref.scan_dirs[folder];
-                        let sel = "";
-                        let other = "";
+                        let sel = "other";
+                        let other = folderType;
                         if (typeof folderType === "number") {
                             sel = (folderType === 0) ? "watch_folder" : "default_folder";
-                        }
-                        else {
-                            sel = "other";
-                            other = folderType;
+                            other = "";
                         }
                         addWatchFolder(folder, sel, other);
                     }
