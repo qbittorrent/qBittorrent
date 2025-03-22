@@ -123,6 +123,7 @@ void AppController::shutdownAction()
     {
         QCoreApplication::exit();
     });
+    setResult(QString());
 }
 
 void AppController::preferencesAction()
@@ -1172,6 +1173,8 @@ void AppController::setPreferencesAction()
 
     // Save preferences
     pref->apply();
+
+    setResult(QString());
 }
 
 void AppController::defaultSavePathAction()
@@ -1182,8 +1185,8 @@ void AppController::defaultSavePathAction()
 void AppController::sendTestEmailAction()
 {
     app()->sendTestEmail();
+    setResult(QString());
 }
-
 
 void AppController::getDirectoryContentAction()
 {
@@ -1274,6 +1277,8 @@ void AppController::setCookiesAction()
     }
 
     Net::DownloadManager::instance()->setAllCookies(cookies);
+
+    setResult(QString());
 }
 
 void AppController::networkInterfaceListAction()

@@ -53,6 +53,8 @@ void RSSController::addFolderAction()
     const nonstd::expected<RSS::Folder *, QString> result = RSS::Session::instance()->addFolder(path);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
+
+    setResult(QString());
 }
 
 void RSSController::addFeedAction()
@@ -65,6 +67,8 @@ void RSSController::addFeedAction()
     const nonstd::expected<RSS::Feed *, QString> result = RSS::Session::instance()->addFeed(url, (path.isEmpty() ? url : path), std::chrono::seconds(refreshInterval));
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
+
+    setResult(QString());
 }
 
 void RSSController::setFeedURLAction()
@@ -76,6 +80,8 @@ void RSSController::setFeedURLAction()
     const nonstd::expected<void, QString> result = RSS::Session::instance()->setFeedURL(path, url);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
+
+    setResult(QString());
 }
 
 void RSSController::setFeedRefreshIntervalAction()
@@ -103,6 +109,8 @@ void RSSController::removeItemAction()
     const nonstd::expected<void, QString> result = RSS::Session::instance()->removeItem(path);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
+
+    setResult(QString());
 }
 
 void RSSController::moveItemAction()
@@ -114,6 +122,8 @@ void RSSController::moveItemAction()
     const nonstd::expected<void, QString> result = RSS::Session::instance()->moveItem(itemPath, destPath);
     if (!result)
         throw APIError(APIErrorType::Conflict, result.error());
+
+    setResult(QString());
 }
 
 void RSSController::itemsAction()
@@ -148,6 +158,8 @@ void RSSController::markAsReadAction()
     {
         item->markAsRead();
     }
+
+    setResult(QString());
 }
 
 void RSSController::refreshItemAction()
@@ -158,6 +170,8 @@ void RSSController::refreshItemAction()
     RSS::Item *item = RSS::Session::instance()->itemByPath(itemPath);
     if (item)
         item->refresh();
+
+    setResult(QString());
 }
 
 void RSSController::setRuleAction()
@@ -169,6 +183,8 @@ void RSSController::setRuleAction()
 
     const auto jsonObj = QJsonDocument::fromJson(ruleDef).object();
     RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule::fromJsonObject(jsonObj, ruleName));
+
+    setResult(QString());
 }
 
 void RSSController::renameRuleAction()
@@ -179,6 +195,8 @@ void RSSController::renameRuleAction()
     const QString newRuleName {params()[u"newRuleName"_s]};
 
     RSS::AutoDownloader::instance()->renameRule(ruleName, newRuleName);
+
+    setResult(QString());
 }
 
 void RSSController::removeRuleAction()
@@ -187,6 +205,8 @@ void RSSController::removeRuleAction()
 
     const QString ruleName {params()[u"ruleName"_s]};
     RSS::AutoDownloader::instance()->removeRule(ruleName);
+
+    setResult(QString());
 }
 
 void RSSController::rulesAction()
