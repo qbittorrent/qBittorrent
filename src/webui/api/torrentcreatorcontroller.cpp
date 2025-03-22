@@ -32,6 +32,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QStringList>
+#include <QUrl>
 
 #include "base/global.h"
 #include "base/bittorrent/torrentcreationmanager.h"
@@ -112,6 +113,16 @@ TorrentCreatorController::TorrentCreatorController(BitTorrent::TorrentCreationMa
 {
 }
 
+QStringList parseUrls(const QString &urlsParam)
+{
+    const QStringList encodedUrls = urlsParam.split(u'|');
+    QStringList urls;
+    urls.reserve(encodedUrls.size());
+    for (const QString &urlStr : encodedUrls)
+        urls << QUrl::fromPercentEncoding(urlStr.toLatin1());
+    return urls;
+}
+
 void TorrentCreatorController::addTaskAction()
 {
     requireParams({KEY_SOURCE_PATH});
@@ -130,8 +141,8 @@ void TorrentCreatorController::addTaskAction()
         .torrentFilePath = Path(params()[KEY_TORRENT_FILE_PATH]),
         .comment = params()[KEY_COMMENT],
         .source = params()[KEY_SOURCE],
-        .trackers = params()[KEY_TRACKERS].split(u'|'),
-        .urlSeeds = params()[KEY_URL_SEEDS].split(u'|')
+        .trackers = parseUrls(params()[KEY_TRACKERS]),
+        .urlSeeds = parseUrls(params()[KEY_URL_SEEDS])
     };
 
     bool const startSeeding = parseBool(params()[u"startSeeding"_s]).value_or(createTorrentParams.torrentFilePath.isEmpty());
