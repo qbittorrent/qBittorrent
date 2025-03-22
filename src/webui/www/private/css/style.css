@@ -114,6 +114,7 @@ input[type="number"],
 input[type="password"],
 input[type="button"],
 button,
+textarea,
 select {
     border: 1px solid var(--color-border-default);
     border-radius: 3px;
