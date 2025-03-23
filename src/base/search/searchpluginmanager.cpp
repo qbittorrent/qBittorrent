@@ -409,11 +409,11 @@ Path SearchPluginManager::engineLocation()
 
 void SearchPluginManager::applyProxySettings()
 {
-    // Define environment variables for urllib in search engine plugins
-
+    // for python `urllib`: https://docs.python.org/3/library/urllib.request.html#urllib.request.ProxyHandler
     const QString HTTP_PROXY = u"http_proxy"_s;
     const QString HTTPS_PROXY = u"https_proxy"_s;
-    const QString SOCKS_PROXY = u"sock_proxy"_s;
+    // for `helpers.setupSOCKSProxy()`: https://everything.curl.dev/usingcurl/proxies/socks.html
+    const QString SOCKS_PROXY = u"qbt_socks_proxy"_s;
 
     if (!Preferences::instance()->useProxyForGeneralPurposes())
     {
@@ -427,7 +427,6 @@ void SearchPluginManager::applyProxySettings()
     switch (proxyConfig.type)
     {
     case Net::ProxyType::None:
-    case Net::ProxyType::SOCKS4:  // TODO: implement python code
         m_proxyEnv.remove(HTTP_PROXY);
         m_proxyEnv.remove(HTTPS_PROXY);
         m_proxyEnv.remove(SOCKS_PROXY);
@@ -435,9 +434,12 @@ void SearchPluginManager::applyProxySettings()
 
     case Net::ProxyType::HTTP:
         {
-            const QString proxyURL = proxyConfig.authEnabled
-                ? u"http://%1:%2@%3:%4"_s.arg(proxyConfig.username, proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port))
-                : u"http://%1:%2"_s.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            const QString credential = proxyConfig.authEnabled
+                ? (proxyConfig.username + u':' + proxyConfig.password + u'@')
+                : QString();
+            const QString proxyURL = u"http://%1%2:%3"_s
+                .arg(credential, proxyConfig.ip, QString::number(proxyConfig.port));
+
             m_proxyEnv.insert(HTTP_PROXY, proxyURL);
             m_proxyEnv.insert(HTTPS_PROXY, proxyURL);
             m_proxyEnv.remove(SOCKS_PROXY);
@@ -446,9 +448,25 @@ void SearchPluginManager::applyProxySettings()
 
     case Net::ProxyType::SOCKS5:
         {
-            const QString proxyURL = proxyConfig.authEnabled
-                ? u"%1:%2@%3:%4"_s.arg(proxyConfig.username, proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port))
-                : u"%1:%2"_s.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            const QString scheme = proxyConfig.hostnameLookupEnabled ? u"socks5h"_s : u"socks5"_s;
+            const QString credential = proxyConfig.authEnabled
+                ? (proxyConfig.username + u':' + proxyConfig.password + u'@')
+                : QString();
+            const QString proxyURL = u"%1://%2%3:%4"_s
+                .arg(scheme, credential, proxyConfig.ip, QString::number(proxyConfig.port));
+
+            m_proxyEnv.remove(HTTP_PROXY);
+            m_proxyEnv.remove(HTTPS_PROXY);
+            m_proxyEnv.insert(SOCKS_PROXY, proxyURL);
+        }
+        break;
+
+    case Net::ProxyType::SOCKS4:
+        {
+            const QString scheme = proxyConfig.hostnameLookupEnabled ? u"socks4a"_s : u"socks4"_s;
+            const QString proxyURL = u"%1://%2:%3"_s
+                .arg(scheme, proxyConfig.ip, QString::number(proxyConfig.port));
+
             m_proxyEnv.remove(HTTP_PROXY);
             m_proxyEnv.remove(HTTPS_PROXY);
             m_proxyEnv.insert(SOCKS_PROXY, proxyURL);
