@@ -501,7 +501,7 @@ void AppController::setPreferencesAction()
     QVariantHash::ConstIterator it;
     const auto hasKey = [&it, &m](const QString &key) -> bool
     {
-        it = m.find(key);
+        it = m.constFind(key);
         return (it != m.constEnd());
     };
 
@@ -786,10 +786,12 @@ void AppController::setPreferencesAction()
     // Scheduling
     if (hasKey(u"scheduler_enabled"_s))
         session->setBandwidthSchedulerEnabled(it.value().toBool());
-    if (m.contains(u"schedule_from_hour"_s) && m.contains(u"schedule_from_min"_s))
-        pref->setSchedulerStartTime(QTime(m[u"schedule_from_hour"_s].toInt(), m[u"schedule_from_min"_s].toInt()));
-    if (m.contains(u"schedule_to_hour"_s) && m.contains(u"schedule_to_min"_s))
-        pref->setSchedulerEndTime(QTime(m[u"schedule_to_hour"_s].toInt(), m[u"schedule_to_min"_s].toInt()));
+    if (const auto hourIter = m.constFind(u"schedule_from_hour"_s), minIter = m.constFind(u"schedule_from_min"_s)
+        ; (hourIter != m.constEnd()) && (minIter != m.constEnd()))
+        pref->setSchedulerStartTime({hourIter.value().toInt(), minIter.value().toInt()});
+    if (const auto hourIter = m.constFind(u"schedule_to_hour"_s), minIter = m.constFind(u"schedule_to_min"_s)
+        ; (hourIter != m.constEnd()) && (minIter != m.constEnd()))
+        pref->setSchedulerEndTime({hourIter.value().toInt(), minIter.value().toInt()});
     if (hasKey(u"scheduler_days"_s))
         pref->setSchedulerDays(static_cast<Scheduler::Days>(it.value().toInt()));
 
@@ -826,25 +828,18 @@ void AppController::setPreferencesAction()
     if (hasKey(u"slow_torrent_inactive_timer"_s))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
-    if (hasKey(u"max_ratio_enabled"_s))
-    {
-        if (it.value().toBool())
-            session->setGlobalMaxRatio(m[u"max_ratio"_s].toReal());
-        else
-            session->setGlobalMaxRatio(-1);
-    }
-    if (hasKey(u"max_seeding_time_enabled"_s))
-    {
-        if (it.value().toBool())
-            session->setGlobalMaxSeedingMinutes(m[u"max_seeding_time"_s].toInt());
-        else
-            session->setGlobalMaxSeedingMinutes(-1);
-    }
-    if (hasKey(u"max_inactive_seeding_time_enabled"_s))
-    {
-        session->setGlobalMaxInactiveSeedingMinutes(it.value().toBool()
-            ? m[u"max_inactive_seeding_time"_s].toInt() : -1);
-    }
+    if (hasKey(u"max_ratio_enabled"_s) && !it.value().toBool())
+        session->setGlobalMaxRatio(-1);
+    else if (hasKey(u"max_ratio"_s))
+        session->setGlobalMaxRatio(it.value().toReal());
+    if (hasKey(u"max_seeding_time_enabled"_s) && !it.value().toBool())
+        session->setGlobalMaxSeedingMinutes(-1);
+    else if (hasKey(u"max_seeding_time"_s))
+        session->setGlobalMaxSeedingMinutes(it.value().toInt());
+    if (hasKey(u"max_inactive_seeding_time_enabled"_s) && !it.value().toBool())
+        session->setGlobalMaxInactiveSeedingMinutes(-1);
+    else if (hasKey(u"max_inactive_seeding_time"_s))
+        session->setGlobalMaxInactiveSeedingMinutes(it.value().toInt());
     if (hasKey(u"max_ratio_act"_s))
     {
         switch (it.value().toInt())
@@ -982,7 +977,7 @@ void AppController::setPreferencesAction()
         {
             return (!iface.addressEntries().isEmpty()) && (iface.name() == ifaceValue);
         });
-        const QString ifaceName = (ifacesIter != ifaces.cend()) ? ifacesIter->humanReadableName() : QString {};
+        const QString ifaceName = (ifacesIter != ifaces.cend()) ? ifacesIter->humanReadableName() : QString();
 
         session->setNetworkInterface(ifaceValue);
         if (!ifaceName.isEmpty() || ifaceValue.isEmpty())
@@ -992,7 +987,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"current_interface_address"_s))
     {
         const QHostAddress ifaceAddress {it.value().toString().trimmed()};
-        session->setNetworkInterfaceAddress(ifaceAddress.isNull() ? QString {} : ifaceAddress.toString());
+        session->setNetworkInterfaceAddress(ifaceAddress.isNull() ? QString() : ifaceAddress.toString());
     }
     // Save resume data interval
     if (hasKey(u"save_resume_data_interval"_s))
@@ -1148,7 +1143,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"announce_ip"_s))
     {
         const QHostAddress announceAddr {it.value().toString().trimmed()};
-        session->setAnnounceIP(announceAddr.isNull() ? QString {} : announceAddr.toString());
+        session->setAnnounceIP(announceAddr.isNull() ? QString() : announceAddr.toString());
     }
     if (hasKey(u"announce_port"_s))
         session->setAnnouncePort(it.value().toInt());
