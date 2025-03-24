@@ -265,38 +265,37 @@ void Net::DownloadManager::applyProxySettings()
     const auto *proxyManager = ProxyConfigurationManager::instance();
     const ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
 
-    m_proxy = QNetworkProxy(QNetworkProxy::NoProxy);
-
-    if ((proxyConfig.type == Net::ProxyType::None) || (proxyConfig.type == ProxyType::SOCKS4))
-        return;
-
-    // Proxy enabled
-    if (proxyConfig.type == ProxyType::SOCKS5)
+    switch (proxyConfig.type)
     {
-        qDebug() << Q_FUNC_INFO << "using SOCKS proxy";
-        m_proxy.setType(QNetworkProxy::Socks5Proxy);
-    }
-    else
-    {
-        qDebug() << Q_FUNC_INFO << "using HTTP proxy";
-        m_proxy.setType(QNetworkProxy::HttpProxy);
-    }
+    case Net::ProxyType::None:
+    case Net::ProxyType::SOCKS4:
+        m_proxy = QNetworkProxy(QNetworkProxy::NoProxy);
+        break;
 
-    m_proxy.setHostName(proxyConfig.ip);
-    m_proxy.setPort(proxyConfig.port);
+    case Net::ProxyType::HTTP:
+        m_proxy = QNetworkProxy(
+            QNetworkProxy::HttpProxy
+            , proxyConfig.ip
+            , proxyConfig.port
+            , (proxyConfig.authEnabled ? proxyConfig.username : QString())
+            , (proxyConfig.authEnabled ? proxyConfig.password : QString()));
+        m_proxy.setCapabilities(proxyConfig.hostnameLookupEnabled
+            ? (m_proxy.capabilities() | QNetworkProxy::HostNameLookupCapability)
+            : (m_proxy.capabilities() & ~QNetworkProxy::HostNameLookupCapability));
+        break;
 
-    // Authentication?
-    if (proxyConfig.authEnabled)
-    {
-        qDebug("Proxy requires authentication, authenticating...");
-        m_proxy.setUser(proxyConfig.username);
-        m_proxy.setPassword(proxyConfig.password);
-    }
-
-    if (proxyConfig.hostnameLookupEnabled)
-        m_proxy.setCapabilities(m_proxy.capabilities() | QNetworkProxy::HostNameLookupCapability);
-    else
-        m_proxy.setCapabilities(m_proxy.capabilities() & ~QNetworkProxy::HostNameLookupCapability);
+    case Net::ProxyType::SOCKS5:
+        m_proxy = QNetworkProxy(
+            QNetworkProxy::Socks5Proxy
+            , proxyConfig.ip
+            , proxyConfig.port
+            , (proxyConfig.authEnabled ? proxyConfig.username : QString())
+            , (proxyConfig.authEnabled ? proxyConfig.password : QString()));
+        m_proxy.setCapabilities(proxyConfig.hostnameLookupEnabled
+            ? (m_proxy.capabilities() | QNetworkProxy::HostNameLookupCapability)
+            : (m_proxy.capabilities() & ~QNetworkProxy::HostNameLookupCapability));
+        break;
+    };
 }
 
 void Net::DownloadManager::processWaitingJobs(const ServiceID &serviceID)
