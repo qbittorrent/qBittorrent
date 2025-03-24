@@ -1689,7 +1689,7 @@ void OptionsDialog::adjustProxyOptions()
 
     if (currentProxyType == Net::ProxyType::None)
     {
-        m_ui->labelProxyTypeIncompatible->setVisible(false);
+        m_ui->labelProxyTypeUnavailable->setVisible(false);
 
         m_ui->lblProxyIP->setEnabled(false);
         m_ui->textProxyIP->setEnabled(false);
@@ -1714,7 +1714,7 @@ void OptionsDialog::adjustProxyOptions()
 
         if (currentProxyType == Net::ProxyType::SOCKS4)
         {
-            m_ui->labelProxyTypeIncompatible->setVisible(true);
+            m_ui->labelProxyTypeUnavailable->setVisible(true);
 
             m_ui->checkProxyHostnameLookup->setEnabled(false);
             m_ui->checkProxyRSS->setEnabled(false);
@@ -1723,7 +1723,7 @@ void OptionsDialog::adjustProxyOptions()
         else
         {
             // SOCKS5 or HTTP
-            m_ui->labelProxyTypeIncompatible->setVisible(false);
+            m_ui->labelProxyTypeUnavailable->setVisible(false);
 
             m_ui->checkProxyHostnameLookup->setEnabled(true);
             m_ui->checkProxyRSS->setEnabled(true);
