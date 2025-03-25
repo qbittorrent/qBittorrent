@@ -2772,7 +2772,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     // We should not add the torrent if it is already
     // processed or is pending to add to session
     if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
+    {
+        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, tr("Duplicate torrent")});
         return false;
+    }
 
     if (Torrent *torrent = findTorrent(infoHash))
     {
@@ -2786,16 +2789,20 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         if (!isMergeTrackersEnabled())
         {
+            const QString message = tr("Merging of trackers is disabled");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
-                    .arg(torrent->name(), tr("Merging of trackers is disabled")));
+                    .arg(torrent->name(), message));
+            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
             return false;
         }
 
         const bool isPrivate = torrent->isPrivate() || (hasMetadata && source.info()->isPrivate());
         if (isPrivate)
         {
+            const QString message = tr("Trackers cannot be merged because it is a private torrent");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
-                    .arg(torrent->name(), tr("Trackers cannot be merged because it is a private torrent")));
+                    .arg(torrent->name(), message));
+            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
             return false;
         }
 
@@ -2803,8 +2810,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         torrent->addTrackers(source.trackers());
         torrent->addUrlSeeds(source.urlSeeds());
 
+        const QString message = tr("Trackers are merged from new source");
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
-                .arg(torrent->name(), tr("Trackers are merged from new source")));
+                .arg(torrent->name(), message));
+        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
         return false;
     }
 
@@ -5747,7 +5756,9 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
         if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(TorrentID::fromInfoHash(infoHash))
                 ; loadingTorrentsIter != m_loadingTorrents.cend())
         {
-            emit addTorrentFailed(infoHash, msg);
+            const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
+                    ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
+            emit addTorrentFailed(infoHash, {errorKind, msg});
             m_loadingTorrents.erase(loadingTorrentsIter);
         }
         else if (const auto downloadedMetadataIter = m_downloadedMetadata.constFind(TorrentID::fromInfoHash(infoHash))

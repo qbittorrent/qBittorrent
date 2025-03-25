@@ -375,7 +375,7 @@ void AutoDownloader::handleTorrentAdded(const QString &source)
     }
 }
 
-void AutoDownloader::handleAddTorrentFailed(const QString &source)
+void AutoDownloader::handleAddTorrentFailed(const QString &source, [[maybe_unused]] const BitTorrent::AddTorrentError &error)
 {
     m_waitingJobs.remove(source);
     // TODO: Re-schedule job here.
