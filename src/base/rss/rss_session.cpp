@@ -214,14 +214,20 @@ nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &des
     Q_ASSERT(item);
     Q_ASSERT(item != rootFolder());
 
+    if (item->path() == destPath)
+        return {};
+
+    if (auto *folder = static_cast<Folder *>(item)) // if `item` is a `Folder`
+    {
+        if (destPath.startsWith(folder->path() + Item::PathSeparator))
+            return nonstd::make_unexpected(tr("Couldn't move folder into itself or its subfolder."));
+    }
+
     const nonstd::expected<Folder *, QString> result = prepareItemDest(destPath);
     if (!result)
         return result.get_unexpected();
 
     auto *destFolder = result.value();
-    if (static_cast<Item *>(destFolder) == item)
-        return nonstd::make_unexpected(tr("Couldn't move folder into itself."));
-
     auto *srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
     if (srcFolder != destFolder)
     {
