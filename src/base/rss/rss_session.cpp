@@ -220,7 +220,7 @@ nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &des
     if (auto *folder = static_cast<Folder *>(item)) // if `item` is a `Folder`
     {
         if (destPath.startsWith(folder->path() + Item::PathSeparator))
-            return nonstd::make_unexpected(tr("Couldn't move folder into itself or its subfolder."));
+            return nonstd::make_unexpected(tr("Can't move a folder into itself or its subfolders."));
     }
 
     const nonstd::expected<Folder *, QString> result = prepareItemDest(destPath);
