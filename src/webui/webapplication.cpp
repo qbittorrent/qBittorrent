@@ -75,6 +75,7 @@ const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
 const QString WWW_FOLDER = u":/www"_s;
 const QString PUBLIC_FOLDER = u"/public"_s;
 const QString PRIVATE_FOLDER = u"/private"_s;
+const QString INDEX_HTML = u"/index.html"_s;
 
 using namespace std::chrono_literals;
 
@@ -213,7 +214,7 @@ void WebApplication::sendWebUIFile()
 
     const QString path = (request().path != u"/")
         ? request().path
-        : u"/index.html"_s;
+        : INDEX_HTML;
 
     Path localPath = m_rootFolder
                 / Path(session() ? PRIVATE_FOLDER : PUBLIC_FOLDER)
@@ -227,7 +228,17 @@ void WebApplication::sendWebUIFile()
     if (m_isAltUIUsed)
     {
         if (!Utils::Fs::isRegularFile(localPath))
+        {
+#ifdef DISABLE_GUI
+            if (path == INDEX_HTML)
+            {
+                auto *preferences = Preferences::instance();
+                preferences->setAltWebUIEnabled(false);
+                preferences->apply();
+            }
+#endif
             throw InternalServerErrorHTTPError(tr("Unacceptable file type, only regular file is allowed."));
+        }
 
         const QString rootFolder = m_rootFolder.data();
 
@@ -235,7 +246,17 @@ void WebApplication::sendWebUIFile()
         while (fileInfo.path() != rootFolder)
         {
             if (fileInfo.isSymLink())
+            {
+#ifdef DISABLE_GUI
+                if (path == INDEX_HTML)
+                {
+                    auto *preferences = Preferences::instance();
+                    preferences->setAltWebUIEnabled(false);
+                    preferences->apply();
+                }
+#endif
                 throw InternalServerErrorHTTPError(tr("Symlinks inside alternative UI folder are forbidden."));
+            }
 
             fileInfo.setFile(fileInfo.path());
         }
