@@ -162,6 +162,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
 
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebApplication::configure);
+    connect(Preferences::instance(), &Preferences::webCredentialsChanged, this, &WebApplication::logoutAllSessions);
 
     m_sessionCookieName = Preferences::instance()->getWebAPISessionCookieName();
     if (!isValidCookieName(m_sessionCookieName))
@@ -418,9 +419,29 @@ void WebApplication::configure()
         }
     }
 
-    m_isLocalAuthEnabled = pref->isWebUILocalAuthEnabled();
-    m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
-    m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
+    const bool isLocalAuthEnabled = pref->isWebUILocalAuthEnabled();
+    const bool isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
+    const QList<Utils::Net::Subnet> authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
+    if ((isLocalAuthEnabled && (isLocalAuthEnabled != m_isLocalAuthEnabled))
+        || (!isAuthSubnetWhitelistEnabled && (isAuthSubnetWhitelistEnabled != m_isAuthSubnetWhitelistEnabled))
+        || (!m_authSubnetWhitelist.isEmpty() && (authSubnetWhitelist != m_authSubnetWhitelist)))
+    {
+        // remove sessions which bypassed authentication
+        Algorithm::removeIf(m_sessions, [](const QString &, const WebSession *session)
+        {
+            if (!session->isAuthenticated())
+            {
+                delete session;
+                return true;
+            }
+
+            return false;
+        });
+    }
+
+    m_isLocalAuthEnabled = isLocalAuthEnabled;
+    m_isAuthSubnetWhitelistEnabled = isAuthSubnetWhitelistEnabled;
+    m_authSubnetWhitelist = authSubnetWhitelist;
     m_sessionTimeout = pref->getWebUISessionTimeout();
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
@@ -506,6 +527,12 @@ void WebApplication::configure()
         if (m_trustedReverseProxyList.isEmpty())
             m_isReverseProxySupportEnabled = false;
     }
+}
+
+void WebApplication::logoutAllSessions()
+{
+    qDeleteAll(m_sessions);
+	m_sessions.clear();
 }
 
 void WebApplication::declarePublicAPI(const QString &apiPath)
@@ -660,7 +687,7 @@ void WebApplication::sessionInitialize()
     }
 
     if (!m_currentSession && !isAuthNeeded())
-        sessionStart();
+        sessionStart(false);
 }
 
 QString WebApplication::generateSid() const
@@ -693,7 +720,7 @@ bool WebApplication::isPublicAPI(const QString &scope, const QString &action) co
     return m_publicAPIs.contains(u"%1/%2"_s.arg(scope, action));
 }
 
-void WebApplication::sessionStart()
+void WebApplication::sessionStart(const bool authenticated)
 {
     Q_ASSERT(!m_currentSession);
 
@@ -709,7 +736,7 @@ void WebApplication::sessionStart()
         return false;
     });
 
-    m_currentSession = new WebSession(generateSid(), app());
+    m_currentSession = new WebSession(generateSid(), app(), authenticated);
     m_sessions[m_currentSession->id()] = m_currentSession;
 
     m_currentSession->registerAPIController(u"app"_s, new AppController(app(), m_currentSession));
@@ -891,9 +918,10 @@ QHostAddress WebApplication::resolveClientAddress() const
 
 // WebSession
 
-WebSession::WebSession(const QString &sid, IApplication *app)
+WebSession::WebSession(const QString &sid, IApplication *app, const bool authenticated)
     : ApplicationComponent(app)
     , m_sid {sid}
+    , m_authenticated {authenticated}
 {
     updateTimestamp();
 }
@@ -913,6 +941,11 @@ bool WebSession::hasExpired(const qint64 seconds) const
 void WebSession::updateTimestamp()
 {
     m_timer.start();
+}
+
+bool WebSession::isAuthenticated() const
+{
+    return m_authenticated;
 }
 
 void WebSession::registerAPIController(const QString &scope, APIController *controller)
