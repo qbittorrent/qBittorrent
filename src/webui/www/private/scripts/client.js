@@ -481,6 +481,8 @@ window.addEventListener("DOMContentLoaded", () => {
         updateFilter("checking", "QBT_TR(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
         updateFilter("moving", "QBT_TR(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
         updateFilter("errored", "QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        if (useAutoHideZeroStatusFilters && document.getElementById(`${selectedStatus}_filter`).classList.contains("invisible"))
+            setStatusFilter("all");
     };
 
     const highlightSelectedStatus = () => {
