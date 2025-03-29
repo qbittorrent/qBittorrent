@@ -12917,7 +12917,7 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/misc.cpp" line="250"/>
         <source>%1h %2m</source>
         <comment>e.g: 3 hours 5 minutes</comment>
-        <translation>%1 ч %2 м</translation>
+        <translation>%1 ч %2 мин</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="257"/>
@@ -12947,7 +12947,7 @@ Please choose a different name and try again.</source>
         <location filename="../base/utils/misc.cpp" line="237"/>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation>&lt; 1 м</translation>
+        <translation>&lt; 1 мин</translation>
     </message>
 </context>
 </TS>
