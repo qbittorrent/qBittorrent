@@ -2077,14 +2077,14 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 </layout>
                </item>
                <item>
-                <widget class="QLabel" name="labelProxyTypeIncompatible">
+                <widget class="QLabel" name="labelProxyTypeUnavailable">
                  <property name="font">
                   <font>
                    <italic>true</italic>
                   </font>
                  </property>
                  <property name="text">
-                  <string>Some options are incompatible with the chosen proxy type!</string>
+                  <string>Some functions are unavailable with the chosen proxy type!</string>
                  </property>
                 </widget>
                </item>
@@ -2144,7 +2144,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <item>
                    <widget class="QLabel" name="label_23">
                     <property name="text">
-                     <string>Info: The password is saved unencrypted</string>
+                     <string>Note: The password is saved unencrypted</string>
                     </property>
                    </widget>
                   </item>
