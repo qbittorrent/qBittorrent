@@ -22,7 +22,8 @@
     color: var(--color-text-white);
 }
 
-#transferList .stateIcon {
+#transferList .stateIcon,
+#torrentCreatorContentView .stateIcon {
     background: left center / contain no-repeat;
     margin-left: 3px;
     padding-left: 1.65em;
@@ -72,6 +73,10 @@
 
     &.stateError {
         background-image: url("../images/error.svg");
+    }
+
+    &.stateRunning {
+        background-image: url("../images/torrent-start.svg");
     }
 
     &.stateUnknown {

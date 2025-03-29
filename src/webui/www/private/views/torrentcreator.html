@@ -1,0 +1,282 @@
+<style>
+    #torrentCreatorTopBar {
+        margin-bottom: 10px;
+    }
+
+    #addTaskButton {
+        padding: 3px 6px;
+    }
+
+    #addTaskButton img {
+        margin: 0 5px -3px 0;
+    }
+
+    #torrentCreatorContainer {
+        height: calc(100% - 20px);
+    }
+
+    #torrentCreatorContentView {
+        width: 100%;
+        height: calc(100% - 16px);
+        border: 1px solid var(--color-border-default);
+    }
+
+    #torrentCreationTasksTableFixedHeaderDiv {
+        border-bottom: 1px solid var(--color-border-default);
+    }
+
+</style>
+
+<div id="torrentCreatorContainer">
+    <ul id="torrentCreationTasksTableMenu" class="contextMenu">
+        <li><a href="#exportTorrent"><img src="images/edit-copy.svg" alt="QBT_TR(Download Torrent)QBT_TR[CONTEXT=TorrentCreator]">
+                QBT_TR(Export Torrent)QBT_TR[CONTEXT=TorrentCreator]</a></li>
+        <li><a href="#deleteTask"><img src="images/list-remove.svg" alt="QBT_TR(Remove Task)QBT_TR[CONTEXT=TorrentCreator]">
+                QBT_TR(Remove Task)QBT_TR[CONTEXT=TorrentCreator]</a></li>
+    </ul>
+    <div id="torrentCreatorTopBar">
+        <button type="button" id="addTaskButton">
+            <img alt="QBT_TR(Create New Torrent)QBT_TR[CONTEXT=TorrentCreator]" src="images/list-add.svg" width="16" height="16">QBT_TR(Create New Torrent)QBT_TR[CONTEXT=TorrentCreator]
+        </button>
+    </div>
+    <div id="torrentCreatorContentView">
+        <div id="torrentCreationTasksTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable" style="position:relative;">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="torrentCreationTasksTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                    <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    "use strict";
+
+    window.qBittorrent ??= {};
+    window.qBittorrent.TorrentCreator ??= (() => {
+        const exports = () => {
+            return {
+                init: init,
+                unload: unload,
+                exportTorrents: exportTorrents,
+            };
+        };
+
+        let table;
+        let contextMenu;
+        let prevOffsetLeft;
+        let prevOffsetTop;
+        let timer = -1;
+
+        const init = () => {
+            table = new window.qBittorrent.DynamicTable.TorrentCreationTasksTable();
+
+            contextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+                targets: "#torrentCreationTasksTableDiv",
+                menu: "torrentCreationTasksTableMenu",
+                actions: {
+                    deleteTask: () => {
+                        const selectedTasks = table.selectedRowsIds();
+                        if (selectedTasks.length === 0)
+                            return;
+
+                        if (!confirm("QBT_TR(Are you sure you want to delete selected tasks?)QBT_TR[CONTEXT=TorrentCreator]"))
+                            return;
+
+                        selectedTasks.forEach(task => {
+                            fetch("api/v2/torrentcreator/deleteTask", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    taskID: task,
+                                })
+                            }).then((response) => {
+                                load();
+                            });
+                        });
+                    },
+                    exportTorrent: exportTorrents,
+                },
+                offsets: calculateContextMenuOffsets(),
+            });
+            contextMenu.updateMenuItems = () => {
+                const selectedRows = table.selectedRowsIds();
+                switch (selectedRows.length) {
+                    case 0:
+                        contextMenu.hideItem("exportTorrent");
+                        contextMenu.hideItem("deleteTask");
+                        break;
+                    case 1: {
+                        const row = table.getRow(selectedRows[0]);
+                        if (row.full_data.status === "Finished")
+                            contextMenu.showItem("exportTorrent");
+                        else
+                            contextMenu.hideItem("exportTorrent");
+                        break;
+                    }
+                    default:
+                        contextMenu.showItem("exportTorrent");
+                        contextMenu.showItem("deleteTask");
+                        break;
+                }
+            };
+
+            table.setup("torrentCreationTasksTableDiv", "torrentCreationTasksTableFixedHeaderDiv", contextMenu);
+
+            table.dynamicTableDiv.addEventListener("contextmenu", (e) => {
+                updateContextMenuOffset();
+            }, true);
+
+            document.getElementById("addTaskButton").addEventListener("click", (event) => {
+                showCreateTorrentPage();
+            });
+
+            load();
+        };
+
+        const calculateContextMenuOffsets = () => {
+            prevOffsetLeft = document.getElementById("torrentCreatorPage").getBoundingClientRect().left;
+            prevOffsetTop = document.getElementById("torrentCreatorPage").getBoundingClientRect().top;
+
+            return {
+                x: -prevOffsetLeft,
+                y: -prevOffsetTop
+            };
+        };
+
+        const updateContextMenuOffset = () => {
+            // only re-calculate if window has moved
+            if ((prevOffsetLeft !== document.getElementById("torrentCreatorPage").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("torrentCreatorPage").getBoundingClientRect().top))
+                contextMenu.options.offsets = calculateContextMenuOffsets();
+        };
+
+        const showCreateTorrentPage = () => {
+            const id = "createTorrentPage";
+
+            new MochaUI.Window({
+                id: id,
+                icon: "images/list-add.svg",
+                title: "QBT_TR(Create New Torrent)QBT_TR[CONTEXT=TorrentCreator]",
+                loadMethod: "xhr",
+                contentURL: "views/createtorrent.html",
+                scrollbars: true,
+                maximizable: false,
+                closable: true,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: loadWindowWidth(id, 500),
+                height: loadWindowHeight(id, 600),
+                onResize: () => {
+                    saveWindowSize(id);
+                },
+                onClose: () => {
+                    window.qBittorrent.CreateTorrent.savePreferences();
+                },
+            });
+        };
+
+        const exportTorrents = async () => {
+            const selectedTasks = table.selectedRowsIds();
+            if (selectedTasks.length === 0)
+                return;
+
+            for (const task of selectedTasks) {
+                const row = table.getRow(task);
+                if (row.full_data.status !== "Finished")
+                    continue;
+
+                const url = new URL("api/v2/torrentcreator/torrentFile", window.location);
+                url.search = new URLSearchParams({
+                    taskID: task
+                });
+
+                // download response to file
+                await window.qBittorrent.Misc.downloadFile(url, `${task}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=TorrentCreator]");
+
+                // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
+                await window.qBittorrent.Misc.sleep(200);
+            }
+        };
+
+        const load = () => {
+            syncTaskWithInterval(100);
+        };
+
+        const unload = () => {
+            clearTimeout(timer);
+            timer = -1;
+            table = null;
+            contextMenu = null;
+        };
+
+        const syncTaskWithInterval = (interval) => {
+            clearTimeout(timer);
+            timer = setTimeout(syncTaskData, interval);
+        };
+
+        const syncTaskData = () => {
+            fetch("api/v2/torrentcreator/status", {
+                method: "GET",
+                cache: "no-store"
+            }).then(async (response) => {
+                if (!response.ok) {
+                    let error = "QBT_TR(Unable to load torrent creation tasks)QBT_TR[CONTEXT=TorrentCreator]";
+                    const responseText = await response.text();
+                    if (responseText.length > 0)
+                        error += `: ${responseText}`;
+                    alert(error);
+                    return;
+                }
+
+                // Awaiting the json before clearing the table to prevent flickering
+                const responseJSON = await response.json();
+
+                const selectedTasks = table.selectedRowsIds();
+                table.clear();
+
+                if (responseJSON.length > 0) {
+                    for (let i = 0; i < responseJSON.length; ++i) {
+                        const status = responseJSON[i].status;
+                        const row = {
+                            rowId: responseJSON[i].taskID,
+                            source_path: responseJSON[i].sourcePath,
+                            progress: status === "Finished" ? 100 : responseJSON[i].progress,
+                            status: status,
+                            torrent_format: responseJSON[i].format,
+                            piece_size: responseJSON[i].pieceSize,
+                            private: responseJSON[i].private,
+                            added_on: responseJSON[i].timeAdded,
+                            start_on: responseJSON[i].timeStarted,
+                            completion_on: responseJSON[i].timeFinished,
+                            trackers: responseJSON[i].trackers,
+                            comment: responseJSON[i].comment,
+                            source: responseJSON[i].source,
+                            error_message: responseJSON[i].errorMessage,
+                        };
+
+                        table.updateRowData(row);
+                    }
+
+                    table.updateTable(false);
+
+                    if (selectedTasks.length > 0)
+                        table.reselectRows(selectedTasks);
+                }
+            }).finally(() => {
+                syncTaskWithInterval(serverSyncMainDataInterval);
+            });
+        };
+
+        return exports();
+    })();
+    Object.freeze(window.qBittorrent.TorrentCreator);
+
+    window.qBittorrent.TorrentCreator.init();
+</script>
