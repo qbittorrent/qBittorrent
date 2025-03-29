@@ -381,8 +381,10 @@ window.addEventListener("DOMContentLoaded", () => {
             return false;
 
         let removed = false;
-        for (const data of categoryMap.values())
-            removed ||= data.torrents.delete(hash);
+        for (const data of categoryMap.values()) {
+            const deleteResult = data.torrents.delete(hash);
+            removed ||= deleteResult;
+        }
         return removed;
     };
 
@@ -418,8 +420,10 @@ window.addEventListener("DOMContentLoaded", () => {
             return false;
 
         let removed = false;
-        for (const torrents of tagMap.values())
-            removed ||= torrents.delete(hash);
+        for (const torrents of tagMap.values()) {
+            const deleteResult = torrents.delete(hash);
+            removed ||= deleteResult;
+        }
         return removed;
     };
 
