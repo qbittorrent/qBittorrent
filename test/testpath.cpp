@@ -44,25 +44,25 @@ public:
 private slots:
     void testConstructors() const
     {
-        QVERIFY(Path(u""_s) == Path(std::string("")));
-        QVERIFY(Path(u"abc"_s) == Path(std::string("abc")));
-        QVERIFY(Path(u"/abc"_s) == Path(std::string("/abc")));
-        QVERIFY(Path(uR"(\abc)"_s) == Path(std::string(R"(\abc)")));
+        QCOMPARE_EQ(Path(u""_s), Path(std::string("")));
+        QCOMPARE_EQ(Path(u"abc"_s), Path(std::string("abc")));
+        QCOMPARE_EQ(Path(u"/abc"_s), Path(std::string("/abc")));
+        QCOMPARE_EQ(Path(uR"(\abc)"_s), Path(std::string(R"(\abc)")));
 
 #ifdef Q_OS_WIN
-        QVERIFY(Path(uR"(c:)"_s) == Path(std::string(R"(c:)")));
-        QVERIFY(Path(uR"(c:/)"_s) == Path(std::string(R"(c:/)")));
-        QVERIFY(Path(uR"(c:/)"_s) == Path(std::string(R"(c:\)")));
-        QVERIFY(Path(uR"(c:\)"_s) == Path(std::string(R"(c:/)")));
-        QVERIFY(Path(uR"(c:\)"_s) == Path(std::string(R"(c:\)")));
+        QCOMPARE_EQ(Path(uR"(c:)"_s), Path(std::string(R"(c:)")));
+        QCOMPARE_EQ(Path(uR"(c:/)"_s), Path(std::string(R"(c:/)")));
+        QCOMPARE_EQ(Path(uR"(c:/)"_s), Path(std::string(R"(c:\)")));
+        QCOMPARE_EQ(Path(uR"(c:\)"_s), Path(std::string(R"(c:/)")));
+        QCOMPARE_EQ(Path(uR"(c:\)"_s), Path(std::string(R"(c:\)")));
 
-        QVERIFY(Path(uR"(\\?\C:)"_s) == Path(std::string(R"(\\?\C:)")));
-        QVERIFY(Path(uR"(\\?\C:/)"_s) == Path(std::string(R"(\\?\C:/)")));
-        QVERIFY(Path(uR"(\\?\C:/)"_s) == Path(std::string(R"(\\?\C:\)")));
-        QVERIFY(Path(uR"(\\?\C:\)"_s) == Path(std::string(R"(\\?\C:/)")));
-        QVERIFY(Path(uR"(\\?\C:\)"_s) == Path(std::string(R"(\\?\C:\)")));
+        QCOMPARE_EQ(Path(uR"(\\?\C:)"_s), Path(std::string(R"(\\?\C:)")));
+        QCOMPARE_EQ(Path(uR"(\\?\C:/)"_s), Path(std::string(R"(\\?\C:/)")));
+        QCOMPARE_EQ(Path(uR"(\\?\C:/)"_s), Path(std::string(R"(\\?\C:\)")));
+        QCOMPARE_EQ(Path(uR"(\\?\C:\)"_s), Path(std::string(R"(\\?\C:/)")));
+        QCOMPARE_EQ(Path(uR"(\\?\C:\)"_s), Path(std::string(R"(\\?\C:\)")));
 
-        QVERIFY(Path(uR"(\\?\C:\abc)"_s) == Path(std::string(R"(\\?\C:\abc)")));
+        QCOMPARE_EQ(Path(uR"(\\?\C:\abc)"_s), Path(std::string(R"(\\?\C:\abc)")));
 #endif
     }
 

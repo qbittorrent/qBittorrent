@@ -218,7 +218,7 @@
                 $("rssFetchingDisabled").classList.remove("invisible");
 
             const rssFeedContextMenu = new window.qBittorrent.ContextMenu.RssFeedContextMenu({
-                targets: "#rssFeedTableDiv tr",
+                targets: "#rssFeedTableDiv tbody tr",
                 menu: "rssFeedMenu",
                 actions: {
                     update: (el) => {
@@ -288,7 +288,7 @@
             rssFeedTable.setup("rssFeedTableDiv", "rssFeedFixedHeaderDiv", rssFeedContextMenu);
 
             const rssArticleContextMenu = new window.qBittorrent.ContextMenu.RssArticleContextMenu({
-                targets: "#rssArticleTableDiv tr",
+                targets: "#rssArticleTableDiv tbody tr",
                 menu: "rssArticleMenu",
                 actions: {
                     Download: (el) => {
@@ -343,7 +343,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "newfeed.html?path=" + encodeURIComponent(path),
+                contentURL: `newfeed.html?path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -371,7 +371,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "newfolder.html?path=" + encodeURIComponent(path),
+                contentURL: `newfolder.html?path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -417,13 +417,18 @@
                     });
                 });
 
-            $("rssDetailsView").getChildren().each(c => c.destroy());
+            clearDetails();
             rssArticleTable.updateTable(false);
+        };
+
+        const clearDetails = () => {
+            [...document.getElementById("rssDetailsView").children].forEach((el) => { el.destroy(); });
         };
 
         const showDetails = (feedUid, articleID) => {
             markArticleAsRead(pathByFeedId.get(feedUid), articleID);
-            $("rssDetailsView").getChildren().each(c => c.destroy());
+            clearDetails();
+
             const article = feedData[feedUid].filter((article) => article.id === articleID)[0];
             if (article) {
                 $("rssDetailsView").append((() => {
@@ -449,7 +454,7 @@
                 // Place in iframe with sandbox attribute to prevent js execution
                 const torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $("rssDetailsView").append(torrentDescription);
-                document.getElementById("rssDescription").srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>' + article.description + "</body></html>";
+                document.getElementById("rssDescription").srcdoc = `<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>${article.description}</body></html>`;
             }
         };
 
@@ -475,7 +480,7 @@
                             if (!Object.hasOwn(current, child))
                                 continue;
 
-                            const currentFullName = fullName ? (fullName + "\\" + child) : child;
+                            const currentFullName = fullName ? `${fullName}\\${child}` : child;
                             if (current[child].uid !== undefined) {
                                 current[child].name = child;
                                 current[child].isFolder = false;
@@ -733,7 +738,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "rename_feed.html?oldPath=" + encodeURIComponent(oldPath),
+                contentURL: `rename_feed.html?oldPath=${encodeURIComponent(oldPath)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -743,12 +748,17 @@
         };
 
         const editUrl = (path, url) => {
+            const contentURL = new URL("editfeedurl.html", window.location);
+            contentURL.search = new URLSearchParams({
+                path: path,
+                url: url
+            });
             new MochaUI.Window({
                 id: "editFeedURL",
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: new URI("editfeedurl.html").setData("path", path).setData("url", url).toString(),
+                contentURL: contentURL.toString(),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -764,7 +774,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: "confirmfeeddeletion.html?paths=" + encodeURIComponent(encodedPaths.join("|")),
+                contentURL: `confirmfeeddeletion.html?paths=${encodeURIComponent(encodedPaths.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,

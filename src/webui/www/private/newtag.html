@@ -27,8 +27,8 @@
                 }
             });
 
-            const uriAction = window.qBittorrent.Misc.safeTrim(new URI().getData("action"));
-            const uriHashes = window.qBittorrent.Misc.safeTrim(new URI().getData("hashes"));
+            const searchParams = new URLSearchParams(window.location.search);
+            const uriAction = window.qBittorrent.Misc.safeTrim(searchParams.get("action"));
 
             if (uriAction === "create")
                 $("legendText").textContent = "QBT_TR(Tag:)QBT_TR[CONTEXT=TagFilterWidget]";
@@ -52,8 +52,9 @@
                 };
 
                 switch (uriAction) {
-                    case "set":
-                        if (uriHashes === "")
+                    case "set": {
+                        const uriHashes = window.qBittorrent.Misc.safeTrim(searchParams.get("hashes"));
+                        if ((uriHashes === null) || (uriHashes.length <= 0))
                             return;
 
                         fetch("api/v2/torrents/addTags", {
@@ -70,6 +71,7 @@
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
                             });
                         break;
+                    }
 
                     case "create":
                         if (!verifyTagName(tagName))

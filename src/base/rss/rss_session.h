@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2017-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -35,26 +35,20 @@
  * RSS Session configuration file format (JSON):
  *
  * =============== BEGIN ===============
- *
- {
- *     "folder1":
- {
- *         "subfolder1":
- {
- *             "Feed name 1 (Alias)":
- {
+ * {
+ *     "folder1": {
+ *         "subfolder1": {
+ *             "Feed name 1 (Alias)": {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url1"
  *             }
- *             "Feed name 2 (Alias)":
- {
+ *             "Feed name 2 (Alias)": {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url2"
  *             }
  *         },
  *         "subfolder2": {},
- *         "Feed name 3 (Alias)":
- {
+ *         "Feed name 3 (Alias)": {
  *             "uid": "feed unique identifier",
  *             "url": "http://some-feed-url3"
  *         }
@@ -120,8 +114,8 @@ namespace RSS
         std::chrono::seconds fetchDelay() const;
         void setFetchDelay(std::chrono::seconds delay);
 
-        nonstd::expected<void, QString> addFolder(const QString &path);
-        nonstd::expected<void, QString> addFeed(const QString &url, const QString &path);
+        nonstd::expected<Folder *, QString> addFolder(const QString &path);
+        nonstd::expected<Feed *, QString> addFeed(const QString &url, const QString &path, std::chrono::seconds refreshInterval = {});
         nonstd::expected<void, QString> setFeedURL(const QString &path, const QString &url);
         nonstd::expected<void, QString> setFeedURL(Feed *feed, const QString &url);
         nonstd::expected<void, QString> moveItem(const QString &itemPath, const QString &destPath);
@@ -134,9 +128,6 @@ namespace RSS
         Feed *feedByURL(const QString &url) const;
 
         Folder *rootFolder() const;
-
-    public slots:
-        void refresh();
 
     signals:
         void processingStateChanged(bool enabled);
@@ -160,8 +151,10 @@ namespace RSS
         void store();
         nonstd::expected<Folder *, QString> prepareItemDest(const QString &path);
         Folder *addSubfolder(const QString &name, Folder *parentFolder);
-        Feed *addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder);
+        Feed *addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder, std::chrono::seconds refreshInterval);
         void addItem(Item *item, Folder *destFolder);
+        void refresh();
+        std::chrono::system_clock::time_point refreshFeed(Feed *feed, const std::chrono::system_clock::time_point &currentTimepoint);
 
         static QPointer<Session> m_instance;
 
@@ -176,5 +169,6 @@ namespace RSS
         QHash<QString, Item *> m_itemsByPath;
         QHash<QUuid, Feed *> m_feedsByUID;
         QHash<QString, Feed *> m_feedsByURL;
+        QHash<Feed *, std::chrono::system_clock::time_point> m_refreshTimepoints;
     };
 }

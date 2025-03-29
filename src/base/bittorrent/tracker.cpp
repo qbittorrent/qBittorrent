@@ -380,7 +380,7 @@ void Tracker::registerPeer(const TrackerAnnounceRequest &announceReq)
     {
         // Reached max size, remove a random torrent
         if (m_torrents.size() >= MAX_TORRENTS)
-            m_torrents.erase(m_torrents.begin());
+            m_torrents.erase(m_torrents.cbegin());
     }
 
     m_torrents[announceReq.torrentID].setPeer(announceReq.peer);

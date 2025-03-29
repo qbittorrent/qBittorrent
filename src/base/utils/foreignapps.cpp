@@ -57,6 +57,9 @@ namespace
         info = {};
 
         QProcess proc;
+#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+        proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+#endif
         proc.start(exeName, {u"--version"_s}, QIODevice::ReadOnly);
         if (proc.waitForFinished() && (proc.exitCode() == QProcess::NormalExit))
         {
@@ -68,7 +71,7 @@ namespace
             // Software 'Anaconda' installs its own python interpreter
             // and `python --version` returns a string like this:
             // "Python 3.4.3 :: Anaconda 2.3.0 (64-bit)"
-            const QList<QByteArrayView> outputSplit = Utils::ByteArray::splitToViews(procOutput, " ", Qt::SkipEmptyParts);
+            const QList<QByteArrayView> outputSplit = Utils::ByteArray::splitToViews(procOutput, " ");
             if (outputSplit.size() <= 1)
                 return false;
 

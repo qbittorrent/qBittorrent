@@ -48,7 +48,7 @@ window.qBittorrent.PiecesBar ??= (() => {
     const PiecesBar = new Class({
         initialize: (pieces, parameters) => {
             const vals = {
-                id: "piecesbar_" + (piecesBarUniqueId++),
+                id: `piecesbar_${piecesBarUniqueId++}`,
                 width: 0,
                 height: 0,
                 downloadingColor: "hsl(110deg 94% 27%)", // @TODO palette vars not supported for this value, apply average

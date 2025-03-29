@@ -99,7 +99,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mocha .handle {
-    background: #0f0;
+    background: #00ff00;
     font-size: 1px; /* For IE6 */
     height: 3px;
     opacity: 0;
@@ -111,7 +111,7 @@ div.mochaToolbarWrapper.bottom {
 
 /* Corner resize handles */
 .mocha .corner {
-    background: #f00;
+    background: #ff0000;
     height: 10px;
     width: 10px;
 }
@@ -205,7 +205,7 @@ div.mochaToolbarWrapper.bottom {
 ---------------------------------------------------------------- */
 
 #modalOverlay {
-    background: hsla(0deg 0 0 / 30%);
+    background: hsl(0deg 0% 0% / 30%);
     display: none;
     left: 0;
     opacity: 0;
@@ -229,7 +229,7 @@ div.mochaToolbarWrapper.bottom {
 /* Underlay */
 
 #windowUnderlay {
-    background: #fff;
+    background: #ffffff;
     left: 0;
     position: fixed;
     top: 0;
@@ -276,18 +276,18 @@ div.mochaToolbarWrapper.bottom {
 /* Modals */
 
 .modal2 {
-    border: 8px solid #fff;
+    border: 8px solid #ffffff;
 }
 
 .modal2 .mochaContentBorder {
-    border-width: 0px;
+    border-width: 0;
 }
 
 /* Window Themes */
 
 .mocha.no-canvas {
     background: #e5e5e5;
-    border: 1px solid #555;
+    border: 1px solid #555555;
 }
 
 .mocha.no-canvas .mochaTitlebar {
@@ -295,7 +295,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mocha.transparent .mochaTitlebar h3 {
-    color: #fff;
+    color: #ffffff;
     display: none;
 }
 
@@ -312,7 +312,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mocha.notification .mochaContentBorder {
-    border-width: 0px;
+    border-width: 0;
 }
 
 .mocha.notification .mochaContentWrapper {
@@ -345,12 +345,12 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .jsonExample .mochaTitlebar h3 {
-    color: #ddd;
+    color: #dddddd;
 }
 
 /* This does not work in IE6. */
 .isFocused.jsonExample .mochaTitlebar h3 {
-    color: #fff;
+    color: #ffffff;
 }
 
 #fxmorpherExample .mochaContentWrapper {
@@ -358,7 +358,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 #clock {
-    background: #fff;
+    background: #ffffff;
 }
 
 /* Workaround to make invisible buttons clickable */

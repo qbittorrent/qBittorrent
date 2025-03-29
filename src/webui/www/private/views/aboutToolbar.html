@@ -17,32 +17,32 @@
         MochaUI.initializeTabs("aboutTabs");
 
         $("aboutAboutLink").addEventListener("click", () => {
-            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
             $("aboutAboutContent").classList.remove("invisible");
         });
 
         $("aboutAuthorLink").addEventListener("click", () => {
-            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
             $("aboutAuthorContent").classList.remove("invisible");
         });
 
         $("aboutSpecialThanksLink").addEventListener("click", () => {
-            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
             $("aboutSpecialThanksContent").classList.remove("invisible");
         });
 
         $("aboutTranslatorsLink").addEventListener("click", () => {
-            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
             $("aboutTranslatorsContent").classList.remove("invisible");
         });
 
         $("aboutLicenseLink").addEventListener("click", () => {
-            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
             $("aboutLicenseContent").classList.remove("invisible");
         });
 
         $("aboutSoftwareUsedLink").addEventListener("click", () => {
-            $$(".aboutTabContent").forEach(tab => { tab.classList.add("invisible"); });
+            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
             $("aboutSoftwareUsedContent").classList.remove("invisible");
         });
     })();

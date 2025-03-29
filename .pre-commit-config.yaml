@@ -69,11 +69,11 @@ repos:
         - ts
 
   - repo: https://github.com/codespell-project/codespell.git
-    rev: v2.3.0
+    rev: v2.4.0
     hooks:
     - id: codespell
       name: Check spelling (codespell)
-      args: ["--ignore-words-list", "additionals,categor,curren,fo,ist,ket,notin,searchin,sectionin,superseeding,te,ths"]
+      args: ["--ignore-words-list", "additionals,categor,curren,fo,indexIn,ist,ket,notin,searchin,sectionin,superseeding,te,ths"]
       exclude: |
         (?x)^(
           .*\.desktop |
@@ -88,7 +88,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.28.4
+    rev: v1.29.4
     hooks:
     - id: typos
       name: Check spelling (typos)

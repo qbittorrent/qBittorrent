@@ -199,8 +199,8 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
         return {};
 
     const QString key = countryIsoCode.toLower();
-    const auto iter = m_flags.find(key);
-    if (iter != m_flags.end())
+    const auto iter = m_flags.constFind(key);
+    if (iter != m_flags.cend())
         return *iter;
 
     const QIcon icon {u":/icons/flags/" + key + u".svg"};

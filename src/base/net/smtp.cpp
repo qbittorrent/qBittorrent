@@ -148,8 +148,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     // Encode the body in base64
     QString crlfBody = body;
     const QByteArray b = crlfBody.replace(u"\n"_s, u"\r\n"_s).toUtf8().toBase64();
-    const int ct = b.length();
-    for (int i = 0; i < ct; i += 78)
+    for (int i = 0, end = b.length(); i < end; i += 78)
         m_message += b.mid(i, 78);
     m_from = from;
     m_rcpt = to;
@@ -190,8 +189,12 @@ void Smtp::readyRead()
     {
         const int pos = m_buffer.indexOf("\r\n");
         if (pos < 0) return; // Loop exit condition
-        const QByteArray line = m_buffer.left(pos);
+        const QByteArray line = m_buffer.first(pos);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        m_buffer.slice(pos + 2);
+#else
         m_buffer.remove(0, (pos + 2));
+#endif
         qDebug() << "Response line:" << line;
         // Extract response code
         const QByteArray code = line.left(3);

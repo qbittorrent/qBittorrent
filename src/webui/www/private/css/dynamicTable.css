@@ -9,7 +9,7 @@
 }
 
 #transferList .dynamicTable td {
-    padding: 3px 2px;
+    padding: 2px;
 }
 
 .dynamicTableDiv table.dynamicTable tbody tr.selected {
@@ -22,10 +22,61 @@
     color: var(--color-text-white);
 }
 
-#transferList img.stateIcon {
-    height: 1.3em;
-    margin-bottom: -1px;
-    vertical-align: middle;
+#transferList .stateIcon {
+    background: left center / contain no-repeat;
+    margin-left: 3px;
+    padding-left: 1.65em;
+
+    &.stateIconColumn {
+        height: 14px;
+        margin: auto;
+        padding-left: 0;
+        width: 14px;
+    }
+
+    &.stateDownloading {
+        background-image: url("../images/downloading.svg");
+    }
+
+    &.stateUploading {
+        background-image: url("../images/upload.svg");
+    }
+
+    &.stateStalledUP {
+        background-image: url("../images/stalledUP.svg");
+    }
+
+    &.stateStalledDL {
+        background-image: url("../images/stalledDL.svg");
+    }
+
+    &.stateStoppedDL {
+        background-image: url("../images/stopped.svg");
+    }
+
+    &.stateStoppedUP {
+        background-image: url("../images/checked-completed.svg");
+    }
+
+    &.stateQueued {
+        background-image: url("../images/queued.svg");
+    }
+
+    &.stateChecking {
+        background-image: url("../images/force-recheck.svg");
+    }
+
+    &.stateMoving {
+        background-image: url("../images/set-location.svg");
+    }
+
+    &.stateError {
+        background-image: url("../images/error.svg");
+    }
+
+    &.stateUnknown {
+        background-image: none;
+    }
 }
 
 #transferList #transferList_pad {
@@ -105,10 +156,10 @@ div:has(> div.dynamicTableFixedHeaderDiv):not(.invisible) {
 }
 
 .dynamicTableDiv thead th {
-    height: 0px !important;
-    line-height: 0px !important;
-    padding-bottom: 0px !important;
-    padding-top: 0px !important;
+    height: 0 !important;
+    line-height: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
 }
 
 /* Trackers table */

@@ -155,7 +155,11 @@ void Connection::read()
                     sendResponse(resp);
                 }
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+                m_receivedData.slice(result.frameSize);
+#else
                 m_receivedData.remove(0, result.frameSize);
+#endif
             }
             break;
 

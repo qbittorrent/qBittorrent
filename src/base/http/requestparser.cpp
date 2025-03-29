@@ -69,8 +69,8 @@ namespace
             return false;
         }
 
-        const QString name = line.left(i).trimmed().toString().toLower();
-        const QString value = line.mid(i + 1).trimmed().toString();
+        const QString name = line.first(i).trimmed().toString().toLower();
+        const QString value = line.sliced(i + 1).trimmed().toString();
         out[name] = value;
 
         return true;
@@ -204,15 +204,15 @@ bool RequestParser::parseRequestLine(const QString &line)
     m_request.method = match.captured(1);
 
     // Request Target
-    const QByteArray url {match.captured(2).toLatin1()};
+    const QByteArray url {match.capturedView(2).toLatin1()};
     const int sepPos = url.indexOf('?');
-    const QByteArrayView pathComponent = ((sepPos == -1) ? url : QByteArrayView(url).mid(0, sepPos));
+    const QByteArrayView pathComponent = ((sepPos == -1) ? url : QByteArrayView(url).first(sepPos));
 
     m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(asQByteArray(pathComponent)));
 
     if (sepPos >= 0)
     {
-        const QByteArrayView query = QByteArrayView(url).mid(sepPos + 1);
+        const QByteArrayView query = QByteArrayView(url).sliced(sepPos + 1);
 
         // [rfc3986] 2.4 When to Encode or Decode
         // URL components should be separated before percent-decoding
@@ -221,8 +221,8 @@ bool RequestParser::parseRequestLine(const QString &line)
             const int eqCharPos = param.indexOf('=');
             if (eqCharPos <= 0) continue;  // ignores params without name
 
-            const QByteArrayView nameComponent = param.mid(0, eqCharPos);
-            const QByteArrayView valueComponent = param.mid(eqCharPos + 1);
+            const QByteArrayView nameComponent = param.first(eqCharPos);
+            const QByteArrayView valueComponent = param.sliced(eqCharPos + 1);
             const QString paramName = QString::fromUtf8(
                 QByteArray::fromPercentEncoding(asQByteArray(nameComponent)).replace('+', ' '));
             const QByteArray paramValue = QByteArray::fromPercentEncoding(asQByteArray(valueComponent)).replace('+', ' ');
@@ -270,7 +270,7 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
             return false;
         }
 
-        const QByteArray delimiter = Utils::String::unquote(QStringView(contentType).mid(idx + boundaryFieldName.size())).toLatin1();
+        const QByteArray delimiter = Utils::String::unquote(QStringView(contentType).sliced(idx + boundaryFieldName.size())).toLatin1();
         if (delimiter.isEmpty())
         {
             qWarning() << Q_FUNC_INFO << "boundary delimiter field empty!";
@@ -279,7 +279,7 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
 
         // split data by "dash-boundary"
         const QByteArray dashDelimiter = QByteArray("--") + delimiter + CRLF;
-        QList<QByteArrayView> multipart = splitToViews(data, dashDelimiter, Qt::SkipEmptyParts);
+        QList<QByteArrayView> multipart = splitToViews(data, dashDelimiter);
         if (multipart.isEmpty())
         {
             qWarning() << Q_FUNC_INFO << "multipart empty";
@@ -310,8 +310,8 @@ bool RequestParser::parseFormData(const QByteArrayView data)
         return false;
     }
 
-    const QString headers = QString::fromLatin1(data.mid(0, eohPos));
-    const QByteArrayView payload = viewWithoutEndingWith(data.mid((eohPos + EOH.size()), data.size()), CRLF);
+    const QString headers = QString::fromLatin1(data.first(eohPos));
+    const QByteArrayView payload = viewWithoutEndingWith(data.sliced((eohPos + EOH.size())), CRLF);
 
     HeaderMap headersMap;
     const QList<QStringView> headerLines = QStringView(headers).split(QString::fromLatin1(CRLF), Qt::SkipEmptyParts);
@@ -328,8 +328,8 @@ bool RequestParser::parseFormData(const QByteArrayView data)
                 if (idx < 0)
                     continue;
 
-                const QString name = directive.left(idx).trimmed().toString().toLower();
-                const QString value = Utils::String::unquote(directive.mid(idx + 1).trimmed()).toString();
+                const QString name = directive.first(idx).trimmed().toString().toLower();
+                const QString value = Utils::String::unquote(directive.sliced(idx + 1).trimmed()).toString();
                 headersMap[name] = value;
             }
         }

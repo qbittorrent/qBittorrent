@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,68 +31,59 @@
 
 #include <QtSystemDetection>
 
-#ifdef Q_OS_MACOS
-#include <IOKit/pwr_mgt/IOPMLib.h>
+#if defined(Q_OS_MACOS)
+#include "inhibitormacos.h"
+using InhibitorImpl = InhibitorMacOS;
+#elif defined(Q_OS_WIN)
+#include "inhibitorwindows.h"
+using InhibitorImpl = InhibitorWindows;
+#elif defined(QBT_USES_DBUS)
+#include "inhibitordbus.h"
+using InhibitorImpl = InhibitorDBus;
+#else
+#include "inhibitor.h"
+using InhibitorImpl = Inhibitor;
 #endif
 
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
-
-#ifdef QBT_USES_DBUS
-#include "powermanagement_x11.h"
-#endif
-
-PowerManagement::PowerManagement(QObject *parent)
-    : QObject(parent)
-#ifdef QBT_USES_DBUS
-    , m_inhibitor {new PowerManagementInhibitor(this)}
-#endif
+PowerManagement::PowerManagement()
+    : m_inhibitor {new InhibitorImpl}
 {
 }
 
 PowerManagement::~PowerManagement()
 {
     setIdle();
+    delete m_inhibitor;
 }
 
-void PowerManagement::setActivityState(const bool busy)
+void PowerManagement::setActivityState(const ActivityState state)
 {
-    if (busy)
+    switch (state)
+    {
+    case ActivityState::Busy:
         setBusy();
-    else
+        break;
+
+    case ActivityState::Idle:
         setIdle();
+        break;
+    };
 }
 
 void PowerManagement::setBusy()
 {
-    if (m_busy)
+    if (m_state == ActivityState::Busy)
         return;
-    m_busy = true;
 
-#ifdef Q_OS_WIN
-    ::SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED);
-#elif defined(QBT_USES_DBUS)
-    m_inhibitor->requestBusy();
-#elif defined(Q_OS_MACOS)
-    const IOReturn success = ::IOPMAssertionCreateWithName(kIOPMAssertionTypeNoIdleSleep, kIOPMAssertionLevelOn
-        , tr("qBittorrent is active").toCFString(), &m_assertionID);
-    if (success != kIOReturnSuccess)
-        m_busy = false;
-#endif
+    if (m_inhibitor->requestBusy())
+        m_state = ActivityState::Busy;
 }
 
 void PowerManagement::setIdle()
 {
-    if (!m_busy)
+    if (m_state == ActivityState::Idle)
         return;
-    m_busy = false;
 
-#ifdef Q_OS_WIN
-    ::SetThreadExecutionState(ES_CONTINUOUS);
-#elif defined(QBT_USES_DBUS)
-    m_inhibitor->requestIdle();
-#elif defined(Q_OS_MACOS)
-    ::IOPMAssertionRelease(m_assertionID);
-#endif
+    if (m_inhibitor->requestIdle())
+        m_state = ActivityState::Idle;
 }

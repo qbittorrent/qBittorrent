@@ -28,7 +28,6 @@
             });
 
             $("feedURL").focus();
-            const path = new URI().getData("path");
             $("submitButton").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -42,11 +41,12 @@
 
                 $("submitButton").disabled = true;
 
+                const path = new URLSearchParams(window.location.search).get("path");
                 fetch("api/v2/rss/addFeed", {
                         method: "POST",
                         body: new URLSearchParams({
                             url: feedURL,
-                            path: path ? (path + "\\" + feedURL) : ""
+                            path: (((path !== null) && (path.length > 0)) ? `${path}\\${feedURL}` : "")
                         })
                     })
                     .then(async (response) => {

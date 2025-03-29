@@ -359,6 +359,19 @@ void Preferences::setStatusbarDisplayed(const bool displayed)
     setValue(u"Preferences/General/StatusbarDisplayed"_s, displayed);
 }
 
+bool Preferences::isStatusbarFreeDiskSpaceDisplayed() const
+{
+    return value(u"Preferences/General/StatusbarFreeDiskSpaceDisplayed"_s, false);
+}
+
+void Preferences::setStatusbarFreeDiskSpaceDisplayed(const bool displayed)
+{
+    if (displayed == isStatusbarFreeDiskSpaceDisplayed())
+        return;
+
+    setValue(u"Preferences/General/StatusbarFreeDiskSpaceDisplayed"_s, displayed);
+}
+
 bool Preferences::isStatusbarExternalIPDisplayed() const
 {
     return value(u"Preferences/General/StatusbarExternalIPDisplayed"_s, false);
@@ -653,6 +666,47 @@ void Preferences::setSearchEnabled(const bool enabled)
         return;
 
     setValue(u"Preferences/Search/SearchEnabled"_s, enabled);
+}
+
+int Preferences::searchHistoryLength() const
+{
+    const int val = value(u"Search/HistoryLength"_s, 50);
+    return std::clamp(val, 0, 99);
+}
+
+void Preferences::setSearchHistoryLength(const int length)
+{
+    const int clampedLength = std::clamp(length, 0, 99);
+    if (clampedLength == searchHistoryLength())
+        return;
+
+    setValue(u"Search/HistoryLength"_s, clampedLength);
+}
+
+bool Preferences::storeOpenedSearchTabs() const
+{
+    return value(u"Search/StoreOpenedSearchTabs"_s, false);
+}
+
+void Preferences::setStoreOpenedSearchTabs(const bool enabled)
+{
+    if (enabled == storeOpenedSearchTabs())
+        return;
+
+    setValue(u"Search/StoreOpenedSearchTabs"_s, enabled);
+}
+
+bool Preferences::storeOpenedSearchTabResults() const
+{
+    return value(u"Search/StoreOpenedSearchTabResults"_s, false);
+}
+
+void Preferences::setStoreOpenedSearchTabResults(const bool enabled)
+{
+    if (enabled == storeOpenedSearchTabResults())
+        return;
+
+    setValue(u"Search/StoreOpenedSearchTabResults"_s, enabled);
 }
 
 bool Preferences::isWebUIEnabled() const

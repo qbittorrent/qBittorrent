@@ -30,7 +30,7 @@
                 fetch("api/v2/torrents/addTrackers", {
                         method: "POST",
                         body: new URLSearchParams({
-                            hash: new URI().getData("hash"),
+                            hash: new URLSearchParams(window.location.search).get("hash"),
                             urls: $("trackersUrls").value
                         })
                     })

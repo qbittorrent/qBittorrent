@@ -37,6 +37,7 @@ export default [
             "operator-assignment": "error",
             "prefer-arrow-callback": "error",
             "prefer-const": "error",
+            "prefer-template": "error",
             "radix": "error",
             "PreferArrowFunctions/prefer-arrow-functions": "error",
             "Stylistic/no-mixed-operators": [

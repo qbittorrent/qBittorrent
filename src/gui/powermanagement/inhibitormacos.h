@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,24 +28,20 @@
 
 #pragma once
 
-#include <QObject>
+#include <IOKit/pwr_mgt/IOPMLib.h>
 
-class FreeDiskSpaceChecker final : public QObject
+#include <QCoreApplication>
+
+#include "inhibitor.h"
+
+class InhibitorMacOS final : public Inhibitor
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(FreeDiskSpaceChecker)
+    Q_DECLARE_TR_FUNCTIONS(InhibitorMacOS)
 
 public:
-    using QObject::QObject;
-
-    qint64 lastResult() const;
-
-public slots:
-    void check();
-
-signals:
-    void checked(qint64 freeSpaceSize);
+    bool requestBusy() override;
+    bool requestIdle() override;
 
 private:
-    qint64 m_lastResult = 0;
+    IOPMAssertionID m_assertionID {};
 };

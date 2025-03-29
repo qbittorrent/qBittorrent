@@ -29,7 +29,6 @@
             });
 
             $("folderName").focus();
-            const path = new URI().getData("path");
             $("submitButton").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -43,10 +42,11 @@
 
                 $("submitButton").disabled = true;
 
+                const path = new URLSearchParams(window.location.search).get("path");
                 fetch("api/v2/rss/addFolder", {
                         method: "POST",
                         body: new URLSearchParams({
-                            path: path ? (path + "\\" + folderName) : folderName
+                            path: (((path !== null) && (path.length > 0)) ? `${path}\\${folderName}` : folderName)
                         })
                     })
                     .then(async (response) => {

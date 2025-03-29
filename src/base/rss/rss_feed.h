@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -30,6 +30,8 @@
  */
 
 #pragma once
+
+#include <chrono>
 
 #include <QtContainerFwd>
 #include <QBasicTimer>
@@ -68,7 +70,7 @@ namespace RSS
 
         friend class Session;
 
-        Feed(const QUuid &uid, const QString &url, const QString &path, Session *session);
+        Feed(Session *session, const QUuid &uid, const QString &url, const QString &path, std::chrono::seconds refreshInterval);
         ~Feed() override;
 
     public:
@@ -87,6 +89,9 @@ namespace RSS
         Article *articleByGUID(const QString &guid) const;
         Path iconPath() const;
 
+        std::chrono::seconds refreshInterval() const;
+        void setRefreshInterval(std::chrono::seconds refreshInterval);
+
         QJsonValue toJsonValue(bool withData = false) const override;
 
     signals:
@@ -94,6 +99,7 @@ namespace RSS
         void titleChanged(Feed *feed = nullptr);
         void stateChanged(Feed *feed = nullptr);
         void urlChanged(const QString &oldURL);
+        void refreshIntervalChanged(std::chrono::seconds oldRefreshInterval);
 
     private slots:
         void handleSessionProcessingEnabledChanged(bool enabled);
@@ -123,6 +129,7 @@ namespace RSS
         Private::FeedSerializer *m_serializer = nullptr;
         const QUuid m_uid;
         QString m_url;
+        std::chrono::seconds m_refreshInterval;
         QString m_title;
         QString m_lastBuildDate;
         bool m_hasError = false;

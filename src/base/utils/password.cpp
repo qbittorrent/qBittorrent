@@ -115,7 +115,7 @@ bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QString &pa
 
 bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QByteArray &password)
 {
-    const QList<QByteArrayView> list = ByteArray::splitToViews(secret, ":", Qt::SkipEmptyParts);
+    const QList<QByteArrayView> list = ByteArray::splitToViews(secret, ":");
     if (list.size() != 2)
         return false;
 

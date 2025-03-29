@@ -463,7 +463,13 @@ qlonglong TorrentImpl::wastedSize() const
 
 QString TorrentImpl::currentTracker() const
 {
-    return QString::fromStdString(m_nativeStatus.current_tracker);
+    if (!m_nativeStatus.current_tracker.empty())
+        return QString::fromStdString(m_nativeStatus.current_tracker);
+
+    if (!m_trackerEntryStatuses.isEmpty())
+        return m_trackerEntryStatuses.constFirst().url;
+
+    return {};
 }
 
 Path TorrentImpl::savePath() const

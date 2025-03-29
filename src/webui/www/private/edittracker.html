@@ -26,8 +26,9 @@
                 }
             });
 
-            const currentUrl = new URI().getData("url");
-            if (!currentUrl)
+            const searchParams = new URLSearchParams(window.location.search);
+            const currentUrl = searchParams.get("url");
+            if (currentUrl === null)
                 return;
 
             $("trackerUrl").value = currentUrl;
@@ -40,7 +41,7 @@
                 fetch("api/v2/torrents/editTracker", {
                         method: "POST",
                         body: new URLSearchParams({
-                            hash: new URI().getData("hash"),
+                            hash: searchParams.get("hash"),
                             origUrl: currentUrl,
                             newUrl: $("trackerUrl").value
                         })

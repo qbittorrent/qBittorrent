@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -69,6 +69,7 @@ public:
 
     enum class Status
     {
+        Ready,
         Ongoing,
         Finished,
         Error,
@@ -76,13 +77,18 @@ public:
         NoResults
     };
 
-    SearchJobWidget(SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent = nullptr);
+    SearchJobWidget(const QString &id, const QString &searchPattern, const QList<SearchResult> &searchResults, IGUIApplication *app, QWidget *parent = nullptr);
+    SearchJobWidget(const QString &id, SearchHandler *searchHandler, IGUIApplication *app, QWidget *parent = nullptr);
     ~SearchJobWidget() override;
 
+    QString id() const;
+    QString searchPattern() const;
+    QList<SearchResult> searchResults() const;
     Status status() const;
     int visibleResultsCount() const;
     LineEdit *lineEditSearchResultsFilter() const;
 
+    void assignSearchHandler(SearchHandler *searchHandler);
     void cancelSearch();
 
 signals:
@@ -96,6 +102,8 @@ private slots:
     void displayColumnHeaderMenu();
 
 private:
+    SearchJobWidget(const QString &id, IGUIApplication *app, QWidget *parent);
+
     void loadSettings();
     void saveSettings() const;
     void updateFilter();
@@ -125,17 +133,18 @@ private:
     void copyTorrentNames() const;
     void copyField(int column) const;
 
-    static QString statusText(Status st);
+    SettingValue<NameFilteringMode> m_nameFilteringMode;
 
+    QString m_id;
+    QString m_searchPattern;
+    QList<SearchResult> m_searchResults;
     Ui::SearchJobWidget *m_ui = nullptr;
     SearchHandler *m_searchHandler = nullptr;
     QStandardItemModel *m_searchListModel = nullptr;
     SearchSortModel *m_proxyModel = nullptr;
     LineEdit *m_lineEditSearchResultsFilter = nullptr;
-    Status m_status = Status::Ongoing;
+    Status m_status = Status::Ready;
     bool m_noSearchResults = true;
-
-    SettingValue<NameFilteringMode> m_nameFilteringMode;
 };
 
 Q_DECLARE_METATYPE(SearchJobWidget::NameFilteringMode)

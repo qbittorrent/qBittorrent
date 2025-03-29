@@ -18,6 +18,7 @@ qt_wrap_ui(UI_HEADERS
     properties/peersadditiondialog.ui
     properties/propertieswidget.ui
     rss/automatedrssdownloader.ui
+    rss/rssfeeddialog.ui
     rss/rsswidget.ui
     search/pluginselectdialog.ui
     search/pluginsourcedialog.ui
@@ -69,6 +70,7 @@ add_library(qbt_gui STATIC
     log/logmodel.h
     mainwindow.h
     optionsdialog.h
+    powermanagement/inhibitor.h
     powermanagement/powermanagement.h
     previewlistdelegate.h
     previewselectdialog.h
@@ -88,6 +90,7 @@ add_library(qbt_gui STATIC
     rss/automatedrssdownloader.h
     rss/feedlistwidget.h
     rss/htmlbrowser.h
+    rss/rssfeeddialog.h
     rss/rsswidget.h
     search/pluginselectdialog.h
     search/pluginsourcedialog.h
@@ -167,6 +170,7 @@ add_library(qbt_gui STATIC
     log/logmodel.cpp
     mainwindow.cpp
     optionsdialog.cpp
+    powermanagement/inhibitor.cpp
     powermanagement/powermanagement.cpp
     previewlistdelegate.cpp
     previewselectdialog.cpp
@@ -186,6 +190,7 @@ add_library(qbt_gui STATIC
     rss/automatedrssdownloader.cpp
     rss/feedlistwidget.cpp
     rss/htmlbrowser.cpp
+    rss/rssfeeddialog.cpp
     rss/rsswidget.cpp
     search/pluginselectdialog.cpp
     search/pluginsourcedialog.cpp
@@ -259,8 +264,8 @@ if (DBUS)
         notifications/dbusnotifier.cpp
         notifications/dbusnotificationsinterface.h
         notifications/dbusnotificationsinterface.cpp
-        powermanagement/powermanagement_x11.h
-        powermanagement/powermanagement_x11.cpp
+        powermanagement/inhibitordbus.h
+        powermanagement/inhibitordbus.cpp
     )
 endif()
 
@@ -274,21 +279,29 @@ if (STACKTRACE)
     )
 endif()
 
-if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
-    target_sources(qbt_gui PRIVATE
-        programupdater.h
-        programupdater.cpp
-    )
-endif()
-
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     target_sources(qbt_gui PRIVATE
         macosdockbadge/badger.h
         macosdockbadge/badger.mm
         macosdockbadge/badgeview.h
         macosdockbadge/badgeview.mm
+        macosshiftclickhandler.h
+        macosshiftclickhandler.cpp
         macutilities.h
         macutilities.mm
+        powermanagement/inhibitormacos.h
+        powermanagement/inhibitormacos.cpp
+        programupdater.h
+        programupdater.cpp
     )
     target_link_libraries(qbt_gui PRIVATE objc)
+endif()
+
+if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(qbt_gui PRIVATE
+        powermanagement/inhibitorwindows.h
+        powermanagement/inhibitorwindows.cpp
+        programupdater.h
+        programupdater.cpp
+    )
 endif()

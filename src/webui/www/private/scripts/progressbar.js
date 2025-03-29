@@ -40,7 +40,7 @@ window.qBittorrent.ProgressBar ??= (() => {
     const ProgressBar = new Class({
         initialize: (value, parameters) => {
             const vals = {
-                id: "progressbar_" + (progressBars++),
+                id: `progressbar_${progressBars++}`,
                 value: [value, 0].pick(),
                 width: 0,
                 height: 0,
@@ -116,13 +116,13 @@ window.qBittorrent.ProgressBar ??= (() => {
     }
 
     function ProgressBar_setValue(value) {
-        value = parseFloat(value);
-        if (isNaN(value))
+        value = Number(value);
+        if (Number.isNaN(value))
             value = 0;
         value = Math.min(Math.max(value, 0), 100);
         this.vals.value = value;
 
-        const displayedValue = `${value.round(1).toFixed(1)}%`;
+        const displayedValue = `${window.qBittorrent.Misc.toFixedPointString(value, 1)}%`;
         this.vals.dark.textContent = displayedValue;
         this.vals.light.textContent = displayedValue;
 

@@ -2,8 +2,7 @@ name: CI - WebUI
 
 on: [pull_request, push]
 
-permissions:
-  security-events: write
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -13,6 +12,8 @@ jobs:
   ci:
     name: Check
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
 
     defaults:
       run:
@@ -21,6 +22,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup nodejs
         uses: actions/setup-node@v4
@@ -28,7 +31,15 @@ jobs:
           node-version: 'lts/*'
 
       - name: Install tools
-        run: npm install
+        run: |
+          npm install
+          npm ls
+          echo "::group::npm ls --all"
+          npm ls --all
+          echo "::endgroup::"
+
+      - name: Run tests
+        run: npm test
 
       - name: Lint code
         run: npm run lint

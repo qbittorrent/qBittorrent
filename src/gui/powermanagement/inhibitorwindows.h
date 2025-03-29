@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,49 +28,11 @@
 
 #pragma once
 
-#include <QDBusUnixFileDescriptor>
-#include <QObject>
+#include "inhibitor.h"
 
-class QDBusInterface;
-class QDBusPendingCallWatcher;
-
-class PowerManagementInhibitor final : public QObject
+class InhibitorWindows final : public Inhibitor
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PowerManagementInhibitor)
-
 public:
-    PowerManagementInhibitor(QObject *parent = nullptr);
-    ~PowerManagementInhibitor() override = default;
-
-    void requestIdle();
-    void requestBusy();
-
-private slots:
-    void onAsyncReply(QDBusPendingCallWatcher *call);
-
-private:
-    enum State
-    {
-        Error,
-        Idle,
-        RequestBusy,
-        Busy,
-        RequestIdle
-    };
-
-    enum class ManagerType
-    {
-        Freedesktop,  // https://www.freedesktop.org/wiki/Specifications/power-management-spec/
-        Gnome,  // https://github.com/GNOME/gnome-settings-daemon/blob/master/gnome-settings-daemon/org.gnome.SessionManager.xml
-        Systemd // https://www.freedesktop.org/software/systemd/man/org.freedesktop.login1.html
-    };
-
-    QDBusInterface *m_busInterface = nullptr;
-    ManagerType m_manager = ManagerType::Gnome;
-
-    enum State m_state = Error;
-    enum State m_intendedState = Idle;
-    uint m_cookie = 0;
-    QDBusUnixFileDescriptor m_fd;
+    bool requestBusy() override;
+    bool requestIdle() override;
 };

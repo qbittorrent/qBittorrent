@@ -94,7 +94,13 @@ bool Path::isValid() const
 #if defined(Q_OS_WIN)
     QStringView view = m_pathStr;
     if (hasDriveLetter(view))
-        view = view.mid(3);
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        view.slice(3);
+#else
+        view = view.sliced(3);
+#endif
+    }
 
     // \\37 is using base-8 number system
     const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
@@ -147,9 +153,9 @@ Path Path::rootItem() const
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
     if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
-        return createUnchecked(m_pathStr.left(slashIndex + 1));
+        return createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
-    return createUnchecked(m_pathStr.left(slashIndex));
+    return createUnchecked(m_pathStr.first(slashIndex));
 }
 
 Path Path::parentPath() const
@@ -167,9 +173,9 @@ Path Path::parentPath() const
     // should be `c:/` instead of `c:`
     // Windows "drive letter" is limited to one alphabet
     if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
-        return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.left(slashIndex + 1));
+        return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
-    return createUnchecked(m_pathStr.left(slashIndex));
+    return createUnchecked(m_pathStr.first(slashIndex));
 }
 
 QString Path::filename() const
@@ -178,7 +184,7 @@ QString Path::filename() const
     if (slashIndex == -1)
         return m_pathStr;
 
-    return m_pathStr.mid(slashIndex + 1);
+    return m_pathStr.sliced(slashIndex + 1);
 }
 
 QString Path::extension() const
@@ -188,9 +194,9 @@ QString Path::extension() const
         return (u"." + suffix);
 
     const int slashIndex = m_pathStr.lastIndexOf(u'/');
-    const auto filename = QStringView(m_pathStr).mid(slashIndex + 1);
+    const auto filename = QStringView(m_pathStr).sliced(slashIndex + 1);
     const int dotIndex = filename.lastIndexOf(u'.', -2);
-    return ((dotIndex == -1) ? QString() : filename.mid(dotIndex).toString());
+    return ((dotIndex == -1) ? QString() : filename.sliced(dotIndex).toString());
 }
 
 bool Path::hasExtension(const QStringView ext) const
@@ -293,7 +299,7 @@ Path Path::commonPath(const Path &left, const Path &right)
     if (commonItemsCount > 0)
         commonPathSize += (commonItemsCount - 1); // size of intermediate separators
 
-    return Path::createUnchecked(left.m_pathStr.left(commonPathSize));
+    return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
 }
 
 Path Path::findRootFolder(const PathList &filePaths)
@@ -322,7 +328,13 @@ void Path::stripRootFolder(PathList &filePaths)
         return;
 
     for (Path &filePath : filePaths)
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        filePath.m_pathStr.slice(commonRootFolder.m_pathStr.size() + 1);
+#else
         filePath.m_pathStr.remove(0, (commonRootFolder.m_pathStr.size() + 1));
+#endif
+    }
 }
 
 void Path::addRootFolder(PathList &filePaths, const Path &rootFolder)

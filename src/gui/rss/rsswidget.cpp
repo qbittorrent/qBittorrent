@@ -52,6 +52,7 @@
 #include "articlelistwidget.h"
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
+#include "rssfeeddialog.h"
 #include "ui_rsswidget.h"
 
 namespace
@@ -69,8 +70,8 @@ namespace
         while (iter.hasNext())
         {
             const QRegularExpressionMatch match = iter.next();
-            const QString scheme = match.captured(4);
-            const QString host = match.captured(5);
+            const QStringView scheme = match.capturedView(4);
+            const QStringView host = match.capturedView(5);
             if (!scheme.isEmpty())
             {
                 if (host.isEmpty())
@@ -80,15 +81,21 @@ namespace
                 continue;
             }
 
-            QString relativePath = match.captured(6);
+            QStringView relativePath = match.capturedView(6);
             if (relativePath.startsWith(u'/'))
-                relativePath = relativePath.mid(1);
+            {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+                relativePath.slice(1);
+#else
+                relativePath = relativePath.sliced(1);
+#endif
+            }
 
             const QString absoluteUrl = !host.isEmpty()
                     ? QString(defaultScheme + u':' + host) : (normalizedBaseUrl + relativePath);
             const QString fullMatch = match.captured(0);
-            const QString prefix = match.captured(1);
-            const QString suffix = match.captured(7);
+            const QStringView prefix = match.capturedView(1);
+            const QStringView suffix = match.capturedView(7);
 
             html.replace(fullMatch, (prefix + absoluteUrl + suffix));
         }
@@ -106,7 +113,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
     m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s));
     m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
-    m_ui->actionEditFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
+    m_ui->actionEditFeed->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
     m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
     m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_s));
     m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
@@ -139,7 +146,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     // Feeds list actions
     connect(m_ui->actionDelete, &QAction::triggered, this, &RSSWidget::deleteSelectedItems);
     connect(m_ui->actionRename, &QAction::triggered, this, &RSSWidget::renameSelectedRSSItem);
-    connect(m_ui->actionEditFeedURL, &QAction::triggered, this, &RSSWidget::editSelectedRSSFeedURL);
+    connect(m_ui->actionEditFeed, &QAction::triggered, this, &RSSWidget::editSelectedRSSFeed);
     connect(m_ui->actionUpdate, &QAction::triggered, this, &RSSWidget::refreshSelectedItems);
     connect(m_ui->actionNewFolder, &QAction::triggered, this, &RSSWidget::askNewFolder);
     connect(m_ui->actionNewSubscription, &QAction::triggered, this, &RSSWidget::on_newFeedButton_clicked);
@@ -203,7 +210,7 @@ void RSSWidget::displayRSSListMenu(const QPoint &pos)
             {
                 menu->addAction(m_ui->actionRename);
                 if (m_ui->feedListWidget->isFeed(selectedItem))
-                    menu->addAction(m_ui->actionEditFeedURL);
+                    menu->addAction(m_ui->actionEditFeed);
                 menu->addAction(m_ui->actionDelete);
                 menu->addSeparator();
                 if (m_ui->feedListWidget->isFolder(selectedItem))
@@ -286,36 +293,29 @@ void RSSWidget::askNewFolder()
     }
     // Consider the case where the user clicked on Unread item
     RSS::Folder *rssDestFolder = ((!destItem || (destItem == m_ui->feedListWidget->stickyUnreadItem()))
-                                  ? RSS::Session::instance()->rootFolder()
-                                  : qobject_cast<RSS::Folder *>(m_ui->feedListWidget->getRSSItem(destItem)));
+            ? RSS::Session::instance()->rootFolder()
+            : qobject_cast<RSS::Folder *>(m_ui->feedListWidget->getRSSItem(destItem)));
 
     const QString newFolderPath = RSS::Item::joinPath(rssDestFolder->path(), newName);
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFolder(newFolderPath);
+    const nonstd::expected<RSS::Folder *, QString> result = RSS::Session::instance()->addFolder(newFolderPath);
     if (!result)
+    {
         QMessageBox::warning(this, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
+        return;
+    }
+
+    RSS::Folder *newFolder = result.value();
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_ui->feedListWidget->stickyUnreadItem()))
         destItem->setExpanded(true);
     // As new RSS items are added synchronously, we can do the following here.
-    m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->mapRSSItem(RSS::Session::instance()->itemByPath(newFolderPath)));
+    m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->mapRSSItem(newFolder));
 }
 
 // add a stream by a button
 void RSSWidget::on_newFeedButton_clicked()
 {
-    // Ask for feed URL
-    const QString clipText = qApp->clipboard()->text();
-    const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : u"http://"_s;
-
-    bool ok = false;
-    QString newURL = AutoExpandableDialog::getText(
-                this, tr("Please type a RSS feed URL"), tr("Feed URL:"), QLineEdit::Normal, defaultURL, &ok);
-    if (!ok) return;
-
-    newURL = newURL.trimmed();
-    if (newURL.isEmpty()) return;
-
     // Determine destination folder for new item
     QTreeWidgetItem *destItem = nullptr;
     QList<QTreeWidgetItem *> selectedItems = m_ui->feedListWidget->selectedItems();
@@ -326,21 +326,38 @@ void RSSWidget::on_newFeedButton_clicked()
             destItem = destItem->parent();
     }
     // Consider the case where the user clicked on Unread item
-    RSS::Folder *rssDestFolder = ((!destItem || (destItem == m_ui->feedListWidget->stickyUnreadItem()))
-                                  ? RSS::Session::instance()->rootFolder()
-                                  : qobject_cast<RSS::Folder *>(m_ui->feedListWidget->getRSSItem(destItem)));
+    RSS::Folder *destFolder = ((!destItem || (destItem == m_ui->feedListWidget->stickyUnreadItem()))
+            ? RSS::Session::instance()->rootFolder()
+            : qobject_cast<RSS::Folder *>(m_ui->feedListWidget->getRSSItem(destItem)));
 
-    // NOTE: We still add feed using legacy way (with URL as feed name)
-    const QString newFeedPath = RSS::Item::joinPath(rssDestFolder->path(), newURL);
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFeed(newURL, newFeedPath);
-    if (!result)
-        QMessageBox::warning(this, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
+    // Ask for feed URL
+    const QString clipText = qApp->clipboard()->text();
+    const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : u"http://"_s;
+
+    RSS::Feed *newFeed = nullptr;
+    RSSFeedDialog dialog {this};
+    dialog.setFeedURL(defaultURL);
+    while (!newFeed && (dialog.exec() == RSSFeedDialog::Accepted))
+    {
+        const QString feedURL = dialog.feedURL().trimmed();
+        const std::chrono::seconds refreshInterval = dialog.refreshInterval();
+
+        const QString feedPath = RSS::Item::joinPath(destFolder->path(), feedURL);
+        const nonstd::expected<RSS::Feed *, QString> result = RSS::Session::instance()->addFeed(feedURL, feedPath, refreshInterval);
+        if (result)
+            newFeed = result.value();
+        else
+            QMessageBox::warning(&dialog, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
+    }
+
+    if (!newFeed)
+        return;
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_ui->feedListWidget->stickyUnreadItem()))
         destItem->setExpanded(true);
     // As new RSS items are added synchronously, we can do the following here.
-    m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->mapRSSItem(RSS::Session::instance()->itemByPath(newFeedPath)));
+    m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->mapRSSItem(newFeed));
 }
 
 void RSSWidget::deleteSelectedItems()
@@ -395,7 +412,7 @@ void RSSWidget::saveFoldersOpenState()
 
 void RSSWidget::refreshAllFeeds()
 {
-    RSS::Session::instance()->refresh();
+    RSS::Session::instance()->rootFolder()->refresh();
 }
 
 void RSSWidget::downloadSelectedTorrents()
@@ -457,7 +474,7 @@ void RSSWidget::renameSelectedRSSItem()
     } while (!ok);
 }
 
-void RSSWidget::editSelectedRSSFeedURL()
+void RSSWidget::editSelectedRSSFeed()
 {
     QList<QTreeWidgetItem *> selectedItems = m_ui->feedListWidget->selectedItems();
     if (selectedItems.size() != 1)
@@ -469,15 +486,20 @@ void RSSWidget::editSelectedRSSFeedURL()
     if (!rssFeed) [[unlikely]]
         return;
 
-    bool ok = false;
-    QString newURL = AutoExpandableDialog::getText(this, tr("Please type a RSS feed URL")
-            , tr("Feed URL:"), QLineEdit::Normal, rssFeed->url(), &ok).trimmed();
-    if (!ok || newURL.isEmpty())
-        return;
+    auto *dialog = new RSSFeedDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->setFeedURL(rssFeed->url());
+    dialog->setRefreshInterval(rssFeed->refreshInterval());
+    connect(dialog, &RSSFeedDialog::accepted, this, [this, dialog, rssFeed]
+    {
+        rssFeed->setRefreshInterval(dialog->refreshInterval());
 
-    const nonstd::expected<void, QString> result = RSS::Session::instance()->setFeedURL(rssFeed, newURL);
-    if (!result)
-        QMessageBox::warning(this, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
+        const QString newURL = dialog->feedURL();
+        const nonstd::expected<void, QString> result = RSS::Session::instance()->setFeedURL(rssFeed, newURL);
+        if (!result)
+            QMessageBox::warning(this, u"qBittorrent"_s, result.error(), QMessageBox::Ok);
+    });
+    dialog->open();
 }
 
 void RSSWidget::refreshSelectedItems()

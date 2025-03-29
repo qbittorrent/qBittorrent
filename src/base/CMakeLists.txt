@@ -6,6 +6,7 @@ add_library(qbt_base STATIC
     applicationcomponent.h
     asyncfilestorage.h
     bittorrent/abstractfilestorage.h
+    bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
     bittorrent/bandwidthscheduler.h
@@ -54,6 +55,7 @@ add_library(qbt_base STATIC
     concepts/stringable.h
     digest32.h
     exceptions.h
+    freediskspacechecker.h
     global.h
     http/connection.h
     http/httperror.h
@@ -159,6 +161,7 @@ add_library(qbt_base STATIC
     bittorrent/trackerentry.cpp
     bittorrent/trackerentrystatus.cpp
     exceptions.cpp
+    freediskspacechecker.cpp
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp

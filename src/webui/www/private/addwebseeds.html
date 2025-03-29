@@ -29,7 +29,7 @@
                 fetch("api/v2/torrents/addWebSeeds", {
                         method: "POST",
                         body: new URLSearchParams({
-                            hash: new URI().getData("hash"),
+                            hash: new URLSearchParams(window.location.search).get("hash"),
                             urls: $("urls").value.split("\n").map(w => encodeURIComponent(w.trim())).filter(w => (w.length > 0)).join("|")
                         })
                     })

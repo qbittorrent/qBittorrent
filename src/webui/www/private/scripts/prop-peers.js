@@ -56,9 +56,11 @@ window.qBittorrent.PropPeers ??= (() => {
             clearTimeout(loadTorrentPeersTimer);
             return;
         }
-        const url = new URI("api/v2/sync/torrentPeers")
-            .setData("rid", syncTorrentPeersLastResponseId)
-            .setData("hash", current_hash);
+        const url = new URL("api/v2/sync/torrentPeers", window.location);
+        url.search = new URLSearchParams({
+            hash: current_hash,
+            rid: syncTorrentPeersLastResponseId,
+        });
         fetch(url, {
                 method: "GET",
                 cache: "no-store"
@@ -135,7 +137,7 @@ window.qBittorrent.PropPeers ??= (() => {
                     icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Add Peers)QBT_TR[CONTEXT=PeersAdditionDialog]",
                     loadMethod: "iframe",
-                    contentURL: "addpeers.html?hash=" + hash,
+                    contentURL: `addpeers.html?hash=${hash}`,
                     scrollbars: false,
                     resizable: false,
                     maximizable: false,

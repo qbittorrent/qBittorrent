@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -56,19 +56,22 @@
 
 const QString KEY_UID = u"uid"_s;
 const QString KEY_URL = u"url"_s;
+const QString KEY_REFRESHINTERVAL = u"refreshInterval"_s;
 const QString KEY_TITLE = u"title"_s;
 const QString KEY_LASTBUILDDATE = u"lastBuildDate"_s;
 const QString KEY_ISLOADING = u"isLoading"_s;
 const QString KEY_HASERROR = u"hasError"_s;
 const QString KEY_ARTICLES = u"articles"_s;
 
+using namespace std::chrono_literals;
 using namespace RSS;
 
-Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *session)
+Feed::Feed(Session *session, const QUuid &uid, const QString &url, const QString &path, const std::chrono::seconds refreshInterval)
     : Item(path)
-    , m_session(session)
-    , m_uid(uid)
-    , m_url(url)
+    , m_session {session}
+    , m_uid {uid}
+    , m_url {url}
+    , m_refreshInterval {refreshInterval}
 {
     const auto uidHex = QString::fromLatin1(m_uid.toRfc4122().toHex());
     m_dataFileName = Path(uidHex + u".json");
@@ -327,9 +330,9 @@ bool Feed::addArticle(const QVariantHash &articleData)
 
     // Insertion sort
     const int maxArticles = m_session->maxArticlesPerFeed();
-    const auto lowerBound = std::lower_bound(m_articlesByDate.begin(), m_articlesByDate.end()
-                                       , articleData.value(Article::KeyDate).toDateTime(), Article::articleDateRecentThan);
-    if ((lowerBound - m_articlesByDate.begin()) >= maxArticles)
+    const auto lowerBound = std::lower_bound(m_articlesByDate.cbegin(), m_articlesByDate.cend()
+        , articleData.value(Article::KeyDate).toDateTime(), Article::articleDateRecentThan);
+    if ((lowerBound - m_articlesByDate.cbegin()) >= maxArticles)
         return false; // we reach max articles
 
     auto *article = new Article(this, articleData);
@@ -462,6 +465,20 @@ Path Feed::iconPath() const
     return m_iconPath;
 }
 
+std::chrono::seconds Feed::refreshInterval() const
+{
+    return m_refreshInterval;
+}
+
+void Feed::setRefreshInterval(const std::chrono::seconds refreshInterval)
+{
+    if (refreshInterval == m_refreshInterval)
+        return;
+
+    const std::chrono::seconds oldRefreshInterval = std::exchange(m_refreshInterval, refreshInterval);
+    emit refreshIntervalChanged(oldRefreshInterval);
+}
+
 void Feed::setURL(const QString &url)
 {
     const QString oldURL = m_url;
@@ -474,6 +491,8 @@ QJsonValue Feed::toJsonValue(const bool withData) const
     QJsonObject jsonObj;
     jsonObj.insert(KEY_UID, uid().toString());
     jsonObj.insert(KEY_URL, url());
+    if (refreshInterval() > 0s)
+        jsonObj.insert(KEY_REFRESHINTERVAL, static_cast<qint64>(refreshInterval().count()));
 
     if (withData)
     {

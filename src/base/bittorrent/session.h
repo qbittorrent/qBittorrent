@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -34,6 +34,7 @@
 
 #include "base/pathfwd.h"
 #include "base/tagset.h"
+#include "addtorrenterror.h"
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
 #include "sharelimitaction.h"
@@ -237,6 +238,12 @@ namespace BitTorrent
         virtual Path finishedTorrentExportDirectory() const = 0;
         virtual void setFinishedTorrentExportDirectory(const Path &path) = 0;
 
+        virtual bool isAddTrackersFromURLEnabled() const = 0;
+        virtual void setAddTrackersFromURLEnabled(bool enabled) = 0;
+        virtual QString additionalTrackersURL() const = 0;
+        virtual void setAdditionalTrackersURL(const QString &url) = 0;
+        virtual QString additionalTrackersFromURL() const = 0;
+
         virtual int globalDownloadSpeedLimit() const = 0;
         virtual void setGlobalDownloadSpeedLimit(int limit) = 0;
         virtual int globalUploadSpeedLimit() const = 0;
@@ -386,6 +393,8 @@ namespace BitTorrent
         virtual void setIncludeOverheadInLimits(bool include) = 0;
         virtual QString announceIP() const = 0;
         virtual void setAnnounceIP(const QString &ip) = 0;
+        virtual int announcePort() const = 0;
+        virtual void setAnnouncePort(int port) = 0;
         virtual int maxConcurrentHTTPAnnounces() const = 0;
         virtual void setMaxConcurrentHTTPAnnounces(int value) = 0;
         virtual bool isReannounceWhenAddressChangedEnabled() const = 0;
@@ -413,6 +422,8 @@ namespace BitTorrent
         virtual void setUTPRateLimited(bool limited) = 0;
         virtual MixedModeAlgorithm utpMixedMode() const = 0;
         virtual void setUtpMixedMode(MixedModeAlgorithm mode) = 0;
+        virtual int hostnameCacheTTL() const = 0;
+        virtual void setHostnameCacheTTL(int value) = 0;
         virtual bool isIDNSupportEnabled() const = 0;
         virtual void setIDNSupportEnabled(bool enabled) = 0;
         virtual bool multiConnectionsPerIpEnabled() const = 0;
@@ -471,9 +482,11 @@ namespace BitTorrent
         virtual QString lastExternalIPv4Address() const = 0;
         virtual QString lastExternalIPv6Address() const = 0;
 
+        virtual qint64 freeDiskSpace() const = 0;
+
     signals:
         void startupProgressUpdated(int progress);
-        void addTorrentFailed(const InfoHash &infoHash, const QString &reason);
+        void addTorrentFailed(const InfoHash &infoHash, const AddTorrentError &reason);
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
@@ -511,5 +524,6 @@ namespace BitTorrent
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
         void trackerEntryStatusesUpdated(Torrent *torrent, const QHash<QString, TrackerEntryStatus> &updatedTrackers);
+        void freeDiskSpaceChecked(qint64 result);
     };
 }

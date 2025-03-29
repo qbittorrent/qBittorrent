@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  *
  * This program is free software; you can redistribute it and/or
@@ -50,17 +50,13 @@
 #include "base/http/types.h"
 #include "base/path.h"
 #include "base/utils/net.h"
-#include "base/utils/thread.h"
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 11, 4};
-
-class QTimer;
+inline const Utils::Version<3, 2> API_VERSION {2, 11, 6};
 
 class APIController;
 class AuthController;
-class FreeDiskSpaceChecker;
 class WebApplication;
 
 namespace BitTorrent
@@ -212,6 +208,7 @@ private:
         {{u"torrents"_s, u"setShareLimits"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSSLParameters"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setSuperSeeding"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"setTags"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::METHOD_POST},
@@ -258,8 +255,5 @@ private:
 
     QList<Http::Header> m_prebuiltHeaders;
 
-    Utils::Thread::UniquePtr m_workerThread;
-    FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
-    QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
 };

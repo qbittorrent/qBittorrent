@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
+ * Copyright (C) 2025  Luke Memet (lukemmtt)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,18 +26,25 @@
  * exception statement from your version.
  */
 
-#include "freediskspacechecker.h"
+#pragma once
 
-#include "base/bittorrent/session.h"
-#include "base/utils/fs.h"
+#include <QObject>
+#include <QPersistentModelIndex>
 
-qint64 FreeDiskSpaceChecker::lastResult() const
+class QTreeView;
+
+// Workaround for QTBUG-115838: Shift-click range selection not working properly on macOS
+class MacOSShiftClickHandler final : public QObject
 {
-    return m_lastResult;
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(MacOSShiftClickHandler)
 
-void FreeDiskSpaceChecker::check()
-{
-    m_lastResult = Utils::Fs::freeDiskSpaceOnPath(BitTorrent::Session::instance()->savePath());
-    emit checked(m_lastResult);
-}
+public:
+    explicit MacOSShiftClickHandler(QTreeView *treeView);
+
+private:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
+    QTreeView *m_treeView = nullptr;
+    QPersistentModelIndex m_lastClickedIndex;
+};

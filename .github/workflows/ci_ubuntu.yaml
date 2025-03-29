@@ -2,9 +2,7 @@ name: CI - Ubuntu
 
 on: [pull_request, push]
 
-permissions:
-  actions: write
-  security-events: write
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -14,22 +12,27 @@ jobs:
   ci:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      security-events: write
 
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.10", "1.2.19"]
+        libt_version: ["2.0.11", "1.2.20"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.5.2"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
-      harden_flags: "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS"
+      harden_flags: "-D_FORTIFY_SOURCE=3 -D_GLIBCXX_ASSERTIONS"
       libtorrent_path: "${{ github.workspace }}/../libtorrent"
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Install dependencies
         run: |
@@ -44,15 +47,15 @@ jobs:
           store_cache: ${{ github.ref == 'refs/heads/master' }}
           update_packager_index: false
           ccache_options: |
-            max_size=2G
+            max_size=1G
 
       - name: Install boost
         env:
           BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "76"
+          BOOST_MINOR_VERSION: "77"
           BOOST_PATCH_VERSION: "0"
         run: |
-          boost_url="https://boostorg.jfrog.io/artifactory/main/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          boost_url="https://archives.boost.io/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
           boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
           set +e
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
@@ -62,6 +65,9 @@ jobs:
             tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
           fi
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
+          cd "${{ env.boost_path }}"
+          ./bootstrap.sh
+          ./b2 stage --stagedir=./ --with-headers
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
@@ -85,8 +91,9 @@ jobs:
             -G "Ninja" \
             -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_CXX_STANDARD=20 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -DBOOST_ROOT="${{ env.boost_path }}" \
+            -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" \
             -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
@@ -108,7 +115,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -DBOOST_ROOT="${{ env.boost_path }}" \
+            -DBOOST_ROOT="${{ env.boost_path }}/lib/cmake" \
             -DCMAKE_INSTALL_PREFIX="/usr" \
             -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
@@ -134,16 +141,15 @@ jobs:
 
       - name: Install AppImage
         run: |
-          sudo apt install libfuse2
           curl \
             -L \
             -Z \
-            -O https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-static-x86_64.AppImage \
-            -O https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-static-x86_64.AppImage \
+            -O https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage \
+            -O https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage \
             -O https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
           chmod +x \
-            linuxdeploy-static-x86_64.AppImage \
-            linuxdeploy-plugin-qt-static-x86_64.AppImage \
+            linuxdeploy-x86_64.AppImage \
+            linuxdeploy-plugin-qt-x86_64.AppImage \
             linuxdeploy-plugin-appimage-x86_64.AppImage
 
       - name: Prepare files for AppImage
@@ -156,12 +162,12 @@ jobs:
 
       - name: Package AppImage
         run: |
-          ./linuxdeploy-static-x86_64.AppImage --appdir qbittorrent --plugin qt
+          ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --plugin qt
           rm qbittorrent/apprun-hooks/*
           cp .github/workflows/helper/appimage/export_vars.sh qbittorrent/apprun-hooks/export_vars.sh
           NO_APPSTREAM=1 \
             OUTPUT=upload/qbittorrent-CI_Ubuntu_x86_64.AppImage \
-            ./linuxdeploy-static-x86_64.AppImage --appdir qbittorrent --output appimage
+            ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --output appimage
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

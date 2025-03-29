@@ -55,13 +55,13 @@ li[data-parent].open:not(.hidden-search) {
 }
 
 li.disabled {
-    background-color: #999;
+    background-color: #999999;
     cursor: not-allowed;
     opacity: 0.3;
 }
 
 li.overflow {
-    background-color: #999;
+    background-color: #999999;
     cursor: not-allowed;
     opacity: 0.3;
 }
@@ -140,7 +140,7 @@ li.short {
     height: 11px;
     margin-left: 22px;
     margin-right: 2px;
-    margin-top: 0px;
+    margin-top: 0;
     padding: 1px 3px 2px;
     width: 8px;
 }
@@ -151,7 +151,7 @@ li.short {
     float: left;
     font-size: inherit;
     height: 8px;
-    margin-left: 0px;
+    margin-left: 0;
     transform: rotate(45deg);
     width: 5px;
 }
@@ -194,7 +194,7 @@ li.short {
     font-weight: bold;
     margin-left: -22px;
     margin-right: 2px;
-    margin-top: 0px;
+    margin-top: 0;
     padding: 7px;
 }
 
