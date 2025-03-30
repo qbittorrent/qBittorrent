@@ -32,6 +32,7 @@
 #include <QHash>
 #include <QMetaType>
 #include <QObject>
+#include <QProcessEnvironment>
 
 #include "base/path.h"
 #include "base/utils/version.h"
@@ -87,6 +88,8 @@ public:
     SearchHandler *startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
     SearchDownloadHandler *downloadTorrent(const QString &pluginName, const QString &url);
 
+    QProcessEnvironment proxyEnvironment() const;
+
     static PluginVersion getPluginVersion(const Path &filePath);
     static QString categoryFullName(const QString &categoryName);
     QString pluginFullName(const QString &pluginName) const;
@@ -122,4 +125,5 @@ private:
     const QString m_updateUrl;
 
     QHash<QString, PluginInfo*> m_plugins;
+    QProcessEnvironment m_proxyEnv;
 };
