@@ -1315,21 +1315,21 @@ void OptionsDialog::saveBittorrentTabOptions() const
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
 
-    auto enabledAddTrackers = m_ui->checkAddTrackersFromURL->isChecked();
-    auto url = m_ui->textTrackersURL->text();
-    if (!url.isEmpty() && enabledAddTrackers)
+    const bool isAddTrackersEnabled = m_ui->checkAddTrackersFromURL->isChecked();
+    const QString url = m_ui->textTrackersURL->text();
+    if (isAddTrackersEnabled && !url.isEmpty())
     {
         Net::DownloadManager::instance()->download(url, Preferences::instance()->useProxyForGeneralPurposes()
-            , this, &OptionsDialog::onAddTrackersDownload);
+            , this, &OptionsDialog::onAdditionalTrackersDownload);
     }
     else
     {
-        session->setAddTrackersFromURLEnabled(enabledAddTrackers);
+        session->setAddTrackersFromURLEnabled(isAddTrackersEnabled);
         session->setAdditionalTrackersURL(url);
     }
 }
 
-void OptionsDialog::onAddTrackersDownload(const Net::DownloadResult &result)
+void OptionsDialog::onAdditionalTrackersDownload(const Net::DownloadResult &result)
 {
     if (result.status != Net::DownloadStatus::Success)
     {
@@ -1349,8 +1349,6 @@ void OptionsDialog::onAddTrackersDownload(const Net::DownloadResult &result)
 
     session->setAddTrackersFromURLEnabled(m_ui->checkAddTrackersFromURL->isChecked());
     session->setAdditionalTrackersURL(m_ui->textTrackersURL->text());
-
-    return;
 }
 
 void OptionsDialog::loadRSSTabOptions()

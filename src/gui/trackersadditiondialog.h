@@ -58,14 +58,13 @@ public:
     ~TrackersAdditionDialog();
 
 private slots:
-    void onAccepted() const;
+    void onAccepted();
     void onDownloadButtonClicked();
     void onTorrentListDownloadFinished(const Net::DownloadResult &result);
 
 private:
     void saveSettings();
     void loadSettings();
-    int isValidEndpoint(const QStringView &endpoint) const;
 
     Ui::TrackersAdditionDialog *m_ui = nullptr;
     BitTorrent::Torrent *const m_torrent = nullptr;
