@@ -74,31 +74,31 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
     delete m_ui;
 }
 
-int TrackersAdditionDialog::isValidEndpoint(const QStringView &endpoint) const
+bool isValidEndpoint(const QStringView endpoint)
 {
     if (endpoint.isEmpty())
-        return 0;
-    QUrl url(endpoint.toString());
+        return false;
+    const QUrl url {endpoint.toString()};
     if (!url.isValid())
-        return 0;
+        return false;
     if (url.scheme().isEmpty())
-        return 0;
+        return false;
     if (url.host().isEmpty())
-        return 0;
-    return 1;
+        return false;
+    return true;
 }
 
-void TrackersAdditionDialog::onAccepted() const
+void TrackersAdditionDialog::onAccepted()
 {
     const QList<BitTorrent::TrackerEntryStatus> currentTrackers = m_torrent->trackers();
     const int baseTier = !currentTrackers.isEmpty() ? (currentTrackers.last().tier + 1) : 0;
 
     QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(m_ui->textEditTrackersList->toPlainText());
-    for (BitTorrent::TrackerEntry &entry : entries) {
-        auto isValid = isValidEndpoint(entry.url);
-        if (!isValid)
+    for (BitTorrent::TrackerEntry &entry : entries)
+    {
+        if (!isValidEndpoint(entry.url))
         {
-            QMessageBox::warning(const_cast<TrackersAdditionDialog *>(this), tr("Invalid tracker URL"), tr("The tracker URL \"%1\" is invalid").arg(entry.url));
+            QMessageBox::warning(this, tr("Invalid tracker URL"), tr("The tracker URL \"%1\" is invalid").arg(entry.url));
             return;
         }
         entry.tier = Utils::Number::clampingAdd(entry.tier, baseTier);
