@@ -78,7 +78,6 @@
 #include "watchedfolderoptionsdialog.h"
 #include "watchedfoldersmodel.h"
 #include "webui/webui.h"
-#include "base/net/downloadmanager.h"
 
 #ifndef DISABLE_WEBUI
 #include "base/net/dnsupdater.h"
