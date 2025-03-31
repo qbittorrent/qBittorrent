@@ -104,10 +104,10 @@ namespace Net
         QString url;
         DownloadStatus status = DownloadStatus::Failed;
         QString errorString;
+        QString contentType;
         QByteArray data;
         Path filePath;
         QString magnetURI;
-        QString contentType;
     };
 
     class DownloadHandler : public QObject
