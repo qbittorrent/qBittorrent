@@ -32,10 +32,10 @@
 #include <QDialog>
 
 #include "base/net/proxytype.h"
+#include "base/net/downloadmanager.h"
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
-#include "base/net/downloadmanager.h"
 
 class QListWidgetItem;
 
@@ -138,6 +138,8 @@ private:
 
     void loadRSSTabOptions();
     void saveRSSTabOptions() const;
+
+    void onAdditionalTrackersDownload(const Net::DownloadResult &result);
 
     void loadSearchTabOptions();
     void saveSearchTabOptions() const;
