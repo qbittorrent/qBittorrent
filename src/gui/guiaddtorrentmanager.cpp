@@ -33,7 +33,6 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
-#include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/torrentfileguard.h"

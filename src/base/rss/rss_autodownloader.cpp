@@ -43,6 +43,7 @@
 
 #include "base/addtorrentmanager.h"
 #include "base/asyncfilestorage.h"
+#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/global.h"
