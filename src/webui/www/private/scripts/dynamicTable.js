@@ -103,7 +103,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv.addEventListener("scroll", () => {
                 tableElement.style.left = `${-this.dynamicTableDiv.scrollLeft}px`;
                 // rerender on scroll
-                this.rerender();
+                if (this.useVirtualList)
+                    this.rerender();
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
@@ -410,7 +411,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.getRowCells(this.hiddenTableHeader)[pos].style.cssText = style;
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
             // rerender on column resize
-            this.rerender();
+            if (this.useVirtualList)
+                this.rerender();
 
             column.onResize?.(column.name);
         },
@@ -893,9 +895,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         rerender: function(rows = this.getFilteredAndSortedRows()) {
-            if (!this.useVirtualList)
-                return;
-
             // set the scrollable height
             this.table.style.height = `${rows.length * this.rowHeight}px`;
 
