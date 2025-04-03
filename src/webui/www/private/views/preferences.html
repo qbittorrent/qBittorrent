@@ -106,6 +106,10 @@
             <input type="checkbox" id="displayFullURLTrackerColumn">
             <label for="displayFullURLTrackerColumn">QBT_TR(Display full announce URL in the Tracker column)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="useVirtualListColumn">
+            <label for="useVirtualListColumn">QBT_TR(Optimize list performance (experimental))QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 </div>
 
@@ -2211,6 +2215,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     $("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
+                    document.getElementById("useVirtualListColumn").checked = (LocalPreferences.get("use_virtual_list", "false") === "true");
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
                     $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
                     $("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
@@ -2646,6 +2651,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["status_bar_external_ip"] = $("statusBarExternalIP").checked;
             settings["performance_warning"] = $("performanceWarning").checked;
             LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
+            LocalPreferences.set("use_virtual_list", document.getElementById("useVirtualListColumn").checked.toString());
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
             LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
             LocalPreferences.set("dblclick_complete", $("dblclickCompleteSelect").value);

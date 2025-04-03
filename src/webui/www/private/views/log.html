@@ -223,8 +223,8 @@
                 }
             });
 
-            tableInfo["main"].instance.setup("logMessageTableDiv", "logMessageTableFixedHeaderDiv", logTableContextMenu);
-            tableInfo["peer"].instance.setup("logPeerTableDiv", "logPeerTableFixedHeaderDiv", logTableContextMenu);
+            tableInfo["main"].instance.setup("logMessageTableDiv", "logMessageTableFixedHeaderDiv", logTableContextMenu, true);
+            tableInfo["peer"].instance.setup("logPeerTableDiv", "logPeerTableFixedHeaderDiv", logTableContextMenu, true);
 
             MUI.Panels.instances.LogPanel.contentEl.style.height = "100%";
 
@@ -331,7 +331,7 @@
             if (curTab === undefined)
                 curTab = currentSelectedTab;
 
-            $("numFilteredLogs").textContent = tableInfo[curTab].instance.filteredLength();
+            $("numFilteredLogs").textContent = tableInfo[curTab].instance.filteredLength;
             $("numTotalLogs").textContent = tableInfo[curTab].instance.getRowSize();
         };
 

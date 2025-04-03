@@ -8,6 +8,10 @@
     background-color: var(--color-background-default);
 }
 
+tr.altRow {
+    background-color: var(--color-background-default);
+}
+
 #transferList .dynamicTable td {
     padding: 2px;
 }

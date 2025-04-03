@@ -70,14 +70,18 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initialize: () => {},
 
-        setup: function(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu) {
+        setup: function(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu, useVirtualList = false) {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
+            this.useVirtualList = (LocalPreferences.get("use_virtual_list", "false") === "true") && useVirtualList;
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
             this.hiddenTableHeader = this.dynamicTableDiv.querySelector(`thead tr`);
+            this.table = this.dynamicTableDiv.querySelector(`table`);
             this.tableBody = this.dynamicTableDiv.querySelector(`tbody`);
+            this.rowHeight = 26;
             this.rows = new Map();
+            this.cachedElements = [];
             this.selectedRows = [];
             this.columns = [];
             this.contextMenu = contextMenu;
@@ -96,8 +100,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             const tableFixedHeaderDiv = $(this.dynamicTableFixedHeaderDivId);
 
             const tableElement = tableFixedHeaderDiv.querySelector("table");
+            const rerender = () => { this.rerender(); };
             this.dynamicTableDiv.addEventListener("scroll", function() {
                 tableElement.style.left = `${-this.scrollLeft}px`;
+                // rerender on scroll
+                rerender();
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
@@ -403,6 +410,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             const style = `width: ${column.width}px; ${column.style}`;
             this.getRowCells(this.hiddenTableHeader)[pos].style.cssText = style;
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
+            // rerender on columen resize
+            this.rerender();
 
             column.onResize?.(column.name);
         },
@@ -699,17 +708,17 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         setupAltRow: function() {
-            const useAltRowColors = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
+            const useAltRowColors = !this.useVirtualList && (LocalPreferences.get("use_alt_row_colors", "true") === "true");
             if (useAltRowColors)
                 document.getElementById(this.dynamicTableDivId).classList.add("altRowColors");
         },
 
         selectAll: function() {
             this.deselectAll();
-            for (const tr of this.getTrs()) {
-                this.selectedRows.push(tr.rowId);
+            for (const tr of this.getTrs())
                 tr.classList.add("selected");
-            }
+            for (const row of this.getFilteredAndSortedRows())
+                this.selectedRows.push(row.rowId);
         },
 
         deselectAll: function() {
@@ -831,64 +840,152 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
             }
 
-            const trs = [...this.getTrs()];
+            if (this.useVirtualList) {
+                this.table.style.position = "relative";
+                // rerender on table update
+                this.rerender();
+            }
+            else {
+                const trs = [...this.getTrs()];
 
-            for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
-                const rowId = rows[rowPos]["rowId"];
-                let tr_found = false;
-                for (let j = rowPos; j < trs.length; ++j) {
-                    if (trs[j]["rowId"] === rowId) {
-                        tr_found = true;
-                        if (rowPos === j)
-                            break;
-                        trs[j].inject(trs[rowPos], "before");
-                        const tmpTr = trs[j];
-                        trs.splice(j, 1);
-                        trs.splice(rowPos, 0, tmpTr);
-                        break;
-                    }
-                }
-                if (tr_found) { // row already exists in the table
-                    this.updateRow(trs[rowPos], fullUpdate);
-                }
-                else { // else create a new row in the table
-                    const tr = document.createElement("tr");
-                    // set tabindex so element receives keydown events
-                    // more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
-                    tr.tabIndex = -1;
-
+                for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
                     const rowId = rows[rowPos]["rowId"];
-                    tr.setAttribute("data-row-id", rowId);
-                    tr["rowId"] = rowId;
-
-                    for (let k = 0; k < this.columns.length; ++k) {
-                        const td = document.createElement("td");
-                        if ((this.columns[k].visible === "0") || this.columns[k].force_hide)
-                            td.classList.add("invisible");
-                        tr.append(td);
+                    let tr_found = false;
+                    for (let j = rowPos; j < trs.length; ++j) {
+                        if (trs[j]["rowId"] === rowId) {
+                            tr_found = true;
+                            if (rowPos === j)
+                                break;
+                            trs[j].inject(trs[rowPos], "before");
+                            const tmpTr = trs[j];
+                            trs.splice(j, 1);
+                            trs.splice(rowPos, 0, tmpTr);
+                            break;
+                        }
                     }
-
-                    // Insert
-                    if (rowPos >= trs.length) {
-                        tr.inject(this.tableBody);
-                        trs.push(tr);
+                    if (tr_found) { // row already exists in the table
+                        this.updateRow(trs[rowPos], fullUpdate);
                     }
-                    else {
-                        tr.inject(trs[rowPos], "before");
-                        trs.splice(rowPos, 0, tr);
+                    else { // else create a new row in the table
+                        const tr = this.createRowElement(rows[rowPos]);
+
+                        // Insert
+                        if (rowPos >= trs.length) {
+                            tr.inject(this.tableBody);
+                            trs.push(tr);
+                        }
+                        else {
+                            tr.inject(trs[rowPos], "before");
+                            trs.splice(rowPos, 0, tr);
+                        }
+
+                        // Update context menu
+                        this.contextMenu?.addTarget(tr);
+
+                        this.updateRow(tr, true);
                     }
+                }
 
-                    // Update context menu
-                    this.contextMenu?.addTarget(tr);
+                const rowPos = rows.length;
 
-                    this.updateRow(tr, true);
+                while ((rowPos < trs.length) && (trs.length > 0))
+                    trs.pop().destroy();
+            }
+        },
+
+        rerender: function() {
+            if (!this.useVirtualList)
+                return;
+            const rows = this.getFilteredAndSortedRows();
+
+            for (let i = 0; i < this.selectedRows.length; ++i) {
+                if (!(this.selectedRows[i] in rows)) {
+                    this.selectedRows.splice(i, 1);
+                    --i;
                 }
             }
 
-            const rowPos = rows.length;
+            // set the scrollable height
+            this.table.style.height = `${rows.length * this.rowHeight}px`;
 
-            while ((rowPos < trs.length) && (trs.length > 0))
-                trs.pop().destroy();
+            // remove existing children
+            this.tableBody.textContent = "";
+
+            // show extra 6 rows at top/bottom to reduce flickering
+            const extraRowCount = 6;
+            // how many rows can be shown in the visible area
+            const visibleRowCount = Math.ceil(this.dynamicTableDiv.offsetHeight / this.rowHeight) + (extraRowCount * 2);
+            // start position of visible rows, offsetted by scrollTop
+            const startRow = Math.max(Math.trunc(this.dynamicTableDiv.scrollTop / this.rowHeight) - extraRowCount, 0);
+            const endRow = Math.min(startRow + visibleRowCount, rows.length);
+            const fragment = document.createDocumentFragment();
+            for (let i = startRow; i < endRow; i++) {
+                const row = rows[i];
+                const isAltRow = (i % 2) === 0;
+                const offset = i * this.rowHeight;
+                const position = i - startRow;
+                // reuse existing elements
+                let element = this.cachedElements[position];
+                if (element) {
+                    this.updateRowElement(element, row["rowId"], isAltRow, offset);
+                }
+                else {
+                    element = this.cachedElements[position] = this.createRowElement(row, isAltRow, offset);
+                    // update context menu
+                    this.contextMenu?.addTarget(element);
+                }
+                fragment.appendChild(element);
+            }
+            this.tableBody.appendChild(fragment);
+
+            // update visible rows
+            for (let i = 0; i < this.tableBody.children.length; ++i)
+                this.updateRow(this.tableBody.children[i], true);
+
+            // refresh row height based on first row
+            setTimeout(() => {
+                if (this.tableBody.firstChild) {
+                    const tr = this.tableBody.firstChild;
+                    if (this.rowHeight !== tr.offsetHeight) {
+                        this.rowHeight = tr.offsetHeight;
+                        // rerender on row height change
+                        this.rerender();
+                    }
+                }
+            });
+        },
+
+        createRowElement: function(row, isAltRow = false, top = -1) {
+            const tr = document.createElement("tr");
+            // set tabindex so element receives keydown events
+            // more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
+            tr.tabIndex = -1;
+
+            for (let k = 0; k < this.columns.length; ++k) {
+                const td = document.createElement("td");
+                if ((this.columns[k].visible === "0") || this.columns[k].force_hide)
+                    td.classList.add("invisible");
+                tr.append(td);
+            }
+
+            this.updateRowElement(tr, row["rowId"], isAltRow, top);
+            return tr;
+        },
+
+        updateRowElement(tr, rowId, isAltRow, top) {
+            tr.setAttribute("data-row-id", rowId);
+            tr["rowId"] = rowId;
+
+            tr.className = "";
+
+            if (this.useVirtualList) {
+                tr.style.position = "absolute";
+                tr.style.top = `${top}px`;
+                if (this.selectedRows.contains(rowId))
+                    tr.classList.add("selected");
+                if (isAltRow)
+                    tr.classList.add("altRow");
+            }
         },
 
         updateRow: function(tr, fullUpdate) {
@@ -897,6 +994,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const tds = this.getRowCells(tr);
             for (let i = 0; i < this.columns.length; ++i) {
+                // required due to position: absolute breaks layout
+                if (this.useVirtualList)
+                    tds[i].style.cssText = `width: ${this.columns[i].width}px; max-width: ${this.columns[i].width}px; ${this.columns[i].style}`;
                 if (this.columns[i].dataProperties.some(prop => Object.hasOwn(data, prop)))
                     this.columns[i].updateTd(tds[i], row);
             }
@@ -906,15 +1006,25 @@ window.qBittorrent.DynamicTable ??= (() => {
         removeRow: function(rowId) {
             this.selectedRows.erase(rowId);
             this.rows.delete(rowId);
-            const tr = this.getTrByRowId(rowId);
-            tr?.destroy();
+            if (this.useVirtualList) {
+                this.rerender();
+            }
+            else {
+                const tr = this.getTrByRowId(rowId);
+                tr?.destroy();
+            }
         },
 
         clear: function() {
             this.deselectAll();
             this.rows.clear();
-            for (const tr of this.getTrs())
-                tr.destroy();
+            if (this.useVirtualList) {
+                this.rerender();
+            }
+            else {
+                for (const tr of this.getTrs())
+                    tr.destroy();
+            }
         },
 
         selectedRowsIds: function() {
@@ -3246,10 +3356,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         filterText: "",
 
-        filteredLength: function() {
-            return this.tableBody.rows.length;
-        },
-
         initColumns: function() {
             this.newColumn("rowId", "", "QBT_TR(ID)QBT_TR[CONTEXT=ExecutionLogWidget]", 50, true);
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=ExecutionLogWidget]", 350, true);
@@ -3292,7 +3398,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 td.textContent = logLevel;
                 td.title = logLevel;
-                td.closest("tr").className = `logTableRow${addClass}`;
+                td.closest("tr").classList.add(`logTableRow${addClass}`);
             };
         },
 
@@ -3321,6 +3427,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const res = column.compareRows(row1, row2);
                 return (this.reverseSort === "0") ? res : -res;
             });
+
+            this.filteredLength = filteredRows.length;
 
             return filteredRows;
         },
@@ -3354,7 +3462,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 td.textContent = status;
                 td.title = status;
-                td.closest("tr").className = `logTableRow${addClass}`;
+                td.closest("tr").classList.add(`logTableRow${addClass}`);
             };
         },
 
