@@ -1,0 +1,233 @@
+<style>
+    #createTorrentForm {
+        text-align: center;
+    }
+
+    #createTorrentForm input[type="text"],
+    #createTorrentForm textarea,
+    #createTorrentForm table {
+        width: 100%;
+    }
+
+    #createTorrentForm fieldset {
+        text-align: left;
+    }
+
+    #sourcePathBox {
+        display: flex;
+        align-items: baseline;
+    }
+
+    #sourcePath {
+        flex-grow: 1;
+    }
+
+    #createTorrentButton {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+</style>
+<form id="createTorrentForm" autocorrect="off" autocapitalize="none">
+    <fieldset class="settings">
+        <legend>QBT_TR(Select file/folder to share:)QBT_TR[CONTEXT=TorrentCreator]</legend>
+        <div id="sourcePathBox">
+            <label for="sourcePath">QBT_TR(Path:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="text" id="sourcePath" name="sourcePath" class="pathDirectory">
+        </div>
+    </fieldset>
+    <fieldset class="settings">
+        <legend>QBT_TR(Settings)QBT_TR[CONTEXT=TorrentCreator]</legend>
+        <div id="torrentFormatBox">
+            <label for="torrentFormat">QBT_TR(Torrent format:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <select id="torrentFormat" name="format">
+                <option value="v2">V2</option>
+                <option selected value="hybrid">QBT_TR(Hybrid)QBT_TR[CONTEXT=TorrentCreator]</option>
+                <option value="v1">V1</option>
+            </select>
+        </div>
+        <div>
+            <label for="pieceSize">QBT_TR(Piece size:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <select id="pieceSize" name="pieceSize">
+
+            </select>
+        </div>
+        <div>
+            <input type="hidden" id="privateTorrentHidden" name="private" value="0">
+            <input type="checkbox" id="privateTorrent"><label for="privateTorrent">QBT_TR(Private
+                torrent (Won't distribute on DHT network))QBT_TR[CONTEXT=TorrentCreator]</label>
+        </div>
+        <div>
+            <input type="hidden" id="startSeedingHidden" name="startSeeding" value="0">
+            <input type="checkbox" id="startSeeding"><label for="startSeeding">QBT_TR(Start
+                seeding
+                immediately)QBT_TR[CONTEXT=TorrentCreator]</label>
+        </div>
+        <fieldset id="optimizeAlignmentBox">
+            <legend><input type="hidden" id="optimizeAlignmentHidden" name="optimizeAlignment" value="0"><input type="checkbox" id="optimizeAlignment"><label for="optimizeAlignment">QBT_TR(Optimize
+                    alignment)QBT_TR[CONTEXT=TorrentCreator]</label></legend>
+            <label for="paddedFileSizeLimit">QBT_TR(Align to piece boundary for files larger
+                than:)QBT_TR[CONTEXT=TorrentCreator]</label>
+            <input type="number" id="paddedFileSizeLimit" name="paddedFileSizeLimit" disabled value="0">QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
+        </fieldset>
+    </fieldset>
+    <fieldset class="settings">
+        <legend>QBT_TR(Fields)QBT_TR[CONTEXT=TorrentCreator]</legend>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="trackerURLs">QBT_TR(Tracker URLs:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                    </td>
+                    <td>
+                        <textarea rows="7" type="text" id="trackerURLs" name="trackers"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="webSeedURLs">QBT_TR(Web seed URLs:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                    </td>
+                    <td>
+                        <textarea rows="7" type="text" id="webSeedURLs" name="urlSeeds"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="comments">QBT_TR(Comments:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                    </td>
+                    <td>
+                        <textarea rows="7" type="text" id="comments" name="comment"></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="source">QBT_TR(Source:)QBT_TR[CONTEXT=TorrentCreator]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="source" name="source">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+    <button type="submit" id="createTorrentButton">QBT_TR(Create Torrent)QBT_TR[CONTEXT=TorrentCreator]</button>
+</form>
+<div id="download_spinner" class="mochaSpinner"></div>
+
+<script>
+    "use strict";
+
+    window.qBittorrent ??= {};
+    window.qBittorrent.CreateTorrent ??= (() => {
+        const exports = () => {
+            return {
+                init: init,
+                savePreferences: savePreferences,
+            };
+        };
+
+        const formatUrls = (urls) => {
+            return urls.split("\n").map(encodeURIComponent).join("|");
+        };
+
+        const createSizeOption = (size) => {
+            const option = document.createElement("option");
+            option.value = size;
+            option.textContent = (size === 0) ? "QBT_TR(Auto)QBT_TR[CONTEXT=TorrentCreator]" : window.qBittorrent.Misc.friendlyUnit(size, false);
+            return option;
+        };
+
+        const init = () => {
+            const pieceSizeSelect = document.getElementById("pieceSize");
+            pieceSizeSelect.appendChild(createSizeOption(0));
+            for (let i = 4; i <= 17; ++i)
+                pieceSizeSelect.appendChild(createSizeOption(1024 << i));
+
+            const buildInfo = window.qBittorrent.Cache.buildInfo.get();
+            const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
+            if (libtorrentVersion.valid) {
+                if (libtorrentVersion.major >= 2) {
+                    document.getElementById("optimizeAlignmentBox").style.display = "none";
+                }
+                else {
+                    document.getElementById("torrentFormatBox").style.display = "none";
+                    document.getElementById("optimizeAlignment").addEventListener("change", (e) => {
+                        document.getElementById("paddedFileSizeLimit").disabled = !e.target.checked;
+                    });
+                }
+            }
+
+            document.getElementById("createTorrentForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                submit();
+            });
+
+            loadPreference();
+            window.qBittorrent.pathAutofill.attachPathAutofill();
+        };
+
+        const submit = () => {
+            document.getElementById("privateTorrentHidden").value = document.getElementById("privateTorrent").checked ? "true" : "false";
+            document.getElementById("startSeedingHidden").value = document.getElementById("startSeeding").checked ? "true" : "false";
+            document.getElementById("optimizeAlignmentHidden").value = document.getElementById("optimizeAlignment").checked ? "true" : "false";
+
+            document.getElementById("download_spinner").style.display = "block";
+
+            const formData = new FormData(document.getElementById("createTorrentForm"));
+            if (formData.has("trackers"))
+                formData.set("trackers", formatUrls(formData.get("trackers")));
+            if (formData.has("urlSeeds"))
+                formData.set("urlSeeds", formatUrls(formData.get("urlSeeds")));
+
+            fetch("api/v2/torrentcreator/addTask", {
+                method: "POST",
+                body: formData
+            }).then((response) => {
+                if (!response.ok) {
+                    alert("QBT_TR(Unable to create torrent.)QBT_TR[CONTEXT=TorrentCreator]");
+                    return;
+                }
+                window.qBittorrent.Client.closeWindow(document.getElementById("createTorrentPage"));
+            });
+
+        };
+
+        const savePreferences = () => {
+            const preference = {
+                sourcePath: document.getElementById("sourcePath").value,
+                torrentFormat: document.getElementById("torrentFormat").value,
+                pieceSize: document.getElementById("pieceSize").value,
+                privateTorrent: document.getElementById("privateTorrent").checked,
+                startSeeding: document.getElementById("startSeeding").checked,
+                optimizeAlignment: document.getElementById("optimizeAlignment").checked,
+                paddedFileSizeLimit: document.getElementById("paddedFileSizeLimit").value,
+                trackerURLs: document.getElementById("trackerURLs").value,
+                webSeedURLs: document.getElementById("webSeedURLs").value,
+                comments: document.getElementById("comments").value,
+                source: document.getElementById("source").value,
+            };
+            LocalPreferences.set("torrent_creator", JSON.stringify(preference));
+        };
+
+        const loadPreference = () => {
+            const preference = JSON.parse(LocalPreferences.get("torrent_creator") ?? "{}");
+            document.getElementById("sourcePath").value = preference.sourcePath ?? "";
+            document.getElementById("torrentFormat").value = preference.torrentFormat ?? "hybrid";
+            document.getElementById("pieceSize").value = preference.pieceSize ?? 0;
+            document.getElementById("privateTorrent").checked = preference.privateTorrent ?? false;
+            document.getElementById("startSeeding").checked = preference.startSeeding ?? false;
+            document.getElementById("optimizeAlignment").checked = preference.optimizeAlignment ?? false;
+            document.getElementById("paddedFileSizeLimit").value = preference.paddedFileSizeLimit ?? 0;
+            document.getElementById("trackerURLs").value = preference.trackerURLs ?? "";
+            document.getElementById("webSeedURLs").value = preference.webSeedURLs ?? "";
+            document.getElementById("comments").value = preference.comments ?? "";
+            document.getElementById("source").value = preference.source ?? "";
+        };
+
+        return exports();
+    })();
+    Object.freeze(window.qBittorrent.CreateTorrent);
+
+    window.qBittorrent.CreateTorrent.init();
+</script>

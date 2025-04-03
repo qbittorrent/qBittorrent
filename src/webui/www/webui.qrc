@@ -370,6 +370,7 @@
         <file>private/images/task-complete.svg</file>
         <file>private/images/task-reject.svg</file>
         <file>private/images/toolbox-divider.gif</file>
+        <file>private/images/torrent-creator.svg</file>
         <file>private/images/torrent-magnet.svg</file>
         <file>private/images/torrent-start-forced.svg</file>
         <file>private/images/torrent-start.svg</file>
@@ -428,6 +429,7 @@
         <file>private/views/confirmdeletion.html</file>
         <file>private/views/confirmRecheck.html</file>
         <file>private/views/cookies.html</file>
+        <file>private/views/createtorrent.html</file>
         <file>private/views/filters.html</file>
         <file>private/views/installsearchplugin.html</file>
         <file>private/views/log.html</file>
@@ -441,6 +443,7 @@
         <file>private/views/search.html</file>
         <file>private/views/searchplugins.html</file>
         <file>private/views/statistics.html</file>
+        <file>private/views/torrentcreator.html</file>
         <file>private/views/transferlist.html</file>
         <file>public/css/login.css</file>
         <file>public/css/noscript.css</file>

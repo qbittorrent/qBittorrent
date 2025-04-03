@@ -51,7 +51,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             RssDownloaderRulesTable: RssDownloaderRulesTable,
             RssDownloaderFeedSelectionTable: RssDownloaderFeedSelectionTable,
             RssDownloaderArticlesTable: RssDownloaderArticlesTable,
-            TorrentWebseedsTable: TorrentWebseedsTable
+            TorrentWebseedsTable: TorrentWebseedsTable,
+            TorrentCreationTasksTable: TorrentCreationTasksTable,
         };
     };
 
@@ -3389,6 +3390,225 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumns: function() {
             this.newColumn("url", "", "QBT_TR(URL)QBT_TR[CONTEXT=HttpServer]", 500, true);
+        },
+    });
+
+    const TorrentCreationTasksTable = new Class({
+        Extends: DynamicTable,
+
+        initColumns: function() {
+            this.newColumn("state_icon", "", "QBT_TR(Status Icon)QBT_TR[CONTEXT=TorrentCreator]", 30, false);
+            this.newColumn("source_path", "", "QBT_TR(Source Path)QBT_TR[CONTEXT=TorrentCreator]", 200, true);
+            this.newColumn("progress", "", "QBT_TR(Progress)QBT_TR[CONTEXT=TorrentCreator]", 85, true);
+            this.newColumn("status", "", "QBT_TR(Status)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("torrent_format", "", "QBT_TR(Format)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("piece_size", "", "QBT_TR(Piece Size)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TorrentCreator]", 30, true);
+            this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("start_on", "", "QBT_TR(Started On)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("completion_on", "", "QBT_TR(Completed On)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("trackers", "", "QBT_TR(Trackers)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("web_seeds", "", "QBT_TR(Web Seeds)QBT_TR[CONTEXT=TorrentCreator]", 100, false);
+            this.newColumn("comment", "", "QBT_TR(Comment)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("source", "", "QBT_TR(Source)QBT_TR[CONTEXT=TorrentCreator]", 100, false);
+            this.newColumn("error_message", "", "QBT_TR(Error Message)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+
+            this.columns["state_icon"].dataProperties[0] = "status";
+            this.columns["source_path"].dataProperties.push("status");
+
+            this.initColumnsFunctions();
+        },
+
+        initColumnsFunctions: function() {
+            const getStateIconClasses = (state) => {
+                let stateClass = "stateUnknown";
+                // normalize states
+                switch (state) {
+                    case "Running":
+                        stateClass = "stateRunning";
+                        break;
+                    case "Queued":
+                        stateClass = "stateQueued";
+                        break;
+                    case "Finished":
+                        stateClass = "stateStoppedUP";
+                        break;
+                    case "Failed":
+                        stateClass = "stateError";
+                        break;
+                }
+
+                return `stateIcon ${stateClass}`;
+            };
+
+            // state_icon
+            this.columns["state_icon"].updateTd = function(td, row) {
+                const state = this.getRowValue(row);
+                let div = td.firstElementChild;
+                if (div === null) {
+                    div = document.createElement("div");
+                    td.append(div);
+                }
+
+                div.className = `${getStateIconClasses(state)} stateIconColumn`;
+            };
+
+            this.columns["state_icon"].onVisibilityChange = (columnName) => {
+                // show state icon in name column only when standalone
+                // state icon column is hidden
+                this.updateColumn("name", true);
+            };
+
+            // source_path
+            this.columns["source_path"].updateTd = function(td, row) {
+                const name = this.getRowValue(row, 0);
+                const state = this.getRowValue(row, 1);
+                let span = td.firstElementChild;
+                if (span === null) {
+                    span = document.createElement("span");
+                    td.append(span);
+                }
+
+                span.className = this.isStateIconShown() ? getStateIconClasses(state) : "";
+                span.textContent = name;
+                td.title = name;
+            };
+
+            this.columns["source_path"].isStateIconShown = () => !this.columns["state_icon"].isVisible();
+
+            // status
+            this.columns["status"].updateTd = function(td, row) {
+                const state = this.getRowValue(row);
+                if (!state)
+                    return;
+
+                let status = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
+                switch (state) {
+                    case "Queued":
+                        status = "QBT_TR(Queued)QBT_TR[CONTEXT=TorrentCreator]";
+                        break;
+                    case "Running":
+                        status = "QBT_TR(Running)QBT_TR[CONTEXT=TorrentCreator]";
+                        break;
+                    case "Finished":
+                        status = "QBT_TR(Finished)QBT_TR[CONTEXT=TorrentCreator]";
+                        break;
+                    case "Failed":
+                        status = "QBT_TR(Failed)QBT_TR[CONTEXT=TorrentCreator]";
+                        break;
+                }
+
+                td.textContent = status;
+                td.title = status;
+            };
+
+            // torrent_format
+            this.columns["torrent_format"].updateTd = function(td, row) {
+                const torrentFormat = this.getRowValue(row);
+                if (!torrentFormat)
+                    return;
+
+                let format = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
+                switch (torrentFormat) {
+                    case "v1":
+                        format = "V1";
+                        break;
+                    case "v2":
+                        format = "V2";
+                        break;
+                    case "hybrid":
+                        format = "QBT_TR(Hybrid)QBT_TR[CONTEXT=TorrentCreator]";
+                        break;
+                }
+
+                td.textContent = format;
+                td.title = format;
+            };
+
+            // progress
+            this.columns["progress"].updateTd = function(td, row) {
+                const progress = this.getRowValue(row);
+
+                const div = td.firstElementChild;
+                if (div !== null) {
+                    if (td.resized) {
+                        td.resized = false;
+                        div.setWidth(progressColumnWidth - 5);
+                    }
+                    if (div.getValue() !== progress)
+                        div.setValue(progress);
+                }
+                else {
+                    if (progressColumnWidth < 0)
+                        progressColumnWidth = td.offsetWidth;
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progress, {
+                        width: progressColumnWidth - 5
+                    }));
+                    td.resized = false;
+                }
+            };
+            this.columns["progress"].staticWidth = 100;
+            this.columns["progress"].onResize = function(columnName) {
+                const pos = this.getColumnPos(columnName);
+                progressColumnWidth = -1;
+                for (const tr of this.getTrs()) {
+                    const td = this.getRowCells(tr)[pos];
+                    if (progressColumnWidth < 0)
+                        progressColumnWidth = td.offsetWidth;
+                    td.resized = true;
+                    this.columns[columnName].updateTd(td, this.getRow(tr.rowId));
+                }
+            }.bind(this);
+
+            // piece_size
+            this.columns["piece_size"].updateTd = function(td, row) {
+                const pieceSize = this.getRowValue(row);
+                const size = (pieceSize === 0) ? "QBT_TR(N/A)QBT_TR[CONTEXT=TorrentCreator]" : window.qBittorrent.Misc.friendlyUnit(pieceSize, false);
+                td.textContent = size;
+                td.title = size;
+            };
+
+            // private
+            this.columns["private"].updateTd = function(td, row) {
+                const isPrivate = this.getRowValue(row);
+                const string = isPrivate
+                    ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
+                    : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]";
+                td.textContent = string;
+                td.title = string;
+            };
+
+            const displayDate = function(td, row) {
+                const val = this.getRowValue(row);
+                if (!val) {
+                    td.textContent = "";
+                    td.title = "";
+                }
+                else {
+                    const date = new Date(val).toLocaleString();
+                    td.textContent = date;
+                    td.title = date;
+                }
+            };
+
+            // added_on, start_on, completion_on
+            this.columns["added_on"].updateTd = displayDate;
+            this.columns["start_on"].updateTd = displayDate;
+            this.columns["completion_on"].updateTd = displayDate;
+        },
+
+        setupCommonEvents: function() {
+            this.parent();
+            this.dynamicTableDiv.addEventListener("dblclick", (e) => {
+                const tr = e.target.closest("tr");
+                if (!tr)
+                    return;
+
+                this.deselectAll();
+                this.selectRow(tr.rowId);
+
+                window.qBittorrent.TorrentCreator.exportTorrents();
+            });
         },
     });
 
