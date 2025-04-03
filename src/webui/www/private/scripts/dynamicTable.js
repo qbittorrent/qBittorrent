@@ -100,11 +100,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             const tableFixedHeaderDiv = $(this.dynamicTableFixedHeaderDivId);
 
             const tableElement = tableFixedHeaderDiv.querySelector("table");
-            const rerender = () => { this.rerender(); };
-            this.dynamicTableDiv.addEventListener("scroll", function() {
-                tableElement.style.left = `${-this.scrollLeft}px`;
+            this.dynamicTableDiv.addEventListener("scroll", () => {
+                tableElement.style.left = `${-this.dynamicTableDiv.scrollLeft}px`;
                 // rerender on scroll
-                rerender();
+                this.rerender();
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
