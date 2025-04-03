@@ -74,7 +74,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
-            this.useVirtualList = (LocalPreferences.get("use_virtual_list", "false") === "true") && useVirtualList;
+            this.useVirtualList = useVirtualList && (LocalPreferences.get("use_virtual_list", "false") === "true");
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
             this.hiddenTableHeader = this.dynamicTableDiv.querySelector(`thead tr`);
             this.table = this.dynamicTableDiv.querySelector(`table`);
@@ -410,7 +410,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const style = `width: ${column.width}px; ${column.style}`;
             this.getRowCells(this.hiddenTableHeader)[pos].style.cssText = style;
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
-            // rerender on columen resize
+            // rerender on column resize
             this.rerender();
 
             column.onResize?.(column.name);
@@ -843,7 +843,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             if (this.useVirtualList) {
                 this.table.style.position = "relative";
                 // rerender on table update
-                this.rerender();
+                this.rerender(rows);
             }
             else {
                 const trs = [...this.getTrs()];
@@ -893,17 +893,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
         },
 
-        rerender: function() {
+        rerender: function(rows = this.getFilteredAndSortedRows()) {
             if (!this.useVirtualList)
                 return;
-            const rows = this.getFilteredAndSortedRows();
-
-            for (let i = 0; i < this.selectedRows.length; ++i) {
-                if (!(this.selectedRows[i] in rows)) {
-                    this.selectedRows.splice(i, 1);
-                    --i;
-                }
-            }
 
             // set the scrollable height
             this.table.style.height = `${rows.length * this.rowHeight}px`;
@@ -939,19 +931,20 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.tableBody.appendChild(fragment);
 
             // update visible rows
-            for (let i = 0; i < this.tableBody.children.length; ++i)
-                this.updateRow(this.tableBody.children[i], true);
+            for (const row of this.tableBody.children)
+                this.updateRow(row, true);
 
             // refresh row height based on first row
             setTimeout(() => {
-                if (this.tableBody.firstChild) {
-                    const tr = this.tableBody.firstChild;
-                    if (this.rowHeight !== tr.offsetHeight) {
-                        this.rowHeight = tr.offsetHeight;
-                        // rerender on row height change
-                        this.rerender();
-                    }
+                if (!this.tableBody.firstChild)
+                    return;
+                const tr = this.tableBody.firstChild;
+                if (this.rowHeight !== tr.offsetHeight) {
+                    this.rowHeight = tr.offsetHeight;
+                    // rerender on row height change
+                    this.rerender();
                 }
+
             });
         },
 
@@ -994,9 +987,11 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const tds = this.getRowCells(tr);
             for (let i = 0; i < this.columns.length; ++i) {
-                // required due to position: absolute breaks layout
-                if (this.useVirtualList)
-                    tds[i].style.cssText = `width: ${this.columns[i].width}px; max-width: ${this.columns[i].width}px; ${this.columns[i].style}`;
+                // required due to position: absolute breaks table layout
+                if (this.useVirtualList) {
+                    tds[i].style.width = `${this.columns[i].width}px`;
+                    tds[i].style.maxWidth = `${this.columns[i].width}px`;
+                }
                 if (this.columns[i].dataProperties.some(prop => Object.hasOwn(data, prop)))
                     this.columns[i].updateTd(tds[i], row);
             }
