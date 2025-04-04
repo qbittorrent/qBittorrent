@@ -2201,6 +2201,12 @@ window.qBittorrent.DynamicTable ??= (() => {
         prevReverseSort: null,
         fileTree: new window.qBittorrent.FileTree.FileTree(),
 
+        setupVirtualList: function() {
+            this.parent();
+
+            this.rowHeight = 29;
+        },
+
         populateTable: function(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
@@ -2275,25 +2281,23 @@ window.qBittorrent.DynamicTable ??= (() => {
             const checkboxes = document.querySelectorAll("input.RenamingCB");
 
             for (let i = 0; i < checkboxes.length; ++i) {
-                const node = this.getNode(i);
-
                 if (checkbox.checked || checkbox.indeterminate) {
                     const cb = checkboxes[i];
                     cb.checked = true;
                     cb.indeterminate = false;
                     cb.state = "checked";
-                    node.checked = 0;
-                    node.full_data.checked = node.checked;
                 }
                 else {
                     const cb = checkboxes[i];
                     cb.checked = false;
                     cb.indeterminate = false;
                     cb.state = "unchecked";
-                    node.checked = 1;
-                    node.full_data.checked = node.checked;
                 }
             }
+            this.fileTree.toArray().forEach((node) => {
+                node.checked = checkbox.checked || checkbox.indeterminate ? 0 : 1;
+                node.full_data.checked = node.checked;
+            });
 
             this.updateGlobalCheckbox();
         },
@@ -2336,31 +2340,37 @@ window.qBittorrent.DynamicTable ??= (() => {
             const that = this;
 
             // checked
-            this.columns["checked"].updateTd = function(td, row) {
+            this.columns["checked"].updateTd = (td, row) => {
                 const id = row.rowId;
-                const value = this.getRowValue(row);
+                const node = that.getNode(id);
 
-                const treeImg = document.createElement("img");
-                treeImg.src = "images/L.gif";
-                treeImg.style.marginBottom = "-2px";
+                if (td.children.length !== 2) {
+                    const treeImg = document.createElement("img");
+                    treeImg.src = "images/L.gif";
+                    treeImg.style.marginBottom = "-2px";
+                    td.appendChild(treeImg);
 
-                const checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.className = "RenamingCB";
+                    checkbox.addEventListener("click", (e) => {
+                        const id = e.target.getAttribute("data-id");
+                        const node = that.getNode(id);
+                        node.checked = e.target.checked ? 0 : 1;
+                        node.full_data.checked = node.checked;
+                        that.updateGlobalCheckbox();
+                        that.onRowSelectionChange(node);
+                        e.stopPropagation();
+                    });
+                    checkbox.indeterminate = false;
+                    td.appendChild(checkbox);
+                }
+
+                const checkbox = td.children[1];
                 checkbox.id = `cbRename${id}`;
                 checkbox.setAttribute("data-id", id);
-                checkbox.className = "RenamingCB";
-                checkbox.addEventListener("click", (e) => {
-                    const node = that.getNode(id);
-                    node.checked = e.target.checked ? 0 : 1;
-                    node.full_data.checked = node.checked;
-                    that.updateGlobalCheckbox();
-                    that.onRowSelectionChange(node);
-                    e.stopPropagation();
-                });
-                checkbox.checked = (value === 0);
+                checkbox.checked = (node.checked === 0);
                 checkbox.state = checkbox.checked ? "checked" : "unchecked";
-                checkbox.indeterminate = false;
-                td.replaceChildren(treeImg, checkbox);
             };
             this.columns["checked"].staticWidth = 50;
 
@@ -2369,37 +2379,35 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const id = row.rowId;
                 const fileNameId = `filesTablefileName${id}`;
                 const node = that.getNode(id);
+                const value = this.getRowValue(row);
 
-                if (node.isFolder) {
-                    const value = this.getRowValue(row);
-                    const dirImgId = `renameTableDirImg${id}`;
-                    if ($(dirImgId)) {
-                        // just update file name
-                        $(fileNameId).textContent = value;
-                    }
-                    else {
-                        const span = document.createElement("span");
-                        span.textContent = value;
-                        span.id = fileNameId;
+                if (td.children.length !== 2) {
+                    const dirImg = document.createElement("img");
+                    dirImg.src = "images/directory.svg";
+                    dirImg.style.width = "20px";
+                    dirImg.style.paddingRight = "5px";
+                    dirImg.style.marginBottom = "-3px";
+                    td.appendChild(dirImg);
 
-                        const dirImg = document.createElement("img");
-                        dirImg.src = "images/directory.svg";
-                        dirImg.style.width = "20px";
-                        dirImg.style.paddingRight = "5px";
-                        dirImg.style.marginBottom = "-3px";
-                        dirImg.style.marginLeft = `${node.depth * 20}px`;
-                        dirImg.id = dirImgId;
-                        td.replaceChildren(dirImg, span);
-                    }
-                }
-                else { // is file
-                    const value = this.getRowValue(row);
                     const span = document.createElement("span");
-                    span.textContent = value;
-                    span.id = fileNameId;
-                    span.style.marginLeft = `${(node.depth + 1) * 20}px`;
-                    td.replaceChildren(span);
+                    td.appendChild(span);
                 }
+
+                const dirImg = td.children[0];
+                if (node.isFolder) {
+                    dirImg.id = `renameTableDirImg${id}`;
+                    dirImg.style.display = "inline";
+                    dirImg.style.marginLeft = `${node.depth * 20}px`;
+                }
+                else {
+                    dirImg.id = "";
+                    dirImg.style.display = "none";
+                }
+
+                const span = td.children[1];
+                span.id = fileNameId;
+                span.textContent = value;
+                span.style.marginLeft = node.isFolder ? "0" : `${(node.depth + 1) * 20}px`;
             };
 
             // renamed
@@ -2557,7 +2565,13 @@ window.qBittorrent.DynamicTable ??= (() => {
                 row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
         },
 
-        setupCommonEvents: () => {}
+        setupCommonEvents: function() {
+            if (this.useVirtualList) {
+                this.dynamicTableDiv.addEventListener("scroll", () => {
+                    this.rerender();
+                });
+            }
+        }
     });
 
     const TorrentFilesTable = new Class({
