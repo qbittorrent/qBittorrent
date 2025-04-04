@@ -172,7 +172,10 @@
                 // Update renamed column for matched rows
                 for (let i = 0; i < matchedRows.length; ++i) {
                     const row = matchedRows[i];
-                    $(`filesTablefileRenamed${row.rowId}`).textContent = row.renamed;
+                    const element = document.getElementById(`filesTablefileRenamed${row.rowId}`);
+                    if (element === null)
+                        continue;
+                    element.textContent = row.renamed;
                 }
             };
             fileRenamer.onInvalidRegex = (err) => {
