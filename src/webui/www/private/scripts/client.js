@@ -127,7 +127,11 @@ window.qBittorrent.Client.setup();
 // TODO: move global functions/variables into some namespace/scope
 
 this.torrentsTable = new window.qBittorrent.DynamicTable.TorrentsTable();
-
+/**
+ * Shorthand for selecting DOM elements by ID
+ * Mootools $ is used to maintain compatibility with MochaUI
+ */
+const $ = (x) => (typeof x === "string") ? document.getElementById(x) : this.$(x);
 let updatePropertiesPanel = () => {};
 
 this.updateMainData = () => {};
