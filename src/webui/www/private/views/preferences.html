@@ -2128,7 +2128,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         // Advanced Tab
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
-            [...document.getElementById("networkInterface").children].forEach((el) => { el.destroy(); });
+            [...$("networkInterface").children].forEach((el) => { el.destroy(); });
 
             fetch("api/v2/app/networkInterfaceList", {
                     method: "GET",
@@ -2157,7 +2157,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updateInterfaceAddresses = (iface, default_addr) => {
-            [...document.getElementById("optionalIPAddressToBind").children].forEach((el) => { el.destroy(); });
+            [...$("optionalIPAddressToBind").children].forEach((el) => { el.destroy(); });
 
             const url = new URL("api/v2/app/networkInterfaceAddressList", window.location);
             url.search = new URLSearchParams({
@@ -2200,7 +2200,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updateColoSchemeSelect = () => {
-            const combobox = document.getElementById("colorSchemeSelect");
+            const combobox = $("colorSchemeSelect");
             const colorScheme = LocalPreferences.get("color_scheme");
 
             if (colorScheme === "light")
@@ -2220,12 +2220,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     updateColoSchemeSelect();
                     $("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     $("performanceWarning").checked = pref.performance_warning;
-                    document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
-                    document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
+                    $("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
+                    $("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
                     $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
                     $("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
-                    document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
-                    document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
+                    $("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
+                    $("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
                     $("filelog_checkbox").checked = pref.file_log_enabled;
                     $("filelog_save_path_input").value = pref.file_log_path;
                     $("filelog_backup_checkbox").checked = pref.file_log_backup_enabled;
@@ -2264,7 +2264,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             break;
                     }
                     $("stopConditionSelect").getChildren("option")[index].selected = true;
-                    document.getElementById("mergeTrackersInput").checked = pref.merge_trackers;
+                    $("mergeTrackersInput").checked = pref.merge_trackers;
                     $("deletetorrentfileafter_checkbox").checked = pref.auto_delete_mode;
 
                     $("preallocateall_checkbox").checked = pref.preallocate_all;
@@ -2277,7 +2277,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("save_path_changed_tmm_combobox").value = pref.save_path_changed_tmm_enabled;
                     $("category_changed_tmm_combobox").value = pref.category_changed_tmm_enabled;
                     $("use_subcategories_checkbox").checked = pref.use_subcategories;
-                    document.getElementById("categoryPathsManualModeCheckbox").checked = pref.use_category_paths_in_manual_mode;
+                    $("categoryPathsManualModeCheckbox").checked = pref.use_category_paths_in_manual_mode;
                     $("savepath_text").value = pref.save_path;
                     $("temppath_checkbox").checked = pref.temp_path_enabled;
                     $("temppath_text").value = pref.temp_path;
@@ -2569,7 +2569,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     $("saveResumeDataInterval").value = pref.save_resume_data_interval;
                     $("saveStatisticsInterval").value = pref.save_statistics_interval;
                     $("torrentFileSizeLimit").value = (pref.torrent_file_size_limit / 1024 / 1024);
-                    document.getElementById("confirmTorrentRecheck").checked = pref.confirm_torrent_recheck;
+                    $("confirmTorrentRecheck").checked = pref.confirm_torrent_recheck;
                     $("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
                     $("appInstanceName").value = pref.app_instance_name;
                     $("refreshInterval").value = pref.refresh_interval;
@@ -2643,7 +2643,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Behavior tab
             // Language
             settings["locale"] = $("locale_select").value;
-            const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
+            const colorScheme = Number($("colorSchemeSelect").value);
             if (colorScheme === 0)
                 LocalPreferences.remove("color_scheme");
             else if (colorScheme === 1)
@@ -2652,12 +2652,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 LocalPreferences.set("color_scheme", "dark");
             settings["status_bar_external_ip"] = $("statusBarExternalIP").checked;
             settings["performance_warning"] = $("performanceWarning").checked;
-            LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
-            LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
+            LocalPreferences.set("full_url_tracker_column", $("displayFullURLTrackerColumn").checked.toString());
+            LocalPreferences.set("hide_zero_status_filters", $("hideZeroFiltersCheckbox").checked.toString());
             LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
             LocalPreferences.set("dblclick_complete", $("dblclickCompleteSelect").value);
-            settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
-            LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
+            settings["confirm_torrent_deletion"] = $("confirmTorrentDeletion").checked;
+            LocalPreferences.set("use_alt_row_colors", $("useAltRowColorsInput").checked.toString());
             settings["file_log_enabled"] = $("filelog_checkbox").checked;
             settings["file_log_path"] = $("filelog_save_path_input").value;
             settings["file_log_backup_enabled"] = $("filelog_backup_checkbox").checked;
@@ -2672,7 +2672,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["add_to_top_of_queue"] = $("addToTopOfQueueCheckbox").checked;
             settings["add_stopped_enabled"] = $("dontstartdownloads_checkbox").checked;
             settings["torrent_stop_condition"] = $("stopConditionSelect").getSelected()[0].value;
-            settings["merge_trackers"] = document.getElementById("mergeTrackersInput").checked;
+            settings["merge_trackers"] = $("mergeTrackersInput").checked;
             settings["auto_delete_mode"] = Number($("deletetorrentfileafter_checkbox").checked);
 
             settings["preallocate_all"] = $("preallocateall_checkbox").checked;
@@ -2685,7 +2685,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["save_path_changed_tmm_enabled"] = ($("save_path_changed_tmm_combobox").value === "true");
             settings["category_changed_tmm_enabled"] = ($("category_changed_tmm_combobox").value === "true");
             settings["use_subcategories"] = $("use_subcategories_checkbox").checked;
-            settings["use_category_paths_in_manual_mode"] = document.getElementById("categoryPathsManualModeCheckbox").checked;
+            settings["use_category_paths_in_manual_mode"] = $("categoryPathsManualModeCheckbox").checked;
             settings["save_path"] = $("savepath_text").value;
             settings["temp_path_enabled"] = $("temppath_checkbox").checked;
             settings["temp_path"] = $("temppath_text").value;
@@ -3045,7 +3045,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["save_resume_data_interval"] = Number($("saveResumeDataInterval").value);
             settings["save_statistics_interval"] = Number($("saveStatisticsInterval").value);
             settings["torrent_file_size_limit"] = ($("torrentFileSizeLimit").value * 1024 * 1024);
-            settings["confirm_torrent_recheck"] = document.getElementById("confirmTorrentRecheck").checked;
+            settings["confirm_torrent_recheck"] = $("confirmTorrentRecheck").checked;
             settings["recheck_completed_torrents"] = $("recheckTorrentsOnCompletion").checked;
             settings["app_instance_name"] = $("appInstanceName").value;
             settings["refresh_interval"] = Number($("refreshInterval").value);
@@ -3120,12 +3120,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 data: settings,
                 onFailure: () => {
                     alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
-                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
+                    window.parent.qBittorrent.Client.closeWindow($("preferencesPage"));
                 },
                 onSuccess: () => {
                     // Close window
                     window.parent.location.reload();
-                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
+                    window.parent.qBittorrent.Client.closeWindow($("preferencesPage"));
                 }
             });
         };

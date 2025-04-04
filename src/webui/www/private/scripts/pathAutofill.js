@@ -49,7 +49,7 @@ window.qBittorrent.pathAutofill ??= (() => {
             datalist.appendChild(option);
         }
 
-        const oldDatalist = document.getElementById(`${inputElement.id}Suggestions`);
+        const oldDatalist = $(`${inputElement.id}Suggestions`);
         if (oldDatalist !== null) {
             oldDatalist.replaceWith(datalist);
         }

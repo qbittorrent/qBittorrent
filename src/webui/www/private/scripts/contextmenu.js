@@ -467,7 +467,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 checkbox.checked = (hasCount ? !isLesser : false);
             }
 
-            const contextCategoryList = document.getElementById("contextCategoryList");
+            const contextCategoryList = $("contextCategoryList");
             for (const category of categoryMap.keys()) {
                 const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category}"] img`);
                 const count = categoryCount.get(category);

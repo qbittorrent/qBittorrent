@@ -19,7 +19,7 @@
     <div>
         <input type="text" id="newPluginPath" placeholder="QBT_TR(URL or local directory)QBT_TR[CONTEXT=PluginSourceDlg]" autocorrect="off" autocapitalize="none">
         <div style="margin-top: 10px; text-align: center;">
-            <button type="button" id="newPluginCancel" onclick="window.qBittorrent.Client.closeWindow(document.getElementById('installSearchPlugin'));">QBT_TR(Cancel)QBT_TR[CONTEXT=PluginSourceDlg]</button>
+            <button type="button" id="newPluginCancel" onclick="window.qBittorrent.Client.closeWindow($('installSearchPlugin'));">QBT_TR(Cancel)QBT_TR[CONTEXT=PluginSourceDlg]</button>
             <button type="button" id="newPluginOk" onclick="qBittorrent.InstallSearchPlugin.newPluginOk();">QBT_TR(Ok)QBT_TR[CONTEXT=PluginSourceDlg]</button>
         </div>
     </div>
@@ -38,7 +38,7 @@
         };
 
         const setup = () => {
-            const windowEl = document.getElementById("installSearchPlugin");
+            const windowEl = $("installSearchPlugin");
 
             windowEl.addEventListener("keydown", (event) => {
                 switch (event.key) {
@@ -77,7 +77,7 @@
                         if (!response.ok)
                             return;
 
-                        window.qBittorrent.Client.closeWindow(document.getElementById("installSearchPlugin"));
+                        window.qBittorrent.Client.closeWindow($("installSearchPlugin"));
                     });
             }
         };

@@ -425,7 +425,7 @@
         };
 
         const clearDetails = () => {
-            [...document.getElementById("rssDetailsView").children].forEach((el) => { el.destroy(); });
+            [...$("rssDetailsView").children].forEach((el) => { el.destroy(); });
         };
 
         const showDetails = (feedUid, articleID) => {
@@ -436,7 +436,7 @@
             if (article === undefined)
                 return;
 
-            const detailsView = document.getElementById("rssDetailsView");
+            const detailsView = $("rssDetailsView");
 
             const articleTitle = article.title;
             if (articleTitle !== undefined) {
@@ -497,7 +497,7 @@
             // Place in iframe with sandbox attribute to prevent js execution
             const torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
             $("rssDetailsView").append(torrentDescription);
-            document.getElementById("rssDescription").srcdoc = `<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>${article.description}</body></html>`;
+            $("rssDescription").srcdoc = `<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>${article.description}</body></html>`;
         };
 
         const updateRssFeedList = () => {

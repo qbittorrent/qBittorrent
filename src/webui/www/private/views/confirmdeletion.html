@@ -27,11 +27,11 @@
             rememberButton.classList.toggle("disabled", !enable);
         };
 
-        const confirmButton = document.getElementById("confirmDeletionButton");
-        const cancelButton = document.getElementById("cancelDeletionButton");
-        const rememberButton = document.getElementById("rememberBtn");
-        const deleteCB = document.getElementById("deleteFromDiskCB");
-        const deletionText = document.getElementById("deleteTorrentMessage");
+        const confirmButton = $("confirmDeletionButton");
+        const cancelButton = $("cancelDeletionButton");
+        const rememberButton = $("rememberBtn");
+        const deleteCB = $("deleteFromDiskCB");
+        const deletionText = $("deleteTorrentMessage");
 
         const {
             hashes,
@@ -69,7 +69,7 @@
         });
 
         cancelButton.focus();
-        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(document.getElementById("confirmDeletionPage")); });
+        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow($("confirmDeletionPage")); });
 
         confirmButton.addEventListener("click", (e) => {
             // Some torrents might be removed when waiting for user input, so refetch the torrent list
@@ -93,7 +93,7 @@
                     torrentsTable.deselectAll();
                     updateMainData();
                     updatePropertiesPanel();
-                    window.qBittorrent.Client.closeWindow(document.getElementById("confirmDeletionPage"));
+                    window.qBittorrent.Client.closeWindow($("confirmDeletionPage"));
                 });
         });
     })();

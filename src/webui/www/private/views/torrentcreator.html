@@ -134,7 +134,7 @@
                 updateContextMenuOffset();
             }, true);
 
-            document.getElementById("addTaskButton").addEventListener("click", (event) => {
+            $("addTaskButton").addEventListener("click", (event) => {
                 showCreateTorrentPage();
             });
 
@@ -142,8 +142,8 @@
         };
 
         const calculateContextMenuOffsets = () => {
-            prevOffsetLeft = document.getElementById("torrentCreatorPage").getBoundingClientRect().left;
-            prevOffsetTop = document.getElementById("torrentCreatorPage").getBoundingClientRect().top;
+            prevOffsetLeft = $("torrentCreatorPage").getBoundingClientRect().left;
+            prevOffsetTop = $("torrentCreatorPage").getBoundingClientRect().top;
 
             return {
                 x: -prevOffsetLeft,
@@ -153,7 +153,7 @@
 
         const updateContextMenuOffset = () => {
             // only re-calculate if window has moved
-            if ((prevOffsetLeft !== document.getElementById("torrentCreatorPage").getBoundingClientRect().left) || (prevOffsetTop !== document.getElementById("torrentCreatorPage").getBoundingClientRect().top))
+            if ((prevOffsetLeft !== $("torrentCreatorPage").getBoundingClientRect().left) || (prevOffsetTop !== $("torrentCreatorPage").getBoundingClientRect().top))
                 contextMenu.options.offsets = calculateContextMenuOffsets();
         };
 

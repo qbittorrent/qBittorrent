@@ -74,7 +74,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         setup: function(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu) {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
-            this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
+            this.dynamicTableDiv = $(dynamicTableDivId);
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
             this.hiddenTableHeader = this.dynamicTableDiv.querySelector(`thead tr`);
             this.tableBody = this.dynamicTableDiv.querySelector(`tbody`);
@@ -374,7 +374,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         _calculateColumnBodyWidth: function(column) {
             const columnIndex = this.getColumnPos(column.name);
-            const bodyColumn = document.getElementById(this.dynamicTableDivId).querySelectorAll("tr>th")[columnIndex];
+            const bodyColumn = $(this.dynamicTableDivId).querySelectorAll("tr>th")[columnIndex];
             const canvas = document.createElement("canvas");
             const context = canvas.getContext("2d");
             context.font = window.getComputedStyle(bodyColumn, null).getPropertyValue("font");
@@ -418,7 +418,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 // check required min header width
                 const columnIndex = this.getColumnPos(column.name);
-                const headColumn = document.getElementById(this.dynamicTableFixedHeaderDivId).querySelectorAll("tr>th")[columnIndex];
+                const headColumn = $(this.dynamicTableFixedHeaderDivId).querySelectorAll("tr>th")[columnIndex];
                 const canvas = document.createElement("canvas");
                 const context = canvas.getContext("2d");
                 context.font = window.getComputedStyle(headColumn, null).getPropertyValue("font");
@@ -443,7 +443,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const menuId = `${this.dynamicTableDivId}_headerMenu`;
 
             // reuse menu if already exists
-            let ul = document.getElementById(menuId);
+            let ul = $(menuId);
             if (ul === null) {
                 ul = document.createElement("ul");
                 ul.id = menuId;
@@ -702,7 +702,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         setupAltRow: function() {
             const useAltRowColors = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
             if (useAltRowColors)
-                document.getElementById(this.dynamicTableDivId).classList.add("altRowColors");
+                $(this.dynamicTableDivId).classList.add("altRowColors");
         },
 
         selectAll: function() {
@@ -1591,7 +1591,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             if ((filterTerms !== undefined) && (filterTerms !== null)) {
-                const filterBy = document.getElementById("torrentsFilterSelect").value;
+                const filterBy = $("torrentsFilterSelect").value;
                 const textToSearch = row["full_data"][filterBy].toLowerCase();
                 if (filterTerms instanceof RegExp) {
                     if (!filterTerms.test(textToSearch))
@@ -1618,8 +1618,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         getFilteredTorrentsHashes: function(filterName, category, tag, tracker) {
             const rowsHashes = [];
-            const useRegex = document.getElementById("torrentsFilterRegexBox").checked;
-            const filterText = document.getElementById("torrentsFilterInput").value.trim().toLowerCase();
+            const useRegex = $("torrentsFilterRegexBox").checked;
+            const filterText = $("torrentsFilterInput").value.trim().toLowerCase();
             let filterTerms;
             try {
                 filterTerms = (filterText.length > 0)

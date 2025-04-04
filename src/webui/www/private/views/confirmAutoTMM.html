@@ -13,9 +13,9 @@
     "use strict";
 
     (() => {
-        const confirmButton = document.getElementById("confirmAutoTmmButton");
-        const cancelButton = document.getElementById("cancelAutoTmmButton");
-        const confirmText = document.getElementById("confirmAutoTmmMessage");
+        const confirmButton = $("confirmAutoTmmButton");
+        const cancelButton = $("cancelAutoTmmButton");
+        const confirmText = $("confirmAutoTmmMessage");
 
         const {
             options: { data: { hashes, enable } },

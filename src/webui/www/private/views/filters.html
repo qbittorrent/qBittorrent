@@ -79,7 +79,7 @@
         };
 
         const toggleCategoryDisplay = (filterItemID) => {
-            const filterItem = document.getElementById(filterItemID);
+            const filterItem = $(filterItemID);
             LocalPreferences.set(`category_${filterItemID}_collapsed`, filterItem.classList.toggle("collapsedCategory").toString());
         };
 
@@ -230,7 +230,7 @@
         if (LocalPreferences.get("filter_tracker_collapsed") === "true")
             toggleFilterDisplay("trackerFilterList");
 
-        document.getElementById("Filters_pad").addEventListener("click", (event) => {
+        $("Filters_pad").addEventListener("click", (event) => {
             const filterItem = event.target.closest("li");
             if (!filterItem || filterItem.classList.contains("selectedFilter"))
                 return;
@@ -256,7 +256,7 @@
             }
         });
 
-        document.getElementById("Filters_pad").addEventListener("click", (event) => {
+        $("Filters_pad").addEventListener("click", (event) => {
             const filterTitle = event.target.closest(".filterTitle");
             if (!filterTitle)
                 return;
@@ -265,7 +265,7 @@
             toggleFilterDisplay(filterList);
         });
 
-        document.getElementById("categoryFilterList").addEventListener("click", (event) => {
+        $("categoryFilterList").addEventListener("click", (event) => {
             if (event.target.className !== "categoryToggle")
                 return;
 
@@ -273,7 +273,7 @@
             toggleCategoryDisplay(event.target.closest("li").id);
         });
 
-        document.getElementById("categoryFilterList").addEventListener("dblclick", function(event) {
+        $("categoryFilterList").addEventListener("dblclick", function(event) {
             const filterItem = event.target.closest("li");
             if (!this.classList.contains("subcategories") || !(filterItem?.querySelector("ul")))
                 return;

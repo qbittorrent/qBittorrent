@@ -139,7 +139,7 @@
         };
 
         const init = () => {
-            const pieceSizeSelect = document.getElementById("pieceSize");
+            const pieceSizeSelect = $("pieceSize");
             pieceSizeSelect.appendChild(createSizeOption(0));
             for (let i = 4; i <= 17; ++i)
                 pieceSizeSelect.appendChild(createSizeOption(1024 << i));
@@ -148,17 +148,17 @@
             const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
             if (libtorrentVersion.valid) {
                 if (libtorrentVersion.major >= 2) {
-                    document.getElementById("optimizeAlignmentBox").style.display = "none";
+                    $("optimizeAlignmentBox").style.display = "none";
                 }
                 else {
-                    document.getElementById("torrentFormatBox").style.display = "none";
-                    document.getElementById("optimizeAlignment").addEventListener("change", (e) => {
-                        document.getElementById("paddedFileSizeLimit").disabled = !e.target.checked;
+                    $("torrentFormatBox").style.display = "none";
+                    $("optimizeAlignment").addEventListener("change", (e) => {
+                        $("paddedFileSizeLimit").disabled = !e.target.checked;
                     });
                 }
             }
 
-            document.getElementById("createTorrentForm").addEventListener("submit", (e) => {
+            $("createTorrentForm").addEventListener("submit", (e) => {
                 e.preventDefault();
                 submit();
             });
@@ -168,13 +168,13 @@
         };
 
         const submit = () => {
-            document.getElementById("privateTorrentHidden").value = document.getElementById("privateTorrent").checked ? "true" : "false";
-            document.getElementById("startSeedingHidden").value = document.getElementById("startSeeding").checked ? "true" : "false";
-            document.getElementById("optimizeAlignmentHidden").value = document.getElementById("optimizeAlignment").checked ? "true" : "false";
+            $("privateTorrentHidden").value = $("privateTorrent").checked ? "true" : "false";
+            $("startSeedingHidden").value = $("startSeeding").checked ? "true" : "false";
+            $("optimizeAlignmentHidden").value = $("optimizeAlignment").checked ? "true" : "false";
 
-            document.getElementById("download_spinner").style.display = "block";
+            $("download_spinner").style.display = "block";
 
-            const formData = new FormData(document.getElementById("createTorrentForm"));
+            const formData = new FormData($("createTorrentForm"));
             if (formData.has("trackers"))
                 formData.set("trackers", formatUrls(formData.get("trackers")));
             if (formData.has("urlSeeds"))
@@ -188,41 +188,41 @@
                     alert("QBT_TR(Unable to create torrent.)QBT_TR[CONTEXT=TorrentCreator]");
                     return;
                 }
-                window.qBittorrent.Client.closeWindow(document.getElementById("createTorrentPage"));
+                window.qBittorrent.Client.closeWindow($("createTorrentPage"));
             });
 
         };
 
         const savePreferences = () => {
             const preference = {
-                sourcePath: document.getElementById("sourcePath").value,
-                torrentFormat: document.getElementById("torrentFormat").value,
-                pieceSize: document.getElementById("pieceSize").value,
-                privateTorrent: document.getElementById("privateTorrent").checked,
-                startSeeding: document.getElementById("startSeeding").checked,
-                optimizeAlignment: document.getElementById("optimizeAlignment").checked,
-                paddedFileSizeLimit: document.getElementById("paddedFileSizeLimit").value,
-                trackerURLs: document.getElementById("trackerURLs").value,
-                webSeedURLs: document.getElementById("webSeedURLs").value,
-                comments: document.getElementById("comments").value,
-                source: document.getElementById("source").value,
+                sourcePath: $("sourcePath").value,
+                torrentFormat: $("torrentFormat").value,
+                pieceSize: $("pieceSize").value,
+                privateTorrent: $("privateTorrent").checked,
+                startSeeding: $("startSeeding").checked,
+                optimizeAlignment: $("optimizeAlignment").checked,
+                paddedFileSizeLimit: $("paddedFileSizeLimit").value,
+                trackerURLs: $("trackerURLs").value,
+                webSeedURLs: $("webSeedURLs").value,
+                comments: $("comments").value,
+                source: $("source").value,
             };
             LocalPreferences.set("torrent_creator", JSON.stringify(preference));
         };
 
         const loadPreference = () => {
             const preference = JSON.parse(LocalPreferences.get("torrent_creator") ?? "{}");
-            document.getElementById("sourcePath").value = preference.sourcePath ?? "";
-            document.getElementById("torrentFormat").value = preference.torrentFormat ?? "hybrid";
-            document.getElementById("pieceSize").value = preference.pieceSize ?? 0;
-            document.getElementById("privateTorrent").checked = preference.privateTorrent ?? false;
-            document.getElementById("startSeeding").checked = preference.startSeeding ?? false;
-            document.getElementById("optimizeAlignment").checked = preference.optimizeAlignment ?? false;
-            document.getElementById("paddedFileSizeLimit").value = preference.paddedFileSizeLimit ?? 0;
-            document.getElementById("trackerURLs").value = preference.trackerURLs ?? "";
-            document.getElementById("webSeedURLs").value = preference.webSeedURLs ?? "";
-            document.getElementById("comments").value = preference.comments ?? "";
-            document.getElementById("source").value = preference.source ?? "";
+            $("sourcePath").value = preference.sourcePath ?? "";
+            $("torrentFormat").value = preference.torrentFormat ?? "hybrid";
+            $("pieceSize").value = preference.pieceSize ?? 0;
+            $("privateTorrent").checked = preference.privateTorrent ?? false;
+            $("startSeeding").checked = preference.startSeeding ?? false;
+            $("optimizeAlignment").checked = preference.optimizeAlignment ?? false;
+            $("paddedFileSizeLimit").value = preference.paddedFileSizeLimit ?? 0;
+            $("trackerURLs").value = preference.trackerURLs ?? "";
+            $("webSeedURLs").value = preference.webSeedURLs ?? "";
+            $("comments").value = preference.comments ?? "";
+            $("source").value = preference.source ?? "";
         };
 
         return exports();

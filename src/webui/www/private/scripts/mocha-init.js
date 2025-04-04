@@ -89,7 +89,7 @@ window.qBittorrent.Dialog ??= (() => {
         width: 480,
         onCloseComplete: () => {
             // make sure overlay is properly hidden upon modal closing
-            document.getElementById("modalOverlay").style.display = "none";
+            $("modalOverlay").style.display = "none";
         }
     });
 
@@ -537,7 +537,7 @@ const initializeWindows = () => {
                     },
                     onCloseComplete: () => {
                         // make sure overlay is properly hidden upon modal closing
-                        document.getElementById("modalOverlay").style.display = "none";
+                        $("modalOverlay").style.display = "none";
                     }
                 });
             }
