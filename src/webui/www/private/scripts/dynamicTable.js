@@ -2411,15 +2411,19 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             // renamed
-            this.columns["renamed"].updateTd = function(td, row) {
+            this.columns["renamed"].updateTd = (td, row) => {
                 const id = row.rowId;
                 const fileNameRenamedId = `filesTablefileRenamed${id}`;
-                const value = this.getRowValue(row);
+                const node = that.getNode(id);
 
-                const span = document.createElement("span");
-                span.textContent = value;
+                if (td.children.length !== 1) {
+                    const span = document.createElement("span");
+                    td.appendChild(span);
+                }
+
+                const span = td.children[0];
+                span.textContent = node.renamed;
                 span.id = fileNameRenamedId;
-                td.replaceChildren(span);
             };
         },
 
@@ -2686,6 +2690,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         _addNodeToTable: function(node, depth) {
             node.depth = depth;
+
             if (node.isFolder) {
                 if (!this.collapseState.has(node.rowId))
                     this.collapseState.set(node.rowId, { depth: depth, collapsed: depth > 0 });
