@@ -2314,11 +2314,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.toggleNodeTreeCheckbox(node.children[i].rowId, checkState);
         },
 
-        updateGlobalCheckbox: () => {
+        updateGlobalCheckbox: function() {
             const checkbox = $("rootMultiRename_cb");
-            const checkboxes = document.querySelectorAll("input.RenamingCB");
-            const isAllChecked = Array.prototype.every.call(checkboxes, (checkbox => checkbox.checked));
-            const isAllUnchecked = (() => Array.prototype.every.call(checkboxes, (checkbox => !checkbox.checked)));
+            const isAllChecked = this.fileTree.toArray().every((node) => node.checked === 0);
+            const isAllUnchecked = (() => this.fileTree.toArray().every((node) => node.checked !== 0));
             if (isAllChecked) {
                 checkbox.state = "checked";
                 checkbox.indeterminate = false;
@@ -2681,6 +2680,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.collapseNode(node);
         },
 
+        isAllCheckboxesChecked: function() {
+            return this.fileTree.toArray().every((node) => node.checked === 1);
+        },
+
+        isAllCheckboxesUnchecked: function() {
+            return this.fileTree.toArray().every((node) => node.checked !== 1);
+        },
+
         populateTable: function(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
@@ -2734,6 +2741,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             return this.rows.get(rowId);
         },
 
+        getRowFileId: function(rowId) {
+            const row = this.rows.get(rowId);
+            return row?.full_data.fileId;
+        },
+
         initColumns: function() {
             this.newColumn("checked", "", "", 50, true);
             this.newColumn("name", "", "QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]", 300, true);
@@ -2771,7 +2783,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(treeImg, window.qBittorrent.PropFiles.createDownloadCheckbox(id, row.full_data.fileId, value));
                 }
                 else {
-                    window.qBittorrent.PropFiles.updateDownloadCheckbox(td.children[0], id, row.full_data.fileId, value);
+                    window.qBittorrent.PropFiles.updateDownloadCheckbox(td.children[1], id, row.full_data.fileId, value);
                 }
             };
             this.columns["checked"].staticWidth = 50;
