@@ -94,6 +94,23 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.setupHeaderEvents();
             this.setupHeaderMenu();
             this.setupAltRow();
+            this.setupVirtualList();
+        },
+
+        setupVirtualList() {
+            if (!this.useVirtualList)
+                return;
+            this.table.style.position = "relative";
+
+            this.renderedHeight = this.dynamicTableDiv.offsetHeight;
+            const resizeCallback = window.qBittorrent.Misc.createDebounceHandler(100, () => {
+                const height = this.dynamicTableDiv.offsetHeight;
+                const needRerender = this.renderedHeight < height;
+                this.renderedHeight = height;
+                if (needRerender)
+                    this.rerender();
+            });
+            new ResizeObserver(resizeCallback).observe(this.dynamicTableDiv);
         },
 
         setupCommonEvents: function() {
@@ -842,7 +859,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             if (this.useVirtualList) {
-                this.table.style.position = "relative";
                 // rerender on table update
                 this.rerender(rows);
             }
@@ -904,7 +920,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             // show extra 6 rows at top/bottom to reduce flickering
             const extraRowCount = 6;
             // how many rows can be shown in the visible area
-            const visibleRowCount = Math.ceil(this.dynamicTableDiv.offsetHeight / this.rowHeight) + (extraRowCount * 2);
+            const visibleRowCount = Math.ceil(this.renderedHeight / this.rowHeight) + (extraRowCount * 2);
             // start position of visible rows, offsetted by scrollTop
             const startRow = Math.max(Math.trunc(this.dynamicTableDiv.scrollTop / this.rowHeight) - extraRowCount, 0);
             const endRow = Math.min(startRow + visibleRowCount, rows.length);
@@ -1087,6 +1103,12 @@ window.qBittorrent.DynamicTable ??= (() => {
 
     const TorrentsTable = new Class({
         Extends: DynamicTable,
+
+        setupVirtualList: function() {
+            this.parent();
+
+            this.rowHeight = 22;
+        },
 
         initColumns: function() {
             this.newColumn("priority", "", "#", 30, true);
