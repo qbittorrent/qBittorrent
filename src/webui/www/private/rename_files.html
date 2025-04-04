@@ -41,7 +41,7 @@
 
             // Setup the dynamic table for bulk renaming
             const bulkRenameFilesTable = new window.qBittorrent.DynamicTable.BulkRenameTorrentFilesTable();
-            bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu);
+            bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu, true);
 
             // Inject checkbox into the first column of the table header
             const tableHeaders = document.querySelectorAll("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");

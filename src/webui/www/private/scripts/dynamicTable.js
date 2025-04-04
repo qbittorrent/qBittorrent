@@ -927,6 +927,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             const fragment = document.createDocumentFragment();
             for (let i = startRow; i < endRow; i++) {
                 const row = rows[i];
+                if (!row)
+                    continue;
                 const isAltRow = (i % 2) === 0;
                 const offset = i * this.rowHeight;
                 const position = i - startRow;
@@ -2569,6 +2571,98 @@ window.qBittorrent.DynamicTable ??= (() => {
         prevReverseSort: null,
         fileTree: new window.qBittorrent.FileTree.FileTree(),
 
+        initialize: function() {
+            this.collapseState = new Map();
+        },
+
+        isCollapsed: function(id) {
+            return this.collapseState.get(id)?.collapsed ?? false;
+        },
+
+        expandNode: function(id) {
+            if (this.collapseState.has(id))
+                this.collapseState.get(id).collapsed = false;
+            if (!this.useVirtualList)
+                this._collapseNode(this.getNode(id), false, false, false);
+        },
+
+        collapseNode: function(id) {
+            if (this.collapseState.has(id))
+                this.collapseState.get(id).collapsed = true;
+            if (!this.useVirtualList)
+                this._collapseNode(this.getNode(id), true, false, false);
+        },
+
+        expandAllNodes: function() {
+            for (const [key, ] of this.collapseState)
+                this.expandNode(key);
+        },
+
+        collapseAllNodes: function(depth = 1) {
+            for (const [key, state] of this.collapseState) {
+                if (state.depth >= depth)
+                    this.collapseNode(key);
+            }
+        },
+
+        _hideNode: (node, shouldHide) => {
+            const span = $(`filesTablefileName${node.rowId}`);
+            // span won't exist if row has been filtered out
+            if (span === null)
+                return;
+            const rowElem = span.parentElement.parentElement;
+            rowElem.classList.toggle("invisible", shouldHide);
+        },
+
+        _updateNodeState: (node, isCollapsed) => {
+            const span = $(`filesTablefileName${node.rowId}`);
+            // span won't exist if row has been filtered out
+            if (span === null)
+                return;
+            const td = span.parentElement;
+
+            // store collapsed state
+            td.setAttribute("data-collapsed", isCollapsed);
+
+            // rotate the collapse icon
+            const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
+            collapseIcon.classList.toggle("rotate", isCollapsed);
+        },
+
+        _collapseNode: function(node, shouldCollapse) {
+            if (!node.isFolder)
+                return;
+            this._updateNodeState(node, shouldCollapse);
+
+            node.children.each((child) => {
+                this._hideNode(child, shouldCollapse);
+            });
+        },
+
+        clear: function() {
+            this.parent();
+
+            this.collapseState.clear();
+        },
+
+        setupVirtualList: function() {
+            this.parent();
+
+            this.rowHeight = 29.5;
+        },
+
+        expandFolder: function(id) {
+            const node = this.getNode(id);
+            if (node.isFolder)
+                this.expandNode(node);
+        },
+
+        collapseFolder: function(id) {
+            const node = this.getNode(id);
+            if (node.isFolder)
+                this.collapseNode(node);
+        },
+
         populateTable: function(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
@@ -2578,8 +2672,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         _addNodeToTable: function(node, depth) {
             node.depth = depth;
-
             if (node.isFolder) {
+                if (!this.collapseState.has(node.rowId))
+                    this.collapseState.set(node.rowId, { depth: depth, collapsed: false });
                 const data = {
                     rowId: node.rowId,
                     size: node.size,
@@ -2594,7 +2689,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 node.data = data;
                 node.full_data = data;
-                this.updateRowData(data);
+                this.updateRowData(data, depth);
             }
             else {
                 node.data.rowId = node.rowId;
@@ -2650,14 +2745,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const id = row.rowId;
                 const value = this.getRowValue(row);
 
-                if (window.qBittorrent.PropFiles.isDownloadCheckboxExists(id)) {
-                    window.qBittorrent.PropFiles.updateDownloadCheckbox(id, value);
-                }
-                else {
+                if (td.children.length !== 2) {
                     const treeImg = document.createElement("img");
                     treeImg.src = "images/L.gif";
                     treeImg.style.marginBottom = "-2px";
                     td.append(treeImg, window.qBittorrent.PropFiles.createDownloadCheckbox(id, row.full_data.fileId, value));
+                }
+                else {
+                    window.qBittorrent.PropFiles.updateDownloadCheckbox(td.children[0], id, row.full_data.fileId, value);
                 }
             };
             this.columns["checked"].staticWidth = 50;
@@ -2667,46 +2762,66 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const id = row.rowId;
                 const fileNameId = `filesTablefileName${id}`;
                 const node = that.getNode(id);
+                const value = this.getRowValue(row);
 
+                if (td.children.length !== 3) {
+                    td.textContent = "";
+
+                    const collapseIcon = document.createElement("img");
+                    collapseIcon.src = "images/go-down.svg";
+                    collapseIcon.className = "filesTableCollapseIcon";
+                    collapseIcon.addEventListener("click", () => {
+                        const id = collapseIcon.getAttribute("data-id");
+                        const node = that.getNode(id);
+                        if (node) {
+                            if (that.isCollapsed(node.rowId))
+                                that.expandNode(node.rowId);
+                            else
+                                that.collapseNode(node.rowId);
+                            if (that.useVirtualList)
+                                that.rerender();
+                        }
+                    });
+                    td.appendChild(collapseIcon);
+
+                    const dirImg = document.createElement("img");
+                    dirImg.src = "images/directory.svg";
+                    dirImg.style.width = "20px";
+                    dirImg.style.paddingRight = "5px";
+                    dirImg.style.marginBottom = "-3px";
+                    td.appendChild(dirImg);
+
+                    const span = document.createElement("span");
+                    td.appendChild(span);
+                }
+
+                const collapseIcon = td.children[0];
                 if (node.isFolder) {
-                    const value = this.getRowValue(row);
-                    const collapseIconId = `filesTableCollapseIcon${id}`;
-                    const dirImgId = `filesTableDirImg${id}`;
-                    if ($(dirImgId)) {
-                        // just update file name
-                        $(fileNameId).textContent = value;
-                    }
-                    else {
-                        const collapseIcon = document.createElement("img");
-                        collapseIcon.src = "images/go-down.svg";
-                        collapseIcon.style.marginLeft = `${node.depth * 20}px`;
-                        collapseIcon.className = "filesTableCollapseIcon";
-                        collapseIcon.id = collapseIconId;
-                        collapseIcon.setAttribute("data-id", id);
-                        collapseIcon.addEventListener("click", function(e) { qBittorrent.PropFiles.collapseIconClicked(this); });
-
-                        const span = document.createElement("span");
-                        span.textContent = value;
-                        span.id = fileNameId;
-
-                        const dirImg = document.createElement("img");
-                        dirImg.src = "images/directory.svg";
-                        dirImg.style.width = "20px";
-                        dirImg.style.paddingRight = "5px";
-                        dirImg.style.marginBottom = "-3px";
-                        dirImg.id = dirImgId;
-
-                        td.replaceChildren(collapseIcon, dirImg, span);
-                    }
+                    collapseIcon.id = `filesTableCollapseIcon${id}`;
+                    collapseIcon.style.marginLeft = `${node.depth * 20}px`;
+                    collapseIcon.style.display = "inline";
+                    collapseIcon.setAttribute("data-id", id);
+                    collapseIcon.classList.toggle("rotate", that.isCollapsed(node.rowId));
                 }
                 else {
-                    const value = this.getRowValue(row);
-                    const span = document.createElement("span");
-                    span.textContent = value;
-                    span.id = fileNameId;
-                    span.style.marginLeft = `${(node.depth + 1) * 20}px`;
-                    td.replaceChildren(span);
+                    collapseIcon.id = "";
+                    collapseIcon.style.display = "none";
                 }
+
+                const dirImg = td.children[1];
+                if (node.isFolder) {
+                    dirImg.id = `filesTableDirImg${id}`;
+                    dirImg.style.display = "inline";
+                }
+                else {
+                    dirImg.id = "";
+                    dirImg.style.display = "none";
+                }
+
+                const span = td.children[2];
+                span.id = fileNameId;
+                span.textContent = value;
+                span.style.marginLeft = node.isFolder ? "0" : `${(node.depth + 1) * 20}px`;
             };
             this.columns["name"].calculateBuffer = (rowId) => {
                 const node = that.getNode(rowId);
@@ -2723,10 +2838,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const id = row.rowId;
                 const value = Number(this.getRowValue(row));
 
-                const progressBar = $(`pbf_${id}`);
+                const progressBar = td.firstElementChild;;
                 if (progressBar === null) {
                     td.append(new window.qBittorrent.ProgressBar.ProgressBar(value, {
-                        id: `pbf_${id}`,
                         width: 80
                     }));
                 }
@@ -2741,10 +2855,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const id = row.rowId;
                 const value = this.getRowValue(row);
 
-                if (window.qBittorrent.PropFiles.isPriorityComboExists(id))
-                    window.qBittorrent.PropFiles.updatePriorityCombo(id, value);
-                else
+                if (td.children.length !== 1)
                     td.append(window.qBittorrent.PropFiles.createPriorityCombo(id, row.full_data.fileId, value));
+                else
+                    window.qBittorrent.PropFiles.updatePriorityCombo(td.children[0], id, row.full_data.fileId, value);
             };
             this.columns["priority"].staticWidth = 140;
 
@@ -2776,7 +2890,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         _filterNodes: function(node, filterTerms, filteredRows) {
-            if (node.isFolder) {
+            if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
                 const childAdded = node.children.reduce((acc, child) => {
                     // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
                     return (this._filterNodes(child, filterTerms, filteredRows) || acc);
@@ -2813,19 +2927,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             const generateRowsSignature = () => {
                 const rowsData = [];
                 for (const { full_data } of this.getRowValues())
-                    rowsData.push(full_data);
+                    rowsData.push({ ...full_data, collapsed: this.isCollapsed(full_data.rowId) });
                 return JSON.stringify(rowsData);
             };
 
             const getFilteredRows = function() {
-                if (this.filterTerms.length === 0) {
-                    const nodeArray = this.fileTree.toArray();
-                    const filteredRows = nodeArray.map((node) => {
-                        return this.getRow(node);
-                    });
-                    return filteredRows;
-                }
-
                 const filteredRows = [];
                 this.getRoot().children.each((child) => {
                     this._filterNodes(child, this.filterTerms, filteredRows);
@@ -2882,11 +2988,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 switch (e.key) {
                     case "ArrowLeft":
                         e.preventDefault();
-                        window.qBittorrent.PropFiles.collapseFolder(this.getSelectedRowId());
+                        this.collapseFolder(this.getSelectedRowId());
                         break;
                     case "ArrowRight":
                         e.preventDefault();
-                        window.qBittorrent.PropFiles.expandFolder(this.getSelectedRowId());
+                        this.expandFolder(this.getSelectedRowId());
                         break;
                 }
             });
