@@ -2688,7 +2688,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             node.depth = depth;
             if (node.isFolder) {
                 if (!this.collapseState.has(node.rowId))
-                    this.collapseState.set(node.rowId, { depth: depth, collapsed: false });
+                    this.collapseState.set(node.rowId, { depth: depth, collapsed: depth > 0 });
                 const data = {
                     rowId: node.rowId,
                     size: node.size,
