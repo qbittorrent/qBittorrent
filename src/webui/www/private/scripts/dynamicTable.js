@@ -2377,7 +2377,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             // original
             this.columns["original"].updateTd = function(td, row) {
                 const id = row.rowId;
-                const fileNameId = `filesTablefileName${id}`;
                 const node = that.getNode(id);
                 const value = this.getRowValue(row);
 
@@ -2391,12 +2390,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.appendChild(dirImg);
                 }
                 if (node.isFolder) {
-                    dirImg.id = `renameTableDirImg${id}`;
                     dirImg.style.display = "inline";
                     dirImg.style.marginLeft = `${node.depth * 20}px`;
                 }
                 else {
-                    dirImg.id = "";
                     dirImg.style.display = "none";
                 }
 
@@ -2405,7 +2402,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                     span = document.createElement("span");
                     td.appendChild(span);
                 }
-                span.id = fileNameId;
                 span.textContent = value;
                 span.style.marginLeft = node.isFolder ? "0" : `${(node.depth + 1) * 20}px`;
             };
@@ -2641,7 +2637,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             collapseIcon.classList.toggle("rotate", isCollapsed);
         },
 
-        _updateNodeState: function (id, shouldCollapse) {
+        _updateNodeState: function(id, shouldCollapse) {
             // collapsed rows will be filtered out when using virtual list
             if (this.useVirtualList)
                 return;
@@ -2819,14 +2815,12 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.appendChild(collapseIcon);
                 }
                 if (node.isFolder) {
-                    collapseIcon.id = `filesTableCollapseIcon${id}`;
                     collapseIcon.style.marginLeft = `${node.depth * 20}px`;
                     collapseIcon.style.display = "inline";
                     collapseIcon.setAttribute("data-id", id);
                     collapseIcon.classList.toggle("rotate", that.isCollapsed(node.rowId));
                 }
                 else {
-                    collapseIcon.id = "";
                     collapseIcon.style.display = "none";
                 }
 
@@ -2839,14 +2833,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     dirImg.style.marginBottom = "-3px";
                     td.appendChild(dirImg);
                 }
-                if (node.isFolder) {
-                    dirImg.id = `filesTableDirImg${id}`;
-                    dirImg.style.display = "inline";
-                }
-                else {
-                    dirImg.id = "";
-                    dirImg.style.display = "none";
-                }
+                dirImg.style.display = node.isFolder ? "inline" : "none";
 
                 let span = td.children[2];
                 if (!span) {
