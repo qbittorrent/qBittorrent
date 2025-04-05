@@ -2277,7 +2277,7 @@ window.qBittorrent.DynamicTable ??= (() => {
          * Toggles the global checkbox and all checkboxes underneath
          */
         toggleGlobalCheckbox: function() {
-            const checkbox = $("rootMultiRename_cb");
+            const checkbox = document.getElementById("rootMultiRename_cb");
             const checkboxes = document.querySelectorAll("input.RenamingCB");
 
             for (let i = 0; i < checkboxes.length; ++i) {
@@ -2306,7 +2306,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const node = this.getNode(rowId);
             node.checked = checkState;
             node.full_data.checked = checkState;
-            const checkbox = $(`cbRename${rowId}`);
+            const checkbox = document.getElementById(`cbRename${rowId}`);
             checkbox.checked = node.checked === 0;
             checkbox.state = checkbox.checked ? "checked" : "unchecked";
 
@@ -2315,7 +2315,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         updateGlobalCheckbox: function() {
-            const checkbox = $("rootMultiRename_cb");
+            const checkbox = document.getElementById("rootMultiRename_cb");
             const isAllChecked = this.fileTree.toArray().every((node) => node.checked === 0);
             const isAllUnchecked = (() => this.fileTree.toArray().every((node) => node.checked !== 0));
             if (isAllChecked) {
@@ -2623,7 +2623,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         _hideNode: (node, shouldHide) => {
-            const span = document.getElementById$(`filesTablefileName${node.rowId}`);
+            const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
             if (span === null)
                 return;
@@ -2637,9 +2637,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             if (span === null)
                 return;
             const td = span.parentElement;
-
-            // store collapsed state
-            td.setAttribute("data-collapsed", isCollapsed);
 
             // rotate the collapse icon
             const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
