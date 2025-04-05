@@ -2623,7 +2623,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         _hideNode: (node, shouldHide) => {
-            const span = $(`filesTablefileName${node.rowId}`);
+            const span = document.getElementById$(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
             if (span === null)
                 return;
@@ -2632,7 +2632,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         _updateNodeState: (node, isCollapsed) => {
-            const span = $(`filesTablefileName${node.rowId}`);
+            const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
             if (span === null)
                 return;
