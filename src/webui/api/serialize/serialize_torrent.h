@@ -96,5 +96,6 @@ inline const QString KEY_TORRENT_REANNOUNCE = u"reannounce"_s;
 inline const QString KEY_TORRENT_COMMENT = u"comment"_s;
 inline const QString KEY_TORRENT_PRIVATE = u"private"_s;
 inline const QString KEY_TORRENT_HAS_METADATA = u"has_metadata"_s;
+inline const QString KEY_TORRENT_PERCENT_SELECTED = u"percent_selected"_s;
 
 QVariantMap serialize(const BitTorrent::Torrent &torrent);
