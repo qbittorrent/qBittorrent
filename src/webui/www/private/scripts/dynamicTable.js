@@ -2599,15 +2599,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         expandNode: function(id) {
             if (this.collapseState.has(id))
                 this.collapseState.get(id).collapsed = false;
-            if (!this.useVirtualList)
-                this._collapseNode(this.getNode(id), false, false, false);
+            this._updateNodeState(id, false);
         },
 
         collapseNode: function(id) {
             if (this.collapseState.has(id))
                 this.collapseState.get(id).collapsed = true;
-            if (!this.useVirtualList)
-                this._collapseNode(this.getNode(id), true, false, false);
+            this._updateNodeState(id, true);
         },
 
         expandAllNodes: function() {
@@ -2622,16 +2620,16 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
         },
 
-        _hideNode: (node, shouldHide) => {
+        _updateNodeVisibility: (node, shouldHide) => {
             const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
             if (span === null)
                 return;
-            const rowElem = span.parentElement.parentElement;
-            rowElem.classList.toggle("invisible", shouldHide);
+            const tr = span.parentElement.parentElement;
+            tr.classList.toggle("invisible", shouldHide);
         },
 
-        _updateNodeState: (node, isCollapsed) => {
+        _updateNodeCollapseIcon: (node, isCollapsed) => {
             const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
             if (span === null)
@@ -2639,17 +2637,22 @@ window.qBittorrent.DynamicTable ??= (() => {
             const td = span.parentElement;
 
             // rotate the collapse icon
-            const collapseIcon = td.getElementsByClassName("filesTableCollapseIcon")[0];
+            const collapseIcon = td.firstElementChild;
             collapseIcon.classList.toggle("rotate", isCollapsed);
         },
 
-        _collapseNode: function(node, shouldCollapse) {
+        _updateNodeState: function (id, shouldCollapse) {
+            // collapsed rows will be filtered out when using virtual list
+            if (this.useVirtualList)
+                return;
+            const node = this.getNode(id);
             if (!node.isFolder)
                 return;
-            this._updateNodeState(node, shouldCollapse);
+
+            this._updateNodeCollapseIcon(node, shouldCollapse);
 
             node.children.each((child) => {
-                this._hideNode(child, shouldCollapse);
+                this._updateNodeVisibility(child, shouldCollapse);
             });
         },
 
