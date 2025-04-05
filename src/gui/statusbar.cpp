@@ -89,7 +89,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
     m_dlSpeedLbl->setStyleSheet(u"text-align:left;"_s);
-    m_dlSpeedLbl->setMinimumWidth(200);
+    m_dlSpeedLbl->setFixedWidth(300);
 
     m_upSpeedLbl = new QPushButton(this);
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
@@ -98,7 +98,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
     m_upSpeedLbl->setStyleSheet(u"text-align:left;"_s);
-    m_upSpeedLbl->setMinimumWidth(200);
+    m_upSpeedLbl->setFixedWidth(300);
 
     m_freeDiskSpaceLbl = new QLabel(tr("Free space: N/A"));
     m_freeDiskSpaceLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
