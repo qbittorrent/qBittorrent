@@ -537,15 +537,12 @@ void WebApplication::sendFile(const Path &path)
     const QDateTime lastModified = Utils::Fs::lastModified(path);
 
     // find translated file in cache
-    if (!m_isAltUIUsed)
+    if (const auto it = m_translatedFiles.constFind(path);
+        (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
     {
-        if (const auto it = m_translatedFiles.constFind(path);
-            (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
-        {
-            print(it->data, it->mimeType);
-            setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
-            return;
-        }
+        print(it->data, it->mimeType);
+        setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
+        return;
     }
 
     const auto readResult = Utils::IO::readFile(path, MAX_ALLOWED_FILESIZE);
@@ -576,7 +573,7 @@ void WebApplication::sendFile(const Path &path)
 
     QByteArray data = readResult.value();
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_s);
+    const bool isTranslatable = mimeType.inherits(u"text/plain"_s);
 
     if (isTranslatable)
     {
