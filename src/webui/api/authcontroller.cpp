@@ -46,11 +46,13 @@ AuthController::AuthController(ISessionManager *sessionManager, IApplication *ap
 void AuthController::setUsername(const QString &username)
 {
     m_username = username;
+    setResult(QString());
 }
 
 void AuthController::setPasswordHash(const QByteArray &passwordHash)
 {
     m_passwordHash = passwordHash;
+    setResult(QString());
 }
 
 void AuthController::loginAction()
@@ -99,6 +101,7 @@ void AuthController::loginAction()
 void AuthController::logoutAction() const
 {
     m_sessionManager->sessionEnd();
+    setResult(QString());
 }
 
 bool AuthController::isBanned() const
