@@ -60,12 +60,15 @@
 
     #rssTorrentDetailsName {
         flex-shrink: 0;
+        font-weight: bold;
         background-color: var(--color-background-blue);
         padding: 0;
         color: var(--color-text-white);
     }
 
-    #rssTorrentDetailsDate {
+    #rssTorrentDetailsAuthor,
+    #rssTorrentDetailsDate,
+    #rssTorrentDetailsLink {
         flex-shrink: 1;
         background-color: var(--color-background-default);
     }
@@ -429,15 +432,21 @@
             markArticleAsRead(pathByFeedId.get(feedUid), articleID);
             clearDetails();
 
-            const article = feedData[feedUid].filter((article) => article.id === articleID)[0];
-            if (article) {
-                $("rssDetailsView").append((() => {
+            const article = feedData[feedUid].find((article) => (article.id === articleID));
+            if (article !== undefined) {
+                const detailsView = document.getElementById("rssDetailsView");
+
+                // title
+                {
                     const torrentName = document.createElement("p");
                     torrentName.textContent = article.title;
                     torrentName.id = "rssTorrentDetailsName";
-                    return torrentName;
-                })());
-                $("rssDetailsView").append((() => {
+
+                    detailsView.append(torrentName);
+                }
+
+                // date
+                {
                     const torrentDate = document.createElement("div");
                     torrentDate.id = "rssTorrentDetailsDate";
 
@@ -449,8 +458,38 @@
                     torrentDateData.textContent = new Date(article.date).toLocaleString();
                     torrentDate.append(torrentDateData);
 
-                    return torrentDate;
-                })());
+                    detailsView.append(torrentDate);
+                }
+
+                if (article.author.length > 0) {
+                    const divElement = document.createElement("div");
+                    divElement.id = "rssTorrentDetailsAuthor";
+
+                    const header = document.createElement("b");
+                    header.textContent = "QBT_TR(Author: )QBT_TR[CONTEXT=RSSWidget]";
+                    divElement.append(header);
+
+                    const span = document.createElement("span");
+                    span.textContent = article.author;
+                    divElement.append(span);
+
+                    detailsView.append(divElement);
+                }
+
+                if (article.link.length > 0) {
+                    const divElement = document.createElement("div");
+                    divElement.id = "rssTorrentDetailsLink";
+
+                    const anchorElement = document.createElement("a");
+                    anchorElement.href = article.link;
+                    anchorElement.textContent = "QBT_TR(Open link)QBT_TR[CONTEXT=RSSWidget]";
+                    anchorElement.target = "_blank";
+                    anchorElement.style = "font-weight: bold;";
+                    divElement.append(anchorElement);
+
+                    detailsView.append(divElement);
+                }
+
                 // Place in iframe with sandbox attribute to prevent js execution
                 const torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
                 $("rssDetailsView").append(torrentDescription);
