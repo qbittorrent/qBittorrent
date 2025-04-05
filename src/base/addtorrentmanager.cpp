@@ -29,6 +29,7 @@
 
 #include "addtorrentmanager.h"
 
+#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentdescriptor.h"
@@ -185,8 +186,8 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
         message = tr("Trackers are merged from new source");
     }
 
-    LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3")
-            .arg(source, existingTorrent->name(), message));
+    LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: \"%2\". Torrent infohash: %3. Result: %4")
+            .arg(source, existingTorrent->name(), existingTorrent->infoHash().toString(), message));
     emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
 }
 

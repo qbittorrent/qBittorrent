@@ -37,7 +37,6 @@
 #include <QSharedPointer>
 
 #include "base/applicationcomponent.h"
-#include "base/bittorrent/addtorrenterror.h"
 #include "base/exceptions.h"
 #include "base/settingvalue.h"
 #include "base/utils/thread.h"
@@ -47,6 +46,11 @@ class QTimer;
 class Application;
 class AsyncFileStorage;
 struct ProcessingJob;
+
+namespace BitTorrent
+{
+    struct AddTorrentError;
+}
 
 namespace RSS
 {

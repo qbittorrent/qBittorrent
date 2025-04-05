@@ -35,7 +35,6 @@
 #include <QObject>
 
 #include "base/applicationcomponent.h"
-#include "base/bittorrent/addtorrenterror.h"
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/torrentfileguard.h"
 
@@ -45,6 +44,7 @@ namespace BitTorrent
     class Session;
     class Torrent;
     class TorrentDescriptor;
+    struct AddTorrentError;
 }
 
 namespace Net

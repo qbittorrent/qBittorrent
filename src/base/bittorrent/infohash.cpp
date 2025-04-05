@@ -29,6 +29,9 @@
 #include "infohash.h"
 
 #include <QHash>
+#include <QString>
+
+#include "base/global.h"
 
 const int TorrentIDTypeId = qRegisterMetaType<BitTorrent::TorrentID>();
 
@@ -84,6 +87,28 @@ BitTorrent::TorrentID BitTorrent::InfoHash::toTorrentID() const
 #else
     return {m_nativeHash};
 #endif
+}
+
+QString BitTorrent::InfoHash::toString() const
+{
+    // Returns a string that is suitable for logging purpose
+
+    QString ret;
+    ret.reserve(40 + 64 + 2);  // v1 hash length + v2 hash length + comma
+
+    const SHA1Hash v1Hash = v1();
+    const bool v1IsValid = v1Hash.isValid();
+    if (v1IsValid)
+        ret += v1Hash.toString();
+
+    if (const SHA256Hash v2Hash = v2(); v2Hash.isValid())
+    {
+        if (v1IsValid)
+            ret += u", ";
+        ret += v2Hash.toString();
+    }
+
+    return ret;
 }
 
 BitTorrent::InfoHash::operator WrappedType() const
