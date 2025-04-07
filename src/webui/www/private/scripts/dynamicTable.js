@@ -726,7 +726,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         },
 
         setupAltRow: function() {
-            const useAltRowColors = !this.useVirtualList && (LocalPreferences.get("use_alt_row_colors", "true") === "true");
+            const useAltRowColors = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
             if (useAltRowColors)
                 document.getElementById(this.dynamicTableDivId).classList.add("altRowColors");
         },
@@ -922,23 +922,25 @@ window.qBittorrent.DynamicTable ??= (() => {
             // how many rows can be shown in the visible area
             const visibleRowCount = Math.ceil(this.renderedHeight / this.rowHeight) + (extraRowCount * 2);
             // start position of visible rows, offsetted by scrollTop
-            const startRow = Math.max(Math.trunc(this.dynamicTableDiv.scrollTop / this.rowHeight) - extraRowCount, 0);
+            let startRow = Math.max(Math.trunc(this.dynamicTableDiv.scrollTop / this.rowHeight) - extraRowCount, 0);
+            if ((startRow % 2) === 1)
+                startRow = Math.max(0, startRow - 1);
             const endRow = Math.min(startRow + visibleRowCount, rows.length);
+
             const fragment = document.createDocumentFragment();
             for (let i = startRow; i < endRow; i++) {
                 const row = rows[i];
                 if (!row)
                     continue;
-                const isAltRow = (i % 2) === 0;
                 const offset = i * this.rowHeight;
                 const position = i - startRow;
                 // reuse existing elements
                 let element = this.cachedElements[position];
                 if (element) {
-                    this.updateRowElement(element, row["rowId"], isAltRow, offset);
+                    this.updateRowElement(element, row["rowId"], offset);
                 }
                 else {
-                    element = this.cachedElements[position] = this.createRowElement(row, isAltRow, offset);
+                    element = this.cachedElements[position] = this.createRowElement(row, offset);
                     // update context menu
                     this.contextMenu?.addTarget(element);
                 }
@@ -964,7 +966,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             });
         },
 
-        createRowElement: function(row, isAltRow = false, top = -1) {
+        createRowElement: function(row, top = -1) {
             const tr = document.createElement("tr");
             // set tabindex so element receives keydown events
             // more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
@@ -977,11 +979,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 tr.append(td);
             }
 
-            this.updateRowElement(tr, row["rowId"], isAltRow, top);
+            this.updateRowElement(tr, row["rowId"], top);
             return tr;
         },
 
-        updateRowElement(tr, rowId, isAltRow, top) {
+        updateRowElement(tr, rowId, top) {
             tr.setAttribute("data-row-id", rowId);
             tr["rowId"] = rowId;
 
@@ -992,8 +994,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                 tr.style.top = `${top}px`;
                 if (this.selectedRows.contains(rowId))
                     tr.classList.add("selected");
-                if (isAltRow)
-                    tr.classList.add("altRow");
             }
         },
 
