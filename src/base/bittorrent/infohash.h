@@ -36,6 +36,8 @@
 
 #include "base/digest32.h"
 
+class QString;
+
 using SHA1Hash = Digest32<160>;
 using SHA256Hash = Digest32<256>;
 
@@ -78,6 +80,8 @@ namespace BitTorrent
         SHA1Hash v1() const;
         SHA256Hash v2() const;
         TorrentID toTorrentID() const;
+
+        QString toString() const;
 
         operator WrappedType() const;
 
