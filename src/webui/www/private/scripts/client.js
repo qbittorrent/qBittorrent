@@ -174,7 +174,7 @@ let selectedStatus = LocalPreferences.get("selected_filter", "all");
 let setStatusFilter = () => {};
 let toggleFilterDisplay = () => {};
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", (event) => {
     let isSearchPanelLoaded = false;
     let isLogPanelLoaded = false;
     let isRssPanelLoaded = false;
@@ -1095,7 +1095,7 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    document.getElementById("alternativeSpeedLimits").addEventListener("click", () => {
+    document.getElementById("alternativeSpeedLimits").addEventListener("click", (event) => {
         // Change icon immediately to give some feedback
         updateAltSpeedIcon(!alternativeSpeedLimits);
 
@@ -1114,8 +1114,8 @@ window.addEventListener("DOMContentLoaded", () => {
             });
     });
 
-    document.getElementById("DlInfos").addEventListener("click", () => { globalDownloadLimitFN(); });
-    document.getElementById("UpInfos").addEventListener("click", () => { globalUploadLimitFN(); });
+    document.getElementById("DlInfos").addEventListener("click", (event) => { globalDownloadLimitFN(); });
+    document.getElementById("UpInfos").addEventListener("click", (event) => { globalUploadLimitFN(); });
 
     document.getElementById("showTopToolbarLink").addEventListener("click", (e) => {
         showTopToolbar = !showTopToolbar;
@@ -1260,7 +1260,7 @@ window.addEventListener("DOMContentLoaded", () => {
             document.getElementById("mainWindowTabs").classList.add("invisible");
     };
 
-    document.getElementById("StatisticsLink").addEventListener("click", () => { StatisticsLinkFN(); });
+    document.getElementById("StatisticsLink").addEventListener("click", (event) => { StatisticsLinkFN(); });
 
     // main window tabs
 
@@ -1618,7 +1618,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // listen for changes to torrentsFilterInput
     let torrentsFilterInputTimer = -1;
-    document.getElementById("torrentsFilterInput").addEventListener("input", () => {
+    document.getElementById("torrentsFilterInput").addEventListener("input", (event) => {
         clearTimeout(torrentsFilterInputTimer);
         torrentsFilterInputTimer = setTimeout(() => {
             torrentsFilterInputTimer = -1;
@@ -1628,10 +1628,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => { torrentsTable.updateTable(); });
 
-    document.getElementById("transfersTabLink").addEventListener("click", () => { showTransfersTab(); });
-    document.getElementById("searchTabLink").addEventListener("click", () => { showSearchTab(); });
-    document.getElementById("rssTabLink").addEventListener("click", () => { showRssTab(); });
-    document.getElementById("logTabLink").addEventListener("click", () => { showLogTab(); });
+    document.getElementById("transfersTabLink").addEventListener("click", (event) => { showTransfersTab(); });
+    document.getElementById("searchTabLink").addEventListener("click", (event) => { showSearchTab(); });
+    document.getElementById("rssTabLink").addEventListener("click", (event) => { showRssTab(); });
+    document.getElementById("logTabLink").addEventListener("click", (event) => { showLogTab(); });
     updateTabDisplay();
 
     const registerDragAndDrop = () => {
@@ -1793,7 +1793,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-window.addEventListener("load", async () => {
+window.addEventListener("load", async (event) => {
     await window.qBittorrent.Client.initializeCaches();
 
     // switch to previously used tab

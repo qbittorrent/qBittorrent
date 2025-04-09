@@ -475,8 +475,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     };
                     flatten(responseJSON);
                 });
-            document.getElementById("savetoDifferentDir").addEventListener("click", () => {
-                document.getElementById("saveToText").disabled = !document.getElementById("savetoDifferentDir").checked;
+            document.getElementById("savetoDifferentDir").addEventListener("click", (event) => {
+                document.getElementById("saveToText").disabled = !event.target.checked;
             });
             updateRulesList();
         };

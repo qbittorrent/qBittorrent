@@ -586,7 +586,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     // listen for changes to torrentFilesFilterInput
     let torrentFilesFilterInputTimer = -1;
-    document.getElementById("torrentFilesFilterInput").addEventListener("input", () => {
+    document.getElementById("torrentFilesFilterInput").addEventListener("input", (event) => {
         clearTimeout(torrentFilesFilterInputTimer);
 
         const value = document.getElementById("torrentFilesFilterInput").value;
