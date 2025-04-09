@@ -108,6 +108,7 @@ private:
 
 #ifndef Q_OS_MACOS
     QCheckBox m_checkBoxIconsInMenusEnabled;
+    QCheckBox m_checkBoxAttachedAddNewTorrentDialog;
 #endif
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)

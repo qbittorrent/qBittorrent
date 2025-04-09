@@ -131,7 +131,11 @@ window.qBittorrent.Download ??= (() => {
         }
     };
 
-    $(window).addEventListener("load", () => {
+    $(window).addEventListener("load", async () => {
+        // user might load this page directly (via browser magnet handler)
+        // so wait for crucial initialization to complete
+        await window.parent.qBittorrent.Client.initializeCaches();
+
         getPreferences();
         getCategories();
     });

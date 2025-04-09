@@ -99,6 +99,7 @@ namespace
         ENABLE_SPEED_WIDGET,
 #ifndef Q_OS_MACOS
         ENABLE_ICONS_IN_MENUS,
+        USE_ATTACHED_ADD_NEW_TORRENT_DIALOG,
 #endif
         // embedded tracker
         TRACKER_STATUS,
@@ -330,6 +331,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setSpeedWidgetEnabled(m_checkBoxSpeedWidgetEnabled.isChecked());
 #ifndef Q_OS_MACOS
     pref->setIconsInMenusEnabled(m_checkBoxIconsInMenusEnabled.isChecked());
+    pref->setAddNewTorrentDialogAttached(m_checkBoxAttachedAddNewTorrentDialog.isChecked());
 #endif
 
     // Tracker
@@ -856,6 +858,9 @@ void AdvancedSettings::loadAdvancedSettings()
     // Enable icons in menus
     m_checkBoxIconsInMenusEnabled.setChecked(pref->iconsInMenusEnabled());
     addRow(ENABLE_ICONS_IN_MENUS, tr("Enable icons in menus"), &m_checkBoxIconsInMenusEnabled);
+
+    m_checkBoxAttachedAddNewTorrentDialog.setChecked(pref->isAddNewTorrentDialogAttached());
+    addRow(USE_ATTACHED_ADD_NEW_TORRENT_DIALOG, tr("Attach \"Add new torrent\" dialog to main window"), &m_checkBoxAttachedAddNewTorrentDialog);
 #endif
     // Tracker State
     m_checkBoxTrackerStatus.setChecked(session->isTrackerEnabled());
