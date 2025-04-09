@@ -72,7 +72,7 @@ InhibitorDBus::InhibitorDBus(QObject *parent)
     else
     {
         m_state = Error;
-        LogMsg(tr("Power management error. Did not found suitable D-Bus interface."), Log::WARNING);
+        LogMsg(tr("Power management error. Did not find a suitable D-Bus interface."), Log::WARNING);
     }
 }
 
