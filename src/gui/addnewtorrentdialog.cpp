@@ -386,7 +386,9 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
-    saveState();
+    if (!QCoreApplication::closingDown())
+        saveState();
+
     delete m_ui;
 }
 
