@@ -494,10 +494,18 @@
                 detailsView.append(divElement);
             }
 
-            // Place in iframe with sandbox attribute to prevent js execution
-            const torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
-            $("rssDetailsView").append(torrentDescription);
-            document.getElementById("rssDescription").srcdoc = `<html><head><link rel="stylesheet" type="text/css" href="css/style.css"></head><body>${article.description}</body></html>`;
+            const articleDescription = article.description;
+            if (articleDescription !== undefined) {
+                const rootColor = document.documentElement.classList.contains("dark") ? "class='dark'" : "";
+
+                // Place in iframe with sandbox attribute to prevent js execution
+                const iframeElement = document.createElement("iframe");
+                iframeElement.id = "rssDescription";
+                iframeElement.sandbox = "allow-same-origin"; // allowed to get parent css
+                iframeElement.srcdoc = `<html ${rootColor}><head><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="css/style.css?v=${CACHEID}"></head><body>${articleDescription}</body></html>`;
+
+                detailsView.append(iframeElement);
+            }
         };
 
         const updateRssFeedList = () => {
