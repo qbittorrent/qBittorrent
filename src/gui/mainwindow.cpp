@@ -417,7 +417,23 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         if (!isVisible())
             activate();
 #else
-        toggleVisibility();
+        if (isActiveWindow())
+        {
+            hide();
+        }
+        else
+        {
+            if (m_uiLocked && !unlockUI())  // Ask for UI lock password
+                return;
+
+            // Make sure the window is not minimized
+            setWindowState((windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+
+            // Then show it
+            show();
+            raise();
+            activateWindow();
+        }
 #endif
     });
 
