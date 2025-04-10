@@ -361,25 +361,43 @@ void WebApplication::doProcessRequest()
     try
     {
         const APIResult result = controller->run(action, m_params, data);
-        switch (result.data.userType())
+        if (result.data.isNull())
         {
-        case QMetaType::QJsonDocument:
-            print(result.data.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
-            break;
-        case QMetaType::QByteArray:
+            status(204);
+        }
+        else
+        {
+            switch (result.data.userType())
             {
-                const auto resultData = result.data.toByteArray();
-                print(resultData, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
-                if (!result.filename.isEmpty())
+            case QMetaType::QJsonDocument:
+                print(result.data.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
+                break;
+            case QMetaType::QByteArray:
                 {
-                    setHeader({u"Content-Disposition"_s, u"attachment; filename=\"%1\""_s.arg(result.filename)});
+                    const auto resultData = result.data.toByteArray();
+                    print(resultData, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
+                    if (!result.filename.isEmpty())
+                    {
+                        setHeader({u"Content-Disposition"_s, u"attachment; filename=\"%1\""_s.arg(result.filename)});
+                    }
                 }
+                break;
+            case QMetaType::QString:
+            default:
+                print(result.data.toString(), Http::CONTENT_TYPE_TXT);
+                break;
             }
-            break;
-        case QMetaType::QString:
-        default:
-            print(result.data.toString(), Http::CONTENT_TYPE_TXT);
-            break;
+
+            switch (result.status)
+            {
+            case APIStatus::Async:
+                status(202);
+                break;
+            case APIStatus::Ok:
+            default:
+                status(200);
+                break;
+            }
         }
     }
     catch (const APIError &error)
