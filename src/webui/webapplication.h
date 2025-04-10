@@ -67,12 +67,13 @@ namespace BitTorrent
 class WebSession final : public ApplicationComponent<QObject>, public ISession
 {
 public:
-    explicit WebSession(const QString &sid, IApplication *app);
+    explicit WebSession(const QString &sid, IApplication *app, bool authenticated);
 
     QString id() const override;
 
     bool hasExpired(qint64 seconds) const;
     void updateTimestamp();
+    bool isAuthenticated() const;
 
     void registerAPIController(const QString &scope, APIController *controller);
     APIController *getAPIController(const QString &scope) const;
@@ -80,6 +81,7 @@ public:
 private:
     const QString m_sid;
     QElapsedTimer m_timer;  // timestamp
+    bool m_authenticated = false;
     QMap<QString, APIController *> m_apiControllers;
 };
 
@@ -102,10 +104,13 @@ public:
     void setUsername(const QString &username);
     void setPasswordHash(const QByteArray &passwordHash);
 
+private slots:
+    void logoutAllSessions();
+
 private:
     QString clientId() const override;
     WebSession *session() override;
-    void sessionStart() override;
+    void sessionStart(bool authenticated) override;
     void sessionEnd() override;
 
     void doProcessRequest();
