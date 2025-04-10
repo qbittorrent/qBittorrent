@@ -883,15 +883,17 @@ void MainWindow::createKeyboardShortcuts()
 {
     m_ui->actionCreateTorrent->setShortcut(QKeySequence::New);
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
-    m_ui->actionDelete->setShortcut(QKeySequence::Delete);
-    m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
     m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_O);
     m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
+    m_ui->actionDelete->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_Backspace));
 #else
     m_ui->actionCloseWindow->setVisible(false);
+    m_ui->actionDelete->setShortcut(QKeySequence::Delete);
 #endif
+    m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
+
 
     const auto *switchTransferShortcut = new QShortcut((Qt::ALT | Qt::Key_1), this);
     connect(switchTransferShortcut, &QShortcut::activated, this, &MainWindow::displayTransferTab);
