@@ -53,6 +53,7 @@
 #include "gui/autoexpandabledialog.h"
 #include "gui/trackersadditiondialog.h"
 #include "gui/uithememanager.h"
+#include "gui/utils/keysequence.h"
 #include "trackerlistitemdelegate.h"
 #include "trackerlistmodel.h"
 #include "trackerlistsortmodel.h"
@@ -106,7 +107,7 @@ TrackerListWidget::TrackerListWidget(QWidget *parent)
     // Set hotkeys
     const auto *editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &TrackerListWidget::editSelectedTracker);
-    const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *deleteHotkey = new QShortcut(Utils::KeySequence::deleteItem(), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteHotkey, &QShortcut::activated, this, &TrackerListWidget::deleteSelectedTrackers);
     const auto *copyHotkey = new QShortcut(QKeySequence::Copy, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(copyHotkey, &QShortcut::activated, this, &TrackerListWidget::copyTrackerUrl);

@@ -72,6 +72,7 @@
 #include "tristateaction.h"
 #include "uithememanager.h"
 #include "utils.h"
+#include "utils/keysequence.h"
 
 #ifdef Q_OS_MACOS
 #include "macosshiftclickhandler.h"
@@ -228,7 +229,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
 
     const auto *editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
-    const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, this, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *deleteHotkey = new QShortcut(Utils::KeySequence::deleteItem(), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
     const auto *permDeleteHotkey = new QShortcut((Qt::SHIFT | Qt::Key_Delete), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);

@@ -49,6 +49,7 @@
 #include "gui/autoexpandabledialog.h"
 #include "gui/interfaces/iguiapplication.h"
 #include "gui/uithememanager.h"
+#include "gui/utils/keysequence.h"
 #include "articlelistwidget.h"
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
@@ -140,7 +141,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
 
     const auto *editHotkey = new QShortcut(Qt::Key_F2, m_ui->feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &RSSWidget::renameSelectedRSSItem);
-    const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, m_ui->feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *deleteHotkey = new QShortcut(Utils::KeySequence::deleteItem(), m_ui->feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteHotkey, &QShortcut::activated, this, &RSSWidget::deleteSelectedItems);
 
     // Feeds list actions

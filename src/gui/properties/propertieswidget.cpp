@@ -56,6 +56,7 @@
 #include "gui/trackerlist/trackerlistwidget.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
+#include "gui/utils/keysequence.h"
 #include "downloadedpiecesbar.h"
 #include "peerlistwidget.h"
 #include "pieceavailabilitybar.h"
@@ -136,7 +137,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
     const auto *editWebSeedsHotkey = new QShortcut(Qt::Key_F2, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editWebSeedsHotkey, &QShortcut::activated, this, &PropertiesWidget::editWebSeed);
-    const auto *deleteWebSeedsHotkey = new QShortcut(QKeySequence::Delete, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *deleteWebSeedsHotkey = new QShortcut(Utils::KeySequence::deleteItem(), m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteWebSeedsHotkey, &QShortcut::activated, this, &PropertiesWidget::deleteSelectedUrlSeeds);
     connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
 

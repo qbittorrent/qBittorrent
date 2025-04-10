@@ -101,6 +101,7 @@
 #include "ui_mainwindow.h"
 #include "uithememanager.h"
 #include "utils.h"
+#include "utils/keysequence.h"
 
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
@@ -883,7 +884,7 @@ void MainWindow::createKeyboardShortcuts()
 {
     m_ui->actionCreateTorrent->setShortcut(QKeySequence::New);
     m_ui->actionOpen->setShortcut(QKeySequence::Open);
-    m_ui->actionDelete->setShortcut(QKeySequence::Delete);
+    m_ui->actionDelete->setShortcut(Utils::KeySequence::deleteItem());
     m_ui->actionDelete->setShortcutContext(Qt::WidgetShortcut);  // nullify its effect: delete key event is handled by respective widgets, not here
     m_ui->actionDownloadFromURL->setShortcut(Qt::CTRL | Qt::SHIFT | Qt::Key_O);
     m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
