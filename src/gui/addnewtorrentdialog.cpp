@@ -386,7 +386,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
-    saveState();
     delete m_ui;
 }
 
@@ -426,6 +425,12 @@ void AddNewTorrentDialog::showEvent(QShowEvent *event)
 
     activateWindow();
     raise();
+}
+
+void AddNewTorrentDialog::closeEvent(QCloseEvent *e)
+{
+    saveState();
+    QDialog::closeEvent(e);
 }
 
 void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> context)

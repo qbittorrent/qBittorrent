@@ -85,6 +85,7 @@ private:
     struct Context;
 
     void showEvent(QShowEvent *event) override;
+    void closeEvent(QCloseEvent *) override;
 
     void setCurrentContext(std::shared_ptr<Context> context);
     void updateCurrentContext();
