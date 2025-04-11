@@ -1,4 +1,4 @@
-#VERSION: 1.24
+# VERSION: 1.25
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -38,7 +38,10 @@ current_path = str(pathlib.Path(__file__).parent.resolve())
 if current_path not in sys.path:
     sys.path.append(current_path)
 
-from helpers import download_file
+import helpers
+
+# enable SOCKS proxy for all plugins by default
+helpers.enable_socks_proxy(True)
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:
@@ -58,6 +61,6 @@ if __name__ == '__main__':
     if hasattr(engine, 'download_torrent'):
         engine.download_torrent(download_param)
     else:
-        print(download_file(download_param))
+        print(helpers.download_file(download_param))
 
     sys.exit(0)
