@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -68,6 +68,11 @@ signals:
     void torrentAccepted(const BitTorrent::TorrentDescriptor &torrentDescriptor, const BitTorrent::AddTorrentParams &addTorrentParams);
     void torrentRejected(const BitTorrent::TorrentDescriptor &torrentDescriptor);
 
+public slots:
+    void accept() override;
+    void reject() override;
+    void done(int result) override;
+
 private slots:
     void updateDiskSpaceLabel();
     void onSavePathChanged(const Path &newPath);
@@ -76,9 +81,6 @@ private slots:
     void TMMChanged(int index);
     void categoryChanged(int index);
     void contentLayoutChanged();
-
-    void accept() override;
-    void reject() override;
 
 private:
     class TorrentContentAdaptor;

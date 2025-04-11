@@ -61,6 +61,7 @@ class GUIAddTorrentManager : public GUIApplicationComponent<AddTorrentManager>
 
 public:
     GUIAddTorrentManager(IGUIApplication *app, BitTorrent::Session *session, QObject *parent = nullptr);
+    ~GUIAddTorrentManager() override;
 
     bool addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params = {}, AddTorrentOption option = AddTorrentOption::Default);
 

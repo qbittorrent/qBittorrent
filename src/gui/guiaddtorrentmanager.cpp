@@ -81,6 +81,15 @@ GUIAddTorrentManager::GUIAddTorrentManager(IGUIApplication *app, BitTorrent::Ses
     connect(btSession(), &BitTorrent::Session::metadataDownloaded, this, &GUIAddTorrentManager::onMetadataDownloaded);
 }
 
+GUIAddTorrentManager::~GUIAddTorrentManager()
+{
+    for (AddNewTorrentDialog *dialog : asConst(m_dialogs))
+    {
+        dialog->disconnect(this);
+        dialog->reject();
+    }
+}
+
 bool GUIAddTorrentManager::addTorrent(const QString &source, const BitTorrent::AddTorrentParams &params, const AddTorrentOption option)
 {
     // `source`: .torrent file path,  magnet URI or URL
