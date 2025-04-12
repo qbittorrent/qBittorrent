@@ -188,7 +188,7 @@
         let selectedLogLevels = JSON.parse(LocalPreferences.get("qbt_selected_log_levels")) || ["1", "2", "4", "8"];
 
         const init = () => {
-            for (const option of $("logLevelSelect").options)
+            for (const option of document.getElementById("logLevelSelect").options)
                 option.toggleAttribute("selected", selectedLogLevels.includes(option.value));
 
             selectBox = new vanillaSelectBox("#logLevelSelect", {
@@ -282,7 +282,7 @@
         };
 
         const filterTextChanged = () => {
-            const value = $("filterTextInput").value.trim();
+            const value = document.getElementById("filterTextInput").value.trim();
             if (inputtedFilterText !== value) {
                 inputtedFilterText = value;
                 logFilterChanged();
@@ -306,14 +306,14 @@
             currentSelectedTab = tab;
             if (currentSelectedTab === "main") {
                 selectBox.enable();
-                $("logMessageView").classList.remove("invisible");
-                $("logPeerView").classList.add("invisible");
+                document.getElementById("logMessageView").classList.remove("invisible");
+                document.getElementById("logPeerView").classList.add("invisible");
                 resetTableTimer("peer");
             }
             else {
                 selectBox.disable();
-                $("logMessageView").classList.add("invisible");
-                $("logPeerView").classList.remove("invisible");
+                document.getElementById("logMessageView").classList.add("invisible");
+                document.getElementById("logPeerView").classList.remove("invisible");
                 resetTableTimer("main");
             }
 
@@ -331,8 +331,8 @@
             if (curTab === undefined)
                 curTab = currentSelectedTab;
 
-            $("numFilteredLogs").textContent = tableInfo[curTab].instance.filteredLength;
-            $("numTotalLogs").textContent = tableInfo[curTab].instance.getRowSize();
+            document.getElementById("numFilteredLogs").textContent = tableInfo[curTab].instance.filteredLength;
+            document.getElementById("numTotalLogs").textContent = tableInfo[curTab].instance.getRowSize();
         };
 
         const syncLogData = (curTab) => {
@@ -368,7 +368,7 @@
                 })
                 .then(async (response) => {
                     if (!response.ok) {
-                        const errorDiv = $("error_div");
+                        const errorDiv = document.getElementById("error_div");
                         if (errorDiv)
                             errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                         tableInfo[curTab].progress = false;
@@ -376,9 +376,9 @@
                         return;
                     }
 
-                    $("error_div").textContent = "";
+                    document.getElementById("error_div").textContent = "";
 
-                    if ($("logTabColumn").classList.contains("invisible"))
+                    if (document.getElementById("logTabColumn").classList.contains("invisible"))
                         return;
 
                     const responseJSON = await response.json();

@@ -1801,32 +1801,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updateFileLogEnabled = () => {
-            const isFileLogEnabled = $("filelog_checkbox").checked;
-            $("filelog_save_path_input").disabled = !isFileLogEnabled;
-            $("filelog_backup_checkbox").disabled = !isFileLogEnabled;
-            $("filelog_delete_old_checkbox").disabled = !isFileLogEnabled;
+            const isFileLogEnabled = document.getElementById("filelog_checkbox").checked;
+            document.getElementById("filelog_save_path_input").disabled = !isFileLogEnabled;
+            document.getElementById("filelog_backup_checkbox").disabled = !isFileLogEnabled;
+            document.getElementById("filelog_delete_old_checkbox").disabled = !isFileLogEnabled;
 
             updateFileLogBackupEnabled();
             updateFileLogDeleteEnabled();
         };
 
         const updateFileLogBackupEnabled = () => {
-            const pros = $("filelog_backup_checkbox").getProperties("disabled", "checked");
-            $("filelog_max_size_input").disabled = pros.disabled || !pros.checked;
+            const pros = document.getElementById("filelog_backup_checkbox").getProperties("disabled", "checked");
+            document.getElementById("filelog_max_size_input").disabled = pros.disabled || !pros.checked;
         };
 
         const updateFileLogDeleteEnabled = () => {
-            const pros = $("filelog_delete_old_checkbox").getProperties("disabled", "checked");
-            $("filelog_age_input").disabled = pros.disabled || !pros.checked;
-            $("filelog_age_type_select").disabled = pros.disabled || !pros.checked;
+            const pros = document.getElementById("filelog_delete_old_checkbox").getProperties("disabled", "checked");
+            document.getElementById("filelog_age_input").disabled = pros.disabled || !pros.checked;
+            document.getElementById("filelog_age_type_select").disabled = pros.disabled || !pros.checked;
         };
 
         // Downloads tab
         let watchedFoldersTable;
 
         const updateTempDirEnabled = () => {
-            const isTempDirEnabled = $("temppath_checkbox").checked;
-            $("temppath_text").disabled = !isTempDirEnabled;
+            const isTempDirEnabled = document.getElementById("temppath_checkbox").checked;
+            document.getElementById("temppath_text").disabled = !isTempDirEnabled;
         };
 
         const changeWatchFolderSelect = (item) => {
@@ -1843,7 +1843,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const addWatchFolder = (folder = "", sel = "default_folder", other = "") => {
-            const pos = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+            const pos = document.getElementById("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
             const myinput = `<input id='text_watch_${pos}' type='text' value='${folder}'>`;
             const disableInput = (sel !== "other");
             const mycb = `<div class='select-watched-folder-editable'>`
@@ -1857,28 +1857,28 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 + `</div>`;
 
             watchedFoldersTable.push([myinput, mycb]);
-            $(`cb_watch_${pos}`).value = sel;
+            document.getElementById(`cb_watch_${pos}`).value = sel;
             if (disableInput) {
-                const elt = $(`cb_watch_${pos}`);
+                const elt = document.getElementById(`cb_watch_${pos}`);
                 other = elt.options[elt.selectedIndex].textContent;
             }
-            $(`cb_watch_txt_${pos}`).value = other;
+            document.getElementById(`cb_watch_txt_${pos}`).value = other;
 
             // hide previous img
             if (pos > 0)
-                $(`addFolderImg_${pos - 1}`).style.display = "none";
+                document.getElementById(`addFolderImg_${pos - 1}`).style.display = "none";
         };
 
         const getWatchedFolders = () => {
             const folders = {};
 
-            const entryCount = $("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
+            const entryCount = document.getElementById("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
             for (let i = 0; i < entryCount; ++i) {
-                const fpath = $(`text_watch_${i}`).value.trim();
+                const fpath = document.getElementById(`text_watch_${i}`).value.trim();
                 if (fpath.length <= 0)
                     continue;
 
-                const sel = $(`cb_watch_${i}`).value.trim();
+                const sel = document.getElementById(`cb_watch_${i}`).value.trim();
 
                 let other;
                 switch (sel) {
@@ -1889,7 +1889,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         other = 1;
                         break;
                     case "other":
-                        other = $(`cb_watch_txt_${i}`).value.trim();
+                        other = document.getElementById(`cb_watch_txt_${i}`).value.trim();
                         break;
                 };
 
@@ -1900,39 +1900,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updateExcludedFileNamesEnabled = () => {
-            const isAExcludedFileNamesEnabled = $("excludedFileNamesCheckbox").checked;
-            $("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+            const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
+            document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
         };
 
         const updateExportDirEnabled = () => {
-            const isExportDirEnabled = $("exportdir_checkbox").checked;
-            $("exportdir_text").disabled = !isExportDirEnabled;
+            const isExportDirEnabled = document.getElementById("exportdir_checkbox").checked;
+            document.getElementById("exportdir_text").disabled = !isExportDirEnabled;
         };
 
         const updateExportDirFinEnabled = () => {
-            const isExportDirFinEnabled = $("exportdirfin_checkbox").checked;
-            $("exportdirfin_text").disabled = !isExportDirFinEnabled;
+            const isExportDirFinEnabled = document.getElementById("exportdirfin_checkbox").checked;
+            document.getElementById("exportdirfin_text").disabled = !isExportDirFinEnabled;
         };
 
         const updateMailNotification = () => {
-            const isMailNotificationEnabled = $("mail_notification_checkbox").checked;
-            $("src_email_txt").disabled = !isMailNotificationEnabled;
-            $("dest_email_txt").disabled = !isMailNotificationEnabled;
-            $("smtp_server_txt").disabled = !isMailNotificationEnabled;
-            $("mail_ssl_checkbox").disabled = !isMailNotificationEnabled;
-            $("mail_auth_checkbox").disabled = !isMailNotificationEnabled;
-            $("mail_test_button").disabled = !isMailNotificationEnabled;
+            const isMailNotificationEnabled = document.getElementById("mail_notification_checkbox").checked;
+            document.getElementById("src_email_txt").disabled = !isMailNotificationEnabled;
+            document.getElementById("dest_email_txt").disabled = !isMailNotificationEnabled;
+            document.getElementById("smtp_server_txt").disabled = !isMailNotificationEnabled;
+            document.getElementById("mail_ssl_checkbox").disabled = !isMailNotificationEnabled;
+            document.getElementById("mail_auth_checkbox").disabled = !isMailNotificationEnabled;
+            document.getElementById("mail_test_button").disabled = !isMailNotificationEnabled;
 
             if (!isMailNotificationEnabled) {
-                $("mail_auth_checkbox").checked = !isMailNotificationEnabled;
+                document.getElementById("mail_auth_checkbox").checked = !isMailNotificationEnabled;
                 updateMailAuthSettings();
             }
         };
 
         const updateMailAuthSettings = () => {
-            const isMailAuthEnabled = $("mail_auth_checkbox").checked;
-            $("mail_username_text").disabled = !isMailAuthEnabled;
-            $("mail_password_text").disabled = !isMailAuthEnabled;
+            const isMailAuthEnabled = document.getElementById("mail_auth_checkbox").checked;
+            document.getElementById("mail_username_text").disabled = !isMailAuthEnabled;
+            document.getElementById("mail_password_text").disabled = !isMailAuthEnabled;
         };
 
         const sendTestEmail = () => {
@@ -1950,167 +1950,167 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updateAutoRunOnTorrentAdded = () => {
-            const isAutoRunOnTorrentAddedEnabled = $("autorunOnTorrentAddedCheckbox").checked;
-            $("autorunOnTorrentAddedProgram").disabled = !isAutoRunOnTorrentAddedEnabled;
+            const isAutoRunOnTorrentAddedEnabled = document.getElementById("autorunOnTorrentAddedCheckbox").checked;
+            document.getElementById("autorunOnTorrentAddedProgram").disabled = !isAutoRunOnTorrentAddedEnabled;
         };
 
         const updateAutoRun = () => {
-            const isAutoRunEnabled = $("autorun_checkbox").checked;
-            $("autorunProg_txt").disabled = !isAutoRunEnabled;
+            const isAutoRunEnabled = document.getElementById("autorun_checkbox").checked;
+            document.getElementById("autorunProg_txt").disabled = !isAutoRunEnabled;
         };
 
         // Connection tab
 
         const updateMaxConnecEnabled = () => {
-            const isMaxConnecEnabled = $("maxConnectionsCheckbox").checked;
-            $("maxConnectionsValue").disabled = !isMaxConnecEnabled;
+            const isMaxConnecEnabled = document.getElementById("maxConnectionsCheckbox").checked;
+            document.getElementById("maxConnectionsValue").disabled = !isMaxConnecEnabled;
         };
 
         const updateMaxConnecPerTorrentEnabled = () => {
-            const isMaxConnecPerTorrentEnabled = $("maxConnectionsPerTorrentCheckbox").checked;
-            $("maxConnectionsPerTorrentValue").disabled = !isMaxConnecPerTorrentEnabled;
+            const isMaxConnecPerTorrentEnabled = document.getElementById("maxConnectionsPerTorrentCheckbox").checked;
+            document.getElementById("maxConnectionsPerTorrentValue").disabled = !isMaxConnecPerTorrentEnabled;
         };
 
         const updateMaxUploadsEnabled = () => {
-            const isMaxUploadsEnabled = $("maxUploadsCheckbox").checked;
-            $("max_uploads_value").disabled = !isMaxUploadsEnabled;
+            const isMaxUploadsEnabled = document.getElementById("maxUploadsCheckbox").checked;
+            document.getElementById("max_uploads_value").disabled = !isMaxUploadsEnabled;
         };
 
         const updateMaxUploadsPerTorrentEnabled = () => {
-            const isMaxUploadsPerTorrentEnabled = $("maxUploadsPerTorrentCheckbox").checked;
-            $("maxUploadsPerTorrentValue").disabled = !isMaxUploadsPerTorrentEnabled;
+            const isMaxUploadsPerTorrentEnabled = document.getElementById("maxUploadsPerTorrentCheckbox").checked;
+            document.getElementById("maxUploadsPerTorrentValue").disabled = !isMaxUploadsPerTorrentEnabled;
         };
 
         const updateI2PSettingsEnabled = () => {
-            const isI2PEnabled = $("i2pEnabledCheckbox").checked;
-            $("i2pAddress").disabled = !isI2PEnabled;
-            $("i2pPort").disabled = !isI2PEnabled;
-            $("i2pMixedMode").disabled = !isI2PEnabled;
+            const isI2PEnabled = document.getElementById("i2pEnabledCheckbox").checked;
+            document.getElementById("i2pAddress").disabled = !isI2PEnabled;
+            document.getElementById("i2pPort").disabled = !isI2PEnabled;
+            document.getElementById("i2pMixedMode").disabled = !isI2PEnabled;
         };
 
         const updatePeerProxySettings = () => {
-            const proxyType = $("peer_proxy_type_select").value;
+            const proxyType = document.getElementById("peer_proxy_type_select").value;
             const isProxyDisabled = (proxyType === "None");
             const isProxySocks4 = (proxyType === "SOCKS4");
 
-            $("peer_proxy_host_text").disabled = isProxyDisabled;
-            $("peer_proxy_port_value").disabled = isProxyDisabled;
+            document.getElementById("peer_proxy_host_text").disabled = isProxyDisabled;
+            document.getElementById("peer_proxy_port_value").disabled = isProxyDisabled;
 
-            $("peer_proxy_auth_checkbox").disabled = (isProxyDisabled || isProxySocks4);
-            $("proxy_bittorrent_checkbox").disabled = isProxyDisabled;
-            $("use_peer_proxy_checkbox").disabled = (isProxyDisabled || !$("proxy_bittorrent_checkbox").checked);
-            $("proxyHostnameLookupCheckbox").disabled = (isProxyDisabled || isProxySocks4);
-            $("proxy_rss_checkbox").disabled = (isProxyDisabled || isProxySocks4);
-            $("proxy_misc_checkbox").disabled = (isProxyDisabled || isProxySocks4);
+            document.getElementById("peer_proxy_auth_checkbox").disabled = (isProxyDisabled || isProxySocks4);
+            document.getElementById("proxy_bittorrent_checkbox").disabled = isProxyDisabled;
+            document.getElementById("use_peer_proxy_checkbox").disabled = (isProxyDisabled || !document.getElementById("proxy_bittorrent_checkbox").checked);
+            document.getElementById("proxyHostnameLookupCheckbox").disabled = (isProxyDisabled || isProxySocks4);
+            document.getElementById("proxy_rss_checkbox").disabled = (isProxyDisabled || isProxySocks4);
+            document.getElementById("proxy_misc_checkbox").disabled = (isProxyDisabled || isProxySocks4);
 
             updatePeerProxyAuthSettings();
         };
 
         const updatePeerProxyAuthSettings = () => {
-            const proxyType = $("peer_proxy_type_select").value;
+            const proxyType = document.getElementById("peer_proxy_type_select").value;
             const isProxyDisabled = (proxyType === "None");
-            const isPeerProxyAuthEnabled = (!$("peer_proxy_auth_checkbox").disabled && $("peer_proxy_auth_checkbox").checked);
-            $("peer_proxy_username_text").disabled = (isProxyDisabled || !isPeerProxyAuthEnabled);
-            $("peer_proxy_password_text").disabled = (isProxyDisabled || !isPeerProxyAuthEnabled);
+            const isPeerProxyAuthEnabled = (!document.getElementById("peer_proxy_auth_checkbox").disabled && document.getElementById("peer_proxy_auth_checkbox").checked);
+            document.getElementById("peer_proxy_username_text").disabled = (isProxyDisabled || !isPeerProxyAuthEnabled);
+            document.getElementById("peer_proxy_password_text").disabled = (isProxyDisabled || !isPeerProxyAuthEnabled);
         };
 
         const updateFilterSettings = () => {
-            const isIPFilterEnabled = $("ipfilter_text_checkbox").checked;
-            $("ipfilter_text").disabled = !isIPFilterEnabled;
+            const isIPFilterEnabled = document.getElementById("ipfilter_text_checkbox").checked;
+            document.getElementById("ipfilter_text").disabled = !isIPFilterEnabled;
         };
 
         // Speed tab
         const updateSchedulingEnabled = () => {
-            const isLimitSchedulingEnabled = $("limitSchedulingCheckbox").checked;
-            $("schedule_from_hour").disabled = !isLimitSchedulingEnabled;
-            $("schedule_from_min").disabled = !isLimitSchedulingEnabled;
-            $("schedule_to_hour").disabled = !isLimitSchedulingEnabled;
-            $("schedule_to_min").disabled = !isLimitSchedulingEnabled;
-            $("schedule_freq_select").disabled = !isLimitSchedulingEnabled;
+            const isLimitSchedulingEnabled = document.getElementById("limitSchedulingCheckbox").checked;
+            document.getElementById("schedule_from_hour").disabled = !isLimitSchedulingEnabled;
+            document.getElementById("schedule_from_min").disabled = !isLimitSchedulingEnabled;
+            document.getElementById("schedule_to_hour").disabled = !isLimitSchedulingEnabled;
+            document.getElementById("schedule_to_min").disabled = !isLimitSchedulingEnabled;
+            document.getElementById("schedule_freq_select").disabled = !isLimitSchedulingEnabled;
         };
 
         // Bittorrent tab
         const updateQueueingSystem = () => {
-            const isQueueingEnabled = $("queueingCheckbox").checked;
-            $("maxActiveDlValue").disabled = !isQueueingEnabled;
-            $("maxActiveUpValue").disabled = !isQueueingEnabled;
-            $("maxActiveToValue").disabled = !isQueueingEnabled;
-            $("dontCountSlowTorrentsCheckbox").disabled = !isQueueingEnabled;
+            const isQueueingEnabled = document.getElementById("queueingCheckbox").checked;
+            document.getElementById("maxActiveDlValue").disabled = !isQueueingEnabled;
+            document.getElementById("maxActiveUpValue").disabled = !isQueueingEnabled;
+            document.getElementById("maxActiveToValue").disabled = !isQueueingEnabled;
+            document.getElementById("dontCountSlowTorrentsCheckbox").disabled = !isQueueingEnabled;
             updateSlowTorrentsSettings();
         };
 
         const updateSlowTorrentsSettings = () => {
-            const isDontCountSlowTorrentsEnabled = (!$("dontCountSlowTorrentsCheckbox").disabled) && $("dontCountSlowTorrentsCheckbox").checked;
-            $("dlRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
-            $("ulRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
-            $("torrentInactiveTimerValue").disabled = !isDontCountSlowTorrentsEnabled;
+            const isDontCountSlowTorrentsEnabled = (!document.getElementById("dontCountSlowTorrentsCheckbox").disabled) && document.getElementById("dontCountSlowTorrentsCheckbox").checked;
+            document.getElementById("dlRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
+            document.getElementById("ulRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
+            document.getElementById("torrentInactiveTimerValue").disabled = !isDontCountSlowTorrentsEnabled;
         };
 
         const updateMaxRatioTimeEnabled = () => {
-            const isMaxRatioEnabled = $("maxRatioCheckbox").checked;
-            $("maxRatioValue").disabled = !isMaxRatioEnabled;
+            const isMaxRatioEnabled = document.getElementById("maxRatioCheckbox").checked;
+            document.getElementById("maxRatioValue").disabled = !isMaxRatioEnabled;
 
-            const isMaxSeedingTimeEnabled = $("maxSeedingTimeCheckbox").checked;
-            $("maxSeedingTimeValue").disabled = !isMaxSeedingTimeEnabled;
+            const isMaxSeedingTimeEnabled = document.getElementById("maxSeedingTimeCheckbox").checked;
+            document.getElementById("maxSeedingTimeValue").disabled = !isMaxSeedingTimeEnabled;
 
-            const isMaxInactiveSeedingTimeEnabled = $("maxInactiveSeedingTimeCheckbox").checked;
-            $("maxInactiveSeedingTimeValue").disabled = !isMaxInactiveSeedingTimeEnabled;
+            const isMaxInactiveSeedingTimeEnabled = document.getElementById("maxInactiveSeedingTimeCheckbox").checked;
+            document.getElementById("maxInactiveSeedingTimeValue").disabled = !isMaxInactiveSeedingTimeEnabled;
 
-            $("maxRatioSelect").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
+            document.getElementById("maxRatioSelect").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
         };
 
         const updateAddTrackersEnabled = () => {
-            const isAddTrackersEnabled = $("add_trackers_checkbox").checked;
-            $("add_trackers_textarea").disabled = !isAddTrackersEnabled;
+            const isAddTrackersEnabled = document.getElementById("add_trackers_checkbox").checked;
+            document.getElementById("add_trackers_textarea").disabled = !isAddTrackersEnabled;
         };
 
         const updateAddTrackersFromURLEnabled = () => {
-            const isAddTrackersFromURLEnabled = $("addTrackersFromURLCheckbox").checked;
-            $("addTrackersURL").disabled = !isAddTrackersFromURLEnabled;
+            const isAddTrackersFromURLEnabled = document.getElementById("addTrackersFromURLCheckbox").checked;
+            document.getElementById("addTrackersURL").disabled = !isAddTrackersFromURLEnabled;
         };
 
         // WebUI tab
         const updateHttpsSettings = () => {
-            const isUseHttpsEnabled = $("use_https_checkbox").checked;
-            $("ssl_cert_text").disabled = !isUseHttpsEnabled;
-            $("ssl_key_text").disabled = !isUseHttpsEnabled;
+            const isUseHttpsEnabled = document.getElementById("use_https_checkbox").checked;
+            document.getElementById("ssl_cert_text").disabled = !isUseHttpsEnabled;
+            document.getElementById("ssl_key_text").disabled = !isUseHttpsEnabled;
         };
 
         const updateBypasssAuthSettings = () => {
-            const isBypassAuthSubnetWhitelistEnabled = $("bypass_auth_subnet_whitelist_checkbox").checked;
-            $("bypass_auth_subnet_whitelist_textarea").disabled = !isBypassAuthSubnetWhitelistEnabled;
+            const isBypassAuthSubnetWhitelistEnabled = document.getElementById("bypass_auth_subnet_whitelist_checkbox").checked;
+            document.getElementById("bypass_auth_subnet_whitelist_textarea").disabled = !isBypassAuthSubnetWhitelistEnabled;
         };
 
         const updateAlternativeWebUISettings = () => {
-            const isUseAlternativeWebUIEnabled = $("use_alt_webui_checkbox").checked;
-            $("webui_files_location_textarea").disabled = !isUseAlternativeWebUIEnabled;
+            const isUseAlternativeWebUIEnabled = document.getElementById("use_alt_webui_checkbox").checked;
+            document.getElementById("webui_files_location_textarea").disabled = !isUseAlternativeWebUIEnabled;
         };
 
         const updateHostHeaderValidationSettings = () => {
-            const isHostHeaderValidationEnabled = $("host_header_validation_checkbox").checked;
-            $("webuiDomainTextarea").disabled = !isHostHeaderValidationEnabled;
+            const isHostHeaderValidationEnabled = document.getElementById("host_header_validation_checkbox").checked;
+            document.getElementById("webuiDomainTextarea").disabled = !isHostHeaderValidationEnabled;
         };
 
         const updateWebUICustomHTTPHeadersSettings = () => {
-            const isEnabled = $("webUIUseCustomHTTPHeadersCheckbox").checked;
-            $("webUICustomHTTPHeadersTextarea").disabled = !isEnabled;
+            const isEnabled = document.getElementById("webUIUseCustomHTTPHeadersCheckbox").checked;
+            document.getElementById("webUICustomHTTPHeadersTextarea").disabled = !isEnabled;
         };
 
         const updateWebUIReverseProxySettings = () => {
-            const isEnabled = $("webUIReverseProxySupportCheckbox").checked;
-            $("webUIReverseProxiesListTextarea").disabled = !isEnabled;
+            const isEnabled = document.getElementById("webUIReverseProxySupportCheckbox").checked;
+            document.getElementById("webUIReverseProxiesListTextarea").disabled = !isEnabled;
         };
 
         const updateDynDnsSettings = () => {
-            const isDynDnsEnabled = $("use_dyndns_checkbox").checked;
-            $("dyndns_select").disabled = !isDynDnsEnabled;
-            $("dyndns_domain_text").disabled = !isDynDnsEnabled;
-            $("dyndns_username_text").disabled = !isDynDnsEnabled;
-            $("dyndns_password_text").disabled = !isDynDnsEnabled;
+            const isDynDnsEnabled = document.getElementById("use_dyndns_checkbox").checked;
+            document.getElementById("dyndns_select").disabled = !isDynDnsEnabled;
+            document.getElementById("dyndns_domain_text").disabled = !isDynDnsEnabled;
+            document.getElementById("dyndns_username_text").disabled = !isDynDnsEnabled;
+            document.getElementById("dyndns_password_text").disabled = !isDynDnsEnabled;
         };
 
         const registerDynDns = () => {
-            if (Number($("dyndns_select").value) === 1)
+            if (Number(document.getElementById("dyndns_select").value) === 1)
                 window.open("http://www.no-ip.com/services/managed_dns/free_dynamic_dns.html", "NO-IP Registration");
             else
                 window.open("https://www.dyndns.com/account/services/hosts/add.html", "DynDNS Registration");
@@ -2120,7 +2120,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const min = 1024;
             const max = 65535;
             const port = Math.floor(Math.random() * (max - min + 1) + min);
-            $("portValue").value = port;
+            document.getElementById("portValue").value = port;
         };
 
         const time_padding = (val) => {
@@ -2152,11 +2152,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     if (default_iface && !ifaces.some((item) => item.value === default_iface))
                         ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
 
-                    $("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
+                    document.getElementById("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
                     ifaces.forEach((item, index) => {
-                        $("networkInterface").options.add(new Option(item.name, item.value));
+                        document.getElementById("networkInterface").options.add(new Option(item.name, item.value));
                     });
-                    $("networkInterface").value = default_iface;
+                    document.getElementById("networkInterface").value = default_iface;
                 });
         };
 
@@ -2181,26 +2181,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     if (!addresses)
                         return;
 
-                    $("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
-                    $("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
-                    $("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
+                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
+                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
+                    document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
                     addresses.forEach((item, index) => {
-                        $("optionalIPAddressToBind").options.add(new Option(item, item));
+                        document.getElementById("optionalIPAddressToBind").options.add(new Option(item, item));
                     });
-                    $("optionalIPAddressToBind").value = default_addr;
+                    document.getElementById("optionalIPAddressToBind").value = default_addr;
                 });
         };
 
         const updateWebuiLocaleSelect = (selected) => {
             const languages = [];
-            for (let i = 0; i < $("locale_select").options.length; i++)
-                languages.push($("locale_select").options[i].value);
+            for (let i = 0; i < document.getElementById("locale_select").options.length; i++)
+                languages.push(document.getElementById("locale_select").options[i].value);
 
             if (!languages.includes(selected)) {
                 const lang = selected.split("_", 1)[0];
                 selected = languages.includes(lang) ? lang : "en";
             }
-            $("locale_select").value = selected;
+            document.getElementById("locale_select").value = selected;
         };
 
         const updateColoSchemeSelect = () => {
@@ -2222,22 +2222,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Language
                     updateWebuiLocaleSelect(pref.locale);
                     updateColoSchemeSelect();
-                    $("statusBarExternalIP").checked = pref.status_bar_external_ip;
-                    $("performanceWarning").checked = pref.performance_warning;
+                    document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
+                    document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
                     document.getElementById("useVirtualList").checked = (LocalPreferences.get("use_virtual_list", "false") === "true");
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
-                    $("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
-                    $("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
+                    document.getElementById("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
+                    document.getElementById("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
                     document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
-                    $("filelog_checkbox").checked = pref.file_log_enabled;
-                    $("filelog_save_path_input").value = pref.file_log_path;
-                    $("filelog_backup_checkbox").checked = pref.file_log_backup_enabled;
-                    $("filelog_max_size_input").value = pref.file_log_max_size;
-                    $("filelog_delete_old_checkbox").checked = pref.file_log_delete_old;
-                    $("filelog_age_input").value = pref.file_log_age;
-                    $("filelog_age_type_select").value = pref.file_log_age_type;
+                    document.getElementById("filelog_checkbox").checked = pref.file_log_enabled;
+                    document.getElementById("filelog_save_path_input").value = pref.file_log_path;
+                    document.getElementById("filelog_backup_checkbox").checked = pref.file_log_backup_enabled;
+                    document.getElementById("filelog_max_size_input").value = pref.file_log_max_size;
+                    document.getElementById("filelog_delete_old_checkbox").checked = pref.file_log_delete_old;
+                    document.getElementById("filelog_age_input").value = pref.file_log_age;
+                    document.getElementById("filelog_age_type_select").value = pref.file_log_age_type;
                     updateFileLogEnabled();
 
                     // Downloads tab
@@ -2254,9 +2254,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             index = 2;
                             break;
                     }
-                    $("contentlayout_select").getChildren("option")[index].selected = true;
-                    $("addToTopOfQueueCheckbox").checked = pref.add_to_top_of_queue;
-                    $("dontstartdownloads_checkbox").checked = pref.add_stopped_enabled;
+                    document.getElementById("contentlayout_select").getChildren("option")[index].selected = true;
+                    document.getElementById("addToTopOfQueueCheckbox").checked = pref.add_to_top_of_queue;
+                    document.getElementById("dontstartdownloads_checkbox").checked = pref.add_stopped_enabled;
                     switch (pref.torrent_stop_condition) {
                         case "None":
                             index = 0;
@@ -2268,41 +2268,41 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             index = 2;
                             break;
                     }
-                    $("stopConditionSelect").getChildren("option")[index].selected = true;
+                    document.getElementById("stopConditionSelect").getChildren("option")[index].selected = true;
                     document.getElementById("mergeTrackersInput").checked = pref.merge_trackers;
-                    $("deletetorrentfileafter_checkbox").checked = pref.auto_delete_mode;
+                    document.getElementById("deletetorrentfileafter_checkbox").checked = pref.auto_delete_mode;
 
-                    $("preallocateall_checkbox").checked = pref.preallocate_all;
-                    $("appendext_checkbox").checked = pref.incomplete_files_ext;
-                    $("unwantedfolder_checkbox").checked = pref.use_unwanted_folder;
+                    document.getElementById("preallocateall_checkbox").checked = pref.preallocate_all;
+                    document.getElementById("appendext_checkbox").checked = pref.incomplete_files_ext;
+                    document.getElementById("unwantedfolder_checkbox").checked = pref.use_unwanted_folder;
 
                     // Saving Management
-                    $("default_tmm_combobox").value = pref.auto_tmm_enabled;
-                    $("torrent_changed_tmm_combobox").value = pref.torrent_changed_tmm_enabled;
-                    $("save_path_changed_tmm_combobox").value = pref.save_path_changed_tmm_enabled;
-                    $("category_changed_tmm_combobox").value = pref.category_changed_tmm_enabled;
-                    $("use_subcategories_checkbox").checked = pref.use_subcategories;
+                    document.getElementById("default_tmm_combobox").value = pref.auto_tmm_enabled;
+                    document.getElementById("torrent_changed_tmm_combobox").value = pref.torrent_changed_tmm_enabled;
+                    document.getElementById("save_path_changed_tmm_combobox").value = pref.save_path_changed_tmm_enabled;
+                    document.getElementById("category_changed_tmm_combobox").value = pref.category_changed_tmm_enabled;
+                    document.getElementById("use_subcategories_checkbox").checked = pref.use_subcategories;
                     document.getElementById("categoryPathsManualModeCheckbox").checked = pref.use_category_paths_in_manual_mode;
-                    $("savepath_text").value = pref.save_path;
-                    $("temppath_checkbox").checked = pref.temp_path_enabled;
-                    $("temppath_text").value = pref.temp_path;
+                    document.getElementById("savepath_text").value = pref.save_path;
+                    document.getElementById("temppath_checkbox").checked = pref.temp_path_enabled;
+                    document.getElementById("temppath_text").value = pref.temp_path;
                     updateTempDirEnabled();
                     if (pref.export_dir !== "") {
-                        $("exportdir_checkbox").checked = true;
-                        $("exportdir_text").value = pref.export_dir;
+                        document.getElementById("exportdir_checkbox").checked = true;
+                        document.getElementById("exportdir_text").value = pref.export_dir;
                     }
                     else {
-                        $("exportdir_checkbox").checked = false;
-                        $("exportdir_text").value = "";
+                        document.getElementById("exportdir_checkbox").checked = false;
+                        document.getElementById("exportdir_text").value = "";
                     }
                     updateExportDirEnabled();
                     if (pref.export_dir_fin !== "") {
-                        $("exportdirfin_checkbox").checked = true;
-                        $("exportdirfin_text").value = pref.export_dir_fin;
+                        document.getElementById("exportdirfin_checkbox").checked = true;
+                        document.getElementById("exportdirfin_text").value = pref.export_dir_fin;
                     }
                     else {
-                        $("exportdirfin_checkbox").checked = false;
-                        $("exportdirfin_text").value = "";
+                        document.getElementById("exportdirfin_checkbox").checked = false;
+                        document.getElementById("exportdirfin_text").value = "";
                     }
                     updateExportDirFinEnabled();
 
@@ -2323,159 +2323,159 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     addWatchFolder();
 
                     // Excluded file names
-                    $("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
-                    $("excludedFileNamesTextarea").value = pref.excluded_file_names;
+                    document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
+                    document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
 
                     // Email notification upon download completion
-                    $("mail_notification_checkbox").checked = pref.mail_notification_enabled;
-                    $("src_email_txt").value = pref.mail_notification_sender;
-                    $("dest_email_txt").value = pref.mail_notification_email;
-                    $("smtp_server_txt").value = pref.mail_notification_smtp;
-                    $("mail_ssl_checkbox").checked = pref.mail_notification_ssl_enabled;
-                    $("mail_auth_checkbox").checked = pref.mail_notification_auth_enabled;
-                    $("mail_username_text").value = pref.mail_notification_username;
-                    $("mail_password_text").value = pref.mail_notification_password;
+                    document.getElementById("mail_notification_checkbox").checked = pref.mail_notification_enabled;
+                    document.getElementById("src_email_txt").value = pref.mail_notification_sender;
+                    document.getElementById("dest_email_txt").value = pref.mail_notification_email;
+                    document.getElementById("smtp_server_txt").value = pref.mail_notification_smtp;
+                    document.getElementById("mail_ssl_checkbox").checked = pref.mail_notification_ssl_enabled;
+                    document.getElementById("mail_auth_checkbox").checked = pref.mail_notification_auth_enabled;
+                    document.getElementById("mail_username_text").value = pref.mail_notification_username;
+                    document.getElementById("mail_password_text").value = pref.mail_notification_password;
                     updateMailNotification();
                     updateMailAuthSettings();
 
                     // Run an external program on torrent added
-                    $("autorunOnTorrentAddedCheckbox").checked = pref.autorun_on_torrent_added_enabled;
-                    $("autorunOnTorrentAddedProgram").value = pref.autorun_on_torrent_added_program;
+                    document.getElementById("autorunOnTorrentAddedCheckbox").checked = pref.autorun_on_torrent_added_enabled;
+                    document.getElementById("autorunOnTorrentAddedProgram").value = pref.autorun_on_torrent_added_program;
                     updateAutoRunOnTorrentAdded();
                     // Run an external program on torrent finished
-                    $("autorun_checkbox").checked = pref.autorun_enabled;
-                    $("autorunProg_txt").value = pref.autorun_program;
+                    document.getElementById("autorun_checkbox").checked = pref.autorun_enabled;
+                    document.getElementById("autorunProg_txt").value = pref.autorun_program;
                     updateAutoRun();
 
                     // Connection tab
                     // Listening Port
-                    $("portValue").value = Number(pref.listen_port);
-                    $("upnpCheckbox").checked = pref.upnp;
+                    document.getElementById("portValue").value = Number(pref.listen_port);
+                    document.getElementById("upnpCheckbox").checked = pref.upnp;
 
                     // Connections Limits
                     const maxConnec = Number(pref.max_connec);
                     if (maxConnec <= 0) {
-                        $("maxConnectionsCheckbox").checked = false;
-                        $("maxConnectionsValue").value = 500;
+                        document.getElementById("maxConnectionsCheckbox").checked = false;
+                        document.getElementById("maxConnectionsValue").value = 500;
                     }
                     else {
-                        $("maxConnectionsCheckbox").checked = true;
-                        $("maxConnectionsValue").value = maxConnec;
+                        document.getElementById("maxConnectionsCheckbox").checked = true;
+                        document.getElementById("maxConnectionsValue").value = maxConnec;
                     }
                     updateMaxConnecEnabled();
 
                     const maxConnecPerTorrent = Number(pref.max_connec_per_torrent);
                     if (maxConnecPerTorrent <= 0) {
-                        $("maxConnectionsPerTorrentCheckbox").checked = false;
-                        $("maxConnectionsPerTorrentValue").value = 100;
+                        document.getElementById("maxConnectionsPerTorrentCheckbox").checked = false;
+                        document.getElementById("maxConnectionsPerTorrentValue").value = 100;
                     }
                     else {
-                        $("maxConnectionsPerTorrentCheckbox").checked = true;
-                        $("maxConnectionsPerTorrentValue").value = maxConnecPerTorrent;
+                        document.getElementById("maxConnectionsPerTorrentCheckbox").checked = true;
+                        document.getElementById("maxConnectionsPerTorrentValue").value = maxConnecPerTorrent;
                     }
                     updateMaxConnecPerTorrentEnabled();
 
                     const maxUploads = Number(pref.max_uploads);
                     if (maxUploads <= 0) {
-                        $("maxUploadsCheckbox").checked = false;
-                        $("max_uploads_value").value = 8;
+                        document.getElementById("maxUploadsCheckbox").checked = false;
+                        document.getElementById("max_uploads_value").value = 8;
                     }
                     else {
-                        $("maxUploadsCheckbox").checked = true;
-                        $("max_uploads_value").value = maxUploads;
+                        document.getElementById("maxUploadsCheckbox").checked = true;
+                        document.getElementById("max_uploads_value").value = maxUploads;
                     }
                     updateMaxUploadsEnabled();
 
                     const maxUploadsPerTorrent = Number(pref.max_uploads_per_torrent);
                     if (maxUploadsPerTorrent <= 0) {
-                        $("maxUploadsPerTorrentCheckbox").checked = false;
-                        $("maxUploadsPerTorrentValue").value = 4;
+                        document.getElementById("maxUploadsPerTorrentCheckbox").checked = false;
+                        document.getElementById("maxUploadsPerTorrentValue").value = 4;
                     }
                     else {
-                        $("maxUploadsPerTorrentCheckbox").checked = true;
-                        $("maxUploadsPerTorrentValue").value = maxUploadsPerTorrent;
+                        document.getElementById("maxUploadsPerTorrentCheckbox").checked = true;
+                        document.getElementById("maxUploadsPerTorrentValue").value = maxUploadsPerTorrent;
                     }
                     updateMaxUploadsPerTorrentEnabled();
 
                     // I2P
-                    $("i2pEnabledCheckbox").checked = pref.i2p_enabled;
-                    $("i2pAddress").value = pref.i2p_address;
-                    $("i2pPort").value = pref.i2p_port;
-                    $("i2pMixedMode").checked = pref.i2p_mixed_mode;
+                    document.getElementById("i2pEnabledCheckbox").checked = pref.i2p_enabled;
+                    document.getElementById("i2pAddress").value = pref.i2p_address;
+                    document.getElementById("i2pPort").value = pref.i2p_port;
+                    document.getElementById("i2pMixedMode").checked = pref.i2p_mixed_mode;
                     updateI2PSettingsEnabled();
 
                     // Proxy Server
-                    $("peer_proxy_type_select").value = pref.proxy_type;
-                    $("peer_proxy_host_text").value = pref.proxy_ip;
-                    $("peer_proxy_port_value").value = pref.proxy_port;
-                    $("peer_proxy_auth_checkbox").checked = pref.proxy_auth_enabled;
-                    $("peer_proxy_username_text").value = pref.proxy_username;
-                    $("peer_proxy_password_text").value = pref.proxy_password;
-                    $("proxyHostnameLookupCheckbox").checked = pref.proxy_hostname_lookup;
-                    $("proxy_bittorrent_checkbox").checked = pref.proxy_bittorrent;
-                    $("use_peer_proxy_checkbox").checked = pref.proxy_peer_connections;
-                    $("proxy_rss_checkbox").checked = pref.proxy_rss;
-                    $("proxy_misc_checkbox").checked = pref.proxy_misc;
+                    document.getElementById("peer_proxy_type_select").value = pref.proxy_type;
+                    document.getElementById("peer_proxy_host_text").value = pref.proxy_ip;
+                    document.getElementById("peer_proxy_port_value").value = pref.proxy_port;
+                    document.getElementById("peer_proxy_auth_checkbox").checked = pref.proxy_auth_enabled;
+                    document.getElementById("peer_proxy_username_text").value = pref.proxy_username;
+                    document.getElementById("peer_proxy_password_text").value = pref.proxy_password;
+                    document.getElementById("proxyHostnameLookupCheckbox").checked = pref.proxy_hostname_lookup;
+                    document.getElementById("proxy_bittorrent_checkbox").checked = pref.proxy_bittorrent;
+                    document.getElementById("use_peer_proxy_checkbox").checked = pref.proxy_peer_connections;
+                    document.getElementById("proxy_rss_checkbox").checked = pref.proxy_rss;
+                    document.getElementById("proxy_misc_checkbox").checked = pref.proxy_misc;
                     updatePeerProxySettings();
 
                     // IP Filtering
-                    $("ipfilter_text_checkbox").checked = pref.ip_filter_enabled;
-                    $("ipfilter_text").value = pref.ip_filter_path;
-                    $("ipfilter_trackers_checkbox").checked = pref.ip_filter_trackers;
-                    $("banned_IPs_textarea").value = pref.banned_IPs;
+                    document.getElementById("ipfilter_text_checkbox").checked = pref.ip_filter_enabled;
+                    document.getElementById("ipfilter_text").value = pref.ip_filter_path;
+                    document.getElementById("ipfilter_trackers_checkbox").checked = pref.ip_filter_trackers;
+                    document.getElementById("banned_IPs_textarea").value = pref.banned_IPs;
                     updateFilterSettings();
 
                     // Speed tab
                     // Global Rate Limits
-                    $("upLimitValue").value = (Number(pref.up_limit) / 1024);
-                    $("dlLimitValue").value = (Number(pref.dl_limit) / 1024);
+                    document.getElementById("upLimitValue").value = (Number(pref.up_limit) / 1024);
+                    document.getElementById("dlLimitValue").value = (Number(pref.dl_limit) / 1024);
                     // Alternative Global Rate Limits
-                    $("altUpLimitValue").value = (Number(pref.alt_up_limit) / 1024);
-                    $("altDlLimitValue").value = (Number(pref.alt_dl_limit) / 1024);
+                    document.getElementById("altUpLimitValue").value = (Number(pref.alt_up_limit) / 1024);
+                    document.getElementById("altDlLimitValue").value = (Number(pref.alt_dl_limit) / 1024);
 
-                    $("enable_protocol_combobox").value = pref.bittorrent_protocol;
-                    $("limit_utp_rate_checkbox").checked = pref.limit_utp_rate;
-                    $("limit_tcp_overhead_checkbox").checked = pref.limit_tcp_overhead;
-                    $("limit_lan_peers_checkbox").checked = pref.limit_lan_peers;
+                    document.getElementById("enable_protocol_combobox").value = pref.bittorrent_protocol;
+                    document.getElementById("limit_utp_rate_checkbox").checked = pref.limit_utp_rate;
+                    document.getElementById("limit_tcp_overhead_checkbox").checked = pref.limit_tcp_overhead;
+                    document.getElementById("limit_lan_peers_checkbox").checked = pref.limit_lan_peers;
 
                     // Scheduling
-                    $("limitSchedulingCheckbox").checked = pref.scheduler_enabled;
-                    $("schedule_from_hour").value = time_padding(pref.schedule_from_hour);
-                    $("schedule_from_min").value = time_padding(pref.schedule_from_min);
-                    $("schedule_to_hour").value = time_padding(pref.schedule_to_hour);
-                    $("schedule_to_min").value = time_padding(pref.schedule_to_min);
-                    $("schedule_freq_select").value = pref.scheduler_days;
+                    document.getElementById("limitSchedulingCheckbox").checked = pref.scheduler_enabled;
+                    document.getElementById("schedule_from_hour").value = time_padding(pref.schedule_from_hour);
+                    document.getElementById("schedule_from_min").value = time_padding(pref.schedule_from_min);
+                    document.getElementById("schedule_to_hour").value = time_padding(pref.schedule_to_hour);
+                    document.getElementById("schedule_to_min").value = time_padding(pref.schedule_to_min);
+                    document.getElementById("schedule_freq_select").value = pref.scheduler_days;
                     updateSchedulingEnabled();
 
                     // Bittorrent tab
                     // Privacy
-                    $("dht_checkbox").checked = pref.dht;
-                    $("pex_checkbox").checked = pref.pex;
-                    $("lsd_checkbox").checked = pref.lsd;
+                    document.getElementById("dht_checkbox").checked = pref.dht;
+                    document.getElementById("pex_checkbox").checked = pref.pex;
+                    document.getElementById("lsd_checkbox").checked = pref.lsd;
                     const encryption = Number(pref.encryption);
-                    $("encryption_select").getChildren("option")[encryption].selected = true;
-                    $("anonymous_mode_checkbox").checked = pref.anonymous_mode;
+                    document.getElementById("encryption_select").getChildren("option")[encryption].selected = true;
+                    document.getElementById("anonymous_mode_checkbox").checked = pref.anonymous_mode;
 
-                    $("maxActiveCheckingTorrents").value = pref.max_active_checking_torrents;
+                    document.getElementById("maxActiveCheckingTorrents").value = pref.max_active_checking_torrents;
 
                     // Torrent Queueing
-                    $("queueingCheckbox").checked = pref.queueing_enabled;
-                    $("maxActiveDlValue").value = Number(pref.max_active_downloads);
-                    $("maxActiveUpValue").value = Number(pref.max_active_uploads);
-                    $("maxActiveToValue").value = Number(pref.max_active_torrents);
-                    $("dontCountSlowTorrentsCheckbox").checked = pref.dont_count_slow_torrents;
-                    $("dlRateThresholdValue").value = Number(pref.slow_torrent_dl_rate_threshold);
-                    $("ulRateThresholdValue").value = Number(pref.slow_torrent_ul_rate_threshold);
-                    $("torrentInactiveTimerValue").value = Number(pref.slow_torrent_inactive_timer);
+                    document.getElementById("queueingCheckbox").checked = pref.queueing_enabled;
+                    document.getElementById("maxActiveDlValue").value = Number(pref.max_active_downloads);
+                    document.getElementById("maxActiveUpValue").value = Number(pref.max_active_uploads);
+                    document.getElementById("maxActiveToValue").value = Number(pref.max_active_torrents);
+                    document.getElementById("dontCountSlowTorrentsCheckbox").checked = pref.dont_count_slow_torrents;
+                    document.getElementById("dlRateThresholdValue").value = Number(pref.slow_torrent_dl_rate_threshold);
+                    document.getElementById("ulRateThresholdValue").value = Number(pref.slow_torrent_ul_rate_threshold);
+                    document.getElementById("torrentInactiveTimerValue").value = Number(pref.slow_torrent_inactive_timer);
                     updateQueueingSystem();
 
                     // Share Limiting
-                    $("maxRatioCheckbox").checked = pref.max_ratio_enabled;
-                    $("maxRatioValue").value = (pref.max_ratio_enabled ? pref.max_ratio : 1);
-                    $("maxSeedingTimeCheckbox").checked = pref.max_seeding_time_enabled;
-                    $("maxSeedingTimeValue").value = (pref.max_seeding_time_enabled ? Number(pref.max_seeding_time) : 1440);
-                    $("maxInactiveSeedingTimeCheckbox").checked = pref.max_inactive_seeding_time_enabled;
-                    $("maxInactiveSeedingTimeValue").value = (pref.max_inactive_seeding_time_enabled ? Number(pref.max_inactive_seeding_time) : 1440);
+                    document.getElementById("maxRatioCheckbox").checked = pref.max_ratio_enabled;
+                    document.getElementById("maxRatioValue").value = (pref.max_ratio_enabled ? pref.max_ratio : 1);
+                    document.getElementById("maxSeedingTimeCheckbox").checked = pref.max_seeding_time_enabled;
+                    document.getElementById("maxSeedingTimeValue").value = (pref.max_seeding_time_enabled ? Number(pref.max_seeding_time) : 1440);
+                    document.getElementById("maxInactiveSeedingTimeCheckbox").checked = pref.max_inactive_seeding_time_enabled;
+                    document.getElementById("maxInactiveSeedingTimeValue").value = (pref.max_inactive_seeding_time_enabled ? Number(pref.max_inactive_seeding_time) : 1440);
                     let maxRatioAct = 0;
                     switch (Number(pref.max_ratio_act)) {
                         case 0: // Stop
@@ -2492,151 +2492,151 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             maxRatioAct = 2;
                             break;
                     }
-                    $("maxRatioSelect").getChildren("option")[maxRatioAct].selected = true;
+                    document.getElementById("maxRatioSelect").getChildren("option")[maxRatioAct].selected = true;
                     updateMaxRatioTimeEnabled();
 
                     // Add trackers
-                    $("add_trackers_checkbox").checked = pref.add_trackers_enabled;
-                    $("add_trackers_textarea").value = pref.add_trackers;
-                    $("addTrackersFromURLCheckbox").checked = pref.add_trackers_from_url_enabled;
-                    $("addTrackersURLListTextarea").value = pref.add_trackers_url_list;
-                    $("addTrackersURL").value = pref.add_trackers_url;
+                    document.getElementById("add_trackers_checkbox").checked = pref.add_trackers_enabled;
+                    document.getElementById("add_trackers_textarea").value = pref.add_trackers;
+                    document.getElementById("addTrackersFromURLCheckbox").checked = pref.add_trackers_from_url_enabled;
+                    document.getElementById("addTrackersURLListTextarea").value = pref.add_trackers_url_list;
+                    document.getElementById("addTrackersURL").value = pref.add_trackers_url;
                     updateAddTrackersEnabled();
                     updateAddTrackersFromURLEnabled();
 
                     // RSS Tab
-                    $("enable_fetching_rss_feeds_checkbox").checked = pref.rss_processing_enabled;
-                    $("feed_refresh_interval").value = pref.rss_refresh_interval;
-                    $("feedFetchDelay").value = pref.rss_fetch_delay;
-                    $("maximum_article_number").value = pref.rss_max_articles_per_feed;
-                    $("enable_auto_downloading_rss_torrents_checkbox").checked = pref.rss_auto_downloading_enabled;
-                    $("downlock_repack_proper_episodes").checked = pref.rss_download_repack_proper_episodes;
-                    $("rss_filter_textarea").value = pref.rss_smart_episode_filters;
+                    document.getElementById("enable_fetching_rss_feeds_checkbox").checked = pref.rss_processing_enabled;
+                    document.getElementById("feed_refresh_interval").value = pref.rss_refresh_interval;
+                    document.getElementById("feedFetchDelay").value = pref.rss_fetch_delay;
+                    document.getElementById("maximum_article_number").value = pref.rss_max_articles_per_feed;
+                    document.getElementById("enable_auto_downloading_rss_torrents_checkbox").checked = pref.rss_auto_downloading_enabled;
+                    document.getElementById("downlock_repack_proper_episodes").checked = pref.rss_download_repack_proper_episodes;
+                    document.getElementById("rss_filter_textarea").value = pref.rss_smart_episode_filters;
 
                     // WebUI tab
                     // HTTP Server
-                    $("webuiDomainTextarea").value = pref.web_ui_domain_list;
-                    $("webuiAddressValue").value = pref.web_ui_address;
-                    $("webuiPortValue").value = pref.web_ui_port;
-                    $("webuiUpnpCheckbox").checked = pref.web_ui_upnp;
-                    $("use_https_checkbox").checked = pref.use_https;
-                    $("ssl_cert_text").value = pref.web_ui_https_cert_path;
-                    $("ssl_key_text").value = pref.web_ui_https_key_path;
+                    document.getElementById("webuiDomainTextarea").value = pref.web_ui_domain_list;
+                    document.getElementById("webuiAddressValue").value = pref.web_ui_address;
+                    document.getElementById("webuiPortValue").value = pref.web_ui_port;
+                    document.getElementById("webuiUpnpCheckbox").checked = pref.web_ui_upnp;
+                    document.getElementById("use_https_checkbox").checked = pref.use_https;
+                    document.getElementById("ssl_cert_text").value = pref.web_ui_https_cert_path;
+                    document.getElementById("ssl_key_text").value = pref.web_ui_https_key_path;
                     updateHttpsSettings();
 
                     // Authentication
-                    $("webui_username_text").value = pref.web_ui_username;
-                    $("bypass_local_auth_checkbox").checked = pref.bypass_local_auth;
-                    $("bypass_auth_subnet_whitelist_checkbox").checked = pref.bypass_auth_subnet_whitelist_enabled;
-                    $("bypass_auth_subnet_whitelist_textarea").value = pref.bypass_auth_subnet_whitelist;
+                    document.getElementById("webui_username_text").value = pref.web_ui_username;
+                    document.getElementById("bypass_local_auth_checkbox").checked = pref.bypass_local_auth;
+                    document.getElementById("bypass_auth_subnet_whitelist_checkbox").checked = pref.bypass_auth_subnet_whitelist_enabled;
+                    document.getElementById("bypass_auth_subnet_whitelist_textarea").value = pref.bypass_auth_subnet_whitelist;
                     updateBypasssAuthSettings();
-                    $("webUIMaxAuthFailCountInput").value = Number(pref.web_ui_max_auth_fail_count);
-                    $("webUIBanDurationInput").value = Number(pref.web_ui_ban_duration);
-                    $("webUISessionTimeoutInput").value = Number(pref.web_ui_session_timeout);
+                    document.getElementById("webUIMaxAuthFailCountInput").value = Number(pref.web_ui_max_auth_fail_count);
+                    document.getElementById("webUIBanDurationInput").value = Number(pref.web_ui_ban_duration);
+                    document.getElementById("webUISessionTimeoutInput").value = Number(pref.web_ui_session_timeout);
 
                     // Use alternative WebUI
-                    $("use_alt_webui_checkbox").checked = pref.alternative_webui_enabled;
-                    $("webui_files_location_textarea").value = pref.alternative_webui_path;
+                    document.getElementById("use_alt_webui_checkbox").checked = pref.alternative_webui_enabled;
+                    document.getElementById("webui_files_location_textarea").value = pref.alternative_webui_path;
                     updateAlternativeWebUISettings();
 
                     // Security
-                    $("clickjacking_protection_checkbox").checked = pref.web_ui_clickjacking_protection_enabled;
-                    $("csrf_protection_checkbox").checked = pref.web_ui_csrf_protection_enabled;
-                    $("secureCookieCheckbox").checked = pref.web_ui_secure_cookie_enabled;
-                    $("host_header_validation_checkbox").checked = pref.web_ui_host_header_validation_enabled;
+                    document.getElementById("clickjacking_protection_checkbox").checked = pref.web_ui_clickjacking_protection_enabled;
+                    document.getElementById("csrf_protection_checkbox").checked = pref.web_ui_csrf_protection_enabled;
+                    document.getElementById("secureCookieCheckbox").checked = pref.web_ui_secure_cookie_enabled;
+                    document.getElementById("host_header_validation_checkbox").checked = pref.web_ui_host_header_validation_enabled;
                     updateHostHeaderValidationSettings();
 
                     // Custom HTTP headers
-                    $("webUIUseCustomHTTPHeadersCheckbox").checked = pref.web_ui_use_custom_http_headers_enabled;
-                    $("webUICustomHTTPHeadersTextarea").value = pref.web_ui_custom_http_headers;
+                    document.getElementById("webUIUseCustomHTTPHeadersCheckbox").checked = pref.web_ui_use_custom_http_headers_enabled;
+                    document.getElementById("webUICustomHTTPHeadersTextarea").value = pref.web_ui_custom_http_headers;
                     updateWebUICustomHTTPHeadersSettings();
 
                     // Reverse Proxy
-                    $("webUIReverseProxySupportCheckbox").checked = pref.web_ui_reverse_proxy_enabled;
-                    $("webUIReverseProxiesListTextarea").value = pref.web_ui_reverse_proxies_list;
+                    document.getElementById("webUIReverseProxySupportCheckbox").checked = pref.web_ui_reverse_proxy_enabled;
+                    document.getElementById("webUIReverseProxiesListTextarea").value = pref.web_ui_reverse_proxies_list;
                     updateWebUIReverseProxySettings();
 
                     // Update my dynamic domain name
-                    $("use_dyndns_checkbox").checked = pref.dyndns_enabled;
-                    $("dyndns_select").value = pref.dyndns_service;
-                    $("dyndns_domain_text").value = pref.dyndns_domain;
-                    $("dyndns_username_text").value = pref.dyndns_username;
-                    $("dyndns_password_text").value = pref.dyndns_password;
+                    document.getElementById("use_dyndns_checkbox").checked = pref.dyndns_enabled;
+                    document.getElementById("dyndns_select").value = pref.dyndns_service;
+                    document.getElementById("dyndns_domain_text").value = pref.dyndns_domain;
+                    document.getElementById("dyndns_username_text").value = pref.dyndns_username;
+                    document.getElementById("dyndns_password_text").value = pref.dyndns_password;
                     updateDynDnsSettings();
 
                     // Advanced settings
                     // qBittorrent section
-                    $("resumeDataStorageType").value = pref.resume_data_storage_type;
-                    $("torrentContentRemoveOption").value = pref.torrent_content_remove_option;
-                    $("memoryWorkingSetLimit").value = pref.memory_working_set_limit;
+                    document.getElementById("resumeDataStorageType").value = pref.resume_data_storage_type;
+                    document.getElementById("torrentContentRemoveOption").value = pref.torrent_content_remove_option;
+                    document.getElementById("memoryWorkingSetLimit").value = pref.memory_working_set_limit;
                     updateNetworkInterfaces(pref.current_network_interface, pref.current_interface_name);
                     updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
-                    $("saveResumeDataInterval").value = pref.save_resume_data_interval;
-                    $("saveStatisticsInterval").value = pref.save_statistics_interval;
-                    $("torrentFileSizeLimit").value = (pref.torrent_file_size_limit / 1024 / 1024);
+                    document.getElementById("saveResumeDataInterval").value = pref.save_resume_data_interval;
+                    document.getElementById("saveStatisticsInterval").value = pref.save_statistics_interval;
+                    document.getElementById("torrentFileSizeLimit").value = (pref.torrent_file_size_limit / 1024 / 1024);
                     document.getElementById("confirmTorrentRecheck").checked = pref.confirm_torrent_recheck;
-                    $("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
-                    $("appInstanceName").value = pref.app_instance_name;
-                    $("refreshInterval").value = pref.refresh_interval;
-                    $("resolvePeerCountries").checked = pref.resolve_peer_countries;
-                    $("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
-                    $("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
-                    $("embeddedTrackerPort").value = pref.embedded_tracker_port;
-                    $("embeddedTrackerPortForwarding").checked = pref.embedded_tracker_port_forwarding;
-                    $("markOfTheWeb").checked = pref.mark_of_the_web;
-                    $("ignoreSSLErrors").checked = pref.ignore_ssl_errors;
-                    $("pythonExecutablePath").value = pref.python_executable_path;
+                    document.getElementById("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
+                    document.getElementById("appInstanceName").value = pref.app_instance_name;
+                    document.getElementById("refreshInterval").value = pref.refresh_interval;
+                    document.getElementById("resolvePeerCountries").checked = pref.resolve_peer_countries;
+                    document.getElementById("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
+                    document.getElementById("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
+                    document.getElementById("embeddedTrackerPort").value = pref.embedded_tracker_port;
+                    document.getElementById("embeddedTrackerPortForwarding").checked = pref.embedded_tracker_port_forwarding;
+                    document.getElementById("markOfTheWeb").checked = pref.mark_of_the_web;
+                    document.getElementById("ignoreSSLErrors").checked = pref.ignore_ssl_errors;
+                    document.getElementById("pythonExecutablePath").value = pref.python_executable_path;
                     // libtorrent section
-                    $("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
-                    $("bdecodeTokenLimit").value = pref.bdecode_token_limit;
-                    $("asyncIOThreads").value = pref.async_io_threads;
-                    $("hashingThreads").value = pref.hashing_threads;
-                    $("filePoolSize").value = pref.file_pool_size;
-                    $("outstandMemoryWhenCheckingTorrents").value = pref.checking_memory_use;
-                    $("diskCache").value = pref.disk_cache;
-                    $("diskCacheExpiryInterval").value = pref.disk_cache_ttl;
-                    $("diskQueueSize").value = (pref.disk_queue_size / 1024);
-                    $("diskIOType").value = pref.disk_io_type;
-                    $("diskIOReadMode").value = pref.disk_io_read_mode;
-                    $("diskIOWriteMode").value = pref.disk_io_write_mode;
-                    $("coalesceReadsAndWrites").checked = pref.enable_coalesce_read_write;
-                    $("pieceExtentAffinity").checked = pref.enable_piece_extent_affinity;
-                    $("sendUploadPieceSuggestions").checked = pref.enable_upload_suggestions;
-                    $("sendBufferWatermark").value = pref.send_buffer_watermark;
-                    $("sendBufferLowWatermark").value = pref.send_buffer_low_watermark;
-                    $("sendBufferWatermarkFactor").value = pref.send_buffer_watermark_factor;
-                    $("connectionSpeed").value = pref.connection_speed;
-                    $("socketSendBufferSize").value = (pref.socket_send_buffer_size / 1024);
-                    $("socketReceiveBufferSize").value = (pref.socket_receive_buffer_size / 1024);
-                    $("socketBacklogSize").value = pref.socket_backlog_size;
-                    $("outgoingPortsMin").value = pref.outgoing_ports_min;
-                    $("outgoingPortsMax").value = pref.outgoing_ports_max;
-                    $("UPnPLeaseDuration").value = pref.upnp_lease_duration;
-                    $("peerToS").value = pref.peer_tos;
-                    $("utpTCPMixedModeAlgorithm").value = pref.utp_tcp_mixed_mode;
-                    $("hostnameCacheTTL").value = pref.hostname_cache_ttl;
-                    $("IDNSupportCheckbox").checked = pref.idn_support_enabled;
-                    $("allowMultipleConnectionsFromTheSameIPAddress").checked = pref.enable_multi_connections_from_same_ip;
-                    $("validateHTTPSTrackerCertificate").checked = pref.validate_https_tracker_certificate;
-                    $("mitigateSSRF").checked = pref.ssrf_mitigation;
-                    $("blockPeersOnPrivilegedPorts").checked = pref.block_peers_on_privileged_ports;
-                    $("uploadSlotsBehavior").value = pref.upload_slots_behavior;
-                    $("uploadChokingAlgorithm").value = pref.upload_choking_algorithm;
-                    $("announceAllTrackers").checked = pref.announce_to_all_trackers;
-                    $("announceAllTiers").checked = pref.announce_to_all_tiers;
-                    $("announceIP").value = pref.announce_ip;
-                    $("announcePort").value = pref.announce_port;
-                    $("maxConcurrentHTTPAnnounces").value = pref.max_concurrent_http_announces;
-                    $("stopTrackerTimeout").value = pref.stop_tracker_timeout;
-                    $("peerTurnover").value = pref.peer_turnover;
-                    $("peerTurnoverCutoff").value = pref.peer_turnover_cutoff;
-                    $("peerTurnoverInterval").value = pref.peer_turnover_interval;
-                    $("requestQueueSize").value = pref.request_queue_size;
-                    $("dhtBootstrapNodes").value = pref.dht_bootstrap_nodes;
-                    $("i2pInboundQuantity").value = pref.i2p_inbound_quantity;
-                    $("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
-                    $("i2pInboundLength").value = pref.i2p_inbound_length;
-                    $("i2pOutboundLength").value = pref.i2p_outbound_length;
+                    document.getElementById("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
+                    document.getElementById("bdecodeTokenLimit").value = pref.bdecode_token_limit;
+                    document.getElementById("asyncIOThreads").value = pref.async_io_threads;
+                    document.getElementById("hashingThreads").value = pref.hashing_threads;
+                    document.getElementById("filePoolSize").value = pref.file_pool_size;
+                    document.getElementById("outstandMemoryWhenCheckingTorrents").value = pref.checking_memory_use;
+                    document.getElementById("diskCache").value = pref.disk_cache;
+                    document.getElementById("diskCacheExpiryInterval").value = pref.disk_cache_ttl;
+                    document.getElementById("diskQueueSize").value = (pref.disk_queue_size / 1024);
+                    document.getElementById("diskIOType").value = pref.disk_io_type;
+                    document.getElementById("diskIOReadMode").value = pref.disk_io_read_mode;
+                    document.getElementById("diskIOWriteMode").value = pref.disk_io_write_mode;
+                    document.getElementById("coalesceReadsAndWrites").checked = pref.enable_coalesce_read_write;
+                    document.getElementById("pieceExtentAffinity").checked = pref.enable_piece_extent_affinity;
+                    document.getElementById("sendUploadPieceSuggestions").checked = pref.enable_upload_suggestions;
+                    document.getElementById("sendBufferWatermark").value = pref.send_buffer_watermark;
+                    document.getElementById("sendBufferLowWatermark").value = pref.send_buffer_low_watermark;
+                    document.getElementById("sendBufferWatermarkFactor").value = pref.send_buffer_watermark_factor;
+                    document.getElementById("connectionSpeed").value = pref.connection_speed;
+                    document.getElementById("socketSendBufferSize").value = (pref.socket_send_buffer_size / 1024);
+                    document.getElementById("socketReceiveBufferSize").value = (pref.socket_receive_buffer_size / 1024);
+                    document.getElementById("socketBacklogSize").value = pref.socket_backlog_size;
+                    document.getElementById("outgoingPortsMin").value = pref.outgoing_ports_min;
+                    document.getElementById("outgoingPortsMax").value = pref.outgoing_ports_max;
+                    document.getElementById("UPnPLeaseDuration").value = pref.upnp_lease_duration;
+                    document.getElementById("peerToS").value = pref.peer_tos;
+                    document.getElementById("utpTCPMixedModeAlgorithm").value = pref.utp_tcp_mixed_mode;
+                    document.getElementById("hostnameCacheTTL").value = pref.hostname_cache_ttl;
+                    document.getElementById("IDNSupportCheckbox").checked = pref.idn_support_enabled;
+                    document.getElementById("allowMultipleConnectionsFromTheSameIPAddress").checked = pref.enable_multi_connections_from_same_ip;
+                    document.getElementById("validateHTTPSTrackerCertificate").checked = pref.validate_https_tracker_certificate;
+                    document.getElementById("mitigateSSRF").checked = pref.ssrf_mitigation;
+                    document.getElementById("blockPeersOnPrivilegedPorts").checked = pref.block_peers_on_privileged_ports;
+                    document.getElementById("uploadSlotsBehavior").value = pref.upload_slots_behavior;
+                    document.getElementById("uploadChokingAlgorithm").value = pref.upload_choking_algorithm;
+                    document.getElementById("announceAllTrackers").checked = pref.announce_to_all_trackers;
+                    document.getElementById("announceAllTiers").checked = pref.announce_to_all_tiers;
+                    document.getElementById("announceIP").value = pref.announce_ip;
+                    document.getElementById("announcePort").value = pref.announce_port;
+                    document.getElementById("maxConcurrentHTTPAnnounces").value = pref.max_concurrent_http_announces;
+                    document.getElementById("stopTrackerTimeout").value = pref.stop_tracker_timeout;
+                    document.getElementById("peerTurnover").value = pref.peer_turnover;
+                    document.getElementById("peerTurnoverCutoff").value = pref.peer_turnover_cutoff;
+                    document.getElementById("peerTurnoverInterval").value = pref.peer_turnover_interval;
+                    document.getElementById("requestQueueSize").value = pref.request_queue_size;
+                    document.getElementById("dhtBootstrapNodes").value = pref.dht_bootstrap_nodes;
+                    document.getElementById("i2pInboundQuantity").value = pref.i2p_inbound_quantity;
+                    document.getElementById("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
+                    document.getElementById("i2pInboundLength").value = pref.i2p_inbound_length;
+                    document.getElementById("i2pOutboundLength").value = pref.i2p_outbound_length;
                 }
             });
         };
@@ -2647,7 +2647,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Behavior tab
             // Language
-            settings["locale"] = $("locale_select").value;
+            settings["locale"] = document.getElementById("locale_select").value;
             const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
             if (colorScheme === 0)
                 LocalPreferences.remove("color_scheme");
@@ -2655,52 +2655,52 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 LocalPreferences.set("color_scheme", "light");
             else
                 LocalPreferences.set("color_scheme", "dark");
-            settings["status_bar_external_ip"] = $("statusBarExternalIP").checked;
-            settings["performance_warning"] = $("performanceWarning").checked;
+            settings["status_bar_external_ip"] = document.getElementById("statusBarExternalIP").checked;
+            settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
             LocalPreferences.set("use_virtual_list", document.getElementById("useVirtualList").checked.toString());
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
-            LocalPreferences.set("dblclick_download", $("dblclickDownloadSelect").value);
-            LocalPreferences.set("dblclick_complete", $("dblclickCompleteSelect").value);
+            LocalPreferences.set("dblclick_download", document.getElementById("dblclickDownloadSelect").value);
+            LocalPreferences.set("dblclick_complete", document.getElementById("dblclickCompleteSelect").value);
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
             LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
-            settings["file_log_enabled"] = $("filelog_checkbox").checked;
-            settings["file_log_path"] = $("filelog_save_path_input").value;
-            settings["file_log_backup_enabled"] = $("filelog_backup_checkbox").checked;
-            settings["file_log_max_size"] = Number($("filelog_max_size_input").value);
-            settings["file_log_delete_old"] = $("filelog_delete_old_checkbox").checked;
-            settings["file_log_age"] = Number($("filelog_age_input").value);
-            settings["file_log_age_type"] = Number($("filelog_age_type_select").value);
+            settings["file_log_enabled"] = document.getElementById("filelog_checkbox").checked;
+            settings["file_log_path"] = document.getElementById("filelog_save_path_input").value;
+            settings["file_log_backup_enabled"] = document.getElementById("filelog_backup_checkbox").checked;
+            settings["file_log_max_size"] = Number(document.getElementById("filelog_max_size_input").value);
+            settings["file_log_delete_old"] = document.getElementById("filelog_delete_old_checkbox").checked;
+            settings["file_log_age"] = Number(document.getElementById("filelog_age_input").value);
+            settings["file_log_age_type"] = Number(document.getElementById("filelog_age_type_select").value);
 
             // Downloads tab
             // When adding a torrent
-            settings["torrent_content_layout"] = $("contentlayout_select").getSelected()[0].value;
-            settings["add_to_top_of_queue"] = $("addToTopOfQueueCheckbox").checked;
-            settings["add_stopped_enabled"] = $("dontstartdownloads_checkbox").checked;
-            settings["torrent_stop_condition"] = $("stopConditionSelect").getSelected()[0].value;
+            settings["torrent_content_layout"] = document.getElementById("contentlayout_select").getSelected()[0].value;
+            settings["add_to_top_of_queue"] = document.getElementById("addToTopOfQueueCheckbox").checked;
+            settings["add_stopped_enabled"] = document.getElementById("dontstartdownloads_checkbox").checked;
+            settings["torrent_stop_condition"] = document.getElementById("stopConditionSelect").getSelected()[0].value;
             settings["merge_trackers"] = document.getElementById("mergeTrackersInput").checked;
-            settings["auto_delete_mode"] = Number($("deletetorrentfileafter_checkbox").checked);
+            settings["auto_delete_mode"] = Number(document.getElementById("deletetorrentfileafter_checkbox").checked);
 
-            settings["preallocate_all"] = $("preallocateall_checkbox").checked;
-            settings["incomplete_files_ext"] = $("appendext_checkbox").checked;
-            settings["use_unwanted_folder"] = $("unwantedfolder_checkbox").checked;
+            settings["preallocate_all"] = document.getElementById("preallocateall_checkbox").checked;
+            settings["incomplete_files_ext"] = document.getElementById("appendext_checkbox").checked;
+            settings["use_unwanted_folder"] = document.getElementById("unwantedfolder_checkbox").checked;
 
             // Saving Management
-            settings["auto_tmm_enabled"] = ($("default_tmm_combobox").value === "true");
-            settings["torrent_changed_tmm_enabled"] = ($("torrent_changed_tmm_combobox").value === "true");
-            settings["save_path_changed_tmm_enabled"] = ($("save_path_changed_tmm_combobox").value === "true");
-            settings["category_changed_tmm_enabled"] = ($("category_changed_tmm_combobox").value === "true");
-            settings["use_subcategories"] = $("use_subcategories_checkbox").checked;
+            settings["auto_tmm_enabled"] = (document.getElementById("default_tmm_combobox").value === "true");
+            settings["torrent_changed_tmm_enabled"] = (document.getElementById("torrent_changed_tmm_combobox").value === "true");
+            settings["save_path_changed_tmm_enabled"] = (document.getElementById("save_path_changed_tmm_combobox").value === "true");
+            settings["category_changed_tmm_enabled"] = (document.getElementById("category_changed_tmm_combobox").value === "true");
+            settings["use_subcategories"] = document.getElementById("use_subcategories_checkbox").checked;
             settings["use_category_paths_in_manual_mode"] = document.getElementById("categoryPathsManualModeCheckbox").checked;
-            settings["save_path"] = $("savepath_text").value;
-            settings["temp_path_enabled"] = $("temppath_checkbox").checked;
-            settings["temp_path"] = $("temppath_text").value;
-            if ($("exportdir_checkbox").checked)
-                settings["export_dir"] = $("exportdir_text").value;
+            settings["save_path"] = document.getElementById("savepath_text").value;
+            settings["temp_path_enabled"] = document.getElementById("temppath_checkbox").checked;
+            settings["temp_path"] = document.getElementById("temppath_text").value;
+            if (document.getElementById("exportdir_checkbox").checked)
+                settings["export_dir"] = document.getElementById("exportdir_text").value;
             else
                 settings["export_dir"] = "";
-            if ($("exportdirfin_checkbox").checked)
-                settings["export_dir_fin"] = $("exportdirfin_text").value;
+            if (document.getElementById("exportdirfin_checkbox").checked)
+                settings["export_dir_fin"] = document.getElementById("exportdirfin_text").value;
             else
                 settings["export_dir_fin"] = "";
 
@@ -2708,40 +2708,40 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["scan_dirs"] = getWatchedFolders();
 
             // Excluded file names
-            settings["excluded_file_names_enabled"] = $("excludedFileNamesCheckbox").checked;
-            settings["excluded_file_names"] = $("excludedFileNamesTextarea").value;
+            settings["excluded_file_names_enabled"] = document.getElementById("excludedFileNamesCheckbox").checked;
+            settings["excluded_file_names"] = document.getElementById("excludedFileNamesTextarea").value;
 
             // Email notification upon download completion
-            settings["mail_notification_enabled"] = $("mail_notification_checkbox").checked;
-            settings["mail_notification_sender"] = $("src_email_txt").value;
-            settings["mail_notification_email"] = $("dest_email_txt").value;
-            settings["mail_notification_smtp"] = $("smtp_server_txt").value;
-            settings["mail_notification_ssl_enabled"] = $("mail_ssl_checkbox").checked;
-            settings["mail_notification_auth_enabled"] = $("mail_auth_checkbox").checked;
-            settings["mail_notification_username"] = $("mail_username_text").value;
-            settings["mail_notification_password"] = $("mail_password_text").value;
+            settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;
+            settings["mail_notification_sender"] = document.getElementById("src_email_txt").value;
+            settings["mail_notification_email"] = document.getElementById("dest_email_txt").value;
+            settings["mail_notification_smtp"] = document.getElementById("smtp_server_txt").value;
+            settings["mail_notification_ssl_enabled"] = document.getElementById("mail_ssl_checkbox").checked;
+            settings["mail_notification_auth_enabled"] = document.getElementById("mail_auth_checkbox").checked;
+            settings["mail_notification_username"] = document.getElementById("mail_username_text").value;
+            settings["mail_notification_password"] = document.getElementById("mail_password_text").value;
 
             // Run an external program on torrent added
-            settings["autorun_on_torrent_added_enabled"] = $("autorunOnTorrentAddedCheckbox").checked;
-            settings["autorun_on_torrent_added_program"] = $("autorunOnTorrentAddedProgram").value;
+            settings["autorun_on_torrent_added_enabled"] = document.getElementById("autorunOnTorrentAddedCheckbox").checked;
+            settings["autorun_on_torrent_added_program"] = document.getElementById("autorunOnTorrentAddedProgram").value;
             // Run an external program on torrent finished
-            settings["autorun_enabled"] = $("autorun_checkbox").checked;
-            settings["autorun_program"] = $("autorunProg_txt").value;
+            settings["autorun_enabled"] = document.getElementById("autorun_checkbox").checked;
+            settings["autorun_program"] = document.getElementById("autorunProg_txt").value;
 
             // Connection tab
             // Listening Port
-            const listenPort = Number($("portValue").value);
+            const listenPort = Number(document.getElementById("portValue").value);
             if (Number.isNaN(listenPort) || (listenPort < 0) || (listenPort > 65535)) {
                 alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["listen_port"] = listenPort;
-            settings["upnp"] = $("upnpCheckbox").checked;
+            settings["upnp"] = document.getElementById("upnpCheckbox").checked;
 
             // Connections Limits
             let maxConnec = -1;
-            if ($("maxConnectionsCheckbox").checked) {
-                maxConnec = Number($("maxConnectionsValue").value);
+            if (document.getElementById("maxConnectionsCheckbox").checked) {
+                maxConnec = Number(document.getElementById("maxConnectionsValue").value);
                 if (Number.isNaN(maxConnec) || (maxConnec <= 0)) {
                     alert("QBT_TR(Maximum number of connections limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
@@ -2750,8 +2750,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_connec"] = maxConnec;
 
             let maxConnecPerTorrent = -1;
-            if ($("maxConnectionsPerTorrentCheckbox").checked) {
-                maxConnecPerTorrent = Number($("maxConnectionsPerTorrentValue").value);
+            if (document.getElementById("maxConnectionsPerTorrentCheckbox").checked) {
+                maxConnecPerTorrent = Number(document.getElementById("maxConnectionsPerTorrentValue").value);
                 if (Number.isNaN(maxConnecPerTorrent) || (maxConnecPerTorrent <= 0)) {
                     alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
@@ -2760,8 +2760,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_connec_per_torrent"] = maxConnecPerTorrent;
 
             let maxUploads = -1;
-            if ($("maxUploadsCheckbox").checked) {
-                maxUploads = Number($("max_uploads_value").value);
+            if (document.getElementById("maxUploadsCheckbox").checked) {
+                maxUploads = Number(document.getElementById("max_uploads_value").value);
                 if (Number.isNaN(maxUploads) || (maxUploads <= 0)) {
                     alert("QBT_TR(Global number of upload slots limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
@@ -2770,8 +2770,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_uploads"] = maxUploads;
 
             let maxUploadsPerTorrent = -1;
-            if ($("maxUploadsPerTorrentCheckbox").checked) {
-                maxUploadsPerTorrent = Number($("maxUploadsPerTorrentValue").value);
+            if (document.getElementById("maxUploadsPerTorrentCheckbox").checked) {
+                maxUploadsPerTorrent = Number(document.getElementById("maxUploadsPerTorrentValue").value);
                 if (Number.isNaN(maxUploadsPerTorrent) || (maxUploadsPerTorrent <= 0)) {
                     alert("QBT_TR(Maximum number of upload slots per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
@@ -2780,40 +2780,40 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_uploads_per_torrent"] = maxUploadsPerTorrent;
 
             // I2P
-            settings["i2p_enabled"] = $("i2pEnabledCheckbox").checked;
-            settings["i2p_address"] = $("i2pAddress").value;
-            settings["i2p_port"] = Number($("i2pPort").value);
-            settings["i2p_mixed_mode"] = $("i2pMixedMode").checked;
+            settings["i2p_enabled"] = document.getElementById("i2pEnabledCheckbox").checked;
+            settings["i2p_address"] = document.getElementById("i2pAddress").value;
+            settings["i2p_port"] = Number(document.getElementById("i2pPort").value);
+            settings["i2p_mixed_mode"] = document.getElementById("i2pMixedMode").checked;
 
             // Proxy Server
-            settings["proxy_type"] = $("peer_proxy_type_select").value;
-            settings["proxy_ip"] = $("peer_proxy_host_text").value;
-            settings["proxy_port"] = Number($("peer_proxy_port_value").value);
-            settings["proxy_auth_enabled"] = $("peer_proxy_auth_checkbox").checked;
-            settings["proxy_username"] = $("peer_proxy_username_text").value;
-            settings["proxy_password"] = $("peer_proxy_password_text").value;
-            settings["proxy_hostname_lookup"] = $("proxyHostnameLookupCheckbox").checked;
-            settings["proxy_bittorrent"] = $("proxy_bittorrent_checkbox").checked;
-            settings["proxy_peer_connections"] = $("use_peer_proxy_checkbox").checked;
-            settings["proxy_rss"] = $("proxy_rss_checkbox").checked;
-            settings["proxy_misc"] = $("proxy_misc_checkbox").checked;
+            settings["proxy_type"] = document.getElementById("peer_proxy_type_select").value;
+            settings["proxy_ip"] = document.getElementById("peer_proxy_host_text").value;
+            settings["proxy_port"] = Number(document.getElementById("peer_proxy_port_value").value);
+            settings["proxy_auth_enabled"] = document.getElementById("peer_proxy_auth_checkbox").checked;
+            settings["proxy_username"] = document.getElementById("peer_proxy_username_text").value;
+            settings["proxy_password"] = document.getElementById("peer_proxy_password_text").value;
+            settings["proxy_hostname_lookup"] = document.getElementById("proxyHostnameLookupCheckbox").checked;
+            settings["proxy_bittorrent"] = document.getElementById("proxy_bittorrent_checkbox").checked;
+            settings["proxy_peer_connections"] = document.getElementById("use_peer_proxy_checkbox").checked;
+            settings["proxy_rss"] = document.getElementById("proxy_rss_checkbox").checked;
+            settings["proxy_misc"] = document.getElementById("proxy_misc_checkbox").checked;
 
             // IP Filtering
-            settings["ip_filter_enabled"] = $("ipfilter_text_checkbox").checked;
-            settings["ip_filter_path"] = $("ipfilter_text").value;
-            settings["ip_filter_trackers"] = $("ipfilter_trackers_checkbox").checked;
-            settings["banned_IPs"] = $("banned_IPs_textarea").value;
+            settings["ip_filter_enabled"] = document.getElementById("ipfilter_text_checkbox").checked;
+            settings["ip_filter_path"] = document.getElementById("ipfilter_text").value;
+            settings["ip_filter_trackers"] = document.getElementById("ipfilter_trackers_checkbox").checked;
+            settings["banned_IPs"] = document.getElementById("banned_IPs_textarea").value;
 
             // Speed tab
             // Global Rate Limits
-            const upLimit = Number($("upLimitValue").value) * 1024;
+            const upLimit = Number(document.getElementById("upLimitValue").value) * 1024;
             if (Number.isNaN(upLimit) || (upLimit < 0)) {
                 alert("QBT_TR(Global upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["up_limit"] = upLimit;
 
-            const dlLimit = Number($("dlLimitValue").value) * 1024;
+            const dlLimit = Number(document.getElementById("dlLimitValue").value) * 1024;
             if (Number.isNaN(dlLimit) || (dlLimit < 0)) {
                 alert("QBT_TR(Global download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
@@ -2821,86 +2821,86 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["dl_limit"] = dlLimit;
 
             // Alternative Global Rate Limits
-            const altUpLimit = Number($("altUpLimitValue").value) * 1024;
+            const altUpLimit = Number(document.getElementById("altUpLimitValue").value) * 1024;
             if (Number.isNaN(altUpLimit) || (altUpLimit < 0)) {
                 alert("QBT_TR(Alternative upload rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["alt_up_limit"] = altUpLimit;
 
-            const altDlLimit = Number($("altDlLimitValue").value) * 1024;
+            const altDlLimit = Number(document.getElementById("altDlLimitValue").value) * 1024;
             if (Number.isNaN(altDlLimit) || (altDlLimit < 0)) {
                 alert("QBT_TR(Alternative download rate limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["alt_dl_limit"] = altDlLimit;
 
-            settings["bittorrent_protocol"] = Number($("enable_protocol_combobox").value);
-            settings["limit_utp_rate"] = $("limit_utp_rate_checkbox").checked;
-            settings["limit_tcp_overhead"] = $("limit_tcp_overhead_checkbox").checked;
-            settings["limit_lan_peers"] = $("limit_lan_peers_checkbox").checked;
+            settings["bittorrent_protocol"] = Number(document.getElementById("enable_protocol_combobox").value);
+            settings["limit_utp_rate"] = document.getElementById("limit_utp_rate_checkbox").checked;
+            settings["limit_tcp_overhead"] = document.getElementById("limit_tcp_overhead_checkbox").checked;
+            settings["limit_lan_peers"] = document.getElementById("limit_lan_peers_checkbox").checked;
 
             // Scheduler
-            const schedulingEnabled = $("limitSchedulingCheckbox").checked;
+            const schedulingEnabled = document.getElementById("limitSchedulingCheckbox").checked;
             settings["scheduler_enabled"] = schedulingEnabled;
             if (schedulingEnabled) {
-                settings["schedule_from_hour"] = Number($("schedule_from_hour").value);
-                settings["schedule_from_min"] = Number($("schedule_from_min").value);
-                settings["schedule_to_hour"] = Number($("schedule_to_hour").value);
-                settings["schedule_to_min"] = Number($("schedule_to_min").value);
-                settings["scheduler_days"] = Number($("schedule_freq_select").value);
+                settings["schedule_from_hour"] = Number(document.getElementById("schedule_from_hour").value);
+                settings["schedule_from_min"] = Number(document.getElementById("schedule_from_min").value);
+                settings["schedule_to_hour"] = Number(document.getElementById("schedule_to_hour").value);
+                settings["schedule_to_min"] = Number(document.getElementById("schedule_to_min").value);
+                settings["scheduler_days"] = Number(document.getElementById("schedule_freq_select").value);
             }
 
             // Bittorrent tab
             // Privacy
-            settings["dht"] = $("dht_checkbox").checked;
-            settings["pex"] = $("pex_checkbox").checked;
-            settings["lsd"] = $("lsd_checkbox").checked;
-            settings["encryption"] = Number($("encryption_select").getSelected()[0].value);
-            settings["anonymous_mode"] = $("anonymous_mode_checkbox").checked;
+            settings["dht"] = document.getElementById("dht_checkbox").checked;
+            settings["pex"] = document.getElementById("pex_checkbox").checked;
+            settings["lsd"] = document.getElementById("lsd_checkbox").checked;
+            settings["encryption"] = Number(document.getElementById("encryption_select").getSelected()[0].value);
+            settings["anonymous_mode"] = document.getElementById("anonymous_mode_checkbox").checked;
 
-            settings["max_active_checking_torrents"] = Number($("maxActiveCheckingTorrents").value);
+            settings["max_active_checking_torrents"] = Number(document.getElementById("maxActiveCheckingTorrents").value);
 
             // Torrent Queueing
-            settings["queueing_enabled"] = $("queueingCheckbox").checked;
-            if ($("queueingCheckbox").checked) {
-                const maxActiveDownloads = Number($("maxActiveDlValue").value);
+            settings["queueing_enabled"] = document.getElementById("queueingCheckbox").checked;
+            if (document.getElementById("queueingCheckbox").checked) {
+                const maxActiveDownloads = Number(document.getElementById("maxActiveDlValue").value);
                 if (Number.isNaN(maxActiveDownloads) || (maxActiveDownloads < -1)) {
                     alert("QBT_TR(Maximum active downloads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_downloads"] = maxActiveDownloads;
 
-                const maxActiveUploads = Number($("maxActiveUpValue").value);
+                const maxActiveUploads = Number(document.getElementById("maxActiveUpValue").value);
                 if (Number.isNaN(maxActiveUploads) || (maxActiveUploads < -1)) {
                     alert("QBT_TR(Maximum active uploads must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_uploads"] = maxActiveUploads;
 
-                const maxActiveTorrents = Number($("maxActiveToValue").value);
+                const maxActiveTorrents = Number(document.getElementById("maxActiveToValue").value);
                 if (Number.isNaN(maxActiveTorrents) || (maxActiveTorrents < -1)) {
                     alert("QBT_TR(Maximum active torrents must be greater than -1.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["max_active_torrents"] = maxActiveTorrents;
-                settings["dont_count_slow_torrents"] = $("dontCountSlowTorrentsCheckbox").checked;
+                settings["dont_count_slow_torrents"] = document.getElementById("dontCountSlowTorrentsCheckbox").checked;
 
-                const dlRateThreshold = Number($("dlRateThresholdValue").value);
+                const dlRateThreshold = Number(document.getElementById("dlRateThresholdValue").value);
                 if (Number.isNaN(dlRateThreshold) || (dlRateThreshold < 1)) {
                     alert("QBT_TR(Download rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_dl_rate_threshold"] = dlRateThreshold;
 
-                const ulRateThreshold = Number($("ulRateThresholdValue").value);
+                const ulRateThreshold = Number(document.getElementById("ulRateThresholdValue").value);
                 if (Number.isNaN(ulRateThreshold) || (ulRateThreshold < 1)) {
                     alert("QBT_TR(Upload rate threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_ul_rate_threshold"] = ulRateThreshold;
 
-                const torrentInactiveTimer = Number($("torrentInactiveTimerValue").value);
+                const torrentInactiveTimer = Number(document.getElementById("torrentInactiveTimerValue").value);
                 if (Number.isNaN(torrentInactiveTimer) || (torrentInactiveTimer < 1)) {
                     alert("QBT_TR(Torrent inactivity timer must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
@@ -2910,78 +2910,78 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Share Ratio Limiting
             let maxRatio = -1;
-            if ($("maxRatioCheckbox").checked) {
-                maxRatio = Number($("maxRatioValue").value);
+            if (document.getElementById("maxRatioCheckbox").checked) {
+                maxRatio = Number(document.getElementById("maxRatioValue").value);
                 if (isNaN(maxRatio) || (maxRatio < 0) || (maxRatio > 9998)) {
                     alert("QBT_TR(Share ratio limit must be between 0 and 9998.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_ratio_enabled"] = $("maxRatioCheckbox").checked;
+            settings["max_ratio_enabled"] = document.getElementById("maxRatioCheckbox").checked;
             settings["max_ratio"] = maxRatio;
 
             let maxSeedingTime = -1;
-            if ($("maxSeedingTimeCheckbox").checked) {
-                maxSeedingTime = Number($("maxSeedingTimeValue").value);
+            if (document.getElementById("maxSeedingTimeCheckbox").checked) {
+                maxSeedingTime = Number(document.getElementById("maxSeedingTimeValue").value);
                 if (Number.isNaN(maxSeedingTime) || (maxSeedingTime < 0) || (maxSeedingTime > 525600)) {
                     alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_seeding_time_enabled"] = $("maxSeedingTimeCheckbox").checked;
+            settings["max_seeding_time_enabled"] = document.getElementById("maxSeedingTimeCheckbox").checked;
             settings["max_seeding_time"] = maxSeedingTime;
 
             let maxInactiveSeedingTime = -1;
-            if ($("maxInactiveSeedingTimeCheckbox").checked) {
-                maxInactiveSeedingTime = Number($("maxInactiveSeedingTimeValue").value);
+            if (document.getElementById("maxInactiveSeedingTimeCheckbox").checked) {
+                maxInactiveSeedingTime = Number(document.getElementById("maxInactiveSeedingTimeValue").value);
                 if (Number.isNaN(maxInactiveSeedingTime) || (maxInactiveSeedingTime < 0) || (maxInactiveSeedingTime > 525600)) {
                     alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_inactive_seeding_time_enabled"] = $("maxInactiveSeedingTimeCheckbox").checked;
+            settings["max_inactive_seeding_time_enabled"] = document.getElementById("maxInactiveSeedingTimeCheckbox").checked;
             settings["max_inactive_seeding_time"] = maxInactiveSeedingTime;
-            settings["max_ratio_act"] = Number($("maxRatioSelect").value);
+            settings["max_ratio_act"] = Number(document.getElementById("maxRatioSelect").value);
 
             // Add trackers
-            settings["add_trackers_enabled"] = $("add_trackers_checkbox").checked;
-            settings["add_trackers"] = $("add_trackers_textarea").value;
-            settings["add_trackers_from_url_enabled"] = $("addTrackersFromURLCheckbox").checked;
-            settings["add_trackers_url"] = $("addTrackersURL").value;
+            settings["add_trackers_enabled"] = document.getElementById("add_trackers_checkbox").checked;
+            settings["add_trackers"] = document.getElementById("add_trackers_textarea").value;
+            settings["add_trackers_from_url_enabled"] = document.getElementById("addTrackersFromURLCheckbox").checked;
+            settings["add_trackers_url"] = document.getElementById("addTrackersURL").value;
 
             // RSS Tab
-            settings["rss_processing_enabled"] = $("enable_fetching_rss_feeds_checkbox").checked;
-            settings["rss_refresh_interval"] = Number($("feed_refresh_interval").value);
-            settings["rss_fetch_delay"] = Number($("feedFetchDelay").value);
-            settings["rss_max_articles_per_feed"] = Number($("maximum_article_number").value);
-            settings["rss_auto_downloading_enabled"] = $("enable_auto_downloading_rss_torrents_checkbox").checked;
-            settings["rss_download_repack_proper_episodes"] = $("downlock_repack_proper_episodes").checked;
-            settings["rss_smart_episode_filters"] = $("rss_filter_textarea").value;
+            settings["rss_processing_enabled"] = document.getElementById("enable_fetching_rss_feeds_checkbox").checked;
+            settings["rss_refresh_interval"] = Number(document.getElementById("feed_refresh_interval").value);
+            settings["rss_fetch_delay"] = Number(document.getElementById("feedFetchDelay").value);
+            settings["rss_max_articles_per_feed"] = Number(document.getElementById("maximum_article_number").value);
+            settings["rss_auto_downloading_enabled"] = document.getElementById("enable_auto_downloading_rss_torrents_checkbox").checked;
+            settings["rss_download_repack_proper_episodes"] = document.getElementById("downlock_repack_proper_episodes").checked;
+            settings["rss_smart_episode_filters"] = document.getElementById("rss_filter_textarea").value;
 
             // WebUI tab
             // HTTP Server
-            settings["web_ui_domain_list"] = $("webuiDomainTextarea").value;
-            const webUIAddress = $("webuiAddressValue").value.toString();
-            const webUIPort = Number($("webuiPortValue").value);
+            settings["web_ui_domain_list"] = document.getElementById("webuiDomainTextarea").value;
+            const webUIAddress = document.getElementById("webuiAddressValue").value.toString();
+            const webUIPort = Number(document.getElementById("webuiPortValue").value);
             if (Number.isNaN(webUIPort) || (webUIPort < 1) || (webUIPort > 65535)) {
                 alert("QBT_TR(The port used for the WebUI must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings["web_ui_address"] = webUIAddress;
             settings["web_ui_port"] = webUIPort;
-            settings["web_ui_upnp"] = $("webuiUpnpCheckbox").checked;
+            settings["web_ui_upnp"] = document.getElementById("webuiUpnpCheckbox").checked;
 
-            const useHTTPS = $("use_https_checkbox").checked;
+            const useHTTPS = document.getElementById("use_https_checkbox").checked;
             settings["use_https"] = useHTTPS;
 
-            const httpsCertificate = $("ssl_cert_text").value;
+            const httpsCertificate = document.getElementById("ssl_cert_text").value;
             settings["web_ui_https_cert_path"] = httpsCertificate;
             if (useHTTPS && (httpsCertificate.length === 0)) {
                 alert("QBT_TR(HTTPS certificate should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
 
-            const httpsKey = $("ssl_key_text").value;
+            const httpsKey = document.getElementById("ssl_key_text").value;
             settings["web_ui_https_key_path"] = httpsKey;
             if (useHTTPS && (httpsKey.length === 0)) {
                 alert("QBT_TR(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
@@ -2989,12 +2989,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
 
             // Authentication
-            const web_ui_username = $("webui_username_text").value;
+            const web_ui_username = document.getElementById("webui_username_text").value;
             if (web_ui_username.length < 3) {
                 alert("QBT_TR(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
-            const web_ui_password = $("webui_password_text").value;
+            const web_ui_password = document.getElementById("webui_password_text").value;
             if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
                 alert("QBT_TR(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
@@ -3003,16 +3003,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["web_ui_username"] = web_ui_username;
             if (web_ui_password.length > 0)
                 settings["web_ui_password"] = web_ui_password;
-            settings["bypass_local_auth"] = $("bypass_local_auth_checkbox").checked;
-            settings["bypass_auth_subnet_whitelist_enabled"] = $("bypass_auth_subnet_whitelist_checkbox").checked;
-            settings["bypass_auth_subnet_whitelist"] = $("bypass_auth_subnet_whitelist_textarea").value;
-            settings["web_ui_max_auth_fail_count"] = Number($("webUIMaxAuthFailCountInput").value);
-            settings["web_ui_ban_duration"] = Number($("webUIBanDurationInput").value);
-            settings["web_ui_session_timeout"] = Number($("webUISessionTimeoutInput").value);
+            settings["bypass_local_auth"] = document.getElementById("bypass_local_auth_checkbox").checked;
+            settings["bypass_auth_subnet_whitelist_enabled"] = document.getElementById("bypass_auth_subnet_whitelist_checkbox").checked;
+            settings["bypass_auth_subnet_whitelist"] = document.getElementById("bypass_auth_subnet_whitelist_textarea").value;
+            settings["web_ui_max_auth_fail_count"] = Number(document.getElementById("webUIMaxAuthFailCountInput").value);
+            settings["web_ui_ban_duration"] = Number(document.getElementById("webUIBanDurationInput").value);
+            settings["web_ui_session_timeout"] = Number(document.getElementById("webUISessionTimeoutInput").value);
 
             // Use alternative WebUI
-            const alternative_webui_enabled = $("use_alt_webui_checkbox").checked;
-            const webui_files_location_textarea = $("webui_files_location_textarea").value;
+            const alternative_webui_enabled = document.getElementById("use_alt_webui_checkbox").checked;
+            const webui_files_location_textarea = document.getElementById("webui_files_location_textarea").value;
             if (alternative_webui_enabled && (webui_files_location_textarea.trim() === "")) {
                 alert("QBT_TR(The alternative WebUI files location cannot be blank.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
@@ -3021,105 +3021,105 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["alternative_webui_path"] = webui_files_location_textarea;
 
             // Security
-            settings["web_ui_clickjacking_protection_enabled"] = $("clickjacking_protection_checkbox").checked;
-            settings["web_ui_csrf_protection_enabled"] = $("csrf_protection_checkbox").checked;
-            settings["web_ui_secure_cookie_enabled"] = $("secureCookieCheckbox").checked;
-            settings["web_ui_host_header_validation_enabled"] = $("host_header_validation_checkbox").checked;
+            settings["web_ui_clickjacking_protection_enabled"] = document.getElementById("clickjacking_protection_checkbox").checked;
+            settings["web_ui_csrf_protection_enabled"] = document.getElementById("csrf_protection_checkbox").checked;
+            settings["web_ui_secure_cookie_enabled"] = document.getElementById("secureCookieCheckbox").checked;
+            settings["web_ui_host_header_validation_enabled"] = document.getElementById("host_header_validation_checkbox").checked;
 
             // Custom HTTP headers
-            settings["web_ui_use_custom_http_headers_enabled"] = $("webUIUseCustomHTTPHeadersCheckbox").checked;
-            settings["web_ui_custom_http_headers"] = $("webUICustomHTTPHeadersTextarea").value;
+            settings["web_ui_use_custom_http_headers_enabled"] = document.getElementById("webUIUseCustomHTTPHeadersCheckbox").checked;
+            settings["web_ui_custom_http_headers"] = document.getElementById("webUICustomHTTPHeadersTextarea").value;
 
             // Reverse Proxy
-            settings["web_ui_reverse_proxy_enabled"] = $("webUIReverseProxySupportCheckbox").checked;
-            settings["web_ui_reverse_proxies_list"] = $("webUIReverseProxiesListTextarea").value;
+            settings["web_ui_reverse_proxy_enabled"] = document.getElementById("webUIReverseProxySupportCheckbox").checked;
+            settings["web_ui_reverse_proxies_list"] = document.getElementById("webUIReverseProxiesListTextarea").value;
 
             // Update my dynamic domain name
-            settings["dyndns_enabled"] = $("use_dyndns_checkbox").checked;
-            settings["dyndns_service"] = Number($("dyndns_select").value);
-            settings["dyndns_domain"] = $("dyndns_domain_text").value;
-            settings["dyndns_username"] = $("dyndns_username_text").value;
-            settings["dyndns_password"] = $("dyndns_password_text").value;
+            settings["dyndns_enabled"] = document.getElementById("use_dyndns_checkbox").checked;
+            settings["dyndns_service"] = Number(document.getElementById("dyndns_select").value);
+            settings["dyndns_domain"] = document.getElementById("dyndns_domain_text").value;
+            settings["dyndns_username"] = document.getElementById("dyndns_username_text").value;
+            settings["dyndns_password"] = document.getElementById("dyndns_password_text").value;
 
             // Update advanced settings
             // qBittorrent section
-            settings["resume_data_storage_type"] = $("resumeDataStorageType").value;
-            settings["torrent_content_remove_option"] = $("torrentContentRemoveOption").value;
-            settings["memory_working_set_limit"] = Number($("memoryWorkingSetLimit").value);
-            settings["current_network_interface"] = $("networkInterface").value;
-            settings["current_interface_address"] = $("optionalIPAddressToBind").value;
-            settings["save_resume_data_interval"] = Number($("saveResumeDataInterval").value);
-            settings["save_statistics_interval"] = Number($("saveStatisticsInterval").value);
-            settings["torrent_file_size_limit"] = ($("torrentFileSizeLimit").value * 1024 * 1024);
+            settings["resume_data_storage_type"] = document.getElementById("resumeDataStorageType").value;
+            settings["torrent_content_remove_option"] = document.getElementById("torrentContentRemoveOption").value;
+            settings["memory_working_set_limit"] = Number(document.getElementById("memoryWorkingSetLimit").value);
+            settings["current_network_interface"] = document.getElementById("networkInterface").value;
+            settings["current_interface_address"] = document.getElementById("optionalIPAddressToBind").value;
+            settings["save_resume_data_interval"] = Number(document.getElementById("saveResumeDataInterval").value);
+            settings["save_statistics_interval"] = Number(document.getElementById("saveStatisticsInterval").value);
+            settings["torrent_file_size_limit"] = (document.getElementById("torrentFileSizeLimit").value * 1024 * 1024);
             settings["confirm_torrent_recheck"] = document.getElementById("confirmTorrentRecheck").checked;
-            settings["recheck_completed_torrents"] = $("recheckTorrentsOnCompletion").checked;
-            settings["app_instance_name"] = $("appInstanceName").value;
-            settings["refresh_interval"] = Number($("refreshInterval").value);
-            settings["resolve_peer_countries"] = $("resolvePeerCountries").checked;
-            settings["reannounce_when_address_changed"] = $("reannounceWhenAddressChanged").checked;
-            settings["enable_embedded_tracker"] = $("enableEmbeddedTracker").checked;
-            settings["embedded_tracker_port"] = Number($("embeddedTrackerPort").value);
-            settings["embedded_tracker_port_forwarding"] = $("embeddedTrackerPortForwarding").checked;
-            settings["mark_of_the_web"] = $("markOfTheWeb").checked;
-            settings["ignore_ssl_errors"] = $("ignoreSSLErrors").checked;
-            settings["python_executable_path"] = $("pythonExecutablePath").value;
+            settings["recheck_completed_torrents"] = document.getElementById("recheckTorrentsOnCompletion").checked;
+            settings["app_instance_name"] = document.getElementById("appInstanceName").value;
+            settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
+            settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
+            settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
+            settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;
+            settings["embedded_tracker_port"] = Number(document.getElementById("embeddedTrackerPort").value);
+            settings["embedded_tracker_port_forwarding"] = document.getElementById("embeddedTrackerPortForwarding").checked;
+            settings["mark_of_the_web"] = document.getElementById("markOfTheWeb").checked;
+            settings["ignore_ssl_errors"] = document.getElementById("ignoreSSLErrors").checked;
+            settings["python_executable_path"] = document.getElementById("pythonExecutablePath").value;
 
             // libtorrent section
-            settings["bdecode_depth_limit"] = Number($("bdecodeDepthLimit").value);
-            settings["bdecode_token_limit"] = Number($("bdecodeTokenLimit").value);
-            settings["async_io_threads"] = Number($("asyncIOThreads").value);
-            settings["hashing_threads"] = Number($("hashingThreads").value);
-            settings["file_pool_size"] = Number($("filePoolSize").value);
-            settings["checking_memory_use"] = Number($("outstandMemoryWhenCheckingTorrents").value);
-            settings["disk_cache"] = Number($("diskCache").value);
-            settings["disk_cache_ttl"] = Number($("diskCacheExpiryInterval").value);
-            settings["disk_queue_size"] = (Number($("diskQueueSize").value) * 1024);
-            settings["disk_io_type"] = Number($("diskIOType").value);
-            settings["disk_io_read_mode"] = Number($("diskIOReadMode").value);
-            settings["disk_io_write_mode"] = Number($("diskIOWriteMode").value);
-            settings["enable_coalesce_read_write"] = $("coalesceReadsAndWrites").checked;
-            settings["enable_piece_extent_affinity"] = $("pieceExtentAffinity").checked;
-            settings["enable_upload_suggestions"] = $("sendUploadPieceSuggestions").checked;
-            settings["send_buffer_watermark"] = Number($("sendBufferWatermark").value);
-            settings["send_buffer_low_watermark"] = Number($("sendBufferLowWatermark").value);
-            settings["send_buffer_watermark_factor"] = Number($("sendBufferWatermarkFactor").value);
-            settings["connection_speed"] = Number($("connectionSpeed").value);
-            settings["socket_send_buffer_size"] = ($("socketSendBufferSize").value * 1024);
-            settings["socket_receive_buffer_size"] = ($("socketReceiveBufferSize").value * 1024);
-            settings["socket_backlog_size"] = Number($("socketBacklogSize").value);
-            settings["outgoing_ports_min"] = Number($("outgoingPortsMin").value);
-            settings["outgoing_ports_max"] = Number($("outgoingPortsMax").value);
-            settings["upnp_lease_duration"] = Number($("UPnPLeaseDuration").value);
-            settings["peer_tos"] = Number($("peerToS").value);
-            settings["utp_tcp_mixed_mode"] = Number($("utpTCPMixedModeAlgorithm").value);
-            settings["hostname_cache_ttl"] = Number($("hostnameCacheTTL").value);
-            settings["idn_support_enabled"] = $("IDNSupportCheckbox").checked;
-            settings["enable_multi_connections_from_same_ip"] = $("allowMultipleConnectionsFromTheSameIPAddress").checked;
-            settings["validate_https_tracker_certificate"] = $("validateHTTPSTrackerCertificate").checked;
-            settings["ssrf_mitigation"] = $("mitigateSSRF").checked;
-            settings["block_peers_on_privileged_ports"] = $("blockPeersOnPrivilegedPorts").checked;
-            settings["upload_slots_behavior"] = Number($("uploadSlotsBehavior").value);
-            settings["upload_choking_algorithm"] = Number($("uploadChokingAlgorithm").value);
-            settings["announce_to_all_trackers"] = $("announceAllTrackers").checked;
-            settings["announce_to_all_tiers"] = $("announceAllTiers").checked;
-            settings["announce_ip"] = $("announceIP").value;
-            const announcePort = Number($("announcePort").value);
+            settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
+            settings["bdecode_token_limit"] = Number(document.getElementById("bdecodeTokenLimit").value);
+            settings["async_io_threads"] = Number(document.getElementById("asyncIOThreads").value);
+            settings["hashing_threads"] = Number(document.getElementById("hashingThreads").value);
+            settings["file_pool_size"] = Number(document.getElementById("filePoolSize").value);
+            settings["checking_memory_use"] = Number(document.getElementById("outstandMemoryWhenCheckingTorrents").value);
+            settings["disk_cache"] = Number(document.getElementById("diskCache").value);
+            settings["disk_cache_ttl"] = Number(document.getElementById("diskCacheExpiryInterval").value);
+            settings["disk_queue_size"] = (Number(document.getElementById("diskQueueSize").value) * 1024);
+            settings["disk_io_type"] = Number(document.getElementById("diskIOType").value);
+            settings["disk_io_read_mode"] = Number(document.getElementById("diskIOReadMode").value);
+            settings["disk_io_write_mode"] = Number(document.getElementById("diskIOWriteMode").value);
+            settings["enable_coalesce_read_write"] = document.getElementById("coalesceReadsAndWrites").checked;
+            settings["enable_piece_extent_affinity"] = document.getElementById("pieceExtentAffinity").checked;
+            settings["enable_upload_suggestions"] = document.getElementById("sendUploadPieceSuggestions").checked;
+            settings["send_buffer_watermark"] = Number(document.getElementById("sendBufferWatermark").value);
+            settings["send_buffer_low_watermark"] = Number(document.getElementById("sendBufferLowWatermark").value);
+            settings["send_buffer_watermark_factor"] = Number(document.getElementById("sendBufferWatermarkFactor").value);
+            settings["connection_speed"] = Number(document.getElementById("connectionSpeed").value);
+            settings["socket_send_buffer_size"] = (document.getElementById("socketSendBufferSize").value * 1024);
+            settings["socket_receive_buffer_size"] = (document.getElementById("socketReceiveBufferSize").value * 1024);
+            settings["socket_backlog_size"] = Number(document.getElementById("socketBacklogSize").value);
+            settings["outgoing_ports_min"] = Number(document.getElementById("outgoingPortsMin").value);
+            settings["outgoing_ports_max"] = Number(document.getElementById("outgoingPortsMax").value);
+            settings["upnp_lease_duration"] = Number(document.getElementById("UPnPLeaseDuration").value);
+            settings["peer_tos"] = Number(document.getElementById("peerToS").value);
+            settings["utp_tcp_mixed_mode"] = Number(document.getElementById("utpTCPMixedModeAlgorithm").value);
+            settings["hostname_cache_ttl"] = Number(document.getElementById("hostnameCacheTTL").value);
+            settings["idn_support_enabled"] = document.getElementById("IDNSupportCheckbox").checked;
+            settings["enable_multi_connections_from_same_ip"] = document.getElementById("allowMultipleConnectionsFromTheSameIPAddress").checked;
+            settings["validate_https_tracker_certificate"] = document.getElementById("validateHTTPSTrackerCertificate").checked;
+            settings["ssrf_mitigation"] = document.getElementById("mitigateSSRF").checked;
+            settings["block_peers_on_privileged_ports"] = document.getElementById("blockPeersOnPrivilegedPorts").checked;
+            settings["upload_slots_behavior"] = Number(document.getElementById("uploadSlotsBehavior").value);
+            settings["upload_choking_algorithm"] = Number(document.getElementById("uploadChokingAlgorithm").value);
+            settings["announce_to_all_trackers"] = document.getElementById("announceAllTrackers").checked;
+            settings["announce_to_all_tiers"] = document.getElementById("announceAllTiers").checked;
+            settings["announce_ip"] = document.getElementById("announceIP").value;
+            const announcePort = Number(document.getElementById("announcePort").value);
             if (Number.isNaN(announcePort) || (announcePort < 0) || (announcePort > 65535)) {
                 alert("QBT_TR(The announce port must be between 0 and 65535.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
             settings["announce_port"] = announcePort;
-            settings["max_concurrent_http_announces"] = Number($("maxConcurrentHTTPAnnounces").value);
-            settings["stop_tracker_timeout"] = Number($("stopTrackerTimeout").value);
-            settings["peer_turnover"] = Number($("peerTurnover").value);
-            settings["peer_turnover_cutoff"] = Number($("peerTurnoverCutoff").value);
-            settings["peer_turnover_interval"] = Number($("peerTurnoverInterval").value);
-            settings["request_queue_size"] = Number($("requestQueueSize").value);
-            settings["dht_bootstrap_nodes"] = $("dhtBootstrapNodes").value;
-            settings["i2p_inbound_quantity"] = Number($("i2pInboundQuantity").value);
-            settings["i2p_outbound_quantity"] = Number($("i2pOutboundQuantity").value);
-            settings["i2p_inbound_length"] = Number($("i2pInboundLength").value);
-            settings["i2p_outbound_length"] = Number($("i2pOutboundLength").value);
+            settings["max_concurrent_http_announces"] = Number(document.getElementById("maxConcurrentHTTPAnnounces").value);
+            settings["stop_tracker_timeout"] = Number(document.getElementById("stopTrackerTimeout").value);
+            settings["peer_turnover"] = Number(document.getElementById("peerTurnover").value);
+            settings["peer_turnover_cutoff"] = Number(document.getElementById("peerTurnoverCutoff").value);
+            settings["peer_turnover_interval"] = Number(document.getElementById("peerTurnoverInterval").value);
+            settings["request_queue_size"] = Number(document.getElementById("requestQueueSize").value);
+            settings["dht_bootstrap_nodes"] = document.getElementById("dhtBootstrapNodes").value;
+            settings["i2p_inbound_quantity"] = Number(document.getElementById("i2pInboundQuantity").value);
+            settings["i2p_outbound_quantity"] = Number(document.getElementById("i2pOutboundQuantity").value);
+            settings["i2p_inbound_length"] = Number(document.getElementById("i2pInboundLength").value);
+            settings["i2p_outbound_length"] = Number(document.getElementById("i2pOutboundLength").value);
 
             // Send it to qBT
             window.parent.qBittorrent.Cache.preferences.set({
@@ -3137,7 +3137,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const setup = () => {
-            watchedFoldersTable = new HtmlTable($("watched_folders_tab"));
+            watchedFoldersTable = new HtmlTable(document.getElementById("watched_folders_tab"));
 
             const buildInfo = window.qBittorrent.Cache.buildInfo.get();
 
@@ -3145,29 +3145,29 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
             if (libtorrentVersion.valid) {
                 if (libtorrentVersion.major >= 2) {
-                    $("rowDiskCache").style.display = "none";
-                    $("rowDiskCacheExpiryInterval").style.display = "none";
-                    $("rowCoalesceReadsAndWrites").style.display = "none";
+                    document.getElementById("rowDiskCache").style.display = "none";
+                    document.getElementById("rowDiskCacheExpiryInterval").style.display = "none";
+                    document.getElementById("rowCoalesceReadsAndWrites").style.display = "none";
                 }
                 else {
-                    $("fieldsetI2p").style.display = "none";
-                    $("rowMemoryWorkingSetLimit").style.display = "none";
-                    $("rowHashingThreads").style.display = "none";
-                    $("rowDiskIOType").style.display = "none";
-                    $("rowI2pInboundQuantity").style.display = "none";
-                    $("rowI2pOutboundQuantity").style.display = "none";
-                    $("rowI2pInboundLength").style.display = "none";
-                    $("rowI2pOutboundLength").style.display = "none";
+                    document.getElementById("fieldsetI2p").style.display = "none";
+                    document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
+                    document.getElementById("rowHashingThreads").style.display = "none";
+                    document.getElementById("rowDiskIOType").style.display = "none";
+                    document.getElementById("rowI2pInboundQuantity").style.display = "none";
+                    document.getElementById("rowI2pOutboundQuantity").style.display = "none";
+                    document.getElementById("rowI2pInboundLength").style.display = "none";
+                    document.getElementById("rowI2pOutboundLength").style.display = "none";
                 }
 
                 if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
-                    $("diskIOWriteModeWriteThrough").style.display = "none";
+                    document.getElementById("diskIOWriteModeWriteThrough").style.display = "none";
             }
 
             if ((buildInfo.platform !== "macos") && (buildInfo.platform !== "windows"))
-                $("rowMarkOfTheWeb").style.display = "none";
+                document.getElementById("rowMarkOfTheWeb").style.display = "none";
 
-            $("networkInterface").addEventListener("change", function() {
+            document.getElementById("networkInterface").addEventListener("change", function() {
                 updateInterfaceAddresses(this.value, "");
             });
 

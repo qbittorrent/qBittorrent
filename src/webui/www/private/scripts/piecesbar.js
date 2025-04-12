@@ -251,7 +251,7 @@ window.qBittorrent.PiecesBar ??= (() => {
     }
 
     const checkForParent = (id) => {
-        const obj = $(id);
+        const obj = document.getElementById(id);
         if (!obj)
             return;
         if (!obj.parentNode)
