@@ -290,11 +290,6 @@
                 event.preventDefault();
                 window.qBittorrent.Client.closeWindow(windowEl);
             });
-            // synchronize header scrolling to table body
-            $("bulkRenameFilesTableDiv").onscroll = function() {
-                const length = $(this).scrollLeft;
-                $("bulkRenameFilesTableFixedHeaderDiv").scrollLeft = length;
-            };
 
             const handleTorrentFiles = (files, selectedRows) => {
                 const rows = files.map((file, index) => {
