@@ -190,7 +190,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 e.stopPropagation();
             }
             // record this as the trigger
-            this.options.element = $(el);
+            this.options.element = el;
             this.adjustMenuPosition(e);
             // show the menu
             this.show();
@@ -219,7 +219,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             });
 
             // hide on body click
-            $(document.body).addEventListener("click", () => {
+            document.body.addEventListener("click", () => {
                 this.hide();
                 this.options.element = null;
             });

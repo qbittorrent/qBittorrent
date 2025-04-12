@@ -3168,7 +3168,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 $("rowMarkOfTheWeb").style.display = "none";
 
             $("networkInterface").addEventListener("change", function() {
-                updateInterfaceAddresses($(this).value, "");
+                updateInterfaceAddresses(this.value, "");
             });
 
             loadPreferences();
