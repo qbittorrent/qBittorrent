@@ -63,9 +63,11 @@ TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent)
     m_ui->spinBoxRatioValue->clear();
     m_ui->spinBoxSeedingTimeValue->setEnabled(false);
     m_ui->spinBoxSeedingTimeValue->setSuffix({});
+    m_ui->spinBoxSeedingTimeValue->setMaximum(BitTorrent::Torrent::MAX_SEEDING_TIME);
     m_ui->spinBoxSeedingTimeValue->clear();
     m_ui->spinBoxInactiveSeedingTimeValue->setEnabled(false);
     m_ui->spinBoxInactiveSeedingTimeValue->setSuffix({});
+    m_ui->spinBoxInactiveSeedingTimeValue->setMaximum(BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME);
     m_ui->spinBoxInactiveSeedingTimeValue->clear();
 
     connect(m_ui->comboBoxRatioMode, &QComboBox::currentIndexChanged, this, &TorrentShareLimitsWidget::refreshRatioLimitControls);
