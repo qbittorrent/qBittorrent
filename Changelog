@@ -1,3 +1,9 @@
+Sun Apr 13th 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.5
+    - FEATURE: Add an advanced setting for setting the "Add New Torrent" dialog as modal (glassez)
+    - BUGFIX: Improve command line parameters serialization (glassez)
+    - BUGFIX: Declare missing color IDs for theming (glassez)
+    - WINDOWS: NSIS: Update Swedish translation (Daniel Nylander)
+
 Tue Feb 18th 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.4
     - BUGFIX: Fix cannot remove trackers via WebAPI (Chocobo1)
     - BUGFIX: Fix torrent content checkbox state under certain conditions (thalieht)
