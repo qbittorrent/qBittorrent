@@ -616,7 +616,7 @@
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Palaist visus</translation>
     </message>
     <message>
         <source>Stop All</source>
@@ -624,7 +624,7 @@
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Palaist</translation>
     </message>
 </context>
 <context>
@@ -1861,7 +1861,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Neņemt vērā SSL kļūdas:</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
@@ -1877,7 +1877,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Krāsu shēma:</translation>
     </message>
     <message>
         <source>Interface</source>
@@ -2225,7 +2225,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Paplašinājums</translation>
     </message>
     <message>
         <source>Replace All</source>
@@ -2269,7 +2269,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privāts:</translation>
     </message>
 </context>
 <context>
@@ -2668,7 +2668,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privāts</translation>
     </message>
 </context>
 <context>
@@ -2897,7 +2897,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation>Samazināt/Paplašināt</translation>
+        <translation>Sakļaut/izvērst</translation>
     </message>
 </context>
 <context>
@@ -3094,7 +3094,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Palaist</translation>
     </message>
 </context>
 <context>
@@ -4138,11 +4138,11 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>Iemesls</translation>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>vienums</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4158,7 +4158,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Kritisks</translation>
     </message>
     <message>
         <source>Critical Messages</source>
@@ -4170,7 +4170,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>vienumi</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4178,11 +4178,11 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Informācija</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Atlasiet žurnāla uzskaites detalizētību…</translation>
     </message>
 </context>
 <context>

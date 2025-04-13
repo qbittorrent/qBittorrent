@@ -1865,7 +1865,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>pread/pwrite đơn giản</translation>
     </message>
     <message>
         <source>Dark</source>

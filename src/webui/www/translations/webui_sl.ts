@@ -1877,7 +1877,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Barvna shema:</translation>
     </message>
     <message>
         <source>Interface</source>

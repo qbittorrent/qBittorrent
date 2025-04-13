@@ -114,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri başlatmaq</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri dayandırmaq</translation>
     </message>
 </context>
 <context>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>qBitorent ilə əlaqə mümkün olmadı</translation>
     </message>
     <message>
         <source>Password</source>
@@ -604,7 +604,7 @@
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Torrenləri başlatmaq istərdinizmi?</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -612,19 +612,19 @@
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Bütün torrentləri dayandırmaq istərdiniz?</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Hamısını başlatmaq</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Hamısını dayandırmaq</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Başlatmaq</translation>
     </message>
 </context>
 <context>
@@ -1817,31 +1817,31 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>Yoxlamaq üçün e-poçt göndərmək</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>E-poçt göndərməyə cəhd edildi. Uğurlu olduğunu təsdiqləmək üçün poçtunuzu yoxlayın.</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Bu izləyiciləri yeni endirmələrə a&amp;vtomatik əlavə etmək:</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrenti dayandırmaq</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Faylları səbətə atmaq (mümkün olduqda)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrent tərkiblırinin silinməsi rejimi:</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Faylları həmişəlik silmək</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -1861,15 +1861,15 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>SSL xətalarını gözardı etmək:</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>Sadə oxuma/yazma</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Qaranlıq</translation>
     </message>
     <message>
         <source>Auto</source>
@@ -1877,7 +1877,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Rəng sxemi:</translation>
     </message>
     <message>
         <source>Interface</source>
@@ -1885,7 +1885,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>İşıqlı</translation>
     </message>
 </context>
 <context>
@@ -2253,11 +2253,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Populyarlıq:</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Nisbət / vaxt aktivliyi (aylar ərzində) torrentlərin nə qədər populyar olduğunu göstərir</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2269,7 +2269,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Gizli:</translation>
     </message>
 </context>
 <context>
@@ -2481,19 +2481,19 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>Başlayır (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Dyandırıldı (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>Dayandırıldı (%1)</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>Başladılır (0)</translation>
     </message>
 </context>
 <context>
@@ -2648,7 +2648,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Populyarlıq</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2668,7 +2668,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Məxfi</translation>
     </message>
 </context>
 <context>
@@ -2870,7 +2870,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Dayandırılıb</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -3090,11 +3090,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Məcburi başlatmaq</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Başlatmaq</translation>
     </message>
 </context>
 <context>
@@ -3139,7 +3139,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Həmçinin məzmun fayllarını silmək</translation>
     </message>
 </context>
 <context>
@@ -3343,7 +3343,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Yuxarıda axtarış edin</translation>
     </message>
 </context>
 <context>
@@ -3409,7 +3409,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Nəşr olunduğu yer</translation>
     </message>
 </context>
 <context>
@@ -3494,11 +3494,11 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri başlatmaq</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri dayandırmaq</translation>
     </message>
 </context>
 <context>
@@ -4013,7 +4013,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Dayandırılmış kimi əlavə etmək:</translation>
     </message>
 </context>
 <context>
@@ -4032,11 +4032,11 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri başlatmaq</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri dayandırmaq</translation>
     </message>
 </context>
 <context>

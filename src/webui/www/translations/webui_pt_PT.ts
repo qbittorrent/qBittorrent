@@ -1865,7 +1865,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>Pread/pwrite simples</translation>
     </message>
     <message>
         <source>Dark</source>

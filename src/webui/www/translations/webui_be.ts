@@ -432,7 +432,7 @@
     </message>
     <message>
         <source>Status Bar</source>
-        <translation>Панэль статуса</translation>
+        <translation>Панэль стану</translation>
     </message>
     <message>
         <source>Speed in Title Bar</source>
@@ -1177,7 +1177,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Фактар пазнакі буфера адпраўкі:</translation>
+        <translation>Каэфіцыент адзнакі буфера адпраўкі:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1213,7 +1213,7 @@
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation>Пазнака буфера адпраўкі:</translation>
+        <translation>Адзнака буфера адпраўкі:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1257,7 +1257,7 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation>Ніжняя пазнака буферу адпраўкі:</translation>
+        <translation>Ніжняя адзнака буфера адпраўкі:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
@@ -1957,7 +1957,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation>Капіяваць IP:порт</translation>
+        <translation>Скапіяваць IP:порт</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -2070,7 +2070,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Wasted:</source>
-        <translation>Згублена:</translation>
+        <translation>Страчана:</translation>
     </message>
     <message>
         <source>Connections:</source>
@@ -2135,7 +2135,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (%2 this session)</source>
-        <translation>%1 (%2 гэтая сесія)</translation>
+        <translation>%1 (%2 за гэты сеанс)</translation>
     </message>
     <message>
         <source>%1 (%2 max)</source>
@@ -2277,7 +2277,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>ScanFoldersModel</name>
     <message>
         <source>Monitored Folder</source>
-        <translation>Папка што наглядаецца</translation>
+        <translation>Папка для назірання</translation>
     </message>
     <message>
         <source>Override Save Location</source>
@@ -2285,7 +2285,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Monitored folder</source>
-        <translation>Папка што наглядаецца</translation>
+        <translation>Папка для назірання</translation>
     </message>
     <message>
         <source>Default save location</source>
@@ -2572,7 +2572,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Абмеж. сцягв.</translation>
+        <translation>Абмеж. спампоўвання</translation>
     </message>
     <message>
         <source>Up Limit</source>
@@ -2592,7 +2592,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Сцягнута за сеанс</translation>
+        <translation>Спампавана за сеанс</translation>
     </message>
     <message>
         <source>Session Upload</source>
@@ -2724,7 +2724,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>Капіяваць URL трэкера</translation>
+        <translation>Скапіяваць адрас трэкера</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2803,7 +2803,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation>%1 таму</translation>
+        <translation>%1 таму</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -3043,7 +3043,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Капіяваць</translation>
+        <translation>Скапіяваць</translation>
     </message>
     <message>
         <source>Queue</source>
@@ -3203,12 +3203,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 гадз %2 хв</translation>
+        <translation>%1 гадз %2 хв</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1 дз %2 г</translation>
+        <translation>%1 дз %2 гадз</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3223,11 +3223,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation>%1 хв</translation>
+        <translation>%1 хв</translation>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation>%1 г. %2 дз.</translation>
+        <translation>%1 г. %2 дз</translation>
     </message>
 </context>
 <context>
@@ -3619,7 +3619,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation>Капіяваць</translation>
+        <translation>Скапіяваць</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3709,7 +3709,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation>Капіяваць спасылку канала</translation>
+        <translation>Скапіяваць спасылку канала</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
@@ -4075,11 +4075,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation>Капіяваць</translation>
+        <translation>Скапіяваць</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Выбраць Усё</translation>
+        <translation>Выбраць усе</translation>
     </message>
     <message>
         <source>ID</source>

@@ -1829,7 +1829,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Mută fișiere la gunoi (dacă e posibil)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1837,7 +1837,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Șterge permanent fișiere</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>

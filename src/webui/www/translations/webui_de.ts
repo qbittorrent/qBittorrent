@@ -333,7 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Konnte Peers nicht hinzufügen. Bitte sicherstellen daß das IP:Port-Format eingehalten wird.</translation>
+        <translation>Konnte Peers nicht hinzufügen. Bitte sicherstellen, dass das IP:Port-Format eingehalten wird.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -373,7 +373,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation>JavaScript erforderlich! Für das Web-Interface muss JavaScript erlaubt werden um zu funktionieren.</translation>
+        <translation>JavaScript erforderlich! Für das Webinterface muss JavaScript erlaubt werden, um zu funktionieren.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -452,7 +452,7 @@
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation>Torrent-Datei hinzufügen...</translation>
+        <translation>Torrent-Datei hinzufügen ...</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -460,7 +460,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Torrent-Link hinzufügen...</translation>
+        <translation>Torrent-Link hinzufügen ...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -819,7 +819,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>Manuell gebannte IP-Adressen...</translation>
+        <translation>Manuell gebannte IP-Adressen ...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -893,7 +893,7 @@
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Lokale Peer Auffindung (LPD) aktivieren um mehr Peers zu finden</translation>
+        <translation>Lokale Peer Auffindung (LPD) aktivieren, um mehr Peers zu finden</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -933,7 +933,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>UPnP / NAT-PMP um den Port des Routers weiterzuleiten</translation>
+        <translation>UPnP / NAT-PMP, um den Port des Routers weiterzuleiten</translation>
     </message>
     <message>
         <source>Certificate:</source>
@@ -1530,7 +1530,7 @@ Um sich vor DNS-Rebinding-Attacken zu schützen,
 sollten hier Domain-Namen eingetragen weden,
 die vom Webinterface-Server verwendet werden.
 
-Verwende ';' um mehrere Einträge zu trennen.
+Verwende ';', um mehrere Einträge zu trennen.
 Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
@@ -1543,7 +1543,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Geben Sie Reverse-Proxy-IPs an (oder Subnetze, z.B. 0.0.0.0/24), um weitergeleitete Client-Adressen zu verwenden (Attribut X-Forwarded-For), verwenden Sie ';' um mehrere Einträge aufzuteilen.</translation>
+        <translation>Geben Sie Reverse-Proxy-IPs an (oder Subnetze, z.B. 0.0.0.0/24), um weitergeleitete Client-Adressen zu verwenden (Attribut X-Forwarded-For), verwenden Sie ';', um mehrere Einträge aufzuteilen.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1695,7 +1695,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation>Standardeinstellung wenn leer</translation>
+        <translation>Standardeinstellung, wenn leer</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1723,7 +1723,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation>(Automatische Erkennung wenn leer)</translation>
+        <translation>(Automatische Erkennung, wenn leer)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
@@ -1735,7 +1735,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source> sec</source>
-        <translation>Sek.</translation>
+        <translation> Sek.</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -2259,7 +2259,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation>Rate / aktive Zeit (in Monaten) - zeigt wie populär der Torrent ist</translation>
+        <translation>Rate / aktive Zeit (in Monaten) - zeigt, wie populär der Torrent ist</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -3184,7 +3184,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>TB</translation>
+        <translation>TiB</translation>
     </message>
     <message>
         <source>PiB</source>
@@ -3321,7 +3321,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation>Fenstergröße erhöhen um zusätzliche Filter anzuzeigen</translation>
+        <translation>Fenstergröße erhöhen, um zusätzliche Filter anzuzeigen</translation>
     </message>
     <message>
         <source>to</source>
@@ -3337,7 +3337,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Klicke den "Such-Plugins ..."-Knopf unten rechts um welche zu installieren.</translation>
+        <translation>Klicke den "Such-Plugins ..."-Knopf unten rechts, um welche zu installieren.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
@@ -3953,7 +3953,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation>Wenn die Wortreihenfolge wichtig ist * anstelle von Leerzeichen verwenden</translation>
+        <translation>Wenn die Wortreihenfolge wichtig ist, * anstelle von Leerzeichen verwenden</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3985,12 +3985,12 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation>Entferne bereits heruntergeladene Folgen...</translation>
+        <translation>Entferne bereits heruntergeladene Folgen ...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Der Smart-Folgenfilter überprüft die Folgennummer um das doppelte Herunterladen zu vermeiden.
+        <translation>Der Smart-Folgenfilter überprüft die Folgennummer, um das doppelte Herunterladen zu vermeiden.
 Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Formate werden auch unterstützt, allerdings als Trennung)</translation>
     </message>
     <message>
@@ -4184,7 +4184,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Wähle ein Log Level...</translation>
+        <translation>Wähle ein Log Level ...</translation>
     </message>
 </context>
 <context>

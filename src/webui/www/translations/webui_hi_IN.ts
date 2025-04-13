@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>क्या आप निश्चित ही इन चुनें हुए टाॅरेंटों को स्थानान्तरण सूची से हटाना चाहते हैं?</translation>
     </message>
     <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>

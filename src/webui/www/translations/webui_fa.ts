@@ -114,11 +114,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>شروع تورنت‌ها</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>توقف تورنت‌ها</translation>
     </message>
 </context>
 <context>
@@ -133,39 +133,39 @@
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>محدودیت نرخ بارگذاری جهانی باید بیشتر از 0 باشد یا غیرفعال باشد.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>محدودیت نرخ دانلود جهانی باید بیشتر از 0 باشد یا غیرفعال باشد.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>محدودیت نرخ آپلود جایگزین باید بیشتر از 0 باشد یا غیرفعال باشد.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>محدودیت نرخ دانلود جایگزین باید بیشتر از 0 باشد یا غیرفعال باشد.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>حداکثر دانلودهای فعال باید بیشتر از -1 باشد.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>حداکثر آپلود‌های فعال باید بیشتر از -1 باشد.</translation>
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation type="unfinished" />
+        <translation>حداکثر تورنت فعال باید بیشتر از -1 باشد.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>حداکثر تعداد محدودیت اتصال باید بیشتر از 0 باشد یا غیرفعال باشد.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>حداکثر تعداد اتصالات در هر محدودیت تورنت باید بیشتر از 0 باشد یا غیرفعال باشد.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
@@ -198,7 +198,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="unfinished" />
+        <translation>آپلود تورنت</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -230,7 +230,7 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>تغییرنام تورنت</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -663,7 +663,7 @@
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished" />
+        <translation>فیلتر آی‌پی</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
@@ -751,7 +751,7 @@
     </message>
     <message>
         <source>Listening Port</source>
-        <translation type="unfinished" />
+        <translation>پورت گوش‌دادن</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -961,7 +961,7 @@
     </message>
     <message>
         <source>%L: Category</source>
-        <translation type="unfinished" />
+        <translation>%L: دسته</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
@@ -973,19 +973,19 @@
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation type="unfinished" />
+        <translation>%D: مسیر ذخیره</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation type="unfinished" />
+        <translation>%C: تعداد فایلها</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished" />
+        <translation>%Z: اندازه تورنت (بایت)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
-        <translation type="unfinished" />
+        <translation>%T: ردیاب فعلی</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1013,11 +1013,11 @@
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>آستانه نرخ دانلود:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>آستانه نرخ آپلود:</translation>
     </message>
     <message>
         <source>Change current password</source>
@@ -1057,7 +1057,7 @@
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation type="unfinished" />
+        <translation>جابجایی تورنت</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
@@ -1209,7 +1209,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>ث</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1269,7 +1269,7 @@
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>پایان زمان جلسه:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
@@ -1405,7 +1405,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: شناسه تورنت</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -1421,11 +1421,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: هش اطلاعات ن2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: هش اطلاعات ن1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1441,7 +1441,7 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>اندازه صف دیسک:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
@@ -1501,7 +1501,7 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>فاصله بازخوانی:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1585,7 +1585,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>فایل های شروع‌سریع</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
@@ -1597,7 +1597,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>فایل گزارش</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1649,7 +1649,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>استفاده از زیر شاخه‌ها</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1709,7 +1709,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed mode</source>
-        <translation type="unfinished" />
+        <translation>حالت ترکیبی</translation>
     </message>
     <message>
         <source>.torrent file size limit:</source>
@@ -1717,7 +1717,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation type="unfinished" />
+        <translation>(تشخیص خودکار خالی بودن)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
@@ -1825,11 +1825,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>توقف تورنت</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>انتقال فایل ها به سطل زباله (در صورت امکان)</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1837,7 +1837,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>حذف دائمی پرونده‌ها</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -1956,15 +1956,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>کشور/منطقه</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>افزودن همتایان...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>مشتری شناسه همتا</translation>
     </message>
 </context>
 <context>
@@ -2053,7 +2053,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peers:</source>
-        <translation type="unfinished" />
+        <translation>همتایان:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -2126,34 +2126,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation type="unfinished" />
+        <translation>%1 در %2 (%3 دارد)</translation>
     </message>
     <message>
         <source>%1 (%2 this session)</source>
-        <translation type="unfinished" />
+        <translation>%1 (%2 در این جلسه)</translation>
     </message>
     <message>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (حداکثر %2)</translation>
     </message>
     <message>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (مجموع %2)</translation>
     </message>
     <message>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (میانگین %2)</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>محدودیت دانلود:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>محدودیت آپلود:</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2169,15 +2169,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>% 1 (سید برای %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>هش اطلاعات ن2</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>هش اطلاعات ن1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2217,15 +2217,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>جایگزینی</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>پسوند</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>جایگزین‌کردن همه</translation>
     </message>
     <message>
         <source>Include files</source>
@@ -2237,7 +2237,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>جستجوی فایل‌ها</translation>
     </message>
     <message>
         <source>Case sensitive</source>
@@ -2342,15 +2342,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation type="unfinished" />
+        <translation>بارگذاری تمام وقت:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation type="unfinished" />
+        <translation>اندازه کل بافر:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
-        <translation type="unfinished" />
+        <translation>آمار عملکرد</translation>
     </message>
     <message>
         <source>Queued I/O jobs:</source>
@@ -2433,19 +2433,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation type="unfinished" />
+        <translation>خطا (%1)</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>بارگذاری متوقف‌شده (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>بارگیری متوقف‌شده (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>بارگیری متوقف شده (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
@@ -2453,7 +2453,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>بارگذاری متوقف شده (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
@@ -2461,35 +2461,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>بررسی (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>بررسی (0)</translation>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation type="unfinished" />
+        <translation>انتقال (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation type="unfinished" />
+        <translation>انتقال دادن (0)</translation>
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>در‌حال اجرا (%1)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>متوقف (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>متوقف (%1)</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>در‌حال اجرا (0)</translation>
     </message>
 </context>
 <context>
@@ -2644,7 +2644,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>محبوبیت</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2664,7 +2664,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>خصوصی</translation>
     </message>
 </context>
 <context>
@@ -2747,7 +2747,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>ردیف</translation>
     </message>
     <message>
         <source>Download Priority</source>
@@ -2767,15 +2767,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>بار دانلود شده</translation>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>افزودن ردیاب‌ها...</translation>
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>تغییرنام داد</translation>
     </message>
     <message>
         <source>Original</source>
@@ -2790,7 +2790,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>اضافه کردن ردیاب</translation>
     </message>
 </context>
 <context>
@@ -2798,7 +2798,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation type="unfinished" />
+        <translation>%1 قبل</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2842,7 +2842,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>در صف بررسی</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2850,7 +2850,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>بررسی داده های رزومه</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2858,11 +2858,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>% 1 (سید برای %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] در حال بارگیری فراداده</translation>
     </message>
     <message>
         <source>Stopped</source>
@@ -2893,7 +2893,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>جمع/گسترش</translation>
     </message>
 </context>
 <context>
@@ -2944,7 +2944,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Set location...</source>
-        <translation type="unfinished" />
+        <translation>تنظیم محل...</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -2990,11 +2990,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>مکان</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>نام جدید</translation>
     </message>
     <message>
         <source>Set location</source>
@@ -3002,11 +3002,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>مجبور به اعلام مجدد</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>ویرایش دسته‌بندی</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -3014,7 +3014,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>برچسب‌های جدا شده با کاما:</translation>
     </message>
     <message>
         <source>Add Tags</source>
@@ -3050,11 +3050,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>هش اطلاعات ن1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>هش اطلاعات ن2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -3062,7 +3062,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>صادرکردن .torrent</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -3070,7 +3070,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>تغییر نام فایلها...</translation>
     </message>
     <message>
         <source>Renaming</source>
@@ -3101,11 +3101,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation type="unfinished" />
+        <translation>استفاده از محدودیت جهانی</translation>
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation type="unfinished" />
+        <translation>بدون استفاده از محدودیت جهانی</translation>
     </message>
     <message>
         <source>Set share limit to</source>
@@ -3117,11 +3117,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>total minutes</source>
-        <translation type="unfinished" />
+        <translation>کل دقیقه</translation>
     </message>
     <message>
         <source>inactive minutes</source>
-        <translation type="unfinished" />
+        <translation>دقایق غیرفعال</translation>
     </message>
 </context>
 <context>
@@ -3131,7 +3131,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>حذف تورنت(ها)</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
@@ -3142,7 +3142,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation type="unfinished" />
+        <translation>دانلود از آدرس‌ها</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3150,7 +3150,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>افزودن پیوند تورنت</translation>
     </message>
 </context>
 <context>
@@ -3198,12 +3198,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished" />
+        <translation>%1س %2د</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished" />
+        <translation>%1ر %2س</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3213,23 +3213,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation type="unfinished" />
+        <translation>&lt; 1د</translation>
     </message>
     <message>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation type="unfinished" />
+        <translation>%1م</translation>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1س %2ر</translation>
     </message>
 </context>
 <context>
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>محل ذخیره خالی است</translation>
     </message>
 </context>
 <context>
@@ -3240,19 +3240,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>مسیر افزونه:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>آدرس یا فهرست محلی</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>نصب افزونه</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>قبول</translation>
     </message>
 </context>
 <context>
@@ -3291,7 +3291,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation>فیلتر</translation>
     </message>
     <message>
         <source>Torrent names only</source>
@@ -3350,7 +3350,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>نصب افزونه جدید</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
@@ -3393,7 +3393,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>زالوها</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3401,7 +3401,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished" />
+        <translation>سیدر‌ها</translation>
     </message>
     <message>
         <source>Published On</source>
@@ -3443,7 +3443,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>افزودن همتایان</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
@@ -3451,7 +3451,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>قبول</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3490,11 +3490,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>شروع تورنت‌ها</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>توقف تورنت‌ها</translation>
     </message>
 </context>
 <context>
@@ -3923,7 +3923,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>دانلود کننده خوراک‌‌وب</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -4027,22 +4027,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>شروع تورنت‌ها</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>توقف تورنت‌ها</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>خوراک‌‌های وب</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>خوانده‌نشده</translation>
     </message>
 </context>
 <context>
@@ -4053,7 +4053,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>مسدود</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -4077,11 +4077,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>شناسه</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>نوع گزارش</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -4093,15 +4093,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>پیغام‌های اطلاعاتی</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>پیغام‌های هشدار</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>فیلتر گزارشات</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
@@ -4117,11 +4117,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>برچسب زمان</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>پاک کردن همه</translation>
     </message>
     <message>
         <source>Message</source>
@@ -4129,7 +4129,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>سطح گزارش:</translation>
     </message>
     <message>
         <source>Reason</source>
@@ -4177,7 +4177,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>انتخاب سطح گزارش...</translation>
     </message>
 </context>
 <context>
