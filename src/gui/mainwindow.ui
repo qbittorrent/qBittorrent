@@ -149,8 +149,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionDownloadFromURL"/>
    <addaction name="actionOpen"/>
+   <addaction name="actionDownloadFromURL"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
