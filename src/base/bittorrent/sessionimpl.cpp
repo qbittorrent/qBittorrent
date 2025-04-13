@@ -471,8 +471,10 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isAddTrackersFromURLEnabled(BITTORRENT_SESSION_KEY(u"AddTrackersFromURLEnabled"_s), false)
     , m_additionalTrackersURL(BITTORRENT_SESSION_KEY(u"AdditionalTrackersURL"_s))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_s), -1, [](qreal r) { return r < 0 ? -1. : r;})
-    , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), -1, lowerLimited(-1))
-    , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), -1, lowerLimited(-1))
+    , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), -1
+        , clampValue(-1, BitTorrent::Torrent::MAX_SEEDING_TIME))
+    , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), -1
+        , clampValue(-1, BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME))
     , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_s), false)
     , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
@@ -1258,7 +1260,8 @@ void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
 
     if (minutes != globalMaxSeedingMinutes())
     {
-        m_globalMaxSeedingMinutes = minutes;
+        m_globalMaxSeedingMinutes =
+                std::clamp(minutes, minutes, BitTorrent::Torrent::MAX_SEEDING_TIME);
         updateSeedingLimitTimer();
     }
 }
@@ -1274,7 +1277,8 @@ void SessionImpl::setGlobalMaxInactiveSeedingMinutes(int minutes)
 
     if (minutes != globalMaxInactiveSeedingMinutes())
     {
-        m_globalMaxInactiveSeedingMinutes = minutes;
+        m_globalMaxInactiveSeedingMinutes = std::clamp(
+                                                minutes, minutes, BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME);
         updateSeedingLimitTimer();
     }
 }

@@ -1100,9 +1100,6 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->spinUploadRateForSlowTorrents->setValue(session->uploadRateForSlowTorrents());
     m_ui->spinSlowTorrentsInactivityTimer->setValue(session->slowTorrentsInactivityTimer());
 
-    m_ui->spinMaxSeedingMinutes->setMaximum(BitTorrent::Torrent::MAX_SEEDING_TIME);
-    m_ui->spinMaxInactiveSeedingMinutes->setMaximum(BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME);
-
     if (session->globalMaxRatio() >= 0.)
     {
         // Enable
