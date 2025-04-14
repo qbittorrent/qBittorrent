@@ -993,23 +993,25 @@ bool SessionImpl::editCategory(const QString &name, const CategoryOptions &optio
     if (options == currentOptions)
         return false;
 
-    currentOptions = options;
-    storeCategories();
     if (isDisableAutoTMMWhenCategorySavePathChanged())
     {
+        // This should be done before changing the category options
+        // to prevent the torrent from being moved at the new save path.
+
         for (TorrentImpl *const torrent : asConst(m_torrents))
         {
             if (torrent->category() == name)
                 torrent->setAutoTMMEnabled(false);
         }
     }
-    else
+
+    currentOptions = options;
+    storeCategories();
+
+    for (TorrentImpl *const torrent : asConst(m_torrents))
     {
-        for (TorrentImpl *const torrent : asConst(m_torrents))
-        {
-            if (torrent->category() == name)
-                torrent->handleCategoryOptionsChanged();
-        }
+        if (torrent->category() == name)
+            torrent->handleCategoryOptionsChanged();
     }
 
     emit categoryOptionsChanged(name);
@@ -3277,6 +3279,9 @@ void SessionImpl::setSavePath(const Path &path)
 
     if (isDisableAutoTMMWhenDefaultSavePathChanged())
     {
+        // This should be done before changing the save path
+        // to prevent the torrent from being moved at the new save path.
+
         QSet<QString> affectedCatogories {{}}; // includes default (unnamed) category
         for (auto it = m_categories.cbegin(); it != m_categories.cend(); ++it)
         {
@@ -3314,6 +3319,9 @@ void SessionImpl::setDownloadPath(const Path &path)
 
     if (isDisableAutoTMMWhenDefaultSavePathChanged())
     {
+        // This should be done before changing the save path
+        // to prevent the torrent from being moved at the new save path.
+
         QSet<QString> affectedCatogories {{}}; // includes default (unnamed) category
         for (auto it = m_categories.cbegin(); it != m_categories.cend(); ++it)
         {
