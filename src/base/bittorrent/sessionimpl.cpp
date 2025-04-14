@@ -471,10 +471,10 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_isAddTrackersFromURLEnabled(BITTORRENT_SESSION_KEY(u"AddTrackersFromURLEnabled"_s), false)
     , m_additionalTrackersURL(BITTORRENT_SESSION_KEY(u"AdditionalTrackersURL"_s))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_s), -1, [](qreal r) { return r < 0 ? -1. : r;})
-    , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), -1
-        , clampValue(-1, BitTorrent::Torrent::MAX_SEEDING_TIME))
-    , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), -1
-        , clampValue(-1, BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME))
+    , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT
+        , clampValue(BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT, BitTorrent::Torrent::MAX_SEEDING_TIME))
+    , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT
+        , clampValue(BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT, BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME))
     , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_s), false)
     , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
@@ -1255,13 +1255,12 @@ int SessionImpl::globalMaxSeedingMinutes() const
 
 void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
 {
-    if (minutes < 0)
-        minutes = -1;
+    minutes = std::max(minutes, BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT);
 
-    if (minutes != globalMaxSeedingMinutes())
-    {
+    if (minutes != globalMaxSeedingMinutes()) {
         m_globalMaxSeedingMinutes =
-                std::clamp(minutes, minutes, BitTorrent::Torrent::MAX_SEEDING_TIME);
+                std::clamp(minutes, BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT,
+                           BitTorrent::Torrent::MAX_SEEDING_TIME);
         updateSeedingLimitTimer();
     }
 }
@@ -1273,12 +1272,12 @@ int SessionImpl::globalMaxInactiveSeedingMinutes() const
 
 void SessionImpl::setGlobalMaxInactiveSeedingMinutes(int minutes)
 {
-    minutes = std::max(minutes, -1);
+    minutes = std::max(minutes, BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT);
 
-    if (minutes != globalMaxInactiveSeedingMinutes())
-    {
-        m_globalMaxInactiveSeedingMinutes = std::clamp(
-                                                minutes, minutes, BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME);
+    if (minutes != globalMaxInactiveSeedingMinutes()) {
+        m_globalMaxInactiveSeedingMinutes =
+                std::clamp(minutes, BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT,
+                           BitTorrent::Torrent::MAX_INACTIVE_SEEDING_TIME);
         updateSeedingLimitTimer();
     }
 }
