@@ -928,14 +928,16 @@ window.addEventListener("DOMContentLoaded", () => {
                     }
 
                     syncRequestInProgress = false;
-                    syncData(window.qBittorrent.Client.getSyncMainDataInterval());
+                    if (!document.hidden)
+                        syncData(window.qBittorrent.Client.getSyncMainDataInterval());
                 },
                 (error) => {
                     const errorDiv = $("error_div");
                     if (errorDiv)
                         errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     syncRequestInProgress = false;
-                    syncData(2000);
+                    if (!document.hidden)
+                        syncData(2000);
                 });
     };
 
@@ -1773,6 +1775,11 @@ window.addEventListener("DOMContentLoaded", () => {
                     return "";
             }
         }
+    });
+
+    addEventListener("visibilitychange", () => {
+        if (!document.hidden)
+            syncData(100);
     });
 });
 
