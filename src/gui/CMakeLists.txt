@@ -140,6 +140,7 @@ add_library(qbt_gui STATIC
     uithememanager.h
     uithemesource.h
     utils.h
+    utils/keysequence.h
     watchedfolderoptionsdialog.h
     watchedfoldersmodel.h
     windowstate.h
@@ -239,6 +240,7 @@ add_library(qbt_gui STATIC
     uithememanager.cpp
     uithemesource.cpp
     utils.cpp
+    utils/keysequence.cpp
     watchedfolderoptionsdialog.cpp
     watchedfoldersmodel.cpp
 

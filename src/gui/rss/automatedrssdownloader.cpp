@@ -55,6 +55,7 @@
 #include "gui/torrentcategorydialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
+#include "gui/utils/keysequence.h"
 #include "ui_automatedrssdownloader.h"
 
 const QString EXT_JSON = u".json"_s;
@@ -151,7 +152,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 
     const auto *editHotkey = new QShortcut(Qt::Key_F2, m_ui->ruleList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &AutomatedRssDownloader::renameSelectedRule);
-    const auto *deleteHotkey = new QShortcut(QKeySequence::Delete, m_ui->ruleList, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *deleteHotkey = new QShortcut(Utils::KeySequence::deleteItem(), m_ui->ruleList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteHotkey, &QShortcut::activated, this, &AutomatedRssDownloader::onRemoveRuleBtnClicked);
 
     connect(m_ui->ruleList, &QAbstractItemView::doubleClicked, this, &AutomatedRssDownloader::renameSelectedRule);
