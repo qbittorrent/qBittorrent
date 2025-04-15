@@ -31,7 +31,6 @@
 #include <QReadWriteLock>
 
 #include "base/pathfwd.h"
-#include "base/utils/thread.h"
 #include "resumedatastorage.h"
 
 namespace BitTorrent
@@ -63,5 +62,7 @@ namespace BitTorrent
         Worker *m_asyncWorker = nullptr;
 
         mutable QReadWriteLock m_dbLock;
+
+        bool m_isDBStatAvailable = false;
     };
 }
