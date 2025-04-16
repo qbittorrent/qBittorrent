@@ -750,6 +750,8 @@ window.addEventListener("DOMContentLoaded", () => {
     let syncMainDataTimeoutID = -1;
     let syncRequestInProgress = false;
     const syncMainData = () => {
+        if (document.hidden)
+            return;
         syncRequestInProgress = true;
         const url = new URL("api/v2/sync/maindata", window.location);
         url.search = new URLSearchParams({
@@ -945,7 +947,7 @@ window.addEventListener("DOMContentLoaded", () => {
     };
 
     const syncData = (delay) => {
-        if (document.hidden || syncRequestInProgress)
+        if (syncRequestInProgress)
             return;
 
         clearTimeout(syncMainDataTimeoutID);
@@ -1776,8 +1778,10 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     addEventListener("visibilitychange", () => {
-        if (!document.hidden)
+        if (!document.hidden) {
             syncData(100);
+            updatePropertiesPanel();
+        }
     });
 });
 
