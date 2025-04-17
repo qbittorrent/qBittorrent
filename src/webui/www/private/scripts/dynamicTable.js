@@ -97,7 +97,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.setupVirtualList();
         },
 
-        setupVirtualList() {
+        setupVirtualList: function() {
             if (!this.useVirtualList)
                 return;
             this.table.style.position = "relative";
@@ -979,7 +979,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             return tr;
         },
 
-        updateRowElement(tr, rowId, top) {
+        updateRowElement: function(tr, rowId, top) {
             tr.dataset.rowId = rowId;
             tr.rowId = rowId;
 
@@ -2414,8 +2414,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                     span = document.createElement("span");
                     td.append(span);
                 }
-                span.textContent = node.renamed;
                 span.id = fileNameRenamedId;
+                span.textContent = node.renamed;
             };
         },
 
@@ -2804,7 +2804,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     collapseIcon.addEventListener("click", (e) => {
                         const id = collapseIcon.dataset.id;
                         const node = that.getNode(id);
-                        if (node) {
+                        if (node !== null) {
                             if (that.isCollapsed(node.rowId))
                                 that.expandNode(node.rowId);
                             else
