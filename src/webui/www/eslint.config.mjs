@@ -40,6 +40,7 @@ export default [
             "prefer-const": "error",
             "prefer-template": "error",
             "radix": "error",
+            "require-await": "error",
             "PreferArrowFunctions/prefer-arrow-functions": "error",
             "Stylistic/no-extra-semi": "error",
             "Stylistic/no-mixed-operators": [
