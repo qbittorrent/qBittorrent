@@ -1777,10 +1777,18 @@ window.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    addEventListener("visibilitychange", () => {
-        if (!document.hidden) {
-            syncData(100);
-            updatePropertiesPanel();
+    addEventListener("visibilitychange", (event) => {
+        if (document.hidden)
+            return;
+
+        switch (LocalPreferences.get("selected_window_tab")) {
+            case "transfers":
+                syncData(100);
+                updatePropertiesPanel();
+                break;
+            case "log":
+                window.qBittorrent.Log.load();
+                break;
         }
     });
 });
