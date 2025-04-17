@@ -381,8 +381,10 @@ window.addEventListener("DOMContentLoaded", () => {
             return false;
 
         let removed = false;
-        for (const data of categoryMap.values())
-            removed ||= data.torrents.delete(hash);
+        for (const data of categoryMap.values()) {
+            const deleteResult = data.torrents.delete(hash);
+            removed ||= deleteResult;
+        }
         return removed;
     };
 
@@ -418,8 +420,10 @@ window.addEventListener("DOMContentLoaded", () => {
             return false;
 
         let removed = false;
-        for (const torrents of tagMap.values())
-            removed ||= torrents.delete(hash);
+        for (const torrents of tagMap.values()) {
+            const deleteResult = torrents.delete(hash);
+            removed ||= deleteResult;
+        }
         return removed;
     };
 
@@ -477,6 +481,8 @@ window.addEventListener("DOMContentLoaded", () => {
         updateFilter("checking", "QBT_TR(Checking (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
         updateFilter("moving", "QBT_TR(Moving (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
         updateFilter("errored", "QBT_TR(Errored (%1))QBT_TR[CONTEXT=StatusFilterWidget]");
+        if (useAutoHideZeroStatusFilters && document.getElementById(`${selectedStatus}_filter`).classList.contains("invisible"))
+            setStatusFilter("all");
     };
 
     const highlightSelectedStatus = () => {
@@ -1509,7 +1515,9 @@ window.addEventListener("DOMContentLoaded", () => {
         },
         column: "mainColumn",
         onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-            saveColumnSizes();
+            const isHidden = (parseInt(document.getElementById("propertiesPanel").style.height, 10) === 0);
+            if (!isHidden)
+                saveColumnSizes();
         }),
         height: null
     });

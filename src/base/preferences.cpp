@@ -2054,6 +2054,19 @@ void Preferences::setAddNewTorrentDialogSavePathHistoryLength(const int value)
     setValue(u"AddNewTorrentDialog/SavePathHistoryLength"_s, clampedValue);
 }
 
+bool Preferences::isAddNewTorrentDialogAttached() const
+{
+    return value(u"AddNewTorrentDialog/Attached"_s, false);
+}
+
+void Preferences::setAddNewTorrentDialogAttached(const bool attached)
+{
+    if (attached == isAddNewTorrentDialogAttached())
+        return;
+
+    setValue(u"AddNewTorrentDialog/Attached"_s, attached);
+}
+
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())

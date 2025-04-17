@@ -1615,18 +1615,20 @@ bool TorrentImpl::setCategory(const QString &category)
         if (!category.isEmpty() && !m_session->categories().contains(category))
             return false;
 
+        if (m_session->isDisableAutoTMMWhenCategoryChanged())
+        {
+            // This should be done before changing the category name
+            // to prevent the torrent from being moved at the path of new category.
+            setAutoTMMEnabled(false);
+        }
+
         const QString oldCategory = m_category;
         m_category = category;
         deferredRequestResumeData();
         m_session->handleTorrentCategoryChanged(this, oldCategory);
 
         if (m_useAutoTMM)
-        {
-            if (!m_session->isDisableAutoTMMWhenCategoryChanged())
-                adjustStorageLocation();
-            else
-                setAutoTMMEnabled(false);
-        }
+            adjustStorageLocation();
     }
 
     return true;
