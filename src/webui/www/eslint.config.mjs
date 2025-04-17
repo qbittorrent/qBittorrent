@@ -34,6 +34,7 @@ export default [
             "no-undef": "off",
             "no-unused-vars": "off",
             "no-var": "error",
+            "object-shorthand": ["error", "consistent"],
             "operator-assignment": "error",
             "prefer-arrow-callback": "error",
             "prefer-const": "error",
