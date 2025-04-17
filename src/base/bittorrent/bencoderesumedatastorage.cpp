@@ -290,6 +290,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     lt::add_torrent_params &p = torrentParams.ltAddTorrentParams;
 
     p = lt::read_resume_data(resumeDataRoot, ec);
+    if (ec)
+        return nonstd::make_unexpected(tr("Cannot parse resume data: %1").arg(QString::fromStdString(ec.message())));
 
     if (!metadata.isEmpty())
     {
@@ -320,6 +322,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     p.save_path = Profile::instance()->fromPortablePath(
                 Path(fromLTString(p.save_path))).toString().toStdString();
+    if (p.save_path.empty())
+        return nonstd::make_unexpected(tr("Corrupted resume data: %1").arg(tr("save_path is invalid")));
 
     torrentParams.stopped = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
     torrentParams.operatingMode = (p.flags & lt::torrent_flags::paused) || (p.flags & lt::torrent_flags::auto_managed)
