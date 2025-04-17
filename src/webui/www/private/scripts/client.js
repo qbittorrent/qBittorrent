@@ -1782,12 +1782,12 @@ window.addEventListener("DOMContentLoaded", () => {
             return;
 
         switch (LocalPreferences.get("selected_window_tab")) {
+            case "log":
+                window.qBittorrent.Log.load();
+                break;
             case "transfers":
                 syncData(100);
                 updatePropertiesPanel();
-                break;
-            case "log":
-                window.qBittorrent.Log.load();
                 break;
         }
     });
