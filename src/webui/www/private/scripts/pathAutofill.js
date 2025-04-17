@@ -85,7 +85,7 @@ window.qBittorrent.pathAutofill ??= (() => {
             input.addEventListener("input", function() { showPathSuggestions(this, "all"); });
             input.classList.add("pathAutoFillInitialized");
         }
-    };
+    }
 
     return exports();
 })();

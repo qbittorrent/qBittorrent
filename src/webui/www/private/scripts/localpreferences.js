@@ -61,7 +61,7 @@ window.qBittorrent.LocalPreferences ??= (() => {
                 console.error(err);
             }
         }
-    };
+    }
 
     return exports();
 })();

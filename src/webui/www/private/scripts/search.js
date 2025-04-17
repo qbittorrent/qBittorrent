@@ -603,7 +603,7 @@ window.qBittorrent.Search ??= (() => {
                 option.value = category.id;
                 option.textContent = category.name;
                 categoryOptions.push(option);
-            };
+            }
 
             // first category is "All Categories"
             if (categoryOptions.length > 1) {
