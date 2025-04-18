@@ -1,4 +1,4 @@
-#VERSION: 1.48
+# VERSION: 1.49
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -45,6 +45,16 @@ from glob import glob
 from multiprocessing import Pool, cpu_count
 from os import path
 from typing import Optional
+
+# qbt tend to run this script in 'isolate mode' so append the current path manually
+current_path = str(pathlib.Path(__file__).parent.resolve())
+if current_path not in sys.path:
+    sys.path.append(current_path)
+
+import helpers
+
+# enable SOCKS proxy for all plugins by default
+helpers.enable_socks_proxy(True)
 
 THREADED: bool = True
 try:
@@ -182,11 +192,6 @@ def run_search(search_params: tuple[type[Engine], str, Category]) -> bool:
 
 if __name__ == "__main__":
     def main() -> int:
-        # qbt tend to run this script in 'isolate mode' so append the current path manually
-        current_path = str(pathlib.Path(__file__).parent.resolve())
-        if current_path not in sys.path:
-            sys.path.append(current_path)
-
         # https://docs.python.org/3/library/sys.html#sys.exit
         class ExitCode(Enum):
             OK = 0

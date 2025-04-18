@@ -1,4 +1,4 @@
-#VERSION: 1.52
+# VERSION: 1.53
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -61,32 +61,32 @@ def _getBrowserUserAgent() -> str:
 
 
 _headers: dict[str, Any] = {'User-Agent': _getBrowserUserAgent()}
+_original_socket = socket.socket
 
 
-def injectSOCKSProxySocket() -> None:
-    socksURL = os.environ.get("qbt_socks_proxy")
-    if socksURL is not None:
-        parts = urllib.parse.urlsplit(socksURL)
-        resolveHostname = (parts.scheme == "socks4a") or (parts.scheme == "socks5h")
-        if (parts.scheme == "socks4") or (parts.scheme == "socks4a"):
-            socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS4, parts.hostname, parts.port, resolveHostname)
-            socket.socket = socks.socksocket  # type: ignore[misc]
-        elif (parts.scheme == "socks5") or (parts.scheme == "socks5h"):
-            socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, resolveHostname, parts.username, parts.password)
-            socket.socket = socks.socksocket  # type: ignore[misc]
+def enable_socks_proxy(enable: bool) -> None:
+    if enable:
+        socksURL = os.environ.get("qbt_socks_proxy")
+        if socksURL is not None:
+            parts = urllib.parse.urlsplit(socksURL)
+            resolveHostname = (parts.scheme == "socks4a") or (parts.scheme == "socks5h")
+            if (parts.scheme == "socks4") or (parts.scheme == "socks4a"):
+                socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS4, parts.hostname, parts.port, resolveHostname)
+                socket.socket = socks.socksocket  # type: ignore[misc]
+            elif (parts.scheme == "socks5") or (parts.scheme == "socks5h"):
+                socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, resolveHostname, parts.username, parts.password)
+                socket.socket = socks.socksocket  # type: ignore[misc]
+        else:
+            # the following code provide backward compatibility for older qbt versions
+            # TODO: scheduled be removed with qbt >= 5.3
+            legacySocksURL = os.environ.get("sock_proxy")
+            if legacySocksURL is not None:
+                legacySocksURL = f"socks5h://{legacySocksURL.strip()}"
+                parts = urllib.parse.urlsplit(legacySocksURL)
+                socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, True, parts.username, parts.password)
+                socket.socket = socks.socksocket  # type: ignore[misc]
     else:
-        # the following code provide backward compatibility for older qbt versions
-        # TODO: scheduled be removed with qbt >= 5.3
-        legacySocksURL = os.environ.get("sock_proxy")
-        if legacySocksURL is not None:
-            legacySocksURL = f"socks5h://{legacySocksURL.strip()}"
-            parts = urllib.parse.urlsplit(legacySocksURL)
-            socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, True, parts.username, parts.password)
-            socket.socket = socks.socksocket  # type: ignore[misc]
-
-
-# monkey patching, run it now
-injectSOCKSProxySocket()
+        socket.socket = _original_socket  # type: ignore[misc]
 
 
 # This is only provided for backward compatibility, new code should not use it
