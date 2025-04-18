@@ -223,7 +223,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
         }
     });
 
-    torrentWebseedsTable.setup("torrentWebseedsTableDiv", "torrentWebseedsTableFixedHeaderDiv", torrentWebseedsContextMenu);
+    torrentWebseedsTable.setup("torrentWebseedsTableDiv", "torrentWebseedsTableFixedHeaderDiv", torrentWebseedsContextMenu, true);
 
     return exports();
 })();

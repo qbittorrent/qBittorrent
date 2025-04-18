@@ -41,7 +41,7 @@
 
             // Setup the dynamic table for bulk renaming
             const bulkRenameFilesTable = new window.qBittorrent.DynamicTable.BulkRenameTorrentFilesTable();
-            bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu);
+            bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu, true);
 
             // Inject checkbox into the first column of the table header
             const tableHeaders = document.querySelectorAll("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
@@ -172,7 +172,10 @@
                 // Update renamed column for matched rows
                 for (let i = 0; i < matchedRows.length; ++i) {
                     const row = matchedRows[i];
-                    $(`filesTablefileRenamed${row.rowId}`).textContent = row.renamed;
+                    const element = document.getElementById(`filesTablefileRenamed${row.rowId}`);
+                    if (element === null)
+                        continue;
+                    element.textContent = row.renamed;
                 }
             };
             fileRenamer.onInvalidRegex = (err) => {
@@ -287,11 +290,6 @@
                 event.preventDefault();
                 window.qBittorrent.Client.closeWindow(windowEl);
             });
-            // synchronize header scrolling to table body
-            $("bulkRenameFilesTableDiv").onscroll = function() {
-                const length = $(this).scrollLeft;
-                $("bulkRenameFilesTableFixedHeaderDiv").scrollLeft = length;
-            };
 
             const handleTorrentFiles = (files, selectedRows) => {
                 const rows = files.map((file, index) => {
