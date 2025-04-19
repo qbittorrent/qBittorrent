@@ -242,6 +242,9 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
             return threeWayCompare(totalL, totalR);
         }
 
+    case TransferListModel::TR_PERCENT_SELECTED:
+        return customCompare(leftValue.toFloat(), rightValue.toFloat());
+
     default:
         Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparison case");
         break;
