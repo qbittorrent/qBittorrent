@@ -76,6 +76,8 @@ window.qBittorrent.PropGeneral ??= (() => {
 
     let loadTorrentDataTimer = -1;
     const loadTorrentData = () => {
+        if (document.hidden)
+            return;
         if ($("propGeneral").classList.contains("invisible")
             || $("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
             // Tab changed, don't do anything

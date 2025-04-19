@@ -750,6 +750,8 @@ window.addEventListener("DOMContentLoaded", () => {
     let syncMainDataTimeoutID = -1;
     let syncRequestInProgress = false;
     const syncMainData = () => {
+        if (document.hidden)
+            return;
         syncRequestInProgress = true;
         const url = new URL("api/v2/sync/maindata", window.location);
         url.search = new URLSearchParams({
@@ -1772,6 +1774,21 @@ window.addEventListener("DOMContentLoaded", () => {
                 default:
                     return "";
             }
+        }
+    });
+
+    addEventListener("visibilitychange", (event) => {
+        if (document.hidden)
+            return;
+
+        switch (LocalPreferences.get("selected_window_tab")) {
+            case "log":
+                window.qBittorrent.Log.load();
+                break;
+            case "transfers":
+                syncData(100);
+                updatePropertiesPanel();
+                break;
         }
     });
 });

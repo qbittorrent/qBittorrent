@@ -336,6 +336,9 @@
         };
 
         const syncLogData = (curTab) => {
+            if (document.hidden)
+                return;
+
             if (curTab === undefined)
                 curTab = currentSelectedTab;
 
