@@ -1,4 +1,4 @@
-# VERSION: 1.25
+# VERSION: 1.26
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -44,19 +44,21 @@ import helpers
 helpers.enable_socks_proxy(True)
 
 if __name__ == '__main__':
+    prog_name = sys.argv[0]
+
     if len(sys.argv) < 3:
-        raise SystemExit('./nova2dl.py engine_name download_parameter')
+        raise SystemExit(f'Usage: {prog_name} engine_name download_parameter')
 
     engine_name = sys.argv[1].strip()
     download_param = sys.argv[2].strip()
 
     try:
-        module = importlib.import_module("engines." + engine_name)
+        module = importlib.import_module(f"engines.{engine_name}")
         engine_class = getattr(module, engine_name)
         engine = engine_class()
     except Exception as e:
-        print(repr(e))
-        raise SystemExit('./nova2dl.py: this engine_name was not recognized')
+        print(repr(e), file=sys.stderr)
+        raise SystemExit(f'{prog_name}: `engine_name` was not recognized: {engine_name}')
 
     if hasattr(engine, 'download_torrent'):
         engine.download_torrent(download_param)
