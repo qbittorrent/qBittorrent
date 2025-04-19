@@ -1,4 +1,4 @@
-#VERSION: 1.52
+# VERSION: 1.53
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -56,7 +56,7 @@ def prettyPrinter(dictionary: SearchResults) -> None:
         print(outtext, file=utf8stdout)
 
 
-sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
+_sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
 
 
 # TODO: use `float | int | str` when using Python >= 3.10
@@ -73,7 +73,7 @@ def anySizeToBytes(size_string: Union[float, int, str]) -> int:
     if isinstance(size_string, float):
         return round(size_string)
 
-    match = sizeUnitRegex.match(size_string.strip())
+    match = _sizeUnitRegex.match(size_string.strip())
     if match is None:
         return -1
 

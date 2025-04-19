@@ -523,23 +523,23 @@ void SearchPluginManager::updateNova()
     packageFile2.close();
 
     // Copy search plugin files (if necessary)
-    const auto updateFile = [&enginePath](const Path &filename, const bool compareVersion)
+    const auto updateFile = [&enginePath](const Path &filename)
     {
         const Path filePathBundled = Path(u":/searchengine/nova3"_s) / filename;
         const Path filePathDisk = enginePath / filename;
 
-        if (compareVersion && (getPluginVersion(filePathBundled) <= getPluginVersion(filePathDisk)))
+        if (getPluginVersion(filePathBundled) <= getPluginVersion(filePathDisk))
             return;
 
         Utils::Fs::removeFile(filePathDisk);
         Utils::Fs::copyFile(filePathBundled, filePathDisk);
     };
 
-    updateFile(Path(u"helpers.py"_s), true);
-    updateFile(Path(u"nova2.py"_s), true);
-    updateFile(Path(u"nova2dl.py"_s), true);
-    updateFile(Path(u"novaprinter.py"_s), true);
-    updateFile(Path(u"socks.py"_s), false);
+    updateFile(Path(u"helpers.py"_s));
+    updateFile(Path(u"nova2.py"_s));
+    updateFile(Path(u"nova2dl.py"_s));
+    updateFile(Path(u"novaprinter.py"_s));
+    updateFile(Path(u"socks.py"_s));
 }
 
 void SearchPluginManager::update()
@@ -680,7 +680,8 @@ PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
     while (!pluginFile.atEnd())
     {
         const auto line = QString::fromUtf8(pluginFile.readLine(lineMaxLength)).remove(u' ');
-        if (!line.startsWith(u"#VERSION:", Qt::CaseInsensitive)) continue;
+        if (!line.startsWith(u"#VERSION:", Qt::CaseInsensitive))
+            continue;
 
         const QString versionStr = line.sliced(9);
         const auto version = PluginVersion::fromString(versionStr);
