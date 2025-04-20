@@ -1,3 +1,5 @@
+# VERSION: 1.00
+
 """PySocks - A SOCKS proxy client and wrapper for Python.
 Version 1.7.1
 
