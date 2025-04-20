@@ -1,96 +1,96 @@
 Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
-   - FEATURE: Enable customizing the save statistics time interval (Burnerelu) e06b7f8f4d961c165d2eefe650708dfdd36ca357
-   - FEATURE: Add drag support to torrent content widget (Chocobo1) c4eeb4a14a19cfcdf54aac9eb07f02080666aef1
-   - FEATURE: Display External IP Address in status bar (Thomas Piccirello) f89c4c32ed41a0b41cd4bbaac1858a88307991ba
-   - FEATURE: Use modern functions to get random numbers under Linux/Windows (security related) (Chocobo1) 23f7275bd5a38efe8fd1def1922c03f6a4fa6533
-   - FEATURE: Add eXact Length parameter when creating magnet URI (antanilol) 27451469fa73fecfb93d7c98334f4a40c79b4c19
-   - FEATURE: Support fetching tracker list from URL (Thomas Piccirello) 4fc36b9e995b16a8c29646a2450c76cbdd2121a6
-   - FEATURE: Add `announce_port` support (Maxime Thiebaut) 4406a3f173dea3196543103ebbf7ec80ee38f1c4
-   - BUGFIX: Enable adaptive step size for upload and download limits (Harald Nordgren) 989b1d176d311c19b528d8695c6fc182806741ae
-   - BUGFIX: Add URL link for reverse proxy setup examples (Chocobo1) a0c32110f1327071e729e36f5264cb5858044fe1
-   - BUGFIX: Allow drop action only on transfer list (Chocobo1) 10eb921d7087bf392ed17a1ec83176d51565bff8
-   - BUGFIX: Remove non-working DHT bootstrap nodes (stalkerok) e75bcbed6d92bfd62a1ab030cbe4fa32e6cbadec
-   - BUGFIX: Fix the tab order in dialogs (thalieht) d73201c098a8f85161c06bb8d02c8726227627ad
-   - BUGFIX: Fix filesize sorting in preview dialog (DoubleSpicy) c080fc3aa09400d7bfdecf73ad5fb409e02a8110
-   - BUGFIX: Improve the speed icons in the status bar (Mahdi Hosseinzadeh) 928de360931579304128a8203a8ac61e4f32bed8
-   - BUGFIX: Update link to news (tinyboxvk) 61ff683f11a653fecd6a3dd0dbfe784cd6aaf63d
-   - BUGFIX: Fix tab stop oder in various dialogs and UI elements (Chocobo1) 0a36171999c9edf81f6266ee475c8df4a3af0620
-   - BUGFIX: Make links accessible by keyboard (Chocobo1) 85c4ddf6167f5f5d810fa73a14a76ab077a074c7
-   - BUGFIX: Make tab key switch focus (Chocobo1) 7886ca65f9e455ad07e0ba66c2a8e4df52766623
-   - BUGFIX: Revise DHT bootstrap node list (Chocobo1) efe06f133d2a7ce735094a68586594e88a171ae6
-   - BUGFIX: Return first tracker as fallback for "current tracker" (glassez) 86387fbe49af0d3bd596678f5d280cab75e5f61e
-   - BUGFIX: Explicitly reject opened Add torrent dialogs when exiting app (glassez) 009cc71f9ba1225cc75bdbfac1ca1caba5e566be
-   - BUGFIX: Fix torrent relocating files when switching to "manual" mode (glassez) c687a7d0d346e6809331239b9badf1bf48d8fcd9
-   - BUGFIX: Prevent crash due to corrupted resume data (glassez) cfbf6b73ff88826a4cdf1476eecd8aa160d88ce0
-   - WEBUI: Improvements that should help with assistive technologies (Chocobo1)
-   - WEBUI: Internal refactoring to migrate away from mootools and towards native browser APIs
-   - WEBUI: Implement path autocompletion (Paweł Kotiuk) d87533bf4c141ade034f5f1b0792daefd28ece20
-   - WEBUI: Implement double-click behavior controls (Hanabishi) b52fa98a02bfa74766dd4a31d6a667a51ad00843
-   - WEBUI: Add ability to toggle alternating row colors in tables (skomerko) b67495464d5bdbc9a5ee69fbc81a0f7e01a53e1d
-   - WEBUI: Improve visibility of unread RSS articles (skomerko) aed103d06e59b5e2d715f33889e7f250e9032072
-   - WEBUI: Remove deleted torrents even if they are currently filtered out (Carmelo Scandaliato) 642a9c29ebf016ffd85f2569adedef814b3abb36
-   - WEBUI: Highlight torrent category in context menu (skomerko) 142780b863bbf17b57e1b2858401e65a1c276eef
-   - WEBUI: Implement 'Auto hide zero status filters' (skomerko) 62c5f41f39582036278e52a4343f797d72b61dcb
-   - WEBUI: Allow to filter torrent list by save path (skomerko) 04eb40376e7ddaeb51e4a621991b11b64d91e9e0
-   - WEBUI: Handle regex syntax error for torrent filtering (HamletDuFromage) 9a8572bd215eead276afc189c9a35d6d3baba433
-   - WEBUI: Add missing icons (skomerko) e069fbc37f9dfa7dcaae32238bdb4770b8587538
-   - WEBUI: Add link to 'List of alternative WebUI' wiki page in Options (Chocobo1) a91bac8aa02b8d562d2c5685f4db2bc4f6ff0a66
-   - WEBUI: Improve properties panel, torrent deletion dialog, filter list, subcategories, torrent deletion, statistics window (skomerko) fda797cb76526114941f595114ca3404246886cb 39dd415d43eaa9a2552273c667152a5c7e3e5d13 (5b7c9d5725d1e47dde39081e4fdadbc23cd40ca8 + 81509dfb6554f3cf5679a6dd560b37c54bc77a2c) 1b53fdf9ee40ca5472246c3bc073d47b7306588d 0ea35c54a347bbfddf97f0b61982416f27ee52b4 5e3161a3f96335ce906c0248ac888a3a55509c2a
-   - WEBUI: Allow to display only hostname in the Tracker column (skomerko) 9d0fa213bed6172d269afd7364769eca66f16631
-   - WEBUI: Show country/region name next to its flag (skomerko) f681e954c7d84d4add53cc6f8908337916efa94b
-   - WEBUI: Improve hash copy actions in context menu (skomerko) d19f7b12d950e23c739412d8a9d85da0cff7bb5a
-   - WEBUI: Support removing tracker from all torrents in WebUI/WebAPI (Thomas Piccirello) d2b2afad233ad41d4a4c98695bd6813e4e293417
-   - WEBUI: Display DHT information in the Status bar only when DHT is enabled (skomerko) 183c7c75b1949ca668d6b3d62d6ab2b8b6aeb42d
-   - WEBUI: Add 'Confirm torrent recheck' option (skomerko) c3224459db0ff4a058cb35cb73ab5eff76af3070
-   - WEBUI: Support managing web seeds (Thomas Piccirello) 81def39d8c358587da93f2e4272ac4673933ab12
-   - WEBUI: Add colors to log table rows (skomerko) 0e03e4f8a7febffe88f46662b13408ef809320bb
-   - WEBUI: Prevent text selection within tabs, menu items (skomerko) 6bfabad92fa4b91857537f10eda943d764c75c87
-   - WEBUI: Use correct text and background colors in RSS details view (skomerko) 2952480f377923536e080538ed9b4e669bd3786d
-   - WEBUI: Reduce padding in torrents table (skomerko) 4cc3fedf379c6a9a153e77b98ff776602b8cab9e
-   - WEBUI: Add WebAPI/WebUI for managing cookies (Thomas Piccirello) 6bbb7b71cdf5b3dfbe397e27187f85fa70dc399a
-   - WEBUI: Support updating RSS feed URL (Thomas Piccirello) 50acb670b0a3687a0be8162a6853f6c4feba0a44
-   - WEBUI: Add 'Engine' column to Search table (skomerko) 449ca96e28c56a217ec77d699125d6599f613ff0
-   - WEBUI: Add confirm dialog for Auto TMM (skomerko) 4ff0687b944a4b293ebf20d70a22b29ff4de8f24
-   - WEBUI: Add context menu to search tabs (skomerko) 87644441ad88b251913402ece9fd4b6b78f59ff0
-   - WEBUI: Show file filter when Content tab selected on load (Thomas Piccirello) e8dc6b3f738917e186c75fc956ea632be9081ea4
-   - WEBUI: DHT, PeX and LSD rows are now always on top in Trackers table (skomerko) 67b6cf5a6f5b8fc83cc1261c8c0ddd984d5e6822
-   - WEBUI: Clear properties panel when torrent no longer selected (skomerko) c3c91be578bcd638edf8d05b7122b9067f21a1f9
-   - WEBUI: Support auto resizing table columns (Thomas Piccirello) e0e61ffd02d19abfebaa236a0a792a1fb13714f6
-   - WEBUI: Fix displaying RSS panel on load (Thomas Piccirello) be3eefd8de34d9b293d2718f26064ea674c2bd7c
-   - WEBUI: Add tooltip to regex filter button (Patrik Elfström) 3bb1e3423393e86f7a9439ad9f2a5226c930d85d
-   - WEBUI: Hide context menu when clicking on a table row (Patrik Elfström) c02f80cec5881a4a03ff5fdd10a54cf3ec6849e0
-   - WEBUI: Display torrent progress percentage in General tab (skomerko) 71f83cf9ba3a4d9ac38598c4f70fd5b3ce968de9
-   - WEBUI: Use thin scrollbars (skomerko) 889df72ab3719668ecac3aa8ae1cfbf1e9d0ee1d
-   - WEBUI: Show 'Rename...' context menu item only when one torrent is selected (skomerko) e51fcc6ea084b00fc4d95926177f8ac3d4f676da
-   - WEBUI: Display error when download fails (Thomas Piccirello) 78a5e4ff3e1229b1aef2423d87fd1f48a3153251
-   - WEBUI: Add colors to 'Status' column in Trackers table (skomerko) dafbcf870919c3d5efbf23a68bef7fdb8262d44c
-   - WEBUI: Add missing icon to 'Queue' context menu item (skomerko) 3fcc298539fb59674a61963e788c14df891c5e99
-   - WEBUI: Change filter inputs to type search (Patrik Elfström) 9709672b3473022fe143a013f2402bea0534e81b
-   - WEBUI: Allow to move state icon to name column in torrents table (skomerko) af65ddd012f32f6049e685f24772ba23a79f74a6
-   - WEBUI: Fix bug where the 'Tracker editing' dialog displays incorrect data (skomerko) c1defceccfa77b1854f4c867e1780d320032f763
-   - WEBUI: Maintain row highlight after rearranging table columns (skomerko) 964be0fa1c4263858e1cf65bc3e894ad3795e02b
-   - WEBUI: Fix preferences not applied in magnet handler (Chocobo1) 57d529c17a38247d33aedcb5a55426527b8ed12a
-   - WEBUI: Update sort icon after changing column order (skomerko) 2a33e187eb415cfb983e31788a8aaf8db5fd7b2a
-   - WEBUI: Show 'Edit tracker URL...' only when one tracker is selected (skomerko) 2076302170f674d3115884284f62677008cf2338
-   - WEBUI: Set status filter to 'All' if selected filter is no longer visible (skomerko) 5f49472fa4ed1e7e511eb731e458585ac891c070
-   - WEBAPI: Don't reannounce when removing tracker via WebAPI (Thomas Piccirello) 66c1acbce25d435ffb815879213a15b20cf3fb2a
-   - WEBAPI: Add WebAPI for managing torrent webseeds (Thomas Piccirello) ea06eb9fe63686e800e842cc2229a7cd2abae6ec
-   - WEBAPI: Add `forced` parameter to `torrents/add` (Chris B) f022ce8f84c85438fd8f5505a037d7d2f8da6d5c
-   - WEBAPI: Optionally include trackers list in torrent info response (ze0s) 76e1040232cfdc8da362565c3538ed7f275a7c9e
-   - WEBAPI: Add new method `setTags` to upsert tags on torrents (ze0s) 82c36aea895952ad28ef8316504d230dea68879e
-   - RSS: Resolve relative URLs within RSS article description (Zentino) 257d928ab385a6520040688ed599676735e206a8
-   - SEARCH: Provide SSL context field (Chocobo1) cc31a909316cce598027a2764a39a595bbf9d077
-   - SEARCH: Allow to refresh existing search (glassez) f9f4b60b83c23d1c5b52aa21e6706a8de56325b9
-   - SEARCH: Allow multiple simultaneous searches (glassez) 5875d8bff3e7413eb5088a9e2283728c4d204e75
-   - SEARCH: Store opened search tabs (glassez) 397813753402ad27ec762df409baeeccd0625cde
-   - SEARCH: Store search history (glassez) b76054beba214298eaa1b63fd0176574e51192a8
-   - SEARCH: Migrate socks.py from SocksiPy to PySocks 1.7.1 (FredBill1) 00149e03c08b678628c7436cb7703925bb2c4741
-   - SEARCH: Bump Python version minimum requirement (Chocobo1) 8b7fdf0f229d69c63fb0e96780f276fe6c8a620e
-   - WINDOWS: Opt into Windows SegmentHeap (Andarwinux) f00c5c9fa3b6e9a3ce02d5fa0ce59dadf086db38
-   - WINDOWS: Allow to choose color scheme on Windows (glassez) a47e1cdb487b0b89c1028a7444685381cce79a55
-   - WINDOWS: Verify hash of Python installer (Chocobo1) 3ebdb50457b0a76e71f38e9c91d6dc9063d6d338
-   - LINUX: Add support for Thunar file manager (algebnaly) 6418033cc8d4ec2f31679418cb480af498dafb2c
-   - MACOS: Fix shift-click selection on macOS (Luke Memet) d028f46fab755d3b0699853f9ad5d09372f7faf7
+    - FEATURE: Enable customizing the save statistics time interval (Burnerelu) e06b7f8f4d961c165d2eefe650708dfdd36ca357
+    - FEATURE: Add drag support to torrent content widget (Chocobo1) c4eeb4a14a19cfcdf54aac9eb07f02080666aef1
+    - FEATURE: Display External IP Address in status bar (Thomas Piccirello) f89c4c32ed41a0b41cd4bbaac1858a88307991ba
+    - FEATURE: Use modern functions to get random numbers under Linux/Windows (security related) (Chocobo1) 23f7275bd5a38efe8fd1def1922c03f6a4fa6533
+    - FEATURE: Add eXact Length parameter when creating magnet URI (antanilol) 27451469fa73fecfb93d7c98334f4a40c79b4c19
+    - FEATURE: Support fetching tracker list from URL (Thomas Piccirello) 4fc36b9e995b16a8c29646a2450c76cbdd2121a6
+    - FEATURE: Add `announce_port` support (Maxime Thiebaut) 4406a3f173dea3196543103ebbf7ec80ee38f1c4
+    - BUGFIX: Enable adaptive step size for upload and download limits (Harald Nordgren) 989b1d176d311c19b528d8695c6fc182806741ae
+    - BUGFIX: Add URL link for reverse proxy setup examples (Chocobo1) a0c32110f1327071e729e36f5264cb5858044fe1
+    - BUGFIX: Allow drop action only on transfer list (Chocobo1) 10eb921d7087bf392ed17a1ec83176d51565bff8
+    - BUGFIX: Remove non-working DHT bootstrap nodes (stalkerok) e75bcbed6d92bfd62a1ab030cbe4fa32e6cbadec
+    - BUGFIX: Fix the tab order in dialogs (thalieht) d73201c098a8f85161c06bb8d02c8726227627ad
+    - BUGFIX: Fix filesize sorting in preview dialog (DoubleSpicy) c080fc3aa09400d7bfdecf73ad5fb409e02a8110
+    - BUGFIX: Improve the speed icons in the status bar (Mahdi Hosseinzadeh) 928de360931579304128a8203a8ac61e4f32bed8
+    - BUGFIX: Update link to news (tinyboxvk) 61ff683f11a653fecd6a3dd0dbfe784cd6aaf63d
+    - BUGFIX: Fix tab stop oder in various dialogs and UI elements (Chocobo1) 0a36171999c9edf81f6266ee475c8df4a3af0620
+    - BUGFIX: Make links accessible by keyboard (Chocobo1) 85c4ddf6167f5f5d810fa73a14a76ab077a074c7
+    - BUGFIX: Make tab key switch focus (Chocobo1) 7886ca65f9e455ad07e0ba66c2a8e4df52766623
+    - BUGFIX: Revise DHT bootstrap node list (Chocobo1) efe06f133d2a7ce735094a68586594e88a171ae6
+    - BUGFIX: Return first tracker as fallback for "current tracker" (glassez) 86387fbe49af0d3bd596678f5d280cab75e5f61e
+    - BUGFIX: Explicitly reject opened Add torrent dialogs when exiting app (glassez) 009cc71f9ba1225cc75bdbfac1ca1caba5e566be
+    - BUGFIX: Fix torrent relocating files when switching to "manual" mode (glassez) c687a7d0d346e6809331239b9badf1bf48d8fcd9
+    - BUGFIX: Prevent crash due to corrupted resume data (glassez) cfbf6b73ff88826a4cdf1476eecd8aa160d88ce0
+    - WEBUI: Improvements that should help with assistive technologies (Chocobo1)
+    - WEBUI: Internal refactoring to migrate away from mootools and towards native browser APIs
+    - WEBUI: Implement path autocompletion (Paweł Kotiuk) d87533bf4c141ade034f5f1b0792daefd28ece20
+    - WEBUI: Implement double-click behavior controls (Hanabishi) b52fa98a02bfa74766dd4a31d6a667a51ad00843
+    - WEBUI: Add ability to toggle alternating row colors in tables (skomerko) b67495464d5bdbc9a5ee69fbc81a0f7e01a53e1d
+    - WEBUI: Improve visibility of unread RSS articles (skomerko) aed103d06e59b5e2d715f33889e7f250e9032072
+    - WEBUI: Remove deleted torrents even if they are currently filtered out (Carmelo Scandaliato) 642a9c29ebf016ffd85f2569adedef814b3abb36
+    - WEBUI: Highlight torrent category in context menu (skomerko) 142780b863bbf17b57e1b2858401e65a1c276eef
+    - WEBUI: Implement 'Auto hide zero status filters' (skomerko) 62c5f41f39582036278e52a4343f797d72b61dcb
+    - WEBUI: Allow to filter torrent list by save path (skomerko) 04eb40376e7ddaeb51e4a621991b11b64d91e9e0
+    - WEBUI: Handle regex syntax error for torrent filtering (HamletDuFromage) 9a8572bd215eead276afc189c9a35d6d3baba433
+    - WEBUI: Add missing icons (skomerko) e069fbc37f9dfa7dcaae32238bdb4770b8587538
+    - WEBUI: Add link to 'List of alternative WebUI' wiki page in Options (Chocobo1) a91bac8aa02b8d562d2c5685f4db2bc4f6ff0a66
+    - WEBUI: Improve properties panel, torrent deletion dialog, filter list, subcategories, torrent deletion, statistics window (skomerko) fda797cb76526114941f595114ca3404246886cb 39dd415d43eaa9a2552273c667152a5c7e3e5d13 (5b7c9d5725d1e47dde39081e4fdadbc23cd40ca8 + 81509dfb6554f3cf5679a6dd560b37c54bc77a2c) 1b53fdf9ee40ca5472246c3bc073d47b7306588d 0ea35c54a347bbfddf97f0b61982416f27ee52b4 5e3161a3f96335ce906c0248ac888a3a55509c2a
+    - WEBUI: Allow to display only hostname in the Tracker column (skomerko) 9d0fa213bed6172d269afd7364769eca66f16631
+    - WEBUI: Show country/region name next to its flag (skomerko) f681e954c7d84d4add53cc6f8908337916efa94b
+    - WEBUI: Improve hash copy actions in context menu (skomerko) d19f7b12d950e23c739412d8a9d85da0cff7bb5a
+    - WEBUI: Support removing tracker from all torrents in WebUI/WebAPI (Thomas Piccirello) d2b2afad233ad41d4a4c98695bd6813e4e293417
+    - WEBUI: Display DHT information in the Status bar only when DHT is enabled (skomerko) 183c7c75b1949ca668d6b3d62d6ab2b8b6aeb42d
+    - WEBUI: Add 'Confirm torrent recheck' option (skomerko) c3224459db0ff4a058cb35cb73ab5eff76af3070
+    - WEBUI: Support managing web seeds (Thomas Piccirello) 81def39d8c358587da93f2e4272ac4673933ab12
+    - WEBUI: Add colors to log table rows (skomerko) 0e03e4f8a7febffe88f46662b13408ef809320bb
+    - WEBUI: Prevent text selection within tabs, menu items (skomerko) 6bfabad92fa4b91857537f10eda943d764c75c87
+    - WEBUI: Use correct text and background colors in RSS details view (skomerko) 2952480f377923536e080538ed9b4e669bd3786d
+    - WEBUI: Reduce padding in torrents table (skomerko) 4cc3fedf379c6a9a153e77b98ff776602b8cab9e
+    - WEBUI: Add WebAPI/WebUI for managing cookies (Thomas Piccirello) 6bbb7b71cdf5b3dfbe397e27187f85fa70dc399a
+    - WEBUI: Support updating RSS feed URL (Thomas Piccirello) 50acb670b0a3687a0be8162a6853f6c4feba0a44
+    - WEBUI: Add 'Engine' column to Search table (skomerko) 449ca96e28c56a217ec77d699125d6599f613ff0
+    - WEBUI: Add confirm dialog for Auto TMM (skomerko) 4ff0687b944a4b293ebf20d70a22b29ff4de8f24
+    - WEBUI: Add context menu to search tabs (skomerko) 87644441ad88b251913402ece9fd4b6b78f59ff0
+    - WEBUI: Show file filter when Content tab selected on load (Thomas Piccirello) e8dc6b3f738917e186c75fc956ea632be9081ea4
+    - WEBUI: DHT, PeX and LSD rows are now always on top in Trackers table (skomerko) 67b6cf5a6f5b8fc83cc1261c8c0ddd984d5e6822
+    - WEBUI: Clear properties panel when torrent no longer selected (skomerko) c3c91be578bcd638edf8d05b7122b9067f21a1f9
+    - WEBUI: Support auto resizing table columns (Thomas Piccirello) e0e61ffd02d19abfebaa236a0a792a1fb13714f6
+    - WEBUI: Fix displaying RSS panel on load (Thomas Piccirello) be3eefd8de34d9b293d2718f26064ea674c2bd7c
+    - WEBUI: Add tooltip to regex filter button (Patrik Elfström) 3bb1e3423393e86f7a9439ad9f2a5226c930d85d
+    - WEBUI: Hide context menu when clicking on a table row (Patrik Elfström) c02f80cec5881a4a03ff5fdd10a54cf3ec6849e0
+    - WEBUI: Display torrent progress percentage in General tab (skomerko) 71f83cf9ba3a4d9ac38598c4f70fd5b3ce968de9
+    - WEBUI: Use thin scrollbars (skomerko) 889df72ab3719668ecac3aa8ae1cfbf1e9d0ee1d
+    - WEBUI: Show 'Rename...' context menu item only when one torrent is selected (skomerko) e51fcc6ea084b00fc4d95926177f8ac3d4f676da
+    - WEBUI: Display error when download fails (Thomas Piccirello) 78a5e4ff3e1229b1aef2423d87fd1f48a3153251
+    - WEBUI: Add colors to 'Status' column in Trackers table (skomerko) dafbcf870919c3d5efbf23a68bef7fdb8262d44c
+    - WEBUI: Add missing icon to 'Queue' context menu item (skomerko) 3fcc298539fb59674a61963e788c14df891c5e99
+    - WEBUI: Change filter inputs to type search (Patrik Elfström) 9709672b3473022fe143a013f2402bea0534e81b
+    - WEBUI: Allow to move state icon to name column in torrents table (skomerko) af65ddd012f32f6049e685f24772ba23a79f74a6
+    - WEBUI: Fix bug where the 'Tracker editing' dialog displays incorrect data (skomerko) c1defceccfa77b1854f4c867e1780d320032f763
+    - WEBUI: Maintain row highlight after rearranging table columns (skomerko) 964be0fa1c4263858e1cf65bc3e894ad3795e02b
+    - WEBUI: Fix preferences not applied in magnet handler (Chocobo1) 57d529c17a38247d33aedcb5a55426527b8ed12a
+    - WEBUI: Update sort icon after changing column order (skomerko) 2a33e187eb415cfb983e31788a8aaf8db5fd7b2a
+    - WEBUI: Show 'Edit tracker URL...' only when one tracker is selected (skomerko) 2076302170f674d3115884284f62677008cf2338
+    - WEBUI: Set status filter to 'All' if selected filter is no longer visible (skomerko) 5f49472fa4ed1e7e511eb731e458585ac891c070
+    - WEBAPI: Don't reannounce when removing tracker via WebAPI (Thomas Piccirello) 66c1acbce25d435ffb815879213a15b20cf3fb2a
+    - WEBAPI: Add WebAPI for managing torrent webseeds (Thomas Piccirello) ea06eb9fe63686e800e842cc2229a7cd2abae6ec
+    - WEBAPI: Add `forced` parameter to `torrents/add` (Chris B) f022ce8f84c85438fd8f5505a037d7d2f8da6d5c
+    - WEBAPI: Optionally include trackers list in torrent info response (ze0s) 76e1040232cfdc8da362565c3538ed7f275a7c9e
+    - WEBAPI: Add new method `setTags` to upsert tags on torrents (ze0s) 82c36aea895952ad28ef8316504d230dea68879e
+    - RSS: Resolve relative URLs within RSS article description (Zentino) 257d928ab385a6520040688ed599676735e206a8
+    - SEARCH: Provide SSL context field (Chocobo1) cc31a909316cce598027a2764a39a595bbf9d077
+    - SEARCH: Allow to refresh existing search (glassez) f9f4b60b83c23d1c5b52aa21e6706a8de56325b9
+    - SEARCH: Allow multiple simultaneous searches (glassez) 5875d8bff3e7413eb5088a9e2283728c4d204e75
+    - SEARCH: Store opened search tabs (glassez) 397813753402ad27ec762df409baeeccd0625cde
+    - SEARCH: Store search history (glassez) b76054beba214298eaa1b63fd0176574e51192a8
+    - SEARCH: Migrate socks.py from SocksiPy to PySocks 1.7.1 (FredBill1) 00149e03c08b678628c7436cb7703925bb2c4741
+    - SEARCH: Bump Python version minimum requirement (Chocobo1) 8b7fdf0f229d69c63fb0e96780f276fe6c8a620e
+    - WINDOWS: Opt into Windows SegmentHeap (Andarwinux) f00c5c9fa3b6e9a3ce02d5fa0ce59dadf086db38
+    - WINDOWS: Allow to choose color scheme on Windows (glassez) a47e1cdb487b0b89c1028a7444685381cce79a55
+    - WINDOWS: Verify hash of Python installer (Chocobo1) 3ebdb50457b0a76e71f38e9c91d6dc9063d6d338
+    - LINUX: Add support for Thunar file manager (algebnaly) 6418033cc8d4ec2f31679418cb480af498dafb2c
+    - MACOS: Fix shift-click selection on macOS (Luke Memet) d028f46fab755d3b0699853f9ad5d09372f7faf7
 
 Mon Oct 28th 2024 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.0.1
     - FEATURE: Add "Simple pread/pwrite" disk IO type (Hanabishi)
