@@ -30,6 +30,7 @@
 #pragma once
 
 #include <chrono>
+#include <functional>
 #include <utility>
 #include <vector>
 
@@ -44,6 +45,7 @@
 #include <QMap>
 #include <QMutex>
 #include <QPointer>
+#include <QQueue>
 #include <QSet>
 #include <QThreadPool>
 
@@ -814,6 +816,9 @@ namespace BitTorrent
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
         TorrentContentRemover *m_torrentContentRemover = nullptr;
+
+        using AddTorrentAlertHandler = std::function<void (const lt::add_torrent_alert *alert)>;
+        QQueue<AddTorrentAlertHandler> m_addTorrentAlertHandlers;
 
         QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 

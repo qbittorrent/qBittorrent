@@ -1621,15 +1621,33 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
     qDebug() << "Starting up torrent" << torrentID.toString() << "...";
     m_loadingTorrents.insert(torrentID, resumeData);
-#ifdef QBT_USES_LIBTORRENT2
-    if (infoHash.isHybrid())
-    {
-        // this allows to know the being added hybrid torrent by its v1 info hash
-        // without having yet another mapping table
-        m_hybridTorrentsByAltID.insert(torrentIDv1, nullptr);
-    }
-#endif
     m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
+    m_addTorrentAlertHandlers.enqueue([this](const lt::add_torrent_alert *alert)
+    {
+        if (alert->error)
+        {
+            const QString msg = QString::fromStdString(alert->message());
+            LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
+            m_loadingTorrents.remove(getInfoHash(alert->params).toTorrentID());
+        }
+        else
+        {
+            const TorrentID torrentID = getInfoHash(alert->handle).toTorrentID();
+
+            if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(torrentID)
+                    ; loadingTorrentsIter != m_loadingTorrents.cend())
+            {
+                const LoadTorrentParams params = loadingTorrentsIter.value();
+                m_loadingTorrents.erase(loadingTorrentsIter);
+
+                Torrent *torrent = createTorrent(alert->handle, params);
+                m_loadedTorrents.append(torrent);
+
+                LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
+            }
+        }
+    });
+
     ++context->processingResumeDataCount;
 }
 
@@ -2994,8 +3012,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 #endif
 
     m_loadingTorrents.insert(id, loadTorrentParams);
-    if (infoHash.isHybrid())
-        m_hybridTorrentsByAltID.insert(altID, nullptr);
 
     const auto resolveFileNames = [&, this]
     {
@@ -3027,6 +3043,52 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         }
 
         m_nativeSession->async_add_torrent(p);
+        m_addTorrentAlertHandlers.enqueue([this](const lt::add_torrent_alert *alert)
+        {
+            if (alert->error)
+            {
+                const QString msg = QString::fromStdString(alert->message());
+                LogMsg(tr("Failed to add torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
+
+                const InfoHash infoHash = getInfoHash(alert->params);
+                if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(TorrentID::fromInfoHash(infoHash))
+                        ; loadingTorrentsIter != m_loadingTorrents.cend())
+                {
+                    const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
+                            ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
+                    emit addTorrentFailed(infoHash, {errorKind, msg});
+                    m_loadingTorrents.erase(loadingTorrentsIter);
+                }
+            }
+            else
+            {
+                const TorrentID torrentID = getInfoHash(alert->handle).toTorrentID();
+                if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(torrentID)
+                        ; loadingTorrentsIter != m_loadingTorrents.cend())
+                {
+                    const LoadTorrentParams params = loadingTorrentsIter.value();
+                    m_loadingTorrents.erase(loadingTorrentsIter);
+
+                    if (params.addToQueueTop)
+                        alert->handle.queue_position_top();
+
+                    TorrentImpl *torrent = createTorrent(alert->handle, params);
+                    m_loadedTorrents.append(torrent);
+
+                    torrent->requestResumeData(lt::torrent_handle::save_info_dict);
+
+                    LogMsg(tr("Added new torrent. Torrent: \"%1\"").arg(torrent->name()));
+                    emit torrentAdded(torrent);
+
+                    // The following is useless for newly added magnet
+                    if (torrent->hasMetadata())
+                    {
+                        if (!torrentExportDirectory().isEmpty())
+                            exportTorrentFile(torrent, torrentExportDirectory());
+                    }
+                }
+            }
+        });
     });
 
     return true;
@@ -3181,6 +3243,33 @@ bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
     // Adding torrent to libtorrent session
     m_nativeSession->async_add_torrent(p);
     m_downloadedMetadata.insert(id, {});
+    m_addTorrentAlertHandlers.enqueue([this](const lt::add_torrent_alert *alert)
+    {
+        if (alert->error)
+        {
+            const QString msg = QString::fromStdString(alert->message());
+            LogMsg(tr("Failed to download torrent metadata. Reason: \"%1\"").arg(msg), Log::WARNING);
+
+            m_downloadedMetadata.remove(getInfoHash(alert->params).toTorrentID());
+        }
+        else
+        {
+            const InfoHash infoHash = getInfoHash(alert->handle);
+            const auto torrentID = TorrentID::fromInfoHash(infoHash);
+
+            if (const auto downloadedMetadataIter = m_downloadedMetadata.find(torrentID)
+                ; downloadedMetadataIter != m_downloadedMetadata.end())
+            {
+                downloadedMetadataIter.value() = alert->handle;
+                if (infoHash.isHybrid())
+                {
+                    // index hybrid magnet links by both v1 and v2 info hashes
+                    const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
+                    m_downloadedMetadata[altID] = alert->handle;
+                }
+            }
+        }
+    });
 
     return true;
 }
@@ -5453,6 +5542,8 @@ lt::torrent_handle SessionImpl::reloadTorrent(const lt::torrent_handle &currentH
     params.storage = customStorageConstructor;
 #endif
 
+    // libtorrent will post an add_torrent_alert anyway, so we have to add an empty handler to ignore it.
+    m_addTorrentAlertHandlers.enqueue({});
     return m_nativeSession->add_torrent(std::move(params));
 }
 
@@ -5780,63 +5871,12 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
 {
     ++m_receivedAddTorrentAlertsCount;
 
-    if (alert->error)
-    {
-        const QString msg = QString::fromStdString(alert->message());
-        LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
-        emit loadTorrentFailed(msg);
-
-        const InfoHash infoHash = getInfoHash(alert->params);
-#ifdef QBT_USES_LIBTORRENT2
-        if (infoHash.isHybrid())
-            m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
-#endif
-        if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(TorrentID::fromInfoHash(infoHash))
-                ; loadingTorrentsIter != m_loadingTorrents.cend())
-        {
-            const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
-                    ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
-            emit addTorrentFailed(infoHash, {errorKind, msg});
-            m_loadingTorrents.erase(loadingTorrentsIter);
-        }
-        else if (const auto downloadedMetadataIter = m_downloadedMetadata.constFind(TorrentID::fromInfoHash(infoHash))
-                 ; downloadedMetadataIter != m_downloadedMetadata.cend())
-        {
-            m_downloadedMetadata.erase(downloadedMetadataIter);
-            if (infoHash.isHybrid())
-            {
-                // index hybrid magnet links by both v1 and v2 info hashes
-                const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-                m_downloadedMetadata.remove(altID);
-            }
-        }
-
+    Q_ASSERT(!m_addTorrentAlertHandlers.isEmpty());
+    if (m_addTorrentAlertHandlers.isEmpty()) [[unlikely]]
         return;
-    }
 
-    const InfoHash infoHash = getInfoHash(alert->handle);
-    const auto torrentID = TorrentID::fromInfoHash(infoHash);
-
-    if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(torrentID)
-            ; loadingTorrentsIter != m_loadingTorrents.cend())
-    {
-        const LoadTorrentParams params = loadingTorrentsIter.value();
-        m_loadingTorrents.erase(loadingTorrentsIter);
-
-        Torrent *torrent = createTorrent(alert->handle, params);
-        m_loadedTorrents.append(torrent);
-    }
-    else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(torrentID)
-            ; downloadedMetadataIter != m_downloadedMetadata.end())
-    {
-        downloadedMetadataIter.value() = alert->handle;
-        if (infoHash.isHybrid())
-        {
-            // index hybrid magnet links by both v1 and v2 info hashes
-            const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-            m_downloadedMetadata[altID] = alert->handle;
-        }
-    }
+    if (const AddTorrentAlertHandler handleAlert = m_addTorrentAlertHandlers.dequeue())
+        handleAlert(alert);
 }
 
 void SessionImpl::handleAlert(const lt::alert *alert)
@@ -5989,35 +6029,10 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
     if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
         m_hybridTorrentsByAltID.insert(TorrentID::fromSHA1Hash(infoHash.v1()), torrent);
 
-    if (isRestored())
-    {
-        if (params.addToQueueTop)
-            nativeHandle.queue_position_top();
-
-        torrent->requestResumeData(lt::torrent_handle::save_info_dict);
-
-        // The following is useless for newly added magnet
-        if (torrent->hasMetadata())
-        {
-            if (!torrentExportDirectory().isEmpty())
-                exportTorrentFile(torrent, torrentExportDirectory());
-        }
-    }
-
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
         && !m_seedingLimitTimer->isActive())
     {
         m_seedingLimitTimer->start();
-    }
-
-    if (!isRestored())
-    {
-        LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
-    }
-    else
-    {
-        LogMsg(tr("Added new torrent. Torrent: \"%1\"").arg(torrent->name()));
-        emit torrentAdded(torrent);
     }
 
     // Torrent could have error just after adding to libtorrent
