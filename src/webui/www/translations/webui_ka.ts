@@ -72,11 +72,11 @@
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>ერთი ბმული ერთ ხაზზე (დაშვებულია HTTP ბმულები, მაგნიტური ბმულები და ინფო-ჰეშები)</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>ტორენტ ბმულების დამატება</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -113,14 +113,6 @@
         <translation>არაგამოყენებული კატეგორიების წაშლა</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">ტორენტების გაგრძელება</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">ტორენტების დაპაუზება</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>ახალი კატეგორია</translation>
     </message>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>qBittorrent-ის დატოვება</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">მხოლოდ ერთი ბმული თითო ხაზზე</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>ფაილების მითითებულ ლოკაციაში შენახვა:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Cookie:</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>მეტი ინფორმაცია</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>გასვლა</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">ტორენტების ჩამოტვირთვა მათი URL-დან ან მაგნეტ ბმულებიდან</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>ლოკალური ტორენტის ატვირთვა</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>არასწორი კატეგორიის სახელი:\nგთხოვთ არ გამოიყენოთ სპეციალური სიმბოლოები კატეგორიის სახელში/</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">შეუძლებელია კატეგორიის შექმნა</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -409,7 +385,7 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>ამორჩევის დამახსოვრება</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
@@ -421,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>ბმული</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -495,10 +471,6 @@
         <translation>პარამეტრები...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">გაგრძელება</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation type="unfinished" />
     </message>
@@ -515,24 +487,12 @@
         <translation>შემოწირულობა!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">ყველას გაგრძელება</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>სტატისტიკა</translation>
     </message>
     <message>
         <source>About</source>
         <translation>შესახებ</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">პაუზა</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">ყველას დაპაუზება</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -696,7 +656,7 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>გაჩერება</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -712,7 +672,7 @@
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>Cookie ფაილების კონტროლი...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -720,7 +680,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
@@ -762,10 +722,6 @@
         <translation>ენა</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">ინტერფეისის ენა:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>ელ-ფოსტით შეტყობინება ჩამოტვირთვის დასრულებისას</translation>
     </message>
@@ -780,10 +736,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>ტორენტის რიგი</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">ამ ტრეკერების ავტომატურად დამატება ახალი ჩამოტვირთვებისთვის</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1278,10 +1230,6 @@
     <message>
         <source>Fastest upload</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">ტორენტის დაპაუზება</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1925,7 +1873,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>დამატებითი დადასტურება ტორენტის წაშლის დროს</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
@@ -1941,11 +1889,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>ავტო</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>რიგში ალტერნატიული ფერების გამოყენება</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1953,7 +1901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>ბმული:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -1973,7 +1921,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>ტორენტები ჩამოტვირთვის პროცესში:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -1985,7 +1933,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>დასრულებული ტორენტები:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -1997,7 +1945,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>ორმაგი დაჭერის დროს მოქმედება</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2077,7 +2025,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>მოქმედების გარეშე</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
@@ -2085,7 +2033,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>ინტერფეისი</translation>
     </message>
     <message>
         <source>Log Files</source>
@@ -2469,11 +2417,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>ვებ სიდის URL:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>კი</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2489,7 +2437,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>არა</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2497,7 +2445,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>ვებ სიდის რედაქტირება</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2636,14 +2584,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>დასრულებულია (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">განახლებული (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">დაპაუზუბული (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>აქტიური (0)</translation>
     </message>
@@ -2670,14 +2610,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>დასრულებულია (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">დაპაუზებულია (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">განახლებული (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2774,11 +2706,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>ზომა</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">დასრულდა</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2921,7 +2848,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>პროგრესი</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
@@ -3078,10 +3005,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">დაპაუზებული </translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>დასრულებულია</translation>
     </message>
@@ -3147,11 +3070,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>შეჩერებულია</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -3194,21 +3117,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>გადარქმევა</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">გაგრძელება</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">გაგრძელების იძულება</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">დაპაუზება</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3289,14 +3197,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>ახალი კატეგორია</translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="vanished">ლოკაცია</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation type="vanished">ახალი სახელი</translation>
-    </message>
-    <message>
         <source>Set location</source>
         <translation>ლოკაციის ამორჩევა</translation>
     </message>
@@ -3309,16 +3209,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>კატეგორიის რედაქტირება</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">შენახვის გზა</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">ტეგების დამატება</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3386,7 +3278,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>შენახვის მისამართი:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3394,11 +3286,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>გაჩერება</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>ავტომატური რეჟიმის დროს ტორენტის რამდენიმე თვისება (მაგ. შესანახი მდებარეობა) გადაწყდება ასოცირებული კატეგორიით.</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3406,7 +3298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>ახალი სახელი:</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3414,7 +3306,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>კატეგორია:</translation>
     </message>
 </context>
 <context>
@@ -3463,7 +3355,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>ტრეკეტის წაშლა</translation>
     </message>
 </context>
 <context>
@@ -3740,10 +3632,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>ლიჩები</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">საძიებო მოდული</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>სიდერები</translation>
     </message>
@@ -3823,14 +3711,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Tag:</source>
         <translation>ტეგი:</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">ტორენტების დაპაუზება</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">ტორენტების გაგრძელება</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3998,27 +3878,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>ძიება დამთავრებულია</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>ძებნისას დაფიქსირდა შეცდომა...</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>ჩანართის დახურვა</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>ძიება...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>ძიება შეწყდა</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>ყველა ჩანართის დახურვა</translation>
     </message>
 </context>
 <context>
@@ -4334,10 +4214,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">დაპაუზებულად დამატება:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>გთხოვთ ჩაწერეთ ახალი ჩამოტვირთვის წესის სახელი</translation>
     </message>
@@ -4410,28 +4286,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">ტორენტების გაგრძელება</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">ყველა (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">ტრეკერის გარეშე (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">ტორენტების დაპაუზება</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>ყველა</translation>
     </message>
     <message>
         <source>Trackerless</source>
@@ -4443,7 +4303,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>ტრეკეტის წაშლა</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -4607,15 +4467,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>შეუძლებელია კატეგორიის რედაქტირება</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>ოკ</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>შეუძლებელია კატეგორიის შექმნა</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4626,11 +4486,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>დომენი</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Cookie ფაილების კონტროლი</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4638,7 +4498,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>წაშლა</translation>
     </message>
     <message>
         <source>Expiration Date</source>
@@ -4646,15 +4506,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>მნიშვნელობა</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>გზა</translation>
     </message>
 </context>
 <context>
@@ -4672,18 +4532,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>დარწყმუნებული ხართ რომ გსურთ ამორჩეული ტორენტის(ების) გადამოწმება?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>დასტურის გადამოწმება</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>ჩანართის დახურვა</translation>
     </message>
 </context>
 <context>
@@ -4694,7 +4554,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>პაროლი</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4702,7 +4562,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>შესვლა</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4714,11 +4574,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>მომხმარებლის სახელი</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>არასწორი მომხმარებლის სახელი ან პაროლი.</translation>
     </message>
 </context>
 </TS>

@@ -144,10 +144,6 @@
         <translation>Hætta qBittorrent</translation>
     </message>
     <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Aðeins eins vefslóð í hverja línu</translation>
-    </message>
-    <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
         <translation type="unfinished" />
     </message>
@@ -304,10 +300,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Gat ekki búið til flokk</translation>
-    </message>
-    <message>
         <source>Upload rate threshold must be greater than 0.</source>
         <translation type="unfinished" />
     </message>
@@ -405,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>Vefslóð</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -688,7 +680,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nafn</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
@@ -1897,7 +1889,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Sjálfgefið</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
@@ -1909,7 +1901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>Slóð:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2429,7 +2421,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Já</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2445,7 +2437,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nei</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2716,11 +2708,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Stærð</translation>
     </message>
     <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Lokið</translation>
-    </message>
-    <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
         <translation>Staða</translation>
@@ -2861,7 +2848,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Framför</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
@@ -3303,7 +3290,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>Sjálfvirkur stjórnunarhamur þýðir að sumir eiginleikar torrenta (t.d. vistunarslóð) verða stilltir útfrá völdum flokki</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3311,7 +3298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nýtt nafn:</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3319,7 +3306,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Flokkur:</translation>
     </message>
 </context>
 <context>
@@ -3645,10 +3632,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Leitarvél</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation type="unfinished" />
     </message>
@@ -3895,7 +3878,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Leit lokið</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
@@ -3907,7 +3890,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Leitar...</translation>
     </message>
     <message>
         <source>Search aborted</source>
@@ -4303,16 +4286,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Allt (%1)</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Allt</translation>
     </message>
     <message>
         <source>Trackerless</source>
@@ -4488,15 +4467,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>Gat ekki breytt flokk</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>Allt í lagi</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Gat ekki búið til flokk</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4527,11 +4506,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Gildi</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nafn</translation>
     </message>
     <message>
         <source>Path</source>
@@ -4542,11 +4521,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmAutoTMMDialog</name>
     <message>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished" />
+        <translation>Virkja sjálfvirkan stjórnunarham</translation>
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished" />
+        <translation>Ertu viss um að þú viljir kveikja á sjálfvirkum stjórnunarham fyrir valin torrent? Þau gætu verið færð</translation>
     </message>
 </context>
 <context>
@@ -4575,7 +4554,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Lykilorð</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4583,7 +4562,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Skrá inn</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4599,7 +4578,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Rangt notandanafn eða lykilorð.</translation>
     </message>
 </context>
 </TS>

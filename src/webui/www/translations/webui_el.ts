@@ -72,11 +72,11 @@
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Ένας σύνδεσμος ανά γραμμή (υποστηρίζονται σύνδεσμοι HTTP, σύνδεσμοι Magnet και info-hashes)</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Προσθήκη συνδέσμων torrent</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>Επιλογές Torrent</translation>
     </message>
 </context>
 <context>
@@ -113,14 +113,6 @@
         <translation>Αφαίρεση αχρησιμοποίητων κατηγοριών</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Συνέχιση torrents</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Παύση των torrents</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Νέα κατηγορία</translation>
     </message>
@@ -138,11 +130,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Έναρξη torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Παύση torrents</translation>
     </message>
 </context>
 <context>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>Έξοδος qBittorrent</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Μόνο ένας σύνδεσμος ανά γραμμή</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>Αποθήκευση αρχείων στην τοποθεσία:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Cookie:</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Περισσότερες πληροφορίες</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>Αποσύνδεση</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">Λήψη των Torrents από τα URLs ή τους συνδέσμους Magnet τους</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>Μεταφόρτωση τοπικού torrent</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>Μη έγκυρο όνομα κατηγορίας:\nΠαρακαλώ μην χρησιμοποιείτε ειδικούς χαρακτήρες στο όνομα της κατηγορίας.</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Αδυναμία δημιουργίας κατηγορίας</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -384,10 +360,6 @@
         <translation>Αρχικός δημιουργός</translation>
     </message>
     <message>
-        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="vanished">Είστε βέβαιοι ότι θέλετε να διαγράψετε τα επιλεγμένα torrents από τη λίστα μεταφοράς;</translation>
-    </message>
-    <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation>Η θύρα που χρησιμοποιείται για το Web UI πρέπει να είναι μεταξύ 1 και 65535.</translation>
     </message>
@@ -409,15 +381,15 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Αδυναμία επικοινωνίας με qBittorrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>Απομνημόνευση επιλογής</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Είστε σίγουροι πως θέλετε να διαγράψετε αυτά τα "%1" torrents από τη λίστα μεταφορών;</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -425,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -499,10 +471,6 @@
         <translation>Επιλογές…</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Συνέχιση</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Πάνω Γραμμή εργαλείων</translation>
     </message>
@@ -519,24 +487,12 @@
         <translation>Δωρεά!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Συνέχιση Όλων</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Στατιστικά</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Σχετικά</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Παύση</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Παύση Όλων</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -679,14 +635,6 @@
         <translation>Αφαίρεση</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Θέλετε σίγουρα να θέσετε σε συνέχιση όλα τα torrent;</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Θέλετε σίγουρα να θέσετε σε παύση όλα τα torrent;</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Καταγραφή Εκτέλεσης</translation>
     </message>
@@ -700,15 +648,15 @@
     </message>
     <message>
         <source>Filter by:</source>
-        <translation type="unfinished" />
+        <translation>Φίλτρο κατά:</translation>
     </message>
     <message>
         <source>Save Path</source>
-        <translation type="unfinished" />
+        <translation>Διαδρομή Aποθήκευσης</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Διακοπή</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -716,15 +664,15 @@
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Θα θέλατε να εκκινήσετε όλα τα torrents;</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Εκκίνηση</translation>
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>Διαχείριση Cookies...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -732,19 +680,19 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Όνομα</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Θα θέλατε να διακόψετε όλα τα torrents;</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Εκκίνηση Όλων</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Διακοπή Όλων</translation>
     </message>
 </context>
 <context>
@@ -774,10 +722,6 @@
         <translation>Γλώσσα</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Γλώσσα Διεπαφής Χρήστη:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>Ειδοποίηση ηλεκτρονικού ταχυδρομείου με την ολοκλήρωση της λήψης</translation>
     </message>
@@ -792,10 +736,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent σε Ουρά</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Αυτόματη προσθήκη αυτών των trackers σε νέες λήψεις:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1292,10 +1232,6 @@
         <translation>Γρηγορότερη αποστολή</translation>
     </message>
     <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Παύση torrent</translation>
-    </message>
-    <message>
         <source>Remove torrent and its files</source>
         <translation>Αφαίρεση του torrent και των αρχείων του</translation>
     </message>
@@ -1410,10 +1346,6 @@
     <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Αποκλεισμός client μετά από συνεχόμενες αποτυχίες:</translation>
-    </message>
-    <message>
-        <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="vanished">Ενεργοποίηση σήμανσης Secure cookie (απαιτεί HTTPS)</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1644,10 +1576,6 @@
         <translation>Υποστήριξη διεθνοποιημένου ονόματος τομέα (IDN)</translation>
     </message>
     <message>
-        <source>Run external program on torrent finished</source>
-        <translation type="vanished">Εκτέλεση εξωτερικού προγράμματος μετά την ολοκλήρωση ενός torrent</translation>
-    </message>
-    <message>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -1658,10 +1586,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 θα πρέπει να βάλετε ονόματα τομέα που χρησιμοποιούνται από τον διακομιστή του WebUI.
 
 Χρησιμοποιήστε «;» για να χωρίσετε πολλαπλές καταχωρήσεις. Μπορείτε να χρησιμοποιήσετε και wildcard «*».</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent added</source>
-        <translation type="vanished">Εκτέλεση εξωτερικού προγράμματος μετά την προσθήκη ενός torrent</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1726,10 +1650,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>days</source>
         <translation>ημέρες</translation>
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="vanished">Αρχείο καταγραφής</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1945,7 +1865,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Σχέδιο χρωμάτων:</translation>
     </message>
     <message>
         <source>Show external IP in status bar</source>
@@ -1957,27 +1877,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>Επιβεβαίωση κατά την διαγραφή των torrent</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Αγνόηση σφαλμάτων SSL:</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Σκοτεινό</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Μόνιμη διαγραφή αρχείων</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Αυτόματο</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>Χρήση εναλλασσόμενων χρωμάτων σειράς</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1985,7 +1905,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -1997,15 +1917,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Φωτεινό</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Αυτόματη προσάρτηση αυτών των trackers σε νέες λήψεις:</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>Λήψη torrents:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -2013,11 +1933,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>Αποστολή δοκιμαστικού email</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>Ολοκληρωμένα torrents:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -2025,11 +1945,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Όταν προστίθεται διπλό torrent</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>Ενέργεια στο διπλό κλικ</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2037,7 +1957,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished" />
+        <translation>Εμφανίζει ένα παράθυρο διαλόγου επιβεβαίωσης κατά τη διαγραφή torrent</translation>
     </message>
     <message>
         <source>Run on torrent finished:</source>
@@ -2045,7 +1965,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Προσπάθεια αποστολής email. Ελέγξτε τα εισερχόμενά σας για να επιβεβαιώσετε την επιτυχία</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2053,19 +1973,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Λειτουργία αφαίρεσης περιεχομένου του torrent:</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Μετακίνηση αρχείων στον κάδο (αν είναι δυνατό)</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Διακοπή torrent</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Χρήση διαδρομών Κατηγορίας κατά τη Χειροκίνητη Λειτουργία</translation>
     </message>
     <message>
         <source>List of alternative WebUI</source>
@@ -2085,7 +2005,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Συγχώνευση trackers στο υπάρχον torrent</translation>
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
@@ -2101,23 +2021,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>Απλό pread/pwrite</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Επιλύστε τη σχετική Διαδρομή Αποθήκευσης έναντι της κατάλληλης διαδρομής Κατηγορίας, αντί για την Προεπιλεγμένη</translation>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>Καμία ενέργεια</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
-        <translation type="unfinished" />
+        <translation>Αυτόματη απόκρυψη φίλτρων μηδενικής κατάστασης</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Διεπαφή</translation>
     </message>
     <message>
         <source>Log Files</source>
@@ -2501,19 +2421,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>URL του Web seed:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ναι</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Αναλογία / Ενεργός Χρόνος (σε μήνες), δείχνει πόσο δημοφιλές είναι το torrent</translation>
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Δημοτικότητα:</translation>
     </message>
     <message>
         <source>Apply to which filename part</source>
@@ -2521,7 +2441,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Όχι</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2529,7 +2449,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>Επεξεργασία Web seed</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2537,7 +2457,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Ιδιωτικά:</translation>
     </message>
 </context>
 <context>
@@ -2668,14 +2588,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Ολοκληρωμένα (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Σε Συνέχιση (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Σε Παύση (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Ενεργά (0)</translation>
     </message>
@@ -2702,14 +2614,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>Ολοκληρωμένα (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Σε Παύση (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Σε Συνέχιση (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2765,31 +2669,31 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>Εκτελούνται (0)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Σταματημένα (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>Σταματημένα (%1)</translation>
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>Εκτελούνται (%1)</translation>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση torrent</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Έναρξη torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Παύση torrents</translation>
     </message>
 </context>
 <context>
@@ -2806,11 +2710,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Μέγεθος</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Ολοκληρώθηκε</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2949,27 +2848,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Ιδιωτικά</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Πρόοδος</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v2</translation>
     </message>
     <message>
         <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v1</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Μη συμπληρωμένη Διαδρομή Αποθήκευσης</translation>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Δημοτικότητα</translation>
     </message>
     <message>
         <source>Status Icon</source>
@@ -3110,10 +3009,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>πριν από %1</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Σε Παύση</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Ολοκληρωμένα</translation>
     </message>
@@ -3179,11 +3074,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Σταματημένο</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Δ/Υ</translation>
     </message>
 </context>
 <context>
@@ -3226,21 +3121,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>Μετονομασία</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Συνέχιση</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Εξαναγκαστική Συνέχιση</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Παύση</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3321,14 +3201,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Νέα Κατηγορία</translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="vanished">Τοποθεσία</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation type="vanished">Νέο όνομα</translation>
-    </message>
-    <message>
         <source>Set location</source>
         <translation>Ρύθμιση τοποθεσίας</translation>
     </message>
@@ -3341,16 +3213,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Επεξεργασία Κατηγορίας</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">Διαδρομή αποθήκευσης</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>Ετικέτες διαχωρισμένες με κόμμα:</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">Προσθήκη Ετικετών</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3414,11 +3278,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Εξαναγκαστική Εκκίνηση</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Διαδρομή αποθήκευσης:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3426,19 +3290,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Διακοπή</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>Η Αυτόματη λειτουργία σημαίνει ότι διάφορες ιδιότητες του torrent (π.χ. διαδρομή αποθήκευσης) θα αποφασιστούν από την συσχετισμένη κατηγορία.</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Εκκίνηση</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Νέο όνομα:</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3446,7 +3310,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Κατηγορία:</translation>
     </message>
 </context>
 <context>
@@ -3486,20 +3350,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Διαγραφή και των αρχείων</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Αφαίρεση torrent</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση επίσης και τα αρχεία περιεχομένου</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση tracker</translation>
     </message>
 </context>
 <context>
@@ -3711,7 +3571,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Ξεκινήστε μια αναζήτηση παραπάνω.</translation>
     </message>
     <message>
         <source>Max size prefix</source>
@@ -3776,24 +3636,20 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Leechers</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Μηχανή αναζήτησης</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>Seeders</translation>
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Δημοσιεύτηκε Στις</translation>
     </message>
     <message>
         <source>Engine URL</source>
-        <translation type="unfinished" />
+        <translation>Engine URL</translation>
     </message>
     <message>
         <source>Engine</source>
-        <translation type="unfinished" />
+        <translation>Engine</translation>
     </message>
 </context>
 <context>
@@ -3861,14 +3717,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Ετικέτα:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Παύση των torrents</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Συνέχιση των torrents</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Αφαίρεση αχρησιμοποίητων ετικετών</translation>
     </message>
@@ -3886,11 +3734,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Έναρξη torrents</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Διακοπή torrents</translation>
     </message>
 </context>
 <context>
@@ -4034,27 +3882,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Η αναζήτηση ολοκληρώθηκε</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>Προέκυψε ένα σφάλμα κατά την αναζήτηση...</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Κλείσιμο καρτέλας</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Αναζήτηση...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>Η αναζήτηση διακόπηκε</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>Κλείσιμο όλων των καρτελών</translation>
     </message>
 </context>
 <context>
@@ -4168,7 +4016,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation type="unfinished" />
+        <translation>Επεξεργασία URL ροής...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
@@ -4370,10 +4218,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Εάν η σειρά λέξεων είναι σημαντική, χρησιμοποιήστε * αντί για κενά. </translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Προσθήκη Σε Παύση:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Παρακαλώ πληκτρολογήστε το όνομα του νέου κανόνα λήψης.</translation>
     </message>
@@ -4441,50 +4285,34 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Προσθήκη Σε Διακοπή:</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Συνέχιση των torrents</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Όλα (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">Χωρίς Tracker (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Παύση των torrents</translation>
-    </message>
     <message>
         <source>Remove torrents</source>
         <translation>Αφαίρεση torrent</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Όλα</translation>
     </message>
     <message>
         <source>Trackerless</source>
-        <translation type="unfinished" />
+        <translation>Χωρίς Tracker</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Εκκίνηση torrents</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση tracker</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Διακοπή torrents</translation>
     </message>
 </context>
 <context>
@@ -4644,15 +4472,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>Δεν ήταν δυνατή η επεξεργασία της κατηγορίας</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Δεν ήταν δυνατή η δημιουργία της κατηγορίας</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4663,11 +4491,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>Τομέας</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Διαχείριση Cookies</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4675,52 +4503,52 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>Ημερομηνία Λήξης</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Τιμή</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Όνομα</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>Διαδρομή</translation>
     </message>
 </context>
 <context>
     <name>confirmAutoTMMDialog</name>
     <message>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished" />
+        <translation>Ενεργοποίηση αυτόματης διαχείρισης torrent</translation>
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished" />
+        <translation>Είστε βέβαιοι πως θέλετε να ενεργοποιήσετε την Αυτόματη Διαχείριση Torrent για τα επιλεγμένα torrent(s); Μπορεί να μετεγκατασταθούν.</translation>
     </message>
 </context>
 <context>
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>Είστε σίγουροι πως θέλετε να επανελέγξετε τα επιλεγμένα torrent(s);</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>Επιβεβαίωση επανέλεγχου</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Κλείσιμο καρτέλας</translation>
     </message>
 </context>
 <context>
@@ -4731,15 +4559,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Κωδικός Πρόσβασης</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation type="unfinished" />
+        <translation>Απαιτείται JavaScript! Πρέπει να ενεργοποιήσετε τη JavaScript για να λειτουργήσει σωστά το Web UI</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Σύνδεση</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4751,11 +4579,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Όνομα χρήστη</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Μη έγκυρο Όνομα Χρήστη ή Κωδικός Πρόσβασης.</translation>
     </message>
 </context>
 </TS>

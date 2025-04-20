@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>टौरेंट लिंकों को जोड़ें</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -113,14 +113,6 @@
         <translation>अप्रयुक्त श्रेणियाँ हटाएँ</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">टौरेंटो को प्रारम्भ करें</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">टौरेंटो को विराम दें</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>नई श्रेणी</translation>
     </message>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>क्यूबिटटोरेंट बंद करें</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">एक पंक्ति में केवल एक लिंक</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>फाइलों को इस स्थान पर सहेंजे:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">कुकी :</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>अधिक जानकारी</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>लॉगआउट</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">टौरेंटो को उनके यूआरएल या मैगनेट लिंक से डाउनलोड करें</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>स्थानीय टाॅरेंट अपलोड करें</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>श्रेणी का नाम अमान्य है:\nश्रेणी के नाम में विशिष्ट अक्षरों का प्रयोग न करें।</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">श्रेणी बनाने में अक्षम</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -409,11 +385,11 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>पसन्द याद रखें</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>क्या आप निश्चित ही इन %1 टाॅरेंटों को स्थानान्तरण सूची से हटाना चाहते हैं?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -421,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>यूआरएल</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -495,10 +471,6 @@
         <translation>विकल्प...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">प्रारम्भ करें</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>शीर्ष उपकरण पट्टी</translation>
     </message>
@@ -515,24 +487,12 @@
         <translation>दान करें!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">सभी को प्रारम्भ करें</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>आंकड़े</translation>
     </message>
     <message>
         <source>About</source>
         <translation>बारे मेॅ</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">विराम दें</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">सभी को विराम दें</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -688,7 +648,7 @@
     </message>
     <message>
         <source>Filter by:</source>
-        <translation type="unfinished" />
+        <translation>से छानें:</translation>
     </message>
     <message>
         <source>Save Path</source>
@@ -696,7 +656,7 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>रोकें</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -712,7 +672,7 @@
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>कुकी प्रबन्धित करें...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -720,7 +680,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
@@ -762,10 +722,6 @@
         <translation>भाषा</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">यूजर इन्टरफेस की भाषा:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>डाउनलोड पूरा होने पर ईमेल अधिसूचना</translation>
     </message>
@@ -780,10 +736,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>टौरेंट पंक्तिबद्धीकरण</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">इन ट्रैकरों को नए डाउनलोडों में स्वतः जोड़ दें:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1278,10 +1230,6 @@
     <message>
         <source>Fastest upload</source>
         <translation>तीव्रतम अपलोड</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">टौरेंट को विराम दें</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1925,7 +1873,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>टाॅरेंट मिटाते समय पुष्टि करें</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
@@ -1941,11 +1889,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>स्वतः</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>पंक्तियों में एकांतरित रंगों का प्रयोग करें</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1953,7 +1901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -1973,7 +1921,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड हो रहे टाॅरेंट:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -1985,7 +1933,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>पूर्ण हो चुके टाॅरेंट:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -1997,7 +1945,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>डबल-क्लिक पर क्रिया</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2005,7 +1953,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished" />
+        <translation>टाॅरेंट को मिटाने पर पुष्टि करने का डायलॉग दिखाता है</translation>
     </message>
     <message>
         <source>Run on torrent finished:</source>
@@ -2077,7 +2025,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>कोई कार्यवाही नहीं</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
@@ -2085,7 +2033,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>पद्धति</translation>
     </message>
     <message>
         <source>Log Files</source>
@@ -2172,7 +2120,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>पीयर ID क्लाइंट </translation>
     </message>
 </context>
 <context>
@@ -2469,11 +2417,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>वेब स्रोत URL :</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>हाँ</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2489,7 +2437,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>नहीं</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2497,7 +2445,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>वेब स्रोत का संपादन</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2636,14 +2584,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>पूर्ण (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">प्रारम्भित(0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">विरामित (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>सक्रिय (0)</translation>
     </message>
@@ -2670,14 +2610,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>पूर्ण (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">विरामित (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">प्रारम्भित(%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2749,7 +2681,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>टौरेंटो को हटायें</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -2774,11 +2706,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>साईज</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">पूर्ण</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2921,7 +2848,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>प्रगति</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
@@ -3078,10 +3005,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 पहले</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">विरामित</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>पूर्ण</translation>
     </message>
@@ -3147,11 +3070,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>रुका हुआ</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>लागू नहीं</translation>
     </message>
 </context>
 <context>
@@ -3194,21 +3117,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>नाम बदलें</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">प्रारम्भ करें</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">बलपूर्वक प्रारम्भ करें</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">विराम दें</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3289,14 +3197,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>नई श्रेणी</translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="vanished">स्थान</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation type="vanished">नया नाम</translation>
-    </message>
-    <message>
         <source>Set location</source>
         <translation>स्थान चुनें</translation>
     </message>
@@ -3309,16 +3209,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>श्रेणी संशोधित करें...</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">संचय पथ</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>अल्पविराम द्वारा विभाजित उपनाम:</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">उपनाम जोड़ें</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3386,7 +3278,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>संचय पथ:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3394,11 +3286,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>रोकें</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>स्वतः मोड यानि टॉरेंट विशेषताएँ (संचय पथ आदि) संबंधित श्रेणी द्वारा निर्धारित होगी</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3406,7 +3298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>नया नाम :</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3414,7 +3306,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी :</translation>
     </message>
 </context>
 <context>
@@ -3454,10 +3346,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">फाइलों को भी मिटा दें</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>टौरेंट(ओं) को हटायें</translation>
     </message>
@@ -3467,7 +3355,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>ट्रैकर हटाएँ</translation>
     </message>
 </context>
 <context>
@@ -3744,10 +3632,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>जोंके</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">खोज इन्जन</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>स्रोतस्वामी</translation>
     </message>
@@ -3827,14 +3711,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Tag:</source>
         <translation>उपनाम:</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">टौरेंटो को विराम दें</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">टौरेंटो को प्रारम्भ करें</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -4002,27 +3878,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>खोज समाप्त हुई</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>खोज के दौरान एक त्रुटि घटी...</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>टैब बंद करें</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>खोज रहे हैं...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>खोज रोक दी गयी</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>सभी टैबें बंद करें</translation>
     </message>
 </context>
 <context>
@@ -4338,10 +4214,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>यदि शब्द क्रम महत्त्वपूर्ण है तो रिक्तताओं के स्थान पर * का प्रयोग कीजिये।</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">विरामित जोड़ें:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>नए डाउनलोड नियम का नाम टाइप करें।</translation>
     </message>
@@ -4415,28 +4287,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">टौरेंटो को प्रारम्भ करें</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">सभी (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">ट्रैकर रहित (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">टौरेंटो को विराम दें</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>टौरेंटो को हटायें</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>सभी</translation>
     </message>
     <message>
         <source>Trackerless</source>
@@ -4448,7 +4304,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>ट्रैकर हटाएँ</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -4612,15 +4468,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी संशोधित करने में अक्षम</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>ठीक है</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>श्रेणी बनाने में अक्षम</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4631,11 +4487,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>डोमेन</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>कुकी प्रबन्धित करें</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4643,23 +4499,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>हटायें</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>समाप्ति तिथि</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>मान</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>नाम</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>पथ</translation>
     </message>
 </context>
 <context>
@@ -4677,18 +4533,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>क्या आप निश्चित ही चयनित टोरेंट(ओं) को पुनः जाँचना चाहते हैं?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>पुन: जाँच हेतु पु‍ष्टि</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>टैब बंद करें</translation>
     </message>
 </context>
 <context>
@@ -4699,7 +4555,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>पासवर्ड</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4707,7 +4563,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>लॉगिन</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4719,11 +4575,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>यूजरनेम</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>यूजरनेम व पासवर्ड अमान्य हैं।</translation>
     </message>
 </context>
 </TS>

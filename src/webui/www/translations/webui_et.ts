@@ -72,11 +72,11 @@
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Üks link ühe rea kohta (HTTP lingid, Magnet lingid ja info-räsid on toetatud)</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Lisa torrenti lingid</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -113,14 +113,6 @@
         <translation>Eemalda kasutamata kategooriad</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Jätka torrentitega</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausi torrentid</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Uus Kategooria</translation>
     </message>
@@ -138,11 +130,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Käivita torrentid</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Peata torrentid</translation>
     </message>
 </context>
 <context>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>Sule qBittorrent</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Ainult üks link rea kohta</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>Salvesta failid asukohta:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Küpsis:</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Rohkem informatsiooni</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>Logi välja</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">Lae alla Torrentid nende URL'idest või Magnet linkidest</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>Lae üles lokaalne torrent</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>Sobimatu kategooria nimi:/nPalun ärge kasutage erilisi tähemärke kategooria nimes.</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Ei saanud luua kategooriat</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -384,10 +360,6 @@
         <translation>Algne autor</translation>
     </message>
     <message>
-        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="vanished">Kindel, et soovite eemaldada valitud torrentid ülekanneteloendist?</translation>
-    </message>
-    <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation>Port WebUI jaoks peab olema vahemikus 1 kuni 65535.</translation>
     </message>
@@ -413,11 +385,11 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>Mäleta valik</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Kindel, et soovite eemaldada %1 torrentid edastuste nimekirjast?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -425,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -499,10 +471,6 @@
         <translation>Valikud...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Jätka</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Ülemine Tööriistariba</translation>
     </message>
@@ -519,24 +487,12 @@
         <translation>Anneta!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Jätka Kõikidega</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistika</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Teave</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Paus</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Pausi Kõik</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -679,14 +635,6 @@
         <translation>Eemalda</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Kas soovite jätkata kõikide torrentitega?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Kas soovite pausile panna kõik torrentid?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Toimingute logi</translation>
     </message>
@@ -700,7 +648,7 @@
     </message>
     <message>
         <source>Filter by:</source>
-        <translation type="unfinished" />
+        <translation>Filtreering:</translation>
     </message>
     <message>
         <source>Save Path</source>
@@ -708,7 +656,7 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stop</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -716,15 +664,15 @@
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Kas soovite käivitada kõik torrentid?</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Käivita</translation>
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>Halda Küpsiseid...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -732,19 +680,19 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Kas soovite peatada kõik torrentid?</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Käivita kõik</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Peata kõik</translation>
     </message>
 </context>
 <context>
@@ -774,10 +722,6 @@
         <translation>Keel</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Kasutajaliidese Keel:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>E-mailile teavitused pärast allalaadimise lõpetamist</translation>
     </message>
@@ -792,10 +736,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Automaatselt lisa need jälitajad uutele allalaadimistele:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1292,10 +1232,6 @@
         <translation>Kiireim üleslaadimine</translation>
     </message>
     <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Pausi torrent</translation>
-    </message>
-    <message>
         <source>Remove torrent and its files</source>
         <translation>Eemalda torrent ja selle failid</translation>
     </message>
@@ -1640,20 +1576,12 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Run external program on torrent finished</source>
-        <translation type="vanished">Käivita väline programm, pärast torrenti lõpetamist</translation>
-    </message>
-    <message>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Run external program on torrent added</source>
-        <translation type="vanished">Käivita väline programm, pärast torrenti lisamist</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1718,10 +1646,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>days</source>
         <translation>päeva</translation>
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="vanished">Logi fail</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1949,7 +1873,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>Kinnita enne torrentite kustutamist</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
@@ -1957,19 +1881,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Tume</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Kustuta failid lõplikult</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automaatne</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>Kasuta vahelduvaid rea värve</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1977,7 +1901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -1989,7 +1913,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Hele</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
@@ -1997,7 +1921,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>Allalaadimisel torrentid:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -2005,11 +1929,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>Saada test e-kiri</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>Lõpetatud torrentid:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -2017,11 +1941,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Kui lisatakse juba olemasolev torrent</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>Toiming pärast topeltklõpsu</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2029,7 +1953,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished" />
+        <translation>Kuvab kinnitamiseks dialoogi enne torrenti kustutamist</translation>
     </message>
     <message>
         <source>Run on torrent finished:</source>
@@ -2037,7 +1961,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Prooviti saata e-kiri. Kontrollige postkasti, et kas saabus edukalt</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2049,15 +1973,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Pane failid prügikasti (kui on võimalik)</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Peata torrent</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Kasuta kategooria asukohti manuaalses režiimis</translation>
     </message>
     <message>
         <source>List of alternative WebUI</source>
@@ -2077,7 +2001,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Liida jälitajad olemasolevale torrentile</translation>
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
@@ -2101,15 +2025,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>Ei tehta midagi</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
-        <translation type="unfinished" />
+        <translation>Automaatselt peida null olekufiltrid</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Kasutajaliides</translation>
     </message>
     <message>
         <source>Log Files</source>
@@ -2493,11 +2417,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>Veebi-seemne URL:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Jah</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2505,7 +2429,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Populaarsus:</translation>
     </message>
     <message>
         <source>Apply to which filename part</source>
@@ -2513,7 +2437,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ei</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2521,7 +2445,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>Veebi-seemne muutmine</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2529,7 +2453,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privaatne:</translation>
     </message>
 </context>
 <context>
@@ -2660,10 +2584,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Lõpetatud (0)</translation>
     </message>
     <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Pausitud (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktiivsed (0)</translation>
     </message>
@@ -2690,10 +2610,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>Lõpetatud (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Pausitud (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2765,15 +2681,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Eemalda torrentid</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Käivita torrentid</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Peata torrentid</translation>
     </message>
 </context>
 <context>
@@ -2790,11 +2706,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Suurus</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Lõpetatud</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2933,11 +2844,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privaatne</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Edenemine</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
@@ -2953,7 +2864,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Populaarsus</translation>
     </message>
     <message>
         <source>Status Icon</source>
@@ -3094,10 +3005,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 tagasi</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Pausitud</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Lõpetatud</translation>
     </message>
@@ -3167,7 +3074,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Puudub</translation>
     </message>
 </context>
 <context>
@@ -3210,21 +3117,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>Ümbernimeta</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Jätka</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Sunni Jätkama</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Paus</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3305,14 +3197,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Uus Kategooria</translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="vanished">Asukoht</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation type="vanished">Uus nimi</translation>
-    </message>
-    <message>
         <source>Set location</source>
         <translation>Määra asukoht</translation>
     </message>
@@ -3325,16 +3209,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Muuda Kategooriat</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">Salvestamise asukoht</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>Komaga eraldatud sildid:</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">Lisa silte</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3398,11 +3274,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Sunni käivituma</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Salvestamise asukoht:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3410,19 +3286,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stop</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>Automaatne režiim tähendab, et mitmed torrenti omadused (sh salvestamise koht) määratakse seostatud kategooriaga</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Käivita</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Uus nimi:</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3430,7 +3306,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategooria:</translation>
     </message>
 </context>
 <context>
@@ -3470,10 +3346,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Samuti kustuta lõplikult ka failid</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Eemalda torrent('eid)</translation>
     </message>
@@ -3483,7 +3355,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Eemalda jälitaja</translation>
     </message>
 </context>
 <context>
@@ -3760,10 +3632,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Kaanid</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Otsingu mootor</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>Jagajaid</translation>
     </message>
@@ -3845,14 +3713,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Silt:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausi torrentid</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Jätka torrentitega</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Eemalda kasutamata sildid</translation>
     </message>
@@ -3870,11 +3730,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Käivita torrentid</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Peata torrentid</translation>
     </message>
 </context>
 <context>
@@ -4018,27 +3878,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Otsing on lõpetatud</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>Viga ilmnes otsinguga...</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Sulge sakk</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Otsin...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>Otsing tühistati</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>Sulge kõik sakid</translation>
     </message>
 </context>
 <context>
@@ -4152,7 +4012,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation type="unfinished" />
+        <translation>Muuda voogu URLi...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
@@ -4354,10 +4214,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Kui sõnade järjekord on oluline, siis kasuta * tühimiku asemel.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Lisa Pausitud:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Palun sisesta nimi, allalaadimise uuele reeglile.</translation>
     </message>
@@ -4431,44 +4287,28 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Jätka torrentitega</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Kõik (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">Jälitajateta (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pausi torrentid</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Eemalda torrentid</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Kõik</translation>
     </message>
     <message>
         <source>Trackerless</source>
-        <translation type="unfinished" />
+        <translation>Jälitajateta</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Käivita torrentid</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Eemalda jälitaja</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Peata torrentid</translation>
     </message>
 </context>
 <context>
@@ -4628,15 +4468,15 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>Ei saanud muuta kategooriat</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Ei saanud luua kategooriat</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4647,11 +4487,11 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>Domeen</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Halda Küpsiseid</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4659,52 +4499,52 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Eemalda</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>Aegumise Kuupäev</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Väärtus</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nimi</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>Asukoht</translation>
     </message>
 </context>
 <context>
     <name>confirmAutoTMMDialog</name>
     <message>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished" />
+        <translation>Lülita sisse automaatne torrentite haldamine</translation>
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished" />
+        <translation>Oled kindel, et soovid sisselülitada automaatse torrenti halduse valitud torrenti(tele)? Nende torrentite asukohti võidakse muuta.</translation>
     </message>
 </context>
 <context>
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>Kindel, et soovid üle kontrollida valitud torrent(eid)?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>Ülekontrollimise kinnitamine</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Sulge sakk</translation>
     </message>
 </context>
 <context>
@@ -4715,15 +4555,15 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Parool</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation type="unfinished" />
+        <translation>JavaScript Vajalik! Peate sisselülitama JavaScript'i, et WebUI toimiks korrektselt</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Logi sisse</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4735,11 +4575,11 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Kasutajanimi</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Sobimatu Kasutajanimi või Parool</translation>
     </message>
 </context>
 </TS>

@@ -76,7 +76,7 @@
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Ավելացնել torrent հղումներ</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -113,14 +113,6 @@
         <translation>Հեռացնել չօգտագործվող անվանակարգերը</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Շարունակել torrent-ները</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Դադարեցնել torrent-ները</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Նոր անվանակարգ</translation>
     </message>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>Ելք qBittorrent-ից</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Մեկ հղում տողի համար</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -312,10 +300,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Չհաջողվեց ստեղծել անվանակարգ</translation>
-    </message>
-    <message>
         <source>Upload rate threshold must be greater than 0.</source>
         <translation type="unfinished" />
     </message>
@@ -401,7 +385,7 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>Հիշել ընտրանքը</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
@@ -413,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>Հղումը</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -487,10 +471,6 @@
         <translation>Ընտրանքներ...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Շարունակել</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Վերևի գործիքագոտի</translation>
     </message>
@@ -507,24 +487,12 @@
         <translation>Նվիրաբերե՜լ</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Շարունակել բոլորը</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Վիճակագրություն</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Ծրագրի մասին</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Դադար</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Դադարեցնել բոլորը</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -688,7 +656,7 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Կանգնեցնել</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -704,7 +672,7 @@
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>Կառավարել թխուկները...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -712,7 +680,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Անվանում</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
@@ -752,10 +720,6 @@
     <message>
         <source>Language</source>
         <translation>Լեզու</translation>
-    </message>
-    <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Միջերեսի լեզուն՝</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1266,10 +1230,6 @@
     <message>
         <source>Fastest upload</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Դադարեցնել torrent-ը</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1913,7 +1873,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>Հաստատել torrent-ները ջնջելիս</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
@@ -1929,11 +1889,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Ինքնաշխատ</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>Տարբեր գույների տողեր կիրառել</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1941,7 +1901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL՝</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -1961,7 +1921,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>Ներբեռնվող torrent-ներ՝</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -1973,7 +1933,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>Ավարտված torrent-ները՝</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -1985,7 +1945,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>Երկկտտոցի գործողությունը</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2065,7 +2025,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>Առանց գործողության</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
@@ -2073,7 +2033,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Միջերես</translation>
     </message>
     <message>
         <source>Log Files</source>
@@ -2457,11 +2417,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>Վեբ հատիկի URL-ը՝</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Այո</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2477,7 +2437,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ոչ</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2485,7 +2445,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>Վեբ շղթայի խմբագրում</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2624,14 +2584,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Ավարտված (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Վերսկսված (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Դադարի մեջ (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Ակտիվ (0)</translation>
     </message>
@@ -2658,14 +2610,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed (%1)</source>
         <translation>Ավարտված (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Դադարի մեջ (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Վերսկսված (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2737,7 +2681,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Հեռացնել torrent-ները</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -2762,11 +2706,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Չափը</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">-ը բեռնվել է</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2909,7 +2848,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Ընթացք</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
@@ -3066,10 +3005,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 առաջ</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Դադարի մեջ է</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Ավարտված է</translation>
     </message>
@@ -3135,7 +3070,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Կանգնեցված</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -3182,21 +3117,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>Անվանափոխել</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Վերսկսել</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Ստիպողաբար շարունակել</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Դադար</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3289,16 +3209,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">Պահպանելու ճ-ը</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>Ստորակետով բաժանված պիտակներ՝</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">Ավելացնել պիտակներ</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3366,7 +3278,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Պահելու ուղին՝</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3374,7 +3286,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Կանգնեցնել</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
@@ -3386,7 +3298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Նոր անվանում՝</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3394,7 +3306,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Անվանակարգ՝</translation>
     </message>
 </context>
 <context>
@@ -3443,7 +3355,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Ջնջել ուղղորդիչը</translation>
     </message>
 </context>
 <context>
@@ -3720,10 +3632,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Քաշողներ</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Որոնիչ</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>Բաժանողներ</translation>
     </message>
@@ -3803,14 +3711,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Tag:</source>
         <translation>Պիտակ՝</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Դադարեցնել torrent-ները</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Շարունակել torrent-ները</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3978,27 +3878,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Որոնումը ավարտվել է</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>Սխալ՝ փնտրելիս…</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Փակել ներդիրը</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Որոնվում է...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>Որոնումը ընդհատվեց</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>Փակել բոլոր ներդիրները</translation>
     </message>
 </context>
 <context>
@@ -4386,28 +4286,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Շարունակել torrent-ները</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Բոլորը (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">Անգրանցորդ (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Դադարեցնել torrent-ները</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Հեռացնել torrent-ները</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Բոլորը</translation>
     </message>
     <message>
         <source>Trackerless</source>
@@ -4419,7 +4303,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Ջնջել ուղղորդիչը</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -4583,15 +4467,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>Չհաջողվեց խմբագրել անվանակարգը</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>ԼԱՎ</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Չհաջողվեց ստեղծել անվանակարգ</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4602,11 +4486,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>Տիրույթ</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Կառավարել թխուկները</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4618,19 +4502,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>Սպառման ժամկետ</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Արժեք</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Անվանում</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>Ուղի</translation>
     </message>
 </context>
 <context>
@@ -4648,18 +4532,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>Վստա՞հ եք, որ ուզում եք վերստուգել ընտրված torrent-(ներ)ը:</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>Վերստուգման հաստատում</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Փակել ներդիրը</translation>
     </message>
 </context>
 <context>
@@ -4670,7 +4554,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Գաղտնաբառ</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4678,7 +4562,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Օգտանուն</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4690,7 +4574,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Մուտքանուն</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>

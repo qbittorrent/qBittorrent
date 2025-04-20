@@ -72,11 +72,11 @@
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Ena povezava na vrstico (povezave HTTP, magnetne povezave in info-šifre so podprte)</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Dodaj torrent povezave</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>Možnosti torrenta</translation>
     </message>
 </context>
 <context>
@@ -113,14 +113,6 @@
         <translation>Odstrani neuporabljene kategorije</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Nadaljuj torrente</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Ustavi torrente</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nova kategorija</translation>
     </message>
@@ -138,11 +130,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Ustavi torrente</translation>
     </message>
 </context>
 <context>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>Zapri qBittorrent</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Samo ena povezava na vrstico</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>Shrani datoteke v:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Piškotek:</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Več podrobnosti</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>Odjava</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">Prejmi torrente preko URL ali magnetne povezave.</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>Pošlji krajevni torrent</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Kategorije ni mogoče ustvariti</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -397,7 +373,7 @@
     </message>
     <message>
         <source>External IP: N/A</source>
-        <translation type="unfinished" />
+        <translation>Zunanji IP: N/A</translation>
     </message>
     <message>
         <source>Reverse proxy setup examples</source>
@@ -409,11 +385,11 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>Zapomni si izbiro</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Ali ste prepričani, da želite odstraniti %1 torrentov s seznama prenosov?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -421,11 +397,11 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
-        <translation type="unfinished" />
+        <translation>Zunanji IP: %1%2</translation>
     </message>
     <message>
         <source>Edit web seed</source>
@@ -449,7 +425,7 @@
     </message>
     <message>
         <source>External IPs: %1, %2</source>
-        <translation type="unfinished" />
+        <translation>Zunanji IP-ji: %1, %2</translation>
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
@@ -495,10 +471,6 @@
         <translation>Možnosti ...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Nadaljuj</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Zgornja orodna vrstica</translation>
     </message>
@@ -515,24 +487,12 @@
         <translation>Podari!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Nadaljuj vse</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistika</translation>
     </message>
     <message>
         <source>About</source>
         <translation>O programu</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Premor</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Premor vseh</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -675,14 +635,6 @@
         <translation>Odstrani</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Ali ste prepričani, da želite nadaljevati vse torrente?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Ali ste prepričani, da želite začasno ustaviti vse torrente?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Dnevnik izvedb</translation>
     </message>
@@ -696,15 +648,15 @@
     </message>
     <message>
         <source>Filter by:</source>
-        <translation type="unfinished" />
+        <translation>Filtriraj po:</translation>
     </message>
     <message>
         <source>Save Path</source>
-        <translation type="unfinished" />
+        <translation>Mesto shranjevanja</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Ustavi</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -716,11 +668,11 @@
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Zaženi</translation>
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>Upravljanje piškotkov ...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -728,7 +680,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
@@ -736,11 +688,11 @@
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Zaženi vse</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Ustavi vse</translation>
     </message>
 </context>
 <context>
@@ -770,10 +722,6 @@
         <translation>Jezik</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Jezik uporabniškega vmesnika:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>Pošlji e-poštno obvestilo ob zaključku prejema</translation>
     </message>
@@ -788,10 +736,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Čakalna vrsta torrentov</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Samodejno dodaj te sledilnike novim prenosom:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1288,10 +1232,6 @@
         <translation>Najhitrejše pošiljanje</translation>
     </message>
     <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Začasno ustavi torrent</translation>
-    </message>
-    <message>
         <source>Remove torrent and its files</source>
         <translation>Odstrani torrent in njegove datoteke</translation>
     </message>
@@ -1712,10 +1652,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>dni</translation>
     </message>
     <message>
-        <source>Log file</source>
-        <translation type="vanished">Dnevnik</translation>
-    </message>
-    <message>
         <source>Behavior</source>
         <translation>Obnašanje</translation>
     </message>
@@ -1929,7 +1865,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Barvna shema:</translation>
     </message>
     <message>
         <source>Show external IP in status bar</source>
@@ -1941,7 +1877,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>Potrdi ob brisanju torrentov</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
@@ -1953,15 +1889,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Trajno izbriši datoteke</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Samodejno</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>Uporabi izmenične barve vrstic</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1969,7 +1905,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -1989,19 +1925,19 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>Na torrente v prejemanju:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Zaženi/ustavi torrent</translation>
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>Pošlji preizkusno sporočilo</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>Na dokončane torrente:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -2009,11 +1945,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Ob dodajanju podvojene vsebine</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>Dejanje ob dvojnem kliku</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2021,7 +1957,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished" />
+        <translation>Prikaže potrditveno pogovorno okno ob brisanju torrenta</translation>
     </message>
     <message>
         <source>Run on torrent finished:</source>
@@ -2041,15 +1977,15 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>Premakni datoteke v koš (če je mogoče)</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Ustavi torrent</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Uporabi poti kategorij v ročnem načinu</translation>
     </message>
     <message>
         <source>List of alternative WebUI</source>
@@ -2069,7 +2005,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Pripoji sledilnike obstoječemu torrentu</translation>
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
@@ -2093,7 +2029,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>Brez dejanja</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
@@ -2101,7 +2037,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Vmesnik</translation>
     </message>
     <message>
         <source>Log Files</source>
@@ -2485,19 +2421,19 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>URL spletnega sejalca:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Da</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Razmerje/časom dejavnosti (v mesecih) – pove, kako pogosto se torrent prejema</translation>
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Priljubljenost:</translation>
     </message>
     <message>
         <source>Apply to which filename part</source>
@@ -2505,7 +2441,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ne</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2513,7 +2449,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>Urejanje spletnega sejalca</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2521,7 +2457,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Zaseben:</translation>
     </message>
 </context>
 <context>
@@ -2652,14 +2588,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Končano (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Se nadaljuje (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">V premoru (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Dejavno (0)</translation>
     </message>
@@ -2686,14 +2614,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     <message>
         <source>Completed (%1)</source>
         <translation>Končano (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">V premoru (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Se nadaljuje (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2749,31 +2669,31 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>Zagnani (0)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Ustavljeni (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>Ustavljeni (%1)</translation>
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>Zagnani (%1)</translation>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Odstrani torrente</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Ustavi torrente</translation>
     </message>
 </context>
 <context>
@@ -2790,11 +2710,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Velikost</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Končano</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2933,27 +2848,27 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Zaseben</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Napredek</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Informativno zgoščeno vrednost, v2</translation>
     </message>
     <message>
         <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Informativno zgoščeno vrednost, v1</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Pomanjkljiva pot za shranjevanje</translation>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Priljubljenost</translation>
     </message>
     <message>
         <source>Status Icon</source>
@@ -3094,10 +3009,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>%1 nazaj</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">V premoru</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Končano</translation>
     </message>
@@ -3163,11 +3074,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Ustavljeno</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -3210,21 +3121,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     <message>
         <source>Rename</source>
         <translation>Preimenuj</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Nadaljuj</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Prisili nadaljevanje</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Premor</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3305,14 +3201,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Nova kategorija:</translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="vanished">Lokacija</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation type="vanished">Novo ime:</translation>
-    </message>
-    <message>
         <source>Set location</source>
         <translation>Nastavi lokacijo</translation>
     </message>
@@ -3325,16 +3213,8 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Uredi kategorijo</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">Mesto</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>Z vejico ločene oznake:</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">Dodaj oznake</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3402,7 +3282,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Mesto shranjevanja:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3410,27 +3290,27 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Ustavi</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>Avtomatski način pomeni, da so različne lastnosti torrenta (npr. pot za shranjevanje), določene z dodeljeno kategorijo</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Zaženi</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Novo ime:</translation>
     </message>
     <message>
         <source>Add tags</source>
-        <translation type="unfinished" />
+        <translation>Dodaj oznake</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategorija:</translation>
     </message>
 </context>
 <context>
@@ -3470,20 +3350,16 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Trajno izbriši tudi datoteke</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Odstrani torrent(e)</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Odstrani tudi datoteke z vsebino</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Odstrani sledilnik</translation>
     </message>
 </context>
 <context>
@@ -3760,10 +3636,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Pijavke</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Iskalnik</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>Sejalci</translation>
     </message>
@@ -3845,14 +3717,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Oznaka:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Ustavi torrente</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Nadaljuj torrente</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Odstrani neuporabljene oznake</translation>
     </message>
@@ -3870,11 +3734,11 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Ustavi torrente</translation>
     </message>
 </context>
 <context>
@@ -4018,27 +3882,27 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Iskanje je končano</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>Med iskanjem je prišlo do napake ...</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Zapri zavihek</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Iskanje ...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>Iskanje je prekinjeno</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>Zapri vse zavihke</translation>
     </message>
 </context>
 <context>
@@ -4152,7 +4016,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation type="unfinished" />
+        <translation>Uredi URL vira ...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
@@ -4354,10 +4218,6 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
         <translation>Če je vrstni red besed pomemben uporabi * namesto presledka.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Dodaj torrente v premoru:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Prosim vpiši ime novega pravila prenosov.</translation>
     </message>
@@ -4432,44 +4292,28 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Nadaljuj torrente</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Vsi (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">Brez sledilnika (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Premor torrentov</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Odstrani torrente</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Vse</translation>
     </message>
     <message>
         <source>Trackerless</source>
-        <translation type="unfinished" />
+        <translation>Brez sledilnikov</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Začni torrente</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Odstrani sledilnik</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Ustavi torrente</translation>
     </message>
 </context>
 <context>
@@ -4629,15 +4473,15 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>Kategorije ni mogoče urediti</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Kategorije ni mogoče ustvariti</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4648,11 +4492,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>Domena</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Upravljanje piškotkov</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4660,52 +4504,52 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Odstrani</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>Datum preteka</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Vrednost</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Ime</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>Pot</translation>
     </message>
 </context>
 <context>
     <name>confirmAutoTMMDialog</name>
     <message>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished" />
+        <translation>Omogoči samodejno upravljanje torrenta</translation>
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished" />
+        <translation>Ali ste prepričani, da želite omogočiti samodejno upravljanje izbranih torrentov? Morda bodo premaknjeni na drugo mesto.</translation>
     </message>
 </context>
 <context>
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>Ali ste prepričani, da želite ponovno preveriti želene torrente?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>Ponovno potrdite preverjanje</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Zapri zavihek</translation>
     </message>
 </context>
 <context>
@@ -4716,7 +4560,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Geslo</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4724,7 +4568,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Prijava</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4736,11 +4580,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Uporabniško ime</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Neveljavno uporabniško ime ali geslo.</translation>
     </message>
 </context>
 </TS>

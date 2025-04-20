@@ -72,19 +72,19 @@
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Ein Link pro Zeile (HTTP-Links, Magnet-Links und Info-Hashes werden unterstützt)</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Torrent-Links hinzufügen</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
-        <translation type="unfinished" />
+        <translation>Wähle .torrent-Dateien</translation>
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>Torrent-Optionen</translation>
     </message>
 </context>
 <context>
@@ -113,14 +113,6 @@
         <translation>Unbenutzte Kategorien entfernen</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrents fortsetzen</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrents pausieren</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Neue Kategorie</translation>
     </message>
@@ -138,11 +130,11 @@
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents anhalten</translation>
     </message>
 </context>
 <context>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>qBittorrent beenden</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Nur ein Link pro Zeile</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>Datei(en) hierhin speichern:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Cookie:</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Mehr Informationen</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>Abmelden</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">Torrents von URL oder Magnet-Link herunterladen</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>Lokalen Torrent hochladen</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>Ungültiger Kategoriename:\nBitte keine Sonderzeichen im Kategorienamen verwenden.</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Kategorie konnte nicht erstellt werden</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -357,7 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Konnte Peers nicht hinzufügen. Bitte sicherstellen daß das IP:Port-Format eingehalten wird.</translation>
+        <translation>Konnte Peers nicht hinzufügen. Bitte sicherstellen, dass das IP:Port-Format eingehalten wird.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -384,10 +360,6 @@
         <translation>Ursprünglicher Entwickler</translation>
     </message>
     <message>
-        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="vanished">Sollen die gewählten Torrents wirklich aus der Transfer-Liste gelöscht werden?</translation>
-    </message>
-    <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation>Der Port für das Webinterface muss zwischen 1 und 65535 liegen.</translation>
     </message>
@@ -397,79 +369,79 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation>JavaScript erforderlich! Für das Web-Interface muss JavaScript erlaubt werden um zu funktionieren.</translation>
+        <translation>JavaScript erforderlich! Für das Webinterface muss JavaScript erlaubt werden, um zu funktionieren.</translation>
     </message>
     <message>
         <source>External IP: N/A</source>
-        <translation type="unfinished" />
+        <translation>Externe IP: nicht verfügbar</translation>
     </message>
     <message>
         <source>Reverse proxy setup examples</source>
-        <translation type="unfinished" />
+        <translation>Beispiele für die Einrichtung eines Reverse-Proxys</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Kein Kontakt mit qBittorrent möglich</translation>
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>Auswahl merken</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Sollen diese %1 Torrents wirklich von der Transfer-Liste gelöscht werden?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
-        <translation type="unfinished" />
+        <translation>Konnte Torrents nicht löschen.</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
-        <translation type="unfinished" />
+        <translation>Externe IP: %1%2</translation>
     </message>
     <message>
         <source>Edit web seed</source>
-        <translation type="unfinished" />
+        <translation>Webseed editieren</translation>
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Soll %1 wirklich von der Transfer-Liste gelöscht werden?</translation>
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
-        <translation type="unfinished" />
+        <translation>Konnte das automatische Torrent-Managment für die gewählten Torrents nicht einstellen.</translation>
     </message>
     <message>
         <source>Unable to stop torrents.</source>
-        <translation type="unfinished" />
+        <translation>Konnte Torrents nicht anhalten.</translation>
     </message>
     <message>
         <source>Unable to download file</source>
-        <translation type="unfinished" />
+        <translation>Konnte Datei nicht herunterladen.</translation>
     </message>
     <message>
         <source>External IPs: %1, %2</source>
-        <translation type="unfinished" />
+        <translation>Externe IPs: %1, %2</translation>
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
-        <translation type="unfinished" />
+        <translation>Konnte Torrents nicht überprüfen.</translation>
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
-        <translation type="unfinished" />
+        <translation>Liste der hinzuzufügenden Webseeds (einer pro Zeile):</translation>
     </message>
     <message>
         <source>Unable to start torrents.</source>
-        <translation type="unfinished" />
+        <translation>Konnte Torrents nicht starten.</translation>
     </message>
     <message>
         <source>Add web seeds</source>
-        <translation type="unfinished" />
+        <translation>Webseeds hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -499,10 +471,6 @@
         <translation>Optionen ...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Fortsetzen</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Obere Werkzeugleiste</translation>
     </message>
@@ -519,10 +487,6 @@
         <translation>Entwicklung unterstützen!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Alle fortsetzen</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistiken </translation>
     </message>
@@ -531,16 +495,8 @@
         <translation>Über</translation>
     </message>
     <message>
-        <source>Pause</source>
-        <translation type="vanished">Pausieren</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Alle anhalten</translation>
-    </message>
-    <message>
         <source>Add Torrent File...</source>
-        <translation>Torrent-Datei hinzufügen...</translation>
+        <translation>Torrent-Datei hinzufügen ...</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -548,7 +504,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Torrent-Link hinzufügen...</translation>
+        <translation>Torrent-Link hinzufügen ...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -628,7 +584,7 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>Um diese Funktion zu nutzen muss das Webinterface über HTTPS aufgerufen werden</translation>
+        <translation>Um diese Funktion zu nutzen, muss das Webinterface über HTTPS aufgerufen werden</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -679,14 +635,6 @@
         <translation>Entfernen</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Sollen alle Torrents fortgesetzt werden?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Sollen alle Torrents angehalten werden?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Ausführungs-Log</translation>
     </message>
@@ -700,51 +648,51 @@
     </message>
     <message>
         <source>Filter by:</source>
-        <translation type="unfinished" />
+        <translation>Filtern nach:</translation>
     </message>
     <message>
         <source>Save Path</source>
-        <translation type="unfinished" />
+        <translation>Speicherpfad</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stopp</translation>
     </message>
     <message>
         <source>Use regular expression</source>
-        <translation type="unfinished" />
+        <translation>Regulären Ausdruck verwenden</translation>
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Sollen alle Torrents gestartet werden?</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Start</translation>
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>Cookies verwalten ...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Konnte Torrentdatei nicht exportieren</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Sollen alle Torrents angehalten werden?</translation>
     </message>
     <message>
         <source>Start All</source>
-        <translation type="unfinished" />
+        <translation>Alle starten</translation>
     </message>
     <message>
         <source>Stop All</source>
-        <translation type="unfinished" />
+        <translation>Alle anhalten </translation>
     </message>
 </context>
 <context>
@@ -774,10 +722,6 @@
         <translation>Sprache</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Benutzeroberflächensprache:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>Benachrichtigen, wenn der Download fertig ist</translation>
     </message>
@@ -792,10 +736,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Warteschlange für Torrents</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Diese Tracker automatisch zu neuen Downloads hinzufügen:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -943,7 +883,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>Manuell gebannte IP-Adressen...</translation>
+        <translation>Manuell gebannte IP-Adressen ...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -1017,7 +957,7 @@
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Lokale Peer Auffindung (LPD) aktivieren um mehr Peers zu finden</translation>
+        <translation>Lokale Peer Auffindung (LPD) aktivieren, um mehr Peers zu finden</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -1057,7 +997,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>UPnP / NAT-PMP um den Port des Routers weiterzuleiten</translation>
+        <translation>UPnP / NAT-PMP, um den Port des Routers weiterzuleiten</translation>
     </message>
     <message>
         <source>Certificate:</source>
@@ -1292,10 +1232,6 @@
         <translation>Schnellster Upload</translation>
     </message>
     <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Torrent pausieren</translation>
-    </message>
-    <message>
         <source>Remove torrent and its files</source>
         <translation>Entferne Torrent und seine Dateien</translation>
     </message>
@@ -1410,10 +1346,6 @@
     <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Programm nach aufeinanderfolgenden Fehlern sperren:</translation>
-    </message>
-    <message>
-        <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="vanished">Cookie Sicheres Flag aktivieren (erfordert HTTPS)</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1644,10 +1576,6 @@
         <translation>Internationalisierten Domain-Namen (IDN) verwenden:</translation>
     </message>
     <message>
-        <source>Run external program on torrent finished</source>
-        <translation type="vanished">Externes Programm aufrufen, wenn der Torrent fertig ist</translation>
-    </message>
-    <message>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -1658,12 +1586,8 @@ Um sich vor DNS-Rebinding-Attacken zu schützen,
 sollten hier Domain-Namen eingetragen weden,
 die vom Webinterface-Server verwendet werden.
 
-Verwende ';' um mehrere Einträge zu trennen.
+Verwende ';', um mehrere Einträge zu trennen.
 Platzhalter '*' kann verwendet werden.</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent added</source>
-        <translation type="vanished">Externes Programm aufrufen, wenn ein Torrent hinzugefügt wird</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1671,7 +1595,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Geben Sie Reverse-Proxy-IPs an (oder Subnetze, z.B. 0.0.0.0/24), um weitergeleitete Client-Adressen zu verwenden (Attribut X-Forwarded-For), verwenden Sie ';' um mehrere Einträge aufzuteilen.</translation>
+        <translation>Geben Sie Reverse-Proxy-IPs an (oder Subnetze, z.B. 0.0.0.0/24), um weitergeleitete Client-Adressen zu verwenden (Attribut X-Forwarded-For), verwenden Sie ';', um mehrere Einträge aufzuteilen.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1728,10 +1652,6 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>days</source>
         <translation>Tage</translation>
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="vanished">Protokolldatei</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1823,7 +1743,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
-        <translation>Standardeinstellung wenn leer</translation>
+        <translation>Standardeinstellung, wenn leer</translation>
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
@@ -1851,7 +1771,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
-        <translation>(Automatische Erkennung wenn leer)</translation>
+        <translation>(Automatische Erkennung, wenn leer)</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
@@ -1863,7 +1783,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source> sec</source>
-        <translation>Sek.</translation>
+        <translation> Sek.</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -1947,183 +1867,183 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Farbschema:</translation>
     </message>
     <message>
         <source>Show external IP in status bar</source>
-        <translation type="unfinished" />
+        <translation>Externe IP in der Titelleiste anzeigen</translation>
     </message>
     <message>
         <source>Fetched trackers</source>
-        <translation type="unfinished" />
+        <translation>Abgerufene Tracker</translation>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>Löschen von Torrents bestätigen</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>SSL-Fehler ignorieren:</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Dunkel</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
-        <translation type="unfinished" />
+        <translation>Dateien dauerhaft löschen</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatisch</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>Abwechselnde Reihenfarben verwenden</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
-        <translation type="unfinished" />
+        <translation>Anzeige der vollständigen Ankündigungs-URL in der Tracker-Spalte</translation>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL:</translation>
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished" />
+        <translation>Übertragungs-Liste</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Der Port für die Anmeldung muss zwischen 0 und 65535 liegen.</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Hell</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Diese Tracker automatisch zu neuen Downloads hinzufügen:</translation>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>Herunterladende Torrents:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent starten / anhalten</translation>
     </message>
     <message>
         <source>Send test email</source>
-        <translation type="unfinished" />
+        <translation>Test-Email senden</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>Abgeschlossene Torrents:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished" />
+        <translation>Cookie Sicheres Flag aktivieren (erfordert HTTPS oder Localhost-Verbindung)</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Wenn ein doppelter Torrent hinzugefügt wird</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>Aktion bei Doppelklick</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation type="unfinished" />
+        <translation>Speicherintervall für Statistiken:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished" />
+        <translation>Zeigt ein Bestätigungsfenster beim Löschen von Torrents</translation>
     </message>
     <message>
         <source>Run on torrent finished:</source>
-        <translation type="unfinished" />
+        <translation>Ausführen, wenn Torrent fertiggestellt:</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation type="unfinished" />
+        <translation>Es wurde versucht, eine E-Mail zu senden. Prüfen Sie Ihren Posteingang, um den Erfolg zu bestätigen</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Tracker dieser URL automatisch zu neuen Downloads hinzufügen:</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Lösch-Modus für Torrent-Inhalte:</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
-        <translation type="unfinished" />
+        <translation>(Wenn möglich) Dateien in den Papierkorb löschen</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent anhalten</translation>
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Kategoriepfade im manuellen Modus verwenden</translation>
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Liste alternativer Webinterfaces</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
-        <translation type="unfinished" />
+        <translation>Ausführen, wenn Torrent hinzugefügt:</translation>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation type="unfinished" />
+        <translation>Port, der an die Tracker gemeldet wird (Neustart erforderlich) [0: Port, auf dem gelauscht wird]:</translation>
     </message>
     <message>
         <source>User interface language:</source>
-        <translation type="unfinished" />
+        <translation>Benutzeroberflächensprache:</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Tracker zu bestehendem Torrent zusammenführen</translation>
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
-        <translation type="unfinished" />
+        <translation>Überprüfung des Torrents bestätigen:</translation>
     </message>
     <message>
         <source>Custom WebUI settings</source>
-        <translation type="unfinished" />
+        <translation>Benutzerdefinierter Webinterface-Einstellungen</translation>
     </message>
     <message>
         <source>Following settings are WebUI only</source>
-        <translation type="unfinished" />
+        <translation>Folgende Einstellungen nur für das Webinterface</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>Einfaches pread/pwrite</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Auflösen des relativen Speicherpfads gegen den entsprechenden Kategoriepfad anstelle des Standardpfads.</translation>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>Keine Aktion</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
-        <translation type="unfinished" />
+        <translation>Automatisches Ausblenden von Null-Status-Filtern</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Interface</translation>
     </message>
     <message>
         <source>Log Files</source>
-        <translation type="unfinished" />
+        <translation>Protokolldateien</translation>
     </message>
 </context>
 <context>
@@ -2491,55 +2411,55 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Copy web seed URL</source>
-        <translation type="unfinished" />
+        <translation>Webseed-URL kopieren</translation>
     </message>
     <message>
         <source>Replace option</source>
-        <translation type="unfinished" />
+        <translation>Option für Ersetzen</translation>
     </message>
     <message>
         <source>Edit web seed URL...</source>
-        <translation type="unfinished" />
+        <translation>Webseed-URL editieren ...</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>Webseed-URL:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ja</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
-        <translation type="unfinished" />
+        <translation>Rate / aktive Zeit (in Monaten) - zeigt, wie populär der Torrent ist</translation>
     </message>
     <message>
         <source>Popularity:</source>
-        <translation type="unfinished" />
+        <translation>Popularität</translation>
     </message>
     <message>
         <source>Apply to which filename part</source>
-        <translation type="unfinished" />
+        <translation>Auf welche Teile des Dateinamen anwenden</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nein</translation>
     </message>
     <message>
         <source>Remove web seed</source>
-        <translation type="unfinished" />
+        <translation>Webseed entfernen</translation>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>Webseed editieren</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
-        <translation type="unfinished" />
+        <translation>Webseeds hinzufügen ...</translation>
     </message>
     <message>
         <source>Private:</source>
-        <translation type="unfinished" />
+        <translation>Privat:</translation>
     </message>
 </context>
 <context>
@@ -2670,14 +2590,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Abgeschlossen (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Fortgesetzt (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Pausiert (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktiv (0)</translation>
     </message>
@@ -2704,14 +2616,6 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Completed (%1)</source>
         <translation>Abgeschlossen (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Pausiert (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Fortgesetzt (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2767,31 +2671,31 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation type="unfinished" />
+        <translation>Läuft (0)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation type="unfinished" />
+        <translation>Angehalten (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation type="unfinished" />
+        <translation>Angehalten (%1)</translation>
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation type="unfinished" />
+        <translation>Läuft (%1)</translation>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents entfernen</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents anhalten</translation>
     </message>
 </context>
 <context>
@@ -2808,11 +2712,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Größe</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Fertig</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2951,31 +2850,31 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Fortschritt</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info-Hash v2</translation>
     </message>
     <message>
         <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Info-Hash v1</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Unvollständiger Speicherpfad</translation>
     </message>
     <message>
         <source>Popularity</source>
-        <translation type="unfinished" />
+        <translation>Popularität</translation>
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Status Icon</translation>
     </message>
 </context>
 <context>
@@ -3112,10 +3011,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>vor %1</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Angehalten</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Abgeschlossen</translation>
     </message>
@@ -3181,11 +3076,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Angehalten</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/V</translation>
     </message>
 </context>
 <context>
@@ -3212,7 +3107,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Collapse/expand category</source>
-        <translation type="unfinished" />
+        <translation>Kategorie zuklappen/erweitern</translation>
     </message>
 </context>
 <context>
@@ -3228,21 +3123,6 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Rename</source>
         <translation>Umbenennen</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Fortsetzen</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Fortsetzen erzwingen</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Anhalten</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3323,14 +3203,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Neue Kategorie</translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="vanished">Speicherort</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation type="vanished">Neuer Name</translation>
-    </message>
-    <message>
         <source>Set location</source>
         <translation>Speicherort setzen</translation>
     </message>
@@ -3343,16 +3215,8 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Kategorie ändern</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">Speicherpfad</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>Labels, mit Komma getrennt:</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">Label hinzufügen</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3416,39 +3280,39 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Force Start</source>
-        <translation type="unfinished" />
+        <translation>Start erzwingen</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Speicherpfad:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished" />
+        <translation>Speicherort:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stopp</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>Automatischer Modus bedeutet, dass diverse Torrent-Eigenschaften (z.B. der Speicherpfad) durch die gewählte Kategorie vorgegeben werden.</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished" />
+        <translation>Start</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Neuer Name:</translation>
     </message>
     <message>
         <source>Add tags</source>
-        <translation type="unfinished" />
+        <translation>Label hinzufügen</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategorie:</translation>
     </message>
 </context>
 <context>
@@ -3488,20 +3352,16 @@ Platzhalter '*' kann verwendet werden.</translation>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Die Dateien auch dauerhaft löschen</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Torrent(s) entfernen</translation>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation type="unfinished" />
+        <translation>Auch die Inhaltsdateien dauerhaft löschen</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Tracker entfernen</translation>
     </message>
 </context>
 <context>
@@ -3544,7 +3404,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>TB</translation>
+        <translation>TiB</translation>
     </message>
     <message>
         <source>PiB</source>
@@ -3681,7 +3541,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation>Fenstergröße erhöhen um zusätzliche Filter anzuzeigen</translation>
+        <translation>Fenstergröße erhöhen, um zusätzliche Filter anzuzeigen</translation>
     </message>
     <message>
         <source>to</source>
@@ -3697,7 +3557,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Klicke den "Such-Plugins ..."-Knopf unten rechts um welche zu installieren.</translation>
+        <translation>Klicke den "Such-Plugins ..."-Knopf unten rechts, um welche zu installieren.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
@@ -3705,23 +3565,23 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Select category</source>
-        <translation type="unfinished" />
+        <translation>Kategorie auswählen</translation>
     </message>
     <message>
         <source>Min size prefix</source>
-        <translation type="unfinished" />
+        <translation>Minimalgröße Präfix</translation>
     </message>
     <message>
         <source>Start a search above.</source>
-        <translation type="unfinished" />
+        <translation>Oberhalb eine Suche starten.</translation>
     </message>
     <message>
         <source>Max size prefix</source>
-        <translation type="unfinished" />
+        <translation>Maximalgröße Präfix</translation>
     </message>
     <message>
         <source>Select plugins</source>
-        <translation type="unfinished" />
+        <translation>Plugins auswählen</translation>
     </message>
 </context>
 <context>
@@ -3778,24 +3638,20 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Leecher</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Suchmaschine</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>Seeder</translation>
     </message>
     <message>
         <source>Published On</source>
-        <translation type="unfinished" />
+        <translation>Veröffentlicht am</translation>
     </message>
     <message>
         <source>Engine URL</source>
-        <translation type="unfinished" />
+        <translation>Engine-URL</translation>
     </message>
     <message>
         <source>Engine</source>
-        <translation type="unfinished" />
+        <translation>Engine</translation>
     </message>
 </context>
 <context>
@@ -3863,14 +3719,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Label:</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrents pausieren</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrents fortsetzen</translation>
-    </message>
-    <message>
         <source>Remove unused tags</source>
         <translation>Unbenutzte Label entfernen</translation>
     </message>
@@ -3888,11 +3736,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents anhalten</translation>
     </message>
 </context>
 <context>
@@ -4036,27 +3884,27 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Suche abgeschlossen</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>Während der Suche ist ein Fehler aufgetreten ...</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Registerkarte schließen</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Suche ...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>Suche abgebrochen</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>Alle Registerkarten schließen</translation>
     </message>
 </context>
 <context>
@@ -4170,19 +4018,19 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation type="unfinished" />
+        <translation>Feed-URL editieren ...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
-        <translation type="unfinished" />
+        <translation>Konnte die URL nicht aktualisieren</translation>
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation type="unfinished" />
+        <translation>URL hat sich nicht geändert</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>URL kann nicht leer sein</translation>
     </message>
 </context>
 <context>
@@ -4369,11 +4217,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation>Wenn die Wortreihenfolge wichtig ist * anstelle von Leerzeichen verwenden</translation>
-    </message>
-    <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Pausiert hinzufügen:</translation>
+        <translation>Wenn die Wortreihenfolge wichtig ist, * anstelle von Leerzeichen verwenden</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -4405,12 +4249,12 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation>Entferne bereits heruntergeladene Folgen...</translation>
+        <translation>Entferne bereits heruntergeladene Folgen ...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Der Smart-Folgenfilter überprüft die Folgennummer um das doppelte Herunterladen zu vermeiden.
+        <translation>Der Smart-Folgenfilter überprüft die Folgennummer, um das doppelte Herunterladen zu vermeiden.
 Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Formate werden auch unterstützt, allerdings als Trennung)</translation>
     </message>
     <message>
@@ -4435,58 +4279,42 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Remove rule</source>
-        <translation type="unfinished" />
+        <translation>Regel entfernen</translation>
     </message>
     <message>
         <source>Add rule</source>
-        <translation type="unfinished" />
+        <translation>Regel hinzufügen</translation>
     </message>
     <message>
         <source>Add Stopped:</source>
-        <translation type="unfinished" />
+        <translation>Angehaltene hinzufügen:</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Torrents fortsetzen</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Alle (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">Ohne Tracker (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Torrents pausieren</translation>
-    </message>
     <message>
         <source>Remove torrents</source>
         <translation>Torrents entfernen</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Alle</translation>
     </message>
     <message>
         <source>Trackerless</source>
-        <translation type="unfinished" />
+        <translation>Ohne Tracker</translation>
     </message>
     <message>
         <source>Start torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Tracker entfernen</translation>
     </message>
     <message>
         <source>Stop torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrents anhalten</translation>
     </message>
 </context>
 <context>
@@ -4632,132 +4460,132 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Wähle ein Log Level...</translation>
+        <translation>Wähle ein Log Level ...</translation>
     </message>
 </context>
 <context>
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Soll der Tracker %1 wirklich von allen Torrents entfernt werden?</translation>
     </message>
 </context>
 <context>
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>Kategorie kann nicht geändert werden</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Kategorie konnte nicht erstellt werden</translation>
     </message>
     <message>
         <source>Unable to set category</source>
-        <translation type="unfinished" />
+        <translation>Kategorie konnte nicht eingestellt werden</translation>
     </message>
 </context>
 <context>
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>Domain</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Cookies verwalten</translation>
     </message>
     <message>
         <source>Add Cookie</source>
-        <translation type="unfinished" />
+        <translation>Cookie hinzufügen</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>Ablaufdatum</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Wert</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>Pfad</translation>
     </message>
 </context>
 <context>
     <name>confirmAutoTMMDialog</name>
     <message>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished" />
+        <translation>Automatisches Torrent-Management aktivieren</translation>
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished" />
+        <translation>Soll wirklich das automatische Torrent-Managment für die gewählten Torrents aktiviert werden? Diese könnten verschoben werden.</translation>
     </message>
 </context>
 <context>
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>Sollen die gewählten Torrents wirklich nochmals überprüft werden?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>Überprüfe Bestätigung</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Registerkarte schließen</translation>
     </message>
 </context>
 <context>
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Webinterface</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Passwort</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation type="unfinished" />
+        <translation>JavaScript erforderlich! Für das Webinterface muss JavaScript erlaubt werden, um zu funktionieren.</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Anmelden</translation>
     </message>
     <message>
         <source>Server response:</source>
-        <translation type="unfinished" />
+        <translation>Server-Antwort:</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Fehler beim Einloggen – vermutlich ist der Server nicht erreichbar.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Benutzername</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Ungültiger Benutzername oder Passwort.</translation>
     </message>
 </context>
 </TS>

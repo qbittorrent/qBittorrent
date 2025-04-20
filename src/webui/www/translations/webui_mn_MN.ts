@@ -113,14 +113,6 @@
         <translation>Хэрэглэдэггүй ангиллуудыг устгах</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Торрентуудыг үргэлжлүүлэх</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Торрентуудыг зогсоох</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Шинэ Ангилал</translation>
     </message>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>qBittorrent-г хаах</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">1 мөрөнд 1 холбоос</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>Файлуудыг хадгалах байршил:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Күүкий:</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Дэлгэрэнгүй мэдээлэл</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>Гарах</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">Торрентуудыг тэдний URL-р эсвэл соронзон холбоосоор татах</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>Торрент шинээр хуулах</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>Хүлээн зөвшөөрөгдөхгүй нэр байна:\nАнгилалд нэр оноохдоо тусгай тэмдэгт ашиглахаас татгалзана уу.</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Ангилал үүсгэж чадсангүй</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -495,10 +471,6 @@
         <translation>Сонголтууд...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Үргэлжлүүлэх</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Дээд хэрэгслийн мөр</translation>
     </message>
@@ -515,24 +487,12 @@
         <translation>Хандив өргөх!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Бүгдийг үргэлжлүүлэх</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Үзүүлэлтүүд</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Тухай</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Түр зогсоох</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Бүгдийг түр зогсоох</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -760,10 +720,6 @@
     <message>
         <source>Language</source>
         <translation>Хэл</translation>
-    </message>
-    <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Хэрэглэгчид харагдах хэл:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -2465,7 +2421,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Тийм</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2481,7 +2437,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Үгүй</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2892,7 +2848,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Явц</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
@@ -3114,7 +3070,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Зогссон</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -3161,16 +3117,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Үргэлжлүүлэх</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Түр зогсоох</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3344,7 +3290,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>Шууд горимд торрентийн зарим тохиргоог (жишээ нь хадгалах зам) харгалзах ангиллаас хамааруулж шийднэ</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3352,7 +3298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Шинэ нэр:</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3360,7 +3306,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Ангилал:</translation>
     </message>
 </context>
 <context>
@@ -3765,14 +3711,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Tag:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Торрентуудыг зогсоох</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Торрентуудыг үргэлжлүүлэх</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -4276,10 +4214,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Үгсийн дарааллыг чухалчлах бол хоосон зайны оронд * хэрэглээрэй.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Завсарлага:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Шинэ татах дүрмийн нэрээ бичнэ үү.</translation>
     </message>
@@ -4353,24 +4287,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Торрентуудыг үргэлжлүүлэх</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Бүгд (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Торрентуудыг зогсоох</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Бүгд</translation>
     </message>
     <message>
         <source>Trackerless</source>
@@ -4550,11 +4472,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>ЗА</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Ангилал үүсгэж чадсангүй</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4585,7 +4507,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Утга</translation>
     </message>
     <message>
         <source>Name</source>
@@ -4633,7 +4555,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Нууц үг</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4641,7 +4563,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Нэвтрэх</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4653,11 +4575,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Хэрэглэгчийн нэр</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Хэрэглэгчийн нэр эсвэл нууц үг тохирохгүй байна.</translation>
     </message>
 </context>
 </TS>

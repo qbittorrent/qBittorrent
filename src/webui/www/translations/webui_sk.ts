@@ -72,11 +72,11 @@
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Jeden odkaz na riadok (sú podporované odkazy HTTP, Magnet aj info-hash)</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Pridať odkazy na torrent</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -113,14 +113,6 @@
         <translation>Odstrániť nepoužívané kategórie</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Obnoviť torrenty</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pozastaviť torrenty</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nová kategória</translation>
     </message>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>Ukončiť qBittorrent</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Iba jeden odkaz na riadok</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -229,10 +217,6 @@
         <translation>Uložiť súbory do priečinka:</translation>
     </message>
     <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Cookie:</translation>
-    </message>
-    <message>
         <source>More information</source>
         <translation>Ďalšie informácie</translation>
     </message>
@@ -296,10 +280,6 @@
         <translation>Odhlásenie</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="vanished">Stiahnuť torrenty z ich URL alebo odkazov Magnet</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>Nahrať lokálny torrent</translation>
     </message>
@@ -318,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>Neplatný názov kategórie:\nProsím nepoužívajte žiadne špeciálne znaky ani diakritiku v názve kategórie.</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation type="vanished">Nie je možné vytvoriť kategóriu</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -384,10 +360,6 @@
         <translation>Pôvodný autor</translation>
     </message>
     <message>
-        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="vanished">Naozaj chcete odstrániť vybrané torrenty zo zoznamu prenosov?</translation>
-    </message>
-    <message>
         <source>The port used for the WebUI must be between 1 and 65535.</source>
         <translation type="unfinished" />
     </message>
@@ -413,11 +385,11 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>Pamätať si voľbu</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Naozaj chcete odstrániť týchto '%1' torrentov zo zoznamu prenosov?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -425,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -499,10 +471,6 @@
         <translation>Možnosti...</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Pokračovať</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Panel nástrojov</translation>
     </message>
@@ -519,24 +487,12 @@
         <translation>Prispejte!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Pokračovať všetky</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Štatistika</translation>
     </message>
     <message>
         <source>About</source>
         <translation>O</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Pozastaviť</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Pozastaviť všetky</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -679,14 +635,6 @@
         <translation>Odstrániť</translation>
     </message>
     <message>
-        <source>Would you like to resume all torrents?</source>
-        <translation type="vanished">Chcete obnoviť všetky torrenty?</translation>
-    </message>
-    <message>
-        <source>Would you like to pause all torrents?</source>
-        <translation type="vanished">Chcete pozastaviť všetky torrenty?</translation>
-    </message>
-    <message>
         <source>Execution Log</source>
         <translation>Záznam spustení</translation>
     </message>
@@ -700,15 +648,15 @@
     </message>
     <message>
         <source>Filter by:</source>
-        <translation type="unfinished" />
+        <translation>Filtrovať podľa:</translation>
     </message>
     <message>
         <source>Save Path</source>
-        <translation type="unfinished" />
+        <translation>Cesta uloženia</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Zastaviť</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -724,7 +672,7 @@
     </message>
     <message>
         <source>Manage Cookies...</source>
-        <translation type="unfinished" />
+        <translation>Spravovať Cookies...</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -732,7 +680,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
@@ -774,10 +722,6 @@
         <translation>Jazyk</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Jazyk používateľského rozhrania:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>Upozornenie o dokončení sťahovania emailom</translation>
     </message>
@@ -792,10 +736,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Zaraďovanie torrentu do fronty</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Automaticky pridať tieto trackery k novým sťahovaniam:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -1292,10 +1232,6 @@
         <translation>Najrýchlejší upload</translation>
     </message>
     <message>
-        <source>Pause torrent</source>
-        <translation type="vanished">Pozastaviť torrent</translation>
-    </message>
-    <message>
         <source>Remove torrent and its files</source>
         <translation>Zmazať torrent a jeho súbory</translation>
     </message>
@@ -1410,10 +1346,6 @@
     <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Banovať klienta po následných zlyhaniach:</translation>
-    </message>
-    <message>
-        <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="vanished">Povoliť príznak zabezpečenie súborov cookie (vyžaduje HTTPS)</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1644,10 +1576,6 @@
         <translation>Podporovať domény obsahujúce špeciálne znaky (IDN)</translation>
     </message>
     <message>
-        <source>Run external program on torrent finished</source>
-        <translation type="vanished">Spustiť externý program po dokončení torrentu</translation>
-    </message>
-    <message>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -1658,10 +1586,6 @@ Pre obranu proti DNS rebinding útokom,
 mali vložiť doménové názvy použité pre WebUI server.
 
 Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent added</source>
-        <translation type="vanished">Spustiť externý program po pridaní torrentu</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
@@ -1726,10 +1650,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>days</source>
         <translation>dní</translation>
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="vanished">Log súbor</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1957,7 +1877,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
-        <translation type="unfinished" />
+        <translation>Potvrdiť zmazanie torrentu</translation>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
@@ -1973,11 +1893,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>Používať striedavé farby pozadia riadkov</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1985,7 +1905,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -2005,7 +1925,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>Sťahované torrenty:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -2017,7 +1937,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>Dokončené torrenty:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -2025,11 +1945,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
-        <translation type="unfinished" />
+        <translation>Keď sa pridáva duplicitný torrent</translation>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>Akcia po dvojitom kliknutí</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2037,7 +1957,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished" />
+        <translation>Zobrazí dialóg pre potvrdenie po odstránení torrentu</translation>
     </message>
     <message>
         <source>Run on torrent finished:</source>
@@ -2065,7 +1985,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Použiť cesty kategórií v manuálnom režime</translation>
     </message>
     <message>
         <source>List of alternative WebUI</source>
@@ -2085,7 +2005,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation type="unfinished" />
+        <translation>Zlúčiť trackery do existujúceho torrentu</translation>
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
@@ -2105,19 +2025,19 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>Použiť relatívnu cestu pre uloženie podľa kategórie namiesto východzej cesty</translation>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>Neurob nič</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
-        <translation type="unfinished" />
+        <translation>Automaticky skryť filtre s nulovým statusom</translation>
     </message>
     <message>
         <source>Interface</source>
-        <translation type="unfinished" />
+        <translation>Rozhranie</translation>
     </message>
     <message>
         <source>Log Files</source>
@@ -2501,11 +2421,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>URL webového seedu:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Áno</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2521,7 +2441,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nie</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2529,7 +2449,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>Úprava webového seedu</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2668,14 +2588,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>Dokončené (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Obnovené (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Pozastavené (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktívne (0)</translation>
     </message>
@@ -2702,14 +2614,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>Completed (%1)</source>
         <translation>Dokončené (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Pozastavené (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Obnovené (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2781,7 +2685,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Odstrániť torrenty</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -2806,11 +2710,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Veľkosť</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Hotovo</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2953,19 +2852,19 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Priebeh</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v2</translation>
     </message>
     <message>
         <source>Info Hash v1</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v1</translation>
     </message>
     <message>
         <source>Incomplete Save Path</source>
-        <translation type="unfinished" />
+        <translation>Cesta uloženia nekompletných</translation>
     </message>
     <message>
         <source>Popularity</source>
@@ -3110,10 +3009,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>pred %1</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Pozastavené</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Dokončené</translation>
     </message>
@@ -3179,11 +3074,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Zastavené</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Neuvedené</translation>
     </message>
 </context>
 <context>
@@ -3226,21 +3121,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>Rename</source>
         <translation>Premenovať</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Pokračovať</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Vynútiť pokračovanie</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pozastaviť</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3321,14 +3201,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>Nová kategória</translation>
     </message>
     <message>
-        <source>Location</source>
-        <translation type="vanished">Umiestnenie</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation type="vanished">Nový názov:</translation>
-    </message>
-    <message>
         <source>Set location</source>
         <translation>Nastaviť umiestnenie</translation>
     </message>
@@ -3341,16 +3213,8 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>Upraviť kategóriu</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">Uložiť do</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>Čiarkou oddelené značky:</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">Pridať značky</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3418,7 +3282,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Uložiť do:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3426,11 +3290,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Zastaviť</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>Automatický režim znamená, že niektoré vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie.</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3438,7 +3302,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nový názov:</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3446,7 +3310,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategória:</translation>
     </message>
 </context>
 <context>
@@ -3486,10 +3350,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Also permanently delete the files</source>
-        <translation type="vanished">Odstrániť aj súbory natrvalo</translation>
-    </message>
-    <message>
         <source>Remove torrent(s)</source>
         <translation>Odstrániť torrent(y)</translation>
     </message>
@@ -3499,7 +3359,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Odstrániť tracker</translation>
     </message>
 </context>
 <context>
@@ -3776,10 +3636,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>Leecheri</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Vyhľadávač</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>Seederi</translation>
     </message>
@@ -3859,14 +3715,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>Tag:</source>
         <translation>Značka:</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pozastaviť torrenty</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Obnoviť torrenty</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -4034,27 +3882,27 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Hľadanie skončené</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>Počas vyhľadávania sa vyskytla chyba...</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Zatvoriť kartu</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Hľadá sa...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>Vyhľadávanie prerušené</translation>
     </message>
     <message>
         <source>Close all tabs</source>
-        <translation type="unfinished" />
+        <translation>Zatvoriť všetky karty</translation>
     </message>
 </context>
 <context>
@@ -4168,7 +4016,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation type="unfinished" />
+        <translation>Upraviť URL kanálu...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
@@ -4370,10 +4218,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>Ak je dôležité poradie slov, použite * namiesto medzery.</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Pridať pozastavený:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
     </message>
@@ -4447,32 +4291,16 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Obnov torrenty</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Všetky (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">Bez trackeru (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Pozastaviť torrenty</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Odstrániť torrenty</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Všetky</translation>
     </message>
     <message>
         <source>Trackerless</source>
-        <translation type="unfinished" />
+        <translation>Bez trackeru</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -4480,7 +4308,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Odstrániť tracker</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -4644,15 +4472,15 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <name>Category</name>
     <message>
         <source>Unable to edit category</source>
-        <translation type="unfinished" />
+        <translation>Nemožno upraviť kategóriu</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Nemožno vytvoriť kategóriu</translation>
     </message>
     <message>
         <source>Unable to set category</source>
@@ -4663,11 +4491,11 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>Doména</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Spravovať cookies...</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4675,52 +4503,52 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Odstrániť</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>Dátum expirácie</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Hodnota</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Názov</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>Cesta</translation>
     </message>
 </context>
 <context>
     <name>confirmAutoTMMDialog</name>
     <message>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished" />
+        <translation>Povoliť automatickú správu torrentu</translation>
     </message>
     <message>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished" />
+        <translation>Naozaj chcete aktivovať automatickú správu pre vybrané torrenty? Môžu byť presunuté.</translation>
     </message>
 </context>
 <context>
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>Ste si istý, že chcete znovu skontrolovať vybrané torrenty?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation type="unfinished" />
+        <translation>Znovu skontrolovať potvrdenie</translation>
     </message>
 </context>
 <context>
     <name>SearchWidget</name>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished" />
+        <translation>Zatvoriť kartu</translation>
     </message>
 </context>
 <context>
@@ -4731,7 +4559,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Heslo</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4739,7 +4567,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Prihlasovacie meno</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4751,11 +4579,11 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Meno používateľa</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Nesprávne užívateľské meno alebo heslo.</translation>
     </message>
 </context>
 </TS>

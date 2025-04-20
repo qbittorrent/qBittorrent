@@ -28,7 +28,7 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Enhava aranĝo:</translation>
     </message>
     <message>
         <source>Original</source>
@@ -72,11 +72,11 @@
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Po unu ligilo linie (HTTP-ligiloj, Magnet-ligiloj kaj info-haketoj estas subtenitaj)</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Aldoni torent-ligiloj</translation>
     </message>
     <message>
         <source>Select .torrent files</source>
@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>Uncategorized</source>
-        <translation type="unfinished" />
+        <translation>Senkategoriaj</translation>
     </message>
 </context>
 <context>
@@ -113,20 +113,12 @@
         <translation>Forigi neuzatajn kategoriojn</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reaktivigi la torentojn</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Paŭzigi la torentojn</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Redakti kategorion...</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -150,10 +142,6 @@
     <message>
         <source>Exit qBittorrent</source>
         <translation>Ĉesigi la qBittorrent-klienton</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation type="vanished">Nur po unu ligilo por linio</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -227,10 +215,6 @@
     <message>
         <source>Save files to location:</source>
         <translation>Konservi dosierojn al la loko:</translation>
-    </message>
-    <message>
-        <source>Cookie:</source>
-        <translation type="vanished">Kuketo:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -401,11 +385,11 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation type="unfinished" />
+        <translation>Memori elekton</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Ĉu vi vere volas forigi tiujn %1 torentojn de la transmetlisto?</translation>
     </message>
     <message>
         <source>Unable to delete torrents.</source>
@@ -413,7 +397,7 @@
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>External IP: %1%2</source>
@@ -487,10 +471,6 @@
         <translation>Opcioj</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation type="vanished">Reaktivigi</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation type="unfinished" />
     </message>
@@ -507,24 +487,12 @@
         <translation>Donacu!</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation type="vanished">Reaktivigu Ĉion</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>Statistikoj</translation>
     </message>
     <message>
         <source>About</source>
         <translation>Pri</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation type="vanished">Paŭzigu</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation type="vanished">Paŭzigu Ĉion</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -648,11 +616,11 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS-legilo</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Filters Sidebar</source>
@@ -688,7 +656,7 @@
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Halti</translation>
     </message>
     <message>
         <source>Use regular expression</source>
@@ -712,7 +680,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nomo</translation>
     </message>
     <message>
         <source>Would you like to stop all torrents?</source>
@@ -754,10 +722,6 @@
         <translation>Lingvo</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation type="vanished">Fasada Lingvo:</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation type="unfinished" />
     </message>
@@ -774,16 +738,12 @@
         <translation>Torent-envicigado</translation>
     </message>
     <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation type="vanished">Aŭtomate aldoni tiujn spurilojn al novaj elŝutoj:</translation>
-    </message>
-    <message>
         <source>Web User Interface (Remote control)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>IP address:</source>
-        <translation type="unfinished" />
+        <translation>IP-adreso:</translation>
     </message>
     <message>
         <source>Server domains:</source>
@@ -1341,7 +1301,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Fontsendaj limoj</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1413,7 +1373,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1421,7 +1381,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS-legilo</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
@@ -1637,7 +1597,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>Lanĉi eksteran programon</translation>
     </message>
     <message>
         <source>Files checked</source>
@@ -1665,7 +1625,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Ekzemple: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
@@ -1685,7 +1645,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>tagoj</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1701,7 +1661,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>jaroj</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -1709,7 +1669,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>monatoj</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1817,7 +1777,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> sec</source>
-        <translation type="unfinished" />
+        <translation> sek</translation>
     </message>
     <message>
         <source>I2P outbound quantity:</source>
@@ -1929,11 +1889,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Aŭtomate</translation>
     </message>
     <message>
         <source>Use alternating row colors</source>
-        <translation type="unfinished" />
+        <translation>Uzi alternajn vicokolorojn</translation>
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
@@ -1941,7 +1901,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL:</source>
-        <translation type="unfinished" />
+        <translation>URL-adreso:</translation>
     </message>
     <message>
         <source>Transfer list</source>
@@ -1961,7 +1921,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading torrents:</source>
-        <translation type="unfinished" />
+        <translation>Elŝutante torentojn:</translation>
     </message>
     <message>
         <source>Start / stop torrent</source>
@@ -1973,7 +1933,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation type="unfinished" />
+        <translation>Finitaj torentoj:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -1985,7 +1945,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Action on double-click</source>
-        <translation type="unfinished" />
+        <translation>Duoble-klaka ago</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
@@ -2065,7 +2025,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No action</source>
-        <translation type="unfinished" />
+        <translation>Neniu ago</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
@@ -2457,11 +2417,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation type="unfinished" />
+        <translation>URL-adreso de la TTT-fonto:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Jes</translation>
     </message>
     <message>
         <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
@@ -2477,7 +2437,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ne</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -2485,7 +2445,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation type="unfinished" />
+        <translation>TTT-fonta redaktado</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2624,14 +2584,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Finite (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation type="vanished">Reaktiviĝita (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation type="vanished">Paŭzinta (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>Aktiva (0)</translation>
     </message>
@@ -2660,14 +2612,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Finite (%1)</translation>
     </message>
     <message>
-        <source>Paused (%1)</source>
-        <translation type="vanished">Paŭzinta (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation type="vanished">Reaktiviĝita (%1)</translation>
-    </message>
-    <message>
         <source>Active (%1)</source>
         <translation>Aktiva (%1)</translation>
     </message>
@@ -2681,35 +2625,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj alŝutataj (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj elŝutataj (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj elŝutataj (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj alŝutataj (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Nevivaj (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Kontrolataj (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Kontrolataj (0)</translation>
     </message>
     <message>
         <source>Moving (%1)</source>
@@ -2737,7 +2681,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Forigi torentojn</translation>
     </message>
     <message>
         <source>Start torrents</source>
@@ -2762,11 +2706,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>Grando</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation type="vanished">Finita</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2909,7 +2848,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progreso</translation>
     </message>
     <message>
         <source>Info Hash v2</source>
@@ -3066,20 +3005,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>antaŭ %1</translation>
     </message>
     <message>
-        <source>Paused</source>
-        <translation type="vanished">Paŭzinta</translation>
-    </message>
-    <message>
         <source>Completed</source>
         <translation>Finita</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Translokigata</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[F] Fontsendata</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -3135,11 +3070,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stopped</source>
-        <translation type="unfinished" />
+        <translation>Haltinta</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -3182,21 +3117,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Rename</source>
         <translation>Renomi...</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Reaktivigi</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Devigi reaktivigado</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Paŭzigi</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3289,16 +3209,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Save path</source>
-        <translation type="vanished">Konserva dosierindiko</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation type="vanished">Aldoni Etikedojn</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -3326,7 +3238,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Aldoni...</translation>
     </message>
     <message>
         <source>Info hash v1</source>
@@ -3354,7 +3266,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Alinomado</translation>
     </message>
     <message>
         <source>Comment</source>
@@ -3366,7 +3278,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Konserva dosierindiko:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -3374,11 +3286,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Halti</translation>
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished" />
+        <translation>La signifo de aŭtomata modo estas diversaj torentaj ecoj(ek. konserva indiko) decidos per la elektita kategorio.</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3386,7 +3298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nova nomo:</translation>
     </message>
     <message>
         <source>Add tags</source>
@@ -3394,7 +3306,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategorio:</translation>
     </message>
 </context>
 <context>
@@ -3443,14 +3355,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Forigi la spurilon</translation>
     </message>
 </context>
 <context>
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation type="unfinished" />
+        <translation>Elŝuti el URL-oj</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3619,7 +3531,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Averto</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -3720,10 +3632,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Ricevantoj</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation type="vanished">Serĉilo</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>Fontoj</translation>
     </message>
@@ -3798,19 +3706,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Aldoni etikedon...</translation>
     </message>
     <message>
         <source>Tag:</source>
         <translation>Etikedo</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Paŭzigi la torentojn</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reaktivigi la torentojn</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3845,7 +3745,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>Senetikedaj</translation>
     </message>
 </context>
 <context>
@@ -3978,11 +3878,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search has finished</source>
-        <translation type="unfinished" />
+        <translation>Serĉo finiĝis</translation>
     </message>
     <message>
         <source>An error occurred during search...</source>
-        <translation type="unfinished" />
+        <translation>Eraro okazis dum la serĉo...</translation>
     </message>
     <message>
         <source>Close tab</source>
@@ -3990,11 +3890,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Searching...</source>
-        <translation type="unfinished" />
+        <translation>Serĉante...</translation>
     </message>
     <message>
         <source>Search aborted</source>
-        <translation type="unfinished" />
+        <translation>Serĉo ĉesiĝis</translation>
     </message>
     <message>
         <source>Close all tabs</source>
@@ -4005,7 +3905,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Alinomado</translation>
     </message>
     <message>
         <source>New name:</source>
@@ -4314,10 +4214,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation type="vanished">Aldoni Paŭzinte:</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>Bonvolu tajpi la nomon de la nova elŝutregulo.</translation>
     </message>
@@ -4390,28 +4286,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Resume torrents</source>
-        <translation type="vanished">Reaktivigi la torentojn</translation>
-    </message>
-    <message>
-        <source>All (%1)</source>
-        <translation type="vanished">Ĉio (%1)</translation>
-    </message>
-    <message>
-        <source>Trackerless (%1)</source>
-        <translation type="vanished">Senspurila (%1)</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation type="vanished">Paŭzigi la torentojn</translation>
-    </message>
-    <message>
         <source>Remove torrents</source>
         <translation>Forigi torentojn</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Ĉio</translation>
     </message>
     <message>
         <source>Trackerless</source>
@@ -4423,7 +4303,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Forigi la spurilon</translation>
     </message>
     <message>
         <source>Stop torrents</source>
@@ -4485,7 +4365,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Averto</translation>
     </message>
     <message>
         <source>Information Messages</source>
@@ -4591,7 +4471,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>Bone</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -4606,11 +4486,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>CookiesDialog</name>
     <message>
         <source>Domain</source>
-        <translation type="unfinished" />
+        <translation>Domajno</translation>
     </message>
     <message>
         <source>Manage Cookies</source>
-        <translation type="unfinished" />
+        <translation>Administri kuketojn</translation>
     </message>
     <message>
         <source>Add Cookie</source>
@@ -4618,23 +4498,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Forigi</translation>
     </message>
     <message>
         <source>Expiration Date</source>
-        <translation type="unfinished" />
+        <translation>Eksvalidiĝa dato</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished" />
+        <translation>Valoro</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nomo</translation>
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished" />
+        <translation>Vojo</translation>
     </message>
 </context>
 <context>
@@ -4652,7 +4532,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation type="unfinished" />
+        <translation>Ĉu vi certas, ke vi volas rekontroli la elektita(j)n torento(j)n?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>
@@ -4674,7 +4554,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Pasvorto</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
@@ -4682,7 +4562,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Ensaluti</translation>
     </message>
     <message>
         <source>Server response:</source>
@@ -4698,7 +4578,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Malvalida uzantnomo aŭ pasvorto.</translation>
     </message>
 </context>
 </TS>
