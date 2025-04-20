@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Авторські права %1 2006-2024 The qBittorrent project</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Авторські права %1 2006-2025 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -1533,7 +1533,7 @@
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
  Reason: disk is full.</comment>
-        <translation>Сталася помилка введення-виведення для торрента «%1». 
+        <translation>Сталася помилка введення-виведення для торрента «%1».
  Причина: %2</translation>
     </message>
     <message>
@@ -4253,14 +4253,14 @@ You are already using the latest version.</source>
         <location filename="../gui/mainwindow.cpp" line="1618"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: %2.
 Do you want to install a newer version now?</source>
-        <translation>Ваша версія Python (%1) застаріла. Мінімальна вимога: %2 
+        <translation>Ваша версія Python (%1) застаріла. Мінімальна вимога: %2
 Ви бажаєте встановити більш нову версію зараз?</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1625"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
-        <translation>Ваша версія Python (%1) застаріла. Будь ласка, оновіться до останньої версії, щоб пошукові системи працювали. 
+        <translation>Ваша версія Python (%1) застаріла. Будь ласка, оновіться до останньої версії, щоб пошукові системи працювали.
 Мінімально необхідна версія: %2.</translation>
     </message>
     <message>

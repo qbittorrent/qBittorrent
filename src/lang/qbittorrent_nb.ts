@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Opphavsrett %1 2006-2024 qBittorrent-prosjektet</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Opphavsrett %1 2006-2025 qBittorrent-prosjektet</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -4260,7 +4260,7 @@ Vil du installere en nyere versjon nå?</translation>
         <location filename="../gui/mainwindow.cpp" line="1625"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
-        <translation>Din Python-versjon (%1) er utdatert. Oppgrader til siste versjon for at søkemotorene skal virke. 
+        <translation>Din Python-versjon (%1) er utdatert. Oppgrader til siste versjon for at søkemotorene skal virke.
 Minimumskrav: %2.</translation>
     </message>
     <message>

@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2024 The qBittorrent project</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Copyright %1 2006-2025 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -114,7 +114,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="108"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Il database gratuito da IP a Country Lite di DB-IP viene usato per determinare i paesi dei peer. 
+        <translation>Il database gratuito da IP a Country Lite di DB-IP viene usato per determinare i paesi dei peer.
 Il database è concesso in licenza con la licenza internazionale Creative Commons Attribution 4.0.</translation>
     </message>
 </context>
@@ -480,19 +480,19 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="63"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
-        <translation>Download torrent... 
+        <translation>Download torrent...
 Sorgente: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="157"/>
         <source>Failed to add torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation>Impossibile aggiungere il torrent. 
+        <translation>Impossibile aggiungere il torrent.
 Sorgente: &quot;%1&quot;
 Motivo: &quot;%2&quot;</translation>
     </message>
     <message>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Rilevato un tentativo di aggiungere un torrent duplicato. 
+        <translation type="vanished">Rilevato un tentativo di aggiungere un torrent duplicato.
 Sorgente: %1
 Torrent esistente: %2
 Risultato: %3</translation>
@@ -1428,7 +1428,7 @@ Risultato: %3</translation>
     <message>
         <location filename="../app/application.cpp" line="321"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
-        <translation>Rilevato flag della riga di comando ridondante: &quot;%1&quot;. 
+        <translation>Rilevato flag della riga di comando ridondante: &quot;%1&quot;.
 La modalità portatile implica una relativa ripresa rapida.</translation>
     </message>
     <message>
@@ -1487,7 +1487,7 @@ Motivo: %2.</translation>
     <message>
         <location filename="../app/application.cpp" line="985"/>
         <source>The WebUI administrator password was not set. A temporary password is provided for this session: %1</source>
-        <translation>La password dell&apos;amministratore WebUI non è stata impostata. 
+        <translation>La password dell&apos;amministratore WebUI non è stata impostata.
 Per questa sessione viene fornita una password temporanea: %1</translation>
     </message>
     <message>
@@ -1498,7 +1498,7 @@ Per questa sessione viene fornita una password temporanea: %1</translation>
     <message>
         <location filename="../app/application.cpp" line="992"/>
         <source>The WebUI is disabled! To enable the WebUI, edit the config file manually.</source>
-        <translation>L&apos;interfaccia utente Web è disabilitata! 
+        <translation>L&apos;interfaccia utente Web è disabilitata!
 Per abilitare l&apos;interfaccia utente Web, modificare manualmente il file di configurazione.</translation>
     </message>
     <message>
@@ -1509,8 +1509,8 @@ Per abilitare l&apos;interfaccia utente Web, modificare manualmente il file di c
     <message>
         <location filename="../app/application.cpp" line="603"/>
         <source>Failed to run external program. Torrent: &quot;%1&quot;. Command: `%2`</source>
-        <translation>Impossibile eseguire il programma esterno. 
-Torrent: &quot;%1&quot;. 
+        <translation>Impossibile eseguire il programma esterno.
+Torrent: &quot;%1&quot;.
 Comando: `%2`</translation>
     </message>
     <message>
@@ -1615,7 +1615,7 @@ Motivo: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="1070"/>
         <source>The torrent &apos;%1&apos; contains .torrent files, do you want to proceed with their downloads?</source>
-        <translation>Il torrent &apos;%1&apos; contiene file .torrent. 
+        <translation>Il torrent &apos;%1&apos; contiene file .torrent.
 Vuoi procedere con il loro download?</translation>
     </message>
     <message>
@@ -1626,24 +1626,24 @@ Vuoi procedere con il loro download?</translation>
     <message>
         <location filename="../app/application.cpp" line="1105"/>
         <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
-        <translation>Download ricorsivo di file .torrent all&apos;interno di torrent. 
-Sorgente torrent: &quot;%1&quot; 
+        <translation>Download ricorsivo di file .torrent all&apos;interno di torrent.
+Sorgente torrent: &quot;%1&quot;
 File: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1211"/>
         <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
-        <translation>Impossibile impostare il limite di uso della memoria fisica (RAM). 
-Codice di errore: %1. 
+        <translation>Impossibile impostare il limite di uso della memoria fisica (RAM).
+Codice di errore: %1.
 Messaggio di errore: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1246"/>
         <source>Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: &quot;%4&quot;</source>
-        <translation>Impossibile impostare il limite fisso di uso della memoria fisica (RAM). 
-Dimensione richiesta: %1. 
-Limite fisso del sistema: %2. 
-Codice errore: %3. 
+        <translation>Impossibile impostare il limite fisso di uso della memoria fisica (RAM).
+Dimensione richiesta: %1.
+Limite fisso del sistema: %2.
+Codice errore: %3.
 Messaggio di errore: &quot;%4&quot;</translation>
     </message>
     <message>
@@ -1728,13 +1728,13 @@ Messaggio di errore: &quot;%4&quot;</translation>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="28"/>
         <source>Auto downloading of RSS torrents is currently disabled. You can enable it in application settings.</source>
-        <translation>Il download automatico dei torrent RSS è attualmente disabilitato. 
+        <translation>Il download automatico dei torrent RSS è attualmente disabilitato.
 Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="68"/>
         <source>Rename selected rule. You can also use the F2 hotkey to rename.</source>
-        <translation>Rinomina la regola selezionata. 
+        <translation>Rinomina la regola selezionata.
 Per rinominare puoi anche usare il tasto di scelta rapida F2.</translation>
     </message>
     <message>
@@ -2137,13 +2137,13 @@ Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data suppo
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
         <source>Couldn&apos;t save torrent metadata to &apos;%1&apos;. Error: %2.</source>
-        <translation>Impossibile salvare i metadati del torrent in &apos;%1&apos;. 
+        <translation>Impossibile salvare i metadati del torrent in &apos;%1&apos;.
 Errore: %2.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="453"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>Impossibile salvare i dati di ripristino del torrent in &apos;%1&apos;. 
+        <translation>Impossibile salvare i dati di ripristino del torrent in &apos;%1&apos;.
 Errore: %2.</translation>
     </message>
     <message>
@@ -2165,7 +2165,7 @@ Errore: %2.</translation>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="478"/>
         <source>Couldn&apos;t save data to &apos;%1&apos;. Error: %2</source>
-        <translation>Impossibile salvare i dati in &apos;%1&apos;. 
+        <translation>Impossibile salvare i dati in &apos;%1&apos;.
 Errore: %2</translation>
     </message>
 </context>
@@ -2179,7 +2179,7 @@ Errore: %2</translation>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="323"/>
         <source>Couldn&apos;t load resume data of torrent &apos;%1&apos;. Error: %2</source>
-        <translation>Impossibile caricare dati ripresa torrent &apos;%1&apos;. 
+        <translation>Impossibile caricare dati ripresa torrent &apos;%1&apos;.
 Errore: %2.</translation>
     </message>
     <message>
@@ -2229,7 +2229,7 @@ Errore: &apos;%1&apos;.</translation>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>
         <source>Couldn&apos;t begin transaction. Error: %1</source>
-        <translation>Impossibile iniziare la transazione. 
+        <translation>Impossibile iniziare la transazione.
 Errore: %1</translation>
     </message>
 </context>
@@ -2238,13 +2238,13 @@ Errore: %1</translation>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="876"/>
         <source>Couldn&apos;t save torrent metadata. Error: %1.</source>
-        <translation>Impossibile salvare i metadati del torrent. 
+        <translation>Impossibile salvare i metadati del torrent.
 Errore: %1.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="931"/>
         <source>Couldn&apos;t store resume data for torrent &apos;%1&apos;. Error: %2</source>
-        <translation>Impossibile salvare dati ripresa torrent &apos;%1&apos;. 
+        <translation>Impossibile salvare dati ripresa torrent &apos;%1&apos;.
 Errore: %2.</translation>
     </message>
     <message>
@@ -2306,53 +2306,53 @@ Errore: %2.</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1437"/>
         <source>Failed to resume torrent. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation>Impossibile riprendere il torrent. 
+        <translation>Impossibile riprendere il torrent.
 Torrent: &quot;%1&quot;. Motivo: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1491"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1501"/>
         <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
-        <translation>Impossibile riprendere il torrent: è stato rilevato un ID torrent incoerente. 
+        <translation>Impossibile riprendere il torrent: è stato rilevato un ID torrent incoerente.
 Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1535"/>
         <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation>Rilevati dati incoerenti: la categoria non è presente nel file di configurazione. 
-La categoria verrà ripristinata ma le sue impostazioni verranno ripristinate ai valori predefiniti. 
+        <translation>Rilevati dati incoerenti: la categoria non è presente nel file di configurazione.
+La categoria verrà ripristinata ma le sue impostazioni verranno ripristinate ai valori predefiniti.
 Torrent: &quot;%1&quot;. categoria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1542"/>
         <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation>Rilevati dati incoerenti: categoria non valida. 
+        <translation>Rilevati dati incoerenti: categoria non valida.
 Torrent: &quot;%1&quot;. categoria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1557"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation>Rilevata mancata corrispondenza tra i percorsi di salvataggio della categoria recuperata e il percorso di salvataggio attuale del torrent. 
-Il torrent è ora passato alla modalità manuale. 
+        <translation>Rilevata mancata corrispondenza tra i percorsi di salvataggio della categoria recuperata e il percorso di salvataggio attuale del torrent.
+Il torrent è ora passato alla modalità manuale.
 Torrent: &quot;%1&quot;. categoria: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1571"/>
         <source>Detected inconsistent data: tag is missing from the configuration file. Tag will be recovered. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
-        <translation>Rilevati dati incoerenti: tag mancante nel file di configurazione. 
-Il tag verrà recuperato. 
+        <translation>Rilevati dati incoerenti: tag mancante nel file di configurazione.
+Il tag verrà recuperato.
 Torrent: &quot;%1&quot;. etichetta: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1577"/>
         <source>Detected inconsistent data: invalid tag. Torrent: &quot;%1&quot;. Tag: &quot;%2&quot;</source>
-        <translation>Rilevati dati incoerenti: tag non valido. 
+        <translation>Rilevati dati incoerenti: tag non valido.
 Torrent: &quot;%1&quot;. etichetta: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1652"/>
         <source>System wake-up event detected. Re-announcing to all the trackers...</source>
-        <translation>Rilevato evento di riattivazione del sistema. 
+        <translation>Rilevato evento di riattivazione del sistema.
 Nuovo annuncio a tutti i tracker...</translation>
     </message>
     <message>
@@ -2391,7 +2391,7 @@ Nuovo annuncio a tutti i tracker...</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2171"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
-        <translation>Impossibile trovare la GUID dell&apos;interfaccia di rete. 
+        <translation>Impossibile trovare la GUID dell&apos;interfaccia di rete.
 Interfaccia: &quot;%1&quot;</translation>
     </message>
     <message>
@@ -2427,13 +2427,13 @@ Interfaccia: &quot;%1&quot;</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5752"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
-        <translation>Impossibile caricare il torrent. 
+        <translation>Impossibile caricare il torrent.
 Motivo: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6423"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
-        <translation>Errore I2P. 
+        <translation>Errore I2P.
 Messaggio: &quot;%1&quot;.</translation>
     </message>
     <message>
@@ -2488,8 +2488,8 @@ Messaggio: &quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Rilevato un tentativo di aggiungere un torrent duplicato. 
-Torrente esistente: %1. 
+        <translation type="vanished">Rilevato un tentativo di aggiungere un torrent duplicato.
+Torrente esistente: %1.
 Risultato: %2</translation>
     </message>
     <message>
@@ -2515,34 +2515,34 @@ Risultato: %2</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3182"/>
         <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation>Impossibile esportare il torrent. 
-Torrent: &quot;%1&quot;. 
-Destinazione: &quot;%2&quot;. 
+        <translation>Impossibile esportare il torrent.
+Torrent: &quot;%1&quot;.
+Destinazione: &quot;%2&quot;.
 Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3225"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
-        <translation>Salvataggio dei dati di ripristino interrotto. 
+        <translation>Salvataggio dei dati di ripristino interrotto.
 Numero di torrent in sospeso: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3361"/>
         <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
-        <translation>L&apos;indirizzo di rete configurato non è valido. 
+        <translation>L&apos;indirizzo di rete configurato non è valido.
 Indirizzo &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3402"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3436"/>
         <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
-        <translation>Impossibile trovare l&apos;indirizzo di rete configurato su cui ascoltare. 
+        <translation>Impossibile trovare l&apos;indirizzo di rete configurato su cui ascoltare.
 Indirizzo &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3415"/>
         <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
-        <translation>L&apos;interfaccia di rete configurata non è valida. 
+        <translation>L&apos;interfaccia di rete configurata non è valida.
 Interfaccia: &quot;%1&quot;</translation>
     </message>
     <message>
@@ -2559,35 +2559,35 @@ Motivo: %1</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="4169"/>
         <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
-        <translation>Indirizzo IP non valido rifiutato durante l&apos;applicazione dell&apos;elenco di indirizzi IP vietati. 
+        <translation>Indirizzo IP non valido rifiutato durante l&apos;applicazione dell&apos;elenco di indirizzi IP vietati.
 IP: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5266"/>
         <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
-        <translation>Aggiunto tracker a torrent. 
-Torrent: &quot;%1&quot; 
+        <translation>Aggiunto tracker a torrent.
+Torrent: &quot;%1&quot;
 Tracker: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5273"/>
         <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
-        <translation>Tracker rimosso dal torrent. 
-Torrent: &quot;%1&quot; 
+        <translation>Tracker rimosso dal torrent.
+Torrent: &quot;%1&quot;
 Tracker: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5285"/>
         <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
-        <translation>Aggiunto seed URL al torrent. 
-Torrent: &quot;%1&quot; 
+        <translation>Aggiunto seed URL al torrent.
+Torrent: &quot;%1&quot;
 URL: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5291"/>
         <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
-        <translation>Seed URL rimosso dal torrent. 
-Torrent: &quot;%1&quot; 
+        <translation>Seed URL rimosso dal torrent.
+Torrent: &quot;%1&quot;
 URL: &quot;%2&quot;</translation>
     </message>
     <message>
@@ -2598,21 +2598,21 @@ URL: &quot;%2&quot;</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5320"/>
         <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
-        <translation>Torrent ripreso. 
+        <translation>Torrent ripreso.
 Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5471"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
-        <translation>Download del torrent completato. 
+        <translation>Download del torrent completato.
 Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5385"/>
         <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
-        <translation>Spostamento torrent annullato. 
-Torrent: &quot;%1&quot; 
-Sorgente: &quot;%2&quot; 
+        <translation>Spostamento torrent annullato.
+Torrent: &quot;%1&quot;
+Sorgente: &quot;%2&quot;
 Destinazione: &quot;%3&quot;</translation>
     </message>
     <message>
@@ -2635,54 +2635,54 @@ Destinazione: &quot;%3&quot;</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5396"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
-        <translation>Impossibile accodare lo spostamento del torrent. 
-Torrent: &quot;%1&quot; 
-Sorgente: &quot;%2&quot; 
-Destinazione: &quot;%3&quot; 
+        <translation>Impossibile accodare lo spostamento del torrent.
+Torrent: &quot;%1&quot;
+Sorgente: &quot;%2&quot;
+Destinazione: &quot;%3&quot;
 Motivo: il torrent si sta attualmente spostando verso la destinazione</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5405"/>
         <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
-        <translation>Impossibile accodare lo spostamento del torrent. 
-Torrent: &quot;%1&quot; 
+        <translation>Impossibile accodare lo spostamento del torrent.
+Torrent: &quot;%1&quot;
 Sorgente: &quot;%2&quot;
-Destinazione: &quot;%3&quot; 
+Destinazione: &quot;%3&quot;
 Motivo: entrambi i percorsi puntano alla stessa posizione</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5413"/>
         <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
-        <translation>Spostamento torrent in coda. 
-Torrent: &quot;%1&quot; 
-Sorgente: &quot;%2&quot; 
+        <translation>Spostamento torrent in coda.
+Torrent: &quot;%1&quot;
+Sorgente: &quot;%2&quot;
 Destinazione: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5430"/>
         <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
-        <translation>Avvio spostamento torrent. 
-Torrent: &quot;%1&quot; 
+        <translation>Avvio spostamento torrent.
+Torrent: &quot;%1&quot;
 Destinazione: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5505"/>
         <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Impossibile salvare la configurazione delle categorie. 
-File: &quot;%1&quot; 
+        <translation>Impossibile salvare la configurazione delle categorie.
+File: &quot;%1&quot;
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5552"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Impossibile analizzare la configurazione delle categorie. 
-File: &quot;%1&quot; 
+        <translation>Impossibile analizzare la configurazione delle categorie.
+File: &quot;%1&quot;
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5679"/>
         <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
-        <translation>Analisi completata file del filtro IP. 
+        <translation>Analisi completata file del filtro IP.
 Numero di regole applicate: %1</translation>
     </message>
     <message>
@@ -2693,47 +2693,47 @@ Numero di regole applicate: %1</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5991"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
-        <translation>Torrente ripristinato. 
+        <translation>Torrente ripristinato.
 Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5995"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
-        <translation>Aggiunto nuovo torrent. 
+        <translation>Aggiunto nuovo torrent.
 Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6001"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Errore torrent. 
-Torrent: &quot;%1&quot; 
+        <translation>Errore torrent.
+Torrent: &quot;%1&quot;
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6049"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
-        <translation>Torrent privo dei parametri SSL. 
-Torrent: &quot;%1&quot;. 
+        <translation>Torrent privo dei parametri SSL.
+Torrent: &quot;%1&quot;.
 Messaggio: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6099"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation>Avviso di errore del file. 
-Torrent: &quot;%1&quot; 
-File: &quot;%2&quot; 
+        <translation>Avviso di errore del file.
+Torrent: &quot;%1&quot;
+File: &quot;%2&quot;
 Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6110"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
-        <translation>Mappatura porta UPnP/NAT-PMP non riuscita. 
+        <translation>Mappatura porta UPnP/NAT-PMP non riuscita.
 Messaggio: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6116"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
-        <translation>Mappatura porta UPnP/NAT-PMP riuscita. 
+        <translation>Mappatura porta UPnP/NAT-PMP riuscita.
 Messaggio: &quot;%1&quot;</translation>
     </message>
     <message>
@@ -2765,14 +2765,14 @@ Errore: %3.</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6215"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
-        <translation>La sessione BitTorrent ha riscontrato un errore grave. 
+        <translation>La sessione BitTorrent ha riscontrato un errore grave.
 Motivo: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6413"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
-        <translation>Errore proxy SOCKS5. 
-Indirizzo &quot;%1&quot;. 
+        <translation>Errore proxy SOCKS5.
+Indirizzo &quot;%1&quot;.
 Messaggio: &quot;%2&quot;.</translation>
     </message>
     <message>
@@ -2789,8 +2789,8 @@ Messaggio: &quot;%2&quot;.</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5559"/>
         <source>Failed to load Categories configuration. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
-        <translation>Impossibile caricare la configurazione delle categorie. 
-File: &quot;%1&quot;. 
+        <translation>Impossibile caricare la configurazione delle categorie.
+File: &quot;%1&quot;.
 Errore: &quot;formato dati non valido&quot;</translation>
     </message>
     <message>
@@ -2808,24 +2808,24 @@ Errore: &quot;formato dati non valido&quot;</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6170"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
-        <translation>Messaggio di errore ricevuto dal seed dell&apos;URL. 
-Torrent: &quot;%1&quot; 
-URL: &quot;%2&quot; 
+        <translation>Messaggio di errore ricevuto dal seed dell&apos;URL.
+Torrent: &quot;%1&quot;
+URL: &quot;%2&quot;
 Messaggio: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6179"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
-        <translation>Ascolto riuscito su IP. 
-IP: &quot;%1&quot; 
+        <translation>Ascolto riuscito su IP.
+IP: &quot;%1&quot;
 Porta: &quot;%2/%3&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6186"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
-        <translation>Impossibile ascoltare su IP. 
-IP: &quot;%1&quot; 
-Porta: &quot;%2/%3&quot; 
+        <translation>Impossibile ascoltare su IP.
+IP: &quot;%1&quot;
+Porta: &quot;%2/%3&quot;
 Motivo: &quot;%4&quot;</translation>
     </message>
     <message>
@@ -2836,24 +2836,24 @@ Motivo: &quot;%4&quot;</translation>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6323"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
-        <translation>Errore: la coda degli avvisi interna è piena e gli avvisi vengono eliminati, potresti notare un peggioramento delle prestazioni. 
-Tipo di avviso eliminato: &quot;%1&quot; 
+        <translation>Errore: la coda degli avvisi interna è piena e gli avvisi vengono eliminati, potresti notare un peggioramento delle prestazioni.
+Tipo di avviso eliminato: &quot;%1&quot;
 Messaggio: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6345"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
-        <translation>Spostamento torrent completato. 
-Torrent: &quot;%1&quot; 
+        <translation>Spostamento torrent completato.
+Torrent: &quot;%1&quot;
 Destinazione: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6368"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
-        <translation>Impossibile spostare il torrent. 
-Torrent: &quot;%1&quot; 
-Sorgente: &quot;%2&quot; 
-Destinazione: &quot;%3&quot; 
+        <translation>Impossibile spostare il torrent.
+Torrent: &quot;%1&quot;
+Sorgente: &quot;%2&quot;
+Destinazione: &quot;%3&quot;
 Motivo: &quot;%4&quot;</translation>
     </message>
 </context>
@@ -2876,7 +2876,7 @@ Motivo: &quot;%4&quot;</translation>
         <location filename="../base/bittorrent/torrentcreator.cpp" line="249"/>
         <location filename="../base/bittorrent/torrentcreator.cpp" line="253"/>
         <source>Create new torrent file failed. Reason: %1.</source>
-        <translation>Impossibile creare un nuovo file torrent. 
+        <translation>Impossibile creare un nuovo file torrent.
 Motivo: %1.</translation>
     </message>
 </context>
@@ -2895,8 +2895,8 @@ Motivo: %1.</translation>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="894"/>
         <source>Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.</source>
-        <translation>Rilevati dati imprevisti. 
-Torrent: %1. 
+        <translation>Rilevati dati imprevisti.
+Torrent: %1.
 Dati: total_wanted=%2 total_wanted_done=%3.</translation>
     </message>
     <message>
@@ -2922,14 +2922,14 @@ Dati: total_wanted=%2 total_wanted_done=%3.</translation>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1925"/>
         <source>Failed to reload torrent. Torrent: %1. Reason: %2</source>
-        <translation>Impossibile ricaricare il torrent. 
-Torrente: %1. 
+        <translation>Impossibile ricaricare il torrent.
+Torrente: %1.
 Motivo: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2278"/>
         <source>Generate resume data failed. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation>Generazione dei dati per la ripresa del download non riuscita. 
+        <translation>Generazione dei dati per la ripresa del download non riuscita.
 Torrent: &quot;%1&quot;. Motivo: &quot;%2&quot;</translation>
     </message>
     <message>
@@ -2950,7 +2950,7 @@ Torrent: &quot;%1&quot;. Motivo: &quot;%2&quot;</translation>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2438"/>
         <source>Performance alert: %1. More info: %2</source>
-        <translation>Avviso sul rendimento: %1. 
+        <translation>Avviso sul rendimento: %1.
 Ulteriori informazioni: %2.</translation>
     </message>
 </context>
@@ -3124,7 +3124,7 @@ Ulteriori informazioni: %2.</translation>
     <message>
         <location filename="../app/cmdoptions.cpp" line="531"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
-        <translation>Assegna torrent a categoria. 
+        <translation>Assegna torrent a categoria.
 Se la categoria non esiste, verrà creata.</translation>
     </message>
     <message>
@@ -3145,8 +3145,8 @@ Se la categoria non esiste, verrà creata.</translation>
     <message>
         <location filename="../app/cmdoptions.cpp" line="541"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
-        <translation>I valori delle opzioni possono essere passati tramite variabili d&apos;ambiente. Per l&apos;opzione chiamata &apos;parameter-name&apos;, la variable d&apos;ambiente è &apos;QBT_PARAMETER_NAME&apos; (tutte maiuscole, &apos;-&apos; sostituito da &apos;_&apos;). 
-Per passare valori flag, imposta la variabile a &apos;1&apos; o &apos;TRUE&apos;. 
+        <translation>I valori delle opzioni possono essere passati tramite variabili d&apos;ambiente. Per l&apos;opzione chiamata &apos;parameter-name&apos;, la variable d&apos;ambiente è &apos;QBT_PARAMETER_NAME&apos; (tutte maiuscole, &apos;-&apos; sostituito da &apos;_&apos;).
+Per passare valori flag, imposta la variabile a &apos;1&apos; o &apos;TRUE&apos;.
 Per esempio, per disabilitare la schermata d&apos;avvio: </translation>
     </message>
     <message>
@@ -3546,7 +3546,7 @@ Per esempio, per disabilitare la schermata d&apos;avvio: </translation>
     <message>
         <location filename="../gui/guiaddtorrentmanager.cpp" line="110"/>
         <source>Downloading torrent... Source: &quot;%1&quot;</source>
-        <translation>Download torrent... 
+        <translation>Download torrent...
 Sorgente: &quot;%1&quot;</translation>
     </message>
     <message>
@@ -3562,7 +3562,7 @@ Sorgente: &quot;%1&quot;</translation>
     <message>
         <location filename="../gui/guiaddtorrentmanager.cpp" line="216"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
-        <translation>Il torrent &apos;%1&apos; è già nell&apos;elenco dei trasferimenti. 
+        <translation>Il torrent &apos;%1&apos; è già nell&apos;elenco dei trasferimenti.
 Vuoi unire i tracker da una nuova fonte?</translation>
     </message>
 </context>
@@ -3610,19 +3610,19 @@ Vuoi unire i tracker da una nuova fonte?</translation>
     <message>
         <location filename="../base/http/connection.cpp" line="92"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
-        <translation>La dimensione della richiesta HTTP supera il limite, chiusura socket. 
+        <translation>La dimensione della richiesta HTTP supera il limite, chiusura socket.
 Limite: %1, IP: %2</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="106"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
-        <translation>Metodo di richiesta Http errato, chiusura socket. 
+        <translation>Metodo di richiesta Http errato, chiusura socket.
 IP: %1. Metodo: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="119"/>
         <source>Bad Http request, closing socket. IP: %1</source>
-        <translation>Richiesta HTTP errata, chiusura socket. 
+        <translation>Richiesta HTTP errata, chiusura socket.
 IP: %1</translation>
     </message>
 </context>
@@ -3700,15 +3700,15 @@ Interfaccia: %1</translation>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Errore gestione alimentazione. 
-Azione: %1. 
+        <translation type="unfinished">Errore gestione alimentazione.
+Azione: %1.
 Errore: %2.</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Errore imprevisto gestione alimentazione. 
-Stato: %1. 
+        <translation type="unfinished">Errore imprevisto gestione alimentazione.
+Stato: %1.
 Errore: %2</translation>
     </message>
 </context>
@@ -3731,7 +3731,7 @@ Errore: %2</translation>
     <message>
         <location filename="../app/legalnotice.cpp" line="51"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
-        <translation>qBittorrent è un programma di condivisione file. 
+        <translation>qBittorrent è un programma di condivisione file.
 Quando si esegue un torrent, i suoi dati saranno resi disponibili agli altri per mezzo dell&apos;upload.
 Ogni contenuto che tu condividi è una tua responsabilità.</translation>
     </message>
@@ -3757,7 +3757,7 @@ Ogni contenuto che tu condividi è una tua responsabilità.</translation>
         <location filename="../gui/log/logmodel.cpp" line="198"/>
         <source>%1 was blocked. Reason: %2.</source>
         <comment>0.0.0.0 was blocked. Reason: reason for blocking.</comment>
-        <translation>%1 è stato bloccato. 
+        <translation>%1 è stato bloccato.
 Motivo: %2.</translation>
     </message>
     <message>
@@ -3820,15 +3820,15 @@ Motivo: %2.</translation>
     <message>
         <location filename="../app/main.cpp" line="305"/>
         <source>Found unexpected qBittorrent instance. Exiting this instance. Current process ID: %1.</source>
-        <translation>Trovata istanza qBittorrent inaspettata.  
-Uscita da questa istanza.  
+        <translation>Trovata istanza qBittorrent inaspettata.
+Uscita da questa istanza.
 ID processo corrente: %1.</translation>
     </message>
     <message>
         <location filename="../app/main.cpp" line="314"/>
         <source>Error when daemonizing. Reason: &quot;%1&quot;. Error code: %2.</source>
-        <translation>Errore durante la demonizzazione. 
-Motivo: &apos;%1&apos;. 
+        <translation>Errore durante la demonizzazione.
+Motivo: &apos;%1&apos;.
 Codice errore: %2.</translation>
     </message>
 </context>
@@ -4310,15 +4310,15 @@ Codice errore: %2.</translation>
         <location filename="../gui/mainwindow.cpp" line="1965"/>
         <source>Python installer could not be downloaded. Error: %1.
 Please install it manually.</source>
-        <translation>Impossibile scaricare il programma di installazione di Python. 
+        <translation>Impossibile scaricare il programma di installazione di Python.
 Errore: %1.
 Scarica il programma di installazione manualmente.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1973"/>
         <source>Rename Python installer failed. Source: &quot;%1&quot;. Destination: &quot;%2&quot;.</source>
-        <translation>Rinomina del programma di installazione di Python non riuscita. 
-Sorgente: &quot;%1&quot;. 
+        <translation>Rinomina del programma di installazione di Python non riuscita.
+Sorgente: &quot;%1&quot;.
 Destinazione: &quot;%2&quot;.</translation>
     </message>
     <message>
@@ -4414,7 +4414,7 @@ Vuoi installare una versione più recente adesso?</translation>
         <location filename="../gui/mainwindow.cpp" line="1625"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
-        <translation>La versione Python (%1) è obsoleta. 
+        <translation>La versione Python (%1) è obsoleta.
 Per far funzionare i motori di ricerca aggiorna alla versione più recente.
 Requisito minimo: v. %2.</translation>
     </message>
@@ -4447,17 +4447,17 @@ File: %1.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1931"/>
         <source>Failed MD5 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation>Controllo hash MD5 programma installazione Python non riuscito. 
-File: &quot;%1&quot;. 
-Hash risultato: &quot;%2&quot;. 
+        <translation>Controllo hash MD5 programma installazione Python non riuscito.
+File: &quot;%1&quot;.
+Hash risultato: &quot;%2&quot;.
 Hash previsto: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1943"/>
         <source>Failed SHA3-512 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
         <translation>Controllo hash SHA3-512 programma installazione Python non risucito.
-File: &quot;%1&quot;. 
-Hash risultato: &quot;%2&quot;. 
+File: &quot;%1&quot;.
+Hash risultato: &quot;%2&quot;.
 Hash previsto: &quot;%3&quot;.</translation>
     </message>
     <message>
@@ -4753,14 +4753,14 @@ Hash previsto: &quot;%3&quot;.</translation>
         <location filename="../base/net/geoipmanager.cpp" line="96"/>
         <location filename="../base/net/geoipmanager.cpp" line="451"/>
         <source>IP geolocation database loaded. Type: %1. Build time: %2.</source>
-        <translation>Database geolocalizzazione IP caricato. 
+        <translation>Database geolocalizzazione IP caricato.
 Tipo: %1 - Data build: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="102"/>
         <location filename="../base/net/geoipmanager.cpp" line="477"/>
         <source>Couldn&apos;t load IP geolocation database. Reason: %1</source>
-        <translation>Impossibile caricare database geolocalizzazione IP. 
+        <translation>Impossibile caricare database geolocalizzazione IP.
 Motivo: %1</translation>
     </message>
     <message>
@@ -5786,7 +5786,7 @@ Motivo: %1</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="431"/>
         <source>Couldn&apos;t download IP geolocation database file. Reason: %1</source>
-        <translation>Impossibile scaricare il file del database geolocalizzazione IP. 
+        <translation>Impossibile scaricare il file del database geolocalizzazione IP.
 Motivo: %1</translation>
     </message>
     <message>
@@ -7001,7 +7001,7 @@ Usa &apos;;&apos; per dividere più voci.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1118"/>
         <source>Allocate full file sizes on disk before starting downloads, to minimize fragmentation. Only useful for HDDs.</source>
-        <translation>Alloca lo spazio pieno per il file su disco prima di avviare i download, per ridurre al minimo la frammentazione. 
+        <translation>Alloca lo spazio pieno per il file su disco prima di avviare i download, per ridurre al minimo la frammentazione.
 Utile solo per gli HDD.</translation>
     </message>
     <message>
@@ -7122,7 +7122,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>I nomi dei file filtrati nella blacklist non vengono scaricati da torrent.
 I file che corrispondono a uno qualsiasi dei filtri in questo elenco avranno la priorità impostata automaticamente su &quot;Non scaricare&quot;.
 
-Usa le nuove righe per separare più voci. 
+Usa le nuove righe per separare più voci.
 Puoi usare caratteri jolly come descritto di seguito.
 *: corrisponde a zero o più caratteri.
 ?: corrisponde a qualsiasi singolo carattere.
@@ -7421,7 +7421,7 @@ readme[0-9].txt: filtro &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ma non 
     <message>
         <location filename="../gui/optionsdialog.ui" line="2003"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &quot;mixed mode&quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ISe abilitato &quot;modo mixed&quot; i torrent I2P sono autorizzati ad ottenere anche peer da altre sorgenti rispetto al tracker e connettersi a IPS regolari, non fornendo alcuna anonimizzazione. 
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;ISe abilitato &quot;modo mixed&quot; i torrent I2P sono autorizzati ad ottenere anche peer da altre sorgenti rispetto al tracker e connettersi a IPS regolari, non fornendo alcuna anonimizzazione.
 Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazione di I2P, ma vuole comunque essere in grado di connettersi ai peer I2P.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -7781,7 +7781,7 @@ Ciò può essere utile se l&apos;utente non è interessato all&apos;anonimizzazi
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1318"/>
         <source>WebUI configuration failed. Reason: %1</source>
-        <translation>Configurazione WebUI non riuscita. 
+        <translation>Configurazione WebUI non riuscita.
 Motivo: %1</translation>
     </message>
     <message>
@@ -7853,7 +7853,7 @@ Motivo: %1</translation>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="589"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation>Quando queste opzioni sono abilitate, qBittorrent &lt;strong&gt;eliminerà&lt;/strong&gt; i file .torrent dopo che sono stati aggiunti alla sua coda di download correttamente (prima opzione) o meno (seconda opzione). 
+        <translation>Quando queste opzioni sono abilitate, qBittorrent &lt;strong&gt;eliminerà&lt;/strong&gt; i file .torrent dopo che sono stati aggiunti alla sua coda di download correttamente (prima opzione) o meno (seconda opzione).
 Questa modalità verrà applicato &lt;strong&gt;non solo&lt;/strong&gt; ai file aperti tramite l&apos;azione del menu &amp;ldquo;Aggiungi torrent&amp;rdquo;, ma anche a quelli aperti tramite l&apos;associazione del tipo di file</translation>
     </message>
     <message>
@@ -8144,7 +8144,7 @@ Questa modalità verrà applicato &lt;strong&gt;non solo&lt;/strong&gt; ai file 
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="300"/>
         <source>Some peers cannot be added. Check the Log for details.</source>
-        <translation>Alcuni peer non possono essere aggiunti. 
+        <translation>Alcuni peer non possono essere aggiunti.
 Per i dettagli controlla il registro eventi.</translation>
     </message>
     <message>
@@ -8489,19 +8489,19 @@ Interfaccia: %1</translation>
     </message>
     <message>
         <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Errore gestione dell&apos;alimentazione. 
+        <translation type="vanished">Errore gestione dell&apos;alimentazione.
 Non è stata trovata l&apos;interfaccia D-Bus adatta.</translation>
     </message>
     <message>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Errore gestione alimentazione. 
-Azione: %1. 
+        <translation type="vanished">Errore gestione alimentazione.
+Azione: %1.
 Errore: %2.</translation>
     </message>
     <message>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Errore imprevisto gestione alimentazione. 
-Stato: %1. 
+        <translation type="vanished">Errore imprevisto gestione alimentazione.
+Stato: %1.
 Errore: %2</translation>
     </message>
 </context>
@@ -8937,7 +8937,7 @@ Errore: %2</translation>
     <message>
         <location filename="../base/rss/rss_autodownloader.cpp" line="490"/>
         <source>RSS article &apos;%1&apos; is accepted by rule &apos;%2&apos;. Trying to add torrent...</source>
-        <translation>L&apos;articolo RSS &apos;%1&apos; è accettato dalla regola &apos;%2&apos;. 
+        <translation>L&apos;articolo RSS &apos;%1&apos; è accettato dalla regola &apos;%2&apos;.
 Tentativo di aggiunta torrent...</translation>
     </message>
     <message>
@@ -8971,7 +8971,7 @@ Tentativo di aggiunta torrent...</translation>
     <message>
         <location filename="../base/rss/rss_feed.cpp" line="233"/>
         <source>RSS feed at &apos;%1&apos; is successfully downloaded. Starting to parse it.</source>
-        <translation>Download completato feed RSS in &apos;%1&apos;. 
+        <translation>Download completato feed RSS in &apos;%1&apos;.
 Avvio analisi.</translation>
     </message>
 </context>
@@ -8985,25 +8985,25 @@ Avvio analisi.</translation>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="79"/>
         <source>Failed to save RSS feed in &apos;%1&apos;, Reason: %2</source>
-        <translation>Impossibile salvare il feed RSS in &apos;%1&apos;. 
+        <translation>Impossibile salvare il feed RSS in &apos;%1&apos;.
 Motivo: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="90"/>
         <source>Couldn&apos;t parse RSS Session data. Error: %1</source>
-        <translation>Impossibile analizzare i dati della sessione RSS. 
+        <translation>Impossibile analizzare i dati della sessione RSS.
 Errore: %1</translation>
     </message>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="97"/>
         <source>Couldn&apos;t load RSS Session data. Invalid data format.</source>
-        <translation>Impossibile caricare i dati della sessione RSS. 
+        <translation>Impossibile caricare i dati della sessione RSS.
 Formato dati non valido.</translation>
     </message>
     <message>
         <location filename="../base/rss/feed_serializer.cpp" line="109"/>
         <source>Couldn&apos;t load RSS article &apos;%1#%2&apos;. Invalid data format.</source>
-        <translation>Impossibile caricare l&apos;articolo RSS &apos;%1#%2&apos;. 
+        <translation>Impossibile caricare l&apos;articolo RSS &apos;%1#%2&apos;.
 Formato dati non valido.</translation>
     </message>
 </context>
@@ -9076,15 +9076,15 @@ Formato dati non valido.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="295"/>
         <source>Failed to parse RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Impossibile analizzare i dati della sessione RSS. 
-File: &quot;%1&quot;. 
+        <translation>Impossibile analizzare i dati della sessione RSS.
+File: &quot;%1&quot;.
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="302"/>
         <source>Failed to load RSS session data. File: &quot;%1&quot;. Error: &quot;Invalid data format.&quot;</source>
-        <translation>Impossibile caricare i dati della sessione RSS. 
-File: &quot;%1&quot;. 
+        <translation>Impossibile caricare i dati della sessione RSS.
+File: &quot;%1&quot;.
 Errore: &quot;formato dati non valido&quot;.</translation>
     </message>
     <message>
@@ -9815,45 +9815,45 @@ Fai clic sul pulsante &quot;Estensioni di ricerca...&quot; in basso a destra per
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="973"/>
         <source>Failed to load Search UI saved state data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Impossibile caricare i dati dello stato salvato dell&apos;interfaccia utente. 
-File: &quot;%1&quot;. 
+        <translation>Impossibile caricare i dati dello stato salvato dell&apos;interfaccia utente.
+File: &quot;%1&quot;.
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="993"/>
         <source>Failed to load saved search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
-        <translation>Impossibile caricare i risultati di ricerca salvati. 
-Scheda: &quot;%1&quot;. 
-File: &quot;%2&quot;. 
+        <translation>Impossibile caricare i risultati di ricerca salvati.
+Scheda: &quot;%1&quot;.
+File: &quot;%2&quot;.
 Errore: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="1025"/>
         <source>Failed to save Search UI state. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Impossibile salvare lo stato dell&apos;interfaccia utente ricerca. 
-File: &quot;%1&quot;. 
+        <translation>Impossibile salvare lo stato dell&apos;interfaccia utente ricerca.
+File: &quot;%1&quot;.
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="1057"/>
         <source>Failed to save search results. Tab: &quot;%1&quot;. File: &quot;%2&quot;. Error: &quot;%3&quot;</source>
-        <translation>Impossibile salvare i risultati della ricerca. 
-Scheda: &quot;%1&quot;. 
-File: &quot;%2&quot;. 
+        <translation>Impossibile salvare i risultati della ricerca.
+Scheda: &quot;%1&quot;.
+File: &quot;%2&quot;.
 Errore: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="1073"/>
         <source>Failed to load Search UI history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Impossibile caricare la cronologia dell&apos;interfaccia utente. 
-File: &quot;%1&quot;. 
+        <translation>Impossibile caricare la cronologia dell&apos;interfaccia utente.
+File: &quot;%1&quot;.
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="1087"/>
         <source>Failed to save search history. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Impossibile salvare la cronologia della ricerca. 
-File: &quot;%1&quot;. 
+        <translation>Impossibile salvare la cronologia della ricerca.
+File: &quot;%1&quot;.
 Errore: &quot;%2&quot;</translation>
     </message>
 </context>
@@ -9862,7 +9862,7 @@ Errore: &quot;%2&quot;</translation>
     <message>
         <location filename="../base/settingsstorage.cpp" line="147"/>
         <source>Detected unclean program exit. Using fallback file to restore settings: %1</source>
-        <translation>Rilevata uscita dal programma non corretta. 
+        <translation>Rilevata uscita dal programma non corretta.
 Uso il file di riserva per ripristinare le impostazioni: %1</translation>
     </message>
     <message>
@@ -11071,13 +11071,13 @@ Scegli un nome diverso e riprova.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="177"/>
         <source>Failed to parse Watched Folders configuration from %1. Error: &quot;%2&quot;</source>
-        <translation>Impossibile analizzare la configurazione delle cartelle controllate da %1. 
+        <translation>Impossibile analizzare la configurazione delle cartelle controllate da %1.
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="184"/>
         <source>Failed to load Watched Folders configuration from %1. Error: &quot;Invalid data format.&quot;</source>
-        <translation>Impossibile caricare la configurazione delle cartelle controllate da %1. 
+        <translation>Impossibile caricare la configurazione delle cartelle controllate da %1.
 Errore: &quot;formato dati non valido&quot;.</translation>
     </message>
     <message>
@@ -11102,14 +11102,14 @@ Errore: %2</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="412"/>
         <source>Invalid Magnet URI. URI: %1. Reason: %2</source>
-        <translation>URI Magnet non valido. 
-URI: %1. 
+        <translation>URI Magnet non valido.
+URI: %1.
 Motivo: %2</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="420"/>
         <source>Magnet file too big. File: %1</source>
-        <translation>File magnet troppo grande. 
+        <translation>File magnet troppo grande.
 File: %1</translation>
     </message>
     <message>
@@ -11744,7 +11744,7 @@ File: %1</translation>
     <message>
         <location filename="../gui/trackersadditiondialog.cpp" line="115"/>
         <source>Error occurred when downloading the trackers list. Reason: &quot;%1&quot;</source>
-        <translation>Si è verificato un errore durante il download dell&apos;elenco tracker. 
+        <translation>Si è verificato un errore durante il download dell&apos;elenco tracker.
 Motivo: &quot;%1&quot;</translation>
     </message>
 </context>
@@ -12241,7 +12241,7 @@ Motivo: &quot;%1&quot;</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="747"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation>Sei sicuro di voler abilitare la gestione automatica torrent per i torrent selezionati? 
+        <translation>Sei sicuro di voler abilitare la gestione automatica torrent per i torrent selezionati?
 I torrent potranno essere spostati.</translation>
     </message>
     <message>
@@ -12455,7 +12455,7 @@ I torrent potranno essere spostati.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="850"/>
         <source>Errors occurred when exporting .torrent files. Check execution log for details.</source>
-        <translation>Si sono verificati errori durante l&apos;esportazione di file .torrent. 
+        <translation>Si sono verificati errori durante l&apos;esportazione di file .torrent.
 Per i dettagli controlla il registro di esecuzione.</translation>
     </message>
     <message>
@@ -12550,27 +12550,27 @@ Per i dettagli controlla il registro di esecuzione.</translation>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="265"/>
         <source>The UI Theme changes could not be fully applied. The details can be found in the Log.</source>
-        <translation>Non è stato possibile applicare completamente le modifiche al tema dell&apos;interfaccia utente. 
+        <translation>Non è stato possibile applicare completamente le modifiche al tema dell&apos;interfaccia utente.
 Per i dettagli sul problema consulta il registro eventi.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="351"/>
         <source>Couldn&apos;t save UI Theme configuration. Reason: %1</source>
-        <translation>Impossibile salvare la configurazione del tema dell&apos;interfaccia utente. 
+        <translation>Impossibile salvare la configurazione del tema dell&apos;interfaccia utente.
 Motivo: %1</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="382"/>
         <location filename="../gui/uithemedialog.cpp" line="391"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
-        <translation>Impossibile rimuovere il file dell&apos;icona. 
+        <translation>Impossibile rimuovere il file dell&apos;icona.
 File: %1.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="400"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
-        <translation>Impossibile copiare il file dell&apos;icona. 
-Sorgente: %1. 
+        <translation>Impossibile copiare il file dell&apos;icona.
+Sorgente: %1.
 Destinazione: %2.</translation>
     </message>
 </context>
@@ -12579,7 +12579,7 @@ Destinazione: %2.</translation>
     <message>
         <location filename="../gui/uithememanager.cpp" line="83"/>
         <source>Set app style failed. Unknown style: &quot;%1&quot;</source>
-        <translation>Impostazione stile app non riuscita. 
+        <translation>Impostazione stile app non riuscita.
 Stile sconosciuto: &quot;%1&quot;.</translation>
     </message>
     <message>
@@ -12599,7 +12599,7 @@ Motivo: %1</translation>
     <message>
         <location filename="../gui/uithemesource.cpp" line="61"/>
         <source>UI Theme configuration file has invalid format. Reason: %1</source>
-        <translation>Il file di configurazione del tema dell&apos;interfaccia utente ha un formato non valido. 
+        <translation>Il file di configurazione del tema dell&apos;interfaccia utente ha un formato non valido.
 Motivo: %1</translation>
     </message>
     <message>
@@ -12635,8 +12635,8 @@ errore: &quot;%2&quot;</translation>
         <location filename="../app/upgrade.cpp" line="464"/>
         <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
         <translation>Trovato valore non valido nel file di configurazione,
-Verrà ripristinato al valore predefinito. 
-Chiave: &quot;%1&quot;. 
+Verrà ripristinato al valore predefinito.
+Chiave: &quot;%1&quot;.
 Valore non valido: &quot;%2&quot;.</translation>
     </message>
 </context>
@@ -12645,26 +12645,26 @@ Valore non valido: &quot;%2&quot;.</translation>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="87"/>
         <source>Found Python executable. Name: &quot;%1&quot;. Version: &quot;%2&quot;</source>
-        <translation>Trovato eseguibile Python. 
-Nome: &quot;%1&quot;. 
+        <translation>Trovato eseguibile Python.
+Nome: &quot;%1&quot;.
 Versione: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="273"/>
         <source>Failed to find Python executable. Path: &quot;%1&quot;.</source>
-        <translation>Impossibile trovare l&apos;eseguibile Python. 
+        <translation>Impossibile trovare l&apos;eseguibile Python.
 Percorso: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="284"/>
         <source>Failed to find `python3` executable in PATH environment variable. PATH: &quot;%1&quot;</source>
-        <translation>Impossibile trovare l&apos;eseguibile `python3` nella variabile di ambiente PATH. 
+        <translation>Impossibile trovare l&apos;eseguibile `python3` nella variabile di ambiente PATH.
 PERCORSO: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="289"/>
         <source>Failed to find `python` executable in PATH environment variable. PATH: &quot;%1&quot;</source>
-        <translation>Impossibile trovare l&apos;eseguibile `python` nella variabile di ambiente PATH. 
+        <translation>Impossibile trovare l&apos;eseguibile `python` nella variabile di ambiente PATH.
 PERCORSO: &quot;%1&quot;</translation>
     </message>
     <message>
@@ -12683,39 +12683,39 @@ PERCORSO: &quot;%1&quot;</translation>
     <message>
         <location filename="../base/utils/io.cpp" line="83"/>
         <source>File open error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Errore apertura file. 
-File: &quot;%1&quot;. 
+        <translation>Errore apertura file.
+File: &quot;%1&quot;.
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="91"/>
         <source>File size exceeds limit. File: &quot;%1&quot;. File size: %2. Size limit: %3</source>
-        <translation>La dimensione del file supera il limite. 
-File: &quot;%1&quot;. 
-Dimensione file: %2. 
+        <translation>La dimensione del file supera il limite.
+File: &quot;%1&quot;.
+Dimensione file: %2.
 Limite dimensione: %3</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="97"/>
         <source>File size exceeds data size limit. File: &quot;%1&quot;. File size: %2. Array limit: %3</source>
-        <translation>La dimensione del file supera il limite della dimensione dei dati. 
-File: &quot;%1&quot;. 
-Dimensione file: %2. 
+        <translation>La dimensione del file supera il limite della dimensione dei dati.
+File: &quot;%1&quot;.
+Dimensione file: %2.
 Limite matrice: %3</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="107"/>
         <source>File read error. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Errore di lettura del file. 
-File: &quot;%1&quot;. 
+        <translation>Errore di lettura del file.
+File: &quot;%1&quot;.
 Errore: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/io.cpp" line="122"/>
         <source>Read size mismatch. File: &quot;%1&quot;. Expected: %2. Actual: %3</source>
-        <translation>Dimensione òettura non corrispondente. 
-File: &quot;%1&quot;. 
-Prevista: %2. 
+        <translation>Dimensione òettura non corrispondente.
+File: &quot;%1&quot;.
+Prevista: %2.
 Effettiva: %3</translation>
     </message>
 </context>
@@ -12780,7 +12780,7 @@ Effettiva: %3</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="172"/>
         <source>Unacceptable session cookie name is specified: &apos;%1&apos;. Default one is used.</source>
-        <translation>È stato specificato un nome di cookie di sessione non accettabile: &apos;%1&apos;. 
+        <translation>È stato specificato un nome di cookie di sessione non accettabile: &apos;%1&apos;.
 Verrà utilizzato quello predefinito.</translation>
     </message>
     <message>
@@ -12801,7 +12801,7 @@ Verrà utilizzato quello predefinito.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="421"/>
         <source>Using custom WebUI. Location: &quot;%1&quot;.</source>
-        <translation>Usa  WebUI personalizzata. 
+        <translation>Usa  WebUI personalizzata.
 Percorso: &quot;%1&quot;.</translation>
     </message>
     <message>
@@ -12827,7 +12827,7 @@ Percorso: &quot;%1&quot;.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="573"/>
         <source>Web server error. Unknown error.</source>
-        <translation>Errore server web. 
+        <translation>Errore server web.
 Errore sconosciuto.</translation>
     </message>
     <message>
@@ -12876,7 +12876,7 @@ Errore sconosciuto.</translation>
     <message>
         <location filename="../webui/webui.cpp" line="138"/>
         <source>Unable to bind to IP: %1, port: %2. Reason: %3</source>
-        <translation>Impossibile eseguire il collegamento all&apos;IP: %1, porta: %2. 
+        <translation>Impossibile eseguire il collegamento all&apos;IP: %1, porta: %2.
 Motivo: %3</translation>
     </message>
 </context>

@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2024 Le projet qBitTorrent</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Copyright %1 2006-2025 Le projet qBitTorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -6222,7 +6222,7 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
 Require encryption: Only connect to peers with protocol encryption
 Disable encryption: Only connect to peers without protocol encryption</source>
         <translation>Autoriser le chiffrement : Se connecter aux pairs indépendamment de la configuration
-Exiger le chiffrement : Se connecter uniquement aux pairs avec protocole de chiffrement 
+Exiger le chiffrement : Se connecter uniquement aux pairs avec protocole de chiffrement
 Désactiver le chiffrement : Se connecter uniquement aux pairs sans protocole de chiffrement</translation>
     </message>
     <message>
@@ -8191,7 +8191,7 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
         <location filename="../gui/search/pluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation>Certains greffons n&apos;ont pas pu être désinstallés car ils sont inclus dans qBitTorrent. Seulement ceux que vous avez vous-même ajoutés peuvent être désinstallés. 
+        <translation>Certains greffons n&apos;ont pas pu être désinstallés car ils sont inclus dans qBitTorrent. Seulement ceux que vous avez vous-même ajoutés peuvent être désinstallés.
 Ces derniers ont été désactivés.</translation>
     </message>
     <message>
