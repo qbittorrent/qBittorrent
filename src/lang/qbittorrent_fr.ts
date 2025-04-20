@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2024 Le projet qBittorrent</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Copyright %1 2006-2025 Le projet qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -6165,7 +6165,7 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
 Require encryption: Only connect to peers with protocol encryption
 Disable encryption: Only connect to peers without protocol encryption</source>
         <translation>Autoriser le chiffrement : Se connecter aux pairs indépendamment de la configuration
-Exiger le chiffrement : Se connecter uniquement aux pairs avec protocole de chiffrement 
+Exiger le chiffrement : Se connecter uniquement aux pairs avec protocole de chiffrement
 Désactiver le chiffrement : Se connecter uniquement aux pairs sans protocole de chiffrement</translation>
     </message>
     <message>

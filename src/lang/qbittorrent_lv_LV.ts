@@ -93,8 +93,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2024 The qBittorrent project</source>
-        <translation>Autortiesības %1 2006-2024 The qBittorrent project</translation>
+        <source>Copyright %1 2006-2025 The qBittorrent project</source>
+        <translation>Autortiesības %1 2006-2025 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -1523,7 +1523,7 @@
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
  Reason: disk is full.</comment>
-        <translation>Ievades/Izvades kļūda torrentam &apos;%1&apos;. 
+        <translation>Ievades/Izvades kļūda torrentam &apos;%1&apos;.
 Iemesls: %2</translation>
     </message>
     <message>
@@ -4155,7 +4155,7 @@ Lūdzu, uzstādiet to paši.</translation>
         <location filename="../gui/mainwindow.cpp" line="1597"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
-        <translation>Lai lietotu meklētāju, ir nepieciešams uzinstalēt Python. 
+        <translation>Lai lietotu meklētāju, ir nepieciešams uzinstalēt Python.
 Vai vēlaties to instalēt tagad?</translation>
     </message>
     <message>
@@ -4188,7 +4188,7 @@ Vai vēlaties to instalēt tagad?</translation>
         <location filename="../gui/mainwindow.cpp" line="1690"/>
         <source>No updates available.
 You are already using the latest version.</source>
-        <translation>Atjauninājumi nav pieejami. 
+        <translation>Atjauninājumi nav pieejami.
 Jūs jau lietojat jaunāko versiju.</translation>
     </message>
     <message>
@@ -6787,7 +6787,7 @@ Izmantojiet &apos;;&apos; lai atdalītu vairākus vārdus. Varat izmantot viettu
         <location filename="../gui/optionsdialog.ui" line="1165"/>
         <source>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
 Manual: Various torrent properties (e.g. save path) must be assigned manually</source>
-        <translation>Automātiski: nozīmē, ka torrenta uzstādījumi (piem. saglabāšanas vieta), tiks iestatīti atbilstoši izvēlētajai kategorijai. 
+        <translation>Automātiski: nozīmē, ka torrenta uzstādījumi (piem. saglabāšanas vieta), tiks iestatīti atbilstoši izvēlētajai kategorijai.
 Manuāli: Nozīmē, ka torrenta uzstādījumi (piem. saglabāšanas vieta) būs jānorāda pašam.</translation>
     </message>
     <message>
@@ -8125,7 +8125,7 @@ readme[0-9].txt: neatļaus &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, bet
         <location filename="../gui/search/pluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
-        <translation>Dažus spraudņus nav iespējams atinstalēt, jo tie ir iekļauti qBittorrent. Jūs varat atinstalēt tikai tos spraudņus, kurus pats ieinstalējāt. 
+        <translation>Dažus spraudņus nav iespējams atinstalēt, jo tie ir iekļauti qBittorrent. Jūs varat atinstalēt tikai tos spraudņus, kurus pats ieinstalējāt.
 Esošie spraudņi tika atslēgti. </translation>
     </message>
     <message>

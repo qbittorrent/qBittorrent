@@ -86,7 +86,7 @@ OutFile "qbittorrent_${QBT_INSTALLER_FILENAME}_setup.exe"
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
 VIAddVersionKey "CompanyName" "The qBittorrent project"
-VIAddVersionKey "LegalCopyright" "Copyright ©2006-2024 The qBittorrent project"
+VIAddVersionKey "LegalCopyright" "Copyright ©2006-2025 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
 VIAddVersionKey "FileVersion" "${QBT_VERSION}"
 
