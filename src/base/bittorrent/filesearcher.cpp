@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,12 +28,10 @@
 
 #include "filesearcher.h"
 #include "base/bittorrent/common.h"
-#include "base/bittorrent/infohash.h"
 
-void FileSearcher::search(const BitTorrent::TorrentID &id, const PathList &originalFileNames
-                          , const Path &savePath, const Path &downloadPath, const bool forceAppendExt)
+namespace
 {
-    const auto findInDir = [](const Path &dirPath, PathList &fileNames, const bool forceAppendExt) -> bool
+    bool findInDir(const Path &dirPath, PathList &fileNames, const bool forceAppendExt)
     {
         bool found = false;
         for (Path &fileName : fileNames)
@@ -58,7 +56,13 @@ void FileSearcher::search(const BitTorrent::TorrentID &id, const PathList &origi
         }
 
         return found;
-    };
+    }
+}
+
+void FileSearcher::search(const PathList &originalFileNames, const Path &savePath
+        , const Path &downloadPath, const bool forceAppendExt, QPromise<FileSearchResult> promise)
+{
+    promise.start();
 
     Path usedPath = savePath;
     PathList adjustedFileNames = originalFileNames;
@@ -69,5 +73,6 @@ void FileSearcher::search(const BitTorrent::TorrentID &id, const PathList &origi
         findInDir(usedPath, adjustedFileNames, forceAppendExt);
     }
 
-    emit searchFinished(id, usedPath, adjustedFileNames);
+    promise.addResult(FileSearchResult {usedPath, adjustedFileNames});
+    promise.finish();
 }

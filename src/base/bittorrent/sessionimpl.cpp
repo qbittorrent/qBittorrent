@@ -97,7 +97,6 @@
 #include "dbresumedatastorage.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
-#include "filesearcher.h"
 #include "filterparserthread.h"
 #include "loadtorrentparams.h"
 #include "lttypecast.h"
@@ -622,7 +621,6 @@ SessionImpl::SessionImpl(QObject *parent)
     m_fileSearcher = new FileSearcher;
     m_fileSearcher->moveToThread(m_ioThread.get());
     connect(m_ioThread.get(), &QThread::finished, m_fileSearcher, &QObject::deleteLater);
-    connect(m_fileSearcher, &FileSearcher::searchFinished, this, &SessionImpl::fileSearchFinished);
 
     m_torrentContentRemover = new TorrentContentRemover;
     m_torrentContentRemover->moveToThread(m_ioThread.get());
@@ -2380,31 +2378,6 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     }
 }
 
-void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames)
-{
-    TorrentImpl *torrent = m_torrents.value(id);
-    if (torrent)
-    {
-        torrent->fileSearchFinished(savePath, fileNames);
-        return;
-    }
-
-    const auto loadingTorrentsIter = m_loadingTorrents.find(id);
-    if (loadingTorrentsIter != m_loadingTorrents.end())
-    {
-        LoadTorrentParams &params = loadingTorrentsIter.value();
-        lt::add_torrent_params &p = params.ltAddTorrentParams;
-
-        p.save_path = savePath.toString().toStdString();
-        const TorrentInfo torrentInfo {*p.ti};
-        const auto nativeIndexes = torrentInfo.nativeIndexes();
-        for (int i = 0; i < fileNames.size(); ++i)
-            p.renamed_files[nativeIndexes[i]] = fileNames[i].toString().toStdString();
-
-        m_nativeSession->async_add_torrent(p);
-    }
-}
-
 void SessionImpl::torrentContentRemovingFinished(const QString &torrentName, const QString &errorMessage)
 {
     if (errorMessage.isEmpty())
@@ -2832,10 +2805,11 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
     p = source.ltAddTorrentParams();
 
-    bool isFindingIncompleteFiles = false;
-
     const bool useAutoTMM = loadTorrentParams.useAutoTMM;
     const Path actualSavePath = useAutoTMM ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
+
+    bool needFindIncompleteFiles = false;
+    PathList filePaths;
 
     if (hasMetadata)
     {
@@ -2851,7 +2825,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         Q_ASSERT(addTorrentParams.filePaths.isEmpty() || (addTorrentParams.filePaths.size() == torrentInfo.filesCount()));
 
-        PathList filePaths = addTorrentParams.filePaths;
+        filePaths = addTorrentParams.filePaths;
         if (filePaths.isEmpty())
         {
             filePaths = torrentInfo.filePaths();
@@ -2897,13 +2871,9 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         if (!loadTorrentParams.hasFinishedStatus)
         {
-            const Path actualDownloadPath = useAutoTMM
-                    ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
-            findIncompleteFiles(torrentInfo, actualSavePath, actualDownloadPath, filePaths);
-            isFindingIncompleteFiles = true;
+            needFindIncompleteFiles = true;
         }
-
-        if (!isFindingIncompleteFiles)
+        else
         {
             for (int index = 0; index < filePaths.size(); ++index)
                 p.renamed_files[nativeIndexes[index]] = filePaths.at(index).toString().toStdString();
@@ -3002,23 +2972,49 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     m_loadingTorrents.insert(id, loadTorrentParams);
     if (infoHash.isHybrid())
         m_hybridTorrentsByAltID.insert(altID, nullptr);
-    if (!isFindingIncompleteFiles)
+
+    if (needFindIncompleteFiles)
+    {
+        const Path actualDownloadPath = useAutoTMM
+                ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
+        findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths).then(this
+                , [this, id](const FileSearchResult &result)
+        {
+            const auto loadingTorrentsIter = m_loadingTorrents.find(id);
+            Q_ASSERT(loadingTorrentsIter != m_loadingTorrents.end());
+            if (loadingTorrentsIter == m_loadingTorrents.end()) [[unlikely]]
+                return;
+
+            LoadTorrentParams &params = loadingTorrentsIter.value();
+            lt::add_torrent_params &p = params.ltAddTorrentParams;
+
+            p.save_path = result.savePath.toString().toStdString();
+            const TorrentInfo torrentInfo {*p.ti};
+            const auto nativeIndexes = torrentInfo.nativeIndexes();
+            for (int i = 0; i < result.fileNames.size(); ++i)
+                p.renamed_files[nativeIndexes[i]] = result.fileNames[i].toString().toStdString();
+
+            m_nativeSession->async_add_torrent(p);
+        });
+    }
+    else
+    {
         m_nativeSession->async_add_torrent(p);
+    }
 
     return true;
 }
 
-void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
-        , const Path &downloadPath, const PathList &filePaths) const
+QFuture<FileSearchResult> SessionImpl::findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths) const
 {
-    Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == torrentInfo.filesCount()));
-
-    const auto searchId = TorrentID::fromInfoHash(torrentInfo.infoHash());
-    const PathList originalFileNames = (filePaths.isEmpty() ? torrentInfo.filePaths() : filePaths);
-    QMetaObject::invokeMethod(m_fileSearcher, [=, this]
+    QPromise<FileSearchResult> promise;
+    QFuture<FileSearchResult> future = promise.future();
+    QMetaObject::invokeMethod(m_fileSearcher, [=, this, promise = std::move(promise)]() mutable
     {
-        m_fileSearcher->search(searchId, originalFileNames, savePath, downloadPath, isAppendExtensionEnabled());
+        m_fileSearcher->search(filePaths, savePath, downloadPath, isAppendExtensionEnabled(), std::move(promise));
     });
+
+    return future;
 }
 
 void SessionImpl::enablePortMapping()

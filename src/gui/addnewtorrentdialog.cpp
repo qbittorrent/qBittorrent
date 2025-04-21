@@ -32,6 +32,7 @@
 #include <algorithm>
 #include <functional>
 
+#include <QtVersionChecks>
 #include <QAction>
 #include <QByteArray>
 #include <QDateTime>
@@ -242,14 +243,13 @@ public:
         return QList<qreal>(filesCount(), 0);
     }
 
-    QList<qreal> availableFileFractions() const override
+    QFuture<QList<qreal>> fetchAvailableFileFractions() const override
     {
-        return QList<qreal>(filesCount(), 0);
-    }
-
-    void fetchAvailableFileFractions(std::function<void (QList<qreal>)> resultHandler) const override
-    {
-        resultHandler(availableFileFractions());
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+        return QtFuture::makeReadyValueFuture(QList<qreal>(filesCount(), 0));
+#else
+        return QtFuture::makeReadyFuture(QList<qreal>(filesCount(), 0));
+#endif
     }
 
     void prioritizeFiles(const QList<BitTorrent::DownloadPriority> &priorities) override

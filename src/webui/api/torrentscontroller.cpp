@@ -180,9 +180,11 @@ namespace
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
     {
         int seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
-        for (const BitTorrent::PeerInfo &peer : asConst(torrent->peers()))
+        const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().result();
+        for (const BitTorrent::PeerInfo &peer : peersList)
         {
-            if (peer.isConnecting()) continue;
+            if (peer.isConnecting())
+                continue;
 
             if (peer.isSeed())
             {
@@ -727,7 +729,7 @@ void TorrentsController::filesAction()
     {
         const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
         const QList<qreal> fp = torrent->filesProgress();
-        const QList<qreal> fileAvailability = torrent->availableFileFractions();
+        const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().result();
         const BitTorrent::TorrentInfo info = torrent->info();
         for (const int index : asConst(fileIndexes))
         {
@@ -796,7 +798,7 @@ void TorrentsController::pieceStatesAction()
     for (int i = 0; i < states.size(); ++i)
         pieceStates.append(static_cast<int>(states[i]) * 2);
 
-    const QBitArray dlstates = torrent->downloadingPieces();
+    const QBitArray dlstates = torrent->fetchDownloadingPieces().result();
     for (int i = 0; i < states.size(); ++i)
     {
         if (dlstates[i])

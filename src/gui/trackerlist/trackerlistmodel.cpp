@@ -309,7 +309,7 @@ void TrackerListModel::populate()
     m_items->emplace_back(std::make_shared<Item>(u"** [LSD] **", privateTorrentMessage));
 
     using TorrentPtr = QPointer<const BitTorrent::Torrent>;
-    m_torrent->fetchPeerInfo([this, torrent = TorrentPtr(m_torrent)](const QList<BitTorrent::PeerInfo> &peers)
+    m_torrent->fetchPeerInfo().then(this, [this, torrent = TorrentPtr(m_torrent)](const QList<BitTorrent::PeerInfo> &peers)
     {
        if (torrent != m_torrent)
            return;

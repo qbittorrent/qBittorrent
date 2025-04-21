@@ -745,7 +745,7 @@ void SyncController::torrentPeersAction()
     QVariantMap data;
     QVariantHash peers;
 
-    const QList<BitTorrent::PeerInfo> peersList = torrent->peers();
+    const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().result();
 
     bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
 

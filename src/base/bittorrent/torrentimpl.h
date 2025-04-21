@@ -203,10 +203,7 @@ namespace BitTorrent
         bool isDHTDisabled() const override;
         bool isPEXDisabled() const override;
         bool isLSDDisabled() const override;
-        QList<PeerInfo> peers() const override;
         QBitArray pieces() const override;
-        QBitArray downloadingPieces() const override;
-        QList<int> pieceAvailability() const override;
         qreal distributedCopies() const override;
         qreal maxRatio() const override;
         int maxSeedingTime() const override;
@@ -220,7 +217,6 @@ namespace BitTorrent
         int connectionsCount() const override;
         int connectionsLimit() const override;
         qlonglong nextAnnounce() const override;
-        QList<qreal> availableFileFractions() const override;
 
         void setName(const QString &name) override;
         void setSequentialDownload(bool enable) override;
@@ -258,11 +254,11 @@ namespace BitTorrent
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
         nonstd::expected<void, QString> exportToFile(const Path &path) const override;
 
-        void fetchPeerInfo(std::function<void (QList<PeerInfo>)> resultHandler) const override;
-        void fetchURLSeeds(std::function<void (QList<QUrl>)> resultHandler) const override;
-        void fetchPieceAvailability(std::function<void (QList<int>)> resultHandler) const override;
-        void fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const override;
-        void fetchAvailableFileFractions(std::function<void (QList<qreal>)> resultHandler) const override;
+        QFuture<QList<PeerInfo>> fetchPeerInfo() const override;
+        QFuture<QList<QUrl>> fetchURLSeeds() const override;
+        QFuture<QList<int>> fetchPieceAvailability() const override;
+        QFuture<QBitArray> fetchDownloadingPieces() const override;
+        QFuture<QList<qreal>> fetchAvailableFileFractions() const override;
 
         bool needSaveResumeData() const;
 
@@ -278,7 +274,6 @@ namespace BitTorrent
         void requestResumeData(lt::resume_data_flags_t flags = {});
         void deferredRequestResumeData();
         void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
-        void fileSearchFinished(const Path &savePath, const PathList &fileNames);
         TrackerEntryStatus updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo);
         void resetTrackerEntryStatuses();
 
@@ -326,8 +321,8 @@ namespace BitTorrent
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
 
-        template <typename Func, typename Callback>
-        void invokeAsync(Func func, Callback resultHandler) const;
+        template <typename Func>
+        QFuture<std::invoke_result_t<Func>> invokeAsync(Func &&func) const;
 
         SessionImpl *const m_session = nullptr;
         lt::session *m_nativeSession = nullptr;
