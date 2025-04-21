@@ -14,12 +14,12 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
     - BUGFIX: Fix filesize sorting in preview dialog (DoubleSpicy) c080fc3aa09400d7bfdecf73ad5fb409e02a8110
     - BUGFIX: Improve the speed icons in the status bar (Mahdi Hosseinzadeh) 928de360931579304128a8203a8ac61e4f32bed8
     - BUGFIX: Update link to news (tinyboxvk) 61ff683f11a653fecd6a3dd0dbfe784cd6aaf63d
-    - BUGFIX: Fix tab stop oder in various dialogs and UI elements (Chocobo1) 0a36171999c9edf81f6266ee475c8df4a3af0620
+    - BUGFIX: Fix tab stop order in various dialogs and UI elements (Chocobo1) 0a36171999c9edf81f6266ee475c8df4a3af0620
     - BUGFIX: Make links accessible by keyboard (Chocobo1) 85c4ddf6167f5f5d810fa73a14a76ab077a074c7
     - BUGFIX: Make tab key switch focus (Chocobo1) 7886ca65f9e455ad07e0ba66c2a8e4df52766623
     - BUGFIX: Revise DHT bootstrap node list (Chocobo1) efe06f133d2a7ce735094a68586594e88a171ae6
     - BUGFIX: Return first tracker as fallback for "current tracker" (glassez) 86387fbe49af0d3bd596678f5d280cab75e5f61e
-    - BUGFIX: Explicitly reject opened Add torrent dialogs when exiting app (glassez) 009cc71f9ba1225cc75bdbfac1ca1caba5e566be
+    - BUGFIX: Prevent crash when exiting app with `Add torrent` dialogs opened (glassez) 009cc71f9ba1225cc75bdbfac1ca1caba5e566be
     - BUGFIX: Fix torrent relocating files when switching to "manual" mode (glassez) c687a7d0d346e6809331239b9badf1bf48d8fcd9
     - BUGFIX: Prevent crash due to corrupted resume data (glassez) cfbf6b73ff88826a4cdf1476eecd8aa160d88ce0
     - WEBUI: Improvements that should help with assistive technologies (Chocobo1)
