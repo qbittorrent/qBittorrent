@@ -9,7 +9,6 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
     - BUGFIX: Enable adaptive step size for upload and download limits (Harald Nordgren) 989b1d176d311c19b528d8695c6fc182806741ae
     - BUGFIX: Add URL link for reverse proxy setup examples (Chocobo1) a0c32110f1327071e729e36f5264cb5858044fe1
     - BUGFIX: Allow drop action only on transfer list (Chocobo1) 10eb921d7087bf392ed17a1ec83176d51565bff8
-    - BUGFIX: Remove non-working DHT bootstrap nodes (stalkerok) e75bcbed6d92bfd62a1ab030cbe4fa32e6cbadec
     - BUGFIX: Fix the tab order in dialogs (thalieht) d73201c098a8f85161c06bb8d02c8726227627ad
     - BUGFIX: Fix filesize sorting in preview dialog (DoubleSpicy) c080fc3aa09400d7bfdecf73ad5fb409e02a8110
     - BUGFIX: Improve the speed icons in the status bar (Mahdi Hosseinzadeh) 928de360931579304128a8203a8ac61e4f32bed8
@@ -17,13 +16,13 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
     - BUGFIX: Fix tab stop order in various dialogs and UI elements (Chocobo1) 0a36171999c9edf81f6266ee475c8df4a3af0620
     - BUGFIX: Make links accessible by keyboard (Chocobo1) 85c4ddf6167f5f5d810fa73a14a76ab077a074c7
     - BUGFIX: Make tab key switch focus (Chocobo1) 7886ca65f9e455ad07e0ba66c2a8e4df52766623
-    - BUGFIX: Revise DHT bootstrap node list (Chocobo1) efe06f133d2a7ce735094a68586594e88a171ae6
+    - BUGFIX: Revise DHT bootstrap node list (stalkerok, Chocobo1) efe06f133d2a7ce735094a68586594e88a171ae6 e75bcbed6d92bfd62a1ab030cbe4fa32e6cbadec
     - BUGFIX: Return first tracker as fallback for "current tracker" (glassez) 86387fbe49af0d3bd596678f5d280cab75e5f61e
     - BUGFIX: Prevent crash when exiting app with `Add torrent` dialogs opened (glassez) 009cc71f9ba1225cc75bdbfac1ca1caba5e566be
     - BUGFIX: Fix torrent relocating files when switching to "manual" mode (glassez) c687a7d0d346e6809331239b9badf1bf48d8fcd9
     - BUGFIX: Prevent crash due to corrupted resume data (glassez) cfbf6b73ff88826a4cdf1476eecd8aa160d88ce0
     - WEBUI: Improvements that should help with assistive technologies (Chocobo1)
-    - WEBUI: Internal refactoring to migrate away from mootools and towards native browser APIs
+    - WEBUI: Internal refactoring to migrate away from MooTools and towards native browser APIs (Chocobo1, skomerko)
     - WEBUI: Implement path autocompletion (Paweł Kotiuk) d87533bf4c141ade034f5f1b0792daefd28ece20
     - WEBUI: Implement double-click behavior controls (Hanabishi) b52fa98a02bfa74766dd4a31d6a667a51ad00843
     - WEBUI: Add ability to toggle alternating row colors in tables (skomerko) b67495464d5bdbc9a5ee69fbc81a0f7e01a53e1d
