@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentu veidotājs</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Pievienojot torrentu</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Brīdinājums: Šī parole netiek glabāta šifrētā veidā</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP jaukta režīma algoritms:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Asinhronās I/O plūsmas:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished"> s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2061,7 +2053,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>sek</translation>
     </message>
 </context>
 <context>
@@ -4056,7 +4048,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autors:</translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4610,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privāts</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4626,7 +4618,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Ierindots</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4639,7 +4631,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Neizdevās eksportēt .torrent failu</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -4647,7 +4639,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Komentārs:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4659,7 +4651,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Tīmekļa devēju adreses:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4667,7 +4659,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentārs</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4675,7 +4667,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Iestatījumi</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4683,7 +4675,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Stāvoklis</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4700,15 +4692,15 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Pabeigti</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Pabeigts</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hibrīds</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4721,11 +4713,11 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Nav zināms</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Trakeru adreses:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4733,15 +4725,15 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Vieta:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Izveidot torrentu</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automātiski</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4763,7 +4755,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrenta formāts:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4771,7 +4763,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Pievienots</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4779,23 +4771,23 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentu veidotājs</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Avots:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trakeri</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Daļiņas izmērs:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Laukumi</translation>
     </message>
     <message>
         <source>Remove Task</source>

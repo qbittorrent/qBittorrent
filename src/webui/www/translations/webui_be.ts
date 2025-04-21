@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Стварэнне торэнта</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Пры дадаванні торэнта</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Інфармацыя: пароль будзе захаваны ў незашыфраваным выглядзе</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Алгарытм змешанага %1-TCP рэжыму</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Патокі асінхроннага ўводу/вываду</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">с</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4057,7 +4049,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Аўтар: </translation>
     </message>
 </context>
 <context>
@@ -4619,7 +4611,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Прыватны</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4627,7 +4619,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>У чарзе</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4640,7 +4632,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Немагчыма экспартаваць файл .torrent</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -4648,7 +4640,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Каментарыі:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4656,11 +4648,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Значок стану</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Адрасы вэб-сідаў:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4668,7 +4660,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Каментарый</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4676,7 +4668,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Налады</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4684,7 +4676,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Стан</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4701,15 +4693,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Ход выканання</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Завершаны</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hybrid</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4722,11 +4714,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Н/Д</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Адрасы трэкераў:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4734,15 +4726,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Шлях:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Стварыць торэнт</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Аўта</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4764,7 +4756,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Фармат торэнта:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4772,7 +4764,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Дададзены</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4780,23 +4772,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Стварэнне торэнта</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Крыніца:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Трэкеры</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Памер часткі:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Палі</translation>
     </message>
     <message>
         <source>Remove Task</source>

@@ -487,10 +487,6 @@
         <translation>Gagal menambahkan torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Terdeteksi duplikat dalam penambahan torrent. Source: %1. Existing torrent: %2. Result: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Penggabungan pelacak dinonaktifkan</translation>
@@ -7112,10 +7108,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>&amp;Otentikasi</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: Sandi disimpan tanpa enkripsi</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Jalur filter (.dat, .p2p, .p2b):</translation>
@@ -8274,13 +8266,6 @@ Plugin ini semua dinonaktifkan.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent sedang aktif</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8912,7 +8897,7 @@ Plugin ini semua dinonaktifkan.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
@@ -8922,12 +8907,12 @@ Plugin ini semua dinonaktifkan.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">det</translation>
+        <translation>det</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Bawaan</translation>
+        <translation>Bawaan</translation>
     </message>
 </context>
 <context>
@@ -9046,14 +9031,6 @@ Plugin ini semua dinonaktifkan.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Folder baru</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Silakan ketik URL umpan RSS</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">URL Umpan:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

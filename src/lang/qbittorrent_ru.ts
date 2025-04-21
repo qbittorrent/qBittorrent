@@ -487,10 +487,6 @@
         <translation>Не удалось добавить торрент. Источник: «%1». Причина: «%2»</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Обнаружена попытка добавления повторяющегося торрента. Источник: %1. Существующий торрент: %2. Результат: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Объединение трекеров отключено</translation>
@@ -508,7 +504,7 @@
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="189"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Обнаружена попытка добавления повторяющегося торрента. Источник: %1. Существующий торрент: «%2». Инфо-хеш торрента: %3. Результат: %4</translation>
     </message>
 </context>
 <context>
@@ -1081,7 +1077,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="744"/>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Период истечения срока кэша внутреннего преобразователя имён хостов</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="749"/>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Привязать окно добавления торрента к главному</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -1800,7 +1796,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="111"/>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Номер сезона должен иметь ненулевое значение</translation>
+        <translation>Номер сезона должен быть ненулевым значением</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="113"/>
@@ -2103,12 +2099,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Повреждённые данные возобновления: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path не является действительным</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
@@ -2179,23 +2175,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Не удаётся разобрать данные возобновления: %1</translation>
+        <translation>Не удаётся разобрать данные возобновления: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Не удаётся разобрать информацию о торренте: %1</translation>
+        <translation>Не удаётся разобрать информацию о торренте: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Повреждённые данные возобновления: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path не является действительным</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>
@@ -2441,10 +2437,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Торрент удалён. Торрент: «%1»</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Обнаружена попытка добавления повторяющегося торрента. Существующий торрент: %1. Результат: %2</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
         <source>Merging of trackers is disabled</source>
         <translation>Объединение трекеров отключено</translation>
@@ -2548,14 +2540,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2779"/>
         <source>Duplicate torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Повтор торрента</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2796"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2806"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2817"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: &quot;%1&quot;. Torrent infohash: %2. Result: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Обнаружена попытка добавления повторяющегося торрента. Существующий торрент: «%1». Инфо-хеш торрента: %2. Результат: %3</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5314"/>
@@ -3549,24 +3541,24 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Управление питанием нашло подходящий интерфейс D-Bus. Интерфейс: %1</translation>
+        <translation>Управление питанием нашло подходящий интерфейс D-Bus. Интерфейс: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
         <source>Power management error. Did not find a suitable D-Bus interface.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка управления питанием. Не был найден подходящий интерфейс D-Bus.</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="163"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Ошибка управления питанием. Действие: %1. Ошибка: %2</translation>
+        <translation>Ошибка управления питанием. Действие: %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Непредвиденная ошибка управления питанием. Состояние: %1. Ошибка: %2</translation>
+        <translation>Непредвиденная ошибка управления питанием. Состояние: %1. Ошибка: %2</translation>
     </message>
 </context>
 <context>
@@ -3575,7 +3567,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/powermanagement/inhibitormacos.cpp" line="36"/>
         <source>PMMacOS</source>
         <comment>qBittorrent is active</comment>
-        <translation type="unfinished"></translation>
+        <translation>PMMacOS</translation>
     </message>
 </context>
 <context>
@@ -6046,7 +6038,7 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="825"/>
         <source>Show free disk space in status bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать свободное место на диске в строке состояния</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="924"/>
@@ -6148,10 +6140,6 @@ Minimum requirement: %2.</source>
         <location filename="../gui/optionsdialog.ui" line="2006"/>
         <source>Mixed mode</source>
         <translation>Смешанный режим</translation>
-    </message>
-    <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Некоторые параметры несовместимы с выбранным типом прокси-сервера!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
@@ -6315,12 +6303,12 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2087"/>
         <source>Some functions are unavailable with the chosen proxy type!</source>
-        <translation type="unfinished"></translation>
+        <translation>Некоторые функции недоступны при выбранном типе прокси!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2147"/>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished"></translation>
+        <translation>Примечание: Пароль сохраняется в нешифрованном виде</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3118"/>
@@ -7135,10 +7123,6 @@ readme[0-9].txt: фильтровать «readme1.txt», «readme2.txt», но �
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>&amp;Аутентификация</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Примечание: пароль хранится в нешифрованном виде</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8300,32 +8284,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent активен</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Управление питанием нашло подходящий интерфейс D-Bus. Интерфейс: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Ошибка управления питанием. Не найден подходящий интерфейс D-Bus.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Ошибка управления питанием. Действие: %1. Ошибка: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Непредвиденная ошибка управления питанием. Состояние: %1. Ошибка: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8869,13 +8827,9 @@ Those plugins were disabled.</source>
         <translation>Элемент не существует: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Не удалось переместить папку в саму себя.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нельзя переместить папку в саму себя или в её вложенные папки.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="246"/>
@@ -8943,12 +8897,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="88"/>
         <source>Invalid &apos;refreshInterval&apos; value</source>
-        <translation type="unfinished"></translation>
+        <translation>Недействительное значение «refreshInterval»</translation>
     </message>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Лента не существует: %1.</translation>
+        <translation>Лента не существует: %1.</translation>
     </message>
 </context>
 <context>
@@ -8956,27 +8910,27 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="14"/>
         <source>RSS Feed Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметры RSS-ленты</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">Адрес:</translation>
+        <translation>Адрес:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Период обновления:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> с</translation>
+        <translation> с</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Стандартно</translation>
+        <translation>Стандартно</translation>
     </message>
 </context>
 <context>
@@ -9079,15 +9033,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="203"/>
         <source>Feed options...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Править адрес ленты…</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Править адрес ленты</translation>
+        <translation>Параметры ленты…</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
@@ -9103,14 +9049,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Новая папка</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Пожалуйста, введите адрес RSS-ленты</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Адрес ленты:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>
@@ -10059,7 +9997,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/statusbar.cpp" line="103"/>
         <source>Free space: N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Свободное место: Н/Д</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="107"/>
@@ -10098,7 +10036,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/statusbar.cpp" line="240"/>
         <source>Free space: </source>
-        <translation type="unfinished"></translation>
+        <translation>Свободное место:</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="260"/>
@@ -10752,7 +10690,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="255"/>
         <source>Optimize alignment</source>
-        <translation>Оптимизировать сортировку файлов</translation>
+        <translation>Оптимизировать выравнивание</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="266"/>

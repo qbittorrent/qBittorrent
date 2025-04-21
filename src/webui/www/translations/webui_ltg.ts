@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentu darynuoja</translation>
     </message>
 </context>
 <context>
@@ -1270,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2053,7 +2049,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>sek</translation>
     </message>
 </context>
 <context>
@@ -4048,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autors:</translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4614,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Rindā</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4639,7 +4635,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Komentars:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4651,7 +4647,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Puorstaipteikla devieju adresas:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4667,7 +4663,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Īstatejumi</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4675,7 +4671,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Statuss</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4692,11 +4688,11 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progress</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Dabeidza</translation>
     </message>
     <message>
         <source>Hybrid</source>
@@ -4713,11 +4709,11 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Navā atrasta</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Trakeru adresas:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4725,15 +4721,15 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Vīta:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Radeit torrentu</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatiski</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4763,7 +4759,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Dalaists</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4771,23 +4767,23 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentu darynuoja</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Olūts:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trakeri</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Dalenu lelums:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Laukumi</translation>
     </message>
     <message>
         <source>Remove Task</source>

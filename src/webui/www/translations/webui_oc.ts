@@ -4044,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autor : </translation>
     </message>
 </context>
 <context>
@@ -4613,7 +4613,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>En fila d'espèra</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4670,7 +4670,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Estatut</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4687,11 +4687,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progression</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Acabat lo</translation>
     </message>
     <message>
         <source>Hybrid</source>
@@ -4708,11 +4708,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL dels trackers :</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4728,7 +4728,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatic</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4758,7 +4758,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Apondut lo</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4774,11 +4774,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Talha dels tròces :</translation>
     </message>
     <message>
         <source>Fields</source>

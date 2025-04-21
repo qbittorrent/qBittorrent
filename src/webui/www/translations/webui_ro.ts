@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Creator de torente</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Când se adaugă un torent</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Informație: Parola este salvată fără criptare</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritm pentru regim mixt μTP-TCP:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4052,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autor: </translation>
     </message>
 </context>
 <context>
@@ -4622,7 +4614,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>În coadă</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4643,7 +4635,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Comentarii:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4655,7 +4647,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL sursă Web:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4671,7 +4663,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Configurări</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4679,7 +4671,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Stare</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4696,15 +4688,15 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progres</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Încheiat la</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hibrid</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4717,11 +4709,11 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Indisp.</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL-urile urmăritorului:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4729,15 +4721,15 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Cale:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Creează torent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automat</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4759,7 +4751,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Format torent:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4767,7 +4759,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Adăugat la</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4775,23 +4767,23 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Creator de torente</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Sursă:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Urmăritoare</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Dimensiune bucată:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Câmpuri</translation>
     </message>
     <message>
         <source>Remove Task</source>

@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrent készítő</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Torrent hozzáadásakor</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Infó: A jelszó titkosítás nélkül kerül elmentésre</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP kevert-mód algoritmus:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Aszinkron I/O szálak:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished"> mp</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2061,7 +2053,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>mp</translation>
     </message>
 </context>
 <context>
@@ -4056,7 +4048,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Szerző:</translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4610,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privát</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4626,7 +4618,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Sorban áll</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4639,7 +4631,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Nem sikerült a torrent fájl exportálása</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -4647,7 +4639,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Megjegyzések:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4655,11 +4647,11 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Állapot Ikon</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Web seed URL-ek:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4667,7 +4659,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Megjegyzés</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4675,7 +4667,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Beállítások</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4683,7 +4675,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Állapot</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4700,15 +4692,15 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Folyamat</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Elkészült ekkor</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hibrid</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4721,11 +4713,11 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Tracker URL-ek:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4733,15 +4725,15 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Útvonal:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent létrehozása</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4763,7 +4755,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrent formátum:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4771,7 +4763,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Hozzáadva</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4779,23 +4771,23 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrent készítő</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Forrás:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trackerek</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Szelet méret:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Mezők</translation>
     </message>
     <message>
         <source>Remove Task</source>

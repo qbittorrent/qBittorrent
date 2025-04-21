@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrent Sortzailea</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Torrent bat gehitzean</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: pasahitza zifratu gabe gordetzen da</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>uTP-TCP algoritmo modu nahastua:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>S/I hari asinkronoak:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4056,7 +4048,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Egilea: </translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4610,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Pribatua</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4626,7 +4618,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Lerrokatuta</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4647,7 +4639,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Aipamenak:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4659,7 +4651,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Web emaritza URL-ak:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4667,7 +4659,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Iruzkina</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4675,7 +4667,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Ezarpenak</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4683,7 +4675,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Egoera</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4700,15 +4692,15 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Garapena</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Osatuta</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hibridoa</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4721,11 +4713,11 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>E/G</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Aztarnari URL-ak:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4733,15 +4725,15 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Helburua:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Sortu Torrenta</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Berez</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4763,7 +4755,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrentaren heuskarria:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4771,7 +4763,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Gehituta</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4779,23 +4771,23 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrent Sortzailea</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Iturburua:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Jarraitzaileak</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Atal neurria:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Eremuak</translation>
     </message>
     <message>
         <source>Remove Task</source>

@@ -487,10 +487,6 @@
         <translation>Misslyckades att lägga till torrent. Källa: &quot;%1&quot;. Orsak: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Upptäckte ett försök att lägga till en dubblettorrent. Källa %1. Befintlig torrent: %2. Resultat: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Sammanslagning av spårare är inaktiverad</translation>
@@ -508,7 +504,7 @@
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="189"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Upptäckte ett försök att lägga till en duplicerad torrent. Källa: %1. Befintlig torrent: ”%2”. Torrent infohash: %3. Resultat: %4</translation>
     </message>
 </context>
 <context>
@@ -1081,7 +1077,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="744"/>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Utgångsintervall för cache för intern värdnamnsresolver</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="749"/>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Bifoga dialogrutan &quot;Lägg till ny torrent&quot; till huvudfönstret</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2103,12 +2099,12 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Skadat återupptagningsdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path är ogiltig</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
@@ -2179,23 +2175,23 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Det går inte att analysera återupptagningsdata: %1</translation>
+        <translation>Det går inte att analysera återupptagningsdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Det går inte att analysera torrentinformation: %1</translation>
+        <translation>Det går inte att analysera torrentinformation: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Skadat återupptagningsdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path är ogiltig</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>
@@ -2441,10 +2437,6 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Torrent borttagen. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Upptäckte ett försök att lägga till en dubblettorrent. Befintlig torrent: %1. Resultat: %2</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
         <source>Merging of trackers is disabled</source>
         <translation>Sammanslagning av spårare är inaktiverad</translation>
@@ -2548,14 +2540,14 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2779"/>
         <source>Duplicate torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplicerad torrent</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2796"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2806"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2817"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: &quot;%1&quot;. Torrent infohash: %2. Result: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Upptäckte ett försök att lägga till en duplicerad torrent. Källa: %1. Torrent infohash: %2. Resultat: %3</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5314"/>
@@ -3549,24 +3541,24 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Strömhantering hittade lämpligt D-Bus-gränssnitt. Gränssnitt: %1</translation>
+        <translation>Strömhantering hittade lämpligt D-Bus-gränssnitt. Gränssnitt: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
         <source>Power management error. Did not find a suitable D-Bus interface.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel i energihanteringen. Hittade inte ett lämpligt D-Bus-gränssnitt.</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="163"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Strömhanteringsfel. Åtgärd: %1. Fel: %2</translation>
+        <translation>Strömhanteringsfel. Åtgärd: %1. Fel: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Oväntat strömhanteringsfel. Tillstånd: %1. Fel: %2</translation>
+        <translation>Oväntat strömhanteringsfel. Tillstånd: %1. Fel: %2</translation>
     </message>
 </context>
 <context>
@@ -3575,7 +3567,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../gui/powermanagement/inhibitormacos.cpp" line="36"/>
         <source>PMMacOS</source>
         <comment>qBittorrent is active</comment>
-        <translation type="unfinished"></translation>
+        <translation>PMMacOS</translation>
     </message>
 </context>
 <context>
@@ -6046,7 +6038,7 @@ Minimikrav: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="825"/>
         <source>Show free disk space in status bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa ledigt diskutrymme i statusfältet</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="924"/>
@@ -6148,10 +6140,6 @@ Minimikrav: %2.</translation>
         <location filename="../gui/optionsdialog.ui" line="2006"/>
         <source>Mixed mode</source>
         <translation>Blandat läge</translation>
-    </message>
-    <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Vissa alternativ är inkompatibla med den valda proxytypen!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
@@ -6315,12 +6303,12 @@ Inaktivera kryptering: Anslut endast till jämlikar utan protokollkryptering</tr
     <message>
         <location filename="../gui/optionsdialog.ui" line="2087"/>
         <source>Some functions are unavailable with the chosen proxy type!</source>
-        <translation type="unfinished"></translation>
+        <translation>Vissa funktioner är inte tillgängliga med den valda proxytypen!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2147"/>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished"></translation>
+        <translation>Observera: Lösenordet sparas okrypterat</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3118"/>
@@ -7135,10 +7123,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>A&amp;utentisering</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: Lösenordet sparas okrypterat</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8299,32 +8283,6 @@ De här insticksmodulerna inaktiverades.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent är aktiv</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Strömhantering hittade lämpligt D-Bus-gränssnitt. Gränssnitt: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Strömhanteringsfel. Hittade inte lämpligt D-Bus-gränssnitt.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Strömhanteringsfel. Åtgärd: %1. Fel: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Oväntat strömhanteringsfel. Tillstånd: %1. Fel: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8868,13 +8826,9 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Artikeln existerar inte: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Kunde inte flytta mappen in i sig själv.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kan inte flytta en mapp till sig själv eller sina undermappar.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="246"/>
@@ -8942,12 +8896,12 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="88"/>
         <source>Invalid &apos;refreshInterval&apos; value</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt värde för &apos;refreshInterval&apos;</translation>
     </message>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Flödet finns inte: %1.</translation>
+        <translation>Flödet finns inte: %1.</translation>
     </message>
 </context>
 <context>
@@ -8955,27 +8909,27 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="14"/>
         <source>RSS Feed Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Alternativ för RSS-flöde</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uppdateringsintervall:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> sek</translation>
+        <translation> sek</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Standard</translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -9078,15 +9032,7 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="203"/>
         <source>Feed options...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Redigera flödes-URL...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Redigera flödes-URL</translation>
+        <translation>Flödesalternativ...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
@@ -9102,14 +9048,6 @@ De här insticksmodulerna inaktiverades.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Ny mapp</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Skriv URL för ett RSS-flöde</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Flödets URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>
@@ -10058,7 +9996,7 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/statusbar.cpp" line="103"/>
         <source>Free space: N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ledigt utrymme: inte tillgängligt</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="107"/>
@@ -10097,7 +10035,7 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/statusbar.cpp" line="240"/>
         <source>Free space: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ledigt utrymme:</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="260"/>

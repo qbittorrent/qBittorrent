@@ -8258,13 +8258,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent เปิดใช้งานอยู่</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8896,7 +8889,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
@@ -8906,12 +8899,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">วินาที</translation>
+        <translation>วินาที</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">ค่าเริ่มต้น</translation>
+        <translation>ค่าเริ่มต้น</translation>
     </message>
 </context>
 <context>
@@ -9015,10 +9008,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/rss/rsswidget.ui" line="203"/>
         <source>Feed options...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">แก้ไข URL ของหน้าฟีด...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>

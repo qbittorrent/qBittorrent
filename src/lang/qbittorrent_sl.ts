@@ -487,10 +487,6 @@
         <translation>Dodajanje torrenta ni uspelo. Vir: &quot;%1&quot;. Razlog: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Zaznan je bil poskus dodajanja podvojenega torrenta. Vir: %1. Obstoječi torrent: %2. Rezultat: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Združevanje sledilnikov je onemogočeno</translation>
@@ -2180,13 +2176,13 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Podatkov o nadaljevanju ni mogoče razčleniti: %1</translation>
+        <translation>Podatkov o nadaljevanju ni mogoče razčleniti: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Podatkov o torrentu ni mogoče razčleniti: %1</translation>
+        <translation>Podatkov o torrentu ni mogoče razčleniti: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2440,10 +2436,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent odstranjen. Torrent: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Zaznan poskus dodajanja dvojnika torrenta. Obstoječi torrent: %1. Rezultat: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -6151,10 +6143,6 @@ Najnižja podprta različica: %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Nekatere možnosti so nezdružljive z izbrano vrsto posredniškega strežnika!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Če je možnost izbrana, se imena gostiteljev pridobivajo prek posredniškega strežnika</translation>
@@ -7123,10 +7111,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>Overitev</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Obvestilo: Geslo je shranjeno nešifrirano</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8287,13 +8271,6 @@ Tisti vtičniki so bili onemogočeni.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent je dejaven</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8837,10 +8814,6 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <translation>Predmet ne obsaja: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Mape ni mogoče premakniti v njo samo.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8916,7 +8889,7 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Vir ne obstaja: %1.</translation>
+        <translation>Vir ne obstaja: %1.</translation>
     </message>
 </context>
 <context>
@@ -8929,22 +8902,22 @@ Tisti vtičniki so bili onemogočeni.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Interval osveževanja:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">sec</translation>
+        <translation>sec</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Privzeto</translation>
+        <translation>Privzeto</translation>
     </message>
 </context>
 <context>
@@ -9050,14 +9023,6 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Uredi URL vira ...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Uredi URL vira</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Izberite ime mape</translation>
@@ -9071,14 +9036,6 @@ Tisti vtičniki so bili onemogočeni.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Nova mapa</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Vpišite URL vira RSS</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Vir URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

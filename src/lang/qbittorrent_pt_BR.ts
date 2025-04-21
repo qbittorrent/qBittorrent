@@ -487,10 +487,6 @@
         <translation>Falha ao adicionar o torrent. Fonte: &quot;%1&quot;. Motivo: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Detectada uma tentativa de adicionar um torrent duplicado. Fonte: %1. Torrent existente: %2. Resultado: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>A mesclagem de rastreadores está desativada</translation>
@@ -508,7 +504,7 @@
     <message>
         <location filename="../base/addtorrentmanager.cpp" line="189"/>
         <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: &quot;%2&quot;. Torrent infohash: %3. Result: %4</source>
-        <translation type="unfinished"></translation>
+        <translation>Detectada uma tentativa de adicionar um torrent duplicado. Fonte: %1. Torrent existente: %2. Hash de informação do torrent: %3. Resultado: %4</translation>
     </message>
 </context>
 <context>
@@ -1081,7 +1077,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="744"/>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo de expiração do cache do resolvedor de nome de host interno</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="749"/>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Anexar diálogo &quot;Adicionar novo torrent&quot; à janela principal</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2103,12 +2099,12 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dados de resumo corrompidos: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path é inválido</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
@@ -2179,23 +2175,23 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Não foi possível analisar os dados de retomada: %1</translation>
+        <translation>Não foi possível analisar os dados de retomada: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Não foi possível analisar as informações do torrent: %1</translation>
+        <translation>Não foi possível analisar as informações do torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dados de resumo corrompidos: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path é inválido</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>
@@ -2441,10 +2437,6 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
         <translation>Torrent removido. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Detectada uma tentativa de adicionar um torrent duplicado. Torrent existente: %1. Resultado: %2</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
         <source>Merging of trackers is disabled</source>
         <translation>A mesclagem de rastreadores está desativada</translation>
@@ -2548,14 +2540,14 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2779"/>
         <source>Duplicate torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent duplicado</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2796"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2806"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2817"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: &quot;%1&quot;. Torrent infohash: %2. Result: %3</source>
-        <translation type="unfinished"></translation>
+        <translation>Detectada uma tentativa de adicionar um torrent duplicado. Torrent existente: %1. Hash de informação do torrent: %2. Resultado: %3</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5314"/>
@@ -3549,24 +3541,24 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">O gerenciamento de energia encontrou uma interface D-Bus adequada. Interface: %1</translation>
+        <translation>O gerenciamento de energia encontrou uma interface D-Bus adequada. Interface: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
         <source>Power management error. Did not find a suitable D-Bus interface.</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro de gerenciamento de energia. Não foi encontrada uma interface D-Bus adequada.</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="163"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Erro de gerenciamento de energia. Ação: %1. Erro: %2</translation>
+        <translation>Erro de gerenciamento de energia. Ação: %1. Erro: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Erro inesperado do gerenciamento de energia. Estado: %1. Erro: %2</translation>
+        <translation>Erro inesperado do gerenciamento de energia. Estado: %1. Erro: %2</translation>
     </message>
 </context>
 <context>
@@ -3575,7 +3567,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
         <location filename="../gui/powermanagement/inhibitormacos.cpp" line="36"/>
         <source>PMMacOS</source>
         <comment>qBittorrent is active</comment>
-        <translation type="unfinished"></translation>
+        <translation>PMMacOS</translation>
     </message>
 </context>
 <context>
@@ -6046,7 +6038,7 @@ Requerimento mínimo: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="825"/>
         <source>Show free disk space in status bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar espaço livre em disco na barra de status</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="924"/>
@@ -6148,10 +6140,6 @@ Requerimento mínimo: %2.</translation>
         <location filename="../gui/optionsdialog.ui" line="2006"/>
         <source>Mixed mode</source>
         <translation>Modo misto</translation>
-    </message>
-    <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Algumas opções são incompatíveis com o tipo de proxy escolhido!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
@@ -6315,12 +6303,12 @@ Desativar encriptação: Só conectar com os pares sem encriptação do protocol
     <message>
         <location filename="../gui/optionsdialog.ui" line="2087"/>
         <source>Some functions are unavailable with the chosen proxy type!</source>
-        <translation type="unfinished"></translation>
+        <translation>Algumas funções não estão disponíveis com o tipo de proxy escolhido!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2147"/>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished"></translation>
+        <translation>Aviso: A senha é salva sem criptografia</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3118"/>
@@ -7135,10 +7123,6 @@ readme[0-9].txt: filtra &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, mas n�
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>A&amp;utenticação</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: A senha é salva desencriptada</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8299,32 +8283,6 @@ Esses plugins foram desativados.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">O qBittorrent está ativo</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">O gerenciamento de energia encontrou uma interface D-Bus adequada. Interface: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Erro de gerenciamento de energia. Não foi encontrada uma interface D-Bus adequada.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Erro de gerenciamento de energia. Ação: %1. Erro: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Erro inesperado do gerenciamento de energia. Estado: %1. Erro: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8868,13 +8826,9 @@ Esses plugins foram desativados.</translation>
         <translation>O item não existe: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Não foi possível mover a pasta para dentro dela.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível mover a pasta para dentro dela mesma ou de suas subpastas.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="246"/>
@@ -8942,12 +8896,12 @@ Esses plugins foram desativados.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="88"/>
         <source>Invalid &apos;refreshInterval&apos; value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor &apos;refreshInterval&apos; inválido</translation>
     </message>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">O feed não existe: %1.</translation>
+        <translation>O feed não existe: %1.</translation>
     </message>
 </context>
 <context>
@@ -8955,27 +8909,27 @@ Esses plugins foram desativados.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="14"/>
         <source>RSS Feed Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções do feed RSS</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Intervalo de atualização:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> seg</translation>
+        <translation> seg</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Padrão</translation>
+        <translation>Padrão</translation>
     </message>
 </context>
 <context>
@@ -9078,15 +9032,7 @@ Esses plugins foram desativados.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="203"/>
         <source>Feed options...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Editar URL do feed...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Editar URL do feed</translation>
+        <translation>Opções do feed...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
@@ -9102,14 +9048,6 @@ Esses plugins foram desativados.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Nova pasta</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Por favor digite uma URL de feed do RSS</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">URL do feed:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>
@@ -10058,7 +9996,7 @@ Clique no botão &quot;Plugins de busca&quot; na parte inferior direita da janel
     <message>
         <location filename="../gui/statusbar.cpp" line="103"/>
         <source>Free space: N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Espaço livre: N/A</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="107"/>
@@ -10097,7 +10035,7 @@ Clique no botão &quot;Plugins de busca&quot; na parte inferior direita da janel
     <message>
         <location filename="../gui/statusbar.cpp" line="240"/>
         <source>Free space: </source>
-        <translation type="unfinished"></translation>
+        <translation>Espaço livre:</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="260"/>

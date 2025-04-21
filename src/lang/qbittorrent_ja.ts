@@ -487,10 +487,6 @@
         <translation>Torrentが追加できませんでした。 ソース: &quot;%1&quot;. 理由: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">重複したTorrentの追加が検出されました。ソース: %1. 既存Torrent: %2. 結果: %3.</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>トラッカーのマージは無効です</translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>「新しいTorrernの追加」ダイアログをメインウィンドウに追加します</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">再開データの解析ができませんでした:  %1</translation>
+        <translation>再開データの解析ができませんでした:  %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Torrent情報の解析ができませんでした: %1</translation>
+        <translation>Torrent情報の解析ができませんでした: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2439,10 +2435,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent(%1)が削除されました。</translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">重複したTorrentの追加が検出されました。既存Torrent: %1. 結果: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -3549,7 +3541,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">電源管理で適切なD-Busインターフェースが見つかりました。インターフェース: %1</translation>
+        <translation>電源管理で適切なD-Busインターフェースが見つかりました。インターフェース: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3561,12 +3553,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">電源管理エラー。 操作: %1. エラー: %2</translation>
+        <translation>電源管理エラー。 操作: %1. エラー: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">電源管理の予期せぬエラー。 状態: %1. エラー: %2</translation>
+        <translation>電源管理の予期せぬエラー。 状態: %1. エラー: %2</translation>
     </message>
 </context>
 <context>
@@ -6150,10 +6142,6 @@ Minimum requirement: %2.</source>
         <translation>混合モード</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">一部のオプションは、選択したプロキシタイプと互換性がありません。</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>チェックを入れると、ホスト名の名前解決はプロキシ経由で行われます</translation>
@@ -7136,10 +7124,6 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos;をフィルタ
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>認証(&amp;U)</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">注意: パスワードは暗号化せずに保存されます</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8301,32 +8285,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrentは稼働中です</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">電源管理で適切なD-Busインターフェースが見つかりました。インターフェース: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">電源管理エラー。適切なD-Busインターフェースが見つかりませんでした。</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">電源管理エラー。 操作: %1. エラー: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">電源管理の予期せぬエラー。 状態: %1. エラー: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8870,10 +8828,6 @@ Those plugins were disabled.</source>
         <translation>アイテムが存在しません: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">フォルダーをフォルダー自身に移動できませんでした。</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8949,7 +8903,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">フィードが存在しません: %1.</translation>
+        <translation>フィードが存在しません: %1.</translation>
     </message>
 </context>
 <context>
@@ -8962,22 +8916,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>更新間隔:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> 秒</translation>
+        <translation> 秒</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">デフォルト</translation>
+        <translation>デフォルト</translation>
     </message>
 </context>
 <context>
@@ -9083,14 +9037,6 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">フィードURLを編集...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">フィードURLの編集</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>フォルダー名を選択してください</translation>
@@ -9104,14 +9050,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>新しいフォルダー</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">RSSフィードのURLを入力してください</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">フィード URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

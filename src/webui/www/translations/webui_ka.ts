@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის შემქმნელი:</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>ტორენტის დამატებისას</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">შენიშვნა: პაროლი არადაშიფრულად არის შენახული</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP შერეული რეჟიმის ალგორითმი:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">წამი</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4052,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>ავტორი:</translation>
     </message>
 </context>
 <context>
@@ -4621,7 +4613,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>რიგშია</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4642,7 +4634,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>კომენტარები:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4670,7 +4662,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>პარამეტრები</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4678,7 +4670,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>სტატუსი</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4695,15 +4687,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>პროგრესი</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>დასრულების თარიღი</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>ჰიბრიდი</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4716,11 +4708,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>ტრეკერის URL-ბი:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4728,15 +4720,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>მისამართი:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის შექმნა</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>ავტო</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4758,7 +4750,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის ფორმატი:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4766,7 +4758,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>დამატების თარიღი</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4774,19 +4766,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის შემქმნელი:</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>რესურსი:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>ტრეკერები</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>ნაწილის ზომა:</translation>
     </message>
     <message>
         <source>Fields</source>

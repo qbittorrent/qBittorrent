@@ -487,10 +487,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">ניסיון להוסיף טורנט כפול התגלה. מקור: %1. טורנט קיים: %2. תוצאה: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>מיזוג עוקבנים מושבת</translation>
@@ -7115,10 +7111,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>&amp;אימות</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">מידע: הסיסמה נשמרת באופן בלתי מוצפן</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>נתיב מסנן (.dat, .p2p, .p2b):</translation>
@@ -8277,13 +8269,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent פעיל</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8915,22 +8900,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">כתובת:</translation>
+        <translation>כתובת:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>מרווח ריענון:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">שניות</translation>
+        <translation>שניות</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">ברירת מחדל</translation>
+        <translation>ברירת מחדל</translation>
     </message>
 </context>
 <context>
@@ -9036,14 +9021,6 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">ערוך כתובת הזנה…</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">ערוך כתובת הזנה</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>אנא בחר שם תיקייה</translation>
@@ -9057,14 +9034,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>תיקייה חדשה</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">אנא הקלד כתובת של הזנת RSS</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">כתובת הזנה:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

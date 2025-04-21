@@ -487,10 +487,6 @@
         <translation>فشل أضافة التورنت. المصدر: &quot;%1&quot;. السبب: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">تم الكشف عن محاولة اضافة تورينت مكرر. المصدر: %1. التورينت الموجود: %2. النتيجة: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>تم تعطيل دمج التتبع</translation>
@@ -2179,13 +2175,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">لا يمكن تحليل بيانات الاستئناف: %1</translation>
+        <translation>لا يمكن تحليل بيانات الاستئناف: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">لا يمكن تحليل معلومات التورنت: %1</translation>
+        <translation>لا يمكن تحليل معلومات التورنت: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -6147,10 +6143,6 @@ Minimum requirement: %2.</source>
         <translation>وضع مختلط</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">بعض الخيارات غير متوافقة مع نوع الوكيل الذي تم اختياره!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>إذا تم تحديده، فسيتم إجراء عمليات البحث عن اسم المضيف (hostname) عبر الوكيل</translation>
@@ -7132,10 +7124,6 @@ readme.txt: تصفية اسم الملف الدقيق.
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>المصادقة</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">معلومة: كلمة السر يتم حفظها بشكل غير مشفّر</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8296,13 +8284,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">كيوبت‎تورنت نشط</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8846,10 +8827,6 @@ Those plugins were disabled.</source>
         <translation>العنصر غير موجود: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">تعذر نقل المجلد إلى نفسه.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8925,7 +8902,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">الموجز غير موجود: %1.</translation>
+        <translation>الموجز غير موجود: %1.</translation>
     </message>
 </context>
 <context>
@@ -8938,7 +8915,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">الرابط:</translation>
+        <translation>الرابط:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
@@ -8948,12 +8925,12 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">ث</translation>
+        <translation>ث</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>إهمال</translation>
     </message>
 </context>
 <context>
@@ -9059,14 +9036,6 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">تحرير رابط الموجز...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">تحرير رابط الموجز</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>يرجى اختيار اسم المجلد</translation>
@@ -9080,14 +9049,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>مجلد جديد</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">يرجى كتابة رابط موجز RSS</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">رابط الموجز:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

@@ -676,8 +676,7 @@
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation>Impossible d'exporter le fichier torrent
-</translation>
+        <translation>Impossible d'exporter le fichier torrent</translation>
     </message>
     <message>
         <source>Name</source>
@@ -697,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Créateur de torrent</translation>
     </message>
 </context>
 <context>
@@ -1173,10 +1172,6 @@
         <translation>Lors de l'ajout d'un torrent</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info : le mot de passe est enregistré en texte clair</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algorithme du mode mixte μTP-TCP :</translation>
     </message>
@@ -1275,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Fils d'E/S asynchrones</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -3583,8 +3574,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Select category</source>
-        <translation>Sélectionner la catégorie
-</translation>
+        <translation>Sélectionner la catégorie</translation>
     </message>
     <message>
         <source>Min size prefix</source>
@@ -4057,7 +4047,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Auteur : </translation>
     </message>
 </context>
 <context>
@@ -4619,7 +4609,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privé</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4627,7 +4617,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>En file d’attente</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4640,7 +4630,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Impossible d'exporter le fichier torrent</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -4648,7 +4638,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Commentaires :</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4656,11 +4646,11 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Icône de status </translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL des sources Web :</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4668,7 +4658,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Commentaire</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4676,7 +4666,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Paramètres</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4684,7 +4674,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Statut</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4701,15 +4691,15 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progression</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Complété le</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hybride</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4722,11 +4712,11 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/D</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL des trackers :</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4734,15 +4724,15 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Chemin :</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Créer le torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4764,7 +4754,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Format du torrent :</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4772,7 +4762,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Ajouté le</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4780,23 +4770,23 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Créateur de torrent</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Source :</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Taille des morceaux :</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Champs</translation>
     </message>
     <message>
         <source>Remove Task</source>

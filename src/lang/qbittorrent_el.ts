@@ -487,10 +487,6 @@
         <translation>Αποτυχία προσθήκης torrent. Πηγή: &quot;%1&quot;. Αιτία: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Εντοπίστηκε μια προσπάθεια προσθήκης διπλού torrent. Πηγή: %1. Υπάρχον torrent: %2. Αποτέλεσμα: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Η συγχώνευση trackers είναι απενεργοποιημένη</translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Επισυνάψτε το παράθυρο διαλόγου &quot;Προσθήκη νέου torrent&quot; στο κύριο παράθυρο</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Δεν είναι δυνατή η ανάλυση των δεδομένων συνέχισης: %1</translation>
+        <translation>Δεν είναι δυνατή η ανάλυση των δεδομένων συνέχισης: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Δεν είναι δυνατή η ανάλυση των πληροφοριών torrent: %1</translation>
+        <translation>Δεν είναι δυνατή η ανάλυση των πληροφοριών torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2439,10 +2435,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Το torrent αφαιρέθηκε. Torrent: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Εντοπίστηκε μια προσπάθεια προσθήκης διπλότυπου torrent. Υπάρχον torrent: %1. Αποτέλεσμα: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -3549,7 +3541,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Η διαχείριση ενέργειας βρήκε κατάλληλη διεπαφή D-Bus. Διασύνδεση: %1</translation>
+        <translation>Η διαχείριση ενέργειας βρήκε κατάλληλη διεπαφή D-Bus. Διασύνδεση: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3561,12 +3553,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Σφάλμα διαχείρισης ενέργειας. Δράση: %1. Σφάλμα: %2</translation>
+        <translation>Σφάλμα διαχείρισης ενέργειας. Δράση: %1. Σφάλμα: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Μη αναμενόμενο σφάλμα διαχείρισης ενέργειας. Πολιτεία: %1. Σφάλμα: %2</translation>
+        <translation>Μη αναμενόμενο σφάλμα διαχείρισης ενέργειας. Πολιτεία: %1. Σφάλμα: %2</translation>
     </message>
 </context>
 <context>
@@ -6149,10 +6141,6 @@ Minimum requirement: %2.</source>
         <translation>Μικτή λειτουργία</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Ορισμένες επιλογές δεν είναι συμβατές με τον επιλεγμένο τύπο proxy!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Εάν είναι επιλεγμένο, οι αναζητήσεις hostname γίνονται μέσω του proxy</translation>
@@ -7134,10 +7122,6 @@ readme[0-9].txt: φίλτρο για «readme1.txt», «readme2.txt» αλλά �
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>Έλεγχος &amp;Ταυτότητας</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Πληροφορία: Ο κωδικός πρόσβασης έχει αποθηκευθεί μη κρυπτογραφημένος</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8298,32 +8282,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">Το qBittorrent είναι ενεργό</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Η διαχείριση ενέργειας βρήκε κατάλληλη διεπαφή D-Bus. Διασύνδεση: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Σφάλμα διαχείρισης ενέργειας. Δεν βρέθηκε κατάλληλη διασύνδεση D-Bus.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Σφάλμα διαχείρισης ενέργειας. Δράση: %1. Σφάλμα: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Μη αναμενόμενο σφάλμα διαχείρισης ενέργειας. Πολιτεία: %1. Σφάλμα: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8867,10 +8825,6 @@ Those plugins were disabled.</source>
         <translation>Το στοιχείο δεν υπάρχει: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Δεν ήταν δυνατή η μετακίνηση του φακέλου στον εαυτό του.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8946,7 +8900,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Η ροή δεν υπάρχει: %1.</translation>
+        <translation>Η ροή δεν υπάρχει: %1.</translation>
     </message>
 </context>
 <context>
@@ -8959,22 +8913,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρονικό διάστημα ανανέωσης</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> sec</translation>
+        <translation> sec</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Προεπιλογή</translation>
+        <translation>Προεπιλογή</translation>
     </message>
 </context>
 <context>
@@ -9080,14 +9034,6 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Επεξεργασία URL ροής...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Επεξεργασία URL ροής</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Παρακαλώ επιλέξτε ένα όνομα φακέλου</translation>
@@ -9101,14 +9047,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Νέος φάκελος</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Παρακαλώ εισάγετε ένα URL ροής RSS</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">URL ροής:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

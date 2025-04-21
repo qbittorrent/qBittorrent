@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentクリエーター</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Torrentを追加したとき</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">情報: パスワードは暗号化されずに保存されます</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP混在状態のアルゴリズム:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>非同期I/Oスレッド数</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">秒</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2061,7 +2053,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>秒</translation>
     </message>
 </context>
 <context>
@@ -4056,7 +4048,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>作者: </translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4610,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>プライベート</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4626,7 +4618,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>待機中</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4647,7 +4639,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>コメント:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4659,7 +4651,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>ウェブシードURL:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4675,7 +4667,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>設定</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4683,7 +4675,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>状態</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4700,15 +4692,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>進行状況</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>完了日時</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>ハイブリッド</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4721,11 +4713,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>トラッカーURL:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4733,15 +4725,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>パス:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrentを作成</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>自動</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4763,7 +4755,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrentの形式</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4771,7 +4763,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>追加日時</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4779,23 +4771,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentクリエーター</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>ソース:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>トラッカー</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>ピースサイズ:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>フィールド</translation>
     </message>
     <message>
         <source>Remove Task</source>

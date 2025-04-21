@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Trình tạo Torrent</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Khi thêm một torrent</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Thông tin: Mật khẩu đã lưu không mã hóa</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Thuật toán chế độ hỗn hợp μTP-TCP:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Luồng I/O không đồng bộ:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">giây</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4056,7 +4048,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Tác giả:</translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4610,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Riêng tư</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4626,7 +4618,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Xếp hàng</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4639,7 +4631,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Không thể xuất tệp torrent</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -4647,7 +4639,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Bình luận:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4655,11 +4647,11 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Biểu Tượng Trạng Thái</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL Web chia sẻ</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4667,7 +4659,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Bình luận</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4675,7 +4667,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Cài đặt</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4683,7 +4675,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Trạng thái</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4700,15 +4692,15 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Tiến độ</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Đã Xong Lúc</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hỗn hợp</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4721,11 +4713,11 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Không áp dụng</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL máy theo dõi:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4733,15 +4725,15 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Tạo Torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Tự động</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4763,7 +4755,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Dạng torrent:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4771,7 +4763,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Thêm Lúc</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4779,23 +4771,23 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Trình tạo Torrent</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Nguồn:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Máy theo dõi</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Kích thước mảnh:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Trường</translation>
     </message>
     <message>
         <source>Remove Task</source>

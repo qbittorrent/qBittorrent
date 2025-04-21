@@ -487,10 +487,6 @@
         <translation>Torrent hozzáadása sikertelen. Forrás: &quot;%1&quot;. Indok: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Duplikált torrent hozzáadási kísérlet észlelve. Forrás: %1. Meglévő torrent: %2. Eredmény: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Trackerek összevonása ki van kapcsolva</translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Új torrent hozzáadása&quot; párbeszédpanel csatolása a főablakhoz</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Nem lehet feldolgozni a folytatási adatot: %1</translation>
+        <translation>Nem lehet feldolgozni a folytatási adatot: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Nem lehet feldolgozni a torrent infót: %1</translation>
+        <translation>Nem lehet feldolgozni a torrent infót: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2439,10 +2435,6 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent eltávolítva. Torrent: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Duplikált torrent hozzáadásának kísérlete észlelve. Létező torrent: %1. Eredmény: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -3549,7 +3541,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Az energiakezelés megfelelő D-Bus interfészt talált. Interfész: %1</translation>
+        <translation>Az energiakezelés megfelelő D-Bus interfészt talált. Interfész: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3561,12 +3553,12 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Energiagazdálkodási hiba. Művelet: %1. Hiba: %2</translation>
+        <translation>Energiagazdálkodási hiba. Művelet: %1. Hiba: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Energiagazdálkodási váratlan hiba. Állapot: %1. Hiba: %2</translation>
+        <translation>Energiagazdálkodási váratlan hiba. Állapot: %1. Hiba: %2</translation>
     </message>
 </context>
 <context>
@@ -6149,10 +6141,6 @@ Minimális követelmény: %2.</translation>
         <translation>Kevert mód</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Egyes beállítások nem kompatibilisek a kiválasztott proxy típussal!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Ha be van jelölve, a kiszolgálónevek a proxyn keresztül lesznek feloldva.</translation>
@@ -7134,10 +7122,6 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos; szűrő, de ne
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>&amp;Hitelesítés</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Infó: Jelszó titkosítás nélkül kerül elmentésre</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8298,32 +8282,6 @@ Azok a modulok letiltásra kerültek.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">A qBittorrent aktív</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Az energiakezelés megfelelő D-Bus interfészt talált. Interfész: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Energiagazdálkodási hiba. Nem található megfelelő D-Bus interfész.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Energiagazdálkodási hiba. Művelet: %1. Hiba: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Energiagazdálkodási váratlan hiba. Állapot: %1. Hiba: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8867,10 +8825,6 @@ Azok a modulok letiltásra kerültek.</translation>
         <translation>Elem nem létezik: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Nem lehetett áthelyezni a mappát önmagába.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8946,7 +8900,7 @@ Azok a modulok letiltásra kerültek.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">RSS csatorna nem létezik: %1.</translation>
+        <translation>RSS csatorna nem létezik: %1.</translation>
     </message>
 </context>
 <context>
@@ -8959,22 +8913,22 @@ Azok a modulok letiltásra kerültek.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Frissítési időköz:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">mp</translation>
+        <translation>mp</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Alapértelmezett</translation>
+        <translation>Alapértelmezett</translation>
     </message>
 </context>
 <context>
@@ -9080,14 +9034,6 @@ Azok a modulok letiltásra kerültek.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Csatorna URL szerkesztése...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Csatorna URL szerkesztése</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Kérem válasszon egy mappanevet</translation>
@@ -9101,14 +9047,6 @@ Azok a modulok letiltásra kerültek.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Új mappa</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Kérem írjon be egy RSS csatorna URL-t</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Csatorna URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

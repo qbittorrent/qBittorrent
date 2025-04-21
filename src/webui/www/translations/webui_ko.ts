@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>토렌트 생성기</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>토렌트 추가시</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">정보: 암호를 평문으로 저장했습니다</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP 혼합 모드 알고리즘:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>비동기 I/O 쓰레드</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">초</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2061,7 +2053,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>초</translation>
     </message>
 </context>
 <context>
@@ -4056,7 +4048,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>작성자: </translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4610,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>비공개</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4626,7 +4618,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>대기 중</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4639,7 +4631,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>토렌트 파일을 내보낼 수 없습니다</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -4647,7 +4639,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>주석:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4655,11 +4647,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>상태 아이콘</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>웹 배포 URL:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4667,7 +4659,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>주석</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4675,7 +4667,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>설정</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4683,7 +4675,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>상태</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4700,15 +4692,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>진행률</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>완료된 날짜</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>혼합</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4721,11 +4713,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>해당사항 없음</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>트래커 URL:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4733,15 +4725,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>경로:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>토렌트 만들기</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>자동</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4763,7 +4755,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>토렌트 형식:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4771,7 +4763,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>추가된 날짜</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4779,23 +4771,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>토렌트 생성기</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>소스:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>트래커</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>조각 크기:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>토렌트 정보</translation>
     </message>
     <message>
         <source>Remove Task</source>

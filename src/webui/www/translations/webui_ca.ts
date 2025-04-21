@@ -697,7 +697,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Creador del torrent</translation>
     </message>
 </context>
 <context>
@@ -1173,10 +1173,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>En afegir un torrent</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Informació: la contrasenya es desa sense encriptar.</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algorisme de mode mesclat uTP-TCP:</translation>
     </message>
@@ -1275,10 +1271,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Fils d'E/S asincrònics:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2062,7 +2054,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
 </context>
 <context>
@@ -4057,7 +4049,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autor:</translation>
     </message>
 </context>
 <context>
@@ -4619,7 +4611,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4627,7 +4619,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>A la cua</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4640,7 +4632,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>No es pot exportar el fitxer de torrent.</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
@@ -4648,7 +4640,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Comentaris:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4656,11 +4648,11 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Icona d'estat</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URLs de llavor web:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4668,7 +4660,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Comentari</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4676,7 +4668,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Configuració</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4684,7 +4676,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Estat</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4701,15 +4693,15 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progrés</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Completat a</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Híbrid</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4722,11 +4714,11 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N / D</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URLs de rastrejador:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4734,15 +4726,15 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Camí:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Crea un torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4764,7 +4756,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Format del torrent:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4772,7 +4764,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Afegit el</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4780,23 +4772,23 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Creador del torrent</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Font:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Rastrejadors</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Mida del tros:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Camps</translation>
     </message>
     <message>
         <source>Remove Task</source>

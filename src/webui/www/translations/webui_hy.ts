@@ -4044,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Հեղինակ՝</translation>
     </message>
 </context>
 <context>
@@ -4613,7 +4613,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Հերթագրված է</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4634,7 +4634,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Մեկնաբանություններ՝</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4662,7 +4662,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Կարգավորումներ</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4670,7 +4670,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Վիճակ</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4687,11 +4687,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Ընթացք</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Ավարտվել է</translation>
     </message>
     <message>
         <source>Hybrid</source>
@@ -4712,7 +4712,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Ուղղորդիչի հղումները.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4720,15 +4720,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Ուղի՝</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Ստեղծել torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Ինքնաշխատ</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4750,7 +4750,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrent-ի ձևաչափ՝</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4758,7 +4758,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Ավելացվել է</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4770,19 +4770,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Աղբյուր՝</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Գրանցորդներ</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Մասի չափը.</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Դաշտեր</translation>
     </message>
     <message>
         <source>Remove Task</source>

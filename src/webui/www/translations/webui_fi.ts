@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentin luonti</translation>
     </message>
 </context>
 <context>
@@ -1170,10 +1170,6 @@
     <message>
         <source>When adding a torrent</source>
         <translation>Kun lisätään torrent-tiedostoa</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Tärkeää: Salasana tallennetaan salaamattomana</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -4048,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Tekijä: </translation>
     </message>
 </context>
 <context>
@@ -4610,7 +4606,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Yksityinen</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4618,7 +4614,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Jonossa</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4639,7 +4635,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Kommentit:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4651,7 +4647,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Web-jaot:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4659,7 +4655,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Kommentti</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4667,7 +4663,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Asetukset</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4675,7 +4671,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Tila</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4692,15 +4688,15 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Edistyminen</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Valmistunut</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hybridi</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4713,11 +4709,11 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Ei saatavilla</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Seurantapalvelimien osoitteet:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4725,15 +4721,15 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Sijainti:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Luo torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automaattinen</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4755,7 +4751,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrentin muoto:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4763,7 +4759,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Lisätty</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4771,23 +4767,23 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentin luonti</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Lähde:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Seurantapalvelimet</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Osakoko:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Kentät</translation>
     </message>
     <message>
         <source>Remove Task</source>

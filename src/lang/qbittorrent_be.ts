@@ -487,10 +487,6 @@
         <translation>Не ўдалося дадаць торэнт. Крыніца: &quot;%1&quot;. Прычына: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Выяўлена спроба паўторнага дадавання наяўнага торэнта. Крыніца: %1. Наяўны торэнт: %2. Вынік: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Аб&apos;яднанне трэкераў адключана </translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Прымацаваць акно дадавання торэнта да галоўнага</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Немагчыма прааналізаваць даныя ўзнаўлення: %1</translation>
+        <translation>Немагчыма прааналізаваць даныя ўзнаўлення: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Не ўдаецца прааналізаваць звесткі пра торэнт: : %1</translation>
+        <translation>Не ўдаецца прааналізаваць звесткі пра торэнт: : %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2439,10 +2435,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Торэнт выдалены. Торэнт: «%1»</translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Выяўлена спроба паўторнага дадавання наяўнага торэнта. Наяўны торэнт: %1. Вынік: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -3549,7 +3541,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Кіраванне сілкаваннем знайшло падыходны інтэрфейс D-Bus. Інтэрфейс: %1</translation>
+        <translation>Кіраванне сілкаваннем знайшло падыходны інтэрфейс D-Bus. Інтэрфейс: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3561,12 +3553,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Памылка кіравання энергаспажываннем. Дзеянне: %1. Памылка: %2</translation>
+        <translation>Памылка кіравання энергаспажываннем. Дзеянне: %1. Памылка: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Нечаканая памылка кіравання энергаспажываннем. Стан: %1. Памылка: %2</translation>
+        <translation>Нечаканая памылка кіравання энергаспажываннем. Стан: %1. Памылка: %2</translation>
     </message>
 </context>
 <context>
@@ -6149,10 +6141,6 @@ Minimum requirement: %2.</source>
         <translation>Змяшаны рэжым</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Некаторыя параметры несумяшчальныя з выбраным тыпам проксі!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Калі пазначана, пошук назвы хоста выконваецца праз проксі</translation>
@@ -7123,10 +7111,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>&amp;Аўтэнтыфікацыя</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Інфармацыя: пароль будзе захаваны ў незашыфраваным выглядзе</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8287,32 +8271,6 @@ Those plugins were disabled.</source>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent актыўны</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Кіраванне сілкаваннем знайшло падыходны інтэрфейс D-Bus. Інтэрфейс: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Памылка кіравання сілкаваннем. Не знойдзены падыодны інтэрфейс D-Bus.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Памылка кіравання энергаспажываннем. Дзеянне: %1. Памылка: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Нечаканая памылка кіравання энергаспажываннем. Стан: %1. Памылка: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8856,10 +8814,6 @@ Those plugins were disabled.</source>
         <translation>Элемент не існуе: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Немагчыма перамясціць папку саму ў сябе.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8935,7 +8889,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Канал не існуе: %1.</translation>
+        <translation>Канал не існуе: %1.</translation>
     </message>
 </context>
 <context>
@@ -8948,22 +8902,22 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">Адрас:</translation>
+        <translation>Адрас:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Інтэрвал абнаўлення:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> с</translation>
+        <translation> с</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Па змаўчанні</translation>
+        <translation>Прадвызначана</translation>
     </message>
 </context>
 <context>
@@ -9069,14 +9023,6 @@ Those plugins were disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Змяніць URL канала...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Змяніць URL канала</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Выберыце назву папкі</translation>
@@ -9090,14 +9036,6 @@ Those plugins were disabled.</source>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Новая папка</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Увядзіце адрас RSS-канала</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Адрас канала:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

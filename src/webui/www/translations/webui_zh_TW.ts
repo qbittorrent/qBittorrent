@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrent 製作器</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>當增加 torrent 時</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">資訊：密碼以未加密的形式儲存</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP 混合模式演算法</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>異步 I/O 執行緒：</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2049,19 +2041,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation type="unfinished" />
+        <translation>啟用最佳化的表格繪製（實驗性）</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>注意：密碼以未加密形式儲存</translation>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>內部主機名稱解析器快取過期間隔</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>秒</translation>
     </message>
 </context>
 <context>
@@ -4052,11 +4044,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Open link</source>
-        <translation type="unfinished" />
+        <translation>開啟連結</translation>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>作者：</translation>
     </message>
 </context>
 <context>
@@ -4618,192 +4610,197 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>私人</translation>
     </message>
     <message>
         <source>Source</source>
-        <translation type="unfinished" />
+        <translation>來源</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>佇列</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
-        <translation type="unfinished" />
+        <translation>無法建立 torrent。</translation>
     </message>
     <message>
         <source>Private
                 torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>私密
+                torrent（不會在 DHT 網路散佈）</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>無法匯出 torrent 檔案</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
-        <translation type="unfinished" />
+        <translation>建立新的 Torrent</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>註解：</translation>
     </message>
     <message>
         <source>Download Torrent</source>
-        <translation type="unfinished" />
+        <translation>下載 torrent</translation>
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>狀態圖示</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>網頁種子 URL：</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished" />
+        <translation>失敗</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>註解</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation type="unfinished" />
+        <translation>已結束</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>設定</translation>
     </message>
     <message>
         <source>Error Message</source>
-        <translation type="unfinished" />
+        <translation>錯誤訊息</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>狀態</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
                 than:</source>
-        <translation type="unfinished" />
+        <translation>對齊大於以下內容的檔案
+                邊界：</translation>
     </message>
     <message>
         <source>Select file/folder to share:</source>
-        <translation type="unfinished" />
+        <translation>選取要分享的檔案/資料夾：</translation>
     </message>
     <message>
         <source>Piece Size</source>
-        <translation type="unfinished" />
+        <translation>區塊大小</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>進度</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>完成於</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>混合</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
-        <translation type="unfinished" />
+        <translation>無法載入 torrent 建立任務</translation>
     </message>
     <message>
         <source>Optimize
                     alignment</source>
-        <translation type="unfinished" />
+        <translation>最佳化
+                    對齊</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>追蹤者 URL：</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
-        <translation type="unfinished" />
+        <translation>您確定您想要刪除選定的任務嗎？</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>路徑：</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>製作 torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>自動</translation>
     </message>
     <message>
         <source>Started On</source>
-        <translation type="unfinished" />
+        <translation>開始於</translation>
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation type="unfinished" />
+        <translation>網頁種子</translation>
     </message>
     <message>
         <source>Start
                 seeding
                 immediately</source>
-        <translation type="unfinished" />
+        <translation>立刻
+                開始
+                做種</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished" />
+        <translation>格式</translation>
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrent 格式：</translation>
     </message>
     <message>
         <source>Source Path</source>
-        <translation type="unfinished" />
+        <translation>來源路徑</translation>
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>增加於</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished" />
+        <translation>正在執行</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrent 製作器</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>來源：</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>分塊大小：</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>資訊項</translation>
     </message>
     <message>
         <source>Remove Task</source>
-        <translation type="unfinished" />
+        <translation>移除任務</translation>
     </message>
     <message>
         <source>Export Torrent</source>
-        <translation type="unfinished" />
+        <translation>匯出 torrent</translation>
     </message>
 </context>
 </TS>

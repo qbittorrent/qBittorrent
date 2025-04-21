@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Criador de torrents</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Quando adicionar um torrent</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Informação: A senha é salva desencriptada</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algorítmo de modo misto do μTP-TCP:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Threads de E/S assíncronos:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2049,19 +2041,19 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation type="unfinished" />
+        <translation>Ativar renderização de tabela otimizada (experimental)</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Aviso: A senha é salva sem criptografia</translation>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>Intervalo de expiração do cache do resolvedor de nome de host interno</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>seg</translation>
     </message>
 </context>
 <context>
@@ -4052,11 +4044,11 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Open link</source>
-        <translation type="unfinished" />
+        <translation>Abrir link</translation>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autor: </translation>
     </message>
 </context>
 <context>
@@ -4618,192 +4610,196 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privado</translation>
     </message>
     <message>
         <source>Source</source>
-        <translation type="unfinished" />
+        <translation>Fonte</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Na Fila</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível criar o torrent.</translation>
     </message>
     <message>
         <source>Private
                 torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Torrent privado
+(não distribuirá na rede DHT)</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível exportar o arquivo torrent</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
-        <translation type="unfinished" />
+        <translation>Criar novo torrent</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Comentários:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
-        <translation type="unfinished" />
+        <translation>Baixar torrent</translation>
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Ícone de status</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URLs de semente da web:</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished" />
+        <translation>Falhou</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Comentário</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation type="unfinished" />
+        <translation>Concluído</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Configurações</translation>
     </message>
     <message>
         <source>Error Message</source>
-        <translation type="unfinished" />
+        <translation>Mensagem de erro</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Status</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
                 than:</source>
-        <translation type="unfinished" />
+        <translation>Alinhar ao limite dos pedaços pra arquivos maiores do que:</translation>
     </message>
     <message>
         <source>Select file/folder to share:</source>
-        <translation type="unfinished" />
+        <translation>Selecione o arquivo/pasta para compartilhar:</translation>
     </message>
     <message>
         <source>Piece Size</source>
-        <translation type="unfinished" />
+        <translation>Tamanho da parte</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progresso</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Completado em</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Híbrido</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
-        <translation type="unfinished" />
+        <translation>Não é possível carregar as tarefas de criação de torrent</translation>
     </message>
     <message>
         <source>Optimize
                     alignment</source>
-        <translation type="unfinished" />
+        <translation>Otimizar
+alinhamento</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/D</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URLs do rastreador:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
-        <translation type="unfinished" />
+        <translation>Você deseja realmente apagar as tarefas selecionadas?</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Caminho:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Criar Torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Auto</translation>
     </message>
     <message>
         <source>Started On</source>
-        <translation type="unfinished" />
+        <translation>Iniciado em</translation>
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation type="unfinished" />
+        <translation>Seeds da web</translation>
     </message>
     <message>
         <source>Start
                 seeding
                 immediately</source>
-        <translation type="unfinished" />
+        <translation>Começar
+a semear
+imediatamente</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished" />
+        <translation>Formato</translation>
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Formato do torrent:</translation>
     </message>
     <message>
         <source>Source Path</source>
-        <translation type="unfinished" />
+        <translation>Caminho da fonte</translation>
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Adicionado em</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished" />
+        <translation>Em execução</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Criador de torrents</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Fonte:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Tamanho do pedaço:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Campos</translation>
     </message>
     <message>
         <source>Remove Task</source>
-        <translation type="unfinished" />
+        <translation>Remover tarefa</translation>
     </message>
     <message>
         <source>Export Torrent</source>
-        <translation type="unfinished" />
+        <translation>Exportar torrent</translation>
     </message>
 </context>
 </TS>

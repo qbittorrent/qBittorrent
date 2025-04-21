@@ -487,10 +487,6 @@
         <translation>Konnte Torrent nicht hinzufügen. Quelle: &quot;%1&quot;. Grund: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Das Hinzufügen eines doppelten Torrents wurde erkannt. Quelle: %1. Bestehender Torrent: %2. Ergebnis: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Zusammenführen der Tracker ist deaktiviert.</translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog &quot;Neuen Torrent hinzufügen&quot; an das Hauptfenster anhängen</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Fortsetzungsdaten können nicht analysiert werden: %1</translation>
+        <translation>Fortsetzungsdaten können nicht analysiert werden: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Torrent-Infos können nicht analysiert werden: %1</translation>
+        <translation>Torrent-Infos können nicht analysiert werden: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2439,10 +2435,6 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Torrent entfernt. Torrent: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Das Hinzufügen eines doppelten Torrents wurde erkannt. Bestehender Torrent: %1. Ergebnis: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -3549,7 +3541,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Das Power Management hat eine geeignete D-Bus-Schnittstelle gefunden. Schnittstelle: %1</translation>
+        <translation>Das Power Management hat eine geeignete D-Bus-Schnittstelle gefunden. Schnittstelle: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3561,12 +3553,12 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Fehler im Power Management. Aktion: %1. Fehler: %2</translation>
+        <translation>Fehler im Power Management. Aktion: %1. Fehler: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Unerwarteter Fehler im Power Management. Status: %1. Fehler: %2</translation>
+        <translation>Unerwarteter Fehler im Power Management. Status: %1. Fehler: %2</translation>
     </message>
 </context>
 <context>
@@ -6150,10 +6142,6 @@ Mindestens erforderlich ist: %2.</translation>
         <translation>Gemischter Modus</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Einige Optionen sind mit dem gewählten Proxy-Typ nicht kompatibel!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Wenn diese Option aktiviert ist, erfolgt die Suche nach Hostnamen über den Proxy</translation>
@@ -7137,10 +7125,6 @@ readme[0-9].txt: filtert &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, aber 
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>A&amp;uthentifizierung</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: Das Passwort wird unverschlüsselt gespeichert!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8302,32 +8286,6 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent ist aktiv</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Das Power Management hat eine geeignete D-Bus-Schnittstelle gefunden. Schnittstelle: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Fehler im Power Management. Es wurde keine geeignete D-Bus-Schnittstelle gefunden.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Fehler im Power Management. Aktion: %1. Fehler: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Unerwarteter Fehler im Power Management. Status: %1. Fehler: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8871,10 +8829,6 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
         <translation>Das existiert nicht: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Verzeichnis kann nicht in sich selbst verschoben werden.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8950,7 +8904,7 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Feed existiert nicht: %1.</translation>
+        <translation>Feed existiert nicht: %1.</translation>
     </message>
 </context>
 <context>
@@ -8963,22 +8917,22 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualisierungsintervall:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> Sek.</translation>
+        <translation> Sek.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Standard</translation>
+        <translation>Standard</translation>
     </message>
 </context>
 <context>
@@ -9084,14 +9038,6 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Feed-URL editieren ...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Feed-URL editieren</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Bitte einen Verzeichnisnamen wählen</translation>
@@ -9105,14 +9051,6 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Neues Verzeichnis</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Bitte eine RSS-Feed Adresse eingeben</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Feed-URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

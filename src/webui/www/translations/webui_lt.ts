@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Sukurti torentą</translation>
     </message>
 </context>
 <context>
@@ -1170,10 +1170,6 @@
     <message>
         <source>When adding a torrent</source>
         <translation>Pridedant torentą</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Informacija: Slaptažodis yra išsaugomas nešifruotai</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -2059,7 +2055,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>sek.</translation>
     </message>
 </context>
 <context>
@@ -4054,7 +4050,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autorius: </translation>
     </message>
 </context>
 <context>
@@ -4624,7 +4620,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Eilėje</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4645,7 +4641,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Komentarai:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4657,7 +4653,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Saityno skleidimo URL adresai:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4665,7 +4661,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentaras</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4673,7 +4669,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Nustatymai</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4681,7 +4677,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Būsena</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4698,15 +4694,15 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Eiga</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Užbaigta</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hibridinis</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4719,11 +4715,11 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Nėra</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Seklių URL:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4731,15 +4727,15 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Kelias:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Sukurti torentą</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>nustatyti automatiškai</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4761,7 +4757,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torento formatas:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4769,7 +4765,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Pridėta</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4777,23 +4773,23 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Sukurti torentą</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Šaltinis:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Sekliai</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Dalies dydis:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Laukai</translation>
     </message>
     <message>
         <source>Remove Task</source>

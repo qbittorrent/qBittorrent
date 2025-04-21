@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentskapare</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>När en torrent läggs till</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: Lösenordet sparas okrypterat</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>µTP-TCP blandad lägesalgoritm:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Asynkrona in/ut-trådar:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2049,19 +2041,19 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation type="unfinished" />
+        <translation>Aktivera optimerad rendering av tabeller (experimentell)</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Observera: Lösenordet sparas okrypterat</translation>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>Utgångsintervall för cache för intern värdnamnsresolver</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>sek</translation>
     </message>
 </context>
 <context>
@@ -4052,11 +4044,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Open link</source>
-        <translation type="unfinished" />
+        <translation>Öppna länk</translation>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Upphovsman: </translation>
     </message>
 </context>
 <context>
@@ -4618,192 +4610,197 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Source</source>
-        <translation type="unfinished" />
+        <translation>Källa</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Köar</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
-        <translation type="unfinished" />
+        <translation>Kunde inte skapa torrent.</translation>
     </message>
     <message>
         <source>Private
                 torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Privat
+                torrent (distribueras inte på DHT-nätverk)</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Det går inte att exportera torrentfil</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
-        <translation type="unfinished" />
+        <translation>Skapa ny torrent</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Kommentarer:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
-        <translation type="unfinished" />
+        <translation>Hämta torrent</translation>
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Statusikon</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL:er för webbdistribution:</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished" />
+        <translation>Misslyckades</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Kommentar</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation type="unfinished" />
+        <translation>Färdig</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Inställningar</translation>
     </message>
     <message>
         <source>Error Message</source>
-        <translation type="unfinished" />
+        <translation>Felmeddelande</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Status</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
                 than:</source>
-        <translation type="unfinished" />
+        <translation>Justera till delgränsen för filer som är större
+                än:</translation>
     </message>
     <message>
         <source>Select file/folder to share:</source>
-        <translation type="unfinished" />
+        <translation>Välj fil/mapp att dela:</translation>
     </message>
     <message>
         <source>Piece Size</source>
-        <translation type="unfinished" />
+        <translation>Delstorlek</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Förlopp</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Slutfördes</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hybrid</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
-        <translation type="unfinished" />
+        <translation>Det går inte att läsa in åtgärder för skapande av torrent</translation>
     </message>
     <message>
         <source>Optimize
                     alignment</source>
-        <translation type="unfinished" />
+        <translation>Optimera
+                    justering</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Ingen</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL:er för spårare:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
-        <translation type="unfinished" />
+        <translation>Är du säker på att du vill ta bort valda åtgärder?</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Sökväg:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Skapa torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automatisk</translation>
     </message>
     <message>
         <source>Started On</source>
-        <translation type="unfinished" />
+        <translation>Startad</translation>
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation type="unfinished" />
+        <translation>Webbdistribution</translation>
     </message>
     <message>
         <source>Start
                 seeding
                 immediately</source>
-        <translation type="unfinished" />
+        <translation>Börja
+                distribuera
+                direkt</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished" />
+        <translation>Format</translation>
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrentformat:</translation>
     </message>
     <message>
         <source>Source Path</source>
-        <translation type="unfinished" />
+        <translation>Källsökväg</translation>
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Tillagd</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished" />
+        <translation>Kör</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrentskapare</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Källa:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Spårare</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Delstorlek:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Fält</translation>
     </message>
     <message>
         <source>Remove Task</source>
-        <translation type="unfinished" />
+        <translation>Ta bort åtgärd</translation>
     </message>
     <message>
         <source>Export Torrent</source>
-        <translation type="unfinished" />
+        <translation>Exportera torrent</translation>
     </message>
 </context>
 </TS>

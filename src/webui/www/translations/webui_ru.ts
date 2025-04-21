@@ -309,7 +309,7 @@
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation>Свободно: %1</translation>
+        <translation>Свободное место: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Создание торрента</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>При добавлении торрента</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Примечание: Пароль будет сохранён в нешифрованном виде</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Алгоритм смешанного режима μTP-TCP:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Потоки асинхронного ввода-вывода:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">с</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -2049,19 +2041,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation type="unfinished" />
+        <translation>Оптимизировать отрисовку таблиц (экспериментально)</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Примечание: Пароль сохраняется в нешифрованном виде</translation>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>Период истечения срока кэша внутреннего преобразователя имён хостов</translation>
     </message>
     <message>
         <source>sec</source>
-        <translation type="unfinished" />
+        <translation>с</translation>
     </message>
 </context>
 <context>
@@ -4052,11 +4044,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Open link</source>
-        <translation type="unfinished" />
+        <translation>Открыть ссылку</translation>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Автор: </translation>
     </message>
 </context>
 <context>
@@ -4223,7 +4215,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Номер сезона должен иметь ненулевое значение</translation>
+        <translation>Номер сезона должен быть ненулевым значением</translation>
     </message>
     <message>
         <source>Never</source>
@@ -4618,192 +4610,197 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Частный</translation>
     </message>
     <message>
         <source>Source</source>
-        <translation type="unfinished" />
+        <translation>Источник</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>В очереди</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
-        <translation type="unfinished" />
+        <translation>Невозможно создать торрент.</translation>
     </message>
     <message>
         <source>Private
                 torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Частный
+                торрент (не раздаётся по децентрализованной сети DHT)</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Не удалось экспортировать торрент-файл</translation>
     </message>
     <message>
         <source>Create New Torrent</source>
-        <translation type="unfinished" />
+        <translation>Создать новый торрент</translation>
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Комментарии:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
-        <translation type="unfinished" />
+        <translation>Загрузить торрент</translation>
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Значок состояния</translation>
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Адреса веб-сидов:</translation>
     </message>
     <message>
         <source>Failed</source>
-        <translation type="unfinished" />
+        <translation>Не удалось</translation>
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Комментарий</translation>
     </message>
     <message>
         <source>Finished</source>
-        <translation type="unfinished" />
+        <translation>Завершён</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Настройки</translation>
     </message>
     <message>
         <source>Error Message</source>
-        <translation type="unfinished" />
+        <translation>Сообщение с ошибкой</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Состояние</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
                 than:</source>
-        <translation type="unfinished" />
+        <translation>Выравнивать по размеру частей файлы больше
+                чем:</translation>
     </message>
     <message>
         <source>Select file/folder to share:</source>
-        <translation type="unfinished" />
+        <translation>Выберите файл или папку для раздачи:</translation>
     </message>
     <message>
         <source>Piece Size</source>
-        <translation type="unfinished" />
+        <translation>Размер части</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Прогресс</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Завершён</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Гибрид</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
-        <translation type="unfinished" />
+        <translation>Не удаётся загрузить задачи создания торрента</translation>
     </message>
     <message>
         <source>Optimize
                     alignment</source>
-        <translation type="unfinished" />
+        <translation>Оптимизировать
+                    выравнивание</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Н/Д</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Адреса трекеров:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
-        <translation type="unfinished" />
+        <translation>Уверены, что хотите удалить выбранные задачи?</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Путь:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Создать торрент</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Авто</translation>
     </message>
     <message>
         <source>Started On</source>
-        <translation type="unfinished" />
+        <translation>Дата запуска</translation>
     </message>
     <message>
         <source>Web Seeds</source>
-        <translation type="unfinished" />
+        <translation>Веб-сиды</translation>
     </message>
     <message>
         <source>Start
                 seeding
                 immediately</source>
-        <translation type="unfinished" />
+        <translation>Начать
+                раздачу
+                сразу</translation>
     </message>
     <message>
         <source>Format</source>
-        <translation type="unfinished" />
+        <translation>Формат</translation>
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Формат торрента:</translation>
     </message>
     <message>
         <source>Source Path</source>
-        <translation type="unfinished" />
+        <translation>Путь источника</translation>
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Добавлен</translation>
     </message>
     <message>
         <source>Running</source>
-        <translation type="unfinished" />
+        <translation>Запущен</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Создание торрента</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Источник:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Трекеры</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Размер части:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Поля</translation>
     </message>
     <message>
         <source>Remove Task</source>
-        <translation type="unfinished" />
+        <translation>Удалить задачу</translation>
     </message>
     <message>
         <source>Export Torrent</source>
-        <translation type="unfinished" />
+        <translation>Экспорт торрента</translation>
     </message>
 </context>
 </TS>

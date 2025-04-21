@@ -487,10 +487,6 @@
         <translation>Klarte ikke legge til torrent. Kilde: «%1». Årsak: «%2»</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Oppdaget et forsøk på å legge til duplisert torrent. Kilde: %1. Eksisterende torrent: %2. Resultat: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Sammenslåing av sporere er avslått</translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fest dialogvinduet «Legg til ny torrent» til hovedvinduet</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Kan ikke tolke gjenopptakelsesdata: %1</translation>
+        <translation>Kan ikke tolke gjenopptakelsesdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Kan ikke tolke informasjon om torrent: %1</translation>
+        <translation>Kan ikke tolke informasjon om torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2439,10 +2435,6 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Fjernet torrent. Torrent: «%1» </translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Oppdaget et forsøk på å legge til duplisert torrent. Eksisterende torrent: %1. Resultat: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -3549,7 +3541,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Strømstyringen fant passende D-Bus-grensesnitt. Grensesnitt: %1</translation>
+        <translation>Strømstyringen fant passende D-Bus-grensesnitt. Grensesnitt: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3561,12 +3553,12 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Strømstyringsfeil. Handling: %1. Feil: %2</translation>
+        <translation>Strømstyringsfeil. Handling: %1. Feil: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Uventet feil ved strømstyring. Tilstand: %1. Feil: %2</translation>
+        <translation>Uventet feil ved strømstyring. Tilstand: %1. Feil: %2</translation>
     </message>
 </context>
 <context>
@@ -6150,10 +6142,6 @@ Minimumskrav: %2.</translation>
         <translation>Blandet modus</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Noen alternativer passer ikke med valgt type mellomtjener.</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Velg for å slå opp vertsnavn via mellomtjener</translation>
@@ -7135,10 +7123,6 @@ readme{0-9].txt: filtrerer «readme1.txt», «readme2.txt», men ikke «readme10
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>Id&amp;entitetsbekreftelse</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: Passordet er lagret ukryptert</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8299,32 +8283,6 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent er aktiv</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Strømstyringen fant passende D-Bus-grensesnitt. Grensesnitt: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Strømstyringsfeil. Fant ikke noe passende D-Bus-grensesnitt.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Strømstyringsfeil. Handling: %1. Feil: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Uventet feil ved strømstyring. Tilstand: %1. Feil: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8868,10 +8826,6 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
         <translation>Elementet finnes ikke: %1</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Kan ikke flytte mappe til seg selv.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8947,7 +8901,7 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Informasjonskanal finnes ikke: %1.</translation>
+        <translation>Informasjonskanal finnes ikke: %1.</translation>
     </message>
 </context>
 <context>
@@ -8960,22 +8914,22 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL:</translation>
+        <translation>URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppdateringsintervall:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">sek</translation>
+        <translation>sek</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Forvalgt</translation>
+        <translation>Forvalgt</translation>
     </message>
 </context>
 <context>
@@ -9081,14 +9035,6 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Rediger informasjonskanalens adresse …</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Rediger informasjonskanalens adresse</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Velg et mappenavn</translation>
@@ -9102,14 +9048,6 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Ny mappe</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Skriv inn informasjonskanalens nettadresse</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Informasjonskanalens adresse:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

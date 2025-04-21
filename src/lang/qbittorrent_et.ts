@@ -487,10 +487,6 @@
         <translation>Nurjus torrenti lisamine. Allikas: &quot;%1&quot;. Selgitus: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Tuvastati katse lisada duplikaat torrent. Allikas: %1. Olemasolev torrent: %2. Tulemus: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Jälitajate kokkuliitmine on väljalülitatud</translation>
@@ -2118,7 +2114,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="453"/>
         <source>Couldn&apos;t save torrent resume data to &apos;%1&apos;. Error: %2.</source>
-        <translation>Ei õnnestunud salvestada torrendi jätkamise andmeid &apos;%1&apos;. Viga: %2.</translation>
+        <translation>Ei saanud salvestada torrenti jätkamise andmeid &apos;%1&apos;. Viga: %2.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="188"/>
@@ -2218,7 +2214,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="959"/>
         <source>Couldn&apos;t delete resume data of torrent &apos;%1&apos;. Error: %2</source>
-        <translation>Ei õnnestunud kustutada torrenti &apos;%1&apos; jätkamise andmeid. Viga: %2</translation>
+        <translation>Ei saanud kustutada torrenti &apos;%1&apos; jätkamise andmeid. Viga: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="993"/>
@@ -6145,10 +6141,6 @@ Vajalik on vähemalt: %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Osad valikud ei ühildu valitud proksi tüübiga!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Kui valitud, hostinimede otsing tehakse proksi abiga</translation>
@@ -7112,10 +7104,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>A&amp;udentimine</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: See parool on salvestatud krüpteeringuta</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8276,13 +8264,6 @@ Need pistikprogrammid olid välja lülitatud.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent on aktiivne</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8858,7 +8839,7 @@ Need pistikprogrammid olid välja lülitatud.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="344"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: UID is invalid.</source>
-        <translation>Ei saanud RSS-voogu laadida. Voog: &quot;%1&quot;. Põhjus: UID on kehtetu.</translation>
+        <translation>Ei saanud RSS-voogu laadida. Voog: &quot;%1&quot;. Selgitus: UID on kehtetu.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="351"/>
@@ -8901,7 +8882,7 @@ Need pistikprogrammid olid välja lülitatud.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Voogu pole olemas: %1.</translation>
+        <translation>Voogu pole olemas: %1.</translation>
     </message>
 </context>
 <context>
@@ -8914,22 +8895,22 @@ Need pistikprogrammid olid välja lülitatud.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Värskendamise intervall:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">sek</translation>
+        <translation>sek</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Vaikimisi</translation>
+        <translation>Vaikimisi</translation>
     </message>
 </context>
 <context>
@@ -9035,14 +9016,6 @@ Need pistikprogrammid olid välja lülitatud.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Muuda voogu URLi...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Muuda voogu URLi</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Palun valige kausta nimi</translation>
@@ -9056,14 +9029,6 @@ Need pistikprogrammid olid välja lülitatud.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Uus kaust</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Palun sisesta RSS-voo URL</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Feedi URL:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

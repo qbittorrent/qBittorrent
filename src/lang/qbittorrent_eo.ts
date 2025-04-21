@@ -7100,10 +7100,6 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Informo: La pasvorto estas konservita senĉifrite</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Filtri la dosierindikon (.dat, .p2p, .p2b):</translation>
@@ -8262,13 +8258,6 @@ Tiuj kromprogramoj malebliĝis.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent estas aktiva</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8887,7 +8876,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Fluo ne ekzistas: %1.</translation>
+        <translation>Fluo ne ekzistas: %1.</translation>
     </message>
 </context>
 <context>
@@ -8900,7 +8889,7 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL-adreso:</translation>
+        <translation>URL-adreso:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
@@ -8910,12 +8899,12 @@ Tiuj kromprogramoj malebliĝis.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished"> sek</translation>
+        <translation> sek</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Defaŭlto</translation>
+        <translation>Defaŭlto</translation>
     </message>
 </context>
 <context>

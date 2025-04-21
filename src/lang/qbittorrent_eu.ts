@@ -487,10 +487,6 @@
         <translation>Torrenta gehitzeak huts egin du. Irurria: &quot;%1&quot;. Arrazoia: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Bikoiztutako torrent bat gehitzeko saiakera bat detektatu da. Iturria: %1. Dagoen torrenta: %2. Emaitza: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Aztarnarien fusioa desgaituta dago</translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Erantsi &quot;Gehitu torrent berria&quot; elkarrizketa-koadroa leiho nagusian</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Ezin dira berrekiteko datuak analizatu: %1</translation>
+        <translation>Ezin dira berrekiteko datuak analizatu: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Ezin da torrentaren informazioa analizatu: %1</translation>
+        <translation>Ezin da torrentaren informazioa analizatu: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -2439,10 +2435,6 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2528"/>
         <source>Torrent removed. Torrent: &quot;%1&quot;</source>
         <translation>Torrenta kenduta. Torrenta: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2</source>
-        <translation type="vanished">Bikoiztutako torrent bat gehitzeko saiakera bat detektatu da. Dagoen torrenta: %1. Emaitza: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2795"/>
@@ -3549,7 +3541,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Energia-kudeaketak D-Bus interfaze egokia aurkitu du. Interfazea: %1</translation>
+        <translation>Energia-kudeaketak D-Bus interfaze egokia aurkitu du. Interfazea: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3561,12 +3553,12 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Energia-kudeaketa errorea. Ekintza: %1. Errorea: %2</translation>
+        <translation>Energia-kudeaketa errorea. Ekintza: %1. Errorea: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Energia-kudeaketan ustekabeko errorea. Egoera: %1. Errorea: %2</translation>
+        <translation>Energia-kudeaketan ustekabeko errorea. Egoera: %1. Errorea: %2</translation>
     </message>
 </context>
 <context>
@@ -6149,10 +6141,6 @@ Beharrezko gutxiena: %2.</translation>
         <translation>Modu mistoa</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Aukera batzuk ez dira bateragarriak aukeratutako proxy-motarekin!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Hautatzen bada, ostalari-izenen bilaketak proxy bidez egiten dira</translation>
@@ -7134,10 +7122,6 @@ readme[0-9].txt: iragazi &apos;readme1.txt&apos;, &apos;readme2.txt&apos; baina 
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>E&amp;giaztapena</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Argibidea: Sarhitza enkriptatu gabe gordetzen da</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8298,32 +8282,6 @@ Plugin hauek ezgaituta daude.</translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent ekinean dago</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Energia-kudeaketak D-Bus interfaze egokia aurkitu du. Interfazea: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Energia-kudeaketako errorea. Ez da aurkitu D-Bus interfaze egokia.</translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Energia-kudeaketa errorea. Ekintza: %1. Errorea: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Energia-kudeaketan ustekabeko errorea. Egoera: %1. Errorea: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8867,10 +8825,6 @@ Plugin hauek ezgaituta daude.</translation>
         <translation>Gaia ez dago: %1</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Ezin izan da karpeta bere burura mugitu.</translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8946,7 +8900,7 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Jarioa ez da existitzen: %1.</translation>
+        <translation>Jarioa ez da existitzen: %1.</translation>
     </message>
 </context>
 <context>
@@ -8959,22 +8913,22 @@ Plugin hauek ezgaituta daude.</translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">URL-a:</translation>
+        <translation>URL-a:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Freskatze-tartea</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">seg</translation>
+        <translation>seg</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Berezkoa</translation>
     </message>
 </context>
 <context>
@@ -9080,14 +9034,6 @@ Plugin hauek ezgaituta daude.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Editatu jarioaren URL-a...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Editatu jarioaren URL-a</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Mesedez hautatu agiritegi izen bat</translation>
@@ -9101,14 +9047,6 @@ Plugin hauek ezgaituta daude.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Agiritegi berria</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Mesedez idatzi RSS jario URL bat</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Kopiatu harpidetza URL-a</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

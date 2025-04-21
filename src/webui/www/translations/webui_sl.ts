@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Ustvarjalnik torrentov</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Ob dodajanju torrenta</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Obvestilo: Geslo je shranjeno nešifrirano</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation type="unfinished" />
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4056,7 +4048,7 @@ Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translati
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Avtor:</translation>
     </message>
 </context>
 <context>
@@ -4619,7 +4611,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Zaseben</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4627,7 +4619,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>V čakalni vrsti</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4648,7 +4640,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Komentarji:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4660,7 +4652,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL-ji spletnih semen:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4668,7 +4660,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Komentar</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4676,7 +4668,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Nastavitve</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4684,7 +4676,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Stanje</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4701,15 +4693,15 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Napredek</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Končano</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>hibridna</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4722,11 +4714,11 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URL-ji sledilnikov:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4734,15 +4726,15 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Pot:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Ustvari torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Samodejno</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4764,7 +4756,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Oblika torrenta:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4772,7 +4764,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Dodano</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4780,23 +4772,23 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Ustvarjalnik torrentov</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Vir:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Sledilniki</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Velikost kosa:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Polja</translation>
     </message>
     <message>
         <source>Remove Task</source>

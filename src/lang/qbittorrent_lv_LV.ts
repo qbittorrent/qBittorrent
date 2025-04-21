@@ -487,10 +487,6 @@
         <translation>Neizdevās ielādēt torrentu. Avots: &quot;%1&quot;. Iemesls: &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: %2. Result: %3</source>
-        <translation type="vanished">Problēma mēģinājumā pievienot torrenta duplikātu. Avots: %1. Esošais torrents: %2. Rezultāts: %3</translation>
-    </message>
-    <message>
         <location filename="../base/addtorrentmanager.cpp" line="175"/>
         <source>Merging of trackers is disabled</source>
         <translation>Trakeru apvienošanas iespēja ir atslēgta</translation>
@@ -1156,7 +1152,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="873"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Pievienot &quot;Pievienot jaunu torrentu&quot; logu galvenajā logā</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="885"/>
@@ -2179,13 +2175,13 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Nespēj parsēt atsākšanas datus: %1</translation>
+        <translation>Nespēj parsēt atsākšanas datus: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Nespēj parsēt torrenta informāciju: %1</translation>
+        <translation>Nespēj parsēt torrenta informāciju: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -3545,7 +3541,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="70"/>
         <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="unfinished">Energoefektivitātes pārvaldnieks atrada piemērotu D-Bus interfeisu. Interfeiss: %1</translation>
+        <translation>Energoefektivitātes pārvaldnieks atrada piemērotu D-Bus interfeisu. Interfeiss: %1</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="75"/>
@@ -3557,12 +3553,12 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="182"/>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="200"/>
         <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="unfinished">Energoefektivitātes pārvaldnieka kļūda. Darbība: %1. Kļūda: %2</translation>
+        <translation>Energoefektivitātes pārvaldnieka kļūda. Darbība: %1. Kļūda: %2</translation>
     </message>
     <message>
         <location filename="../gui/powermanagement/inhibitordbus.cpp" line="220"/>
         <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="unfinished">Negaidīta energoefektivitātes pārvaldnieka kļūda. Stāvoklis: %1. Kļūda: %2</translation>
+        <translation>Negaidīta energoefektivitātes pārvaldnieka kļūda. Stāvoklis: %1. Kļūda: %2</translation>
     </message>
 </context>
 <context>
@@ -6146,10 +6142,6 @@ Vecākā atļautā: %2.</translation>
         <translation>Jauktais režīms</translation>
     </message>
     <message>
-        <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation type="vanished">Dažas iespējas nav sadrīgas ar izvēlēto starpniekserveri!</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>If checked, hostname lookups are done via the proxy</source>
         <translation>Ja atzīmēts, arī datoru nosaukumu noteikšanai izmantos starpniekserveri</translation>
@@ -7131,10 +7123,6 @@ readme[0-9].txt: neatļaus &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, bet
         <location filename="../gui/optionsdialog.ui" line="2107"/>
         <source>A&amp;uthentication</source>
         <translation>Pierakstīšanas</translation>
-    </message>
-    <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Brīdinājums: Šī parole netiek glabāta šifrētā veidā</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2219"/>
@@ -8295,32 +8283,6 @@ Esošie spraudņi tika atslēgti. </translation>
     </message>
 </context>
 <context>
-    <name>PowerManagement</name>
-    <message>
-        <source>qBittorrent is active</source>
-        <translation type="vanished">qBittorrent ir aktīvs</translation>
-    </message>
-</context>
-<context>
-    <name>PowerManagementInhibitor</name>
-    <message>
-        <source>Power management found suitable D-Bus interface. Interface: %1</source>
-        <translation type="vanished">Energoefektivitātes pārvaldnieks atrada piemērotu D-Bus interfeisu. Interfeiss: %1</translation>
-    </message>
-    <message>
-        <source>Power management error. Did not found suitable D-Bus interface.</source>
-        <translation type="vanished">Energoefektivitātes pārvaldnieka kļūda. Netika atrasts piemērots D-Bus interfeiss. </translation>
-    </message>
-    <message>
-        <source>Power management error. Action: %1. Error: %2</source>
-        <translation type="vanished">Energoefektivitātes pārvaldnieka kļūda. Darbība: %1. Kļūda: %2</translation>
-    </message>
-    <message>
-        <source>Power management unexpected error. State: %1. Error: %2</source>
-        <translation type="vanished">Negaidīta energoefektivitātes pārvaldnieka kļūda. Stāvoklis: %1. Kļūda: %2</translation>
-    </message>
-</context>
-<context>
     <name>PreviewSelectDialog</name>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="65"/>
@@ -8864,10 +8826,6 @@ Esošie spraudņi tika atslēgti. </translation>
         <translation>Fails nepastāv: %1.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t move folder into itself.</source>
-        <translation type="vanished">Nevar mapi ievietot sevī. </translation>
-    </message>
-    <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Can&apos;t move a folder into itself or its subfolders.</source>
         <translation type="unfinished"></translation>
@@ -8943,7 +8901,7 @@ Esošie spraudņi tika atslēgti. </translation>
     <message>
         <location filename="../webui/api/rsscontroller.cpp" line="93"/>
         <source>Feed doesn&apos;t exist: %1.</source>
-        <translation type="unfinished">Kanāls nepastāv: %1.</translation>
+        <translation>Kanāls nepastāv: %1.</translation>
     </message>
 </context>
 <context>
@@ -8956,22 +8914,22 @@ Esošie spraudņi tika atslēgti. </translation>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="22"/>
         <source>URL:</source>
-        <translation type="unfinished">Adrese:</translation>
+        <translation>Adrese:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.ui" line="32"/>
         <source>Refresh interval:</source>
-        <translation type="unfinished"></translation>
+        <translation>Atsvaidzināšanas intervāls:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="43"/>
         <source> sec</source>
-        <translation type="unfinished">sek</translation>
+        <translation>sek</translation>
     </message>
     <message>
         <location filename="../gui/rss/rssfeeddialog.cpp" line="44"/>
         <source>Default</source>
-        <translation type="unfinished">Noklusētais</translation>
+        <translation>Noklusētais</translation>
     </message>
 </context>
 <context>
@@ -9077,14 +9035,6 @@ Esošie spraudņi tika atslēgti. </translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Edit feed URL...</source>
-        <translation type="vanished">Rediģēt kanāla adresi...</translation>
-    </message>
-    <message>
-        <source>Edit feed URL</source>
-        <translation type="vanished">Rediģēt kanāla adresi</translation>
-    </message>
-    <message>
         <location filename="../gui/rss/rsswidget.cpp" line="279"/>
         <source>Please choose a folder name</source>
         <translation>Lūdzu, izvēlēties mapes nosaukumu</translation>
@@ -9098,14 +9048,6 @@ Esošie spraudņi tika atslēgti. </translation>
         <location filename="../gui/rss/rsswidget.cpp" line="280"/>
         <source>New folder</source>
         <translation>Jauna mape</translation>
-    </message>
-    <message>
-        <source>Please type a RSS feed URL</source>
-        <translation type="vanished">Lūdzu ievadiet RSS kanāla adresi</translation>
-    </message>
-    <message>
-        <source>Feed URL:</source>
-        <translation type="vanished">Kanāla adrese:</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="373"/>

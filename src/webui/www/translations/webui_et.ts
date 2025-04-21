@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrenti Looja</translation>
     </message>
 </context>
 <context>
@@ -1172,10 +1172,6 @@
         <translation>Kui lisatakse torrent</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Info: See parool on salvestatud krüpteeringuta</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP miksitud režiimi algoritm:</translation>
     </message>
@@ -1274,10 +1270,6 @@
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4052,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autor:</translation>
     </message>
 </context>
 <context>
@@ -4614,7 +4606,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privaatne</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4622,7 +4614,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Järjekorras</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4643,7 +4635,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Kommentaarid:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4655,7 +4647,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>Veebi-seemne URL-id:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4663,7 +4655,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Kommentaar</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4671,7 +4663,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Seaded</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4679,7 +4671,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Olek</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4696,15 +4688,15 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Edenemine</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Lõpetatud</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Hübriid</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4717,11 +4709,11 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Puudub</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>Jälgija URL-id:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4729,15 +4721,15 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Asukoht:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Loo Torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automaatne</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4759,7 +4751,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Torrenti formaat:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4767,7 +4759,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Lisatud</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4775,23 +4767,23 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Torrenti Looja</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Allikas:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Jälitajad</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Tüki suurus:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Väljad</translation>
     </message>
     <message>
         <source>Remove Task</source>

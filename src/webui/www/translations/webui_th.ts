@@ -1272,10 +1272,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>s</source>
-        <translation type="vanished">วิ</translation>
-    </message>
-    <message>
         <source>Send buffer watermark:</source>
         <translation type="unfinished" />
     </message>
@@ -4048,7 +4044,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>ผู้เขียน:</translation>
     </message>
 </context>
 <context>
@@ -4618,7 +4614,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>เพิ่มในคิวแล้ว</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4639,7 +4635,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>หมายเหตุ:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4659,7 +4655,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>ความคิดเห็น</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4667,7 +4663,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>ตั้งค่า</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4675,7 +4671,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>สถานะ</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4692,11 +4688,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>กระบวนการ</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>เสร็จเมื่อ</translation>
     </message>
     <message>
         <source>Hybrid</source>
@@ -4713,7 +4709,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>ไม่สามารถใช้ได้</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
@@ -4729,11 +4725,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>สร้างทอเร้นต์</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>อัตโนมัติ</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4755,7 +4751,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>ประเภททอเร้นต์:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4763,7 +4759,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>เพิ่มเมื่อ</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4775,11 +4771,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>ต้นทาง:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>ติดตาม</translation>
     </message>
     <message>
         <source>Piece size:</source>

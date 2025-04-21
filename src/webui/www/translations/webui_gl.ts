@@ -697,7 +697,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Creador de torrents</translation>
     </message>
 </context>
 <context>
@@ -1173,10 +1173,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Cando engada un torrent</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation type="vanished">Información: o contrasinal gárdase sen cifrar</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>Algoritmo de modo mixto μTP-TCP:</translation>
     </message>
@@ -1275,10 +1271,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Fíos de E/S asíncronos:</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation type="vanished">s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -4057,7 +4049,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Author: </source>
-        <translation type="unfinished" />
+        <translation>Autor: </translation>
     </message>
 </context>
 <context>
@@ -4619,7 +4611,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     <name>TorrentCreator</name>
     <message>
         <source>Private</source>
-        <translation type="unfinished" />
+        <translation>Privado</translation>
     </message>
     <message>
         <source>Source</source>
@@ -4627,7 +4619,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Na cola</translation>
     </message>
     <message>
         <source>Unable to create torrent.</source>
@@ -4648,7 +4640,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Comments:</source>
-        <translation type="unfinished" />
+        <translation>Comentarios:</translation>
     </message>
     <message>
         <source>Download Torrent</source>
@@ -4660,7 +4652,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Web seed URLs:</source>
-        <translation type="unfinished" />
+        <translation>URLs da semente web:</translation>
     </message>
     <message>
         <source>Failed</source>
@@ -4668,7 +4660,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Comment</source>
-        <translation type="unfinished" />
+        <translation>Comentario</translation>
     </message>
     <message>
         <source>Finished</source>
@@ -4676,7 +4668,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished" />
+        <translation>Axustes</translation>
     </message>
     <message>
         <source>Error Message</source>
@@ -4684,7 +4676,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Estado</translation>
     </message>
     <message>
         <source>Align to piece boundary for files larger
@@ -4701,15 +4693,15 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progreso</translation>
     </message>
     <message>
         <source>Completed On</source>
-        <translation type="unfinished" />
+        <translation>Completado o</translation>
     </message>
     <message>
         <source>Hybrid</source>
-        <translation type="unfinished" />
+        <translation>Híbrido</translation>
     </message>
     <message>
         <source>Unable to load torrent creation tasks</source>
@@ -4722,11 +4714,11 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/D</translation>
     </message>
     <message>
         <source>Tracker URLs:</source>
-        <translation type="unfinished" />
+        <translation>URLs do localizador:</translation>
     </message>
     <message>
         <source>Are you sure you want to delete selected tasks?</source>
@@ -4734,15 +4726,15 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Ruta:</translation>
     </message>
     <message>
         <source>Create Torrent</source>
-        <translation type="unfinished" />
+        <translation>Crear torrent</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="unfinished" />
+        <translation>Automático</translation>
     </message>
     <message>
         <source>Started On</source>
@@ -4764,7 +4756,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Torrent format:</source>
-        <translation type="unfinished" />
+        <translation>Formato do torrent:</translation>
     </message>
     <message>
         <source>Source Path</source>
@@ -4772,7 +4764,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Added On</source>
-        <translation type="unfinished" />
+        <translation>Engadido o</translation>
     </message>
     <message>
         <source>Running</source>
@@ -4780,23 +4772,23 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Torrent Creator</source>
-        <translation type="unfinished" />
+        <translation>Creador de torrents</translation>
     </message>
     <message>
         <source>Source:</source>
-        <translation type="unfinished" />
+        <translation>Fonte:</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Localizadores</translation>
     </message>
     <message>
         <source>Piece size:</source>
-        <translation type="unfinished" />
+        <translation>Tamaño do anaco:</translation>
     </message>
     <message>
         <source>Fields</source>
-        <translation type="unfinished" />
+        <translation>Campos</translation>
     </message>
     <message>
         <source>Remove Task</source>
