@@ -1964,7 +1964,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>पीयर ID क्लाइंट </translation>
     </message>
 </context>
 <context>

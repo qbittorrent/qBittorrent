@@ -1133,7 +1133,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="842"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Adjunta el diàleg &quot;Afegeix un torrent nou&quot; a la finestra principal.</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>

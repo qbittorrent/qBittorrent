@@ -1134,7 +1134,7 @@ Torrenty, ktoré majú iniciálne metadáta, budú pridané ako zastavené.</tra
     <message>
         <location filename="../gui/advancedsettings.cpp" line="842"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Pripnúť dialógové okno &quot;Pridať nový torrent&quot; k hlavnému oknu</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>

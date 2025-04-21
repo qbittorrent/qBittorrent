@@ -1133,7 +1133,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="842"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ana pencereye &quot;Yeni torrent ekle&quot; ileti penceresi ekle</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>
@@ -5983,7 +5983,7 @@ Lütfen el ile yükleyin.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2042"/>
         <source>Some options are incompatible with the chosen proxy type!</source>
-        <translation>Bazı seçenekler, seçilen proksi türüyle uyumlu değil!</translation>
+        <translation>Bazı seçenekler seçilen proksi türüyle uyumlu değil!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2049"/>

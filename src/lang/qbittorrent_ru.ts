@@ -1133,7 +1133,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="842"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Привязать окно добавления торрента к главному</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>
@@ -1772,7 +1772,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="109"/>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Номер сезона должен иметь ненулевое значение</translation>
+        <translation>Номер сезона должен быть ненулевым значением</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="111"/>
@@ -10387,7 +10387,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="255"/>
         <source>Optimize alignment</source>
-        <translation>Оптимизировать сортировку файлов</translation>
+        <translation>Оптимизировать выравнивание</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="266"/>

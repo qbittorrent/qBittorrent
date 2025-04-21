@@ -1133,7 +1133,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="842"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 창에 &quot;새 토렌트 추가&quot; 대화 상자를 첨부합니다</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>

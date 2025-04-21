@@ -1140,7 +1140,7 @@ Risultato: %3</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="842"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Collega la finestra di dialogo &quot;Aggiungi nuovo torrent&quot; alla finestra principale</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="854"/>

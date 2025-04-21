@@ -691,9 +691,7 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>로컬 호스트에서 클라이언트에 대한 인증 우회하기
-
-</translation>
+        <translation>로컬 호스트에서 클라이언트에 대한 인증 우회하기</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
