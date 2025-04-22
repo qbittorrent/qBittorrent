@@ -58,7 +58,7 @@ window.qBittorrent.FileTree ??= (() => {
 
     class FileTree {
         #root = null;
-        #nodeMap = {};
+        #nodeMap = {}; // Object with Number as keys is faster than anything
 
         setRoot(root) {
             this.#root = root;
@@ -86,9 +86,9 @@ window.qBittorrent.FileTree ??= (() => {
         }
 
         getNode(rowId) {
-            return (this.#nodeMap[rowId] === undefined)
-                ? null
-                : this.#nodeMap[rowId];
+            // TODO: enforce caller sites to pass `rowId` as number and not string
+            const value = this.#nodeMap[Number(rowId)];
+            return (value !== undefined) ? value : null;
         }
 
         getRowId(node) {
