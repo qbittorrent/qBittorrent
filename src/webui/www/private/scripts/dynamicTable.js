@@ -1558,12 +1558,13 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // percent_selected
             this.columns["percent_selected"].updateTd = function(td, row) {
-                if (this.getRowValue(row) === -1) {
+                const percent = this.getRowValue(row);
+                if (percent === -1) {
                     td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     return;
                 }
-                const value = `${window.qBittorrent.Misc.toFixedPointString(this.getRowValue(row), 2)  }%`;
+                const value = `${window.qBittorrent.Misc.toFixedPointString(percent, 2)  }%`;
                 td.textContent = value;
                 td.title = value;
             };
