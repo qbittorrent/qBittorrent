@@ -2658,8 +2658,18 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this._updateNodeCollapseIcon(node, shouldCollapse);
 
-            for (const child of node.children)
-                this._updateNodeVisibility(child, shouldCollapse);
+            this._updateNodeChildVisibility(node, shouldCollapse);
+        },
+
+        _updateNodeChildVisibility: function(root, shouldHide) {
+            const stack = [...root.children];
+            while (stack.length > 0) {
+                const node = stack.pop();
+
+                this._updateNodeVisibility(node, (shouldHide ? shouldHide : this.isCollapsed(node.root.rowId)));
+
+                stack.push(...node.children);
+            }
         },
 
         clear: function() {
