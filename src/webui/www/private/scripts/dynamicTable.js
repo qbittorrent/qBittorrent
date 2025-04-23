@@ -950,17 +950,22 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.updateRow(row, true);
 
             // refresh row height based on first row
-            setTimeout(() => {
-                if (this.tableBody.firstChild === null)
-                    return;
-                const tr = this.tableBody.firstChild;
-                if (this.rowHeight !== tr.offsetHeight) {
-                    this.rowHeight = tr.offsetHeight;
-                    // rerender on row height change
-                    this.rerender();
-                }
-
-            });
+            const tr = this.tableBody.firstChild;
+            if (tr !== null) {
+                const updateRowHeight = () => {
+                    if (tr.offsetHeight === 0)
+                        return;
+                    if (this.rowHeight !== tr.offsetHeight) {
+                        this.rowHeight = tr.offsetHeight;
+                        // rerender on row height change
+                        this.rerender();
+                    }
+                };
+                if (tr.offsetHeight === 0)
+                    setTimeout(updateRowHeight);
+                else
+                    updateRowHeight();
+            }
         },
 
         createRowElement: function(row, top = -1) {
