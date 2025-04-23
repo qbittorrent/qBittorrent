@@ -2461,27 +2461,51 @@ window.qBittorrent.DynamicTable ??= (() => {
             });
         }
 
-        #filterNodes(node, filterTerms, filteredRows) {
-            if (node.isFolder) {
-                const childAdded = node.children.reduce((acc, child) => {
-                    // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
-                    return (this.#filterNodes(child, filterTerms, filteredRows) || acc);
-                }, false);
+        #filterNodes(root, filterTerms) {
+            const ret = [];
+            const stack = [root];
+            const visited = [];
 
-                if (childAdded) {
-                    const row = this.getRow(node);
-                    filteredRows.push(row);
-                    return true;
+            while (stack.length > 0) {
+                const node = stack.at(-1);
+
+                if (node.isFolder) {
+                    const lastVisited = visited.at(-1);
+
+                    if ((visited.length <= 0) || (lastVisited !== node)) {
+                        visited.push(node);
+                        stack.push(...node.children);
+                        continue;
+                    }
+
+                    // has children added or itself matches
+                    if (lastVisited.has_children_added || window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
+                        ret.push(this.getRow(node));
+                        delete node.has_children_added;
+
+                        // propagate up
+                        const parent = node.root;
+                        if (parent !== undefined)
+                            parent.has_children_added = true;
+                    }
+
+                    visited.pop();
                 }
+                else {
+                    if (window.qBittorrent.Misc.containsAllTerms(node.original, filterTerms)) {
+                        ret.push(this.getRow(node));
+
+                        const parent = node.root;
+                        if (parent !== undefined)
+                            parent.has_children_added = true;
+                    }
+                }
+
+                stack.pop();
             }
 
-            if (window.qBittorrent.Misc.containsAllTerms(node.original, filterTerms)) {
-                const row = this.getRow(node);
-                filteredRows.push(row);
-                return true;
-            }
-
-            return false;
+            ret.reverse();
+            return ret;
         }
 
         setFilter(text) {
@@ -2503,22 +2527,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return JSON.stringify(rowsData);
             };
 
-            const getFilteredRows = function() {
+            const getFilteredRows = () => {
                 if (this.filterTerms.length === 0) {
                     const nodeArray = this.fileTree.toArray();
-                    const filteredRows = nodeArray.map((node) => {
-                        return this.getRow(node);
-                    });
+                    const filteredRows = nodeArray.map(node => this.getRow(node));
                     return filteredRows;
                 }
 
-                const filteredRows = [];
-                this.getRoot().children.each((child) => {
-                    this.#filterNodes(child, this.filterTerms, filteredRows);
-                });
-                filteredRows.reverse();
-                return filteredRows;
-            }.bind(this);
+                return this.#filterNodes(this.getRoot().children[0], this.filterTerms);
+            };
 
             const hasRowsChanged = function(rowsString, prevRowsStringString) {
                 const rowsChanged = (rowsString !== prevRowsStringString);
@@ -2907,27 +2924,51 @@ window.qBittorrent.DynamicTable ??= (() => {
             });
         }
 
-        #filterNodes(node, filterTerms, filteredRows) {
-            if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
-                const childAdded = node.children.toReversed().reduce((acc, child) => {
-                    // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
-                    return (this.#filterNodes(child, filterTerms, filteredRows) || acc);
-                }, false);
+        #filterNodes(root, filterTerms) {
+            const ret = [];
+            const stack = [root];
+            const visited = [];
 
-                if (childAdded) {
-                    const row = this.getRow(node);
-                    filteredRows.push(row);
-                    return true;
+            while (stack.length > 0) {
+                const node = stack.at(-1);
+
+                if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
+                    const lastVisited = visited.at(-1);
+
+                    if ((visited.length <= 0) || (lastVisited !== node)) {
+                        visited.push(node);
+                        stack.push(...node.children);
+                        continue;
+                    }
+
+                    // has children added or itself matches
+                    if (lastVisited.has_children_added || window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
+                        ret.push(this.getRow(node));
+                        delete node.has_children_added;
+
+                        // propagate up
+                        const parent = node.root;
+                        if (parent !== undefined)
+                            parent.has_children_added = true;
+                    }
+
+                    visited.pop();
                 }
+                else {
+                    if (window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
+                        ret.push(this.getRow(node));
+
+                        const parent = node.root;
+                        if (parent !== undefined)
+                            parent.has_children_added = true;
+                    }
+                }
+
+                stack.pop();
             }
 
-            if (window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
-                const row = this.getRow(node);
-                filteredRows.push(row);
-                return true;
-            }
-
-            return false;
+            ret.reverse();
+            return ret;
         }
 
         setFilter(text) {
@@ -2949,14 +2990,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return JSON.stringify(rowsData);
             };
 
-            const getFilteredRows = function() {
-                const filteredRows = [];
-                this.getRoot().children.each((child) => {
-                    this.#filterNodes(child, this.filterTerms, filteredRows);
-                });
-                filteredRows.reverse();
-                return filteredRows;
-            }.bind(this);
+            const getFilteredRows = () => this.#filterNodes(this.getRoot().children[0], this.filterTerms);
 
             const hasRowsChanged = function(rowsString, prevRowsStringString) {
                 const rowsChanged = (rowsString !== prevRowsStringString);
