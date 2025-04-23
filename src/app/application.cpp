@@ -674,9 +674,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
     QProcess proc;
     proc.setProgram(command);
     proc.setArguments(args);
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
     proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
-#endif
 
     if (proc.startDetached())
     {

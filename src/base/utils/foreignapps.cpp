@@ -57,7 +57,7 @@ namespace
         info = {};
 
         QProcess proc;
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+#ifdef Q_OS_UNIX
         proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
 #endif
         proc.start(exeName, {u"--version"_s}, QIODevice::ReadOnly);
