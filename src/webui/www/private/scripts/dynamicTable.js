@@ -911,6 +911,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             // set the scrollable height
             this.table.style.height = `${rows.length * this.rowHeight}px`;
 
+            if (this.dynamicTableDiv.offsetHeight === 0)
+                return;
+            this.renderedHeight = this.dynamicTableDiv.offsetHeight;
             // show extra 6 rows at top/bottom to reduce flickering
             const extraRowCount = 6;
             // how many rows can be shown in the visible area
