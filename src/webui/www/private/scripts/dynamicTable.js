@@ -2906,9 +2906,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                     const node1 = this.getNode(row1.data.rowId);
                     const node2 = this.getNode(row2.data.rowId);
                     if (node1.isFolder && !node2.isFolder)
-                        return -1;
-                    if (node2.isFolder && !node1.isFolder)
                         return 1;
+                    if (node2.isFolder && !node1.isFolder)
+                        return -1;
                 }
 
                 const res = column.compareRows(row1, row2);
