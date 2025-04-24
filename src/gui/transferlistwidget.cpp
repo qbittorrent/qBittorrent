@@ -256,7 +256,10 @@ TransferListModel *TransferListWidget::getSourceModel() const
 
 void TransferListWidget::previewFile(const Path &filePath)
 {
-    Utils::Gui::openPath(filePath);
+    QTimer::singleShot(0, this, [=]()
+    {
+        Utils::Gui::openPath(filePath);
+    });
 }
 
 QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
