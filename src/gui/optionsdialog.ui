@@ -3290,14 +3290,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </item>
                  <item>
                   <widget class="QSpinBox" name="searchHistoryLengthSpinBox">
-                   <property name="buttonSymbols">
-                    <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
-                   </property>
                    <property name="maximum">
                     <number>99</number>
-                   </property>
-                   <property name="stepType">
-                    <enum>QAbstractSpinBox::StepType::DefaultStepType</enum>
                    </property>
                   </widget>
                  </item>
