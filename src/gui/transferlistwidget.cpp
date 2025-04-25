@@ -256,10 +256,7 @@ TransferListModel *TransferListWidget::getSourceModel() const
 
 void TransferListWidget::previewFile(const Path &filePath)
 {
-    QTimer::singleShot(0, this, [=]()
-    {
-        Utils::Gui::openPath(filePath);
-    });
+    Utils::Gui::openPath(filePath);
 }
 
 QModelIndex TransferListWidget::mapToSource(const QModelIndex &index) const
@@ -317,7 +314,7 @@ void TransferListWidget::torrentDoubleClicked()
         {
             auto *dialog = new PreviewSelectDialog(this, torrent);
             dialog->setAttribute(Qt::WA_DeleteOnClose);
-            connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
+            connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile, Qt::QueuedConnection);
             dialog->show();
         }
         else
