@@ -2194,6 +2194,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         prevFilteredRows: [],
         prevSortedColumn: null,
         prevReverseSort: null,
+        prevCheckboxNum: null,
         fileTree: new window.qBittorrent.FileTree.FileTree(),
 
         setupVirtualList: function() {
@@ -2354,13 +2355,41 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checkbox.type = "checkbox";
                     checkbox.className = "RenamingCB";
                     checkbox.addEventListener("click", (e) => {
-                        const id = e.target.dataset.id;
-                        const node = that.getNode(id);
-                        node.checked = e.target.checked ? 0 : 1;
-                        node.full_data.checked = node.checked;
+                        const targetId = e.target.dataset.id;
+                        const ids = [];
+                        // when holding shift, set all files between the previously selected one and the clicked one
+                        if (e.shiftKey && (that.prevCheckboxNum !== null) && (targetId !== that.prevCheckboxNum)) {
+                            const targetState = that.tableBody.querySelector(`.RenamingCB[data-id="${that.prevCheckboxNum}"]`).checked;
+                            const checkboxes = that.tableBody.getElementsByClassName("RenamingCB");
+                            let started = false;
+                            for (const cb of checkboxes) {
+                                const currId = cb.dataset.id;
+                                if ((currId === targetId) || (currId === that.prevCheckboxNum)) {
+                                    if (started) {
+                                        ids.push(currId);
+                                        cb.checked = targetState;
+                                        break;
+                                    }
+                                    started = true;
+                                }
+                                if (started) {
+                                    ids.push(currId);
+                                    cb.checked = targetState;
+                                }
+                            }
+                        }
+                        else {
+                            ids.push(targetId);
+                        }
+                        for (const id of ids) {
+                            const node = that.getNode(id);
+                            node.checked = e.target.checked ? 0 : 1;
+                            node.full_data.checked = node.checked;
+                        }
                         that.updateGlobalCheckbox();
-                        that.onRowSelectionChange(node);
+                        that.onRowSelectionChange(that.getNode(targetId));
                         e.stopPropagation();
+                        that.prevCheckboxNum = targetId;
                     });
                     checkbox.indeterminate = false;
                     td.append(checkbox);
