@@ -1444,7 +1444,8 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     QTreeView::wheelEvent(event);  // event delegated to base class
 }
 
-void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torrent) {
+void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torrent)
+{
     auto *dialog = new PreviewSelectDialog(this, torrent);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile, Qt::QueuedConnection);
