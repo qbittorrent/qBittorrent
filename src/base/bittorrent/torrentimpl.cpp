@@ -1595,7 +1595,7 @@ qreal TorrentImpl::popularity() const
     // we should use `qreal` as `Rep` to define the `months` duration
     using days = std::chrono::duration<qreal, std::chrono::days::period>;
     const auto activeDays = std::chrono::duration_cast<days>(m_nativeStatus.active_duration).count();
-    return (activeDays > 0) ? (totalUpload() / activeDays) : 0;
+    return (activeDays > 0) ? (totalUpload() / activeDays / 1073741824) : 0;
 }
 
 void TorrentImpl::setName(const QString &name)
