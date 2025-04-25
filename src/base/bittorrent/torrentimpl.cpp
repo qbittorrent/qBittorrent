@@ -1593,9 +1593,9 @@ qreal TorrentImpl::popularity() const
 {
     // in order to produce floating-point numbers using `std::chrono::duration_cast`,
     // we should use `qreal` as `Rep` to define the `months` duration
-    using months = std::chrono::duration<qreal, std::chrono::months::period>;
-    const auto activeMonths = std::chrono::duration_cast<months>(m_nativeStatus.active_duration).count();
-    return (activeMonths > 0) ? (realRatio() / activeMonths) : 0;
+    using days = std::chrono::duration<qreal, std::chrono::days::period>;
+    const auto activeDays = std::chrono::duration_cast<days>(m_nativeStatus.active_duration).count();
+    return (activeDays > 0) ? (totalUpload() / activeDays) : 0;
 }
 
 void TorrentImpl::setName(const QString &name)
