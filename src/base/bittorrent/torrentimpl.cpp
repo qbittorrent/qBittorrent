@@ -51,6 +51,7 @@
 #include <QByteArray>
 #include <QCache>
 #include <QDebug>
+#include <QFuture>
 #include <QPointer>
 #include <QPromise>
 #include <QSet>
@@ -68,6 +69,7 @@
 #include "common.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
+#include "filesearcher.h"
 #include "loadtorrentparams.h"
 #include "ltqbitarray.h"
 #include "lttypecast.h"

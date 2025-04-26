@@ -28,12 +28,13 @@
 
 #pragma once
 
-#include <QFuture>
 #include <QObject>
 
 #include "base/pathfwd.h"
 #include "abstractfilestorage.h"
 #include "downloadpriority.h"
+
+template <typename T> class QFuture;
 
 namespace BitTorrent
 {

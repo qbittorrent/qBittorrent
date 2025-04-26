@@ -39,7 +39,6 @@
 
 #include <QtContainerFwd>
 #include <QElapsedTimer>
-#include <QFuture>
 #include <QHash>
 #include <QList>
 #include <QMap>
@@ -54,7 +53,6 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
-#include "filesearcher.h"
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
@@ -63,10 +61,15 @@ class QString;
 class QTimer;
 class QUrl;
 
+template <typename T> class QFuture;
+
 class BandwidthScheduler;
+class FileSearcher;
 class FilterParserThread;
 class FreeDiskSpaceChecker;
 class NativeSessionExtension;
+
+struct FileSearchResult;
 
 namespace BitTorrent
 {

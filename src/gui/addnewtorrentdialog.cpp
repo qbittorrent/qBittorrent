@@ -39,6 +39,7 @@
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
+#include <QFuture>
 #include <QList>
 #include <QMenu>
 #include <QMessageBox>

@@ -31,7 +31,6 @@
 
 #include <QtContainerFwd>
 #include <QtTypes>
-#include <QFuture>
 #include <QMetaType>
 #include <QString>
 
@@ -45,6 +44,8 @@ class QBitArray;
 class QByteArray;
 class QDateTime;
 class QUrl;
+
+template <typename T> class QFuture;
 
 namespace BitTorrent
 {

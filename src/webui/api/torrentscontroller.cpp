@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,6 +32,7 @@
 #include <functional>
 
 #include <QBitArray>
+#include <QFuture>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
@@ -180,7 +181,7 @@ namespace
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
     {
         int seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
-        const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().result();
+        const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().takeResult();
         for (const BitTorrent::PeerInfo &peer : peersList)
         {
             if (peer.isConnecting())
@@ -729,7 +730,7 @@ void TorrentsController::filesAction()
     {
         const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
         const QList<qreal> fp = torrent->filesProgress();
-        const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().result();
+        const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().takeResult();
         const BitTorrent::TorrentInfo info = torrent->info();
         for (const int index : asConst(fileIndexes))
         {
@@ -798,7 +799,7 @@ void TorrentsController::pieceStatesAction()
     for (int i = 0; i < states.size(); ++i)
         pieceStates.append(static_cast<int>(states[i]) * 2);
 
-    const QBitArray dlstates = torrent->fetchDownloadingPieces().result();
+    const QBitArray dlstates = torrent->fetchDownloadingPieces().takeResult();
     for (int i = 0; i < states.size(); ++i)
     {
         if (dlstates[i])

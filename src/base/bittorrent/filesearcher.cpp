@@ -27,6 +27,9 @@
  */
 
 #include "filesearcher.h"
+
+#include <QPromise>
+
 #include "base/bittorrent/common.h"
 
 namespace
@@ -73,6 +76,6 @@ void FileSearcher::search(const PathList &originalFileNames, const Path &savePat
         findInDir(usedPath, adjustedFileNames, forceAppendExt);
     }
 
-    promise.addResult(FileSearchResult {usedPath, adjustedFileNames});
+    promise.addResult(FileSearchResult {.savePath = usedPath, .fileNames = adjustedFileNames});
     promise.finish();
 }

@@ -61,6 +61,7 @@
 #include <QDeadlineTimer>
 #include <QDebug>
 #include <QDir>
+#include <QFuture>
 #include <QHostAddress>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -69,6 +70,7 @@
 #include <QMutexLocker>
 #include <QNetworkAddressEntry>
 #include <QNetworkInterface>
+#include <QPromise>
 #include <QRegularExpression>
 #include <QString>
 #include <QThread>
@@ -97,6 +99,7 @@
 #include "dbresumedatastorage.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
+#include "filesearcher.h"
 #include "filterparserthread.h"
 #include "loadtorrentparams.h"
 #include "lttypecast.h"

@@ -29,9 +29,10 @@
 #pragma once
 
 #include <QObject>
-#include <QPromise>
 
 #include "base/path.h"
+
+template <typename T> class QPromise;
 
 struct FileSearchResult
 {
@@ -41,6 +42,7 @@ struct FileSearchResult
 
 class FileSearcher final : public QObject
 {
+    Q_OBJECT
     Q_DISABLE_COPY_MOVE(FileSearcher)
 
 public:

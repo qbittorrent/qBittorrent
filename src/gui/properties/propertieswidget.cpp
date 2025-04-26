@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,6 +32,7 @@
 #include <QClipboard>
 #include <QDateTime>
 #include <QDebug>
+#include <QFuture>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QMessageBox>
