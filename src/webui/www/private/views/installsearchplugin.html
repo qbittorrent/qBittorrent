@@ -61,11 +61,11 @@
                 }
             });
 
-            $("newPluginPath").select();
+            document.getElementById("newPluginPath").select();
         };
 
         const newPluginOk = () => {
-            const path = $("newPluginPath").value.trim();
+            const path = document.getElementById("newPluginPath").value.trim();
             if (path) {
                 fetch("api/v2/search/installPlugin", {
                         method: "POST",

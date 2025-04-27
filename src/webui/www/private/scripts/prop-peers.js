@@ -45,8 +45,8 @@ window.qBittorrent.PropPeers ??= (() => {
     const loadTorrentPeersData = () => {
         if (document.hidden)
             return;
-        if ($("propPeers").classList.contains("invisible")
-            || $("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
+        if (document.getElementById("propPeers").classList.contains("invisible")
+            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
             syncTorrentPeersLastResponseId = 0;
             torrentPeersTable.clear();
             return;
@@ -73,7 +73,7 @@ window.qBittorrent.PropPeers ??= (() => {
 
                 const responseJSON = await response.json();
 
-                $("error_div").textContent = "";
+                document.getElementById("error_div").textContent = "";
                 if (responseJSON) {
                     const full_update = (responseJSON["full_update"] === true);
                     if (full_update)

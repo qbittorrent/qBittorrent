@@ -1762,8 +1762,8 @@ window.qBittorrent.DynamicTable ??= (() => {
         getFilteredAndSortedRows: function() {
             const filteredRows = [];
 
-            const useRegex = $("torrentsFilterRegexBox").checked;
-            const filterText = $("torrentsFilterInput").value.trim().toLowerCase();
+            const useRegex = document.getElementById("torrentsFilterRegexBox").checked;
+            const filterText = document.getElementById("torrentsFilterInput").value.trim().toLowerCase();
             let filterTerms;
             try {
                 filterTerms = (filterText.length > 0)
@@ -2021,7 +2021,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const filterTerms = window.qBittorrent.Search.searchText.filterPattern.toLowerCase().split(" ");
             const sizeFilters = getSizeFilters();
             const seedsFilters = getSeedsFilters();
-            const searchInTorrentName = $("searchInTorrentName").value === "names";
+            const searchInTorrentName = document.getElementById("searchInTorrentName").value === "names";
 
             if (searchInTorrentName || (filterTerms.length > 0) || (window.qBittorrent.Search.searchSizeFilter.min > 0.00) || (window.qBittorrent.Search.searchSizeFilter.max > 0.00)) {
                 for (const row of this.getRowValues()) {
@@ -3263,7 +3263,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("name", "", "", -1, true);
 
             this.columns["checked"].updateTd = function(td, row) {
-                if ($(`cbRssDlRule${row.rowId}`) === null) {
+                if (document.getElementById(`cbRssDlRule${row.rowId}`) === null) {
                     const checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
                     checkbox.id = `cbRssDlRule${row.rowId}`;
@@ -3281,7 +3281,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(checkbox);
                 }
                 else {
-                    $(`cbRssDlRule${row.rowId}`).checked = row.full_data.checked;
+                    document.getElementById(`cbRssDlRule${row.rowId}`).checked = row.full_data.checked;
                 }
             };
             this.columns["checked"].staticWidth = 50;
@@ -3361,7 +3361,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("name", "", "", -1, true);
 
             this.columns["checked"].updateTd = function(td, row) {
-                if ($(`cbRssDlFeed${row.rowId}`) === null) {
+                if (document.getElementById(`cbRssDlFeed${row.rowId}`) === null) {
                     const checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
                     checkbox.id = `cbRssDlFeed${row.rowId}`;
@@ -3378,7 +3378,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(checkbox);
                 }
                 else {
-                    $(`cbRssDlFeed${row.rowId}`).checked = row.full_data.checked;
+                    document.getElementById(`cbRssDlFeed${row.rowId}`).checked = row.full_data.checked;
                 }
             };
             this.columns["checked"].staticWidth = 50;

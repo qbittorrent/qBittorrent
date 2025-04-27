@@ -208,7 +208,7 @@ window.qBittorrent.PropFiles ??= (() => {
         const rowIds = [];
         const fileIds = [];
         let priority = FilePriority.Ignored;
-        const checkbox = $("tristate_cb");
+        const checkbox = document.getElementById("tristate_cb");
 
         if (checkbox.state === "checked") {
             setCheckboxUnchecked(checkbox);
@@ -245,7 +245,7 @@ window.qBittorrent.PropFiles ??= (() => {
     };
 
     const updateGlobalCheckbox = () => {
-        const checkbox = $("tristate_cb");
+        const checkbox = document.getElementById("tristate_cb");
         if (torrentFilesTable.isAllCheckboxesChecked())
             setCheckboxChecked(checkbox);
         else if (torrentFilesTable.isAllCheckboxesUnchecked())
@@ -297,7 +297,7 @@ window.qBittorrent.PropFiles ??= (() => {
         ids.forEach((id) => {
             torrentFilesTable.setIgnored(id, ignore);
 
-            const combobox = $(`comboPrio${id}`);
+            const combobox = document.getElementById(`comboPrio${id}`);
             if (combobox !== null)
                 selectComboboxPriority(combobox, priority);
         });
@@ -307,8 +307,8 @@ window.qBittorrent.PropFiles ??= (() => {
     const loadTorrentFilesData = () => {
         if (document.hidden)
             return;
-        if ($("propFiles").classList.contains("invisible")
-            || $("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
+        if (document.getElementById("propFiles").classList.contains("invisible")
+            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
             // Tab changed, don't do anything
             return;
         }
@@ -586,10 +586,10 @@ window.qBittorrent.PropFiles ??= (() => {
 
     // listen for changes to torrentFilesFilterInput
     let torrentFilesFilterInputTimer = -1;
-    $("torrentFilesFilterInput").addEventListener("input", () => {
+    document.getElementById("torrentFilesFilterInput").addEventListener("input", () => {
         clearTimeout(torrentFilesFilterInputTimer);
 
-        const value = $("torrentFilesFilterInput").value;
+        const value = document.getElementById("torrentFilesFilterInput").value;
         torrentFilesTable.setFilter(value);
 
         torrentFilesFilterInputTimer = setTimeout(() => {
