@@ -1642,11 +1642,7 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
         auto wakeupCheckTimer = new QTimer(this);
         connect(wakeupCheckTimer, &QTimer::timeout, this, [this]
         {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
             const bool hasSystemSlept = m_wakeupCheckTimestamp.durationElapsed() > 100s;
-#else
-            const bool hasSystemSlept = m_wakeupCheckTimestamp.elapsed() > std::chrono::milliseconds(100s).count();
-#endif
             if (hasSystemSlept)
             {
                 LogMsg(tr("System wake-up event detected. Re-announcing to all the trackers..."));

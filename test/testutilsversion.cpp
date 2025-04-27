@@ -80,9 +80,7 @@ private slots:
     {
         const Utils::Version<1> version1 {1};
         QCOMPARE(version1[0], 1);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
         QVERIFY_THROWS_EXCEPTION(std::out_of_range, version1[1]);
-#endif
         QCOMPARE(version1.majorNumber(), 1);
         // should not compile:
         // version1.minorNumber();
@@ -92,9 +90,7 @@ private slots:
         const Utils::Version<2, 1> version2 {2};
         QCOMPARE(version2[0], 2);
         QCOMPARE(version2[1], 0);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
         QVERIFY_THROWS_EXCEPTION(std::out_of_range, version2[2]);
-#endif
         QCOMPARE(version2.majorNumber(), 2);
         QCOMPARE(version2.minorNumber(), 0);
         // should not compile:
@@ -105,9 +101,7 @@ private slots:
         QCOMPARE(version3[0], 3);
         QCOMPARE(version3[1], 2);
         QCOMPARE(version3[2], 0);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
         QVERIFY_THROWS_EXCEPTION(std::out_of_range, version3[3]);
-#endif
         QCOMPARE(version3.majorNumber(), 3);
         QCOMPARE(version3.minorNumber(), 2);
         QCOMPARE(version3.revisionNumber(), 0);
@@ -119,9 +113,7 @@ private slots:
         QCOMPARE(version4[1], 11);
         QCOMPARE(version4[2], 12);
         QCOMPARE(version4[3], 13);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
         QVERIFY_THROWS_EXCEPTION(std::out_of_range, version4[4]);
-#endif
         QCOMPARE(version4.majorNumber(), 10);
         QCOMPARE(version4.minorNumber(), 11);
         QCOMPARE(version4.revisionNumber(), 12);
