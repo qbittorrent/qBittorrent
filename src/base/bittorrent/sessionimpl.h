@@ -61,11 +61,15 @@ class QString;
 class QTimer;
 class QUrl;
 
+template <typename T> class QFuture;
+
 class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
 class FreeDiskSpaceChecker;
 class NativeSessionExtension;
+
+struct FileSearchResult;
 
 namespace BitTorrent
 {
@@ -478,8 +482,7 @@ namespace BitTorrent
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode, MoveStorageContext context);
 
-        void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
-                                 , const Path &downloadPath, const PathList &filePaths = {}) const;
+        QFuture<FileSearchResult> findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths = {}) const;
 
         void enablePortMapping();
         void disablePortMapping();
@@ -514,7 +517,6 @@ namespace BitTorrent
         void generateResumeData();
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
-        void fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames);
         void torrentContentRemovingFinished(const QString &torrentName, const QString &errorMessage);
 
     private:
