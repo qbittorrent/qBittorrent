@@ -1249,7 +1249,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation>Při dokončení překontrolovat torrenty:</translation>
+        <translation>Překontrolování torrentů po dokončení:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -2108,7 +2108,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Opravdu chcete natrvalo zakázat označené peery?</translation>
+        <translation>Opravdu chcete natrvalo zakázat vybrané peery?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -4004,7 +4004,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Určitě chcete smazar označené RSS feedy?</translation>
+        <translation>Určitě chcete smazat vybrané RSS feedy?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -4147,7 +4147,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Opravdu chcete odstranit označená pravidla?</translation>
+        <translation>Opravdu chcete odstranit vybraná pravidla stahování?</translation>
     </message>
     <message>
         <source>Use global settings</source>
@@ -4537,7 +4537,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <name>confirmRecheckDialog</name>
     <message>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>Opravdu chcete znovu zkontrolovat označené torrenty?</translation>
+        <translation>Opravdu chcete překontrolovat vybrané torrenty?</translation>
     </message>
     <message>
         <source>Recheck confirmation</source>

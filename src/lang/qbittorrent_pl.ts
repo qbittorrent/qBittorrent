@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Dołącz okno dialogowe &quot;Dodaj nowy torrent&quot; do okna głównego</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -2093,12 +2093,12 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uszkodzone dane wznowienia: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka zapisu jest nieprawidłowa</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
@@ -2169,23 +2169,23 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Nie można przetworzyć danych wznowienia: %1</translation>
+        <translation>Nie można przetworzyć danych wznowienia: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Nie można przetworzyć informacji torrenta: %1</translation>
+        <translation>Nie można przetworzyć informacji torrenta: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Uszkodzone dane wznowienia: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka zapisu jest nieprawidłowa</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>

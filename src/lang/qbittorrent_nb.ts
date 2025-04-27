@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Fest dialogvinduet «Legg til ny torrent» til hovedvinduet</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -2169,13 +2169,13 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Kan ikke tolke gjenopptakelsesdata: %1</translation>
+        <translation>Kan ikke tolke gjenopptakelsesdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Kan ikke tolke informasjon om torrent: %1</translation>
+        <translation>Kan ikke tolke informasjon om torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>

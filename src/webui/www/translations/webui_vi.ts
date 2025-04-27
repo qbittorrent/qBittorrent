@@ -425,7 +425,7 @@
     </message>
     <message>
         <source>External IPs: %1, %2</source>
-        <translation>IP bên ngoài: %1, %2</translation>
+        <translation>IP ngoài: %1, %2</translation>
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
@@ -1269,7 +1269,7 @@
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation>Luồng I/O không đồng bộ:</translation>
+        <translation>Luồng I/O bất đồng bộ:</translation>
     </message>
     <message>
         <source>s</source>
@@ -1869,7 +1869,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Show external IP in status bar</source>
-        <translation>Hiển thị IP bên ngoài trong thanh trạng thái</translation>
+        <translation>Hiển thị IP ngoài trong thanh trạng thái</translation>
     </message>
     <message>
         <source>Fetched trackers</source>

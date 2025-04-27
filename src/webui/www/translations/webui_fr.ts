@@ -405,7 +405,7 @@
     </message>
     <message>
         <source>Edit web seed</source>
-        <translation>Modifier la source web</translation>
+        <translation>Modifier la source Web</translation>
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
@@ -433,7 +433,7 @@
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
-        <translation>Liste des seed Web à ajouter (un par ligne) :</translation>
+        <translation>Liste des sources Web à ajouter (une par ligne) :</translation>
     </message>
     <message>
         <source>Unable to start torrents.</source>
@@ -441,7 +441,7 @@
     </message>
     <message>
         <source>Add web seeds</source>
-        <translation>Ajouter un Web seeds</translation>
+        <translation>Ajouter des sources Web</translation>
     </message>
 </context>
 <context>
@@ -739,7 +739,7 @@
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation>Activer l'interface utilisateur Web (contrôle distant)</translation>
+        <translation>Activer l'Interface Utilisateur Web (contrôle distant)</translation>
     </message>
     <message>
         <source>IP address:</source>
@@ -1181,7 +1181,7 @@
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation>%G : Étiquettes (séparés par des virgules)</translation>
+        <translation>%G : Étiquettes (séparées par une virgule)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
@@ -1592,7 +1592,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Spécifier les adresses IP du proxy inverse (ou les sous-réseaux, p. ex. 0.0.0.0/24) afin d'utiliser l'adresse client transférée (attribut X-Forwarded-For). Utiliser ';' pour séparer plusieurs entrées.</translation>
+        <translation>Spécifier les adresses IPs du proxy inverse (ou les sous-réseaux, p. ex. 0.0.0.0/24) afin d'utiliser l'adresse client transférée (attribut X-Forwarded-For). Utiliser ';' pour séparer plusieurs entrées.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1988,7 +1988,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation>Liste des interfaces Web alternatives</translation>
+        <translation>Liste des IU Web alternatives</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
@@ -2012,11 +2012,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Custom WebUI settings</source>
-        <translation>Paramètres d'interface Web personnalisés</translation>
+        <translation>Paramètres de l'IU Web personnalisés</translation>
     </message>
     <message>
         <source>Following settings are WebUI only</source>
-        <translation>Les paramètres suivants sont uniquement disponibles sur l'interface Web</translation>
+        <translation>Les paramètres suivants sont uniquement disponibles sur l'IU Web</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
@@ -2408,7 +2408,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Copy web seed URL</source>
-        <translation>Copier l'URL de la source web</translation>
+        <translation>Copier l'URL de la source Web</translation>
     </message>
     <message>
         <source>Replace option</source>
@@ -2420,7 +2420,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Web seed URL:</source>
-        <translation>URL de la source web :</translation>
+        <translation>URL de la source Web :</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -2444,15 +2444,15 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Remove web seed</source>
-        <translation>Supprimer la source web</translation>
+        <translation>Supprimer la source Web</translation>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation>Modification de la source web</translation>
+        <translation>Modification de la source Web</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
-        <translation>Ajouter le web seeds...</translation>
+        <translation>Ajouter des sources Web…</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -3698,7 +3698,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation>Format: IPv4:port / [IPv6]:port</translation>
+        <translation>Format : IPv4:port / [IPv6]:port</translation>
     </message>
 </context>
 <context>
@@ -4272,7 +4272,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Add Tags:</source>
-        <translation>Ajouter des Tags :</translation>
+        <translation>Ajouter des étiquettes :</translation>
     </message>
     <message>
         <source>Remove rule</source>
@@ -4554,7 +4554,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation>Interface Web qBitTorrent </translation>
+        <translation>IU Web de qBittorrent </translation>
     </message>
     <message>
         <source>Password</source>

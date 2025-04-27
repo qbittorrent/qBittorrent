@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>기본 창에 &quot;새 토렌트 추가&quot; 대화 상자를 첨부합니다</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -2169,13 +2169,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">이어받기 데이터를 분석할 수 없음: %1</translation>
+        <translation>이어받기 데이터를 분석할 수 없음: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">토렌트 정보를 분석할 수 없음: %1</translation>
+        <translation>토렌트 정보를 분석할 수 없음: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>

@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Erantsi &quot;Gehitu torrent berria&quot; elkarrizketa-koadroa leiho nagusian</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -2169,13 +2169,13 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Ezin dira berrekiteko datuak analizatu: %1</translation>
+        <translation>Ezin dira berrekiteko datuak analizatu: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Ezin da torrentaren informazioa analizatu: %1</translation>
+        <translation>Ezin da torrentaren informazioa analizatu: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>

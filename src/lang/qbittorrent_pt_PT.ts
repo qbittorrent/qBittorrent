@@ -2169,13 +2169,13 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Não foi possível analisar os dados de retomada: %1</translation>
+        <translation>Não foi possível analisar os dados de retomada: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Não foi possível analisar as informações do torrent: %1</translation>
+        <translation>Não foi possível analisar as informações do torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -6345,7 +6345,7 @@ Desativar encriptação: Apenas liga a fontes sem protocolo de encriptação</tr
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
         <translation>Endereço IP com o qual a interface web irá ligar.
-Especifique um endereço IPv4 ou IPv6. Você pode especificar &quot;0.0.0.0&quot; para qualquer endereço IPv4,
+Especifique um endereço IPv4 ou IPv6. Você pode especificar &quot;0.0.0.0&quot; para qualquer endereço IPv4, 
 &quot;::&quot; para qualquer endereço IPv6, ou &quot;*&quot; para IPv4 e IPv6.</translation>
     </message>
     <message>

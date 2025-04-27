@@ -95,7 +95,7 @@
     </message>
     <message>
         <source>Uncategorized</source>
-        <translation>Okategoriserad</translation>
+        <translation>Utan kategorier</translation>
     </message>
 </context>
 <context>
@@ -3948,7 +3948,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Mark items read</source>
-        <translation>Markera artiklar som lästa</translation>
+        <translation>Markera poster som lästa</translation>
     </message>
     <message>
         <source>Update all feeds</source>
@@ -4418,7 +4418,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>item</source>
-        <translation>objekt</translation>
+        <translation>post</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4446,7 +4446,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>items</source>
-        <translation>objekt</translation>
+        <translation>poster</translation>
     </message>
     <message>
         <source>Results</source>

@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Dialog &quot;Neuen Torrent hinzufügen&quot; an das Hauptfenster anhängen</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -2169,13 +2169,13 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Fortsetzungsdaten können nicht analysiert werden: %1</translation>
+        <translation>Fortsetzungsdaten können nicht analysiert werden: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Torrent-Infos können nicht analysiert werden: %1</translation>
+        <translation>Torrent-Infos können nicht analysiert werden: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
@@ -6288,8 +6288,7 @@ Verschlüsselung deaktivieren: Nur mit Peers ohne Prokokoll-Verschlüsselung ver
     <message>
         <location filename="../gui/optionsdialog.ui" line="3256"/>
         <source>Store opened tabs</source>
-        <translation>Geöffnete Tabs speichern
-</translation>
+        <translation>Geöffnete Tabs speichern</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3268"/>

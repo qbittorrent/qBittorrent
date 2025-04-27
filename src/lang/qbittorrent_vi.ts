@@ -794,7 +794,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="532"/>
         <source>Asynchronous I/O threads</source>
-        <translation>Luồng I/O không đồng bộ</translation>
+        <translation>Luồng I/O bất đồng bộ</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="540"/>
@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Đính kèm hộp thoại &quot;Thêm torrent mới&quot; vào cửa sổ chính</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -2093,12 +2093,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dữ liệu tiếp tục lại bị hỏng: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path không hợp lệ</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
@@ -2169,23 +2169,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Không thể phân tích cú pháp dữ liệu tiếp tục: %1</translation>
+        <translation>Không thể phân tích cú pháp dữ liệu tiếp tục: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Không thể phân tích cú pháp thông tin của torrent: %1</translation>
+        <translation>Không thể phân tích cú pháp thông tin của torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Dữ liệu tiếp tục lại bị hỏng: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path không hợp lệ</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>
@@ -2697,7 +2697,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6134"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
-        <translation>Đã phát hiện IP bên ngoài. IP: &quot;%1&quot;</translation>
+        <translation>Đã phát hiện IP ngoài. IP: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6263"/>
@@ -6538,7 +6538,7 @@ Sử dụng &apos;;&apos; để chia nhiều mục nhập. Có thể sử dụng
     <message>
         <location filename="../gui/optionsdialog.ui" line="825"/>
         <source>Show external IP in status bar</source>
-        <translation>Hiển thị IP bên ngoài trong thanh trạng thái</translation>
+        <translation>Hiển thị IP ngoài trong thanh trạng thái</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="887"/>
@@ -8836,7 +8836,7 @@ Các plugin đó đã bị vô hiệu hóa.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="327"/>
         <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: URL is required.</source>
-        <translation>Không thể tải nguồn cấp dữ liệu RSS. Nguồn cấp dữ liệu: &quot;%1&quot;. Lý do: URL là bắt buộc.</translation>
+        <translation>Không thể tải nguồn RSS. Nguồn: &quot;%1&quot;. Lý do: URL là bắt buộc.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="338"/>
@@ -9989,7 +9989,7 @@ Nhấp vào nút &quot;Tìm kiếm plugin ...&quot; ở dưới cùng bên phả
     <message>
         <location filename="../gui/statusbar.cpp" line="238"/>
         <source>External IPs: %1, %2</source>
-        <translation>IP bên ngoài: %1, %2</translation>
+        <translation>IP ngoài: %1, %2</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="240"/>

@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Bifoga dialogrutan &quot;Lägg till ny torrent&quot; till huvudfönstret</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -2093,12 +2093,12 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Korrupt återupptagningsdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path är ogiltig</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
@@ -2169,23 +2169,23 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Det går inte att analysera återupptagningsdata: %1</translation>
+        <translation>Det går inte att analysera återupptagningsdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Det går inte att analysera torrentinformation: %1</translation>
+        <translation>Det går inte att analysera torrentinformation: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Korrupta återupptagningsdata: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path är ogiltig</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>
@@ -3448,7 +3448,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/net/geoipdatabase.cpp" line="290"/>
         <source>Database corrupted: no data section found.</source>
-        <translation>Databas skadad: ingen datasektion hittades.</translation>
+        <translation>Databas korrupt: ingen datasektion hittades.</translation>
     </message>
 </context>
 <context>
@@ -8806,7 +8806,7 @@ De här insticksmodulerna inaktiverades.</translation>
         <location filename="../base/rss/rss_session.cpp" line="207"/>
         <location filename="../base/rss/rss_session.cpp" line="244"/>
         <source>Item doesn&apos;t exist: %1.</source>
-        <translation>Artikeln existerar inte: %1.</translation>
+        <translation>Posten existerar inte: %1.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
@@ -8846,12 +8846,12 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="345"/>
         <source>Duplicate RSS feed found. UID: &quot;%1&quot;. Error: Configuration seems to be corrupted.</source>
-        <translation>Dubblett RSS-flöde hittades. UID: &quot;%1&quot;. Fel: Konfigurationen verkar vara skadad.</translation>
+        <translation>Dubblett RSS-flöde hittades. UID: &quot;%1&quot;. Fel: Konfigurationen verkar vara korrupt.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="367"/>
         <source>Couldn&apos;t load RSS item. Item: &quot;%1&quot;. Invalid data format.</source>
-        <translation>Det gick inte att läsa in RSS-objektet. Objekt: &quot;%1&quot;. Ogiltigt dataformat.</translation>
+        <translation>Det gick inte att läsa in RSS-posten. Post: &quot;%1&quot;. Ogiltigt dataformat.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="381"/>
@@ -8861,12 +8861,12 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="413"/>
         <source>Incorrect RSS Item path: %1.</source>
-        <translation>Felaktig sökväg för RSS-objekt: %1.</translation>
+        <translation>Felaktig sökväg för RSS-post: %1.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="416"/>
         <source>RSS item with given path already exists: %1.</source>
-        <translation>RSS-objekt med given sökväg finns redan: %1.</translation>
+        <translation>RSS-post med given sökväg finns redan: %1.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="421"/>
@@ -8896,7 +8896,7 @@ De här insticksmodulerna inaktiverades.</translation>
         <location filename="../gui/rss/rsswidget.ui" line="175"/>
         <location filename="../gui/rss/rsswidget.ui" line="178"/>
         <source>Mark items read</source>
-        <translation>Markera som läst</translation>
+        <translation>Markera poster som läst</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="57"/>
@@ -9344,7 +9344,7 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="377"/>
         <source>TV shows</source>
-        <translation>Tv program</translation>
+        <translation>TV-program</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="374"/>

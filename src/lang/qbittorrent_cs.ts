@@ -678,7 +678,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="762"/>
         <source>Recheck torrents on completion</source>
-        <translation>Při dokončení překontrolovat torrenty</translation>
+        <translation>Po dokončení překontrolovat torrenty</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="404"/>
@@ -1146,7 +1146,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="863"/>
         <source>Attach &quot;Add new torrent&quot; dialog to main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Připojit dialog &quot;Přidat nový torrent&quot; k hlavnímu oknu</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="875"/>
@@ -1872,7 +1872,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="405"/>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Opravdu chcete odstranit označená pravidla?</translation>
+        <translation>Opravdu chcete odstranit vybraná pravidla stahování?</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="406"/>
@@ -1932,7 +1932,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="520"/>
         <source>Delete selected rules</source>
-        <translation>Smazat označená pravidla</translation>
+        <translation>Smazat vybraná pravidla</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="525"/>
@@ -2093,12 +2093,12 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Poškozená data obnovení: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="326"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path je neplatný</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/bencoderesumedatastorage.cpp" line="417"/>
@@ -2169,23 +2169,23 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="666"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="672"/>
         <source>Cannot parse resume data: %1</source>
-        <translation type="unfinished">Data obnovení nelze analyzovat: %1</translation>
+        <translation>Data obnovení nelze analyzovat: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="680"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="684"/>
         <source>Cannot parse torrent info: %1</source>
-        <translation type="unfinished">Info torrentu nelze analyzovat: %1</translation>
+        <translation>Info torrentu nelze analyzovat: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>Corrupted resume data: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Poškozená data obnovení: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="690"/>
         <source>save_path is invalid</source>
-        <translation type="unfinished"></translation>
+        <translation>save_path je neplatný</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="747"/>
@@ -7941,7 +7941,7 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="350"/>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Opravdu chcete natrvalo zakázat označené peery?</translation>
+        <translation>Opravdu chcete natrvalo zakázat vybrané peery?</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="356"/>
@@ -8002,12 +8002,12 @@ readme[0-9].txt: filtruje &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, ale 
     <message>
         <location filename="../gui/properties/pieceavailabilitybar.cpp" line="175"/>
         <source>Unavailable pieces</source>
-        <translation>Nedostupné díly</translation>
+        <translation>Nedostupné části</translation>
     </message>
     <message>
         <location filename="../gui/properties/pieceavailabilitybar.cpp" line="176"/>
         <source>Available pieces</source>
-        <translation>Dostupné díly</translation>
+        <translation>Dostupné části</translation>
     </message>
 </context>
 <context>
@@ -9016,7 +9016,7 @@ Tyto pluginy byly vypnuty.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="355"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Určitě chcete smazar označené RSS feedy?</translation>
+        <translation>Určitě chcete smazat vybrané RSS feedy?</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="446"/>
@@ -10643,7 +10643,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="266"/>
         <source>Align to piece boundary for files larger than:</source>
-        <translation>Align to piece boundary for files larger than:</translation>
+        <translation>Zarovnání k hranici části u souborů větších než:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="273"/>
@@ -11870,7 +11870,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="646"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
-        <translation>Opravdu chcete znovu zkontrolovat označené torrenty?</translation>
+        <translation>Opravdu chcete překontrolovat vybrané torrenty?</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="924"/>
@@ -11945,7 +11945,7 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="859"/>
         <source>Remove all tags from selected torrents?</source>
-        <translation>Smazat všechny štítky z označených torrentů?</translation>
+        <translation>Odebrat všechny štítky z vybraných torrentů?</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="874"/>
