@@ -3055,9 +3055,9 @@ QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
 {
     QPromise<std::invoke_result_t<Func>> promise;
     const auto future = promise.future();
+    promise.start();
     m_session->invokeAsync([func = std::forward<Func>(func), promise = std::move(promise)]() mutable
     {
-        promise.start();
         promise.addResult(func());
         promise.finish();
     });
