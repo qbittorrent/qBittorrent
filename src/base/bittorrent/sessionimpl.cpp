@@ -3008,9 +3008,11 @@ QFuture<FileSearchResult> SessionImpl::findIncompleteFiles(const Path &savePath,
 {
     QPromise<FileSearchResult> promise;
     QFuture<FileSearchResult> future = promise.future();
+    promise.start();
     QMetaObject::invokeMethod(m_fileSearcher, [=, this, promise = std::move(promise)]() mutable
     {
-        m_fileSearcher->search(filePaths, savePath, downloadPath, isAppendExtensionEnabled(), std::move(promise));
+        m_fileSearcher->search(filePaths, savePath, downloadPath, isAppendExtensionEnabled(), promise);
+        promise.finish();
     });
 
     return future;

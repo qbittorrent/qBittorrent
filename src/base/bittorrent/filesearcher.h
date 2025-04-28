@@ -49,5 +49,5 @@ public:
     using QObject::QObject;
 
     void search(const PathList &originalFileNames, const Path &savePath
-            , const Path &downloadPath, bool forceAppendExt, QPromise<FileSearchResult> promise);
+            , const Path &downloadPath, bool forceAppendExt, QPromise<FileSearchResult> &promise);
 };

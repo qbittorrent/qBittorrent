@@ -63,10 +63,8 @@ namespace
 }
 
 void FileSearcher::search(const PathList &originalFileNames, const Path &savePath
-        , const Path &downloadPath, const bool forceAppendExt, QPromise<FileSearchResult> promise)
+        , const Path &downloadPath, const bool forceAppendExt, QPromise<FileSearchResult> &promise)
 {
-    promise.start();
-
     Path usedPath = savePath;
     PathList adjustedFileNames = originalFileNames;
     const bool found = findInDir(usedPath, adjustedFileNames, (forceAppendExt && downloadPath.isEmpty()));
@@ -77,5 +75,4 @@ void FileSearcher::search(const PathList &originalFileNames, const Path &savePat
     }
 
     promise.addResult(FileSearchResult {.savePath = usedPath, .fileNames = adjustedFileNames});
-    promise.finish();
 }
