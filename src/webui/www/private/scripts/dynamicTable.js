@@ -2916,9 +2916,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                     const node1 = this.getNode(row1.data.rowId);
                     const node2 = this.getNode(row2.data.rowId);
                     if (node1.isFolder && !node2.isFolder)
-                        return 1;
-                    if (node2.isFolder && !node1.isFolder)
                         return -1;
+                    if (node2.isFolder && !node1.isFolder)
+                        return 1;
                 }
 
                 const res = column.compareRows(row1, row2);
@@ -2933,7 +2933,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         _filterNodes: function(node, filterTerms, filteredRows) {
             if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
-                const childAdded = node.children.reduce((acc, child) => {
+                const childAdded = node.children.toReversed().reduce((acc, child) => {
                     // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
                     return (this._filterNodes(child, filterTerms, filteredRows) || acc);
                 }, false);
