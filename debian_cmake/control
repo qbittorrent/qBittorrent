@@ -14,13 +14,16 @@ Build-Depends: debhelper-compat (= 13),
                qt6-tools-dev (>= 6.4.0),
                zlib1g-dev (>= 1.2.11),
                libxkbcommon-dev,
-               systemd,
-               ninja-build
+               systemd-dev,
+               ninja-build,
+               pkgconf
 
 Package: qbittorrent
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
-         python3 (>= 3.7.0), libqt6svg6, libqt6sql6-sqlite
+         python3 (>= 3.7.0),
+         qt6-svg-plugins | libqt6svg6,
+         libqt6sql6-sqlite
 Suggests: qbittorrent-dbg
 Description: bittorrent client based on libtorrent-rasterbar with a Qt GUI
  BitTorrent client written in C++ and based on libtorrent-rasterbar with a Qt
