@@ -1818,5 +1818,5 @@ window.addEventListener("load", async () => {
             console.error(`Unexpected 'selected_window_tab' value: ${previouslyUsedTab}`);
             document.getElementById("transfersTabLink").click();
             break;
-    };
+    }
 });

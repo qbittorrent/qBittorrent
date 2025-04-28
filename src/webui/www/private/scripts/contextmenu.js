@@ -292,7 +292,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.options.actions[action](element, this, action);
             return this;
         }
-    };
+    }
 
     class FilterListContextMenu extends ContextMenu {
         constructor(options) {
@@ -316,7 +316,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 .setEnabled("stopTorrents", torrentsVisible)
                 .setEnabled("deleteTorrents", torrentsVisible);
         }
-    };
+    }
 
     class TorrentsTableContextMenu extends ContextMenu {
         updateMenuItems() {
@@ -577,13 +577,13 @@ window.qBittorrent.ContextMenu ??= (() => {
                 contextTagList.appendChild(setTagItem);
             }
         }
-    };
+    }
 
     class StatusesFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
             this.updateTorrentActions();
         }
-    };
+    }
 
     class CategoriesFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
@@ -604,7 +604,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             this.updateTorrentActions();
         }
-    };
+    }
 
     class TagsFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
@@ -616,7 +616,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             this.updateTorrentActions();
         }
-    };
+    }
 
     class TrackersFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
@@ -628,7 +628,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             this.updateTorrentActions();
         }
-    };
+    }
 
     class SearchPluginsTableContextMenu extends ContextMenu {
         updateMenuItems() {
@@ -642,7 +642,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             this.showItem("Uninstall");
         }
-    };
+    }
 
     class RssFeedContextMenu extends ContextMenu {
         updateMenuItems() {
@@ -715,9 +715,9 @@ window.qBittorrent.ContextMenu ??= (() => {
                     break;
             }
         }
-    };
+    }
 
-    class RssArticleContextMenu extends ContextMenu {};
+    class RssArticleContextMenu extends ContextMenu {}
 
     class RssDownloaderRuleContextMenu extends ContextMenu {
         adjustMenuPosition(e) {
@@ -765,7 +765,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                     break;
             }
         }
-    };
+    }
 
     return exports();
 })();

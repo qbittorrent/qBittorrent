@@ -2858,7 +2858,6 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // progress
             this.columns["progress"].updateTd = function(td, row) {
-                const id = row.rowId;
                 const value = Number(this.getRowValue(row));
 
                 const progressBar = td.firstElementChild;
@@ -3128,7 +3127,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     img.height = "22";
                     td.append(img);
                 }
-            };
+            }
         },
         newColumn: function(name, style, caption, defaultWidth, defaultVisible) {
             const column = {};
