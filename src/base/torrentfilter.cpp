@@ -30,6 +30,7 @@
 
 #include "bittorrent/infohash.h"
 #include "bittorrent/torrent.h"
+#include "bittorrent/trackerentrystatus.h"
 
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
@@ -48,6 +49,7 @@ const TorrentFilter TorrentFilter::StalledDownloadingTorrent(TorrentFilter::Stal
 const TorrentFilter TorrentFilter::CheckingTorrent(TorrentFilter::Checking);
 const TorrentFilter TorrentFilter::MovingTorrent(TorrentFilter::Moving);
 const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
+const TorrentFilter TorrentFilter::TrackerErroredTorrent(TorrentFilter::TrackerErrored);
 
 using BitTorrent::Torrent;
 
@@ -112,6 +114,8 @@ bool TorrentFilter::setTypeByName(const QString &filter)
         type = Moving;
     else if (filter == u"errored")
         type = Errored;
+    else if (filter == u"tracker_errored")
+        type = TrackerErrored;
 
     return setType(type);
 }
@@ -204,6 +208,17 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
         return torrent->isMoving();
     case Errored:
         return torrent->isErrored();
+    case TrackerErrored:
+        for (BitTorrent::TrackerEntryStatus &tracker : torrent->trackers())
+        {
+            if ((tracker.state == BitTorrent::TrackerEndpointState::NotWorking)
+                    || (tracker.state == BitTorrent::TrackerEndpointState::TrackerError)
+                    || (tracker.state == BitTorrent::TrackerEndpointState::Unreachable))
+            {
+                return true;
+            }
+        }
+        return false;
     default:
         Q_UNREACHABLE();
         break;
