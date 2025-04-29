@@ -293,7 +293,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     if (width < 16)
                         width = 16;
 
-                    this._setColumnWidth(this.resizeTh.columnName, width);
+                    this.#setColumnWidth(this.resizeTh.columnName, width);
                 }
             }.bind(this);
 
@@ -393,7 +393,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns[columnName].onVisibilityChange?.(columnName);
         }
 
-        _calculateColumnBodyWidth(column) {
+        #calculateColumnBodyWidth(column) {
             const columnIndex = this.getColumnPos(column.name);
             const bodyColumn = document.getElementById(this.dynamicTableDivId).querySelectorAll("tr>th")[columnIndex];
             const canvas = document.createElement("canvas");
@@ -417,7 +417,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             return longestTd.width + 10;
         }
 
-        _setColumnWidth(columnName, width) {
+        #setColumnWidth(columnName, width) {
             const column = this.columns[columnName];
             column.width = width;
 
@@ -438,7 +438,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             let width = column.staticWidth ?? 0;
             if (column.staticWidth === null) {
                 // check required min body width
-                const bodyTextWidth = this._calculateColumnBodyWidth(column);
+                const bodyTextWidth = this.#calculateColumnBodyWidth(column);
 
                 // check required min header width
                 const columnIndex = this.getColumnPos(column.name);
@@ -453,7 +453,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 width = Math.max(headTextWidth, bodyTextWidth);
             }
 
-            this._setColumnWidth(column.name, width);
+            this.#setColumnWidth(column.name, width);
             this.saveColumnWidth(column.name);
         }
 
@@ -2195,11 +2195,11 @@ window.qBittorrent.DynamicTable ??= (() => {
         populateTable(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
-                this._addNodeToTable(node, 0);
+                this.#addNodeToTable(node, 0);
             });
         }
 
-        _addNodeToTable(node, depth) {
+        #addNodeToTable(node, depth) {
             node.depth = depth;
 
             if (node.isFolder) {
@@ -2223,7 +2223,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             node.children.each((child) => {
-                this._addNodeToTable(child, depth + 1);
+                this.#addNodeToTable(child, depth + 1);
             });
         }
 
@@ -2431,7 +2431,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.updateGlobalCheckbox();
         }
 
-        _sortNodesByColumn(nodes, column) {
+        #sortNodesByColumn(nodes, column) {
             nodes.sort((row1, row2) => {
                 // list folders before files when sorting by name
                 if (column.name === "original") {
@@ -2449,15 +2449,15 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             nodes.each((node) => {
                 if (node.children.length > 0)
-                    this._sortNodesByColumn(node.children, column);
+                    this.#sortNodesByColumn(node.children, column);
             });
         }
 
-        _filterNodes(node, filterTerms, filteredRows) {
+        #filterNodes(node, filterTerms, filteredRows) {
             if (node.isFolder) {
                 const childAdded = node.children.reduce((acc, child) => {
                     // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
-                    return (this._filterNodes(child, filterTerms, filteredRows) || acc);
+                    return (this.#filterNodes(child, filterTerms, filteredRows) || acc);
                 }, false);
 
                 if (childAdded) {
@@ -2506,7 +2506,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const filteredRows = [];
                 this.getRoot().children.each((child) => {
-                    this._filterNodes(child, this.filterTerms, filteredRows);
+                    this.#filterNodes(child, this.filterTerms, filteredRows);
                 });
                 filteredRows.reverse();
                 return filteredRows;
@@ -2531,7 +2531,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // sort, then filter
             const column = this.columns[this.sortedColumn];
-            this._sortNodesByColumn(this.getRoot().children, column);
+            this.#sortNodesByColumn(this.getRoot().children, column);
             const filteredRows = getFilteredRows();
 
             this.prevFilterTerms = this.filterTerms;
@@ -2579,14 +2579,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             const state = this.collapseState.get(id);
             if (state !== undefined)
                 state.collapsed = false;
-            this._updateNodeState(id, false);
+            this.#updateNodeState(id, false);
         }
 
         collapseNode(id) {
             const state = this.collapseState.get(id);
             if (state !== undefined)
                 state.collapsed = true;
-            this._updateNodeState(id, true);
+            this.#updateNodeState(id, true);
         }
 
         expandAllNodes() {
@@ -2602,7 +2602,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
         }
 
-        _updateNodeVisibility(node, shouldHide) {
+        #updateNodeVisibility(node, shouldHide) {
             const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
             if (span === null)
@@ -2611,7 +2611,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             tr.classList.toggle("invisible", shouldHide);
         }
 
-        _updateNodeCollapseIcon(node, isCollapsed) {
+        #updateNodeCollapseIcon(node, isCollapsed) {
             const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
             if (span === null)
@@ -2623,7 +2623,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             collapseIcon.classList.toggle("rotate", isCollapsed);
         }
 
-        _updateNodeState(id, shouldCollapse) {
+        #updateNodeState(id, shouldCollapse) {
             // collapsed rows will be filtered out when using virtual list
             if (this.useVirtualList)
                 return;
@@ -2631,17 +2631,17 @@ window.qBittorrent.DynamicTable ??= (() => {
             if (!node.isFolder)
                 return;
 
-            this._updateNodeCollapseIcon(node, shouldCollapse);
+            this.#updateNodeCollapseIcon(node, shouldCollapse);
 
-            this._updateNodeChildVisibility(node, shouldCollapse);
+            this.#updateNodeChildVisibility(node, shouldCollapse);
         }
 
-        _updateNodeChildVisibility(root, shouldHide) {
+        #updateNodeChildVisibility(root, shouldHide) {
             const stack = [...root.children];
             while (stack.length > 0) {
                 const node = stack.pop();
 
-                this._updateNodeVisibility(node, (shouldHide ? shouldHide : this.isCollapsed(node.root.rowId)));
+                this.#updateNodeVisibility(node, (shouldHide ? shouldHide : this.isCollapsed(node.root.rowId)));
 
                 stack.push(...node.children);
             }
@@ -2680,11 +2680,11 @@ window.qBittorrent.DynamicTable ??= (() => {
         populateTable(root) {
             this.fileTree.setRoot(root);
             root.children.each((node) => {
-                this._addNodeToTable(node, 0);
+                this.#addNodeToTable(node, 0);
             });
         }
 
-        _addNodeToTable(node, depth) {
+        #addNodeToTable(node, depth) {
             node.depth = depth;
 
             if (node.isFolder) {
@@ -2713,7 +2713,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             node.children.each((child) => {
-                this._addNodeToTable(child, depth + 1);
+                this.#addNodeToTable(child, depth + 1);
             });
         }
 
@@ -2881,7 +2881,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["availability"].updateTd = displayPercentage;
         }
 
-        _sortNodesByColumn(nodes, column) {
+        #sortNodesByColumn(nodes, column) {
             nodes.sort((row1, row2) => {
                 // list folders before files when sorting by name
                 if (column.name === "name") {
@@ -2899,15 +2899,15 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             nodes.each((node) => {
                 if (node.children.length > 0)
-                    this._sortNodesByColumn(node.children, column);
+                    this.#sortNodesByColumn(node.children, column);
             });
         }
 
-        _filterNodes(node, filterTerms, filteredRows) {
+        #filterNodes(node, filterTerms, filteredRows) {
             if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
                 const childAdded = node.children.toReversed().reduce((acc, child) => {
                     // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
-                    return (this._filterNodes(child, filterTerms, filteredRows) || acc);
+                    return (this.#filterNodes(child, filterTerms, filteredRows) || acc);
                 }, false);
 
                 if (childAdded) {
@@ -2948,7 +2948,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const getFilteredRows = function() {
                 const filteredRows = [];
                 this.getRoot().children.each((child) => {
-                    this._filterNodes(child, this.filterTerms, filteredRows);
+                    this.#filterNodes(child, this.filterTerms, filteredRows);
                 });
                 filteredRows.reverse();
                 return filteredRows;
@@ -2973,7 +2973,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // sort, then filter
             const column = this.columns[this.sortedColumn];
-            this._sortNodesByColumn(this.getRoot().children, column);
+            this.#sortNodesByColumn(this.getRoot().children, column);
             const filteredRows = getFilteredRows();
 
             this.prevFilterTerms = this.filterTerms;
