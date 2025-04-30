@@ -1564,7 +1564,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     return;
                 }
-                const value = `${window.qBittorrent.Misc.toFixedPointString(percent, 2)  }%`;
+                const value = `${window.qBittorrent.Misc.toFixedPointString(percent, 2)}%`;
                 td.textContent = value;
                 td.title = value;
             };
