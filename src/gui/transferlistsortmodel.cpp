@@ -204,11 +204,11 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
         return customCompare(leftValue.toLongLong(), rightValue.toLongLong());
 
     case TransferListModel::TR_AVAILABILITY:
+    case TransferListModel::TR_PERCENT_SELECTED:
+    case TransferListModel::TR_POPULARITY:
     case TransferListModel::TR_PROGRESS:
     case TransferListModel::TR_RATIO:
     case TransferListModel::TR_RATIO_LIMIT:
-    case TransferListModel::TR_PERCENT_SELECTED:
-    case TransferListModel::TR_POPULARITY:
         return customCompare(leftValue.toReal(), rightValue.toReal());
 
     case TransferListModel::TR_STATUS:
