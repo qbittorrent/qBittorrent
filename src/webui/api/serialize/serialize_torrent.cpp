@@ -167,6 +167,6 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_PRIVATE, (torrent.hasMetadata() ? torrent.isPrivate() : QVariant())},
         {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()},
         {KEY_TORRENT_HAS_METADATA, torrent.hasMetadata()},
-        {KEY_TORRENT_PERCENT_SELECTED, torrent.hasMetadata() ? (static_cast<qreal>(torrent.wantedSize()) * 100) / torrent.totalSize() : -1},
+        {KEY_TORRENT_PERCENT_SELECTED, torrent.hasMetadata() ? ((static_cast<qreal>(torrent.wantedSize()) * 100) / torrent.totalSize()) : -1},
     };
 }
