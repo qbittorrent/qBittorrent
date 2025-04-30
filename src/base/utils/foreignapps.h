@@ -47,6 +47,8 @@ namespace Utils::ForeignApps
 
         QString executableName;
         Version version;
+
+        inline static const Version MINIMUM_SUPPORTED_VERSION {3, 9, 0};
     };
 
     PythonInfo pythonInfo();
