@@ -2924,7 +2924,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxSeedingTimeCheckbox").checked) {
                 maxSeedingTime = Number(document.getElementById("maxSeedingTimeValue").value);
                 if (Number.isNaN(maxSeedingTime) || (maxSeedingTime < 0)) {
-                    alert("QBT_TR(Seeding time limit must have a positive value.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -2935,7 +2935,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxInactiveSeedingTimeCheckbox").checked) {
                 maxInactiveSeedingTime = Number(document.getElementById("maxInactiveSeedingTimeValue").value);
                 if (Number.isNaN(maxInactiveSeedingTime) || (maxInactiveSeedingTime < 0)) {
-                    alert("QBT_TR(Seeding time limit must have a positive value.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
