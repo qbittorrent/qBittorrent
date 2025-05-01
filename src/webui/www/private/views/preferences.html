@@ -2887,11 +2887,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_ratio_enabled"] = $("max_ratio_checkbox").checked;
             settings["max_ratio"] = max_ratio;
 
-            let max_seeding_time = -1;
-            if ($("max_seeding_time_checkbox").checked) {
-                max_seeding_time = Number($("max_seeding_time_value").value);
-                if (isNaN(max_seeding_time) || (max_seeding_time < 0) || (max_seeding_time > 525600)) {
-                    alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
+            let maxSeedingTime = -1;
+            if (document.getElementById("maxSeedingTimeCheckbox").checked) {
+                maxSeedingTime = Number(document.getElementById("maxSeedingTimeValue").value);
+                if (Number.isNaN(maxSeedingTime) || (maxSeedingTime < 0)) {
+                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
@@ -2899,11 +2899,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_seeding_time"] = max_seeding_time;
             settings["max_ratio_act"] = Number($("max_ratio_act").value);
 
-            let max_inactive_seeding_time = -1;
-            if ($("max_inactive_seeding_time_checkbox").checked) {
-                max_inactive_seeding_time = Number($("max_inactive_seeding_time_value").value);
-                if (isNaN(max_inactive_seeding_time) || (max_inactive_seeding_time < 0) || (max_inactive_seeding_time > 525600)) {
-                    alert("QBT_TR(Seeding time limit must be between 0 and 525600 minutes.)QBT_TR[CONTEXT=HttpServer]");
+            let maxInactiveSeedingTime = -1;
+            if (document.getElementById("maxInactiveSeedingTimeCheckbox").checked) {
+                maxInactiveSeedingTime = Number(document.getElementById("maxInactiveSeedingTimeValue").value);
+                if (Number.isNaN(maxInactiveSeedingTime) || (maxInactiveSeedingTime < 0)) {
+                    alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }

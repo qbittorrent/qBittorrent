@@ -132,8 +132,6 @@ namespace BitTorrent
         static const int NO_INACTIVE_SEEDING_TIME_LIMIT;
 
         static const qreal MAX_RATIO;
-        static const int MAX_SEEDING_TIME;
-        static const int MAX_INACTIVE_SEEDING_TIME;
 
         using TorrentContentHandler::TorrentContentHandler;
 
