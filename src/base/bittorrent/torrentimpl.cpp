@@ -2691,8 +2691,6 @@ void TorrentImpl::setSeedingTimeLimit(int limit)
 {
     if (limit < USE_GLOBAL_SEEDING_TIME)
         limit = NO_SEEDING_TIME_LIMIT;
-    else if (limit > MAX_SEEDING_TIME)
-        limit = MAX_SEEDING_TIME;
 
     if (m_seedingTimeLimit != limit)
     {
@@ -2706,8 +2704,6 @@ void TorrentImpl::setInactiveSeedingTimeLimit(int limit)
 {
     if (limit < USE_GLOBAL_INACTIVE_SEEDING_TIME)
         limit = NO_INACTIVE_SEEDING_TIME_LIMIT;
-    else if (limit > MAX_INACTIVE_SEEDING_TIME)
-        limit = MAX_SEEDING_TIME;
 
     if (m_inactiveSeedingTimeLimit != limit)
     {

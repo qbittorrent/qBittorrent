@@ -911,6 +911,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             // set the scrollable height
             this.table.style.height = `${rows.length * this.rowHeight}px`;
 
+            if (this.dynamicTableDiv.offsetHeight === 0)
+                return;
+            this.renderedHeight = this.dynamicTableDiv.offsetHeight;
             // show extra 6 rows at top/bottom to reduce flickering
             const extraRowCount = 6;
             // how many rows can be shown in the visible area
@@ -947,17 +950,22 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.updateRow(row, true);
 
             // refresh row height based on first row
-            setTimeout(() => {
-                if (this.tableBody.firstChild === null)
-                    return;
-                const tr = this.tableBody.firstChild;
-                if (this.rowHeight !== tr.offsetHeight) {
-                    this.rowHeight = tr.offsetHeight;
-                    // rerender on row height change
-                    this.rerender();
-                }
-
-            });
+            const tr = this.tableBody.firstChild;
+            if (tr !== null) {
+                const updateRowHeight = () => {
+                    if (tr.offsetHeight === 0)
+                        return;
+                    if (this.rowHeight !== tr.offsetHeight) {
+                        this.rowHeight = tr.offsetHeight;
+                        // rerender on row height change
+                        this.rerender();
+                    }
+                };
+                if (tr.offsetHeight === 0)
+                    setTimeout(updateRowHeight);
+                else
+                    updateRowHeight();
+            }
         },
 
         createRowElement: function(row, top = -1) {
@@ -2650,8 +2658,18 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this._updateNodeCollapseIcon(node, shouldCollapse);
 
-            for (const child of node.children)
-                this._updateNodeVisibility(child, shouldCollapse);
+            this._updateNodeChildVisibility(node, shouldCollapse);
+        },
+
+        _updateNodeChildVisibility: function(root, shouldHide) {
+            const stack = [...root.children];
+            while (stack.length > 0) {
+                const node = stack.pop();
+
+                this._updateNodeVisibility(node, (shouldHide ? shouldHide : this.isCollapsed(node.root.rowId)));
+
+                stack.push(...node.children);
+            }
         },
 
         clear: function() {
@@ -2914,7 +2932,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         _filterNodes: function(node, filterTerms, filteredRows) {
             if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
-                const childAdded = node.children.reduce((acc, child) => {
+                const childAdded = node.children.toReversed().reduce((acc, child) => {
                     // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
                     return (this._filterNodes(child, filterTerms, filteredRows) || acc);
                 }, false);

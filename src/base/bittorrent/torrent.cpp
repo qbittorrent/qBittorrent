@@ -54,8 +54,6 @@ namespace BitTorrent
     const int Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT = -1;
 
     const qreal Torrent::MAX_RATIO = std::numeric_limits<qreal>::infinity();
-    const int Torrent::MAX_SEEDING_TIME = 525600;
-    const int Torrent::MAX_INACTIVE_SEEDING_TIME = 525600;
 
     TorrentID Torrent::id() const
     {
