@@ -1242,7 +1242,7 @@ qreal SessionImpl::globalMaxRatio() const
 void SessionImpl::setGlobalMaxRatio(qreal ratio)
 {
     if (ratio < 0)
-        ratio = -1.;
+        ratio = Torrent::NO_RATIO_LIMIT;
 
     if (ratio != globalMaxRatio())
     {
@@ -2331,7 +2331,7 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     QString description;
 
     if (const qreal ratio = torrent->realRatio();
-            (ratioLimit >= 0) && (ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
+            (ratioLimit >= 0) && (ratio >= ratioLimit))
     {
         reached = true;
         description = tr("Torrent reached the share ratio limit.");
