@@ -74,7 +74,6 @@ window.qBittorrent.PropTrackers ??= (() => {
                     return;
 
                 const selectedTrackers = torrentTrackersTable.selectedRowsIds();
-                torrentTrackersTable.clear();
 
                 const trackers = await response.json();
                 if (trackers) {
@@ -122,7 +121,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             })
             .finally(() => {
                 clearTimeout(loadTrackersDataTimer);
-                loadTrackersDataTimer = loadTrackersData.delay(10000);
+                loadTrackersDataTimer = loadTrackersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
             });
     };
 

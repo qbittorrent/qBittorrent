@@ -1089,7 +1089,11 @@ const initializeWindows = () => {
     };
 
     deleteTrackerFN = (trackerHost) => {
-        if ((trackerHost === TRACKERS_ALL) || (trackerHost === TRACKERS_TRACKERLESS))
+        if ((trackerHost === TRACKERS_ALL) 
+            || (trackerHost === TRACKERS_TRACKERLESS)
+            || (trackerHost === TRACKERS_ERROR)
+            || (trackerHost === TRACKERS_OTHER_ERROR)
+            || (trackerHost === TRACKERS_WARNING))
             return;
 
         const contentURL = new URL("confirmtrackerdeletion.html", window.location);
