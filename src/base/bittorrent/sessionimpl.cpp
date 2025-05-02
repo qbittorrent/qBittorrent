@@ -2903,14 +2903,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         }
 
         if (!loadTorrentParams.hasFinishedStatus)
-        {
             needFindIncompleteFiles = true;
-        }
-        else
-        {
-            for (int index = 0; index < filePaths.size(); ++index)
-                p.renamed_files[nativeIndexes[index]] = filePaths.at(index).toString().toStdString();
-        }
 
         const int internalFilesCount = torrentInfo.nativeInfo()->files().num_files(); // including .pad files
         // Use qBittorrent default priority rather than libtorrent's (4)
@@ -2929,8 +2922,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         if (loadTorrentParams.name.isEmpty() && !p.name.empty())
             loadTorrentParams.name = QString::fromStdString(p.name);
     }
-
-    p.save_path = actualSavePath.toString().toStdString();
 
     if (isAddTrackersEnabled() && !(hasMetadata && p.ti->priv()))
     {
@@ -3006,34 +2997,37 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     if (infoHash.isHybrid())
         m_hybridTorrentsByAltID.insert(altID, nullptr);
 
-    if (needFindIncompleteFiles)
+    const auto resolveFileNames = [&, this]
     {
-        const Path actualDownloadPath = useAutoTMM
+        if (!needFindIncompleteFiles)
+            return QtFuture::makeReadyValueFuture(FileSearchResult {.savePath = actualSavePath, .fileNames = filePaths});
+
+        const Path actualDownloadPath = loadTorrentParams.useAutoTMM
                 ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
-        findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths).then(this
-                , [this, id](const FileSearchResult &result)
+        return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
+    };
+
+    resolveFileNames().then(this, [this, id](const FileSearchResult &result)
+    {
+        const auto loadingTorrentsIter = m_loadingTorrents.find(id);
+        Q_ASSERT(loadingTorrentsIter != m_loadingTorrents.end());
+        if (loadingTorrentsIter == m_loadingTorrents.end()) [[unlikely]]
+            return;
+
+        LoadTorrentParams &params = loadingTorrentsIter.value();
+        lt::add_torrent_params &p = params.ltAddTorrentParams;
+
+        p.save_path = result.savePath.toString().toStdString();
+        if (p.ti)
         {
-            const auto loadingTorrentsIter = m_loadingTorrents.find(id);
-            Q_ASSERT(loadingTorrentsIter != m_loadingTorrents.end());
-            if (loadingTorrentsIter == m_loadingTorrents.end()) [[unlikely]]
-                return;
-
-            LoadTorrentParams &params = loadingTorrentsIter.value();
-            lt::add_torrent_params &p = params.ltAddTorrentParams;
-
-            p.save_path = result.savePath.toString().toStdString();
             const TorrentInfo torrentInfo {*p.ti};
             const auto nativeIndexes = torrentInfo.nativeIndexes();
             for (int i = 0; i < result.fileNames.size(); ++i)
                 p.renamed_files[nativeIndexes[i]] = result.fileNames[i].toString().toStdString();
+        }
 
-            m_nativeSession->async_add_torrent(p);
-        });
-    }
-    else
-    {
         m_nativeSession->async_add_torrent(p);
-    }
+    });
 
     return true;
 }
