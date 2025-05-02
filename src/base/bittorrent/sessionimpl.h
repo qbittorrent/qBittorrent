@@ -606,6 +606,7 @@ namespace BitTorrent
 #endif
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
 
         void saveResumeData();
         void saveTorrentsQueue();
