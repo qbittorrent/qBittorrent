@@ -1620,31 +1620,20 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 #endif
 
     qDebug() << "Starting up torrent" << torrentID.toString() << "...";
-    m_loadingTorrents.insert(torrentID, resumeData);
     m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
-    m_addTorrentAlertHandlers.enqueue([this](const lt::add_torrent_alert *alert)
+    m_addTorrentAlertHandlers.enqueue([this, resumeData = std::move(resumeData)](const lt::add_torrent_alert *alert)
     {
         if (alert->error)
         {
             const QString msg = QString::fromStdString(alert->message());
             LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
-            m_loadingTorrents.remove(getInfoHash(alert->params).toTorrentID());
         }
         else
         {
-            const TorrentID torrentID = getInfoHash(alert->handle).toTorrentID();
+            Torrent *torrent = createTorrent(alert->handle, resumeData);
+            m_loadedTorrents.append(torrent);
 
-            if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(torrentID)
-                    ; loadingTorrentsIter != m_loadingTorrents.cend())
-            {
-                const LoadTorrentParams params = loadingTorrentsIter.value();
-                m_loadingTorrents.erase(loadingTorrentsIter);
-
-                Torrent *torrent = createTorrent(alert->handle, params);
-                m_loadedTorrents.append(torrent);
-
-                LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
-            }
+            LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
         }
     });
 
@@ -2796,14 +2785,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     // alternative ID can be useful to find existing torrent in case if hybrid torrent was added by v1 info hash
     const auto altID = (infoHash.isHybrid() ? TorrentID::fromSHA1Hash(infoHash.v1()) : TorrentID());
 
-    // We should not add the torrent if it is already
-    // processed or is pending to add to session
-    if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
-    {
-        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, tr("Duplicate torrent")});
-        return false;
-    }
-
     if (Torrent *torrent = findTorrent(infoHash))
     {
         // a duplicate torrent is being added
@@ -3011,8 +2992,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     p.storage = customStorageConstructor;
 #endif
 
-    m_loadingTorrents.insert(id, loadTorrentParams);
-
     const auto resolveFileNames = [&, this]
     {
         if (!needFindIncompleteFiles)
@@ -3023,15 +3002,9 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
     };
 
-    resolveFileNames().then(this, [this, id](const FileSearchResult &result)
+    resolveFileNames().then(this, [this, id, loadTorrentParams = std::move(loadTorrentParams)](const FileSearchResult &result) mutable
     {
-        const auto loadingTorrentsIter = m_loadingTorrents.find(id);
-        Q_ASSERT(loadingTorrentsIter != m_loadingTorrents.end());
-        if (loadingTorrentsIter == m_loadingTorrents.end()) [[unlikely]]
-            return;
-
-        LoadTorrentParams &params = loadingTorrentsIter.value();
-        lt::add_torrent_params &p = params.ltAddTorrentParams;
+        lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 
         p.save_path = result.savePath.toString().toStdString();
         if (p.ti)
@@ -3043,7 +3016,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         }
 
         m_nativeSession->async_add_torrent(p);
-        m_addTorrentAlertHandlers.enqueue([this](const lt::add_torrent_alert *alert)
+        m_addTorrentAlertHandlers.enqueue([this, loadTorrentParams = std::move(loadTorrentParams)](const lt::add_torrent_alert *alert)
         {
             if (alert->error)
             {
@@ -3051,41 +3024,28 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
                 LogMsg(tr("Failed to add torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
 
                 const InfoHash infoHash = getInfoHash(alert->params);
-                if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(TorrentID::fromInfoHash(infoHash))
-                        ; loadingTorrentsIter != m_loadingTorrents.cend())
-                {
-                    const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
-                            ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
-                    emit addTorrentFailed(infoHash, {errorKind, msg});
-                    m_loadingTorrents.erase(loadingTorrentsIter);
-                }
+                const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
+                        ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
+                emit addTorrentFailed(infoHash, {errorKind, msg});
             }
             else
             {
-                const TorrentID torrentID = getInfoHash(alert->handle).toTorrentID();
-                if (const auto loadingTorrentsIter = m_loadingTorrents.constFind(torrentID)
-                        ; loadingTorrentsIter != m_loadingTorrents.cend())
+                if (loadTorrentParams.addToQueueTop)
+                    alert->handle.queue_position_top();
+
+                TorrentImpl *torrent = createTorrent(alert->handle, loadTorrentParams);
+                m_loadedTorrents.append(torrent);
+
+                torrent->requestResumeData(lt::torrent_handle::save_info_dict);
+
+                LogMsg(tr("Added new torrent. Torrent: \"%1\"").arg(torrent->name()));
+                emit torrentAdded(torrent);
+
+                // The following is useless for newly added magnet
+                if (torrent->hasMetadata())
                 {
-                    const LoadTorrentParams params = loadingTorrentsIter.value();
-                    m_loadingTorrents.erase(loadingTorrentsIter);
-
-                    if (params.addToQueueTop)
-                        alert->handle.queue_position_top();
-
-                    TorrentImpl *torrent = createTorrent(alert->handle, params);
-                    m_loadedTorrents.append(torrent);
-
-                    torrent->requestResumeData(lt::torrent_handle::save_info_dict);
-
-                    LogMsg(tr("Added new torrent. Torrent: \"%1\"").arg(torrent->name()));
-                    emit torrentAdded(torrent);
-
-                    // The following is useless for newly added magnet
-                    if (torrent->hasMetadata())
-                    {
-                        if (!torrentExportDirectory().isEmpty())
-                            exportTorrentFile(torrent, torrentExportDirectory());
-                    }
+                    if (!torrentExportDirectory().isEmpty())
+                        exportTorrentFile(torrent, torrentExportDirectory());
                 }
             }
         });
@@ -5318,8 +5278,6 @@ bool SessionImpl::isKnownTorrent(const InfoHash &infoHash) const
     // in case if hybrid torrent was added by v1 info hash
     const auto altID = (isHybrid ? TorrentID::fromSHA1Hash(infoHash.v1()) : TorrentID());
 
-    if (m_loadingTorrents.contains(id) || (isHybrid && m_loadingTorrents.contains(altID)))
-        return true;
     if (m_downloadedMetadata.contains(id) || (isHybrid && m_downloadedMetadata.contains(altID)))
         return true;
     return findTorrent(infoHash);
