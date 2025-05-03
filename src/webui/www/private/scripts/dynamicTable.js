@@ -2355,6 +2355,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checkbox.type = "checkbox";
                     checkbox.className = "RenamingCB";
                     checkbox.addEventListener("click", (e) => {
+                        e.stopPropagation();
                         const targetId = e.target.dataset.id;
                         const ids = [];
                         // when holding shift, set all files between the previously selected one and the clicked one
@@ -2388,7 +2389,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                         }
                         that.updateGlobalCheckbox();
                         that.onRowSelectionChange(that.getNode(targetId));
-                        e.stopPropagation();
                         that.prevCheckboxNum = targetId;
                     });
                     checkbox.indeterminate = false;
