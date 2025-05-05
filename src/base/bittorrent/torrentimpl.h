@@ -94,8 +94,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(TorrentImpl)
 
     public:
-        TorrentImpl(SessionImpl *session, lt::session *nativeSession
-                          , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
         ~TorrentImpl() override;
 
         bool isValid() const;
@@ -325,7 +324,6 @@ namespace BitTorrent
         QFuture<std::invoke_result_t<Func>> invokeAsync(Func &&func) const;
 
         SessionImpl *const m_session = nullptr;
-        lt::session *m_nativeSession = nullptr;
         lt::torrent_handle m_nativeHandle;
         mutable lt::torrent_status m_nativeStatus;
         TorrentState m_state = TorrentState::Unknown;

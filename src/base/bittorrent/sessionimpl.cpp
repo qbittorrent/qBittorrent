@@ -5443,6 +5443,19 @@ bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &new
     return true;
 }
 
+lt::torrent_handle SessionImpl::reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params)
+{
+    m_nativeSession->remove_torrent(currentHandle, lt::session::delete_partfile);
+
+    auto *const extensionData = new ExtensionData;
+    params.userdata = LTClientData(extensionData);
+#ifndef QBT_USES_LIBTORRENT2
+    params.storage = customStorageConstructor;
+#endif
+
+    return m_nativeSession->add_torrent(std::move(params));
+}
+
 void SessionImpl::moveTorrentStorage(const MoveStorageJob &job) const
 {
     const TorrentImpl *torrent = getTorrent(job.torrentHandle);
@@ -5971,7 +5984,7 @@ void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *alert)
 
 TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
 {
-    auto *const torrent = new TorrentImpl(this, m_nativeSession, nativeHandle, params);
+    auto *const torrent = new TorrentImpl(this, nativeHandle, params);
     m_torrents.insert(torrent->id(), torrent);
     if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
         m_hybridTorrentsByAltID.insert(TorrentID::fromSHA1Hash(infoHash.v1()), torrent);
