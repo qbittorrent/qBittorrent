@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,7 +34,7 @@
 #include "transferlistmodel.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
-    : QStyledItemDelegate {parent}
+    : QStyledItemDelegate(parent)
 {
 }
 
@@ -66,35 +67,46 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
     switch (index.column())
     {
     case TransferListModel::TR_PROGRESS:
-        {
-            using namespace BitTorrent;
-
-            const auto isEnableState = [](const TorrentState state) -> bool
-            {
-                switch (state)
-                {
-                case TorrentState::Error:
-                case TorrentState::StoppedDownloading:
-                case TorrentState::Unknown:
-                    return false;
-                default:
-                    return true;
-                }
-            };
-
-            const int progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
-
-            const QModelIndex statusIndex = index.siblingAtColumn(TransferListModel::TR_STATUS);
-            const auto torrentState = statusIndex.data(TransferListModel::UnderlyingDataRole).value<TorrentState>();
-
-            QStyleOptionViewItem customOption {option};
-            customOption.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
-
-            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
-        }
+        paintProgressBarItem(painter, option, index);
         break;
+
     default:
         QStyledItemDelegate::paint(painter, option, index);
         break;
     }
+}
+
+void TransferListDelegate::initStyleOption(QStyleOptionViewItem *option, const QModelIndex &index) const
+{
+    QStyledItemDelegate::initStyleOption(option, index);
+
+    // Force QPalette::HighlightedText to be used for drawing highlighted text
+    if (option->state.testAnyFlags(QStyle::State_Selected | QStyle::State_MouseOver))
+        option->palette.setColor(QPalette::All, QPalette::Text, option->palette.color(QPalette::Active, QPalette::HighlightedText));
+}
+
+void TransferListDelegate::paintProgressBarItem(QPainter *painter, QStyleOptionViewItem option, const QModelIndex &index) const
+{
+    using namespace BitTorrent;
+
+    const auto isEnableState = [](const TorrentState state) -> bool
+    {
+        switch (state)
+        {
+        case TorrentState::Error:
+        case TorrentState::StoppedDownloading:
+        case TorrentState::Unknown:
+            return false;
+        default:
+            return true;
+        }
+    };
+
+    const int progress = static_cast<int>(index.data(TransferListModel::UnderlyingDataRole).toReal());
+
+    const QModelIndex statusIndex = index.siblingAtColumn(TransferListModel::TR_STATUS);
+    const auto torrentState = statusIndex.data(TransferListModel::UnderlyingDataRole).value<TorrentState>();
+    option.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
+
+    m_progressBarPainter.paint(painter, option, index.data().toString(), progress);
 }
