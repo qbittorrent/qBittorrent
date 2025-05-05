@@ -56,51 +56,51 @@ window.qBittorrent.FileTree ??= (() => {
     };
     Object.freeze(TriState);
 
-    const FileTree = new Class({
-        root: null,
-        nodeMap: {},
+    class FileTree {
+        #root = null;
+        #nodeMap = {}; // Object with Number as keys is faster than anything
 
-        setRoot: function(root) {
-            this.root = root;
-            this.generateNodeMap(root);
+        setRoot(root) {
+            this.#root = root;
+            this.#generateNodeMap(root);
 
-            if (this.root.isFolder)
-                this.root.calculateSize();
-        },
+            if (this.#root.isFolder)
+                this.#root.calculateSize();
+        }
 
-        getRoot: function() {
-            return this.root;
-        },
+        getRoot() {
+            return this.#root;
+        }
 
-        generateNodeMap: function(root) {
+        #generateNodeMap(root) {
             const stack = [root];
             while (stack.length > 0) {
                 const node = stack.pop();
 
                 // don't store root node in map
                 if (node.root !== null)
-                    this.nodeMap[node.rowId] = node;
+                    this.#nodeMap[node.rowId] = node;
 
                 stack.push(...node.children);
             }
-        },
+        }
 
-        getNode: function(rowId) {
-            return (this.nodeMap[rowId] === undefined)
-                ? null
-                : this.nodeMap[rowId];
-        },
+        getNode(rowId) {
+            // TODO: enforce caller sites to pass `rowId` as number and not string
+            const value = this.#nodeMap[Number(rowId)];
+            return (value !== undefined) ? value : null;
+        }
 
-        getRowId: (node) => {
+        getRowId(node) {
             return node.rowId;
-        },
+        }
 
         /**
          * Returns the nodes in DFS in-order
          */
-        toArray: function() {
+        toArray() {
             const ret = [];
-            const stack = this.root.children.toReversed();
+            const stack = this.#root.children.toReversed();
             while (stack.length > 0) {
                 const node = stack.pop();
                 ret.push(node);
@@ -108,45 +108,40 @@ window.qBittorrent.FileTree ??= (() => {
             }
             return ret;
         }
-    });
+    }
 
-    const FileNode = new Class({
-        name: "",
-        path: "",
-        rowId: null,
-        size: 0,
-        checked: TriState.Unchecked,
-        remaining: 0,
-        progress: 0,
-        priority: FilePriority.Normal,
-        availability: 0,
-        depth: 0,
-        root: null,
-        data: null,
-        isFolder: false,
-        children: [],
-    });
+    class FileNode {
+        name = "";
+        path = "";
+        rowId = null;
+        size = 0;
+        checked = TriState.Unchecked;
+        remaining = 0;
+        progress = 0;
+        priority = FilePriority.Normal;
+        availability = 0;
+        depth = 0;
+        root = null;
+        data = null;
+        isFolder = false;
+        children = [];
+    }
 
-    const FolderNode = new Class({
-        Extends: FileNode,
-
+    class FolderNode extends FileNode {
         /**
          * Will automatically tick the checkbox for a folder if all subfolders and files are also ticked
          */
-        autoCheckFolders: true,
+        autoCheckFolders = true;
+        isFolder = true;
 
-        initialize: function() {
-            this.isFolder = true;
-        },
-
-        addChild: function(node) {
+        addChild(node) {
             this.children.push(node);
-        },
+        }
 
         /**
          * Calculate size of node and its children
          */
-        calculateSize: function() {
+        calculateSize() {
             const stack = [this];
             const visited = [];
 
@@ -202,7 +197,7 @@ window.qBittorrent.FileTree ??= (() => {
                 stack.pop();
             }
         }
-    });
+    }
 
     return exports();
 })();
