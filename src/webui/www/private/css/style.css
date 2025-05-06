@@ -755,19 +755,6 @@ td.generalLabel {
     }
 }
 
-.piecesbarWrapper {
-    position: relative;
-    width: 100%;
-}
-
-.piecesbarCanvas {
-    height: 100%;
-    image-rendering: pixelated;
-    inset: 0;
-    position: absolute;
-    width: 100%;
-}
-
 #watched_folders_tab {
     border-collapse: collapse;
 }
