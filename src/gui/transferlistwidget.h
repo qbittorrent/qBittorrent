@@ -123,6 +123,7 @@ private:
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
+    void openPreviewSelectDialog(const BitTorrent::Torrent *torrent);
     QModelIndex mapToSource(const QModelIndex &index) const;
     QModelIndexList mapToSource(const QModelIndexList &indexes) const;
     QModelIndex mapFromSource(const QModelIndex &index) const;

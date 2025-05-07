@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,6 +32,7 @@
 #include <QClipboard>
 #include <QDateTime>
 #include <QDebug>
+#include <QFuture>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QMessageBox>
@@ -440,10 +441,10 @@ void PropertiesWidget::loadDynamicData()
 
             // Update ratio info
             const qreal ratio = m_torrent->realRatio();
-            m_ui->labelShareRatioVal->setText(ratio > BitTorrent::Torrent::MAX_RATIO ? C_INFINITY : Utils::String::fromDouble(ratio, 2));
+            m_ui->labelShareRatioVal->setText(ratio >= BitTorrent::Torrent::MAX_RATIO ? C_INFINITY : Utils::String::fromDouble(ratio, 2));
 
             const qreal popularity = m_torrent->popularity();
-            m_ui->labelPopularityVal->setText(popularity > BitTorrent::Torrent::MAX_RATIO ? C_INFINITY : Utils::String::fromDouble(popularity, 2));
+            m_ui->labelPopularityVal->setText(popularity >= BitTorrent::Torrent::MAX_RATIO ? C_INFINITY : Utils::String::fromDouble(popularity, 2));
 
             m_ui->labelSeedsVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
                 .arg(QString::number(m_torrent->seedsCount())
@@ -471,15 +472,15 @@ void PropertiesWidget::loadDynamicData()
 
             if (m_torrent->hasMetadata())
             {
-                using TorrentPtr = QPointer<BitTorrent::Torrent>;
-
                 m_ui->labelTotalPiecesVal->setText(tr("%1 x %2 (have %3)", "(torrent pieces) eg 152 x 4MB (have 25)").arg(m_torrent->piecesCount()).arg(Utils::Misc::friendlyUnit(m_torrent->pieceLength())).arg(m_torrent->piecesHave()));
 
                 if (!m_torrent->isFinished() && !m_torrent->isStopped() && !m_torrent->isQueued() && !m_torrent->isChecking())
                 {
                     // Pieces availability
                     showPiecesAvailability(true);
-                    m_torrent->fetchPieceAvailability([this, torrent = TorrentPtr(m_torrent)](const QList<int> &pieceAvailability)
+
+                    using TorrentPtr = QPointer<BitTorrent::Torrent>;
+                    m_torrent->fetchPieceAvailability().then(this, [this, torrent = TorrentPtr(m_torrent)](const QList<int> &pieceAvailability)
                     {
                         if (torrent == m_torrent)
                             m_piecesAvailability->setAvailability(pieceAvailability);
@@ -496,10 +497,9 @@ void PropertiesWidget::loadDynamicData()
                 qreal progress = m_torrent->progress() * 100.;
                 m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + u'%');
 
-                m_torrent->fetchDownloadingPieces([this, torrent = TorrentPtr(m_torrent)](const QBitArray &downloadingPieces)
+                m_torrent->fetchDownloadingPieces().then(this, [this](const QBitArray &downloadingPieces)
                 {
-                    if (torrent == m_torrent)
-                        m_downloadedPieces->setProgress(m_torrent->pieces(), downloadingPieces);
+                    m_downloadedPieces->setProgress(m_torrent->pieces(), downloadingPieces);
                 });
             }
             else
@@ -525,7 +525,7 @@ void PropertiesWidget::loadUrlSeeds()
         return;
 
     using TorrentPtr = QPointer<BitTorrent::Torrent>;
-    m_torrent->fetchURLSeeds([this, torrent = TorrentPtr(m_torrent)](const QList<QUrl> &urlSeeds)
+    m_torrent->fetchURLSeeds().then(this, [this, torrent = TorrentPtr(m_torrent)](const QList<QUrl> &urlSeeds)
     {
         if (torrent != m_torrent)
             return;

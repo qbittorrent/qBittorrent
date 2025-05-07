@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,6 +34,8 @@
 #include "abstractfilestorage.h"
 #include "downloadpriority.h"
 
+template <typename T> class QFuture;
+
 namespace BitTorrent
 {
     class TorrentContentHandler : public QObject, public AbstractFileStorage
@@ -52,8 +54,7 @@ namespace BitTorrent
          * This is not the same as torrrent availability, it is just a fraction of pieces
          * that can be downloaded right now. It varies between 0 to 1.
          */
-        virtual QList<qreal> availableFileFractions() const = 0;
-        virtual void fetchAvailableFileFractions(std::function<void (QList<qreal>)> resultHandler) const = 0;
+        virtual QFuture<QList<qreal>> fetchAvailableFileFractions() const = 0;
 
         virtual void prioritizeFiles(const QList<DownloadPriority> &priorities) = 0;
         virtual void flushCache() const = 0;

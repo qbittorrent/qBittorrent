@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,6 +28,7 @@
 
 #include "synccontroller.h"
 
+#include <QFuture>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QMetaObject>
@@ -745,7 +746,7 @@ void SyncController::torrentPeersAction()
     QVariantMap data;
     QVariantHash peers;
 
-    const QList<BitTorrent::PeerInfo> peersList = torrent->peers();
+    const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().takeResult();
 
     bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
 

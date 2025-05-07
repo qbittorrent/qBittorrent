@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -44,6 +44,8 @@ class QBitArray;
 class QByteArray;
 class QDateTime;
 class QUrl;
+
+template <typename T> class QFuture;
 
 namespace BitTorrent
 {
@@ -132,8 +134,6 @@ namespace BitTorrent
         static const int NO_INACTIVE_SEEDING_TIME_LIMIT;
 
         static const qreal MAX_RATIO;
-        static const int MAX_SEEDING_TIME;
-        static const int MAX_INACTIVE_SEEDING_TIME;
 
         using TorrentContentHandler::TorrentContentHandler;
 
@@ -275,10 +275,7 @@ namespace BitTorrent
         virtual bool isDHTDisabled() const = 0;
         virtual bool isPEXDisabled() const = 0;
         virtual bool isLSDDisabled() const = 0;
-        virtual QList<PeerInfo> peers() const = 0;
         virtual QBitArray pieces() const = 0;
-        virtual QBitArray downloadingPieces() const = 0;
-        virtual QList<int> pieceAvailability() const = 0;
         virtual qreal distributedCopies() const = 0;
         virtual qreal maxRatio() const = 0;
         virtual int maxSeedingTime() const = 0;
@@ -325,10 +322,10 @@ namespace BitTorrent
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;
         virtual nonstd::expected<void, QString> exportToFile(const Path &path) const = 0;
 
-        virtual void fetchPeerInfo(std::function<void (QList<PeerInfo>)> resultHandler) const = 0;
-        virtual void fetchURLSeeds(std::function<void (QList<QUrl>)> resultHandler) const = 0;
-        virtual void fetchPieceAvailability(std::function<void (QList<int>)> resultHandler) const = 0;
-        virtual void fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const = 0;
+        virtual QFuture<QList<PeerInfo>> fetchPeerInfo() const = 0;
+        virtual QFuture<QList<QUrl>> fetchURLSeeds() const = 0;
+        virtual QFuture<QList<int>> fetchPieceAvailability() const = 0;
+        virtual QFuture<QBitArray> fetchDownloadingPieces() const = 0;
 
         TorrentID id() const;
         bool isRunning() const;

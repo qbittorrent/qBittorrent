@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -51,7 +51,9 @@
 #include <QByteArray>
 #include <QCache>
 #include <QDebug>
+#include <QFuture>
 #include <QPointer>
+#include <QPromise>
 #include <QSet>
 #include <QStringList>
 #include <QUrl>
@@ -67,6 +69,7 @@
 #include "common.h"
 #include "downloadpriority.h"
 #include "extensiondata.h"
+#include "filesearcher.h"
 #include "loadtorrentparams.h"
 #include "ltqbitarray.h"
 #include "lttypecast.h"
@@ -1465,46 +1468,9 @@ bool TorrentImpl::isLSDDisabled() const
     return static_cast<bool>(m_nativeStatus.flags & lt::torrent_flags::disable_lsd);
 }
 
-QList<PeerInfo> TorrentImpl::peers() const
-{
-    std::vector<lt::peer_info> nativePeers;
-    m_nativeHandle.get_peer_info(nativePeers);
-
-    QList<PeerInfo> peers;
-    peers.reserve(static_cast<decltype(peers)::size_type>(nativePeers.size()));
-
-    for (const lt::peer_info &peer : nativePeers)
-        peers.append(PeerInfo(peer, pieces()));
-
-    return peers;
-}
-
 QBitArray TorrentImpl::pieces() const
 {
     return m_pieces;
-}
-
-QBitArray TorrentImpl::downloadingPieces() const
-{
-    if (!hasMetadata())
-        return {};
-
-    std::vector<lt::partial_piece_info> queue;
-    m_nativeHandle.get_download_queue(queue);
-
-    QBitArray result {piecesCount()};
-    for (const lt::partial_piece_info &info : queue)
-        result.setBit(LT::toUnderlyingType(info.piece_index));
-
-    return result;
-}
-
-QList<int> TorrentImpl::pieceAvailability() const
-{
-    std::vector<int> avail;
-    m_nativeHandle.piece_availability(avail);
-
-    return {avail.cbegin(), avail.cend()};
 }
 
 qreal TorrentImpl::distributedCopies() const
@@ -1549,7 +1515,8 @@ qreal TorrentImpl::realRatio() const
 
     const qreal ratio = upload / static_cast<qreal>(download);
     Q_ASSERT(ratio >= 0);
-    return (ratio > MAX_RATIO) ? MAX_RATIO : ratio;
+
+    return ratio;
 }
 
 int TorrentImpl::uploadPayloadRate() const
@@ -1749,12 +1716,6 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
     }
 
     m_nativeHandle.prioritize_pieces(piecePriorities);
-}
-
-void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileNames)
-{
-    if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
-        endReceivedMetadataHandling(savePath, fileNames);
 }
 
 TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo)
@@ -2150,7 +2111,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         // URL seed list have been changed by libtorrent for some reason, so we need to update cached one.
         // Unfortunately, URL seed list containing in "resume data" is generated according to different rules
         // than the list we usually cache, so we have to request it from the appropriate source.
-        fetchURLSeeds([this](const QList<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
+        fetchURLSeeds().then(this, [this](const QList<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
     }
 
     if ((m_maintenanceJob == MaintenanceJob::HandleMetadata) && p->params.ti)
@@ -2197,7 +2158,12 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
                 filePaths[i] = Path(it->second);
         }
 
-        m_session->findIncompleteFiles(metadata, savePath(), downloadPath(), filePaths);
+        m_session->findIncompleteFiles(savePath(), downloadPath(), filePaths).then(this
+                , [this](const FileSearchResult &result)
+        {
+            if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+                endReceivedMetadataHandling(result.savePath, result.fileNames);
+        });
     }
     else
     {
@@ -2712,8 +2678,6 @@ void TorrentImpl::setRatioLimit(qreal limit)
 {
     if (limit < USE_GLOBAL_RATIO)
         limit = NO_RATIO_LIMIT;
-    else if (limit > MAX_RATIO)
-        limit = MAX_RATIO;
 
     if (m_ratioLimit != limit)
     {
@@ -2727,8 +2691,6 @@ void TorrentImpl::setSeedingTimeLimit(int limit)
 {
     if (limit < USE_GLOBAL_SEEDING_TIME)
         limit = NO_SEEDING_TIME_LIMIT;
-    else if (limit > MAX_SEEDING_TIME)
-        limit = MAX_SEEDING_TIME;
 
     if (m_seedingTimeLimit != limit)
     {
@@ -2742,8 +2704,6 @@ void TorrentImpl::setInactiveSeedingTimeLimit(int limit)
 {
     if (limit < USE_GLOBAL_INACTIVE_SEEDING_TIME)
         limit = NO_INACTIVE_SEEDING_TIME_LIMIT;
-    else if (limit > MAX_INACTIVE_SEEDING_TIME)
-        limit = MAX_SEEDING_TIME;
 
     if (m_inactiveSeedingTimeLimit != limit)
     {
@@ -2930,9 +2890,9 @@ nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) cons
     return {};
 }
 
-void TorrentImpl::fetchPeerInfo(std::function<void (QList<PeerInfo>)> resultHandler) const
+QFuture<QList<PeerInfo>> TorrentImpl::fetchPeerInfo() const
 {
-    invokeAsync([nativeHandle = m_nativeHandle, allPieces = pieces()]() -> QList<PeerInfo>
+    return invokeAsync([nativeHandle = m_nativeHandle, allPieces = pieces()]() -> QList<PeerInfo>
     {
         try
         {
@@ -2947,13 +2907,12 @@ void TorrentImpl::fetchPeerInfo(std::function<void (QList<PeerInfo>)> resultHand
         catch (const std::exception &) {}
 
         return {};
-    }
-    , std::move(resultHandler));
+    });
 }
 
-void TorrentImpl::fetchURLSeeds(std::function<void (QList<QUrl>)> resultHandler) const
+QFuture<QList<QUrl>> TorrentImpl::fetchURLSeeds() const
 {
-    invokeAsync([nativeHandle = m_nativeHandle]() -> QList<QUrl>
+    return invokeAsync([nativeHandle = m_nativeHandle]() -> QList<QUrl>
     {
         try
         {
@@ -2967,13 +2926,12 @@ void TorrentImpl::fetchURLSeeds(std::function<void (QList<QUrl>)> resultHandler)
         catch (const std::exception &) {}
 
         return {};
-    }
-    , std::move(resultHandler));
+    });
 }
 
-void TorrentImpl::fetchPieceAvailability(std::function<void (QList<int>)> resultHandler) const
+QFuture<QList<int>> TorrentImpl::fetchPieceAvailability() const
 {
-    invokeAsync([nativeHandle = m_nativeHandle]() -> QList<int>
+    return invokeAsync([nativeHandle = m_nativeHandle]() -> QList<int>
     {
         try
         {
@@ -2984,13 +2942,12 @@ void TorrentImpl::fetchPieceAvailability(std::function<void (QList<int>)> result
         catch (const std::exception &) {}
 
         return {};
-    }
-    , std::move(resultHandler));
+    });
 }
 
-void TorrentImpl::fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const
+QFuture<QBitArray> TorrentImpl::fetchDownloadingPieces() const
 {
-    invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QBitArray
+    return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QBitArray
     {
         try
         {
@@ -3009,13 +2966,12 @@ void TorrentImpl::fetchDownloadingPieces(std::function<void (QBitArray)> resultH
         catch (const std::exception &) {}
 
         return {};
-    }
-    , std::move(resultHandler));
+    });
 }
 
-void TorrentImpl::fetchAvailableFileFractions(std::function<void (QList<qreal>)> resultHandler) const
+QFuture<QList<qreal>> TorrentImpl::fetchAvailableFileFractions() const
 {
-    invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QList<qreal>
+    return invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo]() -> QList<qreal>
     {
         if (!torrentInfo.isValid() || (torrentInfo.filesCount() <= 0))
             return {};
@@ -3049,8 +3005,7 @@ void TorrentImpl::fetchAvailableFileFractions(std::function<void (QList<qreal>)>
         catch (const std::exception &) {}
 
         return {};
-    }
-    , std::move(resultHandler));
+    });
 }
 
 void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
@@ -3090,47 +3045,17 @@ void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
     manageActualFilePaths();
 }
 
-QList<qreal> TorrentImpl::availableFileFractions() const
+template <typename Func>
+QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
 {
-    Q_ASSERT(hasMetadata());
-
-    const int filesCount = this->filesCount();
-    if (filesCount <= 0) return {};
-
-    const QList<int> piecesAvailability = pieceAvailability();
-    // libtorrent returns empty array for seeding only torrents
-    if (piecesAvailability.empty()) return QList<qreal>(filesCount, -1);
-
-    QList<qreal> res;
-    res.reserve(filesCount);
-    for (int i = 0; i < filesCount; ++i)
+    QPromise<std::invoke_result_t<Func>> promise;
+    const auto future = promise.future();
+    promise.start();
+    m_session->invokeAsync([func = std::forward<Func>(func), promise = std::move(promise)]() mutable
     {
-        const TorrentInfo::PieceRange filePieces = m_torrentInfo.filePieces(i);
-
-        int availablePieces = 0;
-        for (const int piece : filePieces)
-            availablePieces += (piecesAvailability[piece] > 0) ? 1 : 0;
-
-        const qreal availability = filePieces.isEmpty()
-            ? 1  // the file has no pieces, so it is available by default
-            : static_cast<qreal>(availablePieces) / filePieces.size();
-        res.push_back(availability);
-    }
-    return res;
-}
-
-template <typename Func, typename Callback>
-void TorrentImpl::invokeAsync(Func func, Callback resultHandler) const
-{
-    m_session->invokeAsync([session = m_session
-                           , func = std::move(func)
-                           , resultHandler = std::move(resultHandler)
-                           , thisTorrent = QPointer<const TorrentImpl>(this)]() mutable
-    {
-        session->invoke([result = func(), thisTorrent, resultHandler = std::move(resultHandler)]
-        {
-            if (thisTorrent)
-                resultHandler(result);
-        });
+        promise.addResult(func());
+        promise.finish();
     });
+
+    return future;
 }

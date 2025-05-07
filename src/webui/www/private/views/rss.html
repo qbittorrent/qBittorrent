@@ -218,7 +218,7 @@
             const pref = window.parent.qBittorrent.Cache.preferences.get();
 
             if (!pref.rss_processing_enabled)
-                $("rssFetchingDisabled").classList.remove("invisible");
+                document.getElementById("rssFetchingDisabled").classList.remove("invisible");
 
             const rssFeedContextMenu = new window.qBittorrent.ContextMenu.RssFeedContextMenu({
                 targets: "#rssFeedTableDiv tbody tr",
@@ -232,7 +232,7 @@
                                 if ((row.full_data.dataPath.slice(0, selectedPath.length) === selectedPath) && (row.full_data.dataUid !== ""))
                                     feedsToUpdate.add(row);
                             }
-                        };
+                        }
                         feedsToUpdate.forEach((feed) => refreshFeed(feed.full_data.dataUid));
                     },
                     markRead: markSelectedAsRead,
@@ -263,13 +263,13 @@
                 }
             });
 
-            rssFeedContextMenu.addTarget($("rssFeedTableDiv"));
+            rssFeedContextMenu.addTarget(document.getElementById("rssFeedTableDiv"));
             // deselect feed when clicking on empty part of table
-            $("rssFeedTableDiv").addEventListener("click", (e) => {
+            document.getElementById("rssFeedTableDiv").addEventListener("click", (e) => {
                 rssFeedTable.deselectAll();
                 rssFeedTable.deselectRow();
             });
-            $("rssFeedTableDiv").addEventListener("contextmenu", (e) => {
+            document.getElementById("rssFeedTableDiv").addEventListener("contextmenu", (e) => {
                 if (e.target.nodeName === "DIV") {
                     rssFeedTable.deselectAll();
                     rssFeedTable.deselectRow();

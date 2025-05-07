@@ -1031,7 +1031,7 @@
                <item>
                 <widget class="QGroupBox" name="duplicateTorrentGroup">
                  <property name="title">
-                  <string>When duplicate torrent is being added</string>
+                  <string>When adding a duplicate torrent</string>
                  </property>
                  <layout class="QVBoxLayout" name="duplicateTorrentBoxLayout">
                   <item>
@@ -1047,7 +1047,7 @@
                   <item>
                    <widget class="QCheckBox" name="checkConfirmMergeTrackers">
                     <property name="text">
-                     <string>Ask for merging trackers when torrent is being added manually</string>
+                     <string>Ask to merge trackers for manually added torrent</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -3028,9 +3028,6 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
-                 <property name="maximum">
-                  <double>9998.000000000000000</double>
-                 </property>
                  <property name="singleStep">
                   <double>0.050000000000000</double>
                  </property>
@@ -3290,14 +3287,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </item>
                  <item>
                   <widget class="QSpinBox" name="searchHistoryLengthSpinBox">
-                   <property name="buttonSymbols">
-                    <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
-                   </property>
                    <property name="maximum">
                     <number>99</number>
-                   </property>
-                   <property name="stepType">
-                    <enum>QAbstractSpinBox::StepType::DefaultStepType</enum>
                    </property>
                   </widget>
                  </item>

@@ -37,7 +37,7 @@
             switch (event.key) {
                 case "Enter":
                     event.preventDefault();
-                    $("applyButton").click();
+                    document.getElementById("applyButton").click();
                     break;
                 case "Escape":
                     event.preventDefault();
@@ -48,7 +48,7 @@
 
         const hashes = new URLSearchParams(window.location.search).get("hashes").split("|");
         const setDlLimit = () => {
-            const limit = Number($("dllimitUpdatevalue").value) * 1024;
+            const limit = Number(document.getElementById("dllimitUpdatevalue").value) * 1024;
             if (hashes[0] === "global") {
                 fetch("api/v2/transfer/setDownloadLimit", {
                         method: "POST",
@@ -56,7 +56,7 @@
                             limit: limit
                         })
                     })
-                    .then(async (response) => {
+                    .then((response) => {
                         if (!response.ok)
                             return;
 
@@ -72,7 +72,7 @@
                             limit: limit
                         })
                     })
-                    .then(async (response) => {
+                    .then((response) => {
                         if (!response.ok)
                             return;
 
@@ -81,7 +81,7 @@
             }
         };
 
-        $("dllimitUpdatevalue").focus();
+        document.getElementById("dllimitUpdatevalue").focus();
 
         MochaUI.addDlLimitSlider(hashes);
     </script>

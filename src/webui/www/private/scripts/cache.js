@@ -53,7 +53,7 @@ window.qBittorrent.Cache ??= (() => {
     class BuildInfoCache {
         #m_store = {};
 
-        async init() {
+        init() {
             return fetch("api/v2/app/buildInfo", {
                     method: "GET",
                     cache: "no-store"
@@ -80,7 +80,7 @@ window.qBittorrent.Cache ??= (() => {
         //   onFailure: () => {},
         //   onSuccess: () => {}
         // }
-        async init(obj = {}) {
+        init(obj = {}) {
             return fetch("api/v2/app/preferences", {
                     method: "GET",
                     cache: "no-store"
@@ -153,7 +153,7 @@ window.qBittorrent.Cache ??= (() => {
     class QbtVersionCache {
         #m_store = "";
 
-        async init() {
+        init() {
             return fetch("api/v2/app/version", {
                     method: "GET",
                     cache: "no-store"

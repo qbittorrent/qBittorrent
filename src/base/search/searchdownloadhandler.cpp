@@ -42,7 +42,7 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &pluginName, const QS
     , m_downloadProcess {new QProcess(this)}
 {
     m_downloadProcess->setProcessEnvironment(m_manager->proxyEnvironment());
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+#ifdef Q_OS_UNIX
     m_downloadProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
 #endif
     connect(m_downloadProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)

@@ -312,10 +312,7 @@ void TransferListWidget::torrentDoubleClicked()
     case PREVIEW_FILE:
         if (torrentContainsPreviewableFiles(torrent))
         {
-            auto *dialog = new PreviewSelectDialog(this, torrent);
-            dialog->setAttribute(Qt::WA_DeleteOnClose);
-            connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
-            dialog->show();
+            openPreviewSelectDialog(torrent);
         }
         else
         {
@@ -617,10 +614,7 @@ void TransferListWidget::previewSelectedTorrents()
     {
         if (torrentContainsPreviewableFiles(torrent))
         {
-            auto *dialog = new PreviewSelectDialog(this, torrent);
-            dialog->setAttribute(Qt::WA_DeleteOnClose);
-            connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile);
-            dialog->show();
+            openPreviewSelectDialog(torrent);
         }
         else
         {
@@ -1448,4 +1442,14 @@ void TransferListWidget::wheelEvent(QWheelEvent *event)
     }
 
     QTreeView::wheelEvent(event);  // event delegated to base class
+}
+
+void TransferListWidget::openPreviewSelectDialog(const BitTorrent::Torrent *torrent)
+{
+    auto *dialog = new PreviewSelectDialog(this, torrent);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    // Qt::QueuedConnection is required to prevent a bug on wayland compositors where the preview won't open.
+    // It occurs when the window focus shifts immediately after TransferListWidget::previewFile has been called.
+    connect(dialog, &PreviewSelectDialog::readyToPreviewFile, this, &TransferListWidget::previewFile, Qt::QueuedConnection);
+    dialog->show();
 }
