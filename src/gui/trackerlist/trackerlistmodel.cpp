@@ -309,12 +309,8 @@ void TrackerListModel::populate()
     m_items->emplace_back(std::make_shared<Item>(u"** [PeX] **", privateTorrentMessage));
     m_items->emplace_back(std::make_shared<Item>(u"** [LSD] **", privateTorrentMessage));
 
-    using TorrentPtr = QPointer<const BitTorrent::Torrent>;
-    m_torrent->fetchPeerInfo().then(this, [this, torrent = TorrentPtr(m_torrent)](const QList<BitTorrent::PeerInfo> &peers)
+    m_torrent->fetchPeerInfo().then(m_torrent, [this](const QList<BitTorrent::PeerInfo> &peers)
     {
-       if (torrent != m_torrent)
-           return;
-
        // XXX: libtorrent should provide this info...
        // Count peers from DHT, PeX, LSD
        uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;

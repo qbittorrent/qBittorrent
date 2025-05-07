@@ -401,17 +401,13 @@ void PeerListWidget::saveSettings() const
     Preferences::instance()->setPeerListState(header()->saveState());
 }
 
-void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
+void PeerListWidget::loadPeers(BitTorrent::Torrent *torrent)
 {
     if (!torrent)
         return;
 
-    using TorrentPtr = QPointer<const BitTorrent::Torrent>;
-    torrent->fetchPeerInfo().then(this, [this, torrent = TorrentPtr(torrent)](const QList<BitTorrent::PeerInfo> &peers)
+    torrent->fetchPeerInfo().then(torrent, [this, torrent](const QList<BitTorrent::PeerInfo> &peers)
     {
-        if (torrent != m_properties->getCurrentTorrent())
-            return;
-
         // Remove I2P peers since they will be completely reloaded.
         for (const QStandardItem *item : asConst(m_I2PPeerItems))
             m_listModel->removeRow(item->row());

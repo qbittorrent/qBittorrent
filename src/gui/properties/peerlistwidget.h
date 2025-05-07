@@ -82,7 +82,7 @@ public:
     explicit PeerListWidget(PropertiesWidget *parent);
     ~PeerListWidget() override;
 
-    void loadPeers(const BitTorrent::Torrent *torrent);
+    void loadPeers(BitTorrent::Torrent *torrent);
     void updatePeerHostNameResolutionState();
     void updatePeerCountryResolutionState();
     void clear();

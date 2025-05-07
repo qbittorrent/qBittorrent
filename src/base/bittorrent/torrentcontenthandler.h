@@ -40,6 +40,9 @@ namespace BitTorrent
 {
     class TorrentContentHandler : public QObject, public AbstractFileStorage
     {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(TorrentContentHandler)
+
     public:
         using QObject::QObject;
 
