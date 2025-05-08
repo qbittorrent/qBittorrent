@@ -175,6 +175,8 @@ let setStatusFilter = () => {};
 let toggleFilterDisplay = () => {};
 
 window.addEventListener("DOMContentLoaded", (event) => {
+    window.qBittorrent.LocalPreferences.upgrade();
+
     let isSearchPanelLoaded = false;
     let isLogPanelLoaded = false;
     let isRssPanelLoaded = false;
