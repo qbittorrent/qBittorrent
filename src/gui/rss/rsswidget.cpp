@@ -333,7 +333,7 @@ void RSSWidget::on_newFeedButton_clicked()
 
     // Ask for feed URL
     const QString clipText = qApp->clipboard()->text();
-    const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : u"http://"_s;
+    const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : u"https://"_s;
 
     RSS::Feed *newFeed = nullptr;
     RSSFeedDialog dialog {this};
