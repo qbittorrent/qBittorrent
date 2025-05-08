@@ -290,11 +290,9 @@ namespace
 
 // TorrentImpl
 
-TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
-                                     , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
+TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
     : Torrent(session)
     , m_session(session)
-    , m_nativeSession(nativeSession)
     , m_nativeHandle(nativeHandle)
 #ifdef QBT_USES_LIBTORRENT2
     , m_infoHash(m_nativeHandle.info_hashes())
@@ -1837,16 +1835,6 @@ void TorrentImpl::reload()
 {
     try
     {
-        m_completedFiles.fill(false);
-        m_filesProgress.fill(0);
-        m_pieces.fill(false);
-        m_nativeStatus.pieces.clear_all();
-        m_nativeStatus.num_pieces = 0;
-
-        const auto queuePos = m_nativeHandle.queue_position();
-
-        m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_partfile);
-
         lt::add_torrent_params p = m_ltAddTorrentParams;
         p.flags |= lt::torrent_flags::update_subscribe
                 | lt::torrent_flags::override_trackers
@@ -1866,18 +1854,20 @@ void TorrentImpl::reload()
             p.flags &= ~(lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
         }
 
-        auto *const extensionData = new ExtensionData;
-        p.userdata = LTClientData(extensionData);
-#ifndef QBT_USES_LIBTORRENT2
-        p.storage = customStorageConstructor;
-#endif
-        m_nativeHandle = m_nativeSession->add_torrent(p);
+        const auto queuePos = m_nativeHandle.queue_position();
 
-        m_nativeStatus = extensionData->status;
+        m_nativeHandle = m_session->reloadTorrent(m_nativeHandle, std::move(p));
+        m_nativeStatus = static_cast<ExtensionData *>(m_nativeHandle.userdata())->status;
 
         if (queuePos >= lt::queue_position_t {})
             m_nativeHandle.queue_position_set(queuePos);
         m_nativeStatus.queue_position = queuePos;
+
+        m_completedFiles.fill(false);
+        m_filesProgress.fill(0);
+        m_pieces.fill(false);
+        m_nativeStatus.pieces.clear_all();
+        m_nativeStatus.num_pieces = 0;
 
         updateState();
     }

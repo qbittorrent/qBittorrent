@@ -493,7 +493,6 @@ namespace BitTorrent
         void categoryOptionsChanged(const QString &categoryName);
         void fullDiskError(Torrent *torrent, const QString &msg);
         void IPFilterParsed(bool error, int ruleCount);
-        void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
         void restored();
         void paused();
