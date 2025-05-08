@@ -636,6 +636,8 @@ void RSSWidget::renderArticle(const RSS::Article *article) const
         html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Feed: "), article->feed()->title());
     if (const QString articleAuthor = article->author(); !articleAuthor.isEmpty())
         html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_s.arg(alternateBaseColor, tr("Author: "), articleAuthor);
+    if (!articleLink.isEmpty())
+        html += u"<div style='background-color: \"%1\";'><a href='%2' target='_blank'><b>%3</b></a></div>"_s.arg(alternateBaseColor, articleLink, tr("Open link"));
     html += u"</div>"
             u"<div style='margin-left: 5px; margin-right: 5px;'>";
     if (QString description = article->description(); Qt::mightBeRichText(description))
