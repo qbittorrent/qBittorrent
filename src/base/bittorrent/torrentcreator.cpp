@@ -124,18 +124,20 @@ void TorrentCreator::run()
             // need to sort the file names by natural sort order
             QStringList dirs = {m_params.sourcePath.data()};
 
-#ifdef Q_OS_WIN
-            // libtorrent couldn't handle .lnk files on Windows
-            // Also, Windows users do not expect torrent creator to traverse into .lnk files so skip over them
-            const QDir::Filters dirFilters {QDir::AllDirs | QDir::NoDotAndDotDot | QDir::NoSymLinks};
-#else
-            const QDir::Filters dirFilters {QDir::AllDirs | QDir::NoDotAndDotDot};
-#endif
-            QDirIterator dirIter {m_params.sourcePath.data(), dirFilters, QDirIterator::Subdirectories};
+            QDirIterator dirIter {m_params.sourcePath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
-                const QString filePath = dirIter.next();
-                dirs.append(filePath);
+                const QFileInfo dirInfo = dirIter.nextFileInfo();
+
+#ifdef Q_OS_WIN
+                // .lnk to directory
+                // Windows users do not expect torrent creator to traverse into .lnk files so skip over them
+                if (dirInfo.isShortcut())
+                    continue;
+#endif
+
+                const QString dirPath = dirInfo.filePath();
+                dirs.append(dirPath);
             }
             std::sort(dirs.begin(), dirs.end(), naturalLessThan);
 
@@ -146,19 +148,29 @@ void TorrentCreator::run()
             {
                 QStringList tmpNames;  // natural sort files within each dir
 
-#ifdef Q_OS_WIN
-                const QDir::Filters fileFilters {QDir::Files | QDir::NoSymLinks};
-#else
-                const QDir::Filters fileFilters {QDir::Files};
-#endif
-                QDirIterator fileIter {dir, fileFilters};
+                QDirIterator fileIter {dir, QDir::Files};
                 while (fileIter.hasNext())
                 {
                     const QFileInfo fileInfo = fileIter.nextFileInfo();
+                    const Path filePath {fileInfo.filePath()};
+                    qint64 fileSize = fileInfo.size();
 
-                    const Path relFilePath = parentPath.relativePathOf(Path(fileInfo.filePath()));
+#ifdef Q_OS_WIN
+                    // .lnk to file
+                    // libtorrent couldn't handle .lnk files on Windows
+                    if (fileInfo.isShortcut())
+                        continue;
+
+                    // file symbolic link
+                    // QFileInfo::size() failed to return the target file size
+                    // and we need to redirect it manually
+                    if (fileInfo.isSymbolicLink())
+                        fileSize = QFileInfo(fileInfo.symLinkTarget()).size();
+#endif
+
+                    const Path relFilePath = parentPath.relativePathOf(filePath);
                     tmpNames.append(relFilePath.toString());
-                    fileSizeMap[tmpNames.last()] = fileInfo.size();
+                    fileSizeMap[tmpNames.last()] = fileSize;
                 }
 
                 std::sort(tmpNames.begin(), tmpNames.end(), naturalLessThan);
@@ -174,8 +186,8 @@ void TorrentCreator::run()
 #ifdef QBT_USES_LIBTORRENT2
         lt::create_torrent newTorrent {fs, m_params.pieceSize, toNativeTorrentFormatFlag(m_params.torrentFormat)};
 #else
-        lt::create_torrent newTorrent(fs, m_params.pieceSize, m_params.paddedFileSizeLimit
-            , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : lt::create_flags_t {}));
+        lt::create_torrent newTorrent {fs, m_params.pieceSize, m_params.paddedFileSizeLimit
+            , (m_params.isAlignmentOptimized ? lt::create_torrent::optimize_alignment : lt::create_flags_t {})};
 #endif
 
         // Add url seeds
