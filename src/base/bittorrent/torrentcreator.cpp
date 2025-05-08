@@ -124,17 +124,15 @@ void TorrentCreator::run()
             // need to sort the file names by natural sort order
             QStringList dirs = {m_params.sourcePath.data()};
 
-#ifdef Q_OS_WIN
-            // libtorrent couldn't handle .lnk files on Windows
-            // Also, Windows users do not expect torrent creator to traverse into .lnk files so skip over them
-            const QDir::Filters dirFilters {QDir::AllDirs | QDir::NoDotAndDotDot | QDir::NoSymLinks};
-#else
-            const QDir::Filters dirFilters {QDir::AllDirs | QDir::NoDotAndDotDot};
-#endif
-            QDirIterator dirIter {m_params.sourcePath.data(), dirFilters, QDirIterator::Subdirectories};
+            QDirIterator dirIter {m_params.sourcePath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
                 const QString filePath = dirIter.next();
+#ifdef Q_OS_WIN
+                // Windows users do not expect torrent creator to traverse into .lnk files so skip over them
+                if (Path(filePath).hasExtension(u".lnk"))
+                    continue;
+#endif
                 dirs.append(filePath);
             }
             std::sort(dirs.begin(), dirs.end(), naturalLessThan);
@@ -146,17 +144,19 @@ void TorrentCreator::run()
             {
                 QStringList tmpNames;  // natural sort files within each dir
 
-#ifdef Q_OS_WIN
-                const QDir::Filters fileFilters {QDir::Files | QDir::NoSymLinks};
-#else
-                const QDir::Filters fileFilters {QDir::Files};
-#endif
-                QDirIterator fileIter {dir, fileFilters};
+                QDirIterator fileIter {dir, QDir::Files};
                 while (fileIter.hasNext())
                 {
                     const QFileInfo fileInfo = fileIter.nextFileInfo();
+                    const Path filePath {fileInfo.filePath()};
 
-                    const Path relFilePath = parentPath.relativePathOf(Path(fileInfo.filePath()));
+#ifdef Q_OS_WIN
+                    // libtorrent couldn't handle .lnk files on Windows
+                    if (filePath.hasExtension(u".lnk"))
+                        continue;
+#endif
+
+                    const Path relFilePath = parentPath.relativePathOf(filePath);
                     tmpNames.append(relFilePath.toString());
                     fileSizeMap[tmpNames.last()] = fileInfo.size();
                 }
