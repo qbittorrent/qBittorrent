@@ -52,7 +52,7 @@ window.qBittorrent.PiecesBar ??= (() => {
         #id = ++PiecesBar.#piecesBarUniqueId;
         #resizeObserver;
 
-        constructor(pieces, options = {}) {
+        constructor(pieces, styles = {}) {
             super();
             this.setPieces(pieces);
             this.#vals = {
@@ -61,30 +61,17 @@ window.qBittorrent.PiecesBar ??= (() => {
                 haveColor: "hsl(210deg 55% 55%)", // @TODO palette vars not supported for this value, apply average
                 borderSize: 1,
                 borderColor: "var(--color-border-default)",
-                ...options
+                ...styles
             };
 
-            const style = document.createElement("style");
-            style.textContent = `
-                :host {
-                    display: block;
-                    border: ${this.#vals.borderSize}px solid ${this.#vals.borderColor};
-                    height: ${this.#vals.height}px;
-                }
-
-                canvas {
-                    height: 100%;
-                    image-rendering: pixelated;
-                    width: 100%;
-                }
-            `;
-
             this.#canvasEl = document.createElement("canvas");
+            this.#canvasEl.style.cssText = `height: 100%; image-rendering: pixelated; width: 100%;`;
             this.#ctx = this.#canvasEl.getContext("2d");
 
             this.attachShadow({ mode: "open" });
             this.shadowRoot.host.id = `piecesbar_${this.#id}`;
-            this.shadowRoot.append(style, this.#canvasEl);
+            this.shadowRoot.host.style.cssText = `display: block; height: ${this.#vals.height}px; border: ${this.#vals.borderSize}px solid ${this.#vals.borderColor};`;
+            this.shadowRoot.append(this.#canvasEl);
 
             this.#resizeObserver = new ResizeObserver(window.qBittorrent.Misc.createDebounceHandler(100, () => {
                 this.#refresh();
@@ -94,10 +81,6 @@ window.qBittorrent.PiecesBar ??= (() => {
         connectedCallback() {
             this.#resizeObserver.observe(this);
             this.#refresh();
-        }
-
-        disconnectedCallback() {
-            this.#resizeObserver.disconnect();
         }
 
         clear() {
@@ -120,7 +103,6 @@ window.qBittorrent.PiecesBar ??= (() => {
 
             // change canvas size to fit exactly in the space
             this.#canvasEl.width = width - (2 * this.#vals.borderSize);
-            this.#canvasEl.height = this.clientHeight;
 
             this.#ctx.clearRect(0, 0, this.#canvasEl.width, this.#canvasEl.height);
 
