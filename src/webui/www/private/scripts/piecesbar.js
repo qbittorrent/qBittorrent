@@ -48,14 +48,14 @@ window.qBittorrent.PiecesBar ??= (() => {
         #canvasEl;
         #ctx;
         #pieces;
-        #vals;
+        #styles;
         #id = ++PiecesBar.#piecesBarUniqueId;
         #resizeObserver;
 
         constructor(pieces, styles = {}) {
             super();
             this.setPieces(pieces);
-            this.#vals = {
+            this.#styles = {
                 height: 12,
                 downloadingColor: "hsl(110deg 94% 27%)", // @TODO palette vars not supported for this value, apply average
                 haveColor: "hsl(210deg 55% 55%)", // @TODO palette vars not supported for this value, apply average
@@ -65,12 +65,16 @@ window.qBittorrent.PiecesBar ??= (() => {
             };
 
             this.#canvasEl = document.createElement("canvas");
-            this.#canvasEl.style.cssText = `height: 100%; image-rendering: pixelated; width: 100%;`;
+            this.#canvasEl.style.height = "100%";
+            this.#canvasEl.style.imageRendering = "pixelated";
+            this.#canvasEl.style.width = "100%";
             this.#ctx = this.#canvasEl.getContext("2d");
 
             this.attachShadow({ mode: "open" });
             this.shadowRoot.host.id = `piecesbar_${this.#id}`;
-            this.shadowRoot.host.style.cssText = `display: block; height: ${this.#vals.height}px; border: ${this.#vals.borderSize}px solid ${this.#vals.borderColor};`;
+            this.shadowRoot.host.style.display = "block";
+            this.shadowRoot.host.style.height = `${this.#styles.height}px`;
+            this.shadowRoot.host.style.border = `${this.#styles.borderSize}px solid ${this.#styles.borderColor}`;
             this.shadowRoot.append(this.#canvasEl);
 
             this.#resizeObserver = new ResizeObserver(window.qBittorrent.Misc.createDebounceHandler(100, () => {
@@ -102,7 +106,7 @@ window.qBittorrent.PiecesBar ??= (() => {
             const width = Math.min(this.offsetWidth, this.#pieces.length, PiecesBar.#MAX_CANVAS_WIDTH);
 
             // change canvas size to fit exactly in the space
-            this.#canvasEl.width = width - (2 * this.#vals.borderSize);
+            this.#canvasEl.width = width - (2 * this.#styles.borderSize);
 
             this.#ctx.clearRect(0, 0, this.#canvasEl.width, this.#canvasEl.height);
 
@@ -127,7 +131,7 @@ window.qBittorrent.PiecesBar ??= (() => {
 
             // if all pieces are downloaded, fill entire image at once
             if (minStatus === PiecesBar.#STATUS_DOWNLOADED) {
-                this.#ctx.fillStyle = this.#vals.haveColor;
+                this.#ctx.fillStyle = this.#styles.haveColor;
                 this.#ctx.fillRect(0, 0, this.#canvasEl.width, this.#canvasEl.height);
                 return;
             }
@@ -224,13 +228,13 @@ window.qBittorrent.PiecesBar ??= (() => {
 
             if (statusValues[PiecesBar.#STATUS_DOWNLOADING]) {
                 this.#ctx.globalAlpha = statusValues[PiecesBar.#STATUS_DOWNLOADING];
-                this.#ctx.fillStyle = this.#vals.downloadingColor;
+                this.#ctx.fillStyle = this.#styles.downloadingColor;
                 this.#ctx.fillRect(start, 0, width, this.#canvasEl.height);
             }
 
             if (statusValues[PiecesBar.#STATUS_DOWNLOADED]) {
                 this.#ctx.globalAlpha = statusValues[PiecesBar.#STATUS_DOWNLOADED];
-                this.#ctx.fillStyle = this.#vals.haveColor;
+                this.#ctx.fillStyle = this.#styles.haveColor;
                 this.#ctx.fillRect(start, 0, width, this.#canvasEl.height);
             }
         }
