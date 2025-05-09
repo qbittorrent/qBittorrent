@@ -202,8 +202,8 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
         {
             switch (section)
             {
-            case TR_POPULARITY: return tr("Ratio / Time Active (in months), indicates how popular the torrent is");
             case TR_PERCENT_SELECTED: return tr("Wanted / Total size, indicates percentage of selected data to download");
+            case TR_POPULARITY: return tr("Ratio / Time Active (in months), indicates how popular the torrent is");
             default: return {};
             }
         }
