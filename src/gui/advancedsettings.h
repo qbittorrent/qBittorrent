@@ -93,7 +93,7 @@ private:
     QSpinBox m_spinBoxHashingThreads;
 #endif
 
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_LINUX) && !defined(Q_OS_MACOS)
     QSpinBox m_spinBoxMemoryWorkingSetLimit;
 #endif
 

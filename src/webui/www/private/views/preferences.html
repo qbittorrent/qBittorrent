@@ -1159,7 +1159,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="memoryWorkingSetLimit" style="width: 15em;" title="QBT_TR(This option is less effective on Linux)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="memoryWorkingSetLimit" style="width: 15em;">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
                     </td>
                 </tr>
                 <tr>
@@ -3163,6 +3163,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
                     document.getElementById("diskIOWriteModeWriteThrough").style.display = "none";
             }
+
+            if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
+                document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
 
             if ((buildInfo.platform !== "macos") && (buildInfo.platform !== "windows"))
                 document.getElementById("rowMarkOfTheWeb").style.display = "none";
