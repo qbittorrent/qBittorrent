@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -44,7 +45,12 @@ public:
     QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
+protected:
+    void initStyleOption(QStyleOptionViewItem *option, const QModelIndex &index) const override;
+
 private:
+    void paintProgressBarItem(QPainter *painter, QStyleOptionViewItem option, const QModelIndex &index) const;
+
     ProgressBarPainter m_progressBarPainter;
     mutable int m_nameColHeight = -1;
 };
