@@ -480,9 +480,10 @@ void PropertiesWidget::loadDynamicData()
                     showPiecesAvailability(true);
 
                     using TorrentPtr = QPointer<BitTorrent::Torrent>;
-                    m_torrent->fetchPieceAvailability().then(this, [this, torrent = TorrentPtr(m_torrent)](const QList<int> &pieceAvailability)
+                    m_torrent->fetchPieceAvailability().then(this
+                            , [this, torrent = TorrentPtr(m_torrent)](const QList<int> &pieceAvailability)
                     {
-                        if (torrent == m_torrent)
+                        if (m_torrent && (m_torrent == torrent))
                             m_piecesAvailability->setAvailability(pieceAvailability);
                     });
 
@@ -497,9 +498,12 @@ void PropertiesWidget::loadDynamicData()
                 qreal progress = m_torrent->progress() * 100.;
                 m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + u'%');
 
-                m_torrent->fetchDownloadingPieces().then(this, [this](const QBitArray &downloadingPieces)
+                using TorrentPtr = QPointer<BitTorrent::Torrent>;
+                m_torrent->fetchDownloadingPieces().then(this
+                        , [this, torrent = TorrentPtr(m_torrent)](const QBitArray &downloadingPieces)
                 {
-                    m_downloadedPieces->setProgress(m_torrent->pieces(), downloadingPieces);
+                    if (m_torrent && (m_torrent == torrent))
+                        m_downloadedPieces->setProgress(m_torrent->pieces(), downloadingPieces);
                 });
             }
             else
@@ -527,7 +531,7 @@ void PropertiesWidget::loadUrlSeeds()
     using TorrentPtr = QPointer<BitTorrent::Torrent>;
     m_torrent->fetchURLSeeds().then(this, [this, torrent = TorrentPtr(m_torrent)](const QList<QUrl> &urlSeeds)
     {
-        if (torrent != m_torrent)
+        if (!m_torrent || (m_torrent != torrent))
             return;
 
         m_ui->listWebSeeds->clear();
