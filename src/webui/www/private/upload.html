@@ -160,7 +160,7 @@
 
         let submitted = false;
 
-        document.getElementById("uploadForm").addEventListener("submit", () => {
+        document.getElementById("uploadForm").addEventListener("submit", (event) => {
             document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
 
             document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
@@ -170,7 +170,7 @@
             submitted = true;
         });
 
-        document.getElementById("upload_frame").addEventListener("load", () => {
+        document.getElementById("upload_frame").addEventListener("load", (event) => {
             if (submitted)
                 window.parent.qBittorrent.Client.closeFrameWindow(window);
         });

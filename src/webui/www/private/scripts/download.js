@@ -131,7 +131,7 @@ window.qBittorrent.Download ??= (() => {
         }
     };
 
-    window.addEventListener("load", async () => {
+    window.addEventListener("load", async (event) => {
         // user might load this page directly (via browser magnet handler)
         // so wait for crucial initialization to complete
         await window.parent.qBittorrent.Client.initializeCaches();
