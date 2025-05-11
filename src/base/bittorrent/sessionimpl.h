@@ -359,6 +359,8 @@ namespace BitTorrent
         void setOutgoingPortsMin(int min) override;
         int outgoingPortsMax() const override;
         void setOutgoingPortsMax(int max) override;
+        QString NATPMPGateway() const override;
+        void setNATPMPGateway(const QString &gateway) override;
         int UPnPLeaseDuration() const override;
         void setUPnPLeaseDuration(int duration) override;
         int peerDSCP() const override;
@@ -692,6 +694,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_slowTorrentsInactivityTimer;
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
+        CachedSettingValue<QString> m_NATPMPGateway;
         CachedSettingValue<int> m_UPnPLeaseDuration;
         CachedSettingValue<int> m_peerDSCP;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
