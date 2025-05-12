@@ -1228,6 +1228,7 @@ void OptionsDialog::saveBittorrentTabOptions() const
         BitTorrent::ShareLimitAction::EnableSuperSeeding
     };
     session->setShareLimitAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
+
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
 
