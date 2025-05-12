@@ -210,6 +210,9 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_POPULARITY:
         return customCompare(leftValue.toReal(), rightValue.toReal());
 
+    case TransferListModel::TR_IMPORTANCE:
+        return customCompare(leftValue.toReal(), rightValue.toReal());
+
     case TransferListModel::TR_STATUS:
         return threeWayCompare(leftValue.toInt(), rightValue.toInt());
 

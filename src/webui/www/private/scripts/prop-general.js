@@ -58,6 +58,7 @@ window.qBittorrent.PropGeneral ??= (() => {
         document.getElementById("peers").textContent = "";
         document.getElementById("share_ratio").textContent = "";
         document.getElementById("popularity").textContent = "";
+        document.getElementById("importance").textContent = "";
         document.getElementById("reannounce").textContent = "";
         document.getElementById("last_seen").textContent = "";
         document.getElementById("total_size").textContent = "";
@@ -173,6 +174,8 @@ window.qBittorrent.PropGeneral ??= (() => {
                     document.getElementById("share_ratio").textContent = data.share_ratio.toFixed(2);
 
                     document.getElementById("popularity").textContent = data.popularity.toFixed(2);
+
+                    document.getElementById("importance").textContent = data.importance.toFixed(2);
 
                     document.getElementById("reannounce").textContent = window.qBittorrent.Misc.friendlyDuration(data.reannounce);
 

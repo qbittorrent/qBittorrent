@@ -1124,6 +1124,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("eta", "", "QBT_TR(ETA)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("ratio", "", "QBT_TR(Ratio)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("popularity", "", "QBT_TR(Popularity)QBT_TR[CONTEXT=TransferListModel]", 100, true);
+            this.newColumn("importance", "", "QBT_TR(Importance)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("category", "", "QBT_TR(Category)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("tags", "", "QBT_TR(Tags)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]", 100, true);
@@ -1445,6 +1446,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const popularity = (value === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(value, 2);
                 td.textContent = popularity;
                 td.title = popularity;
+            };
+
+            // importance
+            this.columns["importance".updateId] = function(td, row) {
+                const value = this.getRowValue(row);
+                const importance = (value === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(value, 2);
+                td.textContent = importance;
+                td.title = importance;
             };
 
             // added on

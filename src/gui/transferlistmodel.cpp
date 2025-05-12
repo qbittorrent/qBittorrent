@@ -168,6 +168,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_UPSPEED: return tr("Up Speed", "i.e: Upload speed");
             case TR_RATIO: return tr("Ratio", "Share ratio");
             case TR_POPULARITY: return tr("Popularity");
+            case TR_IMPORTANCE: return tr("Importance");
             case TR_ETA: return tr("ETA", "i.e: Estimated Time of Arrival / Time left");
             case TR_CATEGORY: return tr("Category");
             case TR_TAGS: return tr("Tags");
@@ -202,6 +203,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             switch (section)
             {
             case TR_POPULARITY: return tr("Ratio / Time Active (in months), indicates how popular the torrent is");
+            case TR_IMPORTANCE: return tr("Popularity / Total Seeds, shows how important the specific seeder is.");
             default: return {};
             }
         }
@@ -227,6 +229,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_RATIO_LIMIT:
             case TR_RATIO:
             case TR_POPULARITY:
+            case TR_IMPORTANCE:
             case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
@@ -395,6 +398,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return ratioString(torrent->maxRatio());
     case TR_POPULARITY:
         return ratioString(torrent->popularity());
+    case TR_IMPORTANCE:
+        return ratioString(torrent->importance());
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS:
@@ -476,6 +481,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->realRatio();
     case TR_POPULARITY:
         return torrent->popularity();
+    case TR_IMPORTANCE:
+        return torrent->importance();
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS:
@@ -588,6 +595,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_RATIO_LIMIT:
         case TR_RATIO:
         case TR_POPULARITY:
+        case TR_IMPORTANCE:
         case TR_QUEUE_POSITION:
         case TR_LAST_ACTIVITY:
         case TR_AVAILABILITY:
