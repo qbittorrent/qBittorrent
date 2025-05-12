@@ -178,8 +178,17 @@ window.qBittorrent.PropTrackers ??= (() => {
     });
 
     const addTrackerFN = () => {
+        const selectedTorrents = torrentsTable.selectedRowsIds();
         if (current_hash.length === 0)
+        {
             return;
+        }
+
+        if (selectedTorrents.length !== 0)
+        {
+            current_hash = selectedTorrents.map(encodeURIComponent).join("|");
+        }
+
         new MochaUI.Window({
             id: "trackersPage",
             icon: "images/qbittorrent-tray.svg",
@@ -226,8 +235,16 @@ window.qBittorrent.PropTrackers ??= (() => {
     };
 
     const removeTrackerFN = (element) => {
+        const selectedTorrents = torrentsTable.selectedRowsIds();
         if (current_hash.length === 0)
+        {
             return;
+        }
+
+        if (selectedTorrents.length !== 0)
+        {
+            current_hash = selectedTorrents.map(encodeURIComponent).join("|");
+        }
 
         fetch("api/v2/torrents/removeTrackers", {
                 method: "POST",

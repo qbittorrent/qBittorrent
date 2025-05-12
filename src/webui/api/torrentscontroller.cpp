@@ -1116,16 +1116,42 @@ void TorrentsController::addAction()
 void TorrentsController::addTrackersAction()
 {
     requireParams({u"hash"_s, u"urls"_s});
-
-    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-    if (!torrent)
-        throw APIError(APIErrorType::NotFound);
-
+    const QString hashParam = params()[u"hash"_s];
+    QList<BitTorrent::Torrent *> torrents;
     const QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_s]);
-    torrent->addTrackers(entries);
 
-    setResult(QString());
+    if (hashParam == u"*"_s)
+    {
+        // add this tracker to all torrents
+        torrents = BitTorrent::Session::instance()->torrents();
+    }
+    else if (hashParam.contains(u'|'))
+    {
+        // add this tracker to all torrents in the list
+        const QStringList idStrings = hashParam.split(u'|', Qt::SkipEmptyParts);
+        for (const QString &hash : idStrings)
+        {
+            const auto id = BitTorrent::TorrentID::fromString(hash);
+            BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+            if (!torrent)
+                throw APIError(APIErrorType::NotFound);
+
+            torrents.append(torrent);
+        }
+    }
+    else
+    {
+        // add this tracker just to this torrent
+        const auto id = BitTorrent::TorrentID::fromString(hashParam);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+
+        torrents.append(torrent);
+    }
+
+    for (BitTorrent::Torrent *const torrent : asConst(torrents))
+        torrent->addTrackers(entries);
 }
 
 void TorrentsController::editTrackerAction()
@@ -1201,6 +1227,20 @@ void TorrentsController::removeTrackersAction()
     {
         // remove trackers from all torrents
         torrents = BitTorrent::Session::instance()->torrents();
+    }
+    else if (hashParam.contains(u'|'))
+    {
+        // remove trackers from all torrents in the list
+        const QStringList idStrings = hashParam.split(u'|', Qt::SkipEmptyParts);
+        for (const QString &hash : idStrings)
+        {
+            const auto id = BitTorrent::TorrentID::fromString(hash);
+            BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+            if (!torrent)
+                throw APIError(APIErrorType::NotFound);
+
+            torrents.append(torrent);
+        }
     }
     else
     {
