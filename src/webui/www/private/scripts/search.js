@@ -128,7 +128,7 @@ window.qBittorrent.Search ??= (() => {
 
         // listen for changes to searchInNameFilter
         let searchInNameFilterTimer = -1;
-        document.getElementById("searchInNameFilter").addEventListener("input", () => {
+        document.getElementById("searchInNameFilter").addEventListener("input", (event) => {
             clearTimeout(searchInNameFilterTimer);
             searchInNameFilterTimer = setTimeout(() => {
                 searchInNameFilterTimer = -1;

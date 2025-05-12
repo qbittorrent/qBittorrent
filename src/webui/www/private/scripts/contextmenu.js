@@ -219,7 +219,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             });
 
             // hide on body click
-            document.body.addEventListener("click", () => {
+            document.body.addEventListener("click", (event) => {
                 this.hide();
                 this.options.element = null;
             });
@@ -483,7 +483,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
                 anchor.textContent = text;
-                anchor.addEventListener("click", () => { clickFn(); });
+                anchor.addEventListener("click", clickFn);
 
                 const img = document.createElement("img");
                 img.src = imgURL;
@@ -495,8 +495,8 @@ window.qBittorrent.ContextMenu ??= (() => {
 
                 return item;
             };
-            contextCategoryList.appendChild(createMenuItem("QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", torrentNewCategoryFN));
-            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", () => { torrentSetCategoryFN(""); }));
+            contextCategoryList.appendChild(createMenuItem("QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", (event) => { torrentNewCategoryFN(); }));
+            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => { torrentSetCategoryFN(""); }));
 
             const sortedCategories = [...categories.keys()];
             sortedCategories.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
@@ -533,7 +533,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
                 anchor.textContent = text;
-                anchor.addEventListener("click", () => { clickFn(); });
+                anchor.addEventListener("click", clickFn);
 
                 const img = document.createElement("img");
                 img.src = imgURL;
@@ -545,8 +545,8 @@ window.qBittorrent.ContextMenu ??= (() => {
 
                 return item;
             };
-            contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", torrentAddTagsFN));
-            contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", torrentRemoveAllTagsFN));
+            contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", (event) => { torrentAddTagsFN(); }));
+            contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => { torrentRemoveAllTagsFN(); }));
 
             const sortedTags = [...tags.keys()];
             sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);

@@ -3167,7 +3167,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if ((buildInfo.platform !== "macos") && (buildInfo.platform !== "windows"))
                 document.getElementById("rowMarkOfTheWeb").style.display = "none";
 
-            document.getElementById("networkInterface").addEventListener("change", function() {
+            document.getElementById("networkInterface").addEventListener("change", function(event) {
                 updateInterfaceAddresses(this.value, "");
             });
 
