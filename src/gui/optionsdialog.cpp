@@ -53,6 +53,7 @@
 #include "base/bittorrent/sharelimitaction.h"
 #include "base/exceptions.h"
 #include "base/global.h"
+#include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"
@@ -1227,41 +1228,8 @@ void OptionsDialog::saveBittorrentTabOptions() const
         BitTorrent::ShareLimitAction::EnableSuperSeeding
     };
     session->setShareLimitAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
-
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
-
-    const bool isAddTrackersEnabled = m_ui->checkAddTrackersFromURL->isChecked();
-    const QString url = m_ui->textTrackersURL->text();
-    if (isAddTrackersEnabled && !url.isEmpty())
-    {
-        Net::DownloadManager::instance()->download(url, Preferences::instance()->useProxyForGeneralPurposes()
-            , this, &OptionsDialog::onAdditionalTrackersDownload);
-    }
-    else
-    {
-        session->setAddTrackersFromURLEnabled(isAddTrackersEnabled);
-        session->setAdditionalTrackersURL(url);
-    }
-}
-
-void OptionsDialog::onAdditionalTrackersDownload(const Net::DownloadResult &result)
-{
-    if (result.status != Net::DownloadStatus::Success)
-    {
-        QMessageBox::warning(this, tr("Download trackers list error")
-            , tr("Error occurred when downloading the trackers list. Reason: \"%1\"").arg(result.errorString));
-        return;
-    }
-
-    if (!result.contentType.contains(u"text/plain"_s, Qt::CaseInsensitive))
-    {
-        QMessageBox::warning(this, tr("Download trackers list error")
-            , tr("The content type of the downloaded file is not plain text. Content-Type: \"%1\"").arg(result.contentType));
-        return;
-    }
-
-    auto *session = BitTorrent::Session::instance();
 
     session->setAddTrackersFromURLEnabled(m_ui->checkAddTrackersFromURL->isChecked());
     session->setAdditionalTrackersURL(m_ui->textTrackersURL->text());
