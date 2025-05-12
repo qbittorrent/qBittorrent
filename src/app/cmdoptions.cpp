@@ -542,7 +542,11 @@ QString makeUsage(const QString &prgName)
                                 "'parameter-name', environment variable name is 'QBT_PARAMETER_NAME' (in upper "
                                 "case, '-' replaced with '_'). To pass flag values, set the variable to '1' or "
                                 "'TRUE'. For example, to disable the splash screen: "), 0) + u'\n'
+#if defined(Q_OS_WIN)
+        + u"set QBT_NO_SPLASH=1\n" + prgName + u'\n'
+#else
         + u"QBT_NO_SPLASH=1 " + prgName + u'\n'
+#endif
         + wrapText(QCoreApplication::translate("CMD Options", "Command line parameters take precedence over environment variables"), 0) + u'\n';
 
     return text;
