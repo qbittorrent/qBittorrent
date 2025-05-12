@@ -52,13 +52,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install zizmor
-          IGNORE_RULEID='(.ruleId != "template-injection")
-            and (.ruleId != "unpinned-uses")'
-          IGNORE_ID='(.id != "template-injection")
-            and (.id != "unpinned-uses")'
+          IGNORE_RULEID='(.ruleId != "zizmor/template-injection")
+            and (.ruleId != "zizmor/unpinned-uses")'
+          IGNORE_ID='(.id != "zizmor/template-injection")
+            and (.id != "zizmor/unpinned-uses")'
           zizmor \
             --format sarif \
-            --pedantic \
+            --persona auditor \
             ./ \
             | jq "(.runs[].results |= map(select($IGNORE_RULEID)))
               | (.runs[].tool.driver.rules |= map(select($IGNORE_ID)))" \
