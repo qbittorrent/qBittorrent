@@ -1148,6 +1148,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("infohash_v2", "", "QBT_TR(Info Hash v2)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("percent_selected", "", "QBT_TR(%)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
             this.columns["state_icon"].dataProperties[0] = "state";
             this.columns["name"].dataProperties.push("state");
@@ -1576,6 +1577,19 @@ window.qBittorrent.DynamicTable ??= (() => {
                     : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
                 td.textContent = string;
                 td.title = string;
+            };
+
+            // percent_selected
+            this.columns["percent_selected"].updateTd = function(td, row) {
+                const percent = this.getRowValue(row);
+                if (percent === -1) {
+                    td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    return;
+                }
+                const value = `${window.qBittorrent.Misc.toFixedPointString(percent, 2)}%`;
+                td.textContent = value;
+                td.title = value;
             };
         }
 
