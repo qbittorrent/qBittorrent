@@ -293,7 +293,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         if (hideValues && (value <= 0))
             return {};
 
-         return ((static_cast<int>(value) == -1) || (value > BitTorrent::Torrent::MAX_RATIO))
+         return ((static_cast<int>(value) == -1) || (value >= BitTorrent::Torrent::MAX_RATIO))
                   ? C_INFINITY : Utils::String::fromDouble(value, 2);
     };
 
