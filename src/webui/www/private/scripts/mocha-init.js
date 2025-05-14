@@ -1187,22 +1187,66 @@ const initializeWindows = () => {
 
     exportTorrentFN = async () => {
         const hashes = torrentsTable.selectedRowsIds();
-        for (const hash of hashes) {
+
+        if (hashes.length === 0)
+            return;
+
+        if (hashes.length === 1) {
+            // Single file - direct download
+            const hash = hashes[0];
             const row = torrentsTable.getRow(hash);
             if (!row)
-                continue;
+                return;
 
             const name = row.full_data.name;
             const url = new URL("api/v2/torrents/export", window.location);
-            url.search = new URLSearchParams({
-                hash: hash
+            url.search = new URLSearchParams({ hash });
+
+            await window.qBittorrent.Misc.downloadFile(url, `${name}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=MainWindow]");
+        }
+        if (hashes.length > 1) {
+            // Multi-file - distributed in a zip
+            const zip = new JSZip();
+
+            const fetchTorrents = hashes.map(async (hash) => {
+                const row = torrentsTable.getRow(hash);
+                if (!row)
+                    return true;
+                
+                const url = new URL("api/v2/torrents/export", window.location);
+                url.search = new URLSearchParams({ hash });
+
+                try {
+                    const response = await fetch(url, {
+                        method: "GET",
+                        cache: "no-store",
+                    });
+                    if (!response.ok)
+                        throw new Error();
+
+                    const name = row.full_data.name;
+                    const blob = await response.blob();
+                    zip.file(`${name}.torrent`, blob);
+                    return false;
+                }
+                catch (error) {
+                    return true;
+                }
             });
 
-            // download response to file
-            await window.qBittorrent.Misc.downloadFile(url, `${name}.torrent`, "QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=MainWindow]");
+            // Wait for all fetches to finish
+            const result = await Promise.all(fetchTorrents);
 
-            // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
-            await window.qBittorrent.Misc.sleep(200);
+            if (result.includes(true))
+                alert("QBT_TR(Unable to export torrent file)QBT_TR[CONTEXT=MainWindow]");
+
+            const content = await zip.generateAsync({ type: "blob" });
+            // Set output zip file date and time
+            const timestamp = new Date();
+            const zipFilename = `torrents_export_${timestamp.toString().split(" ").slice(1, 5).join("_").replace(/:/g, "_")}.zip`;
+
+            // Use qBittorrent's internal downloadBlob function
+            window.qBittorrent.Misc.downloadBlob(content, zipFilename);
         }
     };
 

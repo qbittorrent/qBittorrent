@@ -46,6 +46,7 @@ window.qBittorrent.Misc ??= (() => {
             containsAllTerms: containsAllTerms,
             sleep: sleep,
             downloadFile: downloadFile,
+            downloadBlob: downloadBlob,
             // variables
             FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
@@ -291,6 +292,15 @@ window.qBittorrent.Misc ??= (() => {
                     fileName = fileName.slice(1, -1);
             }
 
+            downloadBlob(blob, fileName, errorMessage);
+        }
+        catch (error) {
+            alert(errorMessage);
+        }
+    };
+
+    const downloadBlob = async (blob, fileName, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
+        try {
             const link = document.createElement("a");
             link.href = window.URL.createObjectURL(blob);
             link.download = fileName;
