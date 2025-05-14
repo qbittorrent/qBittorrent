@@ -490,7 +490,7 @@ QString wrapText(const QString &text, const int initialIndentation = USAGE_TEXT_
 QString makeUsage(const QString &prgName)
 {
     const QString indentation {USAGE_INDENTATION, u' '};
-    
+
 #if defined(Q_OS_WIN)
     const QString noSplashCommand = u"set QBT_NO_SPLASH=1 && " + prgName;
 #else
