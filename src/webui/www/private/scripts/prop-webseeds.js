@@ -219,10 +219,9 @@ window.qBittorrent.PropWebseeds ??= (() => {
         torrentWebseedsTable.clear();
     };
 
-    new ClipboardJS("#CopyWebseedUrl", {
-        text: (trigger) => {
-            return torrentWebseedsTable.selectedRowsIds().join("\n");
-        }
+    document.getElementById("CopyWebseedUrl").addEventListener("click", async (event) => {
+        const text = torrentWebseedsTable.selectedRowsIds().join("\n");
+        await clipboardCopy(text);
     });
 
     torrentWebseedsTable.setup("torrentWebseedsTableDiv", "torrentWebseedsTableFixedHeaderDiv", torrentWebseedsContextMenu, true);

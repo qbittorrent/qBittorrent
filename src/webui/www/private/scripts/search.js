@@ -866,20 +866,20 @@ window.qBittorrent.Search ??= (() => {
         state.loadResultsTimer = loadSearchResultsData.delay(500, this, searchId);
     };
 
-    new ClipboardJS(".copySearchDataToClipboard", {
-        text: (trigger) => {
-            switch (trigger.id) {
-                case "copySearchTorrentName":
-                    return copySearchTorrentName();
-                case "copySearchTorrentDownloadLink":
-                    return copySearchTorrentDownloadLink();
-                case "copySearchTorrentDescriptionUrl":
-                    return copySearchTorrentDescriptionUrl();
-                default:
-                    return "";
-            }
+    for (const element of document.getElementsByClassName("copySearchDataToClipboard")) {
+        const setupClickEvent = (textFunc) => element.addEventListener("click", async (event) => await clipboardCopy(textFunc()));
+        switch (element.id) {
+            case "copySearchTorrentName":
+                setupClickEvent(copySearchTorrentName);
+                break;
+            case "copySearchTorrentDownloadLink":
+                setupClickEvent(copySearchTorrentDownloadLink);
+                break;
+            case "copySearchTorrentDescriptionUrl":
+                setupClickEvent(copySearchTorrentDescriptionUrl);
+                break;
         }
-    });
+    }
 
     return exports();
 })();
