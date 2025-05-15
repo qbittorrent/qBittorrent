@@ -1,6 +1,33 @@
 # use CONFIG mode first in find_package
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 
+
+include(FetchContent)
+# to debug only
+# set(FETCHCONTENT_QUIET FALSE)
+
+set(BOOST_DL_VERSION 1.88.0)
+set(LIBTORRENT_DL_VERSION 2.0.11)
+
+# headers only, no build
+string(REPLACE "." "_" BOOST_DL_VERSION_ ${BOOST_DL_VERSION})
+FetchContent_Populate(Boost
+    URL https://archives.boost.io/release/${BOOST_DL_VERSION}/source/boost_${BOOST_DL_VERSION_}.tar.gz
+    DOWNLOAD_EXTRACT_TIMESTAMP ON
+    SUBBUILD_DIR ${CMAKE_BINARY_DIR}/_deps/boost-subbuild
+    SOURCE_DIR ${CMAKE_BINARY_DIR}/_deps/boost-src
+)
+# ref: https://cmake.org/cmake/help/latest/module/FindBoost.html
+set(BOOST_ROOT ${boost_SOURCE_DIR})
+
+FetchContent_Declare(LibtorrentRasterbar
+    # CMAKE_ARG "-D BUILD_SHARED_LIBS=OFF"
+    URL https://github.com/arvidn/libtorrent/releases/download/v${LIBTORRENT_DL_VERSION}/libtorrent-rasterbar-${LIBTORRENT_DL_VERSION}.tar.gz
+    OVERRIDE_FIND_PACKAGE
+    DOWNLOAD_EXTRACT_TIMESTAMP ON
+)
+
+
 macro(find_libtorrent version)
     if (UNIX AND (NOT APPLE) AND (NOT CYGWIN))
         find_package(LibtorrentRasterbar QUIET ${version} COMPONENTS torrent-rasterbar)
@@ -29,6 +56,7 @@ macro(find_libtorrent version)
                 TYPE REQUIRED
             )
         else()
+            add_library(LibtorrentRasterbar::torrent-rasterbar ALIAS torrent-rasterbar)
             set_package_properties(LibtorrentRasterbar PROPERTIES TYPE REQUIRED)
         endif()
     else()
@@ -54,3 +82,8 @@ if (DBUS)
         PURPOSE "Required by the DBUS feature"
     )
 endif()
+
+# FetchContent doesn't declare PACKAGE_VERSION in <package>-config-version.cmake
+# so we need to define it for later use after every find_package call as it will reset it
+# ref: https://gitlab.kitware.com/cmake/cmake/-/issues/24636
+set(LibtorrentRasterbar_VERSION LIBTORRENT_DL_VERSION)
