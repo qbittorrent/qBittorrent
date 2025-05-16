@@ -30,6 +30,8 @@
 
 #include <QDateTime>
 #include <QList>
+#include <QDebug>
+
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
@@ -84,6 +86,39 @@ namespace
         default:
             return u"unknown"_s;
         }
+    }
+
+    // NOTE: keep logic from trackersfilterwidget.cpp in sync with these methods
+    // TODO: ^^ make an indirection to avoid duplicate logic
+    bool torrentHasTrackerError(const QList<BitTorrent::TrackerEntryStatus> tstatuses) {
+        return std::any_of(
+            tstatuses.begin(), tstatuses.end(),
+            [](const BitTorrent::TrackerEntryStatus &tstatus) {
+                return tstatus.state == BitTorrent::TrackerEndpointState::TrackerError;
+            }
+        );
+    }
+    bool torrentHasAnnounceError(const QList<BitTorrent::TrackerEntryStatus> tstatuses) {
+        return std::any_of(
+            tstatuses.begin(), tstatuses.end(),
+            [](const BitTorrent::TrackerEntryStatus &tstatus) {
+                return (tstatus.state == BitTorrent::TrackerEndpointState::NotWorking)
+                        || (tstatus.state == BitTorrent::TrackerEndpointState::Unreachable);
+            }
+        );
+    }
+    bool torrentHasWarning(const QList<BitTorrent::TrackerEntryStatus> tstatuses) {
+        return std::any_of(
+            tstatuses.begin(), tstatuses.end(),
+            [](const BitTorrent::TrackerEntryStatus &tstatus) {
+                return std::any_of(
+                    tstatus.endpoints.cbegin(), tstatus.endpoints.cend(), 
+                    [](const BitTorrent::TrackerEndpointStatus &endpointEntry) {
+                        return !endpointEntry.message.isEmpty() && endpointEntry.state == BitTorrent::TrackerEndpointState::Working;
+                    }
+                );
+            }
+        );
     }
 }
 
@@ -140,6 +175,9 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_COMPLETION_ON, Utils::DateTime::toSecsSinceEpoch(torrent.completedTime())},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
         {KEY_TORRENT_TRACKERS_COUNT, torrent.trackers().size()},
+        {KEY_TORRENT_HAS_TRACKER_ERROR, torrentHasTrackerError(torrent.trackers())},
+        {KEY_TORRENT_HAS_ANNOUNCE_ERROR, torrentHasAnnounceError(torrent.trackers())},
+        {KEY_TORRENT_HAS_TRACKER_WARNING, torrentHasWarning(torrent.trackers())},
         {KEY_TORRENT_DL_LIMIT, torrent.downloadLimit()},
         {KEY_TORRENT_UP_LIMIT, torrent.uploadLimit()},
         {KEY_TORRENT_AMOUNT_DOWNLOADED, torrent.totalDownload()},
