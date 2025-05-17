@@ -82,8 +82,7 @@ namespace
         {
             if (!m_randDev)
                 return getRandomViaAPI();
-            else
-                return getRandomViaFile();
+            return getRandomViaFile();
         }
 
     private:
