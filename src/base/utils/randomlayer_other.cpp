@@ -46,7 +46,7 @@ namespace
             : m_randDev {fopen("/dev/urandom", "rb")}
         {
             if (!m_randDev)
-                qFatal("Failed to open /dev/urandom. Reason: %s. Error code: %d.", std::strerror(errno), errno);
+                qFatal("Failed to open /dev/urandom. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
         }
 
         ~RandomLayer()
@@ -67,10 +67,10 @@ namespace
         result_type operator()() const
         {
             result_type buf = 0;
-            if (fread(&buf, sizeof(buf), 1, m_randDev) != 1)
-                qFatal("Read /dev/urandom error. Reason: %s. Error code: %d.", std::strerror(errno), errno);
+            if (fread(&buf, sizeof(buf), 1, m_randDev) == 1)
+                return buf;
 
-            return buf;
+            qFatal("Read /dev/urandom error. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
         }
 
     private:
