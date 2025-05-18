@@ -42,7 +42,7 @@
 
 uint32_t Utils::Random::rand(const uint32_t min, const uint32_t max)
 {
-    static RandomLayer layer;
+    static const RandomLayer layer;
 
     // new distribution is cheap: https://stackoverflow.com/a/19036349
     std::uniform_int_distribution<uint32_t> uniform(min, max);
