@@ -1140,7 +1140,7 @@ void TorrentsController::addTrackersAction()
     }
     else if (hashParam.contains(u'|'))
     {
-        // We have this, so that we wont enter the `else` and break it.
+        // We have this, so that we won't enter the `else` and break it.
     }
     else
     {
