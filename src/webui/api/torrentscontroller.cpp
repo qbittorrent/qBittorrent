@@ -1138,20 +1138,6 @@ void TorrentsController::addTrackersAction()
         // add this tracker to all torrents
         torrents = BitTorrent::Session::instance()->torrents();
     }
-    else if (hashParam.contains(u'|'))
-    {
-        // We have this, so that we won't enter the `else` and break it.
-    }
-    else
-    {
-        // add this tracker just to this torrent
-        const auto id = BitTorrent::TorrentID::fromString(hashParam);
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-        if (!torrent)
-            throw APIError(APIErrorType::NotFound);
-
-        torrents.append(torrent);
-    }
 
     for (BitTorrent::Torrent *const torrent : asConst(torrents))
         torrent->addTrackers(entries);
@@ -1243,20 +1229,6 @@ void TorrentsController::removeTrackersAction()
     {
         // remove trackers from all torrents
         torrents = BitTorrent::Session::instance()->torrents();
-    }
-    else if (hashParam.contains(u'|'))
-    {
-        // Don't want to enter `else` with a `hashParam` not an id
-    }
-    else
-    {
-        // remove trackers from specified torrent
-        const auto id = BitTorrent::TorrentID::fromString(hashParam);
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-        if (!torrent)
-            throw APIError(APIErrorType::NotFound);
-
-        torrents.append(torrent);
     }
 
     for (BitTorrent::Torrent *const torrent : asConst(torrents))
