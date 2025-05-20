@@ -238,7 +238,8 @@ PythonInfo Utils::ForeignApps::pythonInfo()
     if (pyInfo.isValid() && (preferredPythonPath == pyInfo.executableName))
         return pyInfo;
 
-    const QString invalidVersionMessage = QCoreApplication::translate("Utils::ForeignApps", "Python failed to meet minimum version requirement. Path: \"%1\". Found version: \"%2\". Minimum supported version: \"%3\".");
+    const QString invalidVersionMessage = QCoreApplication::translate("Utils::ForeignApps"
+            , "Python failed to meet minimum version requirement. Path: \"%1\". Found version: \"%2\". Minimum supported version: \"%3\".");
 
     if (!preferredPythonPath.isEmpty())
     {
