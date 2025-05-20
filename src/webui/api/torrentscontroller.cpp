@@ -1120,6 +1120,19 @@ void TorrentsController::addTrackersAction()
     QList<BitTorrent::Torrent *> torrents;
     const QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_s]);
 
+    const QStringList idStrings = hashParam.split(u'|', Qt::SkipEmptyParts);
+    for (const QString &hash : idStrings)
+    {
+        if (hash == u"*"_s)
+            continue;
+        const auto id = BitTorrent::TorrentID::fromString(hash);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+
+        torrents.append(torrent);
+    }
+
     if (hashParam == u"*"_s)
     {
         // add this tracker to all torrents
@@ -1127,17 +1140,7 @@ void TorrentsController::addTrackersAction()
     }
     else if (hashParam.contains(u'|'))
     {
-        // add this tracker to all torrents in the list
-        const QStringList idStrings = hashParam.split(u'|', Qt::SkipEmptyParts);
-        for (const QString &hash : idStrings)
-        {
-            const auto id = BitTorrent::TorrentID::fromString(hash);
-            BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-            if (!torrent)
-                throw APIError(APIErrorType::NotFound);
-
-            torrents.append(torrent);
-        }
+        // We have this, so that we wont enter the `else` and break it.
     }
     else
     {
@@ -1223,6 +1226,19 @@ void TorrentsController::removeTrackersAction()
 
     QList<BitTorrent::Torrent *> torrents;
 
+    const QStringList idStrings = hashParam.split(u'|', Qt::SkipEmptyParts);
+    for (const QString &hash : idStrings)
+    {
+        if (hash == u"*"_s)
+            continue;
+        const auto id = BitTorrent::TorrentID::fromString(hash);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+        if (!torrent)
+            throw APIError(APIErrorType::NotFound);
+
+        torrents.append(torrent);
+    }
+
     if (hashParam == u"*"_s)
     {
         // remove trackers from all torrents
@@ -1230,17 +1246,7 @@ void TorrentsController::removeTrackersAction()
     }
     else if (hashParam.contains(u'|'))
     {
-        // remove trackers from all torrents in the list
-        const QStringList idStrings = hashParam.split(u'|', Qt::SkipEmptyParts);
-        for (const QString &hash : idStrings)
-        {
-            const auto id = BitTorrent::TorrentID::fromString(hash);
-            BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-            if (!torrent)
-                throw APIError(APIErrorType::NotFound);
-
-            torrents.append(torrent);
-        }
+        // Don't want to enter `else` with a `hashParam` not an id
     }
     else
     {
