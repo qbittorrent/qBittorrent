@@ -30,6 +30,7 @@
 #include "foreignapps.h"
 
 #if defined(Q_OS_WIN)
+#include <algorithm>
 #include <windows.h>
 #endif
 
@@ -40,13 +41,17 @@
 
 #if defined(Q_OS_WIN)
 #include <QDir>
+#include <QScopeGuard>
 #endif
 
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/utils/bytearray.h"
+
+#if defined(Q_OS_WIN)
+#include "base/utils/compare.h"
+#endif
 
 using namespace Utils::ForeignApps;
 
@@ -106,23 +111,23 @@ namespace
 
         DWORD cSubKeys = 0;
         DWORD cMaxSubKeyLen = 0;
-        LONG res = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
+        const LSTATUS result = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
 
-        if (res == ERROR_SUCCESS)
+        if (result == ERROR_SUCCESS)
         {
             ++cMaxSubKeyLen; // For null character
             LPWSTR lpName = new WCHAR[cMaxSubKeyLen];
-            DWORD cName;
+            [[maybe_unused]] const auto lpNameGuard = qScopeGuard([&lpName] { delete[] lpName; });
+
+            keys.reserve(cSubKeys);
 
             for (DWORD i = 0; i < cSubKeys; ++i)
             {
-                cName = cMaxSubKeyLen;
-                res = ::RegEnumKeyExW(handle, i, lpName, &cName, NULL, NULL, NULL, NULL);
+                DWORD cName = cMaxSubKeyLen;
+                const LSTATUS res = ::RegEnumKeyExW(handle, i, lpName, &cName, NULL, NULL, NULL, NULL);
                 if (res == ERROR_SUCCESS)
-                    keys.push_back(QString::fromWCharArray(lpName));
+                    keys.append(QString::fromWCharArray(lpName));
             }
-
-            delete[] lpName;
         }
 
         return keys;
@@ -133,117 +138,84 @@ namespace
         const std::wstring nameWStr = name.toStdWString();
         DWORD type = 0;
         DWORD cbData = 0;
-
         // Discover the size of the value
         ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, NULL, &cbData);
-        DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
-        LPWSTR lpData = new WCHAR[cBuffer];
-        LONG res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, reinterpret_cast<LPBYTE>(lpData), &cbData);
 
-        QString result;
+        const DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
+        LPWSTR lpData = new WCHAR[cBuffer]{0};
+        [[maybe_unused]] const auto lpDataGuard = qScopeGuard([&lpData] { delete[] lpData; });
+
+        const LSTATUS res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, reinterpret_cast<LPBYTE>(lpData), &cbData);
         if (res == ERROR_SUCCESS)
-        {
-            lpData[cBuffer - 1] = 0;
-            result = QString::fromWCharArray(lpData);
-        }
-        delete[] lpData;
+            return QString::fromWCharArray(lpData);
 
-        return result;
+        return {};
     }
 
-    QString pythonSearchReg(const REG_SEARCH_TYPE type)
+    QStringList pythonSearchReg(const REG_SEARCH_TYPE type)
     {
-        HKEY hkRoot;
-        if (type == USER)
-            hkRoot = HKEY_CURRENT_USER;
-        else
-            hkRoot = HKEY_LOCAL_MACHINE;
+        const HKEY hkRoot = (type == USER) ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE;
+        const REGSAM samDesired = KEY_READ
+            | ((type == SYSTEM_64BIT) ? KEY_WOW64_64KEY : KEY_WOW64_32KEY);
+        QStringList ret;
 
-        REGSAM samDesired = KEY_READ;
-        if (type == SYSTEM_32BIT)
-            samDesired |= KEY_WOW64_32KEY;
-        else if (type == SYSTEM_64BIT)
-            samDesired |= KEY_WOW64_64KEY;
-
-        QString path;
-        LONG res = 0;
-        HKEY hkPythonCore;
-        res = ::RegOpenKeyExW(hkRoot, L"SOFTWARE\\Python\\PythonCore", 0, samDesired, &hkPythonCore);
-
-        if (res == ERROR_SUCCESS)
+        HKEY hkPythonCore {0};
+        if (::RegOpenKeyExW(hkRoot, L"SOFTWARE\\Python\\PythonCore", 0, samDesired, &hkPythonCore) == ERROR_SUCCESS)
         {
-            QStringList versions = getRegSubkeys(hkPythonCore);
-            versions.sort();
+            [[maybe_unused]] const auto hkPythonCoreGuard = qScopeGuard([&hkPythonCore] { ::RegCloseKey(hkPythonCore); });
 
-            bool found = false;
-            while (!found && !versions.empty())
+            // start with the largest version
+            QStringList versions = getRegSubkeys(hkPythonCore);
+            // ordinary sort won't suffice, it needs to sort ["3.9", "3.10"] correctly
+            std::sort(versions.begin(), versions.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+            ret.reserve(versions.size() * 2);
+
+            while (!versions.empty())
             {
                 const std::wstring version = QString(versions.takeLast() + u"\\InstallPath").toStdWString();
 
-                HKEY hkInstallPath;
-                res = ::RegOpenKeyExW(hkPythonCore, version.c_str(), 0, samDesired, &hkInstallPath);
-
-                if (res == ERROR_SUCCESS)
+                HKEY hkInstallPath {0};
+                if (::RegOpenKeyExW(hkPythonCore, version.c_str(), 0, samDesired, &hkInstallPath) == ERROR_SUCCESS)
                 {
-                    qDebug("Detected possible Python v%ls location", version.c_str());
-                    path = getRegValue(hkInstallPath);
-                    ::RegCloseKey(hkInstallPath);
+                    [[maybe_unused]] const auto hkInstallPathGuard = qScopeGuard([&hkInstallPath] { ::RegCloseKey(hkInstallPath); });
 
-                    if (!path.isEmpty())
-                    {
-                        const QDir baseDir {path};
+                    const QString basePath = getRegValue(hkInstallPath);
+                    if (basePath.isEmpty())
+                        continue;
 
-                        if (baseDir.exists(u"python3.exe"_s))
-                        {
-                            found = true;
-                            path = baseDir.filePath(u"python3.exe"_s);
-                        }
-                        else if (baseDir.exists(u"python.exe"_s))
-                        {
-                            found = true;
-                            path = baseDir.filePath(u"python.exe"_s);
-                        }
-                    }
+                    if (const QString path = (basePath + u"python3.exe"); QFile::exists(path))
+                        ret.append(path);
+                    if (const QString path = (basePath + u"python.exe"); QFile::exists(path))
+                        ret.append(path);
                 }
             }
-
-            if (!found)
-                path = QString();
-
-            ::RegCloseKey(hkPythonCore);
         }
 
-        return path;
+        return ret;
     }
 
-    QString findPythonPath()
+    QStringList searchPythonPaths()
     {
-        QString path = pythonSearchReg(USER);
-        if (!path.isEmpty())
-            return path;
+        QStringList ret;
 
-        path = pythonSearchReg(SYSTEM_32BIT);
-        if (!path.isEmpty())
-            return path;
-
-        path = pythonSearchReg(SYSTEM_64BIT);
-        if (!path.isEmpty())
-            return path;
+        // From registry
+        ret.append(pythonSearchReg(USER));
+        ret.append(pythonSearchReg(SYSTEM_64BIT));
+        ret.append(pythonSearchReg(SYSTEM_32BIT));
 
         // Fallback: Detect python from default locations
         const QFileInfoList dirs = QDir(u"C:/"_s).entryInfoList({u"Python*"_s}, QDir::Dirs, (QDir::Name | QDir::Reversed));
         for (const QFileInfo &info : dirs)
         {
-            const QString py3Path {info.absolutePath() + u"/python3.exe"};
-            if (QFile::exists(py3Path))
-                return py3Path;
+            const QString absPath = info.absolutePath();
 
-            const QString pyPath {info.absolutePath() + u"/python.exe"};
-            if (QFile::exists(pyPath))
-                return pyPath;
+            if (const QString path = (absPath + u"/python3.exe"); QFile::exists(path))
+                ret.append(path);
+            if (const QString path = (absPath + u"/python.exe"); QFile::exists(path))
+                ret.append(path);
         }
 
-        return {};
+        return ret;
     }
 #endif // Q_OS_WIN
 }
@@ -255,7 +227,7 @@ bool Utils::ForeignApps::PythonInfo::isValid() const
 
 bool Utils::ForeignApps::PythonInfo::isSupportedVersion() const
 {
-    return (version >= Version {3, 9, 0});
+    return (version >= MINIMUM_SUPPORTED_VERSION);
 }
 
 PythonInfo Utils::ForeignApps::pythonInfo()
@@ -266,12 +238,23 @@ PythonInfo Utils::ForeignApps::pythonInfo()
     if (pyInfo.isValid() && (preferredPythonPath == pyInfo.executableName))
         return pyInfo;
 
+    const QString invalidVersionMessage = QCoreApplication::translate("Utils::ForeignApps"
+            , "Python failed to meet minimum version requirement. Path: \"%1\". Found version: \"%2\". Minimum supported version: \"%3\".");
+
     if (!preferredPythonPath.isEmpty())
     {
         if (testPythonInstallation(preferredPythonPath, pyInfo))
-            return pyInfo;
-        LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find Python executable. Path: \"%1\".")
-            .arg(preferredPythonPath), Log::WARNING);
+        {
+            if (pyInfo.isSupportedVersion())
+                return pyInfo;
+
+            LogMsg(invalidVersionMessage.arg(pyInfo.executableName, pyInfo.version.toString(), PythonInfo::MINIMUM_SUPPORTED_VERSION.toString()), Log::WARNING);
+        }
+        else
+        {
+            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find Python executable. Path: \"%1\".")
+                .arg(preferredPythonPath), Log::WARNING);
+        }
     }
     else
     {
@@ -279,24 +262,37 @@ PythonInfo Utils::ForeignApps::pythonInfo()
 
         if (!pyInfo.isValid())
         {
-            if (testPythonInstallation(u"python3"_s, pyInfo))
-                return pyInfo;
-            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python3` executable in PATH environment variable. PATH: \"%1\"")
-                .arg(qEnvironmentVariable("PATH")), Log::INFO);
+            const QString exeNames[] = {u"python3"_s, u"python"_s};
+            for (const QString &exeName : exeNames)
+            {
+                if (testPythonInstallation(exeName, pyInfo))
+                {
+                    if (pyInfo.isSupportedVersion())
+                        return pyInfo;
 
-            if (testPythonInstallation(u"python"_s, pyInfo))
-                return pyInfo;
-            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python` executable in PATH environment variable. PATH: \"%1\"")
-                .arg(qEnvironmentVariable("PATH")), Log::INFO);
+                    LogMsg(invalidVersionMessage.arg(pyInfo.executableName, pyInfo.version.toString(), PythonInfo::MINIMUM_SUPPORTED_VERSION.toString()), Log::INFO);
+                }
+                else
+                {
+                    LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `%1` executable in PATH environment variable. PATH: \"%2\"")
+                        .arg(exeName, qEnvironmentVariable("PATH")), Log::INFO);
+                }
+            }
 
 #if defined(Q_OS_WIN)
-            if (testPythonInstallation(findPythonPath(), pyInfo))
-                return pyInfo;
-            LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find `python` executable in Windows Registry."), Log::INFO);
+            for (const QString &path : asConst(searchPythonPaths()))
+            {
+                if (testPythonInstallation(path, pyInfo))
+                {
+                    if (pyInfo.isSupportedVersion())
+                        return pyInfo;
+
+                    LogMsg(invalidVersionMessage.arg(pyInfo.executableName, pyInfo.version.toString(), PythonInfo::MINIMUM_SUPPORTED_VERSION.toString()), Log::INFO);
+                }
+            }
 #endif
 
             LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Failed to find Python executable"), Log::WARNING);
-
         }
     }
 
