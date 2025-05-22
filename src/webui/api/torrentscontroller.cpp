@@ -278,7 +278,7 @@ namespace
         return trackerList;
     }
 
-    QJsonArray getFiles(const BitTorrent::Torrent *const torrent, QList<int> &fileIndexes)
+    QJsonArray getFiles(const BitTorrent::Torrent *const torrent, QList<int> fileIndexes = {})
     {
         Q_ASSERT(torrent->hasMetadata());
         if (!torrent->hasMetadata()) [[unlikely]]
@@ -311,7 +311,7 @@ namespace
             };
 
             const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
-            fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray{idx.first(), idx.last()};
+            fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};
 
             if (index == 0)
                 fileDict[KEY_FILE_IS_SEED] = torrent->isFinished();
@@ -416,10 +416,7 @@ void TorrentsController::infoAction()
         QVariantMap serializedTorrent = serialize(*torrent);
 
         if (includeFiles)
-        {
-            QList<int> fileIndexes;
-            serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent, fileIndexes));
-        }
+            serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent));
         if (includeTrackers)
             serializedTorrent.insert(KEY_PROP_TRACKERS, getTrackers(torrent));
 
