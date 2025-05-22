@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -96,5 +96,13 @@ inline const QString KEY_TORRENT_REANNOUNCE = u"reannounce"_s;
 inline const QString KEY_TORRENT_COMMENT = u"comment"_s;
 inline const QString KEY_TORRENT_PRIVATE = u"private"_s;
 inline const QString KEY_TORRENT_HAS_METADATA = u"has_metadata"_s;
+inline const QString KEY_TORRENT_CONNECTIONS_COUNT = u"connections_count"_s;
+inline const QString KEY_TORRENT_CONNECTIONS_LIMIT = u"connections_limit"_s;
+inline const QString KEY_TORRENT_TOTAL_WASTED = u"total_wasted"_s;
+inline const QString KEY_TORRENT_PIECES_NUM = u"pieces_num"_s;
+inline const QString KEY_TORRENT_PIECE_SIZE = u"piece_size"_s;
+inline const QString KEY_TORRENT_PIECES_HAVE = u"pieces_have"_s;
+inline const QString KEY_TORRENT_CREATED_BY = u"created_by"_s;
+inline const QString KEY_TORRENT_CREATION_DATE = u"creation_date"_s;
 
 QVariantMap serialize(const BitTorrent::Torrent &torrent);
