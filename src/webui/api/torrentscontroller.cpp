@@ -278,36 +278,45 @@ namespace
         return trackerList;
     }
 
-    QJsonArray getFiles(const BitTorrent::Torrent* const torrent, const QList<int> fileIndexes)
+    QJsonArray getFiles(const BitTorrent::Torrent *const torrent, QList<int> &fileIndexes)
     {
-        QJsonArray fileList;
-        if (torrent->hasMetadata())
+        Q_ASSERT(torrent->hasMetadata());
+        if (!torrent->hasMetadata()) [[unlikely]]
+            return {};
+        
+        if (fileIndexes.isEmpty())
         {
-            const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
-            const QList<qreal> fp = torrent->filesProgress();
-            const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().takeResult();
-            const BitTorrent::TorrentInfo info = torrent->info();
-            for (const int index : asConst(fileIndexes))
+            const int filesCount = torrent->filesCount();
+            fileIndexes.reserve(filesCount);
+            for (int i = 0; i < filesCount; ++i)
+                fileIndexes.append(i);
+        }
+
+        QJsonArray fileList;
+        const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+        const QList<qreal> fp = torrent->filesProgress();
+        const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().takeResult();
+        const BitTorrent::TorrentInfo info = torrent->info();
+        for (const int index : asConst(fileIndexes))
+        {
+            QJsonObject fileDict =
             {
-                QJsonObject fileDict =
-                {
-                    {KEY_FILE_INDEX, index},
-                    {KEY_FILE_PROGRESS, fp[index]},
-                    {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
-                    {KEY_FILE_SIZE, torrent->fileSize(index)},
-                    {KEY_FILE_AVAILABILITY, fileAvailability[index]},
-                    // need to provide paths using a platform-independent separator format
-                    {KEY_FILE_NAME, torrent->filePath(index).data()}
-                };
+                {KEY_FILE_INDEX, index},
+                {KEY_FILE_PROGRESS, fp[index]},
+                {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
+                {KEY_FILE_SIZE, torrent->fileSize(index)},
+                {KEY_FILE_AVAILABILITY, fileAvailability[index]},
+                // need to provide paths using a platform-independent separator format
+                {KEY_FILE_NAME, torrent->filePath(index).data()}
+            };
 
-                const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
-                fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray{idx.first(), idx.last()};
+            const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
+            fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray{idx.first(), idx.last()};
 
-                if (index == 0)
-                    fileDict[KEY_FILE_IS_SEED] = torrent->isFinished();
+            if (index == 0)
+                fileDict[KEY_FILE_IS_SEED] = torrent->isFinished();
 
-                fileList.append(fileDict);
-            }
+            fileList.append(fileDict);
         }
 
         return fileList;
@@ -408,11 +417,7 @@ void TorrentsController::infoAction()
 
         if (includeFiles)
         {
-            const int filesCount = torrent->filesCount();
             QList<int> fileIndexes;
-            fileIndexes.reserve(filesCount);
-            for (int i = 0; i < filesCount; ++i)
-                fileIndexes.append(i);
             serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent, fileIndexes));
         }
         if (includeTrackers)
@@ -746,11 +751,11 @@ void TorrentsController::filesAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const int filesCount = torrent->filesCount();
     QList<int> fileIndexes;
     const auto idxIt = params().constFind(u"indexes"_s);
     if (idxIt != params().cend())
     {
+        const int filesCount = torrent->filesCount();
         const QStringList indexStrings = idxIt.value().split(u'|');
         fileIndexes.reserve(indexStrings.size());
         std::transform(indexStrings.cbegin(), indexStrings.cend(), std::back_inserter(fileIndexes)
@@ -764,12 +769,6 @@ void TorrentsController::filesAction()
                 throw APIError(APIErrorType::Conflict, tr("Index %1 is out of bounds.").arg(indexString));
             return index;
         });
-    }
-    else
-    {
-        fileIndexes.reserve(filesCount);
-        for (int i = 0; i < filesCount; ++i)
-            fileIndexes.append(i);
     }
 
     setResult(getFiles(torrent, fileIndexes));
