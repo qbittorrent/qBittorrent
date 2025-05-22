@@ -900,7 +900,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const rowPos = rows.length;
 
                 while ((rowPos < trs.length) && (trs.length > 0))
-                    trs.pop().destroy();
+                    trs.pop().remove();
             }
         }
 
@@ -1022,7 +1022,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
             else {
                 const tr = this.getTrByRowId(rowId);
-                tr?.destroy();
+                tr?.remove();
             }
         }
 
@@ -1034,7 +1034,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
             else {
                 for (const tr of this.getTrs())
-                    tr.destroy();
+                    tr.remove();
             }
         }
 
