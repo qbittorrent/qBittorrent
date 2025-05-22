@@ -118,6 +118,7 @@ const QString KEY_PROP_SSL_PRIVATEKEY = u"ssl_private_key"_s;
 const QString KEY_PROP_SSL_DHPARAMS = u"ssl_dh_params"_s;
 const QString KEY_PROP_HAS_METADATA = u"has_metadata"_s;
 const QString KEY_PROP_PROGRESS = u"progress"_s;
+const QString KEY_PROP_FILES = u"files"_s;
 const QString KEY_PROP_TRACKERS = u"trackers"_s;
 
 
@@ -277,6 +278,50 @@ namespace
         return trackerList;
     }
 
+    QJsonArray getFiles(const BitTorrent::Torrent *const torrent, QList<int> fileIndexes = {})
+    {
+        Q_ASSERT(torrent->hasMetadata());
+        if (!torrent->hasMetadata()) [[unlikely]]
+            return {};
+        
+        if (fileIndexes.isEmpty())
+        {
+            const int filesCount = torrent->filesCount();
+            fileIndexes.reserve(filesCount);
+            for (int i = 0; i < filesCount; ++i)
+                fileIndexes.append(i);
+        }
+
+        QJsonArray fileList;
+        const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
+        const QList<qreal> fp = torrent->filesProgress();
+        const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().takeResult();
+        const BitTorrent::TorrentInfo info = torrent->info();
+        for (const int index : asConst(fileIndexes))
+        {
+            QJsonObject fileDict =
+            {
+                {KEY_FILE_INDEX, index},
+                {KEY_FILE_PROGRESS, fp[index]},
+                {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
+                {KEY_FILE_SIZE, torrent->fileSize(index)},
+                {KEY_FILE_AVAILABILITY, fileAvailability[index]},
+                // need to provide paths using a platform-independent separator format
+                {KEY_FILE_NAME, torrent->filePath(index).data()}
+            };
+
+            const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
+            fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};
+
+            if (index == 0)
+                fileDict[KEY_FILE_IS_SEED] = torrent->isFinished();
+
+            fileList.append(fileDict);
+        }
+
+        return fileList;
+    }
+
     QList<BitTorrent::TorrentID> toTorrentIDs(const QStringList &idStrings)
     {
         QList<BitTorrent::TorrentID> idList;
@@ -333,6 +378,7 @@ void TorrentsController::countAction()
 //   - tag (string): torrent tag for filtering by it (empty string means "untagged"; no "tag" param presented means "any tag")
 //   - hashes (string): filter by hashes, can contain multiple hashes separated by |
 //   - private (bool): filter torrents that are from private trackers (true) or not (false). Empty means any torrent (no filtering)
+//   - includeFiles (bool): include files in list output (true) or not (false). Empty means not included
 //   - includeTrackers (bool): include trackers in list output (true) or not (false). Empty means not included
 //   - sort (string): name of column for sorting by its value
 //   - reverse (bool): enable reverse sorting
@@ -349,6 +395,7 @@ void TorrentsController::infoAction()
     int offset {params()[u"offset"_s].toInt()};
     const QStringList hashes {params()[u"hashes"_s].split(u'|', Qt::SkipEmptyParts)};
     const std::optional<bool> isPrivate = parseBool(params()[u"private"_s]);
+    const bool includeFiles = parseBool(params()[u"includeFiles"_s]).value_or(false);
     const bool includeTrackers = parseBool(params()[u"includeTrackers"_s]).value_or(false);
 
     std::optional<TorrentIDSet> idSet;
@@ -368,6 +415,8 @@ void TorrentsController::infoAction()
 
         QVariantMap serializedTorrent = serialize(*torrent);
 
+        if (includeFiles)
+            serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent));
         if (includeTrackers)
             serializedTorrent.insert(KEY_PROP_TRACKERS, getTrackers(torrent));
 
@@ -699,11 +748,11 @@ void TorrentsController::filesAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const int filesCount = torrent->filesCount();
     QList<int> fileIndexes;
     const auto idxIt = params().constFind(u"indexes"_s);
     if (idxIt != params().cend())
     {
+        const int filesCount = torrent->filesCount();
         const QStringList indexStrings = idxIt.value().split(u'|');
         fileIndexes.reserve(indexStrings.size());
         std::transform(indexStrings.cbegin(), indexStrings.cend(), std::back_inserter(fileIndexes)
@@ -718,44 +767,8 @@ void TorrentsController::filesAction()
             return index;
         });
     }
-    else
-    {
-        fileIndexes.reserve(filesCount);
-        for (int i = 0; i < filesCount; ++i)
-            fileIndexes.append(i);
-    }
 
-    QJsonArray fileList;
-    if (torrent->hasMetadata())
-    {
-        const QList<BitTorrent::DownloadPriority> priorities = torrent->filePriorities();
-        const QList<qreal> fp = torrent->filesProgress();
-        const QList<qreal> fileAvailability = torrent->fetchAvailableFileFractions().takeResult();
-        const BitTorrent::TorrentInfo info = torrent->info();
-        for (const int index : asConst(fileIndexes))
-        {
-            QJsonObject fileDict =
-            {
-                {KEY_FILE_INDEX, index},
-                {KEY_FILE_PROGRESS, fp[index]},
-                {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
-                {KEY_FILE_SIZE, torrent->fileSize(index)},
-                {KEY_FILE_AVAILABILITY, fileAvailability[index]},
-                // need to provide paths using a platform-independent separator format
-                {KEY_FILE_NAME, torrent->filePath(index).data()}
-            };
-
-            const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
-            fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};
-
-            if (index == 0)
-                fileDict[KEY_FILE_IS_SEED] = torrent->isFinished();
-
-            fileList.append(fileDict);
-        }
-    }
-
-    setResult(fileList);
+    setResult(getFiles(torrent, fileIndexes));
 }
 
 // Returns an array of hashes (of each pieces respectively) for a torrent in JSON format.
