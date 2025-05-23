@@ -175,12 +175,15 @@ let setStatusFilter = () => {};
 let toggleFilterDisplay = () => {};
 
 window.addEventListener("DOMContentLoaded", (event) => {
+    // Override MooTools' `document.id` (used for `$(id)`), which prevents it
+    // from allocating a `uniqueNumber` for elements that don't need it.
+    // This is also more efficient than the original.
     document.id = el => {
         switch (typeOf(el)) {
-        case "string":
-            return document.getElementById(el);
-        case "element":
-            return el;
+            case "string":
+                return document.getElementById(el);
+            case "element":
+                return el;
         }
     };
 
