@@ -55,7 +55,7 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &pluginName, const QS
         url
     };
     // Launch search
-    m_downloadProcess->start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
+    m_downloadProcess->start(Utils::ForeignApps::pythonInfo().executablePath.data(), params, QIODevice::ReadOnly);
 }
 
 void SearchDownloadHandler::downloadProcessFinished(int exitcode)

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Mike Tzou
+ * Copyright (C) 2018-2025  Mike Tzou (Chocobo1)
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,6 +32,7 @@
 #include <QString>
 
 #include "base/global.h"
+#include "base/path.h"
 #include "base/utils/version.h"
 
 namespace Utils::ForeignApps
@@ -45,7 +46,7 @@ namespace Utils::ForeignApps
         bool isValid() const;
         bool isSupportedVersion() const;
 
-        QString executableName;
+        Path executablePath;
         Version version;
 
         inline static const Version MINIMUM_SUPPORTED_VERSION {3, 9, 0};
