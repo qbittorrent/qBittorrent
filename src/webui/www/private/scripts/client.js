@@ -499,7 +499,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (!categoryList)
             return;
 
-        [...categoryList.children].forEach((el) => { el.destroy(); });
+        [...categoryList.children].forEach((el) => { el.remove(); });
 
         const categoryItemTemplate = document.getElementById("categoryFilterItem");
 
@@ -620,7 +620,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (tagFilterList === null)
             return;
 
-        [...tagFilterList.children].forEach((el) => { el.destroy(); });
+        [...tagFilterList.children].forEach((el) => { el.remove(); });
 
         const tagItemTemplate = document.getElementById("tagFilterItem");
 
@@ -673,7 +673,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (trackerFilterList === null)
             return;
 
-        [...trackerFilterList.children].forEach((el) => { el.destroy(); });
+        [...trackerFilterList.children].forEach((el) => { el.remove(); });
 
         const trackerItemTemplate = document.getElementById("trackerFilterItem");
 
