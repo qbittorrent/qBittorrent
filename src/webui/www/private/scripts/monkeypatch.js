@@ -44,14 +44,23 @@ window.qBittorrent.MonkeyPatch ??= (() => {
     const patchMootoolsDocumentId = () => {
         // Override MooTools' `document.id` (used for `$(id)`), which prevents it
         // from allocating a `uniqueNumber` for elements that don't need it.
-        // This is also more efficient than the original.
-        document.id = el => {
-            switch (typeOf(el)) {
+        // MooTools and MochaUI use it internally.
+
+        if (document.id === undefined)
+            return;
+
+        document.id = (el) => {
+            if ((el === null) || (el === undefined))
+                return null;
+
+            switch (typeof el) {
+                case "object":
+                    return el;
                 case "string":
                     return document.getElementById(el);
-                case "element":
-                    return el;
             }
+
+            return null;
         };
     };
 
