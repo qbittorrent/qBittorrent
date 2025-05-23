@@ -26,12 +26,12 @@
 # but you are not obligated to do so. If you do not wish to do so, delete this
 # exception statement from your version.
 
-from collections.abc import Callable, Sequence
-from typing import Optional
 import argparse
 import re
-import xml.etree.ElementTree as ElementTree
 import sys
+import xml.etree.ElementTree as ElementTree
+from collections.abc import Callable, Sequence
+from typing import Optional
 
 
 def traversePostOrder(root: ElementTree.Element, visitFunc: Callable[[ElementTree.Element], None]) -> None:
