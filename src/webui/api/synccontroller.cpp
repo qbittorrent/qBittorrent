@@ -500,6 +500,9 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "seen_complete": Indicates the time when the torrent was last seen complete/whole
 //  - "last_activity": Last time when a chunk was downloaded/uploaded
 //  - "total_size": Size including unwanted data
+//  - "has_tracker_warning": the torrent has working tracker that has a message
+//  - "has_tracker_error": the torrent has a tracker error
+//  - "has_other_announce_error": the torrent has other problems announcing to a tracker
 // Server state map may contain the following keys:
 //  - "connection_status": connection status
 //  - "dht_nodes": DHT nodes count

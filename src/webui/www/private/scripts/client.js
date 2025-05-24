@@ -161,7 +161,10 @@ let setTagFilter = () => {};
 
 /* Trackers filter */
 const TRACKERS_ALL = "b4af0e4c-e76d-4bac-a392-46cbc18d9655";
+const TRACKERS_ANNOUNCE_ERROR = "d0b4cad2-9f6f-4e7f-8d4b-f80a103dd436";
+const TRACKERS_ERROR = "b551cfc3-64e9-4393-bc88-5d6ea2fab5cc";
 const TRACKERS_TRACKERLESS = "e24bd469-ea22-404c-8e2e-a17c82f37ea0";
+const TRACKERS_WARNING = "82a702c5-210c-412b-829f-97632d7557e9";
 
 // Map<trackerHost: String, Map<trackerURL: String, torrents: Set>>
 const trackerMap = new Map();
@@ -685,17 +688,41 @@ window.addEventListener("DOMContentLoaded", (event) => {
             const span = trackerFilterItem.firstElementChild;
             span.lastChild.textContent = `${text} (${count})`;
 
+            switch (host) {
+                case TRACKERS_ANNOUNCE_ERROR:
+                case TRACKERS_ERROR:
+                    span.lastElementChild.src = "images/tracker-error.svg";
+                    break;
+                case TRACKERS_TRACKERLESS:
+                    span.lastElementChild.src = "images/trackerless.svg";
+                    break;
+                case TRACKERS_WARNING:
+                    span.lastElementChild.src = "images/tracker-warning.svg";
+                    break;
+            }
+
             return trackerFilterItem;
         };
 
-        let trackerlessTorrentsCount = 0;
-        for (const { full_data: { trackers_count: trackersCount } } of torrentsTable.getRowValues()) {
-            if (trackersCount === 0)
-                trackerlessTorrentsCount += 1;
+        let trackerlessCount = 0;
+        let trackerErrorCount = 0;
+        let announceErrorCount = 0;
+        let trackerWarningCount = 0;
+        for (const { full_data } of torrentsTable.getRowValues()) {
+            if (full_data.trackers_count === 0)
+                trackerlessCount += 1;
+
+            // counting bools by adding them
+            trackerErrorCount += full_data.has_tracker_error;
+            announceErrorCount += full_data.has_other_announce_error;
+            trackerWarningCount += full_data.has_tracker_warning;
         }
 
         trackerFilterList.appendChild(createLink(TRACKERS_ALL, "QBT_TR(All)QBT_TR[CONTEXT=TrackerFiltersList]", torrentsTable.getRowSize()));
-        trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, "QBT_TR(Trackerless)QBT_TR[CONTEXT=TrackerFiltersList]", trackerlessTorrentsCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, "QBT_TR(Trackerless)QBT_TR[CONTEXT=TrackerFiltersList]", trackerlessCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_ERROR, "QBT_TR(Tracker error)QBT_TR[CONTEXT=TrackerFiltersList]", trackerErrorCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_ANNOUNCE_ERROR, "QBT_TR(Other error)QBT_TR[CONTEXT=TrackerFiltersList]", announceErrorCount));
+        trackerFilterList.appendChild(createLink(TRACKERS_WARNING, "QBT_TR(Warning)QBT_TR[CONTEXT=TrackerFiltersList]", trackerWarningCount));
 
         // Sort trackers by hostname
         const sortedList = [];
