@@ -357,8 +357,8 @@
         <file>private/images/regex.svg</file>
         <file>private/images/set-location.svg</file>
         <file>private/images/slider-area.gif</file>
-        <file>private/images/slow.svg</file>
         <file>private/images/slow_off.svg</file>
+        <file>private/images/slow.svg</file>
         <file>private/images/spacer.gif</file>
         <file>private/images/spinner-placeholder.gif</file>
         <file>private/images/spinner.gif</file>
@@ -375,6 +375,9 @@
         <file>private/images/torrent-start-forced.svg</file>
         <file>private/images/torrent-start.svg</file>
         <file>private/images/torrent-stop.svg</file>
+        <file>private/images/tracker-error.svg</file>
+        <file>private/images/tracker-warning.svg</file>
+        <file>private/images/trackerless.svg</file>
         <file>private/images/trackers.svg</file>
         <file>private/images/upload.svg</file>
         <file>private/images/view-categories.svg</file>
@@ -387,11 +390,11 @@
         <file>private/newfolder.html</file>
         <file>private/newrule.html</file>
         <file>private/newtag.html</file>
-        <file>private/rename.html</file>
         <file>private/rename_feed.html</file>
         <file>private/rename_file.html</file>
         <file>private/rename_files.html</file>
         <file>private/rename_rule.html</file>
+        <file>private/rename.html</file>
         <file>private/scripts/cache.js</file>
         <file>private/scripts/client.js</file>
         <file>private/scripts/color-scheme.js</file>

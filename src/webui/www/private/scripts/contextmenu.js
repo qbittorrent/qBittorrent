@@ -620,11 +620,18 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class TrackersFilterContextMenu extends FilterListContextMenu {
         updateMenuItems() {
-            const id = this.options.element.id;
-            if ((id !== TRACKERS_ALL) && (id !== TRACKERS_TRACKERLESS))
-                this.showItem("deleteTracker");
-            else
-                this.hideItem("deleteTracker");
+            switch (this.options.element.id) {
+                case TRACKERS_ALL:
+                case TRACKERS_ANNOUNCE_ERROR:
+                case TRACKERS_ERROR:
+                case TRACKERS_TRACKERLESS:
+                case TRACKERS_WARNING:
+                    this.hideItem("deleteTracker");
+                    break;
+                default:
+                    this.showItem("deleteTracker");
+                    break;
+            }
 
             this.updateTorrentActions();
         }
