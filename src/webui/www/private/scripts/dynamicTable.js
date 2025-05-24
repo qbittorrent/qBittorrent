@@ -687,7 +687,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const oldColumn = this.sortedColumn;
                 this.sortedColumn = column;
                 this.reverseSort = reverse ?? "0";
-                this.setSortedColumnIcon(column, oldColumn, reverse === "1");
+                this.setSortedColumnIcon(column, oldColumn, (reverse === "1"));
             }
             else {
                 // Toggle sort order

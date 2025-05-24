@@ -350,25 +350,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
     };
 
-    const getFilterSortColumn = (filterName) => {
-        return LocalPreferences.get(`selected_filter_sort_${filterName}`);
-    };
-
-    const saveFilterSort = (filterName, sort, isReverse) => {
-        LocalPreferences.set(`selected_filter_sort_${filterName}`, sort);
-        LocalPreferences.set(`selected_filter_sort_reverse_${filterName}`, isReverse);
-    };
-
     setStatusFilter = (name) => {
         const currentHash = torrentsTable.getCurrentTorrentID();
 
         // Save current sorting for this filter.
-        if (torrentsTable.getSortedColumn())
-            saveFilterSort(selectedStatus, torrentsTable.getSortedColumn(), torrentsTable.reverseSort ?? "0");
+        if (torrentsTable.getSortedColumn()) {
+            LocalPreferences.set(`selected_filter_sort_${selectedStatus}`, torrentsTable.getSortedColumn());
+            LocalPreferences.set(`selected_filter_sort_reverse_${selectedStatus}`, (torrentsTable.reverseSort ?? "0"));
+        }
         LocalPreferences.set("selected_filter", name);
         // If there is a saved sorting column, load it.
-        const sortColumn = getFilterSortColumn(name);
-        if (sortColumn) {
+        const sortColumn = LocalPreferences.get(`selected_filter_sort_${name}`);
+        if (sortColumn !== null) {
             torrentsTable.setSortedColumn(
                 sortColumn,
                 LocalPreferences.get(`selected_filter_sort_reverse_${name}`, "0")
