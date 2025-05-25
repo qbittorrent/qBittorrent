@@ -299,6 +299,8 @@ namespace
         const BitTorrent::TorrentInfo info = torrent->info();
         for (const int index : asConst(fileIndexes))
         {
+            const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
+
             QJsonObject fileDict =
             {
                 {KEY_FILE_INDEX, index},
@@ -307,14 +309,9 @@ namespace
                 {KEY_FILE_SIZE, torrent->fileSize(index)},
                 {KEY_FILE_AVAILABILITY, fileAvailability[index]},
                 // need to provide paths using a platform-independent separator format
-                {KEY_FILE_NAME, torrent->filePath(index).data()}
+                {KEY_FILE_NAME, torrent->filePath(index).data()},
+                {KEY_FILE_PIECE_RANGE, QJsonArray {idx.first(), idx.last()}}
             };
-
-            const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
-            fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};
-
-            if (index == 0)
-                fileDict[KEY_FILE_IS_SEED] = torrent->isFinished();
 
             fileList.append(fileDict);
         }
@@ -768,7 +765,15 @@ void TorrentsController::filesAction()
         });
     }
 
-    setResult(getFiles(torrent, fileIndexes));
+    QJsonArray fileList = getFiles(torrent, fileIndexes);
+    if (!fileList.isEmpty())
+    {
+        QJsonObject firstFile = fileList[0].toObject();
+        firstFile[KEY_FILE_IS_SEED] = torrent->isFinished();
+        fileList[0] = firstFile;
+    }
+
+    setResult(fileList);
 }
 
 // Returns an array of hashes (of each pieces respectively) for a torrent in JSON format.
