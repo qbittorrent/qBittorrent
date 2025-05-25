@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <title>QBT_TR(Speed limit)QBT_TR[CONTEXT=SpeedLimit]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
@@ -10,15 +11,15 @@
 
 <body>
     <div style="padding-top: 10px; width: 100%; text-align: center; margin: 0 auto; overflow: hidden">
-        <div id="limitSlider" class="slider">
-            <div id="limitUpdate" class="update">
-                <label id="limitUpdateLabel" for="limitUpdatevalue"></label>
-                <input type="text" id="limitUpdatevalue" size="6" placeholder="∞" style="text-align: center;">
-                <span id="limitUnit">QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimitDialog]</span>
+        <div class="slider">
+            <div class="update">
+                <label id="limitUpdateLabel" for="limitUpdateValue">QBT_TR(Limit:)QBT_TR[CONTEXT=SpeedLimit]</label>
+                <input type="text" id="limitUpdateValue" size="6" placeholder="∞" style="text-align: center;">
+                <span id="limitUnit">QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
             </div>
-            <input type="range" id="limitSliderInput" value="0" style="width: 100%;" aria-label="QBT_TR(Download limit)QBT_TR[CONTEXT=PropertiesWidget]">
+            <input type="range" id="limitSliderInput" min="0" value="0" style="width: 100%;" aria-label="QBT_TR(Speed limit)QBT_TR[CONTEXT=SpeedLimit]">
         </div>
-        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="setLimit()">
+        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]" onclick="saveLimit()">
     </div>
 
     <script>
@@ -41,42 +42,42 @@
         const type = params.get("type");
         const hashes = params.get("hashes").split("|");
 
-        document.getElementById("limitUpdateLabel").textContent =
-            type === "upload"
-            ? `QBT_TR(Upload limit:)QBT_TR[CONTEXT=PropertiesWidget]`
-            : `QBT_TR(Download limit:)QBT_TR[CONTEXT=PropertiesWidget]`;
+        const isGlobal = (hashes[0] === "global");
+        // Otherwise it's download limit
+        const isUpload = (type === "upload");
 
-        const setupSlider = (limit, maximum) => {
-            const input = document.getElementById("limitSliderInput");
-            input.setAttribute("max", maximum);
-            input.setAttribute("min", 0);
-            input.value = limit;
-            input.addEventListener("input", (event) => {
-                const pos = Number(event.target.value);
-                if (pos > 0) {
-                    document.getElementById("limitUpdatevalue").value = pos;
-                    document.getElementById("limitUnit").style.visibility = "visible";
-                }
-                else {
-                    document.getElementById("limitUpdatevalue").value = "∞";
-                    document.getElementById("limitUnit").style.visibility = "hidden";
-                }
-            });
-            // Set default value
-            if (limit === 0) {
-                document.getElementById("limitUpdatevalue").value = "∞";
-                document.getElementById("limitUnit").style.visibility = "hidden";
+        const getLimitMethod = isUpload ? "uploadLimit" : "downloadLimit";
+        const setLimitMethod = isUpload ? "setUploadLimit" : "setDownloadLimit";
+
+        const limitUpdateValue = document.getElementById("limitUpdateValue");
+        const limitUnit = document.getElementById("limitUnit");
+
+        const setLimitUpdateValue = (value) => {
+            if (value === 0) {
+                limitUpdateValue.value = "∞";
+                limitUnit.style.visibility = "hidden";
             }
             else {
-                document.getElementById("limitUpdatevalue").value = limit;
-                document.getElementById("limitUnit").style.visibility = "visible";
+                limitUpdateValue.value = value;
+                limitUnit.style.visibility = "visible";
             }
         };
 
-        const setLimit = () => {
-            const limit = Number(document.getElementById("limitUpdatevalue").value) * 1024;
-            if (hashes[0] === "global") {
-                fetch(`api/v2/transfer/${type === "upload" ? "setUploadLimit" : "setDownloadLimit"}`, {
+        const setupSlider = (limit, maximum) => {
+            const input = document.getElementById("limitSliderInput");
+            input.max = maximum;
+            input.value = limit;
+            input.addEventListener("input", (event) => {
+                setLimitUpdateValue(Number(event.target.value));
+            });
+            // Set default value
+            setLimitUpdateValue(limit);
+        };
+
+        const saveLimit = () => {
+            const limit = Number(limitUpdateValue.value) * 1024;
+            if (isGlobal) {
+                fetch(`api/v2/transfer/${setLimitMethod}`, {
                         method: "POST",
                         body: new URLSearchParams({
                             limit: limit
@@ -91,7 +92,7 @@
                     });
             }
             else {
-                fetch(`api/v2/torrents/${type === "upload" ? "setUploadLimit" : "setDownloadLimit"}`, {
+                fetch(`api/v2/torrents/${setLimitMethod}`, {
                         method: "POST",
                         body: new URLSearchParams({
                             hashes: hashes.join("|"),
@@ -107,7 +108,12 @@
             }
         };
 
-        fetch(`api/v2/transfer/${type === "upload" ? "uploadLimit" : "downloadLimit"}`, {
+        document.getElementById("limitUpdateLabel").textContent =
+            isUpload
+            ? `QBT_TR(Upload limit:)QBT_TR[CONTEXT=SpeedLimit]`
+            : `QBT_TR(Download limit:)QBT_TR[CONTEXT=SpeedLimit]`;
+
+        fetch(`api/v2/transfer/${getLimitMethod}`, {
                 method: "GET",
                 cache: "no-store"
             })
@@ -117,30 +123,15 @@
 
                 const data = await response.text();
 
-                let maximum = 500;
-                const tmp = Number(data);
-                if (tmp > 0) {
-                    maximum = tmp / 1024.0;
-                }
-                else {
-                    if (hashes[0] === "global")
-                        maximum = 10000;
-                    else
-                        maximum = 1000;
-                }
+                const globalLimit = Math.max((Number(data) / 1024), 0);
 
                 // Get torrents download limit
                 // And create slider
-                if (hashes[0] === "global") {
-                    let limit = maximum;
-                    if (limit < 0)
-                        limit = 0;
-                    maximum = 10000;
-
-                    setupSlider(Math.round(limit), maximum);
+                if (isGlobal) {
+                    setupSlider(globalLimit, 10000);
                 }
                 else {
-                    fetch(`api/v2/torrents/${type === "upload" ? "uploadLimit" : "downloadLimit"}`, {
+                    fetch(`api/v2/torrents/${getLimitMethod}`, {
                             method: "POST",
                             body: new URLSearchParams({
                                 hashes: hashes.join("|")
@@ -152,22 +143,16 @@
 
                             const data = await response.json();
 
-                            let limit = data[hashes[0]];
-                            for (const key in data) {
-                                if (limit !== data[key]) {
-                                    limit = 0;
-                                    break;
-                                }
-                            }
-                            if (limit < 0)
-                                limit = 0;
+                            const firstLimit = Math.max(data[hashes[0]], 0);
+                            const isAllFirstLimit = Object.values(data).every(value => value === firstLimit);
+                            const limit = isAllFirstLimit ? Math.round(firstLimit / 1024) : 0;
 
-                            setupSlider(Math.round(limit / 1024), maximum);
+                            setupSlider(limit, ((globalLimit > 0) ? globalLimit : 1000));
                         });
                 }
             });
 
-        document.getElementById("limitUpdatevalue").focus();
+        limitUpdateValue.focus();
     </script>
 </body>
 
