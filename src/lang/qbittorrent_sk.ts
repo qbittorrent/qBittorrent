@@ -4494,8 +4494,8 @@ Minimálna verzia: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (403)</source>
-        <translation>Prístup k vzdialenému obsahu bol odmietnutý (403)</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>Prístup k vzdialenému obsahu bol odmietnutý (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4509,8 +4509,8 @@ Minimálna verzia: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation>Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, neprijal ale poskytnuté prihlasovacie údaje (401).</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>Vzdialený server vyžaduje na poskytnutie obsahu autentifikáciu, neprijal ale poskytnuté prihlasovacie údaje.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

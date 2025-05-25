@@ -4659,8 +4659,8 @@ Hash previsto: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (403)</source>
-        <translation>L&apos;accesso al contenuto remoto è stato negato (403)</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>L&apos;accesso al contenuto remoto è stato negato (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4674,8 +4674,8 @@ Hash previsto: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation>Il server remoto richiede l&apos;autenticazione per gestire il contenuto ma le credenziali fornite non sono state accettate (401)</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>Il server remoto richiede l&apos;autenticazione per gestire il contenuto ma le credenziali fornite non sono state accettate</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

@@ -4493,8 +4493,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (403)</source>
-        <translation>Η πρόσβαση στο απομακρυσμένο περιεχόμενο δεν έγινε δεκτή (403)</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>Η πρόσβαση στο απομακρυσμένο περιεχόμενο δεν έγινε δεκτή (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4508,8 +4508,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation>Ο απομακρυσμένος διακομιστής απαιτεί έλεγχο ταυτότητας για να προσφέρει το περιεχόμενο αλλά τα διαπιστευτήρια που του προσφέρθηκαν δεν έγιναν δεκτά (401)</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>Ο απομακρυσμένος διακομιστής απαιτεί έλεγχο ταυτότητας για να προσφέρει το περιεχόμενο αλλά τα διαπιστευτήρια που του προσφέρθηκαν δεν έγιναν δεκτά</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

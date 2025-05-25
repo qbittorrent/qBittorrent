@@ -4490,8 +4490,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (403)</source>
-        <translation>L&apos;accès al contengut distant es estat refusat (403)</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>L&apos;accès al contengut distant es estat refusat (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4505,8 +4505,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation>Lo servidor distant demanda una autentificacion abans de distribuir lo contengut, mas los identificants provesits son pas estats acceptats (401)</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>Lo servidor distant demanda una autentificacion abans de distribuir lo contengut, mas los identificants provesits son pas estats acceptats</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

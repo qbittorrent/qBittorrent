@@ -4493,8 +4493,8 @@ Vajalik on vähemalt: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (403)</source>
-        <translation>Juurdepääs kaugsisule on keelatud (403)</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>Juurdepääs kaugsisule on keelatud (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4508,8 +4508,8 @@ Vajalik on vähemalt: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation>Kaugserver nõuab sisu edastamiseks autentimist, kuid esitatud volitusi ei aktsepteeritud (401)</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>Kaugserver nõuab sisu edastamiseks autentimist, kuid esitatud volitusi ei aktsepteeritud</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

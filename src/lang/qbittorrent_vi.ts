@@ -4494,8 +4494,8 @@ Yêu cầu tối thiểu: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (403)</source>
-        <translation>Quyền truy cập vào nội dung từ xa bị từ chối (403)</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>Quyền truy cập vào nội dung từ xa bị từ chối (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4509,8 +4509,8 @@ Yêu cầu tối thiểu: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation>Máy chủ từ xa yêu cầu xác thực để phục vụ nội dung nhưng thông tin đăng nhập đã cung cấp không được chấp nhận (401)</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>Máy chủ từ xa yêu cầu xác thực để phục vụ nội dung nhưng thông tin đăng nhập đã cung cấp không được chấp nhận</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

@@ -4491,8 +4491,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (403)</source>
-        <translation>दूरस्थ सामग्री के लिए प्रवेश निषेध किया गया था (403)</translation>
+        <source>The access to the remote content was denied (401)</source>
+        <translation>दूरस्थ सामग्री के लिए प्रवेश निषेध किया गया था (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4506,8 +4506,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation>दूरस्थ सर्वर को सामग्री की सेवा के लिए प्रमाणीकरण की आवश्यकता है, लेकिन प्रदान की गई साख को स्वीकार नहीं किया गया (401)</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
+        <translation>दूरस्थ सर्वर को सामग्री की सेवा के लिए प्रमाणीकरण की आवश्यकता है, लेकिन प्रदान की गई साख को स्वीकार नहीं किया गया</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
