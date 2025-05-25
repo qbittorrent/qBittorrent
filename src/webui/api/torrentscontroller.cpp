@@ -283,7 +283,7 @@ namespace
         Q_ASSERT(torrent->hasMetadata());
         if (!torrent->hasMetadata()) [[unlikely]]
             return {};
-        
+
         if (fileIndexes.isEmpty())
         {
             const int filesCount = torrent->filesCount();
