@@ -329,7 +329,6 @@
         <file>private/images/help-contents.svg</file>
         <file>private/images/insert-link.svg</file>
         <file>private/images/ip-blocked.svg</file>
-        <file>private/images/knob.gif</file>
         <file>private/images/L.gif</file>
         <file>private/images/list-add.svg</file>
         <file>private/images/list-remove.svg</file>
@@ -356,7 +355,6 @@
         <file>private/images/reannounce.svg</file>
         <file>private/images/regex.svg</file>
         <file>private/images/set-location.svg</file>
-        <file>private/images/slider-area.gif</file>
         <file>private/images/slow.svg</file>
         <file>private/images/slow_off.svg</file>
         <file>private/images/spacer.gif</file>
