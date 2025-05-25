@@ -575,6 +575,9 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
             case u'L':
                 str.replace(i, 2, torrent->category());
                 break;
+            case u'M':
+                str.replace(i, 2, torrent->comment());
+                break;
             case u'N':
                 str.replace(i, 2, torrent->name());
                 break;

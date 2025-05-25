@@ -677,6 +677,7 @@ void OptionsDialog::loadDownloadsTabOptions()
             , tr("%I: Info hash v1 (or '-' if unavailable)")
             , tr("%J: Info hash v2 (or '-' if unavailable)")
             , tr("%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)")
+            , tr("%M: Comment")
             , tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
     m_ui->labelAutoRunParam->setText(autoRunStr);
 
