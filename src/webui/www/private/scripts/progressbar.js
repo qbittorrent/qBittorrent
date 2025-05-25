@@ -39,25 +39,23 @@ window.qBittorrent.ProgressBar ??= (() => {
     class ProgressBar extends HTMLElement {
         static #progressBarUniqueId = 0;
 
-        #value;
-        #styles;
+        #value = 0;
+        #styles = {
+            height: 12,
+            darkbg: "var(--color-background-blue)",
+            darkfg: "var(--color-text-white)",
+            lightbg: "var(--color-background-default)",
+            lightfg: "var(--color-text-default)",
+        };
+
         #id = ++ProgressBar.#progressBarUniqueId;
-        #light;
-        #dark;
 
-        constructor(value, styles = {}) {
+        #light = document.createElement("div");
+        #dark = document.createElement("div");
+
+        constructor(value) {
             super();
-            this.setValue(value);
-            this.#styles = {
-                height: 12,
-                darkbg: "var(--color-background-blue)",
-                darkfg: "var(--color-text-white)",
-                lightbg: "var(--color-background-default)",
-                lightfg: "var(--color-text-default)",
-                ...styles
-            };
 
-            this.#dark = document.createElement("div");
             this.#dark.style.width = "100%";
             this.#dark.style.height = `${this.#styles.height}px`;
             this.#dark.style.background = this.#styles.darkbg;
@@ -69,7 +67,6 @@ window.qBittorrent.ProgressBar ??= (() => {
             this.#dark.style.top = "0";
             this.#dark.style.lineHeight = `${this.#styles.height}px`;
 
-            this.#light = document.createElement("div");
             this.#light.style.width = "100%";
             this.#light.style.height = `${this.#styles.height}px`;
             this.#light.style.background = this.#styles.lightbg;
@@ -91,10 +88,8 @@ window.qBittorrent.ProgressBar ??= (() => {
             this.shadowRoot.host.style.margin = "0 auto";
             this.shadowRoot.appendChild(this.#dark);
             this.shadowRoot.appendChild(this.#light);
-        }
 
-        connectedCallback() {
-            this.#refresh();
+            this.setValue(value);
         }
 
         getValue() {
@@ -106,12 +101,6 @@ window.qBittorrent.ProgressBar ??= (() => {
             if (Number.isNaN(value))
                 value = 0;
             this.#value = Math.min(Math.max(value, 0), 100);
-            this.#refresh();
-        }
-
-        #refresh() {
-            if (!this.isConnected)
-                return;
 
             const displayedValue = `${window.qBittorrent.Misc.toFixedPointString(this.#value, 1)}%`;
             this.#dark.textContent = displayedValue;
