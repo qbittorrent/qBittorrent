@@ -65,7 +65,6 @@ window.qBittorrent.DynamicTable ??= (() => {
     };
 
     let DynamicTableHeaderContextMenuClass = null;
-    let progressColumnWidth = -1;
 
     class DynamicTable {
         setup(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu, useVirtualList = false) {
@@ -1358,34 +1357,14 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const div = td.firstElementChild;
                 if (div !== null) {
-                    if (td.resized) {
-                        td.resized = false;
-                        div.setWidth(progressColumnWidth - 5);
-                    }
                     if (div.getValue() !== progressFormatted)
                         div.setValue(progressFormatted);
                 }
                 else {
-                    if (progressColumnWidth < 0)
-                        progressColumnWidth = td.offsetWidth;
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted, {
-                        width: progressColumnWidth - 5
-                    }));
-                    td.resized = false;
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted));
                 }
             };
             this.columns["progress"].staticWidth = 100;
-            this.columns["progress"].onResize = function(columnName) {
-                const pos = this.getColumnPos(columnName);
-                progressColumnWidth = -1;
-                for (const tr of this.getTrs()) {
-                    const td = this.getRowCells(tr)[pos];
-                    if (progressColumnWidth < 0)
-                        progressColumnWidth = td.offsetWidth;
-                    td.resized = true;
-                    this.columns[columnName].updateTd(td, this.getRow(tr.rowId));
-                }
-            }.bind(this);
 
             // num_seeds
             this.columns["num_seeds"].updateTd = function(td, row) {
@@ -2881,14 +2860,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const value = Number(this.getRowValue(row));
 
                 const progressBar = td.firstElementChild;
-                if (progressBar === null) {
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(value, {
-                        width: 80
-                    }));
-                }
-                else {
+                if (progressBar === null)
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(value));
+                else
                     progressBar.setValue(value);
-                }
             };
             this.columns["progress"].staticWidth = 100;
 
@@ -3789,34 +3764,14 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const div = td.firstElementChild;
                 if (div !== null) {
-                    if (td.resized) {
-                        td.resized = false;
-                        div.setWidth(progressColumnWidth - 5);
-                    }
                     if (div.getValue() !== progress)
                         div.setValue(progress);
                 }
                 else {
-                    if (progressColumnWidth < 0)
-                        progressColumnWidth = td.offsetWidth;
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progress, {
-                        width: progressColumnWidth - 5
-                    }));
-                    td.resized = false;
+                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progress));
                 }
             };
             this.columns["progress"].staticWidth = 100;
-            this.columns["progress"].onResize = function(columnName) {
-                const pos = this.getColumnPos(columnName);
-                progressColumnWidth = -1;
-                for (const tr of this.getTrs()) {
-                    const td = this.getRowCells(tr)[pos];
-                    if (progressColumnWidth < 0)
-                        progressColumnWidth = td.offsetWidth;
-                    td.resized = true;
-                    this.columns[columnName].updateTd(td, this.getRow(tr.rowId));
-                }
-            }.bind(this);
 
             // piece_size
             this.columns["piece_size"].updateTd = function(td, row) {
