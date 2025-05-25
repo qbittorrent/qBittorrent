@@ -418,50 +418,10 @@ a.propButton img {
 /* Sliders */
 
 .slider {
-    clear: both;
     font-size: 12px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin: 4px;
     position: relative;
-    width: 400px;
-}
-
-.sliderWrapper {
-    font-size: 1px;
-    height: 9px;
-    line-height: 1px;
-    position: relative;
-    width: 422px;
-}
-
-.sliderarea {
-    background: #f2f2f2 url("../images/slider-area.gif") repeat-x;
-    border: 1px solid #a3a3a3;
-    border-bottom: 1px solid #cccccc;
-    border-left: 1px solid #cccccc;
-    font-size: 1px;
-    height: 7px;
-    left: 0;
-    line-height: 1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    width: 420px;
-}
-
-.sliderknob {
-    background: url("../images/knob.gif") no-repeat;
-    cursor: pointer;
-    font-size: 1px;
-    height: 9px;
-    left: 0;
-    line-height: 1px;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    width: 19px;
-    z-index: 2;
 }
 
 .update {

@@ -28,222 +28,157 @@
 
 "use strict";
 
-MochaUI.extend({
-    addUpLimitSlider: (hashes) => {
-        if (document.getElementById("uplimitSliderarea")) {
-            // Get global upload limit
-            fetch("api/v2/transfer/uploadLimit", {
-                    method: "GET",
-                    cache: "no-store"
+window.qBittorrent ??= {};
+window.qBittorrent.SpeedSlider ??= (() => {
+    const exports = () => {
+        return {
+            setup: setup,
+            setLimit: setLimit,
+        };
+    };
+
+    const hashes = new URLSearchParams(window.location.search).get("hashes").split("|");
+
+    const setup = (type) => {
+        window.addEventListener("keydown", (event) => {
+            switch (event.key) {
+                case "Enter":
+                    event.preventDefault();
+                    document.getElementById("applyButton").click();
+                    break;
+                case "Escape":
+                    event.preventDefault();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
+                    break;
+            }
+        });
+
+        const method = type === "upload" ? "uploadLimit" : "downloadLimit";
+
+        // Get global upload limit
+        fetch(`api/v2/transfer/${method}`, {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const data = await response.text();
+
+                let maximum = 500;
+                const tmp = Number(data);
+                if (tmp > 0) {
+                    maximum = tmp / 1024.0;
+                }
+                else {
+                    if (hashes[0] === "global")
+                        maximum = 10000;
+                    else
+                        maximum = 1000;
+                }
+
+                // Get torrents download limit
+                // And create slider
+                if (hashes[0] === "global") {
+                    let limit = maximum;
+                    if (limit < 0)
+                        limit = 0;
+                    maximum = 10000;
+
+                    setupSlider(Math.round(limit), maximum);
+                }
+                else {
+                    fetch(`api/v2/torrents/${method}`, {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                hashes: hashes.join("|")
+                            })
+                        })
+                        .then(async (response) => {
+                            if (!response.ok)
+                                return;
+
+                            const data = await response.json();
+
+                            let limit = data[hashes[0]];
+                            for (const key in data) {
+                                if (limit !== data[key]) {
+                                    limit = 0;
+                                    break;
+                                }
+                            }
+                            if (limit < 0)
+                                limit = 0;
+
+                            setupSlider(Math.round(limit / 1024), maximum);
+                        });
+                }
+            });
+    };
+
+    const setupSlider = (limit, maximum) => {
+        const input = document.getElementById("limitSliderInput");
+        input.setAttribute("max", maximum);
+        input.setAttribute("min", 0);
+        input.value = limit;
+        input.addEventListener("input", (event) => {
+            const pos = Number(event.target.value);
+            if (pos > 0) {
+                document.getElementById("limitUpdatevalue").value = pos;
+                document.getElementById("limitUnit").style.visibility = "visible";
+            }
+            else {
+                document.getElementById("limitUpdatevalue").value = "∞";
+                document.getElementById("limitUnit").style.visibility = "hidden";
+            }
+        });
+        // Set default value
+        if (limit === 0) {
+            document.getElementById("limitUpdatevalue").value = "∞";
+            document.getElementById("limitUnit").style.visibility = "hidden";
+        }
+        else {
+            document.getElementById("limitUpdatevalue").value = limit;
+            document.getElementById("limitUnit").style.visibility = "visible";
+        }
+    };
+
+    const setLimit = (type) => {
+        const limit = Number(document.getElementById("limitUpdatevalue").value) * 1024;
+        const method = type === "upload" ? "setUploadLimit" : "setDownloadLimit";
+        if (hashes[0] === "global") {
+            fetch(`api/v2/transfer/${method}`, {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        limit: limit
+                    })
                 })
-                .then(async (response) => {
+                .then((response) => {
                     if (!response.ok)
                         return;
 
-                    const data = await response.text();
-
-                    let maximum = 500;
-                    const tmp = Number(data);
-                    if (tmp > 0) {
-                        maximum = tmp / 1024.0;
-                    }
-                    else {
-                        if (hashes[0] === "global")
-                            maximum = 10000;
-                        else
-                            maximum = 1000;
-                    }
-
-                    // Get torrents upload limit
-                    // And create slider
-                    if (hashes[0] === "global") {
-                        let up_limit = maximum;
-                        if (up_limit < 0)
-                            up_limit = 0;
-                        maximum = 10000;
-                        new Slider(document.getElementById("uplimitSliderarea"), document.getElementById("uplimitSliderknob"), {
-                            steps: maximum,
-                            offset: 0,
-                            initialStep: Math.round(up_limit),
-                            onChange: (pos) => {
-                                if (pos > 0) {
-                                    document.getElementById("uplimitUpdatevalue").value = pos;
-                                    document.getElementById("upLimitUnit").style.visibility = "visible";
-                                }
-                                else {
-                                    document.getElementById("uplimitUpdatevalue").value = "∞";
-                                    document.getElementById("upLimitUnit").style.visibility = "hidden";
-                                }
-                            }
-                        });
-                        // Set default value
-                        if (up_limit === 0) {
-                            document.getElementById("uplimitUpdatevalue").value = "∞";
-                            document.getElementById("upLimitUnit").style.visibility = "hidden";
-                        }
-                        else {
-                            document.getElementById("uplimitUpdatevalue").value = Math.round(up_limit);
-                            document.getElementById("upLimitUnit").style.visibility = "visible";
-                        }
-                    }
-                    else {
-                        fetch("api/v2/torrents/uploadLimit", {
-                                method: "POST",
-                                body: new URLSearchParams({
-                                    hashes: hashes.join("|")
-                                })
-                            })
-                            .then(async (response) => {
-                                if (!response.ok)
-                                    return;
-
-                                const data = await response.json();
-
-                                let up_limit = data[hashes[0]];
-                                for (const key in data) {
-                                    if (up_limit !== data[key]) {
-                                        up_limit = 0;
-                                        break;
-                                    }
-                                }
-                                if (up_limit < 0)
-                                    up_limit = 0;
-                                new Slider(document.getElementById("uplimitSliderarea"), document.getElementById("uplimitSliderknob"), {
-                                    steps: maximum,
-                                    offset: 0,
-                                    initialStep: Math.round(up_limit / 1024),
-                                    onChange: (pos) => {
-                                        if (pos > 0) {
-                                            document.getElementById("uplimitUpdatevalue").value = pos;
-                                            document.getElementById("upLimitUnit").style.visibility = "visible";
-                                        }
-                                        else {
-                                            document.getElementById("uplimitUpdatevalue").value = "∞";
-                                            document.getElementById("upLimitUnit").style.visibility = "hidden";
-                                        }
-                                    }
-                                });
-                                // Set default value
-                                if (up_limit === 0) {
-                                    document.getElementById("uplimitUpdatevalue").value = "∞";
-                                    document.getElementById("upLimitUnit").style.visibility = "hidden";
-                                }
-                                else {
-                                    document.getElementById("uplimitUpdatevalue").value = Math.round(up_limit / 1024);
-                                    document.getElementById("upLimitUnit").style.visibility = "visible";
-                                }
-                            });
-                    }
+                    window.parent.updateMainData();
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                 });
         }
-    },
-
-    addDlLimitSlider: (hashes) => {
-        if (document.getElementById("dllimitSliderarea")) {
-            // Get global upload limit
-            fetch("api/v2/transfer/downloadLimit", {
-                    method: "GET",
-                    cache: "no-store"
+        else {
+            fetch(`api/v2/torrents/${method}`, {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: hashes.join("|"),
+                        limit: limit
+                    })
                 })
-                .then(async (response) => {
+                .then((response) => {
                     if (!response.ok)
                         return;
 
-                    const data = await response.text();
-
-                    let maximum = 500;
-                    const tmp = Number(data);
-                    if (tmp > 0) {
-                        maximum = tmp / 1024.0;
-                    }
-                    else {
-                        if (hashes[0] === "global")
-                            maximum = 10000;
-                        else
-                            maximum = 1000;
-                    }
-
-                    // Get torrents download limit
-                    // And create slider
-                    if (hashes[0] === "global") {
-                        let dl_limit = maximum;
-                        if (dl_limit < 0)
-                            dl_limit = 0;
-                        maximum = 10000;
-                        new Slider(document.getElementById("dllimitSliderarea"), document.getElementById("dllimitSliderknob"), {
-                            steps: maximum,
-                            offset: 0,
-                            initialStep: Math.round(dl_limit),
-                            onChange: (pos) => {
-                                if (pos > 0) {
-                                    document.getElementById("dllimitUpdatevalue").value = pos;
-                                    document.getElementById("dlLimitUnit").style.visibility = "visible";
-                                }
-                                else {
-                                    document.getElementById("dllimitUpdatevalue").value = "∞";
-                                    document.getElementById("dlLimitUnit").style.visibility = "hidden";
-                                }
-                            }
-                        });
-                        // Set default value
-                        if (dl_limit === 0) {
-                            document.getElementById("dllimitUpdatevalue").value = "∞";
-                            document.getElementById("dlLimitUnit").style.visibility = "hidden";
-                        }
-                        else {
-                            document.getElementById("dllimitUpdatevalue").value = Math.round(dl_limit);
-                            document.getElementById("dlLimitUnit").style.visibility = "visible";
-                        }
-                    }
-                    else {
-                        fetch("api/v2/torrents/downloadLimit", {
-                                method: "POST",
-                                body: new URLSearchParams({
-                                    hashes: hashes.join("|")
-                                })
-                            })
-                            .then(async (response) => {
-                                if (!response.ok)
-                                    return;
-
-                                const data = await response.json();
-
-                                let dl_limit = data[hashes[0]];
-                                for (const key in data) {
-                                    if (dl_limit !== data[key]) {
-                                        dl_limit = 0;
-                                        break;
-                                    }
-                                }
-                                if (dl_limit < 0)
-                                    dl_limit = 0;
-                                new Slider(document.getElementById("dllimitSliderarea"), document.getElementById("dllimitSliderknob"), {
-                                    steps: maximum,
-                                    offset: 0,
-                                    initialStep: Math.round(dl_limit / 1024),
-                                    onChange: (pos) => {
-                                        if (pos > 0) {
-                                            document.getElementById("dllimitUpdatevalue").value = pos;
-                                            document.getElementById("dlLimitUnit").style.visibility = "visible";
-                                        }
-                                        else {
-                                            document.getElementById("dllimitUpdatevalue").value = "∞";
-                                            document.getElementById("dlLimitUnit").style.visibility = "hidden";
-                                        }
-                                    }
-                                });
-                                // Set default value
-                                if (dl_limit === 0) {
-                                    document.getElementById("dllimitUpdatevalue").value = "∞";
-                                    document.getElementById("dlLimitUnit").style.visibility = "hidden";
-                                }
-                                else {
-                                    document.getElementById("dllimitUpdatevalue").value = Math.round(dl_limit / 1024);
-                                    document.getElementById("dlLimitUnit").style.visibility = "visible";
-                                }
-                            });
-                    }
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
                 });
         }
-    }
-});
+    };
+
+    return exports();
+})();
+Object.freeze(window.qBittorrent.SpeedSlider);
