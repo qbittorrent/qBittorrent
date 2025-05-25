@@ -907,14 +907,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.selectedRows.erase(rowId);
             this.rows.delete(rowId);
             const tr = this.getTrByRowId(rowId);
-            tr?.destroy();
+            tr?.remove();
         },
 
         clear: function() {
             this.deselectAll();
             this.rows.clear();
             for (const tr of this.getTrs())
-                tr.destroy();
+                tr.remove();
         },
 
         selectedRowsIds: function() {

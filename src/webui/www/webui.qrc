@@ -407,6 +407,7 @@
         <file>private/scripts/localpreferences.js</file>
         <file>private/scripts/misc.js</file>
         <file>private/scripts/mocha-init.js</file>
+        <file>private/scripts/monkeypatch.js</file>
         <file>private/scripts/pathAutofill.js</file>
         <file>private/scripts/piecesbar.js</file>
         <file>private/scripts/progressbar.js</file>
