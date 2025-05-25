@@ -4494,8 +4494,8 @@ En düşük gereksinim: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (401)</source>
-        <translation>Uzak içeriğe erişim reddedildi (401)</translation>
+        <source>The access to the remote content was denied (403)</source>
+        <translation>Uzak içeriğe erişim reddedildi (403)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4509,8 +4509,8 @@ En düşük gereksinim: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Uzak sunucu, içeriği sunmak için kimlik doğrulaması gerektirir ancak verilen kimlik bilgileri kabul edilmedi</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
+        <translation>Uzak sunucu, içeriği sunmak için kimlik doğrulaması gerektirir ancak verilen kimlik bilgileri kabul edilmedi (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

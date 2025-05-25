@@ -4494,8 +4494,8 @@ Minimumskrav: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (401)</source>
-        <translation>Tilgangen til det eksterne innholdet ble avslått (401)</translation>
+        <source>The access to the remote content was denied (403)</source>
+        <translation>Tilgangen til det eksterne innholdet ble avslått (403)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4509,8 +4509,8 @@ Minimumskrav: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Fjerntjeneren krever autentisering for å levere innholdet, men aksepterte ikke de oppgitte referansene</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
+        <translation>Fjerntjeneren krever autentisering for å levere innholdet, men aksepterte ikke de oppgitte referansene (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

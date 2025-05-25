@@ -279,13 +279,13 @@ QString Net::DownloadHandlerImpl::errorCodeToString(const QNetworkReply::Network
     case QNetworkReply::ProxyAuthenticationRequiredError:
         return tr("The proxy requires authentication in order to honor the request but did not accept any credentials offered");
     case QNetworkReply::ContentAccessDenied:
-        return tr("The access to the remote content was denied (401)");
+        return tr("The access to the remote content was denied (403)");
     case QNetworkReply::ContentOperationNotPermittedError:
         return tr("The operation requested on the remote content is not permitted");
     case QNetworkReply::ContentNotFoundError:
         return tr("The remote content was not found at the server (404)");
     case QNetworkReply::AuthenticationRequiredError:
-        return tr("The remote server requires authentication to serve the content but the credentials provided were not accepted");
+        return tr("The remote server requires authentication to serve the content but the credentials provided were not accepted (401)");
     case QNetworkReply::ProtocolUnknownError:
         return tr("The Network Access API cannot honor the request because the protocol is not known");
     case QNetworkReply::ProtocolInvalidOperationError:

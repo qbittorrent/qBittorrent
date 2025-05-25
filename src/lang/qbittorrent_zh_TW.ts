@@ -4494,8 +4494,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (401)</source>
-        <translation>存取遠端內容被拒絕 (401)</translation>
+        <source>The access to the remote content was denied (403)</source>
+        <translation>存取遠端內容被拒絕 (403)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4509,8 +4509,8 @@ Minimum requirement: %2.</source>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>為了提供內容，遠端代理伺服器要求認證，但提供的憑證不被接受</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
+        <translation>為了提供內容，遠端代理伺服器要求認證，但提供的憑證不被接受 (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>

@@ -4493,8 +4493,8 @@ Minimali versija yra: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
-        <source>The access to the remote content was denied (401)</source>
-        <translation>Priėjimas prie nuotolinio turinio buvo uždraustas (401)</translation>
+        <source>The access to the remote content was denied (403)</source>
+        <translation>Priėjimas prie nuotolinio turinio buvo uždraustas (403)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -4508,8 +4508,8 @@ Minimali versija yra: %2.</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
-        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted</source>
-        <translation>Serveris reikalauja atpažinimo norėdamas pateikti turinį, tačiau nepriėmė jokių siūlytų prisijungimo duomenų</translation>
+        <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
+        <translation>Serveris reikalauja atpažinimo norėdamas pateikti turinį, tačiau nepriėmė jokių siūlytų prisijungimo duomenų (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
