@@ -410,7 +410,7 @@ void Application::setMemoryWorkingSetLimit(const int size)
         return;
 
     m_storeMemoryWorkingSetLimit = size;
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_LINUX) && !defined(Q_OS_MACOS)
     applyMemoryWorkingSetLimit();
 #endif
 }
@@ -674,9 +674,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
     QProcess proc;
     proc.setProgram(command);
     proc.setArguments(args);
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
     proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
-#endif
 
     if (proc.startDetached())
     {
@@ -846,7 +844,7 @@ int Application::exec()
     printf("%s\n", qUtf8Printable(loadingStr));
 #endif
 
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_LINUX) && !defined(Q_OS_MACOS)
     applyMemoryWorkingSetLimit();
 #endif
 
@@ -1204,7 +1202,7 @@ void Application::shutdownCleanup([[maybe_unused]] QSessionManager &manager)
 }
 #endif
 
-#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
+#if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_LINUX) && !defined(Q_OS_MACOS)
 void Application::applyMemoryWorkingSetLimit() const
 {
     const size_t MiB = 1024 * 1024;

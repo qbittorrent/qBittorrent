@@ -55,7 +55,7 @@ window.qBittorrent.Download ??= (() => {
                     const option = document.createElement("option");
                     option.value = category.name;
                     option.textContent = category.name;
-                    $("categorySelect").appendChild(option);
+                    document.getElementById("categorySelect").appendChild(option);
                 }
             });
     };
@@ -64,31 +64,31 @@ window.qBittorrent.Download ??= (() => {
         const pref = window.parent.qBittorrent.Cache.preferences.get();
 
         defaultSavePath = pref.save_path;
-        $("savepath").value = defaultSavePath;
-        $("startTorrent").checked = !pref.add_stopped_enabled;
-        $("addToTopOfQueue").checked = pref.add_to_top_of_queue;
+        document.getElementById("savepath").value = defaultSavePath;
+        document.getElementById("startTorrent").checked = !pref.add_stopped_enabled;
+        document.getElementById("addToTopOfQueue").checked = pref.add_to_top_of_queue;
 
         if (pref.auto_tmm_enabled) {
-            $("autoTMM").selectedIndex = 1;
-            $("savepath").disabled = true;
+            document.getElementById("autoTMM").selectedIndex = 1;
+            document.getElementById("savepath").disabled = true;
         }
         else {
-            $("autoTMM").selectedIndex = 0;
+            document.getElementById("autoTMM").selectedIndex = 0;
         }
 
         if (pref.torrent_stop_condition === "MetadataReceived")
-            $("stopCondition").selectedIndex = 1;
+            document.getElementById("stopCondition").selectedIndex = 1;
         else if (pref.torrent_stop_condition === "FilesChecked")
-            $("stopCondition").selectedIndex = 2;
+            document.getElementById("stopCondition").selectedIndex = 2;
         else
-            $("stopCondition").selectedIndex = 0;
+            document.getElementById("stopCondition").selectedIndex = 0;
 
         if (pref.torrent_content_layout === "Subfolder")
-            $("contentLayout").selectedIndex = 1;
+            document.getElementById("contentLayout").selectedIndex = 1;
         else if (pref.torrent_content_layout === "NoSubfolder")
-            $("contentLayout").selectedIndex = 2;
+            document.getElementById("contentLayout").selectedIndex = 2;
         else
-            $("contentLayout").selectedIndex = 0;
+            document.getElementById("contentLayout").selectedIndex = 0;
     };
 
     const changeCategorySelect = (item) => {
@@ -97,41 +97,41 @@ window.qBittorrent.Download ??= (() => {
             item.nextElementSibling.value = "";
             item.nextElementSibling.select();
 
-            if ($("autoTMM").selectedIndex === 1)
-                $("savepath").value = defaultSavePath;
+            if (document.getElementById("autoTMM").selectedIndex === 1)
+                document.getElementById("savepath").value = defaultSavePath;
         }
         else {
             item.nextElementSibling.hidden = true;
             const text = item.options[item.selectedIndex].textContent;
             item.nextElementSibling.value = text;
 
-            if ($("autoTMM").selectedIndex === 1) {
+            if (document.getElementById("autoTMM").selectedIndex === 1) {
                 const categoryName = item.value;
                 const category = categories[categoryName];
                 let savePath = defaultSavePath;
                 if (category !== undefined)
                     savePath = (category["savePath"] !== "") ? category["savePath"] : `${defaultSavePath}/${categoryName}`;
-                $("savepath").value = savePath;
+                document.getElementById("savepath").value = savePath;
             }
         }
     };
 
     const changeTMM = (item) => {
         if (item.selectedIndex === 1) {
-            $("savepath").disabled = true;
+            document.getElementById("savepath").disabled = true;
 
-            const categorySelect = $("categorySelect");
+            const categorySelect = document.getElementById("categorySelect");
             const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
             const category = categories[categoryName];
-            $("savepath").value = (category === undefined) ? "" : category["savePath"];
+            document.getElementById("savepath").value = (category === undefined) ? "" : category["savePath"];
         }
         else {
-            $("savepath").disabled = false;
-            $("savepath").value = defaultSavePath;
+            document.getElementById("savepath").disabled = false;
+            document.getElementById("savepath").value = defaultSavePath;
         }
     };
 
-    $(window).addEventListener("load", async () => {
+    window.addEventListener("load", async (event) => {
         // user might load this page directly (via browser magnet handler)
         // so wait for crucial initialization to complete
         await window.parent.qBittorrent.Client.initializeCaches();

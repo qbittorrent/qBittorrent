@@ -12,18 +12,18 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             const searchParams = new URLSearchParams(window.location.search);
             const host = searchParams.get("host");
 
-            $("confirmDeleteTrackerText").textContent = "QBT_TR(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
+            document.getElementById("confirmDeleteTrackerText").textContent = "QBT_TR(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
 
-            $("cancelBtn").focus();
-            $("cancelBtn").addEventListener("click", (e) => {
+            document.getElementById("cancelBtn").focus();
+            document.getElementById("cancelBtn").addEventListener("click", (e) => {
                 e.stopPropagation();
                 window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
-            $("confirmBtn").addEventListener("click", (e) => {
+            document.getElementById("confirmBtn").addEventListener("click", (e) => {
                 e.stopPropagation();
 
                 fetch("api/v2/torrents/removeTrackers", {

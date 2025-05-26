@@ -167,22 +167,22 @@
         if (encodedUrls !== null) {
             const urls = encodedUrls.split("|").map(decodeURIComponent);
             if (urls.length > 0)
-                $("urls").value = urls.join("\n");
+                document.getElementById("urls").value = urls.join("\n");
         }
 
         let submitted = false;
 
-        $("downloadForm").addEventListener("submit", () => {
-            $("startTorrentHidden").value = $("startTorrent").checked ? "false" : "true";
+        document.getElementById("downloadForm").addEventListener("submit", (event) => {
+            document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
 
-            $("dlLimitHidden").value = Number($("dlLimitText").value) * 1024;
-            $("upLimitHidden").value = Number($("upLimitText").value) * 1024;
+            document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
+            document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
 
-            $("download_spinner").style.display = "block";
+            document.getElementById("download_spinner").style.display = "block";
             submitted = true;
         });
 
-        $("download_frame").addEventListener("load", () => {
+        document.getElementById("download_frame").addEventListener("load", (event) => {
             if (submitted)
                 window.parent.qBittorrent.Client.closeFrameWindow(window);
         });

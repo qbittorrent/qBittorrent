@@ -546,7 +546,7 @@ void SearchPluginManager::update()
 {
     QProcess nova;
     nova.setProcessEnvironment(proxyEnvironment());
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+#ifdef Q_OS_UNIX
     nova.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
 #endif
 
@@ -556,7 +556,7 @@ void SearchPluginManager::update()
         (engineLocation() / Path(u"/nova2.py"_s)).toString(),
         u"--capabilities"_s
     };
-    nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
+    nova.start(Utils::ForeignApps::pythonInfo().executablePath.data(), params, QIODevice::ReadOnly);
     nova.waitForFinished();
 
     const auto capabilities = QString::fromUtf8(nova.readAllStandardOutput());

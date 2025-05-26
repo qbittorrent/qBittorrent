@@ -14,12 +14,12 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Enter":
                         event.preventDefault();
-                        $("categoryNameButton").click();
+                        document.getElementById("categoryNameButton").click();
                         break;
                     case "Escape":
                         event.preventDefault();
@@ -38,25 +38,25 @@
                 if (!uriCategoryName)
                     return;
 
-                $("categoryName").disabled = true;
-                $("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
-                $("savePath").value = window.qBittorrent.Misc.escapeHtml(uriSavePath);
-                $("savePath").focus();
+                document.getElementById("categoryName").disabled = true;
+                document.getElementById("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
+                document.getElementById("savePath").value = window.qBittorrent.Misc.escapeHtml(uriSavePath);
+                document.getElementById("savePath").focus();
             }
             else if (uriAction === "createSubcategory") {
-                $("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
-                $("categoryName").focus();
+                document.getElementById("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
+                document.getElementById("categoryName").focus();
             }
             else {
-                $("categoryName").focus();
+                document.getElementById("categoryName").focus();
             }
 
-            $("categoryNameButton").addEventListener("click", (e) => {
+            document.getElementById("categoryNameButton").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
-                const savePath = $("savePath").value.trim();
-                const categoryName = $("categoryName").value.trim();
+                const savePath = document.getElementById("savePath").value.trim();
+                const categoryName = document.getElementById("categoryName").value.trim();
 
                 const verifyCategoryName = (name) => {
                     if ((name === null) || (name === ""))

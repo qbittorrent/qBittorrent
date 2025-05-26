@@ -22,7 +22,7 @@ window.qBittorrent.MultiRename ??= (() => {
 
         // Search Options
         _inner_search: "",
-        setSearch(val) {
+        setSearch: function(val) {
             this._inner_search = val;
             this._inner_update();
             this.onChanged(this.matchedFiles);
@@ -33,7 +33,7 @@ window.qBittorrent.MultiRename ??= (() => {
 
         // Replacement Options
         _inner_replacement: "",
-        setReplacement(val) {
+        setReplacement: function(val) {
             this._inner_replacement = val;
             this._inner_update();
             this.onChanged(this.matchedFiles);

@@ -160,23 +160,23 @@
 
         let submitted = false;
 
-        $("uploadForm").addEventListener("submit", () => {
-            $("startTorrentHidden").value = $("startTorrent").checked ? "false" : "true";
+        document.getElementById("uploadForm").addEventListener("submit", (event) => {
+            document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
 
-            $("dlLimitHidden").value = Number($("dlLimitText").value) * 1024;
-            $("upLimitHidden").value = Number($("upLimitText").value) * 1024;
+            document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
+            document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
 
-            $("upload_spinner").style.display = "block";
+            document.getElementById("upload_spinner").style.display = "block";
             submitted = true;
         });
 
-        $("upload_frame").addEventListener("load", () => {
+        document.getElementById("upload_frame").addEventListener("load", (event) => {
             if (submitted)
                 window.parent.qBittorrent.Client.closeFrameWindow(window);
         });
 
         if ((Browser.platform === "ios") || ((Browser.platform === "mac") && (navigator.maxTouchPoints > 1)))
-            $("fileselect").accept = ".torrent";
+            document.getElementById("fileselect").accept = ".torrent";
 
         window.qBittorrent.pathAutofill.attachPathAutofill();
     </script>

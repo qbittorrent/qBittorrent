@@ -30,6 +30,7 @@
 #pragma once
 
 #include <chrono>
+#include <functional>
 #include <utility>
 #include <vector>
 
@@ -44,6 +45,7 @@
 #include <QMap>
 #include <QMutex>
 #include <QPointer>
+#include <QQueue>
 #include <QSet>
 #include <QThreadPool>
 
@@ -61,11 +63,15 @@ class QString;
 class QTimer;
 class QUrl;
 
+template <typename T> class QFuture;
+
 class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
 class FreeDiskSpaceChecker;
 class NativeSessionExtension;
+
+struct FileSearchResult;
 
 namespace BitTorrent
 {
@@ -478,8 +484,9 @@ namespace BitTorrent
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode, MoveStorageContext context);
 
-        void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
-                                 , const Path &downloadPath, const PathList &filePaths = {}) const;
+        lt::torrent_handle reloadTorrent(const lt::torrent_handle &currentHandle, lt::add_torrent_params params);
+
+        QFuture<FileSearchResult> findIncompleteFiles(const Path &savePath, const Path &downloadPath, const PathList &filePaths = {}) const;
 
         void enablePortMapping();
         void disablePortMapping();
@@ -514,7 +521,6 @@ namespace BitTorrent
         void generateResumeData();
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
-        void fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames);
         void torrentContentRemovingFinished(const QString &torrentName, const QString &errorMessage);
 
     private:
@@ -604,6 +610,7 @@ namespace BitTorrent
 #endif
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
 
         void saveResumeData();
         void saveTorrentsQueue();
@@ -810,11 +817,13 @@ namespace BitTorrent
         FileSearcher *m_fileSearcher = nullptr;
         TorrentContentRemover *m_torrentContentRemover = nullptr;
 
+        using AddTorrentAlertHandler = std::function<void (const lt::add_torrent_alert *alert)>;
+        QQueue<AddTorrentAlertHandler> m_addTorrentAlertHandlers;
+
         QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 
         QHash<TorrentID, TorrentImpl *> m_torrents;
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
-        QHash<TorrentID, LoadTorrentParams> m_loadingTorrents;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
         QHash<TorrentID, TorrentID> m_changedTorrentIDs;
         QMap<QString, CategoryOptions> m_categories;

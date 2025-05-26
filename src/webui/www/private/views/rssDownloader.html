@@ -370,30 +370,30 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const pref = window.parent.qBittorrent.Cache.preferences.get();
 
             if (!pref.rss_auto_downloading_enabled)
-                $("rssDownloaderDisabled").classList.remove("invisible");
+                document.getElementById("rssDownloaderDisabled").classList.remove("invisible");
 
             // recalculate height
-            const warningHeight = $("rssDownloaderDisabled").getBoundingClientRect().height;
+            const warningHeight = document.getElementById("rssDownloaderDisabled").getBoundingClientRect().height;
 
-            $("leftRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
-            $("centerRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
-            $("rightRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
+            document.getElementById("leftRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
+            document.getElementById("centerRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
+            document.getElementById("rightRssDownloaderColumn").style.height = `calc(100% - ${warningHeight}px)`;
 
-            $("rulesTable").style.height = `calc(100% - ${$("rulesTableDesc").getBoundingClientRect().height}px)`;
-            $("rssDownloaderArticlesTable").style.height = `calc(100% - ${$("articleTableDesc").getBoundingClientRect().height}px)`;
+            document.getElementById("rulesTable").style.height = `calc(100% - ${document.getElementById("rulesTableDesc").getBoundingClientRect().height}px)`;
+            document.getElementById("rssDownloaderArticlesTable").style.height = `calc(100% - ${document.getElementById("articleTableDesc").getBoundingClientRect().height}px)`;
 
-            const centerRowNotTableHeight = $("saveButton").getBoundingClientRect().height
-                + $("ruleSettings").getBoundingClientRect().height + 15;
+            const centerRowNotTableHeight = document.getElementById("saveButton").getBoundingClientRect().height
+                + document.getElementById("ruleSettings").getBoundingClientRect().height + 15;
 
-            $("rssDownloaderFeeds").style.height = `calc(100% - ${centerRowNotTableHeight}px)`;
+            document.getElementById("rssDownloaderFeeds").style.height = `calc(100% - ${centerRowNotTableHeight}px)`;
 
             // firefox calculates the height of the table inside fieldset differently and thus doesn't need the offset
             if (navigator.userAgent.toLowerCase().includes("firefox")) {
-                $("rssDownloaderFeedsTable").style.height = "100%";
+                document.getElementById("rssDownloaderFeedsTable").style.height = "100%";
             }
             else {
-                const outsideTableHeight = ($("rssDownloaderFeedsTable").getBoundingClientRect().top - $("rssDownloaderFeeds").getBoundingClientRect().top) - 10;
-                $("rssDownloaderFeedsTable").style.height = `calc(100% - ${outsideTableHeight}px)`;
+                const outsideTableHeight = (document.getElementById("rssDownloaderFeedsTable").getBoundingClientRect().top - document.getElementById("rssDownloaderFeeds").getBoundingClientRect().top) - 10;
+                document.getElementById("rssDownloaderFeedsTable").style.height = `calc(100% - ${outsideTableHeight}px)`;
             }
 
             const rssDownloaderRuleContextMenu = new window.qBittorrent.ContextMenu.RssDownloaderRuleContextMenu({
@@ -419,9 +419,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rssDownloaderFeedSelectionTable.setup("rssDownloaderFeedSelectionTableDiv", "rssDownloaderFeedSelectionFixedHeaderDiv");
             rssDownloaderArticlesTable.setup("rssDownloaderArticlesTableDiv", "rssDownloaderArticlesFixedHeaderDiv");
 
-            rssDownloaderRuleContextMenu.addTarget($("rulesTable"));
+            rssDownloaderRuleContextMenu.addTarget(document.getElementById("rulesTable"));
             // deselect feed when clicking on empty part of table
-            $("rulesTable").addEventListener("click", (e) => {
+            document.getElementById("rulesTable").addEventListener("click", (e) => {
                 if (e.target.nodeName === "DIV") {
                     rssDownloaderRulesTable.deselectAll();
                     rssDownloaderRulesTable.deselectRow();
@@ -439,7 +439,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
                     const responseJSON = await response.json();
 
-                    const combobox = $("assignCategoryCombobox");
+                    const combobox = document.getElementById("assignCategoryCombobox");
                     for (const cat in responseJSON) {
                         if (!Object.hasOwn(responseJSON, cat))
                             continue;
@@ -475,8 +475,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     };
                     flatten(responseJSON);
                 });
-            $("savetoDifferentDir").addEventListener("click", () => {
-                $("saveToText").disabled = !$("savetoDifferentDir").checked;
+            document.getElementById("savetoDifferentDir").addEventListener("click", (event) => {
+                document.getElementById("saveToText").disabled = !event.target.checked;
             });
             updateRulesList();
         };
@@ -599,27 +599,27 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const lastSelectedRow = rssDownloaderRulesTable.selectedRows.at(-1);
             const rule = rssDownloaderRulesTable.getRow(lastSelectedRow).full_data.name;
 
-            rulesList[rule].useRegex = $("useRegEx").checked;
-            rulesList[rule].mustContain = $("mustContainText").value;
-            rulesList[rule].mustNotContain = $("mustNotContainText").value;
-            rulesList[rule].episodeFilter = $("episodeFilterText").value;
-            rulesList[rule].smartFilter = $("useSmartFilter").checked;
-            rulesList[rule].ignoreDays = Number($("ignoreDaysValue").value);
+            rulesList[rule].useRegex = document.getElementById("useRegEx").checked;
+            rulesList[rule].mustContain = document.getElementById("mustContainText").value;
+            rulesList[rule].mustNotContain = document.getElementById("mustNotContainText").value;
+            rulesList[rule].episodeFilter = document.getElementById("episodeFilterText").value;
+            rulesList[rule].smartFilter = document.getElementById("useSmartFilter").checked;
+            rulesList[rule].ignoreDays = Number(document.getElementById("ignoreDaysValue").value);
             rulesList[rule].affectedFeeds = [...rssDownloaderFeedSelectionTable.getRowValues()]
                 .filter((row) => row.full_data.checked)
                 .map((row) => row.full_data.url);
 
-            rulesList[rule].torrentParams.category = $("assignCategoryCombobox").value;
-            rulesList[rule].torrentParams.tags = $("ruleAddTags").value.split(",");
-            if ($("savetoDifferentDir").checked) {
-                rulesList[rule].torrentParams.save_path = $("saveToText").value;
+            rulesList[rule].torrentParams.category = document.getElementById("assignCategoryCombobox").value;
+            rulesList[rule].torrentParams.tags = document.getElementById("ruleAddTags").value.split(",");
+            if (document.getElementById("savetoDifferentDir").checked) {
+                rulesList[rule].torrentParams.save_path = document.getElementById("saveToText").value;
                 rulesList[rule].torrentParams.use_auto_tmm = false;
             }
             else {
                 rulesList[rule].torrentParams.save_path = "";
             }
 
-            switch ($("addStoppedCombobox").value) {
+            switch (document.getElementById("addStoppedCombobox").value) {
                 case "default":
                     rulesList[rule].torrentParams.stopped = null;
                     break;
@@ -631,7 +631,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     break;
             }
 
-            switch ($("contentLayoutCombobox").value) {
+            switch (document.getElementById("contentLayoutCombobox").value) {
                 case "Default":
                     rulesList[rule].torrentParams.content_layout = null;
                     break;
@@ -701,89 +701,89 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const showRule = (ruleName) => {
             if (ruleName === "") {
                 // disable all
-                $("saveButton").disabled = true;
-                $("useRegEx").disabled = true;
-                $("mustContainText").disabled = true;
-                $("mustNotContainText").disabled = true;
-                $("episodeFilterText").disabled = true;
-                $("useSmartFilter").disabled = true;
-                $("assignCategoryCombobox").disabled = true;
-                $("ruleAddTags").disabled = true;
-                $("savetoDifferentDir").disabled = true;
-                $("saveToText").disabled = true;
-                $("ignoreDaysValue").disabled = true;
-                $("addStoppedCombobox").disabled = true;
-                $("contentLayoutCombobox").disabled = true;
+                document.getElementById("saveButton").disabled = true;
+                document.getElementById("useRegEx").disabled = true;
+                document.getElementById("mustContainText").disabled = true;
+                document.getElementById("mustNotContainText").disabled = true;
+                document.getElementById("episodeFilterText").disabled = true;
+                document.getElementById("useSmartFilter").disabled = true;
+                document.getElementById("assignCategoryCombobox").disabled = true;
+                document.getElementById("ruleAddTags").disabled = true;
+                document.getElementById("savetoDifferentDir").disabled = true;
+                document.getElementById("saveToText").disabled = true;
+                document.getElementById("ignoreDaysValue").disabled = true;
+                document.getElementById("addStoppedCombobox").disabled = true;
+                document.getElementById("contentLayoutCombobox").disabled = true;
 
                 // reset all boxes
-                $("useRegEx").checked = false;
-                $("mustContainText").value = "";
-                $("mustNotContainText").value = "";
-                $("episodeFilterText").value = "";
-                $("useSmartFilter").checked = false;
-                $("assignCategoryCombobox").value = "default";
-                $("ruleAddTags").value = "";
-                $("savetoDifferentDir").checked = false;
-                $("saveToText").value = "";
-                $("ignoreDaysValue").value = 0;
-                $("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
-                $("addStoppedCombobox").value = "default";
-                $("contentLayoutCombobox").value = "Default";
+                document.getElementById("useRegEx").checked = false;
+                document.getElementById("mustContainText").value = "";
+                document.getElementById("mustNotContainText").value = "";
+                document.getElementById("episodeFilterText").value = "";
+                document.getElementById("useSmartFilter").checked = false;
+                document.getElementById("assignCategoryCombobox").value = "default";
+                document.getElementById("ruleAddTags").value = "";
+                document.getElementById("savetoDifferentDir").checked = false;
+                document.getElementById("saveToText").value = "";
+                document.getElementById("ignoreDaysValue").value = 0;
+                document.getElementById("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
+                document.getElementById("addStoppedCombobox").value = "default";
+                document.getElementById("contentLayoutCombobox").value = "Default";
                 rssDownloaderFeedSelectionTable.clear();
                 rssDownloaderArticlesTable.clear();
 
-                $("mustContainText").title = "";
-                $("mustNotContainText").title = "";
-                $("episodeFilterText").title = "";
+                document.getElementById("mustContainText").title = "";
+                document.getElementById("mustNotContainText").title = "";
+                document.getElementById("episodeFilterText").title = "";
             }
             else {
                 // enable all
-                $("saveButton").disabled = false;
-                $("useRegEx").disabled = false;
-                $("mustContainText").disabled = false;
-                $("mustNotContainText").disabled = false;
-                $("episodeFilterText").disabled = false;
-                $("useSmartFilter").disabled = false;
-                $("assignCategoryCombobox").disabled = false;
-                $("ruleAddTags").disabled = false;
-                $("savetoDifferentDir").disabled = false;
-                $("ignoreDaysValue").disabled = false;
-                $("addStoppedCombobox").disabled = false;
-                $("contentLayoutCombobox").disabled = false;
+                document.getElementById("saveButton").disabled = false;
+                document.getElementById("useRegEx").disabled = false;
+                document.getElementById("mustContainText").disabled = false;
+                document.getElementById("mustNotContainText").disabled = false;
+                document.getElementById("episodeFilterText").disabled = false;
+                document.getElementById("useSmartFilter").disabled = false;
+                document.getElementById("assignCategoryCombobox").disabled = false;
+                document.getElementById("ruleAddTags").disabled = false;
+                document.getElementById("savetoDifferentDir").disabled = false;
+                document.getElementById("ignoreDaysValue").disabled = false;
+                document.getElementById("addStoppedCombobox").disabled = false;
+                document.getElementById("contentLayoutCombobox").disabled = false;
 
                 // load rule settings
-                $("useRegEx").checked = rulesList[ruleName].useRegex;
-                $("mustContainText").value = rulesList[ruleName].mustContain;
-                $("mustNotContainText").value = rulesList[ruleName].mustNotContain;
-                $("episodeFilterText").value = rulesList[ruleName].episodeFilter;
-                $("useSmartFilter").checked = rulesList[ruleName].smartFilter;
+                document.getElementById("useRegEx").checked = rulesList[ruleName].useRegex;
+                document.getElementById("mustContainText").value = rulesList[ruleName].mustContain;
+                document.getElementById("mustNotContainText").value = rulesList[ruleName].mustNotContain;
+                document.getElementById("episodeFilterText").value = rulesList[ruleName].episodeFilter;
+                document.getElementById("useSmartFilter").checked = rulesList[ruleName].smartFilter;
 
-                $("assignCategoryCombobox").value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : "default";
-                $("ruleAddTags").value = rulesList[ruleName].torrentParams.tags.join(",");
-                $("savetoDifferentDir").checked = rulesList[ruleName].torrentParams.save_path !== "";
-                $("saveToText").disabled = !$("savetoDifferentDir").checked;
-                $("saveToText").value = rulesList[ruleName].torrentParams.save_path;
-                $("ignoreDaysValue").value = rulesList[ruleName].ignoreDays;
+                document.getElementById("assignCategoryCombobox").value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : "default";
+                document.getElementById("ruleAddTags").value = rulesList[ruleName].torrentParams.tags.join(",");
+                document.getElementById("savetoDifferentDir").checked = rulesList[ruleName].torrentParams.save_path !== "";
+                document.getElementById("saveToText").disabled = !document.getElementById("savetoDifferentDir").checked;
+                document.getElementById("saveToText").value = rulesList[ruleName].torrentParams.save_path;
+                document.getElementById("ignoreDaysValue").value = rulesList[ruleName].ignoreDays;
 
                 // calculate days since last match
                 if (rulesList[ruleName].lastMatch !== "") {
                     const timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
                     const daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
-                    $("lastMatchText").textContent = " QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]".replace("%1", daysAgo);
+                    document.getElementById("lastMatchText").textContent = " QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]".replace("%1", daysAgo);
                 }
                 else {
-                    $("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
+                    document.getElementById("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
                 }
 
                 if ((rulesList[ruleName].torrentParams.stopped === undefined) || (rulesList[ruleName].torrentParams.stopped === null))
-                    $("addStoppedCombobox").value = "default";
+                    document.getElementById("addStoppedCombobox").value = "default";
                 else
-                    $("addStoppedCombobox").value = rulesList[ruleName].torrentParams.stopped ? "always" : "never";
+                    document.getElementById("addStoppedCombobox").value = rulesList[ruleName].torrentParams.stopped ? "always" : "never";
 
                 if ((rulesList[ruleName].torrentParams.content_layout === undefined) || (rulesList[ruleName].torrentParams.content_layout === null))
-                    $("contentLayoutCombobox").value = "Default";
+                    document.getElementById("contentLayoutCombobox").value = "Default";
                 else
-                    $("contentLayoutCombobox").value = rulesList[ruleName].torrentParams.content_layout;
+                    document.getElementById("contentLayoutCombobox").value = rulesList[ruleName].torrentParams.content_layout;
 
                 setElementTitles();
 
@@ -804,7 +804,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
         const setElementTitles = () => {
             let mainPart;
-            if ($("useRegEx").checked) {
+            if (document.getElementById("useRegEx").checked) {
                 mainPart = "QBT_TR(Regex mode: use Perl-compatible regular expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n";
             }
             else {
@@ -818,8 +818,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const secondPart = "QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]"
                 .replace("%1", "|").replace("%2", "expr|");
 
-            $("mustContainText").title = `${mainPart}${secondPart}QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]`;
-            $("mustNotContainText").title = `${mainPart}${secondPart}QBT_TR( will exclude all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]`;
+            document.getElementById("mustContainText").title = `${mainPart}${secondPart}QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]`;
+            document.getElementById("mustNotContainText").title = `${mainPart}${secondPart}QBT_TR( will exclude all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]`;
 
             let episodeFilterTitle = "QBT_TR(Matches articles based on episode filter.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n"
                 + "QBT_TR(Example: )QBT_TR[CONTEXT=AutomatedRssDownloader]"
@@ -835,7 +835,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 + "    ● QBT_TR(Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons)QBT_TR[CONTEXT=AutomatedRssDownloader]";
 
             episodeFilterTitle = episodeFilterTitle.replace(/<b>/g, "").replace(/<\/b>/g, "");
-            $("episodeFilterText").title = episodeFilterTitle;
+            document.getElementById("episodeFilterText").title = episodeFilterTitle;
         };
 
         return exports();

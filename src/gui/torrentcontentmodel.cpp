@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,6 +33,7 @@
 
 #include <QFileIconProvider>
 #include <QFileInfo>
+#include <QFuture>
 #include <QIcon>
 #include <QMimeData>
 #include <QPointer>
@@ -219,18 +220,14 @@ void TorrentContentModel::updateFilesAvailability()
     Q_ASSERT(m_contentHandler && m_contentHandler->hasMetadata());
 
     using HandlerPtr = QPointer<BitTorrent::TorrentContentHandler>;
-    m_contentHandler->fetchAvailableFileFractions([this, handler = HandlerPtr(m_contentHandler)](const QList<qreal> &availableFileFractions)
+    m_contentHandler->fetchAvailableFileFractions().then(this
+            , [this, handler = HandlerPtr(m_contentHandler)](const QList<qreal> &availableFileFractions)
     {
-        if (handler != m_contentHandler)
-            return;
-
-        Q_ASSERT(m_filesIndex.size() == availableFileFractions.size());
-        // XXX: Why is this necessary?
-        if (m_filesIndex.size() != availableFileFractions.size()) [[unlikely]]
+        if (!m_contentHandler || (m_contentHandler != handler))
             return;
 
         for (int i = 0; i < m_filesIndex.size(); ++i)
-            m_filesIndex[i]->setAvailability(availableFileFractions[i]);
+            m_filesIndex[i]->setAvailability(availableFileFractions.value(i, 0));
         // Update folders progress in the tree
         m_rootItem->recalculateProgress();
     });

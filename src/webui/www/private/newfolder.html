@@ -14,12 +14,12 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Enter":
                         event.preventDefault();
-                        $("submitButton").click();
+                        document.getElementById("submitButton").click();
                         break;
                     case "Escape":
                         event.preventDefault();
@@ -28,19 +28,19 @@
                 }
             });
 
-            $("folderName").focus();
-            $("submitButton").addEventListener("click", (e) => {
+            document.getElementById("folderName").focus();
+            document.getElementById("submitButton").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
                 // check field
-                const folderName = $("folderName").value.trim();
+                const folderName = document.getElementById("folderName").value.trim();
                 if (folderName === "") {
                     alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
 
-                $("submitButton").disabled = true;
+                document.getElementById("submitButton").disabled = true;
 
                 const path = new URLSearchParams(window.location.search).get("path");
                 fetch("api/v2/rss/addFolder", {
@@ -53,7 +53,7 @@
                         if (!response.ok) {
                             if (response.status === 409)
                                 alert(await response.text());
-                            $("submitButton").disabled = false;
+                            document.getElementById("submitButton").disabled = false;
                             return;
                         }
 

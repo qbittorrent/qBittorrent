@@ -12,12 +12,12 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Enter":
                         event.preventDefault();
-                        $("editTrackerButton").click();
+                        document.getElementById("editTrackerButton").click();
                         break;
                     case "Escape":
                         event.preventDefault();
@@ -31,10 +31,10 @@
             if (currentUrl === null)
                 return;
 
-            $("trackerUrl").value = currentUrl;
-            $("trackerUrl").focus();
+            document.getElementById("trackerUrl").value = currentUrl;
+            document.getElementById("trackerUrl").focus();
 
-            $("editTrackerButton").addEventListener("click", (e) => {
+            document.getElementById("editTrackerButton").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
@@ -43,7 +43,7 @@
                         body: new URLSearchParams({
                             hash: searchParams.get("hash"),
                             origUrl: currentUrl,
-                            newUrl: $("trackerUrl").value
+                            newUrl: document.getElementById("trackerUrl").value
                         })
                     })
                     .then((response) => {

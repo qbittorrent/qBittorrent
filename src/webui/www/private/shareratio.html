@@ -15,12 +15,12 @@
         const UseGlobalLimit = -2;
         const NoLimit = -1;
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Enter":
                         event.preventDefault();
-                        $("save").click();
+                        document.getElementById("save").click();
                         break;
                     case "Escape":
                         event.preventDefault();
@@ -56,23 +56,23 @@
             else {
                 setSelectedRadioValue("shareLimit", "custom");
                 if (values.ratioLimit >= 0) {
-                    $("setRatio").checked = true;
-                    $("ratio").value = values.ratioLimit.toFixed(2);
+                    document.getElementById("setRatio").checked = true;
+                    document.getElementById("ratio").value = values.ratioLimit.toFixed(2);
                 }
                 if (values.seedingTimeLimit >= 0) {
-                    $("setTotalMinutes").checked = true;
-                    $("totalMinutes").value = values.seedingTimeLimit;
+                    document.getElementById("setTotalMinutes").checked = true;
+                    document.getElementById("totalMinutes").value = values.seedingTimeLimit;
                 }
                 if (values.inactiveSeedingTimeLimit >= 0) {
-                    $("setInactiveMinutes").checked = true;
-                    $("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
+                    document.getElementById("setInactiveMinutes").checked = true;
+                    document.getElementById("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
             }
 
             shareLimitChanged();
 
-            $("default").focus();
-            $("save").addEventListener("click", (e) => {
+            document.getElementById("default").focus();
+            document.getElementById("save").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
@@ -91,9 +91,9 @@
                     ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = NoLimit;
                 }
                 else if (shareLimit === "custom") {
-                    ratioLimitValue = $("setRatio").checked ? $("ratio").value : -1;
-                    seedingTimeLimitValue = $("setTotalMinutes").checked ? $("totalMinutes").value : -1;
-                    inactiveSeedingTimeLimitValue = $("setInactiveMinutes").checked ? $("inactiveMinutes").value : -1;
+                    ratioLimitValue = document.getElementById("setRatio").checked ? document.getElementById("ratio").value : -1;
+                    seedingTimeLimitValue = document.getElementById("setTotalMinutes").checked ? document.getElementById("totalMinutes").value : -1;
+                    inactiveSeedingTimeLimitValue = document.getElementById("setInactiveMinutes").checked ? document.getElementById("inactiveMinutes").value : -1;
                 }
                 else {
                     return;
@@ -108,7 +108,7 @@
                             inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue
                         })
                     })
-                    .then(async (response) => {
+                    .then((response) => {
                         if (!response.ok)
                             return;
 
@@ -139,26 +139,26 @@
 
         const shareLimitChanged = () => {
             const customShareLimit = getSelectedRadioValue("shareLimit") === "custom";
-            $("setRatio").disabled = !customShareLimit;
-            $("setTotalMinutes").disabled = !customShareLimit;
-            $("setInactiveMinutes").disabled = !customShareLimit;
+            document.getElementById("setRatio").disabled = !customShareLimit;
+            document.getElementById("setTotalMinutes").disabled = !customShareLimit;
+            document.getElementById("setInactiveMinutes").disabled = !customShareLimit;
 
             enableInputBoxes();
 
-            $("save").disabled = !isFormValid();
+            document.getElementById("save").disabled = !isFormValid();
         };
 
         const enableInputBoxes = () => {
-            $("ratio").disabled = $("setRatio").disabled || !$("setRatio").checked;
-            $("totalMinutes").disabled = $("setTotalMinutes").disabled || !$("setTotalMinutes").checked;
-            $("inactiveMinutes").disabled = $("setInactiveMinutes").disabled || !$("setInactiveMinutes").checked;
+            document.getElementById("ratio").disabled = document.getElementById("setRatio").disabled || !document.getElementById("setRatio").checked;
+            document.getElementById("totalMinutes").disabled = document.getElementById("setTotalMinutes").disabled || !document.getElementById("setTotalMinutes").checked;
+            document.getElementById("inactiveMinutes").disabled = document.getElementById("setInactiveMinutes").disabled || !document.getElementById("setInactiveMinutes").checked;
 
-            $("save").disabled = !isFormValid();
+            document.getElementById("save").disabled = !isFormValid();
         };
 
         const isFormValid = () => {
-            return !((getSelectedRadioValue("shareLimit") === "custom") && !$("setRatio").checked
-                && !$("setTotalMinutes").checked && !$("setInactiveMinutes").checked);
+            return !((getSelectedRadioValue("shareLimit") === "custom") && !document.getElementById("setRatio").checked
+                && !document.getElementById("setTotalMinutes").checked && !document.getElementById("setInactiveMinutes").checked);
         };
     </script>
 </head>
@@ -172,17 +172,17 @@
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setRatio" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="ratioLabel" for="setRatio">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <input type="number" id="ratio" value="0.00" step=".01" min="0" max="9999" class="shareLimitInput" aria-labelledby="ratioLabel">
+            <input type="number" id="ratio" value="0.00" step=".01" min="0" class="shareLimitInput" aria-labelledby="ratioLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setTotalMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="totalMinutesLabel" for="setTotalMinutes">QBT_TR(total minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <input type="number" id="totalMinutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" aria-labelledby="totalMinutesLabel">
+            <input type="number" id="totalMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="totalMinutesLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setInactiveMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="inactiveMinutesLabel" for="setInactiveMinutes">QBT_TR(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <input type="number" id="inactiveMinutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
+            <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
         </div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="save">

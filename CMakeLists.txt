@@ -8,7 +8,7 @@ project(qBittorrent
 
 # version requirements - older versions may work, but you are on your own
 set(minBoostVersion 1.76)
-set(minQt6Version 6.5.0)
+set(minQt6Version 6.6.0)
 set(minOpenSSLVersion 3.0.2)
 set(minLibtorrent1Version 1.2.19)
 set(minLibtorrentVersion 2.0.10)

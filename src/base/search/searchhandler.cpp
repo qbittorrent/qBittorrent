@@ -71,8 +71,8 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 {
     // Load environment variables (proxy)
     m_searchProcess->setProcessEnvironment(m_manager->proxyEnvironment());
-    m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
-#if defined(Q_OS_UNIX) && (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+    m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executablePath.data());
+#ifdef Q_OS_UNIX
     m_searchProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
 #endif
 

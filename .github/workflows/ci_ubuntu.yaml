@@ -21,7 +21,7 @@ jobs:
       matrix:
         libt_version: ["2.0.11", "1.2.20"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["6.5.2"]
+        qt_version: ["6.6.3"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -162,6 +162,7 @@ jobs:
 
       - name: Package AppImage
         run: |
+          rm -f "${{ runner.workspace }}/Qt/${{ matrix.qt_version }}/gcc_64/plugins/sqldrivers/libqsqlmimer.so"
           ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --plugin qt
           rm qbittorrent/apprun-hooks/*
           cp .github/workflows/helper/appimage/export_vars.sh qbittorrent/apprun-hooks/export_vars.sh

@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2025  bolshoytoster <toasterbig@gmail.com>
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,37 +27,46 @@
  * exception statement from your version.
  */
 
-#pragma once
+"use strict";
 
-#include <QObject>
-
-#include "base/pathfwd.h"
-#include "abstractfilestorage.h"
-#include "downloadpriority.h"
-
-template <typename T> class QFuture;
-
-namespace BitTorrent
-{
-    class TorrentContentHandler : public QObject, public AbstractFileStorage
-    {
-    public:
-        using QObject::QObject;
-
-        virtual bool hasMetadata() const = 0;
-        virtual Path actualStorageLocation() const = 0;
-        virtual Path actualFilePath(int fileIndex) const = 0;
-        virtual QList<DownloadPriority> filePriorities() const = 0;
-        virtual QList<qreal> filesProgress() const = 0;
-        /**
-         * @brief fraction of file pieces that are available at least from one peer
-         *
-         * This is not the same as torrrent availability, it is just a fraction of pieces
-         * that can be downloaded right now. It varies between 0 to 1.
-         */
-        virtual QFuture<QList<qreal>> fetchAvailableFileFractions() const = 0;
-
-        virtual void prioritizeFiles(const QList<DownloadPriority> &priorities) = 0;
-        virtual void flushCache() const = 0;
+window.qBittorrent ??= {};
+window.qBittorrent.MonkeyPatch ??= (() => {
+    const exports = () => {
+        return {
+            patch: patch
+        };
     };
-}
+
+    const patch = () => {
+        patchMootoolsDocumentId();
+    };
+
+    const patchMootoolsDocumentId = () => {
+        // Override MooTools' `document.id` (used for `$(id)`), which prevents it
+        // from allocating a `uniqueNumber` for elements that don't need it.
+        // MooTools and MochaUI use it internally.
+
+        if (document.id === undefined)
+            return;
+
+        document.id = (el) => {
+            if ((el === null) || (el === undefined))
+                return null;
+
+            switch (typeof el) {
+                case "object":
+                    return el;
+                case "string":
+                    return document.getElementById(el);
+            }
+
+            return null;
+        };
+    };
+
+    return exports();
+})();
+Object.freeze(window.qBittorrent.MonkeyPatch);
+
+// execute now
+window.qBittorrent.MonkeyPatch.patch();

@@ -14,12 +14,12 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Enter":
                         event.preventDefault();
-                        $("renameButton").click();
+                        document.getElementById("renameButton").click();
                         break;
                     case "Escape":
                         event.preventDefault();
@@ -34,17 +34,17 @@
             const isFolder = ((searchParams.get("isFolder")) === "true");
 
             const oldName = window.qBittorrent.Filesystem.fileName(oldPath);
-            $("rename").value = oldName;
-            $("rename").focus();
+            document.getElementById("rename").value = oldName;
+            document.getElementById("rename").focus();
             if (!isFolder)
-                $("rename").setSelectionRange(0, oldName.lastIndexOf("."));
+                document.getElementById("rename").setSelectionRange(0, oldName.lastIndexOf("."));
 
-            $("renameButton").addEventListener("click", (e) => {
+            document.getElementById("renameButton").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
                 // check field
-                const newName = $("rename").value.trim();
+                const newName = document.getElementById("rename").value.trim();
                 if (newName === "") {
                     alert("QBT_TR(Name cannot be empty)QBT_TR[CONTEXT=HttpServer]");
                     return;
@@ -55,7 +55,7 @@
                     return;
                 }
 
-                $("renameButton").disabled = true;
+                document.getElementById("renameButton").disabled = true;
 
                 const parentPath = window.qBittorrent.Filesystem.folderName(oldPath);
                 const newPath = parentPath
@@ -72,7 +72,7 @@
                     .then((response) => {
                         if (!response.ok) {
                             alert("QBT_TR(Failed to update name)QBT_TR[CONTEXT=HttpServer]");
-                            $("renameButton").disabled = false;
+                            document.getElementById("renameButton").disabled = false;
                             return;
                         }
 

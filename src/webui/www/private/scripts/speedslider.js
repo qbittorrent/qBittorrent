@@ -30,7 +30,7 @@
 
 MochaUI.extend({
     addUpLimitSlider: (hashes) => {
-        if ($("uplimitSliderarea")) {
+        if (document.getElementById("uplimitSliderarea")) {
             // Get global upload limit
             fetch("api/v2/transfer/uploadLimit", {
                     method: "GET",
@@ -61,29 +61,29 @@ MochaUI.extend({
                         if (up_limit < 0)
                             up_limit = 0;
                         maximum = 10000;
-                        new Slider($("uplimitSliderarea"), $("uplimitSliderknob"), {
+                        new Slider(document.getElementById("uplimitSliderarea"), document.getElementById("uplimitSliderknob"), {
                             steps: maximum,
                             offset: 0,
                             initialStep: Math.round(up_limit),
                             onChange: (pos) => {
                                 if (pos > 0) {
-                                    $("uplimitUpdatevalue").value = pos;
-                                    $("upLimitUnit").style.visibility = "visible";
+                                    document.getElementById("uplimitUpdatevalue").value = pos;
+                                    document.getElementById("upLimitUnit").style.visibility = "visible";
                                 }
                                 else {
-                                    $("uplimitUpdatevalue").value = "∞";
-                                    $("upLimitUnit").style.visibility = "hidden";
+                                    document.getElementById("uplimitUpdatevalue").value = "∞";
+                                    document.getElementById("upLimitUnit").style.visibility = "hidden";
                                 }
                             }
                         });
                         // Set default value
                         if (up_limit === 0) {
-                            $("uplimitUpdatevalue").value = "∞";
-                            $("upLimitUnit").style.visibility = "hidden";
+                            document.getElementById("uplimitUpdatevalue").value = "∞";
+                            document.getElementById("upLimitUnit").style.visibility = "hidden";
                         }
                         else {
-                            $("uplimitUpdatevalue").value = Math.round(up_limit);
-                            $("upLimitUnit").style.visibility = "visible";
+                            document.getElementById("uplimitUpdatevalue").value = Math.round(up_limit);
+                            document.getElementById("upLimitUnit").style.visibility = "visible";
                         }
                     }
                     else {
@@ -108,29 +108,29 @@ MochaUI.extend({
                                 }
                                 if (up_limit < 0)
                                     up_limit = 0;
-                                new Slider($("uplimitSliderarea"), $("uplimitSliderknob"), {
+                                new Slider(document.getElementById("uplimitSliderarea"), document.getElementById("uplimitSliderknob"), {
                                     steps: maximum,
                                     offset: 0,
                                     initialStep: Math.round(up_limit / 1024),
                                     onChange: (pos) => {
                                         if (pos > 0) {
-                                            $("uplimitUpdatevalue").value = pos;
-                                            $("upLimitUnit").style.visibility = "visible";
+                                            document.getElementById("uplimitUpdatevalue").value = pos;
+                                            document.getElementById("upLimitUnit").style.visibility = "visible";
                                         }
                                         else {
-                                            $("uplimitUpdatevalue").value = "∞";
-                                            $("upLimitUnit").style.visibility = "hidden";
+                                            document.getElementById("uplimitUpdatevalue").value = "∞";
+                                            document.getElementById("upLimitUnit").style.visibility = "hidden";
                                         }
                                     }
                                 });
                                 // Set default value
                                 if (up_limit === 0) {
-                                    $("uplimitUpdatevalue").value = "∞";
-                                    $("upLimitUnit").style.visibility = "hidden";
+                                    document.getElementById("uplimitUpdatevalue").value = "∞";
+                                    document.getElementById("upLimitUnit").style.visibility = "hidden";
                                 }
                                 else {
-                                    $("uplimitUpdatevalue").value = Math.round(up_limit / 1024);
-                                    $("upLimitUnit").style.visibility = "visible";
+                                    document.getElementById("uplimitUpdatevalue").value = Math.round(up_limit / 1024);
+                                    document.getElementById("upLimitUnit").style.visibility = "visible";
                                 }
                             });
                     }
@@ -139,7 +139,7 @@ MochaUI.extend({
     },
 
     addDlLimitSlider: (hashes) => {
-        if ($("dllimitSliderarea")) {
+        if (document.getElementById("dllimitSliderarea")) {
             // Get global upload limit
             fetch("api/v2/transfer/downloadLimit", {
                     method: "GET",
@@ -170,29 +170,29 @@ MochaUI.extend({
                         if (dl_limit < 0)
                             dl_limit = 0;
                         maximum = 10000;
-                        new Slider($("dllimitSliderarea"), $("dllimitSliderknob"), {
+                        new Slider(document.getElementById("dllimitSliderarea"), document.getElementById("dllimitSliderknob"), {
                             steps: maximum,
                             offset: 0,
                             initialStep: Math.round(dl_limit),
                             onChange: (pos) => {
                                 if (pos > 0) {
-                                    $("dllimitUpdatevalue").value = pos;
-                                    $("dlLimitUnit").style.visibility = "visible";
+                                    document.getElementById("dllimitUpdatevalue").value = pos;
+                                    document.getElementById("dlLimitUnit").style.visibility = "visible";
                                 }
                                 else {
-                                    $("dllimitUpdatevalue").value = "∞";
-                                    $("dlLimitUnit").style.visibility = "hidden";
+                                    document.getElementById("dllimitUpdatevalue").value = "∞";
+                                    document.getElementById("dlLimitUnit").style.visibility = "hidden";
                                 }
                             }
                         });
                         // Set default value
                         if (dl_limit === 0) {
-                            $("dllimitUpdatevalue").value = "∞";
-                            $("dlLimitUnit").style.visibility = "hidden";
+                            document.getElementById("dllimitUpdatevalue").value = "∞";
+                            document.getElementById("dlLimitUnit").style.visibility = "hidden";
                         }
                         else {
-                            $("dllimitUpdatevalue").value = Math.round(dl_limit);
-                            $("dlLimitUnit").style.visibility = "visible";
+                            document.getElementById("dllimitUpdatevalue").value = Math.round(dl_limit);
+                            document.getElementById("dlLimitUnit").style.visibility = "visible";
                         }
                     }
                     else {
@@ -217,29 +217,29 @@ MochaUI.extend({
                                 }
                                 if (dl_limit < 0)
                                     dl_limit = 0;
-                                new Slider($("dllimitSliderarea"), $("dllimitSliderknob"), {
+                                new Slider(document.getElementById("dllimitSliderarea"), document.getElementById("dllimitSliderknob"), {
                                     steps: maximum,
                                     offset: 0,
                                     initialStep: Math.round(dl_limit / 1024),
                                     onChange: (pos) => {
                                         if (pos > 0) {
-                                            $("dllimitUpdatevalue").value = pos;
-                                            $("dlLimitUnit").style.visibility = "visible";
+                                            document.getElementById("dllimitUpdatevalue").value = pos;
+                                            document.getElementById("dlLimitUnit").style.visibility = "visible";
                                         }
                                         else {
-                                            $("dllimitUpdatevalue").value = "∞";
-                                            $("dlLimitUnit").style.visibility = "hidden";
+                                            document.getElementById("dllimitUpdatevalue").value = "∞";
+                                            document.getElementById("dlLimitUnit").style.visibility = "hidden";
                                         }
                                     }
                                 });
                                 // Set default value
                                 if (dl_limit === 0) {
-                                    $("dllimitUpdatevalue").value = "∞";
-                                    $("dlLimitUnit").style.visibility = "hidden";
+                                    document.getElementById("dllimitUpdatevalue").value = "∞";
+                                    document.getElementById("dlLimitUnit").style.visibility = "hidden";
                                 }
                                 else {
-                                    $("dllimitUpdatevalue").value = Math.round(dl_limit / 1024);
-                                    $("dlLimitUnit").style.visibility = "visible";
+                                    document.getElementById("dllimitUpdatevalue").value = Math.round(dl_limit / 1024);
+                                    document.getElementById("dlLimitUnit").style.visibility = "visible";
                                 }
                             });
                     }

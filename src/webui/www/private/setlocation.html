@@ -13,12 +13,12 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Enter":
                         event.preventDefault();
-                        $("setLocationButton").click();
+                        document.getElementById("setLocationButton").click();
                         break;
                     case "Escape":
                         event.preventDefault();
@@ -32,17 +32,17 @@
 
             // set text field to current value
             if (path !== null)
-                $("setLocation").value = decodeURIComponent(path);
+                document.getElementById("setLocation").value = decodeURIComponent(path);
 
-            $("setLocation").focus();
-            $("setLocationButton").addEventListener("click", (e) => {
+            document.getElementById("setLocation").focus();
+            document.getElementById("setLocationButton").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 
                 // check field
-                const location = $("setLocation").value.trim();
+                const location = document.getElementById("setLocation").value.trim();
                 if ((location === null) || (location === "")) {
-                    $("error_div").textContent = "QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]";
+                    document.getElementById("error_div").textContent = "QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]";
                     return;
                 }
 
@@ -55,7 +55,7 @@
                     })
                     .then(async (response) => {
                         if (!response.ok) {
-                            $("error_div").textContent = await response.text();
+                            document.getElementById("error_div").textContent = await response.text();
                             return;
                         }
 

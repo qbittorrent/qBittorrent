@@ -12,7 +12,7 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
+        window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Escape":
@@ -22,15 +22,15 @@
                 }
             });
 
-            $("urls").focus();
-            $("addWebSeedsButton").addEventListener("click", (e) => {
+            document.getElementById("urls").focus();
+            document.getElementById("addWebSeedsButton").addEventListener("click", (e) => {
                 e.stopPropagation();
 
                 fetch("api/v2/torrents/addWebSeeds", {
                         method: "POST",
                         body: new URLSearchParams({
                             hash: new URLSearchParams(window.location.search).get("hash"),
-                            urls: $("urls").value.split("\n").map(w => encodeURIComponent(w.trim())).filter(w => (w.length > 0)).join("|")
+                            urls: document.getElementById("urls").value.split("\n").map(w => encodeURIComponent(w.trim())).filter(w => (w.length > 0)).join("|")
                         })
                     })
                     .then((response) => {

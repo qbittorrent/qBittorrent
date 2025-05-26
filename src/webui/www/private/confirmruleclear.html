@@ -12,14 +12,14 @@
     <script>
         "use strict";
 
-        window.addEventListener("DOMContentLoaded", () => {
-            $("cancelBtn").focus();
-            $("cancelBtn").addEventListener("click", (e) => {
+        window.addEventListener("DOMContentLoaded", (event) => {
+            document.getElementById("cancelBtn").focus();
+            document.getElementById("cancelBtn").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
                 window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
-            $("confirmBtn").addEventListener("click", (e) => {
+            document.getElementById("confirmBtn").addEventListener("click", (e) => {
                 e.preventDefault();
                 e.stopPropagation();
 

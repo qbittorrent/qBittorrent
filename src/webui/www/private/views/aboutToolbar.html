@@ -16,34 +16,34 @@
     (() => {
         MochaUI.initializeTabs("aboutTabs");
 
-        $("aboutAboutLink").addEventListener("click", () => {
+        document.getElementById("aboutAboutLink").addEventListener("click", (event) => {
             Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            $("aboutAboutContent").classList.remove("invisible");
+            document.getElementById("aboutAboutContent").classList.remove("invisible");
         });
 
-        $("aboutAuthorLink").addEventListener("click", () => {
+        document.getElementById("aboutAuthorLink").addEventListener("click", (event) => {
             Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            $("aboutAuthorContent").classList.remove("invisible");
+            document.getElementById("aboutAuthorContent").classList.remove("invisible");
         });
 
-        $("aboutSpecialThanksLink").addEventListener("click", () => {
+        document.getElementById("aboutSpecialThanksLink").addEventListener("click", (event) => {
             Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            $("aboutSpecialThanksContent").classList.remove("invisible");
+            document.getElementById("aboutSpecialThanksContent").classList.remove("invisible");
         });
 
-        $("aboutTranslatorsLink").addEventListener("click", () => {
+        document.getElementById("aboutTranslatorsLink").addEventListener("click", (event) => {
             Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            $("aboutTranslatorsContent").classList.remove("invisible");
+            document.getElementById("aboutTranslatorsContent").classList.remove("invisible");
         });
 
-        $("aboutLicenseLink").addEventListener("click", () => {
+        document.getElementById("aboutLicenseLink").addEventListener("click", (event) => {
             Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            $("aboutLicenseContent").classList.remove("invisible");
+            document.getElementById("aboutLicenseContent").classList.remove("invisible");
         });
 
-        $("aboutSoftwareUsedLink").addEventListener("click", () => {
+        document.getElementById("aboutSoftwareUsedLink").addEventListener("click", (event) => {
             Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            $("aboutSoftwareUsedContent").classList.remove("invisible");
+            document.getElementById("aboutSoftwareUsedContent").classList.remove("invisible");
         });
     })();
 </script>

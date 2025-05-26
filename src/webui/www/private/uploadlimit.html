@@ -37,7 +37,7 @@
             switch (event.key) {
                 case "Enter":
                     event.preventDefault();
-                    $("applyButton").click();
+                    document.getElementById("applyButton").click();
                     break;
                 case "Escape":
                     event.preventDefault();
@@ -48,7 +48,7 @@
 
         const hashes = new URLSearchParams(window.location.search).get("hashes").split("|");
         const setUpLimit = () => {
-            const limit = Number($("uplimitUpdatevalue").value) * 1024;
+            const limit = Number(document.getElementById("uplimitUpdatevalue").value) * 1024;
             if (hashes[0] === "global") {
                 fetch("api/v2/transfer/setUploadLimit", {
                         method: "POST",
@@ -81,7 +81,7 @@
             }
         };
 
-        $("uplimitUpdatevalue").focus();
+        document.getElementById("uplimitUpdatevalue").focus();
 
         MochaUI.addUpLimitSlider(hashes);
     </script>
