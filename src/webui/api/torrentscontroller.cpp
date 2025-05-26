@@ -301,7 +301,7 @@ namespace
         {
             const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
 
-            QJsonObject fileDict =
+            const QJsonObject fileDict =
             {
                 {KEY_FILE_INDEX, index},
                 {KEY_FILE_PROGRESS, fp[index]},
@@ -412,7 +412,7 @@ void TorrentsController::infoAction()
 
         QVariantMap serializedTorrent = serialize(*torrent);
 
-        if (includeFiles)
+        if (includeFiles && torrent->hasMetadata())
             serializedTorrent.insert(KEY_PROP_FILES, getFiles(torrent));
         if (includeTrackers)
             serializedTorrent.insert(KEY_PROP_TRACKERS, getTrackers(torrent));
@@ -764,6 +764,9 @@ void TorrentsController::filesAction()
             return index;
         });
     }
+
+    if (!torrent->hasMetadata())
+        return setResult(QJsonArray {});
 
     QJsonArray fileList = getFiles(torrent, fileIndexes);
     if (!fileList.isEmpty())
