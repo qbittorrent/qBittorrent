@@ -102,4 +102,6 @@ static bool isOnlyHttpTrackers(const QList<BitTorrent::TrackerEntryStatus> &trac
     int m_totalTorrents = 0;
     bool m_downloadTrackerFavicon = false;
     QHash<QString, QSet<QString>> m_downloadingFavicons;   // <favicon URL, tracker hosts>
+
+    static bool isOnlyHttpTrackers(const QList<BitTorrent::TrackerEntryStatus> &trackers);
 };
