@@ -1005,7 +1005,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                     tds[i].style.width = `${this.columns[i].width}px`;
                     tds[i].style.maxWidth = `${this.columns[i].width}px`;
                 }
-                this.columns[i].updateTd(tds[i], row);
+                if (this.columns[i].dataProperties.some(prop => Object.hasOwn(data, prop)))
+                    this.columns[i].updateTd(tds[i], row);
             }
             row["data"] = {};
         }
@@ -1151,6 +1152,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["percent_selected"].dataProperties = ["size", "total_size", "has_metadata"];
 
             this.initColumnsFunctions();
         }
@@ -1557,13 +1559,15 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // percent_selected
             this.columns["percent_selected"].updateTd = function(td, row) {
-                const fullData = row["full_data"];
-                if (fullData["has_metadata"] === false) {
+                const size = this.getRowValue(row, 0);
+                const totalSize = this.getRowValue(row, 1);
+                const hasMetadata = this.getRowValue(row, 2);
+                if (hasMetadata === false) {
                     td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     return;
                 }
-                const percent = (fullData["size"] / fullData["total_size"]) * 100;
+                const percent = (size / totalSize) * 100;
                 if (percent === -1) {
                     td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
