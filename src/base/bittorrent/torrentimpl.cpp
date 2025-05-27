@@ -1438,7 +1438,7 @@ int TorrentImpl::totalLeechersCount() const
 
 int TorrentImpl::downloadLimit() const
 {
-    return m_downloadLimit;;
+    return m_downloadLimit;
 }
 
 int TorrentImpl::uploadLimit() const
