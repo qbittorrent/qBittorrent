@@ -744,6 +744,8 @@ void TorrentsController::filesAction()
     const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
+    if (!torrent->hasMetadata())
+        return setResult(QJsonArray{});
 
     QList<int> fileIndexes;
     const auto idxIt = params().constFind(u"indexes"_s);
@@ -764,9 +766,6 @@ void TorrentsController::filesAction()
             return index;
         });
     }
-
-    if (!torrent->hasMetadata())
-        return setResult(QJsonArray {});
 
     QJsonArray fileList = getFiles(torrent, fileIndexes);
     if (!fileList.isEmpty())
