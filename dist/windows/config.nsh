@@ -111,7 +111,8 @@ RequestExecutionLevel user
 !define MUI_HEADERIMAGE
 !define MUI_COMPONENTSPAGE_NODESC
 ;!define MUI_ICON "qbittorrent.ico"
-!define MUI_LICENSEPAGE_CHECKBOX
+!define MUI_LICENSEPAGE_BUTTON $(^NextBtn)
+!define MUI_LICENSEPAGE_TEXT_BOTTOM "$_CLICK"
 !define MUI_LANGDLL_ALLLANGUAGES
 
 ;--------------------------------
