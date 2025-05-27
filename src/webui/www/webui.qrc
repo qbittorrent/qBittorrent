@@ -16,7 +16,6 @@
         <file>private/css/vanillaSelectBox.css</file>
         <file>private/css/Window.css</file>
         <file>private/download.html</file>
-        <file>private/downloadlimit.html</file>
         <file>private/editfeedurl.html</file>
         <file>private/edittracker.html</file>
         <file>private/editwebseed.html</file>
@@ -329,7 +328,6 @@
         <file>private/images/help-contents.svg</file>
         <file>private/images/insert-link.svg</file>
         <file>private/images/ip-blocked.svg</file>
-        <file>private/images/knob.gif</file>
         <file>private/images/L.gif</file>
         <file>private/images/list-add.svg</file>
         <file>private/images/list-remove.svg</file>
@@ -356,7 +354,6 @@
         <file>private/images/reannounce.svg</file>
         <file>private/images/regex.svg</file>
         <file>private/images/set-location.svg</file>
-        <file>private/images/slider-area.gif</file>
         <file>private/images/slow.svg</file>
         <file>private/images/slow_off.svg</file>
         <file>private/images/spacer.gif</file>
@@ -419,11 +416,10 @@
         <file>private/scripts/prop-webseeds.js</file>
         <file>private/scripts/rename-files.js</file>
         <file>private/scripts/search.js</file>
-        <file>private/scripts/speedslider.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
+        <file>private/speedlimit.html</file>
         <file>private/upload.html</file>
-        <file>private/uploadlimit.html</file>
         <file>private/views/about.html</file>
         <file>private/views/aboutToolbar.html</file>
         <file>private/views/confirmAutoTMM.html</file>

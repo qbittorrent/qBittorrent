@@ -309,9 +309,10 @@ const initializeWindows = () => {
     });
 
     globalUploadLimitFN = () => {
-        const contentURL = new URL("uploadlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            hashes: "global"
+            hashes: "global",
+            type: "upload",
         });
         new MochaUI.Window({
             id: "uploadLimitPage",
@@ -334,9 +335,10 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
-        const contentURL = new URL("uploadlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            hashes: hashes.join("|")
+            hashes: hashes.join("|"),
+            type: "upload",
         });
         new MochaUI.Window({
             id: "uploadLimitPage",
@@ -455,9 +457,10 @@ const initializeWindows = () => {
     };
 
     globalDownloadLimitFN = () => {
-        const contentURL = new URL("downloadlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            hashes: "global"
+            hashes: "global",
+            type: "download",
         });
         new MochaUI.Window({
             id: "downloadLimitPage",
@@ -498,9 +501,10 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
-        const contentURL = new URL("downloadlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            hashes: hashes.join("|")
+            hashes: hashes.join("|"),
+            type: "download",
         });
         new MochaUI.Window({
             id: "downloadLimitPage",
