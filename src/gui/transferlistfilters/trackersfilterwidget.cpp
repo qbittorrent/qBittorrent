@@ -57,7 +57,7 @@ namespace
         TRACKERERROR_ROW,
         OTHERERROR_ROW,
         WARNING_ROW,
-
+        ONLY_HTTP_ROW,  // Only HTTP special row
         NUM_SPECIAL_ROWS
     };
 
@@ -97,12 +97,15 @@ namespace
             return TrackersFilterWidget::tr("All (%1)", "this is for the tracker filter");
         case TRACKERLESS_ROW:
             return TrackersFilterWidget::tr("Trackerless (%1)");
+        case ONLY_HTTP_ROW:
+            return TrackersFilterWidget::tr("Only HTTP (%1)");
         case TRACKERERROR_ROW:
             return TrackersFilterWidget::tr("Tracker error (%1)");
         case OTHERERROR_ROW:
             return TrackersFilterWidget::tr("Other error (%1)");
         case WARNING_ROW:
             return TrackersFilterWidget::tr("Warning (%1)");
+        
         default:
             return {};
         }
@@ -140,6 +143,10 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
     auto *warningItem = new QListWidgetItem(this);
     warningItem->setData(Qt::DisplayRole, formatItemText(WARNING_ROW, 0));
     warningItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
+
+    auto *onlyHttpItem = new QListWidgetItem(this);
+    onlyHttpItem->setData(Qt::DisplayRole, formatItemText(ONLY_HTTP_ROW, 0));
+    onlyHttpItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
 
     m_trackers[NULL_HOST] = {{}, trackerlessItem};
 
@@ -717,7 +724,27 @@ QSet<BitTorrent::TorrentID> TrackersFilterWidget::getTorrentIDs(const int row) c
         return {m_trackerErrors.keyBegin(), m_trackerErrors.keyEnd()};
     case WARNING_ROW:
         return {m_warnings.keyBegin(), m_warnings.keyEnd()};
+    case ONLY_HTTP_ROW:
+        // Placeholder: implement the "only HTTP" logic later
+        return {}; // TODO: Populate with IDs of torrents having only HTTP trackers
     default:
         return m_trackers.value(trackerFromRow(row)).torrents;
     }
+
+    bool TrackersFilterWidget::isOnlyHttpTrackers(const QList<BitTorrent::TrackerEntryStatus> &trackers)
+{
+    if (trackers.isEmpty())
+        return false;
+
+    bool anyHttps = false;
+    for (const auto &tracker : trackers) {
+        const QString scheme = QUrl(tracker.url).scheme();
+        if (scheme.compare(u"https", Qt::CaseInsensitive) == 0)
+            anyHttps = true;
+        else if (!scheme.isEmpty() && scheme.compare(u"http", Qt::CaseInsensitive) != 0)
+            return false;
+    }
+    return !anyHttps;
+}
+    
 }
