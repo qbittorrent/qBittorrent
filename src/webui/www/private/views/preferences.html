@@ -109,6 +109,11 @@
         <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
     </div>
 
+    <div class="formRow" style="margin-bottom: 5px;">
+        <input type="checkbox" id="perStatusSorting">
+        <label for="perStatusSorting">QBT_TR(Use Per-Status Sorting)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
+
     <fieldset class="settings">
         <legend title="QBT_TR(Following settings are WebUI only)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Custom WebUI settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow" style="margin-bottom: 3px;">
@@ -2236,6 +2241,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     updateColoSchemeSelect();
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
+                    document.getElementById("perStatusSorting").checked = pref.per_status_sorting;
                     document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
                     document.getElementById("useVirtualList").checked = (LocalPreferences.get("use_virtual_list", "false") === "true");
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
@@ -2670,6 +2676,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 LocalPreferences.set("color_scheme", "dark");
             settings["status_bar_external_ip"] = document.getElementById("statusBarExternalIP").checked;
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
+            settings["per_status_sorting"] = document.getElementById("perStatusSorting").checked;
             LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
             LocalPreferences.set("use_virtual_list", document.getElementById("useVirtualList").checked.toString());
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());

@@ -144,6 +144,7 @@ void AppController::preferencesAction()
     data[u"locale"_s] = pref->getLocale();
     data[u"performance_warning"_s] = session->isPerformanceWarningEnabled();
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
+    data[u"per_status_sorting"_s] = pref->usePerStatusSortOrder();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
     // Log file
@@ -537,6 +538,8 @@ void AppController::setPreferencesAction()
         pref->setStatusbarExternalIPDisplayed(it.value().toBool());
     if (hasKey(u"performance_warning"_s))
         session->setPerformanceWarningEnabled(it.value().toBool());
+    if (hasKey(u"per_status_sorting"_s))
+        pref->setUsePerStatusSortOrder(it.value().toBool());
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());

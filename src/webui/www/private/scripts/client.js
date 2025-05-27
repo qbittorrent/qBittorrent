@@ -352,21 +352,24 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     setStatusFilter = (name) => {
         const currentHash = torrentsTable.getCurrentTorrentID();
+        const usePerFilterSorting = window.qBittorrent.Cache.preferences.get().per_status_sorting;
 
         // Save current sorting for this filter.
-        if (torrentsTable.getSortedColumn()) {
+        if ((torrentsTable.getSortedColumn()) && usePerFilterSorting) {
             LocalPreferences.set(`selected_filter_sort_${selectedStatus}`, torrentsTable.getSortedColumn());
             LocalPreferences.set(`selected_filter_sort_reverse_${selectedStatus}`, (torrentsTable.reverseSort ?? "0"));
         }
         LocalPreferences.set("selected_filter", name);
+
         // If there is a saved sorting column, load it.
         const sortColumn = LocalPreferences.get(`selected_filter_sort_${name}`);
-        if (sortColumn !== null) {
+        if ((sortColumn !== null) && usePerFilterSorting) {
             torrentsTable.setSortedColumn(
                 sortColumn,
                 LocalPreferences.get(`selected_filter_sort_reverse_${name}`, "0")
             );
         }
+
         selectedStatus = name;
         highlightSelectedStatus();
         updateMainData();

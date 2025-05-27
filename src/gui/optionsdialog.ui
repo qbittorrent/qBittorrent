@@ -872,6 +872,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkBoxPerFilterSorting">
+              <property name="text">
+               <string>Use Per-Status Sorting</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Orientation::Vertical</enum>

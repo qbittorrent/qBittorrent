@@ -35,6 +35,7 @@
 #include <QTreeView>
 
 #include "base/bittorrent/infohash.h"
+#include "base/torrentfilter.h"
 #include "guiapplicationcomponent.h"
 #include "transferlistmodel.h"
 
@@ -137,6 +138,7 @@ private:
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QList<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
+    QHash<TorrentFilter::Type, QPair<int, Qt::SortOrder>> m_statusSortPairs;
 
     TransferListModel *m_listModel = nullptr;
     TransferListSortModel *m_sortFilterModel = nullptr;

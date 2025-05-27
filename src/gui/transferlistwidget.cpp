@@ -1339,7 +1339,26 @@ void TransferListWidget::applyFilter(const QString &name, const TransferListMode
 void TransferListWidget::applyStatusFilter(const int filterIndex)
 {
     const auto filterType = static_cast<TorrentFilter::Type>(filterIndex);
+    //Save sort order for old filter
+    const bool usePerFilterSort = Preferences::instance()->usePerStatusSortOrder();
+    const TorrentFilter::Type filter = m_sortFilterModel->getType();
+    const int column = m_sortFilterModel->sortColumn();
+    if (column != -1 && usePerFilterSort)
+    {
+        m_statusSortPairs.insert_or_assign(filter, qMakePair(column, m_sortFilterModel->sortOrder()));
+    }
+
     m_sortFilterModel->setStatusFilter(((filterType >= TorrentFilter::All) && (filterType < TorrentFilter::_Count)) ? filterType : TorrentFilter::All);
+
+    // Load sort for new status filter
+    if (m_statusSortPairs.contains(filterType) && usePerFilterSort)
+    {
+        const QPair<int, Qt::SortOrder> sortPair = m_statusSortPairs.value(filterType);
+        m_sortFilterModel->sort(sortPair.first, sortPair.second);
+        // Rows are sorted correctly, but header state does not reflect actual sort setting
+        header()->setSortIndicator(sortPair.first, sortPair.second);
+    }
+
     // Select first item if nothing is selected
     if (selectionModel()->selectedRows(0).empty() && (m_sortFilterModel->rowCount() > 0))
     {
