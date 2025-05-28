@@ -73,26 +73,6 @@ namespace
         return (val > -1) ? QString::number(val) : TrackerListModel::tr("N/A");
     }
 
-    QString toString(const BitTorrent::TrackerEndpointState state)
-    {
-        switch (state)
-        {
-        case BitTorrent::TrackerEndpointState::Working:
-            return TrackerListModel::tr(STR_WORKING);
-        case BitTorrent::TrackerEndpointState::Updating:
-            return TrackerListModel::tr("Updating...");
-        case BitTorrent::TrackerEndpointState::NotWorking:
-            return TrackerListModel::tr("Not working");
-        case BitTorrent::TrackerEndpointState::TrackerError:
-            return TrackerListModel::tr("Tracker error");
-        case BitTorrent::TrackerEndpointState::Unreachable:
-            return TrackerListModel::tr("Unreachable");
-        case BitTorrent::TrackerEndpointState::NotContacted:
-            return TrackerListModel::tr("Not contacted yet");
-        }
-        return TrackerListModel::tr("Invalid state!");
-    }
-
     QString statusDHT(const BitTorrent::Torrent *torrent)
     {
         if (!torrent->session()->isDHTEnabled())
@@ -137,6 +117,7 @@ struct TrackerListModel::Item final
     QString name {};
     int tier = -1;
     int btVersion = -1;
+    bool isUpdating = false;
     BitTorrent::TrackerEndpointState status = BitTorrent::TrackerEndpointState::NotContacted;
     QString message {};
 
@@ -169,6 +150,8 @@ struct TrackerListModel::Item final
 
     void fillFrom(const BitTorrent::TrackerEntryStatus &trackerEntryStatus);
     void fillFrom(const BitTorrent::TrackerEndpointStatus &endpointStatus);
+
+    QString statusText() const;
 };
 
 class TrackerListModel::Items final : public multi_index_container<
@@ -205,6 +188,7 @@ void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEntryStatus &trac
     Q_ASSERT(trackerEntryStatus.url == name);
 
     tier = trackerEntryStatus.tier;
+    isUpdating = trackerEntryStatus.isUpdating;
     status = trackerEntryStatus.state;
     message = trackerEntryStatus.message;
     numPeers = trackerEntryStatus.numPeers;
@@ -224,6 +208,7 @@ void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEndpointStatus &e
     Q_ASSERT(endpointStatus.name == name);
     Q_ASSERT(endpointStatus.btVersion == btVersion);
 
+    isUpdating = endpointStatus.isUpdating;
     status = endpointStatus.state;
     message = endpointStatus.message;
     numPeers = endpointStatus.numPeers;
@@ -235,6 +220,28 @@ void TrackerListModel::Item::fillFrom(const BitTorrent::TrackerEndpointStatus &e
     secsToNextAnnounce = 0;
     secsToMinAnnounce = 0;
     announceTimestamp = {};
+}
+
+QString TrackerListModel::Item::statusText() const
+{
+    if (isUpdating)
+        return TrackerListModel::tr("Updating...");
+
+    switch (status)
+    {
+    case BitTorrent::TrackerEndpointState::Working:
+        return TrackerListModel::tr(STR_WORKING);
+    case BitTorrent::TrackerEndpointState::NotWorking:
+        return TrackerListModel::tr("Not working");
+    case BitTorrent::TrackerEndpointState::TrackerError:
+        return TrackerListModel::tr("Tracker error");
+    case BitTorrent::TrackerEndpointState::Unreachable:
+        return TrackerListModel::tr("Unreachable");
+    case BitTorrent::TrackerEndpointState::NotContacted:
+        return TrackerListModel::tr("Not contacted yet");
+    }
+
+    return TrackerListModel::tr("Invalid state!");
 }
 
 TrackerListModel::TrackerListModel(BitTorrent::Session *btSession, QObject *parent)
@@ -596,14 +603,14 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
             return isEndpoint ? (u'v' + QString::number(itemPtr->btVersion)) : QString();
         case COL_STATUS:
             if (isEndpoint)
-                return toString(itemPtr->status);
+                return itemPtr->statusText();
             if (index.row() == ROW_DHT)
                 return statusDHT(m_torrent);
             if (index.row() == ROW_PEX)
                 return statusPeX(m_torrent);
             if (index.row() == ROW_LSD)
                 return statusLSD(m_torrent);
-            return toString(itemPtr->status);
+            return itemPtr->statusText();
         case COL_PEERS:
             return prettyCount(itemPtr->numPeers);
         case COL_SEEDS:
@@ -632,7 +639,7 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
         case COL_PROTOCOL:
             return isEndpoint ? itemPtr->btVersion : -1;
         case COL_STATUS:
-            return toString(itemPtr->status);
+            return itemPtr->statusText();
         case COL_PEERS:
             return itemPtr->numPeers;
         case COL_SEEDS:

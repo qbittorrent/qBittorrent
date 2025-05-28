@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -41,7 +41,6 @@ namespace BitTorrent
     {
         NotContacted = 1,
         Working = 2,
-        Updating = 3,
         NotWorking = 4,
         TrackerError = 5,
         Unreachable = 6
@@ -52,6 +51,7 @@ namespace BitTorrent
         QString name {};
         int btVersion = 1;
 
+        bool isUpdating = false;
         TrackerEndpointState state = TrackerEndpointState::NotContacted;
         QString message {};
 
@@ -69,6 +69,7 @@ namespace BitTorrent
         QString url {};
         int tier = 0;
 
+        bool isUpdating = false;
         TrackerEndpointState state = TrackerEndpointState::NotContacted;
         QString message {};
 
