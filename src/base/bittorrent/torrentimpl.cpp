@@ -37,10 +37,10 @@
 #endif
 
 #include <libtorrent/address.hpp>
-#include <libtorrent/create_torrent.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
+#include <libtorrent/write_resume_data.hpp>
 
 #ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/info_hash.hpp>
@@ -2088,7 +2088,7 @@ void TorrentImpl::handleTorrentFinished()
             m_hasFinishedStatus = true;
 
             if (isMoveInProgress() || (m_renameCount > 0))
-                m_moveFinishedTriggers.enqueue([this]() { m_session->handleTorrentFinished(this); });
+                m_moveFinishedTriggers.enqueue([this] { m_session->handleTorrentFinished(this); });
             else
                 m_session->handleTorrentFinished(this);
         }
@@ -2753,18 +2753,9 @@ nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
 
     try
     {
-#ifdef QBT_USES_LIBTORRENT2
-        const std::shared_ptr<lt::torrent_info> completeTorrentInfo = m_nativeHandle.torrent_file_with_hashes();
-        const std::shared_ptr<lt::torrent_info> torrentInfo = (completeTorrentInfo ? completeTorrentInfo : info().nativeInfo());
-#else
-        const std::shared_ptr<lt::torrent_info> torrentInfo = info().nativeInfo();
-#endif
-        lt::create_torrent creator {*torrentInfo};
-
-        for (const TrackerEntryStatus &status : asConst(trackers()))
-            creator.add_tracker(status.url.toStdString(), status.tier);
-
-        return creator.generate();
+        [[maybe_unused]] const auto infoGuard = qScopeGuard([this] { m_ltAddTorrentParams.ti.reset(); });
+        m_ltAddTorrentParams.ti = info().nativeInfo();
+        return lt::write_torrent_file(m_ltAddTorrentParams);
     }
     catch (const lt::system_error &err)
     {
