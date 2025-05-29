@@ -96,7 +96,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
 
     const auto adjustRatio = [](const qreal ratio) -> qreal
     {
-        return (ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio;
+        return (ratio >= BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio;
     };
 
     const auto getLastActivityTime = [&torrent]() -> qlonglong

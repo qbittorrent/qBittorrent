@@ -478,7 +478,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         updateCategoriesSubMenu(categories) {
             const contextCategoryList = $("contextCategoryList");
-            [...contextCategoryList.children].forEach((el) => { el.destroy(); });
+            [...contextCategoryList.children].forEach((el) => { el.remove(); });
 
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");

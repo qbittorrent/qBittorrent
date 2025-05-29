@@ -27,6 +27,7 @@
  */
 
 #include <cerrno>
+#include <cstdio>
 #include <cstring>
 #include <limits>
 
@@ -44,6 +45,27 @@ namespace
 
         RandomLayer()
         {
+            if (::getrandom(nullptr, 0, 0) < 0)
+            {
+                if (errno == ENOSYS)
+                {
+                    // underlying kernel does not implement this system call
+                    // fallback to `urandom`
+                    m_randDev = fopen("/dev/urandom", "rb");
+                    if (!m_randDev)
+                        qFatal("Failed to open /dev/urandom. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
+                }
+                else
+                {
+                    qFatal("getrandom() error. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
+                }
+            }
+        }
+
+        ~RandomLayer()
+        {
+            if (m_randDev)
+                fclose(m_randDev);
         }
 
         static constexpr result_type min()
@@ -56,7 +78,15 @@ namespace
             return std::numeric_limits<result_type>::max();
         }
 
-        result_type operator()()
+        result_type operator()() const
+        {
+            if (!m_randDev)
+                return getRandomViaAPI();
+            return getRandomViaFile();
+        }
+
+    private:
+        result_type getRandomViaAPI() const
         {
             const int RETRY_MAX = 3;
 
@@ -68,10 +98,21 @@ namespace
                     return buf;
 
                 if (result < 0)
-                    qFatal("getrandom() error. Reason: %s. Error code: %d.", std::strerror(errno), errno);
+                    qFatal("getrandom() error. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
             }
 
             qFatal("getrandom() failed. Reason: too many retries.");
         }
+
+        result_type getRandomViaFile() const
+        {
+            result_type buf = 0;
+            if (fread(&buf, sizeof(buf), 1, m_randDev) == 1)
+                return buf;
+
+            qFatal("Read /dev/urandom error. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
+        }
+
+        FILE *m_randDev = nullptr;
     };
 }

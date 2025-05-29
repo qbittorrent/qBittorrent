@@ -920,10 +920,10 @@ int Application::exec()
                 m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
         });
         connect(m_addTorrentManager, &AddTorrentManager::addTorrentFailed, this
-                , [this](const QString &source, const QString &reason)
+                , [this](const QString &source, const BitTorrent::AddTorrentError &reason)
         {
             m_desktopIntegration->showNotification(tr("Add torrent failed")
-                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason));
+                    , tr("Couldn't add torrent '%1', reason: %2.").arg(source, reason.message));
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);

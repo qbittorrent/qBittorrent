@@ -47,9 +47,6 @@
        <property name="enabled">
         <bool>false</bool>
        </property>
-       <property name="maximum">
-        <double>9998.000000000000000</double>
-       </property>
        <property name="singleStep">
         <double>0.050000000000000</double>
        </property>

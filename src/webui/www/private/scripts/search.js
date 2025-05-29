@@ -248,7 +248,7 @@ window.qBittorrent.Search ??= (() => {
         if (state && state.running)
             stopSearch(searchId);
 
-        tab.destroy();
+        tab.remove();
 
         fetch("api/v2/search/delete", {
             method: "POST",

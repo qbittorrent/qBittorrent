@@ -467,9 +467,11 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY(u"AdditionalTrackers"_s))
     , m_isAddTrackersFromURLEnabled(BITTORRENT_SESSION_KEY(u"AddTrackersFromURLEnabled"_s), false)
     , m_additionalTrackersURL(BITTORRENT_SESSION_KEY(u"AdditionalTrackersURL"_s))
-    , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_s), -1, [](qreal r) { return r < 0 ? -1. : r;})
-    , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s), -1, lowerLimited(-1))
-    , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s), -1, lowerLimited(-1))
+    , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_s), -1, [](qreal r) { return r < 0 ? -1. : r; })
+    , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s)
+        , Torrent::NO_SEEDING_TIME_LIMIT, lowerLimited(Torrent::NO_SEEDING_TIME_LIMIT))
+    , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s)
+        , Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT, lowerLimited(Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT))
     , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_s), false)
     , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
@@ -1220,7 +1222,7 @@ qreal SessionImpl::globalMaxRatio() const
 void SessionImpl::setGlobalMaxRatio(qreal ratio)
 {
     if (ratio < 0)
-        ratio = -1.;
+        ratio = Torrent::NO_RATIO_LIMIT;
 
     if (ratio != globalMaxRatio())
     {
@@ -1236,8 +1238,7 @@ int SessionImpl::globalMaxSeedingMinutes() const
 
 void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
 {
-    if (minutes < 0)
-        minutes = -1;
+    minutes = std::max(minutes, Torrent::NO_SEEDING_TIME_LIMIT);
 
     if (minutes != globalMaxSeedingMinutes())
     {
@@ -1253,7 +1254,7 @@ int SessionImpl::globalMaxInactiveSeedingMinutes() const
 
 void SessionImpl::setGlobalMaxInactiveSeedingMinutes(int minutes)
 {
-    minutes = std::max(minutes, -1);
+    minutes = std::max(minutes, Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT);
 
     if (minutes != globalMaxInactiveSeedingMinutes())
     {
@@ -2312,19 +2313,19 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     QString description;
 
     if (const qreal ratio = torrent->realRatio();
-            (ratioLimit >= 0) && (ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
+            (ratioLimit >= 0) && (ratio >= ratioLimit))
     {
         reached = true;
         description = tr("Torrent reached the share ratio limit.");
     }
     else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-            (seedingTimeLimit >= 0) && (seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
+            (seedingTimeLimit >= 0) && (seedingTimeInMinutes >= seedingTimeLimit))
     {
         reached = true;
         description = tr("Torrent reached the seeding time limit.");
     }
     else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-            (inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes <= Torrent::MAX_INACTIVE_SEEDING_TIME) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
+            (inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes >= inactiveSeedingTimeLimit))
     {
         reached = true;
         description = tr("Torrent reached the inactive seeding time limit.");
@@ -2753,7 +2754,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     // We should not add the torrent if it is already
     // processed or is pending to add to session
     if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
+    {
+        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, tr("Duplicate torrent")});
         return false;
+    }
 
     if (Torrent *torrent = findTorrent(infoHash))
     {
@@ -2767,16 +2771,20 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         if (!isMergeTrackersEnabled())
         {
+            const QString message = tr("Merging of trackers is disabled");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
-                    .arg(torrent->name(), tr("Merging of trackers is disabled")));
+                    .arg(torrent->name(), message));
+            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
             return false;
         }
 
         const bool isPrivate = torrent->isPrivate() || (hasMetadata && source.info()->isPrivate());
         if (isPrivate)
         {
+            const QString message = tr("Trackers cannot be merged because it is a private torrent");
             LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
-                    .arg(torrent->name(), tr("Trackers cannot be merged because it is a private torrent")));
+                    .arg(torrent->name(), message));
+            emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
             return false;
         }
 
@@ -2784,8 +2792,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         torrent->addTrackers(source.trackers());
         torrent->addUrlSeeds(source.urlSeeds());
 
+        const QString message = tr("Trackers are merged from new source");
         LogMsg(tr("Detected an attempt to add a duplicate torrent. Existing torrent: %1. Result: %2")
-                .arg(torrent->name(), tr("Trackers are merged from new source")));
+                .arg(torrent->name(), message));
+        emit addTorrentFailed(infoHash, {AddTorrentError::DuplicateTorrent, message});
         return false;
     }
 
@@ -5707,7 +5717,9 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
         if (const auto loadingTorrentsIter = m_loadingTorrents.find(TorrentID::fromInfoHash(infoHash))
                 ; loadingTorrentsIter != m_loadingTorrents.end())
         {
-            emit addTorrentFailed(infoHash, msg);
+            const AddTorrentError::Kind errorKind = (alert->error == lt::errors::duplicate_torrent)
+                    ? AddTorrentError::DuplicateTorrent : AddTorrentError::Other;
+            emit addTorrentFailed(infoHash, {errorKind, msg});
             m_loadingTorrents.erase(loadingTorrentsIter);
         }
         else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(TorrentID::fromInfoHash(infoHash))
