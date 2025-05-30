@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,6 +38,7 @@
 namespace BitTorrent
 {
     class Torrent;
+    struct TrackerEntryStatus;
 }
 
 class SyncController : public APIController
@@ -79,6 +80,8 @@ private:
     void onTorrentTagRemoved(BitTorrent::Torrent *torrent, const Tag &tag);
     void onTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
     void onTorrentTrackersChanged(BitTorrent::Torrent *torrent);
+    void onTorrentTrackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
 
     qint64 m_freeDiskSpace = 0;
 
@@ -94,20 +97,24 @@ private:
     QSet<QString> m_updatedTrackers;
     QSet<QString> m_removedTrackers;
     QSet<BitTorrent::TorrentID> m_updatedTorrents;
+    QSet<BitTorrent::TorrentID> m_announcedTorrents;
     QSet<BitTorrent::TorrentID> m_removedTorrents;
 
     struct MaindataSyncBuf
     {
         QHash<QString, QVariantMap> categories;
-        QVariantList tags;
-        QHash<QString, QVariantMap> torrents;
-        QHash<QString, QStringList> trackers;
-        QVariantMap serverState;
-
         QStringList removedCategories;
+
+        QVariantList tags;
         QStringList removedTags;
+
+        QHash<QString, QVariantMap> torrents;
         QStringList removedTorrents;
+
+        QHash<QString, QStringList> trackers;
         QStringList removedTrackers;
+
+        QVariantMap serverState;
     };
 
     MaindataSyncBuf m_maindataSnapshot;
