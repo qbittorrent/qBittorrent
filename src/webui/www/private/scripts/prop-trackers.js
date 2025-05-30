@@ -81,22 +81,25 @@ window.qBittorrent.PropTrackers ??= (() => {
 
                     trackers.each((tracker) => {
                         let status;
-                        switch (tracker.status) {
-                            case 0:
-                                status = "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
-                                break;
-                            case 1:
-                                status = "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
-                                break;
-                            case 2:
-                                status = "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]";
-                                break;
-                            case 3:
-                                status = "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
-                                break;
-                            case 4:
-                                status = "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
-                                break;
+
+                        if (tracker.updating) {
+                            status = "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
+                        }
+                        else {
+                            switch (tracker.status) {
+                                case 0:
+                                    status = "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
+                                    break;
+                                case 1:
+                                    status = "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
+                                    break;
+                                case 2:
+                                    status = "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]";
+                                    break;
+                                case 4:
+                                    status = "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
+                                    break;
+                            }
                         }
 
                         const row = {

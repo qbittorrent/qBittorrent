@@ -152,35 +152,40 @@ namespace
 
                 if (ltAnnounceInfo.updating)
                 {
-                    trackerEndpointStatus.state = TrackerEndpointState::Updating;
+                    trackerEndpointStatus.isUpdating = true;
                     ++numUpdating;
-                }
-                else if (ltAnnounceInfo.fails > 0)
-                {
-                    if (ltAnnounceInfo.last_error == lt::errors::tracker_failure)
-                    {
-                        trackerEndpointStatus.state = TrackerEndpointState::TrackerError;
-                        ++numTrackerError;
-                    }
-                    else if (ltAnnounceInfo.last_error == lt::errors::announce_skipped)
-                    {
-                        trackerEndpointStatus.state = TrackerEndpointState::Unreachable;
-                        ++numUnreachable;
-                    }
-                    else
-                    {
-                        trackerEndpointStatus.state = TrackerEndpointState::NotWorking;
-                        ++numNotWorking;
-                    }
-                }
-                else if (nativeEntry.verified)
-                {
-                    trackerEndpointStatus.state = TrackerEndpointState::Working;
-                    ++numWorking;
                 }
                 else
                 {
-                    trackerEndpointStatus.state = TrackerEndpointState::NotContacted;
+                    trackerEndpointStatus.isUpdating = false;
+
+                    if (ltAnnounceInfo.fails > 0)
+                    {
+                        if (ltAnnounceInfo.last_error == lt::errors::tracker_failure)
+                        {
+                            trackerEndpointStatus.state = TrackerEndpointState::TrackerError;
+                            ++numTrackerError;
+                        }
+                        else if (ltAnnounceInfo.last_error == lt::errors::announce_skipped)
+                        {
+                            trackerEndpointStatus.state = TrackerEndpointState::Unreachable;
+                            ++numUnreachable;
+                        }
+                        else
+                        {
+                            trackerEndpointStatus.state = TrackerEndpointState::NotWorking;
+                            ++numNotWorking;
+                        }
+                    }
+                    else if (nativeEntry.verified)
+                    {
+                        trackerEndpointStatus.state = TrackerEndpointState::Working;
+                        ++numWorking;
+                    }
+                    else
+                    {
+                        trackerEndpointStatus.state = TrackerEndpointState::NotContacted;
+                    }
                 }
 
                 if (!ltAnnounceInfo.message.empty())
@@ -215,23 +220,28 @@ namespace
         {
             if (numUpdating > 0)
             {
-                trackerEntryStatus.state = TrackerEndpointState::Updating;
+                trackerEntryStatus.isUpdating = true;
             }
-            else if (numWorking > 0)
+            else
             {
-                trackerEntryStatus.state = TrackerEndpointState::Working;
-            }
-            else if (numTrackerError > 0)
-            {
-                trackerEntryStatus.state = TrackerEndpointState::TrackerError;
-            }
-            else if (numUnreachable == numEndpoints)
-            {
-                trackerEntryStatus.state = TrackerEndpointState::Unreachable;
-            }
-            else if ((numUnreachable + numNotWorking) == numEndpoints)
-            {
-                trackerEntryStatus.state = TrackerEndpointState::NotWorking;
+                trackerEntryStatus.isUpdating = false;
+
+                if (numWorking > 0)
+                {
+                    trackerEntryStatus.state = TrackerEndpointState::Working;
+                }
+                else if (numTrackerError > 0)
+                {
+                    trackerEntryStatus.state = TrackerEndpointState::TrackerError;
+                }
+                else if (numUnreachable == numEndpoints)
+                {
+                    trackerEntryStatus.state = TrackerEndpointState::Unreachable;
+                }
+                else if ((numUnreachable + numNotWorking) == numEndpoints)
+                {
+                    trackerEntryStatus.state = TrackerEndpointState::NotWorking;
+                }
             }
         }
 

@@ -64,6 +64,7 @@
 
 // Tracker keys
 const QString KEY_TRACKER_URL = u"url"_s;
+const QString KEY_TRACKER_UPDATING = u"updating"_s;
 const QString KEY_TRACKER_STATUS = u"status"_s;
 const QString KEY_TRACKER_TIER = u"tier"_s;
 const QString KEY_TRACKER_MSG = u"msg"_s;
@@ -265,6 +266,7 @@ namespace
             {
                 {KEY_TRACKER_URL, tracker.url},
                 {KEY_TRACKER_TIER, tracker.tier},
+                {KEY_TRACKER_UPDATING, tracker.isUpdating},
                 {KEY_TRACKER_STATUS, static_cast<int>((isNotWorking ? BitTorrent::TrackerEndpointState::NotWorking : tracker.state))},
                 {KEY_TRACKER_MSG, tracker.message},
                 {KEY_TRACKER_PEERS_COUNT, tracker.numPeers},

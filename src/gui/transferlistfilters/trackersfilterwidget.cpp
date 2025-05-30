@@ -463,9 +463,6 @@ void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torren
                     trackerErrorHashesIt->remove(trackerEntryStatus.url);
             }
             break;
-
-        case BitTorrent::TrackerEndpointState::Updating:
-            break;
         };
     }
 
