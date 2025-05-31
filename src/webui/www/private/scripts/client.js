@@ -958,7 +958,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         if (fullUpdate)
                             // re-select previously selected rows
                             torrentsTable.reselectRows(torrentsTableSelectedRows);
-                    } else if (response.status == 403) {
+                    } else if (response.status === 403) {
                         const errorDiv = document.getElementById("error_div");
                         if (errorDiv)
                             errorDiv.textContent = "QBT_TR(You've been logged out)QBT_TR[CONTEXT=HttpServer]";
