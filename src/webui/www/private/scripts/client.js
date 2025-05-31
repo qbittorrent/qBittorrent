@@ -73,7 +73,11 @@ window.qBittorrent.Client ??= (() => {
     };
 
     const getSyncMainDataInterval = () => {
-        return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
+        return document.hidden
+            ? window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500
+            : customSyncMainDataInterval
+                ? customSyncMainDataInterval
+                : serverSyncMainDataInterval;
     };
 
     let stopped = false;
@@ -779,8 +783,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let syncMainDataTimeoutID = -1;
     let syncRequestInProgress = false;
     const syncMainData = () => {
-        if (document.hidden)
-            return;
         syncRequestInProgress = true;
         const url = new URL("api/v2/sync/maindata", window.location);
         url.search = new URLSearchParams({
@@ -956,6 +958,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         if (fullUpdate)
                             // re-select previously selected rows
                             torrentsTable.reselectRows(torrentsTableSelectedRows);
+                    } else if (response.status == 403) {
+                        const errorDiv = document.getElementById("error_div");
+                        if (errorDiv)
+                            errorDiv.textContent = "QBT_TR(You've been logged out)QBT_TR[CONTEXT=HttpServer]";
                     }
 
                     syncRequestInProgress = false;
@@ -966,7 +972,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     if (errorDiv)
                         errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     syncRequestInProgress = false;
-                    syncData(2000);
+                    syncData(
+                        document.hidden
+                            ? window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500
+                            : 2000
+                    );
                 });
     };
 
