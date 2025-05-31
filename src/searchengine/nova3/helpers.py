@@ -1,4 +1,4 @@
-# VERSION: 1.53
+# VERSION: 1.54
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -33,7 +33,6 @@ import html
 import io
 import os
 import socket
-import socks
 import ssl
 import sys
 import tempfile
@@ -42,6 +41,8 @@ import urllib.parse
 import urllib.request
 from collections.abc import Mapping
 from typing import Any, Optional
+
+import socks
 
 
 def _getBrowserUserAgent() -> str:

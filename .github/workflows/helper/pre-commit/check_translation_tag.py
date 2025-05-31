@@ -26,11 +26,11 @@
 # but you are not obligated to do so. If you do not wish to do so, delete this
 # exception statement from your version.
 
-from collections.abc import Sequence
-from typing import Optional
 import argparse
 import re
 import sys
+from collections.abc import Sequence
+from typing import Optional
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:

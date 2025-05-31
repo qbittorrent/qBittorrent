@@ -25,7 +25,7 @@ jobs:
           python-version: '3'  # use default version
 
       - name: Install tools (auxiliary scripts)
-        run: pip install bandit pycodestyle pyflakes
+        run: pip install bandit isort pycodestyle pyflakes
 
       - name: Gather files (auxiliary scripts)
         run: |
@@ -44,6 +44,10 @@ jobs:
             --max-line-length=1000 \
             --statistics \
             $PY_FILES
+          isort \
+             --check \
+             --diff \
+             $PY_FILES
 
       - name: Build code (auxiliary scripts)
         run: |
@@ -55,7 +59,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install tools (search engine)
-        run: pip install bandit mypy pycodestyle pyflakes pyright
+        run: pip install bandit isort mypy pycodestyle pyflakes pyright
 
       - name: Gather files (search engine)
         run: |
@@ -85,6 +89,10 @@ jobs:
             --max-line-length=1000 \
             --statistics \
             $PY_FILES
+          isort \
+             --check \
+             --diff \
+             $PY_FILES
 
       - name: Build code (search engine)
         run: |
