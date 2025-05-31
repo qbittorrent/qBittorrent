@@ -175,12 +175,14 @@ void FileLogger::flushLog()
 
 void FileLogger::openLogFile()
 {
-    if (!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)
-        || !m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner))
+    if (!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
     {
-        m_logFile.close();
         LogMsg(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
+        return;
     }
+
+    // best effort, don't report error
+    m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner);
 }
 
 void FileLogger::closeLogFile()
