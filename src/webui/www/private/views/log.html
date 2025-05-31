@@ -144,7 +144,7 @@
 </div>
 
 <ul id="logTableMenu" class="contextMenu">
-    <li><a href="#" class="copyLogDataToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]">QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
+    <li><a href="#" id="copyLogDataToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]">QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
     <li><a href="#Clear"><img src="images/list-remove.svg" alt="QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
 </ul>
 
@@ -418,15 +418,11 @@
                 });
         };
 
-        new ClipboardJS(".copyLogDataToClipboard", {
-            text: () => {
-                const msg = [];
-                tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach((rowId) => {
-                    msg.push(tableInfo[currentSelectedTab].instance.getRow(rowId).full_data[(currentSelectedTab === "main") ? "message" : "ip"]);
-                });
-
-                return msg.join("\n");
-            }
+        document.getElementById("copyLogDataToClipboard").addEventListener("click", async (event) => {
+            const instance = tableInfo[currentSelectedTab].instance;
+            const type = (currentSelectedTab === "main") ? "message" : "ip";
+            const msg = instance.selectedRowsIds().map((rowId) => instance.getRow(rowId).full_data[type]);
+            await clipboardCopy(msg.join("\n"));
         });
 
         return exports();

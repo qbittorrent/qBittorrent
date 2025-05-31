@@ -183,10 +183,9 @@ window.qBittorrent.PropPeers ??= (() => {
         }
     });
 
-    new ClipboardJS("#CopyPeerInfo", {
-        text: (trigger) => {
-            return torrentPeersTable.selectedRowsIds().join("\n");
-        }
+    document.getElementById("CopyPeerInfo").addEventListener("click", async (event) => {
+        const text = torrentPeersTable.selectedRowsIds().join("\n");
+        await clipboardCopy(text);
     });
 
     torrentPeersTable.setup("torrentPeersTableDiv", "torrentPeersTableFixedHeaderDiv", torrentPeersContextMenu, true);

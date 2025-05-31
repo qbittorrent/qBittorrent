@@ -248,10 +248,9 @@ window.qBittorrent.PropTrackers ??= (() => {
         torrentTrackersTable.clear();
     };
 
-    new ClipboardJS("#CopyTrackerUrl", {
-        text: (trigger) => {
-            return torrentTrackersTable.selectedRowsIds().join("\n");
-        }
+    document.getElementById("CopyTrackerUrl").addEventListener("click", async (event) => {
+        const text = torrentTrackersTable.selectedRowsIds().join("\n");
+        await clipboardCopy(text);
     });
 
     torrentTrackersTable.setup("torrentTrackersTableDiv", "torrentTrackersTableFixedHeaderDiv", torrentTrackersContextMenu, true);

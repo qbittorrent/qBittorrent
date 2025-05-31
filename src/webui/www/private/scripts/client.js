@@ -1785,26 +1785,29 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 
-    new ClipboardJS(".copyToClipboard", {
-        text: (trigger) => {
-            switch (trigger.id) {
-                case "copyName":
-                    return copyNameFN();
-                case "copyInfohash1":
-                    return copyInfohashFN(1);
-                case "copyInfohash2":
-                    return copyInfohashFN(2);
-                case "copyMagnetLink":
-                    return copyMagnetLinkFN();
-                case "copyID":
-                    return copyIdFN();
-                case "copyComment":
-                    return copyCommentFN();
-                default:
-                    return "";
-            }
+    for (const element of document.getElementsByClassName("copyToClipboard")) {
+        const setupClickEvent = (textFunc) => element.addEventListener("click", async (event) => await clipboardCopy(textFunc()));
+        switch (element.id) {
+            case "copyName":
+                setupClickEvent(copyNameFN);
+                break;
+            case "copyInfohash1":
+                setupClickEvent(() => copyInfohashFN(1));
+                break;
+            case "copyInfohash2":
+                setupClickEvent(() => copyInfohashFN(2));
+                break;
+            case "copyMagnetLink":
+                setupClickEvent(copyMagnetLinkFN);
+                break;
+            case "copyID":
+                setupClickEvent(copyIdFN);
+                break;
+            case "copyComment":
+                setupClickEvent(copyCommentFN);
+                break;
         }
-    });
+    }
 
     addEventListener("visibilitychange", (event) => {
         if (document.hidden)

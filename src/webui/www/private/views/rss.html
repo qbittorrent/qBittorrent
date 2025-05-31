@@ -277,17 +277,16 @@
                 }
             });
 
-            new ClipboardJS("#CopyFeedURL", {
-                text: () => {
-                    let joined = "";
-                    for (const rowID of rssFeedTable.selectedRows) {
-                        const row = rssFeedTable.getRow(rowID);
-                        if (row.full_data.dataUid !== "")
-                            joined += `${row.full_data.dataUrl}\n`;
-                    }
-                    return joined.slice(0, -1);
+            document.getElementById("CopyFeedURL").addEventListener("click", async (event) => {
+                let joined = "";
+                for (const rowID of rssFeedTable.selectedRows) {
+                    const row = rssFeedTable.getRow(rowID);
+                    if (row.full_data.dataUid !== "")
+                        joined += `${row.full_data.dataUrl}\n`;
                 }
+                await clipboardCopy(joined.slice(0, -1));
             });
+
             rssFeedTable.setup("rssFeedTableDiv", "rssFeedFixedHeaderDiv", rssFeedContextMenu);
 
             const rssArticleContextMenu = new window.qBittorrent.ContextMenu.RssArticleContextMenu({
