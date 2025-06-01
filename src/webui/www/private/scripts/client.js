@@ -73,9 +73,9 @@ window.qBittorrent.Client ??= (() => {
     };
 
     const getSyncMainDataInterval = () => {
-        return document.hidden
-            ? window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500
-            : customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
+        if (document.hidden)
+            return window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500;
+        return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
     };
 
     let stopped = false;
