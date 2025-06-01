@@ -971,11 +971,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     if (errorDiv)
                         errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     syncRequestInProgress = false;
-                    syncData(
-                        document.hidden
-                        ? window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500
-                        : 2000
-                    );
+                    syncData(document.hidden
+                        ? (window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500)
+                        : 2000);
                 });
     };
 
