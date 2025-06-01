@@ -90,6 +90,7 @@ window.qBittorrent.Search ??= (() => {
         targets: ".searchTab",
         menu: "searchResultsTabsMenu",
         actions: {
+            refreshTab: (tab) => { refreshSearch(tab); },
             closeTab: (tab) => { closeSearchTab(tab); },
             closeAllTabs: () => {
                 for (const tab of document.querySelectorAll("#searchTabs .searchTab"))
@@ -230,6 +231,41 @@ window.qBittorrent.Search ??= (() => {
             loadResultsTimer: -1,
             sort: { column: searchResultsTable.sortedColumn, reverse: searchResultsTable.reverseSort },
         });
+        updateSearchResultsData(searchId);
+    };
+
+    const refreshSearchTab = (oldSearchId, searchId, pattern) => {
+        fetch("api/v2/search/delete", {
+            method: "POST",
+            body: new URLSearchParams({
+                id: oldSearchId
+            })
+        });
+
+        const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
+        const jobIndex = searchJobs.findIndex((job) => job.id === oldSearchId);
+        if (jobIndex >= 0) {
+            searchJobs[jobIndex].id = searchId;
+            LocalPreferences.set("search_jobs", JSON.stringify(searchJobs));
+        }
+
+        // update existing tab w/ new search id
+        const tab = document.getElementById(`${searchTabIdPrefix}${oldSearchId}`);
+        tab.id = `${searchTabIdPrefix}${searchId}`;
+
+        updateStatusIconElement(searchId, "QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg");
+
+        // copy over relevant state
+        const state = searchState.get(oldSearchId);
+        state.rows = [];
+        state.rowId = 0;
+        state.selectedRowIds = [];
+        state.running = true;
+        state.loadResultsTimer = -1;
+        searchState.set(searchId, state);
+        searchState.delete(oldSearchId);
+
+        searchResultsTable.clear();
         updateSearchResultsData(searchId);
     };
 
@@ -418,6 +454,36 @@ window.qBittorrent.Search ??= (() => {
                 const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
                 searchJobs.push({ id: searchId, pattern: pattern });
                 LocalPreferences.set("search_jobs", JSON.stringify(searchJobs));
+            });
+    };
+
+    const refreshSearch = (el) => {
+        const tab = el.closest("li.searchTab");
+        if (!tab)
+            return;
+
+        const oldSearchId = getSearchIdFromTab(tab);
+        const state = searchState.get(oldSearchId);
+        const pattern = state.searchPattern;
+
+        searchPatternChanged = false;
+        fetch("api/v2/search/start", {
+                method: "POST",
+                body: new URLSearchParams({
+                    pattern: state.searchPattern,
+                    category: document.getElementById("categorySelect").value,
+                    plugins: document.getElementById("pluginsSelect").value
+                })
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const responseJSON = await response.json();
+
+                document.getElementById("startSearchButton").lastChild.textContent = "QBT_TR(Stop)QBT_TR[CONTEXT=SearchEngineWidget]";
+                const searchId = responseJSON.id;
+                refreshSearchTab(oldSearchId, searchId, pattern);
             });
     };
 
