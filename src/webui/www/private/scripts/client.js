@@ -73,8 +73,9 @@ window.qBittorrent.Client ??= (() => {
     };
 
     const getSyncMainDataInterval = () => {
+        // Sync at half of the session timeout (in ms), to prevent timing out
         if (document.hidden)
-            return window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500;
+            return (window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 1000) / 2;
         return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
     };
 
@@ -957,11 +958,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
                             // re-select previously selected rows
                             torrentsTable.reselectRows(torrentsTableSelectedRows);
                     }
-                    else if (response.status === 403) {
-                        const errorDiv = document.getElementById("error_div");
-                        if (errorDiv)
-                            errorDiv.textContent = "QBT_TR(You've been logged out)QBT_TR[CONTEXT=HttpServer]";
-                    }
 
                     syncRequestInProgress = false;
                     syncData(window.qBittorrent.Client.getSyncMainDataInterval());
@@ -972,7 +968,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     syncRequestInProgress = false;
                     syncData(document.hidden
-                        ? (window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 500)
+                        ? (window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 1000) / 2
                         : 2000);
                 });
     };
