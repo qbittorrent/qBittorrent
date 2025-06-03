@@ -373,7 +373,7 @@ namespace BitTorrent
 
         bool m_unchecked = false;
 
-        lt::add_torrent_params m_ltAddTorrentParams;
+        mutable lt::add_torrent_params m_ltAddTorrentParams;
 
         int m_downloadLimit = 0;
         int m_uploadLimit = 0;
