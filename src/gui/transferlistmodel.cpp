@@ -193,7 +193,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V1: return tr("Info Hash v1", "i.e: torrent info hash v1");
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
-            case TR_PERCENT_SELECTED: return tr("%", "Percentage of selected data to download");
+            case TR_PERCENT_SELECTED: return tr("Size %", "Percentage of selected data to download");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
             default: return {};
             }
