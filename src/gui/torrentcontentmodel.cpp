@@ -166,7 +166,7 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QList<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
+    , m_rootItem(new TorrentContentModelFolder(QList<QString>({ tr("Name"), tr("Total Size"), tr("Size (Bytes)"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 #if defined(Q_OS_WIN)
     , m_fileIconProvider {new QFileIconProvider}
 #elif defined(Q_OS_MACOS)
@@ -409,7 +409,8 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
 
     case Qt::TextAlignmentRole:
         if ((index.column() == TorrentContentModelItem::COL_SIZE)
-            || (index.column() == TorrentContentModelItem::COL_REMAINING))
+            || (index.column() == TorrentContentModelItem::COL_SIZE_BYTES)
+			|| (index.column() == TorrentContentModelItem::COL_REMAINING))
         {
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
         }
@@ -456,6 +457,7 @@ QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientatio
 
     case Qt::TextAlignmentRole:
         if ((section == TorrentContentModelItem::COL_SIZE)
+			|| (section == TorrentContentModelItem::COL_SIZE_BYTES)
             || (section == TorrentContentModelItem::COL_REMAINING))
         {
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
@@ -649,7 +651,8 @@ void TorrentContentModel::refresh()
             {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
             {TorrentContentModelItem::COL_PROGRESS, TorrentContentModelItem::COL_PROGRESS},
             {TorrentContentModelItem::COL_PRIO, TorrentContentModelItem::COL_PRIO},
-            {TorrentContentModelItem::COL_AVAILABILITY, TorrentContentModelItem::COL_AVAILABILITY}
+            {TorrentContentModelItem::COL_AVAILABILITY, TorrentContentModelItem::COL_AVAILABILITY},
+			{TorrentContentModelItem::COL_SIZE_BYTES , TorrentContentModelItem::COL_SIZE_BYTES}
         };
         notifySubtreeUpdated(index(0, 0), columns);
     }

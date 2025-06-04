@@ -28,6 +28,7 @@
 
 #include "torrentcontentmodelitem.h"
 
+#include <QLocale> 
 #include <QVariant>
 
 #include "base/unicodestrings.h"
@@ -139,6 +140,8 @@ QString TorrentContentModelItem::displayData(const int column) const
                                   : Utils::String::fromDouble((avail * 100), 1);
             return (value + u'%');
         }
+	case COL_SIZE_BYTES:
+        return QLocale().toString(m_size);
     default:
         Q_UNREACHABLE();
         break;
@@ -166,6 +169,9 @@ QVariant TorrentContentModelItem::underlyingData(const int column) const
         return remaining();
     case COL_AVAILABILITY:
         return availability();
+	case COL_SIZE_BYTES:
+		return m_size;
+
     default:
         Q_UNREACHABLE();
         break;
