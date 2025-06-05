@@ -34,7 +34,6 @@
 #include <QPixmap>
 #include <QSize>
 #include <QString>
-#include <QVector>
 
 #include "base/path.h"
 

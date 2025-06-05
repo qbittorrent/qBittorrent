@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -35,10 +36,13 @@
 #include "base/logger.h"
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
+#include "windowstate.h"
 
 class QCloseEvent;
+class QComboBox;
 class QFileSystemWatcher;
 class QSplitter;
+class QString;
 class QTabWidget;
 class QTimer;
 
@@ -58,6 +62,13 @@ class TorrentCreatorDialog;
 class TransferListFiltersWidget;
 class TransferListWidget;
 
+#ifdef Q_OS_MACOS
+namespace MacUtils
+{
+    class Badger;
+}
+#endif
+
 namespace Net
 {
     struct DownloadResult;
@@ -68,24 +79,13 @@ namespace Ui
     class MainWindow;
 }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-#define QBT_USES_CUSTOMDBUSNOTIFICATIONS
-class DBusNotifier;
-#endif
-
-class MainWindow final : public QMainWindow, public GUIApplicationComponent
+class MainWindow final : public GUIApplicationComponent<QMainWindow>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
-    enum State
-    {
-        Normal,
-        Minimized
-    };
-
-    explicit MainWindow(IGUIApplication *app, State initialState = Normal);
+    explicit MainWindow(IGUIApplication *app, WindowState initialState = WindowState::Normal, const QString &titleSuffix = {});
     ~MainWindow() override;
 
     QWidget *currentTabWidget() const;
@@ -98,11 +98,11 @@ public:
     Log::MsgTypes executionLogMsgTypes() const;
     void setExecutionLogMsgTypes(Log::MsgTypes value);
 
-    // Notifications properties
-
     // Misc properties
     bool isDownloadTrackerFavicon() const;
     void setDownloadTrackerFavicon(bool value);
+
+    void setTitleSuffix(const QString &suffix);
 
     void activate();
     void cleanup();
@@ -110,9 +110,9 @@ public:
 private slots:
     void showFilterContextMenu();
     void desktopNotificationClicked();
-    void writeSettings();
-    void writeSplitterSettings();
-    void readSettings();
+    void saveSettings() const;
+    void loadSettings();
+    void saveSplitterSettings() const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
     void clearUILockPassword();
@@ -126,17 +126,13 @@ private slots:
     void displaySearchTab();
     void displayRSSTab();
     void displayExecutionLogTab();
-    void focusSearchFilter();
-    void reloadSessionStats();
-    void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
+    void toggleFocusBetweenLineEdits();
+    void loadSessionStats();
+    void reloadTorrentStats(const QList<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
-    void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
     void optionsSaved();
     void toggleAlternativeSpeeds();
 
-#ifdef Q_OS_WIN
-    void pythonDownloadFinished(const Net::DownloadResult &result);
-#endif
     void addToolbarContextMenu();
     void manageCookies();
 
@@ -171,8 +167,8 @@ private slots:
     void on_actionDownloadFromURL_triggered();
     void on_actionExit_triggered();
     void on_actionLock_triggered();
-    // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
-    void updatePowerManagementState();
+    // Check for non-stopped downloading or seeding torrents and prevent system suspend/sleep according to preferences
+    void updatePowerManagementState() const;
 
     void toolbarMenuRequested();
     void toolbarIconsOnly();
@@ -185,15 +181,13 @@ private slots:
 #else
     void toggleVisibility();
 #endif
-
-private:
-    QMenu *createDesktopIntegrationMenu();
 #ifdef Q_OS_WIN
-    void installPython();
+    void pythonDownloadFinished(const Net::DownloadResult &result);
 #endif
 
-    void dropEvent(QDropEvent *event) override;
-    void dragEnterEvent(QDragEnterEvent *event) override;
+private:
+    void populateDesktopIntegrationMenu();
+
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
     void keyPressEvent(QKeyEvent *event) override;
@@ -203,12 +197,25 @@ private:
     void createTorrentTriggered(const Path &path);
     void showStatusBar(bool show);
     void showFiltersSidebar(bool show);
+    void applyTransferListFilter();
+    void refreshWindowTitle();
+    void refreshTrayIconTooltip();
+
+#ifdef Q_OS_WIN
+    void installPython();
+    bool verifyPythonInstaller(const Path &installerPath) const;
+#endif
 
     Ui::MainWindow *m_ui = nullptr;
 
+    QString m_windowTitle;
+    QString m_downloadRate;
+    QString m_uploadRate;
+    bool m_posInitialized = false;
+    bool m_neverShown = true;
+
     QFileSystemWatcher *m_executableWatcher = nullptr;
     // GUI related
-    bool m_posInitialized = false;
     QPointer<QTabWidget> m_tabs;
     QPointer<StatusBar> m_statusBar;
     QPointer<OptionsDialog> m_options;
@@ -226,8 +233,10 @@ private:
     bool m_forceExit = false;
     bool m_uiLocked = false;
     bool m_unlockDlgShowing = false;
-    LineEdit *m_searchFilter = nullptr;
-    QAction *m_searchFilterAction = nullptr;
+    QWidget *m_columnFilterWidget = nullptr;
+    LineEdit *m_columnFilterEdit = nullptr;
+    QAction *m_columnFilterAction = nullptr;
+    QComboBox *m_columnFilterComboBox = nullptr;
     // Widgets
     QAction *m_queueSeparator = nullptr;
     QAction *m_queueSeparatorMenu = nullptr;
@@ -238,7 +247,6 @@ private:
     // Power Management
     PowerManagement *m_pwr = nullptr;
     QTimer *m_preventTimer = nullptr;
-    bool m_hasPython = false;
     QMenu *m_toolbarMenu = nullptr;
 
     SettingValue<bool> m_storeExecutionLogEnabled;
@@ -250,5 +258,8 @@ private:
     void handleUpdateCheckFinished(ProgramUpdater *updater, bool invokedByUser);
 
     QTimer *m_programUpdateTimer = nullptr;
+#endif
+#ifdef Q_OS_MACOS
+    std::unique_ptr<MacUtils::Badger> m_badger;
 #endif
 };

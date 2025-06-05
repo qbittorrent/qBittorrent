@@ -32,13 +32,6 @@
 
 SearchSortModel::SearchSortModel(QObject *parent)
     : base(parent)
-    , m_isNameFilterEnabled(false)
-    , m_minSeeds(0)
-    , m_maxSeeds(-1)
-    , m_minLeeches(0)
-    , m_maxLeeches(-1)
-    , m_minSize(0)
-    , m_maxSize(-1)
 {
     setSortRole(UnderlyingDataRole);
     setFilterRole(UnderlyingDataRole);
@@ -53,7 +46,7 @@ void SearchSortModel::setNameFilter(const QString &searchTerm)
 {
     m_searchTerm = searchTerm;
     if ((searchTerm.length() > 2) && searchTerm.startsWith(u'"') && searchTerm.endsWith(u'"'))
-        m_searchTermWords = QStringList(m_searchTerm.mid(1, m_searchTerm.length() - 2));
+        m_searchTermWords = QStringList(m_searchTerm.sliced(1, (m_searchTerm.length() - 2)));
     else
         m_searchTermWords = searchTerm.split(u' ', Qt::SkipEmptyParts);
 }

@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html lang="${LANG}">
+<html lang="${LANG}" class="dark">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        window.addEvent('domready', () => {
-            const rules = new URI().getData('rules').split('|');
-
-            $('cancelBtn').focus();
-            $('cancelBtn').addEvent('click', (e) => {
-                new Event(e).stop();
-                window.parent.MochaUI.closeWindow(window.parent.$('removeRulePage'));
+        window.addEventListener("DOMContentLoaded", (event) => {
+            document.getElementById("cancelBtn").focus();
+            document.getElementById("cancelBtn").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
-            $('confirmBtn').addEvent('click', (e) => {
-                new Event(e).stop();
+            document.getElementById("confirmBtn").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 let completionCount = 0;
-                rules.forEach((rule) => {
-                    new Request({
-                        url: 'api/v2/rss/removeRule',
-                        noCache: true,
-                        method: 'post',
-                        data: {
-                            ruleName: decodeURIComponent(rule)
-                        },
-                        onComplete: (response) => {
+                const rules = new URLSearchParams(window.location.search).get("rules").split("|");
+                for (const rule of rules) {
+                    fetch("api/v2/rss/removeRule", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                ruleName: decodeURIComponent(rule)
+                            })
+                        })
+                        .then((response) => {
+                            if (!response.ok)
+                                return;
+
                             ++completionCount;
                             if (completionCount === rules.length) {
                                 window.parent.qBittorrent.RssDownloader.updateRulesList();
-                                window.parent.MochaUI.closeWindow(window.parent.$('removeRulePage'));
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
-                        }
-                    }).send();
-                });
+                        });
+                }
             });
         });
     </script>
@@ -47,8 +50,8 @@
     <div style="padding: 10px 10px 0px 10px;">
         <p>QBT_TR(Are you sure you want to remove the selected download rules?)QBT_TR[CONTEXT=AutomatedRssDownloader]</p>
         <div style="text-align: right;">
-            <input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" />
-            <input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" />
+            <input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]">
+            <input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]">
         </div>
     </div>
 </body>

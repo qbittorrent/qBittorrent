@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Jonathan Ketchker
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,15 +30,18 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <chrono>
+
+#include <QtTypes>
 #include <QHash>
-#include <QNetworkAccessManager>
+#include <QNetworkProxy>
 #include <QObject>
 #include <QQueue>
 #include <QSet>
 
 #include "base/path.h"
 
+class QNetworkAccessManager;
 class QNetworkCookie;
 class QNetworkReply;
 class QSslError;
@@ -53,11 +57,7 @@ namespace Net
         static ServiceID fromURL(const QUrl &url);
     };
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const ServiceID &serviceID, std::size_t seed = 0);
-#else
-    uint qHash(const ServiceID &serviceID, uint seed = 0);
-#endif
     bool operator==(const ServiceID &lhs, const ServiceID &rhs);
 
     enum class DownloadStatus
@@ -102,11 +102,11 @@ namespace Net
     struct DownloadResult
     {
         QString url;
-        DownloadStatus status;
+        DownloadStatus status = DownloadStatus::Failed;
         QString errorString;
         QByteArray data;
         Path filePath;
-        QString magnet;
+        QString magnetURI;
     };
 
     class DownloadHandler : public QObject
@@ -123,7 +123,9 @@ namespace Net
         void finished(const DownloadResult &result);
     };
 
-    class DownloadManager : public QObject
+    class DownloadHandlerImpl;
+
+    class DownloadManager final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(DownloadManager)
@@ -133,12 +135,12 @@ namespace Net
         static void freeInstance();
         static DownloadManager *instance();
 
-        DownloadHandler *download(const DownloadRequest &downloadRequest);
+        DownloadHandler *download(const DownloadRequest &downloadRequest, bool useProxy);
 
         template <typename Context, typename Func>
-        void download(const DownloadRequest &downloadRequest, Context context, Func &&slot);
+        void download(const DownloadRequest &downloadRequest, bool useProxy, Context context, Func &&slot);
 
-        void registerSequentialService(const ServiceID &serviceID);
+        void registerSequentialService(const ServiceID &serviceID, std::chrono::seconds delay = std::chrono::seconds(0));
 
         QList<QNetworkCookie> cookiesForUrl(const QUrl &url) const;
         bool setCookiesFromUrl(const QList<QNetworkCookie> &cookieList, const QUrl &url);
@@ -148,27 +150,30 @@ namespace Net
 
         static bool hasSupportedScheme(const QString &url);
 
-    private slots:
-        void ignoreSslErrors(QNetworkReply *, const QList<QSslError> &);
-
     private:
+        class NetworkCookieJar;
+
         explicit DownloadManager(QObject *parent = nullptr);
 
         void applyProxySettings();
-        void handleReplyFinished(const QNetworkReply *reply);
+        void processWaitingJobs(const ServiceID &serviceID);
+        void processRequest(DownloadHandlerImpl *downloadHandler);
 
         static DownloadManager *m_instance;
-        QNetworkAccessManager m_networkManager;
+        NetworkCookieJar *m_networkCookieJar = nullptr;
+        QNetworkAccessManager *m_networkManager = nullptr;
+        QNetworkProxy m_proxy;
 
-        QSet<ServiceID> m_sequentialServices;
+        // m_sequentialServices value is delay for same host requests
+        QHash<ServiceID, std::chrono::seconds> m_sequentialServices;
         QSet<ServiceID> m_busyServices;
-        QHash<ServiceID, QQueue<DownloadHandler *>> m_waitingJobs;
+        QHash<ServiceID, QQueue<DownloadHandlerImpl *>> m_waitingJobs;
     };
 
     template <typename Context, typename Func>
-    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func &&slot)
+    void DownloadManager::download(const DownloadRequest &downloadRequest, bool useProxy, Context context, Func &&slot)
     {
-        const DownloadHandler *handler = download(downloadRequest);
+        const DownloadHandler *handler = download(downloadRequest, useProxy);
         connect(handler, &DownloadHandler::finished, context, slot);
     }
 }

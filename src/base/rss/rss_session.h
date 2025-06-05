@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -34,26 +35,20 @@
  * RSS Session configuration file format (JSON):
  *
  * =============== BEGIN ===============
- *
- {
- *     "folder1":
- {
- *         "subfolder1":
- {
- *             "Feed name 1 (Alias)":
- {
+ * {
+ *     "folder1": {
+ *         "subfolder1": {
+ *             "Feed name 1 (Alias)": {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url1"
  *             }
- *             "Feed name 2 (Alias)":
- {
+ *             "Feed name 2 (Alias)": {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url2"
  *             }
  *         },
  *         "subfolder2": {},
- *         "Feed name 3 (Alias)":
- {
+ *         "Feed name 3 (Alias)": {
  *             "uid": "feed unique identifier",
  *             "url": "http://some-feed-url3"
  *         }
@@ -68,6 +63,8 @@
  * 3.   Feed is JSON object (keys are property names, values are property values; 'uid' and 'url' are required)
  */
 
+#include <chrono>
+
 #include <QHash>
 #include <QObject>
 #include <QPointer>
@@ -75,6 +72,7 @@
 
 #include "base/3rdparty/expected.hpp"
 #include "base/settingvalue.h"
+#include "base/utils/thread.h"
 
 class QThread;
 
@@ -87,7 +85,7 @@ namespace RSS
     class Folder;
     class Item;
 
-    class Session : public QObject
+    class Session final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(Session)
@@ -113,8 +111,13 @@ namespace RSS
         int refreshInterval() const;
         void setRefreshInterval(int refreshInterval);
 
-        nonstd::expected<void, QString> addFolder(const QString &path);
-        nonstd::expected<void, QString> addFeed(const QString &url, const QString &path);
+        std::chrono::seconds fetchDelay() const;
+        void setFetchDelay(std::chrono::seconds delay);
+
+        nonstd::expected<Folder *, QString> addFolder(const QString &path);
+        nonstd::expected<Feed *, QString> addFeed(const QString &url, const QString &path, std::chrono::seconds refreshInterval = {});
+        nonstd::expected<void, QString> setFeedURL(const QString &path, const QString &url);
+        nonstd::expected<void, QString> setFeedURL(Feed *feed, const QString &url);
         nonstd::expected<void, QString> moveItem(const QString &itemPath, const QString &destPath);
         nonstd::expected<void, QString> moveItem(Item *item, const QString &destPath);
         nonstd::expected<void, QString> removeItem(const QString &itemPath);
@@ -126,9 +129,6 @@ namespace RSS
 
         Folder *rootFolder() const;
 
-    public slots:
-        void refresh();
-
     signals:
         void processingStateChanged(bool enabled);
         void maxArticlesPerFeedChanged(int n);
@@ -137,6 +137,7 @@ namespace RSS
         void itemAboutToBeRemoved(Item *item);
         void feedIconLoaded(Feed *feed);
         void feedStateChanged(Feed *feed);
+        void feedURLChanged(Feed *feed, const QString &oldURL);
 
     private slots:
         void handleItemAboutToBeDestroyed(Item *item);
@@ -145,25 +146,29 @@ namespace RSS
     private:
         QUuid generateUID() const;
         void load();
-        void loadFolder(const QJsonObject &jsonObj, Folder *folder);
+        bool loadFolder(const QJsonObject &jsonObj, Folder *folder);
         void loadLegacy();
         void store();
         nonstd::expected<Folder *, QString> prepareItemDest(const QString &path);
         Folder *addSubfolder(const QString &name, Folder *parentFolder);
-        Feed *addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder);
+        Feed *addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder, std::chrono::seconds refreshInterval);
         void addItem(Item *item, Folder *destFolder);
+        void refresh();
+        std::chrono::system_clock::time_point refreshFeed(Feed *feed, const std::chrono::system_clock::time_point &currentTimepoint);
 
         static QPointer<Session> m_instance;
 
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
+        CachedSettingValue<qint64> m_storeFetchDelay;
         CachedSettingValue<int> m_storeMaxArticlesPerFeed;
-        QThread *m_workingThread = nullptr;
+        Utils::Thread::UniquePtr m_workingThread;
         AsyncFileStorage *m_confFileStorage = nullptr;
         AsyncFileStorage *m_dataFileStorage = nullptr;
         QTimer m_refreshTimer;
         QHash<QString, Item *> m_itemsByPath;
         QHash<QUuid, Feed *> m_feedsByUID;
         QHash<QString, Feed *> m_feedsByURL;
+        QHash<Feed *, std::chrono::system_clock::time_point> m_refreshTimepoints;
     };
 }

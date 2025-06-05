@@ -1,0 +1,229 @@
+.hidden-search {
+    display: none !important;
+}
+
+li[data-parent].closed {
+    display: none !important;
+}
+
+li[data-parent].open:not(.hidden-search) {
+    display: block !important;
+}
+
+.vsb-menu {
+    background-clip: padding-box;
+    background-color: var(--color-background-default);
+    border: 1px solid var(--color-border-default);
+    cursor: pointer;
+    display: block;
+    font-size: 11px;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1000; /*Don't change*/
+}
+
+.vsb-js-search-zone {
+    min-height: 1.8em;
+    padding: 2px;
+    position: absolute;
+    width: 80%;
+    z-index: 1001; /*Don't change*/
+}
+
+.vsb-js-search-zone input {
+    border-radius: 4px;
+    height: 25px !important;
+    margin-left: 2px;
+    width: 96%;
+}
+
+.vsb-main {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    vertical-align: top; /*Don't change*/
+}
+
+.vsb-menu ul {
+    cursor: pointer;
+    list-style: none;
+    margin: 0;
+    overflow-y: auto;
+    padding: 0;
+    user-select: none;
+    white-space: nowrap;
+}
+
+li.disabled {
+    background-color: #999999;
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+li.overflow {
+    background-color: #999999;
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+li.short {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.vsb-main button {
+    border: 1px solid var(--color-border-default);
+    border-radius: 4px;
+    min-width: 120px;
+    padding: 6px 12px;
+    text-align: left;
+    width: 100%;
+    z-index: 1;
+}
+
+.vsb-main button.disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+.vsb-main .title {
+    margin-right: 6px;
+    user-select: none;
+}
+
+.vsb-main ul {
+    white-space: nowrap;
+}
+
+.vsb-menu li {
+    font-size: 12px;
+    padding: 4px 26px;
+}
+
+.vsb-menu li:hover {
+    background-color: var(--color-background-hover);
+    color: var(--color-text-white);
+}
+
+.vsb-menu li.grouped-option b {
+    display: inline-block;
+    margin-left: 10px;
+    transform: translate(-18px);
+}
+
+.vsb-menu li.grouped-option.open span {
+    border-radius: 2px;
+    display: inline-block;
+    font-size: inherit;
+    height: 8px;
+    margin-top: -2px;
+    transform: translate(-38px) rotate(45deg);
+    width: 8px;
+}
+
+.vsb-menu li.grouped-option.closed span {
+    border-radius: 2px;
+    display: inline-block;
+    font-size: inherit;
+    height: 8px;
+    transform: translate(-38px) rotate(-45deg);
+    width: 8px;
+}
+
+.vsb-menu li.grouped-option i {
+    border: 1px solid;
+    border-radius: 3px;
+    display: inline-block;
+    float: left;
+    font-size: inherit;
+    font-weight: bold;
+    height: 11px;
+    margin-left: 22px;
+    margin-right: 2px;
+    margin-top: 0;
+    padding: 1px 3px 2px;
+    width: 8px;
+}
+
+.vsb-menu li.grouped-option.checked i::after {
+    content: "";
+    display: inline-block;
+    float: left;
+    font-size: inherit;
+    height: 8px;
+    margin-left: 0;
+    transform: rotate(45deg);
+    width: 5px;
+}
+
+.vsb-menu :not(.multi) li.active {
+    margin-left: 7px;
+}
+
+.vsb-menu :not(.multi) li.active::before {
+    border-bottom: 3px solid var(--color-border-blue);
+    border-radius: 2px;
+    border-right: 3px solid var(--color-border-blue);
+    content: "";
+    display: inline-block;
+    font-size: inherit;
+    height: 10px;
+    margin-left: -18px;
+    transform: rotate(45deg);
+    width: 5px;
+}
+
+.vsb-menu .multi li.grouped-option {
+    padding-left: 5px;
+}
+
+.vsb-menu .multi li.grouped-option:hover {
+    color: rgb(52 31 112);
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.vsb-menu .multi li:not(.grouped-option)::before {
+    background: var(--color-background-popup);
+    border: 1px solid;
+    border-radius: 3px;
+    content: "";
+    display: inline-block;
+    float: left;
+    font-size: inherit;
+    font-weight: bold;
+    margin-left: -22px;
+    margin-right: 2px;
+    margin-top: 0;
+    padding: 7px;
+}
+
+.vsb-menu .multi li:not(.grouped-option).active::after {
+    border-bottom: 3px solid var(--color-border-blue);
+    border-right: 3px solid var(--color-border-blue);
+    content: "";
+    display: inline-block;
+    float: left;
+    font-size: inherit;
+    height: 8px;
+    margin-left: -18px;
+    margin-top: 1px;
+    transform: rotate(45deg);
+    width: 5px;
+}
+
+.caret {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px dashed;
+    border-top: 4px solid;
+    display: inline-block;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    width: 0;
+}
+
+li[data-parent] {
+    padding-left: 50px !important;
+}

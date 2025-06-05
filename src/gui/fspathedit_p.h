@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016 Eugene Shalygin
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016  Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,7 +30,6 @@
 #pragma once
 
 #include <QComboBox>
-#include <QFileIconProvider>
 #include <QLineEdit>
 #include <QtContainerFwd>
 #include <QValidator>
@@ -37,8 +37,8 @@
 #include "base/pathfwd.h"
 
 class QAction;
-class QCompleter;
 class QContextMenuEvent;
+class QFileIconProvider;
 class QFileSystemModel;
 class QKeyEvent;
 
@@ -68,6 +68,9 @@ namespace Private
         bool existingOnly() const;
         void setExistingOnly(bool value);
 
+        bool filesOnly() const;
+        void setFilesOnly(bool value);
+
         bool directoriesOnly() const;
         void setDirectoriesOnly(bool value);
 
@@ -87,6 +90,7 @@ namespace Private
 
         bool m_strictMode = false;
         bool m_existingOnly = false;
+        bool m_filesOnly = false;
         bool m_directoriesOnly = false;
         bool m_checkReadPermission = false;
         bool m_checkWritePermission = false;
@@ -136,10 +140,11 @@ namespace Private
         static QString warningText(FileSystemPathValidator::TestResult result);
 
         QFileSystemModel *m_completerModel = nullptr;
-        QCompleter *m_completer = nullptr;
         QAction *m_browseAction = nullptr;
         QAction *m_warningAction = nullptr;
-        QFileIconProvider m_iconProvider;
+        QFileIconProvider *m_iconProvider = nullptr;
+        bool m_completeDirectoriesOnly = false;
+        QStringList m_filenameFilters;
     };
 
     class FileComboEdit final : public QComboBox, public IFileEditorWithCompletion

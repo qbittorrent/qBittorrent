@@ -30,7 +30,7 @@
 
 #include <QDir>
 #include <QHash>
-#include <QVector>
+#include <QList>
 
 #include "base/exceptions.h"
 #include "base/path.h"
@@ -71,7 +71,7 @@ void BitTorrent::AbstractFileStorage::renameFolder(const Path &oldFolderPath, co
     if (newFolderPath.isAbsolute())
         throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newFolderPath.toString()));
 
-    QVector<int> renamingFileIndexes;
+    QList<int> renamingFileIndexes;
     renamingFileIndexes.reserve(filesCount());
 
     for (int i = 0; i < filesCount(); ++i)

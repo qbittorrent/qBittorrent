@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,7 +33,7 @@
 #include "base/pathfwd.h"
 #include "resumedatastorage.h"
 
-class QThread;
+class QSqlQuery;
 
 namespace BitTorrent
 {
@@ -46,20 +46,20 @@ namespace BitTorrent
         explicit DBResumeDataStorage(const Path &dbPath, QObject *parent = nullptr);
         ~DBResumeDataStorage() override;
 
-        QVector<TorrentID> registeredTorrents() const override;
+        QList<TorrentID> registeredTorrents() const override;
         LoadResumeDataResult load(const TorrentID &id) const override;
 
         void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
         void remove(const TorrentID &id) const override;
-        void storeQueue(const QVector<TorrentID> &queue) const override;
+        void storeQueue(const QList<TorrentID> &queue) const override;
 
     private:
         void doLoadAll() const override;
         int currentDBVersion() const;
         void createDB() const;
-        void updateDBFromVersion1() const;
-
-        QThread *m_ioThread = nullptr;
+        void updateDB(int fromVersion) const;
+        void enableWALMode() const;
+        LoadResumeDataResult parseQueryResultRow(const QSqlQuery &query) const;
 
         class Worker;
         Worker *m_asyncWorker = nullptr;

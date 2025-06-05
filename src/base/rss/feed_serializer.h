@@ -49,12 +49,12 @@ namespace RSS::Private
         using QObject::QObject;
 
         void load(const Path &dataFileName, const QString &url);
-        void store(const Path &dataFileName, const QVector<QVariantHash> &articlesData);
+        void store(const Path &dataFileName, const QList<QVariantHash> &articlesData);
 
     signals:
-        void loadingFinished(const QVector<QVariantHash> &articles);
+        void loadingFinished(const QList<QVariantHash> &articles);
 
     private:
-        QVector<QVariantHash> loadArticles(const QByteArray &data, const QString &url);
+        QList<QVariantHash> loadArticles(const QByteArray &data, const QString &url);
     };
 }

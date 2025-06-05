@@ -29,7 +29,7 @@
 #pragma once
 
 #include <QCoreApplication>
-#include <QVector>
+#include <QList>
 
 #include "base/bittorrent/downloadpriority.h"
 
@@ -86,7 +86,7 @@ public:
 protected:
     TorrentContentModelFolder *m_parentItem = nullptr;
     // Root item members
-    QVector<QString> m_itemData;
+    QList<QString> m_itemData;
     // Non-root item members
     QString m_name;
     qulonglong m_size = 0;

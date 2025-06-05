@@ -40,7 +40,9 @@ PeersAdditionDialog::PeersAdditionDialog(QWidget *parent)
     , m_ui(new Ui::PeersAdditionDialog())
 {
     m_ui->setupUi(this);
+
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &PeersAdditionDialog::validateInput);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
 
 PeersAdditionDialog::~PeersAdditionDialog()
@@ -48,7 +50,7 @@ PeersAdditionDialog::~PeersAdditionDialog()
     delete m_ui;
 }
 
-QVector<BitTorrent::PeerAddress> PeersAdditionDialog::askForPeers(QWidget *parent)
+QList<BitTorrent::PeerAddress> PeersAdditionDialog::askForPeers(QWidget *parent)
 {
     PeersAdditionDialog dlg(parent);
     dlg.exec();

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -62,6 +62,7 @@ public:
         TR_UPSPEED,
         TR_ETA,
         TR_RATIO,
+        TR_POPULARITY,
         TR_CATEGORY,
         TR_TAGS,
         TR_ADD_DATE,
@@ -81,6 +82,11 @@ public:
         TR_SEEN_COMPLETE_DATE,
         TR_LAST_ACTIVITY,
         TR_AVAILABILITY,
+        TR_DOWNLOAD_PATH,
+        TR_INFOHASH_V1,
+        TR_INFOHASH_V2,
+        TR_REANNOUNCE,
+        TR_PRIVATE,
 
         NB_COLUMNS
     };
@@ -103,27 +109,28 @@ public:
     BitTorrent::Torrent *torrentHandle(const QModelIndex &index) const;
 
 private slots:
-    void addTorrents(const QVector<BitTorrent::Torrent *> &torrents);
-    void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
-    void handleTorrentStatusUpdated(BitTorrent::Torrent *const torrent);
-    void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents);
+    void addTorrents(const QList<BitTorrent::Torrent *> &torrents);
+    void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
+    void handleTorrentStatusUpdated(BitTorrent::Torrent *torrent);
+    void handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
 
 private:
     void configure();
+    void loadUIThemeResources();
     QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
     QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
-    QIcon getIconByState(const BitTorrent::TorrentState state) const;
+    QIcon getIconByState(BitTorrent::TorrentState state) const;
 
     QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
     QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
-    const QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
+    QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
 
     enum class HideZeroValuesMode
     {
         Never,
-        Paused,
+        Stopped,
         Always
     };
 
@@ -134,9 +141,12 @@ private:
     QIcon m_completedIcon;
     QIcon m_downloadingIcon;
     QIcon m_errorIcon;
-    QIcon m_pausedIcon;
+    QIcon m_movingIcon;
+    QIcon m_stoppedIcon;
     QIcon m_queuedIcon;
     QIcon m_stalledDLIcon;
     QIcon m_stalledUPIcon;
     QIcon m_uploadingIcon;
 };
+
+Q_DECLARE_METATYPE(TransferListModel::Column)

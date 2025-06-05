@@ -41,6 +41,8 @@ public:
 private slots:
     void addFolderAction();
     void addFeedAction();
+    void setFeedURLAction();
+    void setFeedRefreshIntervalAction();
     void removeItemAction();
     void moveItemAction();
     void itemsAction();

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -41,7 +41,7 @@ class SearchDownloadHandler : public QObject
 
     friend class SearchPluginManager;
 
-    SearchDownloadHandler(const QString &siteUrl, const QString &url, SearchPluginManager *manager);
+    SearchDownloadHandler(const QString &pluginName, const QString &url, SearchPluginManager *manager);
 
 signals:
     void downloadFinished(const QString &path);

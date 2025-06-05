@@ -5,3 +5,6 @@ core.eol=lf
 *.png binary
 *.qm binary
 *.zip binary
+
+dist/windows/license.txt text eol=crlf
+test/testdata/crlf.txt text eol=crlf

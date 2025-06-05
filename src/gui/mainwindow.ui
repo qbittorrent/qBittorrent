@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="contextMenuPolicy">
-   <enum>Qt::CustomContextMenu</enum>
+   <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="centralWidgetLayout">
@@ -43,15 +43,16 @@
      <string>&amp;Edit</string>
     </property>
     <addaction name="actionStart"/>
-    <addaction name="actionPause"/>
-    <addaction name="actionStartAll"/>
-    <addaction name="actionPauseAll"/>
+    <addaction name="actionStop"/>
     <addaction name="separator"/>
     <addaction name="actionDelete"/>
     <addaction name="actionTopQueuePos"/>
     <addaction name="actionIncreaseQueuePos"/>
     <addaction name="actionDecreaseQueuePos"/>
     <addaction name="actionBottomQueuePos"/>
+    <addaction name="separator"/>
+    <addaction name="actionPauseSession"/>
+    <addaction name="actionResumeSession"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -134,10 +135,10 @@
     <bool>false</bool>
    </property>
    <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+    <enum>Qt::Orientation::Horizontal</enum>
    </property>
    <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonFollowStyle</enum>
+    <enum>Qt::ToolButtonStyle::ToolButtonFollowStyle</enum>
    </property>
    <property name="floatable">
     <bool>false</bool>
@@ -148,12 +149,12 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionDownloadFromURL"/>
    <addaction name="actionOpen"/>
+   <addaction name="actionDownloadFromURL"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
-   <addaction name="actionPause"/>
+   <addaction name="actionStop"/>
    <addaction name="actionTopQueuePos"/>
    <addaction name="actionIncreaseQueuePos"/>
    <addaction name="actionDecreaseQueuePos"/>
@@ -188,27 +189,27 @@
   </action>
   <action name="actionStart">
    <property name="text">
-    <string>&amp;Resume</string>
+    <string>Sta&amp;rt</string>
    </property>
   </action>
-  <action name="actionPause">
+  <action name="actionStop">
    <property name="text">
-    <string>&amp;Pause</string>
+    <string>Sto&amp;p</string>
    </property>
   </action>
-  <action name="actionStartAll">
+  <action name="actionResumeSession">
    <property name="text">
-    <string>R&amp;esume All</string>
+    <string>R&amp;esume Session</string>
    </property>
   </action>
-  <action name="actionPauseAll">
+  <action name="actionPauseSession">
    <property name="text">
-    <string>P&amp;ause All</string>
+    <string>Pau&amp;se Session</string>
    </property>
   </action>
   <action name="actionDelete">
    <property name="text">
-    <string>&amp;Delete</string>
+    <string>&amp;Remove</string>
    </property>
   </action>
   <action name="actionDownloadFromURL">
@@ -391,7 +392,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>S&amp;hutdown System</string>
+    <string>Sh&amp;utdown System</string>
    </property>
   </action>
   <action name="actionAutoShutdownDisabled">

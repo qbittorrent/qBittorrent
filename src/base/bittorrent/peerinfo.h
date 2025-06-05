@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -36,7 +36,6 @@ class QBitArray;
 
 namespace BitTorrent
 {
-    class Torrent;
     struct PeerAddress;
 
     class PeerInfo
@@ -45,7 +44,7 @@ namespace BitTorrent
 
     public:
         PeerInfo() = default;
-        PeerInfo(const Torrent *torrent, const lt::peer_info &nativeInfo);
+        PeerInfo(const lt::peer_info &nativeInfo, const QBitArray &allPieces);
 
         bool fromDHT() const;
         bool fromPeX() const;
@@ -77,7 +76,9 @@ namespace BitTorrent
         bool isPlaintextEncrypted() const;
 
         PeerAddress address() const;
+        QString I2PAddress() const;
         QString client() const;
+        QString peerIdClient() const;
         qreal progress() const;
         int payloadUpSpeed() const;
         int payloadDownSpeed() const;
@@ -92,7 +93,7 @@ namespace BitTorrent
         int downloadingPieceIndex() const;
 
     private:
-        qreal calcRelevance(const Torrent *torrent) const;
+        qreal calcRelevance(const QBitArray &allPieces) const;
         void determineFlags();
 
         lt::peer_info m_nativeInfo = {};
@@ -101,5 +102,6 @@ namespace BitTorrent
         QString m_flagsDescription;
 
         mutable QString m_country;
+        mutable QString m_I2PAddress;
     };
 }

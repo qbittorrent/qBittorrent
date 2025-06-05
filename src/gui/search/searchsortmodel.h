@@ -44,7 +44,9 @@ public:
         SIZE,
         SEEDS,
         LEECHES,
+        ENGINE_NAME,
         ENGINE_URL,
+        PUB_DATE,
         DL_LINK,
         DESC_LINK,
         NB_SEARCH_COLUMNS
@@ -90,12 +92,12 @@ protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
 private:
-    bool m_isNameFilterEnabled;
+    bool m_isNameFilterEnabled = false;
     QString m_searchTerm;
     QStringList m_searchTermWords;
-    int m_minSeeds, m_maxSeeds;
-    int m_minLeeches, m_maxLeeches;
-    qint64 m_minSize, m_maxSize;
+    int m_minSeeds = 0, m_maxSeeds = -1;
+    int m_minLeeches = 0, m_maxLeeches = -1;
+    qint64 m_minSize = 0, m_maxSize = -1;
 
     Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };

@@ -18,16 +18,19 @@ if (SYSTEMD)
     )
 endif()
 
-if (GUI)
-    list(APPEND MAN_FILES ${PROJECT_SOURCE_DIR}/doc/qbittorrent.1)
-else()
-    list(APPEND MAN_FILES ${PROJECT_SOURCE_DIR}/doc/qbittorrent-nox.1)
-endif()
-
-install(FILES ${MAN_FILES}
-    DESTINATION ${CMAKE_INSTALL_MANDIR}/man1
-    COMPONENT doc
+set(manPageLanguages
+    en
+    ru
 )
+
+foreach(manPageLanguage ${manPageLanguages})
+    install(FILES ${PROJECT_SOURCE_DIR}/doc/${manPageLanguage}/$<IF:$<BOOL:${GUI}>,qbittorrent.1,qbittorrent-nox.1>
+        # English man pages are installed into ${CMAKE_INSTALL_MANDIR}/man1, while man pages
+        # in other languages are installed into ${CMAKE_INSTALL_MANDIR}/${manPageLanguage}/man1.
+        DESTINATION ${CMAKE_INSTALL_MANDIR}/$<$<NOT:$<STREQUAL:${manPageLanguage},en>>:${manPageLanguage}/>man1
+        COMPONENT doc
+    )
+endforeach()
 
 if (GUI)
     install(FILES org.qbittorrent.qBittorrent.desktop
@@ -35,7 +38,7 @@ if (GUI)
         COMPONENT data
     )
 
-    install(FILES org.qbittorrent.qBittorrent.appdata.xml
+    install(FILES org.qbittorrent.qBittorrent.metainfo.xml
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo/
         COMPONENT data
     )

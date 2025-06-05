@@ -1,51 +1,72 @@
 <!-- preferences -->
 <div class="toolbarTabs">
-    <ul id="preferencesTabs" class="tab-menu">
-        <li id="PrefDownloadsLink" class="selected"><a>QBT_TR(Downloads)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-        <li id="PrefConnectionLink"><a>QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-        <li id="PrefSpeedLink"><a>QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-        <li id="PrefBittorrentLink"><a>QBT_TR(BitTorrent)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-        <li id="PrefRSSLink"><a>QBT_TR(RSS)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-        <li id="PrefWebUILink"><a>QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-        <li id="PrefAdvancedLink"><a>QBT_TR(Advanced)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    </ul>
+    <menu id="preferencesTabs" class="tab-menu">
+        <li id="PrefBehaviorLink" class="selected">
+            <a><img alt="QBT_TR(Behavior)QBT_TR[CONTEXT=OptionsDialog]" src="images/preferences-desktop.svg" width="16" height="16">QBT_TR(Behavior)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+        <li id="PrefDownloadsLink">
+            <a><img alt="QBT_TR(Downloads)QBT_TR[CONTEXT=OptionsDialog]" src="images/download.svg" width="16" height="16">QBT_TR(Downloads)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+        <li id="PrefConnectionLink">
+            <a><img alt="QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]" src="images/network-connect.svg" width="16" height="16">QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+        <li id="PrefSpeedLink">
+            <a><img alt="QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]" src="images/slow_off.svg" width="16" height="16">QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+        <li id="PrefBittorrentLink">
+            <a><img alt="QBT_TR(BitTorrent)QBT_TR[CONTEXT=OptionsDialog]" src="images/preferences-bittorrent.svg" width="16" height="16">QBT_TR(BitTorrent)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+        <li id="PrefRSSLink">
+            <a><img alt="QBT_TR(RSS)QBT_TR[CONTEXT=OptionsDialog]" src="images/application-rss.svg" width="16" height="16">QBT_TR(RSS)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+        <li id="PrefWebUILink">
+            <a><img alt="QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]" src="images/preferences-webui.svg" width="16" height="16">QBT_TR(WebUI)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+        <li id="PrefAdvancedLink">
+            <a><img alt="QBT_TR(Advanced)QBT_TR[CONTEXT=OptionsDialog]" src="images/preferences-advanced.svg" width="16" height="16">QBT_TR(Advanced)QBT_TR[CONTEXT=OptionsDialog]</a>
+        </li>
+    </menu>
     <div class="clear"></div>
 </div>
 
 <script>
-    'use strict';
+    "use strict";
 
-    (function() {
+    (() => {
         // Tabs
-        MochaUI.initializeTabs('preferencesTabs');
+        MochaUI.initializeTabs("preferencesTabs");
 
-        $('PrefDownloadsLink').addEvent('click', function(e) {
-            $$('.PrefTab').addClass('invisible');
-            $('DownloadsTab').removeClass('invisible');
+        document.getElementById("PrefBehaviorLink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("BehaviorTab").classList.remove("invisible");
         });
-        $('PrefConnectionLink').addEvent('click', function(e) {
-            $$('.PrefTab').addClass('invisible');
-            $('ConnectionTab').removeClass('invisible');
+        document.getElementById("PrefDownloadsLink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("DownloadsTab").classList.remove("invisible");
         });
-        $('PrefSpeedLink').addEvent('click', function(e) {
-            $$('.PrefTab').addClass('invisible');
-            $('SpeedTab').removeClass('invisible');
+        document.getElementById("PrefConnectionLink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("ConnectionTab").classList.remove("invisible");
         });
-        $('PrefBittorrentLink').addEvent('click', function(e) {
-            $$('.PrefTab').addClass('invisible');
-            $('BittorrentTab').removeClass('invisible');
+        document.getElementById("PrefSpeedLink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("SpeedTab").classList.remove("invisible");
         });
-        $('PrefRSSLink').addEvent('click', function(e) {
-            $$('.PrefTab').addClass('invisible');
-            $('RSSTab').removeClass('invisible');
+        document.getElementById("PrefBittorrentLink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("BittorrentTab").classList.remove("invisible");
         });
-        $('PrefWebUILink').addEvent('click', function(e) {
-            $$('.PrefTab').addClass('invisible');
-            $('WebUITab').removeClass('invisible');
+        document.getElementById("PrefRSSLink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("RSSTab").classList.remove("invisible");
         });
-        $('PrefAdvancedLink').addEvent('click', function(e) {
-            $$('.PrefTab').addClass('invisible');
-            $('AdvancedTab').removeClass('invisible');
+        document.getElementById("PrefWebUILink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("WebUITab").classList.remove("invisible");
+        });
+        document.getElementById("PrefAdvancedLink").addEventListener("click", (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll(".PrefTab"), (tab => tab.classList.add("invisible")));
+            document.getElementById("AdvancedTab").classList.remove("invisible");
         });
     })();
 </script>

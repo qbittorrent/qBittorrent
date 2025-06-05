@@ -43,20 +43,23 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::CookiesDialog)
     , m_cookiesModel(new CookiesModel(Net::DownloadManager::instance()->allCookies(), this))
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    , m_storeViewState("GUI/Qt6/" SETTINGS_KEY(u"ViewState"_qs))
-#else
-    , m_storeViewState(SETTINGS_KEY(u"CookiesViewState"_qs))
-#endif
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
+    , m_storeViewState("GUI/Qt6/" SETTINGS_KEY(u"ViewState"_s))
 {
     m_ui->setupUi(this);
 
-    setWindowIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_qs));
-    m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
-    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_qs));
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
+    setWindowIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s));
+
+    m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
     m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
+    connect(m_ui->buttonAdd, &QToolButton::clicked, this, &CookiesDialog::onButtonAddClicked);
+
+    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
     m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
+    connect(m_ui->buttonDelete, &QToolButton::clicked, this, &CookiesDialog::onButtonDeleteClicked);
 
     m_ui->treeView->setModel(m_cookiesModel);
     if (m_cookiesModel->rowCount() > 0)

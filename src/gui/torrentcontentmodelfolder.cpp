@@ -39,7 +39,7 @@ TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, Torren
     m_name = name;
 }
 
-TorrentContentModelFolder::TorrentContentModelFolder(const QVector<QString> &data)
+TorrentContentModelFolder::TorrentContentModelFolder(const QList<QString> &data)
     : TorrentContentModelItem(nullptr)
 {
     Q_ASSERT(data.size() == NB_COL);
@@ -63,7 +63,7 @@ void TorrentContentModelFolder::deleteAllChildren()
     m_childItems.clear();
 }
 
-const QVector<TorrentContentModelItem *> &TorrentContentModelFolder::children() const
+const QList<TorrentContentModelItem *> &TorrentContentModelFolder::children() const
 {
     return m_childItems;
 }
@@ -97,7 +97,7 @@ void TorrentContentModelFolder::updatePriority()
     // If all children have the same priority
     // then the folder should have the same
     // priority
-    const BitTorrent::DownloadPriority prio = m_childItems.first()->priority();
+    const BitTorrent::DownloadPriority prio = m_childItems.constFirst()->priority();
     for (int i = 1; i < m_childItems.size(); ++i)
     {
         if (m_childItems.at(i)->priority() != prio)
@@ -147,10 +147,19 @@ void TorrentContentModelFolder::recalculateProgress()
         tRemaining += child->remaining();
     }
 
-    if (!isRootItem() && (tSize > 0))
+    if (!isRootItem())
     {
-        m_progress = tProgress / tSize;
-        m_remaining = tRemaining;
+        if (tSize > 0)
+        {
+            m_progress = tProgress / tSize;
+            m_remaining = tRemaining;
+        }
+        else
+        {
+            m_progress = 1.0;
+            m_remaining = 0;
+        }
+
         Q_ASSERT(m_progress <= 1.);
     }
 }

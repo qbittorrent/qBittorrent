@@ -31,15 +31,14 @@
 
 #include <filesystem>
 
-#include <QtGlobal>
 #include <QMetaType>
 #include <QString>
 
 #include "pathfwd.h"
 
-#include "base/interfaces/istringable.h"
+class QStringView;
 
-class Path final : public IStringable
+class Path final
 {
 public:
     Path() = default;
@@ -70,7 +69,7 @@ public:
     Path relativePathOf(const Path &childPath) const;
 
     QString data() const;
-    QString toString() const override;
+    QString toString() const;
     std::filesystem::path toStdFsPath() const;
 
     Path &operator/=(const Path &other);
@@ -95,14 +94,9 @@ private:
 Q_DECLARE_METATYPE(Path)
 
 bool operator==(const Path &lhs, const Path &rhs);
-bool operator!=(const Path &lhs, const Path &rhs);
 Path operator+(const Path &lhs, QStringView rhs);
 
 QDataStream &operator<<(QDataStream &out, const Path &path);
 QDataStream &operator>>(QDataStream &in, Path &path);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t qHash(const Path &key, std::size_t seed = 0);
-#else
-uint qHash(const Path &key, uint seed = 0);
-#endif

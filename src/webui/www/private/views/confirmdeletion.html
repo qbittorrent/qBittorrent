@@ -1,0 +1,100 @@
+<div id="confirmDeletionDialog">
+    <div class="confirmDeletionGrid">
+        <span class="deletionGridItem confirmDialogWarning"></span>
+        <span class="deletionGridItem dialogMessage" id="deleteTorrentMessage"></span>
+        <span class="deletionGridItem">
+            <button class="disabled" type="button" id="rememberBtn" title="QBT_TR(Remember choice)QBT_TR[CONTEXT=HttpServer]" aria-label="QBT_TR(Remember choice)QBT_TR[CONTEXT=HttpServer]" disabled></button>
+        </span>
+        <span class="deletionGridItem">
+            <input type="checkbox" id="deleteFromDiskCB">
+            <label for="deleteFromDiskCB">
+                <em>QBT_TR(Also remove the content files)QBT_TR[CONTEXT=confirmDeletionDlg]</em>
+            </label>
+        </span>
+    </div>
+</div>
+<div>
+    <input type="button" value="QBT_TR(Remove)QBT_TR[CONTEXT=MainWindow]" id="confirmDeletionButton">
+    <input type="button" value="QBT_TR(Cancel)QBT_TR[CONTEXT=MainWindow]" id="cancelDeletionButton">
+</div>
+
+<script>
+    "use strict";
+
+    (() => {
+        const setRememberBtnEnabled = (enable) => {
+            rememberButton.disabled = !enable;
+            rememberButton.classList.toggle("disabled", !enable);
+        };
+
+        const confirmButton = document.getElementById("confirmDeletionButton");
+        const cancelButton = document.getElementById("cancelDeletionButton");
+        const rememberButton = document.getElementById("rememberBtn");
+        const deleteCB = document.getElementById("deleteFromDiskCB");
+        const deletionText = document.getElementById("deleteTorrentMessage");
+
+        const {
+            hashes,
+            isDeletingVisibleTorrents = false,
+            forceDeleteFiles = false,
+        } = window.MUI.Windows.instances["confirmDeletionPage"].options.data;
+        let prefDeleteContentFiles = window.qBittorrent.Cache.preferences.get().delete_torrent_content_files;
+        deleteCB.checked = forceDeleteFiles || prefDeleteContentFiles;
+
+        let deleteMessage;
+        if (hashes.length === 1) {
+            const { full_data: { name } } = torrentsTable.getRow(hashes[0]);
+            deleteMessage = "QBT_TR(Are you sure you want to remove %1 from the transfer list?)QBT_TR[CONTEXT=HttpServer]".replace("%1", `"${name}"`);
+        }
+        else {
+            deleteMessage = "QBT_TR(Are you sure you want to remove these %1 torrents from the transfer list?)QBT_TR[CONTEXT=HttpServer]".replace("%1", hashes.length);
+        }
+
+        deletionText.textContent = deleteMessage;
+
+        // Enable "Remember" button if the current choice is different from the saved preference
+        deleteCB.addEventListener("click", (e) => { setRememberBtnEnabled(deleteCB.checked !== prefDeleteContentFiles); });
+
+        // Set current "Delete files" choice as the default
+        rememberButton.addEventListener("click", (e) => {
+            window.qBittorrent.Cache.preferences.set({
+                data: {
+                    delete_torrent_content_files: deleteCB.checked
+                },
+                onSuccess: () => {
+                    prefDeleteContentFiles = deleteCB.checked;
+                    setRememberBtnEnabled(false);
+                }
+            });
+        });
+
+        cancelButton.focus();
+        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(document.getElementById("confirmDeletionPage")); });
+
+        confirmButton.addEventListener("click", (e) => {
+            // Some torrents might be removed when waiting for user input, so refetch the torrent list
+            const hashes = isDeletingVisibleTorrents
+                ? torrentsTable.getFilteredTorrentsHashes(selectedStatus, selectedCategory, selectedTag, selectedTracker)
+                : torrentsTable.selectedRowsIds();
+
+            fetch("api/v2/torrents/delete", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: hashes.join("|"),
+                        deleteFiles: deleteCB.checked
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Unable to delete torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
+                    torrentsTable.deselectAll();
+                    updateMainData();
+                    updatePropertiesPanel();
+                    window.qBittorrent.Client.closeWindow(document.getElementById("confirmDeletionPage"));
+                });
+        });
+    })();
+</script>

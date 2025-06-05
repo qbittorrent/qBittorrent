@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2022  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -26,10 +27,13 @@
  * exception statement from your version.
  */
 
+#include <QObject>
+#include <QSet>
 #include <QTest>
 
 #include "base/global.h"
 #include "base/orderedset.h"
+#include "base/utils/string.h"
 
 class TestOrderedSet final : public QObject
 {
@@ -40,23 +44,9 @@ public:
     TestOrderedSet() = default;
 
 private slots:
-#if __cplusplus < 202002L
-    void testContains() const
-    {
-        const OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
-        QVERIFY(set.contains(u"a"_qs));
-        QVERIFY(set.contains(u"b"_qs));
-        QVERIFY(set.contains(u"c"_qs));
-        QVERIFY(!set.contains(u"z"_qs));
-
-        const OrderedSet<QString> emptySet;
-        QVERIFY(!emptySet.contains(u"a"_qs));
-    }
-#endif
-
     void testCount() const
     {
-        const OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs, u"c"_qs};
+        const OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s, u"c"_s};
         QCOMPARE(set.count(), 3);
 
         const OrderedSet<QString> emptySet;
@@ -65,65 +55,74 @@ private slots:
 
     void testIntersect() const
     {
-        OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
-        set.intersect({u"c"_qs, u"a"_qs});
+        OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
+        set.intersect({u"c"_s, u"a"_s});
         QCOMPARE(set.size(), 2);
-        QCOMPARE(set.join(u","_qs), u"a,c"_qs);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,c"_s);
 
         OrderedSet<QString> emptySet;
-        emptySet.intersect({u"a"_qs}).intersect({u"c"_qs});;
+        emptySet.intersect({u"a"_s}).intersect({u"c"_s});;
         QVERIFY(emptySet.isEmpty());
     }
 
     void testIsEmpty() const
     {
-        const OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
+        const OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
         QVERIFY(!set.isEmpty());
 
         const OrderedSet<QString> emptySet;
         QVERIFY(emptySet.isEmpty());
     }
 
-    void testJoin() const
-    {
-        const OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
-        QCOMPARE(set.join(u","_qs), u"a,b,c"_qs);
-
-        const OrderedSet<QString> emptySet;
-        QCOMPARE(emptySet.join(u","_qs), u""_qs);
-    }
-
     void testRemove() const
     {
-        OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
-        QVERIFY(!set.remove(u"z"_qs));
-        QCOMPARE(set.join(u","_qs), u"a,b,c"_qs);
-        QVERIFY(set.remove(u"b"_qs));
-        QCOMPARE(set.join(u","_qs), u"a,c"_qs);
-        QVERIFY(set.remove(u"a"_qs));
-        QCOMPARE(set.join(u","_qs), u"c"_qs);
-        QVERIFY(set.remove(u"c"_qs));
+        OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
+        QVERIFY(!set.remove(u"z"_s));
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c"_s);
+        QVERIFY(set.remove(u"b"_s));
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,c"_s);
+        QVERIFY(set.remove(u"a"_s));
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"c"_s);
+        QVERIFY(set.remove(u"c"_s));
         QVERIFY(set.isEmpty());
 
         OrderedSet<QString> emptySet;
-        QVERIFY(!emptySet.remove(u"a"_qs));
+        QVERIFY(!emptySet.remove(u"a"_s));
         QVERIFY(emptySet.isEmpty());
     }
 
     void testUnite() const
     {
-        const OrderedSet<QString> newData1 {u"z"_qs};
-        const OrderedSet<QString> newData2 {u"y"_qs};
+        const OrderedSet<QString> newData1 {u"z"_s};
+        const OrderedSet<QString> newData2 {u"y"_s};
+        const QSet<QString> newData3 {u"c"_s, u"d"_s, u"e"_s};
 
-        OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
+        OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
         set.unite(newData1);
-        QCOMPARE(set.join(u","_qs), u"a,b,c,z"_qs);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c,z"_s);
         set.unite(newData2);
-        QCOMPARE(set.join(u","_qs), u"a,b,c,y,z"_qs);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c,y,z"_s);
+        set.unite(newData3);
+        QCOMPARE(Utils::String::joinIntoString(set, u","_s), u"a,b,c,d,e,y,z"_s);
 
         OrderedSet<QString> emptySet;
-        emptySet.unite(newData1).unite(newData2);
-        QCOMPARE(emptySet.join(u","_qs), u"y,z"_qs);
+        emptySet.unite(newData1).unite(newData2).unite(newData3);
+        QCOMPARE(Utils::String::joinIntoString(emptySet, u","_s), u"c,d,e,y,z"_s);
+    }
+
+    void testUnited() const
+    {
+        const OrderedSet<QString> newData1 {u"z"_s};
+        const OrderedSet<QString> newData2 {u"y"_s};
+        const QSet<QString> newData3 {u"c"_s, u"d"_s, u"e"_s};
+
+        OrderedSet<QString> set {u"a"_s, u"b"_s, u"c"_s};
+
+        QCOMPARE(Utils::String::joinIntoString(set.united(newData1), u","_s), u"a,b,c,z"_s);
+        QCOMPARE(Utils::String::joinIntoString(set.united(newData2), u","_s), u"a,b,c,y"_s);
+        QCOMPARE(Utils::String::joinIntoString(set.united(newData3), u","_s), u"a,b,c,d,e"_s);
+
+        QCOMPARE(Utils::String::joinIntoString(OrderedSet<QString>().united(newData1).united(newData2).united(newData3), u","_s), u"c,d,e,y,z"_s);
     }
 };
 

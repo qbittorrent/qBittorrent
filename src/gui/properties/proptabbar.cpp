@@ -45,46 +45,46 @@ PropTabBar::PropTabBar(QWidget *parent)
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"help-about"_qs),
+            UIThemeManager::instance()->getIcon(u"help-about"_s, u"document-properties"_s),
 #endif
             tr("General"), parent);
-    mainInfosButton->setShortcut(Qt::ALT + Qt::Key_G);
+    mainInfosButton->setShortcut(Qt::ALT | Qt::Key_G);
     addWidget(mainInfosButton);
     m_btnGroup->addButton(mainInfosButton, MainTab);
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"trackers"_qs),
+            UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s),
 #endif
             tr("Trackers"), parent);
-    trackersButton->setShortcut(Qt::ALT + Qt::Key_C);
+    trackersButton->setShortcut(Qt::ALT | Qt::Key_C);
     addWidget(trackersButton);
     m_btnGroup->addButton(trackersButton, TrackersTab);
     // Peers tab
     QPushButton *peersButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"peers"_qs),
+            UIThemeManager::instance()->getIcon(u"peers"_s),
 #endif
             tr("Peers"), parent);
-    peersButton->setShortcut(Qt::ALT + Qt::Key_R);
+    peersButton->setShortcut(Qt::ALT | Qt::Key_R);
     addWidget(peersButton);
     m_btnGroup->addButton(peersButton, PeersTab);
     // URL seeds tab
     QPushButton *URLSeedsButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"network-server"_qs),
+            UIThemeManager::instance()->getIcon(u"network-server"_s),
 #endif
             tr("HTTP Sources"), parent);
-    URLSeedsButton->setShortcut(Qt::ALT + Qt::Key_B);
+    URLSeedsButton->setShortcut(Qt::ALT | Qt::Key_B);
     addWidget(URLSeedsButton);
     m_btnGroup->addButton(URLSeedsButton, URLSeedsTab);
     // Files tab
     QPushButton *filesButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"directory"_qs),
+            UIThemeManager::instance()->getIcon(u"directory"_s),
 #endif
             tr("Content"), parent);
-    filesButton->setShortcut(Qt::ALT + Qt::Key_Z);
+    filesButton->setShortcut(Qt::ALT | Qt::Key_Z);
     addWidget(filesButton);
     m_btnGroup->addButton(filesButton, FilesTab);
     // Spacer
@@ -92,10 +92,10 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Speed tab
     QPushButton *speedButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"chart-line"_qs),
+            UIThemeManager::instance()->getIcon(u"chart-line"_s),
 #endif
             tr("Speed"), parent);
-    speedButton->setShortcut(Qt::ALT + Qt::Key_D);
+    speedButton->setShortcut(Qt::ALT | Qt::Key_D);
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
     // SIGNAL/SLOT

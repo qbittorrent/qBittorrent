@@ -9,77 +9,82 @@
 
     #newPluginPath {
         width: 100%;
-        line-height: 2em;
     }
 
 </style>
 
 <div id="installSearchPluginContainer">
-    <h2>QBT_TR(Plugin path:)QBT_TR[CONTEXT=PluginSourceDlg]</h2>
+    <label for="newPluginPath">QBT_TR(Plugin path:)QBT_TR[CONTEXT=PluginSourceDlg]</label>
 
     <div>
-        <input type="text" id="newPluginPath" placeholder="QBT_TR(URL or local directory)QBT_TR[CONTEXT=PluginSourceDlg]" autocorrect="off" autocapitalize="none" />
+        <input type="text" id="newPluginPath" placeholder="QBT_TR(URL or local directory)QBT_TR[CONTEXT=PluginSourceDlg]" autocorrect="off" autocapitalize="none">
         <div style="margin-top: 10px; text-align: center;">
-            <button id="newPluginCancel" onclick="qBittorrent.SearchPlugins.closeSearchWindow('installSearchPlugin');">QBT_TR(Cancel)QBT_TR[CONTEXT=PluginSourceDlg]</button>
-            <button id="newPluginOk" onclick="qBittorrent.InstallSearchPlugin.newPluginOk();">QBT_TR(Ok)QBT_TR[CONTEXT=PluginSourceDlg]</button>
+            <button type="button" id="newPluginCancel" onclick="window.qBittorrent.Client.closeWindow(document.getElementById('installSearchPlugin'));">QBT_TR(Cancel)QBT_TR[CONTEXT=PluginSourceDlg]</button>
+            <button type="button" id="newPluginOk" onclick="qBittorrent.InstallSearchPlugin.newPluginOk();">QBT_TR(Ok)QBT_TR[CONTEXT=PluginSourceDlg]</button>
         </div>
     </div>
 </div>
 
 <script>
-    'use strict';
+    "use strict";
 
-    if (window.qBittorrent === undefined) {
-        window.qBittorrent = {};
-    }
-
-    window.qBittorrent.InstallSearchPlugin = (function() {
-        const exports = function() {
+    window.qBittorrent ??= {};
+    window.qBittorrent.InstallSearchPlugin ??= (() => {
+        const exports = () => {
             return {
+                setup: setup,
                 newPluginOk: newPluginOk
             };
         };
 
-        const init = function() {
-            new Keyboard({
-                defaultEventType: 'keydown',
-                events: {
-                    'Enter': function(e) {
+        const setup = () => {
+            const windowEl = document.getElementById("installSearchPlugin");
+
+            windowEl.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Enter":
                         // accept enter key as a click
-                        new Event(e).stop();
+                        event.preventDefault();
+                        event.stopPropagation();
 
-                        const elem = e.event.srcElement;
-                        if ((elem.id === "newPluginPath") || (elem.id === "newPluginOk"))
-                            newPluginOk();
-                        else if (elem.id === "newPluginCancel")
-                            window.qBittorrent.SearchPlugins.closeSearchWindow('installSearchPlugin');
-                    }
+                        switch (event.target.id) {
+                            case "newPluginCancel":
+                                window.qBittorrent.Client.closeWindow(windowEl);
+                                break;
+                            case "newPluginOk":
+                            case "newPluginPath":
+                                newPluginOk();
+                                break;
+                        }
+
+                        break;
                 }
-            }).activate();
+            });
 
-            $('newPluginPath').select();
+            document.getElementById("newPluginPath").select();
         };
 
-        const newPluginOk = function() {
-            const path = $("newPluginPath").get("value").trim();
-            if (path)
-                new Request({
-                    url: 'api/v2/search/installPlugin',
-                    noCache: true,
-                    method: 'post',
-                    data: {
-                        sources: path,
-                    },
-                    onRequest: function() {
-                        window.qBittorrent.SearchPlugins.closeSearchWindow('installSearchPlugin');
-                    }
-                }).send();
-        };
+        const newPluginOk = () => {
+            const path = document.getElementById("newPluginPath").value.trim();
+            if (path) {
+                fetch("api/v2/search/installPlugin", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            sources: path
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
 
-        init();
+                        window.qBittorrent.Client.closeWindow(document.getElementById("installSearchPlugin"));
+                    });
+            }
+        };
 
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.InstallSearchPlugin);
+
+    window.qBittorrent.InstallSearchPlugin.setup();
 </script>

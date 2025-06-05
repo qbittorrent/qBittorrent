@@ -35,5 +35,5 @@ enum class DefaultPreferencesMode
 };
 
 void handleChangedDefaults(DefaultPreferencesMode mode);
-bool upgrade(bool ask = true);
+bool upgrade();
 void setCurrentMigrationVersion();

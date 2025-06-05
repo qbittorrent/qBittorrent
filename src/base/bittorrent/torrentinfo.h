@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,9 +32,8 @@
 
 #include <QtContainerFwd>
 #include <QCoreApplication>
-#include <QVector>
+#include <QList>
 
-#include "base/3rdparty/expected.hpp"
 #include "base/indexrange.h"
 #include "base/pathfwd.h"
 
@@ -50,26 +49,17 @@ namespace BitTorrent
 
     class TorrentInfo
     {
-        Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
-
     public:
         TorrentInfo() = default;
-        TorrentInfo(const TorrentInfo &other);
+        TorrentInfo(const TorrentInfo &other) = default;
 
         explicit TorrentInfo(const lt::torrent_info &nativeInfo);
-
-        static nonstd::expected<TorrentInfo, QString> load(const QByteArray &data) noexcept;
-        static nonstd::expected<TorrentInfo, QString> loadFromFile(const Path &path) noexcept;
-        nonstd::expected<void, QString> saveToFile(const Path &path) const;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 
         bool isValid() const;
         InfoHash infoHash() const;
         QString name() const;
-        QDateTime creationDate() const;
-        QString creator() const;
-        QString comment() const;
         bool isPrivate() const;
         qlonglong totalSize() const;
         int filesCount() const;
@@ -80,12 +70,9 @@ namespace BitTorrent
         PathList filePaths() const;
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
-        QVector<TrackerEntry> trackers() const;
-        QVector<QUrl> urlSeeds() const;
-        QByteArray metadata() const;
         PathList filesForPiece(int pieceIndex) const;
-        QVector<int> fileIndicesForPiece(int pieceIndex) const;
-        QVector<QByteArray> pieceHashes() const;
+        QList<int> fileIndicesForPiece(int pieceIndex) const;
+        QList<QByteArray> pieceHashes() const;
 
         using PieceRange = IndexRange<int>;
         // returns pair of the first and the last pieces into which
@@ -93,8 +80,12 @@ namespace BitTorrent
         PieceRange filePieces(const Path &filePath) const;
         PieceRange filePieces(int fileIndex) const;
 
+        QByteArray rawData() const;
+
+        bool matchesInfoHash(const InfoHash &otherInfoHash) const;
+
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
-        QVector<lt::file_index_t> nativeIndexes() const;
+        QList<lt::file_index_t> nativeIndexes() const;
 
     private:
         // returns file index or -1 if fileName is not found
@@ -104,7 +95,7 @@ namespace BitTorrent
 
         // internal indexes of files (payload only, excluding any .pad files)
         // by which they are addressed in libtorrent
-        QVector<lt::file_index_t> m_nativeIndexes;
+        QList<lt::file_index_t> m_nativeIndexes;
     };
 }
 

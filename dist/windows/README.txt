@@ -16,49 +16,45 @@ TRANSLATORS:
 
 PACKAGERS:
 
-You will need NSIS and upx to make the installer. You need a unicode version of NSIS.
-I tested with NSIS 3.0 (final).
+You will need NSIS 3 to make the installer. UPX is an optional requirement.
 
-1. Open the options.nsi file in an editor and change line that contains
-   "!define PROG_VERSION "3.0.3"" to the version of qbittorrent you just built.
-2. Extract the plugins found in the folder "nsis plugins" into your
-   NSIS's unicode Plugin directory(usually C:\Program Files\NSIS\Plugins\x86-unicode).
-   Only the *.dll files are needed. Use the unicode version of the dlls.
-3. The script you need to compile is "qbittorrent.nsi". It includes all other necessary scripts.
-4. The script expects the following file tree:
+1. Open the config.nsi file in an editor and change line that contains
+   "!define QBT_VERSION "3.0.3"" to the version of qbittorrent you just built.
+2. config.nsi contains some other defines that control the installer output. Read the comments in that file.
+3. Extract "NSISPlugins.zip" next to "qbittorrent.nsi" script or into your
+   NSIS's unicode Plugin directory (usually "C:\Program Files\NSIS\Plugins\x86-unicode").
+4. The script you need to compile is "qbittorrent.nsi". It includes all other necessary scripts.
+5. The script expects the following file tree:
 
-The installer script expects the following file tree:
-
-Root:
 installer-translations
-	afrikaans.nsi
-	....
-	(all the .nsi files found here in every source release)
-	welsh.nsi
-translations
-	qt_ar.qm
-	...
-    (All the .qm files found in the 'translations' folder of your Qt install. Those files differ between Qt5 and Qt6.
-     You will need the files that conform to this globbing expression 'qt_??.qm qt_??_??.qm qtbase_??.qm qtbase_??_??.qm'.
-     Some of those files will be stubs. Filter any file that is smaller than 10KB in size.
-     Alternatively you can use the 'gather_qt_translations.py' script found in the same folder as this file.
-     Run it with '--help' to see its usage.
-     **YOU MUST** edit the list of .qm files in the 'installer.nsi' to match whatever files are in the 'translations' subfolder.)
-	qt_zh_TW.qm
-installer.nsi
+    afrikaans.nsh
+    ....
+    (all the .nsh files found here in every source release)
+    welsh.nsh
+installer.nsh
 license.txt
-options.nsi
-qbittorrent.exe
+config.nsh
 qbittorrent.nsi
 qt.conf
-translations.nsi
+translations.nsh
 UAC.nsh
-uninstaller.nsi
+uninstaller.nsh
+qBittorrent
+    qbittorrent.exe (required)
+    qbittorrent.pdb (optional but recommended)
+    translations (optional)
+        qt_ar.qm
+        ..
+        (All the .qm files found in the 'translations' folder of your Qt install. Those files differ between Qt5 and Qt6.
+         You will need the files that conform to this globbing expression 'qt_??.qm qt_??_??.qm qtbase_??.qm qtbase_??_??.qm'.
+         Some of those files will be stubs. Filter any file that is smaller than 10KB in size.
+         Alternatively you can use the 'gather_qt_translations.py' script found in the same folder as this file.
+         Run it with '--help' to see its usage.)
+        qt_zh_TW.qm
+    (Any other files including the ones from all subdirectories will be also included in the installer.)
 
-
-5. "license.txt" is a text file that contains the text rendered
-   from src\gui\gpl.html or the text contained in COPYING
 6. "qbittorrent.exe" is the compiled binary file.
+7. "qbittorrent.pdb" is the compiled binary's PDB file.
 
 SCRIPT HACKERS:
 

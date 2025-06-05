@@ -6,14 +6,13 @@
         <file>browser-cookies.svg</file>
         <file>chart-line.svg</file>
         <file>checked-completed.svg</file>
-        <file>collapse.svg</file>
         <file>configure.svg</file>
         <file>connected.svg</file>
         <file>dialog-warning.svg</file>
         <file>directory.svg</file>
         <file>disconnected.svg</file>
-        <file>downloading.svg</file>
         <file>download.svg</file>
+        <file>downloading.svg</file>
         <file>edit-clear.svg</file>
         <file>edit-copy.svg</file>
         <file>edit-find.svg</file>
@@ -25,7 +24,6 @@
         <file>filter-inactive.svg</file>
         <file>filter-stalled.svg</file>
         <file>firewalled.svg</file>
-        <file>flags/ac.svg</file>
         <file>flags/ad.svg</file>
         <file>flags/ae.svg</file>
         <file>flags/af.svg</file>
@@ -36,6 +34,7 @@
         <file>flags/ao.svg</file>
         <file>flags/aq.svg</file>
         <file>flags/ar.svg</file>
+        <file>flags/arab.svg</file>
         <file>flags/as.svg</file>
         <file>flags/at.svg</file>
         <file>flags/au.svg</file>
@@ -66,6 +65,7 @@
         <file>flags/ca.svg</file>
         <file>flags/cc.svg</file>
         <file>flags/cd.svg</file>
+        <file>flags/cefta.svg</file>
         <file>flags/cf.svg</file>
         <file>flags/cg.svg</file>
         <file>flags/ch.svg</file>
@@ -90,7 +90,7 @@
         <file>flags/dm.svg</file>
         <file>flags/do.svg</file>
         <file>flags/dz.svg</file>
-        <file>flags/ea.svg</file>
+        <file>flags/eac.svg</file>
         <file>flags/ec.svg</file>
         <file>flags/ee.svg</file>
         <file>flags/eg.svg</file>
@@ -98,6 +98,7 @@
         <file>flags/er.svg</file>
         <file>flags/es-ct.svg</file>
         <file>flags/es-ga.svg</file>
+        <file>flags/es-pv.svg</file>
         <file>flags/es.svg</file>
         <file>flags/et.svg</file>
         <file>flags/eu.svg</file>
@@ -111,8 +112,8 @@
         <file>flags/gb-eng.svg</file>
         <file>flags/gb-nir.svg</file>
         <file>flags/gb-sct.svg</file>
-        <file>flags/gb.svg</file>
         <file>flags/gb-wls.svg</file>
+        <file>flags/gb.svg</file>
         <file>flags/gd.svg</file>
         <file>flags/ge.svg</file>
         <file>flags/gf.svg</file>
@@ -210,6 +211,7 @@
         <file>flags/nz.svg</file>
         <file>flags/om.svg</file>
         <file>flags/pa.svg</file>
+        <file>flags/pc.svg</file>
         <file>flags/pe.svg</file>
         <file>flags/pf.svg</file>
         <file>flags/pg.svg</file>
@@ -235,6 +237,9 @@
         <file>flags/sd.svg</file>
         <file>flags/se.svg</file>
         <file>flags/sg.svg</file>
+        <file>flags/sh-ac.svg</file>
+        <file>flags/sh-hl.svg</file>
+        <file>flags/sh-ta.svg</file>
         <file>flags/sh.svg</file>
         <file>flags/si.svg</file>
         <file>flags/sj.svg</file>
@@ -250,7 +255,6 @@
         <file>flags/sx.svg</file>
         <file>flags/sy.svg</file>
         <file>flags/sz.svg</file>
-        <file>flags/ta.svg</file>
         <file>flags/tc.svg</file>
         <file>flags/td.svg</file>
         <file>flags/tf.svg</file>
@@ -312,6 +316,8 @@
         <file>network-connect.svg</file>
         <file>network-server.svg</file>
         <file>object-locked.svg</file>
+        <file>pause-session.svg</file>
+        <file>paused.svg</file>
         <file>peers-add.svg</file>
         <file>peers-remove.svg</file>
         <file>peers.svg</file>
@@ -320,23 +326,26 @@
         <file>preferences-bittorrent.svg</file>
         <file>preferences-desktop.svg</file>
         <file>preferences-webui.svg</file>
-        <file>qbittorrent_file.ico</file>
-        <file>qbittorrent.ico</file>
         <file>qbittorrent-tray-dark.svg</file>
         <file>qbittorrent-tray-light.svg</file>
         <file>qbittorrent-tray.svg</file>
+        <file>qbittorrent.ico</file>
+        <file>qbittorrent_file.ico</file>
         <file>queued.svg</file>
         <file>ratio.svg</file>
         <file>reannounce.svg</file>
+        <file>rss_read_article.png</file>
+        <file>rss_unread_article.png</file>
         <file>security-high.svg</file>
         <file>security-low.svg</file>
         <file>set-location.svg</file>
-        <file>slow_off.svg</file>
         <file>slow.svg</file>
+        <file>slow_off.svg</file>
         <file>speedometer.svg</file>
         <file>splash.png</file>
         <file>stalledDL.svg</file>
         <file>stalledUP.svg</file>
+        <file>stopped.svg</file>
         <file>system-log-out.svg</file>
         <file>tags.svg</file>
         <file>task-complete.svg</file>
@@ -347,14 +356,15 @@
         <file>torrent-start.svg</file>
         <file>torrent-stop.svg</file>
         <file>tracker-error.svg</file>
+        <file>tracker-warning.svg</file>
         <file>trackerless.svg</file>
         <file>trackers.svg</file>
-        <file>tracker-warning.svg</file>
         <file>upload.svg</file>
         <file>view-categories.svg</file>
         <file>view-preview.svg</file>
         <file>view-refresh.svg</file>
         <file>view-statistics.svg</file>
         <file>wallet-open.svg</file>
+        <file alias="qbittorrent.svg">qbittorrent-tray.svg</file>
     </qresource>
 </RCC>

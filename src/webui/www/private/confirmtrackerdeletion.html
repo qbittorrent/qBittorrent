@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="${LANG}" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QBT_TR(Remove tracker)QBT_TR[CONTEXT=confirmDeletionDlg]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
+    <script>
+        "use strict";
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+            const searchParams = new URLSearchParams(window.location.search);
+            const host = searchParams.get("host");
+
+            document.getElementById("confirmDeleteTrackerText").textContent = "QBT_TR(Are you sure you want to remove tracker %1 from all torrents?)QBT_TR[CONTEXT=TrackersFilterWidget]".replace("%1", host);
+
+            document.getElementById("cancelBtn").focus();
+            document.getElementById("cancelBtn").addEventListener("click", (e) => {
+                e.stopPropagation();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
+            });
+            document.getElementById("confirmBtn").addEventListener("click", (e) => {
+                e.stopPropagation();
+
+                fetch("api/v2/torrents/removeTrackers", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            hash: "*",
+                            urls: searchParams.get("urls")
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                    });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div style="padding: 10px 10px 0px 10px;">
+        <p id="confirmDeleteTrackerText"></p>
+        <div style="text-align: right;">
+            <input type="button" id="cancelBtn" value="QBT_TR(Cancel)QBT_TR[CONTEXT=MainWindow]">
+            <input type="button" id="confirmBtn" value="QBT_TR(Remove)QBT_TR[CONTEXT=MainWindow]">
+        </div>
+    </div>
+</body>
+
+</html>

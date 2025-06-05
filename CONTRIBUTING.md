@@ -200,7 +200,7 @@ Following these guidelines helps maintainers and the community understand your s
 [coding-guidelines-url]: https://github.com/qbittorrent/qBittorrent/blob/master/CODING_GUIDELINES.md
 [coding-guidelines-git-commit-message-url]: https://github.com/qbittorrent/qBittorrent/blob/master/CODING_GUIDELINES.md#10-git-commit-message
 [commit-message-fix-issue-example-url]: https://github.com/qbittorrent/qBittorrent/commit/c07cd440cd46345297debb47cb260f8688975f50
-[forum-url]: http://forum.qbittorrent.org/
+[forum-url]: https://forum.qbittorrent.org/
 [howto-report-bugs-url]: https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
 [how-to-translate-url]: https://github.com/qbittorrent/qBittorrent/wiki/How-to-translate-qBittorrent
 [merging-vs-rebasing-url]: https://www.atlassian.com/git/tutorials/merging-vs-rebasing

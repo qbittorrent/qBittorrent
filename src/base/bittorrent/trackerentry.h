@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Mike Tzou (Chocobo1)
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,56 +29,21 @@
 
 #pragma once
 
-#include <libtorrent/socket.hpp>
-
-#include <QtGlobal>
-#include <QHash>
-#include <QMap>
+#include <QtContainerFwd>
 #include <QString>
+
+class QStringView;
 
 namespace BitTorrent
 {
     struct TrackerEntry
     {
-        using Endpoint = lt::tcp::endpoint;
-
-        enum Status
-        {
-            NotContacted = 1,
-            Working = 2,
-            Updating = 3,
-            NotWorking = 4
-        };
-
-        struct EndpointStats
-        {
-            Status status = NotContacted;
-            int numPeers = -1;
-            int numSeeds = -1;
-            int numLeeches = -1;
-            int numDownloaded = -1;
-            QString message {};
-        };
-
         QString url {};
         int tier = 0;
-
-        // TODO: Use QHash<TrackerEntry::Endpoint, QHash<int, EndpointStats>> once Qt5 is dropped.
-        QMap<Endpoint, QHash<int, EndpointStats>> stats {};
-
-        // Deprecated fields
-        Status status = NotContacted;
-        int numPeers = -1;
-        int numSeeds = -1;
-        int numLeeches = -1;
-        int numDownloaded = -1;
-        QString message {};
     };
 
+    QList<TrackerEntry> parseTrackerEntries(QStringView str);
+
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const TrackerEntry &key, std::size_t seed = 0);
-#else
-    uint qHash(const TrackerEntry &key, uint seed = 0);
-#endif
 }

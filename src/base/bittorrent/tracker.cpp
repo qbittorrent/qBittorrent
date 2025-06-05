@@ -53,23 +53,23 @@ namespace
     // constants
     const int PEER_ID_SIZE = 20;
 
-    const QString ANNOUNCE_REQUEST_PATH = u"/announce"_qs;
+    const QString ANNOUNCE_REQUEST_PATH = u"/announce"_s;
 
-    const QString ANNOUNCE_REQUEST_COMPACT = u"compact"_qs;
-    const QString ANNOUNCE_REQUEST_INFO_HASH = u"info_hash"_qs;
-    const QString ANNOUNCE_REQUEST_IP = u"ip"_qs;
-    const QString ANNOUNCE_REQUEST_LEFT = u"left"_qs;
-    const QString ANNOUNCE_REQUEST_NO_PEER_ID = u"no_peer_id"_qs;
-    const QString ANNOUNCE_REQUEST_NUM_WANT = u"numwant"_qs;
-    const QString ANNOUNCE_REQUEST_PEER_ID = u"peer_id"_qs;
-    const QString ANNOUNCE_REQUEST_PORT = u"port"_qs;
+    const QString ANNOUNCE_REQUEST_COMPACT = u"compact"_s;
+    const QString ANNOUNCE_REQUEST_INFO_HASH = u"info_hash"_s;
+    const QString ANNOUNCE_REQUEST_IP = u"ip"_s;
+    const QString ANNOUNCE_REQUEST_LEFT = u"left"_s;
+    const QString ANNOUNCE_REQUEST_NO_PEER_ID = u"no_peer_id"_s;
+    const QString ANNOUNCE_REQUEST_NUM_WANT = u"numwant"_s;
+    const QString ANNOUNCE_REQUEST_PEER_ID = u"peer_id"_s;
+    const QString ANNOUNCE_REQUEST_PORT = u"port"_s;
 
-    const QString ANNOUNCE_REQUEST_EVENT = u"event"_qs;
-    const QString ANNOUNCE_REQUEST_EVENT_COMPLETED = u"completed"_qs;
-    const QString ANNOUNCE_REQUEST_EVENT_EMPTY = u"empty"_qs;
-    const QString ANNOUNCE_REQUEST_EVENT_STARTED = u"started"_qs;
-    const QString ANNOUNCE_REQUEST_EVENT_STOPPED = u"stopped"_qs;
-    const QString ANNOUNCE_REQUEST_EVENT_PAUSED = u"paused"_qs;
+    const QString ANNOUNCE_REQUEST_EVENT = u"event"_s;
+    const QString ANNOUNCE_REQUEST_EVENT_COMPLETED = u"completed"_s;
+    const QString ANNOUNCE_REQUEST_EVENT_EMPTY = u"empty"_s;
+    const QString ANNOUNCE_REQUEST_EVENT_STARTED = u"started"_s;
+    const QString ANNOUNCE_REQUEST_EVENT_STOPPED = u"stopped"_s;
+    const QString ANNOUNCE_REQUEST_EVENT_PAUSED = u"paused"_s;
 
     const char ANNOUNCE_RESPONSE_COMPLETE[] = "complete";
     const char ANNOUNCE_RESPONSE_EXTERNAL_IP[] = "external ip";
@@ -135,16 +135,7 @@ namespace BitTorrent
         return (left.uniqueID() == right.uniqueID());
     }
 
-    bool operator!=(const Peer &left, const Peer &right)
-    {
-        return !(left == right);
-    }
-
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const Peer &key, const std::size_t seed)
-#else
-    uint qHash(const Peer &key, const uint seed)
-#endif
     {
         return qHash(key.uniqueID(), seed);
     }
@@ -203,12 +194,12 @@ Tracker::Tracker(QObject *parent)
 
 bool Tracker::start()
 {
-    const QHostAddress ip = QHostAddress::Any;
     const int port = Preferences::instance()->getTrackerPort();
 
     if (m_server->isListening())
     {
-        if (m_server->serverPort() == port)
+        if (const int oldPort = m_server->serverPort()
+            ; oldPort == port)
         {
             // Already listening on the right port, just return
             return true;
@@ -218,9 +209,9 @@ bool Tracker::start()
         m_server->close();
     }
 
-    // Listen on the predefined port
+    // Listen on port
+    const QHostAddress ip = QHostAddress::Any;
     const bool listenSuccess = m_server->listen(ip, port);
-
     if (listenSuccess)
     {
         LogMsg(tr("Embedded Tracker: Now listening on IP: %1, port: %2")
@@ -297,32 +288,32 @@ void Tracker::processAnnounceRequest()
     // 1. info_hash
     const auto infoHashIter = queryParams.find(ANNOUNCE_REQUEST_INFO_HASH);
     if (infoHashIter == queryParams.end())
-        throw TrackerError(u"Missing \"info_hash\" parameter"_qs);
+        throw TrackerError(u"Missing \"info_hash\" parameter"_s);
 
     const auto torrentID = TorrentID::fromString(QString::fromLatin1(infoHashIter->toHex()));
     if (!torrentID.isValid())
-        throw TrackerError(u"Invalid \"info_hash\" parameter"_qs);
+        throw TrackerError(u"Invalid \"info_hash\" parameter"_s);
 
     announceReq.torrentID = torrentID;
 
     // 2. peer_id
     const auto peerIdIter = queryParams.find(ANNOUNCE_REQUEST_PEER_ID);
     if (peerIdIter == queryParams.end())
-        throw TrackerError(u"Missing \"peer_id\" parameter"_qs);
+        throw TrackerError(u"Missing \"peer_id\" parameter"_s);
 
     if (peerIdIter->size() > PEER_ID_SIZE)
-        throw TrackerError(u"Invalid \"peer_id\" parameter"_qs);
+        throw TrackerError(u"Invalid \"peer_id\" parameter"_s);
 
     announceReq.peer.peerId = *peerIdIter;
 
     // 3. port
     const auto portIter = queryParams.find(ANNOUNCE_REQUEST_PORT);
     if (portIter == queryParams.end())
-        throw TrackerError(u"Missing \"port\" parameter"_qs);
+        throw TrackerError(u"Missing \"port\" parameter"_s);
 
     const ushort portNum = portIter->toUShort();
     if (portNum == 0)
-        throw TrackerError(u"Invalid \"port\" parameter"_qs);
+        throw TrackerError(u"Invalid \"port\" parameter"_s);
 
     announceReq.peer.port = portNum;
 
@@ -332,7 +323,7 @@ void Tracker::processAnnounceRequest()
     {
         const int num = numWantIter->toInt();
         if (num < 0)
-            throw TrackerError(u"Invalid \"numwant\" parameter"_qs);
+            throw TrackerError(u"Invalid \"numwant\" parameter"_s);
         announceReq.numwant = num;
     }
 
@@ -377,7 +368,7 @@ void Tracker::processAnnounceRequest()
     }
     else
     {
-        throw TrackerError(u"Invalid \"event\" parameter"_qs);
+        throw TrackerError(u"Invalid \"event\" parameter"_s);
     }
 
     prepareAnnounceResponse(announceReq);
@@ -389,7 +380,7 @@ void Tracker::registerPeer(const TrackerAnnounceRequest &announceReq)
     {
         // Reached max size, remove a random torrent
         if (m_torrents.size() >= MAX_TORRENTS)
-            m_torrents.erase(m_torrents.begin());
+            m_torrents.erase(m_torrents.cbegin());
     }
 
     m_torrents[announceReq.torrentID].setPeer(announceReq.peer);

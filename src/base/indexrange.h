@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QtGlobal>
+#include <QtAssert>
 
 // Interval is defined via [first;last]
 template <typename Index>
@@ -105,11 +105,6 @@ public:
         friend constexpr bool operator==(const Iterator &left, const Iterator &right)
         {
             return (*left == *right);
-        }
-
-        friend constexpr bool operator!=(const Iterator &left, const Iterator &right)
-        {
-            return !(left == right);
         }
 
     private:

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
@@ -49,7 +50,7 @@ Folder::~Folder()
 {
     emit aboutToBeDestroyed(this);
 
-    for (auto item : asConst(items()))
+    for (auto *item : asConst(items()))
         delete item;
 }
 
@@ -91,6 +92,12 @@ void Folder::refresh()
         item->refresh();
 }
 
+void Folder::updateFetchDelay()
+{
+    for (Item *item : asConst(items()))
+        item->updateFetchDelay();
+}
+
 QList<Item *> Folder::items() const
 {
     return m_items;
@@ -127,7 +134,7 @@ void Folder::addItem(Item *item)
     connect(item, &Item::articleAboutToBeRemoved, this, &Item::articleAboutToBeRemoved);
     connect(item, &Item::unreadCountChanged, this, &Folder::handleItemUnreadCountChanged);
 
-    for (auto article : asConst(item->articles()))
+    for (auto *article : asConst(item->articles()))
         emit newArticle(article);
 
     if (item->unreadCount() > 0)
@@ -138,7 +145,7 @@ void Folder::removeItem(Item *item)
 {
     Q_ASSERT(m_items.contains(item));
 
-    for (auto article : asConst(item->articles()))
+    for (auto *article : asConst(item->articles()))
         emit articleAboutToBeRemoved(article);
 
     item->disconnect(this);

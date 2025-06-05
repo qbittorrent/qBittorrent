@@ -43,19 +43,19 @@
 namespace
 {
     // table of supposed nice steps for grid marks to get nice looking quarters of scale
-    const double roundingTable[] = {1.2, 1.6, 2, 2.4, 2.8, 3.2, 4, 6, 8};
+    const qreal roundingTable[] = {1.2, 1.6, 2, 2.4, 2.8, 3.2, 4, 6, 8};
 
-    struct SplittedValue
+    struct SplitValue
     {
-        double arg;
-        Utils::Misc::SizeUnit unit;
-        qint64 sizeInBytes() const
+        qreal arg = 0;
+        Utils::Misc::SizeUnit unit {};
+        qlonglong sizeInBytes() const
         {
             return Utils::Misc::sizeInBytes(arg, unit);
         }
     };
 
-    SplittedValue getRoundedYScale(double value)
+    SplitValue getRoundedYScale(qreal value)
     {
         using Utils::Misc::SizeUnit;
 
@@ -71,13 +71,13 @@ namespace
 
         if (value > 100)
         {
-            const double roundedValue {std::ceil(value / 40) * 40};
+            const qreal roundedValue {std::ceil(value / 40) * 40};
             return {roundedValue, calculatedUnit};
         }
 
         if (value > 10)
         {
-            const double roundedValue {std::ceil(value / 4) * 4};
+            const qreal roundedValue {std::ceil(value / 4) * 4};
             return {roundedValue, calculatedUnit};
         }
 
@@ -89,13 +89,12 @@ namespace
         return {10.0, calculatedUnit};
     }
 
-    QString formatLabel(const double argValue, const Utils::Misc::SizeUnit unit)
+    QString formatLabel(const qreal argValue, const Utils::Misc::SizeUnit unit)
     {
         // check is there need for digits after decimal separator
         const int precision = (argValue < 10) ? friendlyUnitPrecision(unit) : 0;
         return QLocale::system().toString(argValue, 'f', precision)
-               + C_NON_BREAKING_SPACE
-               + unitString(unit, true);
+               + QChar::Nbsp + unitString(unit, true);
     }
 }
 
@@ -289,11 +288,11 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     QFontMetrics fontMetrics = painter.fontMetrics();
 
     rect.adjust(4, 4, 0, -4); // Add padding
-    const SplittedValue niceScale = getRoundedYScale(maxYValue());
+    const SplitValue niceScale = getRoundedYScale(maxYValue());
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
-    const QVector<QString> speedLabels =
+    const QList<QString> speedLabels =
     {
         formatLabel(niceScale.arg, niceScale.unit),
         formatLabel((0.75 * niceScale.arg), niceScale.unit),
@@ -351,15 +350,15 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
 
     // last point will be drawn at x=0, so we don't need it in the calculation of xTickSize
     const milliseconds lastDuration {queue.empty() ? 0ms : queue.back().duration};
-    const double xTickSize = static_cast<double>(rect.width()) / (m_currentMaxDuration - lastDuration).count();
-    const double yMultiplier = (niceScale.arg == 0) ? 0 : (static_cast<double>(rect.height()) / niceScale.sizeInBytes());
+    const qreal xTickSize = static_cast<qreal>(rect.width()) / (m_currentMaxDuration - lastDuration).count();
+    const qreal yMultiplier = (niceScale.arg == 0) ? 0 : (static_cast<qreal>(rect.height()) / niceScale.sizeInBytes());
 
     for (int id = UP; id < NB_GRAPHS; ++id)
     {
         if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
-        QVector<QPoint> points;
+        QList<QPoint> points;
         milliseconds duration {0};
 
         for (int i = static_cast<int>(queue.size()) - 1; i >= 0; --i)
@@ -381,7 +380,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // draw legend
     QPoint legendTopLeft(rect.left() + 4, fullRect.top() + 4);
 
-    double legendHeight = 0;
+    qreal legendHeight = 0;
     int legendWidth = 0;
     for (const auto &property : asConst(m_properties))
     {
@@ -404,8 +403,8 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         if (!property.enable)
             continue;
 
-        int nameSize = fontMetrics.horizontalAdvance(property.name);
-        double indent = 1.5 * (i++) * fontMetrics.height();
+        const int nameSize = fontMetrics.horizontalAdvance(property.name);
+        const qreal indent = 1.5 * (i++) * fontMetrics.height();
 
         painter.setPen(property.pen);
         painter.drawLine(legendTopLeft + QPointF(0, indent + fontMetrics.height()),

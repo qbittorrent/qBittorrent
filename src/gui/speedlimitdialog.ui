@@ -37,7 +37,7 @@
       <item row="0" column="2">
        <widget class="QSlider" name="sliderUploadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -52,6 +52,9 @@
         <property name="maximum">
          <number>2000000</number>
         </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+        </property>
        </widget>
       </item>
       <item row="1" column="1">
@@ -64,7 +67,7 @@
       <item row="1" column="2">
        <widget class="QSlider" name="sliderDownloadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -78,6 +81,9 @@
         </property>
         <property name="maximum">
          <number>2000000</number>
+        </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
         </property>
        </widget>
       </item>
@@ -107,7 +113,7 @@
       <item row="0" column="2">
        <widget class="QSlider" name="sliderAltUploadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -122,6 +128,9 @@
         <property name="maximum">
          <number>2000000</number>
         </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+        </property>
        </widget>
       </item>
       <item row="1" column="1">
@@ -134,7 +143,7 @@
       <item row="1" column="2">
        <widget class="QSlider" name="sliderAltDownloadLimit">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
        </widget>
       </item>
@@ -149,6 +158,9 @@
         <property name="maximum">
          <number>2000000</number>
         </property>
+        <property name="stepType">
+         <enum>QAbstractSpinBox::StepType::AdaptiveDecimalStepType</enum>
+        </property>
        </widget>
       </item>
      </layout>
@@ -157,7 +169,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -170,45 +182,12 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>SpeedLimitDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>221</x>
-     <y>73</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>221</x>
-     <y>82</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>SpeedLimitDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>277</x>
-     <y>59</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>343</x>
-     <y>80</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

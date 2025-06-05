@@ -1,57 +1,54 @@
 <!DOCTYPE html>
-<html lang="${LANG}">
+<html lang="${LANG}" class="dark">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>QBT_TR(Add Peers)QBT_TR[CONTEXT=PeersAdditionDialog]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        new Keyboard({
-            defaultEventType: 'keydown',
-            events: {
-                'Escape': function(event) {
-                    window.parent.closeWindows();
-                    event.preventDefault();
-                },
-                'Esc': function(event) {
-                    window.parent.closeWindows();
-                    event.preventDefault();
+        window.addEventListener("DOMContentLoaded", (event) => {
+            window.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Escape":
+                        event.preventDefault();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        break;
                 }
-            }
-        }).activate();
+            });
 
-        window.addEvent('domready', function() {
-            const hash = new URI().getData('hash');
-            if (!hash)
-                return false;
+            const hash = new URLSearchParams(window.location.search).get("hash");
+            if (hash === null)
+                return;
 
-            $('peers').focus();
+            document.getElementById("peers").focus();
 
-            $('addPeersOk').addEvent('click', function(e) {
-                new Event(e).stop();
+            document.getElementById("addPeersOk").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
-                const peers = $('peers').get('value').trim().split(/[\r\n]+/);
+                const peers = document.getElementById("peers").value.trim().split(/[\r\n]+/);
                 if (peers.length === 0)
                     return;
 
-                new Request({
-                    url: 'api/v2/torrents/addPeers',
-                    method: 'post',
-                    data: {
-                        hashes: hash,
-                        peers: peers.join('|')
-                    },
-                    onFailure: function() {
-                        alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");
-                    },
-                    onSuccess: function() {
-                        window.parent.closeWindows();
-                    }
-                }).send();
+                fetch("api/v2/torrents/addPeers", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            hashes: hash,
+                            peers: peers.join("|")
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok) {
+                            alert("QBT_TR(Unable to add peers. Please ensure you are adhering to the IP:port format.)QBT_TR[CONTEXT=HttpServer]");
+                            return;
+                        }
+
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                    });
             });
         });
     </script>
@@ -59,11 +56,11 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <p>QBT_TR(List of peers to add (one IP per line):)QBT_TR[CONTEXT=PeersAdditionDialog]</p>
+        <label for="peers">QBT_TR(List of peers to add (one IP per line):)QBT_TR[CONTEXT=PeersAdditionDialog]</label>
         <textarea id="peers" rows="10" style="width: 100%;" placeholder="QBT_TR(Format: IPv4:port / [IPv6]:port)QBT_TR[CONTEXT=PeersAdditionDialog]"></textarea>
         <div style="margin-top: 10px; text-align: center;">
-            <button onclick="parent.closeWindows();">QBT_TR(Cancel)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
-            <button id="addPeersOk">QBT_TR(Ok)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
+            <button type="button" onclick="parent.qBittorrent.Client.closeFrameWindow(window);">QBT_TR(Cancel)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
+            <button type="button" id="addPeersOk">QBT_TR(Ok)QBT_TR[CONTEXT=PeersAdditionDialog]</button>
         </div>
     </div>
 </body>

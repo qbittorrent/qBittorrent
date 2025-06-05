@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Mike Tzou (Chocobo1)
  * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -29,14 +30,16 @@
 
 #pragma once
 
+#include <numeric>
 #include <optional>
+#include <string_view>
 
 #include <QChar>
 #include <QMetaEnum>
 #include <QString>
-#include <Qt>
 #include <QtContainerFwd>
 
+#include "base/concepts/explicitlyconvertibleto.h"
 #include "base/global.h"
 
 namespace Utils::String
@@ -44,14 +47,15 @@ namespace Utils::String
     QString wildcardToRegexPattern(const QString &pattern);
 
     template <typename T>
-    T unquote(const T &str, const QString &quotes = u"\""_qs)
+    T unquote(const T &str, const QString &quotes = u"\""_s)
     {
-        if (str.length() < 2) return str;
+        if (str.length() < 2)
+            return str;
 
         for (const QChar quote : quotes)
         {
             if (str.startsWith(quote) && str.endsWith(quote))
-                return str.mid(1, (str.length() - 2));
+                return str.sliced(1, (str.length() - 2));
         }
 
         return str;
@@ -63,12 +67,42 @@ namespace Utils::String
 
     QStringList splitCommand(const QString &command);
 
-    QString join(const QList<QStringView> &strings, QStringView separator);
-
     QString fromDouble(double n, int precision);
+    QString fromLatin1(std::string_view string);
+    QString fromLocal8Bit(std::string_view string);
 
-    template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
+    template <typename Container>
+    QString joinIntoString(const Container &container, const QString &separator)
+        requires ExplicitlyConvertibleTo<typename Container::value_type, QString>
+    {
+        auto iter = container.cbegin();
+        const auto end = container.cend();
+        if (iter == end)
+            return {};
+
+        const qsizetype totalLength = std::accumulate(iter, end, (separator.size() * (container.size() - 1))
+            , [](const qsizetype total, const typename Container::value_type &value)
+        {
+            return total + QString(value).size();
+        });
+
+        QString ret;
+        ret.reserve(totalLength);
+        ret.append(QString(*iter));
+        ++iter;
+
+        while (iter != end)
+        {
+            ret.append(separator + QString(*iter));
+            ++iter;
+        }
+
+        return ret;
+    }
+
+    template <typename T>
     QString fromEnum(const T &value)
+        requires std::is_enum_v<T>
     {
         static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
                       "Enumeration underlying type has to be int.");
@@ -77,8 +111,9 @@ namespace Utils::String
         return QString::fromLatin1(metaEnum.valueToKey(static_cast<int>(value)));
     }
 
-    template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
+    template <typename T>
     T toEnum(const QString &serializedValue, const T &defaultValue)
+        requires std::is_enum_v<T>
     {
         static_assert(std::is_same_v<int, typename std::underlying_type_t<T>>,
                       "Enumeration underlying type has to be int.");

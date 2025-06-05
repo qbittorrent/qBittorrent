@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2006  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -32,25 +32,29 @@
 
 #include <QWidget>
 
+#include "gui/guiapplicationcomponent.h"
+
 class QListWidgetItem;
 class QTreeWidgetItem;
 
-class ArticleListWidget;
-class FeedListWidget;
+namespace RSS
+{
+    class Article;
+}
 
 namespace Ui
 {
     class RSSWidget;
 }
 
-class RSSWidget : public QWidget
+class RSSWidget final : public GUIApplicationComponent<QWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(RSSWidget)
 
 public:
-    RSSWidget(QWidget *parent);
-    ~RSSWidget();
+    explicit RSSWidget(IGUIApplication *app, QWidget *parent = nullptr);
+    ~RSSWidget() override;
 
 public slots:
     void deleteSelectedItems();
@@ -66,6 +70,7 @@ private slots:
     void displayRSSListMenu(const QPoint &pos);
     void displayItemsListMenu();
     void renameSelectedRSSItem();
+    void editSelectedRSSFeed();
     void refreshSelectedItems();
     void copySelectedFeedsURL();
     void handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem);
@@ -82,7 +87,8 @@ private slots:
     void handleUnreadCountChanged();
 
 private:
+    bool eventFilter(QObject *obj, QEvent *event) override;
+    void renderArticle(const RSS::Article *article) const;
+
     Ui::RSSWidget *m_ui = nullptr;
-    ArticleListWidget *m_articleListWidget = nullptr;
-    FeedListWidget *m_feedListWidget = nullptr;
 };

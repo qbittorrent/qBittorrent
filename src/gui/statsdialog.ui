@@ -20,29 +20,15 @@
       <string>User statistics</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="3" column="1" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="labelWaste">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelAlltimeULText">
         <property name="text">
-         <string notr="true">TextLabel</string>
+         <string>All-time upload:</string>
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="labelPeersText">
-        <property name="text">
-         <string>Connected peers:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="labelGlobalRatioText">
-        <property name="text">
-         <string>All-time share ratio:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="labelPeers">
+      <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+       <widget class="QLabel" name="labelAlltimeUL">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
@@ -55,14 +41,21 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" alignment="Qt::AlignRight">
+      <item row="1" column="1" alignment="Qt::AlignmentFlag::AlignRight">
        <widget class="QLabel" name="labelAlltimeDL">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" alignment="Qt::AlignRight">
+      <item row="2" column="0">
+       <widget class="QLabel" name="labelGlobalRatioText">
+        <property name="text">
+         <string>All-time share ratio:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignRight">
        <widget class="QLabel" name="labelGlobalRatio">
         <property name="text">
          <string notr="true">TextLabel</string>
@@ -76,15 +69,22 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelAlltimeULText">
+      <item row="3" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+       <widget class="QLabel" name="labelWaste">
         <property name="text">
-         <string>All-time upload:</string>
+         <string notr="true">TextLabel</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="1" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="labelAlltimeUL">
+      <item row="4" column="0">
+       <widget class="QLabel" name="labelPeersText">
+        <property name="text">
+         <string>Connected peers:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+       <widget class="QLabel" name="labelPeers">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
@@ -106,15 +106,8 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1" alignment="Qt::AlignRight">
+      <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
        <widget class="QLabel" name="labelCacheHits">
-        <property name="text">
-         <string notr="true">TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="labelTotalBuf">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
@@ -127,6 +120,13 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+       <widget class="QLabel" name="labelTotalBuf">
+        <property name="text">
+         <string notr="true">TextLabel</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -136,28 +136,28 @@
       <string>Performance statistics</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
-      <item row="3" column="1" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="labelJobsTime">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelWriteStarveText">
         <property name="text">
-         <string notr="true">TextLabel</string>
+         <string>Write cache overload:</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" alignment="Qt::AlignRight">
-       <widget class="QLabel" name="labelQueuedJobs">
-        <property name="text">
-         <string notr="true">TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" alignment="Qt::AlignRight">
+      <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
        <widget class="QLabel" name="labelWriteStarve">
         <property name="text">
          <string notr="true">TextLabel</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" alignment="Qt::AlignRight">
+      <item row="1" column="0">
+       <widget class="QLabel" name="labelReadStarveText">
+        <property name="text">
+         <string>Read cache overload:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" alignment="Qt::AlignmentFlag::AlignRight">
        <widget class="QLabel" name="labelReadStarve">
         <property name="text">
          <string notr="true">TextLabel</string>
@@ -171,10 +171,10 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="labelWriteStarveText">
+      <item row="2" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+       <widget class="QLabel" name="labelQueuedJobs">
         <property name="text">
-         <string>Write cache overload:</string>
+         <string notr="true">TextLabel</string>
         </property>
        </widget>
       </item>
@@ -185,10 +185,10 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="labelReadStarveText">
+      <item row="3" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+       <widget class="QLabel" name="labelJobsTime">
         <property name="text">
-         <string>Read cache overload:</string>
+         <string notr="true">TextLabel</string>
         </property>
        </widget>
       </item>
@@ -199,7 +199,7 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1" alignment="Qt::AlignRight">
+      <item row="4" column="1" alignment="Qt::AlignmentFlag::AlignRight">
        <widget class="QLabel" name="labelQueuedBytes">
         <property name="text">
          <string notr="true">TextLabel</string>
@@ -212,7 +212,7 @@
    <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -225,7 +225,7 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
-      <set>QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>

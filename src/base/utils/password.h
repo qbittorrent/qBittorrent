@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -36,6 +37,8 @@ namespace Utils::Password
     // Implements constant-time comparison to protect against timing attacks
     // Taken from https://crackstation.net/hashing-security.htm
     bool slowEquals(const QByteArray &a, const QByteArray &b);
+
+    QString generate();
 
     namespace PBKDF2
     {

@@ -66,6 +66,7 @@ public:
         CONNECTION,
         FLAGS,
         CLIENT,
+        PEERID_CLIENT,
         PROGRESS,
         DOWN_SPEED,
         UP_SPEED,
@@ -87,7 +88,7 @@ public:
     void clear();
 
 private slots:
-    void loadSettings();
+    bool loadSettings();
     void saveSettings() const;
     void displayColumnHeaderMenu();
     void showPeerListMenu();
@@ -97,7 +98,7 @@ private slots:
     void handleResolved(const QHostAddress &ip, const QString &hostname) const;
 
 private:
-    void updatePeer(const BitTorrent::Torrent *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer);
+    void updatePeer(int row, const BitTorrent::Torrent *torrent, const BitTorrent::PeerInfo &peer, bool hideZeroValues);
     int visibleColumnsCount() const;
 
     void wheelEvent(QWheelEvent *event) override;
@@ -107,6 +108,7 @@ private:
     PropertiesWidget *m_properties = nullptr;
     Net::ReverseResolution *m_resolver = nullptr;
     QHash<PeerEndpoint, QStandardItem *> m_peerItems;
+    QList<QStandardItem *> m_I2PPeerItems;
     QHash<QHostAddress, QSet<QStandardItem *>> m_itemsByIP;  // must be kept in sync with `m_peerItems`
     bool m_resolveCountries;
 };

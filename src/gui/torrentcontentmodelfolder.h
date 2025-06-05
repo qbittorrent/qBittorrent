@@ -42,7 +42,7 @@ public:
     TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
 
     // Invisible root item constructor
-    explicit TorrentContentModelFolder(const QVector<QString> &data);
+    explicit TorrentContentModelFolder(const QList<QString> &data);
 
     ~TorrentContentModelFolder() override;
 
@@ -56,11 +56,11 @@ public:
     void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
 
     void deleteAllChildren();
-    const QVector<TorrentContentModelItem*> &children() const;
+    const QList<TorrentContentModelItem*> &children() const;
     void appendChild(TorrentContentModelItem *item);
     TorrentContentModelItem *child(int row) const;
     int childCount() const;
 
 private:
-    QVector<TorrentContentModelItem*> m_childItems;
+    QList<TorrentContentModelItem *> m_childItems;
 };

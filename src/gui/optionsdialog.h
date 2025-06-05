@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -41,7 +42,7 @@ class AdvancedSettings;
 // actions on double-click on torrents
 enum DoubleClickAction
 {
-    TOGGLE_PAUSE = 0,
+    TOGGLE_STOP = 0,
     OPEN_DEST = 1,
     PREVIEW_FILE = 2,
     NO_ACTION = 3,
@@ -58,7 +59,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog final : public QDialog, public GUIApplicationComponent
+class OptionsDialog final : public GUIApplicationComponent<QDialog>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(OptionsDialog)
@@ -72,6 +73,7 @@ class OptionsDialog final : public QDialog, public GUIApplicationComponent
         TAB_CONNECTION,
         TAB_SPEED,
         TAB_BITTORRENT,
+        TAB_SEARCH,
         TAB_RSS,
         TAB_WEBUI,
         TAB_ADVANCED
@@ -85,10 +87,9 @@ public slots:
     void showConnectionTab();
 
 private slots:
-    void enableProxy(int index);
+    void adjustProxyOptions();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
-    void applySettings();
     void enableApplyButton();
     void toggleComboRatioLimitAct();
     void changePage(QListWidgetItem *, QListWidgetItem *);
@@ -115,6 +116,7 @@ private:
     void showEvent(QShowEvent *e) override;
 
     // Methods
+    bool applySettings();
     void saveOptions() const;
 
     void loadBehaviorTabOptions();
@@ -135,6 +137,9 @@ private:
     void loadRSSTabOptions();
     void saveRSSTabOptions() const;
 
+    void loadSearchTabOptions();
+    void saveSearchTabOptions() const;
+
 #ifndef DISABLE_WEBUI
     void loadWebUITabOptions();
     void saveWebUITabOptions() const;
@@ -142,8 +147,9 @@ private:
 
     // General options
     void initializeLanguageCombo();
+    void initializeStyleCombo();
+    void initializeColorSchemeOptions();
     QString getLocale() const;
-    bool startMinimized() const;
     bool isSplashScreenDisabled() const;
 #ifdef Q_OS_WIN
     bool WinStartup() const;
@@ -151,7 +157,7 @@ private:
     // Downloads
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
-    bool addTorrentsInPause() const;
+    bool addTorrentsStopped() const;
     Path getTorrentExportDir() const;
     Path getFinishedTorrentExportDir() const;
     // Connection options
@@ -167,9 +173,9 @@ private:
     int getEncryptionSetting() const;
     qreal getMaxRatio() const;
     int getMaxSeedingMinutes() const;
+    int getMaxInactiveSeedingMinutes() const;
     // Proxy options
     bool isProxyEnabled() const;
-    bool isProxyAuthEnabled() const;
     QString getProxyIp() const;
     unsigned short getProxyPort() const;
     QString getProxyUsername() const;
@@ -185,9 +191,9 @@ private:
     int getMaxActiveTorrents() const;
     // WebUI
 #ifndef DISABLE_WEBUI
-    bool isWebUiEnabled() const;
-    QString webUiUsername() const;
-    QString webUiPassword() const;
+    bool isWebUIEnabled() const;
+    QString webUIUsername() const;
+    QString webUIPassword() const;
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
 #endif

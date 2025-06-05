@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -31,10 +31,10 @@
 
 #include <chrono>
 
+#include <QList>
 #include <QMetaObject>
 #include <QProcess>
 #include <QTimer>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/path.h"
@@ -55,31 +55,34 @@ namespace
         PL_LEECHS,
         PL_ENGINE_URL,
         PL_DESC_LINK,
+        PL_PUB_DATE,
         NB_PLUGIN_COLUMNS
     };
 }
 
 SearchHandler::SearchHandler(const QString &pattern, const QString &category, const QStringList &usedPlugins, SearchPluginManager *manager)
-    : QObject {manager}
+    : QObject(manager)
     , m_pattern {pattern}
     , m_category {category}
     , m_usedPlugins {usedPlugins}
     , m_manager {manager}
-    , m_searchProcess {new QProcess {this}}
-    , m_searchTimeout {new QTimer {this}}
+    , m_searchProcess {new QProcess(this)}
+    , m_searchTimeout {new QTimer(this)}
 {
     // Load environment variables (proxy)
-    m_searchProcess->setEnvironment(QProcess::systemEnvironment());
+    m_searchProcess->setProcessEnvironment(m_manager->proxyEnvironment());
+    m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executablePath.data());
+#ifdef Q_OS_UNIX
+    m_searchProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+#endif
 
     const QStringList params
     {
-        (m_manager->engineLocation() / Path(u"nova2.py"_qs)).toString(),
+        Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
+        (SearchPluginManager::engineLocation() / Path(u"nova2.py"_s)).toString(),
         m_usedPlugins.join(u','),
         m_category
     };
-
-    // Launch search
-    m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
     m_searchProcess->setArguments(params + m_pattern.split(u' '));
 
     connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
@@ -91,6 +94,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     connect(m_searchTimeout, &QTimer::timeout, this, &SearchHandler::cancelSearch);
     m_searchTimeout->start(3min);
 
+    // Launch search
     // deferred start allows clients to handle starting-related signals
     QMetaObject::invokeMethod(this, [this]() { m_searchProcess->start(QIODevice::ReadOnly); }
         , Qt::QueuedConnection);
@@ -143,7 +147,7 @@ void SearchHandler::readSearchOutput()
         lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
     m_searchResultLineTruncated = lines.takeLast().trimmed();
 
-    QVector<SearchResult> searchResultList;
+    QList<SearchResult> searchResultList;
     searchResultList.reserve(lines.size());
 
     for (const QByteArray &line : asConst(lines))
@@ -175,7 +179,8 @@ bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &sear
     const QList<QStringView> parts = line.split(u'|');
     const int nbFields = parts.size();
 
-    if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
+    if (nbFields <= PL_ENGINE_URL)
+        return false; // Anything after ENGINE_URL is optional
 
     searchResult = SearchResult();
     searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed().toString(); // download URL
@@ -192,9 +197,18 @@ bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &sear
     if (!ok || (searchResult.nbLeechers < 0))
         searchResult.nbLeechers = -1;
 
-    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed().toString(); // Search site URL
-    if (nbFields == NB_PLUGIN_COLUMNS)
+    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed().toString(); // Search engine site URL
+    searchResult.engineName = m_manager->pluginNameBySiteURL(searchResult.siteUrl); // Search engine name
+
+    if (nbFields > PL_DESC_LINK)
         searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed().toString(); // Description Link
+
+    if (nbFields > PL_PUB_DATE)
+    {
+        const qint64 secs = parts.at(PL_PUB_DATE).trimmed().toLongLong(&ok);
+        if (ok && (secs > 0))
+            searchResult.pubDate = QDateTime::fromSecsSinceEpoch(secs); // Date
+    }
 
     return true;
 }

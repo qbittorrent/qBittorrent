@@ -85,7 +85,7 @@ namespace
     {
         QString hostname = QHostInfo::localHostName();
         if (hostname.isEmpty())
-            hostname = u"localhost"_qs;
+            hostname = u"localhost"_s;
 
         return hostname.toLocal8Bit();
     }
@@ -138,18 +138,17 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 {
     const Preferences *const pref = Preferences::instance();
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-                + encodeMimeHeader(u"From"_qs, u"qBittorrent <%1>"_qs.arg(from))
-                + encodeMimeHeader(u"Subject"_qs, subject)
-                + encodeMimeHeader(u"To"_qs, to)
+                + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(from))
+                + encodeMimeHeader(u"Subject"_s, subject)
+                + encodeMimeHeader(u"To"_s, to)
                 + "MIME-Version: 1.0\r\n"
                 + "Content-Type: text/plain; charset=UTF-8\r\n"
                 + "Content-Transfer-Encoding: base64\r\n"
                 + "\r\n";
     // Encode the body in base64
     QString crlfBody = body;
-    const QByteArray b = crlfBody.replace(u"\n"_qs, u"\r\n"_qs).toUtf8().toBase64();
-    const int ct = b.length();
-    for (int i = 0; i < ct; i += 78)
+    const QByteArray b = crlfBody.replace(u"\n"_s, u"\r\n"_s).toUtf8().toBase64();
+    for (int i = 0, end = b.length(); i < end; i += 78)
         m_message += b.mid(i, 78);
     m_from = from;
     m_rcpt = to;
@@ -162,7 +161,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 
     // Connect to SMTP server
     const QStringList serverEndpoint = pref->getMailNotificationSMTP().split(u':');
-    const QString serverAddress = serverEndpoint[0];
+    const QString &serverAddress = serverEndpoint[0];
     const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
 
 #ifndef QT_NO_OPENSSL
@@ -190,8 +189,12 @@ void Smtp::readyRead()
     {
         const int pos = m_buffer.indexOf("\r\n");
         if (pos < 0) return; // Loop exit condition
-        const QByteArray line = m_buffer.left(pos);
-        m_buffer = m_buffer.mid(pos + 2);
+        const QByteArray line = m_buffer.first(pos);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        m_buffer.slice(pos + 2);
+#else
+        m_buffer.remove(0, (pos + 2));
+#endif
         qDebug() << "Response line:" << line;
         // Extract response code
         const QByteArray code = line.left(3);
@@ -424,7 +427,7 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     if (m_state != EhloDone) return;
 
-    if (m_extensions.contains(u"STARTTLS"_qs) && m_useSsl)
+    if (m_extensions.contains(u"STARTTLS"_s) && m_useSsl)
     {
         qDebug() << "STARTTLS";
         startTLS();
@@ -438,7 +441,7 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 void Smtp::authenticate()
 {
     qDebug() << Q_FUNC_INFO;
-    if (!m_extensions.contains(u"AUTH"_qs) ||
+    if (!m_extensions.contains(u"AUTH"_s) ||
         m_username.isEmpty() || m_password.isEmpty())
         {
         // Skip authentication
@@ -453,7 +456,7 @@ void Smtp::authenticate()
     // AUTH extension is supported, check which
     // authentication modes are supported by
     // the server
-    const QStringList auth = m_extensions[u"AUTH"_qs].toUpper().split(u' ', Qt::SkipEmptyParts);
+    const QStringList auth = m_extensions[u"AUTH"_s].toUpper().split(u' ', Qt::SkipEmptyParts);
     if (auth.contains(u"CRAM-MD5"))
     {
         qDebug() << "Using CRAM-MD5 authentication...";
@@ -565,29 +568,11 @@ void Smtp::logError(const QString &msg)
 
 QString Smtp::getCurrentDateTime() const
 {
-    // return date & time in the format specified in RFC 2822, section 3.3
-    const QDateTime nowDateTime = QDateTime::currentDateTime();
-    const QDate nowDate = nowDateTime.date();
-    const QLocale eng(QLocale::English);
-
-    const QString timeStr = nowDateTime.time().toString(u"HH:mm:ss");
-    const QString weekDayStr = eng.dayName(nowDate.dayOfWeek(), QLocale::ShortFormat);
-    const QString dayStr = QString::number(nowDate.day());
-    const QString monthStr = eng.monthName(nowDate.month(), QLocale::ShortFormat);
-    const QString yearStr = QString::number(nowDate.year());
-
-    QDateTime tmp = nowDateTime;
-    tmp.setTimeSpec(Qt::UTC);
-    const int timeOffsetHour = nowDateTime.secsTo(tmp) / 3600;
-    const int timeOffsetMin = nowDateTime.secsTo(tmp) / 60 - (60 * timeOffsetHour);
-    const int timeOffset = timeOffsetHour * 100 + timeOffsetMin;
-    // buf size = 11 to avoid format truncation warnings from snprintf
-    char buf[11] = {0};
-    std::snprintf(buf, sizeof(buf), "%+05d", timeOffset);
-    const auto timeOffsetStr = QString::fromUtf8(buf);
-
-    const QString ret = weekDayStr + u", " + dayStr + u' ' + monthStr + u' ' + yearStr + u' ' + timeStr + u' ' + timeOffsetStr;
-    return ret;
+    // [rfc2822] 3.3. Date and Time Specification
+    const auto now = QDateTime::currentDateTime();
+    const QLocale eng {QLocale::English};
+    const QString weekday = eng.dayName(now.date().dayOfWeek(), QLocale::ShortFormat);
+    return (weekday + u", " + now.toString(Qt::RFC2822Date));
 }
 
 void Smtp::error(QAbstractSocket::SocketError socketError)

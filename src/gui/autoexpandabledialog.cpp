@@ -37,6 +37,9 @@ AutoExpandableDialog::AutoExpandableDialog(QWidget *parent)
     , m_ui(new Ui::AutoExpandableDialog)
 {
     m_ui->setupUi(this);
+
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
 
 AutoExpandableDialog::~AutoExpandableDialog()

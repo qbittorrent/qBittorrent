@@ -30,19 +30,19 @@
 
 #include <QJsonArray>
 #include <QJsonObject>
-#include <QVector>
+#include <QList>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/string.h"
 
-const QString KEY_LOG_ID = u"id"_qs;
-const QString KEY_LOG_TIMESTAMP = u"timestamp"_qs;
-const QString KEY_LOG_MSG_TYPE = u"type"_qs;
-const QString KEY_LOG_MSG_MESSAGE = u"message"_qs;
-const QString KEY_LOG_PEER_IP = u"ip"_qs;
-const QString KEY_LOG_PEER_BLOCKED = u"blocked"_qs;
-const QString KEY_LOG_PEER_REASON = u"reason"_qs;
+const QString KEY_LOG_ID = u"id"_s;
+const QString KEY_LOG_TIMESTAMP = u"timestamp"_s;
+const QString KEY_LOG_MSG_TYPE = u"type"_s;
+const QString KEY_LOG_MSG_MESSAGE = u"message"_s;
+const QString KEY_LOG_PEER_IP = u"ip"_s;
+const QString KEY_LOG_PEER_BLOCKED = u"blocked"_s;
+const QString KEY_LOG_PEER_REASON = u"reason"_s;
 
 // Returns the log in JSON format.
 // The return value is an array of dictionaries.
@@ -61,13 +61,13 @@ void LogController::mainAction()
 {
     using Utils::String::parseBool;
 
-    const bool isNormal = parseBool(params()[u"normal"_qs]).value_or(true);
-    const bool isInfo = parseBool(params()[u"info"_qs]).value_or(true);
-    const bool isWarning = parseBool(params()[u"warning"_qs]).value_or(true);
-    const bool isCritical = parseBool(params()[u"critical"_qs]).value_or(true);
+    const bool isNormal = parseBool(params()[u"normal"_s]).value_or(true);
+    const bool isInfo = parseBool(params()[u"info"_s]).value_or(true);
+    const bool isWarning = parseBool(params()[u"warning"_s]).value_or(true);
+    const bool isCritical = parseBool(params()[u"critical"_s]).value_or(true);
 
     bool ok = false;
-    int lastKnownId = params()[u"last_known_id"_qs].toInt(&ok);
+    int lastKnownId = params()[u"last_known_id"_s].toInt(&ok);
     if (!ok)
         lastKnownId = -1;
 
@@ -107,7 +107,7 @@ void LogController::mainAction()
 void LogController::peersAction()
 {
     bool ok = false;
-    int lastKnownId = params()[u"last_known_id"_qs].toInt(&ok);
+    int lastKnownId = params()[u"last_known_id"_s].toInt(&ok);
     if (!ok)
         lastKnownId = -1;
 

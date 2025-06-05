@@ -42,7 +42,7 @@ class HtmlBrowser final : public QTextBrowser
 
 public:
     explicit HtmlBrowser(QWidget* parent = nullptr);
-    ~HtmlBrowser();
+    ~HtmlBrowser() = default;
 
     QVariant loadResource(int type, const QUrl &name) override;
 

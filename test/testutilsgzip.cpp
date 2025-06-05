@@ -26,6 +26,7 @@
  * exception statement from your version.
  */
 
+#include <QObject>
 #include <QTest>
 
 #include "base/global.h"
@@ -57,7 +58,7 @@ private slots:
         bool ok = false;
         const QByteArray compressedData = Utils::Gzip::compress(data, 6, &ok);
         QVERIFY(ok);
-        QVERIFY(compressedData != data);
+        QCOMPARE_NE(compressedData, data);
 
         ok = false;
         const QByteArray decompressedData = Utils::Gzip::decompress(compressedData, &ok);

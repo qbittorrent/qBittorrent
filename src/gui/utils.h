@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2017  Mike Tzou
  *
  * This program is free software; you can redistribute it and/or
@@ -30,17 +31,19 @@
 
 #include "base/pathfwd.h"
 
-class QIcon;
 class QPixmap;
 class QPoint;
 class QSize;
+class QString;
 class QWidget;
+
+class Tag;
 
 namespace Utils::Gui
 {
-    QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
-    QPixmap scaledPixmap(const Path &path, const QWidget *widget, int height = 0);
-    QPixmap scaledPixmapSvg(const Path &path, const QWidget *widget, int height);
+    bool isDarkTheme();
+
+    QPixmap scaledPixmap(const Path &path, int height = 0);
 
     QSize smallIconSize(const QWidget *widget = nullptr);
     QSize mediumIconSize(const QWidget *widget = nullptr);
@@ -50,4 +53,7 @@ namespace Utils::Gui
 
     void openPath(const Path &path);
     void openFolderSelect(const Path &path);
+
+    QString tagToWidgetText(const Tag &tag);
+    Tag widgetTextToTag(const QString &text);
 }

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,7 +30,6 @@
 
 #include <QDialog>
 
-#include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/torrentfileswatcher.h"
 
@@ -38,6 +37,8 @@ namespace Ui
 {
     class WatchedFolderOptionsDialog;
 }
+
+class AddTorrentParamsWidget;
 
 class WatchedFolderOptionsDialog final : public QDialog
 {
@@ -58,8 +59,6 @@ private:
     void onCategoryChanged(int index);
 
     Ui::WatchedFolderOptionsDialog *m_ui = nullptr;
-    Path m_savePath;
-    Path m_downloadPath;
-    bool m_useDownloadPath = false;
+    AddTorrentParamsWidget *m_addTorrentParamsWidget = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 };

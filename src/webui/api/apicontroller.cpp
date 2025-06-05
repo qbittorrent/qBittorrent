@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018, 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,18 +32,25 @@
 
 #include <QHash>
 #include <QJsonDocument>
+#include <QList>
 #include <QMetaObject>
-#include <QVector>
 
 #include "apierror.h"
 
+void APIResult::clear()
+{
+    data.clear();
+    mimeType.clear();
+    filename.clear();
+    status = APIStatus::Ok;
+}
+
 APIController::APIController(IApplication *app, QObject *parent)
-    : QObject(parent)
-    , ApplicationComponent(app)
+    : ApplicationComponent(app, parent)
 {
 }
 
-QVariant APIController::run(const QString &action, const StringMap &params, const DataMap &data)
+APIResult APIController::run(const QString &action, const StringMap &params, const DataMap &data)
 {
     m_result.clear(); // clear result
     m_params = params;
@@ -66,7 +73,7 @@ const DataMap &APIController::data() const
     return m_data;
 }
 
-void APIController::requireParams(const QVector<QString> &requiredParams) const
+void APIController::requireParams(const QList<QString> &requiredParams) const
 {
     const bool hasAllRequiredParams = std::all_of(requiredParams.cbegin(), requiredParams.cend()
         , [this](const QString &requiredParam)
@@ -80,20 +87,27 @@ void APIController::requireParams(const QVector<QString> &requiredParams) const
 
 void APIController::setResult(const QString &result)
 {
-    m_result = result;
+    m_result.data = result;
 }
 
 void APIController::setResult(const QJsonArray &result)
 {
-    m_result = QJsonDocument(result);
+    m_result.data = QJsonDocument(result);
 }
 
 void APIController::setResult(const QJsonObject &result)
 {
-    m_result = QJsonDocument(result);
+    m_result.data = QJsonDocument(result);
 }
 
-void APIController::setResult(const QByteArray &result)
+void APIController::setResult(const QByteArray &result, const QString &mimeType, const QString &filename)
 {
-    m_result = result;
+    m_result.data = result;
+    m_result.mimeType = mimeType;
+    m_result.filename = filename;
+}
+
+void APIController::setStatus(const APIStatus status)
+{
+    m_result.status = status;
 }

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2014 sledgehammer999 <sledgehammer999@qbittorrent.org> -->
+<component type="desktop-application">
+  <id>org.qbittorrent.qBittorrent</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later and OpenSSL</project_license>
+  <name>qBittorrent</name>
+  <summary>An open-source Bittorrent client</summary>
+  <description>
+    <p>
+      The qBittorrent project aims to provide an open-source software alternative to µTorrent.
+      Additionally, qBittorrent runs and provides the same features on all major platforms (FreeBSD, Linux, macOS, OS/2, Windows).
+      qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
+    </p>
+    <ul>
+      <li>Polished µTorrent-like User Interface</li>
+      <li>Well-integrated and extensible Search Engine</li>
+      <li>RSS feed support with advanced download filters (incl. regex)</li>
+      <li>Many Bittorrent extensions supported</li>
+      <li>Remote control through Web user interface, written with AJAX</li>
+      <li>Sequential downloading (Download in order)</li>
+      <li>Advanced control over torrents, trackers and peers</li>
+      <li>Bandwidth scheduler</li>
+      <li>Torrent creation tool</li>
+      <li>IP Filtering (eMule &amp; PeerGuardian format compatible)</li>
+      <li>IPv6 compliant</li>
+      <li>UPnP / NAT-PMP port forwarding support</li>
+      <li>Available on all platforms: Windows, Linux, macOS, FreeBSD, OS/2</li>
+      <li>Available in ~70 languages</li>
+    </ul>
+  </description>
+  <launchable type="desktop-id">org.qbittorrent.qBittorrent.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Main window (General tab collapsed)</caption>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/1.webp</image>
+    </screenshot>
+    <screenshot>
+      <caption>Main window (General tab expanded)</caption>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/2.webp</image>
+    </screenshot>
+    <screenshot>
+      <caption>Options dialog</caption>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/3.webp</image>
+    </screenshot>
+    <screenshot>
+      <caption>Search engine</caption>
+      <image>https://raw.githubusercontent.com/qbittorrent/qBittorrent-website/2741f2a90854604e268c6bba9e6859aad0103583/src/img/screenshots/linux/4.webp</image>
+    </screenshot>
+  </screenshots>
+  <update_contact>sledgehammer999@qbittorrent.org</update_contact>
+  <developer id="org.qbittorrent">
+    <name>The qBittorrent Project</name>
+  </developer>
+  <url type="homepage">https://www.qbittorrent.org/</url>
+  <url type="bugtracker">https://bugs.qbittorrent.org/</url>
+  <url type="faq">https://wiki.qbittorrent.org/Frequently-Asked-Questions</url>
+  <url type="help">https://forum.qbittorrent.org/</url>
+  <url type="donation">https://www.qbittorrent.org/donate</url>
+  <url type="translate">https://wiki.qbittorrent.org/How-to-translate-qBittorrent</url>
+  <url type="vcs-browser">https://github.com/qbittorrent/qBittorrent</url>
+  <url type="contribute">https://github.com/qbittorrent/qBittorrent/blob/master/CONTRIBUTING.md</url>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="5.2.0~alpha1" date="2025-02-11"/>
+  </releases>
+</component>

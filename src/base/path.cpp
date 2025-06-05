@@ -39,6 +39,7 @@
 #include <QRegularExpression>
 #include <QStringView>
 
+#include "base/concepts/stringable.h"
 #include "base/global.h"
 
 #if defined(Q_OS_WIN)
@@ -63,11 +64,14 @@ namespace
 #ifdef Q_OS_WIN
     bool hasDriveLetter(const QStringView path)
     {
-        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_qs};
+        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
         return driveLetterRegex.match(path).hasMatch();
     }
 #endif
 }
+
+// `Path` should satisfy `Stringable` concept in order to be stored in settings as string
+static_assert(Stringable<Path>);
 
 Path::Path(const QString &pathStr)
     : m_pathStr {cleanPath(pathStr)}
@@ -90,15 +94,21 @@ bool Path::isValid() const
 #if defined(Q_OS_WIN)
     QStringView view = m_pathStr;
     if (hasDriveLetter(view))
-        view = view.mid(3);
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        view.slice(3);
+#else
+        view = view.sliced(3);
+#endif
+    }
 
     // \\37 is using base-8 number system
-    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_qs};
+    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
     return !regex.match(view).hasMatch();
 #elif defined(Q_OS_MACOS)
-    const QRegularExpression regex {u"[\\0:]"_qs};
+    const QRegularExpression regex {u"[\\0:]"_s};
 #else
-    const QRegularExpression regex {u"\\0"_qs};
+    const QRegularExpression regex {u"\\0"_s};
 #endif
     return !m_pathStr.contains(regex);
 }
@@ -138,14 +148,14 @@ Path Path::rootItem() const
         return *this;
 
     if (slashIndex == 0) // *nix absolute path
-        return createUnchecked(u"/"_qs);
+        return createUnchecked(u"/"_s);
 
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
-    if (m_pathStr.at(slashIndex - 1) == u':')
-        return createUnchecked(m_pathStr.left(slashIndex + 1));
+    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
+        return createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
-    return createUnchecked(m_pathStr.left(slashIndex));
+    return createUnchecked(m_pathStr.first(slashIndex));
 }
 
 Path Path::parentPath() const
@@ -157,15 +167,15 @@ Path Path::parentPath() const
         return {};
 
     if (slashIndex == 0) // *nix absolute path
-        return (m_pathStr.size() == 1) ? Path() : createUnchecked(u"/"_qs);
+        return (m_pathStr.size() == 1) ? Path() : createUnchecked(u"/"_s);
 
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
     // Windows "drive letter" is limited to one alphabet
     if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
-        return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.left(slashIndex + 1));
+        return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
-    return createUnchecked(m_pathStr.left(slashIndex));
+    return createUnchecked(m_pathStr.first(slashIndex));
 }
 
 QString Path::filename() const
@@ -174,7 +184,7 @@ QString Path::filename() const
     if (slashIndex == -1)
         return m_pathStr;
 
-    return m_pathStr.mid(slashIndex + 1);
+    return m_pathStr.sliced(slashIndex + 1);
 }
 
 QString Path::extension() const
@@ -184,9 +194,9 @@ QString Path::extension() const
         return (u"." + suffix);
 
     const int slashIndex = m_pathStr.lastIndexOf(u'/');
-    const auto filename = QStringView(m_pathStr).mid(slashIndex + 1);
+    const auto filename = QStringView(m_pathStr).sliced(slashIndex + 1);
     const int dotIndex = filename.lastIndexOf(u'.', -2);
-    return ((dotIndex == -1) ? QString() : filename.mid(dotIndex).toString());
+    return ((dotIndex == -1) ? QString() : filename.sliced(dotIndex).toString());
 }
 
 bool Path::hasExtension(const QStringView ext) const
@@ -289,7 +299,7 @@ Path Path::commonPath(const Path &left, const Path &right)
     if (commonItemsCount > 0)
         commonPathSize += (commonItemsCount - 1); // size of intermediate separators
 
-    return Path::createUnchecked(left.m_pathStr.left(commonPathSize));
+    return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
 }
 
 Path Path::findRootFolder(const PathList &filePaths)
@@ -318,7 +328,13 @@ void Path::stripRootFolder(PathList &filePaths)
         return;
 
     for (Path &filePath : filePaths)
-        filePath.m_pathStr = filePath.m_pathStr.mid(commonRootFolder.m_pathStr.size() + 1);
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        filePath.m_pathStr.slice(commonRootFolder.m_pathStr.size() + 1);
+#else
+        filePath.m_pathStr.remove(0, (commonRootFolder.m_pathStr.size() + 1));
+#endif
+    }
 }
 
 void Path::addRootFolder(PathList &filePaths, const Path &rootFolder)
@@ -340,11 +356,6 @@ Path Path::createUnchecked(const QString &pathStr)
 bool operator==(const Path &lhs, const Path &rhs)
 {
     return (lhs.data().compare(rhs.data(), CASE_SENSITIVITY) == 0);
-}
-
-bool operator!=(const Path &lhs, const Path &rhs)
-{
-    return !(lhs == rhs);
 }
 
 Path operator/(const Path &lhs, const Path &rhs)
@@ -377,11 +388,7 @@ QDataStream &operator>>(QDataStream &in, Path &path)
     return in;
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t qHash(const Path &key, const std::size_t seed)
-#else
-uint qHash(const Path &key, const uint seed)
-#endif
 {
     return ::qHash(key.data(), seed);
 }

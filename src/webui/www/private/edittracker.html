@@ -1,56 +1,55 @@
 <!DOCTYPE html>
-<html lang="${LANG}">
+<html lang="${LANG}" class="dark">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        window.addEvent('domready', function() {
-            new Keyboard({
-                defaultEventType: 'keydown',
-                events: {
-                    'Enter': function(event) {
-                        $('editTrackerButton').click();
+        window.addEventListener("DOMContentLoaded", (event) => {
+            window.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Enter":
                         event.preventDefault();
-                    },
-                    'Escape': function(event) {
-                        window.parent.closeWindows();
+                        document.getElementById("editTrackerButton").click();
+                        break;
+                    case "Escape":
                         event.preventDefault();
-                    },
-                    'Esc': function(event) {
-                        window.parent.closeWindows();
-                        event.preventDefault();
-                    }
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        break;
                 }
-            }).activate();
+            });
 
-            const currentUrl = new URI().getData('url');
-            if (!currentUrl)
-                return false;
+            const searchParams = new URLSearchParams(window.location.search);
+            const currentUrl = searchParams.get("url");
+            if (currentUrl === null)
+                return;
 
-            $('trackerUrl').value = currentUrl;
-            $('trackerUrl').focus();
+            document.getElementById("trackerUrl").value = currentUrl;
+            document.getElementById("trackerUrl").focus();
 
-            $('editTrackerButton').addEvent('click', function(e) {
-                new Event(e).stop();
-                const hash = new URI().getData('hash');
-                new Request({
-                    url: 'api/v2/torrents/editTracker',
-                    method: 'post',
-                    data: {
-                        hash: hash,
-                        origUrl: currentUrl,
-                        newUrl: $('trackerUrl').value
-                    },
-                    onComplete: function() {
-                        window.parent.closeWindows();
-                    }
-                }).send();
+            document.getElementById("editTrackerButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                fetch("api/v2/torrents/editTracker", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            hash: searchParams.get("hash"),
+                            origUrl: currentUrl,
+                            newUrl: document.getElementById("trackerUrl").value
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                    });
             });
         });
     </script>
@@ -58,13 +57,13 @@
 
 <body>
     <div style="text-align: center;">
-        <br />
-        <h2 class="vcenter">QBT_TR(Tracker URL:)QBT_TR[CONTEXT=TrackerListWidget]</h2>
+        <br>
+        <label for="trackerUrl">QBT_TR(Tracker URL:)QBT_TR[CONTEXT=TrackerListWidget]</label>
         <div style="text-align: center; padding-top: 10px;">
-            <input id="trackerUrl" style="width: 90%;" />
+            <input type="text" id="trackerUrl" style="width: 90%;">
         </div>
-        <br />
-        <input type="button" value="QBT_TR(Edit)QBT_TR[CONTEXT=HttpServer]" id="editTrackerButton" />
+        <br>
+        <input type="button" value="QBT_TR(Edit)QBT_TR[CONTEXT=HttpServer]" id="editTrackerButton">
     </div>
 </body>
 

@@ -33,6 +33,8 @@
 
 #include <libtorrent/fwd.hpp>
 
+#include <QIODevice>
+
 #include "base/3rdparty/expected.hpp"
 #include "base/pathfwd.h"
 
@@ -53,7 +55,7 @@ namespace Utils::IO
         using pointer = void;
         using reference = void;
 
-        explicit FileDeviceOutputIterator(QFileDevice &device, const int bufferSize = (4 * 1024));
+        explicit FileDeviceOutputIterator(QFileDevice &device, int bufferSize = (4 * 1024));
         FileDeviceOutputIterator(const FileDeviceOutputIterator &other) = default;
         ~FileDeviceOutputIterator();
 
@@ -81,6 +83,26 @@ namespace Utils::IO
         int m_bufferSize = 0;
     };
 
+    struct ReadError
+    {
+        enum Code
+        {
+            NotExist,
+            ExceedSize,
+            Failed,  // `read()` operation failed
+            SizeMismatch
+        };
+
+        Code status = {};
+        QString message;
+    };
+
+    // TODO: define a specific type for `additionalMode`
+    // providing `size` is explicit and is strongly recommended
+    nonstd::expected<QByteArray, ReadError> readFile(const Path &path, qint64 size, QIODevice::OpenMode additionalMode = {});
+
     nonstd::expected<void, QString> saveToFile(const Path &path, const QByteArray &data);
     nonstd::expected<void, QString> saveToFile(const Path &path, const lt::entry &data);
+    nonstd::expected<Path, QString> saveToTempFile(const QByteArray &data);
+    nonstd::expected<Path, QString> saveToTempFile(const lt::entry &data);
 }

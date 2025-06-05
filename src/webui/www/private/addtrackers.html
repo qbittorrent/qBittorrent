@@ -1,57 +1,53 @@
 <!DOCTYPE html>
-<html lang="${LANG}">
+<html lang="${LANG}" class="dark">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDialog]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <meta charset="UTF-8">
+    <title>QBT_TR(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        window.addEvent('domready', function() {
-            new Keyboard({
-                defaultEventType: 'keydown',
-                events: {
-                    'Escape': function(event) {
-                        window.parent.closeWindows();
+        window.addEventListener("DOMContentLoaded", (event) => {
+            window.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Escape":
                         event.preventDefault();
-                    },
-                    'Esc': function(event) {
-                        window.parent.closeWindows();
-                        event.preventDefault();
-                    }
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        break;
                 }
-            }).activate();
+            });
 
-            $('trackersUrls').focus();
-            $('addTrackersButton').addEvent('click', function(e) {
-                new Event(e).stop();
-                const hash = new URI().getData('hash');
-                new Request({
-                    url: 'api/v2/torrents/addTrackers',
-                    method: 'post',
-                    data: {
-                        hash: hash,
-                        urls: $('trackersUrls').value
-                    },
-                    onComplete: function() {
-                        window.parent.closeWindows();
-                    }
-                }).send();
+            document.getElementById("trackersUrls").focus();
+            document.getElementById("addTrackersButton").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                fetch("api/v2/torrents/addTrackers", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            hash: new URLSearchParams(window.location.search).get("hash"),
+                            urls: document.getElementById("trackersUrls").value
+                        })
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
+
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                    });
             });
         });
     </script>
 </head>
 
 <body>
-    <div style="text-align: center;">
-        <br />
-        <h2 class="vcenter">QBT_TR(List of trackers to add (one per line):)QBT_TR[CONTEXT=TrackersAdditionDialog]</h2>
+    <div style="text-align: center; margin-top: 10px;">
+        <label for="trackersUrls">QBT_TR(List of trackers to add (one per line):)QBT_TR[CONTEXT=TrackersAdditionDialog]</label>
         <textarea name="list" id="trackersUrls" rows="10" cols="1"></textarea>
-        <br />
-        <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="addTrackersButton" />
+        <input type="button" value="QBT_TR(Add)QBT_TR[CONTEXT=HttpServer]" id="addTrackersButton">
     </div>
 </body>
 

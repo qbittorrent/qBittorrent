@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,6 +33,7 @@
 #include <QString>
 
 #include "base/path.h"
+#include "downloadpathoption.h"
 
 class QJsonObject;
 
@@ -40,12 +41,6 @@ namespace BitTorrent
 {
     struct CategoryOptions
     {
-        struct DownloadPathOption
-        {
-            bool enabled;
-            Path path;
-        };
-
         Path savePath;
         std::optional<DownloadPathOption> downloadPath;
 
@@ -53,6 +48,5 @@ namespace BitTorrent
         QJsonObject toJSON() const;
     };
 
-    bool operator==(const CategoryOptions::DownloadPathOption &left, const CategoryOptions::DownloadPathOption &right);
     bool operator==(const CategoryOptions &left, const CategoryOptions &right);
 }

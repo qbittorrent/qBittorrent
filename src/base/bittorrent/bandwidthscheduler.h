@@ -49,5 +49,5 @@ private:
     void onTimeout();
 
     QTimer m_timer;
-    bool m_lastAlternative;
+    bool m_lastAlternative = false;
 };

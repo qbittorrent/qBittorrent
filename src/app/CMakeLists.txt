@@ -15,14 +15,14 @@ add_custom_target(qbt_update_translations
 # -----------------------------------------------------------------------------
 # Based on https://gist.github.com/giraldeau/546ba5512a74dfe9d8ea0862d66db412
 set_source_files_properties(${QBT_TS_FILES} PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/lang")
-qt_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -silent)
+qt_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -removeidentical -silent)
 configure_file("${qBittorrent_SOURCE_DIR}/src/lang/lang.qrc" "${qBittorrent_BINARY_DIR}/src/lang/lang.qrc" COPYONLY)
 
 if (WEBUI)
     file(GLOB QBT_WEBUI_TS_FILES "${qBittorrent_SOURCE_DIR}/src/webui/www/translations/*.ts")
     set_source_files_properties(${QBT_WEBUI_TS_FILES}
         PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/webui/www/translations")
-    qt_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES} OPTIONS -silent)
+    qt_add_translation(QBT_WEBUI_QM_FILES ${QBT_WEBUI_TS_FILES} OPTIONS -removeidentical -silent)
     configure_file("${qBittorrent_SOURCE_DIR}/src/webui/www/translations/webui_translations.qrc"
         "${qBittorrent_BINARY_DIR}/src/webui/www/translations/webui_translations.qrc" COPYONLY)
 endif()
@@ -38,6 +38,7 @@ target_sources(qbt_app PRIVATE
     applicationinstancemanager.h
     cmdoptions.h
     filelogger.h
+    legalnotice.h
     qtlocalpeer/qtlocalpeer.h
     signalhandler.h
     upgrade.h
@@ -47,6 +48,7 @@ target_sources(qbt_app PRIVATE
     applicationinstancemanager.cpp
     cmdoptions.cpp
     filelogger.cpp
+    legalnotice.cpp
     main.cpp
     qtlocalpeer/qtlocalpeer.cpp
     signalhandler.cpp
@@ -140,10 +142,6 @@ if (STACKTRACE)
                 /DEBUG
                 /PDBALTPATH:$<TARGET_PDB_FILE_NAME:qbt_app>
             )
-
-            if (CMAKE_SIZEOF_VOID_P EQUAL 4)
-                target_compile_options(qbt_app PRIVATE /Oy-)
-            endif()
         else()
             target_link_options(qbt_app PUBLIC LINKER:--export-dynamic)
 

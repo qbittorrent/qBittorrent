@@ -74,9 +74,9 @@ namespace Net
         QHostAddress m_lastIP;
         QDateTime m_lastIPCheckTime;
         QTimer m_ipCheckTimer;
-        int m_state;
+        int m_state = OK;
         // Service creds
-        DNS::Service m_service;
+        DNS::Service m_service = DNS::Service::None;
         QString m_domain;
         QString m_username;
         QString m_password;

@@ -52,7 +52,7 @@ public:
     void setStatusFilter(TorrentFilter::Type filter);
     void setCategoryFilter(const QString &category);
     void disableCategoryFilter();
-    void setTagFilter(const QString &tag);
+    void setTagFilter(const Tag &tag);
     void disableTagFilter();
     void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();

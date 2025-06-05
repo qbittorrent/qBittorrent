@@ -31,8 +31,7 @@
 #pragma once
 
 #include <QSet>
-#include <QSslCertificate>
-#include <QSslKey>
+#include <QSslConfiguration>
 #include <QTcpServer>
 
 namespace Http
@@ -50,6 +49,7 @@ namespace Http
 
         bool setupHttps(const QByteArray &certificates, const QByteArray &privateKey);
         void disableHttps();
+        bool isHttps() const;
 
     private slots:
         void dropTimedOutConnection();
@@ -62,7 +62,6 @@ namespace Http
         QSet<Connection *> m_connections;  // for tracking persistent connections
 
         bool m_https = false;
-        QList<QSslCertificate> m_certificates;
-        QSslKey m_key;
+        QSslConfiguration m_sslConfig;
     };
 }

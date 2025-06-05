@@ -20,7 +20,7 @@
    <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
+      <enum>QFrame::Shape::NoFrame</enum>
      </property>
      <property name="widgetResizable">
       <bool>true</bool>
@@ -66,7 +66,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="textInputPath">
+             <widget class="FileSystemPathLineEdit" name="textInputPath" native="true">
               <property name="acceptDrops">
                <bool>false</bool>
               </property>
@@ -91,7 +91,7 @@
                <string>[Drag and drop area]</string>
               </property>
               <property name="alignment">
-               <set>Qt::AlignCenter</set>
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -164,7 +164,7 @@
              <item>
               <spacer name="horizontalSpacer_2">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -194,71 +194,6 @@
               <property name="minimumContentsLength">
                <number>7</number>
               </property>
-              <item>
-               <property name="text">
-                <string>Auto</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>16 KiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>32 KiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>64 KiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>128 KiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>256 KiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>512 KiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>1 MiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>2 MiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>4 MiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>8 MiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>16 MiB</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>32 MiB</string>
-               </property>
-              </item>
              </widget>
             </item>
             <item>
@@ -278,7 +213,7 @@
             <item>
              <spacer name="spacer1">
               <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -354,7 +289,7 @@
                <item>
                 <spacer name="horizontalSpacer">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -378,10 +313,20 @@
           <string>Fields</string>
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_announce_url">
+            <property name="text">
+             <string>Tracker URLs:</string>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="QTextEdit" name="trackersList">
             <property name="toolTip">
              <string>You can separate tracker tiers / groups with an empty line.</string>
+            </property>
+            <property name="tabChangesFocus">
+             <bool>true</bool>
             </property>
             <property name="acceptRichText">
              <bool>false</bool>
@@ -397,22 +342,11 @@
           </item>
           <item row="1" column="1">
            <widget class="QTextEdit" name="URLSeedsList">
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
             <property name="acceptRichText">
              <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QTextEdit" name="txtComment">
-            <property name="acceptRichText">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="lbl_announce_url">
-            <property name="text">
-             <string>Tracker URLs:</string>
             </property>
            </widget>
           </item>
@@ -420,6 +354,16 @@
            <widget class="QLabel" name="lbl_comment">
             <property name="text">
              <string>Comments:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QTextEdit" name="txtComment">
+            <property name="tabChangesFocus">
+             <bool>true</bool>
+            </property>
+            <property name="acceptRichText">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -461,7 +405,7 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
      <property name="centerButtons">
       <bool>true</bool>
@@ -470,52 +414,14 @@
    </item>
   </layout>
  </widget>
- <tabstops>
-  <tabstop>textInputPath</tabstop>
-  <tabstop>addFileButton</tabstop>
-  <tabstop>addFolderButton</tabstop>
-  <tabstop>comboPieceSize</tabstop>
-  <tabstop>checkPrivate</tabstop>
-  <tabstop>checkStartSeeding</tabstop>
-  <tabstop>checkIgnoreShareLimits</tabstop>
-  <tabstop>checkOptimizeAlignment</tabstop>
-  <tabstop>trackersList</tabstop>
-  <tabstop>URLSeedsList</tabstop>
-  <tabstop>txtComment</tabstop>
- </tabstops>
+ <customwidgets>
+  <customwidget>
+   <class>FileSystemPathLineEdit</class>
+   <extends>QWidget</extends>
+   <header>gui/fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
- <connections>
-  <connection>
-   <sender>checkStartSeeding</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>checkIgnoreShareLimits</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>295</x>
-     <y>532</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>295</x>
-     <y>555</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>TorrentCreatorDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>295</x>
-     <y>635</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>295</x>
-     <y>328</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

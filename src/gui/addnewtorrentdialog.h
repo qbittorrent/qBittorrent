@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,20 +33,17 @@
 
 #include <QDialog>
 
-#include "base/bittorrent/addtorrentparams.h"
-#include "base/bittorrent/magneturi.h"
-#include "base/bittorrent/torrentinfo.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
+#include "filterpatternformat.h"
+
+class LineEdit;
 
 namespace BitTorrent
 {
-    class InfoHash;
-}
-
-namespace Net
-{
-    struct DownloadResult;
+    class TorrentDescriptor;
+    class TorrentInfo;
+    struct AddTorrentParams;
 }
 
 namespace Ui
@@ -53,85 +51,67 @@ namespace Ui
     class AddNewTorrentDialog;
 }
 
-class LineEdit;
-class PropListDelegate;
-class TorrentContentFilterModel;
-class TorrentFileGuard;
-
 class AddNewTorrentDialog final : public QDialog
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(AddNewTorrentDialog)
 
 public:
-    static const int minPathHistoryLength = 0;
-    static const int maxPathHistoryLength = 99;
-
+    explicit AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &torrentDescr
+            , const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
     ~AddNewTorrentDialog() override;
 
-    static bool isEnabled();
-    static void setEnabled(bool value);
-    static bool isTopLevel();
-    static void setTopLevel(bool value);
-    static int savePathHistoryLength();
-    static void setSavePathHistoryLength(int value);
+    bool isDoNotDeleteTorrentChecked() const;
+    void updateMetadata(const BitTorrent::TorrentInfo &metadata);
 
-    static void show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-    static void show(const QString &source, QWidget *parent);
+signals:
+    void torrentAccepted(const BitTorrent::TorrentDescriptor &torrentDescriptor, const BitTorrent::AddTorrentParams &addTorrentParams);
+    void torrentRejected(const BitTorrent::TorrentDescriptor &torrentDescriptor);
+
+public slots:
+    void accept() override;
+    void reject() override;
+    void done(int result) override;
 
 private slots:
-    void displayContentTreeMenu();
-    void displayColumnHeaderMenu();
     void updateDiskSpaceLabel();
     void onSavePathChanged(const Path &newPath);
     void onDownloadPathChanged(const Path &newPath);
     void onUseDownloadPathChanged(bool checked);
-    void updateMetadata(const BitTorrent::TorrentInfo &metadata);
-    void handleDownloadFinished(const Net::DownloadResult &downloadResult);
     void TMMChanged(int index);
     void categoryChanged(int index);
     void contentLayoutChanged();
-    void doNotDeleteTorrentClicked(bool checked);
-    void renameSelectedFile();
-    void handleFilterTextChanged(const QString &filter);
-
-    void accept() override;
-    void reject() override;
 
 private:
-    explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
+    class TorrentContentAdaptor;
+    struct Context;
 
-    void applyContentLayout();
-    bool loadTorrentFile(const QString &source);
-    bool loadTorrentImpl();
-    bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
+    void showEvent(QShowEvent *event) override;
+
+    void setCurrentContext(std::shared_ptr<Context> context);
+    void updateCurrentContext();
     void populateSavePaths();
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
     void saveTorrentFile();
-    bool hasMetadata() const;
-
-    void showEvent(QShowEvent *event) override;
+    void showContentFilterContextMenu();
+    void setContentFilterPattern();
 
     Ui::AddNewTorrentDialog *m_ui = nullptr;
-    TorrentContentFilterModel *m_contentModel = nullptr;
-    PropListDelegate *m_contentDelegate = nullptr;
-    BitTorrent::MagnetUri m_magnetURI;
-    BitTorrent::TorrentInfo m_torrentInfo;
-    Path m_originalRootFolder;
-    BitTorrent::TorrentContentLayout m_currentContentLayout;
+    std::unique_ptr<TorrentContentAdaptor> m_contentAdaptor;
     int m_savePathIndex = -1;
     int m_downloadPathIndex = -1;
     bool m_useDownloadPath = false;
     LineEdit *m_filterLine = nullptr;
-    std::unique_ptr<TorrentFileGuard> m_torrentGuard;
-    BitTorrent::AddTorrentParams m_torrentParams;
+
+    std::shared_ptr<Context> m_currentContext;
 
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QString> m_storeDefaultCategory;
     SettingValue<bool> m_storeRememberLastSavePath;
     SettingValue<QByteArray> m_storeTreeHeaderState;
     SettingValue<QByteArray> m_storeSplitterState;
+    SettingValue<FilterPatternFormat> m_storeFilterPatternFormat;
 };

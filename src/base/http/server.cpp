@@ -32,17 +32,21 @@
 
 #include <algorithm>
 #include <chrono>
+#include <memory>
+#include <new>
 
+#include <QtLogging>
 #include <QNetworkProxy>
+#include <QSslCertificate>
 #include <QSslCipher>
-#include <QSslConfiguration>
+#include <QSslKey>
 #include <QSslSocket>
 #include <QStringList>
 #include <QTimer>
 
-#include "base/algorithm.h"
 #include "base/global.h"
 #include "base/utils/net.h"
+#include "base/utils/sslkey.h"
 #include "connection.h"
 
 using namespace std::chrono_literals;
@@ -55,11 +59,34 @@ namespace
 
     QList<QSslCipher> safeCipherList()
     {
-        const QStringList badCiphers {u"idea"_qs, u"rc4"_qs};
+        const QStringList badCiphers {u"idea"_s, u"rc4"_s};
+        // Contains Ciphersuites that use RSA for the Key Exchange but they don't mention it in their name
+        const QStringList badRSAShorthandSuites {
+            u"AES256-GCM-SHA384"_s, u"AES128-GCM-SHA256"_s, u"AES256-SHA256"_s,
+            u"AES128-SHA256"_s, u"AES256-SHA"_s, u"AES128-SHA"_s};
+        // Contains Ciphersuites that use AES CBC mode but they don't mention it in their name
+        const QStringList badAESShorthandSuites {
+            u"ECDHE-ECDSA-AES256-SHA384"_s, u"ECDHE-RSA-AES256-SHA384"_s, u"DHE-RSA-AES256-SHA256"_s,
+            u"ECDHE-ECDSA-AES128-SHA256"_s, u"ECDHE-RSA-AES128-SHA256"_s, u"DHE-RSA-AES128-SHA256"_s,
+            u"ECDHE-ECDSA-AES256-SHA"_s, u"ECDHE-RSA-AES256-SHA"_s, u"DHE-RSA-AES256-SHA"_s,
+            u"ECDHE-ECDSA-AES128-SHA"_s, u"ECDHE-RSA-AES128-SHA"_s, u"DHE-RSA-AES128-SHA"_s};
         const QList<QSslCipher> allCiphers {QSslConfiguration::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
-        std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers), [&badCiphers](const QSslCipher &cipher)
+        std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers),
+                     [&badCiphers, &badRSAShorthandSuites, &badAESShorthandSuites](const QSslCipher &cipher)
         {
+            const QString name = cipher.name();
+            if (name.contains(u"-cbc-"_s, Qt::CaseInsensitive) // AES CBC mode is considered vulnerable to BEAST attack
+                || name.startsWith(u"adh-"_s, Qt::CaseInsensitive) // Key Exchange: Diffie-Hellman, doesn't support Perfect Forward Secrecy
+                || name.startsWith(u"aecdh-"_s, Qt::CaseInsensitive) // Key Exchange: Elliptic Curve Diffie-Hellman, doesn't support Perfect Forward Secrecy
+                || name.startsWith(u"psk-"_s, Qt::CaseInsensitive) // Key Exchange: Pre-Shared Key, doesn't support Perfect Forward Secrecy
+                || name.startsWith(u"rsa-"_s, Qt::CaseInsensitive) // Key Exchange: Rivest Shamir Adleman (RSA), doesn't support Perfect Forward Secrecy
+                || badRSAShorthandSuites.contains(name, Qt::CaseInsensitive)
+                || badAESShorthandSuites.contains(name, Qt::CaseInsensitive))
+            {
+                return false;
+            }
+
             return std::none_of(badCiphers.cbegin(), badCiphers.cend(), [&cipher](const QString &badCipher)
             {
                 return cipher.name().contains(badCipher, Qt::CaseInsensitive);
@@ -74,12 +101,12 @@ using namespace Http;
 Server::Server(IRequestHandler *requestHandler, QObject *parent)
     : QTcpServer(parent)
     , m_requestHandler(requestHandler)
+    , m_sslConfig {QSslConfiguration::defaultConfiguration()}
 {
     setProxy(QNetworkProxy::NoProxy);
 
-    QSslConfiguration sslConf {QSslConfiguration::defaultConfiguration()};
-    sslConf.setCiphers(safeCipherList());
-    QSslConfiguration::setDefaultConfiguration(sslConf);
+    m_sslConfig.setCiphers(safeCipherList());
+    m_sslConfig.setPeerVerifyMode(QSslSocket::VerifyNone);
 
     auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
@@ -88,32 +115,35 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 
 void Server::incomingConnection(const qintptr socketDescriptor)
 {
-    if (m_connections.size() >= CONNECTIONS_LIMIT) return;
-
-    QTcpSocket *serverSocket = nullptr;
-    if (m_https)
-        serverSocket = new QSslSocket(this);
-    else
-        serverSocket = new QTcpSocket(this);
-
+    std::unique_ptr<QTcpSocket> serverSocket = isHttps() ? std::make_unique<QSslSocket>(this) : std::make_unique<QTcpSocket>(this);
     if (!serverSocket->setSocketDescriptor(socketDescriptor))
+        return;
+
+    if (m_connections.size() >= CONNECTIONS_LIMIT)
     {
-        delete serverSocket;
+        qWarning("Too many connections. Exceeded CONNECTIONS_LIMIT (%d). Connection closed.", CONNECTIONS_LIMIT);
         return;
     }
 
-    if (m_https)
+    try
     {
-        static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
-        static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
-        static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
-        static_cast<QSslSocket *>(serverSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
-        static_cast<QSslSocket *>(serverSocket)->startServerEncryption();
-    }
+        if (isHttps())
+        {
+            auto *sslSocket = static_cast<QSslSocket *>(serverSocket.get());
+            sslSocket->setSslConfiguration(m_sslConfig);
+            sslSocket->startServerEncryption();
+        }
 
-    auto *c = new Connection(serverSocket, m_requestHandler, this);
-    m_connections.insert(c);
-    connect(serverSocket, &QAbstractSocket::disconnected, this, [c, this]() { removeConnection(c); });
+        auto *connection = new Connection(serverSocket.release(), m_requestHandler, this);
+        m_connections.insert(connection);
+        connect(connection, &Connection::closed, this, [this, connection] { removeConnection(connection); });
+    }
+    catch (const std::bad_alloc &exception)
+    {
+        // drop the connection instead of throwing exception and crash
+        qWarning("Failed to allocate memory for HTTP connection. Connection closed.");
+        return;
+    }
 }
 
 void Server::removeConnection(Connection *connection)
@@ -124,7 +154,7 @@ void Server::removeConnection(Connection *connection)
 
 void Server::dropTimedOutConnection()
 {
-    Algorithm::removeIf(m_connections, [](Connection *connection)
+    m_connections.removeIf([](Connection *connection)
     {
         if (!connection->hasExpired(KEEP_ALIVE_DURATION))
             return false;
@@ -137,7 +167,7 @@ void Server::dropTimedOutConnection()
 bool Server::setupHttps(const QByteArray &certificates, const QByteArray &privateKey)
 {
     const QList<QSslCertificate> certs {Utils::Net::loadSSLCertificate(certificates)};
-    const QSslKey key {Utils::Net::loadSSLKey(privateKey)};
+    const QSslKey key {Utils::SSLKey::load(privateKey)};
 
     if (certs.isEmpty() || key.isNull())
     {
@@ -145,15 +175,20 @@ bool Server::setupHttps(const QByteArray &certificates, const QByteArray &privat
         return false;
     }
 
-    m_key = key;
-    m_certificates = certs;
+    m_sslConfig.setLocalCertificateChain(certs);
+    m_sslConfig.setPrivateKey(key);
     m_https = true;
     return true;
 }
 
 void Server::disableHttps()
 {
+    m_sslConfig.setLocalCertificateChain({});
+    m_sslConfig.setPrivateKey({});
     m_https = false;
-    m_certificates.clear();
-    m_key.clear();
+}
+
+bool Server::isHttps() const
+{
+    return m_https;
 }

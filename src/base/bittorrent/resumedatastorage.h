@@ -29,9 +29,9 @@
 #pragma once
 
 #include <QtContainerFwd>
+#include <QList>
 #include <QMutex>
 #include <QObject>
-#include <QVector>
 
 #include "base/3rdparty/expected.hpp"
 #include "base/path.h"
@@ -58,17 +58,17 @@ namespace BitTorrent
 
         Path path() const;
 
-        virtual QVector<TorrentID> registeredTorrents() const = 0;
+        virtual QList<TorrentID> registeredTorrents() const = 0;
         virtual LoadResumeDataResult load(const TorrentID &id) const = 0;
         virtual void store(const TorrentID &id, const LoadTorrentParams &resumeData) const = 0;
         virtual void remove(const TorrentID &id) const = 0;
-        virtual void storeQueue(const QVector<TorrentID> &queue) const = 0;
+        virtual void storeQueue(const QList<TorrentID> &queue) const = 0;
 
         void loadAll() const;
-        QVector<LoadedResumeData> fetchLoadedResumeData() const;
+        QList<LoadedResumeData> fetchLoadedResumeData() const;
 
     signals:
-        void loadStarted(const QVector<BitTorrent::TorrentID> &torrents);
+        void loadStarted(const QList<BitTorrent::TorrentID> &torrents);
         void loadFinished();
 
     protected:
@@ -78,7 +78,7 @@ namespace BitTorrent
         virtual void doLoadAll() const = 0;
 
         const Path m_path;
-        mutable QVector<LoadedResumeData> m_loadedResumeData;
+        mutable QList<LoadedResumeData> m_loadedResumeData;
         mutable QMutex m_loadedResumeDataMutex;
     };
 }

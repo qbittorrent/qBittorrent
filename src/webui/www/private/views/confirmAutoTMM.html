@@ -1,0 +1,61 @@
+<div id="confirmAutoTMMDialog">
+    <div class="genericConfirmGrid">
+        <span class="confirmGridItem confirmWarning"></span>
+        <span class="confirmGridItem dialogMessage" id="confirmAutoTmmMessage"></span>
+    </div>
+</div>
+<div>
+    <input type="button" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" id="confirmAutoTmmButton">
+    <input type="button" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" id="cancelAutoTmmButton">
+</div>
+
+<script>
+    "use strict";
+
+    (() => {
+        const confirmButton = document.getElementById("confirmAutoTmmButton");
+        const cancelButton = document.getElementById("cancelAutoTmmButton");
+        const confirmText = document.getElementById("confirmAutoTmmMessage");
+
+        const {
+            options: { data: { hashes, enable } },
+            windowEl
+        } = window.MUI.Windows.instances["confirmAutoTMMDialog"];
+
+        confirmText.textContent = "QBT_TR(Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.)QBT_TR[CONTEXT=confirmAutoTMMDialog]";
+
+        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(windowEl); });
+        confirmButton.addEventListener("click", (e) => {
+            fetch("api/v2/torrents/setAutoManagement", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: hashes.join("|"),
+                        enable: enable
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Unable to set Auto Torrent Management for the selected torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
+                    updateMainData();
+                    window.qBittorrent.Client.closeWindow(windowEl);
+                });
+        });
+
+        // set tabindex so window element receives keydown events
+        windowEl.setAttribute("tabindex", "-1");
+        windowEl.focus();
+        windowEl.addEventListener("keydown", (e) => {
+            switch (e.key) {
+                case "Enter":
+                    confirmButton.click();
+                    break;
+                case "Escape":
+                    window.qBittorrent.Client.closeWindow(windowEl);
+                    break;
+            }
+        });
+    })();
+</script>

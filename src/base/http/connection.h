@@ -47,10 +47,11 @@ namespace Http
 
     public:
         Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
-        ~Connection();
 
         bool hasExpired(qint64 timeout) const;
-        bool isClosed() const;
+
+    signals:
+        void closed();
 
     private:
         static bool acceptsGzipEncoding(QString codings);

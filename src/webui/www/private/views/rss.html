@@ -2,13 +2,18 @@
     #rssView {
         padding: 20px 20px 0 20px;
         height: calc(100% - 20px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    #rssTopBar {
+        flex-shrink: 0;
     }
 
     #rssContentView {
-        display: table;
         width: 100%;
-        height: calc(100% - 30px);
-        vertical-align: top;
+        flex-grow: 1;
+        overflow: auto;
     }
 
     #rssFeedFixedHeaderDiv .dynamicTableHeader,
@@ -21,11 +26,11 @@
     }
 
     .unreadArticle {
-        color: blue;
+        color: var(--color-text-blue);
     }
 
     #rssFetchingDisabled {
-        color: red;
+        color: var(--color-text-red);
         font-style: italic;
         margin-bottom: 10px;
     }
@@ -39,12 +44,13 @@
     #rightRssColumn {
         float: left;
         /* should be 20 px but due to rounding differences some browsers don't render that properly */
-        width: calc(calc(100% - 21px) / 3);
+        width: calc((100% - 21px) / 3);
         border: none;
     }
 
     #rightRssColumn {
         overflow: auto;
+        height: 100%;
     }
 
     #rssFeedTableDiv,
@@ -53,17 +59,24 @@
     }
 
     #rssTorrentDetailsName {
-        background-color: #678db2;
+        flex-shrink: 0;
+        font-weight: bold;
+        background-color: var(--color-background-blue);
         padding: 0;
-        color: white;
+        color: var(--color-text-white);
     }
 
-    #rssTorrentDetailsDate {
-        background-color: #EFEFEF;
+    #rssTorrentDetailsAuthor,
+    #rssTorrentDetailsDate,
+    #rssTorrentDetailsLink {
+        flex-shrink: 1;
+        background-color: var(--color-background-default);
     }
 
     #rssDetailsView {
-        height: calc(100vh - 135px);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         overflow: auto;
     }
 
@@ -72,11 +85,20 @@
         height: 30px;
     }
 
+    #rssButtonBar button {
+        padding: 3px 6px;
+    }
+
+    #rssButtonBar button img {
+        margin: 0 5px -3px 0;
+    }
+
     #rssContentView table {
         width: 100%;
     }
 
     #rssDescription {
+        flex-grow: 2;
         width: 100%;
         border: none;
     }
@@ -89,11 +111,18 @@
             QBT_TR(Fetching of RSS feeds is disabled now! You can enable it in application settings.)QBT_TR[CONTEXT=RSSWidget]
         </div>
         <div id="rssButtonBar">
-            <button id="newSubscriptionButton" onclick="qBittorrent.Rss.addRSSFeed()">QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]</button>
-            <button id="markReadButton" onclick="qBittorrent.Rss.markSelectedAsRead()">QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</button>
-            <button id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]</button>
-
-            <button id="rssDownloaderButton" class="alignRight" onclick="qBittorrent.Rss.openRssDownloader()">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]</button>
+            <button type="button" id="newSubscriptionButton" onclick="qBittorrent.Rss.addRSSFeed()">
+                <img alt="QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]" src="images/list-add.svg" width="16" height="16">QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]
+            </button>
+            <button type="button" id="markReadButton" onclick="qBittorrent.Rss.markSelectedAsRead()">
+                <img alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]" src="images/task-complete.svg" width="16" height="16">QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]
+            </button>
+            <button type="button" id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">
+                <img alt="QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]" src="images/view-refresh.svg" width="16" height="16">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]
+            </button>
+            <button type="button" id="rssDownloaderButton" class="alignRight" onclick="qBittorrent.Rss.openRssDownloader()">
+                <img alt="QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]" src="images/downloading.svg" width="16" height="16">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]
+            </button>
         </div>
     </div>
     <div id="rssContentView">
@@ -138,33 +167,29 @@
 </div>
 
 <ul id="rssFeedMenu" class="contextMenu">
-    <li><a href="#update"><img src="icons/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#markRead"><img src="icons/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li class="separator"><a href="#rename"><img src="icons/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#delete"><img src="icons/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#update"><img src="images/view-refresh.svg" alt="QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#markRead"><img src="images/task-complete.svg" alt="QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Rename...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#edit"><img src="images/edit-rename.svg" alt="QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Edit feed URL...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#delete"><img src="images/edit-clear.svg" alt="QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Delete)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
-    <li class="separator"><a href="#newSubscription"><img src="icons/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#newFolder"><img src="icons/folder-new.svg" alt="QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li class="separator"><a href="#updateAll"><img src="icons/view-refresh.svg" alt="QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#newSubscription"><img src="images/list-add.svg" alt="QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New subscription...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#newFolder"><img src="images/folder-new.svg" alt="QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(New folder...)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#updateAll"><img src="images/view-refresh.svg" alt="QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Update all feeds)QBT_TR[CONTEXT=RSSWidget]</a></li>
 
-    <li class="separator"><a href="#copyFeedURL" id="CopyFeedURL"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li class="separator"><a href="#copyFeedURL" id="CopyFeedURL"><img src="images/edit-copy.svg" alt="QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Copy feed URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
 </ul>
 
 <ul id="rssArticleMenu" class="contextMenu">
-    <li><a href="#Download"><img src="icons/downloading.svg" alt="QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]</a></li>
-    <li><a href="#OpenNews"><img src="icons/application-url.svg" alt="QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]" /> QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Download torrent)QBT_TR[CONTEXT=RSSWidget]</a></li>
+    <li><a href="#OpenNews"><img src="images/application-url.svg" alt="QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]"> QBT_TR(Open news URL)QBT_TR[CONTEXT=RSSWidget]</a></li>
 </ul>
 
 <script>
-    'use strict';
+    "use strict";
 
-    if (window.qBittorrent === undefined) {
-        window.qBittorrent = {};
-    }
-
-    let serverSyncRssDataInterval = 1500;
-
-    window.qBittorrent.Rss = (() => {
+    window.qBittorrent ??= {};
+    window.qBittorrent.Rss ??= (() => {
         const exports = () => {
             return {
                 init: init,
@@ -182,63 +207,48 @@
             };
         };
 
+        const serverSyncRssDataInterval = 1500;
         let feedData = {};
         let pathByFeedId = new Map();
-        let feedRefreshTimer;
-        let rssFeedTable = new window.qBittorrent.DynamicTable.RssFeedTable();
-        let rssArticleTable = new window.qBittorrent.DynamicTable.RssArticleTable();
+        let feedRefreshTimer = -1;
+        const rssFeedTable = new window.qBittorrent.DynamicTable.RssFeedTable();
+        const rssArticleTable = new window.qBittorrent.DynamicTable.RssArticleTable();
 
         const init = () => {
-            new Request.JSON({
-                url: 'api/v2/app/preferences',
-                method: 'get',
-                noCache: true,
-                onFailure: () => {
-                    alert('Could not contact qBittorrent');
-                },
-                onSuccess: (pref) => {
-                    if (!pref.rss_processing_enabled)
-                        $('rssFetchingDisabled').removeClass('invisible');
+            const pref = window.parent.qBittorrent.Cache.preferences.get();
 
-                    // recalculate heights
-                    let nonPageHeight = $('rssTopBar').getBoundingClientRect().height
-                        + $('desktopHeader').getBoundingClientRect().height
-                        + $('desktopFooterWrapper').getBoundingClientRect().height + 20;
-                    $('rssDetailsView').style.height = 'calc(100vh - ' + nonPageHeight + 'px)';
-
-                    let nonTableHeight = nonPageHeight + $('rssFeedFixedHeaderDiv').getBoundingClientRect().height;
-
-                    $('rssFeedTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
-                    $('rssArticleTableDiv').style.height = 'calc(100vh - ' + nonTableHeight + 'px)';
-
-                    $('rssContentView').style.height = 'calc(100% - ' + $('rssTopBar').getBoundingClientRect().height + 'px)';
-                }
-            }).send();
+            if (!pref.rss_processing_enabled)
+                document.getElementById("rssFetchingDisabled").classList.remove("invisible");
 
             const rssFeedContextMenu = new window.qBittorrent.ContextMenu.RssFeedContextMenu({
-                targets: '.rssFeedContextMenuTarget',
-                menu: 'rssFeedMenu',
+                targets: "#rssFeedTableDiv tbody tr",
+                menu: "rssFeedMenu",
                 actions: {
                     update: (el) => {
-                        let feedsToUpdate = new Set();
-                        rssFeedTable.selectedRows.each((rowId) => {
-                            let selectedPath = rssFeedTable.rows[rowId].full_data.dataPath;
-                            rssFeedTable.rows.filter((row) => row.full_data.dataPath.slice(0, selectedPath.length) === selectedPath)
-                                .filter((row) => row.full_data.dataUid !== '')
-                                .each((row) => feedsToUpdate.add(row));
-                        });
+                        const feedsToUpdate = new Set();
+                        for (const rowId of rssFeedTable.selectedRows) {
+                            const selectedPath = rssFeedTable.getRow(rowId).full_data.dataPath;
+                            for (const row of rssFeedTable.getRowValues()) {
+                                if ((row.full_data.dataPath.slice(0, selectedPath.length) === selectedPath) && (row.full_data.dataUid !== ""))
+                                    feedsToUpdate.add(row);
+                            }
+                        }
                         feedsToUpdate.forEach((feed) => refreshFeed(feed.full_data.dataUid));
                     },
                     markRead: markSelectedAsRead,
                     rename: (el) => {
-                        moveItem(rssFeedTable.rows[rssFeedTable.selectedRows[0]].full_data.dataPath);
+                        moveItem(rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data.dataPath);
+                    },
+                    edit: (el) => {
+                        const data = rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data;
+                        editUrl(data.dataPath, data.dataUrl);
                     },
                     delete: (el) => {
-                        let selectedDatapaths = rssFeedTable.selectedRows
-                            .filter((e) => e !== 0)
-                            .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
+                        const selectedDatapaths = rssFeedTable.selectedRows
+                            .filter((rowID) => rowID !== "0")
+                            .map((rowID) => rssFeedTable.getRow(rowID).full_data.dataPath);
                         // filter children
-                        let reducedDatapaths = selectedDatapaths.filter((path) =>
+                        const reducedDatapaths = selectedDatapaths.filter((path) =>
                             selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
                         );
                         removeItem(reducedDatapaths);
@@ -248,90 +258,94 @@
                     updateAll: refreshAllFeeds
                 },
                 offsets: {
-                    x: -16,
-                    y: -57
+                    x: 0,
+                    y: -60
                 }
             });
 
-            rssFeedContextMenu.addTarget($('rssFeedTableDiv'));
+            rssFeedContextMenu.addTarget(document.getElementById("rssFeedTableDiv"));
             // deselect feed when clicking on empty part of table
-            $('rssFeedTableDiv').addEventListener('click', (e) => {
+            document.getElementById("rssFeedTableDiv").addEventListener("click", (e) => {
                 rssFeedTable.deselectAll();
                 rssFeedTable.deselectRow();
             });
-            $('rssFeedTableDiv').addEventListener('contextmenu', (e) => {
-                if (e.toElement.nodeName === 'DIV') {
+            document.getElementById("rssFeedTableDiv").addEventListener("contextmenu", (e) => {
+                if (e.target.nodeName === "DIV") {
                     rssFeedTable.deselectAll();
                     rssFeedTable.deselectRow();
                     rssFeedContextMenu.updateMenuItems();
                 }
             });
 
-            new ClipboardJS('#CopyFeedURL', {
-                text: () => {
-                    let joined = '';
-                    rssFeedTable.selectedRows
-                        .filter((row) => rssFeedTable.rows[row].full_data.dataUid !== '')
-                        .each((row) => joined += rssFeedTable.rows[row].full_data.dataUrl + '\n');
-                    return joined.slice(0, -1);
+            document.getElementById("CopyFeedURL").addEventListener("click", async (event) => {
+                let joined = "";
+                for (const rowID of rssFeedTable.selectedRows) {
+                    const row = rssFeedTable.getRow(rowID);
+                    if (row.full_data.dataUid !== "")
+                        joined += `${row.full_data.dataUrl}\n`;
                 }
+                await clipboardCopy(joined.slice(0, -1));
             });
-            rssFeedTable.setup('rssFeedTableDiv', 'rssFeedFixedHeaderDiv', rssFeedContextMenu);
+
+            rssFeedTable.setup("rssFeedTableDiv", "rssFeedFixedHeaderDiv", rssFeedContextMenu);
 
             const rssArticleContextMenu = new window.qBittorrent.ContextMenu.RssArticleContextMenu({
-                targets: '.rssArticleElement',
-                menu: 'rssArticleMenu',
+                targets: "#rssArticleTableDiv tbody tr",
+                menu: "rssArticleMenu",
                 actions: {
                     Download: (el) => {
-                        let dlString = '';
-                        rssArticleTable.selectedRows.each((row) => {
-                            dlString += rssArticleTable.rows[row].full_data.torrentURL + '\n';
-                        });
+                        let dlString = "";
+                        for (const rowID of rssArticleTable.selectedRows)
+                            dlString += `${rssArticleTable.getRow(rowID).full_data.torrentURL}\n`;
                         showDownloadPage([dlString]);
                     },
                     OpenNews: (el) => {
-                        rssArticleTable.selectedRows.each((row) => {
-                            window.open(rssArticleTable.rows[row].full_data.link);
-                        });
+                        for (const rowID of rssArticleTable.selectedRows)
+                            window.open(rssArticleTable.getRow(rowID).full_data.link);
                     }
                 },
                 offsets: {
-                    x: -16,
-                    y: -57
+                    x: 0,
+                    y: -60
                 }
             });
-            rssArticleTable.setup('rssArticleTableDiv', 'rssArticleFixedHeaderDiv', rssArticleContextMenu);
+            rssArticleTable.setup("rssArticleTableDiv", "rssArticleFixedHeaderDiv", rssArticleContextMenu);
             updateRssFeedList();
             load();
         };
 
         const unload = () => {
-            clearInterval(feedRefreshTimer);
+            clearTimeout(feedRefreshTimer);
+            feedRefreshTimer = -1;
         };
 
         const load = () => {
-            feedRefreshTimer = setInterval(updateRssFeedList, serverSyncRssDataInterval);
+            feedRefreshTimer = setTimeout(() => {
+                updateRssFeedList();
+                load();
+            }, serverSyncRssDataInterval);
         };
 
         const addRSSFeed = () => {
-            let path = '';
+            let path = "";
             if (rssFeedTable.selectedRows.length !== 0) {
-                let row = rssFeedTable.rows[rssFeedTable.selectedRows[0]];
-                if (row.full_data.dataUid === '') {
+                const row = rssFeedTable.getRow(rssFeedTable.selectedRows[0]);
+                if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
                 else {
-                    let lastIndex = row.full_data.dataPath.lastIndexOf('\\');
+                    const lastIndex = row.full_data.dataPath.lastIndexOf("\\");
                     if (lastIndex !== -1)
                         path = row.full_data.dataPath.slice(0, lastIndex);
                 }
             }
 
             new MochaUI.Window({
-                id: 'newFeed',
-                title: 'QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]',
-                loadMethod: 'iframe',
-                contentURL: 'newfeed.html?path=' + encodeURIComponent(path),
+                id: "newFeed",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                loadMethod: "iframe",
+                contentURL: `newfeed.html?path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -341,24 +355,25 @@
         };
 
         const addFolder = () => {
-            let path = '';
+            let path = "";
             if (rssFeedTable.selectedRows.length !== 0) {
-                let row = rssFeedTable.rows[rssFeedTable.selectedRows[0]];
-                if (row.full_data.dataUid === '') {
+                const row = rssFeedTable.getRow(rssFeedTable.selectedRows[0]);
+                if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
                 else {
-                    let lastIndex = row.full_data.dataPath.lastIndexOf('\\');
+                    const lastIndex = row.full_data.dataPath.lastIndexOf("\\");
                     if (lastIndex !== -1)
                         path = row.full_data.dataPath.slice(0, lastIndex);
                 }
             }
 
             new MochaUI.Window({
-                id: 'newFolder',
-                title: 'QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]',
-                loadMethod: 'iframe',
-                contentURL: 'newfolder.html?path=' + encodeURIComponent(path),
+                id: "newFolder",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
+                loadMethod: "iframe",
+                contentURL: `newfolder.html?path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -371,22 +386,24 @@
             rssArticleTable.clear();
             let rowCount = 0;
 
-            let childFeeds = new Set();
-            rssFeedTable.rows.filter((row) => row.full_data.dataPath.slice(0, path.length) === path)
-                .filter((row) => row.full_data.dataUid !== '')
-                .each((row) => childFeeds.add(row.full_data.dataUid));
+            const childFeeds = new Set();
+            for (const row of rssFeedTable.getRowValues()) {
+                if ((row.full_data.dataPath.slice(0, path.length) === path) && (row.full_data.dataUid !== ""))
+                    childFeeds.add(row.full_data.dataUid);
+            }
 
             let visibleArticles = [];
-            for (let feedEntry in feedData) {
-                if (childFeeds.has(feedEntry))
+            for (const feedEntry in feedData) {
+                if (childFeeds.has(feedEntry)) {
                     visibleArticles.append(feedData[feedEntry]
                         .map((a) => {
                             a.feedUid = feedEntry;
                             return a;
                         }));
+                }
             }
-            //filter read articles if "Unread" feed is selected
-            if (path === '')
+            // filter read articles if "Unread" feed is selected
+            if (path === "")
                 visibleArticles = visibleArticles.filter((a) => !a.isRead);
 
             visibleArticles.sort((e1, e2) => new Date(e2.date) - new Date(e1.date))
@@ -402,61 +419,117 @@
                     });
                 });
 
-            $('rssDetailsView').empty();
+            clearDetails();
             rssArticleTable.updateTable(false);
+        };
+
+        const clearDetails = () => {
+            [...document.getElementById("rssDetailsView").children].forEach((el) => { el.remove(); });
         };
 
         const showDetails = (feedUid, articleID) => {
             markArticleAsRead(pathByFeedId.get(feedUid), articleID);
-            $('rssDetailsView').empty();
-            let article = feedData[feedUid].filter((article) => article.id === articleID)[0];
-            if (article) {
-                $('rssDetailsView').append((() => {
-                    let torrentName = document.createElement('p');
-                    torrentName.innerText = article.title;
-                    torrentName.setAttribute('id', 'rssTorrentDetailsName');
-                    return torrentName;
-                })());
-                $('rssDetailsView').append((() => {
-                    let torrentDate = document.createElement('div');
-                    torrentDate.setAttribute('id', 'rssTorrentDetailsDate');
+            clearDetails();
 
-                    let torrentDateDesc = document.createElement('b');
-                    torrentDateDesc.innerText = 'QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]';
-                    torrentDate.append(torrentDateDesc);
+            const article = feedData[feedUid].find((article) => (article.id === articleID));
+            if (article === undefined)
+                return;
 
-                    let torrentDateData = document.createElement('span');
-                    torrentDateData.innerText = new Date(article.date).toLocaleString();
-                    torrentDate.append(torrentDateData);
+            const detailsView = document.getElementById("rssDetailsView");
 
-                    return torrentDate;
-                })());
+            const articleTitle = article.title;
+            if (articleTitle !== undefined) {
+                const torrentName = document.createElement("p");
+                torrentName.textContent = articleTitle;
+                torrentName.id = "rssTorrentDetailsName";
+
+                detailsView.append(torrentName);
+            }
+
+            const articleDate = article.date;
+            if (articleDate !== undefined) {
+                const torrentDate = document.createElement("div");
+                torrentDate.id = "rssTorrentDetailsDate";
+
+                const torrentDateDesc = document.createElement("b");
+                torrentDateDesc.textContent = "QBT_TR(Date: )QBT_TR[CONTEXT=RSSWidget]";
+                torrentDate.append(torrentDateDesc);
+
+                const torrentDateData = document.createElement("span");
+                torrentDateData.textContent = new Date(articleDate).toLocaleString();
+                torrentDate.append(torrentDateData);
+
+                detailsView.append(torrentDate);
+            }
+
+            const articleAuthor = article.author;
+            if (articleAuthor !== undefined) {
+                const divElement = document.createElement("div");
+                divElement.id = "rssTorrentDetailsAuthor";
+
+                const header = document.createElement("b");
+                header.textContent = "QBT_TR(Author: )QBT_TR[CONTEXT=RSSWidget]";
+                divElement.append(header);
+
+                const span = document.createElement("span");
+                span.textContent = articleAuthor;
+                divElement.append(span);
+
+                detailsView.append(divElement);
+            }
+
+            const articleLink = article.link;
+            if (articleLink !== undefined) {
+                const divElement = document.createElement("div");
+                divElement.id = "rssTorrentDetailsLink";
+
+                const anchorElement = document.createElement("a");
+                anchorElement.href = articleLink;
+                anchorElement.textContent = "QBT_TR(Open link)QBT_TR[CONTEXT=RSSWidget]";
+                anchorElement.target = "_blank";
+                anchorElement.style = "font-weight: bold;";
+                divElement.append(anchorElement);
+
+                detailsView.append(divElement);
+            }
+
+            const articleDescription = article.description;
+            if (articleDescription !== undefined) {
+                const rootColor = document.documentElement.classList.contains("dark") ? "class='dark'" : "";
+
                 // Place in iframe with sandbox attribute to prevent js execution
-                let torrentDescription = document.createRange().createContextualFragment('<iframe sandbox id="rssDescription"></iframe>');
-                $('rssDetailsView').append(torrentDescription);
-                document.getElementById('rssDescription').srcdoc = '<html><head><link rel="stylesheet" type="text/css" href="css/style.css" /></head><body>' + article.description + "</body></html>";
+                const iframeElement = document.createElement("iframe");
+                iframeElement.id = "rssDescription";
+                iframeElement.sandbox = "allow-same-origin"; // allowed to get parent css
+                iframeElement.srcdoc = `<html ${rootColor}><head><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="css/style.css?v=${CACHEID}"></head><body>${articleDescription}</body></html>`;
 
-                //calculate height to fill screen
-                document.getElementById('rssDescription').style.height =
-                    "calc(100% - " + document.getElementById('rssTorrentDetailsName').offsetHeight + "px - "
-                    + document.getElementById('rssTorrentDetailsDate').offsetHeight + "px - 5px)";
+                detailsView.append(iframeElement);
             }
         };
 
         const updateRssFeedList = () => {
-            new Request.JSON({
-                url: 'api/v2/rss/items',
-                noCache: true,
-                method: 'get',
-                data: {
-                    withData: true
-                },
-                onSuccess: (response) => {
+            const url = new URL("api/v2/rss/items", window.location);
+            url.search = new URLSearchParams({
+                withData: true
+            });
+            fetch(url, {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok)
+                        return;
+
+                    const responseJSON = await response.json();
+
                     // flatten folder structure
-                    let flattenedResp = [];
-                    let recFlatten = (current, name = '', depth = 0, fullName = '') => {
-                        for (let child in current) {
-                            let currentFullName = fullName ? (fullName + '\\' + child) : child;
+                    const flattenedResp = [];
+                    const recFlatten = (current, name = "", depth = 0, fullName = "") => {
+                        for (const child in current) {
+                            if (!Object.hasOwn(current, child))
+                                continue;
+
+                            const currentFullName = fullName ? `${fullName}\\${child}` : child;
                             if (current[child].uid !== undefined) {
                                 current[child].name = child;
                                 current[child].isFolder = false;
@@ -475,15 +548,24 @@
                             }
                         }
                     };
-                    recFlatten(response);
+                    recFlatten(responseJSON);
 
                     // check if rows matches flattened response
+                    const rssFeedRows = [...rssFeedTable.getRowValues()];
                     let match = false;
-                    if (rssFeedTable.rows.getLength() - 1 === flattenedResp.length) {
+                    // subtract 'unread' row
+                    if ((rssFeedRows.length - 1) === flattenedResp.length) {
                         match = true;
                         for (let i = 0; i < flattenedResp.length; ++i) {
-                            if ((flattenedResp[i].uid ? flattenedResp[i].uid : '') !== rssFeedTable.rows[i + 1].full_data.dataUid
-                                || flattenedResp[i].fullName !== rssFeedTable.rows[i + 1].full_data.dataPath) {
+                            const newData = flattenedResp[i];
+                            const existingData = rssFeedRows[i + 1].full_data;
+
+                            if (newData.fullName !== existingData.dataPath) {
+                                match = false;
+                                break;
+                            }
+                            // only non-folders have these properties
+                            if (!newData.isFolder && ((newData.uid !== existingData.dataUid) || (newData.url !== existingData.dataUrl))) {
                                 match = false;
                                 break;
                             }
@@ -495,14 +577,14 @@
                         // update status
                         let statusDiffers = false;
                         for (let i = 0; i < flattenedResp.length; ++i) {
-                            let oldStatus = rssFeedTable.rows[i + 1].full_data.status;
-                            let status = 'default';
+                            const oldStatus = rssFeedRows[i + 1].full_data.status;
+                            let status = "default";
                             if (flattenedResp[i].hasError)
-                                status = 'hasError';
+                                status = "hasError";
                             if (flattenedResp[i].isLoading)
-                                status = 'isLoading';
+                                status = "isLoading";
                             if (flattenedResp[i].isFolder)
-                                status = 'isFolder';
+                                status = "isFolder";
 
                             if (oldStatus !== status) {
                                 statusDiffers = true;
@@ -518,8 +600,8 @@
                         // get currently opened feed
                         let openedFeedPath = undefined;
                         if (rssFeedTable.selectedRows.length !== 0) {
-                            let lastSelectedRow = rssFeedTable.selectedRows[rssFeedTable.selectedRows.length - 1];
-                            openedFeedPath = rssFeedTable.rows[lastSelectedRow].full_data.dataPath;
+                            const lastSelectedRow = rssFeedTable.selectedRows.at(-1);
+                            openedFeedPath = rssFeedTable.getRow(lastSelectedRow).full_data.dataPath;
                         }
 
                         // check if list of articles differs
@@ -537,20 +619,23 @@
 
                                 if (articlesDiffer) {
                                     // update unread count
-                                    let oldUnread = feedData[r.uid].map((art) => !art.isRead).filter((v) => v).length;
-                                    let newUnread = r.articles.map((art) => !art.isRead).filter((v) => v).length;
-                                    let unreadDifference = newUnread - oldUnread;
+                                    const oldUnread = feedData[r.uid].map((art) => !art.isRead).filter((v) => v).length;
+                                    const newUnread = r.articles.map((art) => !art.isRead).filter((v) => v).length;
+                                    const unreadDifference = newUnread - oldUnread;
 
                                     // find all parents (and self) and add unread difference
-                                    rssFeedTable.rows.filter((row) => r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                        .each((row) => row.full_data.unread += unreadDifference);
+                                    for (const row of rssFeedTable.getRowValues()) {
+                                        if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                            row.full_data.unread += unreadDifference;
+                                    }
+
                                     needsUpdate = true;
 
                                     // update data
                                     feedData[r.uid] = r.articles;
 
                                     // if feed that is open changed, reload
-                                    if (openedFeedPath !== undefined && r.fullName.slice(0, openedFeedPath.length) === openedFeedPath)
+                                    if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath))
                                         showRssFeed(r.fullName);
                                 }
                                 else {
@@ -558,8 +643,8 @@
                                     let readDifference = 0;
                                     let readChanged = false;
                                     for (let i = 0; i < r.articles.length; ++i) {
-                                        let oldRead = feedData[r.uid][i].isRead ? 1 : 0;
-                                        let newRead = r.articles[i].isRead ? 1 : 0;
+                                        const oldRead = feedData[r.uid][i].isRead ? 1 : 0;
+                                        const newRead = r.articles[i].isRead ? 1 : 0;
                                         feedData[r.uid][i].isRead = r.articles[i].isRead;
                                         readDifference += oldRead - newRead;
                                         if (readDifference !== 0)
@@ -570,15 +655,20 @@
                                     if (readChanged) {
                                         needsUpdate = true;
                                         // find all items that contain this rss feed and add read difference
-                                        rssFeedTable.rows.filter((row) => r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                            .each((row) => row.full_data.unread += readDifference);
+                                        for (const row of rssFeedTable.getRowValues()) {
+                                            if (r.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                                row.full_data.unread += readDifference;
+                                        }
 
                                         // if feed that is opened changed update dynamically
-                                        if (openedFeedPath !== undefined && r.fullName.slice(0, openedFeedPath.length) === openedFeedPath) {
+                                        if ((openedFeedPath !== undefined) && (r.fullName.slice(0, openedFeedPath.length) === openedFeedPath)) {
                                             for (let i = 0; i < r.articles.length; ++i) {
-                                                let matchingRow = rssArticleTable.rows.filter((row) => row.full_data.feedUid === r.uid)
-                                                    .filter((row) => row.full_data.dataId === r.articles[i].id);
-                                                matchingRow[Object.keys(matchingRow)[0]].full_data.isRead = r.articles[i].isRead;
+                                                for (const row of rssArticleTable.getRowValues()) {
+                                                    if ((row.full_data.feedUid === r.uid) && (row.full_data.dataId === r.articles[i].id)) {
+                                                        row.full_data.isRead = r.articles[i].isRead;
+                                                        break;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -593,41 +683,42 @@
                     else {
                         // full refresh
                         rssFeedTable.clear();
+                        rssArticleTable.clear();
                         feedData = {};
                         pathByFeedId = new Map();
 
                         // Unread entry at top
                         rssFeedTable.updateRowData({
                             rowId: 0,
-                            name: 'QBT_TR(Unread)QBT_TR[CONTEXT=FeedListWidget]',
+                            name: "QBT_TR(Unread)QBT_TR[CONTEXT=FeedListWidget]",
                             unread: 0,
-                            status: 'unread',
+                            status: "unread",
                             indentation: 0,
-                            dataUid: '',
-                            dataUrl: '',
-                            dataPath: ''
+                            dataUid: "",
+                            dataUrl: "",
+                            dataPath: ""
                         });
 
                         let rowCount = 1;
-                        for (let dataEntry of flattenedResp) {
+                        for (const dataEntry of flattenedResp) {
                             if (dataEntry.isFolder) {
                                 rssFeedTable.updateRowData({
                                     rowId: rowCount,
                                     name: dataEntry.name,
                                     unread: 0,
-                                    status: 'isFolder',
+                                    status: "isFolder",
                                     indentation: dataEntry.depth,
-                                    dataUid: '',
-                                    dataUrl: '',
+                                    dataUid: "",
+                                    dataUrl: "",
                                     dataPath: dataEntry.fullName
                                 });
                             }
                             else {
-                                let status = 'default';
+                                let status = "default";
                                 if (dataEntry.hasError)
-                                    status = 'hasError';
+                                    status = "hasError";
                                 if (dataEntry.isLoading)
-                                    status = 'isLoading';
+                                    status = "isLoading";
 
                                 rssFeedTable.updateRowData({
                                     rowId: rowCount,
@@ -641,10 +732,12 @@
                                 });
 
                                 // calculate number of unread
-                                let numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter((v) => v).length;
+                                const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter((v) => v).length;
                                 // find all items that contain this rss feed and add unread count
-                                rssFeedTable.rows.filter((row) => dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                                    .each((row) => row.full_data.unread += numberOfUnread);
+                                for (const row of rssFeedTable.getRowValues()) {
+                                    if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                                        row.full_data.unread += numberOfUnread;
+                                }
 
                                 pathByFeedId.set(dataEntry.uid, dataEntry.fullName);
                                 feedData[dataEntry.uid] = dataEntry.articles;
@@ -654,43 +747,67 @@
                         rssFeedTable.updateTable(false);
                         rssFeedTable.updateIcons();
                     }
-                }
-            }).send();
+                });
         };
 
         const refreshFeed = (feedUid) => {
             // set icon to loading
-            rssFeedTable.rows.forEach((row) => {
+            for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataUid === feedUid)
-                    row.full_data.status = 'isLoading';
-            });
+                    row.full_data.status = "isLoading";
+            }
             rssFeedTable.updateIcons();
 
-            new Request({
-                url: 'api/v2/rss/refreshItem',
-                noCache: true,
-                method: 'post',
-                data: {
-                    itemPath: pathByFeedId.get(feedUid)
-                },
-                onFailure: (response) => {
-                    if (response.status === 409)
-                        alert(response.responseText);
-                }
-            }).send();
+            fetch("api/v2/rss/refreshItem", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        itemPath: pathByFeedId.get(feedUid)
+                    })
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        if (response.status === 409)
+                            alert(await response.text());
+                        return;
+                    }
+                });
         };
 
         const refreshAllFeeds = () => {
-            for (let feedEntry in feedData)
+            for (const feedEntry in feedData) {
+                if (!Object.hasOwn(feedData, feedEntry))
+                    continue;
                 refreshFeed(feedEntry);
+            }
         };
 
         const moveItem = (oldPath) => {
             new MochaUI.Window({
-                id: 'renamePage',
-                title: 'QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]',
-                loadMethod: 'iframe',
-                contentURL: 'rename_feed.html?oldPath=' + encodeURIComponent(oldPath),
+                id: "renamePage",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
+                loadMethod: "iframe",
+                contentURL: `rename_feed.html?oldPath=${encodeURIComponent(oldPath)}`,
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                width: 350,
+                height: 100
+            });
+        };
+
+        const editUrl = (path, url) => {
+            const contentURL = new URL("editfeedurl.html", window.location);
+            contentURL.search = new URLSearchParams({
+                path: path,
+                url: url
+            });
+            new MochaUI.Window({
+                id: "editFeedURL",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
+                loadMethod: "iframe",
+                contentURL: contentURL.toString(),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -702,10 +819,11 @@
         const removeItem = (paths) => {
             const encodedPaths = paths.map((path) => encodeURIComponent(path));
             new MochaUI.Window({
-                id: 'confirmFeedDeletionPage',
-                title: 'QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]',
-                loadMethod: 'iframe',
-                contentURL: 'confirmfeeddeletion.html?paths=' + encodeURIComponent(encodedPaths.join('|')),
+                id: "confirmFeedDeletionPage",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
+                loadMethod: "iframe",
+                contentURL: `confirmfeeddeletion.html?paths=${encodeURIComponent(encodedPaths.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -716,59 +834,65 @@
 
         const markItemAsRead = (path) => {
             // feed data mark as read
-            for (let feedID in feedData)
+            for (const feedID in feedData) {
                 if (pathByFeedId.get(feedID).slice(0, path.length) === path)
                     feedData[feedID].each((el) => el.isRead = true);
+            }
 
             // mark rows as read
-            rssArticleTable.rows.each((el) => el.full_data.isRead = true);
+            for (const row of rssArticleTable.getRowValues())
+                row.full_data.isRead = true;
 
             // find all children and set unread count to 0
-            rssFeedTable.rows.filter((row) => row.full_data.dataPath.slice(0, path.length) === path && path !== row.full_data.dataPath)
-                .each((row) => row.full_data.unread = 0);
+            for (const row of rssFeedTable.getRowValues()) {
+                if ((row.full_data.dataPath.slice(0, path.length) === path) && (path !== row.full_data.dataPath))
+                    row.full_data.unread = 0;
+            }
 
             // find selected row
-            let rowId, prevUnreadCount;
-            rssFeedTable.rows.forEach((row) => {
+            let prevUnreadCount;
+            for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataPath === path) {
-                    rowId = row.full_data.rowId;
                     prevUnreadCount = row.full_data.unread;
+                    break;
                 }
-            });
+            }
 
             // find all parents (and self) and subtract previous unread count
-            rssFeedTable.rows.filter((row) => path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                .each((row) => row.full_data.unread -= prevUnreadCount);
+            for (const row of rssFeedTable.getRowValues()) {
+                if (path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                    row.full_data.unread -= prevUnreadCount;
+            }
 
             rssArticleTable.updateTable(false);
             rssFeedTable.updateTable(true);
 
             // send request
-            new Request({
-                url: 'api/v2/rss/markAsRead',
-                noCache: true,
-                method: 'post',
-                data: {
-                    itemPath: path
-                },
-                onFailure: (response) => {
-                    if (response.status === 409)
-                        alert(response.responseText);
-                }
-            }).send();
+            fetch("api/v2/rss/markAsRead", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        itemPath: path
+                    })
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        if (response.status === 409)
+                            alert(await response.text());
+                        return;
+                    }
+                });
         };
 
         const markArticleAsRead = (path, id) => {
             // find row
-            let rowId, name, uid, unread;
-            rssFeedTable.rows.forEach((row) => {
+            let uid;
+            for (const row of rssFeedTable.getRowValues()) {
                 if (row.full_data.dataPath === path) {
-                    rowId = row.full_data.rowId;
-                    name = row.full_data.dataPath;
                     uid = row.full_data.dataUid;
-                    unread = row.full_data.unread;
+                    break;
                 }
-            });
+            }
+
             // update feed data
             let prevReadState = true;
             feedData[uid].each((article) => {
@@ -780,59 +904,62 @@
 
             if (!prevReadState) {
                 // find all items that contain this feed and subtract 1
-                rssFeedTable.rows.filter((row) => path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
-                    .each((row) => row.full_data.unread -= 1);
+                for (const row of rssFeedTable.getRowValues()) {
+                    if (path.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
+                        row.full_data.unread -= 1;
+                }
 
                 rssFeedTable.updateTable(true);
 
-                new Request({
-                    url: 'api/v2/rss/markAsRead',
-                    noCache: true,
-                    method: 'post',
-                    data: {
-                        itemPath: path,
-                        articleId: id
-                    },
-                    onFailure: (response) => {
-                        if (response.status === 409)
-                            alert(response.responseText);
-                    }
-                }).send();
+                fetch("api/v2/rss/markAsRead", {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            itemPath: path,
+                            articleId: id
+                        })
+                    })
+                    .then(async (response) => {
+                        if (!response.ok) {
+                            if (response.status === 409)
+                                alert(await response.text());
+                            return;
+                        }
+                    });
             }
         };
 
         const markSelectedAsRead = () => {
-            let selectedDatapaths = rssFeedTable.selectedRows
-                .map((sRow) => rssFeedTable.rows[sRow].full_data.dataPath);
+            const selectedDatapaths = rssFeedTable.selectedRows
+                .map((sRow) => rssFeedTable.getRow(sRow).full_data.dataPath);
             // filter children
-            let reducedDatapaths = selectedDatapaths.filter((path) =>
+            const reducedDatapaths = selectedDatapaths.filter((path) =>
                 selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
             );
             reducedDatapaths.each((path) => markItemAsRead(path));
         };
 
         const openRssDownloader = () => {
-            const id = 'rssdownloaderpage';
+            const id = "rssdownloaderpage";
             new MochaUI.Window({
                 id: id,
-                title: 'QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]',
-                loadMethod: 'xhr',
-                contentURL: 'views/rssDownloader.html',
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                loadMethod: "xhr",
+                contentURL: "views/rssDownloader.html",
                 maximizable: false,
                 width: loadWindowWidth(id, 800),
                 height: loadWindowHeight(id, 650),
-                onResize: () => {
+                onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                     saveWindowSize(id);
-                },
+                }),
                 resizeLimit: {
-                    'x': [800, 2500],
-                    'y': [500, 2000]
+                    x: [800, 2500],
+                    y: [500, 2000]
                 }
             });
         };
 
         return exports();
     })();
-
     Object.freeze(window.qBittorrent.Rss);
 </script>

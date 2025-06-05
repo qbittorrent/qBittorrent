@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,8 +34,6 @@
 #include "base/path.h"
 #include "base/settingvalue.h"
 
-class QStandardItemModel;
-
 namespace BitTorrent
 {
     class Torrent;
@@ -44,7 +43,6 @@ namespace Ui
 {
     class PreviewSelectDialog;
 }
-class PreviewListDelegate;
 
 class PreviewSelectDialog final : public QDialog
 {
@@ -79,8 +77,6 @@ private:
     void saveWindowState();
 
     Ui::PreviewSelectDialog *m_ui = nullptr;
-    QStandardItemModel *m_previewListModel = nullptr;
-    PreviewListDelegate *m_listDelegate = nullptr;
     const BitTorrent::Torrent *m_torrent = nullptr;
     bool m_headerStateInitialized = false;
 

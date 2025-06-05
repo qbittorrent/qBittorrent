@@ -1,42 +1,46 @@
 <!DOCTYPE html>
-<html lang="${LANG}">
+<html lang="${LANG}" class="dark">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <title>QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]</title>
-    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
-    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
+    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script>
-        'use strict';
+        "use strict";
 
-        window.addEvent('domready', () => {
-            const paths = new URI().getData('paths').split('|');
-            $('cancelBtn').focus();
-            $('cancelBtn').addEvent('click', (e) => {
-                new Event(e).stop();
-                window.parent.closeWindows();
+        window.addEventListener("DOMContentLoaded", (event) => {
+            document.getElementById("cancelBtn").focus();
+            document.getElementById("cancelBtn").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                window.parent.qBittorrent.Client.closeFrameWindow(window);
             });
-            $('confirmBtn').addEvent('click', (e) => {
-                new Event(e).stop();
+            document.getElementById("confirmBtn").addEventListener("click", (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
                 let completionCount = 0;
-                paths.forEach((path) => {
-                    new Request({
-                        url: 'api/v2/rss/removeItem',
-                        noCache: true,
-                        method: 'post',
-                        data: {
-                            path: decodeURIComponent(path)
-                        },
-                        onComplete: (response) => {
+                const paths = new URLSearchParams(window.location.search).get("paths").split("|");
+                for (const path of paths) {
+                    fetch("api/v2/rss/removeItem", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                path: decodeURIComponent(path)
+                            })
+                        })
+                        .then((response) => {
+                            if (!response.ok)
+                                return;
+
                             ++completionCount;
                             if (completionCount === paths.length) {
                                 window.parent.qBittorrent.Rss.updateRssFeedList();
-                                window.parent.closeWindows();
+                                window.parent.qBittorrent.Client.closeFrameWindow(window);
                             }
-                        }
-                    }).send();
-                });
+                        });
+                }
             });
         });
     </script>
@@ -46,8 +50,8 @@
     <div style="padding: 10px 10px 0px 10px;">
         <p>QBT_TR(Are you sure you want to delete the selected RSS feeds?)QBT_TR[CONTEXT=RSSWidget]</p>
         <div style="text-align: right;">
-            <input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" />
-            <input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" />
+            <input type="button" id="cancelBtn" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]">
+            <input type="button" id="confirmBtn" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]">
         </div>
     </div>
 </body>

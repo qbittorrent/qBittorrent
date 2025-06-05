@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TorrentShareLimitsWidget</class>
+ <widget class="QWidget" name="TorrentShareLimitsWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>445</width>
+    <height>132</height>
+   </rect>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="limitsLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelRatio">
+       <property name="text">
+        <string>Ratio:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboBoxRatioMode">
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Default</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Unlimited</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Set to</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QDoubleSpinBox" name="spinBoxRatioValue">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
+       </property>
+       <property name="value">
+        <double>1.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelSeedingTime">
+       <property name="text">
+        <string>Seeding time:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBoxSeedingTimeMode">
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Default</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Unlimited</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Set to</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QSpinBox" name="spinBoxSeedingTimeValue">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="suffix">
+        <string extracomment="minutes"> min</string>
+       </property>
+       <property name="maximum">
+        <number>9999999</number>
+       </property>
+       <property name="value">
+        <number>1440</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelInactiveSeedingTime">
+       <property name="text">
+        <string>Inactive seeding time:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="comboBoxInactiveSeedingTimeMode">
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Default</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Unlimited</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Set to</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QSpinBox" name="spinBoxInactiveSeedingTimeValue">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="suffix">
+        <string extracomment="minutes"> min</string>
+       </property>
+       <property name="maximum">
+        <number>9999999</number>
+       </property>
+       <property name="value">
+        <number>1440</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="actionLayout">
+     <item>
+      <widget class="QLabel" name="labelAction">
+       <property name="text">
+        <string>Action when the limit is reached:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBoxAction">
+       <property name="currentIndex">
+        <number>-1</number>
+       </property>
+       <item>
+        <property name="text">
+         <string>Default</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Stop torrent</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Remove torrent</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Remove torrent and its content</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Enable super seeding for torrent</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <spacer name="actionLayoutSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -71,8 +71,8 @@
 #include <QFile>
 
 #ifdef Q_OS_WIN
+#include <QList>
 #include <QString>
-#include <QVector>
 #endif
 
 namespace QtLP_Private
@@ -105,7 +105,7 @@ namespace QtLP_Private
 
         Qt::HANDLE m_writeMutex = nullptr;
         Qt::HANDLE m_readMutex = nullptr;
-        QVector<Qt::HANDLE> m_readMutexes;
+        QList<Qt::HANDLE> m_readMutexes;
         QString m_mutexName;
 #endif
 

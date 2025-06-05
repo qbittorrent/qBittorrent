@@ -31,7 +31,7 @@
 #include <algorithm>
 
 #include <QHash>
-#include <QVector>
+#include <QList>
 
 #include "base/bittorrent/trackerentry.h"
 #include "ui_trackerentriesdialog.h"
@@ -42,7 +42,7 @@
 TrackerEntriesDialog::TrackerEntriesDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::TrackerEntriesDialog)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
 {
     m_ui->setupUi(this);
 
@@ -59,7 +59,7 @@ TrackerEntriesDialog::~TrackerEntriesDialog()
     delete m_ui;
 }
 
-void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &trackers)
+void TrackerEntriesDialog::setTrackers(const QList<BitTorrent::TrackerEntry> &trackers)
 {
     int maxTier = -1;
     QHash<int, QString> tiers;  // <tier, tracker URLs>
@@ -78,29 +78,9 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
     m_ui->plainTextEdit->setPlainText(text);
 }
 
-QVector<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
+QList<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
 {
-    const QString plainText = m_ui->plainTextEdit->toPlainText();
-    const QList<QStringView> lines = QStringView(plainText).split(u'\n');
-
-    QVector<BitTorrent::TrackerEntry> entries;
-    entries.reserve(lines.size());
-
-    int tier = 0;
-    for (QStringView line : lines)
-    {
-        line = line.trimmed();
-
-        if (line.isEmpty())
-        {
-            ++tier;
-            continue;
-        }
-
-        entries.append({line.toString(), tier});
-    }
-
-    return entries;
+    return BitTorrent::parseTrackerEntries(m_ui->plainTextEdit->toPlainText());
 }
 
 void TrackerEntriesDialog::saveSettings()

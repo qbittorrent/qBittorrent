@@ -8,19 +8,19 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTORCC_OPTIONS --compress 9 --threshold 5)
+set(CMAKE_AUTORCC_OPTIONS --compress-algo best --threshold 5)
 
 add_library(qbt_common_cfg INTERFACE)
 
-# Full C++ 17 support is required
+# C++ 20 support is required
 # See also https://cmake.org/cmake/help/latest/prop_gbl/CMAKE_CXX_KNOWN_FEATURES.html
 # for a breakdown of the features that CMake recognizes for each C++ standard
 target_compile_features(qbt_common_cfg INTERFACE
-    cxx_std_17
+    cxx_std_20
 )
 
 target_compile_definitions(qbt_common_cfg INTERFACE
-    QT_DISABLE_DEPRECATED_BEFORE=0x050f02
+    QT_DISABLE_DEPRECATED_UP_TO=0x060600
     QT_NO_CAST_FROM_ASCII
     QT_NO_CAST_TO_ASCII
     QT_NO_CAST_FROM_BYTEARRAY
@@ -38,9 +38,9 @@ endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_compile_definitions(qbt_common_cfg INTERFACE
-        NTDDI_VERSION=0x06010000
-        _WIN32_WINNT=0x0601
-        _WIN32_IE=0x0601
+        NTDDI_VERSION=0x0A000006
+        _WIN32_WINNT=0x0A00
+        _WIN32_IE=0x0A00
         WIN32_LEAN_AND_MEAN
         NOMINMAX
         UNICODE
@@ -83,6 +83,7 @@ endif()
 if (MSVC)
     target_compile_options(qbt_common_cfg INTERFACE
         /guard:cf
+        /permissive-
         /utf-8
         # https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
         /Zc:__cplusplus
@@ -99,6 +100,10 @@ if (MSVC)
     else()
         set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     endif()
+endif()
+
+if (DBUS)
+    target_compile_definitions(qbt_common_cfg INTERFACE QBT_USES_DBUS)
 endif()
 
 if (LibtorrentRasterbar_VERSION VERSION_GREATER_EQUAL ${minLibtorrentVersion})

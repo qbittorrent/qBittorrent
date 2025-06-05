@@ -1,0 +1,62 @@
+<div id="confirmRecheckDialog">
+    <div class="genericConfirmGrid">
+        <span class="confirmGridItem confirmWarning"></span>
+        <span class="confirmGridItem dialogMessage" id="confirmRecheckMessage"></span>
+    </div>
+</div>
+<div>
+    <input type="button" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" id="confirmRecheckButton">
+    <input type="button" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" id="cancelRecheckButton">
+</div>
+
+<script>
+    "use strict";
+
+    (() => {
+        const confirmButton = document.getElementById("confirmRecheckButton");
+        const cancelButton = document.getElementById("cancelRecheckButton");
+        const confirmText = document.getElementById("confirmRecheckMessage");
+
+        const {
+            options: { data: { hashes } },
+            windowEl
+        } = window.MUI.Windows.instances["confirmRecheckDialog"];
+
+        confirmText.textContent = "QBT_TR(Are you sure you want to recheck the selected torrent(s)?)QBT_TR[CONTEXT=confirmRecheckDialog]";
+
+        cancelButton.addEventListener("click", (e) => {
+            window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
+        });
+        confirmButton.addEventListener("click", (e) => {
+            fetch("api/v2/torrents/recheck", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        hashes: hashes.join("|")
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alert("QBT_TR(Unable to recheck torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        return;
+                    }
+
+                    updateMainData();
+                    window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
+                });
+        });
+
+        // set tabindex so window element receives keydown events
+        windowEl.setAttribute("tabindex", "-1");
+        windowEl.focus();
+        windowEl.addEventListener("keydown", (e) => {
+            switch (e.key) {
+                case "Enter":
+                    confirmButton.click();
+                    break;
+                case "Escape":
+                    window.qBittorrent.Client.closeWindow(document.getElementById("confirmRecheckDialog"));
+                    break;
+            }
+        });
+    })();
+</script>

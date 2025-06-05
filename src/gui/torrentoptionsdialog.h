@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  thalieht
  * Copyright (C) 2011  Christian Kandeler
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
@@ -30,8 +31,11 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QDialog>
 
+#include "base/bittorrent/sharelimitaction.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
 
@@ -54,7 +58,7 @@ class TorrentOptionsDialog final : public QDialog
     Q_DISABLE_COPY_MOVE(TorrentOptionsDialog)
 
 public:
-    explicit TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents);
+    explicit TorrentOptionsDialog(QWidget *parent, const QList<BitTorrent::Torrent *> &torrents);
     ~TorrentOptionsDialog() override;
 
 public slots:
@@ -68,13 +72,8 @@ private slots:
     void handleUpSpeedLimitChanged();
     void handleDownSpeedLimitChanged();
 
-    void handleRatioTypeChanged();
-
 private:
-    qreal getRatio() const;
-    int getSeedingTime() const;
-
-    QVector<BitTorrent::TorrentID> m_torrentIDs;
+    QList<BitTorrent::TorrentID> m_torrentIDs;
     Ui::TorrentOptionsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
     QStringList m_categories;
@@ -86,8 +85,10 @@ private:
         Path savePath;
         Path downloadPath;
         QString category;
-        qreal ratio;
-        int seedingTime;
+        std::optional<qreal> ratio;
+        std::optional<int> seedingTime;
+        std::optional<int> inactiveSeedingTime;
+        std::optional<BitTorrent::ShareLimitAction> shareLimitAction;
         int upSpeedLimit;
         int downSpeedLimit;
         Qt::CheckState autoTMM;

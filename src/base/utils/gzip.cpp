@@ -31,6 +31,7 @@
 
 #include <vector>
 
+#include <QtAssert>
 #include <QByteArray>
 
 #ifndef ZLIB_CONST
@@ -40,63 +41,42 @@
 
 QByteArray Utils::Gzip::compress(const QByteArray &data, const int level, bool *ok)
 {
-    if (ok) *ok = false;
+    if (ok)
+        *ok = false;
 
     if (data.isEmpty())
         return {};
-
-    const int BUFSIZE = 128 * 1024;
-    std::vector<char> tmpBuf(BUFSIZE);
 
     z_stream strm {};
     strm.zalloc = Z_NULL;
     strm.zfree = Z_NULL;
     strm.opaque = Z_NULL;
     strm.next_in = reinterpret_cast<const Bytef *>(data.constData());
-    strm.avail_in = uInt(data.size());
-    strm.next_out = reinterpret_cast<Bytef *>(tmpBuf.data());
-    strm.avail_out = BUFSIZE;
+    strm.avail_in = static_cast<uInt>(data.size());
 
     // windowBits = 15 + 16 to enable gzip
     // From the zlib manual: windowBits can also be greater than 15 for optional gzip encoding. Add 16 to windowBits
     // to write a simple gzip header and trailer around the compressed data instead of a zlib wrapper.
-    int result = deflateInit2(&strm, level, Z_DEFLATED, (15 + 16), 9, Z_DEFAULT_STRATEGY);
-    if (result != Z_OK)
+    const int initResult = deflateInit2(&strm, level, Z_DEFLATED, (15 + 16), 9, Z_DEFAULT_STRATEGY);
+    if (initResult != Z_OK)
         return {};
 
-    QByteArray output;
-    output.reserve(deflateBound(&strm, data.size()));
+    QByteArray ret {static_cast<qsizetype>(deflateBound(&strm, data.size())), Qt::Uninitialized};
+    strm.next_out = reinterpret_cast<Bytef *>(ret.data());
+    strm.avail_out = ret.size();
 
-    // feed to deflate
-    while (strm.avail_in > 0)
-    {
-        result = deflate(&strm, Z_NO_FLUSH);
-
-        if (result != Z_OK)
-        {
-            deflateEnd(&strm);
-            return {};
-        }
-
-        output.append(tmpBuf.data(), (BUFSIZE - strm.avail_out));
-        strm.next_out = reinterpret_cast<Bytef *>(tmpBuf.data());
-        strm.avail_out = BUFSIZE;
-    }
-
-    // flush the rest from deflate
-    while (result != Z_STREAM_END)
-    {
-        result = deflate(&strm, Z_FINISH);
-
-        output.append(tmpBuf.data(), (BUFSIZE - strm.avail_out));
-        strm.next_out = reinterpret_cast<Bytef *>(tmpBuf.data());
-        strm.avail_out = BUFSIZE;
-    }
+    // From the zlib manual: Z_FINISH can be used in the first deflate call after deflateInit if all the compression
+    // is to be done in a single step. In order to complete in one call, avail_out must be at least the value
+    // returned by deflateBound (see below). Then deflate is guaranteed to return Z_STREAM_END.
+    const int deflateResult = deflate(&strm, Z_FINISH);
+    Q_ASSERT(deflateResult == Z_STREAM_END);
 
     deflateEnd(&strm);
+    ret.truncate(strm.total_out);
 
-    if (ok) *ok = true;
-    return output;
+    if (ok)
+        *ok = true;
+    return ret;
 }
 
 QByteArray Utils::Gzip::decompress(const QByteArray &data, bool *ok)

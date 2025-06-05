@@ -45,8 +45,6 @@ Item::Item(const QString &path)
 {
 }
 
-Item::~Item() {}
-
 void Item::setPath(const QString &path)
 {
     if (path != m_path)
@@ -69,7 +67,7 @@ QString Item::name() const
 bool Item::isValidPath(const QString &path)
 {
     const QRegularExpression re(
-                uR"(\A[^\%1]+(\%1[^\%1]+)*\z)"_qs.arg(Item::PathSeparator)
+                uR"(\A[^\%1]+(\%1[^\%1]+)*\z)"_s.arg(Item::PathSeparator)
                 , QRegularExpression::DontCaptureOption);
 
     if (path.isEmpty() || !re.match(path).hasMatch())
@@ -99,7 +97,7 @@ QStringList Item::expandPath(const QString &path)
     int index = 0;
     while ((index = path.indexOf(Item::PathSeparator, index)) >= 0)
     {
-        result << path.left(index);
+        result << path.first(index);
         ++index;
     }
     result << path;
@@ -110,11 +108,11 @@ QStringList Item::expandPath(const QString &path)
 QString Item::parentPath(const QString &path)
 {
     const int pos = path.lastIndexOf(Item::PathSeparator);
-    return (pos >= 0) ? path.left(pos) : QString();
+    return (pos >= 0) ? path.first(pos) : QString();
 }
 
 QString Item::relativeName(const QString &path)
 {
-    int pos;
-    return ((pos = path.lastIndexOf(Item::PathSeparator)) >= 0 ? path.right(path.size() - (pos + 1)) : path);
+    const int pos = path.lastIndexOf(Item::PathSeparator);
+    return (pos >= 0) ? path.sliced(pos + 1) : path;
 }

@@ -28,7 +28,7 @@
 
 #include "applicationinstancemanager.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #ifdef Q_OS_WIN
 #include <windows.h>

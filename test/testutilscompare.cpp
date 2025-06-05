@@ -26,14 +26,16 @@
  * exception statement from your version.
  */
 
-#include <tuple>
-
+#include <QLocale>
+#include <QObject>
 #include <QTest>
 
 #include "base/global.h"
+
+// only test qbt own implementation, not QCollator
+#define QBT_USE_QCOLLATOR 0
 #include "base/utils/compare.h"
 
-#ifndef QBT_USE_QCOLLATOR  // only test qbt own implementation, not QCollator
 namespace
 {
     enum class CompareResult
@@ -53,48 +55,48 @@ namespace
 
     const TestData testData[] =
     {
-        {u""_qs, u""_qs, CompareResult::Equal, CompareResult::Equal},
-        {u""_qs, u"a"_qs, CompareResult::Less, CompareResult::Less},
-        {u"a"_qs, u""_qs, CompareResult::Greater, CompareResult::Greater},
+        {u""_s, u""_s, CompareResult::Equal, CompareResult::Equal},
+        {u""_s, u"a"_s, CompareResult::Less, CompareResult::Less},
+        {u"a"_s, u""_s, CompareResult::Greater, CompareResult::Greater},
 
-        {u"a"_qs, u"a"_qs, CompareResult::Equal, CompareResult::Equal},
-        {u"A"_qs, u"a"_qs, CompareResult::Equal, CompareResult::Less},  // ascii code of 'A' is smaller than 'a'
-        {u"a"_qs, u"A"_qs, CompareResult::Equal, CompareResult::Greater},
+        {u"a"_s, u"a"_s, CompareResult::Equal, CompareResult::Equal},
+        {u"A"_s, u"a"_s, CompareResult::Equal, CompareResult::Greater},
+        {u"a"_s, u"A"_s, CompareResult::Equal, CompareResult::Less},
 
-        {u"0"_qs, u"0"_qs, CompareResult::Equal, CompareResult::Equal},
-        {u"1"_qs, u"0"_qs, CompareResult::Greater, CompareResult::Greater},
-        {u"0"_qs, u"1"_qs, CompareResult::Less, CompareResult::Less},
+        {u"0"_s, u"0"_s, CompareResult::Equal, CompareResult::Equal},
+        {u"1"_s, u"0"_s, CompareResult::Greater, CompareResult::Greater},
+        {u"0"_s, u"1"_s, CompareResult::Less, CompareResult::Less},
 
-        {u"😀"_qs, u"😀"_qs, CompareResult::Equal, CompareResult::Equal},
-        {u"😀"_qs, u"😁"_qs, CompareResult::Less, CompareResult::Less},
-        {u"😁"_qs, u"😀"_qs, CompareResult::Greater, CompareResult::Greater},
+        {u"😀"_s, u"😀"_s, CompareResult::Equal, CompareResult::Equal},
+        {u"😀"_s, u"😁"_s, CompareResult::Less, CompareResult::Less},
+        {u"😁"_s, u"😀"_s, CompareResult::Greater, CompareResult::Greater},
 
-        {u"a1"_qs, u"a1"_qs, CompareResult::Equal, CompareResult::Equal},
-        {u"A1"_qs, u"a1"_qs, CompareResult::Equal, CompareResult::Less},
-        {u"a1"_qs, u"A1"_qs, CompareResult::Equal, CompareResult::Greater},
+        {u"a1"_s, u"a1"_s, CompareResult::Equal, CompareResult::Equal},
+        {u"A1"_s, u"a1"_s, CompareResult::Equal, CompareResult::Greater},
+        {u"a1"_s, u"A1"_s, CompareResult::Equal, CompareResult::Less},
 
-        {u"a1"_qs, u"a2"_qs, CompareResult::Less, CompareResult::Less},
-        {u"A1"_qs, u"a2"_qs, CompareResult::Less, CompareResult::Less},
-        {u"a1"_qs, u"A2"_qs, CompareResult::Less, CompareResult::Greater},
-        {u"A1"_qs, u"A2"_qs, CompareResult::Less, CompareResult::Less},
+        {u"a1"_s, u"a2"_s, CompareResult::Less, CompareResult::Less},
+        {u"A1"_s, u"a2"_s, CompareResult::Less, CompareResult::Greater},
+        {u"a1"_s, u"A2"_s, CompareResult::Less, CompareResult::Less},
+        {u"A1"_s, u"A2"_s, CompareResult::Less, CompareResult::Less},
 
-        {u"abc100"_qs, u"abc99"_qs, CompareResult::Greater, CompareResult::Greater},
-        {u"ABC100"_qs, u"abc99"_qs, CompareResult::Greater, CompareResult::Less},
-        {u"abc100"_qs, u"ABC99"_qs, CompareResult::Greater, CompareResult::Greater},
-        {u"ABC100"_qs, u"ABC99"_qs, CompareResult::Greater, CompareResult::Greater},
+        {u"abc100"_s, u"abc99"_s, CompareResult::Greater, CompareResult::Greater},
+        {u"ABC100"_s, u"abc99"_s, CompareResult::Greater, CompareResult::Greater},
+        {u"abc100"_s, u"ABC99"_s, CompareResult::Greater, CompareResult::Less},
+        {u"ABC100"_s, u"ABC99"_s, CompareResult::Greater, CompareResult::Greater},
 
-        {u"100abc"_qs, u"99abc"_qs, CompareResult::Greater, CompareResult::Greater},
-        {u"100ABC"_qs, u"99abc"_qs, CompareResult::Greater, CompareResult::Greater},
-        {u"100abc"_qs, u"99ABC"_qs, CompareResult::Greater, CompareResult::Greater},
-        {u"100ABC"_qs, u"99ABC"_qs, CompareResult::Greater, CompareResult::Greater},
+        {u"100abc"_s, u"99abc"_s, CompareResult::Greater, CompareResult::Greater},
+        {u"100ABC"_s, u"99abc"_s, CompareResult::Greater, CompareResult::Greater},
+        {u"100abc"_s, u"99ABC"_s, CompareResult::Greater, CompareResult::Greater},
+        {u"100ABC"_s, u"99ABC"_s, CompareResult::Greater, CompareResult::Greater},
 
-        {u"😀😀😀99"_qs, u"😀😀😀100"_qs, CompareResult::Less, CompareResult::Less},
-        {u"😀😀😀100"_qs, u"😀😀😀99"_qs, CompareResult::Greater, CompareResult::Greater}
+        {u"😀😀😀99"_s, u"😀😀😀100"_s, CompareResult::Less, CompareResult::Less},
+        {u"😀😀😀100"_s, u"😀😀😀99"_s, CompareResult::Greater, CompareResult::Greater}
     };
 
     void testCompare(const TestData &data, const int actual, const CompareResult expected)
     {
-        const auto errorMessage = u"Wrong result. LHS: \"%1\". RHS: \"%2\". Result: %3"_qs
+        const auto errorMessage = u"Wrong result. LHS: \"%1\". RHS: \"%2\". Result: %3"_s
             .arg(data.lhs, data.rhs, QString::number(actual));
 
         switch (expected)
@@ -116,7 +118,7 @@ namespace
 
     void testLessThan(const TestData &data, const bool actual, const CompareResult expected)
     {
-        const auto errorMessage = u"Wrong result. LHS: \"%1\". RHS: \"%2\". Result: %3"_qs
+        const auto errorMessage = u"Wrong result. LHS: \"%1\". RHS: \"%2\". Result: %3"_s
             .arg(data.lhs, data.rhs, QString::number(actual));
 
         switch (expected)
@@ -134,7 +136,6 @@ namespace
         }
     }
 }
-#endif
 
 class TestUtilsCompare final : public QObject
 {
@@ -144,8 +145,20 @@ class TestUtilsCompare final : public QObject
 public:
     TestUtilsCompare() = default;
 
-#ifndef QBT_USE_QCOLLATOR  // only test qbt own implementation, not QCollator
 private slots:
+    void initTestCase() const
+    {
+        // Test will fail if ran with `C` locale. This is because `C` locale compare chars by code points
+        // and doesn't take account of human expectations
+        QLocale::setDefault(QLocale::English);
+    }
+
+    void cleanupTestCase() const
+    {
+        // restore global state
+        QLocale::setDefault(QLocale::system());
+    }
+
     void testNaturalCompareCaseInsensitive() const
     {
         const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> cmp;
@@ -177,7 +190,6 @@ private slots:
         for (const TestData &data : testData)
             testLessThan(data, cmp(data.lhs, data.rhs), data.caseSensitiveResult);
     }
-#endif
 };
 
 QTEST_APPLESS_MAIN(TestUtilsCompare)

@@ -36,7 +36,7 @@
 PluginSourceDialog::PluginSourceDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::PluginSourceDialog)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
 {
     m_ui->setupUi(this);
 

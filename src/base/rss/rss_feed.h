@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -29,6 +30,8 @@
  */
 
 #pragma once
+
+#include <chrono>
 
 #include <QtContainerFwd>
 #include <QBasicTimer>
@@ -67,7 +70,7 @@ namespace RSS
 
         friend class Session;
 
-        Feed(const QUuid &uid, const QString &url, const QString &path, Session *session);
+        Feed(Session *session, const QUuid &uid, const QString &url, const QString &path, std::chrono::seconds refreshInterval);
         ~Feed() override;
 
     public:
@@ -75,6 +78,7 @@ namespace RSS
         int unreadCount() const override;
         void markAsRead() override;
         void refresh() override;
+        void updateFetchDelay() override;
 
         QUuid uid() const;
         QString url() const;
@@ -85,12 +89,17 @@ namespace RSS
         Article *articleByGUID(const QString &guid) const;
         Path iconPath() const;
 
+        std::chrono::seconds refreshInterval() const;
+        void setRefreshInterval(std::chrono::seconds refreshInterval);
+
         QJsonValue toJsonValue(bool withData = false) const override;
 
     signals:
         void iconLoaded(Feed *feed = nullptr);
         void titleChanged(Feed *feed = nullptr);
         void stateChanged(Feed *feed = nullptr);
+        void urlChanged(const QString &oldURL);
+        void refreshIntervalChanged(std::chrono::seconds oldRefreshInterval);
 
     private slots:
         void handleSessionProcessingEnabledChanged(bool enabled);
@@ -99,7 +108,7 @@ namespace RSS
         void handleDownloadFinished(const Net::DownloadResult &result);
         void handleParsingFinished(const Private::ParsingResult &result);
         void handleArticleRead(Article *article);
-        void handleArticleLoadFinished(QVector<QVariantHash> articles);
+        void handleArticleLoadFinished(QList<QVariantHash> articles);
 
     private:
         void timerEvent(QTimerEvent *event) override;
@@ -113,12 +122,14 @@ namespace RSS
         void decreaseUnreadCount();
         void downloadIcon();
         int updateArticles(const QList<QVariantHash> &loadedArticles);
+        void setURL(const QString &url);
 
         Session *m_session = nullptr;
         Private::Parser *m_parser = nullptr;
         Private::FeedSerializer *m_serializer = nullptr;
         const QUuid m_uid;
-        const QString m_url;
+        QString m_url;
+        std::chrono::seconds m_refreshInterval;
         QString m_title;
         QString m_lastBuildDate;
         bool m_hasError = false;

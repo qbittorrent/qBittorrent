@@ -122,7 +122,7 @@ QString TorrentContentModelItem::displayData(const int column) const
         }
     case COL_PROGRESS:
         return (m_progress >= 1)
-               ? u"100%"_qs
+               ? u"100%"_s
                : (Utils::String::fromDouble((m_progress * 100), 1) + u'%');
     case COL_SIZE:
         return Utils::Misc::friendlyUnit(m_size);
@@ -135,14 +135,16 @@ QString TorrentContentModelItem::displayData(const int column) const
                 return tr("N/A");
 
             const QString value = (avail >= 1)
-                                  ? u"100"_qs
+                                  ? u"100"_s
                                   : Utils::String::fromDouble((avail * 100), 1);
-            return (value + C_THIN_SPACE + u'%');
+            return (value + u'%');
         }
     default:
-        Q_ASSERT(false);
-        return {};
+        Q_UNREACHABLE();
+        break;
     }
+
+    return {};
 }
 
 QVariant TorrentContentModelItem::underlyingData(const int column) const
@@ -165,9 +167,11 @@ QVariant TorrentContentModelItem::underlyingData(const int column) const
     case COL_AVAILABILITY:
         return availability();
     default:
-        Q_ASSERT(false);
-        return {};
+        Q_UNREACHABLE();
+        break;
     }
+
+    return {};
 }
 
 int TorrentContentModelItem::row() const

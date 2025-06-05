@@ -46,16 +46,12 @@ HtmlBrowser::HtmlBrowser(QWidget *parent)
 {
     m_netManager = new QNetworkAccessManager(this);
     m_diskCache = new QNetworkDiskCache(this);
-    m_diskCache->setCacheDirectory((specialFolderLocation(SpecialFolder::Cache) / Path(u"rss"_qs)).data());
+    m_diskCache->setCacheDirectory((specialFolderLocation(SpecialFolder::Cache) / Path(u"rss"_s)).data());
     m_diskCache->setMaximumCacheSize(50 * 1024 * 1024);
     qDebug() << "HtmlBrowser  cache path:" << m_diskCache->cacheDirectory() << " max size:" << m_diskCache->maximumCacheSize() / 1024 / 1024 << "MB";
     m_netManager->setCache(m_diskCache);
 
     connect(m_netManager, &QNetworkAccessManager::finished, this, &HtmlBrowser::resourceLoaded);
-}
-
-HtmlBrowser::~HtmlBrowser()
-{
 }
 
 QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
@@ -64,7 +60,7 @@ QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
     {
         QUrl url(name);
         if (url.scheme().isEmpty())
-            url.setScheme(u"http"_qs);
+            url.setScheme(u"http"_s);
 
         QIODevice *dev = m_diskCache->data(url);
         if (dev)
@@ -108,12 +104,14 @@ void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
         metaData.setUrl(reply->request().url());
         metaData.setSaveToDisk(true);
         atts[QNetworkRequest::HttpStatusCodeAttribute] = 200;
-        atts[QNetworkRequest::HttpReasonPhraseAttribute] = u"Ok"_qs;
+        atts[QNetworkRequest::HttpReasonPhraseAttribute] = u"Ok"_s;
         metaData.setAttributes(atts);
-        metaData.setLastModified(QDateTime::currentDateTime());
-        metaData.setExpirationDate(QDateTime::currentDateTime().addDays(1));
+        const auto currentDateTime = QDateTime::currentDateTime();
+        metaData.setLastModified(currentDateTime);
+        metaData.setExpirationDate(currentDateTime.addDays(1));
         QIODevice *dev = m_diskCache->prepare(metaData);
-        if (!dev) return;
+        if (!dev)
+            return;
 
         QApplication::style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(32, 32).save(dev, "PNG");
         m_diskCache->insert(dev);

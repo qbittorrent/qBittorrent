@@ -1,8 +1,7 @@
 qBittorrent - A BitTorrent client in Qt
 ------------------------------------------
 
-[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/qbittorrent/qBittorrent?branch=master&svg=true)](https://ci.appveyor.com/project/qbittorrent/qBittorrent)
-[![GitHub Actions CI Status](https://github.com/qbittorrent/qBittorrent/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/qbittorrent/qBittorrent/actions)
+[![GitHub Actions CI Status](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_ubuntu.yaml/badge.svg)](https://github.com/qbittorrent/qBittorrent/actions)
 [![Coverity Status](https://scan.coverity.com/projects/5494/badge.svg)](https://scan.coverity.com/projects/5494)
 ********************************
 ### Description:
@@ -16,15 +15,8 @@ support as well as many features.
 The free [IP to Country Lite database](https://db-ip.com/db/download/ip-to-country-lite) by [DB-IP](https://db-ip.com/) is used for resolving the countries of peers. The database is licensed under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
 
 ### Installation:
-For installation, follow the instructions from INSTALL file, but simple:
 
-```
-./configure
-make && make install
-qbittorrent
-```
-
-will install and execute qBittorrent hopefully without any problem.
+Refer to the [INSTALL](INSTALL) file.
 
 ### Public key:
 Starting from v3.3.4 all source tarballs and binaries are signed.<br />
@@ -37,13 +29,13 @@ For more information please visit:
 https://www.qbittorrent.org
 
 or our wiki here:
-http://wiki.qbittorrent.org
+https://wiki.qbittorrent.org
 
 Use the forum for troubleshooting before reporting bugs:
-http://forum.qbittorrent.org
+https://forum.qbittorrent.org
 
 Please report any bug (or feature request) to:
-http://bugs.qbittorrent.org
+https://bugs.qbittorrent.org
 
 Official IRC channel:
 [#qbittorrent on irc.libera.chat](ircs://irc.libera.chat:6697/qbittorrent)

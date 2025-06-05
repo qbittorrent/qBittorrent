@@ -40,4 +40,4 @@ enum class ShutdownDialogAction
     Hibernate
 };
 
-typedef QMap<QString, QString> QStringMap;
+using QStringMap = QMap<QString, QString>;

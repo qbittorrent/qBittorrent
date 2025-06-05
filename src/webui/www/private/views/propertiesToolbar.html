@@ -1,13 +1,23 @@
 <div class="toolbarTabs">
     <div id="torrentFilesFilterToolbar" class="invisible">
-        <input type="text" id="torrentFilesFilterInput" placeholder="QBT_TR(Filter files...)QBT_TR[CONTEXT=PropertiesWidget]" autocorrect="off" autocapitalize="none" />
+        <input type="search" id="torrentFilesFilterInput" placeholder="QBT_TR(Filter files...)QBT_TR[CONTEXT=PropertiesWidget]" aria-label="QBT_TR(Filter files...)QBT_TR[CONTEXT=PropertiesWidget]" autocorrect="off" autocapitalize="none">
     </div>
-    <ul id="propertiesTabs" class="tab-menu">
-        <li id="PropGeneralLink" class="selected"><a>QBT_TR(General)QBT_TR[CONTEXT=PropTabBar]</a></li>
-        <li id="PropTrackersLink"><a>QBT_TR(Trackers)QBT_TR[CONTEXT=PropTabBar]</a></li>
-        <li id="PropPeersLink"><a>QBT_TR(Peers)QBT_TR[CONTEXT=PropTabBar]</a></li>
-        <li id="PropWebSeedsLink"><a>QBT_TR(HTTP Sources)QBT_TR[CONTEXT=PropTabBar]</a></li>
-        <li id="PropFilesLink"><a>QBT_TR(Content)QBT_TR[CONTEXT=PropTabBar]</a></li>
-    </ul>
+    <menu id="propertiesTabs" class="tab-menu">
+        <li id="propGeneralLink">
+            <a><img alt="QBT_TR(General)QBT_TR[CONTEXT=PropTabBar]" src="images/help-about.svg" width="16" height="16">QBT_TR(General)QBT_TR[CONTEXT=PropTabBar]</a>
+        </li>
+        <li id="propTrackersLink">
+            <a><img alt="QBT_TR(Trackers)QBT_TR[CONTEXT=PropTabBar]" src="images/trackers.svg" width="16" height="16">QBT_TR(Trackers)QBT_TR[CONTEXT=PropTabBar]</a>
+        </li>
+        <li id="propPeersLink">
+            <a><img alt="QBT_TR(Peers)QBT_TR[CONTEXT=PropTabBar]" src="images/peers.svg" width="16" height="16">QBT_TR(Peers)QBT_TR[CONTEXT=PropTabBar]</a>
+        </li>
+        <li id="propWebSeedsLink">
+            <a><img alt="QBT_TR(HTTP Sources)QBT_TR[CONTEXT=PropTabBar]" src="images/network-server.svg" width="16" height="16">QBT_TR(HTTP Sources)QBT_TR[CONTEXT=PropTabBar]</a>
+        </li>
+        <li id="propFilesLink">
+            <a><img alt="QBT_TR(Content)QBT_TR[CONTEXT=PropTabBar]" src="images/directory.svg" width="16" height="16">QBT_TR(Content)QBT_TR[CONTEXT=PropTabBar]</a>
+        </li>
+    </menu>
     <div class="clear"></div>
 </div>

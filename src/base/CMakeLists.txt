@@ -1,11 +1,14 @@
 add_library(qbt_base STATIC
     # headers
     3rdparty/expected.hpp
+    addtorrentmanager.h
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
     bittorrent/abstractfilestorage.h
+    bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
+    bittorrent/announcetimepoint.h
     bittorrent/bandwidthscheduler.h
     bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h
@@ -13,6 +16,7 @@ add_library(qbt_base STATIC
     bittorrent/common.h
     bittorrent/customstorage.h
     bittorrent/dbresumedatastorage.h
+    bittorrent/downloadpathoption.h
     bittorrent/downloadpriority.h
     bittorrent/extensiondata.h
     bittorrent/filesearcher.h
@@ -20,9 +24,7 @@ add_library(qbt_base STATIC
     bittorrent/infohash.h
     bittorrent/loadtorrentparams.h
     bittorrent/ltqbitarray.h
-    bittorrent/ltqhash.h
     bittorrent/lttypecast.h
-    bittorrent/magneturi.h
     bittorrent/nativesessionextension.h
     bittorrent/nativetorrentextension.h
     bittorrent/peeraddress.h
@@ -30,18 +32,30 @@ add_library(qbt_base STATIC
     bittorrent/portforwarderimpl.h
     bittorrent/resumedatastorage.h
     bittorrent/session.h
+    bittorrent/sessionimpl.h
     bittorrent/sessionstatus.h
+    bittorrent/sharelimitaction.h
     bittorrent/speedmonitor.h
-    bittorrent/statistics.h
+    bittorrent/sslparameters.h
     bittorrent/torrent.h
+    bittorrent/torrentcontenthandler.h
     bittorrent/torrentcontentlayout.h
-    bittorrent/torrentcreatorthread.h
+    bittorrent/torrentcontentremoveoption.h
+    bittorrent/torrentcontentremover.h
+    bittorrent/torrentcreationmanager.h
+    bittorrent/torrentcreationtask.h
+    bittorrent/torrentcreator.h
+    bittorrent/torrentdescriptor.h
     bittorrent/torrentimpl.h
     bittorrent/torrentinfo.h
     bittorrent/tracker.h
     bittorrent/trackerentry.h
+    bittorrent/trackerentrystatus.h
+    concepts/explicitlyconvertibleto.h
+    concepts/stringable.h
     digest32.h
     exceptions.h
+    freediskspacechecker.h
     global.h
     http/connection.h
     http/httperror.h
@@ -51,10 +65,8 @@ add_library(qbt_base STATIC
     http/responsegenerator.h
     http/server.h
     http/types.h
-    iconprovider.h
     indexrange.h
     interfaces/iapplication.h
-    interfaces/istringable.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h
@@ -84,6 +96,7 @@ add_library(qbt_base STATIC
     search/searchhandler.h
     search/searchpluginmanager.h
     settingsstorage.h
+    tag.h
     tagset.h
     torrentfileguard.h
     torrentfileswatcher.h
@@ -92,56 +105,69 @@ add_library(qbt_base STATIC
     unicodestrings.h
     utils/bytearray.h
     utils/compare.h
+    utils/datetime.h
     utils/foreignapps.h
     utils/fs.h
     utils/gzip.h
     utils/io.h
     utils/misc.h
     utils/net.h
+    utils/number.h
+    utils/os.h
     utils/password.h
     utils/random.h
+    utils/sslkey.h
     utils/string.h
+    utils/thread.h
     utils/version.h
     version.h
 
     # sources
+    addtorrentmanager.cpp
     applicationcomponent.cpp
     asyncfilestorage.cpp
     bittorrent/abstractfilestorage.cpp
+    bittorrent/addtorrentparams.cpp
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/categoryoptions.cpp
     bittorrent/customstorage.cpp
     bittorrent/dbresumedatastorage.cpp
+    bittorrent/downloadpathoption.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
     bittorrent/infohash.cpp
     bittorrent/ltqbitarray.cpp
-    bittorrent/magneturi.cpp
     bittorrent/nativesessionextension.cpp
     bittorrent/nativetorrentextension.cpp
     bittorrent/peeraddress.cpp
     bittorrent/peerinfo.cpp
     bittorrent/portforwarderimpl.cpp
     bittorrent/resumedatastorage.cpp
-    bittorrent/session.cpp
+    bittorrent/sessionimpl.cpp
     bittorrent/speedmonitor.cpp
-    bittorrent/statistics.cpp
+    bittorrent/sslparameters.cpp
     bittorrent/torrent.cpp
-    bittorrent/torrentcreatorthread.cpp
+    bittorrent/torrentcontenthandler.cpp
+    bittorrent/torrentcontentremover.cpp
+    bittorrent/torrentcreationmanager.cpp
+    bittorrent/torrentcreationtask.cpp
+    bittorrent/torrentcreator.cpp
+    bittorrent/torrentdescriptor.cpp
     bittorrent/torrentimpl.cpp
     bittorrent/torrentinfo.cpp
     bittorrent/tracker.cpp
     bittorrent/trackerentry.cpp
+    bittorrent/trackerentrystatus.cpp
     exceptions.cpp
+    freediskspacechecker.cpp
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
     http/responsebuilder.cpp
     http/responsegenerator.cpp
     http/server.cpp
-    iconprovider.cpp
     logger.cpp
     net/dnsupdater.cpp
     net/downloadhandlerimpl.cpp
@@ -169,37 +195,49 @@ add_library(qbt_base STATIC
     search/searchhandler.cpp
     search/searchpluginmanager.cpp
     settingsstorage.cpp
+    tag.cpp
     tagset.cpp
     torrentfileguard.cpp
     torrentfileswatcher.cpp
     torrentfilter.cpp
     utils/bytearray.cpp
     utils/compare.cpp
+    utils/datetime.cpp
     utils/foreignapps.cpp
     utils/fs.cpp
     utils/gzip.cpp
     utils/io.cpp
     utils/misc.cpp
     utils/net.cpp
+    utils/number.cpp
+    utils/os.cpp
     utils/password.cpp
     utils/random.cpp
+    utils/sslkey.cpp
     utils/string.cpp
+    utils/thread.cpp
+    utils/version.cpp
 )
 
 target_link_libraries(qbt_base
     PRIVATE
-        OpenSSL::Crypto OpenSSL::SSL
+        OpenSSL::Crypto
+        OpenSSL::SSL
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt::Core Qt::Network Qt::Sql Qt::Xml
+        Qt::Core
+        Qt::CorePrivate
+        Qt::Network
+        Qt::Sql
+        Qt::Xml
         qbt_common_cfg
 )
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-    find_library(IOKit_LIBRARY IOKit)
-    find_library(Carbon_LIBRARY Carbon)
     find_library(AppKit_LIBRARY AppKit)
+    find_library(Carbon_LIBRARY Carbon)
+    find_library(IOKit_LIBRARY IOKit)
 
     target_link_libraries(qbt_base PRIVATE
         ${AppKit_LIBRARY}
@@ -207,7 +245,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${IOKit_LIBRARY}
     )
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    target_link_libraries(qbt_base PRIVATE Iphlpapi)
+    target_link_libraries(qbt_base PRIVATE Iphlpapi PowrProf)
 endif()
 
 if (NOT GUI)

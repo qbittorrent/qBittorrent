@@ -43,7 +43,6 @@ class QSslSocket;
 #else
 class QTcpSocket;
 #endif
-class QTextCodec;
 
 namespace Net
 {

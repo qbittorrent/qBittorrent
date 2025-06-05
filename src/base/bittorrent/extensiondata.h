@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <set>
+#include <string>
 #include <vector>
 
 #include <libtorrent/announce_entry.hpp>
@@ -44,4 +46,5 @@ struct ExtensionData
 {
     lt::torrent_status status;
     std::vector<lt::announce_entry> trackers;
+    std::set<std::string> urlSeeds;
 };

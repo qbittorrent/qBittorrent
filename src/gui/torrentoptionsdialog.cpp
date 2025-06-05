@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  thalieht
  * Copyright (C) 2011  Christian Kandeler
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
@@ -49,8 +50,6 @@
 
 namespace
 {
-    const int MIXED_SHARE_LIMITS = -9;
-
     void updateSliderValue(QSlider *slider, const int value)
     {
         if (value > slider->maximum())
@@ -59,15 +58,18 @@ namespace
     }
 }
 
-TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents)
+TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorrent::Torrent *> &torrents)
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
-    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
-    , m_currentCategoriesString {u"--%1--"_qs.arg(tr("Currently used categories"))}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
+    , m_currentCategoriesString {u"--%1--"_s.arg(tr("Currently used categories"))}
 {
     Q_ASSERT(!torrents.empty());
 
     m_ui->setupUi(this);
+
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     m_ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->savePath->setDialogCaption(tr("Choose save path"));
@@ -79,6 +81,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     bool allSameDownLimit = true;
     bool allSameRatio = true;
     bool allSameSeedingTime = true;
+    bool allSameInactiveSeedingTime = true;
+    bool allSameShareLimitAction = true;
     bool allTorrentsArePrivate = true;
     bool allSameDHT = true;
     bool allSamePEX = true;
@@ -99,6 +103,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
 
     const qreal firstTorrentRatio = torrents[0]->ratioLimit();
     const int firstTorrentSeedingTime = torrents[0]->seedingTimeLimit();
+    const int firstTorrentInactiveSeedingTime = torrents[0]->inactiveSeedingTimeLimit();
+    const BitTorrent::ShareLimitAction firstTorrentShareLimitAction = torrents[0]->shareLimitAction();
 
     const bool isFirstTorrentDHTDisabled = torrents[0]->isDHTDisabled();
     const bool isFirstTorrentPEXDisabled = torrents[0]->isPEXDisabled();
@@ -150,6 +156,16 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
         {
             if (torrent->seedingTimeLimit() != firstTorrentSeedingTime)
                 allSameSeedingTime = false;
+        }
+        if (allSameInactiveSeedingTime)
+        {
+            if (torrent->inactiveSeedingTimeLimit() != firstTorrentInactiveSeedingTime)
+                allSameInactiveSeedingTime = false;
+        }
+        if (allSameShareLimitAction)
+        {
+            if (torrent->shareLimitAction() != firstTorrentShareLimitAction)
+                allSameShareLimitAction = false;
         }
         if (allTorrentsArePrivate)
         {
@@ -273,40 +289,15 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
                            , this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
     }
 
-    const bool useGlobalValue = allSameRatio && allSameSeedingTime
-        && (firstTorrentRatio == BitTorrent::Torrent::USE_GLOBAL_RATIO)
-        && (firstTorrentSeedingTime == BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
-
-    if (!allSameRatio || !allSameSeedingTime)
-    {
-        m_ui->radioUseGlobalShareLimits->setChecked(false);
-        m_ui->radioNoLimit->setChecked(false);
-        m_ui->radioTorrentLimit->setChecked(false);
-    }
-    else if (useGlobalValue)
-    {
-        m_ui->radioUseGlobalShareLimits->setChecked(true);
-    }
-    else if ((firstTorrentRatio == BitTorrent::Torrent::NO_RATIO_LIMIT)
-             && (firstTorrentSeedingTime == BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT))
-    {
-        m_ui->radioNoLimit->setChecked(true);
-    }
-    else
-    {
-        m_ui->radioTorrentLimit->setChecked(true);
-        if (firstTorrentRatio >= 0)
-            m_ui->checkMaxRatio->setChecked(true);
-        if (firstTorrentSeedingTime >= 0)
-            m_ui->checkMaxTime->setChecked(true);
-    }
-
-    const qreal maxRatio = (allSameRatio && (firstTorrentRatio >= 0))
-            ? firstTorrentRatio : session->globalMaxRatio();
-    const int maxSeedingTime = (allSameSeedingTime && (firstTorrentSeedingTime >= 0))
-            ? firstTorrentSeedingTime : session->globalMaxSeedingMinutes();
-    m_ui->spinRatioLimit->setValue(maxRatio);
-    m_ui->spinTimeLimit->setValue(maxSeedingTime);
+    m_ui->torrentShareLimitsWidget->setDefaultLimits(session->globalMaxRatio(), session->globalMaxSeedingMinutes(), session->globalMaxInactiveSeedingMinutes());
+    if (allSameRatio)
+        m_ui->torrentShareLimitsWidget->setRatioLimit(firstTorrentRatio);
+    if (allSameSeedingTime)
+        m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(firstTorrentSeedingTime);
+    if (allSameInactiveSeedingTime)
+        m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(firstTorrentInactiveSeedingTime);
+    if (allSameShareLimitAction)
+        m_ui->torrentShareLimitsWidget->setShareLimitAction(firstTorrentShareLimitAction);
 
     if (!allTorrentsArePrivate)
     {
@@ -352,26 +343,27 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
 
     m_initialValues =
     {
-        m_ui->savePath->selectedPath(),
-        m_ui->downloadPath->selectedPath(),
-        m_ui->comboCategory->currentText(),
-        getRatio(),
-        getSeedingTime(),
-        m_ui->spinUploadLimit->value(),
-        m_ui->spinDownloadLimit->value(),
-        m_ui->checkAutoTMM->checkState(),
-        m_ui->checkUseDownloadPath->checkState(),
-        m_ui->checkDisableDHT->checkState(),
-        m_ui->checkDisablePEX->checkState(),
-        m_ui->checkDisableLSD->checkState(),
-        m_ui->checkSequential->checkState(),
-        m_ui->checkFirstLastPieces->checkState()
+        .savePath = m_ui->savePath->selectedPath(),
+        .downloadPath = m_ui->downloadPath->selectedPath(),
+        .category = m_ui->comboCategory->currentText(),
+        .ratio = m_ui->torrentShareLimitsWidget->ratioLimit(),
+        .seedingTime = m_ui->torrentShareLimitsWidget->seedingTimeLimit(),
+        .inactiveSeedingTime = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit(),
+        .shareLimitAction = m_ui->torrentShareLimitsWidget->shareLimitAction(),
+        .upSpeedLimit = m_ui->spinUploadLimit->value(),
+        .downSpeedLimit = m_ui->spinDownloadLimit->value(),
+        .autoTMM = m_ui->checkAutoTMM->checkState(),
+        .useDownloadPath = m_ui->checkUseDownloadPath->checkState(),
+        .disableDHT = m_ui->checkDisableDHT->checkState(),
+        .disablePEX = m_ui->checkDisablePEX->checkState(),
+        .disableLSD = m_ui->checkDisableLSD->checkState(),
+        .sequential = m_ui->checkSequential->checkState(),
+        .firstLastPieces = m_ui->checkFirstLastPieces->checkState()
     };
 
     // Needs to be called after the initial values struct is initialized
     handleTMMChanged();
     handleUseDownloadPathChanged();
-    handleRatioTypeChanged();
 
     connect(m_ui->checkAutoTMM, &QCheckBox::clicked, this, &TorrentOptionsDialog::handleTMMChanged);
     connect(m_ui->checkUseDownloadPath, &QCheckBox::clicked, this, &TorrentOptionsDialog::handleUseDownloadPathChanged);
@@ -385,11 +377,6 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
             , this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
 
-    connect(m_ui->checkMaxRatio, &QCheckBox::toggled, m_ui->spinRatioLimit, &QDoubleSpinBox::setEnabled);
-    connect(m_ui->checkMaxTime, &QCheckBox::toggled, m_ui->spinTimeLimit, &QSpinBox::setEnabled);
-
-    connect(m_ui->buttonGroup, &QButtonGroup::idClicked, this, &TorrentOptionsDialog::handleRatioTypeChanged);
-
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
 }
@@ -402,12 +389,6 @@ TorrentOptionsDialog::~TorrentOptionsDialog()
 
 void TorrentOptionsDialog::accept()
 {
-    if (m_ui->radioTorrentLimit->isChecked() && !m_ui->checkMaxRatio->isChecked() && !m_ui->checkMaxTime->isChecked())
-    {
-        QMessageBox::critical(this, tr("No share limit method selected"), tr("Please select a limit method first"));
-        return;
-    }
-
     auto *session = BitTorrent::Session::instance();
     for (const BitTorrent::TorrentID &id : asConst(m_torrentIDs))
     {
@@ -451,13 +432,29 @@ void TorrentOptionsDialog::accept()
         if (m_initialValues.downSpeedLimit != m_ui->spinDownloadLimit->value())
             torrent->setDownloadLimit(m_ui->spinDownloadLimit->value() * 1024);
 
-        const qreal ratioLimit = getRatio();
-        if (m_initialValues.ratio != ratioLimit)
-            torrent->setRatioLimit(ratioLimit);
+        if (const std::optional<qreal> ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit();
+                m_initialValues.ratio != ratioLimit)
+        {
+            torrent->setRatioLimit(ratioLimit.value());
+        }
 
-        const int seedingTimeLimit = getSeedingTime();
-        if (m_initialValues.seedingTime != seedingTimeLimit)
-            torrent->setSeedingTimeLimit(seedingTimeLimit);
+        if (const std::optional<int> seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit();
+                m_initialValues.seedingTime != seedingTimeLimit)
+        {
+            torrent->setSeedingTimeLimit(seedingTimeLimit.value());
+        }
+
+        if (const std::optional<int> inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit();
+                m_initialValues.inactiveSeedingTime != inactiveSeedingTimeLimit)
+        {
+            torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit.value());
+        }
+
+        if (const std::optional<BitTorrent::ShareLimitAction> shareLimitAction = m_ui->torrentShareLimitsWidget->shareLimitAction();
+                m_initialValues.shareLimitAction != shareLimitAction)
+        {
+            torrent->setShareLimitAction(shareLimitAction.value());
+        }
 
         if (!torrent->isPrivate())
         {
@@ -478,38 +475,8 @@ void TorrentOptionsDialog::accept()
     QDialog::accept();
 }
 
-qreal TorrentOptionsDialog::getRatio() const
+void TorrentOptionsDialog::handleCategoryChanged([[maybe_unused]] const int index)
 {
-    if (m_ui->buttonGroup->checkedId() == -1) // No radio button is selected
-        return MIXED_SHARE_LIMITS;
-
-    if (m_ui->radioUseGlobalShareLimits->isChecked())
-        return BitTorrent::Torrent::USE_GLOBAL_RATIO;
-
-    if (m_ui->radioNoLimit->isChecked() || !m_ui->checkMaxRatio->isChecked())
-        return BitTorrent::Torrent::NO_RATIO_LIMIT;
-
-    return m_ui->spinRatioLimit->value();
-}
-
-int TorrentOptionsDialog::getSeedingTime() const
-{
-    if (m_ui->buttonGroup->checkedId() == -1) // No radio button is selected
-        return MIXED_SHARE_LIMITS;
-
-    if (m_ui->radioUseGlobalShareLimits->isChecked())
-        return BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME;
-
-    if (m_ui->radioNoLimit->isChecked() || !m_ui->checkMaxTime->isChecked())
-        return  BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
-
-    return m_ui->spinTimeLimit->value();
-}
-
-void TorrentOptionsDialog::handleCategoryChanged(const int index)
-{
-    Q_UNUSED(index);
-
     if (m_ui->checkAutoTMM->checkState() == Qt::Checked)
     {
         if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
@@ -581,28 +548,6 @@ void TorrentOptionsDialog::handleUseDownloadPathChanged()
     m_ui->downloadPath->setEnabled(isChecked);
     if (isChecked && m_ui->downloadPath->selectedPath().isEmpty())
         m_ui->downloadPath->setSelectedPath(BitTorrent::Session::instance()->downloadPath());
-}
-
-void TorrentOptionsDialog::handleRatioTypeChanged()
-{
-    if ((m_initialValues.ratio == MIXED_SHARE_LIMITS) || (m_initialValues.seedingTime == MIXED_SHARE_LIMITS))
-    {
-        QAbstractButton *currentRadio = m_ui->buttonGroup->checkedButton();
-        if (currentRadio && (currentRadio == m_previousRadio))
-        {
-            // Hack to deselect the currently selected radio button programmatically because Qt doesn't allow it in exclusive mode
-            m_ui->buttonGroup->setExclusive(false);
-            currentRadio->setChecked(false);
-            m_ui->buttonGroup->setExclusive(true);
-        }
-        m_previousRadio = m_ui->buttonGroup->checkedButton();
-    }
-
-    m_ui->checkMaxRatio->setEnabled(m_ui->radioTorrentLimit->isChecked());
-    m_ui->checkMaxTime->setEnabled(m_ui->radioTorrentLimit->isChecked());
-
-    m_ui->spinRatioLimit->setEnabled(m_ui->radioTorrentLimit->isChecked() && m_ui->checkMaxRatio->isChecked());
-    m_ui->spinTimeLimit->setEnabled(m_ui->radioTorrentLimit->isChecked() && m_ui->checkMaxTime->isChecked());
 }
 
 void TorrentOptionsDialog::handleUpSpeedLimitChanged()

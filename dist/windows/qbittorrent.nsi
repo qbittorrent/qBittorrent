@@ -1,4 +1,4 @@
-!include options.nsi
-!include translations.nsi
-!include installer.nsi
-!include uninstaller.nsi
+!include config.nsh
+!include translations.nsh
+!include installer.nsh
+!include uninstaller.nsh

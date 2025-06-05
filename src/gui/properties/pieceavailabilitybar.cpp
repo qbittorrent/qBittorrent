@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -40,9 +41,9 @@ PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
 {
 }
 
-QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin, int reqSize)
+QList<float> PieceAvailabilityBar::intToFloatVector(const QList<int> &vecin, int reqSize)
 {
-    QVector<float> result(reqSize, 0.0);
+    QList<float> result(reqSize, 0.0);
     if (vecin.isEmpty()) return result;
 
     const float ratio = static_cast<float>(vecin.size()) / reqSize;
@@ -126,39 +127,38 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
     return result;
 }
 
-bool PieceAvailabilityBar::updateImage(QImage &image)
+QImage PieceAvailabilityBar::renderImage()
 {
-    QImage image2(width() - 2 * borderWidth, 1, QImage::Format_RGB888);
-    if (image2.isNull())
+    QImage image {width() - 2 * borderWidth, 1, QImage::Format_RGB888};
+    if (image.isNull())
     {
-        qDebug() << "QImage image2() allocation failed, width():" << width();
-        return false;
+        qDebug() << "QImage allocation failed, width():" << width();
+        return image;
     }
 
     if (m_pieces.empty())
     {
-        image2.fill(backgroundColor());
-        image = image2;
-        return true;
+        image.fill(backgroundColor());
+        return image;
     }
 
-    QVector<float> scaledPieces = intToFloatVector(m_pieces, image2.width());
+    QList<float> scaledPieces = intToFloatVector(m_pieces, image.width());
 
     // filling image
     for (int x = 0; x < scaledPieces.size(); ++x)
     {
         float piecesToValue = scaledPieces.at(x);
-        image2.setPixel(x, 0, pieceColors()[piecesToValue * 255]);
+        image.setPixel(x, 0, pieceColors()[piecesToValue * 255]);
     }
-    image = image2;
-    return true;
+
+    return image;
 }
 
-void PieceAvailabilityBar::setAvailability(const QVector<int> &avail)
+void PieceAvailabilityBar::setAvailability(const QList<int> &avail)
 {
     m_pieces = avail;
 
-    requestImageUpdate();
+    redraw();
 }
 
 void PieceAvailabilityBar::clear()
@@ -170,7 +170,7 @@ void PieceAvailabilityBar::clear()
 QString PieceAvailabilityBar::simpleToolTipText() const
 {
     const QString borderColor = colorBoxBorderColor().name();
-    const QString rowHTML = u"<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>"_qs;
+    const QString rowHTML = u"<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>"_s;
     return u"<table cellspacing=4>"
            + rowHTML.arg(backgroundColor().name(), borderColor, tr("Unavailable pieces"))
            + rowHTML.arg(pieceColor().name(), borderColor, tr("Available pieces"))

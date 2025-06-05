@@ -32,8 +32,8 @@
 
 #include <QDateTime>
 #include <QDir>
+#include <QList>
 #include <QTextStream>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -78,7 +78,7 @@ void FileLogger::changePath(const Path &newPath)
 
     closeLogFile();
 
-    m_path = newPath / Path(u"qbittorrent.log"_qs);
+    m_path = newPath / Path(u"qbittorrent.log"_s);
     m_logFile.setFileName(m_path.data());
 
     Utils::Fs::mkpath(newPath);
@@ -89,7 +89,7 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
 {
     const QDateTime date = QDateTime::currentDateTime();
     const QDir dir {m_path.parentPath().data()};
-    const QFileInfoList fileList = dir.entryInfoList(QStringList(u"qbittorrent.log.bak*"_qs)
+    const QFileInfoList fileList = dir.entryInfoList(QStringList(u"qbittorrent.log.bak*"_s)
         , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
     for (const QFileInfo &file : fileList)
@@ -127,9 +127,6 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
     if (!m_logFile.isOpen()) return;
 
     QTextStream stream(&m_logFile);
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    stream.setCodec("UTF-8");
-#endif
 
     switch (msg.type)
     {
@@ -178,12 +175,15 @@ void FileLogger::flushLog()
 
 void FileLogger::openLogFile()
 {
-    if (!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)
-        || !m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner))
+    if (!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text))
     {
-        m_logFile.close();
-        LogMsg(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
+        LogMsg(tr("An error occurred while trying to open the log file. Logging to file is disabled. File: \"%1\". Error: \"%2\".")
+            .arg(m_logFile.fileName(), m_logFile.errorString()), Log::CRITICAL);
+        return;
     }
+
+    // best effort, don't report error
+    m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner);
 }
 
 void FileLogger::closeLogFile()

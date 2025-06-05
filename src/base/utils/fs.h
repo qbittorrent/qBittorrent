@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -35,6 +35,7 @@
 
 #include <QString>
 
+#include "base/3rdparty/expected.hpp"
 #include "base/global.h"
 #include "base/pathfwd.h"
 
@@ -53,13 +54,15 @@ namespace Utils::Fs
     QDateTime lastModified(const Path &path);
     bool sameFiles(const Path &path1, const Path &path2);
 
-    QString toValidFileName(const QString &name, const QString &pad = u" "_qs);
-    Path toValidPath(const QString &name, const QString &pad = u" "_qs);
+    QString toValidFileName(const QString &name, const QString &pad = u" "_s);
+    Path toValidPath(const QString &name, const QString &pad = u" "_s);
+    Path toAbsolutePath(const Path &path);
     Path toCanonicalPath(const Path &path);
 
     bool copyFile(const Path &from, const Path &to);
     bool renameFile(const Path &from, const Path &to);
-    bool removeFile(const Path &path);
+    nonstd::expected<void, QString> removeFile(const Path &path);
+    nonstd::expected<void, QString> moveFileToTrash(const Path &path);
     bool mkdir(const Path &dirPath);
     bool mkpath(const Path &dirPath);
     bool rmdir(const Path &dirPath);

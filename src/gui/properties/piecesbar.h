@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2016  Eugene Shalygin
  * Copyright (C) 2006  Christophe Dumez
  *
@@ -54,27 +55,23 @@ public:
 
     virtual void clear();
 
-    // QObject interface
-    virtual bool event(QEvent *e) override;
-
 protected:
-    // QWidget interface
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    bool event(QEvent *e) override;
     void enterEvent(QEnterEvent *e) override;
-#else
-    void enterEvent(QEvent *e) override;
-#endif
     void leaveEvent(QEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
-
     void paintEvent(QPaintEvent *e) override;
-    void requestImageUpdate();
+
+    virtual void updateColors();
+    void redraw();
 
     QColor backgroundColor() const;
     QColor borderColor() const;
     QColor pieceColor() const;
+    QColor highlightedPieceColor() const;
     QColor colorBoxBorderColor() const;
-    const QVector<QRgb> &pieceColors() const;
+
+    const QList<QRgb> &pieceColors() const;
 
     // mix two colors by light model, ratio <0, 1>
     static QRgb mixTwoColors(QRgb rgb1, QRgb rgb2, float ratio);
@@ -86,16 +83,14 @@ private:
     void highlightFile(int imagePos);
 
     virtual QString simpleToolTipText() const = 0;
+    virtual QImage renderImage() = 0;
 
-    // draw new image to replace the actual image
-    // returns true if image was successfully updated
-    virtual bool updateImage(QImage &image) = 0;
-    void updatePieceColors();
+    void updateColorsImpl();
 
     const BitTorrent::Torrent *m_torrent = nullptr;
     QImage m_image;
     // buffered 256 levels gradient from bg_color to piece_color
-    QVector<QRgb> m_pieceColors;
+    QList<QRgb> m_pieceColors;
     bool m_hovered = false;
     QRect m_highlightedRegion; // part of the bar can be highlighted; this rectangle is in the same frame as m_image
 };

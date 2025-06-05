@@ -40,6 +40,7 @@
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
@@ -62,7 +63,7 @@ enum PluginColumns
 PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::PluginSelectDialog)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
     , m_pluginManager(pluginManager)
 {
     m_ui->setupUi(this);
@@ -72,7 +73,7 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     m_ui->pluginsTree->header()->setFirstSectionMovable(true);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
-    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_qs));
+    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
 
     connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
     connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);
@@ -138,7 +139,7 @@ void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
         qDebug("mimeData: %s", qUtf8Printable(mime));
     }
 
-    if (event->mimeData()->hasFormat(u"text/plain"_qs) || event->mimeData()->hasFormat(u"text/uri-list"_qs))
+    if (event->mimeData()->hasFormat(u"text/plain"_s) || event->mimeData()->hasFormat(u"text/uri-list"_s))
     {
         event->acceptProposedAction();
     }
@@ -157,20 +158,20 @@ void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
     if (plugin->enabled)
     {
         item->setText(PLUGIN_STATE, tr("Yes"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"green"_qs);
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"green"_s);
     }
     else
     {
         item->setText(PLUGIN_STATE, tr("No"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"red"_qs);
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"red"_s);
     }
 }
 
 void PluginSelectDialog::displayContextMenu()
 {
-    // Enable/disable pause/start action given the DL state
     const QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
-    if (items.isEmpty()) return;
+    if (items.isEmpty())
+        return;
 
     QMenu *myContextMenu = new QMenu(this);
     myContextMenu->setAttribute(Qt::WA_DeleteOnClose);
@@ -207,7 +208,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
             // Disable it instead
             m_pluginManager->enablePlugin(id, false);
             item->setText(PLUGIN_STATE, tr("No"));
-            setRowColor(index, u"red"_qs);
+            setRowColor(index, u"red"_s);
         }
     }
 
@@ -228,12 +229,12 @@ void PluginSelectDialog::enableSelection(bool enable)
         if (enable)
         {
             item->setText(PLUGIN_STATE, tr("Yes"));
-            setRowColor(index, u"green"_qs);
+            setRowColor(index, u"green"_s);
         }
         else
         {
             item->setText(PLUGIN_STATE, tr("No"));
-            setRowColor(index, u"red"_qs);
+            setRowColor(index, u"red"_s);
         }
     }
 }
@@ -248,9 +249,9 @@ void PluginSelectDialog::setRowColor(const int row, const QString &color)
     }
 }
 
-QVector<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
+QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
 {
-    QVector<QTreeWidgetItem*> res;
+    QList<QTreeWidgetItem*> res;
     res.reserve(m_ui->pluginsTree->topLevelItemCount());
 
     for (int i = 0; i < m_ui->pluginsTree->topLevelItemCount(); ++i)
@@ -293,12 +294,12 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
     if (plugin->enabled)
     {
         item->setText(PLUGIN_STATE, tr("Yes"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"green"_qs);
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"green"_s);
     }
     else
     {
         item->setText(PLUGIN_STATE, tr("No"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"red"_qs);
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"red"_s);
     }
     // Handle icon
     if (plugin->iconPath.exists())
@@ -311,8 +312,8 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
         // Icon is missing, we must download it
         using namespace Net;
         DownloadManager::instance()->download(
-                    DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
-                    , this, &PluginSelectDialog::iconDownloadFinished);
+                DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
+                , Preferences::instance()->useProxyForGeneralPurposes(), this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version.toString());
 }
@@ -355,7 +356,7 @@ void PluginSelectDialog::askForPluginUrl()
 {
     bool ok = false;
     QString clipTxt = qApp->clipboard()->text();
-    auto defaultUrl = u"http://"_qs;
+    auto defaultUrl = u"http://"_s;
     if (Net::DownloadManager::hasSupportedScheme(clipTxt) && clipTxt.endsWith(u".py"))
       defaultUrl = clipTxt;
     QString url = AutoExpandableDialog::getText(
@@ -414,7 +415,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
 
-            const QString ext = result.url.endsWith(u".ico", Qt::CaseInsensitive) ? u".ico"_qs : u".png"_qs;
+            const QString ext = result.url.endsWith(u".ico", Qt::CaseInsensitive) ? u".ico"_s : u".png"_s;
             const Path iconPath = SearchPluginManager::pluginsLocation() / Path(id + ext);
             if (Utils::Fs::copyFile(filePath, iconPath))
             {

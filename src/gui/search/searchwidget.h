@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,17 +30,17 @@
 
 #pragma once
 
-#include <QList>
 #include <QPointer>
+#include <QSet>
 #include <QWidget>
 
+#include "base/utils/thread.h"
 #include "gui/guiapplicationcomponent.h"
 
 class QEvent;
 class QObject;
-class QTabWidget;
+class QStringListModel;
 
-class MainWindow;
 class SearchJobWidget;
 
 namespace Ui
@@ -48,42 +48,72 @@ namespace Ui
     class SearchWidget;
 }
 
-class SearchWidget : public QWidget, public GUIApplicationComponent
+class SearchWidget : public GUIApplicationComponent<QWidget>
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
-    explicit SearchWidget(IGUIApplication *app, MainWindow *mainWindow);
+    explicit SearchWidget(IGUIApplication *app, QWidget *parent);
     ~SearchWidget() override;
 
     void giveFocusToSearchInput();
 
-private slots:
-    void on_searchButton_clicked();
-    void on_pluginsButton_clicked();
+signals:
+    void searchFinished(bool failed);
 
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
-    void tabChanged(int index);
+
+    void onPreferencesChanged();
+
+    void pluginsButtonClicked();
+    void searchButtonClicked();
+    void stopButtonClicked();
+    void searchTextEdited(const QString &text);
+    void currentTabChanged(int index);
+
+    void tabStatusChanged(SearchJobWidget *tab);
+
     void closeTab(int index);
     void closeAllTabs();
-    void tabStatusChanged(QWidget *tab);
+    void refreshTab(SearchJobWidget *searchJobWidget);
+    void showTabMenu(int index);
+
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
+    void adjustSearchButton();
 
     void fillCatCombobox();
     void fillPluginComboBox();
     void selectActivePage();
-    void searchTextEdited(const QString &);
 
     QString selectedCategory() const;
-    QString selectedPlugin() const;
+    QStringList selectedPlugins() const;
+
+    QString generateTabID() const;
+    int addTab(const QString &tabID, SearchJobWidget *searchJobWdget);
+
+    void loadHistory();
+    void restoreSession();
+    void updateHistory(const QString &newSearchPattern);
+    void saveSession() const;
+
+    void createSearchPatternCompleter();
 
     Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
-    QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
-    QList<SearchJobWidget *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow = nullptr;
     bool m_isNewQueryString = false;
+    QHash<QString, SearchJobWidget *> m_tabWidgets;
+
+    bool m_storeOpenedTabs = false;
+    bool m_storeOpenedTabsResults = false;
+    int m_historyLength = 0;
+
+    Utils::Thread::UniquePtr m_ioThread;
+
+    class DataStorage;
+    DataStorage *m_dataStorage = nullptr;
+
+    QStringListModel *m_searchPatternCompleterModel = nullptr;
 };

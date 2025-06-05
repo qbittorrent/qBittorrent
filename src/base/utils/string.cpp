@@ -31,14 +31,10 @@
 
 #include <cmath>
 
+#include <QList>
 #include <QLocale>
 #include <QRegularExpression>
 #include <QStringList>
-#include <QVector>
-
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-#include <QRegExp>
-#endif
 
 // to send numbers instead of strings with suffixes
 QString Utils::String::fromDouble(const double n, const int precision)
@@ -53,29 +49,25 @@ QString Utils::String::fromDouble(const double n, const int precision)
     return QLocale::system().toString(std::floor(n * prec) / prec, 'f', precision);
 }
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+QString Utils::String::fromLatin1(const std::string_view string)
+{
+    return QString::fromLatin1(string.data(), string.size());
+}
+
+QString Utils::String::fromLocal8Bit(const std::string_view string)
+{
+    return QString::fromLocal8Bit(string.data(), string.size());
+}
+
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {
-    // replace [ and ] with [[] and []], respectively
-    QString escapedPattern = pattern;
-    escapedPattern.replace(QRegularExpression(u"\\[|\\]"_qs), u"[\\0]"_qs);
-
-    return QRegularExpression::wildcardToRegularExpression(escapedPattern, QRegularExpression::UnanchoredWildcardConversion);
-}
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 1))
+    return QRegularExpression::wildcardToRegularExpression(pattern
+            , (QRegularExpression::UnanchoredWildcardConversion | QRegularExpression::NonPathWildcardConversion));
 #else
-// This is marked as internal in QRegExp.cpp, but is exported. The alternative would be to
-// copy the code from QRegExp::wc2rx().
-QString qt_regexp_toCanonical(const QString &pattern, QRegExp::PatternSyntax patternSyntax);
-
-QString Utils::String::wildcardToRegexPattern(const QString &pattern)
-{
-    // replace [ and ] with [[] and []], respectively
-    QString escapedPattern = pattern;
-    escapedPattern.replace(QRegularExpression(u"\\[|\\]"_qs), u"[\\0]"_qs);
-
-    return qt_regexp_toCanonical(escapedPattern, QRegExp::Wildcard);
-}
+    return QRegularExpression::wildcardToRegularExpression(pattern, QRegularExpression::UnanchoredWildcardConversion);
 #endif
+}
 
 QStringList Utils::String::splitCommand(const QString &command)
 {
@@ -141,15 +133,4 @@ std::optional<double> Utils::String::parseDouble(const QString &string)
         return result;
 
     return std::nullopt;
-}
-
-QString Utils::String::join(const QList<QStringView> &strings, const QStringView separator)
-{
-    if (strings.empty())
-        return {};
-
-    QString ret = strings[0].toString();
-    for (int i = 1; i < strings.count(); ++i)
-        ret += (separator + strings[i]);
-    return ret;
 }

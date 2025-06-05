@@ -1,8 +1,4 @@
-if (QT6)
-    find_package(Qt6 REQUIRED COMPONENTS Test)
-else()
-    find_package(Qt5 REQUIRED COMPONENTS Test)
-endif()
+find_package(Qt6 REQUIRED COMPONENTS Test)
 
 enable_testing(true)
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
@@ -11,10 +7,19 @@ include_directories("../src")
 
 set(testFiles
     testalgorithm.cpp
+    testbittorrentpeeraddress.cpp
+    testbittorrenttrackerentry.cpp
+    testconceptsexplicitlyconvertibleto.cpp
+    testconceptsstringable.cpp
+    testglobal.cpp
     testorderedset.cpp
     testpath.cpp
+    testutilsbytearray.cpp
     testutilscompare.cpp
+    testutilsdatetime.cpp
     testutilsgzip.cpp
+    testutilsio.cpp
+    testutilsnumber.cpp
     testutilsstring.cpp
     testutilsversion.cpp
 )

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -33,9 +34,10 @@
 #include <openssl/evp.h>
 
 #include <QByteArray>
+#include <QList>
 #include <QString>
-#include <QVector>
 
+#include "base/global.h"
 #include "bytearray.h"
 #include "random.h"
 
@@ -65,6 +67,21 @@ bool Utils::Password::slowEquals(const QByteArray &a, const QByteArray &b)
     return (diff == 0);
 }
 
+QString Utils::Password::generate()
+{
+    const QString alphanum = u"23456789ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz"_s;
+    const int passwordLength = 9;
+    QString pass;
+    pass.reserve(passwordLength);
+    while (pass.length() < passwordLength)
+    {
+        const auto num = Utils::Random::rand(0, (alphanum.size() - 1));
+        pass.append(alphanum[num]);
+    }
+
+    return pass;
+}
+
 QByteArray Utils::Password::PBKDF2::generate(const QString &password)
 {
     return generate(password.toUtf8());
@@ -72,9 +89,8 @@ QByteArray Utils::Password::PBKDF2::generate(const QString &password)
 
 QByteArray Utils::Password::PBKDF2::generate(const QByteArray &password)
 {
-    const std::array<uint32_t, 4> salt
-    {{Random::rand(), Random::rand()
-        , Random::rand(), Random::rand()}};
+    const std::array<uint32_t, 4> salt {
+        {Random::rand(), Random::rand(), Random::rand(), Random::rand()}};
 
     std::array<unsigned char, 64> outBuf {};
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()
@@ -99,12 +115,12 @@ bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QString &pa
 
 bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QByteArray &password)
 {
-    const QVector<QByteArray> list = ByteArray::splitToViews(secret, ":", Qt::SkipEmptyParts);
+    const QList<QByteArrayView> list = ByteArray::splitToViews(secret, ":");
     if (list.size() != 2)
         return false;
 
-    const QByteArray salt = QByteArray::fromBase64(list[0]);
-    const QByteArray key = QByteArray::fromBase64(list[1]);
+    const QByteArray salt = QByteArray::fromBase64(Utils::ByteArray::asQByteArray(list[0]));
+    const QByteArray key = QByteArray::fromBase64(Utils::ByteArray::asQByteArray(list[1]));
 
     std::array<unsigned char, 64> outBuf {};
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()

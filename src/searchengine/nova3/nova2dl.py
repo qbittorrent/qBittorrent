@@ -1,7 +1,9 @@
-#VERSION: 1.22
+# VERSION: 1.26
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
+# Contributors:
+#  Vladimir Golovnev (glassez@yandex.ru)
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,37 +29,40 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import importlib
+import pathlib
 import sys
-import os
-import glob
-from helpers import download_file
 
-supported_engines = dict()
+# qbt tend to run this script in 'isolate mode' so append the current path manually
+current_path = str(pathlib.Path(__file__).parent.resolve())
+if current_path not in sys.path:
+    sys.path.append(current_path)
 
-engines = glob.glob(os.path.join(os.path.dirname(__file__), 'engines', '*.py'))
-for engine in engines:
-    e = engine.split(os.sep)[-1][:-3]
-    if len(e.strip()) == 0:
-        continue
-    if e.startswith('_'):
-        continue
-    try:
-        exec("from engines.%s import %s" % (e, e))
-        exec("engine_url = %s.url" % e)
-        supported_engines[engine_url] = e
-    except Exception:
-        pass
+import helpers
+
+# enable SOCKS proxy for all plugins by default
+helpers.enable_socks_proxy(True)
 
 if __name__ == '__main__':
+    prog_name = sys.argv[0]
+
     if len(sys.argv) < 3:
-        raise SystemExit('./nova2dl.py engine_url download_parameter')
-    engine_url = sys.argv[1].strip()
+        raise SystemExit(f'Usage: {prog_name} engine_name download_parameter')
+
+    engine_name = sys.argv[1].strip()
     download_param = sys.argv[2].strip()
-    if engine_url not in list(supported_engines.keys()):
-        raise SystemExit('./nova2dl.py: this engine_url was not recognized')
-    exec("engine = %s()" % supported_engines[engine_url])
+
+    try:
+        module = importlib.import_module(f"engines.{engine_name}")
+        engine_class = getattr(module, engine_name)
+        engine = engine_class()
+    except Exception as e:
+        print(repr(e), file=sys.stderr)
+        raise SystemExit(f'{prog_name}: `engine_name` was not recognized: {engine_name}')
+
     if hasattr(engine, 'download_torrent'):
         engine.download_torrent(download_param)
     else:
-        print(download_file(download_param))
+        print(helpers.download_file(download_param))
+
     sys.exit(0)

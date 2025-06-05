@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,11 +29,11 @@
 
 #pragma once
 
-#include <QItemDelegate>
+#include <QStyledItemDelegate>
 
 #include "progressbarpainter.h"
 
-class PreviewListDelegate final : public QItemDelegate
+class PreviewListDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(PreviewListDelegate)

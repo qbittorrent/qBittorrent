@@ -1,7 +1,8 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022 Mike Tzou (Chocobo1)
- * Copyright (C) 2016 Eugene Shalygin
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
+ * Copyright (C) 2016  Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,6 +33,7 @@
 #include <QCompleter>
 #include <QContextMenuEvent>
 #include <QDir>
+#include <QFileIconProvider>
 #include <QFileInfo>
 #include <QFileSystemModel>
 #include <QMenu>
@@ -64,6 +66,16 @@ bool Private::FileSystemPathValidator::existingOnly() const
 void Private::FileSystemPathValidator::setExistingOnly(const bool value)
 {
     m_existingOnly = value;
+}
+
+bool Private::FileSystemPathValidator::filesOnly() const
+{
+    return m_filesOnly;
+}
+
+void Private::FileSystemPathValidator::setFilesOnly(const bool value)
+{
+    m_filesOnly = value;
 }
 
 bool Private::FileSystemPathValidator::directoriesOnly() const
@@ -99,21 +111,22 @@ void Private::FileSystemPathValidator::setCheckWritePermission(const bool value)
 Private::FileSystemPathValidator::TestResult
 Private::FileSystemPathValidator::testPath(const Path &path) const
 {
-    // `QFileInfo` will cache the query results and avoid exessive querying to filesystem
+    // `QFileInfo` will cache the query results and avoid excessive querying to filesystem
     const QFileInfo info {path.data()};
 
-    if (existingOnly() && !info.exists())
-        return TestResult::DoesNotExist;
+    if (!info.exists())
+        return existingOnly() ? TestResult::DoesNotExist : TestResult::OK;
+
+    if (filesOnly())
+    {
+        if (!info.isFile())
+            return TestResult::NotAFile;
+    }
 
     if (directoriesOnly())
     {
         if (!info.isDir())
             return TestResult::NotADir;
-    }
-    else
-    {
-        if (!info.isFile())
-            return TestResult::NotAFile;
     }
 
     if (checkReadPermission() && !info.isReadable())
@@ -135,10 +148,9 @@ QValidator::State Private::FileSystemPathValidator::lastValidationState() const
     return m_lastValidationState;
 }
 
-QValidator::State Private::FileSystemPathValidator::validate(QString &input, int &pos) const
+QValidator::State Private::FileSystemPathValidator::validate(QString &input, [[maybe_unused]] int &pos) const
 {
-    // ignore cursor position and validate the full path anyway
-    Q_UNUSED(pos);
+    // we ignore cursor position and validate the full path anyway
 
     m_lastTestResult = testPath(Path(input));
     m_lastValidationState = (m_lastTestResult == TestResult::OK)
@@ -149,38 +161,34 @@ QValidator::State Private::FileSystemPathValidator::validate(QString &input, int
 }
 
 Private::FileLineEdit::FileLineEdit(QWidget *parent)
-    : QLineEdit {parent}
-    , m_completerModel {new QFileSystemModel(this)}
-    , m_completer {new QCompleter(this)}
-    , m_browseAction {nullptr}
-    , m_warningAction {nullptr}
+    : QLineEdit(parent)
 {
-    m_iconProvider.setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
-
-    m_completerModel->setIconProvider(&m_iconProvider);
-    m_completerModel->setOptions(QFileSystemModel::DontWatchForChanges);
-
-    m_completer->setModel(m_completerModel);
-    setCompleter(m_completer);
-
+    setCompleter(new QCompleter(this));
     connect(this, &QLineEdit::textChanged, this, &FileLineEdit::validateText);
 }
 
 Private::FileLineEdit::~FileLineEdit()
 {
     delete m_completerModel; // has to be deleted before deleting the m_iconProvider object
+    delete m_iconProvider;
 }
 
 void Private::FileLineEdit::completeDirectoriesOnly(const bool completeDirsOnly)
 {
-    const QDir::Filters filters = QDir::NoDotAndDotDot
-        | (completeDirsOnly ? QDir::Dirs : QDir::AllEntries);
-    m_completerModel->setFilter(filters);
+    m_completeDirectoriesOnly = completeDirsOnly;
+    if (m_completerModel)
+    {
+        const QDir::Filters filters = QDir::NoDotAndDotDot
+                | (completeDirsOnly ? QDir::Dirs : QDir::AllEntries);
+        m_completerModel->setFilter(filters);
+    }
 }
 
 void Private::FileLineEdit::setFilenameFilters(const QStringList &filters)
 {
-    m_completerModel->setNameFilters(filters);
+    m_filenameFilters = filters;
+    if (m_completerModel)
+        m_completerModel->setNameFilters(m_filenameFilters);
 }
 
 void Private::FileLineEdit::setBrowseAction(QAction *action)
@@ -214,6 +222,22 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 
     if ((e->key() == Qt::Key_Space) && (e->modifiers() == Qt::CTRL))
     {
+        if (!m_completerModel)
+        {
+            m_iconProvider = new QFileIconProvider;
+            m_iconProvider->setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
+
+            m_completerModel = new QFileSystemModel(this);
+            m_completerModel->setIconProvider(m_iconProvider);
+            m_completerModel->setOptions(QFileSystemModel::DontWatchForChanges);
+            m_completerModel->setNameFilters(m_filenameFilters);
+            const QDir::Filters filters = QDir::NoDotAndDotDot
+                    | (m_completeDirectoriesOnly ? QDir::Dirs : QDir::AllEntries);
+            m_completerModel->setFilter(filters);
+
+            completer()->setModel(m_completerModel);
+        }
+
         m_completerModel->setRootPath(Path(text()).data());
         showCompletionPopup();
     }
@@ -235,8 +259,8 @@ void Private::FileLineEdit::contextMenuEvent(QContextMenuEvent *event)
 
 void Private::FileLineEdit::showCompletionPopup()
 {
-    m_completer->setCompletionPrefix(text());
-    m_completer->complete();
+    completer()->setCompletionPrefix(text());
+    completer()->complete();
 }
 
 void Private::FileLineEdit::validateText()

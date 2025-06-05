@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2024  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,31 +34,56 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 
+QHash<Path, std::weak_ptr<QFile>> AsyncFileStorage::m_reservedPaths;
+QReadWriteLock AsyncFileStorage::m_reservedPathsLock;
+
 AsyncFileStorage::AsyncFileStorage(const Path &storageFolderPath, QObject *parent)
     : QObject(parent)
     , m_storageDir(storageFolderPath)
-    , m_lockFile((m_storageDir / Path(u"storage.lock"_qs)).data())
 {
     Q_ASSERT(m_storageDir.isAbsolute());
 
-    if (!Utils::Fs::mkpath(m_storageDir))
-        throw AsyncFileStorageError(tr("Could not create directory '%1'.").arg(m_storageDir.toString()));
+    const Path lockFilePath = m_storageDir / Path(u"storage.lock"_s);
 
-    // TODO: This folder locking approach does not work for UNIX systems. Implement it.
-    if (!m_lockFile.open(QFile::WriteOnly))
-        throw AsyncFileStorageError(m_lockFile.errorString());
+    {
+        const QReadLocker readLocker {&m_reservedPathsLock};
+        m_lockFile = m_reservedPaths.value(lockFilePath).lock();
+    }
+
+    if (!m_lockFile)
+    {
+        const QWriteLocker writeLocker {&m_reservedPathsLock};
+        if (std::weak_ptr<QFile> &lockFile = m_reservedPaths[lockFilePath]; lockFile.expired()) [[likely]]
+        {
+            if (!Utils::Fs::mkpath(m_storageDir))
+                throw AsyncFileStorageError(tr("Could not create directory '%1'.").arg(m_storageDir.toString()));
+
+            auto lockFileDeleter = [](QFile *file)
+            {
+                file->close();
+                file->remove();
+                delete file;
+            };
+            m_lockFile = std::shared_ptr<QFile>(new QFile(lockFilePath.data()), std::move(lockFileDeleter));
+
+            // TODO: This folder locking approach does not work for UNIX systems. Implement it.
+            if (!m_lockFile->open(QFile::WriteOnly))
+                throw AsyncFileStorageError(m_lockFile->errorString());
+
+            lockFile = m_lockFile;
+        }
+        else
+        {
+            m_lockFile = lockFile.lock();
+        }
+    }
 }
 
-AsyncFileStorage::~AsyncFileStorage()
-{
-    m_lockFile.close();
-    m_lockFile.remove();
-}
+AsyncFileStorage::~AsyncFileStorage() = default;
 
 void AsyncFileStorage::store(const Path &filePath, const QByteArray &data)
 {
-    QMetaObject::invokeMethod(this, [this, data, filePath]() { store_impl(filePath, data); }
-                              , Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, [this, data, filePath] { store_impl(filePath, data); }, Qt::QueuedConnection);
 }
 
 Path AsyncFileStorage::storageDir() const

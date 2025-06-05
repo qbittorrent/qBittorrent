@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -29,21 +30,21 @@
 #pragma once
 
 #include <QMetaType>
-#include <QString>
 
-#include "base/orderedset.h"
-#include "base/utils/compare.h"
+#include "orderedset.h"
+#include "tag.h"
+#include "utils/compare.h"
 
 class TagLessThan
 {
 public:
-    bool operator()(const QString &left, const QString &right) const;
+    bool operator()(const Tag &left, const Tag &right) const;
 
 private:
     Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_compare;
     Utils::Compare::NaturalCompare<Qt::CaseSensitive> m_subCompare;
 };
 
-using TagSet = OrderedSet<QString, TagLessThan>;
+using TagSet = OrderedSet<Tag, TagLessThan>;
 
 Q_DECLARE_METATYPE(TagSet)

@@ -1,0 +1,195 @@
+<style>
+    #manageCookiesContainer {
+        margin: 10px;
+
+        .buttonContainer {
+            text-align: center;
+            margin-top: 1em;
+        }
+    }
+
+    #manageCookiesTable {
+        tbody {
+            td input {
+                width: 140px;
+            }
+
+            td.expDate input {
+                width: 190px;
+            }
+        }
+
+        thead td {
+            width: 150px;
+
+            .expDate {
+                width: 200px;
+            }
+
+            .actionColumn {
+                width: 30px;
+            }
+        }
+
+        .removeCookie,
+        .addCookie {
+            height: 16px;
+            width: 16px;
+            margin-left: 5px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    }
+
+</style>
+
+<div id="manageCookiesContainer">
+    <table id="manageCookiesTable">
+        <thead>
+            <tr>
+                <td class="domain">QBT_TR(Domain)QBT_TR[CONTEXT=CookiesDialog]</td>
+                <td class="path">QBT_TR(Path)QBT_TR[CONTEXT=CookiesDialog]</td>
+                <td class="name">QBT_TR(Name)QBT_TR[CONTEXT=CookiesDialog]</td>
+                <td class="value">QBT_TR(Value)QBT_TR[CONTEXT=CookiesDialog]</td>
+                <td class="expDate">QBT_TR(Expiration Date)QBT_TR[CONTEXT=CookiesDialog]</td>
+                <td class="actionColumn"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="invisible newRow">
+                <td class="domain"><input type="text" aria-label="QBT_TR(Domain)QBT_TR[CONTEXT=CookiesDialog]" autocomplete="off" autocorrect="off" autocapitalize="none"></td>
+                <td class="path"><input type="text" aria-label="QBT_TR(Path)QBT_TR[CONTEXT=CookiesDialog]" autocomplete="off" autocorrect="off" autocapitalize="none"></td>
+                <td class="name"><input type="text" aria-label="QBT_TR(Name)QBT_TR[CONTEXT=CookiesDialog]" autocomplete="off" autocorrect="off" autocapitalize="none"></td>
+                <td class="value"><input type="text" aria-label="QBT_TR(Value)QBT_TR[CONTEXT=CookiesDialog]" autocomplete="off" autocorrect="off" autocapitalize="none"></td>
+                <td class="expDate"><input type="datetime-local" aria-label="QBT_TR(Expiration Date)QBT_TR[CONTEXT=CookiesDialog]"></td>
+                <td><img class="removeCookie" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=CookiesDialog]"></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><img class="addCookie" src="images/list-add.svg" alt="QBT_TR(Add Cookie)QBT_TR[CONTEXT=CookiesDialog]"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="buttonContainer">
+        <button type="button" id="saveButton">QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]</button>
+    </div>
+</div>
+
+<script>
+    "use strict";
+
+    window.qBittorrent ??= {};
+    window.qBittorrent.ManageCookies ??= (() => {
+        const exports = () => {
+            return {
+                setup: setup
+            };
+        };
+
+        const addCookie = () => {
+            const newRow = document.querySelector("#manageCookiesTable tr.newRow").cloneNode(true);
+            newRow.querySelector(".removeCookie").addEventListener("click", (event) => {
+                deleteCookie(event.target);
+            });
+            newRow.classList.remove("invisible");
+            document.querySelector("#manageCookiesTable tbody").append(newRow);
+            return newRow;
+        };
+
+        const deleteCookie = (element) => {
+            element.closest("tr").remove();
+        };
+
+        const save = () => {
+            const rows = [...document.querySelectorAll("#manageCookiesTable tbody tr")].filter(e => !e.classList.contains("invisible"));
+            const cookies = rows.map(row => {
+                const expDateValue = row.querySelector("td.expDate input").valueAsNumber;
+                // remove ms from string
+                const expDate = Number.isInteger(expDateValue) ? Number(String(expDateValue).slice(0, -3)) : 0;
+
+                return {
+                    domain: row.querySelector("td.domain input").value,
+                    path: row.querySelector("td.path input").value,
+                    name: row.querySelector("td.name input").value,
+                    value: row.querySelector("td.value input").value,
+                    expirationDate: expDate,
+                };
+            });
+            fetch("api/v2/app/setCookies", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        cookies: JSON.stringify(cookies)
+                    })
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        let error = "Unable to save cookies";
+                        const responseText = await response.text();
+                        if (responseText.length > 0)
+                            error += `: ${responseText}`;
+                        alert(error);
+                        return;
+                    }
+
+                    window.qBittorrent.Client.closeWindow(document.getElementById("cookiesPage"));
+                });
+        };
+
+        const loadCookies = () => {
+            fetch("api/v2/app/cookies", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        let error = "Unable to load cookies";
+                        const responseText = await response.text();
+                        if (responseText.length > 0)
+                            error += `: ${responseText}`;
+                        alert(error);
+                        return;
+                    }
+
+                    const responseJSON = await response.json();
+                    for (const cookie of responseJSON) {
+                        const row = addCookie();
+                        row.querySelector("td.domain input").value = cookie.domain;
+                        row.querySelector("td.path input").value = cookie.path;
+                        row.querySelector("td.name input").value = cookie.name;
+                        row.querySelector("td.value input").value = cookie.value;
+                        if (cookie.expirationDate > 0) {
+                            // remove seconds + milliseconds, if any, to ensure seconds aren't displayed in input field
+                            const date = new Date(cookie.expirationDate * 1000);
+                            date.setSeconds(0);
+                            date.setMilliseconds(0);
+                            row.querySelector("td.expDate input").valueAsNumber = date.getTime();
+                        }
+                    }
+                });
+        };
+
+        const setup = () => {
+            loadCookies();
+
+            document.querySelector(".addCookie").addEventListener("click", (event) => {
+                addCookie();
+            });
+
+            document.getElementById("saveButton").addEventListener("click", (event) => {
+                save();
+            });
+        };
+
+        return exports();
+    })();
+    Object.freeze(window.qBittorrent.ManageCookies);
+
+    window.qBittorrent.ManageCookies.setup();
+</script>

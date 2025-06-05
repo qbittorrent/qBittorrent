@@ -9,7 +9,7 @@ For such questions, use one of the following community support resources:
 
 * The [discussions section][discussions-url]
 
-* The official forum [official forum][forum-url]
+* The [official forum][forum-url]
 
 * The [qBittorrent subreddit][subreddit-url]
 

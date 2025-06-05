@@ -30,11 +30,10 @@
 
 #include "signalhandler.h"
 
-#include <QtGlobal>
+#include <QtSystemDetection>
 
 #include <algorithm>
 #include <csignal>
-#include <tuple>
 
 #ifdef Q_OS_UNIX
 #include <unistd.h>
@@ -43,6 +42,7 @@
 #endif
 
 #include <QCoreApplication>
+#include <QMetaObject>
 
 #include "base/version.h"
 
@@ -89,14 +89,14 @@ namespace
         const char *msgs[] = {"Catching signal: ", sysSigName[signum], "\nExiting cleanly\n"};
         std::for_each(std::begin(msgs), std::end(msgs), safePrint);
         signal(signum, SIG_DFL);
-        QCoreApplication::exit();  // unsafe, but exit anyway
+        QMetaObject::invokeMethod(qApp, [] { QCoreApplication::exit(); }, Qt::QueuedConnection);  // unsafe, but exit anyway
     }
 
 #ifdef STACKTRACE
     void abnormalExitHandler(const int signum)
     {
         const char msg[] = "\n\n*************************************************************\n"
-            "Please file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
+            "Please file a bug report at https://bug.qbittorrent.org and provide the following information:\n\n"
             "qBittorrent version: " QBT_VERSION "\n\n"
             "Caught signal: ";
         const char *sigName = sysSigName[signum];

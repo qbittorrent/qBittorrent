@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -42,8 +42,6 @@ namespace Net
         None = 0,
         HTTP = 1,
         SOCKS5 = 2,
-        HTTP_PW = 3,
-        SOCKS5_PW = 4,
         SOCKS4 = 5
     };
     Q_ENUM_NS(ProxyType)
@@ -51,13 +49,14 @@ namespace Net
     struct ProxyConfiguration
     {
         ProxyType type = ProxyType::None;
-        QString ip = u"0.0.0.0"_qs;
+        QString ip;
         ushort port = 8080;
+        bool authEnabled = false;
         QString username;
         QString password;
+        bool hostnameLookupEnabled = true;
     };
     bool operator==(const ProxyConfiguration &left, const ProxyConfiguration &right);
-    bool operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right);
 
     class ProxyConfigurationManager final : public QObject
     {
@@ -74,24 +73,19 @@ namespace Net
 
         ProxyConfiguration proxyConfiguration() const;
         void setProxyConfiguration(const ProxyConfiguration &config);
-        bool isProxyOnlyForTorrents() const;
-        void setProxyOnlyForTorrents(bool onlyForTorrents);
-
-        bool isAuthenticationRequired() const;
 
     signals:
         void proxyConfigurationChanged();
 
     private:
-        void configureProxy();
-
         static ProxyConfigurationManager *m_instance;
         ProxyConfiguration m_config;
-        SettingValue<bool> m_storeProxyOnlyForTorrents;
         SettingValue<ProxyType> m_storeProxyType;
         SettingValue<QString> m_storeProxyIP;
         SettingValue<ushort> m_storeProxyPort;
+        SettingValue<bool> m_storeProxyAuthEnabled;
         SettingValue<QString> m_storeProxyUsername;
         SettingValue<QString> m_storeProxyPassword;
+        SettingValue<bool> m_storeProxyHostnameLookupEnabled;
     };
 }

@@ -1,4 +1,4 @@
-#VERSION: 1.43
+# VERSION: 1.54
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -27,97 +27,124 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import datetime
 import gzip
-import html.entities
+import html
 import io
 import os
-import re
 import socket
-import socks
+import ssl
+import sys
 import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
+from collections.abc import Mapping
+from typing import Any, Optional
 
-# Some sites blocks default python User-agent
-user_agent = 'Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101 Firefox/68.0'
-headers = {'User-Agent': user_agent}
-# SOCKS5 Proxy support
-if "sock_proxy" in os.environ and len(os.environ["sock_proxy"].strip()) > 0:
-    proxy_str = os.environ["sock_proxy"].strip()
-    m = re.match(r"^(?:(?P<username>[^:]+):(?P<password>[^@]+)@)?(?P<host>[^:]+):(?P<port>\w+)$",
-                 proxy_str)
-    if m is not None:
-        socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, m.group('host'),
-                              int(m.group('port')), True, m.group('username'), m.group('password'))
-        socket.socket = socks.socksocket
+import socks
 
 
-def htmlentitydecode(s):
-    # First convert alpha entities (such as &eacute;)
-    # (Inspired from http://mail.python.org/pipermail/python-list/2007-June/443813.html)
-    def entity2char(m):
-        entity = m.group(1)
-        if entity in html.entities.name2codepoint:
-            return chr(html.entities.name2codepoint[entity])
-        return " "  # Unknown entity: We replace with a space.
-    t = re.sub('&(%s);' % '|'.join(html.entities.name2codepoint), entity2char, s)
+def _getBrowserUserAgent() -> str:
+    """ Disguise as browser to circumvent website blocking """
 
-    # Then convert numerical entities (such as &#233;)
-    t = re.sub(r'&#(\d+);', lambda x: chr(int(x.group(1))), t)
+    # Firefox release calendar
+    # https://whattrainisitnow.com/calendar/
+    # https://wiki.mozilla.org/index.php?title=Release_Management/Calendar&redirect=no
 
-    # Then convert hexa entities (such as &#x00E9;)
-    return re.sub(r'&#x(\w+);', lambda x: chr(int(x.group(1), 16)), t)
+    baseDate = datetime.date(2024, 4, 16)
+    baseVersion = 125
+
+    nowDate = datetime.date.today()
+    nowVersion = baseVersion + ((nowDate - baseDate).days // 30)
+
+    return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
 
 
-def retrieve_url(url):
+_headers: dict[str, Any] = {'User-Agent': _getBrowserUserAgent()}
+_original_socket = socket.socket
+
+
+def enable_socks_proxy(enable: bool) -> None:
+    if enable:
+        socksURL = os.environ.get("qbt_socks_proxy")
+        if socksURL is not None:
+            parts = urllib.parse.urlsplit(socksURL)
+            resolveHostname = (parts.scheme == "socks4a") or (parts.scheme == "socks5h")
+            if (parts.scheme == "socks4") or (parts.scheme == "socks4a"):
+                socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS4, parts.hostname, parts.port, resolveHostname)
+                socket.socket = socks.socksocket  # type: ignore[misc]
+            elif (parts.scheme == "socks5") or (parts.scheme == "socks5h"):
+                socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, resolveHostname, parts.username, parts.password)
+                socket.socket = socks.socksocket  # type: ignore[misc]
+        else:
+            # the following code provide backward compatibility for older qbt versions
+            # TODO: scheduled be removed with qbt >= 5.3
+            legacySocksURL = os.environ.get("sock_proxy")
+            if legacySocksURL is not None:
+                legacySocksURL = f"socks5h://{legacySocksURL.strip()}"
+                parts = urllib.parse.urlsplit(legacySocksURL)
+                socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, True, parts.username, parts.password)
+                socket.socket = socks.socksocket  # type: ignore[misc]
+    else:
+        socket.socket = _original_socket  # type: ignore[misc]
+
+
+# This is only provided for backward compatibility, new code should not use it
+htmlentitydecode = html.unescape
+
+
+def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None, unescape_html_entities: bool = True) -> str:
     """ Return the content of the url page as a string """
-    req = urllib.request.Request(url, headers=headers)
+
+    request = urllib.request.Request(url, request_data, {**_headers, **custom_headers})
     try:
-        response = urllib.request.urlopen(req)
+        response = urllib.request.urlopen(request, context=ssl_context)
     except urllib.error.URLError as errno:
-        print(" ".join(("Connection error:", str(errno.reason))))
+        print(f"Connection error: {errno.reason}", file=sys.stderr)
         return ""
-    dat = response.read()
+    data: bytes = response.read()
+
     # Check if it is gzipped
-    if dat[:2] == b'\x1f\x8b':
+    if data[:2] == b'\x1f\x8b':
         # Data is gzip encoded, decode it
-        compressedstream = io.BytesIO(dat)
-        gzipper = gzip.GzipFile(fileobj=compressedstream)
-        extracted_data = gzipper.read()
-        dat = extracted_data
-    info = response.info()
+        with io.BytesIO(data) as compressedStream, gzip.GzipFile(fileobj=compressedStream) as gzipper:
+            data = gzipper.read()
+
     charset = 'utf-8'
     try:
-        ignore, charset = info['Content-Type'].split('charset=')
-    except Exception:
+        charset = response.getheader('Content-Type', '').split('charset=', 1)[1]
+    except IndexError:
         pass
-    dat = dat.decode(charset, 'replace')
-    dat = htmlentitydecode(dat)
-    # return dat.encode('utf-8', 'replace')
-    return dat
+
+    dataStr = data.decode(charset, 'replace')
+
+    if unescape_html_entities:
+        dataStr = html.unescape(dataStr)
+
+    return dataStr
 
 
-def download_file(url, referer=None):
+def download_file(url: str, referer: Optional[str] = None, ssl_context: Optional[ssl.SSLContext] = None) -> str:
     """ Download file at url and write it to a file, return the path to the file and the url """
-    file, path = tempfile.mkstemp()
-    file = os.fdopen(file, "wb")
+
     # Download url
-    req = urllib.request.Request(url, headers=headers)
+    request = urllib.request.Request(url, headers=_headers)
     if referer is not None:
-        req.add_header('referer', referer)
-    response = urllib.request.urlopen(req)
-    dat = response.read()
+        request.add_header('referer', referer)
+    response = urllib.request.urlopen(request, context=ssl_context)
+    data = response.read()
+
     # Check if it is gzipped
-    if dat[:2] == b'\x1f\x8b':
+    if data[:2] == b'\x1f\x8b':
         # Data is gzip encoded, decode it
-        compressedstream = io.BytesIO(dat)
-        gzipper = gzip.GzipFile(fileobj=compressedstream)
-        extracted_data = gzipper.read()
-        dat = extracted_data
+        with io.BytesIO(data) as compressedStream, gzip.GzipFile(fileobj=compressedStream) as gzipper:
+            data = gzipper.read()
 
     # Write it to a file
-    file.write(dat)
-    file.close()
+    fileHandle, path = tempfile.mkstemp()
+    with os.fdopen(fileHandle, "wb") as file:
+        file.write(data)
+
     # return file path
-    return (path + " " + url)
+    return f"{path} {url}"

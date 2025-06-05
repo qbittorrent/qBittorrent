@@ -2,6 +2,8 @@ name: CI - WebUI
 
 on: [pull_request, push]
 
+permissions: {}
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: ${{ github.head_ref != '' }}
@@ -10,6 +12,8 @@ jobs:
   ci:
     name: Check
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
 
     defaults:
       run:
@@ -17,15 +21,25 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup nodejs
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 'lts/*'
 
       - name: Install tools
-        run: npm install
+        run: |
+          npm install
+          npm ls
+          echo "::group::npm ls --all"
+          npm ls --all
+          echo "::endgroup::"
+
+      - name: Run tests
+        run: npm test
 
       - name: Lint code
         run: npm run lint
@@ -34,3 +48,12 @@ jobs:
         run: |
           npm run format
           git diff --exit-code
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          config-file: .github/workflows/helper/codeql/js.yaml
+          languages: javascript
+
+      - name: Run CodeQL analysis
+        uses: github/codeql-action/analyze@v3

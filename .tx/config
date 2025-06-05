@@ -1,27 +1,24 @@
 [main]
 host = https://www.transifex.com
 
-[qbittorrent.qbittorrent_master]
-file_filter = src/lang/qbittorrent_<lang>.ts
-lang_map = pt: pt_PT
-source_file = src/lang/qbittorrent_en.ts
-source_lang = en
-type = QT
+[o:sledgehammer999:p:qbittorrent:r:qbittorrent_master]
+file_filter  = src/lang/qbittorrent_<lang>.ts
+source_file  = src/lang/qbittorrent_en.ts
+source_lang  = en
+type         = QT
 minimum_perc = 23
-mode = developer
+lang_map     = pt: pt_PT, zh: zh_CN
 
-[qbittorrent.qbittorrentdesktop_master]
-source_file = dist/unix/org.qbittorrent.qBittorrent.desktop
-source_lang = en
-type = DESKTOP
+[o:sledgehammer999:p:qbittorrent:r:qbittorrent_webui]
+file_filter  = src/webui/www/translations/webui_<lang>.ts
+source_file  = src/webui/www/translations/webui_en.ts
+source_lang  = en
+type         = QT
 minimum_perc = 23
-mode = developer
+lang_map     = pt: pt_PT, zh: zh_CN
 
-[qbittorrent.qbittorrent_webui]
-file_filter = src/webui/www/translations/webui_<lang>.ts
-lang_map = pt: pt_PT
-source_file = src/webui/www/translations/webui_en.ts
-source_lang = en
-type = QT
+[o:sledgehammer999:p:qbittorrent:r:qbittorrentdesktop_master]
+source_file  = dist/unix/org.qbittorrent.qBittorrent.desktop
+source_lang  = en
+type         = DESKTOP
 minimum_perc = 23
-mode = developer

@@ -40,7 +40,7 @@ namespace Net
 {
     struct DownloadResult;
 
-    class GeoIPManager : public QObject
+    class GeoIPManager final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(GeoIPManager)

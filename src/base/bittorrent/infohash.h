@@ -32,13 +32,17 @@
 #include <libtorrent/info_hash.hpp>
 #endif
 
-#include <QtGlobal>
 #include <QMetaType>
 
 #include "base/digest32.h"
 
+class QString;
+
 using SHA1Hash = Digest32<160>;
 using SHA256Hash = Digest32<256>;
+
+Q_DECLARE_METATYPE(SHA1Hash)
+Q_DECLARE_METATYPE(SHA256Hash)
 
 namespace BitTorrent
 {
@@ -77,6 +81,8 @@ namespace BitTorrent
         SHA256Hash v2() const;
         TorrentID toTorrentID() const;
 
+        QString toString() const;
+
         operator WrappedType() const;
 
     private:
@@ -84,14 +90,10 @@ namespace BitTorrent
         WrappedType m_nativeHash;
     };
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     std::size_t qHash(const TorrentID &key, std::size_t seed = 0);
-#else
-    uint qHash(const TorrentID &key, uint seed = 0);
-#endif
+    std::size_t qHash(const InfoHash &key, std::size_t seed = 0);
 
     bool operator==(const InfoHash &left, const InfoHash &right);
-    bool operator!=(const InfoHash &left, const InfoHash &right);
 }
 
 Q_DECLARE_METATYPE(BitTorrent::TorrentID)

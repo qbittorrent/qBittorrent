@@ -21,7 +21,6 @@
     <widget class="QLabel" name="lbl_plugins">
      <property name="font">
       <font>
-       <weight>75</weight>
        <bold>true</bold>
        <underline>true</underline>
       </font>
@@ -34,10 +33,10 @@
    <item>
     <widget class="QTreeWidget" name="pluginsTree">
      <property name="contextMenuPolicy">
-      <enum>Qt::CustomContextMenu</enum>
+      <enum>Qt::ContextMenuPolicy::CustomContextMenu</enum>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::ExtendedSelection</enum>
+      <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
      </property>
      <property name="uniformRowHeights">
       <bool>true</bool>
@@ -93,7 +92,7 @@
       </font>
      </property>
      <property name="text">
-      <string>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</string>
+      <string>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</string>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>

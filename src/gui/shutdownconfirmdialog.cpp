@@ -63,6 +63,9 @@ ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDial
     cancelButton->setFocus();
     cancelButton->setDefault(true);
 
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
+    connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+
     // Always on top
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
     move(Utils::Gui::screenCenter(this));

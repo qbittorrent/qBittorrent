@@ -23,8 +23,11 @@
    </item>
    <item>
     <widget class="QTextEdit" name="textEditPeers">
+     <property name="tabChangesFocus">
+      <bool>true</bool>
+     </property>
      <property name="lineWrapMode">
-      <enum>QTextEdit::NoWrap</enum>
+      <enum>QTextEdit::LineWrapMode::NoWrap</enum>
      </property>
      <property name="acceptRichText">
       <bool>false</bool>
@@ -37,32 +40,15 @@
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>PeersAdditionDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>183</x>
-     <y>251</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>183</x>
-     <y>136</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

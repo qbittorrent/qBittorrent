@@ -21,14 +21,11 @@
  * THE SOFTWARE.
  */
 
-'use strict';
+"use strict";
 
-if (window.qBittorrent === undefined) {
-    window.qBittorrent = {};
-}
-
-window.qBittorrent.Download = (function() {
-    const exports = function() {
+window.qBittorrent ??= {};
+window.qBittorrent.Download ??= (() => {
+    const exports = () => {
         return {
             changeCategorySelect: changeCategorySelect,
             changeTMM: changeTMM
@@ -38,109 +35,111 @@ window.qBittorrent.Download = (function() {
     let categories = {};
     let defaultSavePath = "";
 
-    const getCategories = function() {
-        new Request.JSON({
-            url: 'api/v2/torrents/categories',
-            noCache: true,
-            method: 'get',
-            onSuccess: function(data) {
-                if (data) {
-                    categories = data;
-                    for (const i in data) {
-                        const category = data[i];
-                        const option = new Element("option");
-                        option.set('value', category.name);
-                        option.set('html', category.name);
-                        $('categorySelect').appendChild(option);
-                    }
-                }
-            }
-        }).send();
-    };
-
-    const getPreferences = function() {
-        new Request.JSON({
-            url: 'api/v2/app/preferences',
-            method: 'get',
-            noCache: true,
-            onFailure: function() {
-                alert("Could not contact qBittorrent");
-            },
-            onSuccess: function(pref) {
-                if (!pref)
+    const getCategories = () => {
+        fetch("api/v2/torrents/categories", {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
                     return;
 
-                defaultSavePath = pref.save_path;
-                $('savepath').setProperty('value', defaultSavePath);
-                $('startTorrent').checked = !pref.start_paused_enabled;
+                const data = await response.json();
 
-                if (pref.auto_tmm_enabled == 1) {
-                    $('autoTMM').selectedIndex = 1;
-                    $('savepath').disabled = true;
-                }
-                else {
-                    $('autoTMM').selectedIndex = 0;
-                }
+                categories = data;
+                for (const i in data) {
+                    if (!Object.hasOwn(data, i))
+                        continue;
 
-                if (pref.torrent_content_layout === "Subfolder") {
-                    $('contentLayout').selectedIndex = 1;
+                    const category = data[i];
+                    const option = document.createElement("option");
+                    option.value = category.name;
+                    option.textContent = category.name;
+                    document.getElementById("categorySelect").appendChild(option);
                 }
-                else if (pref.torrent_content_layout === "NoSubfolder") {
-                    $('contentLayout').selectedIndex = 2;
-                }
-                else {
-                    $('contentLayout').selectedIndex = 0;
-                }
-            }
-        }).send();
+            });
     };
 
-    const changeCategorySelect = function(item) {
-        if (item.value == "\\other") {
+    const getPreferences = () => {
+        const pref = window.parent.qBittorrent.Cache.preferences.get();
+
+        defaultSavePath = pref.save_path;
+        document.getElementById("savepath").value = defaultSavePath;
+        document.getElementById("startTorrent").checked = !pref.add_stopped_enabled;
+        document.getElementById("addToTopOfQueue").checked = pref.add_to_top_of_queue;
+
+        if (pref.auto_tmm_enabled) {
+            document.getElementById("autoTMM").selectedIndex = 1;
+            document.getElementById("savepath").disabled = true;
+        }
+        else {
+            document.getElementById("autoTMM").selectedIndex = 0;
+        }
+
+        if (pref.torrent_stop_condition === "MetadataReceived")
+            document.getElementById("stopCondition").selectedIndex = 1;
+        else if (pref.torrent_stop_condition === "FilesChecked")
+            document.getElementById("stopCondition").selectedIndex = 2;
+        else
+            document.getElementById("stopCondition").selectedIndex = 0;
+
+        if (pref.torrent_content_layout === "Subfolder")
+            document.getElementById("contentLayout").selectedIndex = 1;
+        else if (pref.torrent_content_layout === "NoSubfolder")
+            document.getElementById("contentLayout").selectedIndex = 2;
+        else
+            document.getElementById("contentLayout").selectedIndex = 0;
+    };
+
+    const changeCategorySelect = (item) => {
+        if (item.value === "\\other") {
             item.nextElementSibling.hidden = false;
             item.nextElementSibling.value = "";
             item.nextElementSibling.select();
 
-            if ($('autoTMM').selectedIndex == 1)
-                $('savepath').value = defaultSavePath;
+            if (document.getElementById("autoTMM").selectedIndex === 1)
+                document.getElementById("savepath").value = defaultSavePath;
         }
         else {
             item.nextElementSibling.hidden = true;
             const text = item.options[item.selectedIndex].textContent;
             item.nextElementSibling.value = text;
 
-            if ($('autoTMM').selectedIndex == 1) {
+            if (document.getElementById("autoTMM").selectedIndex === 1) {
                 const categoryName = item.value;
                 const category = categories[categoryName];
                 let savePath = defaultSavePath;
                 if (category !== undefined)
-                    savePath = (category['savePath'] !== "") ? category['savePath'] : (defaultSavePath + categoryName);
-                $('savepath').value = savePath;
+                    savePath = (category["savePath"] !== "") ? category["savePath"] : `${defaultSavePath}/${categoryName}`;
+                document.getElementById("savepath").value = savePath;
             }
         }
     };
 
-    const changeTMM = function(item) {
-        if (item.selectedIndex == 1) {
-            $('savepath').disabled = true;
+    const changeTMM = (item) => {
+        if (item.selectedIndex === 1) {
+            document.getElementById("savepath").disabled = true;
 
-            const categorySelect = $('categorySelect');
+            const categorySelect = document.getElementById("categorySelect");
             const categoryName = categorySelect.options[categorySelect.selectedIndex].value;
             const category = categories[categoryName];
-            $('savepath').value = (category === undefined) ? "" : category['savePath'];
+            document.getElementById("savepath").value = (category === undefined) ? "" : category["savePath"];
         }
         else {
-            $('savepath').disabled = false;
-            $('savepath').value = defaultSavePath;
+            document.getElementById("savepath").disabled = false;
+            document.getElementById("savepath").value = defaultSavePath;
         }
     };
 
-    $(window).addEventListener("load", function() {
+    window.addEventListener("load", async (event) => {
+        // user might load this page directly (via browser magnet handler)
+        // so wait for crucial initialization to complete
+        await window.parent.qBittorrent.Client.initializeCaches();
+
         getPreferences();
         getCategories();
     });
 
     return exports();
 })();
-
 Object.freeze(window.qBittorrent.Download);

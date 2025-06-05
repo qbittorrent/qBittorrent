@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_TW">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,8 +39,52 @@
         <translation>建立子資料夾</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>手動</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation>收到的詮釋資料</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation>已檢查的檔案</translation>
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation>停止條件：</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation>新增至佇列頂部</translation>
+    </message>
+    <message>
+        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
+        <translation>每行一連結 (HTTP 連結、磁力連結及資訊雜湊值皆支援)</translation>
+    </message>
+    <message>
+        <source>Add torrent links</source>
+        <translation>增加 torrent 連結</translation>
+    </message>
+    <message>
+        <source>Select .torrent files</source>
+        <translation>選取 .torrent 檔案</translation>
+    </message>
+    <message>
+        <source>Torrent options</source>
+        <translation>Torrent 選項</translation>
     </message>
 </context>
 <context>
@@ -67,18 +113,6 @@
         <translation>移除未使用的分類</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation>繼續 torrent</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation>暫停 torrent</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation>刪除 torrent</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>新分類</translation>
     </message>
@@ -86,16 +120,28 @@
         <source>Edit category...</source>
         <translation>編輯分類…</translation>
     </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>移除 torrents</translation>
+    </message>
+    <message>
+        <source>Add subcategory...</source>
+        <translation>新增子分類…</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation>啟動 torrent</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation>停止 torrent</translation>
+    </message>
 </context>
 <context>
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
         <translation>結束 qbittorrent</translation>
-    </message>
-    <message>
-        <source>Only one link per line</source>
-        <translation>每行一連結</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -154,30 +200,6 @@
         <translation>做種時間限制必須在 0 到 525600 分鐘之間。</translation>
     </message>
     <message>
-        <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Web UI 使用的埠號必須在 1 到 65535 之間。</translation>
-    </message>
-    <message>
-        <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>無法登入，qBittorrent 可能無法連線。</translation>
-    </message>
-    <message>
-        <source>Invalid Username or Password.</source>
-        <translation>無效的使用者名稱或密碼。</translation>
-    </message>
-    <message>
-        <source>Username</source>
-        <translation>使用者名稱</translation>
-    </message>
-    <message>
-        <source>Password</source>
-        <translation>密碼</translation>
-    </message>
-    <message>
-        <source>Login</source>
-        <translation>登入</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>套用</translation>
     </message>
@@ -193,10 +215,6 @@
     <message>
         <source>Save files to location:</source>
         <translation>儲存檔案到：</translation>
-    </message>
-    <message>
-        <source>Cookie:</source>
-        <translation>Cookie：</translation>
     </message>
     <message>
         <source>More information</source>
@@ -262,16 +280,8 @@
         <translation>登出</translation>
     </message>
     <message>
-        <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>從他們的 URL 或磁力連結下載 torrent</translation>
-    </message>
-    <message>
         <source>Upload local torrent</source>
         <translation>上傳本機 torrent</translation>
-    </message>
-    <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>您確定要刪除在傳輸清單中選定的 torrent 嗎？</translation>
     </message>
     <message>
         <source>Save</source>
@@ -279,7 +289,7 @@
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
-        <translation>連接不到 qBittorrent 客戶端</translation>
+        <translation>無法連線到 qBittorrent 用戶端</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -288,10 +298,6 @@
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
         <translation>無效的分類名稱：\n分類名稱請不要使用任何特殊字元。</translation>
-    </message>
-    <message>
-        <source>Unable to create category</source>
-        <translation>無法建立分類</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
@@ -318,10 +324,6 @@
         <translation>下載速率閾值必須大於 0。</translation>
     </message>
     <message>
-        <source>qBittorrent has been shutdown</source>
-        <translation>qBittorrent 已經關閉</translation>
-    </message>
-    <message>
         <source>Open documentation</source>
         <translation>開啟文件</translation>
     </message>
@@ -331,11 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>無法新增 peers。請確保您遵循 IP:連接埠號 格式。</translation>
-    </message>
-    <message>
-        <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>需要 JavaScript！您必須啟用 JavaScript 以讓 WebUI 正常運作</translation>
+        <translation>無法新增節點。請確認您遵循 IP:連接埠 格式。</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -360,6 +358,90 @@
     <message>
         <source>Original author</source>
         <translation>原始作者</translation>
+    </message>
+    <message>
+        <source>The port used for the WebUI must be between 1 and 65535.</source>
+        <translation>WebUI 使用的連接埠號必須在 1 到 65535 之間。</translation>
+    </message>
+    <message>
+        <source>%1 has been shutdown</source>
+        <translation>%1 已經關閉</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation>需要 JavaScript！您必須啟用 JavaScript 以讓 WebUI 正常運作</translation>
+    </message>
+    <message>
+        <source>External IP: N/A</source>
+        <translation>外部 IP：N/A</translation>
+    </message>
+    <message>
+        <source>Reverse proxy setup examples</source>
+        <translation>反向代理設定範例</translation>
+    </message>
+    <message>
+        <source>Could not contact qBittorrent</source>
+        <translation>無法聯絡 qBittorrent</translation>
+    </message>
+    <message>
+        <source>Remember choice</source>
+        <translation>記住選擇</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
+        <translation>您確定要移除在傳輸清單中的這 %1 個 torrent 嗎？</translation>
+    </message>
+    <message>
+        <source>Unable to delete torrents.</source>
+        <translation>無法刪除 torrent。</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation>URL</translation>
+    </message>
+    <message>
+        <source>External IP: %1%2</source>
+        <translation>外部 IP：%1%2</translation>
+    </message>
+    <message>
+        <source>Edit web seed</source>
+        <translation>編輯 web 種子</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove %1 from the transfer list?</source>
+        <translation>您想要從傳輸清單中移除 %1 嗎？</translation>
+    </message>
+    <message>
+        <source>Unable to set Auto Torrent Management for the selected torrents.</source>
+        <translation>無法為選取的 torrent 設定自動 torrent 管理。</translation>
+    </message>
+    <message>
+        <source>Unable to stop torrents.</source>
+        <translation>無法停止 torrent。</translation>
+    </message>
+    <message>
+        <source>Unable to download file</source>
+        <translation>無法下載檔案</translation>
+    </message>
+    <message>
+        <source>External IPs: %1, %2</source>
+        <translation>外部 IP：%1, %2</translation>
+    </message>
+    <message>
+        <source>Unable to recheck torrents.</source>
+        <translation>無法重新檢查 torrent。</translation>
+    </message>
+    <message>
+        <source>List of web seeds to add (one per line):</source>
+        <translation>要新增的 web 種子清單（一行一個）：</translation>
+    </message>
+    <message>
+        <source>Unable to start torrents.</source>
+        <translation>無法開始 torrent。</translation>
+    </message>
+    <message>
+        <source>Add web seeds</source>
+        <translation>新增 web 種子</translation>
     </message>
 </context>
 <context>
@@ -389,10 +471,6 @@
         <translation>選項…</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <translation>繼續</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>頂端工具列</translation>
     </message>
@@ -409,28 +487,12 @@
         <translation>捐款！</translation>
     </message>
     <message>
-        <source>Resume All</source>
-        <translation>全部繼續</translation>
-    </message>
-    <message>
         <source>Statistics</source>
         <translation>統計資料</translation>
     </message>
     <message>
         <source>About</source>
         <translation>關於</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation>暫停</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>刪除</translation>
-    </message>
-    <message>
-        <source>Pause All</source>
-        <translation>全部暫停</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -463,11 +525,6 @@
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>您確定要退出 qBittorrent 嗎？</translation>
-    </message>
-    <message>
-        <source>[D: %1, U: %2] qBittorrent %3</source>
-        <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation>[下載：%1，上傳：%2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -546,10 +603,6 @@
         <translation>下載速度圖示</translation>
     </message>
     <message>
-        <source>Connection status</source>
-        <translation>連線狀態</translation>
-    </message>
-    <message>
         <source>Alternative speed limits: On</source>
         <translation>替代速率限制：開啟</translation>
     </message>
@@ -572,6 +625,78 @@
     <message>
         <source>Filters Sidebar</source>
         <translation>過濾條件側邊欄</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation>執行紀錄檔</translation>
+    </message>
+    <message>
+        <source>Log</source>
+        <translation>紀錄檔</translation>
+    </message>
+    <message>
+        <source>[D: %1, U: %2]</source>
+        <translation>[下載：%1，上傳：%2]</translation>
+    </message>
+    <message>
+        <source>Filter by:</source>
+        <translation>過濾條件：</translation>
+    </message>
+    <message>
+        <source>Save Path</source>
+        <translation>儲存路徑</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>停止</translation>
+    </message>
+    <message>
+        <source>Use regular expression</source>
+        <translation>使用正規表示式</translation>
+    </message>
+    <message>
+        <source>Would you like to start all torrents?</source>
+        <translation>您想要啟動所有 torrent 嗎？</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>啟動</translation>
+    </message>
+    <message>
+        <source>Manage Cookies...</source>
+        <translation>管理 cookie…</translation>
+    </message>
+    <message>
+        <source>Unable to export torrent file</source>
+        <translation>無法匯出 torrent 檔案</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名稱</translation>
+    </message>
+    <message>
+        <source>Would you like to stop all torrents?</source>
+        <translation>您想要停止所有 torrent 嗎？</translation>
+    </message>
+    <message>
+        <source>Start All</source>
+        <translation>全部啟動</translation>
+    </message>
+    <message>
+        <source>Stop All</source>
+        <translation>全部停止</translation>
+    </message>
+    <message>
+        <source>Torrent Creator</source>
+        <translation>Torrent 製作器</translation>
     </message>
 </context>
 <context>
@@ -597,24 +722,12 @@
         <translation>BitTorrent</translation>
     </message>
     <message>
-        <source>Web UI</source>
-        <translation>Web UI</translation>
-    </message>
-    <message>
         <source>Language</source>
         <translation>語言</translation>
     </message>
     <message>
-        <source>User Interface Language:</source>
-        <translation>使用者介面語言：</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation>下載完成時使用電子郵件通知</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation>當 torrent 下載完成時執行外部程式</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -627,10 +740,6 @@
     <message>
         <source>Torrent Queueing</source>
         <translation>Torrent 佇列</translation>
-    </message>
-    <message>
-        <source>Automatically add these trackers to new downloads:</source>
-        <translation>自動新增這些追蹤者到新的下載中：</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -650,11 +759,11 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>在本機上跳過客戶端驗證</translation>
+        <translation>在本機上略過用戶端驗證</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>在已在白名單中的 IP 子網跳過驗證</translation>
+        <translation>讓已在白名單中的 IP 子網路略過驗證</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -674,7 +783,7 @@
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation>為所有檔案事先分配硬碟空間</translation>
+        <translation>為所有檔案預先分配磁碟空間</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -749,10 +858,6 @@
         <translation>類型：</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(無)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -777,10 +882,6 @@
         <translation>使用代理伺服器來連線下載者</translation>
     </message>
     <message>
-        <source>Use proxy only for torrents</source>
-        <translation>只對 torrent 使用代理伺服器</translation>
-    </message>
-    <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>過濾路徑 (.dat, .p2p, .p2b)：</translation>
     </message>
@@ -790,7 +891,7 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation>套用到追蹤者</translation>
+        <translation>套用到 Tracker</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
@@ -952,19 +1053,11 @@
     </message>
     <message>
         <source>%T: Current tracker</source>
-        <translation>%T：目前的追蹤者</translation>
+        <translation>%T：目前的 Tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>提示：把參數以引號包起來以避免被空格切斷 (例如：&quot;%N&quot;)</translation>
-    </message>
-    <message>
-        <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Web UI 使用者名稱必須至少 3 字元長。</translation>
-    </message>
-    <message>
-        <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>Web UI 密碼必須至少 6 字元長。</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>提示：把參數以引號包起來以避免被空格切斷 (例如："%N")</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1003,16 +1096,8 @@
         <translation>自動</translation>
     </message>
     <message>
-        <source>Use alternative Web UI</source>
-        <translation>使用替補 Web UI</translation>
-    </message>
-    <message>
         <source>Default Save Path:</source>
         <translation>預設儲存路徑：</translation>
-    </message>
-    <message>
-        <source>The alternative Web UI files location cannot be blank.</source>
-        <translation>替補的 Web UI 檔案位置不應該為空白。</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1087,10 +1172,6 @@
         <translation>當增加 torrent 時</translation>
     </message>
     <message>
-        <source>Info: The password is saved unencrypted</source>
-        <translation>資訊：密碼以未加密的形式儲存</translation>
-    </message>
-    <message>
         <source>μTP-TCP mixed mode algorithm:</source>
         <translation>μTP-TCP 混合模式演算法</translation>
     </message>
@@ -1123,16 +1204,8 @@
         <translation>反蝗族</translation>
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation>啟用作業系統快取：</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>當分享率達到</translation>
-    </message>
-    <message>
-        <source>When seeding time reaches</source>
-        <translation>當做種時間達到</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1152,15 +1225,11 @@
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation>嵌入追蹤者埠：</translation>
+        <translation>內嵌的 Tracker 埠號：</translation>
     </message>
     <message>
         <source>Fastest upload</source>
         <translation>上傳最快</translation>
-    </message>
-    <message>
-        <source>Pause torrent</source>
-        <translation>暫停 torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1179,10 +1248,6 @@
         <translation>libtorrent 小節</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>連出埠（最小）[0：停用]：</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>完成後重新檢查 torrent：</translation>
     </message>
@@ -1196,23 +1261,15 @@
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation>啟用嵌入追蹤者：</translation>
+        <translation>啟用內嵌 Tracker ：</translation>
     </message>
     <message>
         <source>Remove torrent</source>
         <translation>移除 torrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>連出埠（最大）[0：停用]：</translation>
-    </message>
-    <message>
         <source>Asynchronous I/O threads:</source>
         <translation>異步 I/O 執行緒：</translation>
-    </message>
-    <message>
-        <source>s</source>
-        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1283,24 +1340,8 @@
         <translation>封鎖：</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>使用片段範圍關聯（需要 libtorrent &gt;= 1.2.2）：</translation>
-    </message>
-    <message>
-        <source>Stop tracker timeout:</source>
-        <translation>停止追蹤器逾時：</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
-        <translation>連續失敗後封鎖客戶端：</translation>
-    </message>
-    <message>
-        <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation>啟用 cookie 安全旗標（需要 HTTPS）</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>UPnP 租約期限 [0：永久租約]：</translation>
+        <translation>連續失敗後封鎖用戶端：</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1317,14 +1358,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>啟用抓取 RSS feed</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>雜湊執行緒（需要 libtorrent &gt;= 2.0）：</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>合併讀寫（需要 libtorrent &lt; 2.0）：</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1367,10 +1400,6 @@
         <translation>每個 feed 的最大文章數：</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>最大並行 HTTP 宣佈（需要 libtorrent &gt;= 1.2.7）：</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>分鐘</translation>
     </message>
@@ -1395,24 +1424,12 @@
         <translation>RSS 智慧型章節過濾器</translation>
     </message>
     <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>磁碟快取（需要 libtorrent &lt; 2.0）：</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>磁碟快取過期間隔（需要 libtorrent &lt; 2.0）：</translation>
-    </message>
-    <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation>驗證 HTTPS 追蹤器憑證：</translation>
+        <translation>驗證 HTTPS  Tracker 憑證：</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
         <translation>下載者連線協定：</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>支援國際化域名 (IDN)（需要 libtorrent &gt;= 1.2.12）：</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1427,7 +1444,7 @@
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
     </message>
     <message>
@@ -1448,7 +1465,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>當 IP 或連接埠變更時通知所有追蹤者：</translation>
+        <translation>當 IP 或連接埠變更時通知所有 Tracker：</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1468,7 +1485,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>向追蹤器回報的 IP 位置（需要重新啟動）：</translation>
+        <translation>向 Tracker 回報的 IP 位置（需要重新啟動）：</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1496,7 +1513,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation>内存映射文件</translation>
+        <translation>記憶體對映檔案</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1508,15 +1525,535 @@
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation>这个选项在 Linux 上没那么有效</translation>
+        <translation>這個選項在 Linux 上沒那麼有效</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>磁盘 IO 类型（libtorrent &gt;= 2.0；需要重启）</translation>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation>其控制內部狀態更新間隔，進而影響使用者介面更新</translation>
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation>磁碟 IO 讀取模式：</translation>
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation>停用作業系統快取</translation>
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation>磁碟 IO 寫入模式：</translation>
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation>使用片段範圍關聯：</translation>
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation>最大並行 HTTP 宣佈：</translation>
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation>啟用作業系統快取</translation>
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation>重新整理間隔</translation>
+    </message>
+    <message>
+        <source>ms</source>
+        <translation>毫秒</translation>
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation>排除的檔案名稱</translation>
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation>支援國際化域名 (IDN)：</translation>
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation>HTTP 主機標頭值的過濾白名單。
+為了防禦 DNS 重新繫結攻擊，
+您應該把 Web UI 伺服器使用的網域名稱放到白名單內。
+
+使用「;」來分隔多個項目。可以使用萬用字元「*」。</translation>
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation>HTTPS 憑證不應為空</translation>
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>指定反向代理 IP（或子網路，例如 0.0.0.0/24）以使用轉送的用戶端位置（X-Forwarded-For 標頭）。使用 ';' 來分隔多個項目。</translation>
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation>HTTPS 金鑰不應為空</translation>
+    </message>
+    <message>
+        <source>Run external program</source>
+        <translation>執行外部程式</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation>已檢查的檔案</translation>
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation>為嵌入的追蹤器啟用通訊埠轉送：</translation>
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation>若勾選，主機名稱查詢將會透過代理伺服器完成。</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation>收到的詮釋資料</translation>
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation>Torrent 停止條件：</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>無</translation>
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation>例如：172.17.32.0/24, fdff:ffff:c8::/40</translation>
+    </message>
+    <message>
+        <source>SQLite database (experimental)</source>
+        <translation>SQLite 資料庫（實驗性）</translation>
+    </message>
+    <message>
+        <source>Resume data storage type (requires restart):</source>
+        <translation>復原資料儲存類型（必須重新啟動）</translation>
+    </message>
+    <message>
+        <source>Fastresume files</source>
+        <translation>快速復原檔案</translation>
+    </message>
+    <message>
+        <source>Backup the log file after:</source>
+        <translation>備份記錄檔，每滿：</translation>
+    </message>
+    <message>
+        <source>days</source>
+        <translation>天</translation>
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation>行為</translation>
+    </message>
+    <message>
+        <source>Delete backup logs older than:</source>
+        <translation>刪除早於指定時間的備份紀錄檔：</translation>
+    </message>
+    <message>
+        <source>Use proxy for BitTorrent purposes</source>
+        <translation>對 BitTorrent 使用代理伺服器</translation>
+    </message>
+    <message>
+        <source>years</source>
+        <translation>年</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation>儲存路徑：</translation>
+    </message>
+    <message>
+        <source>months</source>
+        <translation>月</translation>
+    </message>
+    <message>
+        <source>Remember Multi-Rename settings</source>
+        <translation>重新命名多重重新命名設定</translation>
+    </message>
+    <message>
+        <source>Use proxy for general purposes</source>
+        <translation>對一般目的使用代理伺服器</translation>
+    </message>
+    <message>
+        <source>Use proxy for RSS purposes</source>
+        <translation>對 RSS 使用代理伺服器</translation>
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation>插座傳送緩衝大小 [0：系統預設值]：</translation>
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation>連出埠（最大）[0：停用]：</translation>
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation>插座接收緩衝大小 [0：系統預設值]：</translation>
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation>使用子分類</translation>
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation>新增至佇列頂部</translation>
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation>停止 Tracker 逾時 [0：停用]：</translation>
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation>連出埠（最小）[0：停用]：</translation>
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
+        <translation>UPnP 租約期限 [0：永久租約]：</translation>
+    </message>
+    <message>
+        <source>Bdecode depth limit:</source>
+        <translation>Bdecode 深度限制：</translation>
+    </message>
+    <message>
+        <source>Bdecode token limit:</source>
+        <translation>Bdecode 權杖限制：</translation>
+    </message>
+    <message>
+        <source>When total seeding time reaches</source>
+        <translation>當總種子時間達到</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(無)</translation>
+    </message>
+    <message>
+        <source>Python executable path (may require restart):</source>
+        <translation>Python 可執行檔路徑（可能需要重新啟動）：</translation>
+    </message>
+    <message>
+        <source>Resets to default if empty</source>
+        <translation>若為空，則重設回預設值</translation>
+    </message>
+    <message>
+        <source>Perform hostname lookup via proxy</source>
+        <translation>透過代理伺服器執行主機名稱查詢</translation>
+    </message>
+    <message>
+        <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
+        <translation>若啟用「混合模式」，I2P torrent 也允許從追蹤者以外的來源取得 peer，並連線到一般 IP，不提供任何匿名化。若使用者對 I2P 的匿名化不感興趣，但仍希望可以連線至 I2P peer，這可能會很有用。</translation>
+    </message>
+    <message>
+        <source>DHT bootstrap nodes:</source>
+        <translation>DHT 自舉節點：</translation>
+    </message>
+    <message>
+        <source>When inactive seeding time reaches</source>
+        <translation>當不活躍種子時間達到</translation>
+    </message>
+    <message>
+        <source>Mixed mode</source>
+        <translation>混合模式</translation>
+    </message>
+    <message>
+        <source>.torrent file size limit:</source>
+        <translation>.torrent 檔案大小限制：</translation>
+    </message>
+    <message>
+        <source>(Auto detect if empty)</source>
+        <translation>（若為空則自動偵測）</translation>
+    </message>
+    <message>
+        <source>Keep unselected files in ".unwanted" folder</source>
+        <translation>將未選取的檔案保留在「.unwanted」資料夾中</translation>
+    </message>
+    <message>
+        <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
+        <translation>啟用已下載檔案的 Mark-of-the-Web (MOTW)（需要 macOS 或 Windows）：</translation>
+    </message>
+    <message>
+        <source> sec</source>
+        <translation>秒</translation>
+    </message>
+    <message>
+        <source>I2P outbound quantity:</source>
+        <translation>I2P 傳出量：</translation>
+    </message>
+    <message>
+        <source>I2P inbound quantity:</source>
+        <translation>I2P 傳入量：</translation>
+    </message>
+    <message>
+        <source>Hashing threads:</source>
+        <translation>雜湊執行緒：</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
         <translation>物理内存（RAM）使用限制：</translation>
+    </message>
+    <message>
+        <source>Use alternative WebUI</source>
+        <translation>使用替補 WebUI</translation>
+    </message>
+    <message>
+        <source>Disk cache expiry interval:</source>
+        <translation>磁碟快取到期區間</translation>
+    </message>
+    <message>
+        <source>I2P outbound length:</source>
+        <translation>I2P 傳出長度：</translation>
+    </message>
+    <message>
+        <source>I2P (Experimental)</source>
+        <translation>I2P（實驗性）</translation>
+    </message>
+    <message>
+        <source>Disk IO type (requires restart):</source>
+        <translation>磁碟 IO 類型（必須重新啟動）：</translation>
+    </message>
+    <message>
+        <source>The alternative WebUI files location cannot be blank.</source>
+        <translation>替補的 WebUI 檔案位置不應該為空白。</translation>
+    </message>
+    <message>
+        <source>Disk cache:</source>
+        <translation>磁碟快取：</translation>
+    </message>
+    <message>
+        <source>Write-through</source>
+        <translation>連續寫入</translation>
+    </message>
+    <message>
+        <source>WebUI</source>
+        <translation>WebUI</translation>
+    </message>
+    <message>
+        <source>The WebUI password must be at least 6 characters long.</source>
+        <translation>WebUI 密碼必須至少 6 個字元長。</translation>
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes:</source>
+        <translation>合併讀取與寫入：</translation>
+    </message>
+    <message>
+        <source>I2P inbound length:</source>
+        <translation>I2P 傳入長度：</translation>
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
+        <translation>其將文字附加到視窗標題以協助區分 qBittorrent 實體</translation>
+    </message>
+    <message>
+        <source>The WebUI username must be at least 3 characters long.</source>
+        <translation>WebUI 使用者名稱必須至少 3 個字元長。</translation>
+    </message>
+    <message>
+        <source>Same host request delay:</source>
+        <translation>相同主機請求延遲：</translation>
+    </message>
+    <message>
+        <source>Customize application instance name:</source>
+        <translation>自訂應用程式實體名稱：</translation>
+    </message>
+    <message>
+        <source>Color scheme:</source>
+        <translation>配色方案：</translation>
+    </message>
+    <message>
+        <source>Show external IP in status bar</source>
+        <translation>在狀態列中顯示外部 IP</translation>
+    </message>
+    <message>
+        <source>Fetched trackers</source>
+        <translation>擷取 tracker</translation>
+    </message>
+    <message>
+        <source>Confirm when deleting torrents</source>
+        <translation>當刪除 torrent 時必須確認</translation>
+    </message>
+    <message>
+        <source>Ignore SSL errors:</source>
+        <translation>忽略 SSL 錯誤：</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>深色</translation>
+    </message>
+    <message>
+        <source>Delete files permanently</source>
+        <translation>永久刪除檔案</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Use alternating row colors</source>
+        <translation>單雙列交替背景顏色</translation>
+    </message>
+    <message>
+        <source>Display full announce URL in the Tracker column</source>
+        <translation>在 tracker 欄中顯示完整公告 URL</translation>
+    </message>
+    <message>
+        <source>URL:</source>
+        <translation>URL：</translation>
+    </message>
+    <message>
+        <source>Transfer list</source>
+        <translation>傳輸清單</translation>
+    </message>
+    <message>
+        <source>The announce port must be between 0 and 65535.</source>
+        <translation>公告連接埠必須在 0 到 65535 間。</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>淺色</translation>
+    </message>
+    <message>
+        <source>Automatically append these trackers to new downloads:</source>
+        <translation>自動將這些追蹤器附加到新下載中：</translation>
+    </message>
+    <message>
+        <source>Downloading torrents:</source>
+        <translation>下載中的 torrent：</translation>
+    </message>
+    <message>
+        <source>Start / stop torrent</source>
+        <translation>開始 / 停止 torrent</translation>
+    </message>
+    <message>
+        <source>Send test email</source>
+        <translation>傳送測試電子郵件</translation>
+    </message>
+    <message>
+        <source>Completed torrents:</source>
+        <translation>已完成的 torrent：</translation>
+    </message>
+    <message>
+        <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
+        <translation>啟用 cookie 安全旗標（需要 HTTPS 或 localhost 連線）</translation>
+    </message>
+    <message>
+        <source>When duplicate torrent is being added</source>
+        <translation>新增重複的 torrent 時</translation>
+    </message>
+    <message>
+        <source>Action on double-click</source>
+        <translation>按兩下時的行動</translation>
+    </message>
+    <message>
+        <source>Save statistics interval:</source>
+        <translation>儲存統計資料間隔：</translation>
+    </message>
+    <message>
+        <source>Shows a confirmation dialog upon torrent deletion</source>
+        <translation>Torrent 刪除時顯示確認對話框</translation>
+    </message>
+    <message>
+        <source>Run on torrent finished:</source>
+        <translation>在 torrent 結束時執行：</translation>
+    </message>
+    <message>
+        <source>Attempted to send email. Check your inbox to confirm success</source>
+        <translation>嘗試發送電子郵件。請檢查您的收件匣以確認是否成功</translation>
+    </message>
+    <message>
+        <source>Automatically append trackers from URL to new downloads:</source>
+        <translation>自動將 URL 的 tracker 附加到新下載的檔案：</translation>
+    </message>
+    <message>
+        <source>Torrent content removing mode:</source>
+        <translation>Torrent 內容移除模式：</translation>
+    </message>
+    <message>
+        <source>Move files to trash (if possible)</source>
+        <translation>移動檔案到回收桶（若可能）</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>停止 torrent</translation>
+    </message>
+    <message>
+        <source>Use Category paths in Manual Mode</source>
+        <translation>在手動模式下使用分類路徑</translation>
+    </message>
+    <message>
+        <source>List of alternative WebUI</source>
+        <translation>替代 WebUI 清單</translation>
+    </message>
+    <message>
+        <source>Run on torrent added:</source>
+        <translation>在 torrent 新增時執行：</translation>
+    </message>
+    <message>
+        <source>Port reported to trackers (requires restart) [0: listening port]:</source>
+        <translation>回報給 tracker 的連接埠（需要重新啟動）[0：監聽埠]：</translation>
+    </message>
+    <message>
+        <source>User interface language:</source>
+        <translation>使用者介面語言：</translation>
+    </message>
+    <message>
+        <source>Merge trackers to existing torrent</source>
+        <translation>合併追蹤器到既有的 torrent</translation>
+    </message>
+    <message>
+        <source>Confirm torrent recheck:</source>
+        <translation>確認 torrent 重新檢查：</translation>
+    </message>
+    <message>
+        <source>Custom WebUI settings</source>
+        <translation>自訂 WebUI 設定</translation>
+    </message>
+    <message>
+        <source>Following settings are WebUI only</source>
+        <translation>以下設定僅適用於 WebUI</translation>
+    </message>
+    <message>
+        <source>Simple pread/pwrite</source>
+        <translation>簡易預先讀取/預先寫入</translation>
+    </message>
+    <message>
+        <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
+        <translation>根據適當的分類路徑而非預設路徑解析相對儲存路徑</translation>
+    </message>
+    <message>
+        <source>No action</source>
+        <translation>無行動</translation>
+    </message>
+    <message>
+        <source>Auto hide zero status filters</source>
+        <translation>自動隱藏零狀態過濾條件</translation>
+    </message>
+    <message>
+        <source>Interface</source>
+        <translation>界面</translation>
+    </message>
+    <message>
+        <source>Log Files</source>
+        <translation>紀錄檔</translation>
+    </message>
+    <message>
+        <source>Enable optimized table rendering (experimental)</source>
+        <translation>啟用最佳化的表格繪製（實驗性）</translation>
+    </message>
+    <message>
+        <source>Note: The password is saved unencrypted</source>
+        <translation>注意：密碼以未加密形式儲存</translation>
+    </message>
+    <message>
+        <source>Internal hostname resolver cache expiry interval</source>
+        <translation>內部主機名稱解析器快取過期間隔</translation>
+    </message>
+    <message>
+        <source>sec</source>
+        <translation>秒</translation>
     </message>
 </context>
 <context>
@@ -1540,7 +2077,7 @@
     <message>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation>客戶端</translation>
+        <translation>用戶端</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -1595,7 +2132,11 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>新增下載者……</translation>
+        <translation>新增下載者...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation>Peer ID 用戶端</translation>
     </message>
 </context>
 <context>
@@ -1632,7 +2173,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation>追蹤者</translation>
+        <translation>Trackers</translation>
     </message>
     <message>
         <source>Peers</source>
@@ -1818,6 +2359,118 @@
         <source>Progress:</source>
         <translation>進度：</translation>
     </message>
+    <message>
+        <source>Use regular expressions</source>
+        <translation>使用正規表示式</translation>
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation>檔案名稱</translation>
+    </message>
+    <message>
+        <source>Filename + Extension</source>
+        <translation>檔案名稱 + 副檔名</translation>
+    </message>
+    <message>
+        <source>Enumerate Files</source>
+        <translation>列舉檔案</translation>
+    </message>
+    <message>
+        <source>Rename failed: file or folder already exists</source>
+        <translation>重新命名失敗：檔案或資料已存在</translation>
+    </message>
+    <message>
+        <source>Toggle Selection</source>
+        <translation>切換選取</translation>
+    </message>
+    <message>
+        <source>Replacement Input</source>
+        <translation>取代輸入</translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation>取代</translation>
+    </message>
+    <message>
+        <source>Extension</source>
+        <translation>副檔名</translation>
+    </message>
+    <message>
+        <source>Replace All</source>
+        <translation>取代全部</translation>
+    </message>
+    <message>
+        <source>Include files</source>
+        <translation>包含檔案</translation>
+    </message>
+    <message>
+        <source>Include folders</source>
+        <translation>包含資料夾</translation>
+    </message>
+    <message>
+        <source>Search Files</source>
+        <translation>搜尋檔案</translation>
+    </message>
+    <message>
+        <source>Case sensitive</source>
+        <translation>區分大小寫</translation>
+    </message>
+    <message>
+        <source>Match all occurrences</source>
+        <translation>符合所有出現的狀況</translation>
+    </message>
+    <message>
+        <source>Copy web seed URL</source>
+        <translation>複製 web 種子 URL</translation>
+    </message>
+    <message>
+        <source>Replace option</source>
+        <translation>取代選項</translation>
+    </message>
+    <message>
+        <source>Edit web seed URL...</source>
+        <translation>編輯 web 種子 URL……</translation>
+    </message>
+    <message>
+        <source>Web seed URL:</source>
+        <translation>網頁種子 URL：</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>是</translation>
+    </message>
+    <message>
+        <source>Ratio / Time Active (in months), indicates how popular the torrent is</source>
+        <translation>比例 / 活躍時間（以月為單位），表示該 torrent 的受歡迎程度</translation>
+    </message>
+    <message>
+        <source>Popularity:</source>
+        <translation>人氣：</translation>
+    </message>
+    <message>
+        <source>Apply to which filename part</source>
+        <translation>套用至哪個檔案名稱部份</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>否</translation>
+    </message>
+    <message>
+        <source>Remove web seed</source>
+        <translation>移除 web 種子</translation>
+    </message>
+    <message>
+        <source>Web seed editing</source>
+        <translation>編輯網頁種子中</translation>
+    </message>
+    <message>
+        <source>Add web seeds...</source>
+        <translation>新增 web 種子……</translation>
+    </message>
+    <message>
+        <source>Private:</source>
+        <translation>私人：</translation>
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -1947,14 +2600,6 @@
         <translation>已完成 (0)</translation>
     </message>
     <message>
-        <source>Resumed (0)</source>
-        <translation>繼續 (0)</translation>
-    </message>
-    <message>
-        <source>Paused (0)</source>
-        <translation>暫停 (0)</translation>
-    </message>
-    <message>
         <source>Active (0)</source>
         <translation>活躍的 (0)</translation>
     </message>
@@ -1981,14 +2626,6 @@
     <message>
         <source>Completed (%1)</source>
         <translation>已完成 (%1)</translation>
-    </message>
-    <message>
-        <source>Paused (%1)</source>
-        <translation>暫停 (%1)</translation>
-    </message>
-    <message>
-        <source>Resumed (%1)</source>
-        <translation>繼續 (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2034,6 +2671,42 @@
         <source>Checking (0)</source>
         <translation>正在檢查 (0)</translation>
     </message>
+    <message>
+        <source>Moving (%1)</source>
+        <translation>移動中 (%1)</translation>
+    </message>
+    <message>
+        <source>Moving (0)</source>
+        <translation>移動中 (0)</translation>
+    </message>
+    <message>
+        <source>Running (0)</source>
+        <translation>正在執行 (0)</translation>
+    </message>
+    <message>
+        <source>Stopped (0)</source>
+        <translation>已停止 (0)</translation>
+    </message>
+    <message>
+        <source>Stopped (%1)</source>
+        <translation>已停止 (%1)</translation>
+    </message>
+    <message>
+        <source>Running (%1)</source>
+        <translation>正在執行 (%1)</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>移除 torrents</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation>啟動 torrent</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation>停止 torrent</translation>
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2049,11 +2722,6 @@
         <source>Size</source>
         <comment>i.e: torrent size</comment>
         <translation>大小</translation>
-    </message>
-    <message>
-        <source>Done</source>
-        <comment>% Done</comment>
-        <translation>完成</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2110,7 +2778,7 @@
     </message>
     <message>
         <source>Tracker</source>
-        <translation>追蹤者</translation>
+        <translation>Tracker</translation>
     </message>
     <message>
         <source>Down Limit</source>
@@ -2186,6 +2854,38 @@
         <source>Availability</source>
         <translation>可得性</translation>
     </message>
+    <message>
+        <source>Reannounce In</source>
+        <translation>重新發佈於</translation>
+    </message>
+    <message>
+        <source>Private</source>
+        <translation>私人</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation>進度</translation>
+    </message>
+    <message>
+        <source>Info Hash v2</source>
+        <translation>資訊雜湊值 v2</translation>
+    </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation>資訊雜湊值 v1</translation>
+    </message>
+    <message>
+        <source>Incomplete Save Path</source>
+        <translation>不完整的儲存路徑</translation>
+    </message>
+    <message>
+        <source>Popularity</source>
+        <translation>人氣</translation>
+    </message>
+    <message>
+        <source>Status Icon</source>
+        <translation>狀態圖示</translation>
+    </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
@@ -2207,7 +2907,7 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>追蹤者 URL：</translation>
+        <translation>Tracker URL：</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -2239,19 +2939,15 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>複製追蹤者 URL</translation>
-    </message>
-    <message>
-        <source>Add a new tracker...</source>
-        <translation>新增追蹤者…</translation>
+        <translation>複製 Tracker URL</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>編輯追蹤者 URL…</translation>
+        <translation>編輯 Tracker URL…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>編輯追蹤者</translation>
+        <translation>編輯 Tracker</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2259,7 +2955,7 @@
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation>移除追蹤者</translation>
+        <translation>移除 Tracker</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -2291,18 +2987,30 @@
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation>下载时间</translation>
+        <translation>下載時間</translation>
+    </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation>新增 Tracker…</translation>
+    </message>
+    <message>
+        <source>Renamed</source>
+        <translation>已重新命名</translation>
+    </message>
+    <message>
+        <source>Original</source>
+        <translation>原始</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
-        <source>Trackers addition dialog</source>
-        <translation>增加追蹤者對話框</translation>
+        <source>List of trackers to add (one per line):</source>
+        <translation>要增加的 Tracker 清單 (每行一個)：</translation>
     </message>
     <message>
-        <source>List of trackers to add (one per line):</source>
-        <translation>要增加的追蹤者清單 (每行一個)：</translation>
+        <source>Add trackers</source>
+        <translation>新增 Tracker</translation>
     </message>
 </context>
 <context>
@@ -2311,10 +3019,6 @@
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
         <translation>%1 前</translation>
-    </message>
-    <message>
-        <source>Paused</source>
-        <translation>暫停</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2346,7 +3050,7 @@
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation>正在下載中介資料</translation>
+        <translation>正在下載詮釋資料</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -2378,7 +3082,15 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[F] 正在下載詮釋資</translation>
+        <translation>[F] 正在下載詮釋資料</translation>
+    </message>
+    <message>
+        <source>Stopped</source>
+        <translation>已停止</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -2397,7 +3109,15 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation>追蹤器</translation>
+        <translation>Trackers</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation>折疊/展開</translation>
+    </message>
+    <message>
+        <source>Collapse/expand category</source>
+        <translation>折疊/展開分類</translation>
     </message>
 </context>
 <context>
@@ -2413,26 +3133,6 @@
     <message>
         <source>Rename</source>
         <translation>重新命名</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation>繼續</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation>強制繼續</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation>暫停</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation>刪除</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2509,20 +3209,8 @@
         <translation>依順序下載</translation>
     </message>
     <message>
-        <source>Force Recheck</source>
-        <translation>強制重新檢查</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>新分類</translation>
-    </message>
-    <message>
-        <source>Location</source>
-        <translation>位置</translation>
-    </message>
-    <message>
-        <source>New name</source>
-        <translation>新名稱</translation>
     </message>
     <message>
         <source>Set location</source>
@@ -2537,16 +3225,8 @@
         <translation>編輯分類</translation>
     </message>
     <message>
-        <source>Save path</source>
-        <translation>儲存路徑</translation>
-    </message>
-    <message>
         <source>Comma-separated tags:</source>
         <translation>逗號分隔標籤：</translation>
-    </message>
-    <message>
-        <source>Add Tags</source>
-        <translation>新增標籤</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2590,7 +3270,59 @@
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation>导出 .torrent</translation>
+        <translation>匯出 .torrent</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <source>Rename Files...</source>
+        <translation>重新命名檔案……</translation>
+    </message>
+    <message>
+        <source>Renaming</source>
+        <translation>重新命名</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>註解</translation>
+    </message>
+    <message>
+        <source>Force Start</source>
+        <translation>強制啟動</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation>儲存路徑：</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation>位置：</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>停止</translation>
+    </message>
+    <message>
+        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
+        <translation>自動模式代表了多個 torrent 屬性 (例如儲存路徑) 將會由相關的分類來決定</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>啟動</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation>新名稱：</translation>
+    </message>
+    <message>
+        <source>Add tags</source>
+        <translation>新增標籤</translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation>分類：</translation>
     </message>
 </context>
 <context>
@@ -2616,8 +3348,12 @@
         <translation>上傳╱下載比率</translation>
     </message>
     <message>
-        <source>minutes</source>
-        <translation>分鐘</translation>
+        <source>total minutes</source>
+        <translation>總分鐘</translation>
+    </message>
+    <message>
+        <source>inactive minutes</source>
+        <translation>不活躍分鐘</translation>
     </message>
 </context>
 <context>
@@ -2626,16 +3362,16 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation>刪除確認</translation>
+        <source>Remove torrent(s)</source>
+        <translation>移除 torrent(s)</translation>
     </message>
     <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation>也把硬碟裡的檔案刪除</translation>
+        <source>Also remove the content files</source>
+        <translation>也移除內容檔案</translation>
     </message>
     <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation>刪除確認 - qBittorrent</translation>
+        <source>Remove tracker</source>
+        <translation>移除追蹤者</translation>
     </message>
 </context>
 <context>
@@ -2740,7 +3476,7 @@
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation>外掛路徑：</translation>
+        <translation>附加元件路徑：</translation>
     </message>
     <message>
         <source>URL or local directory</source>
@@ -2748,7 +3484,7 @@
     </message>
     <message>
         <source>Install plugin</source>
-        <translation>安裝外掛</translation>
+        <translation>安裝附加元件</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2763,7 +3499,7 @@
     </message>
     <message>
         <source>All plugins</source>
-        <translation>所有外掛</translation>
+        <translation>所有附加元件</translation>
     </message>
     <message>
         <source>Size:</source>
@@ -2779,7 +3515,7 @@
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>搜尋外掛…</translation>
+        <translation>搜尋附加元件…</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -2829,6 +3565,34 @@
         <source>showing</source>
         <translation>正在顯示</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>點選視窗右下角的「搜尋附加元件…」按鈕來安裝一些吧。</translation>
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation>沒有安裝任何搜尋附加元件。</translation>
+    </message>
+    <message>
+        <source>Select category</source>
+        <translation>選取分類</translation>
+    </message>
+    <message>
+        <source>Min size prefix</source>
+        <translation>最小大小前綴</translation>
+    </message>
+    <message>
+        <source>Start a search above.</source>
+        <translation>在上方開始搜尋。</translation>
+    </message>
+    <message>
+        <source>Max size prefix</source>
+        <translation>最大大小前綴</translation>
+    </message>
+    <message>
+        <source>Select plugins</source>
+        <translation>選取外掛程式</translation>
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2838,11 +3602,11 @@
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation>安裝新的外掛</translation>
+        <translation>安裝新的附加元件</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation>您可以在這裡取得新的搜尋引擎外掛：</translation>
+        <translation>您可以在這裡取得新的搜尋引擎附加元件：</translation>
     </message>
     <message>
         <source>Close</source>
@@ -2850,14 +3614,14 @@
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation>已安裝的搜尋外掛：</translation>
+        <translation>已安裝的搜尋附加元件：</translation>
     </message>
     <message>
         <source>Enabled</source>
         <translation>已啟用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告：請確保您從這些搜尋引擎中下載 torrent 時遵守您所在國家的版權法規。</translation>
     </message>
     <message>
@@ -2866,7 +3630,7 @@
     </message>
     <message>
         <source>Search plugins</source>
-        <translation>搜尋外掛</translation>
+        <translation>搜尋附加元件</translation>
     </message>
 </context>
 <context>
@@ -2884,12 +3648,20 @@
         <translation>下載者</translation>
     </message>
     <message>
-        <source>Search engine</source>
-        <translation>搜尋引擎</translation>
-    </message>
-    <message>
         <source>Seeders</source>
         <translation>種子</translation>
+    </message>
+    <message>
+        <source>Published On</source>
+        <translation>發佈於</translation>
+    </message>
+    <message>
+        <source>Engine URL</source>
+        <translation>引擎 URL</translation>
+    </message>
+    <message>
+        <source>Engine</source>
+        <translation>引擎</translation>
     </message>
 </context>
 <context>
@@ -2953,20 +3725,8 @@
         <translation>新增標籤……</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>刪除 torrent</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>標籤：</translation>
-    </message>
-    <message>
-        <source>Pause torrents</source>
-        <translation>暫停 torrent</translation>
-    </message>
-    <message>
-        <source>Resume torrents</source>
-        <translation>繼續 torrent</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -2979,6 +3739,18 @@
     <message>
         <source>Remove tag</source>
         <translation>移除標籤</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>移除 torrents</translation>
+    </message>
+    <message>
+        <source>Start torrents</source>
+        <translation>啟動 torrent</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>
@@ -3028,7 +3800,7 @@
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>一個以 C++ 撰寫，基於 Qt 工具箱和 libtorrent-rasterbar 的進階 BitTorrent 客戶端。</translation>
+        <translation>一個以 C++ 撰寫，基於 Qt 工具箱和 libtorrent-rasterbar 的進階 BitTorrent 用戶端。</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3119,6 +3891,30 @@
     <message>
         <source>Download link</source>
         <translation>下載連結</translation>
+    </message>
+    <message>
+        <source>Search has finished</source>
+        <translation>搜尋完成</translation>
+    </message>
+    <message>
+        <source>An error occurred during search...</source>
+        <translation>搜尋時遇到錯誤…</translation>
+    </message>
+    <message>
+        <source>Close tab</source>
+        <translation>關閉分頁</translation>
+    </message>
+    <message>
+        <source>Searching...</source>
+        <translation>正在搜尋…</translation>
+    </message>
+    <message>
+        <source>Search aborted</source>
+        <translation>搜尋中止</translation>
+    </message>
+    <message>
+        <source>Close all tabs</source>
+        <translation>關閉所有分頁</translation>
     </message>
 </context>
 <context>
@@ -3229,6 +4025,30 @@
     <message>
         <source>Download torrent</source>
         <translation>下載 torrent</translation>
+    </message>
+    <message>
+        <source>Edit feed URL...</source>
+        <translation>編輯 feed URL……</translation>
+    </message>
+    <message>
+        <source>Unable to update URL</source>
+        <translation>無法更新 URL</translation>
+    </message>
+    <message>
+        <source>URL is unchanged</source>
+        <translation>URL 未變更</translation>
+    </message>
+    <message>
+        <source>URL cannot be empty</source>
+        <translation>URL 不能為空</translation>
+    </message>
+    <message>
+        <source>Open link</source>
+        <translation>開啟連結</translation>
+    </message>
+    <message>
+        <source>Author: </source>
+        <translation>作者：</translation>
     </message>
 </context>
 <context>
@@ -3347,7 +4167,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>您確定要移除所選的下載規則嗎？</translation>
+        <translation>您確定要移除選取的下載規則嗎？</translation>
     </message>
     <message>
         <source>Use global settings</source>
@@ -3418,10 +4238,6 @@
         <translation>若文字順序很重要請使用 * 而非空格。</translation>
     </message>
     <message>
-        <source>Add Paused:</source>
-        <translation>加入已暫停的：</translation>
-    </message>
-    <message>
         <source>Please type the name of the new download rule.</source>
         <translation>請輸入新下載規則的名稱。</translation>
     </message>
@@ -3472,31 +4288,51 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
+    </message>
+    <message>
+        <source>Add Tags:</source>
+        <translation>新增標籤：</translation>
+    </message>
+    <message>
+        <source>Remove rule</source>
+        <translation>移除規則</translation>
+    </message>
+    <message>
+        <source>Add rule</source>
+        <translation>新增規則</translation>
+    </message>
+    <message>
+        <source>Add Stopped:</source>
+        <translation>新增已停止的：</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation>刪除 torrent</translation>
+        <source>Remove torrents</source>
+        <translation>移除 torrents</translation>
     </message>
     <message>
-        <source>Resume torrents</source>
-        <translation>繼續 torrent</translation>
+        <source>All</source>
+        <translation>所有</translation>
     </message>
     <message>
-        <source>All (%1)</source>
-        <translation>全部 (%1)</translation>
+        <source>Trackerless</source>
+        <translation>沒有 Tracker</translation>
     </message>
     <message>
-        <source>Trackerless (%1)</source>
-        <translation>缺少追蹤者 (%1)</translation>
+        <source>Start torrents</source>
+        <translation>啟動 torrent</translation>
     </message>
     <message>
-        <source>Pause torrents</source>
-        <translation>暫停 torrent</translation>
+        <source>Remove tracker</source>
+        <translation>移除追蹤者</translation>
+    </message>
+    <message>
+        <source>Stop torrents</source>
+        <translation>停止 torrent</translation>
     </message>
 </context>
 <context>
@@ -3508,6 +4344,463 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Unread</source>
         <translation>未讀</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLogWidget</name>
+    <message>
+        <source>General</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>Blocked</source>
+        <translation>已封鎖</translation>
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation>未知</translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation>全部</translation>
+    </message>
+    <message>
+        <source>showing</source>
+        <translation>正在顯示</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>複製</translation>
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation>選取全部</translation>
+    </message>
+    <message>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <source>Log Type</source>
+        <translation>紀錄檔類型</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>清除</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <source>Information Messages</source>
+        <translation>資訊訊息</translation>
+    </message>
+    <message>
+        <source>Warning Messages</source>
+        <translation>警告訊息</translation>
+    </message>
+    <message>
+        <source>Filter logs</source>
+        <translation>過濾紀錄檔</translation>
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation>已封鎖的 IP</translation>
+    </message>
+    <message>
+        <source>out of</source>
+        <translation>中的</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>狀態</translation>
+    </message>
+    <message>
+        <source>Timestamp</source>
+        <translation>時間戳</translation>
+    </message>
+    <message>
+        <source>Clear All</source>
+        <translation>清除全部</translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>訊息</translation>
+    </message>
+    <message>
+        <source>Log Levels:</source>
+        <translation>紀錄檔層級：</translation>
+    </message>
+    <message>
+        <source>Reason</source>
+        <translation>理由</translation>
+    </message>
+    <message>
+        <source>item</source>
+        <translation>項目</translation>
+    </message>
+    <message>
+        <source>IP</source>
+        <translation>IP</translation>
+    </message>
+    <message>
+        <source>Banned</source>
+        <translation>已封鎖</translation>
+    </message>
+    <message>
+        <source>Normal Messages</source>
+        <translation>一般訊息</translation>
+    </message>
+    <message>
+        <source>Critical</source>
+        <translation>重要</translation>
+    </message>
+    <message>
+        <source>Critical Messages</source>
+        <translation>重要訊息</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>一般</translation>
+    </message>
+    <message>
+        <source>items</source>
+        <translation>項目</translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation>結果</translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation>資訊</translation>
+    </message>
+    <message>
+        <source>Choose a log level...</source>
+        <translation>選擇紀錄檔層級……</translation>
+    </message>
+</context>
+<context>
+    <name>TrackersFilterWidget</name>
+    <message>
+        <source>Are you sure you want to remove tracker %1 from all torrents?</source>
+        <translation>您確定要從所有 torrent 移除 tracker %1嗎？</translation>
+    </message>
+</context>
+<context>
+    <name>Category</name>
+    <message>
+        <source>Unable to edit category</source>
+        <translation>無法編輯分類</translation>
+    </message>
+    <message>
+        <source>OK</source>
+        <translation>確定</translation>
+    </message>
+    <message>
+        <source>Unable to create category</source>
+        <translation>無法建立分類</translation>
+    </message>
+    <message>
+        <source>Unable to set category</source>
+        <translation>無法設定分類</translation>
+    </message>
+</context>
+<context>
+    <name>CookiesDialog</name>
+    <message>
+        <source>Domain</source>
+        <translation>網域</translation>
+    </message>
+    <message>
+        <source>Manage Cookies</source>
+        <translation>管理 cookie…</translation>
+    </message>
+    <message>
+        <source>Add Cookie</source>
+        <translation>新增 Cookie</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <source>Expiration Date</source>
+        <translation>到期日</translation>
+    </message>
+    <message>
+        <source>Value</source>
+        <translation>值</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名稱</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>路徑</translation>
+    </message>
+</context>
+<context>
+    <name>confirmAutoTMMDialog</name>
+    <message>
+        <source>Enable automatic torrent management</source>
+        <translation>啟用自動 torrent 管理</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
+        <translation>您確定要為選定的 torrent 啟用自動 Torrent 管理嗎？它們可能會被重新安置。</translation>
+    </message>
+</context>
+<context>
+    <name>confirmRecheckDialog</name>
+    <message>
+        <source>Are you sure you want to recheck the selected torrent(s)?</source>
+        <translation>您確定要重新檢查選取的 torrent 嗎？</translation>
+    </message>
+    <message>
+        <source>Recheck confirmation</source>
+        <translation>確認重新檢查</translation>
+    </message>
+</context>
+<context>
+    <name>SearchWidget</name>
+    <message>
+        <source>Close tab</source>
+        <translation>關閉分頁</translation>
+    </message>
+</context>
+<context>
+    <name>Login</name>
+    <message>
+        <source>qBittorrent WebUI</source>
+        <translation>qBittorrent WebUI</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>密碼</translation>
+    </message>
+    <message>
+        <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
+        <translation>需要 JavaScript！您必須啟用 JavaScript 以讓 WebUI 正常運作</translation>
+    </message>
+    <message>
+        <source>Login</source>
+        <translation>登入</translation>
+    </message>
+    <message>
+        <source>Server response:</source>
+        <translation>伺服器回應：</translation>
+    </message>
+    <message>
+        <source>Unable to log in, server is probably unreachable.</source>
+        <translation>無法登入，可能無法連線至伺服器。</translation>
+    </message>
+    <message>
+        <source>Username</source>
+        <translation>使用者名稱</translation>
+    </message>
+    <message>
+        <source>Invalid Username or Password.</source>
+        <translation>無效的使用者名稱或密碼。</translation>
+    </message>
+</context>
+<context>
+    <name>TorrentCreator</name>
+    <message>
+        <source>Private</source>
+        <translation>私人</translation>
+    </message>
+    <message>
+        <source>Source</source>
+        <translation>來源</translation>
+    </message>
+    <message>
+        <source>Queued</source>
+        <translation>佇列</translation>
+    </message>
+    <message>
+        <source>Unable to create torrent.</source>
+        <translation>無法建立 torrent。</translation>
+    </message>
+    <message>
+        <source>Private
+                torrent (Won't distribute on DHT network)</source>
+        <translation>私密
+                torrent（不會在 DHT 網路散佈）</translation>
+    </message>
+    <message>
+        <source>Unable to export torrent file</source>
+        <translation>無法匯出 torrent 檔案</translation>
+    </message>
+    <message>
+        <source>Create New Torrent</source>
+        <translation>建立新的 Torrent</translation>
+    </message>
+    <message>
+        <source>Comments:</source>
+        <translation>註解：</translation>
+    </message>
+    <message>
+        <source>Download Torrent</source>
+        <translation>下載 torrent</translation>
+    </message>
+    <message>
+        <source>Status Icon</source>
+        <translation>狀態圖示</translation>
+    </message>
+    <message>
+        <source>Web seed URLs:</source>
+        <translation>網頁種子 URL：</translation>
+    </message>
+    <message>
+        <source>Failed</source>
+        <translation>失敗</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>註解</translation>
+    </message>
+    <message>
+        <source>Finished</source>
+        <translation>已結束</translation>
+    </message>
+    <message>
+        <source>Settings</source>
+        <translation>設定</translation>
+    </message>
+    <message>
+        <source>Error Message</source>
+        <translation>錯誤訊息</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>狀態</translation>
+    </message>
+    <message>
+        <source>Align to piece boundary for files larger
+                than:</source>
+        <translation>對齊大於以下內容的檔案
+                邊界：</translation>
+    </message>
+    <message>
+        <source>Select file/folder to share:</source>
+        <translation>選取要分享的檔案/資料夾：</translation>
+    </message>
+    <message>
+        <source>Piece Size</source>
+        <translation>區塊大小</translation>
+    </message>
+    <message>
+        <source>Progress</source>
+        <translation>進度</translation>
+    </message>
+    <message>
+        <source>Completed On</source>
+        <translation>完成於</translation>
+    </message>
+    <message>
+        <source>Hybrid</source>
+        <translation>混合</translation>
+    </message>
+    <message>
+        <source>Unable to load torrent creation tasks</source>
+        <translation>無法載入 torrent 建立任務</translation>
+    </message>
+    <message>
+        <source>Optimize
+                    alignment</source>
+        <translation>最佳化
+                    對齊</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>N/A</translation>
+    </message>
+    <message>
+        <source>Tracker URLs:</source>
+        <translation>追蹤者 URL：</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete selected tasks?</source>
+        <translation>您確定您想要刪除選定的任務嗎？</translation>
+    </message>
+    <message>
+        <source>Path:</source>
+        <translation>路徑：</translation>
+    </message>
+    <message>
+        <source>Create Torrent</source>
+        <translation>製作 torrent</translation>
+    </message>
+    <message>
+        <source>Auto</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Started On</source>
+        <translation>開始於</translation>
+    </message>
+    <message>
+        <source>Web Seeds</source>
+        <translation>網頁種子</translation>
+    </message>
+    <message>
+        <source>Start
+                seeding
+                immediately</source>
+        <translation>立刻
+                開始
+                做種</translation>
+    </message>
+    <message>
+        <source>Format</source>
+        <translation>格式</translation>
+    </message>
+    <message>
+        <source>Torrent format:</source>
+        <translation>Torrent 格式：</translation>
+    </message>
+    <message>
+        <source>Source Path</source>
+        <translation>來源路徑</translation>
+    </message>
+    <message>
+        <source>Added On</source>
+        <translation>增加於</translation>
+    </message>
+    <message>
+        <source>Running</source>
+        <translation>正在執行</translation>
+    </message>
+    <message>
+        <source>Torrent Creator</source>
+        <translation>Torrent 製作器</translation>
+    </message>
+    <message>
+        <source>Source:</source>
+        <translation>來源：</translation>
+    </message>
+    <message>
+        <source>Trackers</source>
+        <translation>Trackers</translation>
+    </message>
+    <message>
+        <source>Piece size:</source>
+        <translation>分塊大小：</translation>
+    </message>
+    <message>
+        <source>Fields</source>
+        <translation>資訊項</translation>
+    </message>
+    <message>
+        <source>Remove Task</source>
+        <translation>移除任務</translation>
+    </message>
+    <message>
+        <source>Export Torrent</source>
+        <translation>匯出 torrent</translation>
     </message>
 </context>
 </TS>

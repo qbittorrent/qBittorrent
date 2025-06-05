@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,8 +29,6 @@
 
 #include "fs.h"
 
-#include <cerrno>
-#include <cstring>
 #include <filesystem>
 
 #if defined(Q_OS_WIN)
@@ -41,7 +39,7 @@
 #include <sys/types.h>
 
 #if defined(Q_OS_WIN)
-#include <Windows.h>
+#include <windows.h>
 #elif defined(Q_OS_MACOS) || defined(Q_OS_FREEBSD) || defined(Q_OS_OPENBSD)
 #include <sys/param.h>
 #include <sys/mount.h>
@@ -52,6 +50,7 @@
 #include <unistd.h>
 #endif
 
+#include <QCoreApplication>
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
@@ -61,7 +60,6 @@
 #include <QRegularExpression>
 #include <QStorageInfo>
 
-#include "base/global.h"
 #include "base/path.h"
 
 /**
@@ -81,12 +79,12 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     const QStringList deleteFilesList =
     {
         // Windows
-        u"Thumbs.db"_qs,
-        u"desktop.ini"_qs,
+        u"Thumbs.db"_s,
+        u"desktop.ini"_s,
         // Linux
-        u".directory"_qs,
+        u".directory"_s,
         // Mac OS
-        u".DS_Store"_qs
+        u".DS_Store"_s
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
@@ -151,11 +149,11 @@ qint64 Utils::Fs::computePathSize(const Path &path)
 
     // Compute folder size based on its content
     qint64 size = 0;
-    QDirIterator iter {path.data(), QDir::Files | QDir::Hidden | QDir::NoSymLinks, QDirIterator::Subdirectories};
+    QDirIterator iter {path.data(), (QDir::Files | QDir::Hidden | QDir::NoSymLinks), QDirIterator::Subdirectories};
     while (iter.hasNext())
     {
-        iter.next();
-        size += iter.fileInfo().size();
+        const QFileInfo fileInfo = iter.nextFileInfo();
+        size += fileInfo.size();
     }
     return size;
 }
@@ -191,7 +189,7 @@ bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
 
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
-    const QRegularExpression regex {u"[\\\\/:?\"*<>|]+"_qs};
+    const QRegularExpression regex {u"[\\\\/:?\"*<>|]+"_s};
 
     QString validName = name.trimmed();
     validName.replace(regex, pad);
@@ -201,7 +199,7 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 
 Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
 {
-    const QRegularExpression regex {u"[:?\"*<>|]+"_qs};
+    const QRegularExpression regex {u"[:?\"*<>|]+"_s};
 
     QString validPathStr = name;
     validPathStr.replace(regex, pad);
@@ -216,7 +214,7 @@ qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
 
 Path Utils::Fs::tempPath()
 {
-    static const Path path = Path(QDir::tempPath()) / Path(u".qBittorrent"_qs);
+    static const Path path = Path(QDir::tempPath()) / Path(u".qBittorrent"_s);
     mkdir(path);
     return path;
 }
@@ -292,6 +290,12 @@ bool Utils::Fs::isNetworkFileSystem(const Path &path)
 
 bool Utils::Fs::copyFile(const Path &from, const Path &to)
 {
+    if (!from.exists())
+        return false;
+
+    if (!mkpath(to.parentPath()))
+        return false;
+
     return QFile::copy(from.data(), to.data());
 }
 
@@ -305,19 +309,41 @@ bool Utils::Fs::renameFile(const Path &from, const Path &to)
  *
  * This function will try to fix the file permissions before removing it.
  */
-bool Utils::Fs::removeFile(const Path &path)
+nonstd::expected<void, QString> Utils::Fs::removeFile(const Path &path)
 {
-    if (QFile::remove(path.data()))
-        return true;
-
     QFile file {path.data()};
+    if (file.remove())
+        return {};
+
     if (!file.exists())
-        return true;
+        return {};
 
     // Make sure we have read/write permissions
     file.setPermissions(file.permissions() | QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser);
-    return file.remove();
+    if (file.remove())
+        return {};
+
+    return nonstd::make_unexpected(file.errorString());
 }
+
+nonstd::expected<void, QString> Utils::Fs::moveFileToTrash(const Path &path)
+{
+    QFile file {path.data()};
+    if (file.moveToTrash())
+        return {};
+
+    if (!file.exists())
+        return {};
+
+    // Make sure we have read/write permissions
+    file.setPermissions(file.permissions() | QFile::ReadOwner | QFile::WriteOwner | QFile::ReadUser | QFile::WriteUser);
+    if (file.moveToTrash())
+        return {};
+
+    const QString errorMessage = file.errorString();
+    return nonstd::make_unexpected(!errorMessage.isEmpty() ? errorMessage : QCoreApplication::translate("fs", "Unknown error"));
+}
+
 
 bool Utils::Fs::isReadable(const Path &path)
 {
@@ -337,6 +363,11 @@ QDateTime Utils::Fs::lastModified(const Path &path)
 bool Utils::Fs::isDir(const Path &path)
 {
     return QFileInfo(path.data()).isDir();
+}
+
+Path Utils::Fs::toAbsolutePath(const Path &path)
+{
+    return Path(QFileInfo(path.data()).absoluteFilePath());
 }
 
 Path Utils::Fs::toCanonicalPath(const Path &path)

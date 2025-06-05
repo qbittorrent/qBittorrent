@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -40,19 +41,19 @@ class PieceAvailabilityBar final : public PiecesBar
 public:
     PieceAvailabilityBar(QWidget *parent);
 
-    void setAvailability(const QVector<int> &avail);
+    void setAvailability(const QList<int> &avail);
 
     // PiecesBar interface
     void clear() override;
 
 private:
-    bool updateImage(QImage &image) override;
+    QImage renderImage() override;
     QString simpleToolTipText() const override;
 
     // last used int vector, uses to better resize redraw
     // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
-    QVector<int> m_pieces;
+    QList<int> m_pieces;
 
     // scale int vector to float vector
-    QVector<float> intToFloatVector(const QVector<int> &vecin, int reqSize);
+    QList<float> intToFloatVector(const QList<int> &vecin, int reqSize);
 };

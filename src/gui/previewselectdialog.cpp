@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,7 +31,6 @@
 
 #include <QAction>
 #include <QDir>
-#include <QFile>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
@@ -48,16 +48,17 @@
 
 #define SETTINGS_KEY(name) u"PreviewSelectDialog/" name
 
+enum Roles
+{
+    SortRole = Qt::UserRole
+};
+
 PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent)
     : QDialog(parent)
-    , m_ui(new Ui::PreviewSelectDialog)
-    , m_torrent(torrent)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"HeaderState"_qs))
-#else
-    , m_storeTreeHeaderState(SETTINGS_KEY(u"HeaderState"_qs))
-#endif
+    , m_ui {new Ui::PreviewSelectDialog}
+    , m_torrent {torrent}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
+    , m_storeTreeHeaderState {u"GUI/Qt6/" SETTINGS_KEY(u"HeaderState"_s)}
 {
     m_ui->setupUi(this);
 
@@ -71,42 +72,51 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
 
     const Preferences *pref = Preferences::instance();
     // Preview list
-    m_previewListModel = new QStandardItemModel(0, NB_COLUMNS, this);
-    m_previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
-    m_previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
-    m_previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
+    auto *previewListModel = new QStandardItemModel(0, NB_COLUMNS, this);
+    previewListModel->setHeaderData(NAME, Qt::Horizontal, tr("Name"));
+    previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
+    previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
 
     m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
-    m_ui->previewList->setModel(m_previewListModel);
-    m_ui->previewList->hideColumn(FILE_INDEX);
-    m_listDelegate = new PreviewListDelegate(this);
-    m_ui->previewList->setItemDelegate(m_listDelegate);
+    m_ui->previewList->setUniformRowHeights(true);
+    m_ui->previewList->setModel(previewListModel);
+
+    auto *listDelegate = new PreviewListDelegate(this);
+    m_ui->previewList->setItemDelegate(listDelegate);
+
     // Fill list in
-    const QVector<qreal> fp = torrent->filesProgress();
+    const QList<qreal> fp = torrent->filesProgress();
     for (int i = 0; i < torrent->filesCount(); ++i)
     {
         const Path filePath = torrent->filePath(i);
         if (Utils::Misc::isPreviewable(filePath))
         {
-            int row = m_previewListModel->rowCount();
-            m_previewListModel->insertRow(row);
-            m_previewListModel->setData(m_previewListModel->index(row, NAME), filePath.filename());
-            m_previewListModel->setData(m_previewListModel->index(row, SIZE), torrent->fileSize(i));
-            m_previewListModel->setData(m_previewListModel->index(row, PROGRESS), fp[i]);
-            m_previewListModel->setData(m_previewListModel->index(row, FILE_INDEX), i);
+            int row = previewListModel->rowCount();
+            previewListModel->insertRow(row);
+            previewListModel->setData(previewListModel->index(row, NAME), filePath.filename(), Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, NAME), filePath.filename(), SortRole);
+            // Sorting file size by bytes, while displaying by human readable format
+            previewListModel->setData(previewListModel->index(row, SIZE), Utils::Misc::friendlyUnit(torrent->fileSize(i)), Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, SIZE), torrent->fileSize(i), SortRole);
+            previewListModel->setData(previewListModel->index(row, PROGRESS), fp[i], Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, PROGRESS), fp[i], SortRole);
+            previewListModel->setData(previewListModel->index(row, FILE_INDEX), i, Qt::DisplayRole);
+            previewListModel->setData(previewListModel->index(row, FILE_INDEX), i, SortRole);
         }
     }
 
-    m_previewListModel->sort(NAME);
+    previewListModel->setSortRole(SortRole);
+    previewListModel->sort(NAME);
     m_ui->previewList->header()->setContextMenuPolicy(Qt::CustomContextMenu);
     m_ui->previewList->header()->setFirstSectionMovable(true);
     m_ui->previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
-    m_ui->previewList->selectionModel()->select(m_previewListModel->index(0, NAME), QItemSelectionModel::Select | QItemSelectionModel::Rows);
+    m_ui->previewList->selectionModel()->select(previewListModel->index(0, NAME), QItemSelectionModel::Select | QItemSelectionModel::Rows);
 
     connect(m_ui->previewList->header(), &QWidget::customContextMenuRequested, this, &PreviewSelectDialog::displayColumnHeaderMenu);
 
     // Restore dialog state
     loadWindowState();
+    m_ui->previewList->hideColumn(FILE_INDEX);
 }
 
 PreviewSelectDialog::~PreviewSelectDialog()
@@ -130,7 +140,7 @@ void PreviewSelectDialog::previewButtonClicked()
     // File
     if (!path.exists())
     {
-        const bool isSingleFile = (m_previewListModel->rowCount() == 1);
+        const bool isSingleFile = (m_ui->previewList->model()->rowCount() == 1);
         QWidget *parent = isSingleFile ? this->parentWidget() : this;
         QMessageBox::critical(parent, tr("Preview impossible")
             , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
@@ -145,7 +155,7 @@ void PreviewSelectDialog::previewButtonClicked()
 
 void PreviewSelectDialog::displayColumnHeaderMenu()
 {
-    auto menu = new QMenu(this);
+    auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setToolTipsVisible(true);
 
@@ -200,6 +210,6 @@ void PreviewSelectDialog::showEvent(QShowEvent *event)
     }
 
     // Only one file, no choice
-    if (m_previewListModel->rowCount() <= 1)
+    if (m_ui->previewList->model()->rowCount() <= 1)
         previewButtonClicked();
 }
