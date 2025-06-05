@@ -670,6 +670,8 @@ void TorrentsController::addWebSeedsAction()
     }
 
     torrent->addUrlSeeds(urls);
+
+    setResult(QString());
 }
 
 void TorrentsController::editWebSeedAction()
@@ -702,6 +704,8 @@ void TorrentsController::editWebSeedAction()
         torrent->removeUrlSeeds({origUrl});
         torrent->addUrlSeeds({newUrl});
     }
+
+    setResult(QString());
 }
 
 void TorrentsController::removeWebSeedsAction()
@@ -725,6 +729,8 @@ void TorrentsController::removeWebSeedsAction()
     }
 
     torrent->removeUrlSeeds(urls);
+
+    setResult(QString());
 }
 
 // Returns the files in a torrent in JSON format.
@@ -939,6 +945,8 @@ void TorrentsController::addTrackersAction()
 
     const QList<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_s]);
     torrent->addTrackers(entries);
+
+    setResult(QString());
 }
 
 void TorrentsController::editTrackerAction()
@@ -992,6 +1000,8 @@ void TorrentsController::editTrackerAction()
 
     if (!torrent->isStopped())
         torrent->forceReannounce();
+
+    setResult(QString());
 }
 
 void TorrentsController::removeTrackersAction()
@@ -1026,6 +1036,8 @@ void TorrentsController::removeTrackersAction()
 
     for (BitTorrent::Torrent *const torrent : asConst(torrents))
         torrent->removeTrackers(urls);
+
+    setResult(QString());
 }
 
 void TorrentsController::addPeersAction()
@@ -1072,6 +1084,8 @@ void TorrentsController::stopAction()
 
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
     applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->stop(); });
+
+    setResult(QString());
 }
 
 void TorrentsController::startAction()
@@ -1080,6 +1094,8 @@ void TorrentsController::startAction()
 
     const QStringList idStrings = params()[u"hashes"_s].split(u'|');
     applyToTorrents(idStrings, [](BitTorrent::Torrent *const torrent) { torrent->start(); });
+
+    setResult(QString());
 }
 
 void TorrentsController::filePrioAction()
@@ -1121,6 +1137,8 @@ void TorrentsController::filePrioAction()
 
     if (priorityChanged)
         torrent->prioritizeFiles(priorities);
+
+    setResult(QString());
 }
 
 void TorrentsController::uploadLimitAction()
@@ -1169,6 +1187,8 @@ void TorrentsController::setUploadLimitAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [limit](BitTorrent::Torrent *const torrent) { torrent->setUploadLimit(limit); });
+
+    setResult(QString());
 }
 
 void TorrentsController::setDownloadLimitAction()
@@ -1181,6 +1201,8 @@ void TorrentsController::setDownloadLimitAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [limit](BitTorrent::Torrent *const torrent) { torrent->setDownloadLimit(limit); });
+
+    setResult(QString());
 }
 
 void TorrentsController::setShareLimitsAction()
@@ -1198,6 +1220,8 @@ void TorrentsController::setShareLimitsAction()
         torrent->setSeedingTimeLimit(seedingTimeLimit);
         torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit);
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::toggleSequentialDownloadAction()
@@ -1206,6 +1230,8 @@ void TorrentsController::toggleSequentialDownloadAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->toggleSequentialDownload(); });
+
+    setResult(QString());
 }
 
 void TorrentsController::toggleFirstLastPiecePrioAction()
@@ -1214,6 +1240,8 @@ void TorrentsController::toggleFirstLastPiecePrioAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->toggleFirstLastPiecePriority(); });
+
+    setResult(QString());
 }
 
 void TorrentsController::setSuperSeedingAction()
@@ -1223,6 +1251,8 @@ void TorrentsController::setSuperSeedingAction()
     const bool value {parseBool(params()[u"value"_s]).value_or(false)};
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [value](BitTorrent::Torrent *const torrent) { torrent->setSuperSeeding(value); });
+
+    setResult(QString());
 }
 
 void TorrentsController::setForceStartAction()
@@ -1235,6 +1265,8 @@ void TorrentsController::setForceStartAction()
     {
         torrent->start(value ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged);
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::deleteAction()
@@ -1248,6 +1280,8 @@ void TorrentsController::deleteAction()
     {
         BitTorrent::Session::instance()->removeTorrent(torrent->id(), deleteOption);
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::increasePrioAction()
@@ -1259,6 +1293,8 @@ void TorrentsController::increasePrioAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     BitTorrent::Session::instance()->increaseTorrentsQueuePos(toTorrentIDs(hashes));
+
+    setResult(QString());
 }
 
 void TorrentsController::decreasePrioAction()
@@ -1270,6 +1306,8 @@ void TorrentsController::decreasePrioAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     BitTorrent::Session::instance()->decreaseTorrentsQueuePos(toTorrentIDs(hashes));
+
+    setResult(QString());
 }
 
 void TorrentsController::topPrioAction()
@@ -1281,6 +1319,8 @@ void TorrentsController::topPrioAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     BitTorrent::Session::instance()->topTorrentsQueuePos(toTorrentIDs(hashes));
+
+    setResult(QString());
 }
 
 void TorrentsController::bottomPrioAction()
@@ -1292,6 +1332,8 @@ void TorrentsController::bottomPrioAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     BitTorrent::Session::instance()->bottomTorrentsQueuePos(toTorrentIDs(hashes));
+
+    setResult(QString());
 }
 
 void TorrentsController::setLocationAction()
@@ -1315,6 +1357,8 @@ void TorrentsController::setLocationAction()
         torrent->setAutoTMMEnabled(false);
         torrent->setSavePath(newLocation);
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::setSavePathAction()
@@ -1340,6 +1384,8 @@ void TorrentsController::setSavePathAction()
         if (!torrent->isAutoTMMEnabled())
             torrent->setSavePath(newPath);
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::setDownloadPathAction()
@@ -1365,6 +1411,8 @@ void TorrentsController::setDownloadPathAction()
         if (!torrent->isAutoTMMEnabled())
             torrent->setDownloadPath(newPath);
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::renameAction()
@@ -1383,6 +1431,8 @@ void TorrentsController::renameAction()
 
     name.replace(QRegularExpression(u"\r?\n|\r"_s), u" "_s);
     torrent->setName(name);
+
+    setResult(QString());
 }
 
 void TorrentsController::setAutoManagementAction()
@@ -1396,6 +1446,8 @@ void TorrentsController::setAutoManagementAction()
     {
         torrent->setAutoTMMEnabled(isEnabled);
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::recheckAction()
@@ -1404,6 +1456,8 @@ void TorrentsController::recheckAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->forceRecheck(); });
+
+    setResult(QString());
 }
 
 void TorrentsController::reannounceAction()
@@ -1412,6 +1466,8 @@ void TorrentsController::reannounceAction()
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
     applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->forceReannounce(); });
+
+    setResult(QString());
 }
 
 void TorrentsController::setCategoryAction()
@@ -1426,6 +1482,8 @@ void TorrentsController::setCategoryAction()
         if (!torrent->setCategory(category))
             throw APIError(APIErrorType::Conflict, tr("Incorrect category name"));
     });
+
+    setResult(QString());
 }
 
 void TorrentsController::createCategoryAction()
@@ -1451,6 +1509,8 @@ void TorrentsController::createCategoryAction()
 
     if (!BitTorrent::Session::instance()->addCategory(category, categoryOptions))
         throw APIError(APIErrorType::Conflict, tr("Unable to create category"));
+
+    setResult(QString());
 }
 
 void TorrentsController::editCategoryAction()
@@ -1473,6 +1533,8 @@ void TorrentsController::editCategoryAction()
 
     if (!BitTorrent::Session::instance()->editCategory(category, categoryOptions))
         throw APIError(APIErrorType::Conflict, tr("Unable to edit category"));
+
+    setResult(QString());
 }
 
 void TorrentsController::removeCategoriesAction()
@@ -1482,6 +1544,8 @@ void TorrentsController::removeCategoriesAction()
     const QStringList categories {params()[u"categories"_s].split(u'\n')};
     for (const QString &category : categories)
         BitTorrent::Session::instance()->removeCategory(category);
+
+    setResult(QString());
 }
 
 void TorrentsController::categoriesAction()
@@ -1517,6 +1581,8 @@ void TorrentsController::addTagsAction()
             torrent->addTag(Tag(tagStr));
         });
     }
+
+    setResult(QString());
 }
 
 void TorrentsController::setTagsAction()
@@ -1562,6 +1628,8 @@ void TorrentsController::removeTagsAction()
             torrent->removeAllTags();
         });
     }
+
+    setResult(QString());
 }
 
 void TorrentsController::createTagsAction()
@@ -1572,6 +1640,8 @@ void TorrentsController::createTagsAction()
 
     for (const QString &tagStr : tags)
         BitTorrent::Session::instance()->addTag(Tag(tagStr));
+
+    setResult(QString());
 }
 
 void TorrentsController::deleteTagsAction()
@@ -1581,6 +1651,8 @@ void TorrentsController::deleteTagsAction()
     const QStringList tags {params()[u"tags"_s].split(u',', Qt::SkipEmptyParts)};
     for (const QString &tagStr : tags)
         BitTorrent::Session::instance()->removeTag(Tag(tagStr));
+
+    setResult(QString());
 }
 
 void TorrentsController::tagsAction()
@@ -1611,6 +1683,8 @@ void TorrentsController::renameFileAction()
     {
         throw APIError(APIErrorType::Conflict, error.message());
     }
+
+    setResult(QString());
 }
 
 void TorrentsController::renameFolderAction()
@@ -1633,6 +1707,8 @@ void TorrentsController::renameFolderAction()
     {
         throw APIError(APIErrorType::Conflict, error.message());
     }
+
+    setResult(QString());
 }
 
 void TorrentsController::exportAction()
@@ -1689,4 +1765,6 @@ void TorrentsController::setSSLParametersAction()
         throw APIError(APIErrorType::BadData);
 
     torrent->setSSLParameters(sslParams);
+
+    setResult(QString());
 }
