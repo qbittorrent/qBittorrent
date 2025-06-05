@@ -1181,7 +1181,10 @@ void TorrentsController::removeTrackersAction()
 {
     requireParams({u"hash"_s, u"urls"_s});
 
-    const QStringList idStrings = params()[u"hash"_s].split(u'|', Qt::SkipEmptyParts);
+    QString hash = params()[u"hash"_s];
+    if (hash == u"*"_s)
+        hash = u"all"_s;
+    const QStringList idStrings = hash.split(u'|', Qt::SkipEmptyParts);
     const QStringList urlsParam = params()[u"urls"_s].split(u'|', Qt::SkipEmptyParts);
 
     QStringList urls;
