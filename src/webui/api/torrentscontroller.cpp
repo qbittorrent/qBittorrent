@@ -158,7 +158,7 @@ namespace
     void applyToTorrents(const QStringList &idList, Func func)
         requires std::invocable<Func, BitTorrent::Torrent *>
     {
-        if ((idList.size() == 1) && ((idList[0] == u"all") || (idList[0] == u"*")))
+        if ((idList.size() == 1) && (idList[0] == u"all"))
         {
             for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
                 func(torrent);
