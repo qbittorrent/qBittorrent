@@ -178,10 +178,10 @@ window.qBittorrent.PropTrackers ??= (() => {
     });
 
     const addTrackerFN = () => {
-        const selectedTorrents = torrentsTable.selectedRowsIds();
         if (current_hash.length === 0)
             return;
 
+        const selectedTorrents = torrentsTable.selectedRowsIds();
         if (selectedTorrents.length !== 0)
             current_hash = selectedTorrents.map(encodeURIComponent).join("|");
 
@@ -231,10 +231,10 @@ window.qBittorrent.PropTrackers ??= (() => {
     };
 
     const removeTrackerFN = (element) => {
-        const selectedTorrents = torrentsTable.selectedRowsIds();
         if (current_hash.length === 0)
             return;
 
+        const selectedTorrents = torrentsTable.selectedRowsIds();
         if (selectedTorrents.length !== 0)
             current_hash = selectedTorrents.map(encodeURIComponent).join("|");
 
