@@ -74,7 +74,11 @@
             return {
                 categoriesFilterContextMenu: categoriesFilterContextMenu,
                 tagsFilterContextMenu: tagsFilterContextMenu,
-                trackersFilterContextMenu: trackersFilterContextMenu
+                trackersFilterContextMenu: trackersFilterContextMenu,
+                clearStatusFilter: clearStatusFilter,
+                clearCategoryFilter: clearCategoryFilter,
+                clearTagFilter: clearTagFilter,
+                clearTrackerFilter: clearTrackerFilter
             };
         };
 
@@ -257,8 +261,11 @@
         });
 
         document.getElementById("Filters_pad").addEventListener("dblclick", (event) => {
+            if (LocalPreferences.get("dblclick_filter", "1") !== "1")
+                return;
+
             const filterItem = event.target.closest("li");
-            if (!filterItem)
+            if (filterItem === null)
                 return;
 
             const { id: filterListID } = filterItem.closest("ul[id]");
