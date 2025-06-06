@@ -409,19 +409,19 @@ window.qBittorrent.TorrentContent ??= (() => {
             fileIds.push(Number(torrentFilesTable.getRowFileId(rowId)));
         });
 
-        const uniqueRowIds = {};
-        const uniqueFileIds = {};
+        const uniqueRowIds = new Set();
+        const uniqueFileIds = new Set();
         for (let i = 0; i < rowIds.length; ++i) {
             const rows = getAllChildren(rowIds[i], fileIds[i]);
             rows.rowIds.forEach((rowId) => {
-                uniqueRowIds[rowId] = true;
+                uniqueRowIds.add(rowId);
             });
             rows.fileIds.forEach((fileId) => {
-                uniqueFileIds[fileId] = true;
+                uniqueFileIds.add(fileId);
             });
         }
 
-        setFilePriority(Object.keys(uniqueRowIds), Object.keys(uniqueFileIds), priority);
+        setFilePriority([...uniqueRowIds.keys()], [...uniqueFileIds.keys()], priority);
         for (const id of rowIds)
             updateParentFolder(id);
     };
