@@ -860,40 +860,43 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
             else {
                 const trs = [...this.getTrs()];
+                const trMap = new Map(trs.map(tr => [tr.rowId, tr]));
 
                 for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
                     const rowId = rows[rowPos].rowId;
-                    let tr_found = false;
-                    for (let j = rowPos; j < trs.length; ++j) {
-                        if (trs[j].rowId === rowId) {
-                            tr_found = true;
-                            if (rowPos === j)
-                                break;
-                            trs[j].inject(trs[rowPos], "before");
-                            const tmpTr = trs[j];
-                            trs.splice(j, 1);
-                            trs.splice(rowPos, 0, tmpTr);
-                            break;
-                        }
+                    const existingTr = trMap.get(rowId);
+                    if (existingTr !== undefined) {
+                        this.updateRow(existingTr, fullUpdate);
                     }
-                    if (tr_found) { // row already exists in the table
-                        this.updateRow(trs[rowPos], fullUpdate);
-                    }
-                    else { // else create a new row in the table
+                    else {
                         const tr = this.createRowElement(rows[rowPos]);
 
-                        // Insert
-                        if (rowPos >= trs.length) {
-                            tr.inject(this.tableBody);
-                            trs.push(tr);
-                        }
-                        else {
-                            tr.inject(trs[rowPos], "before");
-                            trs.splice(rowPos, 0, tr);
-                        }
+                        // add to end of table - we'll move into the proper order later
+                        this.tableBody.appendChild(tr);
+                        trMap.set(rowId, tr);
 
                         this.updateRow(tr, true);
                     }
+                }
+
+                // reorder table rows
+                let prevTr = null;
+                for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
+                    const { rowId } = rows[rowPos];
+                    const tr = trMap.get(rowId);
+
+                    const isInCorrectLocation = rowId === trs[rowPos]?.rowId;
+                    if (!isInCorrectLocation) {
+                        // move row into correct location
+                        if (prevTr === null) {
+                            // insert as first row in table
+                            this.tableBody.insertBefore(tr, trs[0]);
+                        }
+                        else {
+                            prevTr.after(tr);
+                        }
+                    }
+                    prevTr = tr;
                 }
 
                 const rowPos = rows.length;
