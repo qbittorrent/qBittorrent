@@ -456,6 +456,17 @@ namespace
 
         return info;
     }
+
+    nonstd::expected<BitTorrent::DownloadPriority, QString> parseDownloadPriority(const QString &priorityStr)
+    {
+        bool ok = false;
+        const auto priority = static_cast<BitTorrent::DownloadPriority>(priorityStr.toInt(&ok));
+        if (!ok)
+            return nonstd::make_unexpected(TorrentsController::tr("Priority must be an integer"));
+        if (!isValidDownloadPriority(priority))
+            return nonstd::make_unexpected(TorrentsController::tr("Priority is not valid"));
+        return priority;
+    }
 }
 
 TorrentsController::TorrentsController(IApplication *app, QObject *parent)
@@ -1004,14 +1015,10 @@ void TorrentsController::addAction()
         filePriorities.reserve(filePrioritiesParam.size());
         for (const QString &priorityStr : filePrioritiesParam)
         {
-            bool ok = false;
-            const auto priority = static_cast<BitTorrent::DownloadPriority>(priorityStr.toInt(&ok));
-            if (!ok)
-                throw APIError(APIErrorType::BadParams, tr("Priority must be an integer"));
-            if (!BitTorrent::isValidDownloadPriority(priority))
-                throw APIError(APIErrorType::BadParams, tr("Priority is not valid"));
-
-            filePriorities << priority;
+            const nonstd::expected<BitTorrent::DownloadPriority, QString> result = parseDownloadPriority(priorityStr);
+            if (!result)
+                throw APIError(APIErrorType::BadParams, result.error());
+            filePriorities << result.value();
         }
     }
 
@@ -1275,13 +1282,11 @@ void TorrentsController::filePrioAction()
     requireParams({u"hash"_s, u"id"_s, u"priority"_s});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    bool ok = false;
-    const auto priority = static_cast<BitTorrent::DownloadPriority>(params()[u"priority"_s].toInt(&ok));
-    if (!ok)
-        throw APIError(APIErrorType::BadParams, tr("Priority must be an integer"));
+    const nonstd::expected<BitTorrent::DownloadPriority, QString> result = parseDownloadPriority(params()[u"priority"_s]);
+    if (!result)
+        throw APIError(APIErrorType::BadParams, result.error());
 
-    if (!BitTorrent::isValidDownloadPriority(priority))
-        throw APIError(APIErrorType::BadParams, tr("Priority is not valid"));
+    const BitTorrent::DownloadPriority priority = result.value();
 
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
@@ -1294,6 +1299,7 @@ void TorrentsController::filePrioAction()
     bool priorityChanged = false;
     for (const QString &fileID : params()[u"id"_s].split(u'|'))
     {
+        bool ok = false;
         const int id = fileID.toInt(&ok);
         if (!ok)
             throw APIError(APIErrorType::BadParams, tr("File IDs must be integers"));
