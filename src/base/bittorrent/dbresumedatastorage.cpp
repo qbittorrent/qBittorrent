@@ -86,7 +86,7 @@ namespace
     class StoreJob final : public Job
     {
     public:
-        StoreJob(const TorrentID &torrentID, const LoadTorrentParams &resumeData);
+        StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData);
         void perform(QSqlDatabase db) override;
 
     private:
@@ -231,7 +231,7 @@ namespace BitTorrent
         void run() override;
         void requestInterruption();
 
-        void store(const TorrentID &id, const LoadTorrentParams &resumeData);
+        void store(const TorrentID &id, LoadTorrentParams resumeData);
         void remove(const TorrentID &id);
         void storeQueue(const QList<TorrentID> &queue);
 
@@ -327,9 +327,9 @@ BitTorrent::LoadResumeDataResult BitTorrent::DBResumeDataStorage::load(const Tor
     return parseQueryResultRow(query);
 }
 
-void BitTorrent::DBResumeDataStorage::store(const TorrentID &id, const LoadTorrentParams &resumeData) const
+void BitTorrent::DBResumeDataStorage::store(const TorrentID &id, LoadTorrentParams resumeData) const
 {
-    m_asyncWorker->store(id, resumeData);
+    m_asyncWorker->store(id, std::move(resumeData));
 }
 
 void BitTorrent::DBResumeDataStorage::remove(const BitTorrent::TorrentID &id) const
@@ -769,9 +769,9 @@ void DBResumeDataStorage::Worker::requestInterruption()
     m_waitCondition.wakeAll();
 }
 
-void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const LoadTorrentParams &resumeData)
+void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, LoadTorrentParams resumeData)
 {
-    addJob(std::make_unique<StoreJob>(id, resumeData));
+    addJob(std::make_unique<StoreJob>(id, std::move(resumeData)));
 }
 
 void BitTorrent::DBResumeDataStorage::Worker::remove(const TorrentID &id)
@@ -797,9 +797,9 @@ namespace
 {
     using namespace BitTorrent;
 
-    StoreJob::StoreJob(const TorrentID &torrentID, const LoadTorrentParams &resumeData)
+StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
         : m_torrentID {torrentID}
-        , m_resumeData {resumeData}
+        , m_resumeData {std::move(resumeData)}
     {
     }
 

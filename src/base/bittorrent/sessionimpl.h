@@ -478,7 +478,7 @@ namespace BitTorrent
         void handleTorrentTrackersChanged(TorrentImpl *torrent);
         void handleTorrentUrlSeedsAdded(TorrentImpl *torrent, const QList<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QList<QUrl> &urlSeeds);
-        void handleTorrentResumeDataReady(TorrentImpl *torrent, const LoadTorrentParams &data);
+        void handleTorrentResumeDataReady(TorrentImpl *torrent, LoadTorrentParams data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
         void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
 
@@ -579,7 +579,7 @@ namespace BitTorrent
         void updateSeedingLimitTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
-        void handleAlert(const lt::alert *alert);
+        void handleAlert(lt::alert *alert);
         void handleAddTorrentAlert(const lt::add_torrent_alert *alert);
         void handleStateUpdateAlert(const lt::state_update_alert *alert);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *alert);
@@ -613,7 +613,7 @@ namespace BitTorrent
         void handleFileRenamedAlert(const lt::file_renamed_alert *alert);
         void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *alert);
         void handlePerformanceAlert(const lt::performance_alert *alert) const;
-        void handleSaveResumeDataAlert(const lt::save_resume_data_alert *alert);
+        void handleSaveResumeDataAlert(lt::save_resume_data_alert *alert);
         void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *alert);
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *alert);
         void handleTorrentFinishedAlert(const lt::torrent_finished_alert *alert);

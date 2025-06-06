@@ -1555,7 +1555,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     // == END UPGRADE CODE ==
 
     if (needStore)
-         m_resumeDataStorage->store(torrentID, resumeData);
+        m_resumeDataStorage->store(torrentID, resumeData);
 
     const QString category = resumeData.category;
     bool isCategoryRecovered = context->recoveredCategories.contains(category);
@@ -3304,7 +3304,7 @@ void SessionImpl::saveResumeData()
         fetchPendingAlerts(waitTime);
 
         bool hasWantedAlert = false;
-        for (const lt::alert *alert : m_alerts)
+        for (lt::alert *alert : m_alerts)
         {
             if (const int alertType = alert->type();
                 (alertType == lt::save_resume_data_alert::alert_type) || (alertType == lt::save_resume_data_failed_alert::alert_type)
@@ -5403,9 +5403,9 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
     m_pendingFinishedTorrents.append(torrent);
 }
 
-void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
+void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, LoadTorrentParams data)
 {
-    m_resumeDataStorage->store(torrent->id(), data);
+    m_resumeDataStorage->store(torrent->id(), std::move(data));
     const auto iter = m_changedTorrentIDs.constFind(torrent->id());
     if (iter != m_changedTorrentIDs.cend())
     {
@@ -5803,7 +5803,7 @@ void SessionImpl::readAlerts()
     if (!isRestored())
         m_loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
 
-    for (const lt::alert *a : m_alerts)
+    for (lt::alert *a : m_alerts)
         handleAlert(a);
 
     if (m_receivedAddTorrentAlertsCount > 0)
@@ -5837,7 +5837,7 @@ void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
         handleAlert(alert);
 }
 
-void SessionImpl::handleAlert(const lt::alert *alert)
+void SessionImpl::handleAlert(lt::alert *alert)
 {
     try
     {
@@ -5864,7 +5864,7 @@ void SessionImpl::handleAlert(const lt::alert *alert)
             handleTorrentFinishedAlert(static_cast<const lt::torrent_finished_alert *>(alert));
             break;
         case lt::save_resume_data_alert::alert_type:
-            handleSaveResumeDataAlert(static_cast<const lt::save_resume_data_alert *>(alert));
+            handleSaveResumeDataAlert(static_cast<lt::save_resume_data_alert *>(alert));
             break;
         case lt::save_resume_data_failed_alert::alert_type:
             handleSaveResumeDataFailedAlert(static_cast<const lt::save_resume_data_failed_alert *>(alert));
@@ -6483,7 +6483,7 @@ void SessionImpl::handleTorrentFinishedAlert([[maybe_unused]] const lt::torrent_
         torrent->handleTorrentFinished();
 }
 
-void SessionImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *alert)
+void SessionImpl::handleSaveResumeDataAlert(lt::save_resume_data_alert *alert)
 {
     // The torrent can be deleted between the time the resume data was requested and
     // the time we received the appropriate alert. We have to decrease `m_numResumeData` anyway,
@@ -6491,7 +6491,7 @@ void SessionImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *al
     --m_numResumeData;
 
     if (TorrentImpl *torrent = getTorrent(alert->handle)) [[likely]]
-        torrent->handleSaveResumeData(alert->params); // TODO: Try to move `alert->params`
+        torrent->handleSaveResumeData(std::move(alert->params));
 }
 
 void SessionImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *alert)

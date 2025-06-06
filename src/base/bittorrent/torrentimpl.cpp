@@ -1835,7 +1835,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
         applyFirstLastPiecePriority(true);
 
     m_maintenanceJob = MaintenanceJob::None;
-    prepareResumeData(p);
+    prepareResumeData(std::move(p));
 
     m_session->handleTorrentMetadataReceived(this);
 }
@@ -2202,7 +2202,7 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
     // We shouldn't save upload_mode flag to allow torrent operate normally on next run
     m_ltAddTorrentParams.flags &= ~lt::torrent_flags::upload_mode;
 
-    const LoadTorrentParams resumeData
+    LoadTorrentParams resumeData
     {
         .ltAddTorrentParams = m_ltAddTorrentParams,
         .name = m_name,
@@ -2225,7 +2225,7 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         .sslParameters = m_sslParams
     };
 
-    m_session->handleTorrentResumeDataReady(this, resumeData);
+    m_session->handleTorrentResumeDataReady(this, std::move(resumeData));
 }
 
 void TorrentImpl::handleFastResumeRejected()
