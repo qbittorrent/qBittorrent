@@ -85,6 +85,9 @@ private:
     void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
     void removeTracker(const QString &tracker);
 
+static bool isOnlyHttpTrackers(const QList<BitTorrent::TrackerEntryStatus> &trackers);
+    QSet<BitTorrent::TorrentID> m_onlyHttpTorrents;
+
     struct TrackerData
     {
         QSet<BitTorrent::TorrentID> torrents;
@@ -99,4 +102,6 @@ private:
     int m_totalTorrents = 0;
     bool m_downloadTrackerFavicon = false;
     QHash<QString, QSet<QString>> m_downloadingFavicons;   // <favicon URL, tracker hosts>
+
+    static bool isOnlyHttpTrackers(const QList<BitTorrent::TrackerEntryStatus> &trackers);
 };
