@@ -1046,20 +1046,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
 
         // Statistics dialog
-        if (document.getElementById("statisticsContent")) {
-            document.getElementById("AlltimeDL").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.alltime_dl, false);
-            document.getElementById("AlltimeUL").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.alltime_ul, false);
-            document.getElementById("TotalWastedSession").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_wasted_session, false);
-            document.getElementById("GlobalRatio").textContent = serverState.global_ratio;
-            document.getElementById("TotalPeerConnections").textContent = serverState.total_peer_connections;
-            document.getElementById("ReadCacheHits").textContent = `${serverState.read_cache_hits}%`;
-            document.getElementById("TotalBuffersSize").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_buffers_size, false);
-            document.getElementById("WriteCacheOverload").textContent = `${serverState.write_cache_overload}%`;
-            document.getElementById("ReadCacheOverload").textContent = `${serverState.read_cache_overload}%`;
-            document.getElementById("QueuedIOJobs").textContent = serverState.queued_io_jobs;
-            document.getElementById("AverageTimeInQueue").textContent = `${serverState.average_time_queue} ms`;
-            document.getElementById("TotalQueuedSize").textContent = window.qBittorrent.Misc.friendlyUnit(serverState.total_queued_size, false);
-        }
+        window.qBittorrent.Statistics.save(serverState);
+        window.qBittorrent.Statistics.render();
 
         switch (serverState.connection_status) {
             case "connected":

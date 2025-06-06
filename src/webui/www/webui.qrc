@@ -419,6 +419,7 @@
         <file>private/scripts/prop-webseeds.js</file>
         <file>private/scripts/rename-files.js</file>
         <file>private/scripts/search.js</file>
+        <file>private/scripts/statistics.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/speedlimit.html</file>
