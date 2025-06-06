@@ -62,6 +62,7 @@ public:
         Checking,
         Moving,
         Errored,
+        TrackerErrored,
 
         _Count
     };
@@ -84,6 +85,7 @@ public:
     static const TorrentFilter CheckingTorrent;
     static const TorrentFilter MovingTorrent;
     static const TorrentFilter ErroredTorrent;
+    static const TorrentFilter TrackerErroredTorrent;
 
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
