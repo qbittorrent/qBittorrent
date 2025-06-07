@@ -49,6 +49,15 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <td><label for="dblclickFiltersSelect">QBT_TR(Filters:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td>
+                            <select id="dblclickFiltersSelect">
+                                <option value="1" selected>QBT_TR(Reset filter selection)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            </select>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </fieldset>
@@ -2230,6 +2239,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
                     document.getElementById("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
                     document.getElementById("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
+                    document.getElementById("dblclickFiltersSelect").value = LocalPreferences.get("dblclick_filter", "1");
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
                     document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
                     document.getElementById("filelog_checkbox").checked = pref.file_log_enabled;
@@ -2663,6 +2673,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
             LocalPreferences.set("dblclick_download", document.getElementById("dblclickDownloadSelect").value);
             LocalPreferences.set("dblclick_complete", document.getElementById("dblclickCompleteSelect").value);
+            LocalPreferences.set("dblclick_filter", document.getElementById("dblclickFiltersSelect").value);
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
             LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
             settings["file_log_enabled"] = document.getElementById("filelog_checkbox").checked;
