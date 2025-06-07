@@ -45,7 +45,6 @@
 #include <QMap>
 #include <QMutex>
 #include <QPointer>
-#include <QQueue>
 #include <QSet>
 #include <QThreadPool>
 
@@ -618,7 +617,7 @@ namespace BitTorrent
         void handleTorrentCheckedAlert(const lt::torrent_checked_alert *alert);
         void handleTorrentFinishedAlert(const lt::torrent_finished_alert *alert);
 
-        TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
 
         void saveResumeData();
@@ -827,7 +826,7 @@ namespace BitTorrent
         TorrentContentRemover *m_torrentContentRemover = nullptr;
 
         using AddTorrentAlertHandler = std::function<void (const lt::add_torrent_alert *alert)>;
-        QQueue<AddTorrentAlertHandler> m_addTorrentAlertHandlers;
+        QList<AddTorrentAlertHandler> m_addTorrentAlertHandlers;
 
         QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 

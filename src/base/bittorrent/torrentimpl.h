@@ -94,7 +94,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(TorrentImpl)
 
     public:
-        TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         ~TorrentImpl() override;
 
         bool isValid() const;
