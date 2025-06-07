@@ -83,6 +83,7 @@ add_library(qbt_base STATIC
     preferences.h
     profile.h
     profile_p.h
+    queue.h
     rss/feed_serializer.h
     rss/rss_article.h
     rss/rss_autodownloader.h

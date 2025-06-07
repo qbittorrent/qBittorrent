@@ -72,7 +72,7 @@ namespace BitTorrent
         void loadFinished();
 
     protected:
-        void onResumeDataLoaded(const TorrentID &torrentID, const LoadResumeDataResult &loadResumeDataResult) const;
+        void onResumeDataLoaded(const TorrentID &torrentID, LoadResumeDataResult loadResumeDataResult) const;
 
     private:
         virtual void doLoadAll() const = 0;
