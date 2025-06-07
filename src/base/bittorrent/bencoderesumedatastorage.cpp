@@ -189,8 +189,14 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
         return;
     }
 
+    QHash<TorrentID, qsizetype> registeredTorrentsIndexes;
+    registeredTorrentsIndexes.reserve(m_registeredTorrents.length());
+    qsizetype i = 0;
+    for (const TorrentID &torrentID : asConst(m_registeredTorrents))
+        registeredTorrentsIndexes.insert(torrentID, i++);
+
     const QRegularExpression hashPattern {u"^([A-Fa-f0-9]{40})$"_s};
-    int start = 0;
+    qsizetype start = 0;
     while (true)
     {
         const auto line = QString::fromLatin1(queueFile.readLine(lineMaxLength).trimmed());
@@ -201,10 +207,13 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
         if (rxMatch.hasMatch())
         {
             const auto torrentID = BitTorrent::TorrentID::fromString(rxMatch.captured(1));
-            const int pos = m_registeredTorrents.indexOf(torrentID, start);
+            const qsizetype pos = registeredTorrentsIndexes.value(torrentID, -1);
             if (pos != -1)
             {
-                std::swap(m_registeredTorrents[start], m_registeredTorrents[pos]);
+                if (start != pos) {
+                    std::swap(m_registeredTorrents[start], m_registeredTorrents[pos]);
+                    registeredTorrentsIndexes.insert(torrentID, start);
+                }
                 ++start;
             }
         }
