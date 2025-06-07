@@ -69,6 +69,7 @@ namespace BitTorrent
         static nonstd::expected<TorrentDescriptor, QString> loadFromFile(const Path &path) noexcept;
         static nonstd::expected<TorrentDescriptor, QString> parse(const QString &str) noexcept;
         nonstd::expected<void, QString> saveToFile(const Path &path) const;
+        nonstd::expected<QByteArray, QString> saveToBuffer() const;
 
         const lt::add_torrent_params &ltAddTorrentParams() const;
 
