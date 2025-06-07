@@ -277,9 +277,9 @@ const initializeWindows = () => {
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 900),
             height: loadWindowHeight(id, 400),
-            onResize: () => {
+            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
-            }
+            })
         });
     });
 
