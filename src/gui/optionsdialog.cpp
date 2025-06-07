@@ -1760,9 +1760,9 @@ void OptionsDialog::initializeStyleCombo()
     m_ui->labelStyle->hide();
     m_ui->comboStyle->hide();
     m_ui->labelStyleHint->hide();
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyle);
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboStyle);
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyleHint);
+    m_ui->layoutStyle->removeWidget(m_ui->labelStyle);
+    m_ui->layoutStyle->removeWidget(m_ui->comboStyle);
+    m_ui->layoutStyle->removeWidget(m_ui->labelStyleHint);
 #endif
 }
 
@@ -1776,9 +1776,9 @@ void OptionsDialog::initializeColorSchemeOptions()
 #else
     m_ui->labelColorScheme->hide();
     m_ui->comboColorScheme->hide();
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelColorScheme);
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboColorScheme);
-    m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerColorScheme);
+    m_ui->layoutStyle->removeWidget(m_ui->labelColorScheme);
+    m_ui->layoutStyle->removeWidget(m_ui->comboColorScheme);
+    m_ui->layoutStyle->removeItem(m_ui->spacerColorScheme);
 #endif
 }
 
