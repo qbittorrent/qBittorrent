@@ -137,8 +137,8 @@
               <property name="title">
                <string>Interface</string>
               </property>
-              <layout class="QGridLayout" name="UISettingsBoxLayout">
-               <item row="0" column="0" colspan="3">
+              <layout class="QVBoxLayout" name="UISettingsBoxLayout">
+               <item>
                 <widget class="QLabel" name="labelRestartRequired">
                  <property name="font">
                   <font>
@@ -150,72 +150,80 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="labelLanguage">
-                 <property name="text">
-                  <string>Language:</string>
-                 </property>
-                </widget>
+               <item>
+                <layout class="QHBoxLayout" name="layoutLanguage">
+                 <item>
+                  <widget class="QLabel" name="labelLanguage">
+                   <property name="text">
+                    <string>Language:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="comboLanguage"/>
+                 </item>
+                 <item>
+                  <spacer name="spacerLanguage">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>200</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="comboLanguage"/>
+               <item>
+                <layout class="QGridLayout" name="layoutStyle">
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="labelStyle">
+                   <property name="text">
+                    <string>Style:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QComboBox" name="comboStyle"/>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QLabel" name="labelStyleHint">
+                   <property name="font">
+                    <font>
+                     <italic>true</italic>
+                    </font>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="labelColorScheme">
+                   <property name="text">
+                    <string>Color scheme:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QComboBox" name="comboColorScheme"/>
+                 </item>
+                 <item row="1" column="2">
+                  <spacer name="spacerColorScheme">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
-               <item row="1" column="2">
-                <spacer name="spacerLanguage">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>200</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="labelStyle">
-                 <property name="text">
-                  <string>Style:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QComboBox" name="comboStyle"/>
-               </item>
-               <item row="2" column="2">
-                <widget class="QLabel" name="labelStyleHint">
-                 <property name="font">
-                  <font>
-                   <italic>true</italic>
-                  </font>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="labelColorScheme">
-                 <property name="text">
-                  <string>Color scheme:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QComboBox" name="comboColorScheme"/>
-               </item>
-               <item row="3" column="2">
-                <spacer name="spacerColorScheme">
-                 <property name="orientation">
-                  <enum>Qt::Orientation::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="4" column="0" colspan="3">
+               <item>
                 <widget class="QGroupBox" name="checkUseCustomTheme">
                  <property name="title">
                   <string>Use custom UI Theme</string>
@@ -237,15 +245,21 @@
                  </layout>
                 </widget>
                </item>
-               <item row="5" column="0" colspan="2">
+               <item>
                 <widget class="QCheckBox" name="checkUseSystemIcon">
                  <property name="text">
                   <string>Use icons from system theme</string>
                  </property>
                 </widget>
                </item>
-               <item row="6" column="0" colspan="2">
+               <item>
                 <widget class="QPushButton" name="buttonCustomizeUITheme">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>Customize UI Theme...</string>
                  </property>
