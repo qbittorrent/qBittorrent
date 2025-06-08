@@ -20,7 +20,7 @@ jobs:
       matrix:
         libt_version: ["2.0.11", "1.2.20"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["6.9.0"]
+        qt_version: ["6.9.1"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
