@@ -60,7 +60,7 @@ namespace
             return std::numeric_limits<result_type>::max();
         }
 
-        result_type operator()()
+        result_type operator()() const
         {
             result_type buf = 0;
             const bool result = m_processPrng(reinterpret_cast<PBYTE>(&buf), sizeof(buf));

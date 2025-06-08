@@ -147,7 +147,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::load(cons
     const Path torrentFilePath = path() / Path(idString + u".torrent");
     const qint64 torrentSizeLimit = Preferences::instance()->getTorrentFileSizeLimit();
 
-    const auto resumeDataReadResult = Utils::IO::readFile(fastresumePath, torrentSizeLimit);
+    const auto resumeDataReadResult = Utils::IO::readFile(fastresumePath, -1);
     if (!resumeDataReadResult)
         return nonstd::make_unexpected(resumeDataReadResult.error().message);
 

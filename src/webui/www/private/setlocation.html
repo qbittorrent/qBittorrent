@@ -10,6 +10,7 @@
     <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script src="scripts/pathAutofill.js?v=${CACHEID}"></script>
     <script>
         "use strict";
 
@@ -62,6 +63,8 @@
                         window.parent.qBittorrent.Client.closeFrameWindow(window);
                     });
             });
+
+            window.qBittorrent.pathAutofill.attachPathAutofill();
         });
     </script>
 </head>
@@ -69,7 +72,7 @@
 <body>
     <div style="padding: 10px 10px 0px 10px;">
         <label for="setLocation" style="font-weight: bold;">QBT_TR(Location:)QBT_TR[CONTEXT=TransferListWidget]</label>
-        <input type="text" id="setLocation" autocorrect="off" autocapitalize="none" style="width: 99%;">
+        <input type="text" id="setLocation" class="pathDirectory" autocorrect="off" autocapitalize="none" style="width: 99%;">
         <div style="float: none; width: 99%;" id="error_div">&nbsp;</div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="setLocationButton">
