@@ -970,7 +970,7 @@ const initializeWindows = () => {
                 if (!response.ok)
                     return;
 
-                setCategoryFilter(CATEGORIES_ALL);
+                window.qBittorrent.Filters.clearCategoryFilter();
                 updateMainData();
             });
     };
@@ -991,7 +991,7 @@ const initializeWindows = () => {
                 if (!response.ok)
                     return;
 
-                setCategoryFilter(CATEGORIES_ALL);
+                window.qBittorrent.Filters.clearCategoryFilter();
                 updateMainData();
             });
     };
@@ -1077,7 +1077,7 @@ const initializeWindows = () => {
                 tags: tag
             })
         });
-        setTagFilter(TAGS_ALL);
+        window.qBittorrent.Filters.clearTagFilter();
     };
 
     deleteUnusedTagsFN = () => {
@@ -1092,7 +1092,7 @@ const initializeWindows = () => {
                 tags: tags.join(",")
             })
         });
-        setTagFilter(TAGS_ALL);
+        window.qBittorrent.Filters.clearTagFilter();
     };
 
     deleteTrackerFN = (trackerHost) => {
@@ -1121,7 +1121,7 @@ const initializeWindows = () => {
             height: 100,
             onCloseComplete: () => {
                 updateMainData();
-                setTrackerFilter(TRACKERS_ALL);
+                window.qBittorrent.Filters.clearTrackerFilter();
             }
         });
     };

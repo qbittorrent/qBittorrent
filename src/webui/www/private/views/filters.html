@@ -74,7 +74,11 @@
             return {
                 categoriesFilterContextMenu: categoriesFilterContextMenu,
                 tagsFilterContextMenu: tagsFilterContextMenu,
-                trackersFilterContextMenu: trackersFilterContextMenu
+                trackersFilterContextMenu: trackersFilterContextMenu,
+                clearStatusFilter: clearStatusFilter,
+                clearCategoryFilter: clearCategoryFilter,
+                clearTagFilter: clearTagFilter,
+                clearTrackerFilter: clearTrackerFilter
             };
         };
 
@@ -256,6 +260,42 @@
             }
         });
 
+        document.getElementById("Filters_pad").addEventListener("dblclick", (event) => {
+            if (LocalPreferences.get("dblclick_filter", "1") !== "1")
+                return;
+
+            const filterItem = event.target.closest("li");
+            if (filterItem === null)
+                return;
+
+            const { id: filterListID } = filterItem.closest("ul[id]");
+            switch (filterListID) {
+                case "statusFilterList":
+                    clearCategoryFilter();
+                    clearTagFilter();
+                    clearTrackerFilter();
+                    break;
+                case "categoryFilterList":
+                    clearStatusFilter();
+                    clearTagFilter();
+                    clearTrackerFilter();
+                    break;
+                case "tagFilterList":
+                    clearStatusFilter();
+                    clearCategoryFilter();
+                    clearTrackerFilter();
+                    break;
+                case "trackerFilterList":
+                    clearStatusFilter();
+                    clearCategoryFilter();
+                    clearTagFilter();
+                    break;
+                default:
+                    console.error(`Unexpected filterListID: ${filterListID}`);
+                    break;
+            }
+        });
+
         document.getElementById("Filters_pad").addEventListener("click", (event) => {
             const filterTitle = event.target.closest(".filterTitle");
             if (!filterTitle)
@@ -280,6 +320,11 @@
 
             toggleCategoryDisplay(filterItem.id);
         });
+
+        const clearStatusFilter = () => { setStatusFilter("all"); };
+        const clearCategoryFilter = () => { setCategoryFilter(CATEGORIES_ALL); };
+        const clearTagFilter = () => { setTagFilter(TAGS_ALL); };
+        const clearTrackerFilter = () => { setTrackerFilter(TRACKERS_ALL); };
 
         return exports();
     })();
