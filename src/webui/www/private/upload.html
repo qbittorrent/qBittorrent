@@ -6,7 +6,6 @@
     <title>QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css">
-    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script src="scripts/download.js?v=${CACHEID}"></script>
@@ -175,7 +174,8 @@
                 window.parent.qBittorrent.Client.closeFrameWindow(window);
         });
 
-        if ((Browser.platform === "ios") || ((Browser.platform === "mac") && (navigator.maxTouchPoints > 1)))
+        const userAgent = (navigator.userAgentData?.platform ?? navigator.platform).toLowerCase();
+        if (userAgent.includes("ipad") || userAgent.includes("iphone") || (userAgent.includes("mac") && (navigator.maxTouchPoints > 1)))
             document.getElementById("fileselect").accept = ".torrent";
 
         window.qBittorrent.pathAutofill.attachPathAutofill();
