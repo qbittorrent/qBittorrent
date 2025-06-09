@@ -492,7 +492,10 @@ const initializeWindows = () => {
             height: loadWindowHeight(id, 415),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
-            })
+            }),
+            onContentLoaded: () => {
+                window.qBittorrent.Statistics.render();
+            }
         });
     };
 
