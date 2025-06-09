@@ -2912,6 +2912,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             return this.getNode(row.rowId);
         }
 
+        calculateRemaining() {
+            this.fileTree.getRoot().calculateRemaining();
+        }
+
         initColumns() {
             this.newColumn("checked", "", "", 50, true);
             this.newColumn("name", "", "QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]", 300, true);
@@ -3186,14 +3190,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.prevSortedColumn = this.sortedColumn;
             this.prevReverseSort = this.reverseSort;
             return rows;
-        }
-
-        setIgnored(rowId, ignore) {
-            const node = this.getNode(rowId.toString());
-            if (ignore)
-                node.remaining = 0;
-            else
-                node.remaining = (node.size * (1.0 - (node.progress / 100)));
         }
 
         setupCommonEvents() {
