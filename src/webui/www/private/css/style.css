@@ -826,10 +826,6 @@ td.statusBarSeparator {
     overflow: auto;
 }
 
-#searchResultsTableDiv {
-    height: calc(100% - 26px) !important;
-}
-
 #searchResults .dynamicTable {
     width: 100%;
 }
