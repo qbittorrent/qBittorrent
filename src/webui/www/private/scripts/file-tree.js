@@ -213,8 +213,8 @@ window.qBittorrent.FileTree ??= (() => {
                     }
 
                     root.checked = root.autoCalculateCheckedState ? root.checked : TriState.Checked;
-                    root.progress /= root.size;
-                    root.availability /= root.size;
+                    root.progress = (root.size > 0) ? (root.progress / root.size) : 0;
+                    root.availability = (root.size > 0) ? (root.availability / root.size) : 0;
                 }
 
                 stack.pop();
