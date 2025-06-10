@@ -1582,9 +1582,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const hasMetadata1 = this.getRowValue(row1, 0);
                 const hasMetadata2 = this.getRowValue(row2, 0);
 
-                if (hasMetadata1 === true && hasMetadata2 === false)
+                if ((hasMetadata1 === true) && (hasMetadata2 === false))
                     return -1;
-                if (hasMetadata1 === false && hasMetadata2 === true)
+                if ((hasMetadata1 === false) && (hasMetadata2 === true))
                     return 1;
 
                 const size1 = this.getRowValue(row1, 1);
