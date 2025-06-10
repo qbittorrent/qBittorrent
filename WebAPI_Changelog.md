@@ -21,6 +21,10 @@
   * `app/getDirectoryContent` allows an optional parameter `withMetadata` to send file metadata
     * Fields are `name`, `type`, `size`, `creation_date`, `last_access_date`, `last_modification_date`
     * See PR for TypeScript types
+* [#22698](https://github.com/qbittorrent/qBittorrent/pull/22698)
+  * `addTracker` and `removeTracker` now accept `hash=all` and removes/adds the tracker to *all* torrents
+    * For compatability, `removeTracker` still accepts `hash=*` internally we transform it into `all`
+  * Allow passing a pipe (`|`) separated list of hashes in `hash` for `addTracker` and `removeTracker`
 
 ## 2.11.7
 
