@@ -191,9 +191,8 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
 
     QHash<TorrentID, qsizetype> registeredTorrentsIndexes;
     registeredTorrentsIndexes.reserve(m_registeredTorrents.length());
-    qsizetype i = -1;
-    for (const TorrentID &torrentID : asConst(m_registeredTorrents))
-        registeredTorrentsIndexes.insert(torrentID, ++i);
+    for (qsizetype i = 0; i < m_registeredTorrents.length(); ++i)
+        registeredTorrentsIndexes.insert(m_registeredTorrents.at(i), i);
 
     const QRegularExpression hashPattern {u"^([A-Fa-f0-9]{40})$"_s};
     qsizetype queuePos = 0;
