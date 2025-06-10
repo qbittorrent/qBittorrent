@@ -23,7 +23,7 @@
     * See PR for TypeScript types
 * [#22698](https://github.com/qbittorrent/qBittorrent/pull/22698)
   * `addTracker` and `removeTracker` now accept `hash=all` and removes/adds the tracker to *all* torrents
-    * For compatability, `removeTracker` still accepts `hash=*` internally we transform it into `all`
+    * For compatibility, `removeTracker` still accepts `hash=*` internally we transform it into `all`
   * Allow passing a pipe (`|`) separated list of hashes in `hash` for `addTracker` and `removeTracker`
 
 ## 2.11.7
