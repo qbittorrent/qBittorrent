@@ -72,7 +72,8 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
     setDragEnabled(true);
-    setDragDropMode(QAbstractItemView::DragOnly);
+    setDragDropMode(QAbstractItemView::NoDragDrop);
+    setSelectionMode(QAbstractItemView::MultiSelection);
     setExpandsOnDoubleClick(false);
     setSortingEnabled(true);
     setUniformRowHeights(true);
@@ -222,6 +223,16 @@ void TorrentContentWidget::checkNone()
 {
     for (int i = 0; i < model()->rowCount(); ++i)
         model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Unchecked, Qt::CheckStateRole);
+}
+
+void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
+{
+    if (event->modifiers() & Qt::AltModifier)
+        setDragDropMode(QAbstractItemView::DragOnly);
+    else
+        setDragDropMode(QAbstractItemView::NoDragDrop);
+
+    QTreeView::mousePressEvent(event);
 }
 
 void TorrentContentWidget::keyPressEvent(QKeyEvent *event)

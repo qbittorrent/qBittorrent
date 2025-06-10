@@ -103,6 +103,7 @@ signals:
 
 private:
     void setModel(QAbstractItemModel *model) override;
+    void mousePressEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
     QModelIndex currentNameCell() const;
