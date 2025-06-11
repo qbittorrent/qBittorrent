@@ -72,9 +72,8 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
     setDragEnabled(true);
-    setDragDropMode(QAbstractItemView::NoDragDrop);
-    setSelectionMode(QAbstractItemView::MultiSelection);
     setExpandsOnDoubleClick(false);
+    setSelectionMode(QAbstractItemView::MultiSelection);
     setSortingEnabled(true);
     setUniformRowHeights(true);
     header()->setSortIndicator(0, Qt::AscendingOrder);
@@ -225,16 +224,6 @@ void TorrentContentWidget::checkNone()
         model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Unchecked, Qt::CheckStateRole);
 }
 
-void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
-{
-    if (event->modifiers() & Qt::AltModifier)
-        setDragDropMode(QAbstractItemView::DragOnly);
-    else
-        setDragDropMode(QAbstractItemView::NoDragDrop);
-
-    QTreeView::mousePressEvent(event);
-}
-
 void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
 {
     if ((event->key() != Qt::Key_Space) && (event->key() != Qt::Key_Select))
@@ -258,6 +247,16 @@ void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
 
     for (const QPersistentModelIndex &index : selection)
         model()->setData(index, state, Qt::CheckStateRole);
+}
+
+void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
+{
+    if (event->modifiers().testFlag(Qt::AltModifier))
+        setDragDropMode(QAbstractItemView::DragOnly);
+    else
+        setDragDropMode(QAbstractItemView::NoDragDrop);
+
+    QTreeView::mousePressEvent(event);
 }
 
 void TorrentContentWidget::renameSelectedFile()
