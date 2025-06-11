@@ -212,7 +212,7 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
                 if (pos != queuePos)
                 {
                     m_registeredTorrents.swapItemsAt(pos, queuePos);
-                    registeredTorrentsIndexes.insert(torrentID, queuePos);
+                    registeredTorrentsIndexes.insert(m_registeredTorrents.at(pos), pos);
                 }
                 ++queuePos;
             }
