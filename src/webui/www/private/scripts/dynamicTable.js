@@ -99,6 +99,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return;
             this.table.style.position = "relative";
 
+            this.renderedOffset = this.dynamicTableDiv.scrollTop;
             this.renderedHeight = this.dynamicTableDiv.offsetHeight;
             const resizeCallback = window.qBittorrent.Misc.createDebounceHandler(100, () => {
                 const height = this.dynamicTableDiv.offsetHeight;
@@ -117,8 +118,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
                 tableElement.style.left = `${-this.dynamicTableDiv.scrollLeft}px`;
                 // rerender on scroll
-                if (this.useVirtualList)
+                if (this.useVirtualList) {
+                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
                     this.rerender();
+                }
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
@@ -903,17 +906,20 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         rerender(rows = this.getFilteredAndSortedRows()) {
             // set the scrollable height
-            this.table.style.height = `${rows.length * this.rowHeight}px`;
+            const tableHeight = rows.length * this.rowHeight;
+            if (tableHeight !== this.previousTableHeight) {
+                this.previousTableHeight = tableHeight;
+                this.table.style.height = `${tableHeight}px`;
+            }
 
-            if (this.dynamicTableDiv.offsetHeight === 0)
+            if (this.renderedHeight === 0)
                 return;
-            this.renderedHeight = this.dynamicTableDiv.offsetHeight;
             // show extra 6 rows at top/bottom to reduce flickering
             const extraRowCount = 6;
             // how many rows can be shown in the visible area
             const visibleRowCount = Math.ceil(this.renderedHeight / this.rowHeight) + (extraRowCount * 2);
-            // start position of visible rows, offsetted by scrollTop
-            let startRow = Math.max((Math.trunc(this.dynamicTableDiv.scrollTop / this.rowHeight) - extraRowCount), 0);
+            // start position of visible rows, offsetted by renderedOffset
+            let startRow = Math.max((Math.trunc(this.renderedOffset / this.rowHeight) - extraRowCount), 0);
             // ensure startRow is even
             if ((startRow % 2) === 1)
                 startRow = Math.max(0, startRow - 1);
@@ -942,24 +948,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             // update visible rows
             for (const row of this.tableBody.children)
                 this.updateRow(row, true);
-
-            // refresh row height based on first row
-            const tr = this.tableBody.firstChild;
-            if (tr !== null) {
-                const updateRowHeight = () => {
-                    if (tr.offsetHeight === 0)
-                        return;
-                    if (this.rowHeight !== tr.offsetHeight) {
-                        this.rowHeight = tr.offsetHeight;
-                        // rerender on row height change
-                        this.rerender();
-                    }
-                };
-                if (tr.offsetHeight === 0)
-                    setTimeout(updateRowHeight);
-                else
-                    updateRowHeight();
-            }
         }
 
         createRowElement(row, top = -1) {
@@ -991,6 +979,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             if (this.useVirtualList) {
                 tr.style.position = "absolute";
                 tr.style.top = `${top}px`;
+                tr.style.height = `${this.rowHeight}px`;
             }
         }
 
@@ -2592,8 +2581,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
                 headerDiv.scrollLeft = this.dynamicTableDiv.scrollLeft;
                 // rerender on scroll
-                if (this.useVirtualList)
+                if (this.useVirtualList) {
+                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
                     this.rerender();
+                }
             });
         }
     }
