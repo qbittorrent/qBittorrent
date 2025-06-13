@@ -765,7 +765,7 @@ const initializeWindows = () => {
         const hashes = torrentsTable.selectedRowsIds();
         const hashList = hashes.join("|");
         const rows = [];
-        hashes.forEach((hash) => {
+        hashes.each((hash) => {
             const row = torrentsTable.getRow(hash);
             if (row)
                 rows.push(row);

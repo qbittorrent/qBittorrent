@@ -1,7 +1,7 @@
 # WebAPI Changelog
 
 ## 2.14.1
-* [#???](https://github.com/qbittorrent/qBittorrent/pull/)
+* [#22863](https://github.com/qbittorrent/qBittorrent/pull/22863)
   * Introduce `torrents/bulkFiles`, accepts a list of `hash`es separated with `|` (pipe), returns list of files for all selected torrents
 
 ## 2.14.0
