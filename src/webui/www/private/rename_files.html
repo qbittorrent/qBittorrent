@@ -342,6 +342,7 @@
                             folderNode.original = folderName;
                             folderNode.renamed = "";
                             folderNode.root = parent;
+                            folderNode.data = { torrentHash: row.torrentHash };
                             parent.addChild(folderNode);
 
                             ++rowId;
