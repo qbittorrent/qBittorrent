@@ -66,6 +66,7 @@ private slots:
     void editWebSeedAction();
     void removeWebSeedsAction();
     void filesAction();
+    void bulkFilesAction();
     void pieceHashesAction();
     void pieceStatesAction();
     void startAction();

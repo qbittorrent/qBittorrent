@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.14.1
+* [#???](https://github.com/qbittorrent/qBittorrent/pull/)
+  * Introduce `torrents/bulkFiles`, accepts a list of `hash`es separated with `|` (pipe), returns list of files for all selected torrents
+
 ## 2.14.0
 * [#23202](https://github.com/qbittorrent/qBittorrent/pull/23202)
   * WebAPI responds with the error message "Endpoint does not exist" when the endpoint does not exist, to better differentiate from unrelated Not Found (i.e. 404) responses
