@@ -1572,6 +1572,25 @@ qreal TorrentImpl::popularity() const
     return (activeMonths > 0) ? (realRatio() / activeMonths) : 0;
 }
 
+qreal TorrentImpl::importance() const
+{
+    // Popularity divided by seed count is a much better measure of how important you are as a seed for a torrent than popularity alone
+    const qreal pop = popularity();
+    const int seeds = totalSeedsCount();
+
+    if (seeds > 0)
+    {
+        return pop / seeds;
+    }
+
+    if (pop > 0)
+    {
+        return Torrent::MAX_RATIO;
+    }
+
+    return 0.0;
+}
+
 void TorrentImpl::setName(const QString &name)
 {
     if (m_name != name)

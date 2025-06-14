@@ -169,6 +169,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_RATIO, adjustRatio(torrent.realRatio())},
         {KEY_TORRENT_RATIO_LIMIT, torrent.ratioLimit()},
         {KEY_TORRENT_POPULARITY, torrent.popularity()},
+        {KEY_TORRENT_IMPORTANCE, torrent.importance()},
         {KEY_TORRENT_SEEDING_TIME_LIMIT, torrent.seedingTimeLimit()},
         {KEY_TORRENT_INACTIVE_SEEDING_TIME_LIMIT, torrent.inactiveSeedingTimeLimit()},
         {KEY_TORRENT_LAST_SEEN_COMPLETE_TIME, Utils::DateTime::toSecsSinceEpoch(torrent.lastSeenComplete())},
