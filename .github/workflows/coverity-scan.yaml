@@ -16,7 +16,7 @@ jobs:
       matrix:
         libt_version: ["2.0.11"]
         qbt_gui: ["GUI=ON"]
-        qt_version: ["6.6.3"]
+        qt_version: ["6.9.1"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -39,7 +39,7 @@ jobs:
       - name: Install boost
         env:
           BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "86"
+          BOOST_MINOR_VERSION: "88"
           BOOST_PATCH_VERSION: "0"
         run: |
           boost_url="https://archives.boost.io/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
