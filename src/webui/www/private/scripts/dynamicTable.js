@@ -1152,12 +1152,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("infohash_v2", "", "QBT_TR(Info Hash v2)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("percent_selected", "", "QBT_TR(Selected)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
             this.columns["state_icon"].dataProperties[0] = "state";
             this.columns["name"].dataProperties.push("state");
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["percent_selected"].dataProperties = ["has_metadata", "size", "total_size"];
 
             this.initColumnsFunctions();
         }
@@ -1560,6 +1562,51 @@ window.qBittorrent.DynamicTable ??= (() => {
                     : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
                 td.textContent = string;
                 td.title = string;
+            };
+
+            // percent_selected
+            this.columns["percent_selected"].updateTd = function(td, row) {
+                const hasMetadata = this.getRowValue(row, 0);
+                if (!hasMetadata) {
+                    td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    return;
+                }
+                const size = this.getRowValue(row, 1);
+                const totalSize = this.getRowValue(row, 2);
+                if (totalSize <= 0) {
+                    td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    return;
+                }
+                const percent = (size / totalSize) * 100;
+                const value = `${window.qBittorrent.Misc.toFixedPointString(percent, 2)}%`;
+                td.textContent = value;
+                td.title = value;
+            };
+
+            this.columns["percent_selected"].compareRows = function(row1, row2) {
+                const hasMetadata1 = this.getRowValue(row1, 0);
+                const hasMetadata2 = this.getRowValue(row2, 0);
+
+                if (hasMetadata1 && !hasMetadata2)
+                    return -1;
+                if (!hasMetadata1 && hasMetadata2)
+                    return 1;
+
+                const size1 = this.getRowValue(row1, 1);
+                const totalSize1 = this.getRowValue(row1, 2);
+                if (totalSize1 <= 0)
+                    return 1;
+                const ratio1 = (size1 / totalSize1) * 100;
+
+                const size2 = this.getRowValue(row2, 1);
+                const totalSize2 = this.getRowValue(row2, 2);
+                if (totalSize2 <= 0)
+                    return -1;
+                const ratio2 = (size2 / totalSize2) * 100;
+
+                return compareNumbers(ratio1, ratio2);
             };
         }
 
