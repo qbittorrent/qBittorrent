@@ -298,7 +298,8 @@
                         path: file.name,
                         original: window.qBittorrent.Filesystem.fileName(file.name),
                         renamed: "",
-                        size: file.size
+                        size: file.size,
+                        torrentHash: file.torrent_hash
                     };
 
                     return row;
@@ -375,7 +376,7 @@
             };
 
             const setupTable = (selectedRows) => {
-                const url = new URL("api/v2/torrents/files", window.location);
+                const url = new URL("api/v2/torrents/bulkFiles", window.location);
                 url.search = new URLSearchParams({
                     hash: data.hash
                 });

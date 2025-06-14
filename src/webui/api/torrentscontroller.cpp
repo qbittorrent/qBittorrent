@@ -786,6 +786,46 @@ void TorrentsController::filesAction()
     setResult(fileList);
 }
 
+// Returns a list of all the files in the list of torrent in JSON format.
+// The return value is a JSON-formatted list of dictionaries.
+// The dictionary keys are:
+//   - "index": File index
+//   - "name": File name
+//   - "size": File size
+//   - "progress": File progress
+//   - "priority": File priority
+//   - "is_seed": Flag indicating if torrent is seeding/complete
+//   - "piece_range": Piece index range, the first number is the starting piece index
+//        and the second number is the ending piece index (inclusive)
+//   - "torrent_hash": The hash of the torrent from which this file originates
+void TorrentsController::bulkFilesAction()
+{
+    requireParams({u"hash"_s});
+
+    const auto ids = params()[u"hash"_s].split(u'|', Qt::SkipEmptyParts);
+    QVariantList fileList;
+    for (const QString &id : ids)
+    {
+        const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(BitTorrent::TorrentID::fromString(id));
+        if (!torrent)
+            continue;
+        if (!torrent->hasMetadata())
+            continue; // skip torrents without metadata
+
+        auto currentFileList = getFiles(torrent);
+        // Add torrent ID to each file
+        for (QJsonValueRef file : currentFileList)
+        {
+            QJsonObject fileObj = file.toObject();
+            fileObj[u"torrent_hash"] = torrent->id().toString();
+            file = fileObj;
+        }
+        fileList.append(currentFileList.toVariantList());
+    }
+
+    setResult(QJsonArray::fromVariantList(fileList));
+}
+
 // Returns an array of hashes (of each pieces respectively) for a torrent in JSON format.
 // The return value is a JSON-formatted array of strings (hex strings).
 void TorrentsController::pieceHashesAction()
