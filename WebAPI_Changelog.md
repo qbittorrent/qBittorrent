@@ -1,5 +1,14 @@
 # WebAPI Changelog
 
+## 2.11.9
+
+* [#21015](https://github.com/qbittorrent/qBittorrent/pull/21015)
+  * Add `torrents/fetchMetadata` endpoint for retrieving torrent metadata associated with a URL
+  * Add `torrents/parseMetadata` endpoint for retrieving torrent metadata associated with a .torrent file
+  * Add `torrents/saveMetadata` endpoint for saving retrieved torrent metadata to a .torrent file
+  * `torrents/add` allows adding a torrent with metadata previously retrieved via `torrents/fetchMetadata` or `torrents/parseMetadata`
+  * `torrents/add` allows specifying a torrent's file priorities
+
 ## 2.11.8
 
 * [#21349](https://github.com/qbittorrent/qBittorrent/pull/21349)
