@@ -7,21 +7,6 @@
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
-</head>
-
-<body>
-    <div style="padding-top: 10px; width: 100%; text-align: center; margin: 0 auto; overflow: hidden">
-        <div class="slider">
-            <div class="update">
-                <label id="limitUpdateLabel" for="limitUpdateValue">QBT_TR(Limit:)QBT_TR[CONTEXT=SpeedLimit]</label>
-                <input type="text" id="limitUpdateValue" size="6" placeholder="∞" style="text-align: center;">
-                <span id="limitUnit">QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
-            </div>
-            <input type="range" id="limitSliderInput" min="0" value="0" style="width: 100%;" aria-label="QBT_TR(Speed limit)QBT_TR[CONTEXT=SpeedLimit]">
-        </div>
-        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]">
-    </div>
-
     <script>
         "use strict";
 
@@ -158,6 +143,20 @@
             limitUpdateValue.focus();
         });
     </script>
+</head>
+
+<body>
+    <div style="padding-top: 10px; width: 100%; text-align: center; margin: 0 auto; overflow: hidden">
+        <div class="slider">
+            <div class="update">
+                <label id="limitUpdateLabel" for="limitUpdateValue">QBT_TR(Limit:)QBT_TR[CONTEXT=SpeedLimit]</label>
+                <input type="text" id="limitUpdateValue" size="6" placeholder="∞" style="text-align: center;">
+                <span id="limitUnit">QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
+            </div>
+            <input type="range" id="limitSliderInput" min="0" value="0" style="width: 100%;" aria-label="QBT_TR(Speed limit)QBT_TR[CONTEXT=SpeedLimit]">
+        </div>
+        <input type="button" id="applyButton" value="QBT_TR(Apply)QBT_TR[CONTEXT=HttpServer]">
+    </div>
 </body>
 
 </html>
