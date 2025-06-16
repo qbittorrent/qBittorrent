@@ -6,10 +6,41 @@
     <title>QBT_TR(Add Torrent Links)QBT_TR[CONTEXT=downloadFromURL]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css">
-    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
-    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
-    <script src="scripts/download.js?v=${CACHEID}"></script>
-    <script src="scripts/pathAutofill.js?v=${CACHEID}"></script>
+    <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
+    <script defer src="scripts/download.js?v=${CACHEID}"></script>
+    <script defer src="scripts/pathAutofill.js?v=${CACHEID}"></script>
+    <script>
+        "use strict";
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+            const encodedUrls = new URLSearchParams(window.location.search).get("urls");
+            if (encodedUrls !== null) {
+                const urls = encodedUrls.split("|").map(decodeURIComponent);
+                if (urls.length > 0)
+                    document.getElementById("urls").value = urls.join("\n");
+            }
+
+            let submitted = false;
+
+            document.getElementById("downloadForm").addEventListener("submit", (event) => {
+                document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
+
+                document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
+                document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
+
+                document.getElementById("download_spinner").style.display = "block";
+                submitted = true;
+            });
+
+            document.getElementById("download_frame").addEventListener("load", (event) => {
+                if (submitted)
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
+            });
+
+            window.qBittorrent.pathAutofill.attachPathAutofill();
+        });
+    </script>
 </head>
 
 <body>
@@ -156,36 +187,6 @@
         </div>
     </form>
     <div id="download_spinner" class="mochaSpinner"></div>
-
-    <script>
-        "use strict";
-
-        const encodedUrls = new URLSearchParams(window.location.search).get("urls");
-        if (encodedUrls !== null) {
-            const urls = encodedUrls.split("|").map(decodeURIComponent);
-            if (urls.length > 0)
-                document.getElementById("urls").value = urls.join("\n");
-        }
-
-        let submitted = false;
-
-        document.getElementById("downloadForm").addEventListener("submit", (event) => {
-            document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
-
-            document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
-            document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
-
-            document.getElementById("download_spinner").style.display = "block";
-            submitted = true;
-        });
-
-        document.getElementById("download_frame").addEventListener("load", (event) => {
-            if (submitted)
-                window.parent.qBittorrent.Client.closeFrameWindow(window);
-        });
-
-        window.qBittorrent.pathAutofill.attachPathAutofill();
-    </script>
 </body>
 
 </html>
