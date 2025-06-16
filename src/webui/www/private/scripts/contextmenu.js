@@ -397,7 +397,6 @@ window.qBittorrent.ContextMenu ??= (() => {
                     : this.hideItem("renameFiles");
             }
             else {
-                this.hideItem("renameFiles");
                 this.hideItem("rename");
             }
 

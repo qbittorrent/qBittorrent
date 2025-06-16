@@ -740,28 +740,31 @@ const initializeWindows = () => {
 
     renameFilesFN = () => {
         const hashes = torrentsTable.selectedRowsIds();
-        if (hashes.length === 1) {
-            const hash = hashes[0];
+        const hashList = hashes.join("|");
+        const rows = [];
+        hashes.forEach((hash) => {
             const row = torrentsTable.getRow(hash);
-            if (row) {
-                new MochaUI.Window({
-                    id: "multiRenamePage",
-                    icon: "images/qbittorrent-tray.svg",
-                    title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
-                    data: { hash: hash, selectedRows: [] },
-                    loadMethod: "xhr",
-                    contentURL: "rename_files.html",
-                    scrollbars: false,
-                    resizable: true,
-                    maximizable: false,
-                    paddingVertical: 0,
-                    paddingHorizontal: 0,
-                    width: 800,
-                    height: 420,
-                    resizeLimit: { x: [800], y: [420] }
-                });
-            }
-        }
+            if (row)
+                rows.push(row);
+        });
+        if (rows.length === 0)
+            return;
+        new MochaUI.Window({
+            id: "multiRenamePage",
+            icon: "images/qbittorrent-tray.svg",
+            title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
+            data: { hash: hashList, selectedRows: rows },
+            loadMethod: "xhr",
+            contentURL: "rename_files.html",
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 800,
+            height: 420,
+            resizeLimit: { x: [800], y: [420] }
+        });
     };
 
     startVisibleTorrentsFN = () => {
