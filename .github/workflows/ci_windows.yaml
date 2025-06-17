@@ -121,7 +121,7 @@ jobs:
             ${{ env.libtorrent_path }}
           cd ${{ env.libtorrent_path }}
           $env:CXXFLAGS+=" /guard:cf"
-          $env:LDFLAGS+=" /guard:cf"
+          $env:LDFLAGS+=" /GUARD:CF"
           cmake `
             -B build `
             -G "Ninja" `
