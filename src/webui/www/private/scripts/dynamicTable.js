@@ -861,40 +861,47 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
             else {
                 const trs = [...this.getTrs()];
+                const trMap = new Map(trs.map(tr => [tr.rowId, tr]));
 
                 for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
                     const rowId = rows[rowPos].rowId;
-                    let tr_found = false;
-                    for (let j = rowPos; j < trs.length; ++j) {
-                        if (trs[j].rowId === rowId) {
-                            tr_found = true;
-                            if (rowPos === j)
-                                break;
-                            trs[j].inject(trs[rowPos], "before");
-                            const tmpTr = trs[j];
-                            trs.splice(j, 1);
-                            trs.splice(rowPos, 0, tmpTr);
-                            break;
-                        }
+                    const existingTr = trMap.get(rowId);
+                    if (existingTr !== undefined) {
+                        this.updateRow(existingTr, fullUpdate);
                     }
-                    if (tr_found) { // row already exists in the table
-                        this.updateRow(trs[rowPos], fullUpdate);
-                    }
-                    else { // else create a new row in the table
+                    else {
                         const tr = this.createRowElement(rows[rowPos]);
 
-                        // Insert
-                        if (rowPos >= trs.length) {
-                            tr.inject(this.tableBody);
-                            trs.push(tr);
-                        }
-                        else {
-                            tr.inject(trs[rowPos], "before");
-                            trs.splice(rowPos, 0, tr);
-                        }
+                        // TODO look into using DocumentFragment or appending all trs at once for add'l performance gains
+                        // add to end of table - we'll move into the proper order later
+                        this.tableBody.appendChild(tr);
+                        trMap.set(rowId, tr);
 
                         this.updateRow(tr, true);
                     }
+                }
+
+                // reorder table rows
+                let prevTr = null;
+                for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
+                    const { rowId } = rows[rowPos];
+                    const tr = trMap.get(rowId);
+
+                    const isInCorrectLocation = rowId === trs[rowPos]?.rowId;
+                    if (!isInCorrectLocation) {
+                        // move row into correct location
+                        if (prevTr === null) {
+                            // insert as first row in table
+                            if (trs.length === 0)
+                                this.tableBody.append(tr);
+                            else
+                                trs[0].before(tr);
+                        }
+                        else {
+                            prevTr.after(tr);
+                        }
+                    }
+                    prevTr = tr;
                 }
 
                 const rowPos = rows.length;
@@ -914,8 +921,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             if (this.renderedHeight === 0)
                 return;
-            // show extra 6 rows at top/bottom to reduce flickering
-            const extraRowCount = 6;
+            // show extra rows at top/bottom to reduce flickering
+            const extraRowCount = 20;
             // how many rows can be shown in the visible area
             const visibleRowCount = Math.ceil(this.renderedHeight / this.rowHeight) + (extraRowCount * 2);
             // start position of visible rows, offsetted by renderedOffset

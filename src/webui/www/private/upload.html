@@ -6,10 +6,38 @@
     <title>QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css">
-    <script src="scripts/localpreferences.js?v=${CACHEID}"></script>
-    <script src="scripts/color-scheme.js?v=${CACHEID}"></script>
-    <script src="scripts/download.js?v=${CACHEID}"></script>
-    <script src="scripts/pathAutofill.js?v=${CACHEID}"></script>
+    <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
+    <script defer src="scripts/download.js?v=${CACHEID}"></script>
+    <script defer src="scripts/pathAutofill.js?v=${CACHEID}"></script>
+    <script>
+        "use strict";
+
+        window.addEventListener("DOMContentLoaded", (event) => {
+            let submitted = false;
+
+            document.getElementById("uploadForm").addEventListener("submit", (event) => {
+                document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
+
+                document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
+                document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
+
+                document.getElementById("upload_spinner").style.display = "block";
+                submitted = true;
+            });
+
+            document.getElementById("upload_frame").addEventListener("load", (event) => {
+                if (submitted)
+                    window.parent.qBittorrent.Client.closeFrameWindow(window);
+            });
+
+            const userAgent = (navigator.userAgentData?.platform ?? navigator.platform).toLowerCase();
+            if (userAgent.includes("ipad") || userAgent.includes("iphone") || (userAgent.includes("mac") && (navigator.maxTouchPoints > 1)))
+                document.getElementById("fileselect").accept = ".torrent";
+
+            window.qBittorrent.pathAutofill.attachPathAutofill();
+        });
+    </script>
 </head>
 
 <body>
@@ -153,33 +181,6 @@
         </fieldset>
     </form>
     <div id="upload_spinner" class="mochaSpinner"></div>
-
-    <script>
-        "use strict";
-
-        let submitted = false;
-
-        document.getElementById("uploadForm").addEventListener("submit", (event) => {
-            document.getElementById("startTorrentHidden").value = document.getElementById("startTorrent").checked ? "false" : "true";
-
-            document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
-            document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
-
-            document.getElementById("upload_spinner").style.display = "block";
-            submitted = true;
-        });
-
-        document.getElementById("upload_frame").addEventListener("load", (event) => {
-            if (submitted)
-                window.parent.qBittorrent.Client.closeFrameWindow(window);
-        });
-
-        const userAgent = (navigator.userAgentData?.platform ?? navigator.platform).toLowerCase();
-        if (userAgent.includes("ipad") || userAgent.includes("iphone") || (userAgent.includes("mac") && (navigator.maxTouchPoints > 1)))
-            document.getElementById("fileselect").accept = ".torrent";
-
-        window.qBittorrent.pathAutofill.attachPathAutofill();
-    </script>
 </body>
 
 </html>
