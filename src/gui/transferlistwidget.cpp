@@ -231,6 +231,9 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     connect(editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
     const auto *deleteHotkey = new QShortcut(Utils::KeySequence::deleteItem(), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
+    // Declare Backspace as alternative for compact keyboards
+    const auto *deleteHotkeyAlt = new QShortcut(Qt::Key_Backspace, this, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(deleteHotkeyAlt, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
     const auto *permDeleteHotkey = new QShortcut((Qt::SHIFT | Qt::Key_Delete), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);
     const auto *doubleClickHotkeyReturn = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
