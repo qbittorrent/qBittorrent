@@ -1345,7 +1345,7 @@ void TransferListWidget::applyStatusFilter(const int filterIndex)
     const int column = m_sortFilterModel->sortColumn();
     if (column != -1 && usePerFilterSort)
     {
-        m_statusSortPairs.insert_or_assign(filter, qMakePair(column, m_sortFilterModel->sortOrder()));
+        m_statusSortPairs[filter] = qMakePair(column, m_sortFilterModel->sortOrder());
     }
 
     m_sortFilterModel->setStatusFilter(((filterType >= TorrentFilter::All) && (filterType < TorrentFilter::_Count)) ? filterType : TorrentFilter::All);
