@@ -3898,6 +3898,16 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkBoxUseCheckboxes">
+                 <property name="text">
+                  <string>Enable checkboxes in Web User Interface</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="groupBox_3">
                  <property name="title">
                   <string>Security</string>

@@ -745,6 +745,18 @@ bool Preferences::isWebUIAuthSubnetWhitelistEnabled() const
     return value(u"Preferences/WebUI/AuthSubnetWhitelistEnabled"_s, false);
 }
 
+bool Preferences::useCheckboxesInUI() const
+{
+    return value(u"Preferences/WebUI/UseCheckboxesInUI"_s, true);
+}
+
+void Preferences::setUseCheckboxesInUI(const bool enabled)
+{
+    if (enabled == useCheckboxesInUI())
+        return;
+    setValue(u"Preferences/WebUI/UseCheckboxesInUI"_s, enabled);
+}
+
 void Preferences::setWebUIAuthSubnetWhitelistEnabled(const bool enabled)
 {
     if (enabled == isWebUIAuthSubnetWhitelistEnabled())

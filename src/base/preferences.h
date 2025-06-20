@@ -193,6 +193,8 @@ public:
     void setWebUIPort(quint16 port);
     bool useUPnPForWebUIPort() const;
     void setUPnPForWebUIPort(bool enabled);
+    bool useCheckboxesInUI() const;
+    void setUseCheckboxesInUI(bool enabled);
 
     // Authentication
     bool isWebUILocalAuthEnabled() const;
