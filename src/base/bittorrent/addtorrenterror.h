@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Mike Tzou (Chocobo1)
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,54 +26,24 @@
  * exception statement from your version.
  */
 
-#include <limits>
+#pragma once
 
-#include <cerrno>
-#include <cstdio>
-#include <cstring>
+#include <QMetaType>
+#include <QString>
 
-#include <QtLogging>
-
-namespace
+namespace BitTorrent
 {
-    class RandomLayer
+    struct AddTorrentError
     {
-    // need to satisfy UniformRandomBitGenerator requirements
-    public:
-        using result_type = uint32_t;
-
-        RandomLayer()
-            : m_randDev {fopen("/dev/urandom", "rb")}
+        enum Kind
         {
-            if (!m_randDev)
-                qFatal("Failed to open /dev/urandom. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
-        }
+            DuplicateTorrent,
+            Other
+        };
 
-        ~RandomLayer()
-        {
-            fclose(m_randDev);
-        }
-
-        static constexpr result_type min()
-        {
-            return std::numeric_limits<result_type>::min();
-        }
-
-        static constexpr result_type max()
-        {
-            return std::numeric_limits<result_type>::max();
-        }
-
-        result_type operator()() const
-        {
-            result_type buf = 0;
-            if (fread(&buf, sizeof(buf), 1, m_randDev) == 1)
-                return buf;
-
-            qFatal("Read /dev/urandom error. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
-        }
-
-    private:
-        FILE *m_randDev = nullptr;
+        Kind kind = Other;
+        QString message;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::AddTorrentError)

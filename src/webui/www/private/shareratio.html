@@ -172,17 +172,17 @@
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setRatio" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="ratioLabel" for="setRatio">QBT_TR(ratio)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <input type="number" id="ratio" value="0.00" step=".01" min="0" max="9999" class="shareLimitInput" aria-labelledby="ratioLabel">
+            <input type="number" id="ratio" value="0.00" step=".01" min="0" class="shareLimitInput" aria-labelledby="ratioLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setTotalMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="totalMinutesLabel" for="setTotalMinutes">QBT_TR(total minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <input type="number" id="totalMinutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" aria-labelledby="totalMinutesLabel">
+            <input type="number" id="totalMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="totalMinutesLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <input type="checkbox" id="setInactiveMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="inactiveMinutesLabel" for="setInactiveMinutes">QBT_TR(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <input type="number" id="inactiveMinutes" value="0" step="1" min="0" max="525600" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
+            <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
         </div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="save">

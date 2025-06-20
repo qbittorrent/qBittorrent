@@ -174,7 +174,9 @@ let selectedStatus = LocalPreferences.get("selected_filter", "all");
 let setStatusFilter = () => {};
 let toggleFilterDisplay = () => {};
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", (event) => {
+    window.qBittorrent.LocalPreferences.upgrade();
+
     let isSearchPanelLoaded = false;
     let isLogPanelLoaded = false;
     let isRssPanelLoaded = false;
@@ -497,7 +499,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (!categoryList)
             return;
 
-        [...categoryList.children].forEach((el) => { el.destroy(); });
+        [...categoryList.children].forEach((el) => { el.remove(); });
 
         const categoryItemTemplate = document.getElementById("categoryFilterItem");
 
@@ -618,7 +620,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (tagFilterList === null)
             return;
 
-        [...tagFilterList.children].forEach((el) => { el.destroy(); });
+        [...tagFilterList.children].forEach((el) => { el.remove(); });
 
         const tagItemTemplate = document.getElementById("tagFilterItem");
 
@@ -671,7 +673,7 @@ window.addEventListener("DOMContentLoaded", () => {
         if (trackerFilterList === null)
             return;
 
-        [...trackerFilterList.children].forEach((el) => { el.destroy(); });
+        [...trackerFilterList.children].forEach((el) => { el.remove(); });
 
         const trackerItemTemplate = document.getElementById("trackerFilterItem");
 
@@ -989,9 +991,9 @@ window.addEventListener("DOMContentLoaded", () => {
                 lastExternalAddressLabel = "QBT_TR(External IPs: %1, %2)QBT_TR[CONTEXT=HttpServer]";
             else if (hasIPv4Address || hasIPv6Address)
                 lastExternalAddressLabel = "QBT_TR(External IP: %1%2)QBT_TR[CONTEXT=HttpServer]";
-            // replace in reverse order ('%2' before '%1') in case address contains a % character.
-            // for example, see https://en.wikipedia.org/wiki/IPv6_address#Scoped_literal_IPv6_addresses_(with_zone_index)
-            externalIPsElement.textContent = lastExternalAddressLabel.replace("%2", lastExternalAddressV6).replace("%1", lastExternalAddressV4);
+            // https://en.wikipedia.org/wiki/IPv6_address#Scoped_literal_IPv6_addresses_(with_zone_index)
+            lastExternalAddressLabel = lastExternalAddressLabel.replace("%1", lastExternalAddressV4).replace("%2", lastExternalAddressV6);
+            externalIPsElement.textContent = lastExternalAddressLabel;
             externalIPsElement.classList.remove("invisible");
             externalIPsElement.previousElementSibling.classList.remove("invisible");
         }

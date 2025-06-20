@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Mike Tzou (Chocobo1)
+ * Copyright (C) 2025  bolshoytoster <toasterbig@gmail.com>
+ * Copyright (C) 2025  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,54 +27,46 @@
  * exception statement from your version.
  */
 
-#include <limits>
+"use strict";
 
-#include <cerrno>
-#include <cstdio>
-#include <cstring>
-
-#include <QtLogging>
-
-namespace
-{
-    class RandomLayer
-    {
-    // need to satisfy UniformRandomBitGenerator requirements
-    public:
-        using result_type = uint32_t;
-
-        RandomLayer()
-            : m_randDev {fopen("/dev/urandom", "rb")}
-        {
-            if (!m_randDev)
-                qFatal("Failed to open /dev/urandom. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
-        }
-
-        ~RandomLayer()
-        {
-            fclose(m_randDev);
-        }
-
-        static constexpr result_type min()
-        {
-            return std::numeric_limits<result_type>::min();
-        }
-
-        static constexpr result_type max()
-        {
-            return std::numeric_limits<result_type>::max();
-        }
-
-        result_type operator()() const
-        {
-            result_type buf = 0;
-            if (fread(&buf, sizeof(buf), 1, m_randDev) == 1)
-                return buf;
-
-            qFatal("Read /dev/urandom error. Reason: \"%s\". Error code: %d.", std::strerror(errno), errno);
-        }
-
-    private:
-        FILE *m_randDev = nullptr;
+window.qBittorrent ??= {};
+window.qBittorrent.MonkeyPatch ??= (() => {
+    const exports = () => {
+        return {
+            patch: patch
+        };
     };
-}
+
+    const patch = () => {
+        patchMootoolsDocumentId();
+    };
+
+    const patchMootoolsDocumentId = () => {
+        // Override MooTools' `document.id` (used for `$(id)`), which prevents it
+        // from allocating a `uniqueNumber` for elements that don't need it.
+        // MooTools and MochaUI use it internally.
+
+        if (document.id === undefined)
+            return;
+
+        document.id = (el) => {
+            if ((el === null) || (el === undefined))
+                return null;
+
+            switch (typeof el) {
+                case "object":
+                    return el;
+                case "string":
+                    return document.getElementById(el);
+            }
+
+            return null;
+        };
+    };
+
+    return exports();
+})();
+Object.freeze(window.qBittorrent.MonkeyPatch);
+
+// execute now
+window.qBittorrent.MonkeyPatch.patch();

@@ -37,6 +37,7 @@
 #include <QSharedPointer>
 
 #include "base/applicationcomponent.h"
+#include "base/bittorrent/addtorrenterror.h"
 #include "base/exceptions.h"
 #include "base/settingvalue.h"
 #include "base/utils/thread.h"
@@ -111,7 +112,7 @@ namespace RSS
     private slots:
         void process();
         void handleTorrentAdded(const QString &source);
-        void handleAddTorrentFailed(const QString &url);
+        void handleAddTorrentFailed(const QString &url, const BitTorrent::AddTorrentError &error);
         void handleNewArticle(const Article *article);
         void handleFeedURLChanged(Feed *feed, const QString &oldURL);
 
