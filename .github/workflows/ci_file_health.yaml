@@ -36,7 +36,7 @@ jobs:
           curl \
             -L \
             -o "${{ runner.temp }}/pandoc.tar.gz" \
-            "https://github.com/jgm/pandoc/releases/download/3.6/pandoc-3.6-linux-amd64.tar.gz"
+            "https://github.com/jgm/pandoc/releases/download/3.7.0.2/pandoc-3.7.0.2-linux-amd64.tar.gz"
           tar -xf "${{ runner.temp }}/pandoc.tar.gz" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/pandoc-* "${{ env.pandoc_path }}"
           # run pandoc
