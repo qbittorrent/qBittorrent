@@ -162,6 +162,9 @@ public:
     int getActionOnDblClOnTorrentFn() const;
     void setActionOnDblClOnTorrentFn(int act);
 
+    bool usePerStatusSortOrder() const;
+    void setUsePerStatusSortOrder(bool use);
+
     // Connection options
     QTime getSchedulerStartTime() const;
     void setSchedulerStartTime(const QTime &time);
