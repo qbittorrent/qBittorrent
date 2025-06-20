@@ -1337,6 +1337,7 @@ void OptionsDialog::loadWebUITabOptions()
     // Alternative UI
     m_ui->groupAltWebUI->setChecked(pref->isAltWebUIEnabled());
     m_ui->textWebUIRootFolder->setSelectedPath(pref->getWebUIRootFolder());
+    m_ui->checkBoxUseCheckboxes->setChecked(pref->useCheckboxesInUI());
     // Security
     m_ui->checkClickjacking->setChecked(pref->isWebUIClickjackingProtectionEnabled());
     m_ui->checkCSRFProtection->setChecked(pref->isWebUICSRFProtectionEnabled());
@@ -1378,6 +1379,7 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->groupAltWebUI, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIRootFolder, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxUseCheckboxes, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkClickjacking, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCSRFProtection, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
@@ -1424,6 +1426,7 @@ void OptionsDialog::saveWebUITabOptions() const
     // Alternative UI
     pref->setAltWebUIEnabled(m_ui->groupAltWebUI->isChecked());
     pref->setWebUIRootFolder(m_ui->textWebUIRootFolder->selectedPath());
+    pref->setUseCheckboxesInUI(m_ui->checkBoxUseCheckboxes->isChecked());
     // Security
     pref->setWebUIClickjackingProtectionEnabled(m_ui->checkClickjacking->isChecked());
     pref->setWebUICSRFProtectionEnabled(m_ui->checkCSRFProtection->isChecked());

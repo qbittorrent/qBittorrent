@@ -341,6 +341,7 @@ void AppController::preferencesAction()
     // Use alternative WebUI
     data[u"alternative_webui_enabled"_s] = pref->isAltWebUIEnabled();
     data[u"alternative_webui_path"_s] = pref->getWebUIRootFolder().toString();
+    data[u"use_checkboxes_in_ui"_s] = pref->useCheckboxesInUI();
     // Security
     data[u"web_ui_clickjacking_protection_enabled"_s] = pref->isWebUIClickjackingProtectionEnabled();
     data[u"web_ui_csrf_protection_enabled"_s] = pref->isWebUICSRFProtectionEnabled();
@@ -917,6 +918,8 @@ void AppController::setPreferencesAction()
         pref->setAltWebUIEnabled(it.value().toBool());
     if (hasKey(u"alternative_webui_path"_s))
         pref->setWebUIRootFolder(Path(it.value().toString()));
+    if (hasKey(u"use_checkboxes_in_ui"_s))
+        pref->setUseCheckboxesInUI(it.value().toBool());
     // Security
     if (hasKey(u"web_ui_clickjacking_protection_enabled"_s))
         pref->setWebUIClickjackingProtectionEnabled(it.value().toBool());
