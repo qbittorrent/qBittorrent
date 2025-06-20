@@ -478,7 +478,54 @@ window.qBittorrent.PropFiles ??= (() => {
             });
         }
 
-        setFilePriority(Object.keys(uniqueRowIds), Object.keys(uniqueFileIds), priority);
+        // Will be used both in general case and ByShownOrder case
+        const filesLen = Object.keys(uniqueFileIds).length;
+        const priorityList = {};
+        Object.values(FilePriority).forEach((p) => {
+            priorityList[p] = [];
+        });
+        const priorityGroupSize = Math.max(Math.floor(filesLen / 3), 1);
+        const uniqueFileKeys = Object.keys(uniqueFileIds);
+        const uniqueRowKeys = Object.keys(uniqueRowIds);
+
+        // Will be altered only if we select ByShownOrder, use whatever is passed otherwise
+        let priorityGroup = priority;
+        let fileId = 0;
+        let rowId = 0;
+        for (let i = 0; i < filesLen; ++i) {
+            fileId = uniqueFileKeys[i];
+            rowId = uniqueRowKeys[i];
+            // Calculate priority based on order
+            if (priority === FilePriority.ByShownOrder) {
+                switch (Math.floor(i / priorityGroupSize)) {
+                    case 0:
+                        priorityGroup = FilePriority.Maximum;
+                        break;
+                    case 1:
+                        priorityGroup = FilePriority.High;
+                        break;
+                    default:
+                    case 2:
+                        priorityGroup = FilePriority.Normal;
+                        break;
+                }
+            }
+            // Or if we use one of the simpler priorities, just push in the same group
+            priorityList[priorityGroup].push({
+                fileId: fileId,
+                rowId: rowId
+            });
+        }
+
+        Object.entries(priorityList).forEach(([groupPriority, groupedFileRowPair]) => {
+            if (groupedFileRowPair.length === 0)
+                return;
+            setFilePriority(
+                groupedFileRowPair.map(pair => pair.rowId),
+                groupedFileRowPair.map(pair => pair.fileId),
+                groupPriority
+            );
+        });
     };
 
     const singleFileRename = (hash) => {
@@ -553,6 +600,9 @@ window.qBittorrent.PropFiles ??= (() => {
             },
             FilePrioMaximum: (element, ref) => {
                 filesPriorityMenuClicked(FilePriority.Maximum);
+            },
+            FilePrioByShownOrder: (element, ref) => {
+                filesPriorityMenuClicked(FilePriority.ByShownOrder);
             }
         },
         offsets: {

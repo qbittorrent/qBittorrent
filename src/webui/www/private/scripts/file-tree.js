@@ -45,7 +45,8 @@ window.qBittorrent.FileTree ??= (() => {
         Normal: 1,
         High: 6,
         Maximum: 7,
-        Mixed: -1
+        Mixed: -1,
+        ByShownOrder: -2
     };
     Object.freeze(FilePriority);
 
