@@ -827,11 +827,11 @@ void SearchWidget::showTabMenu(const int index)
     if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(index));
             searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
     {
-        menu->addAction(tr("Refresh"), this, [this, searchJobWidget] { refreshTab(searchJobWidget); });
+        menu->addAction(tr("Refresh tab"), this, [this, searchJobWidget] { refreshTab(searchJobWidget); });
     }
     else
     {
-        menu->addAction(tr("Stop"), this, [searchJobWidget] { searchJobWidget->cancelSearch(); });
+        menu->addAction(tr("Stop search"), this, [searchJobWidget] { searchJobWidget->cancelSearch(); });
     }
 
     menu->addSeparator();
