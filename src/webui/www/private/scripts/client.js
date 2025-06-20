@@ -1773,6 +1773,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 event.preventDefault();
                 deleteSelectedTorrentsFN(event.shiftKey);
                 break;
+
+            case "Backspace":
+                if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
+                    return;
+                if (event.target.isContentEditable)
+                    return;
+                event.preventDefault();
+                deleteSelectedTorrentsFN(event.shiftKey);
+                break;
+
+            case "Escape":
+                if (event.target.isContentEditable)
+                    return;
+                event.preventDefault();
+                if (typeof MochaUI.Windows.instances["confirmDeletionPage"] !== "undefined")
+                    MochaUI.Windows.instances["confirmDeletionPage"].close();
+                break;
         }
     });
 
