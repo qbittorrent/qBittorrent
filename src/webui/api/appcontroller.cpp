@@ -410,6 +410,8 @@ void AppController::preferencesAction()
     data[u"ignore_ssl_errors"_s] = pref->isIgnoreSSLErrors();
     // Python executable path
     data[u"python_executable_path"_s] = pref->getPythonExecutablePath().toString();
+    // Should we show Tracker's Favicon
+    data[u"show_tracker_favicon"_s] = pref->isDownloadTrackerFavicon();
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -1023,6 +1025,8 @@ void AppController::setPreferencesAction()
     // Reannounce to all trackers when ip/port changed
     if (hasKey(u"reannounce_when_address_changed"_s))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
+    if (hasKey(u"show_tracker_favicon"_s))
+        pref->setDownloadTrackerFavicon(it.value().toBool());
     // Embedded tracker
     if (hasKey(u"embedded_tracker_port"_s))
         pref->setTrackerPort(it.value().toInt());

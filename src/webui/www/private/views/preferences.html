@@ -1264,6 +1264,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="showTrackerFavicon">QBT_TR(Show tracker favicon in torrent list:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="showTrackerFavicon">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="enableEmbeddedTracker">QBT_TR(Enable embedded tracker:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
@@ -2597,6 +2605,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("markOfTheWeb").checked = pref.mark_of_the_web;
                     document.getElementById("ignoreSSLErrors").checked = pref.ignore_ssl_errors;
                     document.getElementById("pythonExecutablePath").value = pref.python_executable_path;
+                    document.getElementById("showTrackerFavicon").checked = pref.show_tracker_favicon;
                     // libtorrent section
                     document.getElementById("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     document.getElementById("bdecodeTokenLimit").value = pref.bdecode_token_limit;
@@ -3069,6 +3078,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
             settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
             settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
+            settings["show_tracker_favicon"] = document.getElementById("showTrackerFavicon").checked;
+            LocalPreferences.set("show_tracker_favicon", settings["show_tracker_favicon"].toString());
             settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;
             settings["embedded_tracker_port"] = Number(document.getElementById("embeddedTrackerPort").value);
             settings["embedded_tracker_port_forwarding"] = document.getElementById("embeddedTrackerPortForwarding").checked;

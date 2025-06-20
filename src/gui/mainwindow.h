@@ -196,7 +196,7 @@ private:
     void displaySearchTab(bool enable);
     void createTorrentTriggered(const Path &path);
     void showStatusBar(bool show);
-    void showFiltersSidebar(bool show);
+    void showFiltersSidebar(bool show, bool showTrackerFavicon);
     void applyTransferListFilter();
     void refreshWindowTitle();
     void refreshTrayIconTooltip();
@@ -250,7 +250,6 @@ private:
     QMenu *m_toolbarMenu = nullptr;
 
     SettingValue<bool> m_storeExecutionLogEnabled;
-    SettingValue<bool> m_storeDownloadTrackerFavicon;
     CachedSettingValue<Log::MsgTypes> m_storeExecutionLogTypes;
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)

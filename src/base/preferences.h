@@ -274,6 +274,8 @@ public:
     void setAutoRunOnTorrentFinishedEnabled(bool enabled);
     QString getAutoRunOnTorrentFinishedProgram() const;
     void setAutoRunOnTorrentFinishedProgram(const QString &program);
+    bool isDownloadTrackerFavicon() const;
+    void setDownloadTrackerFavicon(bool enabled);
 #if defined(Q_OS_WIN)
     bool isAutoRunConsoleEnabled() const;
     void setAutoRunConsoleEnabled(bool enabled);
