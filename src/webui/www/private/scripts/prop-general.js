@@ -175,7 +175,7 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     document.getElementById("popularity").textContent = data.popularity.toFixed(2);
 
-                    document.getElementById("importance").textContent = data.importance.toFixed(2);
+                    document.getElementById("importance").textContent = (data.importance === -1) ? "∞" : data.importance.toFixed(2);
 
                     document.getElementById("reannounce").textContent = window.qBittorrent.Misc.friendlyDuration(data.reannounce);
 
