@@ -9321,7 +9321,7 @@ Ces derniers ont été désactivés.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="107"/>
         <source>Published On</source>
-        <translation>Publié sur</translation>
+        <translation>Publié le</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="548"/>
