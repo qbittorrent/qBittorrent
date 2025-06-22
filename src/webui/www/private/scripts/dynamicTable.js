@@ -886,6 +886,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
                     const { rowId } = rows[rowPos];
                     const tr = trMap.get(rowId);
+                    trMap.delete(rowId);
 
                     const isInCorrectLocation = rowId === trs[rowPos]?.rowId;
                     if (!isInCorrectLocation) {
@@ -904,10 +905,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                     prevTr = tr;
                 }
 
-                const rowPos = rows.length;
-
-                while ((rowPos < trs.length) && (trs.length > 0))
-                    trs.pop().remove();
+                for (const tr of trMap.values())
+                    tr.remove();
             }
         }
 
