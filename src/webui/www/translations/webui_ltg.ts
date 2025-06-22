@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Kūplītuošonas reitinga rūbēžai juoir nu 0 da 9998.</translation>
+        <translation type="vanished">Kūplītuošonas reitinga rūbēžai juoir nu 0 da 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Nūsasyuteišonas laika rūbēžai juoir nu 0 da 525600 mynotu.</translation>
+        <translation type="vanished">Nūsasyuteišonas laika rūbēžai juoir nu 0 da 525600 mynotu.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>

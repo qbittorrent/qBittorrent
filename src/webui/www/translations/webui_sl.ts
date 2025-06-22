@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Omejitev razmerja izmenjave mora biti med 0 in 9998.</translation>
+        <translation type="vanished">Omejitev razmerja izmenjave mora biti med 0 in 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Omejitev časa sejanja mora biti med 0 525600 minut.</translation>
+        <translation type="vanished">Omejitev časa sejanja mora biti med 0 525600 minut.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>

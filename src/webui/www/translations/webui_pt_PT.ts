@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>O limite do rácio de partilha deverá estar situado entre 0 e 9998.</translation>
+        <translation type="vanished">O limite do rácio de partilha deverá estar situado entre 0 e 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>O limite do tempo a semear deverá estar localizado entre os 0 e os 525600 minutos.</translation>
+        <translation type="vanished">O limite do tempo a semear deverá estar localizado entre os 0 e os 525600 minutos.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -409,7 +409,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Quer eliminar '%1' da lista de transferências?</translation>
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1909,7 +1917,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished" />
+        <translation>Lista de transferências</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>

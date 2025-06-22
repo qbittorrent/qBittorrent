@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>A megosztási arány 0 és 9998 között kell legyen.</translation>
+        <translation type="vanished">A megosztási arány 0 és 9998 között kell legyen.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>A seedelési időkorlát 0 és 525600 perc között kell legyen.</translation>
+        <translation type="vanished">A seedelési időkorlát 0 és 525600 perc között kell legyen.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -442,6 +442,14 @@
     <message>
         <source>Add web seeds</source>
         <translation>Web seedek hozzáadása</translation>
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1045,7 +1053,7 @@
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation>%Z: Torrent mérete (bájtok)</translation>
+        <translation>%Z: Torrent mérete (bájt)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>

@@ -196,14 +196,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
         <translation type="vanished">Kiruvchi ulanishlar uchun ishlatiladigan port 1 bilan 65535 oralig‘ida bo‘lishi kerak.</translation>
     </message>
@@ -494,6 +486,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>

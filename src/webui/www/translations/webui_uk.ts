@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Коефіцієнт роздачі має бути у діапазоні від 0 до 9998.</translation>
+        <translation type="vanished">Коефіцієнт роздачі має бути у діапазоні від 0 до 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Обмеження часу роздачі має бути у діапазоні від 0 до 525600 хвилин.</translation>
+        <translation type="vanished">Обмеження часу роздачі має бути у діапазоні від 0 до 525600 хвилин.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -442,6 +442,14 @@
     <message>
         <source>Add web seeds</source>
         <translation>Додайте веб seed</translation>
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

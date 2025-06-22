@@ -193,11 +193,7 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Хуваалцах харьцааны хязгаарлалт нь 0, 9998 хооронд байх ёстой.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Хуваалцах харьцааны хязгаарлалт нь 0, 9998 хооронд байх ёстой.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -441,6 +437,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>

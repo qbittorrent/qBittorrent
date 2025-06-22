@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Jakosuhderajoituksen on oltava väliltä 0–9998.</translation>
+        <translation type="vanished">Jakosuhderajoituksen on oltava väliltä 0–9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Jakoajan aikarajan pitää olla 0 ja 525600 minuutin väliltä.</translation>
+        <translation type="vanished">Jakoajan aikarajan pitää olla 0 ja 525600 minuutin väliltä.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>

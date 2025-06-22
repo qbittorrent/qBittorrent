@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Рэйтынг раздачы павінен быць у дыяпазоне ад 0 да 9998.</translation>
+        <translation type="vanished">Рэйтынг раздачы павінен быць у дыяпазоне ад 0 да 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Абмежаванне часу раздачы павінна быць ад 0 да 525600 хвілін.</translation>
+        <translation type="vanished">Абмежаванне часу раздачы павінна быць ад 0 да 525600 хвілін.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Не ўдалося звязацца з qBitrrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -393,7 +393,7 @@
     </message>
     <message>
         <source>Unable to delete torrents.</source>
-        <translation type="unfinished" />
+        <translation>Немагчыма выдаліць торэнты.</translation>
     </message>
     <message>
         <source>URL</source>
@@ -421,7 +421,7 @@
     </message>
     <message>
         <source>Unable to download file</source>
-        <translation type="unfinished" />
+        <translation>Немагчыма спампаваць файл</translation>
     </message>
     <message>
         <source>External IPs: %1, %2</source>
@@ -429,7 +429,7 @@
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
-        <translation type="unfinished" />
+        <translation>Немагчыма пераправерыць торэнты.</translation>
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
@@ -437,10 +437,18 @@
     </message>
     <message>
         <source>Unable to start torrents.</source>
-        <translation type="unfinished" />
+        <translation>Немагчыма запусціць торэнты.</translation>
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation>Дадаць вэб-сіды</translation>
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -739,7 +747,7 @@
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation>Веб-інтэрфейс (Аддаленае кіраванне)</translation>
+        <translation>Вэб-інтэрфейс (аддаленае кіраванне)</translation>
     </message>
     <message>
         <source>IP address:</source>
@@ -883,7 +891,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>Адрасы IP, забароненыя ўручную…</translation>
+        <translation>Спіс IP-адрасоў, забароненых уручную…</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -1505,7 +1513,7 @@
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Запісваць у журнал папярэджанні аб прадукцыйнасці</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
@@ -1758,7 +1766,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>When inactive seeding time reaches</source>
-        <translation>Калі неактыўны час раздачы дасягне</translation>
+        <translation>Калі час бяздзейнасці раздачы дасягне</translation>
     </message>
     <message>
         <source>Mixed mode</source>
@@ -1910,7 +1918,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished" />
+        <translation>Спіс перадач</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
@@ -1954,7 +1962,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation type="unfinished" />
+        <translation>Інтэрвал захавання статыстыкі:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -2002,7 +2010,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>User interface language:</source>
-        <translation type="unfinished" />
+        <translation>Мова інтэрфейсу карыстальніка:</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -2042,7 +2050,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Log Files</source>
-        <translation type="unfinished" />
+        <translation>Файлы журнала</translation>
     </message>
 </context>
 <context>
@@ -2076,12 +2084,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Хуткасць спампоўвання</translation>
+        <translation>🡇Хуткасць спампоўвання</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Хуткасць раздачы</translation>
+        <translation>🡅Хуткасць раздачы</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -2262,7 +2270,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Created By:</source>
-        <translation>Створаны ў:</translation>
+        <translation>Створаны праз:</translation>
     </message>
     <message>
         <source>Added On:</source>
@@ -2414,7 +2422,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace option</source>
-        <translation type="unfinished" />
+        <translation>Замяніць параметр</translation>
     </message>
     <message>
         <source>Edit web seed URL...</source>
@@ -2438,7 +2446,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Apply to which filename part</source>
-        <translation type="unfinished" />
+        <translation>Да якой часткі назвы ўжываецца</translation>
     </message>
     <message>
         <source>No</source>
@@ -2454,7 +2462,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add web seeds...</source>
-        <translation type="unfinished" />
+        <translation>Дадаць вэб-сіды...</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2654,35 +2662,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation>Правяраецца (%1)</translation>
+        <translation>Правяраюцца (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation>Правяраецца (0)</translation>
+        <translation>Правяраюцца (0)</translation>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation>Перамяшчаецца (%1)</translation>
+        <translation>Перамяшчаюцца (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation>Перамяшчаецца (0)</translation>
+        <translation>Перамяшчаюцца (0)</translation>
     </message>
     <message>
         <source>Running (0)</source>
-        <translation>Запушчаны (0)</translation>
+        <translation>Запушчаныя (0)</translation>
     </message>
     <message>
         <source>Stopped (0)</source>
-        <translation>Спынены (0)</translation>
+        <translation>Спыненыя (0)</translation>
     </message>
     <message>
         <source>Stopped (%1)</source>
-        <translation>Спынены (%1)</translation>
+        <translation>Спыненыя (%1)</translation>
     </message>
     <message>
         <source>Running (%1)</source>
-        <translation>Запушчаны (%1)</translation>
+        <translation>Запушчаныя (%1)</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -3287,7 +3295,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished" />
+        <translation>Размяшчэнне:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -3564,7 +3572,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Select category</source>
-        <translation type="unfinished" />
+        <translation>Выбраць катэгорыю</translation>
     </message>
     <message>
         <source>Min size prefix</source>
@@ -4025,11 +4033,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation type="unfinished" />
+        <translation>URL-адрас не зменены</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>URL-адрас не можа быць пустым</translation>
     </message>
 </context>
 <context>
@@ -4278,11 +4286,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove rule</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць правіла</translation>
     </message>
     <message>
         <source>Add rule</source>
-        <translation type="unfinished" />
+        <translation>Дадаць правіла</translation>
     </message>
     <message>
         <source>Add Stopped:</source>
@@ -4466,7 +4474,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Сапраўды выдаліць трэкер %1 з усіх торэнтаў?</translation>
     </message>
 </context>
 <context>
@@ -4485,7 +4493,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unable to set category</source>
-        <translation type="unfinished" />
+        <translation>Не ўдалося задаць катэгорыю</translation>
     </message>
 </context>
 <context>
@@ -4500,7 +4508,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Cookie</source>
-        <translation type="unfinished" />
+        <translation>Дадаць файлы Cookie</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -4556,7 +4564,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation type="unfinished" />
+        <translation>Вэб-інтэрфейс qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
@@ -4572,7 +4580,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Server response:</source>
-        <translation type="unfinished" />
+        <translation>Адказ сервера:</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>

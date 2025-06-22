@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Elkarbanatze maila muga 0 eta 9998 artekoa izan behar da.</translation>
+        <translation type="vanished">Elkarbanatze maila muga 0 eta 9998 artekoa izan behar da.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Emaritza denbora muga 0 eta 525600 minutu artekoa izan behar da.</translation>
+        <translation type="vanished">Emaritza denbora muga 0 eta 525600 minutu artekoa izan behar da.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>

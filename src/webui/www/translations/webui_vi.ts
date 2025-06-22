@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Giới hạn tỷ lệ chia sẻ phải từ 0 đến 9998.</translation>
+        <translation type="vanished">Giới hạn tỷ lệ chia sẻ phải từ 0 đến 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Giới hạn thời gian chia sẻ phải trong khoảng từ 0 đến 525600 phút.</translation>
+        <translation type="vanished">Giới hạn thời gian chia sẻ phải trong khoảng từ 0 đến 525600 phút.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -443,6 +443,14 @@
         <source>Add web seeds</source>
         <translation>Thêm hạt giống web</translation>
     </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -512,7 +520,7 @@
     </message>
     <message>
         <source>No</source>
-        <translation>Không Đồng Ý</translation>
+        <translation>Không</translation>
     </message>
     <message>
         <source>Global Upload Speed Limit</source>
@@ -883,7 +891,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>Các địa chỉ IP bị cấm theo cách thủ công...</translation>
+        <translation>Các địa chỉ IP bị cấm thủ công...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -1341,11 +1349,11 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation>cấm:</translation>
+        <translation>cấm vì:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation>Cấm máy khách sau những lần thất bại liên tiếp:</translation>
+        <translation>Cấm máy khách sau khi thất bại liên tiếp:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -2029,7 +2037,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>No action</source>
-        <translation>Không thao tác</translation>
+        <translation>Không có hành động</translation>
     </message>
     <message>
         <source>Auto hide zero status filters</source>
@@ -2108,7 +2116,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Bạn có chắc chắn muốn cấm vĩnh viễn máy ngang hàng đã chọn không?</translation>
+        <translation>Bạn có chắc muốn cấm vĩnh viễn các máy ngang hàng đã chọn?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -2341,7 +2349,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>N/A</source>
-        <translation>Không áp dụng</translation>
+        <translation>Không</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -2441,7 +2449,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>No</source>
-        <translation>Không Đồng Ý</translation>
+        <translation>Không</translation>
     </message>
     <message>
         <source>Remove web seed</source>
@@ -3078,7 +3086,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>N/A</source>
-        <translation>Không áp dụng</translation>
+        <translation>Không</translation>
     </message>
 </context>
 <context>

@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Добави към върха на опашка</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>Торент опции</translation>
     </message>
 </context>
 <context>
@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Ограничението на съотношението на споделяне трябва да бъде между 0 и 9998.</translation>
+        <translation type="vanished">Ограничението на съотношението на споделяне трябва да бъде между 0 и 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Ограничението за време на споделяне трябва да бъде между 0 и 525600 минути.</translation>
+        <translation type="vanished">Ограничението за време на споделяне трябва да бъде между 0 и 525600 минути.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -442,6 +442,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1702,7 +1710,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Добави към върха на опашка</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>

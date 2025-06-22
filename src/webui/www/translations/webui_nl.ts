@@ -80,11 +80,11 @@
     </message>
     <message>
         <source>Select .torrent files</source>
-        <translation type="unfinished" />
+        <translation>.torrent-bestanden kiezen</translation>
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>Torrent-opties</translation>
     </message>
 </context>
 <context>
@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Begrenzing voor deelverhouding moet tussen 0 en 9998 liggen.</translation>
+        <translation type="vanished">Begrenzing voor deelverhouding moet tussen 0 en 9998 liggen.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Begrenzing voor seed-tijd moet liggen tussen 0 en 525 600 minuten.</translation>
+        <translation type="vanished">Begrenzing voor seed-tijd moet liggen tussen 0 en 525 600 minuten.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -373,7 +373,7 @@
     </message>
     <message>
         <source>External IP: N/A</source>
-        <translation type="unfinished" />
+        <translation>Externe IP: N/B</translation>
     </message>
     <message>
         <source>Reverse proxy setup examples</source>
@@ -401,11 +401,11 @@
     </message>
     <message>
         <source>External IP: %1%2</source>
-        <translation type="unfinished" />
+        <translation>Externe IP: %1%2</translation>
     </message>
     <message>
         <source>Edit web seed</source>
-        <translation type="unfinished" />
+        <translation>Webseed bewerken</translation>
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
@@ -425,7 +425,7 @@
     </message>
     <message>
         <source>External IPs: %1, %2</source>
-        <translation type="unfinished" />
+        <translation>Externe IPs: %1, %2</translation>
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation>Webseeds toevoegen</translation>
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -660,7 +668,7 @@
     </message>
     <message>
         <source>Use regular expression</source>
-        <translation type="unfinished" />
+        <translation>Reguliere expressie gebruiken</translation>
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
@@ -1869,11 +1877,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Show external IP in status bar</source>
-        <translation type="unfinished" />
+        <translation>Externe IP in statusbalk weergeven</translation>
     </message>
     <message>
         <source>Fetched trackers</source>
-        <translation type="unfinished" />
+        <translation>Opgehaalde trackers</translation>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
@@ -1929,7 +1937,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Start / stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent starten / stoppen</translation>
     </message>
     <message>
         <source>Send test email</source>
@@ -1961,7 +1969,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Run on torrent finished:</source>
-        <translation type="unfinished" />
+        <translation>Uitvoeren na voltooien van torrent:</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
@@ -1993,7 +2001,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Run on torrent added:</source>
-        <translation type="unfinished" />
+        <translation>Uitvoeren wanneer torrent toegevoegd wordt:</translation>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
@@ -2409,7 +2417,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Copy web seed URL</source>
-        <translation type="unfinished" />
+        <translation>Webseed-URL kopiëren</translation>
     </message>
     <message>
         <source>Replace option</source>
@@ -2417,7 +2425,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Edit web seed URL...</source>
-        <translation type="unfinished" />
+        <translation>Webseed-URL bewerken...</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
@@ -2445,7 +2453,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Remove web seed</source>
-        <translation type="unfinished" />
+        <translation>Webseed verwijderen</translation>
     </message>
     <message>
         <source>Web seed editing</source>
@@ -2453,7 +2461,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Add web seeds...</source>
-        <translation type="unfinished" />
+        <translation>Webseeds toevoegen...</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -3286,7 +3294,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished" />
+        <translation>Locatie:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -3306,7 +3314,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Add tags</source>
-        <translation type="unfinished" />
+        <translation>Labels toevoegen</translation>
     </message>
     <message>
         <source>Category:</source>
@@ -3563,7 +3571,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Select category</source>
-        <translation type="unfinished" />
+        <translation>Categorie kiezen</translation>
     </message>
     <message>
         <source>Min size prefix</source>
@@ -3579,7 +3587,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Select plugins</source>
-        <translation type="unfinished" />
+        <translation>Plugins kiezen</translation>
     </message>
 </context>
 <context>
@@ -4499,7 +4507,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Add Cookie</source>
-        <translation type="unfinished" />
+        <translation>Cookie toevoegen</translation>
     </message>
     <message>
         <source>Remove</source>

@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Рейтинг должен быть в диапазоне от 0 до 9998.</translation>
+        <translation type="vanished">Рейтинг должен быть в диапазоне от 0 до 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Ограничение времени раздачи должно быть в диапазоне от 0 до 525600 минут.</translation>
+        <translation type="vanished">Ограничение времени раздачи должно быть в диапазоне от 0 до 525600 минут.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -443,6 +443,14 @@
         <source>Add web seeds</source>
         <translation>Добавить веб-сидов</translation>
     </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -584,7 +592,7 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>Для использования этой функции Веб-интерфейс должен быть доступен по протоколу HTTPS.</translation>
+        <translation>Для использования этой функции Веб-интерфейс должен быть доступен по протоколу HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -791,7 +799,7 @@
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation>SMTP-сервер:</translation>
+        <translation>Сервер SMTP:</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
@@ -1489,7 +1497,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>IP для сообщения трекерам (требует перезапуск):</translation>
+        <translation>Сообщаемый трекерам IP-адрес (нужен перезапуск):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1861,7 +1869,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Customize application instance name:</source>
-        <translation>Дополнить название экземпляра приложения:</translation>
+        <translation>Дополнять название экземпляра приложения:</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1953,7 +1961,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation>Период сохранения статистики:</translation>
+        <translation>Период записи статистики:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -1997,7 +2005,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation>Порт для сообщения трекерам (требует перезапуск) [0: порт прослушивания]:</translation>
+        <translation>Сообщаемый трекерам порт (нужен перезапуск) [0: порт прослушивания]:</translation>
     </message>
     <message>
         <source>User interface language:</source>
@@ -2021,7 +2029,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation>Простой ввод-вывод</translation>
+        <translation>Простые чтение/запись</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
@@ -2365,7 +2373,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation>Ошибка переименования: файл или папка уже существует</translation>
+        <translation>Ошибка переименования: файл или папка уже существуют</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2417,7 +2425,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Edit web seed URL...</source>
-        <translation>Изменить адрес веб-сида</translation>
+        <translation>Править адрес веб-сида…</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
@@ -3641,7 +3649,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Published On</source>
-        <translation>Дата публикакции</translation>
+        <translation>Дата публикации</translation>
     </message>
     <message>
         <source>Engine URL</source>
@@ -3820,7 +3828,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Бесплатная база данных IP to Country Lite от DB-IP используется для разрешения стран пиров. База данных лицензирована по международной лицензии Creative Commons Attribution 4.0</translation>
+        <translation>Для разрешения стран пиров используется бесплатная база данных IP to Country Lite от DB-IP. База лицензирована в соответствии со всемирной лицензией Creative Commons Attribution 4.0</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -4024,7 +4032,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation>URL-адрес не изменился</translation>
+        <translation>Адрес не изменился</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>

@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Delingssforholdsgrense må være mellom 0 og 9998.</translation>
+        <translation type="vanished">Delingssforholdsgrense må være mellom 0 og 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Delingstidgrensen må være mellom 0 og 525600 minutter.</translation>
+        <translation type="vanished">Delingstidgrensen må være mellom 0 og 525600 minutter.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -442,6 +442,14 @@
     <message>
         <source>Add web seeds</source>
         <translation>Legg til nettdelere</translation>
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

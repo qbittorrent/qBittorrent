@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>O límite da taxa de compartición debe estar entre 0 e 9998.</translation>
+        <translation type="vanished">O límite da taxa de compartición debe estar entre 0 e 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>O límite do tempo de sementeira debe estar entre 0 e 525600 minutos.</translation>
+        <translation type="vanished">O límite do tempo de sementeira debe estar entre 0 e 525600 minutos.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -434,14 +434,22 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
-        <translation type="unfinished" />
+        <translation>Lista de sementes web para engadir (unha por liña):</translation>
     </message>
     <message>
         <source>Unable to start torrents.</source>
-        <translation type="unfinished" />
+        <translation>Non é posible iniciar os torrents</translation>
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation>Engadir sementes web</translation>
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -661,7 +669,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Use regular expression</source>
-        <translation type="unfinished" />
+        <translation>Usar expresión regular</translation>
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
@@ -677,7 +685,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Non se puido exportar o ficheiro torrent.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1902,7 +1910,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
-        <translation type="unfinished" />
+        <translation>Mostrar a URL completa de announce na columna do rastreador</translation>
     </message>
     <message>
         <source>URL:</source>
@@ -1910,11 +1918,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished" />
+        <translation>Lista de Transferencias</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>O porto de announce debe estar entre 0 e 65535.</translation>
     </message>
     <message>
         <source>Light</source>
@@ -1954,7 +1962,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation type="unfinished" />
+        <translation>Intervalo para gardar as estatísticas:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -1990,7 +1998,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Lista de interfaces web alternativas</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
@@ -1998,11 +2006,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation type="unfinished" />
+        <translation>Porto reportado aos rastreadores (requírese reiniciar) [0: porto de escoita]:</translation>
     </message>
     <message>
         <source>User interface language:</source>
-        <translation type="unfinished" />
+        <translation>Idioma da interface de usuario:</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -2010,15 +2018,15 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
-        <translation type="unfinished" />
+        <translation>Confirmar a comprobación do torrent:</translation>
     </message>
     <message>
         <source>Custom WebUI settings</source>
-        <translation type="unfinished" />
+        <translation>Configuración personalizada da WebUI</translation>
     </message>
     <message>
         <source>Following settings are WebUI only</source>
-        <translation type="unfinished" />
+        <translation>As seguintes configuracións son só para a WebUI</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
@@ -2042,7 +2050,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Log Files</source>
-        <translation type="unfinished" />
+        <translation>Ficheiros de rexistro</translation>
     </message>
 </context>
 <context>
@@ -2414,7 +2422,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Replace option</source>
-        <translation type="unfinished" />
+        <translation>Opción de substituír</translation>
     </message>
     <message>
         <source>Edit web seed URL...</source>
@@ -2438,7 +2446,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Apply to which filename part</source>
-        <translation type="unfinished" />
+        <translation>Aplicar a que parte do nome do ficheiro</translation>
     </message>
     <message>
         <source>No</source>
@@ -2454,7 +2462,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Add web seeds...</source>
-        <translation type="unfinished" />
+        <translation>Engadir sementes web...</translation>
     </message>
     <message>
         <source>Private:</source>
@@ -2873,7 +2881,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Icona de estado</translation>
     </message>
 </context>
 <context>
@@ -3106,7 +3114,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Collapse/expand category</source>
-        <translation type="unfinished" />
+        <translation>Contraer/expandir categoría</translation>
     </message>
 </context>
 <context>
@@ -3287,7 +3295,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished" />
+        <translation>Localización:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -3564,11 +3572,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Select category</source>
-        <translation type="unfinished" />
+        <translation>Seleccionar categoría</translation>
     </message>
     <message>
         <source>Min size prefix</source>
-        <translation type="unfinished" />
+        <translation>Prefixo de tamaño mínimo</translation>
     </message>
     <message>
         <source>Start a search above.</source>
@@ -3576,11 +3584,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Max size prefix</source>
-        <translation type="unfinished" />
+        <translation>Prefixo de tamaño máximo</translation>
     </message>
     <message>
         <source>Select plugins</source>
-        <translation type="unfinished" />
+        <translation>Seleccionar engadidos</translation>
     </message>
 </context>
 <context>
@@ -4021,15 +4029,15 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Unable to update URL</source>
-        <translation type="unfinished" />
+        <translation>Non se pode actualizar o URL</translation>
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation type="unfinished" />
+        <translation>A URL non cambiou</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>O URL non pode estar baleiro</translation>
     </message>
 </context>
 <context>
@@ -4278,11 +4286,11 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Remove rule</source>
-        <translation type="unfinished" />
+        <translation>Eliminar regra</translation>
     </message>
     <message>
         <source>Add rule</source>
-        <translation type="unfinished" />
+        <translation>Engadir regra</translation>
     </message>
     <message>
         <source>Add Stopped:</source>
@@ -4466,7 +4474,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Tes a certeza de que queres eliminar o rastreador %1 de todos os torrents?</translation>
     </message>
 </context>
 <context>
@@ -4485,7 +4493,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Unable to set category</source>
-        <translation type="unfinished" />
+        <translation>Non se pode definir a categoría</translation>
     </message>
 </context>
 <context>
@@ -4500,7 +4508,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Add Cookie</source>
-        <translation type="unfinished" />
+        <translation>Engadir cookie</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -4556,7 +4564,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation type="unfinished" />
+        <translation>Interfaz de usuario web de qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
@@ -4572,7 +4580,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Server response:</source>
-        <translation type="unfinished" />
+        <translation>Resposta do servidor:</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>

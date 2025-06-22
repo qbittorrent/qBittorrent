@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Paylaşma oranı sınırı 0 ve 9998 arasında olmak zorundadır.</translation>
+        <translation type="vanished">Paylaşma oranı sınırı 0 ve 9998 arasında olmak zorundadır.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Gönderim süresi sınırı 0 ve 525600 dakika arasında olmak zorundadır.</translation>
+        <translation type="vanished">Gönderim süresi sınırı 0 ve 525600 dakika arasında olmak zorundadır.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -443,6 +443,14 @@
         <source>Add web seeds</source>
         <translation>Web gönderimleri ekle</translation>
     </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -540,7 +548,7 @@
     </message>
     <message>
         <source>Search</source>
-        <translation>Ara</translation>
+        <translation>Arama</translation>
     </message>
     <message>
         <source>Transfers</source>

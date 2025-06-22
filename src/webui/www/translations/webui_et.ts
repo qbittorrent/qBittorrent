@@ -80,11 +80,11 @@
     </message>
     <message>
         <source>Select .torrent files</source>
-        <translation type="unfinished" />
+        <translation>Vali .torrent failid</translation>
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>Torrenti valikud</translation>
     </message>
 </context>
 <context>
@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Jagamise suhte limiit peab olema vahemikus 0 ja 9998.</translation>
+        <translation type="vanished">Jagamise suhte limiit peab olema vahemikus 0 ja 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Jagamise aja limiit peab olema vahemikus 0 ja 525600 minutit.</translation>
+        <translation type="vanished">Jagamise aja limiit peab olema vahemikus 0 ja 525600 minutit.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -401,7 +401,7 @@
     </message>
     <message>
         <source>External IP: %1%2</source>
-        <translation type="unfinished" />
+        <translation>Väline IP: %1%2</translation>
     </message>
     <message>
         <source>Edit web seed</source>
@@ -409,7 +409,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Kindel, et soovite eemaldada %1 edastuste nimekirjast?</translation>
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1169,7 +1177,7 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation>Info: See parool on salvestatud krüpteeringuta</translation>
+        <translation>Info: See parool salvestatakse krüpteerimata</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1957,7 +1965,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run on torrent finished:</source>
-        <translation type="unfinished" />
+        <translation>Käivita kui torrent on valmis:</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
@@ -1985,11 +1993,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Alternatiivse WebUI nimekiri</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
-        <translation type="unfinished" />
+        <translation>Käivita kui torrent on lisatud:</translation>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
@@ -1997,7 +2005,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>User interface language:</source>
-        <translation type="unfinished" />
+        <translation>Kasutajaliidese keel:</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -2037,7 +2045,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Log Files</source>
-        <translation type="unfinished" />
+        <translation>Logi failid</translation>
     </message>
 </context>
 <context>

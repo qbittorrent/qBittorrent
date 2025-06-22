@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Limita raportului de partajare trebuie să fie între 0 și 9998.</translation>
+        <translation type="vanished">Limita raportului de partajare trebuie să fie între 0 și 9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Limita de timp pentru partajare trebuie să fie între 0 și 525600 de minute.</translation>
+        <translation type="vanished">Limita de timp pentru partajare trebuie să fie între 0 și 525600 de minute.</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1825,7 +1833,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Write-through</source>
-        <translation type="unfinished" />
+        <translation>Scriere completă</translation>
     </message>
     <message>
         <source>WebUI</source>
@@ -2017,7 +2025,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation type="unfinished" />
+        <translation>Pread/Pwrite simplu</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>

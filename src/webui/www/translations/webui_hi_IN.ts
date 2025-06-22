@@ -193,11 +193,11 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>बांटने की दर का अनुपात 0 से 9998 के बीच हो।</translation>
+        <translation type="vanished">बांटने की दर का अनुपात 0 से 9998 के बीच हो।</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>स्रोत काल 0 व 525600 मिनट के बीच में ही होना चाहिए</translation>
+        <translation type="vanished">स्रोत काल 0 व 525600 मिनट के बीच में ही होना चाहिए</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -441,6 +441,14 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
 </context>
