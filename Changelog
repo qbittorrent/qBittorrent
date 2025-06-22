@@ -1,3 +1,21 @@
+Mon Jun 23rd 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.1
+    - BUGFIX: Don't interpret wildcard pattern as filepath globbing (glassez)
+    - BUGFIX: Fix appearance of search history length spinbox (glassez)
+    - BUGFIX: Remove dubious seeding time max value (glassez)
+    - BUGFIX: Fix ratio handling (glassez)
+    - BUGFIX: Fix compilation with Qt 6.6.0 (glassez)
+    - WEBUI: Make General tab text selectable by default (dezza)
+    - WEBUI: Add versioning to local preferences (Chocobo1)
+    - WEBUI: Make multi-rename search & replace fields use a monospace font (Atk)
+    - WEBUI: Fix wrong replacement sequence in IPv6 string (Chocobo1)
+    - WEBUI: Fix memory leak (bolshoytoster)
+    - WEBUI: Fix path autofill in set location and new category (tehcneko)
+    - RSS: Mark matched article as "read" if it refers to a duplicate torrent (glassez)
+    - WINDOWS: Update command line help message (KanishkaHalder1771)
+    - WINDOWS: NSIS: Don't require agreement on the license page (Chocobo1)
+    - LINUX: Fix preview not opening on Wayland (Isak05)
+    - LINUX: Add fallback for random number generator (Chocobo1)
+
 Sun Apr 27th 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.0
     - FEATURE: Enable customizing the save statistics time interval (Burnerelu)
     - FEATURE: Add drag support to torrent content widget (Chocobo1)
