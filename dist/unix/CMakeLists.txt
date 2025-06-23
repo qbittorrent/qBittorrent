@@ -34,12 +34,12 @@ endforeach()
 
 if (GUI)
     install(FILES org.qbittorrent.qBittorrent.desktop
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications/
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications
         COMPONENT data
     )
 
     install(FILES org.qbittorrent.qBittorrent.metainfo.xml
-        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo/
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo
         COMPONENT data
     )
 
@@ -53,6 +53,11 @@ if (GUI)
         ${PROJECT_SOURCE_DIR}/src/icons/qbittorrent-tray-dark.svg
         ${PROJECT_SOURCE_DIR}/src/icons/qbittorrent-tray-light.svg
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/scalable/status
+        COMPONENT data
+    )
+else()
+    install(FILES org.qbittorrent.qBittorrent-nox.metainfo.xml
+        DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo
         COMPONENT data
     )
 endif()
