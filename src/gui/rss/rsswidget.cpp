@@ -441,8 +441,8 @@ void RSSWidget::openSelectedArticlesUrls()
         // Mark as read
         article->markAsRead();
 
-        if (!article->link().isEmpty())
-            QDesktopServices::openUrl(QUrl(article->link()));
+        if (const QUrl articleLink {article->link()}; !articleLink.isEmpty() && !articleLink.isLocalFile())
+            QDesktopServices::openUrl(articleLink);
     }
 }
 

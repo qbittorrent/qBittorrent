@@ -321,13 +321,13 @@ void SearchJobWidget::downloadTorrents(const AddTorrentOption option)
 
 void SearchJobWidget::openTorrentPages() const
 {
-    const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
+    const QModelIndexList rows = m_ui->resultsBrowser->selectionModel()->selectedRows();
     for (const QModelIndex &rowIndex : rows)
     {
         const QString descrLink = m_proxyModel->data(
-                    m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
-        if (!descrLink.isEmpty())
-            QDesktopServices::openUrl(QUrl::fromEncoded(descrLink.toUtf8()));
+                m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
+        if (const QUrl descrLinkURL {descrLink}; !descrLinkURL.isEmpty() && !descrLinkURL.isLocalFile())
+            QDesktopServices::openUrl(descrLinkURL);
     }
 }
 
