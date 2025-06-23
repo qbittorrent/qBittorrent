@@ -46,6 +46,7 @@ public:
     {
         COL_NAME,
         COL_SIZE,
+		COL_SIZE_BYTES,
         COL_PROGRESS,
         COL_PRIO,
         COL_REMAINING,
