@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024 Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -81,7 +81,7 @@ private:
     void readSearchOutput();
     void processFailed();
     void processFinished(int exitcode);
-    bool parseSearchResult(QStringView line, SearchResult &searchResult);
+    bool parseSearchResult(QByteArrayView line, SearchResult &searchResult);
 
     const QString m_pattern;
     const QString m_category;
