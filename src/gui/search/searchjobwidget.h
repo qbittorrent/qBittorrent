@@ -127,7 +127,7 @@ private:
     void onUIThemeChanged();
 
     void downloadTorrents(AddTorrentOption option = AddTorrentOption::Default);
-    void openTorrentPages() const;
+    void openTorrentPages();
     void copyTorrentURLs() const;
     void copyTorrentDownloadLinks() const;
     void copyTorrentNames() const;
