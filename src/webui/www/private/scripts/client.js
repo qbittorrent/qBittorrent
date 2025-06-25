@@ -1773,6 +1773,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 event.preventDefault();
                 deleteSelectedTorrentsFN(event.shiftKey);
                 break;
+
+            case "Escape":
+                if (event.target.isContentEditable)
+                    return;
+                event.preventDefault();
+                Object.values(MochaUI.Windows.instances).forEach((modal) => {
+                    modal.close();
+                });
+                break;
         }
     });
 
