@@ -1774,6 +1774,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 deleteSelectedTorrentsFN(event.shiftKey);
                 break;
 
+            case "Escape":
+                if (event.target.isContentEditable)
+                    return;
+                event.preventDefault();
+                Object.values(MochaUI.Windows.instances).forEach((modal) => {
+                    modal.close();
+                });
+                break;
+
             case "f":
             case "F":
                 if (event.ctrlKey || event.metaKey) {
@@ -1798,7 +1807,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         torrentsFilterElem.focus();
                     }
                 }
-                break;
         }
     });
 
