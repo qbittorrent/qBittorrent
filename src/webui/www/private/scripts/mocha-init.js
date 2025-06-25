@@ -42,7 +42,9 @@ window.qBittorrent ??= {};
 window.qBittorrent.Dialog ??= (() => {
     const exports = () => {
         return {
-            baseModalOptions: baseModalOptions
+            baseModalOptions: baseModalOptions,
+            limitWidthToViewport: limitWidthToViewport,
+            limitHeightToViewport: limitHeightToViewport
         };
     };
 
@@ -68,6 +70,13 @@ window.qBittorrent.Dialog ??= (() => {
         deepFreezeSafe(obj);
     };
 
+    const limitWidthToViewport = (width) => {
+        return Math.min(width, window.innerWidth - 20);
+    };
+    const limitHeightToViewport = (height) => {
+        return Math.min(height, window.innerHeight - 75);
+    };
+
     const baseModalOptions = Object.assign(Object.create(null), {
         addClass: "modalDialog",
         collapsible: false,
@@ -86,7 +95,7 @@ window.qBittorrent.Dialog ??= (() => {
             left: 5
         },
         resizable: true,
-        width: 480,
+        width: limitWidthToViewport(480),
         onCloseComplete: () => {
             // make sure overlay is properly hidden upon modal closing
             document.getElementById("modalOverlay").style.display = "none";
@@ -156,11 +165,15 @@ const initializeWindows = () => {
         LocalPreferences.set(`window_${windowId}_height`, size.y);
     };
 
-    loadWindowWidth = (windowId, defaultValue) => {
+    loadWindowWidth = (windowId, defaultValue, limitToViewportWidth = true) => {
+        if (limitToViewportWidth)
+            defaultValue = window.qBittorrent.Dialog.limitWidthToViewport(defaultValue);
         return LocalPreferences.get(`window_${windowId}_width`, defaultValue);
     };
 
-    loadWindowHeight = (windowId, defaultValue) => {
+    loadWindowHeight = (windowId, defaultValue, limitToViewportHeight = true) => {
+        if (limitToViewportHeight)
+            defaultValue = window.qBittorrent.Dialog.limitHeightToViewport(defaultValue);
         return LocalPreferences.get(`window_${windowId}_height`, defaultValue);
     };
 
@@ -325,7 +338,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 424,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 100
         });
     };
@@ -351,7 +364,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 424,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 100
         });
     };
@@ -397,7 +410,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 424,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 220
         });
     };
@@ -473,7 +486,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 424,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 100
         });
     };
@@ -520,7 +533,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 424,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 100
         });
     };
@@ -703,7 +716,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 400,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 130
         });
     };
@@ -733,7 +746,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 400,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 100
         });
     };
@@ -868,7 +881,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 400,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 150
         });
     };
@@ -909,7 +922,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 400,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 150
         });
     };
@@ -931,7 +944,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 400,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 150
         });
     };
@@ -954,7 +967,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 400,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(400),
             height: 150
         });
     };
@@ -1017,7 +1030,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 250,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(250),
             height: 100
         });
     };
@@ -1064,7 +1077,7 @@ const initializeWindows = () => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 250,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(250),
             height: 100
         });
         updateMainData();
@@ -1117,7 +1130,7 @@ const initializeWindows = () => {
             resizable: true,
             maximizable: false,
             padding: 10,
-            width: 424,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
             height: 100,
             onCloseComplete: () => {
                 updateMainData();
