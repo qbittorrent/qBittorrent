@@ -2876,10 +2876,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
 
             // Share Ratio Limiting
-            let maxRatio = -1;
-            if (document.getElementById("maxRatioCheckbox").checked) {
-                maxRatio = Number(document.getElementById("maxRatioValue").value);
-                if (isNaN(maxRatio) || (maxRatio < 0)) {
+            let max_ratio = -1;
+            if (document.getElementById("max_ratio_checkbox").checked) {
+                max_ratio = Number(document.getElementById("max_ratio_value").value);
+                if (isNaN(max_ratio) || (max_ratio < 0)) {
                     alert("QBT_TR(Share ratio limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2887,10 +2887,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_ratio_enabled"] = $("max_ratio_checkbox").checked;
             settings["max_ratio"] = max_ratio;
 
-            let maxSeedingTime = -1;
-            if (document.getElementById("maxSeedingTimeCheckbox").checked) {
-                maxSeedingTime = Number(document.getElementById("maxSeedingTimeValue").value);
-                if (Number.isNaN(maxSeedingTime) || (maxSeedingTime < 0)) {
+            let max_seeding_time = -1;
+            if (document.getElementById("max_seeding_time_checkbox").checked) {
+                max_seeding_time = Number(document.getElementById("max_seeding_time_value").value);
+                if (Number.isNaN(max_seeding_time) || (max_seeding_time < 0)) {
                     alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2899,10 +2899,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["max_seeding_time"] = max_seeding_time;
             settings["max_ratio_act"] = Number($("max_ratio_act").value);
 
-            let maxInactiveSeedingTime = -1;
-            if (document.getElementById("maxInactiveSeedingTimeCheckbox").checked) {
-                maxInactiveSeedingTime = Number(document.getElementById("maxInactiveSeedingTimeValue").value);
-                if (Number.isNaN(maxInactiveSeedingTime) || (maxInactiveSeedingTime < 0)) {
+            let max_inactive_seeding_time = -1;
+            if (document.getElementById("max_inactive_seeding_time_checkbox").checked) {
+                max_inactive_seeding_time = Number(document.getElementById("max_inactive_seeding_time_value").value);
+                if (Number.isNaN(max_inactive_seeding_time) || (max_inactive_seeding_time < 0)) {
                     alert("QBT_TR(Seeding time limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
