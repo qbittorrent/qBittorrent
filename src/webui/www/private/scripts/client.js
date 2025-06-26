@@ -1774,14 +1774,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 deleteSelectedTorrentsFN(event.shiftKey);
                 break;
 
-            case "Escape":
+            case "Escape": {
                 if (event.target.isContentEditable)
                     return;
                 event.preventDefault();
-                Object.values(MochaUI.Windows.instances).forEach((modal) => {
-                    modal.close();
+                const modalInstances = Object.values(MochaUI.Windows.instances);
+                if (modalInstances.length <= 0)
+                    return;
+                // MochaUI.currentModal does not update after a modal is closed
+                // use `timestamp` for sequential closing
+                const latestModal = modalInstances.reduce((prev, curr) => {
+                    return (prev.timestamp > curr.timestamp) ? prev : curr;
                 });
+                latestModal.close();
                 break;
+            }
 
             case "f":
             case "F":
