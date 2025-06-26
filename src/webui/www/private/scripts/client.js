@@ -1782,11 +1782,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 if (modalInstances.length <= 0)
                     return;
                 // MochaUI.currentModal does not update after a modal is closed
-                // use `timestamp` for sequential closing
-                const latestModal = modalInstances.reduce((prev, curr) => {
-                    return (prev.timestamp > curr.timestamp) ? prev : curr;
+                const focusedModal = modalInstances.find((modal) => {
+                    return modal.windowEl.hasClass("isFocused");
                 });
-                latestModal.close();
+                if (!focusedModal)
+                    return;
+                focusedModal.close();
                 break;
             }
 
