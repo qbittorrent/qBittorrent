@@ -273,8 +273,6 @@ void UIThemeDialog::loadColors()
     int row = 2;
     for (const QString &id : colorIDs)
     {
-        if (id == u"Log.Normal")
-            qDebug() << "!!!!!!!";
         m_ui->colorsLayout->addWidget(new QLabel(id), row, 0);
 
         const UIThemeColor &defaultColor = defaultColors.value(id);
