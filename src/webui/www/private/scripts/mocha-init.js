@@ -869,7 +869,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 400,
-            height: 150
+            height: 200
         });
     };
 
@@ -910,7 +910,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 400,
-            height: 150
+            height: 200
         });
     };
 
@@ -932,7 +932,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 400,
-            height: 150
+            height: 200
         });
     };
 
@@ -940,8 +940,7 @@ const initializeWindows = () => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
             action: "edit",
-            categoryName: category,
-            savePath: categoryMap.get(category).savePath
+            categoryName: category
         });
         new MochaUI.Window({
             id: "editCategoryPage",
@@ -955,7 +954,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: 400,
-            height: 150
+            height: 200
         });
     };
 

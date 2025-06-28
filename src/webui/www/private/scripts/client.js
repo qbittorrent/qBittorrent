@@ -832,12 +832,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
                                 if (categoryData === undefined) {
                                     window.qBittorrent.Client.categoryMap.set(responseName, {
                                         savePath: responseData.savePath,
+                                        downloadPath: responseData.download_path ?? null,
                                         torrents: new Set()
                                     });
                                 }
                                 else {
-                                    // only the save path can change for existing categories
-                                    categoryData.savePath = responseData.savePath;
+                                    if (responseData.savePath !== undefined)
+                                        categoryData.savePath = responseData.savePath;
+                                    if (responseData.download_path !== undefined)
+                                        categoryData.downloadPath = responseData.download_path;
                                 }
                             }
                             updateCategories = true;
