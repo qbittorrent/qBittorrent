@@ -52,7 +52,7 @@ BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObj
 
 QJsonObject BitTorrent::CategoryOptions::toJSON() const
 {
-    QJsonValue downloadPathValue = QJsonValue::Undefined;
+    QJsonValue downloadPathValue = QJsonValue::Null;
     if (downloadPath)
     {
         if (downloadPath->enabled)
