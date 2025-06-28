@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -38,14 +39,19 @@
 #endif
 
 #include "base/global.h"
+#include "gui/uithememanager.h"
 
-ProgressBarPainter::ProgressBarPainter()
+ProgressBarPainter::ProgressBarPainter(QObject *parent)
+    : QObject(parent)
 {
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    auto *fusionStyle = new QProxyStyle {u"fusion"_s};
+    auto *fusionStyle = new QProxyStyle(u"fusion"_s);
     fusionStyle->setParent(&m_dummyProgressBar);
     m_dummyProgressBar.setStyle(fusionStyle);
 #endif
+
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &ProgressBarPainter::applyUITheme);
 }
 
 void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress) const
@@ -66,9 +72,17 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
     styleOption.palette.setCurrentColorGroup(isEnabled ? QPalette::Active : QPalette::Disabled);
 
+    if (m_chunkColor.isValid())
+        styleOption.palette.setColor(QPalette::Highlight, m_chunkColor);
+
     painter->save();
     const QStyle *style = m_dummyProgressBar.style();
     style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, option.widget);
     style->drawControl(QStyle::CE_ProgressBar, &styleOption, painter, &m_dummyProgressBar);
     painter->restore();
+}
+
+void ProgressBarPainter::applyUITheme()
+{
+    m_chunkColor = UIThemeManager::instance()->getColor(u"ProgressBar"_s);
 }
