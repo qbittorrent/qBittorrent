@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>QBT_TR(New Category)QBT_TR[CONTEXT=TransferListWidget]</title>
+    <title>QBT_TR(New Category)QBT_TR[CONTEXT=Category]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css">
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
@@ -26,27 +26,78 @@
                 }
             });
 
+            const defaultDownloadPath = () => {
+                const category = document.getElementById("categoryName").value.trim();
+                return `${pref.temp_path}/${category}`;
+            };
+
+            const setDownloadPath = (option) => {
+                const downloadPath = document.getElementById("downloadPath");
+                const defaultPath = defaultDownloadPath();
+                switch (option) {
+                    case "default":
+                        downloadPath.disabled = true;
+                        downloadPath.value = pref.temp_path_enabled ? defaultPath : "";
+                        downloadPath.placeholder = "";
+                        break;
+                    case "yes":
+                        downloadPath.disabled = false;
+                        if ((categoryData !== undefined) && (categoryData.downloadPath !== false) && (categoryData.downloadPath !== null))
+                            downloadPath.value = categoryData.downloadPath;
+                        else
+                            downloadPath.value = "";
+                        downloadPath.placeholder = defaultPath;
+                        break;
+                    case "no":
+                        downloadPath.disabled = true;
+                        downloadPath.value = "";
+                        downloadPath.placeholder = "";
+                        break;
+                }
+            };
+
             const searchParams = new URLSearchParams(window.location.search);
             const uriAction = window.qBittorrent.Misc.safeTrim(searchParams.get("action"));
             const uriHashes = window.qBittorrent.Misc.safeTrim(searchParams.get("hashes"));
             const uriCategoryName = window.qBittorrent.Misc.safeTrim(searchParams.get("categoryName"));
-            const uriSavePath = window.qBittorrent.Misc.safeTrim(searchParams.get("savePath"));
 
+            const pref = window.parent.qBittorrent.Cache.preferences.get();
+            const categoryData = window.parent.qBittorrent.Client.categoryMap.get(uriCategoryName);
+
+            const useDownloadPathElem = document.getElementById("useDownloadPath");
+            const categoryNameElem = document.getElementById("categoryName");
+            const savePathElem = document.getElementById("savePath");
             if (uriAction === "edit") {
                 if (!uriCategoryName)
                     return;
 
-                document.getElementById("categoryName").disabled = true;
-                document.getElementById("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
-                document.getElementById("savePath").value = window.qBittorrent.Misc.escapeHtml(uriSavePath);
-                document.getElementById("savePath").focus();
+                categoryNameElem.disabled = true;
+                categoryNameElem.value = uriCategoryName;
+                savePathElem.value = categoryData.savePath;
+                savePathElem.placeholder = `${pref.save_path}/${uriCategoryName}`;
+                savePathElem.focus();
+
+                switch (categoryData.downloadPath) {
+                    case false:
+                        useDownloadPathElem.selectedIndex = 2;
+                        setDownloadPath("no");
+                        break;
+                    case null:
+                        useDownloadPathElem.selectedIndex = 0;
+                        setDownloadPath("default");
+                        break;
+                    default:
+                        useDownloadPathElem.selectedIndex = 1;
+                        setDownloadPath("yes");
+                        break;
+                }
             }
             else if (uriAction === "createSubcategory") {
-                document.getElementById("categoryName").value = window.qBittorrent.Misc.escapeHtml(uriCategoryName);
-                document.getElementById("categoryName").focus();
+                categoryNameElem.value = uriCategoryName;
+                categoryNameElem.focus();
             }
             else {
-                document.getElementById("categoryName").focus();
+                categoryNameElem.focus();
             }
 
             document.getElementById("categoryNameButton").addEventListener("click", (e) => {
@@ -66,6 +117,16 @@
                     return true;
                 };
 
+                const dlPathParams = {};
+                const useDownloadPath = document.getElementById("useDownloadPath");
+                if (useDownloadPath.value === "no") {
+                    dlPathParams.downloadPathEnabled = false;
+                }
+                else if (useDownloadPath.value === "yes") {
+                    dlPathParams.downloadPathEnabled = true;
+                    dlPathParams.downloadPath = document.getElementById("downloadPath").value.trim();
+                }
+
                 switch (uriAction) {
                     case "set":
                         if ((uriHashes === "") || !verifyCategoryName(categoryName))
@@ -74,6 +135,7 @@
                         fetch("api/v2/torrents/createCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
+                                    ...dlPathParams,
                                     category: categoryName,
                                     savePath: savePath
                                 })
@@ -110,6 +172,7 @@
                         fetch("api/v2/torrents/createCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
+                                    ...body,
                                     category: categoryName,
                                     savePath: savePath
                                 })
@@ -129,6 +192,7 @@
                         fetch("api/v2/torrents/editCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
+                                    ...body,
                                     category: uriCategoryName, // category name can't be changed
                                     savePath: savePath
                                 })
@@ -146,6 +210,10 @@
                 }
             });
 
+            useDownloadPathElem.addEventListener("change", (e) => {
+                setDownloadPath(e.target.value);
+            });
+
             window.qBittorrent.pathAutofill.attachPathAutofill();
         });
     </script>
@@ -153,10 +221,32 @@
 
 <body>
     <div style="padding: 10px 10px 0px 10px;">
-        <label for="categoryName" style="font-weight: bold;">QBT_TR(Category:)QBT_TR[CONTEXT=TransferListWidget]</label>
-        <input type="text" id="categoryName" style="width: 99%;">
-        <label for="savePath" style="font-weight: bold;">QBT_TR(Save path:)QBT_TR[CONTEXT=TransferListWidget]</label>
-        <input type="text" id="savePath" class="pathDirectory" style="width: 99%;">
+        <div style="display: flex; align-items: center;">
+            <label for="categoryName">QBT_TR(Category:)QBT_TR[CONTEXT=Category]</label>
+            <input type="text" id="categoryName" style="flex-grow: 1; margin-left: 10px;">
+        </div>
+        <div style="display: flex; align-items: center;">
+            <label for="savePath">QBT_TR(Save path:)QBT_TR[CONTEXT=Category]</label>
+            <input type="text" id="savePath" class="pathDirectory" style="flex-grow: 1; margin-left: 10px;">
+        </div>
+
+        <fieldset class="settings" style="text-align: left;">
+            <legend>QBT_TR(Save path for incomplete torrents:)QBT_TR[CONTEXT=Category]</legend>
+
+            <div style="display: flex; align-items: center;">
+                <label for="useDownloadPath">QBT_TR(Use another path for incomplete torrents:)QBT_TR[CONTEXT=Category]</label>
+                <select id="useDownloadPath">
+                    <option selected value="default">QBT_TR(Default)QBT_TR[CONTEXT=Category]</option>
+                    <option value="yes">QBT_TR(Yes)QBT_TR[CONTEXT=Category]</option>
+                    <option value="no">QBT_TR(No)QBT_TR[CONTEXT=Category]</option>
+                </select>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <label for="downloadPath">QBT_TR(Path:)QBT_TR[CONTEXT=Category]</label>
+                <input type="text" id="downloadPath" class="pathDirectory" style="flex-grow: 1; margin-left: 10px;">
+            </div>
+        </fieldset>
+
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(OK)QBT_TR[CONTEXT=Category]" id="categoryNameButton">
         </div>
