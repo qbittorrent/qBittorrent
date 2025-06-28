@@ -990,7 +990,7 @@ const initializeWindows = () => {
 
     deleteUnusedCategoriesFN = () => {
         const categories = [];
-        for (const category of categoryMap.keys()) {
+        for (const category of window.qBittorrent.Client.categoryMap.keys()) {
             if (torrentsTable.getFilteredTorrentsNumber("all", category, TAGS_ALL, TRACKERS_ALL) === 0)
                 categories.push(category);
         }
@@ -1095,7 +1095,7 @@ const initializeWindows = () => {
 
     deleteUnusedTagsFN = () => {
         const tags = [];
-        for (const tag of tagMap.keys()) {
+        for (const tag of window.qBittorrent.Client.tagMap.keys()) {
             if (torrentsTable.getFilteredTorrentsNumber("all", CATEGORIES_ALL, tag, TRACKERS_ALL) === 0)
                 tags.push(tag);
         }
