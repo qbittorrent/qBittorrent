@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.11.10
+
+* [#22932](https://github.com/qbittorrent/qBittorrent/pull/22932)
+  * `torrents/categories` and `sync/maindata` now serialize categories' `downloadPath` to `null`, rather than `undefined`
+
 ## 2.11.9
 
 * [#21015](https://github.com/qbittorrent/qBittorrent/pull/21015)
