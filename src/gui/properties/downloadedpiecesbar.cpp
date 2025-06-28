@@ -36,11 +36,16 @@
 #include <QList>
 
 #include "base/global.h"
+#include "gui/uithememanager.h"
 
 namespace
 {
     QColor dlPieceColor(const QColor &pieceColor)
     {
+        const QColor color = UIThemeManager::instance()->getColor(u"PiecesBar.PartialPiece"_s);
+        if (color.isValid())
+            return color;
+
         const QColor green {Qt::green};
         return QColor::fromHsl(green.hslHue(), pieceColor.hslSaturation(), pieceColor.lightness());
     }
