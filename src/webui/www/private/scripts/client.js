@@ -1781,13 +1781,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 const modalInstances = Object.values(MochaUI.Windows.instances);
                 if (modalInstances.length <= 0)
                     return;
+
                 // MochaUI.currentModal does not update after a modal is closed
                 const focusedModal = modalInstances.find((modal) => {
                     return modal.windowEl.hasClass("isFocused");
                 });
-                if (!focusedModal)
-                    return;
-                focusedModal.close();
+                if (focusedModal !== undefined)
+                    focusedModal.close();
                 break;
             }
         }

@@ -22,6 +22,7 @@
                         break;
                 }
             });
+
             const encodedUrls = new URLSearchParams(window.location.search).get("urls");
             if (encodedUrls !== null) {
                 const urls = encodedUrls.split("|").map(decodeURIComponent);
