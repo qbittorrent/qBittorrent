@@ -8,6 +8,10 @@
   * Add `torrents/saveMetadata` endpoint for saving retrieved torrent metadata to a .torrent file
   * `torrents/add` allows adding a torrent with metadata previously retrieved via `torrents/fetchMetadata` or `torrents/parseMetadata`
   * `torrents/add` allows specifying a torrent's file priorities
+* [#22698](https://github.com/qbittorrent/qBittorrent/pull/22698)
+  * `torrents/addTrackers` and `torrents/removeTrackers` now accept `hash=all` and adds/removes the tracker to/from *all* torrents
+    * For compatibility, `torrents/removeTrackers` still accepts `hash=*` internally we transform it into `all`
+  * Allow passing a pipe (`|`) separated list of hashes in `hash` for `torrents/addTrackers` and `torrents/removeTrackers`
 
 ## 2.11.8
 
