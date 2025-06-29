@@ -1161,7 +1161,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     if (!m_forceExit)
     {
         hide();
-        e->accept();
+        e->ignore();
         return;
     }
 #else

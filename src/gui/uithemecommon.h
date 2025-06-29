@@ -80,8 +80,14 @@ inline QHash<QString, UIThemeColor> defaultUIThemeColors()
         {u"TransferList.StoppedUploading"_s, {Color::Primer::Light::doneFg, Color::Primer::Dark::doneFg}},
         {u"TransferList.Moving"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.MissingFiles"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
-        {u"TransferList.Error"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}},
+        {u"TransferList.Error"_s, {Color::Primer::Light::dangerFg, Color::Primer::Dark::dangerFg}}
+    };
+}
 
+// Palette isn't customizable in default theme
+inline QHash<QString, UIThemeColor> defaultPaletteColors()
+{
+    return {
         {u"Palette.Window"_s, {{}, {}}},
         {u"Palette.WindowText"_s, {{}, {}}},
         {u"Palette.Base"_s, {{}, {}}},

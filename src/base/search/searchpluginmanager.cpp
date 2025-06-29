@@ -487,14 +487,14 @@ void SearchPluginManager::updateNova()
     const Path enginePath = engineLocation();
 
     QFile packageFile {(enginePath / Path(u"__init__.py"_s)).data()};
-    packageFile.open(QIODevice::WriteOnly);
-    packageFile.close();
+    if (packageFile.open(QIODevice::WriteOnly))
+        packageFile.close();
 
     Utils::Fs::mkdir(enginePath / Path(u"engines"_s));
 
     QFile packageFile2 {(enginePath / Path(u"engines/__init__.py"_s)).data()};
-    packageFile2.open(QIODevice::WriteOnly);
-    packageFile2.close();
+    if (packageFile2.open(QIODevice::WriteOnly))
+        packageFile2.close();
 
     // Copy search plugin files (if necessary)
     const auto updateFile = [&enginePath](const Path &filename, const bool compareVersion)
