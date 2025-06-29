@@ -31,6 +31,10 @@
 
 #include <chrono>
 
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QList>
 #include <QMetaObject>
 #include <QProcess>
@@ -168,43 +172,27 @@ void SearchHandler::processFailed()
 }
 
 // Parse one line of search results list
-// Line is in the following form:
-// file url | file name | file size | nb seeds | nb leechers | Search engine url
 bool SearchHandler::parseSearchResult(const QByteArrayView line, SearchResult &searchResult)
 {
-    const QList<QByteArrayView> parts = Utils::ByteArray::splitToViews(line, "|");
-    const int nbFields = parts.size();
+    const auto jsonDoc = QJsonDocument::fromJson(line.toByteArray());
+    if (jsonDoc.isNull() || !jsonDoc.isObject())
+        return false;
 
-    if (nbFields <= PL_ENGINE_URL)
-        return false; // Anything after ENGINE_URL is optional
+    const QJsonObject jsonObj = jsonDoc.object();
 
     searchResult = SearchResult();
-    searchResult.fileUrl = QString::fromUtf8(parts.at(PL_DL_LINK).trimmed()); // download URL
-    searchResult.fileName = QString::fromUtf8(parts.at(PL_NAME).trimmed()); // Name
-    searchResult.fileSize = parts.at(PL_SIZE).trimmed().toLongLong(); // Size
+    searchResult.fileUrl = jsonObj[u"link"_s].toString().trimmed(); // download URL
+    searchResult.fileName = jsonObj[u"name"_s].toString().trimmed(); // Name
+    searchResult.fileSize = jsonObj[u"size"_s].toInteger(); // Size
+    searchResult.nbSeeders = jsonObj[u"seeds"_s].toInteger(-1); // Seeders
+    searchResult.nbLeechers = jsonObj[u"leech"_s].toInteger(-1); // Leechers
+    searchResult.siteUrl = jsonObj[u"engine_url"_s].toString().trimmed(); // Search engine site URL
+    searchResult.descrLink = jsonObj[u"desc_link"_s].toString().trimmed(); // Description Link
 
-    bool ok = false;
+    if (const qint64 secs = jsonObj[u"pub_date"_s].toInteger(); secs > 0)
+        searchResult.pubDate = QDateTime::fromSecsSinceEpoch(secs); // Date
 
-    searchResult.nbSeeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok); // Seeders
-    if (!ok || (searchResult.nbSeeders < 0))
-        searchResult.nbSeeders = -1;
-
-    searchResult.nbLeechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok); // Leechers
-    if (!ok || (searchResult.nbLeechers < 0))
-        searchResult.nbLeechers = -1;
-
-    searchResult.siteUrl = QString::fromUtf8(parts.at(PL_ENGINE_URL).trimmed()); // Search engine site URL
     searchResult.engineName = m_manager->pluginNameBySiteURL(searchResult.siteUrl); // Search engine name
-
-    if (nbFields > PL_DESC_LINK)
-        searchResult.descrLink = QString::fromUtf8(parts.at(PL_DESC_LINK).trimmed()); // Description Link
-
-    if (nbFields > PL_PUB_DATE)
-    {
-        const qint64 secs = parts.at(PL_PUB_DATE).trimmed().toLongLong(&ok);
-        if (ok && (secs > 0))
-            searchResult.pubDate = QDateTime::fromSecsSinceEpoch(secs); // Date
-    }
 
     return true;
 }
