@@ -673,12 +673,12 @@ void AppController::setPreferencesAction()
     if (hasKey(u"autorun_on_torrent_added_enabled"_s))
         pref->setAutoRunOnTorrentAddedEnabled(it.value().toBool());
     if (hasKey(u"autorun_on_torrent_added_program"_s))
-        pref->setAutoRunOnTorrentAddedProgram(it.value().toString());
+        pref->setAutoRunOnTorrentAddedProgram(it.value().toString().trimmed());
     // Run an external program on torrent finished
     if (hasKey(u"autorun_enabled"_s))
         pref->setAutoRunOnTorrentFinishedEnabled(it.value().toBool());
     if (hasKey(u"autorun_program"_s))
-        pref->setAutoRunOnTorrentFinishedProgram(it.value().toString());
+        pref->setAutoRunOnTorrentFinishedProgram(it.value().toString().trimmed());
 
     // Connection
     // Listening Port
