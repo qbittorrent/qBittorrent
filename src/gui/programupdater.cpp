@@ -35,10 +35,13 @@
 #include <QtSystemDetection>
 #include <QDebug>
 #include <QDesktopServices>
+#include <QJsonDocument>
+#include <QJsonValue>
 #include <QRegularExpression>
 #include <QXmlStreamReader>
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/utils/version.h"
@@ -82,29 +85,33 @@ namespace
 
 void ProgramUpdater::checkForUpdates() const
 {
+    const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)");
     const auto RSS_URL = u"https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml"_s;
+    const auto FALLBACK_URL = u"https://www.qbittorrent.org/versions.json"_s;
+
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
-    Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(RSS_URL).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)"))
+    Net::DownloadManager::instance()->download(Net::DownloadRequest(RSS_URL).userAgent(USER_AGENT)
             , Preferences::instance()->useProxyForGeneralPurposes(), this, &ProgramUpdater::rssDownloadFinished);
+    Net::DownloadManager::instance()->download(Net::DownloadRequest(FALLBACK_URL).userAgent(USER_AGENT)
+            , Preferences::instance()->useProxyForGeneralPurposes(), this, &ProgramUpdater::fallbackDownloadFinished);
+
+    m_hasCompletedOneReq = false;
 }
 
 QString ProgramUpdater::getNewVersion() const
 {
-    return m_newVersion;
+    return shouldUseFallback() ? m_fallbackRemoteVersion : m_remoteVersion;
 }
 
 void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status != Net::DownloadStatus::Success)
     {
-        qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
-        emit updateCheckFinished();
+        LogMsg(tr("Failed to download the update info. URL: %1. Error: %2").arg(result.url, result.errorString) , Log::WARNING);
+        handleFinishedRequest();
         return;
     }
-
-    qDebug("Finished downloading the new qBittorrent updates RSS");
 
     const auto getStringValue = [](QXmlStreamReader &xml) -> QString
     {
@@ -148,7 +155,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                         qDebug("Detected version is %s", qUtf8Printable(version));
                         if (isVersionMoreRecent(version))
                         {
-                            m_newVersion = version;
+                            m_remoteVersion = version;
                             m_updateURL = updateLink;
                         }
                     }
@@ -163,10 +170,55 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
         }
     }
 
-    emit updateCheckFinished();
+    handleFinishedRequest();
+}
+
+void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result)
+{
+    if (result.status != Net::DownloadStatus::Success)
+    {
+        LogMsg(tr("Failed to download the update info. URL: %1. Error: %2").arg(result.url, result.errorString) , Log::WARNING);
+        handleFinishedRequest();
+        return;
+    }
+
+    const auto json = QJsonDocument::fromJson(result.data);
+
+#if defined(Q_OS_MACOS)
+    const QString platformKey = u"macos"_s;
+#elif defined(Q_OS_WIN)
+    const QString platformKey = u"win"_s;
+#endif
+
+    if (const QJsonValue verJSON = json[platformKey][u"version"_s]; verJSON.isString())
+    {
+        const auto ver = verJSON.toString();
+        if (isVersionMoreRecent(ver))
+            m_fallbackRemoteVersion = ver;
+    }
+
+    handleFinishedRequest();
 }
 
 bool ProgramUpdater::updateProgram() const
 {
-    return QDesktopServices::openUrl(m_updateURL);
+    return QDesktopServices::openUrl(shouldUseFallback() ? u"https://www.qbittorrent.org/download"_s : m_updateURL);
+}
+
+void ProgramUpdater::handleFinishedRequest()
+{
+    if (m_hasCompletedOneReq)
+        emit updateCheckFinished();
+    else
+        m_hasCompletedOneReq = true;
+}
+
+bool ProgramUpdater::shouldUseFallback() const
+{
+    using Version = Utils::Version<4, 3>;
+
+    const auto remote = Version::fromString(m_remoteVersion);
+    const auto fallback = Version::fromString(m_fallbackRemoteVersion);
+
+    return fallback > remote;
 }
