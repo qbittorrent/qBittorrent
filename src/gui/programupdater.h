@@ -55,8 +55,14 @@ signals:
 
 private slots:
     void rssDownloadFinished(const Net::DownloadResult &result);
+    void fallbackDownloadFinished(const Net::DownloadResult &result);
 
 private:
-    QString m_newVersion;
+    void handleFinishedRequest();
+    bool shouldUseFallback() const;
+
+    mutable bool m_hasCompletedOneReq = false;
+    QString m_remoteVersion;
+    QString m_fallbackRemoteVersion;
     QUrl m_updateURL;
 };
