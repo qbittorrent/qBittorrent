@@ -23,13 +23,16 @@ Required by:
 }
 
 .tab-menu {
+    display: flex;
     font-size: 11px;
     list-style-type: none;
+    overflow-x: auto;
     padding: 0;
 }
 
 .tab-menu li {
     cursor: pointer;
+    flex: 0 0 auto;
     float: left;
 }
 
