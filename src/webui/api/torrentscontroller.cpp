@@ -2130,5 +2130,15 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
         return;
 
     if (auto iter = m_torrentMetadataCache.find(info.infoHash().toTorrentID()); iter != m_torrentMetadataCache.end())
+    {
         iter.value().setTorrentInfo(info);
+    }
+    else if (info.infoHash().isHybrid())
+    {
+        // hybrid torrents use the v2 hash for their torrentID, but the torrent may have previously been stored
+        // in m_torrentMetadataCache using the v1 hash, before the v2 hash was known/available
+        const BitTorrent::TorrentID v1TorrentID = BitTorrent::TorrentID::fromSHA1Hash(info.infoHash().v1());
+        if (auto iter = m_torrentMetadataCache.find(v1TorrentID); iter != m_torrentMetadataCache.end())
+            iter.value().setTorrentInfo(info);
+    }
 }
