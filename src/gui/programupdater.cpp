@@ -49,23 +49,20 @@
 
 namespace
 {
-    bool isVersionMoreRecent(const QString &remoteVersion)
+    bool isVersionMoreRecent(const ProgramUpdater::Version &remoteVersion)
     {
-        using Version = Utils::Version<4, 3>;
-
-        const auto newVersion = Version::fromString(remoteVersion);
-        if (!newVersion.isValid())
+        if (!remoteVersion.isValid())
             return false;
 
-        const Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
-        if (newVersion == currentVersion)
+        const ProgramUpdater::Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
+        if (remoteVersion == currentVersion)
         {
             const bool isDevVersion = QStringLiteral(QBT_VERSION_STATUS).contains(
                 QRegularExpression(u"(alpha|beta|rc)"_s));
             if (isDevVersion)
                 return true;
         }
-        return (newVersion > currentVersion);
+        return (remoteVersion > currentVersion);
     }
 
     QString buildVariant()
@@ -99,7 +96,7 @@ void ProgramUpdater::checkForUpdates() const
     m_hasCompletedOneReq = false;
 }
 
-QString ProgramUpdater::getNewVersion() const
+ProgramUpdater::Version ProgramUpdater::getNewVersion() const
 {
     return shouldUseFallback() ? m_fallbackRemoteVersion : m_remoteVersion;
 }
@@ -153,9 +150,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                     if (!version.isEmpty())
                     {
                         qDebug("Detected version is %s", qUtf8Printable(version));
-                        if (isVersionMoreRecent(version))
+                        const ProgramUpdater::Version tmpVer {version};
+                        if (isVersionMoreRecent(tmpVer))
                         {
-                            m_remoteVersion = version;
+                            m_remoteVersion = tmpVer;
                             m_updateURL = updateLink;
                         }
                     }
@@ -192,9 +190,9 @@ void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result)
 
     if (const QJsonValue verJSON = json[platformKey][u"version"_s]; verJSON.isString())
     {
-        const auto ver = verJSON.toString();
-        if (isVersionMoreRecent(ver))
-            m_fallbackRemoteVersion = ver;
+        const ProgramUpdater::Version tmpVer {verJSON.toString()};
+        if (isVersionMoreRecent(tmpVer))
+            m_fallbackRemoteVersion = tmpVer;
     }
 
     handleFinishedRequest();
@@ -215,10 +213,5 @@ void ProgramUpdater::handleFinishedRequest()
 
 bool ProgramUpdater::shouldUseFallback() const
 {
-    using Version = Utils::Version<4, 3>;
-
-    const auto remote = Version::fromString(m_remoteVersion);
-    const auto fallback = Version::fromString(m_fallbackRemoteVersion);
-
-    return fallback > remote;
+    return m_fallbackRemoteVersion > m_remoteVersion;
 }
