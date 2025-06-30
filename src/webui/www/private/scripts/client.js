@@ -1755,7 +1755,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         switch (event.key) {
             case "a":
             case "A":
-                if (event.ctrlKey) {
+                if (event.ctrlKey || event.metaKey) {
                     if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
                         return;
                     if (event.target.isContentEditable)
