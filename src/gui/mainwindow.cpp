@@ -134,7 +134,6 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     , m_pwr {new PowerManagement}
     , m_preventTimer {new QTimer(this)}
     , m_storeExecutionLogEnabled {EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_s)}
-    , m_storeDownloadTrackerFavicon {SETTINGS_KEY(u"DownloadTrackerFavicon"_s)}
     , m_storeExecutionLogTypes {EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL}
 #ifdef Q_OS_MACOS
     , m_badger {std::make_unique<MacUtils::Badger>()}
@@ -477,7 +476,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionShowFiltersSidebar->setChecked(isFiltersSidebarVisible);
     if (isFiltersSidebarVisible)
     {
-        showFiltersSidebar(true);
+        showFiltersSidebar(true, pref->isDownloadTrackerFavicon());
     }
     else
     {
@@ -528,18 +527,6 @@ void MainWindow::setExecutionLogMsgTypes(const Log::MsgTypes value)
 {
     m_executionLog->setMessageTypes(value);
     m_storeExecutionLogTypes = value;
-}
-
-bool MainWindow::isDownloadTrackerFavicon() const
-{
-    return m_storeDownloadTrackerFavicon;
-}
-
-void MainWindow::setDownloadTrackerFavicon(const bool value)
-{
-    if (m_transferListFiltersWidget)
-        m_transferListFiltersWidget->setDownloadTrackerFavicon(value);
-    m_storeDownloadTrackerFavicon = value;
 }
 
 void MainWindow::setTitleSuffix(const QString &suffix)
@@ -1348,11 +1335,11 @@ void MainWindow::showStatusBar(bool show)
     }
 }
 
-void MainWindow::showFiltersSidebar(const bool show)
+void MainWindow::showFiltersSidebar(const bool show, const bool showTrackerFavicon)
 {
     if (show && !m_transferListFiltersWidget)
     {
-        m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget, isDownloadTrackerFavicon());
+        m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget, showTrackerFavicon);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::refreshTrackers);
@@ -1566,7 +1553,7 @@ void MainWindow::on_actionShowFiltersSidebar_triggered(const bool checked)
 {
     Preferences *const pref = Preferences::instance();
     pref->setFiltersSidebarVisible(checked);
-    showFiltersSidebar(checked);
+    showFiltersSidebar(checked, pref->isDownloadTrackerFavicon());
 }
 
 void MainWindow::on_actionSpeedInTitleBar_triggered()
