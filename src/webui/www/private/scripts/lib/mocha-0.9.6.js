@@ -760,7 +760,8 @@ MUI.Require = new Class({
 				}
 			}.bind(this);
 
-			switch ( source.match(/\.\w+$/)[0] ) {
+			// ignore optional version param
+			switch ( source.match(/(\.\w+)(?:\?v=\w+)?$/)[1] ) {
 				case '.js': return Asset.javascript(source, properties);
 				case '.css': return Asset.css(source, properties);
 				case '.jpg':
