@@ -28,6 +28,7 @@
 
 #include "uithemedialog.h"
 
+#include <QtSystemDetection>
 #include <QColor>
 #include <QColorDialog>
 #include <QFileDialog>
@@ -232,6 +233,10 @@ UIThemeDialog::UIThemeDialog(QWidget *parent)
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
 {
     m_ui->setupUi(this);
+
+#if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
+    m_ui->colorsWarningLabel->hide();
+#endif
 
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
