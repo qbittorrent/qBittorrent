@@ -43,13 +43,21 @@ window.qBittorrent.AddTorrent ??= (() => {
     let windowId = "";
     let source = "";
 
+    const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
     const getCategories = () => {
+        const defaultCategory = LocalPreferences.get("add_torrent_default_category", "");
+        const categorySelect = document.getElementById("categorySelect");
         for (const name of window.parent.qBittorrent.Client.categoryMap.keys()) {
             const option = document.createElement("option");
             option.value = name;
             option.textContent = name;
-            document.getElementById("categorySelect").appendChild(option);
+            option.selected = name === defaultCategory;
+            categorySelect.appendChild(option);
         }
+
+        if (defaultCategory !== "")
+            changeCategorySelect(categorySelect);
     };
 
     const getTags = () => {
@@ -301,6 +309,13 @@ window.qBittorrent.AddTorrent ??= (() => {
 
         document.getElementById("loadingSpinner").style.display = "block";
 
+        if (document.getElementById("setDefaultCategory").checked) {
+            const category = document.getElementById("category").value.trim();
+            if (category.length === 0)
+                LocalPreferences.remove("add_torrent_default_category");
+            else
+                LocalPreferences.set("add_torrent_default_category", category);
+        }
     };
 
     window.addEventListener("load", async (event) => {

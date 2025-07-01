@@ -204,8 +204,15 @@
                                         <select id="categorySelect" onchange="qBittorrent.AddTorrent.changeCategorySelect(this)">
                                             <option selected value="\other"></option>
                                         </select>
-                                        <input type="text" name="category" aria-labelledby="categoryLabel">
+                                        <input type="text" name="category" id="category" aria-labelledby="categoryLabel">
                                     </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="noWrap"></td>
+                                <td class="fullWidth">
+                                    <input type="checkbox" id="setDefaultCategory">
+                                    <label for="setDefaultCategory">QBT_TR(Set as default category)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                                 </td>
                             </tr>
                             <tr>
