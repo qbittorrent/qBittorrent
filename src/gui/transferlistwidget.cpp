@@ -650,8 +650,11 @@ void TransferListWidget::reannounceSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
-        torrent->forceReannounce();
-        torrent->forceDHTAnnounce();
+        if (!torrent->isStopped())
+        {
+            torrent->forceReannounce();
+            torrent->forceDHTAnnounce();
+        }
     }
 }
 
