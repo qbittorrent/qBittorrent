@@ -1818,6 +1818,11 @@ window.qBittorrent.DynamicTable ??= (() => {
         onSelectedRowChanged() {
             updatePropertiesPanel();
         }
+
+        isStopped(hash) {
+            const row = this.getRow(hash);
+            return (row === undefined) ? true : row.full_data.state.includes("stopped");
+        }
     }
 
     class TorrentPeersTable extends DynamicTable {
