@@ -1161,7 +1161,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     if (!m_forceExit)
     {
         hide();
-        e->accept();
+        e->ignore();
         return;
     }
 #else
@@ -1660,11 +1660,11 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
         updater->deleteLater();
     };
 
-    const QString newVersion = updater->getNewVersion();
-    if (!newVersion.isEmpty())
+    const auto newVersion = updater->getNewVersion();
+    if (newVersion.isValid())
     {
         const QString msg {tr("A new version is available.") + u"<br/>"
-            + tr("Do you want to download %1?").arg(newVersion) + u"<br/><br/>"
+            + tr("Do you want to download %1?").arg(newVersion.toString()) + u"<br/><br/>"
             + u"<a href=\"https://www.qbittorrent.org/news\">%1</a>"_s.arg(tr("Open changelog..."))};
         auto *msgBox = new QMessageBox {QMessageBox::Question, tr("qBittorrent Update Available"), msg
             , (QMessageBox::Yes | QMessageBox::No), this};
