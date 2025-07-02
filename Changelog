@@ -1,3 +1,11 @@
+Wed Jul 02nd 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.2
+    - BUGFIX: Don't expose palette colors in UI theme editor since they are not customizable (glassez)
+    - BUGFIX: Add fallback to update mechanism (sledgehammer999)
+    - WEBUI: Fix incorrectly backported changes (glassez)
+    - WEBAPI: Trim leading whitespaces on Run External Program fields (Chocobo1)
+    - RSS/SEARCH: Prevent opening local files if web page is expected (glassez)
+    - MACOS: Make qBittorrent quit on MacOS with main window closed (Ryu481)
+
 Mon Jun 23rd 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.1
     - BUGFIX: Don't interpret wildcard pattern as filepath globbing (glassez)
     - BUGFIX: Fix appearance of search history length spinbox (glassez)
