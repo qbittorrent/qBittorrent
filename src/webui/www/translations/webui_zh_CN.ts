@@ -192,14 +192,6 @@
         <translation>未知</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">分享率限制必须在 0 和 9998 之间。</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">做种时间限制必须在 0 和 525600 分钟之间。</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>确定</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>分享率限制不能为负值</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>做种时间限制不能为负值</translation>
     </message>
 </context>
 <context>

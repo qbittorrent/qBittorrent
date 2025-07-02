@@ -192,14 +192,6 @@
         <translation>Okänd</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Gräns för delningskvot måste vara mellan 0 och 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Distributionstidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Verkställ</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Gränsen för utdelningskvot får inte ha ett negativt värde.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Gräns för distributionstid får inte ha ett negativt värde.</translation>
     </message>
 </context>
 <context>
@@ -1561,7 +1553,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation>Maximalt antal samtidiga HTTP-annonseringar:</translation>
+        <translation>Högst antal samtidiga HTTP-annonseringar:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -2269,7 +2261,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Created By:</source>
-        <translation>Skapades av:</translation>
+        <translation>Skapad av:</translation>
     </message>
     <message>
         <source>Added On:</source>
@@ -2277,11 +2269,11 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Slutfördes:</translation>
+        <translation>Slutförd:</translation>
     </message>
     <message>
         <source>Created On:</source>
-        <translation>Skapades:</translation>
+        <translation>Skapad:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -2770,7 +2762,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Slutfördes</translation>
+        <translation>Slutförd</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2983,7 +2975,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation>Gånger hämtad</translation>
+        <translation>Antal hämtningar</translation>
     </message>
     <message>
         <source>Add trackers...</source>
@@ -3583,7 +3575,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Max size prefix</source>
-        <translation>Max storlek prefix </translation>
+        <translation>Maxstorlek prefix </translation>
     </message>
     <message>
         <source>Select plugins</source>

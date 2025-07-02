@@ -192,14 +192,6 @@
         <translation>Tundmatu</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Jagamise suhte limiit peab olema vahemikus 0 ja 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Jagamise aja limiit peab olema vahemikus 0 ja 525600 minutit.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Rakenda</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Jagamise suhe limiit ei tohi olla negatiivne.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Jagamise aja limiit ei tohi olla negatiivne.</translation>
     </message>
 </context>
 <context>
@@ -1869,7 +1861,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Värvi teema:</translation>
     </message>
     <message>
         <source>Show external IP in status bar</source>
@@ -3290,7 +3282,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished" />
+        <translation>Asukoht:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -3567,7 +3559,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Select category</source>
-        <translation type="unfinished" />
+        <translation>Vali kategooria</translation>
     </message>
     <message>
         <source>Min size prefix</source>
@@ -4032,7 +4024,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>URL ei tohi olla tühi</translation>
     </message>
 </context>
 <context>
@@ -4281,11 +4273,11 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Remove rule</source>
-        <translation type="unfinished" />
+        <translation>Eemalda reegel</translation>
     </message>
     <message>
         <source>Add rule</source>
-        <translation type="unfinished" />
+        <translation>Lisa reegel</translation>
     </message>
     <message>
         <source>Add Stopped:</source>
@@ -4503,7 +4495,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Add Cookie</source>
-        <translation type="unfinished" />
+        <translation>Lisa küpsis</translation>
     </message>
     <message>
         <source>Remove</source>

@@ -192,14 +192,6 @@
         <translation>不明</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">共有比は0から9998の間でなければなりません。</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">シード時間制限は0から525600分の間でなければなりません。</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>適用</translation>
     </message>

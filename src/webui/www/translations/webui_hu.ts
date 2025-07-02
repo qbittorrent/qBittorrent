@@ -192,14 +192,6 @@
         <translation>Ismeretlen</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">A megosztási arány 0 és 9998 között kell legyen.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">A seedelési időkorlát 0 és 525600 perc között kell legyen.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Alkalmaz</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>A megosztási arány nem lehet negatív érték.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>A seedelési időkorlát nem lehet negatív érték.</translation>
     </message>
 </context>
 <context>

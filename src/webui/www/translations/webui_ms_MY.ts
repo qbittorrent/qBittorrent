@@ -192,14 +192,6 @@
         <translation>Tidak diketahui</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Had nisbah kongsi mesti diantara 0 hingga 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Had masa penyemaian mesti diantara 0 hingga 525600 minit.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Laksana</translation>
     </message>

@@ -192,14 +192,6 @@
         <translation>Nazynoms</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Kūplītuošonas reitinga rūbēžai juoir nu 0 da 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Nūsasyuteišonas laika rūbēžai juoir nu 0 da 525600 mynotu.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Apstyprynuot</translation>
     </message>

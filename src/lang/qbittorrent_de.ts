@@ -234,7 +234,7 @@
         <location filename="../gui/addnewtorrentdialog.cpp" line="312"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="317"/>
         <source>None</source>
-        <translation>Kein</translation>
+        <translation>Keine</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="313"/>
@@ -351,12 +351,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="507"/>
         <source>Select All</source>
-        <translation>Alle Wählen</translation>
+        <translation>Alle wählen</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="514"/>
         <source>Select None</source>
-        <translation>Keine Wählen</translation>
+        <translation>Keine wählen</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="617"/>
@@ -532,7 +532,7 @@
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="62"/>
         <source>Note: the current defaults are displayed for reference.</source>
-        <translation>Hinweis: Die Standardwerte sind nur als Referenz angezeigt.</translation>
+        <translation>Hinweis: Die Standardwerte werden nur als Referenz angezeigt.</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
@@ -1237,12 +1237,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="977"/>
         <source>I2P inbound quantity</source>
-        <translation>i2p eingehende Tunnelanzahl</translation>
+        <translation>I2P eingehende Tunnelanzahl</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="982"/>
         <source>I2P outbound quantity</source>
-        <translation>i2p ausgehende Tunnelanzahl</translation>
+        <translation>I2P ausgehende Tunnelanzahl</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="987"/>
@@ -1478,7 +1478,7 @@
     <message>
         <location filename="../app/application.cpp" line="983"/>
         <source>The WebUI is disabled! To enable the WebUI, edit the config file manually.</source>
-        <translation>Das Webinterface ist deaktiviert! Die Konfigurationsdatei manuell editieren um es zu aktivieren.</translation>
+        <translation>Das Webinterface ist deaktiviert! Die Konfigurationsdatei manuell editieren, um es zu aktivieren.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="602"/>
@@ -1572,12 +1572,12 @@ Grund: &apos;%2&apos;</translation>
     <message>
         <location filename="../app/application.cpp" line="962"/>
         <source>To fix the error, you may need to edit the config file manually.</source>
-        <translation>Um den Fehler zu beheben, ist es erforderlich die Konfigurationsdatei händisch zu bearbeiten.</translation>
+        <translation>Um den Fehler zu beheben, ist es erforderlich, die Konfigurationsdatei händisch zu bearbeiten.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="971"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
-        <translation>Um qBittorrent zu steuern, benutze das Webinterface mit:  %1</translation>
+        <translation>Um qBittorrent zu steuern, benutze das Webinterface mit: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1014"/>
@@ -2541,7 +2541,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2758"/>
         <source>Duplicate torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent duplizieren</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5266"/>
@@ -3131,12 +3131,12 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
 <context>
     <name>CustomThemeSource</name>
     <message>
-        <location filename="../gui/uithemesource.cpp" line="247"/>
+        <location filename="../gui/uithemesource.cpp" line="249"/>
         <source>Failed to load custom theme style sheet. %1</source>
         <translation>Konnte die angepasste Themen-Stil Datei nicht laden. %1</translation>
     </message>
     <message>
-        <location filename="../gui/uithemesource.cpp" line="271"/>
+        <location filename="../gui/uithemesource.cpp" line="273"/>
         <source>Failed to load custom theme colors. %1</source>
         <translation>Konnte die angepassten Themen-Farben nicht laden. %1</translation>
     </message>
@@ -3144,7 +3144,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
 <context>
     <name>DefaultThemeSource</name>
     <message>
-        <location filename="../gui/uithemesource.cpp" line="164"/>
+        <location filename="../gui/uithemesource.cpp" line="166"/>
         <source>Failed to load default theme colors. %1</source>
         <translation>Konnte die Standard Themen-Farben nicht laden. %1</translation>
     </message>
@@ -3170,13 +3170,13 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <location filename="../gui/deletionconfirmationdialog.cpp" line="47"/>
         <source>Are you sure you want to remove &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to remove &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
-        <translation>Soll &apos;%1&apos; wirklich von der Transfer-Liste gelöscht werden?</translation>
+        <translation>Soll &apos;%1&apos; wirklich von der Übertragungsliste gelöscht werden?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="49"/>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to remove these 5 torrents from the transfer list?</comment>
-        <translation>Sollen diese %1 Torrents wirklich von der Transfer-Liste gelöscht werden?</translation>
+        <translation>Sollen diese %1 Torrents wirklich von der Übertragungsliste gelöscht werden?</translation>
     </message>
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="60"/>
@@ -3414,7 +3414,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <location filename="../gui/guiaddtorrentmanager.cpp" line="217"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Do you want to merge trackers from new source?</source>
-        <translation>Torrent &apos;%1&apos; befindet sich bereits in der Liste der Downloads. Sollen die Tracker von der neuen Quelle zusammengeführt werden?</translation>
+        <translation>Torrent &apos;%1&apos; befindet sich bereits in der Übertragungsliste. Sollen die Tracker von der neuen Quelle zusammengeführt werden?</translation>
     </message>
 </context>
 <context>
@@ -3700,7 +3700,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <location filename="../gui/mainwindow.ui" line="309"/>
         <source>Status &amp;Bar</source>
-        <translation>Status &amp;Bar</translation>
+        <translation>Status&amp;leiste</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="317"/>
@@ -3720,7 +3720,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <location filename="../gui/mainwindow.ui" line="336"/>
         <source>&amp;RSS Reader</source>
-        <translation>&amp;RSS Reader</translation>
+        <translation>&amp;RSS-Reader</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="344"/>
@@ -3745,7 +3745,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <location filename="../gui/mainwindow.ui" line="403"/>
         <source>&amp;Do nothing</source>
-        <translation>Nichts ändern</translation>
+        <translation>Nichts tun</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="479"/>
@@ -5988,7 +5988,7 @@ Mindestens erforderlich ist: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="642"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Um qBittorrent als Standardprogramm für .torrent-Dateien und/oder Magnet-Links festzulegen, &lt;br/&gt;verwendet man den&lt;span style=&quot; font-weight:600;&quot;&gt;&apos;Standardprogramme&apos;&lt;/span&gt; Dialog der &lt;span style=&quot; font-weight:600;&quot;&gt;&apos;Systemsteuerung&apos;&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Um qBittorrent als Standardprogramm für .torrent-Dateien und/oder Magnet-Links festzulegen, &lt;br/&gt;bitte den &lt;span style=&quot; font-weight:600;&quot;&gt;&apos;Standardprogramme&apos;&lt;/span&gt;-Dialog in den &lt;span style=&quot; font-weight:600;&quot;&gt;&apos;Systemeinstellungen&apos;&lt;/span&gt; verwenden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="732"/>
@@ -6258,7 +6258,7 @@ Verschlüsselung deaktivieren: Nur mit Peers ohne Prokokoll-Verschlüsselung ver
     <message>
         <location filename="../gui/optionsdialog.ui" line="3015"/>
         <source>When ratio reaches</source>
-        <translation>Wenn das Verhältnis erreicht ist</translation>
+        <translation>Wenn das Verhältnis erreicht ist:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3108"/>
@@ -6505,7 +6505,7 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="610"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation>qBittorrent für .torrent Dateien verwenden</translation>
+        <translation>qBittorrent für .torrent-Dateien verwenden</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="617"/>
@@ -6545,7 +6545,7 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="825"/>
         <source>Show external IP in status bar</source>
-        <translation>Externe IP in der Titelleiste anzeigen</translation>
+        <translation>Externe IP in der Statusleiste anzeigen</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="887"/>
@@ -6637,7 +6637,7 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1359"/>
         <source>Copy .torrent files to:</source>
-        <translation>.torrent Dateien kopieren nach:</translation>
+        <translation>.torrent-Dateien kopieren nach:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="511"/>
@@ -6657,7 +6657,7 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1369"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Kopiere die .torrent Dateien von beendeten Downloads nach:</translation>
+        <translation>Kopiere die .torrent-Dateien von beendeten Downloads nach:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1114"/>
@@ -6729,7 +6729,7 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="678"/>
         <source>Inhibit system sleep when torrents are seeding</source>
-        <translation>Schlafmodus verhindern, solange Torrents noch uploaden</translation>
+        <translation>Schlafmodus verhindern, solange Torrents noch hochladen</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="722"/>
@@ -6778,7 +6778,7 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1121"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>.!qB Erweiterung für unvollständige Dateien verwenden</translation>
+        <translation>.!qB-Erweiterung für unvollständige Dateien verwenden</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1135"/>
@@ -6976,7 +6976,7 @@ readme[0-9].txt: filtert &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, aber 
     <message>
         <location filename="../gui/optionsdialog.ui" line="1769"/>
         <source>Listening Port</source>
-        <translation>Port auf dem gelauscht wird</translation>
+        <translation>Port, auf dem gelauscht wird</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1777"/>
@@ -7863,7 +7863,7 @@ readme[0-9].txt: filtert &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, aber 
         <location filename="../gui/properties/peerlistwidget.cpp" line="122"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation>Runtergeladen</translation>
+        <translation>Heruntergeladen</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="123"/>
@@ -8355,6 +8355,15 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
     </message>
 </context>
 <context>
+    <name>ProgramUpdater</name>
+    <message>
+        <location filename="../gui/programupdater.cpp" line="108"/>
+        <location filename="../gui/programupdater.cpp" line="178"/>
+        <source>Failed to download the update info. URL: %1. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PropTabBar</name>
     <message>
         <location filename="../gui/properties/proptabbar.cpp" line="50"/>
@@ -8392,7 +8401,7 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="262"/>
         <source>Downloaded:</source>
-        <translation>Runtergeladen:</translation>
+        <translation>Heruntergeladen:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="117"/>
@@ -8488,12 +8497,12 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1125"/>
         <source>Select All</source>
-        <translation>Alle Wählen</translation>
+        <translation>Alle wählen</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="1132"/>
         <source>Select None</source>
-        <translation>Keine Wählen</translation>
+        <translation>Keine wählen</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="523"/>
@@ -8990,69 +8999,92 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
         <translation>Feed-URL editieren</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="271"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="272"/>
         <source>Please choose a folder name</source>
         <translation>Bitte einen Verzeichnisnamen wählen</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="271"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="272"/>
         <source>Folder name:</source>
         <translation>Verzeichnisname:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="272"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="273"/>
         <source>New folder</source>
         <translation>Neues Verzeichnis</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="313"/>
-        <location filename="../gui/rss/rsswidget.cpp" line="473"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="314"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="510"/>
         <source>Please type a RSS feed URL</source>
         <translation>Bitte eine RSS-Feed Adresse eingeben</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="313"/>
-        <location filename="../gui/rss/rsswidget.cpp" line="474"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="314"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="511"/>
         <source>Feed URL:</source>
         <translation>Feed-URL:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="355"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="356"/>
         <source>Deletion confirmation</source>
         <translation>Löschbestätigung</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="355"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="356"/>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
         <translation>Sind Sie sicher, dass Sie die gewählten RSS-Feeds löschen möchten?</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="446"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="443"/>
+        <source>Blocked opening RSS article URL. URL pointing to local file might be malicious behaviour. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="454"/>
+        <source>Blocked opening RSS article URL. The following article URL is pointing to local file and it may be malicious behaviour:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="456"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="463"/>
+        <source>There are %1 more articles with the same issue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="461"/>
+        <source>The following article has no news URL provided:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/rss/rsswidget.cpp" line="483"/>
         <source>Please choose a new name for this RSS feed</source>
         <translation>Bitte einen neuen Namen für diesen RSS-Feed wählen</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="446"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="483"/>
         <source>New feed name:</source>
         <translation>Neuer Feed-Name:</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="454"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="491"/>
         <source>Rename failed</source>
         <translation>Umbenennen fehlgeschlagen</translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="611"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="648"/>
         <source>Date: </source>
         <translation> Datum: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="613"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="650"/>
         <source>Feed: </source>
         <translation>Feed: </translation>
     </message>
     <message>
-        <location filename="../gui/rss/rsswidget.cpp" line="615"/>
+        <location filename="../gui/rss/rsswidget.cpp" line="652"/>
         <source>Author: </source>
         <translation> Autor: </translation>
     </message>
@@ -9062,7 +9094,7 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="90"/>
         <source>Python must be installed to use the Search Engine.</source>
-        <translation>Python muss installiert sein, um die Suchmaschine benützen zu können.</translation>
+        <translation>Python muss installiert sein, um die Suchmaschine benutzen zu können.</translation>
     </message>
     <message>
         <location filename="../webui/api/searchcontroller.cpp" line="113"/>
@@ -9166,142 +9198,168 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
         <translation>Größe:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="101"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="103"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="102"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="104"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Größe</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="103"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="105"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Seeder</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="104"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="106"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Leecher</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="157"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="159"/>
         <source>Filter search results...</source>
         <translation>Dateien filtern ...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="407"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="348"/>
+        <source>Blocked opening search result description page URL. URL pointing to local file might be malicious behaviour. Name: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="359"/>
+        <source>Blocked opening search result description page URL. The following result URL is pointing to local file and it may be malicious behaviour:
+%1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="361"/>
+        <source>There are %1 more results with the same issue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="366"/>
+        <source>Entry &quot;%1&quot; has no description page URL provided.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="368"/>
+        <source>There are %1 more entries with the same issue.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.cpp" line="446"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
         <translation>Ergebnisse (zeige &lt;i&gt;%1&lt;/i&gt; von &lt;i&gt;%2&lt;/i&gt;):</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="458"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="497"/>
         <source>Torrent names only</source>
         <translation>Nur Torrent-Namen</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="459"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="498"/>
         <source>Everywhere</source>
         <translation>Überall</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="482"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="521"/>
         <source>Use regular expressions</source>
         <translation>Reguläre Ausdrücke verwenden</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="497"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="536"/>
         <source>Open download window</source>
         <translation>Das Download-Fenster öffnen</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="499"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="538"/>
         <source>Download</source>
         <translation>Download</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="501"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="540"/>
         <source>Open description page</source>
         <translation>Beschreibungsseite öffnen</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="505"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="544"/>
         <source>Copy</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="507"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="546"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="509"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="548"/>
         <source>Download link</source>
         <translation>Download-Link</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="511"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="550"/>
         <source>Description page URL</source>
         <translation>Beschreibungsseiten-URL</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="70"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="72"/>
         <source>Searching...</source>
         <translation>Suche ...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="72"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="74"/>
         <source>Search has finished</source>
         <translation>Suche abgeschlossen</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="74"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="76"/>
         <source>Search aborted</source>
         <translation>Suche abgebrochen</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="76"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="78"/>
         <source>An error occurred during search...</source>
         <translation>Während der Suche ist ein Fehler aufgetreten ...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="78"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="80"/>
         <source>Search returned no results</source>
         <translation>Suche lieferte keine Ergebnisse</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="105"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="107"/>
         <source>Engine</source>
         <translation>Engine</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="106"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="108"/>
         <source>Engine URL</source>
         <translation>Engine-URL</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="107"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="109"/>
         <source>Published On</source>
         <translation>Veröffentlicht am</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="548"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="587"/>
         <source>Column visibility</source>
         <translation>Spaltensichtbarkeit</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="571"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="610"/>
         <source>Resize columns</source>
         <translation>Spaltenbreite ändern</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="580"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="619"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
         <translation>Ändere alle sichtbaren Spalten in der Breite nach Inhalt</translation>
     </message>
@@ -9505,7 +9563,7 @@ Wähle den &quot;Such-Plugins ...&quot;-Knopf unten rechts aus, um welche zu ins
         <location filename="../gui/search/searchwidget.cpp" line="879"/>
         <location filename="../gui/search/searchwidget.cpp" line="956"/>
         <source>Please install Python to use the Search Engine.</source>
-        <translation>Python bitte installieren, um die Suchmaschine benützen zu können.</translation>
+        <translation>Python bitte installieren, um die Suchmaschine benutzen zu können.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="873"/>
@@ -9715,12 +9773,12 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="177"/>
         <source>Payload Upload</source>
-        <translation>Nutzerdaten Upload</translation>
+        <translation>Nutzerdaten-Upload</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="178"/>
         <source>Payload Download</source>
-        <translation>Nutzerdaten Download</translation>
+        <translation>Nutzerdaten-Download</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="182"/>
@@ -9745,12 +9803,12 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="192"/>
         <source>Tracker Upload</source>
-        <translation>Tracker Upload</translation>
+        <translation>Tracker-Upload</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedplotview.cpp" line="193"/>
         <source>Tracker Download</source>
-        <translation>Tracker Download</translation>
+        <translation>Tracker-Download</translation>
     </message>
 </context>
 <context>
@@ -9813,12 +9871,12 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="84"/>
         <source>Payload Upload</source>
-        <translation>Nutzerdaten Upload</translation>
+        <translation>Nutzerdaten-Upload</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="85"/>
         <source>Payload Download</source>
-        <translation>Nutzerdaten Download</translation>
+        <translation>Nutzerdaten-Download</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="86"/>
@@ -9843,12 +9901,12 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="90"/>
         <source>Tracker Upload</source>
-        <translation>Tracker Upload</translation>
+        <translation>Tracker-Upload</translation>
     </message>
     <message>
         <location filename="../gui/properties/speedwidget.cpp" line="91"/>
         <source>Tracker Download</source>
-        <translation>Tracker Download</translation>
+        <translation>Tracker-Download</translation>
     </message>
 </context>
 <context>
@@ -9914,7 +9972,7 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/statsdialog.ui" line="119"/>
         <source>Total buffer size:</source>
-        <translation>Gesamte Buffergröße:</translation>
+        <translation>Gesamte Puffergröße:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
@@ -10013,7 +10071,7 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/statusbar.cpp" line="282"/>
         <source>Click to switch to regular speed limits</source>
-        <translation>Klick, um zu den regulären Geschwindigkeitsbegrenzungen zu wechseln</translation>
+        <translation>Klicken, um zu den regulären Geschwindigkeitsbegrenzungen zu wechseln</translation>
     </message>
 </context>
 <context>
@@ -10067,7 +10125,7 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="74"/>
         <source>Stalled Uploading (0)</source>
-        <translation>Verzögerter Upload (0)</translation>
+        <translation>Verzögertes Hochladen (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="77"/>
@@ -10157,7 +10215,7 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="175"/>
         <source>Stalled Uploading (%1)</source>
-        <translation>Verzögerter Upload (%1)</translation>
+        <translation>Verzögertes Hochladen (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="176"/>
@@ -10641,7 +10699,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="248"/>
         <source>Ignore share ratio limits for this torrent</source>
-        <translation>Ignoriere das Shareverhältnis-Limit für diese Torrent</translation>
+        <translation>Ignoriere das Shareverhältnis-Limit für diesen Torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="255"/>
@@ -11724,7 +11782,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="179"/>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation>Runtergeladen</translation>
+        <translation>Heruntergeladen</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="180"/>
@@ -12233,18 +12291,18 @@ Please choose a different name and try again.</source>
         <translation>Die Änderungen am UI-Thema konnten nicht vollständig übernommen werden. Details dazu stehen im Protokoll.</translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="351"/>
+        <location filename="../gui/uithemedialog.cpp" line="349"/>
         <source>Couldn&apos;t save UI Theme configuration. Reason: %1</source>
         <translation>Die Konfigurationsdatei des UI-Themas konnte nicht gespeichert werden. Grund: %1</translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="382"/>
-        <location filename="../gui/uithemedialog.cpp" line="391"/>
+        <location filename="../gui/uithemedialog.cpp" line="380"/>
+        <location filename="../gui/uithemedialog.cpp" line="389"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
         <translation>Konnte Icon-Datei nicht entfernen. Datei: %1.</translation>
     </message>
     <message>
-        <location filename="../gui/uithemedialog.cpp" line="400"/>
+        <location filename="../gui/uithemedialog.cpp" line="398"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
         <translation>Konnte Icon-Datei nicht kopieren. Quelle: %1. Ziel: %2.</translation>
     </message>

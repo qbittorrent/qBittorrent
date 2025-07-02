@@ -192,14 +192,6 @@
         <translation>Necunoscut</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Limita raportului de partajare trebuie să fie între 0 și 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Limita de timp pentru partajare trebuie să fie între 0 și 525600 de minute.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Aplică</translation>
     </message>

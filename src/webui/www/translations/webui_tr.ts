@@ -192,14 +192,6 @@
         <translation>Bilinmiyor</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Paylaşma oranı sınırı 0 ve 9998 arasında olmak zorundadır.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Gönderim süresi sınırı 0 ve 525600 dakika arasında olmak zorundadır.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Uygula</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Paylaşım oranı sınırı negatif bir değer olmamak zorundadır.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Gönderim süresi sınırı negatif bir değer olmamak zorundadır.</translation>
     </message>
 </context>
 <context>

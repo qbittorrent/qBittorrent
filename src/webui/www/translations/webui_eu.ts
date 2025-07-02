@@ -192,14 +192,6 @@
         <translation>Ezezaguna</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Elkarbanatze maila muga 0 eta 9998 artekoa izan behar da.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Emaritza denbora muga 0 eta 525600 minutu artekoa izan behar da.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Ezarri</translation>
     </message>

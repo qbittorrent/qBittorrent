@@ -192,14 +192,6 @@
         <translation>Unbekannt</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Das Shareverhältnis muss zwischen 0 und 9998 sein.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Die Grenze für die Seedzeit muss zwischen 0 und 525600 Minuten liegen.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Anwenden</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Das Shareverhältnis-Limit darf kein negativer Wert sein.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Die Grenze für die Seedzeit darf kein negativer Wert sein.</translation>
     </message>
 </context>
 <context>

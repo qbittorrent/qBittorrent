@@ -192,14 +192,6 @@
         <translation>Неизвестен</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Ограничението на съотношението на споделяне трябва да бъде между 0 и 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Ограничението за време на споделяне трябва да бъде между 0 и 525600 минути.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Прилагане</translation>
     </message>

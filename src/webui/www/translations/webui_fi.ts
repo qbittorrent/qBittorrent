@@ -192,14 +192,6 @@
         <translation>Tuntematon</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Jakosuhderajoituksen on oltava väliltä 0–9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Jakoajan aikarajan pitää olla 0 ja 525600 minuutin väliltä.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Toteuta</translation>
     </message>

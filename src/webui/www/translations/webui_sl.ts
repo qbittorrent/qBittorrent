@@ -192,14 +192,6 @@
         <translation>Neznano</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Omejitev razmerja izmenjave mora biti med 0 in 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Omejitev časa sejanja mora biti med 0 525600 minut.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Uveljavi</translation>
     </message>

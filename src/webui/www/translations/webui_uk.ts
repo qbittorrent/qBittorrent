@@ -192,14 +192,6 @@
         <translation>Невідомо</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Коефіцієнт роздачі має бути у діапазоні від 0 до 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Обмеження часу роздачі має бути у діапазоні від 0 до 525600 хвилин.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Застосувати</translation>
     </message>

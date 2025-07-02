@@ -192,14 +192,6 @@
         <translation>Sconosciuto</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Il limite rapporto di condivisione deve essere tra 0 e 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Il limite temporale di condivisione deve essere tra 0 e 525600 minuti.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Applica</translation>
     </message>
@@ -447,11 +439,11 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Il limite del rapporto di condivisione non deve avere un valore negativo.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Il limite di tempo di seeding non deve avere un valore negativo.</translation>
     </message>
 </context>
 <context>

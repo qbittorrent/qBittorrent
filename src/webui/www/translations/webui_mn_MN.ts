@@ -192,10 +192,6 @@
         <translation>Тодорхойгүй</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Хуваалцах харьцааны хязгаарлалт нь 0, 9998 хооронд байх ёстой.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Батлах</translation>
     </message>

@@ -192,14 +192,6 @@
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Το όριο αναλογίας διαμοιρασμού πρέπει να είναι μεταξύ 0 και 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Το χρονικό όριο seeding πρέπει να είναι μεταξύ 0 και 525600 λεπτών.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Εφαρμογή</translation>
     </message>

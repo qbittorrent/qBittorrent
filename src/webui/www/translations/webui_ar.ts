@@ -192,14 +192,6 @@
         <translation>غير معروف</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">يجب أن يكون حد نسبة المشاركة بين 0 و9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">يجب أن يكون الحد الزمني للبذر بين 0 و525600 دقيقة.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>تطبيق</translation>
     </message>

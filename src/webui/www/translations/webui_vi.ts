@@ -192,14 +192,6 @@
         <translation>Không rõ</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Giới hạn tỷ lệ chia sẻ phải từ 0 đến 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Giới hạn thời gian chia sẻ phải trong khoảng từ 0 đến 525600 phút.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Áp dụng</translation>
     </message>

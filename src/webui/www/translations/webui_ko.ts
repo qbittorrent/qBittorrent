@@ -192,14 +192,6 @@
         <translation>알 수 없음</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">공유 비율 제한은 반드시 0~9998 사이여야 합니다.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">시딩 시간 제한은 반드시 0~525600분 사이여야 합니다.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>적용</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>공유 비율 제한은 음수 값이 없어야 합니다.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>배포 시간 제한은 음수 값을 가질 수 없습니다.</translation>
     </message>
 </context>
 <context>

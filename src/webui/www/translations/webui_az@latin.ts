@@ -192,14 +192,6 @@
         <translation>Naməlum</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Paylaşım nisbəti həddi 0 ilə 9998 arasında olmalıdır.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Göndərmə vaxtı limiti 0 ilə 525600 dəqiqələri arasında olmalıdır.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Tətbiq etmək</translation>
     </message>

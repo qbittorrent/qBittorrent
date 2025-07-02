@@ -192,14 +192,6 @@
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Рейтинг должен быть в диапазоне от 0 до 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Ограничение времени раздачи должно быть в диапазоне от 0 до 525600 минут.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
@@ -445,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Ограничение рейтинга не может быть отрицательным.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Ограничение времени раздачи не может быть отрицательным.</translation>
     </message>
 </context>
 <context>

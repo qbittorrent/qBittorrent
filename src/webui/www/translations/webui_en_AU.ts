@@ -192,14 +192,6 @@
         <translation>Unknown</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Share ratio limit must be between 0 and 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Seeding time limit must be between 0 and 525600 minutes.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Apply</translation>
     </message>

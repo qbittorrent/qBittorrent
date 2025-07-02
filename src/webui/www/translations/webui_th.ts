@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>ตัวเลือกทอร์เรนต์</translation>
     </message>
 </context>
 <context>
@@ -190,14 +190,6 @@
     <message>
         <source>Unknown</source>
         <translation>ไม่ทราบ</translation>
-    </message>
-    <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">ขีดจำกัดอัตราส่วนการแชร์ต้องอยู่ระหว่าง 0 ถึง 9998</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">ขีดจำกัดระยะเวลา seed ต้องอยู่ระหว่าง 0 และ 525600 นาที</translation>
     </message>
     <message>
         <source>Apply</source>

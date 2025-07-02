@@ -192,14 +192,6 @@
         <translation>अज्ञात</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">बांटने की दर का अनुपात 0 से 9998 के बीच हो।</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">स्रोत काल 0 व 525600 मिनट के बीच में ही होना चाहिए</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>लागू करें</translation>
     </message>

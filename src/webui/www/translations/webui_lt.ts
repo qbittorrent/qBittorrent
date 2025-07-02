@@ -192,14 +192,6 @@
         <translation>Nežinoma</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Dalinimosi santykio apribojimas privalo būti tarp 0 ir 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Skleidimo laiko riba privalo būti tarp 0 ir 525600 minučių.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Taikyti</translation>
     </message>

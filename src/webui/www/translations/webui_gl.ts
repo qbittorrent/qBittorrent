@@ -192,14 +192,6 @@
         <translation>Descoñecido</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">O límite da taxa de compartición debe estar entre 0 e 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">O límite do tempo de sementeira debe estar entre 0 e 525600 minutos.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Aplicar</translation>
     </message>
@@ -446,11 +438,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>O límite da taxa de compartición non pode ter un valor negativo.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>O límite de tempo de sementado non pode ter un valor negativo.</translation>
     </message>
 </context>
 <context>

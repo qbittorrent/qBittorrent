@@ -192,14 +192,6 @@
         <translation>Onbekend</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Begrenzing voor deelverhouding moet tussen 0 en 9998 liggen.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Begrenzing voor seed-tijd moet liggen tussen 0 en 525 600 minuten.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Toepassen</translation>
     </message>

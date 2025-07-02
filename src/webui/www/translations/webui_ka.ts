@@ -192,10 +192,6 @@
         <translation>უცნობია</translation>
     </message>
     <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">სიდირების დროის ლიმიტი უნდა იყოს 0-დან 525600-მდე წუთი.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>გამოყენება</translation>
     </message>

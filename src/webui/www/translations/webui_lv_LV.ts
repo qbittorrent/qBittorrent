@@ -192,14 +192,6 @@
         <translation>Nezināms</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Koplietošanas reitinga limitam jābūt starp 0 un 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Augšupielādes ilguma limitam jābūt starp 0 un 525600 minūtēm.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Apstiprināt</translation>
     </message>
