@@ -40,6 +40,7 @@
 #include <QString>
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/rss/rss_article.h"
@@ -433,16 +434,52 @@ void RSSWidget::downloadSelectedTorrents()
 // open the url of the selected RSS articles in the Web browser
 void RSSWidget::openSelectedArticlesUrls()
 {
+    qsizetype emptyLinkCount = 0;
+    qsizetype badLinkCount = 0;
+    QString articleTitle;
     for (QListWidgetItem *item : asConst(m_ui->articleListWidget->selectedItems()))
     {
         auto *article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
-        // Mark as read
         article->markAsRead();
 
-        if (!article->link().isEmpty())
-            QDesktopServices::openUrl(QUrl(article->link()));
+        const QString articleLink = article->link();
+        const QUrl articleLinkURL {articleLink};
+        if (articleLinkURL.isEmpty()) [[unlikely]]
+        {
+            if (articleTitle.isEmpty())
+                articleTitle = article->title();
+            ++emptyLinkCount;
+        }
+        else if (articleLinkURL.isLocalFile()) [[unlikely]]
+        {
+            if (badLinkCount == 0)
+                articleTitle = article->title();
+            ++badLinkCount;
+
+            LogMsg(tr("Blocked opening RSS article URL. URL pointing to local file might be malicious behaviour. Article: \"%1\". URL: \"%2\".")
+                    .arg(article->title(), articleLink), Log::WARNING);
+        }
+        else [[likely]]
+        {
+            QDesktopServices::openUrl(articleLinkURL);
+        }
+    }
+
+    if (badLinkCount > 0)
+    {
+        QString message = tr("Blocked opening RSS article URL. The following article URL is pointing to local file and it may be malicious behaviour:\n%1").arg(articleTitle);
+        if (badLinkCount > 1)
+            message.append(u"\n" + tr("There are %1 more articles with the same issue.").arg(badLinkCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
+    }
+    else if (emptyLinkCount > 0)
+    {
+        QString message = tr("The following article has no news URL provided:\n%1").arg(articleTitle);
+        if (emptyLinkCount > 1)
+            message.append(u"\n" + tr("There are %1 more articles with the same issue.").arg(emptyLinkCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
     }
 }
 

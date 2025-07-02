@@ -48,16 +48,16 @@ const QString Article::KeyIsRead = u"isRead"_s;
 
 Article::Article(Feed *feed, const QVariantHash &varHash)
     : QObject(feed)
-    , m_feed(feed)
-    , m_guid(varHash.value(KeyId).toString())
-    , m_date(varHash.value(KeyDate).toDateTime())
-    , m_title(varHash.value(KeyTitle).toString())
-    , m_author(varHash.value(KeyAuthor).toString())
-    , m_description(varHash.value(KeyDescription).toString())
-    , m_torrentURL(varHash.value(KeyTorrentURL).toString())
-    , m_link(varHash.value(KeyLink).toString())
-    , m_isRead(varHash.value(KeyIsRead, false).toBool())
-    , m_data(varHash)
+    , m_feed {feed}
+    , m_guid {varHash.value(KeyId).toString()}
+    , m_date {varHash.value(KeyDate).toDateTime()}
+    , m_title {varHash.value(KeyTitle).toString()}
+    , m_author {varHash.value(KeyAuthor).toString()}
+    , m_description {varHash.value(KeyDescription).toString()}
+    , m_torrentURL {varHash.value(KeyTorrentURL).toString()}
+    , m_link {varHash.value(KeyLink).toString()}
+    , m_isRead {varHash.value(KeyIsRead, false).toBool()}
+    , m_data {varHash}
 {
 }
 

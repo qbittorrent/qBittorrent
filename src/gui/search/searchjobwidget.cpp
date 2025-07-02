@@ -35,10 +35,12 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QMenu>
+#include <QMessageBox>
 #include <QPalette>
 #include <QStandardItemModel>
 #include <QUrl>
 
+#include "base/logger.h"
 #include "base/preferences.h"
 #include "base/search/searchdownloadhandler.h"
 #include "base/search/searchhandler.h"
@@ -319,15 +321,52 @@ void SearchJobWidget::downloadTorrents(const AddTorrentOption option)
         downloadTorrent(rowIndex, option);
 }
 
-void SearchJobWidget::openTorrentPages() const
+void SearchJobWidget::openTorrentPages()
 {
-    const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
+    const QModelIndexList rows = m_ui->resultsBrowser->selectionModel()->selectedRows();
+    qsizetype emptyLinkCount = 0;
+    qsizetype badLinkCount = 0;
+    QString warningEntryName;
     for (const QModelIndex &rowIndex : rows)
     {
-        const QString descrLink = m_proxyModel->data(
-                    m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK)).toString();
-        if (!descrLink.isEmpty())
-            QDesktopServices::openUrl(QUrl::fromEncoded(descrLink.toUtf8()));
+        const QString entryName = m_proxyModel->index(rowIndex.row(), SearchSortModel::NAME).data().toString();
+        const QString descrLink = m_proxyModel->index(rowIndex.row(), SearchSortModel::DESC_LINK).data().toString();
+
+        const QUrl descrLinkURL {descrLink};
+        if (descrLinkURL.isEmpty()) [[unlikely]]
+        {
+            if (warningEntryName.isEmpty())
+                warningEntryName = entryName;
+            ++emptyLinkCount;
+        }
+        else if (descrLinkURL.isLocalFile()) [[unlikely]]
+        {
+            if (badLinkCount == 0)
+                warningEntryName = entryName;
+            ++badLinkCount;
+
+            LogMsg(tr("Blocked opening search result description page URL. URL pointing to local file might be malicious behaviour. Name: \"%1\". URL: \"%2\".")
+                    .arg(entryName, descrLink), Log::WARNING);
+        }
+        else [[likely]]
+        {
+            QDesktopServices::openUrl(descrLinkURL);
+        }
+    }
+
+    if (badLinkCount > 0)
+    {
+        QString message = tr("Blocked opening search result description page URL. The following result URL is pointing to local file and it may be malicious behaviour:\n%1").arg(warningEntryName);
+        if (badLinkCount > 1)
+            message.append(u"\n" + tr("There are %1 more results with the same issue.").arg(badLinkCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
+    }
+    else if (emptyLinkCount > 0)
+    {
+        QString message = tr("Entry \"%1\" has no description page URL provided.").arg(warningEntryName);
+        if (emptyLinkCount > 1)
+            message.append(u"\n" + tr("There are %1 more entries with the same issue.").arg(emptyLinkCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
     }
 }
 
