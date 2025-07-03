@@ -79,6 +79,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     include(FindQtTranslations)
     qbt_get_qt_translations(QT_TRANSLATIONS)
     set_source_files_properties(${QT_TRANSLATIONS} PROPERTIES MACOSX_PACKAGE_LOCATION translations)
+    set_source_files_properties(
+        "${qBittorrent_SOURCE_DIR}/dist/mac/qt.conf"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentDocument.icns"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/qbittorrent_mac.icns"
+            PROPERTIES
+                MACOSX_PACKAGE_LOCATION Resources
+    )
     # provide variables for substitution in dist/mac/Info.plist
     get_target_property(EXECUTABLE_NAME qbt_app OUTPUT_NAME)
     # This variable name should be changed once qmake is no longer used. Refer to the discussion in PR #14813
@@ -88,13 +95,31 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         MACOSX_BUNDLE_BUNDLE_NAME "qBittorrent"
         MACOSX_BUNDLE_INFO_PLIST ${qBittorrent_SOURCE_DIR}/dist/mac/Info.plist
     )
-    add_custom_command(
-        TARGET qbt_app
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${qBittorrent_SOURCE_DIR}/dist/mac/Resources"
-            "$<TARGET_FILE_DIR:qbt_app>/../Resources"
+    target_sources(qbt_app PRIVATE
+        ${QT_TRANSLATIONS}
+        ${qBittorrent_SOURCE_DIR}/dist/mac/qt.conf
+        ${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentDocument.icns
+        ${qBittorrent_SOURCE_DIR}/dist/mac/qbittorrent_mac.icns
     )
+    file(GLOB TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
+    set(LPROJ_FOLDERS "")
+    foreach(TS_FILE IN LISTS TS_FILES)
+        string(FIND "${TS_FILE}" "_" POS)
+        math(EXPR START "${POS} + 1")
+        string(SUBSTRING "${TS_FILE}" ${START} -1 LPROJ_FOLDER)
+        string(REPLACE "ts" "lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
+        # @ is not valid as a language code for a lproj folder on MacOS
+        string(REPLACE "@" "-" LPROJ_FOLDER "${LPROJ_FOLDER}")
+        list(APPEND LPROJ_FOLDERS "${LPROJ_FOLDER}")
+    endforeach()
+    foreach(LPROJ_FOLDER IN LISTS LPROJ_FOLDERS)
+        add_custom_command(
+            TARGET qbt_app
+            POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E make_directory
+                    "$<TARGET_FILE_DIR:qbt_app>/../Resources/${LPROJ_FOLDER}"
+        )
+    endforeach()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set_target_properties(qbt_app PROPERTIES WIN32_EXECUTABLE ON)
     if (MINGW)
