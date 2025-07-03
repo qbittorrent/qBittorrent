@@ -107,7 +107,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         string(FIND "${TS_FILE}" "_" POS)
         math(EXPR START "${POS} + 1")
         string(SUBSTRING "${TS_FILE}" ${START} -1 LPROJ_FOLDER)
-        string(REPLACE "ts" "lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
+        string(REPLACE ".ts" ".lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
         # @ is not valid as a language code for a lproj folder on MacOS
         string(REPLACE "@" "-" LPROJ_FOLDER "${LPROJ_FOLDER}")
         list(APPEND LPROJ_FOLDERS "${LPROJ_FOLDER}")
