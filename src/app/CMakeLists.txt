@@ -83,6 +83,62 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         "${qBittorrent_SOURCE_DIR}/dist/mac/qt.conf"
         "${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentDocument.icns"
         "${qBittorrent_SOURCE_DIR}/dist/mac/qbittorrent_mac.icns"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ar.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/az-Latn.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/be.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/bg.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ca.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/cs.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/da.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/de.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/el.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/en_AU.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/en_GB.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/en.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/eo.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/es.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/et.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/eu.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/fa.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/fi.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/fr.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/gl.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/he.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hi_IN.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hr.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hu.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hy.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/id.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/is.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/it.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ja.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ka.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ko.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/lt.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ltg.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/lv_LV.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/mn_MN.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ms_MY.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/nb.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/nl.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/oc.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/pl.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/pt_BR.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/pt_PT.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ro.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ru.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sk.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sl.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sr.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sv.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/th.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/tr.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/uk.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/uz-Latn.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/vi.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/zh_CN.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/zh_HK.lproj"
+        "${qBittorrent_SOURCE_DIR}/dist/mac/lproj/zh_TW.lproj"
             PROPERTIES
                 MACOSX_PACKAGE_LOCATION Resources
     )
@@ -100,6 +156,62 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${qBittorrent_SOURCE_DIR}/dist/mac/qt.conf
         ${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentDocument.icns
         ${qBittorrent_SOURCE_DIR}/dist/mac/qbittorrent_mac.icns
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ar.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/az-Latn.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/be.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/bg.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ca.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/cs.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/da.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/de.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/el.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/en_AU.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/en_GB.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/en.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/eo.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/es.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/et.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/eu.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/fa.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/fi.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/fr.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/gl.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/he.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hi_IN.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hr.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hu.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/hy.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/id.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/is.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/it.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ja.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ka.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ko.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/lt.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ltg.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/lv_LV.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/mn_MN.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ms_MY.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/nb.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/nl.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/oc.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/pl.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/pt_BR.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/pt_PT.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ro.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/ru.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sk.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sl.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sr.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/sv.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/th.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/tr.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/uk.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/uz-Latn.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/vi.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/zh_CN.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/zh_HK.lproj
+        ${qBittorrent_SOURCE_DIR}/dist/mac/lproj/zh_TW.lproj
     )
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set_target_properties(qbt_app PROPERTIES WIN32_EXECUTABLE ON)
