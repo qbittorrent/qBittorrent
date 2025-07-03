@@ -33,7 +33,6 @@ endif()
 add_executable(qbt_app)
 
 # Generate lproj folders for the translations
-set(LPROJ_FOLDERS "")
 foreach(TS_FILE IN LISTS QBT_TS_FILES)
     string(FIND "${TS_FILE}" "_" POS)
     math(EXPR START "${POS} + 1")
@@ -41,9 +40,6 @@ foreach(TS_FILE IN LISTS QBT_TS_FILES)
     string(REPLACE ".ts" ".lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
     # @ is not valid as a language code for a lproj folder on MacOS
     string(REPLACE "@" "-" LPROJ_FOLDER "${LPROJ_FOLDER}")
-    list(APPEND LPROJ_FOLDERS "${LPROJ_FOLDER}")
-endforeach()
-foreach(LPROJ_FOLDER IN LISTS LPROJ_FOLDERS)
     add_custom_command(
         TARGET qbt_app
         POST_BUILD
