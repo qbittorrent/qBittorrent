@@ -32,6 +32,26 @@ endif()
 # -----------------------------------------------------------------------------
 add_executable(qbt_app)
 
+# Generate lproj folders for the translations
+set(LPROJ_FOLDERS "")
+foreach(TS_FILE IN LISTS QBT_TS_FILES)
+    string(FIND "${TS_FILE}" "_" POS)
+    math(EXPR START "${POS} + 1")
+    string(SUBSTRING "${TS_FILE}" ${START} -1 LPROJ_FOLDER)
+    string(REPLACE ".ts" ".lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
+    # @ is not valid as a language code for a lproj folder on MacOS
+    string(REPLACE "@" "-" LPROJ_FOLDER "${LPROJ_FOLDER}")
+    list(APPEND LPROJ_FOLDERS "${LPROJ_FOLDER}")
+endforeach()
+foreach(LPROJ_FOLDER IN LISTS LPROJ_FOLDERS)
+    add_custom_command(
+        TARGET qbt_app
+        POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+                "$<TARGET_FILE_DIR:qbt_app>/../Resources/${LPROJ_FOLDER}"
+    )
+endforeach()
+
 target_sources(qbt_app PRIVATE
     # headers
     application.h
@@ -101,25 +121,6 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentDocument.icns
         ${qBittorrent_SOURCE_DIR}/dist/mac/qbittorrent_mac.icns
     )
-    file(GLOB TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
-    set(LPROJ_FOLDERS "")
-    foreach(TS_FILE IN LISTS TS_FILES)
-        string(FIND "${TS_FILE}" "_" POS)
-        math(EXPR START "${POS} + 1")
-        string(SUBSTRING "${TS_FILE}" ${START} -1 LPROJ_FOLDER)
-        string(REPLACE ".ts" ".lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
-        # @ is not valid as a language code for a lproj folder on MacOS
-        string(REPLACE "@" "-" LPROJ_FOLDER "${LPROJ_FOLDER}")
-        list(APPEND LPROJ_FOLDERS "${LPROJ_FOLDER}")
-    endforeach()
-    foreach(LPROJ_FOLDER IN LISTS LPROJ_FOLDERS)
-        add_custom_command(
-            TARGET qbt_app
-            POST_BUILD
-                COMMAND ${CMAKE_COMMAND} -E make_directory
-                    "$<TARGET_FILE_DIR:qbt_app>/../Resources/${LPROJ_FOLDER}"
-        )
-    endforeach()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set_target_properties(qbt_app PROPERTIES WIN32_EXECUTABLE ON)
     if (MINGW)
