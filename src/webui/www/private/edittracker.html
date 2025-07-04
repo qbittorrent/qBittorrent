@@ -40,7 +40,7 @@
                         method: "POST",
                         body: new URLSearchParams({
                             hash: searchParams.get("hash"),
-                            origUrl: currentUrl,
+                            url: currentUrl,
                             newUrl: document.getElementById("trackerUrl").value
                         })
                     })

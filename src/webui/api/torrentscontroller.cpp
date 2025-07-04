@@ -1125,22 +1125,44 @@ void TorrentsController::addTrackersAction()
 
 void TorrentsController::editTrackerAction()
 {
-    requireParams({u"hash"_s, u"origUrl"_s, u"newUrl"_s});
+    requireParams({u"hash"_s, u"url"_s});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    const QString origUrl = params()[u"origUrl"_s];
-    const QString newUrl = params()[u"newUrl"_s];
+    const QString origUrl = params()[u"url"_s];
+    const std::optional<QString> newUrlParam = getOptionalString(params(), u"newUrl"_s);
+    const std::optional<QString> newTierParam = getOptionalString(params(), u"tier"_s);
 
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
+    if (!newUrlParam && !newTierParam)
+        throw APIError(APIErrorType::BadParams, u"Must specify at least one of [newUrl, tier]"_s);
+
+    std::optional<int> newTier;
+    if (newTierParam)
+    {
+        bool ok = false;
+        const auto number = newTierParam.value().toInt(&ok);
+        if (!ok)
+            throw APIError(APIErrorType::BadParams, u"tier must be an integer"_s);
+        if ((number < 0) || (number > 255))
+            throw APIError(APIErrorType::BadParams, u"tier must be between 0 and 255"_s);
+        newTier = number;
+    }
 
     const QUrl origTrackerUrl {origUrl};
-    const QUrl newTrackerUrl {newUrl};
-    if (origTrackerUrl == newTrackerUrl)
+    std::optional<QUrl> newTrackerUrl;
+    if (newUrlParam)
+    {
+        const QUrl url = newUrlParam.value();
+        if (!url.isValid())
+            throw APIError(APIErrorType::BadParams, u"New tracker URL is invalid"_s);
+        if (url != origTrackerUrl)
+            newTrackerUrl = url;
+    }
+
+    if (!newTrackerUrl && !newTier)
         return;
-    if (!newTrackerUrl.isValid())
-        throw APIError(APIErrorType::BadParams, u"New tracker URL is invalid"_s);
 
     const QList<BitTorrent::TrackerEntryStatus> currentTrackers = torrent->trackers();
     QList<BitTorrent::TrackerEntry> entries;
@@ -1151,7 +1173,7 @@ void TorrentsController::editTrackerAction()
     {
         const QUrl trackerUrl {tracker.url};
 
-        if (trackerUrl == newTrackerUrl)
+        if (newTrackerUrl && (trackerUrl == newTrackerUrl))
             throw APIError(APIErrorType::Conflict, u"New tracker URL already exists"_s);
 
         BitTorrent::TrackerEntry entry
@@ -1162,8 +1184,15 @@ void TorrentsController::editTrackerAction()
 
         if (trackerUrl == origTrackerUrl)
         {
+            const bool isTrackerTierChanged = newTier && (tracker.tier != newTier);
+            if (!newTrackerUrl && !isTrackerTierChanged)
+                return;
+
             match = true;
-            entry.url = newTrackerUrl.toString();
+            if (newTrackerUrl)
+                entry.url = newTrackerUrl.value().toString();
+            if (newTier)
+                entry.tier = newTier.value();
         }
         entries.append(entry);
     }
@@ -1172,8 +1201,6 @@ void TorrentsController::editTrackerAction()
 
     torrent->replaceTrackers(entries);
     torrent->forceReannounce();
-
-    setResult(QString());
 }
 
 void TorrentsController::removeTrackersAction()
