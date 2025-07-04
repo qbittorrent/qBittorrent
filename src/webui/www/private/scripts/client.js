@@ -1755,7 +1755,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         switch (event.key) {
             case "a":
             case "A":
-                if (event.ctrlKey) {
+                if (event.ctrlKey || event.metaKey) {
                     if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
                         return;
                     if (event.target.isContentEditable)
@@ -1772,6 +1772,32 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     return;
                 event.preventDefault();
                 deleteSelectedTorrentsFN(event.shiftKey);
+                break;
+
+            case "f":
+            case "F":
+                if (event.ctrlKey || event.metaKey) {
+                    if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
+                        return;
+                    if (event.target.isContentEditable)
+                        return;
+
+                    const logsFilterElem = document.getElementById("filterTextInput");
+                    const searchFilterElem = document.getElementById("searchInNameFilter");
+                    const torrentsFilterElem = document.getElementById("torrentsFilterInput");
+                    if (logsFilterElem?.isVisible()) {
+                        event.preventDefault();
+                        logsFilterElem.focus();
+                    }
+                    else if (searchFilterElem?.isVisible()) {
+                        event.preventDefault();
+                        searchFilterElem.focus();
+                    }
+                    else if (torrentsFilterElem?.isVisible()) {
+                        event.preventDefault();
+                        torrentsFilterElem.focus();
+                    }
+                }
                 break;
         }
     });
