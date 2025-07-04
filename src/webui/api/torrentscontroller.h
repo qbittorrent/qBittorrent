@@ -37,6 +37,7 @@
 namespace BitTorrent
 {
     class InfoHash;
+    class TorrentID;
     class TorrentInfo;
 }
 
@@ -119,6 +120,6 @@ private:
     void onMetadataDownloaded(const BitTorrent::TorrentInfo &info);
 
     QHash<QString, BitTorrent::InfoHash> m_torrentSourceCache;
-    QHash<BitTorrent::InfoHash, BitTorrent::TorrentDescriptor> m_torrentMetadataCache;
+    QHash<BitTorrent::TorrentID, BitTorrent::TorrentDescriptor> m_torrentMetadataCache;
     QSet<QString> m_requestedTorrentSource;
 };

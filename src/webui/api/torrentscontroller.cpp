@@ -1070,7 +1070,8 @@ void TorrentsController::addAction()
         else if (const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(url))
             infoHash = sourceTorrentDescr.value().infoHash();
 
-        if (const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(infoHash); torrentDescr.info().has_value())
+        const BitTorrent::TorrentID torrentID = infoHash.toTorrentID();
+        if (const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(torrentID); torrentDescr.info().has_value())
         {
             if (!filePriorities.isEmpty())
             {
@@ -1091,7 +1092,7 @@ void TorrentsController::addAction()
             partialSuccess |= app()->addTorrentManager()->addTorrent(url, addTorrentParams);
         }
         m_torrentSourceCache.remove(url);
-        m_torrentMetadataCache.remove(infoHash);
+        m_torrentMetadataCache.remove(torrentID);
     }
 
     // process uploaded .torrent files
@@ -1936,10 +1937,11 @@ void TorrentsController::fetchMetadataAction()
     const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source);
 
     const BitTorrent::InfoHash infoHash = sourceTorrentDescr ? sourceTorrentDescr.value().infoHash() : m_torrentSourceCache.value(source);
+    const BitTorrent::TorrentID torrentID = infoHash.toTorrentID();
     if (infoHash.isValid())
     {
         // check metadata cache
-        if (const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(infoHash);
+        if (const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(torrentID);
                 torrentDescr.info().has_value())
         {
             setResult(serializeTorrentInfo(torrentDescr));
@@ -1960,9 +1962,9 @@ void TorrentsController::fetchMetadataAction()
         else
         {
             if (!BitTorrent::Session::instance()->downloadMetadata(sourceTorrentDescr.value())) [[unlikely]]
-                throw APIError(APIErrorType::BadParams, tr("Unable to download metadata for '%1'").arg(infoHash.toTorrentID().toString()));
+                throw APIError(APIErrorType::BadParams, tr("Unable to download metadata for '%1'").arg(torrentID.toString()));
 
-            m_torrentMetadataCache.insert(infoHash, sourceTorrentDescr.value());
+            m_torrentMetadataCache.insert(torrentID, sourceTorrentDescr.value());
 
             setResult(serializeInfoHash(infoHash));
             setStatus(APIStatus::Async);
@@ -2003,7 +2005,7 @@ void TorrentsController::parseMetadataAction()
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
-            m_torrentMetadataCache.insert(torrentDescr.infoHash(), torrentDescr);
+            m_torrentMetadataCache.insert(torrentDescr.infoHash().toTorrentID(), torrentDescr);
 
             const QString &fileName = it.key();
             result.insert(fileName, serializeTorrentInfo(torrentDescr));
@@ -2036,7 +2038,8 @@ void TorrentsController::saveMetadataAction()
     if (!infoHash.isValid())
         throw APIError(APIErrorType::NotFound);
 
-    const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(infoHash);
+    const BitTorrent::TorrentID torrentID = infoHash.toTorrentID();
+    const BitTorrent::TorrentDescriptor &torrentDescr = m_torrentMetadataCache.value(torrentID);
     if (!torrentDescr.info().has_value())
         throw APIError(APIErrorType::Conflict, tr("Metadata is not yet available"));
 
@@ -2044,7 +2047,7 @@ void TorrentsController::saveMetadataAction()
     if (!result)
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent metadata. Error: %1").arg(result.error()));
 
-    setResult(result.value(), u"application/x-bittorrent"_s, (infoHash.toTorrentID().toString() + u".torrent"));
+    setResult(result.value(), u"application/x-bittorrent"_s, (torrentID.toString() + u".torrent"));
 }
 
 void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
@@ -2061,7 +2064,7 @@ void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
             const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
             m_torrentSourceCache.insert(source, infoHash);
-            m_torrentMetadataCache.insert(infoHash, torrentDescr);
+            m_torrentMetadataCache.insert(infoHash.toTorrentID(), torrentDescr);
         }
         else
         {
@@ -2075,12 +2078,13 @@ void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = parseResult.value();
             const BitTorrent::InfoHash infoHash = torrentDescr.infoHash();
+            const BitTorrent::TorrentID torrentID = infoHash.toTorrentID();
             m_torrentSourceCache.insert(source, infoHash);
 
-            if (!m_torrentMetadataCache.contains(infoHash) && !BitTorrent::Session::instance()->isKnownTorrent(infoHash))
+            if (!m_torrentMetadataCache.contains(torrentID) && !BitTorrent::Session::instance()->isKnownTorrent(infoHash))
             {
                 if (BitTorrent::Session::instance()->downloadMetadata(torrentDescr))
-                    m_torrentMetadataCache.insert(infoHash, torrentDescr);
+                    m_torrentMetadataCache.insert(torrentID, torrentDescr);
             }
         }
         else
@@ -2101,7 +2105,16 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
     if (!info.isValid()) [[unlikely]]
         return;
 
-    const BitTorrent::InfoHash infoHash = info.infoHash();
-    if (auto iter = m_torrentMetadataCache.find(infoHash); iter != m_torrentMetadataCache.end())
+    if (auto iter = m_torrentMetadataCache.find(info.infoHash().toTorrentID()); iter != m_torrentMetadataCache.end())
+    {
         iter.value().setTorrentInfo(info);
+    }
+    else if (info.infoHash().isHybrid())
+    {
+        // hybrid torrents use the v2 hash for their torrentID, but the torrent may have previously been stored
+        // in m_torrentMetadataCache using the v1 hash, before the v2 hash was known/available
+        const BitTorrent::TorrentID v1TorrentID = BitTorrent::TorrentID::fromSHA1Hash(info.infoHash().v1());
+        if (auto iter = m_torrentMetadataCache.find(v1TorrentID); iter != m_torrentMetadataCache.end())
+            iter.value().setTorrentInfo(info);
+    }
 }
