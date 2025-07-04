@@ -183,6 +183,7 @@ const initializeWindows = () => {
 
         if (urls && (urls.length > 0)) {
             contentURL.search = new URLSearchParams({
+                v: CACHEID,
                 urls: urls.map(encodeURIComponent).join("|")
             });
         }
@@ -218,7 +219,7 @@ const initializeWindows = () => {
             icon: "images/torrent-creator.svg",
             title: "QBT_TR(Torrent Creator)QBT_TR[CONTEXT=TorrentCreator]",
             loadMethod: "xhr",
-            contentURL: "views/torrentcreator.html",
+            contentURL: "views/torrentcreator.html?v=${CACHEID}",
             scrollbars: true,
             maximizable: true,
             paddingVertical: 0,
@@ -245,11 +246,11 @@ const initializeWindows = () => {
             title: "QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]",
             loadMethod: "xhr",
             toolbar: true,
-            contentURL: "views/preferences.html",
+            contentURL: "views/preferences.html?v=${CACHEID}",
             require: {
-                css: ["css/Tabs.css"]
+                css: ["css/Tabs.css?v=${CACHEID}"]
             },
-            toolbarURL: "views/preferencesToolbar.html",
+            toolbarURL: "views/preferencesToolbar.html?v=${CACHEID}",
             maximizable: false,
             closable: true,
             paddingVertical: 0,
@@ -271,7 +272,7 @@ const initializeWindows = () => {
             id: id,
             title: "QBT_TR(Manage Cookies)QBT_TR[CONTEXT=CookiesDialog]",
             loadMethod: "xhr",
-            contentURL: "views/cookies.html",
+            contentURL: "views/cookies.html?v=${CACHEID}",
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
@@ -293,7 +294,7 @@ const initializeWindows = () => {
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
             loadMethod: "iframe",
-            contentURL: "upload.html",
+            contentURL: "upload.html?v=${CACHEID}",
             addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
@@ -311,6 +312,7 @@ const initializeWindows = () => {
     globalUploadLimitFN = () => {
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             hashes: "global",
             type: "upload",
         });
@@ -337,6 +339,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             hashes: hashes.join("|"),
             type: "upload",
         });
@@ -383,6 +386,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("shareratio.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             hashes: hashes.join("|"),
             // if all torrents have same share ratio, display that share ratio. else use the default
             orig: torrentsHaveSameShareRatio ? shareRatio : ""
@@ -459,6 +463,7 @@ const initializeWindows = () => {
     globalDownloadLimitFN = () => {
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             hashes: "global",
             type: "download",
         });
@@ -485,7 +490,7 @@ const initializeWindows = () => {
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Statistics)QBT_TR[CONTEXT=StatsDialog]",
             loadMethod: "xhr",
-            contentURL: "views/statistics.html",
+            contentURL: "views/statistics.html?v=${CACHEID}",
             maximizable: false,
             padding: 10,
             width: loadWindowWidth(id, 285),
@@ -506,6 +511,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             hashes: hashes.join("|"),
             type: "download",
         });
@@ -537,7 +543,7 @@ const initializeWindows = () => {
                         hashes: hashes,
                         forceDeleteFiles: forceDeleteFiles
                     },
-                    contentURL: "views/confirmdeletion.html",
+                    contentURL: "views/confirmdeletion.html?v=${CACHEID}",
                     onContentLoaded: (w) => {
                         MochaUI.resizeWindow(w, { centered: true });
                         MochaUI.centerWindow(w);
@@ -615,7 +621,7 @@ const initializeWindows = () => {
                         hashes: hashes,
                         enable: enableAutoTMM
                     },
-                    contentURL: "views/confirmAutoTMM.html"
+                    contentURL: "views/confirmAutoTMM.htm?v=${CACHEID}l"
                 });
             }
             else {
@@ -647,7 +653,7 @@ const initializeWindows = () => {
                     id: "confirmRecheckDialog",
                     title: "QBT_TR(Recheck confirmation)QBT_TR[CONTEXT=confirmRecheckDialog]",
                     data: { hashes: hashes },
-                    contentURL: "views/confirmRecheck.html"
+                    contentURL: "views/confirmRecheck.htm?v=${CACHEID}l"
                 });
             }
             else {
@@ -689,6 +695,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("setlocation.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             hashes: hashes.join("|"),
             path: encodeURIComponent(torrentsTable.getRow(hashes[0]).full_data.save_path)
         });
@@ -719,6 +726,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("rename.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             hash: hashes[0],
             name: row.full_data.name
         });
@@ -750,7 +758,7 @@ const initializeWindows = () => {
                     title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
                     data: { hash: hash, selectedRows: [] },
                     loadMethod: "xhr",
-                    contentURL: "rename_files.html",
+                    contentURL: "rename_files.html?v=${CACHEID}",
                     scrollbars: false,
                     resizable: true,
                     maximizable: false,
@@ -818,7 +826,7 @@ const initializeWindows = () => {
                         hashes: hashes,
                         isDeletingVisibleTorrents: true
                     },
-                    contentURL: "views/confirmdeletion.html",
+                    contentURL: "views/confirmdeletion.html?v=${CACHEID}",
                     onContentLoaded: (w) => {
                         MochaUI.resizeWindow(w, { centered: true });
                         MochaUI.centerWindow(w);
@@ -854,6 +862,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             action: "set",
             hashes: hashes.join("|")
         });
@@ -896,6 +905,7 @@ const initializeWindows = () => {
     createCategoryFN = () => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             action: "create"
         });
         new MochaUI.Window({
@@ -917,6 +927,7 @@ const initializeWindows = () => {
     createSubcategoryFN = (category) => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             action: "createSubcategory",
             categoryName: `${category}/`
         });
@@ -939,6 +950,7 @@ const initializeWindows = () => {
     editCategoryFN = (category) => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             action: "edit",
             categoryName: category,
             savePath: categoryMap.get(category).savePath
@@ -1003,6 +1015,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("newtag.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             action: "set",
             hashes: hashes.join("|")
         });
@@ -1051,6 +1064,7 @@ const initializeWindows = () => {
     createTagFN = () => {
         const contentURL = new URL("newtag.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             action: "create"
         });
         new MochaUI.Window({
@@ -1105,6 +1119,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("confirmtrackerdeletion.html", window.location);
         contentURL.search = new URLSearchParams({
+            v: CACHEID,
             host: trackerHost,
             urls: [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|")
         });
@@ -1298,12 +1313,12 @@ const initializeWindows = () => {
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(About qBittorrent)QBT_TR[CONTEXT=AboutDialog]",
             loadMethod: "xhr",
-            contentURL: "views/about.html",
+            contentURL: "views/about.html?v=${CACHEID}",
             require: {
-                css: ["css/Tabs.css"]
+                css: ["css/Tabs.css?v=${CACHEID}"]
             },
             toolbar: true,
-            toolbarURL: "views/aboutToolbar.html",
+            toolbarURL: "views/aboutToolbar.html?v=${CACHEID}",
             padding: 10,
             width: loadWindowWidth(id, 570),
             height: loadWindowHeight(id, 360),

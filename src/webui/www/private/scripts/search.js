@@ -578,7 +578,7 @@ window.qBittorrent.Search ??= (() => {
                 title: "QBT_TR(Search plugins)QBT_TR[CONTEXT=PluginSelectDlg]",
                 icon: "images/qbittorrent-tray.svg",
                 loadMethod: "xhr",
-                contentURL: "views/searchplugins.html",
+                contentURL: "views/searchplugins.html?v=${CACHEID}",
                 scrollbars: false,
                 maximizable: false,
                 paddingVertical: 0,
