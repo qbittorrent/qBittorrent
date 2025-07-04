@@ -1620,7 +1620,14 @@ void TorrentsController::reannounceAction()
     requireParams({u"hashes"_s});
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
-    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->forceReannounce(); });
+    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent)
+    {
+        if (!torrent->isStopped())
+        {
+            torrent->forceReannounce();
+            torrent->forceDHTAnnounce();
+        }
+    });
 
     setResult(QString());
 }

@@ -649,7 +649,13 @@ void TransferListWidget::recheckSelectedTorrents()
 void TransferListWidget::reannounceSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->forceReannounce();
+    {
+        if (!torrent->isStopped())
+        {
+            torrent->forceReannounce();
+            torrent->forceDHTAnnounce();
+        }
+    }
 }
 
 int TransferListWidget::visibleColumnsCount() const
