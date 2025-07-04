@@ -145,7 +145,7 @@ window.qBittorrent.PropPeers ??= (() => {
                     maximizable: false,
                     paddingVertical: 0,
                     paddingHorizontal: 0,
-                    width: 350,
+                    width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                     height: 260
                 });
             },

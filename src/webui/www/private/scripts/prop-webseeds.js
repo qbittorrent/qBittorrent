@@ -159,7 +159,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             closable: true,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 500,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
             height: 260,
             onCloseComplete: () => {
                 updateData();
@@ -188,7 +188,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             closable: true,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 500,
+            width: window.qBittorrent.Dialog.limitWidthToViewport(500),
             height: 150,
             onCloseComplete: () => {
                 updateData();
