@@ -1308,7 +1308,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("filtersColumn_handle").classList.add("invisible");
         document.getElementById("mainColumn").classList.add("invisible");
         document.getElementById("torrentsFilterToolbar").classList.add("invisible");
-        MochaUI.Desktop.resizePanels();
+        MochaUI.Desktop.setDesktopSize();
     };
 
     const showSearchTab = (() => {
@@ -1342,7 +1342,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     const hideSearchTab = () => {
         document.getElementById("searchTabColumn").classList.add("invisible");
-        MochaUI.Desktop.resizePanels();
+        MochaUI.Desktop.setDesktopSize();
     };
 
     const showRssTab = (() => {
@@ -1380,7 +1380,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const hideRssTab = () => {
         document.getElementById("rssTabColumn").classList.add("invisible");
         window.qBittorrent.Rss && window.qBittorrent.Rss.unload();
-        MochaUI.Desktop.resizePanels();
+        MochaUI.Desktop.setDesktopSize();
     };
 
     const showLogTab = (() => {
@@ -1417,7 +1417,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     const hideLogTab = () => {
         document.getElementById("logTabColumn").classList.add("invisible");
-        MochaUI.Desktop.resizePanels();
+        MochaUI.Desktop.setDesktopSize();
         window.qBittorrent.Log && window.qBittorrent.Log.unload();
     };
 
