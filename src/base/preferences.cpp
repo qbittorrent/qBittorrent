@@ -425,6 +425,18 @@ void Preferences::setPreventFromSuspendWhenSeeding(const bool b)
     setValue(u"Preferences/General/PreventFromSuspendWhenSeeding"_s, b);
 }
 
+bool Preferences::isDownloadTrackerFavicon() const
+{
+    return value(u"Preferences/General/DownloadTrackerFavicon"_s, true);
+}
+
+void Preferences::setDownloadTrackerFavicon(const bool value)
+{
+    if (value == isDownloadTrackerFavicon())
+        return;
+    setValue(u"Preferences/General/DownloadTrackerFavicon"_s, value);
+}
+
 #ifdef Q_OS_WIN
 bool Preferences::WinStartup() const
 {

@@ -702,6 +702,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 case TRACKERS_WARNING:
                     span.lastElementChild.src = "images/tracker-warning.svg";
                     break;
+                default: {
+                    if (LocalPreferences.get("show_tracker_favicon", "false") === "false")
+                        break;
+                    const link = host.split(".").slice(1).join(".");
+                    const img = trackerFilterItem.getElementsByTagName("img")[0];
+
+                    img.src = `https://${link}/favicon.ico`;
+                    img.onerror = () => {
+                        img.src = "images/trackers.svg";
+                    };
+                    break;
+                }
             }
 
             return trackerFilterItem;
