@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.11.10
+
+* [#22963](https://github.com/qbittorrent/qBittorrent/pull/22963)
+  * `torrents/editTracker` endpoint now supports setting a tracker's tier via `tier` parameter
+
 ## 2.11.9
 
 * [#21015](https://github.com/qbittorrent/qBittorrent/pull/21015)
