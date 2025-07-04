@@ -1630,7 +1630,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                             return false;
                     }
                     else {
-                        const selectedCategory = categoryMap.get(category);
+                        const selectedCategory = window.qBittorrent.Client.categoryMap.get(category);
                         if (selectedCategory !== undefined) {
                             const selectedCategoryName = `${category}/`;
                             const torrentCategoryName = `${row["full_data"].category}/`;

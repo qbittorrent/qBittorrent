@@ -42,9 +42,16 @@ window.qBittorrent.Client ??= (() => {
             showLogViewer: showLogViewer,
             isShowSearchEngine: isShowSearchEngine,
             isShowRssReader: isShowRssReader,
-            isShowLogViewer: isShowLogViewer
+            isShowLogViewer: isShowLogViewer,
+            categoryMap: categoryMap,
+            tagMap: tagMap
         };
     };
+
+    // Map<category: String, {savePath: String, torrents: Set}>
+    const categoryMap = new Map();
+    // Map<tag: String, torrents: Set>
+    const tagMap = new Map();
 
     let cacheAllSettled;
     const setup = () => {
@@ -146,18 +153,12 @@ const displayFullURLTrackerColumn = LocalPreferences.get("full_url_tracker_colum
 const CATEGORIES_ALL = "b4af0e4c-e76d-4bac-a392-46cbc18d9655";
 const CATEGORIES_UNCATEGORIZED = "e24bd469-ea22-404c-8e2e-a17c82f37ea0";
 
-// Map<category: String, {savePath: String, torrents: Set}>
-const categoryMap = new Map();
-
 let selectedCategory = LocalPreferences.get("selected_category", CATEGORIES_ALL);
 let setCategoryFilter = () => {};
 
 /* Tags filter */
 const TAGS_ALL = "b4af0e4c-e76d-4bac-a392-46cbc18d9655";
 const TAGS_UNTAGGED = "e24bd469-ea22-404c-8e2e-a17c82f37ea0";
-
-// Map<tag: String, torrents: Set>
-const tagMap = new Map();
 
 let selectedTag = LocalPreferences.get("selected_tag", TAGS_ALL);
 let setTagFilter = () => {};
@@ -389,7 +390,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             return false;
 
         let removed = false;
-        for (const data of categoryMap.values()) {
+        for (const data of window.qBittorrent.Client.categoryMap.values()) {
             const deleteResult = data.torrents.delete(hash);
             removed ||= deleteResult;
         }
@@ -407,12 +408,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
             return true;
         }
 
-        let categoryData = categoryMap.get(category);
+        let categoryData = window.qBittorrent.Client.categoryMap.get(category);
         if (categoryData === undefined) { // This should not happen
             categoryData = {
                 torrents: new Set()
             };
-            categoryMap.set(category, categoryData);
+            window.qBittorrent.Client.categoryMap.set(category, categoryData);
         }
 
         if (categoryData.torrents.has(hash))
@@ -428,7 +429,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             return false;
 
         let removed = false;
-        for (const torrents of tagMap.values()) {
+        for (const torrents of window.qBittorrent.Client.tagMap.values()) {
             const deleteResult = torrents.delete(hash);
             removed ||= deleteResult;
         }
@@ -448,10 +449,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const tags = torrent["tags"].split(", ");
         let added = false;
         for (const tag of tags) {
-            let torrents = tagMap.get(tag);
+            let torrents = window.qBittorrent.Client.tagMap.get(tag);
             if (torrents === undefined) { // This should not happen
                 torrents = new Set();
-                tagMap.set(tag, torrents);
+                window.qBittorrent.Client.tagMap.set(tag, torrents);
             }
 
             if (!torrents.has(hash)) {
@@ -550,7 +551,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
 
         const sortedCategories = [];
-        for (const [category, categoryData] of categoryMap) {
+        for (const [category, categoryData] of window.qBittorrent.Client.categoryMap) {
             sortedCategories.push({
                 categoryName: category,
                 categoryCount: categoryData.torrents.size,
@@ -651,7 +652,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         tagFilterList.appendChild(createLink(TAGS_UNTAGGED, "QBT_TR(Untagged)QBT_TR[CONTEXT=TagFilterModel]", untagged));
 
         const sortedTags = [];
-        for (const [tag, torrents] of tagMap) {
+        for (const [tag, torrents] of window.qBittorrent.Client.tagMap) {
             sortedTags.push({
                 tagName: tag,
                 tagSize: torrents.size
@@ -815,8 +816,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                             updateTrackers = true;
                             updateTorrents = true;
                             torrentsTable.clear();
-                            categoryMap.clear();
-                            tagMap.clear();
+                            window.qBittorrent.Client.categoryMap.clear();
+                            window.qBittorrent.Client.tagMap.clear();
                             trackerMap.clear();
                         }
                         if (responseJSON["rid"])
@@ -827,35 +828,38 @@ window.addEventListener("DOMContentLoaded", (event) => {
                                     continue;
 
                                 const responseData = responseJSON["categories"][responseName];
-                                const categoryData = categoryMap.get(responseName);
+                                const categoryData = window.qBittorrent.Client.categoryMap.get(responseName);
                                 if (categoryData === undefined) {
-                                    categoryMap.set(responseName, {
+                                    window.qBittorrent.Client.categoryMap.set(responseName, {
                                         savePath: responseData.savePath,
+                                        downloadPath: responseData.download_path ?? null,
                                         torrents: new Set()
                                     });
                                 }
                                 else {
-                                    // only the save path can change for existing categories
-                                    categoryData.savePath = responseData.savePath;
+                                    if (responseData.savePath !== undefined)
+                                        categoryData.savePath = responseData.savePath;
+                                    if (responseData.download_path !== undefined)
+                                        categoryData.downloadPath = responseData.download_path;
                                 }
                             }
                             updateCategories = true;
                         }
                         if (responseJSON["categories_removed"]) {
                             for (const category of responseJSON["categories_removed"])
-                                categoryMap.delete(category);
+                                window.qBittorrent.Client.categoryMap.delete(category);
                             updateCategories = true;
                         }
                         if (responseJSON["tags"]) {
                             for (const tag of responseJSON["tags"]) {
-                                if (!tagMap.has(tag))
-                                    tagMap.set(tag, new Set());
+                                if (!window.qBittorrent.Client.tagMap.has(tag))
+                                    window.qBittorrent.Client.tagMap.set(tag, new Set());
                             }
                             updateTags = true;
                         }
                         if (responseJSON["tags_removed"]) {
                             for (const tag of responseJSON["tags_removed"])
-                                tagMap.delete(tag);
+                                window.qBittorrent.Client.tagMap.delete(tag);
                             updateTags = true;
                         }
                         if (responseJSON["trackers"]) {
@@ -945,11 +949,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
                         if (updateCategories) {
                             updateCategoryList();
-                            window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(categoryMap);
+                            window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(window.qBittorrent.Client.categoryMap);
                         }
                         if (updateTags) {
                             updateTagList();
-                            window.qBittorrent.TransferList.contextMenu.updateTagsSubMenu(tagMap);
+                            window.qBittorrent.TransferList.contextMenu.updateTagsSubMenu(window.qBittorrent.Client.tagMap);
                         }
                         if (updateTrackers)
                             updateTrackerList();
