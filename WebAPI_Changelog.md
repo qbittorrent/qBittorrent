@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.11.10
+
+* [#22954](https://github.com/qbittorrent/qBittorrent/pull/22954)
+  * `torrents/reannounce` supports specifying trackers via `trackers` field
+
 ## 2.11.9
 
 * [#21015](https://github.com/qbittorrent/qBittorrent/pull/21015)
