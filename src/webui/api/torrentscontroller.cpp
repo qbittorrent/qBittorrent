@@ -1130,6 +1130,8 @@ void TorrentsController::editTrackerAction()
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
     const QString origUrl = params()[u"origUrl"_s];
     const QString newUrl = params()[u"newUrl"_s];
+    // min tier is 0, so -1 indicates to keep tier unchanged
+    const int newTier = parseInt(params()[u"tier"_s]).value_or(-1);
 
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
@@ -1137,10 +1139,14 @@ void TorrentsController::editTrackerAction()
 
     const QUrl origTrackerUrl {origUrl};
     const QUrl newTrackerUrl {newUrl};
-    if (origTrackerUrl == newTrackerUrl)
+    const bool isTrackerUrlChanged = origTrackerUrl != newTrackerUrl;
+    const bool isNewTierSpecified = newTier >= 0;
+    if (!isTrackerUrlChanged && !isNewTierSpecified)
         return;
     if (!newTrackerUrl.isValid())
         throw APIError(APIErrorType::BadParams, u"New tracker URL is invalid"_s);
+    if ((newTier < -1) || (newTier > 255))
+        throw APIError(APIErrorType::BadParams, u"New tier must be between 0 and 255"_s);
 
     const QList<BitTorrent::TrackerEntryStatus> currentTrackers = torrent->trackers();
     QList<BitTorrent::TrackerEntry> entries;
@@ -1151,7 +1157,7 @@ void TorrentsController::editTrackerAction()
     {
         const QUrl trackerUrl {tracker.url};
 
-        if (trackerUrl == newTrackerUrl)
+        if (isTrackerUrlChanged && (trackerUrl == newTrackerUrl))
             throw APIError(APIErrorType::Conflict, u"New tracker URL already exists"_s);
 
         BitTorrent::TrackerEntry entry
@@ -1162,8 +1168,14 @@ void TorrentsController::editTrackerAction()
 
         if (trackerUrl == origTrackerUrl)
         {
+            const bool isTrackerTierChanged = tracker.tier != newTier;
+            if (!isTrackerUrlChanged && !isTrackerTierChanged)
+                return;
+
             match = true;
             entry.url = newTrackerUrl.toString();
+            if (isNewTierSpecified)
+                entry.tier = newTier;
         }
         entries.append(entry);
     }
