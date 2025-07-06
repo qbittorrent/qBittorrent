@@ -63,7 +63,6 @@ inline QHash<QString, UIThemeColor> defaultUIThemeColors()
         {u"RSS.ReadArticle"_s, {{}, {}}},
         {u"RSS.UnreadArticle"_s, {{}, {}}},
 
-        {u"TransferList.Unknown"_s, {Color::Primer::Light::accentEmphasis, Color::Primer::Dark::accentEmphasis}},
         {u"TransferList.Downloading"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
         {u"TransferList.StalledDownloading"_s, {Color::Primer::Light::successEmphasis, Color::Primer::Dark::successEmphasis}},
         {u"TransferList.DownloadingMetadata"_s, {Color::Primer::Light::successFg, Color::Primer::Dark::successFg}},
