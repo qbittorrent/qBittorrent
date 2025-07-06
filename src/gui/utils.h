@@ -30,6 +30,7 @@
 #pragma once
 
 #include "base/pathfwd.h"
+#include "base/bittorrent/torrent.h"
 
 class QPixmap;
 class QPoint;
@@ -56,4 +57,6 @@ namespace Utils::Gui
 
     QString tagToWidgetText(const Tag &tag);
     Tag widgetTextToTag(const QString &text);
+
+    QHash<BitTorrent::TorrentState, QColor> torrentStateToColorHash();
 }
