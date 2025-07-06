@@ -54,6 +54,7 @@ namespace
 
         const TorrentStateColorDescriptor colorDescriptors[] =
         {
+            {BitTorrent::TorrentState::Unknown, u"TransferList.Unknown"_s},
             {BitTorrent::TorrentState::Downloading, u"TransferList.Downloading"_s},
             {BitTorrent::TorrentState::StalledDownloading, u"TransferList.StalledDownloading"_s},
             {BitTorrent::TorrentState::DownloadingMetadata, u"TransferList.DownloadingMetadata"_s},
