@@ -31,7 +31,6 @@
 #include <QModelIndex>
 
 #include "transferlistmodel.h"
-#include "uithememanager.h"
 #include "utils.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
