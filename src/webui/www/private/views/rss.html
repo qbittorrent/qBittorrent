@@ -349,7 +349,7 @@
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 100
             });
         };
@@ -377,7 +377,7 @@
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 100
             });
         };
@@ -791,7 +791,7 @@
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 100
             });
         };
@@ -811,7 +811,7 @@
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 100
             });
         };
@@ -827,7 +827,7 @@
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 70
             });
         };
@@ -947,8 +947,8 @@
                 loadMethod: "xhr",
                 contentURL: "views/rssDownloader.html",
                 maximizable: false,
-                width: loadWindowWidth(id, 800),
-                height: loadWindowHeight(id, 650),
+                width: loadWindowWidth(id, 800, false),
+                height: loadWindowHeight(id, 650, false),
                 onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                     saveWindowSize(id);
                 }),
