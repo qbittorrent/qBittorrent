@@ -36,7 +36,7 @@
 TransferListDelegate::TransferListDelegate(QObject *parent)
     : QStyledItemDelegate {parent}
 {
-    m_stateThemeColors = m_stateThemeColors = Utils::Gui::torrentStateToColorHash();
+    m_stateThemeColors = Utils::Gui::torrentStateToColorHash();
 }
 
 QWidget *TransferListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
@@ -92,7 +92,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QStyleOptionViewItem customOption {option};
             customOption.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
 
-            QColor color = nullptr;
+            QColor color = {};
             if (torrentState != TorrentState::Unknown)
             {
                 color = m_stateThemeColors.value(torrentState);
