@@ -90,7 +90,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QStyleOptionViewItem customOption {option};
             customOption.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
 
-            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
+            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, torrentState);
         }
         break;
     default:

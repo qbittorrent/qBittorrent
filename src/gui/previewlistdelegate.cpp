@@ -34,6 +34,7 @@
 
 #include "base/utils/string.h"
 #include "previewselectdialog.h"
+#include "transferlistmodel.h"
 
 PreviewListDelegate::PreviewListDelegate(QObject *parent)
     : QStyledItemDelegate(parent)
@@ -53,7 +54,10 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
                 ? u"100%"_s
                 : (Utils::String::fromDouble(progress, 1) + u'%');
 
-            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress));
+            const QModelIndex statusIndex = index.siblingAtColumn(TransferListModel::TR_STATUS);
+            const auto torrentState = statusIndex.data(TransferListModel::UnderlyingDataRole).value<BitTorrent::TorrentState>();
+
+            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress), torrentState);
         }
         break;
 
