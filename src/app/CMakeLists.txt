@@ -94,7 +94,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         string(REPLACE ".ts" ".lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
         # @ is not valid as a language code for a lproj folder on MacOS
         string(REPLACE "@" "-" LPROJ_FOLDER "${LPROJ_FOLDER}")
-        add_custom_command( TARGET qbt_app POST_BUILD
+        add_custom_command(TARGET qbt_app POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E make_directory
             "$<TARGET_FILE_DIR:qbt_app>/../Resources/${LPROJ_FOLDER}"
         )
