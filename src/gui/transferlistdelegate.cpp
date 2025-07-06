@@ -37,7 +37,7 @@
 TransferListDelegate::TransferListDelegate(QObject *parent)
     : QStyledItemDelegate {parent}
 {
-    m_stateThemeColors = m_stateThemeColors = Utils::Gui::torrentStateToColorHash();;
+    m_stateThemeColors = m_stateThemeColors = Utils::Gui::torrentStateToColorHash();
 }
 
 QWidget *TransferListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
