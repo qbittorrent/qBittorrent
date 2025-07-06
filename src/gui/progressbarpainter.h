@@ -33,8 +33,6 @@
 #include <QObject>
 #include <QProgressBar>
 
-#include "base/bittorrent/torrent.h"
-
 class QStyleOptionViewItem;
 
 class ProgressBarPainter : public QObject
@@ -45,12 +43,10 @@ class ProgressBarPainter : public QObject
 public:
     explicit ProgressBarPainter(QObject *parent = nullptr);
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress, BitTorrent::TorrentState state = BitTorrent::TorrentState::Unknown) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress, QColor color = nullptr) const;
 
 private:
     void applyUITheme();
-    void loadUIThemeResources();
-    QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
 
     QColor m_chunkColor;
     // for painting progressbar with stylesheet option, a dummy progress bar is required

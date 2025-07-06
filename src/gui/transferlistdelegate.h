@@ -31,6 +31,7 @@
 #include <QStyledItemDelegate>
 
 #include "progressbarpainter.h"
+#include "base/bittorrent/torrent.h"
 
 class TransferListDelegate final : public QStyledItemDelegate
 {
@@ -47,4 +48,5 @@ public:
 private:
     ProgressBarPainter m_progressBarPainter;
     mutable int m_nameColHeight = -1;
+    QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
 };
