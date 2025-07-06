@@ -72,8 +72,16 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
     styleOption.palette.setCurrentColorGroup(isEnabled ? QPalette::Active : QPalette::Disabled);
 
-    if (m_chunkColor.isValid())
+    if (progress < 1)
+    {
+        // display a white transparent bar for progress < 1
+        // workaround for QT rendering a 1-pixel wide progress bar even though the progress is still at 0 to 1 %
+        styleOption.palette.setColor(QPalette::Highlight, QColor(255, 255, 255, 0));
+    }
+    else if (m_chunkColor.isValid())
+    {
         styleOption.palette.setColor(QPalette::Highlight, m_chunkColor);
+    }
 
     painter->save();
     const QStyle *style = m_dummyProgressBar.style();
