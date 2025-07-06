@@ -34,7 +34,6 @@
 #include <QPainter>
 #include <QProgressBar>
 
-#include "transferlistmodel.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/torrent.h"
 #include "gui/torrentcontentmodel.h"
@@ -141,11 +140,10 @@ void TorrentContentItemDelegate::paint(QPainter *painter, const QStyleOptionView
             const int priority = index.sibling(index.row(), TorrentContentModelItem::COL_PRIO).data(TorrentContentModel::UnderlyingDataRole).toInt();
             const bool isEnabled = static_cast<BitTorrent::DownloadPriority>(priority) != BitTorrent::DownloadPriority::Ignored;
 
-            const QModelIndex statusIndex = index.siblingAtColumn(TransferListModel::TR_STATUS);
-            const auto torrentState = statusIndex.data(TransferListModel::UnderlyingDataRole).value<BitTorrent::TorrentState>();
-
             QStyleOptionViewItem customOption {option};
             customOption.state.setFlag(QStyle::State_Enabled, isEnabled);
+
+            BitTorrent::TorrentState torrentState = progress >= 100 ? BitTorrent::TorrentState::StalledUploading : BitTorrent::TorrentState::Downloading;
 
             m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, torrentState);
         }
