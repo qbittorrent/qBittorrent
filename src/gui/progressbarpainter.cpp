@@ -72,7 +72,7 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
     styleOption.palette.setCurrentColorGroup(isEnabled ? QPalette::Active : QPalette::Disabled);
 
-    if (color != nullptr)
+    if (color.isValid())
     {
         styleOption.palette.setColor(QPalette::Highlight, color);
     }
