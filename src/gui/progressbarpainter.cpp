@@ -95,6 +95,8 @@ ProgressBarPainter::ProgressBarPainter(QObject *parent)
 #endif
 
     loadUIThemeResources();
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &ProgressBarPainter::applyUITheme);
 }
 
 void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress, const BitTorrent::TorrentState torrentState) const
@@ -115,7 +117,14 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
     styleOption.palette.setCurrentColorGroup(isEnabled ? QPalette::Active : QPalette::Disabled);
 
-    styleOption.palette.setColor(QPalette::Highlight, m_stateThemeColors.value(torrentState));
+    if (torrentState != BitTorrent::TorrentState::Unknown)
+    {
+        styleOption.palette.setColor(QPalette::Highlight, m_stateThemeColors.value(torrentState));
+    }
+    else if (m_chunkColor.isValid())
+    {
+        styleOption.palette.setColor(QPalette::Highlight, m_chunkColor);
+    }
 
     painter->save();
     const QStyle *style = m_dummyProgressBar.style();
@@ -124,7 +133,13 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     painter->restore();
 }
 
+void ProgressBarPainter::applyUITheme()
+{
+    m_chunkColor = UIThemeManager::instance()->getColor(u"ProgressBar"_s);
+}
+
 void ProgressBarPainter::loadUIThemeResources()
 {
     m_stateThemeColors = torrentStateColorsFromUITheme();
 }
+

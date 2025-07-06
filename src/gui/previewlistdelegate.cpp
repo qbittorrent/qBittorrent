@@ -53,9 +53,7 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
                 ? u"100%"_s
                 : (Utils::String::fromDouble(progress, 1) + u'%');
 
-            BitTorrent::TorrentState torrentState = progress >= 100 ? BitTorrent::TorrentState::StalledUploading : BitTorrent::TorrentState::Downloading;
-
-            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress), torrentState);
+            m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress));
         }
         break;
 

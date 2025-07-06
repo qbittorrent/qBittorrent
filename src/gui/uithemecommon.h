@@ -87,6 +87,8 @@ inline QHash<QString, UIThemeColor> defaultUIThemeColors()
         {u"PiecesBar.Piece"_s, {{}, {}}},
         {u"PiecesBar.PartialPiece"_s, {{}, {}}},
         {u"PiecesBar.MissingPiece"_s, {{}, {}}},
+
+        {u"ProgressBar"_s, {{}, {}}}
     };
 }
 

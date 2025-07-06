@@ -143,9 +143,7 @@ void TorrentContentItemDelegate::paint(QPainter *painter, const QStyleOptionView
             QStyleOptionViewItem customOption {option};
             customOption.state.setFlag(QStyle::State_Enabled, isEnabled);
 
-            BitTorrent::TorrentState torrentState = progress >= 100 ? BitTorrent::TorrentState::StalledUploading : BitTorrent::TorrentState::Downloading;
-
-            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, torrentState);
+            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
         }
         break;
     default:
