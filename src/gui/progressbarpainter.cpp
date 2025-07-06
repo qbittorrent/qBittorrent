@@ -54,7 +54,7 @@ ProgressBarPainter::ProgressBarPainter(QObject *parent)
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &ProgressBarPainter::applyUITheme);
 }
 
-void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress, const QColor color) const
+void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress, const QColor &color) const
 {
     QStyleOptionProgressBar styleOption;
     styleOption.initFrom(&m_dummyProgressBar);
