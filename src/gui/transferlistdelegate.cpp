@@ -31,12 +31,10 @@
 #include <QModelIndex>
 
 #include "transferlistmodel.h"
-#include "utils.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
     : QStyledItemDelegate {parent}
 {
-    m_stateThemeColors = Utils::Gui::torrentStateToColorHash();
 }
 
 QWidget *TransferListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
@@ -95,7 +93,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QColor color = {};
             if (torrentState != TorrentState::Unknown)
             {
-                color = m_stateThemeColors.value(torrentState);
+                color = index.data(Qt::ForegroundRole).value<QColor>();
             }
 
             m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, color);

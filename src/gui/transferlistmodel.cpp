@@ -44,7 +44,48 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "uithememanager.h"
-#include "utils.h"
+
+namespace
+{
+    QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
+    {
+        struct TorrentStateColorDescriptor
+        {
+            const BitTorrent::TorrentState state;
+            const QString id;
+        };
+
+        const TorrentStateColorDescriptor colorDescriptors[] =
+        {
+            {BitTorrent::TorrentState::Downloading, u"TransferList.Downloading"_s},
+            {BitTorrent::TorrentState::StalledDownloading, u"TransferList.StalledDownloading"_s},
+            {BitTorrent::TorrentState::DownloadingMetadata, u"TransferList.DownloadingMetadata"_s},
+            {BitTorrent::TorrentState::ForcedDownloadingMetadata, u"TransferList.ForcedDownloadingMetadata"_s},
+            {BitTorrent::TorrentState::ForcedDownloading, u"TransferList.ForcedDownloading"_s},
+            {BitTorrent::TorrentState::Uploading, u"TransferList.Uploading"_s},
+            {BitTorrent::TorrentState::StalledUploading, u"TransferList.StalledUploading"_s},
+            {BitTorrent::TorrentState::ForcedUploading, u"TransferList.ForcedUploading"_s},
+            {BitTorrent::TorrentState::QueuedDownloading, u"TransferList.QueuedDownloading"_s},
+            {BitTorrent::TorrentState::QueuedUploading, u"TransferList.QueuedUploading"_s},
+            {BitTorrent::TorrentState::CheckingDownloading, u"TransferList.CheckingDownloading"_s},
+            {BitTorrent::TorrentState::CheckingUploading, u"TransferList.CheckingUploading"_s},
+            {BitTorrent::TorrentState::CheckingResumeData, u"TransferList.CheckingResumeData"_s},
+            {BitTorrent::TorrentState::StoppedDownloading, u"TransferList.StoppedDownloading"_s},
+            {BitTorrent::TorrentState::StoppedUploading, u"TransferList.StoppedUploading"_s},
+            {BitTorrent::TorrentState::Moving, u"TransferList.Moving"_s},
+            {BitTorrent::TorrentState::MissingFiles, u"TransferList.MissingFiles"_s},
+            {BitTorrent::TorrentState::Error, u"TransferList.Error"_s}
+        };
+
+        QHash<BitTorrent::TorrentState, QColor> colors;
+        for (const TorrentStateColorDescriptor &colorDescriptor : colorDescriptors)
+        {
+            const QColor themeColor = UIThemeManager::instance()->getColor(colorDescriptor.id);
+            colors.insert(colorDescriptor.state, themeColor);
+        }
+        return colors;
+    }
+}
 
 // TransferListModel
 
@@ -685,7 +726,7 @@ void TransferListModel::configure()
 
 void TransferListModel::loadUIThemeResources()
 {
-    m_stateThemeColors = Utils::Gui::torrentStateToColorHash();
+    m_stateThemeColors = torrentStateColorsFromUITheme();
 
     const auto *themeManager = UIThemeManager::instance();
     m_checkingIcon = themeManager->getIcon(u"force-recheck"_s, u"checking"_s);
