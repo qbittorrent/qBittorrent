@@ -1171,9 +1171,7 @@ void TorrentsController::editTrackerAction()
         throw APIError(APIErrorType::Conflict, u"Tracker not found"_s);
 
     torrent->replaceTrackers(entries);
-
-    if (!torrent->isStopped())
-        torrent->forceReannounce();
+    torrent->forceReannounce();
 
     setResult(QString());
 }
