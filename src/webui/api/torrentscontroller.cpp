@@ -1171,9 +1171,7 @@ void TorrentsController::editTrackerAction()
         throw APIError(APIErrorType::Conflict, u"Tracker not found"_s);
 
     torrent->replaceTrackers(entries);
-
-    if (!torrent->isStopped())
-        torrent->forceReannounce();
+    torrent->forceReannounce();
 
     setResult(QString());
 }
@@ -1620,7 +1618,31 @@ void TorrentsController::reannounceAction()
     requireParams({u"hashes"_s});
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
-    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->forceReannounce(); });
+    const QStringList urlsParam {params()[u"urls"_s].split(u'|', Qt::SkipEmptyParts)};
+
+    QSet<QString> urls;
+    urls.reserve(urlsParam.size());
+    for (const QString &urlStr : urlsParam)
+        urls << QUrl::fromPercentEncoding(urlStr.toLatin1());
+
+    applyToTorrents(hashes, [&urls](BitTorrent::Torrent *const torrent)
+    {
+        if (urls.isEmpty())
+        {
+            torrent->forceReannounce();
+            torrent->forceDHTAnnounce();
+        }
+        else
+        {
+            const QList<BitTorrent::TrackerEntryStatus> &trackers = torrent->trackers();
+            for (qsizetype i = 0; i < trackers.size(); ++i)
+            {
+                const BitTorrent::TrackerEntryStatus &status = trackers.at(i);
+                if (urls.contains(status.url))
+                    torrent->forceReannounce(i);
+            }
+        }
+    });
 
     setResult(QString());
 }

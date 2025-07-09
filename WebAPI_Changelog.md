@@ -4,6 +4,8 @@
 
 * [#22932](https://github.com/qbittorrent/qBittorrent/pull/22932)
   * `torrents/categories` and `sync/maindata` now serialize categories' `downloadPath` to `null`, rather than `undefined`
+* [#22954](https://github.com/qbittorrent/qBittorrent/pull/22954)
+  * `torrents/reannounce` supports specifying individual trackers via `trackers` field
 
 ## 2.11.9
 
