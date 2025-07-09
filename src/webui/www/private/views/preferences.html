@@ -3082,7 +3082,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["async_io_threads"] = Number(document.getElementById("asyncIOThreads").value);
             settings["hashing_threads"] = Number(document.getElementById("hashingThreads").value);
             settings["file_pool_size"] = Number(document.getElementById("filePoolSize").value);
-            settings["checking_memory_use"] = Number(document.getElementById("outstandMemoryWhenCheckingTorrents").value);
+
+            const outstandMemory = Number(document.getElementById("outstandMemoryWhenCheckingTorrents").value);
+            if (Number.isNaN(outstandMemory) || (outstandMemory < 0) || (outstandMemory > 1024)) {
+                alert("QBT_TR(Outstanding memory when checking torrents must be greater than 0 and less than 1024.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["checking_memory_use"] = outstandMemory;
+
             settings["disk_cache"] = Number(document.getElementById("diskCache").value);
             settings["disk_cache_ttl"] = Number(document.getElementById("diskCacheExpiryInterval").value);
             settings["disk_queue_size"] = (Number(document.getElementById("diskQueueSize").value) * 1024);
@@ -3102,7 +3109,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["outgoing_ports_min"] = Number(document.getElementById("outgoingPortsMin").value);
             settings["outgoing_ports_max"] = Number(document.getElementById("outgoingPortsMax").value);
             settings["upnp_lease_duration"] = Number(document.getElementById("UPnPLeaseDuration").value);
-            settings["peer_tos"] = Number(document.getElementById("peerToS").value);
+
+            const peerToS = Number(document.getElementById("peerToS").value);
+            if (Number.isNaN(peerToS) || (peerToS < 0) || (peerToS > 255)) {
+                alert("QBT_TR(Peer ToS must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_tos"] = peerToS;
+
             settings["utp_tcp_mixed_mode"] = Number(document.getElementById("utpTCPMixedModeAlgorithm").value);
             settings["hostname_cache_ttl"] = Number(document.getElementById("hostnameCacheTTL").value);
             settings["idn_support_enabled"] = document.getElementById("IDNSupportCheckbox").checked;
@@ -3123,9 +3137,28 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["announce_port"] = announcePort;
             settings["max_concurrent_http_announces"] = Number(document.getElementById("maxConcurrentHTTPAnnounces").value);
             settings["stop_tracker_timeout"] = Number(document.getElementById("stopTrackerTimeout").value);
-            settings["peer_turnover"] = Number(document.getElementById("peerTurnover").value);
-            settings["peer_turnover_cutoff"] = Number(document.getElementById("peerTurnoverCutoff").value);
-            settings["peer_turnover_interval"] = Number(document.getElementById("peerTurnoverInterval").value);
+
+            const peerTurnover = Number(document.getElementById("peerTurnover").value);
+            if (Number.isNaN(peerTurnover) || (peerTurnover < 0) || (peerTurnover > 100)) {
+                alert("QBT_TR(Peer turnover must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_turnover"] = peerTurnover;
+
+            const peerTurnoverCutoff = Number(document.getElementById("peerTurnoverCutoff").value);
+            if (Number.isNaN(peerTurnoverCutoff) || (peerTurnoverCutoff < 0) || (peerTurnoverCutoff > 100)) {
+                alert("QBT_TR(Peer turnover cutoff must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_turnover_cutoff"] = peerTurnoverCutoff;
+
+            const peerTurnoverInterval = Number(document.getElementById("peerTurnoverInterval").value);
+            if (Number.isNaN(peerTurnoverInterval) || (peerTurnoverInterval < 0) || (peerTurnoverInterval > 3600)) {
+                alert("QBT_TR(Peer turnover interval must be greater than or equal to 0.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_turnover_interval"] = peerTurnoverInterval;
+
             settings["request_queue_size"] = Number(document.getElementById("requestQueueSize").value);
             settings["dht_bootstrap_nodes"] = document.getElementById("dhtBootstrapNodes").value;
             settings["i2p_inbound_quantity"] = Number(document.getElementById("i2pInboundQuantity").value);
