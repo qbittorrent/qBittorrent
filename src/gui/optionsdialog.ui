@@ -298,6 +298,16 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="colorCodedProgressBar">
+                 <property name="text">
+                  <string extracomment="Progress bar color is based on torrent state.">Use color-coded progress bar</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout">
                  <item>
                   <widget class="QCheckBox" name="checkHideZero">

@@ -186,6 +186,19 @@ void Preferences::setAlternatingRowColors(const bool b)
     setValue(u"Preferences/General/AlternatingRowColors"_s, b);
 }
 
+bool Preferences::useColorCodedProgressBar() const
+{
+    return value(u"Preferences/General/ColorCodedProgressBar"_s, true);
+}
+
+void Preferences::setColorCodedProgressBar(const bool b)
+{
+    if (b == useColorCodedProgressBar())
+        return;
+
+    setValue(u"Preferences/General/ColorCodedProgressBar"_s, b);
+}
+
 bool Preferences::getHideZeroValues() const
 {
     return value(u"Preferences/General/HideZeroValues"_s, false);
