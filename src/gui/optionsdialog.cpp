@@ -261,7 +261,7 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
-    m_ui->colorCodedProgressBar->setChecked(pref->useColorCodedProgressBar());
+    m_ui->progressBarFollowTextColor->setChecked(pref->useProgressBarFollowTextColor());
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
@@ -390,7 +390,7 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->colorCodedProgressBar, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->progressBarFollowTextColor, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, m_ui->comboHideZero, &QWidget::setEnabled);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboHideZero, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -485,7 +485,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
-    pref->setColorCodedProgressBar(m_ui->colorCodedProgressBar->isChecked());
+    pref->setProgressBarFollowTextColor(m_ui->progressBarFollowTextColor->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 

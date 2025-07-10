@@ -298,9 +298,9 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="colorCodedProgressBar">
+                <widget class="QCheckBox" name="progressBarFollowTextColor">
                  <property name="text">
-                  <string extracomment="Progress bar color is based on torrent state.">Use color-coded progress bar</string>
+                  <string extracomment="Progress bar color is based on text color.">Make progress bars follow text colors</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>

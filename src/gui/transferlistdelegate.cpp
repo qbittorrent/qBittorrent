@@ -93,7 +93,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
 
             QColor color = {};
 
-            if (Preferences::instance()->useColorCodedProgressBar())
+            if (Preferences::instance()->useProgressBarFollowTextColor())
             {
                 color = index.data(Qt::ForegroundRole).value<QColor>();
             }
