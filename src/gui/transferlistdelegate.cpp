@@ -30,8 +30,8 @@
 
 #include <QModelIndex>
 
-#include "transferlistmodel.h"
 #include "base/preferences.h"
+#include "transferlistmodel.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
     : QStyledItemDelegate {parent}
@@ -91,12 +91,7 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QStyleOptionViewItem customOption {option};
             customOption.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
 
-            QColor color = {};
-
-            if (Preferences::instance()->useProgressBarFollowTextColor())
-            {
-                color = index.data(Qt::ForegroundRole).value<QColor>();
-            }
+            const QColor color = Preferences::instance()->getProgressBarFollowsTextColor() ? index.data(Qt::ForegroundRole).value<QColor>() : QColor();
 
             m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, color);
         }
