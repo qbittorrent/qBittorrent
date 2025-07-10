@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -533,15 +533,19 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
 
 QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 {
-    if (!index.isValid()) return {};
+    if (!index.isValid())
+        return {};
 
     const BitTorrent::Torrent *torrent = m_torrentList.value(index.row());
-    if (!torrent) return {};
+    if (!torrent)
+        return {};
 
     switch (role)
     {
     case Qt::ForegroundRole:
-        return m_stateThemeColors.value(torrent->state());
+        if (m_useTorrentStatesColors)
+            return m_stateThemeColors.value(torrent->state());
+        break;
     case Qt::DisplayRole:
         return displayValue(torrent, index.column());
     case UnderlyingDataRole:
@@ -604,10 +608,12 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 
 bool TransferListModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (!index.isValid() || (role != Qt::DisplayRole)) return false;
+    if (!index.isValid() || (role != Qt::DisplayRole))
+        return false;
 
     BitTorrent::Torrent *const torrent = m_torrentList.value(index.row());
-    if (!torrent) return false;
+    if (!torrent)
+        return false;
 
     // Category and Name columns can be edited
     switch (index.column())
@@ -646,10 +652,10 @@ void TransferListModel::addTorrents(const QList<BitTorrent::Torrent *> &torrents
 
 Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
 {
-    if (!index.isValid()) return Qt::NoItemFlags;
+    if (!index.isValid())
+        return Qt::NoItemFlags;
 
-    // Explicitly mark as editable
-    return QAbstractListModel::flags(index) | Qt::ItemIsEditable;
+    return QAbstractListModel::flags(index);
 }
 
 BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) const
@@ -717,11 +723,22 @@ void TransferListModel::configure()
             hideZeroValuesMode = HideZeroValuesMode::Always;
     }
 
+    bool isDataChanged = false;
+
     if (m_hideZeroValuesMode != hideZeroValuesMode)
     {
         m_hideZeroValuesMode = hideZeroValuesMode;
-        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+        isDataChanged = true;
     }
+
+    if (const bool useTorrentStatesColors = pref->useTorrentStatesColors(); m_useTorrentStatesColors != useTorrentStatesColors)
+    {
+        m_useTorrentStatesColors = useTorrentStatesColors;
+        isDataChanged = true;
+    }
+
+    if (isDataChanged)
+        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TransferListModel::loadUIThemeResources()
