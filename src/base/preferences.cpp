@@ -425,6 +425,19 @@ void Preferences::setPreventFromSuspendWhenSeeding(const bool b)
     setValue(u"Preferences/General/PreventFromSuspendWhenSeeding"_s, b);
 }
 
+bool Preferences::usePerStatusSortOrder() const
+{
+    return value(u"Preferences/General/UsePerStatusSortOrder"_s, false);
+}
+
+void Preferences::setUsePerStatusSortOrder(const bool use)
+{
+    if (use == usePerStatusSortOrder())
+        return;
+
+    setValue(u"Preferences/General/UsePerStatusSortOrder"_s, use);
+}
+
 #ifdef Q_OS_WIN
 bool Preferences::WinStartup() const
 {
