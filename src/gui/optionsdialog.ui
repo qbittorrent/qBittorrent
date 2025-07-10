@@ -298,7 +298,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkProgressBarFollowTextColor">
+                <widget class="QCheckBox" name="checkProgressBarFollowsTextColor">
                  <property name="text">
                   <string extracomment="Progress bar color is based on text color.">Make progress bars follow text colors</string>
                  </property>
