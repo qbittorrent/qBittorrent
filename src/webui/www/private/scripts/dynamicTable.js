@@ -163,6 +163,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             }, true);
 
             this.dynamicTableDiv.addEventListener("touchstart", (e) => {
+                // ignore touch events on checkboxes, otherwise breaks on mobile
+                if (e.target.classList.contains("selectRowCheckbox"))
+                    return;
                 const tr = e.target.closest("tr");
                 if (!tr)
                     return;
@@ -588,6 +591,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             column["onVisibilityChange"] = null;
             column["staticWidth"] = null;
             column["calculateBuffer"] = () => 0;
+            column["jsManaged"] = false;
+
             this.columns.push(column);
             this.columns[name] = column;
 
@@ -736,10 +741,12 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (const row of this.getFilteredAndSortedRows())
                 this.selectedRows.push(row.rowId);
             this.setRowClass();
+            this.onSelectedRowChanged();
         }
 
         deselectAll() {
             this.selectedRows.empty();
+            this.onSelectedRowChanged();
         }
 
         selectRow(rowId) {
@@ -1000,7 +1007,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     tds[i].style.width = `${this.columns[i].width}px`;
                     tds[i].style.maxWidth = `${this.columns[i].width}px`;
                 }
-                if (this.columns[i].dataProperties.some(prop => Object.hasOwn(data, prop)))
+                if (this.columns[i].dataProperties.some(prop => Object.hasOwn(data, prop)) || (this.columns[i].jsManaged))
                     this.columns[i].updateTd(tds[i], row);
             }
             row["data"] = {};
@@ -1102,6 +1109,11 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         initColumns() {
+            if (LocalPreferences.get("use_checkbox", "false") === "true") {
+                this.newColumn("selected", "width: 20px; text-align: center;", "", 20, true);
+                this.columns["selected"].jsManaged = true;
+            }
+
             this.newColumn("priority", "", "#", 30, true);
             this.newColumn("state_icon", "", "QBT_TR(Status Icon)QBT_TR[CONTEXT=TransferListModel]", 30, false);
             this.newColumn("name", "", "QBT_TR(Name)QBT_TR[CONTEXT=TransferListModel]", 200, true);
@@ -1201,6 +1213,29 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 return `stateIcon ${stateClass}`;
             };
+
+            if (LocalPreferences.get("use_checkbox", "false") === "true") {
+                this.columns["selected"].updateTd = (td, row) => {
+                    let htmlInput = td.firstElementChild;
+                    if (htmlInput === null) {
+                        htmlInput = document.createElement("input");
+                        htmlInput.type = "checkbox";
+                        htmlInput.className = "selectRowCheckbox";
+                    }
+                    htmlInput.checked = this.isRowSelected(row.rowId);
+
+                    if (td.firstElementChild === null) {
+                        htmlInput.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            if (htmlInput.checked)
+                                this.selectRow(row.rowId);
+                            else
+                                this.deselectRow(row.rowId);
+                        });
+                        td.append(htmlInput);
+                    }
+                };
+            }
 
             // state_icon
             this.columns["state_icon"].updateTd = function(td, row) {
@@ -1817,6 +1852,15 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         onSelectedRowChanged() {
             updatePropertiesPanel();
+            this.updateSelectedCheckboxes();
+        }
+
+        updateSelectedCheckboxes() {
+            const checkboxes = document.getElementsByClassName("selectRowCheckbox");
+            for (const checkbox of checkboxes) {
+                const rowId = checkbox.closest("tr").rowId;
+                checkbox.checked = this.isRowSelected(rowId);
+            }
         }
     }
 
