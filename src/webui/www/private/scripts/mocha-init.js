@@ -882,7 +882,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 150
+            height: 200
         });
     };
 
@@ -923,7 +923,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 150
+            height: 200
         });
     };
 
@@ -945,7 +945,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 150
+            height: 200
         });
     };
 
@@ -953,8 +953,7 @@ const initializeWindows = () => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
             action: "edit",
-            categoryName: category,
-            savePath: categoryMap.get(category).savePath
+            categoryName: category
         });
         new MochaUI.Window({
             id: "editCategoryPage",
@@ -968,7 +967,7 @@ const initializeWindows = () => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: window.qBittorrent.Dialog.limitWidthToViewport(400),
-            height: 150
+            height: 200
         });
     };
 
@@ -990,7 +989,7 @@ const initializeWindows = () => {
 
     deleteUnusedCategoriesFN = () => {
         const categories = [];
-        for (const category of categoryMap.keys()) {
+        for (const category of window.qBittorrent.Client.categoryMap.keys()) {
             if (torrentsTable.getFilteredTorrentsNumber("all", category, TAGS_ALL, TRACKERS_ALL) === 0)
                 categories.push(category);
         }
@@ -1095,7 +1094,7 @@ const initializeWindows = () => {
 
     deleteUnusedTagsFN = () => {
         const tags = [];
-        for (const tag of tagMap.keys()) {
+        for (const tag of window.qBittorrent.Client.tagMap.keys()) {
             if (torrentsTable.getFilteredTorrentsNumber("all", CATEGORIES_ALL, tag, TRACKERS_ALL) === 0)
                 tags.push(tag);
         }
