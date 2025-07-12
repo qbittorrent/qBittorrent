@@ -43,7 +43,7 @@ class ProgressBarPainter : public QObject
 public:
     explicit ProgressBarPainter(QObject *parent = nullptr);
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress) const;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress, const QColor &color = {}) const;
 
 private:
     void applyUITheme();

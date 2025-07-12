@@ -186,6 +186,19 @@ void Preferences::setAlternatingRowColors(const bool b)
     setValue(u"Preferences/General/AlternatingRowColors"_s, b);
 }
 
+bool Preferences::getProgressBarFollowsTextColor() const
+{
+    return value(u"GUI/TransferList/ProgressBarFollowsTextColor"_s, false);
+}
+
+void Preferences::setProgressBarFollowsTextColor(const bool value)
+{
+    if (value == getProgressBarFollowsTextColor())
+        return;
+
+    setValue(u"GUI/TransferList/ProgressBarFollowsTextColor"_s, value);
+}
+
 bool Preferences::getHideZeroValues() const
 {
     return value(u"Preferences/General/HideZeroValues"_s, false);
