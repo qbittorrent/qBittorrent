@@ -1774,6 +1774,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 deleteSelectedTorrentsFN(event.shiftKey);
                 break;
 
+            case "Escape": {
+                if (event.target.isContentEditable)
+                    return;
+                event.preventDefault();
+                const modalInstances = Object.values(MochaUI.Windows.instances);
+                if (modalInstances.length <= 0)
+                    return;
+
+                // MochaUI.currentModal does not update after a modal is closed
+                const focusedModal = modalInstances.find((modal) => {
+                    return modal.windowEl.hasClass("isFocused");
+                });
+                if (focusedModal !== undefined)
+                    focusedModal.close();
+                break;
+            }
+
             case "f":
             case "F":
                 if (event.ctrlKey || event.metaKey) {
@@ -1798,7 +1815,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         torrentsFilterElem.focus();
                     }
                 }
-                break;
         }
     });
 

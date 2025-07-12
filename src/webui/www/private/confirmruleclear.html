@@ -11,6 +11,15 @@
         "use strict";
 
         window.addEventListener("DOMContentLoaded", (event) => {
+            window.addEventListener("keydown", (event) => {
+                switch (event.key) {
+                    case "Escape":
+                        event.preventDefault();
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                        break;
+                }
+            });
+
             document.getElementById("cancelBtn").focus();
             document.getElementById("cancelBtn").addEventListener("click", (e) => {
                 e.preventDefault();
