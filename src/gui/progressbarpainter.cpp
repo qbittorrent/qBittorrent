@@ -65,7 +65,7 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     styleOption.text = text;
     styleOption.textVisible = true;
     // QStyleOption fields
-    styleOption.rect = option.rect;
+    styleOption.rect = option.rect.adjusted(0, 1, 0, -1);
     // Qt 6 requires QStyle::State_Horizontal to be set for correctly drawing horizontal progress bar
     styleOption.state = option.state | QStyle::State_Horizontal;
 
