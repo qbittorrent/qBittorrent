@@ -182,6 +182,15 @@
             <label id="inactiveMinutesLabel" for="setInactiveMinutes">QBT_TR(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
         </div>
+        <div style="margin-left: 40px; margin-bottom: 5px;">
+            <label id="actionListLabel" for="actionList">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <select name="action" id="actionList">
+                <option value="0">Stop torrent</option>
+                <option value="1">Remove torrent</option>
+                <option value="3">Remove torrent and its content</option>
+                <option value="2">Enable super seeding for torrent</option>
+            </select>
+        </div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="save">
         </div>
