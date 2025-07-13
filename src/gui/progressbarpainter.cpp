@@ -54,7 +54,7 @@ ProgressBarPainter::ProgressBarPainter(QObject *parent)
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &ProgressBarPainter::applyUITheme);
 }
 
-void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress) const
+void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress, const QColor &color) const
 {
     QStyleOptionProgressBar styleOption;
     styleOption.initFrom(&m_dummyProgressBar);
@@ -72,8 +72,14 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
     styleOption.palette.setCurrentColorGroup(isEnabled ? QPalette::Active : QPalette::Disabled);
 
-    if (m_chunkColor.isValid())
+    if (color.isValid())
+    {
+        styleOption.palette.setColor(QPalette::Highlight, color);
+    }
+    else if (m_chunkColor.isValid())
+    {
         styleOption.palette.setColor(QPalette::Highlight, m_chunkColor);
+    }
 
     painter->save();
     const QStyle *style = m_dummyProgressBar.style();
