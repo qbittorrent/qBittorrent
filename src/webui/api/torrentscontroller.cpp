@@ -1171,9 +1171,7 @@ void TorrentsController::editTrackerAction()
         throw APIError(APIErrorType::Conflict, u"Tracker not found"_s);
 
     torrent->replaceTrackers(entries);
-
-    if (!torrent->isStopped())
-        torrent->forceReannounce();
+    torrent->forceReannounce();
 
     setResult(QString());
 }
@@ -1620,7 +1618,11 @@ void TorrentsController::reannounceAction()
     requireParams({u"hashes"_s});
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
-    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent) { torrent->forceReannounce(); });
+    applyToTorrents(hashes, [](BitTorrent::Torrent *const torrent)
+    {
+        torrent->forceReannounce();
+        torrent->forceDHTAnnounce();
+    });
 
     setResult(QString());
 }
