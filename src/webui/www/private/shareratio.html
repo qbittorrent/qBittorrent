@@ -12,7 +12,6 @@
 
         const UseGlobalLimit = -2;
         const NoLimit = -1;
-        const ShareLimitActionDefault = -1;
 
         window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
@@ -86,7 +85,7 @@
                 let ratioLimitValue = 0.00;
                 let seedingTimeLimitValue = 0;
                 let inactiveSeedingTimeLimitValue = 0;
-                let shareLimitActionValue = ShareLimitActionDefault;
+                let shareLimitActionValue = -1;
 
                 if (shareLimit === "default") {
                     ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = UseGlobalLimit;
@@ -193,7 +192,7 @@
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <label id="actionListLabel" for="action">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <select id="action">
+            <select id="action" aria-labelledby="actionListLabel">
                 <option value="0">Stop torrent</option>
                 <option value="1">Remove torrent</option>
                 <option value="3">Remove torrent and its content</option>
