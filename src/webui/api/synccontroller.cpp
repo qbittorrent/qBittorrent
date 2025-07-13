@@ -497,6 +497,7 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "max_seeding_time": Upload max seeding time
 //  - "ratio_limit": Upload share ratio limit
 //  - "seeding_time_limit": Upload seeding time limit
+//  - "share_action_limit": Action to execute when the limit is reached
 //  - "seen_complete": Indicates the time when the torrent was last seen complete/whole
 //  - "last_activity": Last time when a chunk was downloaded/uploaded
 //  - "total_size": Size including unwanted data

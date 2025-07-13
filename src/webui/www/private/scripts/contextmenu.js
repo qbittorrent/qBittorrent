@@ -449,6 +449,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.setEnabled("copyInfohash2", thereAreV2Hashes);
 
             const contextTagList = document.getElementById("contextTagList");
+
             for (const tag of tagMap.keys()) {
                 const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`);
                 const count = tagCount.get(tag);
