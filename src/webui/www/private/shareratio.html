@@ -66,9 +66,9 @@
                     document.getElementById("setInactiveMinutes").checked = true;
                     document.getElementById("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
-                if (values.shareLimitAction >= 0) {
-                    document.getElementById('action').value = values.shareLimitAction.toString();
-                }
+                if (values.shareLimitAction >= 0)
+                    document.getElementById("action").value = values.shareLimitAction.toString();
+
             }
 
             shareLimitChanged();
