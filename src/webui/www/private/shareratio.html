@@ -12,6 +12,7 @@
 
         const UseGlobalLimit = -2;
         const NoLimit = -1;
+        const ShareLimitActionDefault = -1;
 
         window.addEventListener("DOMContentLoaded", (event) => {
             window.addEventListener("keydown", (event) => {
@@ -66,7 +67,9 @@
                     document.getElementById("setInactiveMinutes").checked = true;
                     document.getElementById("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
-                document.getElementById('actionList').value = values.shareLimitAction.toString();
+                if (values.shareLimitAction >= 0) {
+                    document.getElementById('action').value = values.shareLimitAction.toString();
+                }
             }
 
             shareLimitChanged();
@@ -83,6 +86,7 @@
                 let ratioLimitValue = 0.00;
                 let seedingTimeLimitValue = 0;
                 let inactiveSeedingTimeLimitValue = 0;
+                let shareLimitActionValue = ShareLimitActionDefault;
 
                 if (shareLimit === "default") {
                     ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = UseGlobalLimit;
@@ -94,6 +98,7 @@
                     ratioLimitValue = document.getElementById("setRatio").checked ? document.getElementById("ratio").value : -1;
                     seedingTimeLimitValue = document.getElementById("setTotalMinutes").checked ? document.getElementById("totalMinutes").value : -1;
                     inactiveSeedingTimeLimitValue = document.getElementById("setInactiveMinutes").checked ? document.getElementById("inactiveMinutes").value : -1;
+                    shareLimitActionValue = document.getElementById("action").value;
                 }
                 else {
                     return;
@@ -105,7 +110,8 @@
                             hashes: searchParams.get("hashes"),
                             ratioLimit: ratioLimitValue,
                             seedingTimeLimit: seedingTimeLimitValue,
-                            inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue
+                            inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue,
+                            shareLimitAction: shareLimitActionValue
                         })
                     })
                     .then((response) => {
@@ -142,6 +148,7 @@
             document.getElementById("setRatio").disabled = !customShareLimit;
             document.getElementById("setTotalMinutes").disabled = !customShareLimit;
             document.getElementById("setInactiveMinutes").disabled = !customShareLimit;
+            document.getElementById("action").disabled = !customShareLimit;
 
             enableInputBoxes();
 
@@ -185,8 +192,8 @@
             <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
-            <label id="actionListLabel" for="actionList">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <select name="action" id="actionList">
+            <label id="actionListLabel" for="action">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <select id="action">
                 <option value="0">Stop torrent</option>
                 <option value="1">Remove torrent</option>
                 <option value="3">Remove torrent and its content</option>
