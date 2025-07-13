@@ -36,7 +36,8 @@
                 inactiveSeedingTimeLimit: Number(origValues[2]),
                 maxRatio: Number(origValues[3]),
                 maxSeedingTime: Number(origValues[4]),
-                maxInactiveSeedingTime: Number(origValues[5])
+                maxInactiveSeedingTime: Number(origValues[5]),
+                shareLimitAction: Number(origValues[6])
             };
 
             // select default when orig values not passed. using double equals to compare string and int
@@ -65,6 +66,7 @@
                     document.getElementById("setInactiveMinutes").checked = true;
                     document.getElementById("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
+                document.getElementById('actionList').value = values.shareLimitAction.toString();
             }
 
             shareLimitChanged();
