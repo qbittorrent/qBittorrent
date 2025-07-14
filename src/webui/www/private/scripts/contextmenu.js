@@ -449,7 +449,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             this.setEnabled("copyInfohash2", thereAreV2Hashes);
 
             const contextTagList = document.getElementById("contextTagList");
-            for (const tag of tagMap.keys()) {
+            for (const tag of window.qBittorrent.Client.tagMap.keys()) {
                 const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`);
                 const count = tagCount.get(tag);
                 const hasCount = (count !== undefined);
@@ -459,7 +459,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             }
 
             const contextCategoryList = document.getElementById("contextCategoryList");
-            for (const category of categoryMap.keys()) {
+            for (const category of window.qBittorrent.Client.categoryMap.keys()) {
                 const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category}"] img`);
                 const count = categoryCount.get(category);
                 const isEqual = ((count !== undefined) && (count === selectedRows.length));
