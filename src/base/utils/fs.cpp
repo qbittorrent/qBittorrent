@@ -104,7 +104,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
         if (!dir.isEmpty(QDir::Dirs | QDir::NoDotAndDotDot))
             continue;
 
-        const QStringList tmpFileList = dir.entryList(QDir::Files);
+        const QStringList tmpFileList = dir.entryList(QDir::Files | QDir::Hidden);
 
         // deleteFilesList contains unwanted files, usually created by the OS
         // temp files on linux usually end with '~', e.g. `filename~`
