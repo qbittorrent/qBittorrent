@@ -1368,7 +1368,9 @@ void TorrentsController::setShareLimitsAction()
     const qlonglong seedingTimeLimit = params()[u"seedingTimeLimit"_s].toLongLong();
     const qlonglong inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toLongLong();
     const int shareLimitActionParamValue = params()[u"shareLimitAction"_s].toInt();
-    const BitTorrent::ShareLimitAction shareLimitAction = shareLimitActionParamValue >= 0 && shareLimitActionParamValue <= 3 ? static_cast<BitTorrent::ShareLimitAction>(shareLimitActionParamValue) : BitTorrent::ShareLimitAction::Default;
+    const BitTorrent::ShareLimitAction shareLimitAction = (shareLimitActionParamValue >= 0) && (shareLimitActionParamValue <= 3)
+    ? static_cast<BitTorrent::ShareLimitAction>(shareLimitActionParamValue)
+    : BitTorrent::ShareLimitAction::Default;
 
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
 
