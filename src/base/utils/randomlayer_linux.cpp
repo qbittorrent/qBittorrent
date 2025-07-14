@@ -45,7 +45,7 @@ namespace
 
         RandomLayer()
         {
-            if (::getrandom(nullptr, 0, 0) < 0)
+            if (unsigned char buf = 0; ::getrandom(&buf, sizeof(buf), 0) < 0)
             {
                 if (errno == ENOSYS)
                 {
