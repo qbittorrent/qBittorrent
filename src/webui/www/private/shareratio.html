@@ -67,7 +67,7 @@
                     document.getElementById("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
 
-                document.getElementById("action").value = values.shareLimitAction.toString();
+                document.getElementById("limitReachedActions").value = values.shareLimitAction.toString();
             }
 
             shareLimitChanged();
@@ -96,7 +96,7 @@
                     ratioLimitValue = document.getElementById("setRatio").checked ? document.getElementById("ratio").value : -1;
                     seedingTimeLimitValue = document.getElementById("setTotalMinutes").checked ? document.getElementById("totalMinutes").value : -1;
                     inactiveSeedingTimeLimitValue = document.getElementById("setInactiveMinutes").checked ? document.getElementById("inactiveMinutes").value : -1;
-                    shareLimitActionValue = document.getElementById("action").value;
+                    shareLimitActionValue = document.getElementById("limitReachedActions").value;
                 }
                 else {
                     return;
@@ -146,7 +146,7 @@
             document.getElementById("setRatio").disabled = !customShareLimit;
             document.getElementById("setTotalMinutes").disabled = !customShareLimit;
             document.getElementById("setInactiveMinutes").disabled = !customShareLimit;
-            document.getElementById("action").disabled = !customShareLimit;
+            document.getElementById("limitReachedActions").disabled = !customShareLimit;
 
             enableInputBoxes();
 
@@ -190,13 +190,13 @@
             <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
         </div>
         <div style="margin-left: 40px; margin-bottom: 5px;">
-            <label id="actionListLabel" for="action">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
-            <select id="action" aria-labelledby="actionListLabel">
-                <option value="-1">Default</option>
-                <option value="0">Stop torrent</option>
-                <option value="1">Remove torrent</option>
-                <option value="3">Remove torrent and its content</option>
-                <option value="2">Enable super seeding for torrent</option>
+            <label id="actionListLabel" for="limitReachedActions">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <select id="limitReachedActions" aria-labelledby="actionListLabel">
+                <option value="-1">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="0">QBT_TR(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="1">QBT_TR(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="3">QBT_TR(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="2">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
             </select>
         </div>
         <div style="text-align: center; padding-top: 10px;">
