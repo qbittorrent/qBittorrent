@@ -1,5 +1,11 @@
 # WebAPI Changelog
 
+## 2.11.11
+
+* [#22989](https://github.com/qbittorrent/qBittorrent/pull/22989)
+  * `sync/maindata` returns one new field: `share_limit_action`
+  * `torrents/setShareLimits` now requires a new `shareLimitAction` param that sets a torrent's shareLimitAction property 
+
 ## 2.11.10
 
 * [#22932](https://github.com/qbittorrent/qBittorrent/pull/22932)
