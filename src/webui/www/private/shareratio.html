@@ -40,7 +40,7 @@
                 maxRatio: Number(origValues[3]),
                 maxSeedingTime: Number(origValues[4]),
                 maxInactiveSeedingTime: Number(origValues[5]),
-                shareLimitAction: Number(origValues[6])
+                shareLimitAction: String(origValues[6])
             };
 
             // select default when orig values not passed. using double equals to compare string and int
@@ -70,7 +70,7 @@
                     document.getElementById("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
 
-                limitReachedActionsEl.value = values.shareLimitAction.toString();
+                limitReachedActionsEl.value = values.shareLimitAction;
             }
 
             shareLimitChanged();
@@ -195,11 +195,11 @@
         <div style="margin-left: 40px; margin-bottom: 5px;">
             <label id="actionListLabel" for="limitReachedActions">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <select id="limitReachedActions" aria-labelledby="actionListLabel">
-                <option value="-1">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="0">QBT_TR(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="1">QBT_TR(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="3">QBT_TR(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
-                <option value="2">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Stop">QBT_TR(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Remove">QBT_TR(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="RemoveWithContent">QBT_TR(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="EnableSuperSeeding">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
             </select>
         </div>
         <div style="text-align: center; padding-top: 10px;">
