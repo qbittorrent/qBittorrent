@@ -2,7 +2,7 @@
 
 ## 2.11.10
 
-* [#22932](https://github.com/qbittorrent/qBittorrent/pull/22932)
+* [#22958](https://github.com/qbittorrent/qBittorrent/pull/22958)
   * `torrents/categories` and `sync/maindata` now serialize categories' `downloadPath` to `null`, rather than `undefined`
 
 ## 2.11.9
