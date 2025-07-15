@@ -3652,7 +3652,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Published On</source>
-        <translation>Publié sur</translation>
+        <translation>Publié le</translation>
     </message>
     <message>
         <source>Engine URL</source>
