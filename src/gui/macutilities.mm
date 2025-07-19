@@ -46,7 +46,8 @@ namespace MacUtils
     {
         @autoreleasepool
         {
-            NSImage *image = [[NSWorkspace sharedWorkspace] iconForContentType:[UTType typeWithFilenameExtension:ext.toNSString()]];
+            NSImage *image = [[NSWorkspace sharedWorkspace]
+                iconForContentType:[UTType typeWithFilenameExtension:ext.toNSString()]];
             if (image)
             {
                 NSRect rect = NSMakeRect(0, 0, size.width(), size.height());
