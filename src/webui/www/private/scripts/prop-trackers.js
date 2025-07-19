@@ -148,6 +148,12 @@ window.qBittorrent.PropTrackers ??= (() => {
             },
             RemoveTracker: (element, ref) => {
                 removeTrackerFN(element);
+            },
+            ReannounceTrackers: (element, ref) => {
+                reannounceTrackersFN(element, torrentTrackersTable.selectedRowsIds());
+            },
+            ReannounceAllTrackers: (element, ref) => {
+                reannounceTrackersFN(element, []);
             }
         },
         offsets: {
@@ -164,6 +170,8 @@ window.qBittorrent.PropTrackers ??= (() => {
                 this.hideItem("EditTracker");
                 this.hideItem("RemoveTracker");
                 this.hideItem("CopyTrackerUrl");
+                this.hideItem("ReannounceTrackers");
+                this.hideItem("ReannounceAllTrackers");
             }
             else {
                 if (selectedTrackers.length === 1)
@@ -173,6 +181,16 @@ window.qBittorrent.PropTrackers ??= (() => {
 
                 this.showItem("RemoveTracker");
                 this.showItem("CopyTrackerUrl");
+
+                const torrentHash = torrentsTable.getCurrentTorrentID();
+                if (torrentsTable.isStopped(torrentHash)) {
+                    this.hideItem("ReannounceTrackers");
+                    this.hideItem("ReannounceAllTrackers");
+                }
+                else {
+                    this.showItem("ReannounceTrackers");
+                    this.showItem("ReannounceAllTrackers");
+                }
             }
         }
     });
@@ -244,6 +262,28 @@ window.qBittorrent.PropTrackers ??= (() => {
                     hash: current_hash,
                     urls: torrentTrackersTable.selectedRowsIds().map(encodeURIComponent).join("|")
                 })
+            })
+            .then((response) => {
+                if (!response.ok)
+                    return;
+
+                updateData();
+            });
+    };
+
+    const reannounceTrackersFN = (element, trackers) => {
+        if (current_hash.length === 0)
+            return;
+
+        const body = new URLSearchParams({
+            hashes: current_hash
+        });
+        if (trackers.length > 0)
+            body.set("urls", trackers.map(encodeURIComponent).join("|"));
+
+        fetch("api/v2/torrents/reannounce", {
+                method: "POST",
+                body: body
             })
             .then((response) => {
                 if (!response.ok)
