@@ -1662,7 +1662,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
         updater->deleteLater();
     };
 
-    const auto newVersion = updater->getNewVersion();
+    const ProgramUpdater::Version newVersion = updater->getNewVersion();
     if (newVersion.isValid())
     {
         const QString msg {tr("A new version is available.") + u"<br/>"
