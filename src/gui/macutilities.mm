@@ -46,7 +46,7 @@ namespace MacUtils
     {
         @autoreleasepool
         {
-            NSImage *image = [[NSWorkspace sharedWorkspace]
+            const NSImage *image = [[NSWorkspace sharedWorkspace]
                 iconForContentType:[UTType typeWithFilenameExtension:ext.toNSString()]];
             if (image)
             {
