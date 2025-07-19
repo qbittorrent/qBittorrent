@@ -100,6 +100,7 @@ public:
 
 
     bool setType(Type type);
+    Type getType() const { return m_type; }
     bool setTypeByName(const QString &filter);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
