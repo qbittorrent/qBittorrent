@@ -29,6 +29,7 @@
 #include "macutilities.h"
 
 #import <Cocoa/Cocoa.h>
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 #include <objc/message.h>
 
 #include <QPixmap>
@@ -45,7 +46,8 @@ namespace MacUtils
     {
         @autoreleasepool
         {
-            NSImage *image = [[NSWorkspace sharedWorkspace] iconForFileType:ext.toNSString()];
+            const NSImage *image = [[NSWorkspace sharedWorkspace]
+                iconForContentType:[UTType typeWithFilenameExtension:ext.toNSString()]];
             if (image)
             {
                 NSRect rect = NSMakeRect(0, 0, size.width(), size.height());
