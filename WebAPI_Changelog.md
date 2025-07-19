@@ -1,5 +1,12 @@
 # WebAPI Changelog
 
+## 2.12.0
+
+* [#22989](https://github.com/qbittorrent/qBittorrent/pull/22989)
+  * `sync/maindata` returns one new field: `share_limit_action`
+  * `torrents/setShareLimits` now requires a new `shareLimitAction` param that sets a torrent's shareLimitAction property
+    * possible values `Default`, `Stop`, `Remove`, `RemoveWithContent` and `EnableSuperSeeding`
+
 ## 2.11.10
 
 * [#22932](https://github.com/qbittorrent/qBittorrent/pull/22932)
