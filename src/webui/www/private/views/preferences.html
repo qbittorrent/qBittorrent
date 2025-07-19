@@ -1031,6 +1031,10 @@
             <div class="formRow">
                 <a href="https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs" target="_blank">QBT_TR(List of alternative WebUI)QBT_TR[CONTEXT=OptionsDialog]</a>
             </div>
+            <div class="formRow">
+                <input type="checkbox" id="useCheckbox">
+                <label for="useCheckbox">QBT_TR(Use checkboxes in WebUI)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
         </fieldset>
 
         <fieldset class="settings">
@@ -2533,6 +2537,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("use_https_checkbox").checked = pref.use_https;
                     document.getElementById("ssl_cert_text").value = pref.web_ui_https_cert_path;
                     document.getElementById("ssl_key_text").value = pref.web_ui_https_key_path;
+                    document.getElementById("useCheckbox").checked = LocalPreferences.get("use_checkbox", "false") === "true";
                     updateHttpsSettings();
 
                     // Authentication
@@ -3031,6 +3036,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings["alternative_webui_enabled"] = alternative_webui_enabled;
             settings["alternative_webui_path"] = webui_files_location_textarea;
+            settings["use_checkbox"] = document.getElementById("useCheckbox").checked;
+            LocalPreferences.set("use_checkbox", settings["use_checkbox"]);
 
             // Security
             settings["web_ui_clickjacking_protection_enabled"] = document.getElementById("clickjacking_protection_checkbox").checked;
