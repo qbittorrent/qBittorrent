@@ -12,8 +12,11 @@
 
         const UseGlobalLimit = -2;
         const NoLimit = -1;
+        let limitReachedActionsEl;
 
         window.addEventListener("DOMContentLoaded", (event) => {
+            limitReachedActionsEl = document.getElementById("limitReachedActions");
+
             window.addEventListener("keydown", (event) => {
                 switch (event.key) {
                     case "Enter":
@@ -36,7 +39,8 @@
                 inactiveSeedingTimeLimit: Number(origValues[2]),
                 maxRatio: Number(origValues[3]),
                 maxSeedingTime: Number(origValues[4]),
-                maxInactiveSeedingTime: Number(origValues[5])
+                maxInactiveSeedingTime: Number(origValues[5]),
+                shareLimitAction: String(origValues[6])
             };
 
             // select default when orig values not passed. using double equals to compare string and int
@@ -65,6 +69,8 @@
                     document.getElementById("setInactiveMinutes").checked = true;
                     document.getElementById("inactiveMinutes").value = values.inactiveSeedingTimeLimit;
                 }
+
+                limitReachedActionsEl.value = values.shareLimitAction;
             }
 
             shareLimitChanged();
@@ -81,6 +87,7 @@
                 let ratioLimitValue = 0.00;
                 let seedingTimeLimitValue = 0;
                 let inactiveSeedingTimeLimitValue = 0;
+                let shareLimitActionValue = "Default";
 
                 if (shareLimit === "default") {
                     ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = UseGlobalLimit;
@@ -92,6 +99,7 @@
                     ratioLimitValue = document.getElementById("setRatio").checked ? document.getElementById("ratio").value : -1;
                     seedingTimeLimitValue = document.getElementById("setTotalMinutes").checked ? document.getElementById("totalMinutes").value : -1;
                     inactiveSeedingTimeLimitValue = document.getElementById("setInactiveMinutes").checked ? document.getElementById("inactiveMinutes").value : -1;
+                    shareLimitActionValue = limitReachedActionsEl.value;
                 }
                 else {
                     return;
@@ -103,7 +111,8 @@
                             hashes: searchParams.get("hashes"),
                             ratioLimit: ratioLimitValue,
                             seedingTimeLimit: seedingTimeLimitValue,
-                            inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue
+                            inactiveSeedingTimeLimit: inactiveSeedingTimeLimitValue,
+                            shareLimitAction: shareLimitActionValue
                         })
                     })
                     .then((response) => {
@@ -140,6 +149,7 @@
             document.getElementById("setRatio").disabled = !customShareLimit;
             document.getElementById("setTotalMinutes").disabled = !customShareLimit;
             document.getElementById("setInactiveMinutes").disabled = !customShareLimit;
+            limitReachedActionsEl.disabled = !customShareLimit;
 
             enableInputBoxes();
 
@@ -181,6 +191,16 @@
             <input type="checkbox" id="setInactiveMinutes" class="shareLimitInput" onclick="enableInputBoxes()">
             <label id="inactiveMinutesLabel" for="setInactiveMinutes">QBT_TR(inactive minutes)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
             <input type="number" id="inactiveMinutes" value="0" step="1" min="0" class="shareLimitInput" aria-labelledby="inactiveMinutesLabel">
+        </div>
+        <div style="margin-left: 40px; margin-bottom: 5px;">
+            <label id="actionListLabel" for="limitReachedActions">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+            <select id="limitReachedActions" aria-labelledby="actionListLabel">
+                <option value="Default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Stop">QBT_TR(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="Remove">QBT_TR(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="RemoveWithContent">QBT_TR(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                <option value="EnableSuperSeeding">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+            </select>
         </div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="save">

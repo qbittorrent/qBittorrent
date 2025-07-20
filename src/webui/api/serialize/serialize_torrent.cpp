@@ -171,6 +171,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_POPULARITY, torrent.popularity()},
         {KEY_TORRENT_SEEDING_TIME_LIMIT, torrent.seedingTimeLimit()},
         {KEY_TORRENT_INACTIVE_SEEDING_TIME_LIMIT, torrent.inactiveSeedingTimeLimit()},
+        {KEY_TORRENT_SHARE_LIMIT_ACTION, Utils::String::fromEnum(torrent.shareLimitAction())},
         {KEY_TORRENT_LAST_SEEN_COMPLETE_TIME, Utils::DateTime::toSecsSinceEpoch(torrent.lastSeenComplete())},
         {KEY_TORRENT_AUTO_TORRENT_MANAGEMENT, torrent.isAutoTMMEnabled()},
         {KEY_TORRENT_TIME_ACTIVE, torrent.activeTime()},

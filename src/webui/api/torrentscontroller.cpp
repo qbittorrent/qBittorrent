@@ -1360,18 +1360,21 @@ void TorrentsController::setDownloadLimitAction()
 
 void TorrentsController::setShareLimitsAction()
 {
-    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s});
+    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s, u"shareLimitAction"_s});
 
     const qreal ratioLimit = params()[u"ratioLimit"_s].toDouble();
     const qlonglong seedingTimeLimit = params()[u"seedingTimeLimit"_s].toLongLong();
     const qlonglong inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toLongLong();
+    const BitTorrent::ShareLimitAction shareLimitAction = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
+
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
 
-    applyToTorrents(hashes, [ratioLimit, seedingTimeLimit, inactiveSeedingTimeLimit](BitTorrent::Torrent *const torrent)
+    applyToTorrents(hashes, [ratioLimit, seedingTimeLimit, inactiveSeedingTimeLimit, shareLimitAction](BitTorrent::Torrent *const torrent)
     {
         torrent->setRatioLimit(ratioLimit);
         torrent->setSeedingTimeLimit(seedingTimeLimit);
         torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit);
+        torrent->setShareLimitAction(shareLimitAction);
     });
 
     setResult(QString());
