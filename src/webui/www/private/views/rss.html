@@ -345,7 +345,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please type a RSS feed URL)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: `newfeed.html?path=${encodeURIComponent(path)}`,
+                contentURL: `newfeed.html?v=${CACHEID}&path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -373,7 +373,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a folder name)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: `newfolder.html?path=${encodeURIComponent(path)}`,
+                contentURL: `newfolder.html?v=${CACHEID}&path=${encodeURIComponent(path)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -787,7 +787,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Please choose a new name for this RSS feed)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: `rename_feed.html?oldPath=${encodeURIComponent(oldPath)}`,
+                contentURL: `rename_feed.html?v=${CACHEID}&oldPath=${encodeURIComponent(oldPath)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -799,6 +799,7 @@
         const editUrl = (path, url) => {
             const contentURL = new URL("editfeedurl.html", window.location);
             contentURL.search = new URLSearchParams({
+                v: CACHEID,
                 path: path,
                 url: url
             });
@@ -823,7 +824,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=RSSWidget]",
                 loadMethod: "iframe",
-                contentURL: `confirmfeeddeletion.html?paths=${encodeURIComponent(encodedPaths.join("|"))}`,
+                contentURL: `confirmfeeddeletion.html?v=${CACHEID}&paths=${encodeURIComponent(encodedPaths.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
@@ -945,7 +946,7 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rss Downloader)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "xhr",
-                contentURL: "views/rssDownloader.html",
+                contentURL: "views/rssDownloader.html?v=${CACHEID}",
                 maximizable: false,
                 width: loadWindowWidth(id, 800, false),
                 height: loadWindowHeight(id, 650, false),

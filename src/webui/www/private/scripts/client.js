@@ -339,7 +339,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             left: 0
         },
         loadMethod: "xhr",
-        contentURL: "views/filters.html",
+        contentURL: "views/filters.html?v=${CACHEID}",
         onContentLoaded: () => {
             highlightSelectedStatus();
         },
@@ -1437,9 +1437,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 left: 0
             },
             loadMethod: "xhr",
-            contentURL: "views/search.html",
+            contentURL: "views/search.html?v=${CACHEID}",
             require: {
-                js: ["scripts/search.js"],
+                js: ["scripts/search.js?v=${CACHEID}"],
                 onload: () => {
                     isSearchPanelLoaded = true;
                 },
@@ -1462,7 +1462,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 left: 0
             },
             loadMethod: "xhr",
-            contentURL: "views/rss.html",
+            contentURL: "views/rss.html?v=${CACHEID}",
             onContentLoaded: () => {
                 isRssPanelLoaded = true;
             },
@@ -1484,15 +1484,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 left: 0
             },
             loadMethod: "xhr",
-            contentURL: "views/log.html",
+            contentURL: "views/log.html?v=${CACHEID}",
             require: {
-                css: ["css/vanillaSelectBox.css"],
-                js: ["scripts/lib/vanillaSelectBox.js"],
+                css: ["css/vanillaSelectBox.css?v=${CACHEID}"],
+                js: ["scripts/lib/vanillaSelectBox.js?v=${CACHEID}"],
                 onload: () => {
                     isLogPanelLoaded = true;
                 },
             },
-            tabsURL: "views/logTabs.html",
+            tabsURL: "views/logTabs.html?v=${CACHEID}",
             tabsOnload: () => {
                 MochaUI.initializeTabs("panelTabs");
 
@@ -1534,7 +1534,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             left: 0
         },
         loadMethod: "xhr",
-        contentURL: "views/transferlist.html",
+        contentURL: "views/transferlist.html?v=${CACHEID}",
         onContentLoaded: () => {
             handleDownloadParam();
             updateMainData();
@@ -1561,9 +1561,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
             bottom: 0,
             left: 0
         },
-        contentURL: "views/properties.html",
+        contentURL: "views/properties.html?v=${CACHEID}",
         require: {
-            js: ["scripts/prop-general.js", "scripts/prop-trackers.js", "scripts/prop-peers.js", "scripts/prop-webseeds.js", "scripts/prop-files.js"],
+            js: [
+                "scripts/prop-general.js?v=${CACHEID}",
+                "scripts/prop-trackers.js?v=${CACHEID}",
+                "scripts/prop-peers.js?v=${CACHEID}",
+                "scripts/prop-webseeds.js?v=${CACHEID}",
+                "scripts/prop-files.js?v=${CACHEID}"
+            ],
             onload: () => {
                 updatePropertiesPanel = () => {
                     switch (LocalPreferences.get("selected_properties_tab")) {
@@ -1586,7 +1592,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 };
             }
         },
-        tabsURL: "views/propertiesToolbar.html",
+        tabsURL: "views/propertiesToolbar.html?v=${CACHEID}",
         tabsOnload: () => {}, // must be included, otherwise panel won't load properly
         onContentLoaded: function() {
             this.panelHeaderCollapseBoxEl.classList.add("invisible");
@@ -1691,7 +1697,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     icon: "images/qbittorrent-tray.svg",
                     title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
                     loadMethod: "iframe",
-                    contentURL: "upload.html",
+                    contentURL: "upload.html?v=${CACHEID}",
                     addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
                     scrollbars: true,
                     maximizable: false,
@@ -1730,6 +1736,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 const id = "downloadPage";
                 const contentURL = new URL("download.html", window.location);
                 contentURL.search = new URLSearchParams({
+                    v: CACHEID,
                     urls: urls.map(encodeURIComponent).join("|")
                 });
                 new MochaUI.Window({
