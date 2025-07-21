@@ -132,8 +132,12 @@ jobs:
           PACKAGE_RETRY=0
           while [ "$PACKAGE_RETRY" -lt "3" ]; do
             macdeployqt "$appName.app" -no-strip
+            # sign
             xattr -cr "$appName.app"
-            codesign --force --deep --sign - "$appName.app"
+            codesign --force --sign - --options runtime $appName.app/Contents/Frameworks/*
+            codesign --force --sign - --options runtime "$appName.app/Contents/MacOS/$appName"
+            codesign --force --sign - --options runtime "$appName.app"
+            codesign --verify --deep --strict -v "$appName.app"
             hdiutil create -fs HFS+ -srcfolder "$appName.app" -volname "$appName" "$appName.dmg"
             if [ -f "$appName.dmg" ]; then
               break
