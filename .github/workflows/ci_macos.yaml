@@ -134,9 +134,10 @@ jobs:
             macdeployqt "$appName.app" -no-strip
             # sign
             xattr -cr "$appName.app"
-            codesign --force --sign - --options runtime $appName.app/Contents/Frameworks/*
-            codesign --force --sign - --options runtime "$appName.app/Contents/MacOS/$appName"
-            codesign --force --sign - --options runtime "$appName.app"
+            codesign --force --sign - --options runtime \
+              "$appName.app/Contents/Frameworks"/* \
+              "$appName.app/Contents/MacOS/$appName" \
+              "$appName.app"
             codesign --verify --deep --strict -v "$appName.app"
             hdiutil create -fs HFS+ -srcfolder "$appName.app" -volname "$appName" "$appName.dmg"
             if [ -f "$appName.dmg" ]; then
