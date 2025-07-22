@@ -122,25 +122,24 @@ jobs:
 
       - name: Prepare build artifacts
         run: |
-          # create .dmg
           appName="qbittorrent"
           if [ "${{ matrix.qbt_gui }}" = "GUI=OFF" ]; then
             appName="qbittorrent-nox"
           fi
-          # package
           pushd build
+          # packaging
+          macdeployqt "$appName.app" -no-strip
+          # code signing
+          xattr -cr "$appName.app"
+          codesign --force --sign - --options runtime \
+            "$appName.app" \
+            "$appName.app/Contents/Frameworks"/* \
+            "$appName.app/Contents/MacOS/$appName"
+          codesign --verify --deep --strict -v "$appName.app"
+          # create .dmg
           PACKAGE_RETRY=0
           while [ "$PACKAGE_RETRY" -lt "3" ]; do
-            macdeployqt "$appName.app" -no-strip
-            # sign
-            xattr -cr "$appName.app"
-            codesign --force --sign - --options runtime \
-              "$appName.app/Contents/Frameworks"/* \
-              "$appName.app/Contents/MacOS/$appName" \
-              "$appName.app"
-            codesign --verify --deep --strict -v "$appName.app"
-            hdiutil create -fs HFS+ -srcfolder "$appName.app" -volname "$appName" "$appName.dmg"
-            if [ -f "$appName.dmg" ]; then
+            if hdiutil create -fs HFS+ -srcfolder "$appName.app" -volname "$appName" "$appName.dmg"; then
               break
             fi
             sleep 5
