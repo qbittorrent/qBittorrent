@@ -799,7 +799,7 @@
         const editUrl = (path, url) => {
             const contentURL = new URL("editfeedurl.html", window.location);
             contentURL.search = new URLSearchParams({
-                v: CACHEID,
+                v: "${CACHEID}",
                 path: path,
                 url: url
             });

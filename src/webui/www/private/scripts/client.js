@@ -1736,7 +1736,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 const id = "downloadPage";
                 const contentURL = new URL("download.html", window.location);
                 contentURL.search = new URLSearchParams({
-                    v: CACHEID,
+                    v: "${CACHEID}",
                     urls: urls.map(encodeURIComponent).join("|")
                 });
                 new MochaUI.Window({
