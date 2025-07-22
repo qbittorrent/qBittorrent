@@ -3039,14 +3039,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             return rows;
         }
 
-        setIgnored(rowId, ignore) {
-            const row = this.rows.get(rowId.toString());
-            if (ignore)
-                row.full_data.remaining = 0;
-            else
-                row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
-        }
-
         setupCommonEvents() {
             super.setupCommonEvents();
             this.dynamicTableDiv.addEventListener("keydown", (e) => {
