@@ -29,6 +29,8 @@
 
 #include "programupdater.h"
 
+#include <algorithm>
+
 #include <libtorrent/version.hpp>
 
 #include <QtCore/qconfig.h>
@@ -44,7 +46,6 @@
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
-#include "base/utils/version.h"
 #include "base/version.h"
 
 namespace
@@ -80,32 +81,50 @@ namespace
     }
 }
 
-void ProgramUpdater::checkForUpdates() const
+void ProgramUpdater::checkForUpdates()
 {
-    const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)");
-    const auto RSS_URL = u"https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml"_s;
-    const auto FALLBACK_URL = u"https://www.qbittorrent.org/versions.json"_s;
-
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
-    Net::DownloadManager::instance()->download(Net::DownloadRequest(RSS_URL).userAgent(USER_AGENT)
-            , Preferences::instance()->useProxyForGeneralPurposes(), this, &ProgramUpdater::rssDownloadFinished);
-    Net::DownloadManager::instance()->download(Net::DownloadRequest(FALLBACK_URL).userAgent(USER_AGENT)
-            , Preferences::instance()->useProxyForGeneralPurposes(), this, &ProgramUpdater::fallbackDownloadFinished);
+    const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)");
+    const auto FOSSHUB_URL = u"https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml"_s;
+    const auto QBT_MAIN_URL = u"https://www.qbittorrent.org/versions.json"_s;
+    const auto QBT_BACKUP_URL = u"https://qbittorrent.github.io/qBittorrent-website/versions.json"_s;
 
-    m_hasCompletedOneReq = false;
+    Net::DownloadManager *netManager = Net::DownloadManager::instance();
+    const bool useProxy = Preferences::instance()->useProxyForGeneralPurposes();
+
+    m_pendingRequestCount = 3;
+    netManager->download(Net::DownloadRequest(FOSSHUB_URL).userAgent(USER_AGENT), useProxy, this, &ProgramUpdater::rssDownloadFinished);
+    // don't use the custom user agent for the following requests, disguise as a normal browser instead
+    netManager->download(Net::DownloadRequest(QBT_MAIN_URL), useProxy, this, [this](const Net::DownloadResult &result)
+    {
+        fallbackDownloadFinished(result, m_qbtMainVersion);
+    });
+    netManager->download(Net::DownloadRequest(QBT_BACKUP_URL), useProxy, this, [this](const Net::DownloadResult &result)
+    {
+        fallbackDownloadFinished(result, m_qbtBackupVersion);
+    });
 }
 
 ProgramUpdater::Version ProgramUpdater::getNewVersion() const
 {
-    return shouldUseFallback() ? m_fallbackRemoteVersion : m_remoteVersion;
+    switch (getLatestRemoteSource())
+    {
+    case RemoteSource::Fosshub:
+        return m_fosshubVersion;
+    case RemoteSource::QbtMain:
+        return m_qbtMainVersion;
+    case RemoteSource::QbtBackup:
+        return m_qbtBackupVersion;
+    }
+    Q_UNREACHABLE();
 }
 
 void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status != Net::DownloadStatus::Success)
     {
-        LogMsg(tr("Failed to download the update info. URL: %1. Error: %2").arg(result.url, result.errorString) , Log::WARNING);
+        LogMsg(tr("Failed to download the program update info. URL: \"%1\". Error: \"%2\"").arg(result.url, result.errorString) , Log::WARNING);
         handleFinishedRequest();
         return;
     }
@@ -150,10 +169,10 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
                     if (!version.isEmpty())
                     {
                         qDebug("Detected version is %s", qUtf8Printable(version));
-                        const ProgramUpdater::Version tmpVer {version};
+                        const Version tmpVer {version};
                         if (isVersionMoreRecent(tmpVer))
                         {
-                            m_remoteVersion = tmpVer;
+                            m_fosshubVersion = tmpVer;
                             m_updateURL = updateLink;
                         }
                     }
@@ -171,11 +190,13 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     handleFinishedRequest();
 }
 
-void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result)
+void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result, Version &version)
 {
+    version = {};
+
     if (result.status != Net::DownloadStatus::Success)
     {
-        LogMsg(tr("Failed to download the update info. URL: %1. Error: %2").arg(result.url, result.errorString) , Log::WARNING);
+        LogMsg(tr("Failed to download the program update info. URL: \"%1\". Error: \"%2\"").arg(result.url, result.errorString) , Log::WARNING);
         handleFinishedRequest();
         return;
     }
@@ -190,9 +211,9 @@ void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result)
 
     if (const QJsonValue verJSON = json[platformKey][u"version"_s]; verJSON.isString())
     {
-        const ProgramUpdater::Version tmpVer {verJSON.toString()};
+        const Version tmpVer {verJSON.toString()};
         if (isVersionMoreRecent(tmpVer))
-            m_fallbackRemoteVersion = tmpVer;
+            version = tmpVer;
     }
 
     handleFinishedRequest();
@@ -200,18 +221,33 @@ void ProgramUpdater::fallbackDownloadFinished(const Net::DownloadResult &result)
 
 bool ProgramUpdater::updateProgram() const
 {
-    return QDesktopServices::openUrl(shouldUseFallback() ? u"https://www.qbittorrent.org/download"_s : m_updateURL);
+    switch (getLatestRemoteSource())
+    {
+    case RemoteSource::Fosshub:
+        return QDesktopServices::openUrl(m_updateURL);
+    case RemoteSource::QbtMain:
+        return QDesktopServices::openUrl(u"https://www.qbittorrent.org/download"_s);
+    case RemoteSource::QbtBackup:
+        return QDesktopServices::openUrl(u"https://qbittorrent.github.io/qBittorrent-website/download"_s);
+    }
+    Q_UNREACHABLE();
 }
 
 void ProgramUpdater::handleFinishedRequest()
 {
-    if (m_hasCompletedOneReq)
+    --m_pendingRequestCount;
+    if (m_pendingRequestCount == 0)
         emit updateCheckFinished();
-    else
-        m_hasCompletedOneReq = true;
 }
 
-bool ProgramUpdater::shouldUseFallback() const
+ProgramUpdater::RemoteSource ProgramUpdater::getLatestRemoteSource() const
 {
-    return m_fallbackRemoteVersion > m_remoteVersion;
+    const Version max = std::max({m_fosshubVersion, m_qbtMainVersion, m_qbtBackupVersion});
+    if (max == m_fosshubVersion)
+        return RemoteSource::Fosshub;
+    if (max == m_qbtMainVersion)
+        return RemoteSource::QbtMain;
+    if (max == m_qbtBackupVersion)
+        return RemoteSource::QbtBackup;
+    Q_UNREACHABLE();
 }
