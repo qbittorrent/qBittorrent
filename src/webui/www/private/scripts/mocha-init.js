@@ -634,7 +634,7 @@ const initializeWindows = () => {
                         hashes: hashes,
                         enable: enableAutoTMM
                     },
-                    contentURL: "views/confirmAutoTMM.htm?v=${CACHEID}l"
+                    contentURL: "views/confirmAutoTMM.html?v=${CACHEID}"
                 });
             }
             else {
@@ -666,7 +666,7 @@ const initializeWindows = () => {
                     id: "confirmRecheckDialog",
                     title: "QBT_TR(Recheck confirmation)QBT_TR[CONTEXT=confirmRecheckDialog]",
                     data: { hashes: hashes },
-                    contentURL: "views/confirmRecheck.htm?v=${CACHEID}l"
+                    contentURL: "views/confirmRecheck.html?v=${CACHEID}"
                 });
             }
             else {
