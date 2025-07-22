@@ -131,7 +131,15 @@ jobs:
           pushd build
           PACKAGE_RETRY=0
           while [ "$PACKAGE_RETRY" -lt "3" ]; do
-            macdeployqt "$appName.app" -dmg -no-strip
+            macdeployqt "$appName.app" -no-strip
+            # sign
+            xattr -cr "$appName.app"
+            codesign --force --sign - --options runtime \
+              "$appName.app/Contents/Frameworks"/* \
+              "$appName.app/Contents/MacOS/$appName" \
+              "$appName.app"
+            codesign --verify --deep --strict -v "$appName.app"
+            hdiutil create -fs HFS+ -srcfolder "$appName.app" -volname "$appName" "$appName.dmg"
             if [ -f "$appName.dmg" ]; then
               break
             fi
