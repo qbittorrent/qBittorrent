@@ -256,9 +256,7 @@
                 document.getElementById("renameOptions").disabled = false;
 
                 // Recreate table
-                let selectedRows = bulkRenameFilesTable.getSelectedRows().map(row => row.rowId.toString());
-                for (const renamedRow of rows)
-                    selectedRows = selectedRows.filter(selectedRow => selectedRow !== renamedRow.rowId.toString());
+                const selectedRows = bulkRenameFilesTable.getSelectedRows().map(row => row.rowId.toString());
                 bulkRenameFilesTable.clear();
 
                 // Adjust file enumeration count by 1 when replacing single files to prevent naming conflicts
@@ -379,7 +377,7 @@
                 url.search = new URLSearchParams({
                     hash: data.hash
                 });
-                fetch(url, {
+                return fetch(url, {
                         method: "GET",
                         cache: "no-store"
                     })
@@ -394,7 +392,11 @@
                             handleTorrentFiles(files, selectedRows);
                     });
             };
-            setupTable(data.selectedRows);
+            setupTable(data.selectedRows).then(() => {
+                document.getElementById("rootMultiRename_cb").click();
+            }).catch((error) => {
+                console.error("Error setting up the table:", error);
+            });
         })();
     </script>
 </head>
