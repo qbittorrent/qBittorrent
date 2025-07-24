@@ -74,7 +74,7 @@ Session::Session()
     m_confFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
     m_confFileStorage->moveToThread(m_workingThread.get());
     connect(m_workingThread.get(), &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_confFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
+    connect(m_confFileStorage, &AsyncFileStorage::failed, this, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS session configuration. File: \"%1\". Error: \"%2\"")
                .arg(fileName.toString(), errorString), Log::WARNING);
@@ -83,7 +83,7 @@ Session::Session()
     m_dataFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Data) / Path(DATA_FOLDER_NAME));
     m_dataFileStorage->moveToThread(m_workingThread.get());
     connect(m_workingThread.get(), &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
+    connect(m_dataFileStorage, &AsyncFileStorage::failed, this, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS session data. File: \"%1\". Error: \"%2\"")
                .arg(fileName.toString(), errorString), Log::WARNING);

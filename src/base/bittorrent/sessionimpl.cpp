@@ -1649,7 +1649,7 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
 
         if (context->currentStorageType == ResumeDataStorageType::Legacy)
         {
-            connect(context->startupStorage, &QObject::destroyed, [dbPath]
+            connect(context->startupStorage, &QObject::destroyed, this, [dbPath]
             {
                 Utils::Fs::removeFile(dbPath);
             });
