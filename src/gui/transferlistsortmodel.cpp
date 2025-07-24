@@ -123,6 +123,11 @@ void TransferListSortModel::sort(const int column, const Qt::SortOrder order)
     QSortFilterProxyModel::sort(column, order);
 }
 
+TorrentFilter::Type TransferListSortModel::getType() const
+{
+    return m_filter.getType();
+}
+
 void TransferListSortModel::setStatusFilter(const TorrentFilter::Type filter)
 {
     if (m_filter.setType(filter))
