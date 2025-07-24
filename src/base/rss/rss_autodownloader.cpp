@@ -118,7 +118,7 @@ AutoDownloader::AutoDownloader(IApplication *app)
 
     m_fileStorage->moveToThread(m_ioThread.get());
     connect(m_ioThread.get(), &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_fileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
+    connect(m_fileStorage, &AsyncFileStorage::failed, this, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS AutoDownloader data in %1. Error: %2")
                .arg(fileName.toString(), errorString), Log::CRITICAL);
