@@ -2959,3 +2959,8 @@ QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
 
     return future;
 }
+
+void TorrentImpl::setComment(const QString &comment)
+{
+    m_comment = comment;
+}

@@ -2143,3 +2143,20 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
             iter.value().setTorrentInfo(info);
     }
 }
+
+void TorrentsController::setCommentAction()
+{
+    requireParams({u"hash"_s, u"comment"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    QString comment = params()[u"comment"_s].trimmed();
+
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    comment.replace(QRegularExpression(u"\r?\n|\r"_s), u" "_s);
+    torrent->setComment(comment);
+
+    setResult(QString());
+}
