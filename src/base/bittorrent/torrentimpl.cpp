@@ -2966,6 +2966,9 @@ QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
 
 void TorrentImpl::setComment(const QString &comment)
 {
-    m_comment = comment;
-    deferredRequestResumeData();
+    if (m_comment != comment)
+    {
+        m_comment = comment;
+        deferredRequestResumeData();
+    }
 }
