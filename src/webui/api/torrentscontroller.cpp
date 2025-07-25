@@ -2154,8 +2154,8 @@ void TorrentsController::setCommentAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    QString comment = params()[u"comment"_s].trimmed();
-    comment.replace(QRegularExpression(u"\r?\n"_s), u" "_s);
+    QString comment = params()[u"comment"_s].trimmed()
+        .replace(QRegularExpression(u"\r?\n"_s), u" "_s);
     torrent->setComment(comment);
 
     setResult(QString());
