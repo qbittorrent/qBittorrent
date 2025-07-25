@@ -2149,12 +2149,12 @@ void TorrentsController::setCommentAction()
     requireParams({u"hash"_s, u"comment"_s});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-    QString comment = params()[u"comment"_s].trimmed();
 
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
+    QString comment = params()[u"comment"_s].trimmed();
     comment.replace(QRegularExpression(u"\r?\n|\r"_s), u" "_s);
     torrent->setComment(comment);
 
