@@ -2146,17 +2146,14 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
 
 void TorrentsController::setCommentAction()
 {
-    requireParams({u"hash"_s, u"comment"_s});
+    requireParams({u"hashes"_s, u"comment"_s});
 
-    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
-
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
-    if (!torrent)
-        throw APIError(APIErrorType::NotFound);
-
-    QString comment = params()[u"comment"_s].trimmed()
+    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    const QString comment = params()[u"comment"_s].trimmed()
         .replace(QRegularExpression(u"\r?\n"_s), u" "_s);
-    torrent->setComment(comment);
 
-    setResult(QString());
+    applyToTorrents(hashes, [&comment](BitTorrent::Torrent *const torrent)
+    {
+        torrent->setComment(comment);
+    });
 }
