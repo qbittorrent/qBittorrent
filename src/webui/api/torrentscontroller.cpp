@@ -2143,3 +2143,17 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
             iter.value().setTorrentInfo(info);
     }
 }
+
+void TorrentsController::setCommentAction()
+{
+    requireParams({u"hashes"_s, u"comment"_s});
+
+    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    const QString comment = params()[u"comment"_s].trimmed()
+        .replace(QRegularExpression(u"\r?\n"_s), u" "_s);
+
+    applyToTorrents(hashes, [&comment](BitTorrent::Torrent *const torrent)
+    {
+        torrent->setComment(comment);
+    });
+}
