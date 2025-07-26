@@ -80,6 +80,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 {
 #ifdef Q_OS_MACOS
     desktopIntegrationInstance = this;
+    MacUtils::askForNotificationPermission();
     MacUtils::overrideDockClickHandler(handleDockClicked);
     m_menu->setAsDockMenu();
 #else
