@@ -1008,7 +1008,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("UpInfos").textContent = transfer_info;
 
         document.title = (speedInTitle
-                ? (`QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] `
+                ? ("QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
                     .replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true))
                     .replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)))
                 : "")

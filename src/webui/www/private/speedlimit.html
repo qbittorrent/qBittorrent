@@ -98,8 +98,8 @@
 
             document.getElementById("limitUpdateLabel").textContent =
                 isUpload
-                ? `QBT_TR(Upload limit:)QBT_TR[CONTEXT=SpeedLimit]`
-                : `QBT_TR(Download limit:)QBT_TR[CONTEXT=SpeedLimit]`;
+                ? "QBT_TR(Upload limit:)QBT_TR[CONTEXT=SpeedLimit]"
+                : "QBT_TR(Download limit:)QBT_TR[CONTEXT=SpeedLimit]";
 
             fetch(`api/v2/transfer/${getLimitMethod}`, {
                     method: "GET",
