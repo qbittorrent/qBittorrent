@@ -196,7 +196,7 @@ const initializeWindows = () => {
 
         if (urls && (urls.length > 0)) {
             contentURL.search = new URLSearchParams({
-                v: CACHEID,
+                v: "${CACHEID}",
                 urls: urls.map(encodeURIComponent).join("|")
             });
         }
@@ -325,7 +325,7 @@ const initializeWindows = () => {
     globalUploadLimitFN = () => {
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             hashes: "global",
             type: "upload",
         });
@@ -352,7 +352,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             hashes: hashes.join("|"),
             type: "upload",
         });
@@ -399,7 +399,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("shareratio.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             hashes: hashes.join("|"),
             // if all torrents have same share ratio, display that share ratio. else use the default
             orig: torrentsHaveSameShareRatio ? shareRatio : ""
@@ -476,7 +476,7 @@ const initializeWindows = () => {
     globalDownloadLimitFN = () => {
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             hashes: "global",
             type: "download",
         });
@@ -524,7 +524,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("speedlimit.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             hashes: hashes.join("|"),
             type: "download",
         });
@@ -634,7 +634,7 @@ const initializeWindows = () => {
                         hashes: hashes,
                         enable: enableAutoTMM
                     },
-                    contentURL: "views/confirmAutoTMM.htm?v=${CACHEID}l"
+                    contentURL: "views/confirmAutoTMM.html?v=${CACHEID}"
                 });
             }
             else {
@@ -666,7 +666,7 @@ const initializeWindows = () => {
                     id: "confirmRecheckDialog",
                     title: "QBT_TR(Recheck confirmation)QBT_TR[CONTEXT=confirmRecheckDialog]",
                     data: { hashes: hashes },
-                    contentURL: "views/confirmRecheck.htm?v=${CACHEID}l"
+                    contentURL: "views/confirmRecheck.html?v=${CACHEID}"
                 });
             }
             else {
@@ -708,7 +708,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("setlocation.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             hashes: hashes.join("|"),
             path: encodeURIComponent(torrentsTable.getRow(hashes[0]).full_data.save_path)
         });
@@ -739,7 +739,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("rename.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             hash: hashes[0],
             name: row.full_data.name
         });
@@ -875,7 +875,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             action: "set",
             hashes: hashes.join("|")
         });
@@ -918,7 +918,7 @@ const initializeWindows = () => {
     createCategoryFN = () => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             action: "create"
         });
         new MochaUI.Window({
@@ -940,7 +940,7 @@ const initializeWindows = () => {
     createSubcategoryFN = (category) => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             action: "createSubcategory",
             categoryName: `${category}/`
         });
@@ -963,7 +963,7 @@ const initializeWindows = () => {
     editCategoryFN = (category) => {
         const contentURL = new URL("newcategory.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             action: "edit",
             categoryName: category
         });
@@ -1027,7 +1027,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("newtag.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             action: "set",
             hashes: hashes.join("|")
         });
@@ -1076,7 +1076,7 @@ const initializeWindows = () => {
     createTagFN = () => {
         const contentURL = new URL("newtag.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             action: "create"
         });
         new MochaUI.Window({
@@ -1131,7 +1131,7 @@ const initializeWindows = () => {
 
         const contentURL = new URL("confirmtrackerdeletion.html", window.location);
         contentURL.search = new URLSearchParams({
-            v: CACHEID,
+            v: "${CACHEID}",
             host: trackerHost,
             urls: [...trackerMap.get(trackerHost).keys()].map(encodeURIComponent).join("|")
         });
