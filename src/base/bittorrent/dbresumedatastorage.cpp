@@ -67,7 +67,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_s;
 
-    const int DB_VERSION = 8;
+    const int DB_VERSION = 9;
 
     const QString DB_TABLE_META = u"meta"_s;
     const QString DB_TABLE_TORRENTS = u"torrents"_s;
@@ -131,6 +131,7 @@ namespace
     const Column DB_COLUMN_NAME = makeColumn(u"name"_s);
     const Column DB_COLUMN_CATEGORY = makeColumn(u"category"_s);
     const Column DB_COLUMN_TAGS = makeColumn(u"tags"_s);
+    const Column DB_COLUMN_COMMENT = makeColumn(u"comment"_s);
     const Column DB_COLUMN_TARGET_SAVE_PATH = makeColumn(u"target_save_path"_s);
     const Column DB_COLUMN_DOWNLOAD_PATH = makeColumn(u"download_path"_s);
     const Column DB_COLUMN_CONTENT_LAYOUT = makeColumn(u"content_layout"_s);
@@ -461,6 +462,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_NAME, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_CATEGORY, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_TAGS, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_COMMENT, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_TARGET_SAVE_PATH, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_CONTENT_LAYOUT, u"TEXT NOT NULL"_s),
@@ -578,6 +580,9 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
                 throw RuntimeError(query.lastError().text());
         }
 
+        if (fromVersion <= 8)
+            addColumn(DB_TABLE_TORRENTS, DB_COLUMN_COMMENT, u"TEXT"_s);
+
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
         if (!query.prepare(updateMetaVersionQuery))
             throw RuntimeError(query.lastError().text());
@@ -619,6 +624,7 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
     LoadTorrentParams resumeData;
     resumeData.name = query.value(DB_COLUMN_NAME.name).toString();
     resumeData.category = query.value(DB_COLUMN_CATEGORY.name).toString();
+    resumeData.comment = query.value(DB_COLUMN_COMMENT.name).toString();
     const QString tagsData = query.value(DB_COLUMN_TAGS.name).toString();
     if (!tagsData.isEmpty())
     {
@@ -834,6 +840,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             DB_COLUMN_NAME,
             DB_COLUMN_CATEGORY,
             DB_COLUMN_TAGS,
+            DB_COLUMN_COMMENT,
             DB_COLUMN_TARGET_SAVE_PATH,
             DB_COLUMN_DOWNLOAD_PATH,
             DB_COLUMN_CONTENT_LAYOUT,
@@ -899,6 +906,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
             query.bindValue(DB_COLUMN_CATEGORY.placeholder, m_resumeData.category);
             query.bindValue(DB_COLUMN_TAGS.placeholder, (m_resumeData.tags.isEmpty()
                     ? QString() : Utils::String::joinIntoString(m_resumeData.tags, u","_s)));
+            query.bindValue(DB_COLUMN_COMMENT.placeholder, m_resumeData.comment);
             query.bindValue(DB_COLUMN_CONTENT_LAYOUT.placeholder, Utils::String::fromEnum(m_resumeData.contentLayout));
             query.bindValue(DB_COLUMN_RATIO_LIMIT.placeholder, static_cast<int>(m_resumeData.ratioLimit * 1000));
             query.bindValue(DB_COLUMN_SEEDING_TIME_LIMIT.placeholder, m_resumeData.seedingTimeLimit);
