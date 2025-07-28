@@ -2149,8 +2149,7 @@ void TorrentsController::setCommentAction()
     requireParams({u"hashes"_s, u"comment"_s});
 
     const QStringList hashes {params()[u"hashes"_s].split(u'|')};
-    const QString comment = params()[u"comment"_s].trimmed()
-        .replace(QRegularExpression(u"\r?\n"_s), u" "_s);
+    const QString comment = params()[u"comment"_s].trimmed();
 
     applyToTorrents(hashes, [&comment](BitTorrent::Torrent *const torrent)
     {
