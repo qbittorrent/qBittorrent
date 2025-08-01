@@ -2127,9 +2127,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const generateRandomPort = () => {
-            const min = 1024;
-            const max = 65535;
-            const port = Math.floor(Math.random() * (max - min + 1) + min);
+            // don't use modulo operations to avoid 'modulo bias'
+            const buffer = new Uint16Array(1);
+            let port = crypto.getRandomValues(buffer)[0];
+            while (port < 1024)
+                port = crypto.getRandomValues(buffer)[0];
             document.getElementById("portValue").value = port;
         };
 
