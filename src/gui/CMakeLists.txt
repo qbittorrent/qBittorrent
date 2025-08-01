@@ -296,7 +296,10 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         programupdater.h
         programupdater.cpp
     )
-    target_link_libraries(qbt_gui PRIVATE objc)
+    target_link_libraries(qbt_gui PRIVATE
+        objc
+        "-framework UserNotifications"
+    )
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
