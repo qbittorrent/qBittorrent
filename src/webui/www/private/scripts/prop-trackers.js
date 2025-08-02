@@ -44,24 +44,21 @@ window.qBittorrent.PropTrackers ??= (() => {
     let loadTrackersDataTimer = -1;
 
     const trackerStatusText = (tracker) => {
-        if (tracker.updating) {
+        if (tracker.updating)
             return "QBT_TR(Updating...)QBT_TR[CONTEXT=TrackerListWidget]";
-        }
-        else {
-            switch (tracker.status) {
-                case 0:
-                    return "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
-                case 1:
-                    return "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
-                case 2:
-                    return "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]";
-                case 4:
-                    return "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
-                case 5:
-                    return "QBT_TR(Tracker error)QBT_TR[CONTEXT=TrackerListWidget]";
-                case 6:
-                    return "QBT_TR(Unreachable)QBT_TR[CONTEXT=TrackerListWidget]";
-            }
+        switch (tracker.status) {
+            case 0:
+                return "QBT_TR(Disabled)QBT_TR[CONTEXT=TrackerListWidget]";
+            case 1:
+                return "QBT_TR(Not contacted yet)QBT_TR[CONTEXT=TrackerListWidget]";
+            case 2:
+                return "QBT_TR(Working)QBT_TR[CONTEXT=TrackerListWidget]";
+            case 4:
+                return "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]";
+            case 5:
+                return "QBT_TR(Tracker error)QBT_TR[CONTEXT=TrackerListWidget]";
+            case 6:
+                return "QBT_TR(Unreachable)QBT_TR[CONTEXT=TrackerListWidget]";
         }
     };
 
@@ -104,20 +101,21 @@ window.qBittorrent.PropTrackers ??= (() => {
                 if (trackers) {
                     torrentTrackersTable.clear();
 
+                    const notApplicable = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
                     trackers.each((tracker) => {
                         const row = {
                             rowId: tracker.url,
                             tier: (tracker.tier >= 0) ? tracker.tier : "",
-                            bt_version: "",
+                            btVersion: "",
                             url: tracker.url,
                             status: trackerStatusText(tracker),
-                            peers: (tracker.num_peers >= 0) ? tracker.num_peers : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                            seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                            leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                            downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                            peers: (tracker.num_peers >= 0) ? tracker.num_peers : notApplicable,
+                            seeds: (tracker.num_seeds >= 0) ? tracker.num_seeds : notApplicable,
+                            leeches: (tracker.num_leeches >= 0) ? tracker.num_leeches : notApplicable,
+                            downloaded: (tracker.num_downloaded >= 0) ? tracker.num_downloaded : notApplicable,
                             message: tracker.msg,
-                            next_announce: tracker.next_announce,
-                            min_announce: tracker.min_announce,
+                            nextAnnounce: tracker.next_announce,
+                            minAnnounce: tracker.min_announce,
                             _isTracker: true,
                             _hasEndpoints: tracker.endpoints && (tracker.endpoints.length > 0),
                             _sortable: !tracker.url.startsWith("** [")
@@ -130,16 +128,16 @@ window.qBittorrent.PropTrackers ??= (() => {
                                 const row = {
                                     rowId: `endpoint|${tracker.url}|${endpoint.name}`,
                                     tier: "",
-                                    bt_version: `v${endpoint.bt_version}`,
+                                    btVersion: `v${endpoint.bt_version}`,
                                     url: endpoint.name,
                                     status: trackerStatusText(endpoint),
-                                    peers: (endpoint.num_peers >= 0) ? endpoint.num_peers : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                                    seeds: (endpoint.num_seeds >= 0) ? endpoint.num_seeds : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                                    leeches: (endpoint.num_leeches >= 0) ? endpoint.num_leeches : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
-                                    downloaded: (endpoint.num_downloaded >= 0) ? endpoint.num_downloaded : "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]",
+                                    peers: (endpoint.num_peers >= 0) ? endpoint.num_peers : notApplicable,
+                                    seeds: (endpoint.num_seeds >= 0) ? endpoint.num_seeds : notApplicable,
+                                    leeches: (endpoint.num_leeches >= 0) ? endpoint.num_leeches : notApplicable,
+                                    downloaded: (endpoint.num_downloaded >= 0) ? endpoint.num_downloaded : notApplicable,
                                     message: endpoint.msg,
-                                    next_announce: endpoint.next_announce,
-                                    min_announce: endpoint.min_announce,
+                                    nextAnnounce: endpoint.next_announce,
+                                    minAnnounce: endpoint.min_announce,
                                     _isTracker: false,
                                     _tracker: tracker.url,
                                     _sortable: true,

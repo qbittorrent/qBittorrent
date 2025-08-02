@@ -2074,7 +2074,7 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class TorrentTrackersTable extends DynamicTable {
-        collapseState = new Map();
+        collapseState = new Map(); // { rowId: String, isCollapsed: bool }
 
         isTrackerCollapsed(id) {
             return this.collapseState.get(id) ?? true;
@@ -2127,21 +2127,20 @@ window.qBittorrent.DynamicTable ??= (() => {
         initColumns() {
             this.newColumn("url", "", "QBT_TR(URL/Announce Endpoint)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
             this.newColumn("tier", "", "QBT_TR(Tier)QBT_TR[CONTEXT=TrackerListWidget]", 35, true);
-            this.newColumn("bt_version", "", "QBT_TR(BT Protocol)QBT_TR[CONTEXT=TrackerListWidget]", 35, true);
+            this.newColumn("btVersion", "", "QBT_TR(BT Protocol)QBT_TR[CONTEXT=TrackerListWidget]", 35, true);
             this.newColumn("status", "", "QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]", 125, true);
             this.newColumn("peers", "", "QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("seeds", "", "QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("leeches", "", "QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("downloaded", "", "QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
-            this.newColumn("next_announce", "", "QBT_TR(Next Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
-            this.newColumn("min_announce", "", "QBT_TR(Min Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
+            this.newColumn("nextAnnounce", "", "QBT_TR(Next Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
+            this.newColumn("minAnnounce", "", "QBT_TR(Min Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
 
             this.initColumnsFunctions();
         }
 
         initColumnsFunctions() {
-            const that = this;
             const naturalSort = function(row1, row2) {
                 if (!row1.full_data._sortable || !row2.full_data._sortable)
                     return 0;
@@ -2151,7 +2150,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
             };
 
-            this.columns["url"].updateTd = function(td, row) {
+            this.columns["url"].updateTd = (td, row) => {
                 const id = row.rowId;
                 const data = row.full_data;
 
@@ -2162,9 +2161,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                     collapseIcon.className = "filesTableCollapseIcon";
                     collapseIcon.addEventListener("click", (e) => {
                         const id = collapseIcon.dataset.id;
-                        that.toggleTrackerCollapsed(id);
-                        if (that.useVirtualList)
-                            that.rerender();
+                        this.toggleTrackerCollapsed(id);
+                        if (this.useVirtualList)
+                            this.rerender();
                     });
                     td.append(collapseIcon);
                 }
@@ -2172,7 +2171,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     collapseIcon.style.display = "inline";
                     collapseIcon.style.visibility = data._hasEndpoints ? "visible" : "hidden";
                     collapseIcon.dataset.id = id;
-                    collapseIcon.classList.toggle("rotate", that.isTrackerCollapsed(id));
+                    collapseIcon.classList.toggle("rotate", this.isTrackerCollapsed(id));
                 }
                 else {
                     collapseIcon.style.display = "none";
@@ -2184,7 +2183,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(span);
                 }
                 span.id = `trackersTableTrackerUrl${id}`;
-                span.textContent = this.getRowValue(row);
+                span.textContent = data.url;
                 span.style.marginLeft = data._isTracker ? "0" : "20px";
             };
 
@@ -2263,8 +2262,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = duration;
             };
 
-            this.columns["next_announce"].updateTd = friendlyDuration;
-            this.columns["min_announce"].updateTd = friendlyDuration;
+            this.columns["nextAnnounce"].updateTd = friendlyDuration;
+            this.columns["minAnnounce"].updateTd = friendlyDuration;
         }
 
         getFilteredAndSortedRows() {
