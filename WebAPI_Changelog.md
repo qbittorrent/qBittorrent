@@ -1,5 +1,13 @@
 # WebAPI Changelog
 
+## 2.13.0
+
+* [#23045](https://github.com/qbittorrent/qBittorrent/pull/23045)
+  * `torrents/trackers` returns three new fields: `next_announce`, `min_announce` and `endpoints`
+    * `endpoints` is an array of tracker endpoints, each with `name`, `updating`, `status`, `msg`, `bt_version`, `num_peers`, `num_peers`, `num_leeches`, `num_downloaded`, `next_announce` and `min_announce` fields
+  *  `torrents/trackers` now returns `5` and `6` in `status` field as possible values
+    * `5` for `Tracker error` and `6` for `Unreachable`
+
 ## 2.12.0
 
 * [#22989](https://github.com/qbittorrent/qBittorrent/pull/22989)
