@@ -531,8 +531,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return li;
             };
 
-            const autoResizeAllElement = createResizeElement("Resize All", "#autoResizeAllAction");
-            const autoResizeElement = createResizeElement("Resize", "#autoResizeAction");
+            const autoResizeAllElement = createResizeElement("QBT_TR(Resize All)QBT_TR[CONTEXT=ListWidget]", "#autoResizeAllAction");
+            const autoResizeElement = createResizeElement("QBT_TR(Resize)QBT_TR[CONTEXT=ListWidget]", "#autoResizeAction");
 
             ul.firstElementChild.classList.add("separator");
             ul.insertBefore(autoResizeAllElement, ul.firstElementChild);
