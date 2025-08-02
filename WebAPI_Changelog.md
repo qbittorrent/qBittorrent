@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.12.1
+* [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
+  * Add `torrents/setComment` endpoint with parameters `hashes` and `comment` for setting a new torrent comment
+
 ## 2.12.0
 
 * [#22989](https://github.com/qbittorrent/qBittorrent/pull/22989)

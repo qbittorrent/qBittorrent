@@ -144,6 +144,7 @@ namespace BitTorrent
         virtual QDateTime creationDate() const = 0;
         virtual QString creator() const = 0;
         virtual QString comment() const = 0;
+        virtual void setComment(const QString &comment) = 0;
         virtual bool isPrivate() const = 0;
         virtual qlonglong totalSize() const = 0;
         virtual qlonglong wantedSize() const = 0;

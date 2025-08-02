@@ -1591,6 +1591,19 @@ void TorrentsController::renameAction()
     setResult(QString());
 }
 
+void TorrentsController::setCommentAction()
+{
+    requireParams({u"hashes"_s, u"comment"_s});
+
+    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    const QString comment = params()[u"comment"_s].trimmed();
+
+    applyToTorrents(hashes, [&comment](BitTorrent::Torrent *const torrent)
+    {
+        torrent->setComment(comment);
+    });
+}
+
 void TorrentsController::setAutoManagementAction()
 {
     requireParams({u"hashes"_s, u"enable"_s});

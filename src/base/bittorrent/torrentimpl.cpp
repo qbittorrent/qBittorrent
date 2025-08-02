@@ -367,6 +367,9 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
         }
     }
 
+    if (!params.comment.isEmpty())
+        m_comment = params.comment;
+
     setStopCondition(params.stopCondition);
 
     const auto *extensionData = static_cast<ExtensionData *>(m_ltAddTorrentParams.userdata);
@@ -438,6 +441,15 @@ QString TorrentImpl::creator() const
 QString TorrentImpl::comment() const
 {
     return m_comment;
+}
+
+void TorrentImpl::setComment(const QString &comment)
+{
+    if (m_comment != comment)
+    {
+        m_comment = comment;
+        deferredRequestResumeData();
+    }
 }
 
 bool TorrentImpl::isPrivate() const
@@ -2210,6 +2222,7 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         .tags = m_tags,
         .savePath = (!m_useAutoTMM ? m_savePath : Path()),
         .downloadPath = (!m_useAutoTMM ? m_downloadPath : Path()),
+        .comment = m_comment,
         .contentLayout = m_contentLayout,
         .operatingMode = m_operatingMode,
         .useAutoTMM = m_useAutoTMM,
