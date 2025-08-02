@@ -443,6 +443,15 @@ QString TorrentImpl::comment() const
     return m_comment;
 }
 
+void TorrentImpl::setComment(const QString &comment)
+{
+    if (m_comment != comment)
+    {
+        m_comment = comment;
+        deferredRequestResumeData();
+    }
+}
+
 bool TorrentImpl::isPrivate() const
 {
     return m_torrentInfo.isPrivate();
@@ -2962,13 +2971,4 @@ QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
     });
 
     return future;
-}
-
-void TorrentImpl::setComment(const QString &comment)
-{
-    if (m_comment != comment)
-    {
-        m_comment = comment;
-        deferredRequestResumeData();
-    }
 }

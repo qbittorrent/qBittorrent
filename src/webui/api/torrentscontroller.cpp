@@ -1591,6 +1591,19 @@ void TorrentsController::renameAction()
     setResult(QString());
 }
 
+void TorrentsController::setCommentAction()
+{
+    requireParams({u"hashes"_s, u"comment"_s});
+
+    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
+    const QString comment = params()[u"comment"_s].trimmed();
+
+    applyToTorrents(hashes, [&comment](BitTorrent::Torrent *const torrent)
+    {
+        torrent->setComment(comment);
+    });
+}
+
 void TorrentsController::setAutoManagementAction()
 {
     requireParams({u"hashes"_s, u"enable"_s});
@@ -2142,17 +2155,4 @@ void TorrentsController::onMetadataDownloaded(const BitTorrent::TorrentInfo &inf
         if (auto iter = m_torrentMetadataCache.find(v1TorrentID); iter != m_torrentMetadataCache.end())
             iter.value().setTorrentInfo(info);
     }
-}
-
-void TorrentsController::setCommentAction()
-{
-    requireParams({u"hashes"_s, u"comment"_s});
-
-    const QStringList hashes {params()[u"hashes"_s].split(u'|')};
-    const QString comment = params()[u"comment"_s].trimmed();
-
-    applyToTorrents(hashes, [&comment](BitTorrent::Torrent *const torrent)
-    {
-        torrent->setComment(comment);
-    });
 }
