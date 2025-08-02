@@ -126,7 +126,7 @@ window.qBittorrent.PropTrackers ??= (() => {
                         if (tracker.endpoints !== undefined) {
                             for (const endpoint of tracker.endpoints) {
                                 const row = {
-                                    rowId: `endpoint|${tracker.url}|${endpoint.name}`,
+                                    rowId: `endpoint|${tracker.url}|${endpoint.name}|${endpoint.bt_version}`,
                                     tier: "",
                                     btVersion: `v${endpoint.bt_version}`,
                                     url: endpoint.name,
