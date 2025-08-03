@@ -87,7 +87,7 @@ namespace
 QPointer<SearchPluginManager> SearchPluginManager::m_instance = nullptr;
 
 SearchPluginManager::SearchPluginManager()
-    : m_updateUrl(u"https://searchplugins.qbittorrent.org/nova3/engines/"_s)
+    : m_updateUrl(u"https://raw.githubusercontent.com/qbittorrent/search-plugins/refs/heads/master/nova3/engines/"_s)
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
