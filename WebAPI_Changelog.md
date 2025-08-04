@@ -6,6 +6,9 @@
     * `endpoints` is an array of tracker endpoints, each with `name`, `updating`, `status`, `msg`, `bt_version`, `num_peers`, `num_peers`, `num_leeches`, `num_downloaded`, `next_announce` and `min_announce` fields
   *  `torrents/trackers` now returns `5` and `6` in `status` field as possible values
     * `5` for `Tracker error` and `6` for `Unreachable`
+* [#23061](https://github.com/qbittorrent/qBittorrent/pull/23061)
+  * `sync/torrentPeers` returns one new field: `i2p_dest`, only when the peer is from I2P
+    * In this case, the fields `ip` and `port` are not returned
 
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
