@@ -54,6 +54,8 @@
 #include "base/global.h"
 #include "base/path.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelitem.h"
@@ -299,9 +301,27 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         case TorrentContentModelItem::COL_NAME:
             {
                 const QString currentName = item->name();
-                const QString newName = value.toString();
+                QString newName = value.toString().trimmed();
                 if (currentName != newName)
                 {
+                    bool invalid = newName.isEmpty() || (newName == u"."_s) || (newName == u".."_s) || (newName.length() > 255);
+                    if (!invalid)
+                    {
+                        for (const QChar &c : newName)
+                        {
+                            const ushort unicode = c.unicode();
+                            if ((unicode < 32) || (unicode == 127) || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') || (c == u'/') || (c == u'\\') || (c == u'|') || (c == u'?') || (c == u'*'))
+                            {
+                                invalid = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (invalid)
+                    {
+                        emit renameFailed(tr("The name \"%1\" is invalid.").arg(newName));
+                        return false;
+                    }
                     try
                     {
                         const Path parentPath = getItemPath(index.parent());
