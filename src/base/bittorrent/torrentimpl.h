@@ -106,6 +106,7 @@ namespace BitTorrent
         QDateTime creationDate() const override;
         QString creator() const override;
         QString comment() const override;
+        void setComment(const QString &comment) override;
         bool isPrivate() const override;
         qlonglong totalSize() const override;
         qlonglong wantedSize() const override;

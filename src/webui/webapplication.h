@@ -53,7 +53,7 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 12, 0};
+inline const Utils::Version<3, 2> API_VERSION {2, 12, 1};
 
 class APIController;
 class AuthController;
@@ -200,6 +200,7 @@ private:
         {{u"torrents"_s, u"renameFolder"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setAutoManagement"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setCategory"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"setComment"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setDownloadPath"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setForceStart"_s}, Http::METHOD_POST},

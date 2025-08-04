@@ -50,6 +50,7 @@ namespace BitTorrent
         TagSet tags;
         Path savePath;
         Path downloadPath;
+        QString comment;
         TorrentContentLayout contentLayout = TorrentContentLayout::Original;
         TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
         bool useAutoTMM = false;
