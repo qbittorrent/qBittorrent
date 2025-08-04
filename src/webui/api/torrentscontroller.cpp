@@ -276,13 +276,14 @@ namespace
 
     QJsonArray getTrackers(const BitTorrent::Torrent *const torrent)
     {
-        const auto toSecondsSinceEpoch = [](const std::chrono::nanoseconds &duration) -> qint64
+        const auto now = std::chrono::system_clock::now();
+        const auto timepointNow = BitTorrent::AnnounceTimePoint::clock::now();
+        const auto toSecondsSinceEpoch = [&now, &timepointNow](const BitTorrent::AnnounceTimePoint &time) -> qint64
         {
-            const auto time = std::chrono::system_clock::now() + duration;
-            return std::chrono::duration_cast<std::chrono::seconds>(time.time_since_epoch()).count();
+            const auto timeEpoch = (time - timepointNow + now).time_since_epoch();
+            return std::chrono::duration_cast<std::chrono::seconds>(timeEpoch).count();
         };
 
-        const auto now = BitTorrent::AnnounceTimePoint::clock::now();
         QJsonArray trackerList;
 
         for (const BitTorrent::TrackerEntryStatus &tracker : asConst(torrent->trackers()))
@@ -302,8 +303,8 @@ namespace
                     {KEY_TRACKER_SEEDS_COUNT, endpoint.numSeeds},
                     {KEY_TRACKER_LEECHES_COUNT, endpoint.numLeeches},
                     {KEY_TRACKER_DOWNLOADED_COUNT, endpoint.numDownloaded},
-                    {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(endpoint.nextAnnounceTime - now)},
-                    {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(endpoint.minAnnounceTime - now)}
+                    {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(endpoint.nextAnnounceTime)},
+                    {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(endpoint.minAnnounceTime)}
                 };
             }
 
@@ -318,8 +319,8 @@ namespace
                 {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
                 {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
                 {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded},
-                {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(tracker.nextAnnounceTime - now)},
-                {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(tracker.minAnnounceTime - now)},
+                {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(tracker.nextAnnounceTime)},
+                {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(tracker.minAnnounceTime)},
                 {KEY_TRACKER_ENDPOINTS, endpointsList}
             };
         }
