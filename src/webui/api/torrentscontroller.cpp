@@ -276,9 +276,10 @@ namespace
 
     QJsonArray getTrackers(const BitTorrent::Torrent *const torrent)
     {
-        const auto toSeconds = [](const std::chrono::nanoseconds &duration) -> qint64
+        const auto toSecondsSinceEpoch = [](const std::chrono::nanoseconds &duration) -> qint64
         {
-            return std::max<qint64>(0, std::chrono::duration_cast<std::chrono::seconds>(duration).count());
+            const auto time = std::chrono::system_clock::now() + duration;
+            return std::chrono::duration_cast<std::chrono::seconds>(time.time_since_epoch()).count();
         };
 
         const auto now = BitTorrent::AnnounceTimePoint::clock::now();
@@ -301,8 +302,8 @@ namespace
                     {KEY_TRACKER_SEEDS_COUNT, endpoint.numSeeds},
                     {KEY_TRACKER_LEECHES_COUNT, endpoint.numLeeches},
                     {KEY_TRACKER_DOWNLOADED_COUNT, endpoint.numDownloaded},
-                    {KEY_TRACKER_NEXT_ANNOUNCE, toSeconds(endpoint.nextAnnounceTime - now)},
-                    {KEY_TRACKER_MIN_ANNOUNCE, toSeconds(endpoint.minAnnounceTime - now)}
+                    {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(endpoint.nextAnnounceTime - now)},
+                    {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(endpoint.minAnnounceTime - now)}
                 };
             }
 
@@ -317,8 +318,8 @@ namespace
                 {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
                 {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
                 {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded},
-                {KEY_TRACKER_NEXT_ANNOUNCE, toSeconds(tracker.nextAnnounceTime - now)},
-                {KEY_TRACKER_MIN_ANNOUNCE, toSeconds(tracker.minAnnounceTime - now)},
+                {KEY_TRACKER_NEXT_ANNOUNCE, toSecondsSinceEpoch(tracker.nextAnnounceTime - now)},
+                {KEY_TRACKER_MIN_ANNOUNCE, toSecondsSinceEpoch(tracker.minAnnounceTime - now)},
                 {KEY_TRACKER_ENDPOINTS, endpointsList}
             };
         }

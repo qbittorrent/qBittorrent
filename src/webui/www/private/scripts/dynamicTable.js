@@ -2257,7 +2257,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const friendlyDuration = function(td, row) {
-                const duration = window.qBittorrent.Misc.friendlyDuration(this.getRowValue(row) ?? 0, window.qBittorrent.Misc.MAX_ETA);
+                const value = this.getRowValue(row) ?? 0;
+                const duration = window.qBittorrent.Misc.friendlyDuration(Math.max(value - (new Date() / 1000), 0), window.qBittorrent.Misc.MAX_ETA);
                 td.textContent = duration;
                 td.title = duration;
             };
