@@ -172,7 +172,7 @@
                         fetch("api/v2/torrents/createCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    ...body,
+                                    ...dlPathParams,
                                     category: categoryName,
                                     savePath: savePath
                                 })
@@ -192,7 +192,7 @@
                         fetch("api/v2/torrents/editCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
-                                    ...body,
+                                    ...dlPathParams,
                                     category: uriCategoryName, // category name can't be changed
                                     savePath: savePath
                                 })
