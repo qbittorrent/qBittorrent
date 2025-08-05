@@ -1935,7 +1935,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxAltConnectionsPerTorrent">
                  <property name="text">
-                  <string>Alternative limit for seeding torrents:</string>
+                  <string>Maximum number of connections per seeding torrent:</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>

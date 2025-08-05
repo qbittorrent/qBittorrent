@@ -951,11 +951,6 @@ void OptionsDialog::loadConnectionTabOptions()
     connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, m_ui->spinMaxConnecPerTorrent, &QWidget::setEnabled);
     connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, m_ui->checkMaxAltConnectionsPerTorrent, &QWidget::setEnabled);
-    connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, m_ui->spinMaxAltConnecPerTorrent, [this](bool checked)
-    {
-        m_ui->spinMaxAltConnecPerTorrent->setEnabled(checked && m_ui->checkMaxAltConnectionsPerTorrent->isChecked());
-    });
     connect(m_ui->checkMaxAltConnectionsPerTorrent, &QAbstractButton::toggled, m_ui->spinMaxAltConnecPerTorrent, &QWidget::setEnabled);
     connect(m_ui->checkMaxAltConnectionsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxUploads, &QAbstractButton::toggled, m_ui->spinMaxUploads, &QWidget::setEnabled);
