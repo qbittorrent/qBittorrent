@@ -406,6 +406,8 @@ namespace BitTorrent
         virtual void setMaxConnections(int max) = 0;
         virtual int maxConnectionsPerTorrent() const = 0;
         virtual void setMaxConnectionsPerTorrent(int max) = 0;
+        virtual int maxAltConnectionsPerTorrent() const = 0;
+        virtual void setMaxAltConnectionsPerTorrent(int max) = 0;
         virtual int maxUploads() const = 0;
         virtual void setMaxUploads(int max) = 0;
         virtual int maxUploadsPerTorrent() const = 0;

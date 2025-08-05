@@ -2539,7 +2539,13 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
     if (m_nativeStatus.last_seen_complete != oldStatus.last_seen_complete)
         m_lastSeenComplete = QDateTime::fromSecsSinceEpoch(m_nativeStatus.last_seen_complete);
 
+    const bool wasUploading = isUploading();
     updateState();
+
+    if (wasUploading ^ isUploading()) {
+        // Switching from Stopped to Uploading or vice versa may require updating the connection limits.
+        updateMaxConnections();
+    }
 
     m_payloadRateMonitor.addSample({nativeStatus.download_payload_rate
                               , nativeStatus.upload_payload_rate});
@@ -2594,6 +2600,19 @@ void TorrentImpl::updateProgress()
             pieceOffset += add;
         }
     }
+}
+
+void TorrentImpl::updateMaxConnections()
+{
+    const int maxConnections = m_session->maxConnectionsPerTorrent();
+    const int maxAltConnections = m_session->maxAltConnectionsPerTorrent();
+    const bool useAltLimit = (maxAltConnections != -1) && isUploading();
+    const int max = useAltLimit ? maxAltConnections : maxConnections;
+
+    if (nativeHandle().max_connections() == max)
+        return;
+
+    nativeHandle().set_max_connections(max);
 }
 
 void TorrentImpl::setRatioLimit(qreal limit)

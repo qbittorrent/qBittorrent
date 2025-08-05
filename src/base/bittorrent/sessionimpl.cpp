@@ -495,6 +495,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_maxConnections(BITTORRENT_SESSION_KEY(u"MaxConnections"_s), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY(u"MaxUploads"_s), 20, lowerLimited(0, -1))
     , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxConnectionsPerTorrent"_s), 100, lowerLimited(0, -1))
+    , m_maxAltConnectionsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxAltConnectionsPerTorrent"_s), 40, lowerLimited(0, -1))
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxUploadsPerTorrent"_s), 4, lowerLimited(0, -1))
     , m_btProtocol(BITTORRENT_SESSION_KEY(u"BTProtocol"_s), BTProtocol::Both
         , clampValue(BTProtocol::Both, BTProtocol::UTP))
@@ -4355,6 +4356,11 @@ int SessionImpl::maxConnectionsPerTorrent() const
     return m_maxConnectionsPerTorrent;
 }
 
+int SessionImpl::maxAltConnectionsPerTorrent() const
+{
+    return m_maxAltConnectionsPerTorrent;
+}
+
 void SessionImpl::setMaxConnectionsPerTorrent(int max)
 {
     max = (max > 0) ? max : -1;
@@ -4366,7 +4372,31 @@ void SessionImpl::setMaxConnectionsPerTorrent(int max)
         {
             try
             {
-                torrent->nativeHandle().set_max_connections(max);
+                if (m_maxAltConnectionsPerTorrent == -1 || !torrent->isUploading())
+                {
+                    torrent->nativeHandle().set_max_connections(max);
+                }
+            }
+            catch (const std::exception &) {}
+        }
+    }
+}
+
+void SessionImpl::setMaxAltConnectionsPerTorrent(int max)
+{
+    max = (max > 0) ? max : -1;
+    if (max != maxAltConnectionsPerTorrent())
+    {
+        m_maxAltConnectionsPerTorrent = max;
+
+        for (const TorrentImpl *torrent : asConst(m_torrents))
+        {
+            try
+            {
+                if (torrent->isUploading())
+                {
+                    torrent->nativeHandle().set_max_connections(max);
+                }
             }
             catch (const std::exception &) {}
         }
