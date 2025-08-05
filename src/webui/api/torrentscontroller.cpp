@@ -280,7 +280,7 @@ namespace
         const auto timepointNow = BitTorrent::AnnounceTimePoint::clock::now();
         const auto toSecondsSinceEpoch = [&now, &timepointNow](const BitTorrent::AnnounceTimePoint &time) -> qint64
         {
-            const auto timeEpoch = (time - timepointNow + now).time_since_epoch();
+            const auto timeEpoch = (now + (time - timepointNow)).time_since_epoch();
             return std::chrono::duration_cast<std::chrono::seconds>(timeEpoch).count();
         };
 
