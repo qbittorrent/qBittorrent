@@ -380,8 +380,8 @@ namespace BitTorrent
         void setMaxConnections(int max) override;
         int maxConnectionsPerTorrent() const override;
         void setMaxConnectionsPerTorrent(int max) override;
-        int maxAltConnectionsPerTorrent() const override;
-        void setMaxAltConnectionsPerTorrent(int max) override;
+        int maxSeedConnectionsPerTorrent() const override;
+        void setMaxSeedConnectionsPerTorrent(int max) override;
         int maxUploads() const override;
         void setMaxUploads(int max) override;
         int maxUploadsPerTorrent() const override;
@@ -701,7 +701,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxConnections;
         CachedSettingValue<int> m_maxUploads;
         CachedSettingValue<int> m_maxConnectionsPerTorrent;
-        CachedSettingValue<int> m_maxAltConnectionsPerTorrent;
+        CachedSettingValue<int> m_maxSeedConnectionsPerTorrent;
         CachedSettingValue<int> m_maxUploadsPerTorrent;
         CachedSettingValue<BTProtocol> m_btProtocol;
         CachedSettingValue<bool> m_isUTPRateLimited;

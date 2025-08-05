@@ -2605,9 +2605,9 @@ void TorrentImpl::updateProgress()
 void TorrentImpl::updateMaxConnections()
 {
     const int maxConnections = m_session->maxConnectionsPerTorrent();
-    const int maxAltConnections = m_session->maxAltConnectionsPerTorrent();
-    const bool useAltLimit = (maxAltConnections != -1) && isUploading();
-    const int max = useAltLimit ? maxAltConnections : maxConnections;
+    const int maxSeedConnections = m_session->maxSeedConnectionsPerTorrent();
+    const bool useAltLimit = (maxSeedConnections != -1) && isUploading();
+    const int max = useAltLimit ? maxSeedConnections : maxConnections;
 
     if (nativeHandle().max_connections() == max)
         return;

@@ -1933,7 +1933,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QCheckBox" name="checkMaxAltConnectionsPerTorrent">
+                <widget class="QCheckBox" name="checkMaxSeedConnectionsPerTorrent">
                  <property name="text">
                   <string>Maximum number of connections per seeding torrent:</string>
                  </property>
@@ -1943,7 +1943,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QSpinBox" name="spinMaxAltConnecPerTorrent">
+                <widget class="QSpinBox" name="spinMaxSeedConnecPerTorrent">
                  <property name="minimum">
                   <number>2</number>
                  </property>

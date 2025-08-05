@@ -495,7 +495,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_maxConnections(BITTORRENT_SESSION_KEY(u"MaxConnections"_s), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY(u"MaxUploads"_s), 20, lowerLimited(0, -1))
     , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxConnectionsPerTorrent"_s), 100, lowerLimited(0, -1))
-    , m_maxAltConnectionsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxAltConnectionsPerTorrent"_s), 40, lowerLimited(0, -1))
+    , m_maxSeedConnectionsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxSeedConnectionsPerTorrent"_s), 40, lowerLimited(0, -1))
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxUploadsPerTorrent"_s), 4, lowerLimited(0, -1))
     , m_btProtocol(BITTORRENT_SESSION_KEY(u"BTProtocol"_s), BTProtocol::Both
         , clampValue(BTProtocol::Both, BTProtocol::UTP))
@@ -4356,9 +4356,9 @@ int SessionImpl::maxConnectionsPerTorrent() const
     return m_maxConnectionsPerTorrent;
 }
 
-int SessionImpl::maxAltConnectionsPerTorrent() const
+int SessionImpl::maxSeedConnectionsPerTorrent() const
 {
-    return m_maxAltConnectionsPerTorrent;
+    return m_maxSeedConnectionsPerTorrent;
 }
 
 void SessionImpl::setMaxConnectionsPerTorrent(int max)
@@ -4372,7 +4372,7 @@ void SessionImpl::setMaxConnectionsPerTorrent(int max)
         {
             try
             {
-                if (m_maxAltConnectionsPerTorrent == -1 || !torrent->isUploading())
+                if (m_maxSeedConnectionsPerTorrent == -1 || !torrent->isUploading())
                 {
                     torrent->nativeHandle().set_max_connections(max);
                 }
@@ -4382,12 +4382,12 @@ void SessionImpl::setMaxConnectionsPerTorrent(int max)
     }
 }
 
-void SessionImpl::setMaxAltConnectionsPerTorrent(int max)
+void SessionImpl::setMaxSeedConnectionsPerTorrent(int max)
 {
     max = (max > 0) ? max : -1;
-    if (max != maxAltConnectionsPerTorrent())
+    if (max != maxSeedConnectionsPerTorrent())
     {
-        m_maxAltConnectionsPerTorrent = max;
+        m_maxSeedConnectionsPerTorrent = max;
 
         for (const TorrentImpl *torrent : asConst(m_torrents))
         {
