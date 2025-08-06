@@ -2604,10 +2604,10 @@ void TorrentImpl::updateProgress()
 
 void TorrentImpl::updateMaxConnections()
 {
-    const int maxConnections = m_session->maxConnectionsPerTorrent();
-    const int maxSeedConnections = m_session->maxSeedConnectionsPerTorrent();
-    const bool useAltLimit = (maxSeedConnections != -1) && isUploading();
-    const int max = useAltLimit ? maxSeedConnections : maxConnections;
+    const int maxDownloadingConnections = m_session->maxConnectionsPerDownloadingTorrent();
+    const int maxSeedingConnections = m_session->maxConnectionsPerSeedingTorrent();
+    const bool useSeedingLimit = (maxSeedingConnections != -1) && isUploading();
+    const int max = useSeedingLimit ? maxSeedingConnections : maxDownloadingConnections;
 
     if (nativeHandle().max_connections() == max)
         return;

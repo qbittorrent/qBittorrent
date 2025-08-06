@@ -436,17 +436,17 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" id="maxConnectionsPerTorrentCheckbox" onclick="qBittorrent.Preferences.updateMaxConnecPerTorrentEnabled();">
-                        <label id="maxConnectionsPerTorrentLabel" for="maxConnectionsPerTorrentCheckbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxConnectionsPerDownloadingTorrentCheckbox" onclick="qBittorrent.Preferences.updateMaxConnecPerDownloadingTorrentEnabled();">
+                        <label id="maxConnectionsPerDownloadingTorrentLabel" for="maxConnectionsPerDownloadingTorrentCheckbox">QBT_TR(Maximum number of connections per torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="maxConnectionsPerTorrentValue" aria-labelledby="maxConnectionsPerTorrentLabel" style="width: 6em;"></td>
+                    <td><input type="text" id="maxConnectionsPerDownloadingTorrentValue" aria-labelledby="maxConnectionsPerDownloadingTorrentLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" id="maxSeedConnectionsPerTorrentCheckbox" onclick="qBittorrent.Preferences.updateMaxSeedConnecPerTorrentEnabled();">
-                        <label id="maxSeedConnectionsPerTorrentLabel" for="maxSeedConnectionsPerTorrentCheckbox">QBT_TR(Maximum number of connections per seeding torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        <input type="checkbox" id="maxConnectionsPerSeedingTorrentCheckbox" onclick="qBittorrent.Preferences.updateMaxConnecPerSeedingTorrentEnabled();">
+                        <label id="maxConnectionsPerSeedingTorrentLabel" for="maxConnectionsPerSeedingTorrentCheckbox">QBT_TR(Maximum number of connections per seeding torrent:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
-                    <td><input type="text" id="maxSeedConnectionsPerTorrentValue" aria-labelledby="maxSeedConnectionsPerTorrentLabel" style="width: 6em;"></td>
+                    <td><input type="text" id="maxConnectionsPerSeedingTorrentValue" aria-labelledby="maxConnectionsPerSeedingTorrentLabel" style="width: 6em;"></td>
                 </tr>
                 <tr>
                     <td>
@@ -1778,8 +1778,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateAutoRunOnTorrentAdded: updateAutoRunOnTorrentAdded,
                 generateRandomPort: generateRandomPort,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
-                updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
-                updateMaxSeedConnecPerTorrentEnabled: updateMaxSeedConnecPerTorrentEnabled,
+                updateMaxConnecPerDownloadingTorrentEnabled: updateMaxConnecPerDownloadingTorrentEnabled,
+                updateMaxConnecPerSeedingTorrentEnabled: updateMaxConnecPerSeedingTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
                 updateMaxUploadsPerTorrentEnabled: updateMaxUploadsPerTorrentEnabled,
                 updateI2PSettingsEnabled: updateI2PSettingsEnabled,
@@ -1984,14 +1984,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("maxConnectionsValue").disabled = !isMaxConnecEnabled;
         };
 
-        const updateMaxConnecPerTorrentEnabled = () => {
-            const isMaxConnecPerTorrentEnabled = document.getElementById("maxConnectionsPerTorrentCheckbox").checked;
-            document.getElementById("maxConnectionsPerTorrentValue").disabled = !isMaxConnecPerTorrentEnabled;
+        const updateMaxConnecPerDownloadingTorrentEnabled = () => {
+            const isMaxConnecPerDownloadingTorrentEnabled = document.getElementById("maxConnectionsPerDownloadingTorrentCheckbox").checked;
+            document.getElementById("maxConnectionsPerDownloadingTorrentValue").disabled = !isMaxConnecPerDownloadingTorrentEnabled;
         };
 
-        const updateMaxSeedConnecPerTorrentEnabled = () => {
-            const isMaxSeedConnecPerTorrentEnabled = document.getElementById("maxSeedConnectionsPerTorrentCheckbox").checked;
-            document.getElementById("maxSeedConnectionsPerTorrentValue").disabled = !isMaxSeedConnecPerTorrentEnabled;
+        const updateMaxConnecPerSeedingTorrentEnabled = () => {
+            const isMaxConnecPerSeedingTorrentEnabled = document.getElementById("maxConnectionsPerSeedingTorrentCheckbox").checked;
+            document.getElementById("maxConnectionsPerSeedingTorrentValue").disabled = !isMaxConnecPerSeedingTorrentEnabled;
         };
 
         const updateMaxUploadsEnabled = () => {
@@ -2390,27 +2390,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     }
                     updateMaxConnecEnabled();
 
-                    const maxConnecPerTorrent = Number(pref.max_connec_per_torrent);
-                    if (maxConnecPerTorrent <= 0) {
-                        document.getElementById("maxConnectionsPerTorrentCheckbox").checked = false;
-                        document.getElementById("maxConnectionsPerTorrentValue").value = 100;
+                    const maxConnecPerDownloadingTorrent = Number(pref.max_connec_per_downloading_torrent);
+                    if (maxConnecPerDownloadingTorrent <= 0) {
+                        document.getElementById("maxConnectionsPerDownloadingTorrentCheckbox").checked = false;
+                        document.getElementById("maxConnectionsPerDownloadingTorrentValue").value = 100;
                     }
                     else {
-                        document.getElementById("maxConnectionsPerTorrentCheckbox").checked = true;
-                        document.getElementById("maxConnectionsPerTorrentValue").value = maxConnecPerTorrent;
+                        document.getElementById("maxConnectionsPerDownloadingTorrentCheckbox").checked = true;
+                        document.getElementById("maxConnectionsPerDownloadingTorrentValue").value = maxConnecPerDownloadingTorrent;
                     }
-                    updateMaxConnecPerTorrentEnabled();
+                    updateMaxConnecPerDownloadingTorrentEnabled();
 
-                    const maxSeedConnecPerTorrent = Number(pref.max_seed_connec_per_torrent);
-                    if (maxSeedConnecPerTorrent <= 0) {
-                        document.getElementById("maxSeedConnectionsPerTorrentCheckbox").checked = false;
-                        document.getElementById("maxSeedConnectionsPerTorrentValue").value = 100;
+                    const maxConnecPerSeedingTorrent = Number(pref.max_connec_per_seeding_torrent);
+                    if (maxConnecPerSeedingTorrent <= 0) {
+                        document.getElementById("maxConnectionsPerSeedingTorrentCheckbox").checked = false;
+                        document.getElementById("maxConnectionsPerSeedingTorrentValue").value = 100;
                     }
                     else {
-                        document.getElementById("maxSeedConnectionsPerTorrentCheckbox").checked = true;
-                        document.getElementById("maxSeedConnectionsPerTorrentValue").value = maxSeedConnecPerTorrent;
+                        document.getElementById("maxConnectionsPerSeedingTorrentCheckbox").checked = true;
+                        document.getElementById("maxConnectionsPerSeedingTorrentValue").value = maxConnecPerSeedingTorrent;
                     }
-                    updateMaxSeedConnecPerTorrentEnabled();
+                    updateMaxConnecPerSeedingTorrentEnabled();
 
                     const maxUploads = Number(pref.max_uploads);
                     if (maxUploads <= 0) {
@@ -2787,25 +2787,25 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings["max_connec"] = maxConnec;
 
-            let maxConnecPerTorrent = -1;
-            if (document.getElementById("maxConnectionsPerTorrentCheckbox").checked) {
-                maxConnecPerTorrent = Number(document.getElementById("maxConnectionsPerTorrentValue").value);
-                if (Number.isNaN(maxConnecPerTorrent) || (maxConnecPerTorrent <= 0)) {
+            let maxConnecPerDownloadingTorrent = -1;
+            if (document.getElementById("maxConnectionsPerDownloadingTorrentCheckbox").checked) {
+                maxConnecPerDownloadingTorrent = Number(document.getElementById("maxConnectionsPerDownloadingTorrentValue").value);
+                if (Number.isNaN(maxConnecPerDownloadingTorrent) || (maxConnecPerDownloadingTorrent <= 0)) {
                     alert("QBT_TR(Maximum number of connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_connec_per_torrent"] = maxConnecPerTorrent;
+            settings["max_connec_per_downloading_torrent"] = maxConnecPerDownloadingTorrent;
 
-            let maxSeedConnecPerTorrent = -1;
-            if (document.getElementById("maxSeedConnectionsPerTorrentCheckbox").checked) {
-                maxSeedConnecPerTorrent = Number(document.getElementById("maxSeedConnectionsPerTorrentValue").value);
-                if (Number.isNaN(maxSeedConnecPerTorrent) || (maxSeedConnecPerTorrent <= 0)) {
+            let maxConnecPerSeedingTorrent = -1;
+            if (document.getElementById("maxConnectionsPerSeedingTorrentCheckbox").checked) {
+                maxConnecPerSeedingTorrent = Number(document.getElementById("maxConnectionsPerSeedingTorrentValue").value);
+                if (Number.isNaN(maxConnecPerSeedingTorrent) || (maxConnecPerSeedingTorrent <= 0)) {
                     alert("QBT_TR(Maximum number of seed connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
-            settings["max_seed_connec_per_torrent"] = maxSeedConnecPerTorrent;
+            settings["max_connec_per_seeding_torrent"] = maxConnecPerSeedingTorrent;
 
             let maxUploads = -1;
             if (document.getElementById("maxUploadsCheckbox").checked) {

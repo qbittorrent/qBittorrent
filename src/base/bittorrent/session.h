@@ -404,10 +404,10 @@ namespace BitTorrent
         virtual void setStopTrackerTimeout(int value) = 0;
         virtual int maxConnections() const = 0;
         virtual void setMaxConnections(int max) = 0;
-        virtual int maxConnectionsPerTorrent() const = 0;
-        virtual void setMaxConnectionsPerTorrent(int max) = 0;
-        virtual int maxSeedConnectionsPerTorrent() const = 0;
-        virtual void setMaxSeedConnectionsPerTorrent(int max) = 0;
+        virtual int maxConnectionsPerDownloadingTorrent() const = 0;
+        virtual void setMaxConnectionsPerDownloadingTorrent(int max) = 0;
+        virtual int maxConnectionsPerSeedingTorrent() const = 0;
+        virtual void setMaxConnectionsPerSeedingTorrent(int max) = 0;
         virtual int maxUploads() const = 0;
         virtual void setMaxUploads(int max) = 0;
         virtual int maxUploadsPerTorrent() const = 0;
