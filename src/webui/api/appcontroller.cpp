@@ -230,6 +230,7 @@ void AppController::preferencesAction()
     // Connections Limits
     data[u"max_connec"_s] = session->maxConnections();
     data[u"max_connec_per_torrent"_s] = session->maxConnectionsPerTorrent();
+    data[u"max_seed_connec_per_torrent"_s] = session->maxSeedConnectionsPerTorrent();
     data[u"max_uploads"_s] = session->maxUploads();
     data[u"max_uploads_per_torrent"_s] = session->maxUploadsPerTorrent();
 
@@ -711,6 +712,8 @@ void AppController::setPreferencesAction()
         session->setMaxConnections(it.value().toInt());
     if (hasKey(u"max_connec_per_torrent"_s))
         session->setMaxConnectionsPerTorrent(it.value().toInt());
+    if (hasKey(u"max_seed_connec_per_torrent"_s))
+        session->setMaxSeedConnectionsPerTorrent(it.value().toInt());
     if (hasKey(u"max_uploads"_s))
         session->setMaxUploads(it.value().toInt());
     if (hasKey(u"max_uploads_per_torrent"_s))
