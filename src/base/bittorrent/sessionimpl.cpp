@@ -33,7 +33,7 @@
 #include <concepts>
 #include <cstdint>
 #include <ctime>
-#include <queue>
+#include <ranges>
 #include <string>
 
 #ifdef Q_OS_WIN
@@ -2569,52 +2569,24 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
 
 void SessionImpl::increaseTorrentsQueuePos(const QList<TorrentID> &ids)
 {
-    using ElementType = std::pair<int, const TorrentImpl *>;
-    std::priority_queue<ElementType
-        , std::vector<ElementType>
-        , std::greater<ElementType>> torrentQueue;
-
-    // Sort torrents by queue position
-    for (const TorrentID &id : ids)
-    {
-        const TorrentImpl *torrent = m_torrents.value(id);
-        if (!torrent) continue;
-        if (const int position = torrent->queuePosition(); position >= 0)
-            torrentQueue.emplace(position, torrent);
-    }
+    QList<TorrentImpl *> queuedTorrents = getQueuedTorrentsByID(ids);
+    std::ranges::sort(queuedTorrents, std::less<>(), &TorrentImpl::queuePosition);
 
     // Increase torrents queue position (starting with the one in the highest queue position)
-    while (!torrentQueue.empty())
-    {
-        const TorrentImpl *torrent = torrentQueue.top().second;
+    for (TorrentImpl *torrent : asConst(queuedTorrents))
         torrentQueuePositionUp(torrent->nativeHandle());
-        torrentQueue.pop();
-    }
 
     m_torrentsQueueChanged = true;
 }
 
 void SessionImpl::decreaseTorrentsQueuePos(const QList<TorrentID> &ids)
 {
-    using ElementType = std::pair<int, const TorrentImpl *>;
-    std::priority_queue<ElementType> torrentQueue;
-
-    // Sort torrents by queue position
-    for (const TorrentID &id : ids)
-    {
-        const TorrentImpl *torrent = m_torrents.value(id);
-        if (!torrent) continue;
-        if (const int position = torrent->queuePosition(); position >= 0)
-            torrentQueue.emplace(position, torrent);
-    }
+    QList<TorrentImpl *> queuedTorrents = getQueuedTorrentsByID(ids);
+    std::ranges::sort(queuedTorrents, std::greater<>(), &TorrentImpl::queuePosition);
 
     // Decrease torrents queue position (starting with the one in the lowest queue position)
-    while (!torrentQueue.empty())
-    {
-        const TorrentImpl *torrent = torrentQueue.top().second;
+    for (TorrentImpl *torrent : asConst(queuedTorrents))
         torrentQueuePositionDown(torrent->nativeHandle());
-        torrentQueue.pop();
-    }
 
     for (const lt::torrent_handle &torrentHandle : asConst(m_downloadedMetadata))
         torrentQueuePositionBottom(torrentHandle);
@@ -2624,52 +2596,24 @@ void SessionImpl::decreaseTorrentsQueuePos(const QList<TorrentID> &ids)
 
 void SessionImpl::topTorrentsQueuePos(const QList<TorrentID> &ids)
 {
-    using ElementType = std::pair<int, const TorrentImpl *>;
-    std::priority_queue<ElementType> torrentQueue;
-
-    // Sort torrents by queue position
-    for (const TorrentID &id : ids)
-    {
-        const TorrentImpl *torrent = m_torrents.value(id);
-        if (!torrent) continue;
-        if (const int position = torrent->queuePosition(); position >= 0)
-            torrentQueue.emplace(position, torrent);
-    }
+    QList<TorrentImpl *> queuedTorrents = getQueuedTorrentsByID(ids);
+    std::ranges::sort(queuedTorrents, std::greater<>(), &TorrentImpl::queuePosition);
 
     // Top torrents queue position (starting with the one in the lowest queue position)
-    while (!torrentQueue.empty())
-    {
-        const TorrentImpl *torrent = torrentQueue.top().second;
+    for (TorrentImpl *torrent : asConst(queuedTorrents))
         torrentQueuePositionTop(torrent->nativeHandle());
-        torrentQueue.pop();
-    }
 
     m_torrentsQueueChanged = true;
 }
 
 void SessionImpl::bottomTorrentsQueuePos(const QList<TorrentID> &ids)
 {
-    using ElementType = std::pair<int, const TorrentImpl *>;
-    std::priority_queue<ElementType
-        , std::vector<ElementType>
-        , std::greater<ElementType>> torrentQueue;
-
-    // Sort torrents by queue position
-    for (const TorrentID &id : ids)
-    {
-        const TorrentImpl *torrent = m_torrents.value(id);
-        if (!torrent) continue;
-        if (const int position = torrent->queuePosition(); position >= 0)
-            torrentQueue.emplace(position, torrent);
-    }
+    QList<TorrentImpl *> queuedTorrents = getQueuedTorrentsByID(ids);
+    std::ranges::sort(queuedTorrents, std::less<>(), &TorrentImpl::queuePosition);
 
     // Bottom torrents queue position (starting with the one in the highest queue position)
-    while (!torrentQueue.empty())
-    {
-        const TorrentImpl *torrent = torrentQueue.top().second;
+    for (TorrentImpl *torrent : asConst(queuedTorrents))
         torrentQueuePositionBottom(torrent->nativeHandle());
-        torrentQueue.pop();
-    }
 
     for (const lt::torrent_handle &torrentHandle : asConst(m_downloadedMetadata))
         torrentQueuePositionBottom(torrentHandle);
@@ -5983,6 +5927,15 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
 TorrentImpl *SessionImpl::getTorrent(const lt::torrent_handle &nativeHandle) const
 {
     return m_torrents.value(getInfoHash(nativeHandle).toTorrentID());
+}
+
+QList<TorrentImpl *> SessionImpl::getQueuedTorrentsByID(const QList<TorrentID> &torrentIDs) const
+{
+    auto queuedTorrents = torrentIDs
+            | std::views::transform([this](const TorrentID &torrentID) { return m_torrents.value(torrentID); })
+            | std::views::filter([](const TorrentImpl *torrent) { return torrent && (torrent->queuePosition() >= 0); });
+
+    return {queuedTorrents.begin(), queuedTorrents.end()};
 }
 
 void SessionImpl::handleTorrentRemovedAlert(const lt::torrent_removed_alert */*alert*/)
