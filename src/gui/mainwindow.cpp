@@ -1454,6 +1454,12 @@ void MainWindow::loadPreferences()
     }
 #endif
 
+#ifdef Q_OS_MACOS
+    // Clear dock badge immediately if speed display is disabled
+    if (!pref->isSpeedInDockEnabled())
+        m_badger->updateSpeed(0, 0);
+#endif
+
     qDebug("GUI settings loaded");
 }
 
@@ -1466,8 +1472,11 @@ void MainWindow::loadSessionStats()
 
     // update global information
 #ifdef Q_OS_MACOS
-    m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
-    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    if (Preferences::instance()->isSpeedInDockEnabled())
+        m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+        m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    else
+        m_badger->updateSpeed(0, 0);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS

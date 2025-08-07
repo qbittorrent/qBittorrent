@@ -1477,6 +1477,21 @@ void Preferences::setUpdateCheckEnabled(const bool enabled)
 }
 #endif
 
+#ifdef Q_OS_MACOS
+bool Preferences::isSpeedInDockEnabled() const
+{
+    return value(u"Preferences/Speed/ShowSpeedInDock"_s, true);
+}
+
+void Preferences::setSpeedInDockEnabled(const bool enabled)
+{
+    if (enabled == isSpeedInDockEnabled())
+        return;
+
+    setValue(u"Preferences/Speed/ShowSpeedInDock"_s, enabled);
+}
+#endif
+
 bool Preferences::confirmTorrentDeletion() const
 {
     return value(u"Preferences/Advanced/confirmTorrentDeletion"_s, true);
