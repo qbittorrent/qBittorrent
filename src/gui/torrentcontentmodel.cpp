@@ -302,9 +302,10 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             {
                 const QString currentName = item->name();
                 QString newName = value.toString().trimmed();
+                
                 if (currentName != newName)
                 {
-                    bool invalid = newName.isEmpty() || (newName == u"."_s) || (newName == u".."_s) || (newName.length() > 255);
+                    bool invalid = newName.isEmpty() || (newName == u"."_s) || (newName == u".."_s) || (newName.length() > 255) || newName.endsWith(u'.');
                     if (!invalid)
                     {
                         for (const QChar &c : newName)
