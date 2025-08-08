@@ -1,4 +1,4 @@
-<svg width="2" height="20" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="1" height="20" fill="#fff" />
-    <rect x="1" y="0" width="1" height="20" fill="#c4c4c4" />
+<svg xmlns="http://www.w3.org/2000/svg" width="2" height="20">
+    <path fill="#fff" d="M0 0h1v20H0z" />
+    <path fill="#c4c4c4" d="M1 0h1v20H1z" />
 </svg>
