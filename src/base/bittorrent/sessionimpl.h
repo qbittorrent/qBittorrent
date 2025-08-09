@@ -619,6 +619,7 @@ namespace BitTorrent
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
+        QList<TorrentImpl *> getQueuedTorrentsByID(const QList<TorrentID> &torrentIDs) const;
 
         void saveResumeData();
         void saveTorrentsQueue();
