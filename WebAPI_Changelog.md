@@ -1,5 +1,11 @@
 # WebAPI Changelog
 
+## 2.13.0
+* [#22963](https://github.com/qbittorrent/qBittorrent/pull/22963)
+  * `torrents/editTracker` endpoint now supports setting a tracker's tier via `tier` parameter
+  * `torrents/editTracker` endpoint always responds with a 204 when successful
+  * `torrents/editTracker` endpoint `origUrl` parameter renamed to `url`
+
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
   * Add `torrents/setComment` endpoint with parameters `hashes` and `comment` for setting a new torrent comment
