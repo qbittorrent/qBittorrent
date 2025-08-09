@@ -60,22 +60,12 @@ window.qBittorrent.ContextMenu ??= (() => {
                 onShow: () => {},
                 onHide: () => {},
                 onClick: () => {},
-                fadeSpeed: 200,
                 touchTimer: 600,
                 ...options
             };
 
             // option diffs menu
             this.menu = document.getElementById(this.options.menu);
-
-            // fx
-            this.fx = new Fx.Tween(this.menu, {
-                property: "opacity",
-                duration: this.options.fadeSpeed,
-                onComplete: () => {
-                    this.menu.style.visibility = (getComputedStyle(this.menu).opacity > 0) ? "visible" : "hidden";
-                }
-            });
 
             // hide and begin the listener
             this.hide().startListener();
@@ -231,7 +221,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         show(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu !== this))
                 lastShownContextMenu.hide();
-            this.fx.start(1);
+            this.menu.classList.add("visible");
             this.options.onShow.call(this);
             lastShownContextMenu = this;
             return this;
@@ -240,7 +230,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         // hide the menu
         hide(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== "hidden")) {
-                this.fx.start(0);
+                this.menu.classList.remove("visible");
                 this.options.onHide.call(this);
             }
             return this;
