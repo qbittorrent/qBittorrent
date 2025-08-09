@@ -384,7 +384,6 @@
 
         const showRssFeed = (path) => {
             rssArticleTable.clear();
-            let rowCount = 0;
 
             const childFeeds = new Set();
             for (const row of rssFeedTable.getRowValues()) {
@@ -406,10 +405,11 @@
             if (path === "")
                 visibleArticles = visibleArticles.filter((a) => !a.isRead);
 
+            let rowID = -1;
             visibleArticles.sort((e1, e2) => new Date(e2.date) - new Date(e1.date))
                 .each((torrentEntry) => {
                     rssArticleTable.updateRowData({
-                        rowId: rowCount++,
+                        rowId: ++rowID,
                         name: torrentEntry.title,
                         link: torrentEntry.link,
                         torrentURL: torrentEntry.torrentURL,

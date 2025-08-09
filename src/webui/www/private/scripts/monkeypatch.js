@@ -82,7 +82,7 @@ window.qBittorrent.MonkeyPatch ??= (() => {
             else if (MUI.files[source] === "loading") {
                 let tries = 0;
                 const checker = (function() {
-                    tries++;
+                    ++tries;
                     if ((MUI.files[source] === "loading") && (tries < "100"))
                         return;
                     $clear(checker);
