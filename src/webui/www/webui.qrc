@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/www">
         <file>private/addpeers.html</file>
+        <file>private/addtorrent.html</file>
         <file>private/addtrackers.html</file>
         <file>private/addwebseeds.html</file>
         <file>private/confirmfeeddeletion.html</file>
@@ -392,11 +393,11 @@
         <file>private/rename_file.html</file>
         <file>private/rename_files.html</file>
         <file>private/rename_rule.html</file>
+        <file>private/scripts/addtorrent.js</file>
         <file>private/scripts/cache.js</file>
         <file>private/scripts/client.js</file>
         <file>private/scripts/color-scheme.js</file>
         <file>private/scripts/contextmenu.js</file>
-        <file>private/scripts/download.js</file>
         <file>private/scripts/dynamicTable.js</file>
         <file>private/scripts/file-tree.js</file>
         <file>private/scripts/filesystem.js</file>
@@ -420,10 +421,10 @@
         <file>private/scripts/rename-files.js</file>
         <file>private/scripts/search.js</file>
         <file>private/scripts/statistics.js</file>
+        <file>private/scripts/torrent-content.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/speedlimit.html</file>
-        <file>private/upload.html</file>
         <file>private/views/about.html</file>
         <file>private/views/aboutToolbar.html</file>
         <file>private/views/confirmAutoTMM.html</file>
