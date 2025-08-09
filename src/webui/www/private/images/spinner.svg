@@ -1,0 +1,26 @@
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="M8 4V1" opacity="0">
+        <animate attributeName="opacity" begin="0s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="M10.828 5.172 12.95 3.05" opacity="0">
+        <animate attributeName="opacity" begin="0.1s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="M12 8h3" opacity="0">
+        <animate attributeName="opacity" begin="0.2s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="m10.828 10.828 2.122 2.122" opacity="0">
+        <animate attributeName="opacity" begin="0.3s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="M8 12v3" opacity="0">
+        <animate attributeName="opacity" begin="0.4s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="M5.172 10.828 3.05 12.95" opacity="0">
+        <animate attributeName="opacity" begin="0.5s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="M4 8H1" opacity="0">
+        <animate attributeName="opacity" begin="0.6s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+    <path stroke="#999" stroke-linecap="round" stroke-width="2" d="M5.172 5.172 3.05 3.05" opacity="0">
+        <animate attributeName="opacity" begin="0.7s" dur="0.8s" repeatCount="indefinite" values="1;0" />
+    </path>
+</svg>
