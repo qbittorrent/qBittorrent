@@ -267,49 +267,22 @@ li.divider {
 }
 
 .horizontalHandle .handleIcon {
+    background: url("../images/handle-icon-horizontal.svg") center center
+        no-repeat;
     height: 6px;
     margin: 0 auto;
     overflow: hidden;
-    position: relative;
-    width: 20px;
-}
-
-.horizontalHandle .handleIcon::before {
-    background: currentcolor;
-    box-shadow:
-        4px 0 0 currentcolor,
-        8px 0 0 currentcolor;
-    content: "";
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 2px;
 }
 
 .columnHandle {
+    background: url("../images/handle-icon.svg") center center no-repeat;
     border: 1px solid var(--color-border-default);
     border-bottom: 0;
     border-top: 0;
     float: left;
     min-height: 10px;
-    position: relative;
+    overflow: hidden;
     width: 8px;
-}
-
-.columnHandle::before {
-    background: currentcolor;
-    box-shadow:
-        0 4px 0 currentcolor,
-        0 8px 0 currentcolor;
-    content: "";
-    height: 2px;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 2px;
 }
 
 /* Toolboxes */
