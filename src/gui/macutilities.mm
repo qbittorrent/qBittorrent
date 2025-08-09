@@ -143,6 +143,46 @@ namespace MacUtils
         }
     }
 
+    bool isMagnetLinkAssocSet()
+    {
+        @autoreleasepool
+        {
+            const NSURL *magnetStandardURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:[NSURL URLWithString:@"magnet:"]];
+            const NSURL *qbtURL = [[NSBundle mainBundle] bundleURL];
+            return [magnetStandardURL isEqual:qbtURL];
+        }
+    }
+
+    void setMagnetLinkAssoc()
+    {
+        @autoreleasepool
+        {
+            [[NSWorkspace sharedWorkspace] setDefaultApplicationAtURL:[[NSBundle mainBundle] bundleURL]
+                toOpenURLsWithScheme:@"magnet" completionHandler:nil];
+        }
+    }
+
+    bool isTorrentFileAssocSet()
+    {
+        @autoreleasepool
+        {
+            const NSURL *torrentStandardURL = [[NSWorkspace sharedWorkspace]
+                URLForApplicationToOpenContentType:[UTType typeWithFilenameExtension:@"torrent"]];
+            const NSURL *qbtURL = [[NSBundle mainBundle] bundleURL];
+            return [torrentStandardURL isEqual:qbtURL];
+        }
+    }
+
+    void setTorrentFileAssoc()
+    {
+        @autoreleasepool
+        {
+            [[NSWorkspace sharedWorkspace] setDefaultApplicationAtURL:[[NSBundle mainBundle] bundleURL]
+                toOpenContentType:[UTType typeWithFilenameExtension:@"torrent"]
+                completionHandler:nil];
+        }
+    }
+
     QString badgeLabelText()
     {
         return QString::fromNSString(NSApp.dockTile.badgeLabel);

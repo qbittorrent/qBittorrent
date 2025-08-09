@@ -88,9 +88,9 @@
 #include "base/net/dnsupdater.h"
 #endif
 
-#if defined Q_OS_MACOS || defined Q_OS_WIN
-#include "base/utils/os.h"
-#endif // defined Q_OS_MACOS || defined Q_OS_WIN
+#ifdef Q_OS_MACOS
+#include "macutilities.h"
+#endif
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
 
@@ -329,9 +329,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
-    m_ui->checkAssociateTorrents->setChecked(Utils::OS::isTorrentFileAssocSet());
+    m_ui->checkAssociateTorrents->setChecked(MacUtils::isTorrentFileAssocSet());
     m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
-    m_ui->checkAssociateMagnetLinks->setChecked(Utils::OS::isMagnetLinkAssocSet());
+    m_ui->checkAssociateMagnetLinks->setChecked(MacUtils::isMagnetLinkAssocSet());
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 
@@ -517,14 +517,14 @@ void OptionsDialog::saveBehaviorTabOptions() const
 #ifdef Q_OS_MACOS
     if (m_ui->checkAssociateTorrents->isChecked())
     {
-        Utils::OS::setTorrentFileAssoc();
-        m_ui->checkAssociateTorrents->setChecked(Utils::OS::isTorrentFileAssocSet());
+        MacUtils::setTorrentFileAssoc();
+        m_ui->checkAssociateTorrents->setChecked(MacUtils::isTorrentFileAssocSet());
         m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     }
     if (m_ui->checkAssociateMagnetLinks->isChecked())
     {
-        Utils::OS::setMagnetLinkAssoc();
-        m_ui->checkAssociateMagnetLinks->setChecked(Utils::OS::isMagnetLinkAssocSet());
+        MacUtils::setMagnetLinkAssoc();
+        m_ui->checkAssociateMagnetLinks->setChecked(MacUtils::isMagnetLinkAssocSet());
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif

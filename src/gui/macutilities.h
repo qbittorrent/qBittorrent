@@ -44,6 +44,11 @@ namespace MacUtils
     void displayNotification(const QString &title, const QString &message);
     void openFiles(const PathList &pathList);
 
+    bool isMagnetLinkAssocSet();
+    void setMagnetLinkAssoc();
+    bool isTorrentFileAssocSet();
+    void setTorrentFileAssoc();
+
     QString badgeLabelText();
     void setBadgeLabelText(const QString &text);
 }
