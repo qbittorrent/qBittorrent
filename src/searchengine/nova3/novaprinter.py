@@ -1,4 +1,4 @@
-# VERSION: 1.53
+# VERSION: 2.00
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -24,6 +24,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import json
 import re
 from typing import TypedDict, Union
 
@@ -40,16 +41,8 @@ SearchResults = TypedDict('SearchResults', {
 
 
 def prettyPrinter(dictionary: SearchResults) -> None:
-    outtext = "|".join((
-        dictionary["link"],
-        dictionary["name"].replace("|", " "),
-        str(anySizeToBytes(dictionary['size'])),
-        str(dictionary["seeds"]),
-        str(dictionary["leech"]),
-        dictionary["engine_url"],
-        dictionary.get("desc_link", ""),  # Optional
-        str(dictionary.get("pub_date", -1))  # Optional
-    ))
+    dictionary['size'] = anySizeToBytes(dictionary['size'])
+    outtext = json.dumps(dictionary)
 
     # fd 1 is stdout
     with open(1, 'w', encoding='utf-8', closefd=False) as utf8stdout:
