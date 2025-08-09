@@ -193,6 +193,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V1: return tr("Info Hash v1", "i.e: torrent info hash v1");
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
+            case TR_PERCENT_SELECTED: return tr("Selected", "Percentage of selected data to download");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
             default: return {};
             }
@@ -201,6 +202,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
         {
             switch (section)
             {
+            case TR_PERCENT_SELECTED: return tr("Wanted / Total size, indicates percentage of selected data to download");
             case TR_POPULARITY: return tr("Ratio / Time Active (in months), indicates how popular the torrent is");
             default: return {};
             }
@@ -441,6 +443,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return hashString(torrent->infoHash().v2());
     case TR_REANNOUNCE:
         return reannounceString(torrent->nextAnnounce());
+    case TR_PERCENT_SELECTED:
+        return torrent->hasMetadata() ? (QString::number((static_cast<qreal>(torrent->wantedSize()) * 100) / torrent->totalSize(), 'f', 2) + u'%') : tr("N/A");
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
     }
@@ -526,6 +530,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_PERCENT_SELECTED:
+        return torrent->hasMetadata() ? ((static_cast<qreal>(torrent->wantedSize()) * 100) / torrent->totalSize()) : 0;
     }
 
     return {};
