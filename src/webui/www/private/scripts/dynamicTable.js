@@ -1505,7 +1505,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = "∞";
                 }
                 else {
-                    const formattedVal = "QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]".replace("%1", window.qBittorrent.Misc.friendlyDuration((new Date() / 1000) - val));
+                    const formattedVal = "QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]".replace("%1", window.qBittorrent.Misc.friendlyDuration((Date.now() / 1000) - val));
                     td.textContent = formattedVal;
                     td.title = formattedVal;
                 }
