@@ -356,7 +356,10 @@ void WebApplication::doProcessRequest()
 
     DataMap data;
     for (const Http::UploadedFile &torrent : request().files)
-        data[torrent.filename] = torrent.data;
+    {
+        const QString fileName = QString::fromUtf8(torrent.filename.toLatin1());
+        data[fileName] = torrent.data;
+    }
 
     try
     {
