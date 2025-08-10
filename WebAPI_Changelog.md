@@ -6,6 +6,8 @@
     * `endpoints` is an array of tracker endpoints, each with `name`, `updating`, `status`, `msg`, `bt_version`, `num_peers`, `num_peers`, `num_leeches`, `num_downloaded`, `next_announce` and `min_announce` fields
   *  `torrents/trackers` now returns `5` and `6` in `status` field as possible values
     * `5` for `Tracker error` and `6` for `Unreachable`
+* [#23085](https://github.com/qbittorrent/qBittorrent/pull/23085)
+  * `torrents/parseMetadata` now responds with an array of metadata in the same order as the files in the request. It previously responded with an object keyed off of the submitted file name.
 
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
