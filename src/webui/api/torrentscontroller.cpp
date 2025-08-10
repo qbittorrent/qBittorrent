@@ -2099,16 +2099,14 @@ void TorrentsController::parseMetadataAction()
     if (uploadedTorrents.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Must specify torrent file(s)"));
 
-    QJsonObject result;
+    QJsonArray result;
     for (auto it = uploadedTorrents.constBegin(); it != uploadedTorrents.constEnd(); ++it)
     {
         if (const auto loadResult = BitTorrent::TorrentDescriptor::load(it.value()))
         {
             const BitTorrent::TorrentDescriptor &torrentDescr = loadResult.value();
             m_torrentMetadataCache.insert(torrentDescr.infoHash().toTorrentID(), torrentDescr);
-
-            const QString &fileName = it.key();
-            result.insert(fileName, serializeTorrentInfo(torrentDescr));
+            result.append(serializeTorrentInfo(torrentDescr));
         }
         else
         {

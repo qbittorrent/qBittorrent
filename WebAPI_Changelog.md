@@ -10,6 +10,8 @@
   * `torrents/editTracker` endpoint now supports setting a tracker's tier via `tier` parameter
   * `torrents/editTracker` endpoint always responds with a 204 when successful
   * `torrents/editTracker` endpoint `origUrl` parameter renamed to `url`
+* [#23085](https://github.com/qbittorrent/qBittorrent/pull/23085)
+  * `torrents/parseMetadata` now responds with an array of metadata in the same order as the files in the request. It previously responded with an object keyed off of the submitted file name.
 
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
