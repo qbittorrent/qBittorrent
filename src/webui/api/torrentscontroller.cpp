@@ -1273,7 +1273,7 @@ void TorrentsController::addPeersAction()
     }
 
     if (peerList.isEmpty())
-        throw APIError(APIErrorType::BadParams, u"No valid peers were specified"_s);
+        throw APIError(APIErrorType::BadParams, tr("No valid peers were specified"));
 
     QJsonObject results;
 
