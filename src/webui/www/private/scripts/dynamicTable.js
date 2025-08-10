@@ -42,8 +42,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             SearchResultsTable: SearchResultsTable,
             SearchPluginsTable: SearchPluginsTable,
             TorrentTrackersTable: TorrentTrackersTable,
-            BulkRenameTorrentFilesTable: BulkRenameTorrentFilesTable,
             TorrentFilesTable: TorrentFilesTable,
+            BulkRenameTorrentFilesTable: BulkRenameTorrentFilesTable,
             AddTorrentFilesTable: AddTorrentFilesTable,
             LogMessageTable: LogMessageTable,
             LogPeerTable: LogPeerTable,
@@ -2336,421 +2336,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
     }
 
-    class BulkRenameTorrentFilesTable extends DynamicTable {
-        filterTerms = [];
-        prevFilterTerms = [];
-        prevRowsString = null;
-        prevFilteredRows = [];
-        prevSortedColumn = null;
-        prevReverseSort = null;
-        prevCheckboxNum = null;
-        fileTree = new window.qBittorrent.FileTree.FileTree();
-
-        setupVirtualList() {
-            super.setupVirtualList();
-            this.rowHeight = 29;
-        }
-
-        populateTable(root) {
-            this.fileTree.setRoot(root);
-            root.children.forEach((node) => {
-                this.#addNodeToTable(node, 0, root);
-            });
-        }
-
-        #addNodeToTable(node, depth, parent) {
-            node.depth = depth;
-            node.parent = parent;
-
-            this.updateRowData({
-                rowId: node.rowId
-            });
-
-            node.children.forEach((child) => {
-                this.#addNodeToTable(child, depth + 1, node);
-            });
-        }
-
-        getRoot() {
-            return this.fileTree.getRoot();
-        }
-
-        getNode(rowId) {
-            return this.fileTree.getNode(rowId);
-        }
-
-        getRow(node) {
-            const rowId = this.fileTree.getRowId(node).toString();
-            return this.rows.get(rowId);
-        }
-
-        getRowData(row, fullUpdate) {
-            return this.getNode(row.rowId);
-        }
-
-        getSelectedRows() {
-            const nodes = this.fileTree.toArray();
-
-            return nodes.filter(x => x.checked === 0);
-        }
-
-        initColumns() {
-            // Blocks saving header width (because window width isn't saved)
-            LocalPreferences.remove(`column_checked_width_${this.dynamicTableDivId}`);
-            LocalPreferences.remove(`column_original_width_${this.dynamicTableDivId}`);
-            LocalPreferences.remove(`column_renamed_width_${this.dynamicTableDivId}`);
-            this.newColumn("checked", "", "", 50, true);
-            this.newColumn("original", "", "QBT_TR(Original)QBT_TR[CONTEXT=TrackerListWidget]", 270, true);
-            this.newColumn("renamed", "", "QBT_TR(Renamed)QBT_TR[CONTEXT=TrackerListWidget]", 220, true);
-
-            this.initColumnsFunctions();
-        }
-
-        /**
-         * Toggles the global checkbox and all checkboxes underneath
-         */
-        toggleGlobalCheckbox() {
-            const checkbox = document.getElementById("rootMultiRename_cb");
-            const checkboxes = document.querySelectorAll("input.RenamingCB");
-
-            for (let i = 0; i < checkboxes.length; ++i) {
-                if (checkbox.checked || checkbox.indeterminate) {
-                    const cb = checkboxes[i];
-                    cb.checked = true;
-                    cb.indeterminate = false;
-                    cb.state = "checked";
-                }
-                else {
-                    const cb = checkboxes[i];
-                    cb.checked = false;
-                    cb.indeterminate = false;
-                    cb.state = "unchecked";
-                }
-            }
-
-            const nodes = this.fileTree.toArray();
-            for (const node of nodes)
-                node.checked = (checkbox.checked || checkbox.indeterminate) ? 0 : 1;
-
-            this.updateGlobalCheckbox();
-        }
-
-        toggleNodeTreeCheckbox(rowId, checkState) {
-            const node = this.getNode(rowId);
-            node.checked = checkState;
-            const checkbox = document.getElementById(`cbRename${rowId}`);
-            checkbox.checked = node.checked === 0;
-            checkbox.state = checkbox.checked ? "checked" : "unchecked";
-
-            for (let i = 0; i < node.children.length; ++i)
-                this.toggleNodeTreeCheckbox(node.children[i].rowId, checkState);
-        }
-
-        updateGlobalCheckbox() {
-            const checkbox = document.getElementById("rootMultiRename_cb");
-            const nodes = this.fileTree.toArray();
-            const isAllChecked = nodes.every((node) => node.checked === 0);
-            const isAllUnchecked = (() => nodes.every((node) => node.checked !== 0));
-            if (isAllChecked) {
-                checkbox.state = "checked";
-                checkbox.indeterminate = false;
-                checkbox.checked = true;
-            }
-            else if (isAllUnchecked()) {
-                checkbox.state = "unchecked";
-                checkbox.indeterminate = false;
-                checkbox.checked = false;
-            }
-            else {
-                checkbox.state = "partial";
-                checkbox.indeterminate = true;
-                checkbox.checked = false;
-            }
-        }
-
-        initColumnsFunctions() {
-            const that = this;
-
-            // checked
-            this.columns["checked"].updateTd = (td, row) => {
-                const id = row.rowId;
-                const node = that.getNode(id);
-
-                if (td.firstElementChild === null) {
-                    const treeImg = document.createElement("img");
-                    treeImg.src = "images/L.svg";
-                    treeImg.style.marginBottom = "-2px";
-                    td.append(treeImg);
-                }
-
-                let checkbox = td.children[1];
-                if (checkbox === undefined) {
-                    checkbox = document.createElement("input");
-                    checkbox.type = "checkbox";
-                    checkbox.className = "RenamingCB";
-                    checkbox.addEventListener("click", (e) => {
-                        e.stopPropagation();
-                        const targetId = e.target.dataset.id;
-                        const ids = [];
-                        // when holding shift, set all files between the previously selected one and the clicked one
-                        if (e.shiftKey && (that.prevCheckboxNum !== null) && (targetId !== that.prevCheckboxNum)) {
-                            const targetState = that.tableBody.querySelector(`.RenamingCB[data-id="${that.prevCheckboxNum}"]`).checked;
-                            const checkboxes = that.tableBody.getElementsByClassName("RenamingCB");
-                            let started = false;
-                            for (const cb of checkboxes) {
-                                const currId = cb.dataset.id;
-                                if ((currId === targetId) || (currId === that.prevCheckboxNum)) {
-                                    if (started) {
-                                        ids.push(currId);
-                                        cb.checked = targetState;
-                                        break;
-                                    }
-                                    started = true;
-                                }
-                                if (started) {
-                                    ids.push(currId);
-                                    cb.checked = targetState;
-                                }
-                            }
-                        }
-                        else {
-                            ids.push(targetId);
-                        }
-                        for (const id of ids) {
-                            const node = that.getNode(id);
-                            node.checked = e.target.checked ? 0 : 1;
-                        }
-                        that.updateGlobalCheckbox();
-                        that.onRowSelectionChange(that.getNode(targetId));
-                        that.prevCheckboxNum = targetId;
-                    });
-                    checkbox.indeterminate = false;
-                    td.append(checkbox);
-                }
-                checkbox.id = `cbRename${id}`;
-                checkbox.dataset.id = id;
-                checkbox.checked = (node.checked === 0);
-                checkbox.state = checkbox.checked ? "checked" : "unchecked";
-            };
-            this.columns["checked"].staticWidth = 50;
-
-            // original
-            this.columns["original"].updateTd = function(td, row) {
-                const id = row.rowId;
-                const node = that.getNode(id);
-                const value = this.getRowValue(row);
-
-                let dirImg = td.children[0];
-                if (dirImg === undefined) {
-                    dirImg = document.createElement("img");
-                    dirImg.src = "images/directory.svg";
-                    dirImg.style.width = "20px";
-                    dirImg.style.paddingRight = "5px";
-                    dirImg.style.marginBottom = "-3px";
-                    td.append(dirImg);
-                }
-                if (node.isFolder) {
-                    dirImg.style.display = "inline";
-                    dirImg.style.marginLeft = `${node.depth * 20}px`;
-                }
-                else {
-                    dirImg.style.display = "none";
-                }
-
-                let span = td.children[1];
-                if (span === undefined) {
-                    span = document.createElement("span");
-                    td.append(span);
-                }
-                span.textContent = value;
-                span.style.marginLeft = node.isFolder ? "0" : `${(node.depth + 1) * 20}px`;
-            };
-
-            // renamed
-            this.columns["renamed"].updateTd = (td, row) => {
-                const id = row.rowId;
-                const fileNameRenamedId = `filesTablefileRenamed${id}`;
-                const node = that.getNode(id);
-
-                let span = td.firstElementChild;
-                if (span === null) {
-                    span = document.createElement("span");
-                    td.append(span);
-                }
-                span.id = fileNameRenamedId;
-                span.textContent = node.renamed;
-            };
-
-            for (const column of this.columns) {
-                column["getRowValue"] = function(row, pos = 0) {
-                    const node = that.getNode(row.rowId);
-                    return node[this.dataProperties[pos]];
-                };
-            }
-        }
-
-        onRowSelectionChange(row) {}
-
-        selectRow() {}
-
-        reselectRows(rowIds) {
-            this.deselectAll();
-            for (const tr of this.getTrs()) {
-                if (rowIds.includes(tr.rowId)) {
-                    const node = this.getNode(tr.rowId);
-                    node.checked = 0;
-
-                    const checkbox = tr.querySelector(".RenamingCB");
-                    checkbox.state = "checked";
-                    checkbox.indeterminate = false;
-                    checkbox.checked = true;
-                }
-            }
-            this.updateGlobalCheckbox();
-        }
-
-        #sortNodesByColumn(root, column) {
-            const isColumnOriginal = (column.name === "original");
-            const isReverseSort = (this.reverseSort === "0");
-
-            const stack = [root];
-            while (stack.length > 0) {
-                const node = stack.pop();
-
-                node.children.sort((node1, node2) => {
-                    // list folders before files when sorting by name
-                    if (isColumnOriginal) {
-                        if (node1.isFolder && !node2.isFolder)
-                            return -1;
-                        if (!node1.isFolder && node2.isFolder)
-                            return 1;
-                    }
-
-                    const result = column.compareRows(node1, node2);
-                    return isReverseSort ? result : -result;
-                });
-
-                stack.push(...node.children);
-            }
-        }
-
-        #filterNodes(root, filterTerms) {
-            const ret = [];
-            const stack = [root];
-            const visited = [];
-
-            while (stack.length > 0) {
-                const node = stack.at(-1);
-
-                if (node.isFolder) {
-                    const lastVisited = visited.at(-1);
-
-                    if ((visited.length <= 0) || (lastVisited !== node)) {
-                        visited.push(node);
-                        stack.push(...node.children);
-                        continue;
-                    }
-
-                    // has children added or itself matches
-                    if (lastVisited.has_children_added || window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
-                        ret.push(this.getRow(node));
-                        delete node.has_children_added;
-
-                        // propagate up
-                        const parent = node.root;
-                        if (parent !== undefined)
-                            parent.has_children_added = true;
-                    }
-
-                    visited.pop();
-                }
-                else {
-                    if (window.qBittorrent.Misc.containsAllTerms(node.original, filterTerms)) {
-                        ret.push(this.getRow(node));
-
-                        const parent = node.root;
-                        if (parent !== undefined)
-                            parent.has_children_added = true;
-                    }
-                }
-
-                stack.pop();
-            }
-
-            ret.reverse();
-            return ret;
-        }
-
-        setFilter(text) {
-            const filterTerms = text.trim().toLowerCase().split(" ");
-            if ((filterTerms.length === 1) && (filterTerms[0] === ""))
-                this.filterTerms = [];
-            else
-                this.filterTerms = filterTerms;
-        }
-
-        getFilteredAndSortedRows() {
-            const root = this.getRoot();
-            if (root === null)
-                return [];
-
-            const generateRowsSignature = () => {
-                const rowsData = [];
-                for (const { full_data } of this.getRowValues())
-                    rowsData.push(full_data);
-                return JSON.stringify(rowsData);
-            };
-
-            const hasRowsChanged = function(rowsString, prevRowsStringString) {
-                const rowsChanged = (rowsString !== prevRowsStringString);
-                const isFilterTermsChanged = this.filterTerms.reduce((acc, term, index) => {
-                    return (acc || (term !== this.prevFilterTerms[index]));
-                }, false);
-                const isFilterChanged = ((this.filterTerms.length !== this.prevFilterTerms.length)
-                    || ((this.filterTerms.length > 0) && isFilterTermsChanged));
-                const isSortedColumnChanged = (this.prevSortedColumn !== this.sortedColumn);
-                const isReverseSortChanged = (this.prevReverseSort !== this.reverseSort);
-
-                return (rowsChanged || isFilterChanged || isSortedColumnChanged || isReverseSortChanged);
-            }.bind(this);
-
-            const rowsString = generateRowsSignature();
-            if (!hasRowsChanged(rowsString, this.prevRowsString))
-                return this.prevFilteredRows;
-
-            // sort, then filter
-            this.#sortNodesByColumn(root, this.columns[this.sortedColumn]);
-            const rows = (() => {
-                if (this.filterTerms.length === 0) {
-                    const nodeArray = this.fileTree.toArray();
-                    const filteredRows = nodeArray.map(node => this.getRow(node));
-                    return filteredRows;
-                }
-
-                return this.#filterNodes(root.children[0], this.filterTerms);
-            })();
-
-            this.prevFilterTerms = this.filterTerms;
-            this.prevRowsString = rowsString;
-            this.prevFilteredRows = rows;
-            this.prevSortedColumn = this.sortedColumn;
-            this.prevReverseSort = this.reverseSort;
-            return rows;
-        }
-
-        setupCommonEvents() {
-            const headerDiv = document.getElementById("bulkRenameFilesTableFixedHeaderDiv");
-            this.dynamicTableDiv.addEventListener("scroll", (e) => {
-                headerDiv.scrollLeft = this.dynamicTableDiv.scrollLeft;
-                // rerender on scroll
-                if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
-                }
-            });
-        }
-    }
-
     class TorrentFilesTable extends DynamicTable {
         filterTerms = [];
         prevFilterTerms = [];
@@ -3208,6 +2793,421 @@ window.qBittorrent.DynamicTable ??= (() => {
                         e.preventDefault();
                         this.expandFolder(this.getSelectedRowId());
                         break;
+                }
+            });
+        }
+    }
+
+    class BulkRenameTorrentFilesTable extends DynamicTable {
+        filterTerms = [];
+        prevFilterTerms = [];
+        prevRowsString = null;
+        prevFilteredRows = [];
+        prevSortedColumn = null;
+        prevReverseSort = null;
+        prevCheckboxNum = null;
+        fileTree = new window.qBittorrent.FileTree.FileTree();
+
+        setupVirtualList() {
+            super.setupVirtualList();
+            this.rowHeight = 29;
+        }
+
+        populateTable(root) {
+            this.fileTree.setRoot(root);
+            root.children.forEach((node) => {
+                this.#addNodeToTable(node, 0, root);
+            });
+        }
+
+        #addNodeToTable(node, depth, parent) {
+            node.depth = depth;
+            node.parent = parent;
+
+            this.updateRowData({
+                rowId: node.rowId
+            });
+
+            node.children.forEach((child) => {
+                this.#addNodeToTable(child, depth + 1, node);
+            });
+        }
+
+        getRoot() {
+            return this.fileTree.getRoot();
+        }
+
+        getNode(rowId) {
+            return this.fileTree.getNode(rowId);
+        }
+
+        getRow(node) {
+            const rowId = this.fileTree.getRowId(node).toString();
+            return this.rows.get(rowId);
+        }
+
+        getRowData(row, fullUpdate) {
+            return this.getNode(row.rowId);
+        }
+
+        getSelectedRows() {
+            const nodes = this.fileTree.toArray();
+
+            return nodes.filter(x => x.checked === 0);
+        }
+
+        initColumns() {
+            // Blocks saving header width (because window width isn't saved)
+            LocalPreferences.remove(`column_checked_width_${this.dynamicTableDivId}`);
+            LocalPreferences.remove(`column_original_width_${this.dynamicTableDivId}`);
+            LocalPreferences.remove(`column_renamed_width_${this.dynamicTableDivId}`);
+            this.newColumn("checked", "", "", 50, true);
+            this.newColumn("original", "", "QBT_TR(Original)QBT_TR[CONTEXT=TrackerListWidget]", 270, true);
+            this.newColumn("renamed", "", "QBT_TR(Renamed)QBT_TR[CONTEXT=TrackerListWidget]", 220, true);
+
+            this.initColumnsFunctions();
+        }
+
+        /**
+         * Toggles the global checkbox and all checkboxes underneath
+         */
+        toggleGlobalCheckbox() {
+            const checkbox = document.getElementById("rootMultiRename_cb");
+            const checkboxes = document.querySelectorAll("input.RenamingCB");
+
+            for (let i = 0; i < checkboxes.length; ++i) {
+                if (checkbox.checked || checkbox.indeterminate) {
+                    const cb = checkboxes[i];
+                    cb.checked = true;
+                    cb.indeterminate = false;
+                    cb.state = "checked";
+                }
+                else {
+                    const cb = checkboxes[i];
+                    cb.checked = false;
+                    cb.indeterminate = false;
+                    cb.state = "unchecked";
+                }
+            }
+
+            const nodes = this.fileTree.toArray();
+            for (const node of nodes)
+                node.checked = (checkbox.checked || checkbox.indeterminate) ? 0 : 1;
+
+            this.updateGlobalCheckbox();
+        }
+
+        toggleNodeTreeCheckbox(rowId, checkState) {
+            const node = this.getNode(rowId);
+            node.checked = checkState;
+            const checkbox = document.getElementById(`cbRename${rowId}`);
+            checkbox.checked = node.checked === 0;
+            checkbox.state = checkbox.checked ? "checked" : "unchecked";
+
+            for (let i = 0; i < node.children.length; ++i)
+                this.toggleNodeTreeCheckbox(node.children[i].rowId, checkState);
+        }
+
+        updateGlobalCheckbox() {
+            const checkbox = document.getElementById("rootMultiRename_cb");
+            const nodes = this.fileTree.toArray();
+            const isAllChecked = nodes.every((node) => node.checked === 0);
+            const isAllUnchecked = (() => nodes.every((node) => node.checked !== 0));
+            if (isAllChecked) {
+                checkbox.state = "checked";
+                checkbox.indeterminate = false;
+                checkbox.checked = true;
+            }
+            else if (isAllUnchecked()) {
+                checkbox.state = "unchecked";
+                checkbox.indeterminate = false;
+                checkbox.checked = false;
+            }
+            else {
+                checkbox.state = "partial";
+                checkbox.indeterminate = true;
+                checkbox.checked = false;
+            }
+        }
+
+        initColumnsFunctions() {
+            const that = this;
+
+            // checked
+            this.columns["checked"].updateTd = (td, row) => {
+                const id = row.rowId;
+                const node = that.getNode(id);
+
+                if (td.firstElementChild === null) {
+                    const treeImg = document.createElement("img");
+                    treeImg.src = "images/L.svg";
+                    treeImg.style.marginBottom = "-2px";
+                    td.append(treeImg);
+                }
+
+                let checkbox = td.children[1];
+                if (checkbox === undefined) {
+                    checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.className = "RenamingCB";
+                    checkbox.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        const targetId = e.target.dataset.id;
+                        const ids = [];
+                        // when holding shift, set all files between the previously selected one and the clicked one
+                        if (e.shiftKey && (that.prevCheckboxNum !== null) && (targetId !== that.prevCheckboxNum)) {
+                            const targetState = that.tableBody.querySelector(`.RenamingCB[data-id="${that.prevCheckboxNum}"]`).checked;
+                            const checkboxes = that.tableBody.getElementsByClassName("RenamingCB");
+                            let started = false;
+                            for (const cb of checkboxes) {
+                                const currId = cb.dataset.id;
+                                if ((currId === targetId) || (currId === that.prevCheckboxNum)) {
+                                    if (started) {
+                                        ids.push(currId);
+                                        cb.checked = targetState;
+                                        break;
+                                    }
+                                    started = true;
+                                }
+                                if (started) {
+                                    ids.push(currId);
+                                    cb.checked = targetState;
+                                }
+                            }
+                        }
+                        else {
+                            ids.push(targetId);
+                        }
+                        for (const id of ids) {
+                            const node = that.getNode(id);
+                            node.checked = e.target.checked ? 0 : 1;
+                        }
+                        that.updateGlobalCheckbox();
+                        that.onRowSelectionChange(that.getNode(targetId));
+                        that.prevCheckboxNum = targetId;
+                    });
+                    checkbox.indeterminate = false;
+                    td.append(checkbox);
+                }
+                checkbox.id = `cbRename${id}`;
+                checkbox.dataset.id = id;
+                checkbox.checked = (node.checked === 0);
+                checkbox.state = checkbox.checked ? "checked" : "unchecked";
+            };
+            this.columns["checked"].staticWidth = 50;
+
+            // original
+            this.columns["original"].updateTd = function(td, row) {
+                const id = row.rowId;
+                const node = that.getNode(id);
+                const value = this.getRowValue(row);
+
+                let dirImg = td.children[0];
+                if (dirImg === undefined) {
+                    dirImg = document.createElement("img");
+                    dirImg.src = "images/directory.svg";
+                    dirImg.style.width = "20px";
+                    dirImg.style.paddingRight = "5px";
+                    dirImg.style.marginBottom = "-3px";
+                    td.append(dirImg);
+                }
+                if (node.isFolder) {
+                    dirImg.style.display = "inline";
+                    dirImg.style.marginLeft = `${node.depth * 20}px`;
+                }
+                else {
+                    dirImg.style.display = "none";
+                }
+
+                let span = td.children[1];
+                if (span === undefined) {
+                    span = document.createElement("span");
+                    td.append(span);
+                }
+                span.textContent = value;
+                span.style.marginLeft = node.isFolder ? "0" : `${(node.depth + 1) * 20}px`;
+            };
+
+            // renamed
+            this.columns["renamed"].updateTd = (td, row) => {
+                const id = row.rowId;
+                const fileNameRenamedId = `filesTablefileRenamed${id}`;
+                const node = that.getNode(id);
+
+                let span = td.firstElementChild;
+                if (span === null) {
+                    span = document.createElement("span");
+                    td.append(span);
+                }
+                span.id = fileNameRenamedId;
+                span.textContent = node.renamed;
+            };
+
+            for (const column of this.columns) {
+                column["getRowValue"] = function(row, pos = 0) {
+                    const node = that.getNode(row.rowId);
+                    return node[this.dataProperties[pos]];
+                };
+            }
+        }
+
+        onRowSelectionChange(row) {}
+
+        selectRow() {}
+
+        reselectRows(rowIds) {
+            this.deselectAll();
+            for (const tr of this.getTrs()) {
+                if (rowIds.includes(tr.rowId)) {
+                    const node = this.getNode(tr.rowId);
+                    node.checked = 0;
+
+                    const checkbox = tr.querySelector(".RenamingCB");
+                    checkbox.state = "checked";
+                    checkbox.indeterminate = false;
+                    checkbox.checked = true;
+                }
+            }
+            this.updateGlobalCheckbox();
+        }
+
+        #sortNodesByColumn(root, column) {
+            const isColumnOriginal = (column.name === "original");
+            const isReverseSort = (this.reverseSort === "0");
+
+            const stack = [root];
+            while (stack.length > 0) {
+                const node = stack.pop();
+
+                node.children.sort((node1, node2) => {
+                    // list folders before files when sorting by name
+                    if (isColumnOriginal) {
+                        if (node1.isFolder && !node2.isFolder)
+                            return -1;
+                        if (!node1.isFolder && node2.isFolder)
+                            return 1;
+                    }
+
+                    const result = column.compareRows(node1, node2);
+                    return isReverseSort ? result : -result;
+                });
+
+                stack.push(...node.children);
+            }
+        }
+
+        #filterNodes(root, filterTerms) {
+            const ret = [];
+            const stack = [root];
+            const visited = [];
+
+            while (stack.length > 0) {
+                const node = stack.at(-1);
+
+                if (node.isFolder) {
+                    const lastVisited = visited.at(-1);
+
+                    if ((visited.length <= 0) || (lastVisited !== node)) {
+                        visited.push(node);
+                        stack.push(...node.children);
+                        continue;
+                    }
+
+                    // has children added or itself matches
+                    if (lastVisited.has_children_added || window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
+                        ret.push(this.getRow(node));
+                        delete node.has_children_added;
+
+                        // propagate up
+                        const parent = node.root;
+                        if (parent !== undefined)
+                            parent.has_children_added = true;
+                    }
+
+                    visited.pop();
+                }
+                else {
+                    if (window.qBittorrent.Misc.containsAllTerms(node.original, filterTerms)) {
+                        ret.push(this.getRow(node));
+
+                        const parent = node.root;
+                        if (parent !== undefined)
+                            parent.has_children_added = true;
+                    }
+                }
+
+                stack.pop();
+            }
+
+            ret.reverse();
+            return ret;
+        }
+
+        setFilter(text) {
+            const filterTerms = text.trim().toLowerCase().split(" ");
+            if ((filterTerms.length === 1) && (filterTerms[0] === ""))
+                this.filterTerms = [];
+            else
+                this.filterTerms = filterTerms;
+        }
+
+        getFilteredAndSortedRows() {
+            const root = this.getRoot();
+            if (root === null)
+                return [];
+
+            const generateRowsSignature = () => {
+                const rowsData = [];
+                for (const { full_data } of this.getRowValues())
+                    rowsData.push(full_data);
+                return JSON.stringify(rowsData);
+            };
+
+            const hasRowsChanged = function(rowsString, prevRowsStringString) {
+                const rowsChanged = (rowsString !== prevRowsStringString);
+                const isFilterTermsChanged = this.filterTerms.reduce((acc, term, index) => {
+                    return (acc || (term !== this.prevFilterTerms[index]));
+                }, false);
+                const isFilterChanged = ((this.filterTerms.length !== this.prevFilterTerms.length)
+                    || ((this.filterTerms.length > 0) && isFilterTermsChanged));
+                const isSortedColumnChanged = (this.prevSortedColumn !== this.sortedColumn);
+                const isReverseSortChanged = (this.prevReverseSort !== this.reverseSort);
+
+                return (rowsChanged || isFilterChanged || isSortedColumnChanged || isReverseSortChanged);
+            }.bind(this);
+
+            const rowsString = generateRowsSignature();
+            if (!hasRowsChanged(rowsString, this.prevRowsString))
+                return this.prevFilteredRows;
+
+            // sort, then filter
+            this.#sortNodesByColumn(root, this.columns[this.sortedColumn]);
+            const rows = (() => {
+                if (this.filterTerms.length === 0) {
+                    const nodeArray = this.fileTree.toArray();
+                    const filteredRows = nodeArray.map(node => this.getRow(node));
+                    return filteredRows;
+                }
+
+                return this.#filterNodes(root.children[0], this.filterTerms);
+            })();
+
+            this.prevFilterTerms = this.filterTerms;
+            this.prevRowsString = rowsString;
+            this.prevFilteredRows = rows;
+            this.prevSortedColumn = this.sortedColumn;
+            this.prevReverseSort = this.reverseSort;
+            return rows;
+        }
+
+        setupCommonEvents() {
+            const headerDiv = document.getElementById("bulkRenameFilesTableFixedHeaderDiv");
+            this.dynamicTableDiv.addEventListener("scroll", (e) => {
+                headerDiv.scrollLeft = this.dynamicTableDiv.scrollLeft;
+                // rerender on scroll
+                if (this.useVirtualList) {
+                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
+                    this.rerender();
                 }
             });
         }
