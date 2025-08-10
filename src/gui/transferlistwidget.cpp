@@ -610,17 +610,29 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 
 void TransferListWidget::previewSelectedTorrents()
 {
+    const int FILE_COUNT_THRESHOLD = 100;
+
     for (const BitTorrent::Torrent *torrent : asConst(getSelectedTorrents()))
     {
-        if (torrentContainsPreviewableFiles(torrent))
-        {
-            openPreviewSelectDialog(torrent);
-        }
-        else
+        if (!torrentContainsPreviewableFiles(torrent))
         {
             QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent \"%1\" does not contain previewable files")
                 .arg(torrent->name()));
+            continue;
         }
+
+        const int fileCount = torrent->filesCount();
+        if (fileCount > FILE_COUNT_THRESHOLD)
+        {
+            QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Preview confirmation"),
+                tr("The torrent \"%1\" has a large number of files (%2). Previewing may take a long time. Do you want to continue?")
+                    .arg(torrent->name()).arg(fileCount),
+                QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::No)
+                continue;
+        }
+
+        openPreviewSelectDialog(torrent);
     }
 }
 
