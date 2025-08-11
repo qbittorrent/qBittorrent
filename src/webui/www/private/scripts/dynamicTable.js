@@ -2489,7 +2489,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 if (td.firstElementChild === null) {
                     const treeImg = document.createElement("img");
-                    treeImg.src = "images/L.gif";
+                    treeImg.src = "images/L.svg";
                     treeImg.style.marginBottom = "-2px";
                     td.append(treeImg);
                 }
@@ -2974,7 +2974,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 if (td.firstElementChild === null) {
                     const treeImg = document.createElement("img");
-                    treeImg.src = "images/L.gif";
+                    treeImg.src = "images/L.svg";
                     treeImg.style.marginBottom = "-2px";
                     td.append(treeImg);
                 }
