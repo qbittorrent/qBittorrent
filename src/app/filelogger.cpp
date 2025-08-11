@@ -183,7 +183,7 @@ void FileLogger::openLogFile()
     }
 
     // best effort, don't report error
-    m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner);
+    m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner | QFile::ReadGroup);
 }
 
 void FileLogger::closeLogFile()
