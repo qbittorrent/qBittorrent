@@ -60,6 +60,7 @@
 #include "api/apierror.h"
 #include "api/appcontroller.h"
 #include "api/authcontroller.h"
+#include "api/clientdatacontroller.h"
 #include "api/logcontroller.h"
 #include "api/rsscontroller.h"
 #include "api/searchcontroller.h"
@@ -158,6 +159,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
+    , m_clientDataStorage {new ClientDataStorage(this)}
 {
     declarePublicAPI(u"auth/login"_s);
 
@@ -749,6 +751,7 @@ void WebApplication::sessionStart()
     m_sessions[m_currentSession->id()] = m_currentSession;
 
     m_currentSession->registerAPIController(u"app"_s, new AppController(app(), m_currentSession));
+    m_currentSession->registerAPIController(u"clientdata"_s, new ClientDataController(m_clientDataStorage, app(), m_currentSession));
     m_currentSession->registerAPIController(u"log"_s, new LogController(app(), m_currentSession));
     m_currentSession->registerAPIController(u"torrentcreator"_s, new TorrentCreatorController(m_torrentCreationManager, app(), m_currentSession));
     m_currentSession->registerAPIController(u"rss"_s, new RSSController(app(), m_currentSession));
