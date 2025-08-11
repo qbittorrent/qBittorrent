@@ -323,7 +323,17 @@ a.propButton img {
     background-color: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     display: none;
+    opacity: 0;
     padding: 0;
+    transition:
+        opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out;
+    visibility: hidden;
+}
+
+.contextMenu.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .contextMenu .separator {
