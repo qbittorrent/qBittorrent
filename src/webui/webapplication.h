@@ -57,6 +57,7 @@ inline const Utils::Version<3, 2> API_VERSION {2, 13, 1};
 
 class APIController;
 class AuthController;
+class ClientDataStorage;
 class WebApplication;
 
 namespace BitTorrent
@@ -153,6 +154,7 @@ private:
         {{u"app"_s, u"shutdown"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"login"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"logout"_s}, Http::METHOD_POST},
+        {{u"clientdata"_s, u"store"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
@@ -259,4 +261,5 @@ private:
     QList<Http::Header> m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+    ClientDataStorage *m_clientDataStorage = nullptr;
 };
