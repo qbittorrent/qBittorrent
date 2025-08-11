@@ -51,17 +51,20 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/interfaces/iapplication.h"
+#include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
 #include "base/utils/datetime.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
@@ -83,6 +86,42 @@ const QString KEY_FILE_METADATA_SIZE = u"size"_s;
 const QString KEY_FILE_METADATA_CREATION_DATE = u"creation_date"_s;
 const QString KEY_FILE_METADATA_LAST_ACCESS_DATE = u"last_access_date"_s;
 const QString KEY_FILE_METADATA_LAST_MODIFICATION_DATE = u"last_modification_date"_s;
+
+const int CLIENT_DATA_FILE_MAX_SIZE = 1024 * 1024;
+const QString CLIENT_DATA_FILE_NAME = u"web_data.json"_s;
+
+AppController::AppController(IApplication *app, QObject *parent)
+    : APIController(app, parent)
+{
+    m_clientDataFilePath = specialFolderLocation(SpecialFolder::Data) / Path(CLIENT_DATA_FILE_NAME);
+    if (m_clientDataFilePath.exists())
+    {
+        const auto readResult = Utils::IO::readFile(m_clientDataFilePath, CLIENT_DATA_FILE_MAX_SIZE);
+        if (!readResult)
+        {
+            LogMsg(tr("Failed to load web client data. %1").arg(readResult.error().message), Log::WARNING);
+            return;
+        }
+
+        QJsonParseError jsonError;
+        const QJsonDocument jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
+        if (jsonError.error != QJsonParseError::NoError)
+        {
+            LogMsg(tr("Failed to parse web client data. File: \"%1\". Error: \"%2\"")
+                .arg(m_clientDataFilePath.toString(), jsonError.errorString()), Log::WARNING);
+            return;
+        }
+
+        if (!jsonDoc.isObject())
+        {
+            LogMsg(tr("Failed to load web client data. File: \"%1\". Error: \"Invalid data format\"")
+                .arg(m_clientDataFilePath.toString()), Log::WARNING);
+            return;
+        }
+
+        m_clientData = jsonDoc.object();
+    }
+}
 
 void AppController::webapiVersionAction()
 {
@@ -1310,6 +1349,94 @@ void AppController::setCookiesAction()
     Net::DownloadManager::instance()->setAllCookies(cookies);
 
     setResult(QString());
+}
+
+void AppController::clientDataAction()
+{
+    const QString keysParam {params()[u"keys"_s]};
+    if (keysParam.isEmpty())
+    {
+        setResult(m_clientData);
+        return;
+    }
+
+    QJsonParseError jsonError;
+    const auto keysJsonDocument = QJsonDocument::fromJson(keysParam.toUtf8(), &jsonError);
+    if (jsonError.error != QJsonParseError::NoError)
+        throw APIError(APIErrorType::BadParams, jsonError.errorString());
+    if (!keysJsonDocument.isArray())
+        throw APIError(APIErrorType::BadParams, tr("\"keys\" must be an array"));
+
+    QJsonObject clientData;
+    for (const QJsonValue &keysJsonVal : asConst(keysJsonDocument.array()))
+    {
+        if (!keysJsonVal.isString())
+            throw APIError(APIErrorType::BadParams, tr("Key must be a string"));
+
+        const QString &key = keysJsonVal.toString();
+        if (const auto iter = m_clientData.constFind(key); iter != m_clientData.constEnd())
+            clientData.insert(key, iter.value());
+    }
+
+    setResult(clientData);
+}
+
+void AppController::setClientDataAction()
+{
+    requireParams({u"data"_s});
+    QJsonParseError jsonError;
+    const auto dataJsonDocument = QJsonDocument::fromJson(params()[u"data"_s].toUtf8(), &jsonError);
+    if (jsonError.error != QJsonParseError::NoError)
+        throw APIError(APIErrorType::BadParams, jsonError.errorString());
+    if (!dataJsonDocument.isObject())
+        throw APIError(APIErrorType::BadParams, tr("\"data\" must be an object"));
+
+    QJsonObject clientData = m_clientData;
+    bool dataModified = false;
+    const QJsonObject dataJsonObject = dataJsonDocument.object();
+    for (auto it = dataJsonObject.constBegin(), end = dataJsonObject.constEnd(); it != end; ++it)
+    {
+        const QString &key = it.key();
+        const QJsonValue &value = it.value();
+
+        if (value.isNull())
+        {
+            if (auto it = clientData.find(key); it != clientData.end())
+            {
+                clientData.erase(it);
+                dataModified = true;
+            }
+        }
+        else
+        {
+            const auto &existingValue = clientData.find(key);
+            if (existingValue == clientData.end())
+            {
+                clientData.insert(key, value);
+                dataModified = true;
+            }
+            else if (existingValue.value() != value)
+            {
+                existingValue.value() = value;
+                dataModified = true;
+            }
+        }
+    }
+
+    if (!dataModified)
+        return;
+
+    const QByteArray json = QJsonDocument(clientData).toJson(QJsonDocument::Compact);
+    if (json.size() > CLIENT_DATA_FILE_MAX_SIZE)
+        throw APIError(APIErrorType::BadParams, tr("Total web client data must not be larger than %1 bytes").arg(CLIENT_DATA_FILE_MAX_SIZE));
+    const nonstd::expected<void, QString> result = Utils::IO::saveToFile(m_clientDataFilePath, json);
+    if (!result)
+    {
+        throw APIError(APIErrorType::Conflict, tr("Failed to save web client data. Error: \"%1\"")
+               .arg(result.error()));
+    }
+
+    m_clientData = clientData;
 }
 
 void AppController::networkInterfaceListAction()
