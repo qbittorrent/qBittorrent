@@ -2078,15 +2078,68 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class TorrentTrackersTable extends DynamicTable {
+        collapseState = new Map(); // { rowId: String, isCollapsed: bool }
+
+        isTrackerCollapsed(id) {
+            return this.collapseState.get(id) ?? true;
+        }
+
+        toggleTrackerCollapsed(id) {
+            this.collapseState.set(id, !this.isTrackerCollapsed(id));
+            this.#updateTrackerRowState(id, this.isTrackerCollapsed(id));
+        }
+
+        #updateEndpointVisibility(endpoint, shouldHide) {
+            const span = document.getElementById(`trackersTableTrackerUrl${endpoint}`);
+            // span won't exist if row has been filtered out
+            if (span === null)
+                return;
+            const tr = span.parentElement.parentElement;
+            tr.classList.toggle("invisible", shouldHide);
+        }
+
+        #updateTrackerCollapseIcon(tracker, isCollapsed) {
+            const span = document.getElementById(`trackersTableTrackerUrl${tracker}`);
+            // span won't exist if row has been filtered out
+            if (span === null)
+                return;
+            const td = span.parentElement;
+
+            // rotate the collapse icon
+            const collapseIcon = td.firstElementChild;
+            collapseIcon.classList.toggle("rotate", isCollapsed);
+        }
+
+        #updateTrackerRowState(id, shouldCollapse) {
+            // collapsed rows will be filtered out when using virtual list
+            if (this.useVirtualList)
+                return;
+
+            this.#updateTrackerCollapseIcon(id, shouldCollapse);
+
+            for (const row of this.getRowValues()) {
+                const parentId = row.full_data._tracker;
+                if (parentId === id)
+                    this.#updateEndpointVisibility(row.rowId, shouldCollapse);
+            }
+        }
+
+        clearCollapseState() {
+            this.collapseState.clear();
+        }
+
         initColumns() {
+            this.newColumn("url", "", "QBT_TR(URL/Announce Endpoint)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
             this.newColumn("tier", "", "QBT_TR(Tier)QBT_TR[CONTEXT=TrackerListWidget]", 35, true);
-            this.newColumn("url", "", "QBT_TR(URL)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
+            this.newColumn("btVersion", "", "QBT_TR(BT Protocol)QBT_TR[CONTEXT=TrackerListWidget]", 35, true);
             this.newColumn("status", "", "QBT_TR(Status)QBT_TR[CONTEXT=TrackerListWidget]", 125, true);
             this.newColumn("peers", "", "QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("seeds", "", "QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("leeches", "", "QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]", 75, true);
             this.newColumn("downloaded", "", "QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]", 100, true);
             this.newColumn("message", "", "QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]", 250, true);
+            this.newColumn("nextAnnounce", "", "QBT_TR(Next Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
+            this.newColumn("minAnnounce", "", "QBT_TR(Min Announce)QBT_TR[CONTEXT=TrackerListWidget]", 150, true);
 
             this.initColumnsFunctions();
         }
@@ -2099,6 +2152,43 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const value1 = this.getRowValue(row1);
                 const value2 = this.getRowValue(row2);
                 return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
+            };
+
+            this.columns["url"].updateTd = (td, row) => {
+                const id = row.rowId;
+                const data = row.full_data;
+
+                let collapseIcon = td.firstElementChild;
+                if (collapseIcon === null) {
+                    collapseIcon = document.createElement("img");
+                    collapseIcon.src = "images/go-down.svg";
+                    collapseIcon.className = "filesTableCollapseIcon";
+                    collapseIcon.addEventListener("click", (e) => {
+                        const id = collapseIcon.dataset.id;
+                        this.toggleTrackerCollapsed(id);
+                        if (this.useVirtualList)
+                            this.rerender();
+                    });
+                    td.append(collapseIcon);
+                }
+                if (data._isTracker) {
+                    collapseIcon.style.display = "inline";
+                    collapseIcon.style.visibility = data._hasEndpoints ? "visible" : "hidden";
+                    collapseIcon.dataset.id = id;
+                    collapseIcon.classList.toggle("rotate", this.isTrackerCollapsed(id));
+                }
+                else {
+                    collapseIcon.style.display = "none";
+                }
+
+                let span = td.children[1];
+                if (span === undefined) {
+                    span = document.createElement("span");
+                    td.append(span);
+                }
+                span.id = `trackersTableTrackerUrl${id}`;
+                span.textContent = data.url;
+                span.style.marginLeft = data._isTracker ? "0" : "20px";
             };
 
             this.columns["url"].compareRows = naturalSort;
@@ -2155,6 +2245,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                         statusClass = "trackerUpdating";
                         break;
                     case "QBT_TR(Not working)QBT_TR[CONTEXT=TrackerListWidget]":
+                    case "QBT_TR(Tracker error)QBT_TR[CONTEXT=TrackerListWidget]":
+                    case "QBT_TR(Unreachable)QBT_TR[CONTEXT=TrackerListWidget]":
                         statusClass = "trackerNotWorking";
                         break;
                 }
@@ -2167,6 +2259,76 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = status;
                 td.title = status;
             };
+
+            const friendlyDuration = function(td, row) {
+                const value = this.getRowValue(row) ?? 0;
+                const seconds = Math.max(value - (Date.now() / 1000), 0);
+                const duration = window.qBittorrent.Misc.friendlyDuration(seconds, window.qBittorrent.Misc.MAX_ETA);
+                td.textContent = duration;
+                td.title = duration;
+            };
+
+            this.columns["nextAnnounce"].updateTd = friendlyDuration;
+            this.columns["minAnnounce"].updateTd = friendlyDuration;
+        }
+
+        getFilteredAndSortedRows() {
+            const trackers = [];
+            const trakcerEndpoints = new Map();
+
+            for (const row of this.getRowValues()) {
+                const tracker = row.full_data._tracker;
+                if (tracker) {
+                    if (this.useVirtualList && this.isTrackerCollapsed(tracker))
+                        continue;
+                    const endpoints = trakcerEndpoints.get(tracker);
+                    if (endpoints === undefined)
+                        trakcerEndpoints.set(tracker, [row]);
+                    else
+                        endpoints.push(row);
+                }
+                else {
+                    trackers.push(row);
+                }
+            }
+
+            const column = this.columns[this.sortedColumn];
+            const isReverseSort = this.reverseSort === "0";
+            const sortRows = (row1, row2) => {
+                const result = column.compareRows(row1, row2);
+                return isReverseSort ? result : -result;
+            };
+
+            const result = [];
+            for (const tracker of trackers.sort(sortRows)) {
+                result.push(tracker);
+                const endpoints = trakcerEndpoints.get(tracker.rowId) || [];
+                result.push(...endpoints.sort(sortRows));
+            }
+
+            return result;
+        }
+
+        updateTable(fullUpdate = false) {
+            super.updateTable(fullUpdate);
+            if (!this.useVirtualList) {
+                for (const row of this.getRowValues()) {
+                    if (row.full_data._isTracker)
+                        continue;
+                    this.#updateEndpointVisibility(row.rowId, this.isTrackerCollapsed(row.full_data._tracker));
+                }
+            }
+        }
+
+        setupCommonEvents() {
+            super.setupCommonEvents();
+            this.dynamicTableDiv.addEventListener("dblclick", (e) => {
+                const tr = e.target.closest("tr");
+                if (!tr || (tr.rowId.startsWith("** [") || tr.rowId.startsWith("endpoint|")))
+                    return;
+
+                window.qBittorrent.PropTrackers.editTracker(tr);
+            });
         }
     }
 
