@@ -2205,7 +2205,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const updateWebuiLocaleSelect = (selected) => {
             const languages = [];
-            for (let i = 0; i < document.getElementById("locale_select").options.length; i++)
+            for (let i = 0; i < document.getElementById("locale_select").options.length; ++i)
                 languages.push(document.getElementById("locale_select").options[i].value);
 
             if (!languages.includes(selected)) {

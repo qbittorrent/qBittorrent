@@ -263,7 +263,7 @@
 
                 // Adjust file enumeration count by 1 when replacing single files to prevent naming conflicts
                 if (!fileRenamer.replaceAll) {
-                    fileRenamer.fileEnumerationStart++;
+                    ++fileRenamer.fileEnumerationStart;
                     document.getElementById("file_counter").value = fileRenamer.fileEnumerationStart;
                 }
                 setupTable(selectedRows);
