@@ -6,6 +6,12 @@
     * `endpoints` is an array of tracker endpoints, each with `name`, `updating`, `status`, `msg`, `bt_version`, `num_peers`, `num_peers`, `num_leeches`, `num_downloaded`, `next_announce` and `min_announce` fields
   *  `torrents/trackers` now returns `5` and `6` in `status` field as possible values
     * `5` for `Tracker error` and `6` for `Unreachable`
+* [#TODO](https://github.com/qbittorrent/qBittorrent/pull/TODO)
+  * Add `push/subscribe` endpoint with parameter `subscription` for registering WebPush notifications
+  * Add `push/subscriptions` endpoint for listing all subscribed WebPush subscriptions
+  * Add `push/test` endpoint for testing WebPush notifications
+  * Add `push/unsubscribe` endpoint with parameter `endpoint` for unregistering WebPush notifications
+  * Add `push/vapidPublicKey` endpoint for retrieving the VAPID public key for WebPush notifications subscribing
 
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)

@@ -52,6 +52,7 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
+#include "api/pushcontroller.h"
 
 inline const Utils::Version<3, 2> API_VERSION {2, 13, 0};
 
@@ -153,6 +154,11 @@ private:
         {{u"app"_s, u"shutdown"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"login"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"logout"_s}, Http::METHOD_POST},
+        {{u"push"_s, u"subscribe"_s}, Http::METHOD_POST},
+        {{u"push"_s, u"subscriptions"_s}, Http::METHOD_GET},
+        {{u"push"_s, u"test"_s}, Http::METHOD_GET},
+        {{u"push"_s, u"unsubscribe"_s}, Http::METHOD_POST},
+        {{u"push"_s, u"vapidPublicKey"_s}, Http::METHOD_GET},
         {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
@@ -259,4 +265,6 @@ private:
     QList<Http::Header> m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+
+    PushController *m_pushController = nullptr;
 };
