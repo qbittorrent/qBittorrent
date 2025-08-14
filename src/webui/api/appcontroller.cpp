@@ -90,36 +90,42 @@ const QString KEY_FILE_METADATA_LAST_MODIFICATION_DATE = u"last_modification_dat
 const int CLIENT_DATA_FILE_MAX_SIZE = 1024 * 1024;
 const QString CLIENT_DATA_FILE_NAME = u"web_data.json"_s;
 
+Path AppController::m_clientDataFilePath;
+QJsonObject AppController::m_clientData;
+
 AppController::AppController(IApplication *app, QObject *parent)
     : APIController(app, parent)
 {
-    m_clientDataFilePath = specialFolderLocation(SpecialFolder::Data) / Path(CLIENT_DATA_FILE_NAME);
-    if (m_clientDataFilePath.exists())
+    if (m_clientDataFilePath.isEmpty())
     {
-        const auto readResult = Utils::IO::readFile(m_clientDataFilePath, CLIENT_DATA_FILE_MAX_SIZE);
-        if (!readResult)
+        m_clientDataFilePath = specialFolderLocation(SpecialFolder::Data) / Path(CLIENT_DATA_FILE_NAME);
+        if (m_clientDataFilePath.exists())
         {
-            LogMsg(tr("Failed to load web client data. %1").arg(readResult.error().message), Log::WARNING);
-            return;
-        }
+            const auto readResult = Utils::IO::readFile(m_clientDataFilePath, CLIENT_DATA_FILE_MAX_SIZE);
+            if (!readResult)
+            {
+                LogMsg(tr("Failed to load web client data. %1").arg(readResult.error().message), Log::WARNING);
+                return;
+            }
 
-        QJsonParseError jsonError;
-        const QJsonDocument jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
-        if (jsonError.error != QJsonParseError::NoError)
-        {
-            LogMsg(tr("Failed to parse web client data. File: \"%1\". Error: \"%2\"")
-                .arg(m_clientDataFilePath.toString(), jsonError.errorString()), Log::WARNING);
-            return;
-        }
+            QJsonParseError jsonError;
+            const QJsonDocument jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
+            if (jsonError.error != QJsonParseError::NoError)
+            {
+                LogMsg(tr("Failed to parse web client data. File: \"%1\". Error: \"%2\"")
+                    .arg(m_clientDataFilePath.toString(), jsonError.errorString()), Log::WARNING);
+                return;
+            }
 
-        if (!jsonDoc.isObject())
-        {
-            LogMsg(tr("Failed to load web client data. File: \"%1\". Error: \"Invalid data format\"")
-                .arg(m_clientDataFilePath.toString()), Log::WARNING);
-            return;
-        }
+            if (!jsonDoc.isObject())
+            {
+                LogMsg(tr("Failed to load web client data. File: \"%1\". Error: \"Invalid data format\"")
+                    .arg(m_clientDataFilePath.toString()), Log::WARNING);
+                return;
+            }
 
-        m_clientData = jsonDoc.object();
+            m_clientData = jsonDoc.object();
+        }
     }
 }
 
