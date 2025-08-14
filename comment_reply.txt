@@ -1,0 +1,7 @@
+@USBhost Thanks for the important clarification! To clarify for WebUI users:
+
+1. The desktop client changes in #23087 add the warning dialog automatically
+2. For WebUI performance with large torrents, you need to *manually enable* the virtual list feature (#22502) in:
+   **Preferences → Behavior → Custom WebUI settings → "Enable optimized table rendering (experimental)"**
+
+This separate setting is required because WebUI uses different technical implementation. Enabling it will optimize file listing performance similar to the desktop warning.

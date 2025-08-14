@@ -610,7 +610,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
 
 void TransferListWidget::previewSelectedTorrents()
 {
-    const int FILE_COUNT_THRESHOLD = 100;
+    const int FILE_COUNT_THRESHOLD = 20;
 
     for (const BitTorrent::Torrent *torrent : asConst(getSelectedTorrents()))
     {
@@ -622,7 +622,7 @@ void TransferListWidget::previewSelectedTorrents()
         }
 
         const int fileCount = torrent->filesCount();
-        if (fileCount > FILE_COUNT_THRESHOLD)
+        if (fileCount >= FILE_COUNT_THRESHOLD)
         {
             QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Preview confirmation"),
                 tr("The torrent \"%1\" has a large number of files (%2). Previewing may take a long time. Do you want to continue?")
