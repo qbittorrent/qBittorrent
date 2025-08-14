@@ -552,8 +552,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_storedTags(BITTORRENT_SESSION_KEY(u"Tags"_s))
     , m_shareLimitAction(BITTORRENT_SESSION_KEY(u"ShareLimitAction"_s), ShareLimitAction::Stop
         , [](const ShareLimitAction action) { return (action == ShareLimitAction::Default) ? ShareLimitAction::Stop : action; })
-    , m_savePath(BITTORRENT_SESSION_KEY(u"DefaultSavePath"_s), specialFolderLocation(SpecialFolder::Downloads))
-    , m_downloadPath(BITTORRENT_SESSION_KEY(u"TempPath"_s), (savePath() / Path(u"temp"_s)))
+    , m_savePath(BITTORRENT_SESSION_KEY(u"DefaultSavePath"_s), specialFolderLocation(SpecialFolder::Downloads), Utils::Fs::expandTilde)
+    , m_downloadPath(BITTORRENT_SESSION_KEY(u"TempPath"_s), (savePath() / Path(u"temp"_s)), Utils::Fs::expandTilde)
     , m_isDownloadPathEnabled(BITTORRENT_SESSION_KEY(u"TempPathEnabled"_s), false)
     , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY(u"SubcategoriesEnabled"_s), false)
     , m_useCategoryPathsInManualMode(BITTORRENT_SESSION_KEY(u"UseCategoryPathsInManualMode"_s), false)
@@ -1006,6 +1006,14 @@ bool SessionImpl::addCategory(const QString &name, const CategoryOptions &option
     if (!isValidCategoryName(name) || m_categories.contains(name))
         return false;
 
+    // Expand tildes in category save path
+    CategoryOptions expandedOptions = options;
+    expandedOptions.savePath = Utils::Fs::expandTilde(options.savePath);
+    if (expandedOptions.downloadPath.has_value())
+    {
+        expandedOptions.downloadPath->path = Utils::Fs::expandTilde(expandedOptions.downloadPath->path);
+    }
+
     if (isSubcategoriesEnabled())
     {
         for (const QString &parent : asConst(expandCategory(name)))
@@ -1018,7 +1026,7 @@ bool SessionImpl::addCategory(const QString &name, const CategoryOptions &option
         }
     }
 
-    m_categories[name] = options;
+    m_categories[name] = expandedOptions;
     storeCategories();
     emit categoryAdded(name);
 
@@ -1031,8 +1039,16 @@ bool SessionImpl::editCategory(const QString &name, const CategoryOptions &optio
     if (it == m_categories.end())
         return false;
 
+    // Expand tildes in category save path
+    CategoryOptions expandedOptions = options;
+    expandedOptions.savePath = Utils::Fs::expandTilde(options.savePath);
+    if (expandedOptions.downloadPath.has_value())
+    {
+        expandedOptions.downloadPath->path = Utils::Fs::expandTilde(expandedOptions.downloadPath->path);
+    }
+
     CategoryOptions &currentOptions = it.value();
-    if (options == currentOptions)
+    if (expandedOptions == currentOptions)
         return false;
 
     if (isDisableAutoTMMWhenCategorySavePathChanged())
@@ -1047,7 +1063,7 @@ bool SessionImpl::editCategory(const QString &name, const CategoryOptions &optio
         }
     }
 
-    currentOptions = options;
+    currentOptions = expandedOptions;
     storeCategories();
 
     for (TorrentImpl *const torrent : asConst(m_torrents))
@@ -3281,7 +3297,8 @@ void SessionImpl::removeTorrentsQueue()
 
 void SessionImpl::setSavePath(const Path &path)
 {
-    const auto newPath = (path.isAbsolute() ? path : (specialFolderLocation(SpecialFolder::Downloads) / path));
+    const Path expandedPath = Utils::Fs::expandTilde(path);
+    const auto newPath = (expandedPath.isAbsolute() ? expandedPath : (specialFolderLocation(SpecialFolder::Downloads) / expandedPath));
     if (newPath == m_savePath)
         return;
 
@@ -3321,7 +3338,8 @@ void SessionImpl::setSavePath(const Path &path)
 
 void SessionImpl::setDownloadPath(const Path &path)
 {
-    const Path newPath = (path.isAbsolute() ? path : (savePath() / Path(u"temp"_s) / path));
+    const Path expandedPath = Utils::Fs::expandTilde(path);
+    const Path newPath = (expandedPath.isAbsolute() ? expandedPath : (savePath() / Path(u"temp"_s) / expandedPath));
     if (newPath == m_downloadPath)
         return;
 
@@ -5581,7 +5599,15 @@ void SessionImpl::loadCategories()
     for (auto it = jsonObj.constBegin(); it != jsonObj.constEnd(); ++it)
     {
         const QString &categoryName = it.key();
-        const auto categoryOptions = CategoryOptions::fromJSON(it.value().toObject());
+        auto categoryOptions = CategoryOptions::fromJSON(it.value().toObject());
+        
+        // Expand tildes in loaded category paths
+        categoryOptions.savePath = Utils::Fs::expandTilde(categoryOptions.savePath);
+        if (categoryOptions.downloadPath.has_value())
+        {
+            categoryOptions.downloadPath->path = Utils::Fs::expandTilde(categoryOptions.downloadPath->path);
+        }
+        
         m_categories[categoryName] = categoryOptions;
     }
 }

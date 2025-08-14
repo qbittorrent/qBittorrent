@@ -71,4 +71,5 @@ namespace Utils::Fs
 
     Path homePath();
     Path tempPath();
+    Path expandTilde(const Path &path);
 }
