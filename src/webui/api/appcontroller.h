@@ -62,6 +62,6 @@ private slots:
     void networkInterfaceAddressListAction();
 
 private:
-    Path m_clientDataFilePath;
-    QJsonObject m_clientData;
+    static Path m_clientDataFilePath;
+    static QJsonObject m_clientData;
 };
