@@ -2228,8 +2228,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const loadPreferences = () => {
-            window.parent.qBittorrent.Cache.preferences.init({
-                onSuccess: (pref) => {
+            window.parent.qBittorrent.Cache.preferences.init()
+                .then((pref) => {
                     // Behavior tab
                     // Language
                     updateWebuiLocaleSelect(pref.locale);
@@ -2650,8 +2650,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
                     document.getElementById("i2pInboundLength").value = pref.i2p_inbound_length;
                     document.getElementById("i2pOutboundLength").value = pref.i2p_outbound_length;
-                }
-            });
+                });
         };
 
         const applyPreferences = () => {
@@ -3169,18 +3168,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["i2p_outbound_length"] = Number(document.getElementById("i2pOutboundLength").value);
 
             // Send it to qBT
-            window.parent.qBittorrent.Cache.preferences.set({
-                data: settings,
-                onFailure: () => {
-                    alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
-                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
-                },
-                onSuccess: () => {
+            window.parent.qBittorrent.Cache.preferences.set(settings)
+                .then(() => {
                     // Close window
                     window.parent.location.reload();
                     window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
-                }
-            });
+                }).catch((error) => {
+                    alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
+                });
         };
 
         const setup = () => {
