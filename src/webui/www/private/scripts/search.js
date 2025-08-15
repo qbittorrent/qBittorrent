@@ -109,8 +109,7 @@ window.qBittorrent.Search ??= (() => {
     });
 
     const init = () => {
-        // load "Search in" preference from local storage
-        document.getElementById("searchInTorrentName").value = (localPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
+        document.getElementById("searchInTorrentName").value = (window.qBittorrent.ClientData.get("search_in_filter") === "names") ? "names" : "everywhere";
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
             targets: "#searchResultsTableDiv tbody tr",
             menu: "searchResultsTableMenu",
@@ -802,7 +801,8 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const searchInTorrentName = () => {
-        localPreferences.set("search_in_filter", getSearchInTorrentName());
+        // don't await this
+        window.qBittorrent.ClientData.set({ search_in_filter: getSearchInTorrentName() }).catch(console.error);
         searchFilterChanged();
     };
 

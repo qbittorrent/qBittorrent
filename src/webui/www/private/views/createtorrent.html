@@ -127,8 +127,6 @@
             };
         };
 
-        const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
-
         const formatUrls = (urls) => {
             return urls.split("\n").map(encodeURIComponent).join("|");
         };
@@ -209,11 +207,12 @@
                 comments: document.getElementById("comments").value,
                 source: document.getElementById("source").value,
             };
-            localPreferences.set("torrent_creator", JSON.stringify(preference));
+            window.parent.qBittorrent.ClientData.set({ torrent_creator: preference }).catch(console.error);
         };
 
         const loadPreference = () => {
-            const preference = JSON.parse(localPreferences.get("torrent_creator") ?? "{}");
+            const preference = window.parent.qBittorrent.ClientData.get("torrent_creator") ?? {};
+
             document.getElementById("sourcePath").value = preference.sourcePath ?? "";
             document.getElementById("torrentFormat").value = preference.torrentFormat ?? "hybrid";
             document.getElementById("pieceSize").value = preference.pieceSize ?? 0;
