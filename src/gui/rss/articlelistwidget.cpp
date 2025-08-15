@@ -35,11 +35,13 @@
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_item.h"
 #include "gui/uithememanager.h"
+#include "gui/utils.h"
 
 ArticleListWidget::ArticleListWidget(QWidget *parent)
     : QListWidget(parent)
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
+    setIconSize(Utils::Gui::smallIconSize());
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     checkInvariant();
