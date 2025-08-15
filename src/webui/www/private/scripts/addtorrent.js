@@ -44,9 +44,10 @@ window.qBittorrent.AddTorrent ??= (() => {
     let source = "";
 
     const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+    const clientData = window.parent.qBittorrent.ClientData;
 
     const getCategories = () => {
-        const defaultCategory = LocalPreferences.get("add_torrent_default_category", "");
+        const defaultCategory = clientData.getCached("add_torrent_default_category") ?? "";
         const categorySelect = document.getElementById("categorySelect");
         for (const name of window.parent.qBittorrent.Client.categoryMap.keys()) {
             const option = document.createElement("option");
@@ -311,10 +312,7 @@ window.qBittorrent.AddTorrent ??= (() => {
 
         if (document.getElementById("setDefaultCategory").checked) {
             const category = document.getElementById("category").value.trim();
-            if (category.length === 0)
-                LocalPreferences.remove("add_torrent_default_category");
-            else
-                LocalPreferences.set("add_torrent_default_category", category);
+            clientData.set({ add_torrent_default_category: category.length > 0 ? category : null });
         }
     };
 
