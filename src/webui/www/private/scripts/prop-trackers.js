@@ -255,13 +255,21 @@ window.qBittorrent.PropTrackers ??= (() => {
         if (current_hash.length === 0)
             return;
 
-        const trackerUrl = encodeURIComponent(torrentTrackersTable.selectedRowsIds()[0]);
+        const tracker = torrentTrackersTable.getRow(torrentTrackersTable.getSelectedRowId());
+        const contentURL = new URL("edittracker.html", window.location);
+        contentURL.search = new URLSearchParams({
+            v: "${CACHEID}",
+            hash: current_hash,
+            url: tracker.full_data.url,
+            tier: tracker.full_data.tier
+        });
+
         new MochaUI.Window({
             id: "trackersPage",
             icon: "images/qbittorrent-tray.svg",
             title: "QBT_TR(Tracker editing)QBT_TR[CONTEXT=TrackerListWidget]",
             loadMethod: "iframe",
-            contentURL: `edittracker.html?v=${CACHEID}&hash=${current_hash}&url=${trackerUrl}`,
+            contentURL: contentURL.toString(),
             scrollbars: true,
             resizable: false,
             maximizable: false,
@@ -269,7 +277,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: window.qBittorrent.Dialog.limitWidthToViewport(500),
-            height: 150,
+            height: 200,
             onCloseComplete: () => {
                 updateData();
             }

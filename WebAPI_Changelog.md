@@ -6,6 +6,10 @@
     * `endpoints` is an array of tracker endpoints, each with `name`, `updating`, `status`, `msg`, `bt_version`, `num_peers`, `num_peers`, `num_leeches`, `num_downloaded`, `next_announce` and `min_announce` fields
   *  `torrents/trackers` now returns `5` and `6` in `status` field as possible values
     * `5` for `Tracker error` and `6` for `Unreachable`
+* [#22963](https://github.com/qbittorrent/qBittorrent/pull/22963)
+  * `torrents/editTracker` endpoint now supports setting a tracker's tier via `tier` parameter
+  * `torrents/editTracker` endpoint always responds with a 204 when successful
+  * `torrents/editTracker` endpoint `origUrl` parameter renamed to `url`
 
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
