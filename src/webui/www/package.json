@@ -15,6 +15,7 @@
     "eslint": "*",
     "eslint-plugin-html": "*",
     "eslint-plugin-prefer-arrow-functions": "*",
+    "eslint-plugin-qbt-webui": "https://github.com/Chocobo1/eslint-plugin-qbt-webui/tarball/v1",
     "eslint-plugin-regexp": "*",
     "happy-dom": "*",
     "html-validate": "*",

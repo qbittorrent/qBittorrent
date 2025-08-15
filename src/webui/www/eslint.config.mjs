@@ -1,6 +1,7 @@
 import Globals from "globals";
 import Html from "eslint-plugin-html";
 import Js from "@eslint/js";
+import PluginQbtWebUI from "eslint-plugin-qbt-webui";
 import PreferArrowFunctions from "eslint-plugin-prefer-arrow-functions";
 import Stylistic from "@stylistic/eslint-plugin";
 import * as RegexpPlugin from "eslint-plugin-regexp";
@@ -23,6 +24,7 @@ export default [
         },
         plugins: {
             Html,
+            PluginQbtWebUI,
             PreferArrowFunctions,
             RegexpPlugin,
             Stylistic
@@ -41,6 +43,7 @@ export default [
             "prefer-template": "error",
             "radix": "error",
             "require-await": "error",
+            "PluginQbtWebUI/prefix-inc-dec-operators": "error",
             "PreferArrowFunctions/prefer-arrow-functions": "error",
             "Stylistic/no-extra-semi": "error",
             "Stylistic/no-mixed-operators": [
