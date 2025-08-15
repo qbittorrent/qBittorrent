@@ -33,10 +33,10 @@
 #include <algorithm>
 #include <utility>
 
+#include <QByteArrayList>
 #include <QByteArrayView>
 #include <QDebug>
 #include <QRegularExpression>
-#include <QStringList>
 #include <QUrl>
 #include <QUrlQuery>
 
@@ -59,21 +59,19 @@ namespace
         return in;
     }
 
-    bool parseHeaderLine(const QStringView line, HeaderMap &out)
+    QStringPair parseHeaderLine(const QByteArrayView line)
     {
         // [rfc7230] 3.2. Header Fields
         const int i = line.indexOf(u':');
         if (i <= 0)
         {
             qWarning() << Q_FUNC_INFO << "invalid http header:" << line;
-            return false;
+            return {};
         }
 
-        const QString name = line.first(i).trimmed().toString().toLower();
-        const QString value = line.sliced(i + 1).trimmed().toString();
-        out[name] = value;
-
-        return true;
+        const QString name = QString::fromLatin1(line.first(i).trimmed()).toLower();
+        const QString value = QString::fromLatin1(line.sliced(i + 1).trimmed());
+        return {name, value};
     }
 }
 
@@ -93,7 +91,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
         return {ParseStatus::Incomplete, Request(), 0};
     }
 
-    const QString httpHeaders = QString::fromLatin1(data.constData(), headerEnd);
+    const QByteArrayView httpHeaders = data.first(headerEnd);
     if (!parseStartLines(httpHeaders))
     {
         qWarning() << Q_FUNC_INFO << "header parsing error";
@@ -152,36 +150,39 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
     return {ParseStatus::BadMethod, m_request, 0};
 }
 
-bool RequestParser::parseStartLines(const QStringView data)
+bool RequestParser::parseStartLines(const QByteArrayView data)
 {
     // we don't handle malformed request which uses `LF` for newline
-    const QList<QStringView> lines = data.split(QString::fromLatin1(CRLF), Qt::SkipEmptyParts);
+    const QList<QByteArrayView> lines = splitToViews(data, CRLF, Qt::SkipEmptyParts);
 
     // [rfc7230] 3.2.2. Field Order
-    QStringList requestLines;
+    QByteArrayList requestLines;
     for (const auto &line : lines)
     {
-        if (line.at(0).isSpace() && !requestLines.isEmpty())
+        if (QChar::fromLatin1(line.at(0)).isSpace() && !requestLines.isEmpty())
         {
             // continuation of previous line
             requestLines.last() += line;
         }
         else
         {
-            requestLines += line.toString();
+            requestLines += line.toByteArray();
         }
     }
 
     if (requestLines.isEmpty())
         return false;
 
-    if (!parseRequestLine(requestLines[0]))
+    if (!parseRequestLine(QString::fromLatin1(requestLines[0])))
         return false;
 
     for (auto i = ++(requestLines.begin()); i != requestLines.end(); ++i)
     {
-        if (!parseHeaderLine(*i, m_request.headers))
+        const auto [name, value] = parseHeaderLine(*i);
+        if (name.isEmpty())
             return false;
+
+        m_request.headers[name] = value;
     }
 
     return true;
@@ -310,17 +311,21 @@ bool RequestParser::parseFormData(const QByteArrayView data)
         return false;
     }
 
-    const QString headers = QString::fromLatin1(data.first(eohPos));
+    const QByteArrayView headers = data.first(eohPos);
     const QByteArrayView payload = viewWithoutEndingWith(data.sliced((eohPos + EOH.size())), CRLF);
 
     HeaderMap headersMap;
-    const QList<QStringView> headerLines = QStringView(headers).split(QString::fromLatin1(CRLF), Qt::SkipEmptyParts);
+    const QList<QByteArrayView> headerLines = splitToViews(headers, CRLF, Qt::SkipEmptyParts);
     for (const auto &line : headerLines)
     {
-        if (line.trimmed().startsWith(HEADER_CONTENT_DISPOSITION, Qt::CaseInsensitive))
+        const auto [name, value] = parseHeaderLine(line);
+        if (name.isEmpty())
+            return false;
+
+        if (name == HEADER_CONTENT_DISPOSITION)
         {
             // extract out filename & name
-            const QList<QStringView> directives = line.split(u';', Qt::SkipEmptyParts);
+            const QList<QByteArrayView> directives = splitToViews(line, ";", Qt::SkipEmptyParts);
 
             for (const auto &directive : directives)
             {
@@ -328,15 +333,14 @@ bool RequestParser::parseFormData(const QByteArrayView data)
                 if (idx < 0)
                     continue;
 
-                const QString name = directive.first(idx).trimmed().toString().toLower();
-                const QString value = Utils::String::unquote(directive.sliced(idx + 1).trimmed()).toString();
+                const QString name = QString::fromLatin1(directive.first(idx).trimmed()).toLower();
+                const QString value = QString::fromLatin1(unquote(directive.sliced(idx + 1).trimmed()));
                 headersMap[name] = value;
             }
         }
         else
         {
-            if (!parseHeaderLine(line, headersMap))
-                return false;
+            headersMap[name] = value;
         }
     }
 

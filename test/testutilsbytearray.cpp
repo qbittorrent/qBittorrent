@@ -34,6 +34,31 @@
 
 #include "base/utils/bytearray.h"
 
+namespace
+{
+    template <typename T>
+    void testUnquoteFor()
+    {
+        QCOMPARE(Utils::ByteArray::unquote<T>({}), {});
+        QCOMPARE(Utils::ByteArray::unquote<T>("abc"), "abc");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"abc\""), "abc");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"a b c\""), "a b c");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"abc"), "\"abc");
+        QCOMPARE(Utils::ByteArray::unquote<T>("abc\""), "abc\"");
+        QCOMPARE(Utils::ByteArray::unquote<T>(" \"abc\" "), " \"abc\" ");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"a\"bc\""), "a\"bc");
+        QCOMPARE(Utils::ByteArray::unquote<T>("'abc'", "'"), "abc");
+        QCOMPARE(Utils::ByteArray::unquote<T>("'abc'", "\"'"), "abc");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"'abc'\"", "\"'"), "'abc'");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"'abc'\"", "'\""), "'abc'");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"'abc'\"", "'"), "\"'abc'\"");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"abc'", "'"), "\"abc'");
+        QCOMPARE(Utils::ByteArray::unquote<T>("'abc\"", "'"), "'abc\"");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\"\""), "");
+        QCOMPARE(Utils::ByteArray::unquote<T>("\""), "\"");
+    }
+}
+
 class TestUtilsByteArray final : public QObject
 {
     Q_OBJECT
@@ -122,6 +147,12 @@ private slots:
         QCOMPARE(Utils::ByteArray::toBase32("ABCDE"), "IFBEGRCF");
         QCOMPARE(Utils::ByteArray::toBase32("0000000000"), "GAYDAMBQGAYDAMBQ");
         QCOMPARE(Utils::ByteArray::toBase32("1"), "GE======");
+    }
+
+    void testUnquote()
+    {
+        testUnquoteFor<QByteArray>();
+        testUnquoteFor<QByteArrayView>();
     }
 };
 

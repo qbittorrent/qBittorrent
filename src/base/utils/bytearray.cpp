@@ -29,9 +29,7 @@
 
 #include "bytearray.h"
 
-#include <QByteArray>
 #include <QByteArrayMatcher>
-#include <QByteArrayView>
 #include <QList>
 
 QList<QByteArrayView> Utils::ByteArray::splitToViews(const QByteArrayView in, const QByteArrayView sep, const Qt::SplitBehavior behavior)
