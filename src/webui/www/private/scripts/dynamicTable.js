@@ -65,6 +65,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         return 0;
     };
 
+    const clientData = window.qBittorrent.ClientData ?? window.parent.qBittorrent.ClientData;
     let DynamicTableHeaderContextMenuClass = null;
 
     if (typeof LocalPreferences === "undefined")
@@ -75,7 +76,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
-            this.useVirtualList = useVirtualList && (LocalPreferences.get("use_virtual_list", "false") === "true");
+            this.useVirtualList = useVirtualList && (clientData.getCached("use_virtual_list") === true);
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
             this.hiddenTableHeader = this.dynamicTableDiv.querySelector("thead tr");
             this.table = this.dynamicTableDiv.querySelector("table");
@@ -730,7 +731,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         setupAltRow() {
-            const useAltRowColors = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
+            const useAltRowColors = clientData.getCached("use_alt_row_colors") !== false;
             if (useAltRowColors)
                 document.getElementById(this.dynamicTableDivId).classList.add("altRowColors");
         }
@@ -1805,7 +1806,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     ? "dblclick_download"
                     : "dblclick_complete";
 
-                if (LocalPreferences.get(prefKey, "1") !== "1")
+                if (clientData.getCached(prefKey) === "0")
                     return true;
 
                 if (state.includes("stopped"))
