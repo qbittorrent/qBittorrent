@@ -66,6 +66,7 @@ class TransferListWidget;
 namespace MacUtils
 {
     class Badger;
+    class StatusItem;
 }
 #endif
 
@@ -261,5 +262,6 @@ private:
 #endif
 #ifdef Q_OS_MACOS
     std::unique_ptr<MacUtils::Badger> m_badger;
+    std::unique_ptr<MacUtils::StatusItem> m_statusItem;
 #endif
 };

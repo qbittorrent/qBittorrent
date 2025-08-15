@@ -105,6 +105,7 @@
 
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
+#include "macosstatusitem/statusitem.h"
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
@@ -138,6 +139,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     , m_storeExecutionLogTypes {EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL}
 #ifdef Q_OS_MACOS
     , m_badger {std::make_unique<MacUtils::Badger>()}
+    , m_statusItem {std::make_unique<MacUtils::StatusItem>()}
 #endif // Q_OS_MACOS
 {
     m_ui->setupUi(this);
@@ -1465,6 +1467,7 @@ void MainWindow::loadSessionStats()
     // update global information
 #ifdef Q_OS_MACOS
     m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS
