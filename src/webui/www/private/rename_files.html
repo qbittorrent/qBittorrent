@@ -310,7 +310,7 @@
             const addRowsToTable = (rows, selectedRows) => {
                 let rowId = 0;
                 const rootNode = new window.qBittorrent.FileTree.FolderNode();
-                rootNode.autoCheckFolders = false;
+                rootNode.autoCalculateCheckedState = false;
 
                 rows.forEach((row) => {
                     const pathItems = row.path.split(window.qBittorrent.Filesystem.PathSeparator);
@@ -334,7 +334,7 @@
 
                         if (folderNode === null) {
                             folderNode = new window.qBittorrent.FileTree.FolderNode();
-                            folderNode.autoCheckFolders = false;
+                            folderNode.autoCalculateCheckedState = false;
                             folderNode.rowId = rowId;
                             folderNode.path = (parent.path === "")
                                 ? folderName
