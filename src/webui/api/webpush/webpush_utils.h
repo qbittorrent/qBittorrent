@@ -28,50 +28,16 @@
 
 #pragma once
 
-#include <QNetworkAccessManager>
-
 #include <openssl/evp.h>
 
-#include "apicontroller.h"
-#include "base/path.h"
+#include <QByteArray>
+#include <QString>
 
-class PushController final : public APIController
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PushController)
+EVP_PKEY *generateECDHKeypair();
+EVP_PKEY *createPrivateKeyFromPemString(const QString& pemString);
+QString savePrivateKeyToPemString(EVP_PKEY *pkey);
 
-public:
-    explicit PushController(IApplication* app, QObject* parent = nullptr);
+QPair<QByteArray, QByteArray> buildWebPushPayload(const QString& p256dh, const QString& auth, const QByteArray& payload);
 
-private slots:
-    void subscribeAction();
-    void subscriptionsAction();
-    void testAction();
-    void unsubscribeAction();
-    void vapidPublicKeyAction();
-
-private:
-    struct PushSubscription
-    {
-        QString endpoint;
-        QString p256dh;
-        QString auth;
-
-        QJsonObject toJson() const;
-        static PushSubscription fromJson(const QJsonObject& jsonObj);
-
-        bool operator==(const PushSubscription& other) const;
-    };
-
-    Path m_configFilePath;
-    QNetworkAccessManager *m_networkManager;
-    QList<PushSubscription> m_registeredSubscriptions;
-
-    QString m_vapidPublicKeyString;
-    EVP_PKEY *m_vapidPrivateKey;
-
-    void applyProxySettings();
-    void saveSubscriptions();
-    void sendPushNotification(const QString event, const QJsonObject& payload);
-    void sendWebPushNotificationToSubscription(const PushSubscription& subscription, const QByteArray& payload);
-};
+QString createVapidJWT(EVP_PKEY *privateKey, const QString& endpoint);
+QString getVapidPublicKeyString(EVP_PKEY *privateKey);
