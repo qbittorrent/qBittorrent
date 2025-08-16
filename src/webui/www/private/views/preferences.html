@@ -1,10 +1,34 @@
 <div id="BehaviorTab" class="PrefTab">
     <fieldset class="settings">
-        <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="locale_select">
-            ${LANGUAGE_OPTIONS}
-        </select>
+        <legend>QBT_TR(Localization)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="locale_select">
+                            ${LANGUAGE_OPTIONS}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dateFormatSelect">QBT_TR(Date format:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="dateFormatSelect">
+                            <option value="default">QBT_TR(Browser default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="MM/dd/yyyy, h:mm:ss AM/PM">QBT_TR(08/23/2025, 10:32:46 PM)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="MM/dd/yyyy, HH:mm:ss">QBT_TR(08/23/2025, 22:32:46)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="dd/MM/yyyy, HH:mm:ss">QBT_TR(23/08/2025, 22:32:46)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="yyyy-MM-dd HH:mm:ss">QBT_TR(2025-08-23 22:32:46)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="yyyy/MM/dd HH:mm:ss">QBT_TR(2025/08/23 22:32:46)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="dd.MM.yyyy, HH:mm:ss">QBT_TR(23.08.2025, 22:32:46)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="MMM dd, yyyy, h:mm:ss AM/PM">QBT_TR(Aug 23, 2025, 10:32:46 PM)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="dd MMM yyyy, HH:mm:ss">QBT_TR(23 Aug 2025, 22:32:46)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </fieldset>
 
     <fieldset class="settings">
@@ -2229,6 +2253,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             window.parent.qBittorrent.Cache.preferences.init()
                 .then((pref) => {
                     const clientData = window.parent.qBittorrent.ClientData;
+                    const dateFormat = clientData.getCached("date_format");
                     const colorScheme = clientData.getCached("color_scheme");
                     const fullUrlTrackerColumn = clientData.getCached("full_url_tracker_column");
                     const useVirtualList = clientData.getCached("use_virtual_list");
@@ -2239,8 +2264,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const useAltRowColors = clientData.getCached("use_alt_row_colors");
 
                     // Behavior tab
-                    // Language
+                    // Localization
                     updateWebuiLocaleSelect(pref.locale);
+                    const dateFormatSelect = document.getElementById("dateFormatSelect");
+                    if ((dateFormat?.length > 0) && ([...dateFormatSelect.options].find(o => o.value === dateFormat) !== undefined))
+                        dateFormatSelect.value = dateFormat;
+
+                    // Interface
                     updateColoSchemeSelect(colorScheme);
 
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
@@ -2673,6 +2703,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Behavior tab
             // Language
             settings["locale"] = document.getElementById("locale_select").value;
+            clientData.date_format = document.getElementById("dateFormatSelect").value;
             const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
             if (colorScheme === 0)
                 clientData.color_scheme = null;
