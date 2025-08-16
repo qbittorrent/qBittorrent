@@ -54,8 +54,6 @@
 #include "base/global.h"
 #include "base/path.h"
 #include "base/utils/fs.h"
-#include "base/utils/misc.h"
-#include "base/utils/string.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
 #include "torrentcontentmodelitem.h"
@@ -275,6 +273,56 @@ int TorrentContentModel::columnCount([[maybe_unused]] const QModelIndex &parent)
     return TorrentContentModelItem::NB_COL;
 }
 
+// Validates a file name, where "file" refers to both files and directories in Windows and Unix-like systems.
+// Rejects empty or special names (".", ".."), platform-specific lengths or reserved names, and forbidden characters.
+bool TorrentContentModel::isInvalidName(const QString &name) const
+{
+    // Reject empty names or special directory names (".", "..")
+    if (name.isEmpty() || name == u"."_s || name == u".."_s)
+        return true;
+
+    #ifdef Q_OS_WIN
+        // Windows restricts file names to 255 characters and prohibits trailing dots
+        if (name.length() > 255 || name.endsWith(u'.'))
+            return true;
+    #else
+        // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
+        if (name.toUtf8().length() > 255)
+            return true;
+    #endif
+
+    #ifdef Q_OS_WIN
+        // Windows reserves certain names for devices, which cannot be used as file names
+        static const QStringList reservedNames {
+            QStringLiteral("CON"), QStringLiteral("PRN"), QStringLiteral("AUX"), QStringLiteral("NUL"),
+            QStringLiteral("COM1"), QStringLiteral("COM2"), QStringLiteral("COM3"), QStringLiteral("COM4"),
+            QStringLiteral("COM5"), QStringLiteral("COM6"), QStringLiteral("COM7"), QStringLiteral("COM8"),
+            QStringLiteral("COM9"), QStringLiteral("COM¹"), QStringLiteral("COM²"), QStringLiteral("COM³"),
+            QStringLiteral("LPT1"), QStringLiteral("LPT2"), QStringLiteral("LPT3"), QStringLiteral("LPT4"),
+            QStringLiteral("LPT5"), QStringLiteral("LPT6"), QStringLiteral("LPT7"), QStringLiteral("LPT8"),
+            QStringLiteral("LPT9"), QStringLiteral("LPT¹"), QStringLiteral("LPT²"), QStringLiteral("LPT³")
+        };
+        const QString baseName = name.section(u'.', 0, 0);
+    if (reservedNames.contains(baseName, Qt::CaseInsensitive))
+        return true;
+    #endif
+
+    // Check for control characters, delete character and forward slash
+    for (const QChar &c : name)
+    {
+        const ushort unicode = c.unicode();
+        if (unicode < 32 || unicode == 127 || c == u'/')
+            return true;
+    #ifdef Q_OS_WIN
+        // Windows forbids reserved characters in file names
+        if (c == u'\\' || c == u'<' || c == u'>' || c == u':' || c == u'"' ||
+            c == u'|' || c == u'?' || c == u'*')
+            return true;
+    #endif
+    }
+    return false;
+}
+
 bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &value, const int role)
 {
     if (!index.isValid())
@@ -301,28 +349,16 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         case TorrentContentModelItem::COL_NAME:
             {
                 const QString currentName = item->name();
-                QString newName = value.toString().trimmed();
-                
+                const QString newName = value.toString().trimmed();
+
                 if (currentName != newName)
                 {
-                    bool invalid = newName.isEmpty() || (newName == u"."_s) || (newName == u".."_s) || (newName.length() > 255) || newName.endsWith(u'.');
-                    if (!invalid)
-                    {
-                        for (const QChar &c : newName)
-                        {
-                            const ushort unicode = c.unicode();
-                            if ((unicode < 32) || (unicode == 127) || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') || (c == u'/') || (c == u'\\') || (c == u'|') || (c == u'?') || (c == u'*'))
-                            {
-                                invalid = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (invalid)
+                    if (isInvalidName(newName))
                     {
                         emit renameFailed(tr("The name \"%1\" is invalid.").arg(newName));
                         return false;
                     }
+
                     try
                     {
                         const Path parentPath = getItemPath(index.parent());
