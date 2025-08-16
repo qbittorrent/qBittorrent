@@ -42,6 +42,7 @@
 #include <QNetworkReply>
 
 #include "base/addtorrentmanager.h"
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/interfaces/iapplication.h"
 #include "base/logger.h"
@@ -61,10 +62,12 @@ const QString KEY_KEYS = u"keys"_s;
 const QString KEY_P256DH = u"p256dh"_s;
 const QString KEY_AUTH = u"auth"_s;
 
-const QString KEY_EVENT = u"event"_s;
 const QString KEY_PAYLOAD = u"payload"_s;
 
+const QString KEY_TORRENT_ID = u"torrent_id"_s;
 const QString KEY_TORRENT_NAME = u"torrent_name"_s;
+const QString KEY_TORRENT_CATEGORY = u"torrent_category"_s;
+const QString KEY_TORRENT_TAGS = u"torrent_tags"_s;
 const QString KEY_SOURCE = u"source"_s;
 const QString KEY_REASON = u"reason"_s;
 const QString KEY_MESSAGE = u"message"_s;
@@ -550,7 +553,10 @@ PushController::PushController(IApplication *app, QObject *parent)
         , [this](const BitTorrent::Torrent *torrent, const QString& msg)
         {
             QJsonObject payload;
+            payload[KEY_TORRENT_ID] = torrent->id().toString();
             payload[KEY_TORRENT_NAME] = torrent->name();
+            payload[KEY_TORRENT_CATEGORY] = torrent->category();
+            payload[KEY_TORRENT_TAGS] = Utils::String::joinIntoString(torrent->tags(), u","_s);
             payload[KEY_MESSAGE] = msg;
             sendPushNotification(EVENT_FULL_DISK_ERROR, payload);
         });
@@ -558,7 +564,10 @@ PushController::PushController(IApplication *app, QObject *parent)
         , [this](const BitTorrent::Torrent *torrent)
         {
             QJsonObject payload;
+            payload[KEY_TORRENT_ID] = torrent->id().toString();
             payload[KEY_TORRENT_NAME] = torrent->name();
+            payload[KEY_TORRENT_CATEGORY] = torrent->category();
+            payload[KEY_TORRENT_TAGS] = Utils::String::joinIntoString(torrent->tags(), u","_s);
             sendPushNotification(EVENT_TORRENT_FINISHED, payload);
         });
     const auto *addTorrentManager = app->addTorrentManager();
@@ -567,7 +576,10 @@ PushController::PushController(IApplication *app, QObject *parent)
         {
 
             QJsonObject payload;
+            payload[KEY_TORRENT_ID] = torrent->id().toString();
             payload[KEY_TORRENT_NAME] = torrent->name();
+            payload[KEY_TORRENT_CATEGORY] = torrent->category();
+            payload[KEY_TORRENT_TAGS] = Utils::String::joinIntoString(torrent->tags(), u","_s);
             payload[KEY_SOURCE] = source;
             sendPushNotification(EVENT_TORRENT_ADDED, payload);
         });
@@ -714,7 +726,7 @@ void PushController::saveSubscriptions()
 void PushController::sendPushNotification(const QString event, const QJsonObject& payload)
 {
     QJsonObject jsonPayload;
-    jsonPayload[KEY_EVENT] = event;
+    jsonPayload[u"event"_s] = event;
     jsonPayload[KEY_PAYLOAD] = payload;
     const QByteArray payloadData = QJsonDocument(jsonPayload).toJson(QJsonDocument::Compact);
     // Absent header (86 octets), padding(minimum 1 octet), and expansion for AEAD_AES_128_GCM(16 octets),

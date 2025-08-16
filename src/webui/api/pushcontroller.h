@@ -35,11 +35,6 @@
 #include "apicontroller.h"
 #include "base/path.h"
 
-namespace BitTorrent
-{
-    class Torrent;
-}
-
 class PushController final : public APIController
 {
     Q_OBJECT
