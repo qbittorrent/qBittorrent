@@ -94,6 +94,7 @@ private:
     void updateFilesPriorities();
     void updateFilesAvailability();
     bool setItemPriority(const QModelIndex &index, BitTorrent::DownloadPriority priority);
+    bool isInvalidName(const QString &name) const;
     void notifySubtreeUpdated(const QModelIndex &index, const QList<ColumnInterval> &columns);
 
     BitTorrent::TorrentContentHandler *m_contentHandler = nullptr;
