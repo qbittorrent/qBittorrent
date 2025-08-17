@@ -30,7 +30,10 @@
 
 #pragma once
 
+#include <QJsonObject>
+
 #include "apicontroller.h"
+#include "base/path.h"
 
 class AppController : public APIController
 {
@@ -38,7 +41,7 @@ class AppController : public APIController
     Q_DISABLE_COPY_MOVE(AppController)
 
 public:
-    using APIController::APIController;
+    explicit AppController(IApplication *app, QObject *parent = nullptr);
 
 private slots:
     void webapiVersionAction();
@@ -52,7 +55,13 @@ private slots:
     void getDirectoryContentAction();
     void cookiesAction();
     void setCookiesAction();
+    void clientDataAction();
+    void setClientDataAction();
 
     void networkInterfaceListAction();
     void networkInterfaceAddressListAction();
+
+private:
+    static Path m_clientDataFilePath;
+    static QJsonObject m_clientData;
 };
