@@ -2860,26 +2860,23 @@ window.qBittorrent.DynamicTable ??= (() => {
          */
         toggleGlobalCheckbox() {
             const checkbox = document.getElementById("rootMultiRename_cb");
-            const checkboxes = document.querySelectorAll("input.RenamingCB");
+            const isChecked = checkbox.checked || checkbox.indeterminate;
 
-            for (let i = 0; i < checkboxes.length; ++i) {
-                if (checkbox.checked || checkbox.indeterminate) {
-                    const cb = checkboxes[i];
+            for (const cb of document.querySelectorAll("input.RenamingCB")) {
+                cb.indeterminate = false;
+                if (isChecked) {
                     cb.checked = true;
-                    cb.indeterminate = false;
                     cb.state = "checked";
                 }
                 else {
-                    const cb = checkboxes[i];
                     cb.checked = false;
-                    cb.indeterminate = false;
                     cb.state = "unchecked";
                 }
             }
 
             const nodes = this.fileTree.toArray();
             for (const node of nodes)
-                node.checked = (checkbox.checked || checkbox.indeterminate) ? 0 : 1;
+                node.checked = isChecked ? 0 : 1;
 
             this.updateGlobalCheckbox();
         }
