@@ -26,9 +26,11 @@
 
             const searchParams = new URLSearchParams(window.location.search);
             const currentUrl = searchParams.get("url");
-            if (currentUrl === null)
+            const currentTier = searchParams.get("tier");
+            if ((currentUrl === null) || (currentTier === null))
                 return;
 
+            document.getElementById("trackerTier").value = currentTier;
             document.getElementById("trackerUrl").value = currentUrl;
             document.getElementById("trackerUrl").focus();
 
@@ -40,8 +42,9 @@
                         method: "POST",
                         body: new URLSearchParams({
                             hash: searchParams.get("hash"),
-                            origUrl: currentUrl,
-                            newUrl: document.getElementById("trackerUrl").value
+                            url: currentUrl,
+                            newUrl: document.getElementById("trackerUrl").value,
+                            tier: document.getElementById("trackerTier").value
                         })
                     })
                     .then((response) => {
@@ -61,6 +64,11 @@
         <label for="trackerUrl">QBT_TR(Tracker URL:)QBT_TR[CONTEXT=TrackerListWidget]</label>
         <div style="text-align: center; padding-top: 10px;">
             <input type="text" id="trackerUrl" style="width: 90%;">
+        </div>
+        <br>
+        <label for="trackerTier">QBT_TR(Tier:)QBT_TR[CONTEXT=TrackerListWidget]</label>
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="number" id="trackerTier" style="width: 90%; max-width: 100px;" min="0" max="255">
         </div>
         <br>
         <input type="button" value="QBT_TR(Edit)QBT_TR[CONTEXT=HttpServer]" id="editTrackerButton">
