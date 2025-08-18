@@ -31,9 +31,9 @@
 
 #include <Qt>
 #include <QtContainerFwd>
+#include <QByteArrayView>
 
 class QByteArray;
-class QByteArrayView;
 
 namespace Utils::ByteArray
 {
@@ -42,4 +42,19 @@ namespace Utils::ByteArray
     QByteArray asQByteArray(QByteArrayView view);
 
     QByteArray toBase32(const QByteArray &in);
+
+    template <typename T>
+    T unquote(const T &arr, const QByteArrayView quotes = "\"")
+    {
+        if (arr.length() < 2)
+            return arr;
+
+        for (const char quote : quotes)
+        {
+            if (arr.startsWith(quote) && arr.endsWith(quote))
+                return arr.sliced(1, (arr.length() - 2));
+        }
+
+        return arr;
+    }
 }
