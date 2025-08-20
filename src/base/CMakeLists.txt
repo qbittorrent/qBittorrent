@@ -98,6 +98,7 @@ add_library(qbt_base STATIC
     settingsstorage.h
     tag.h
     tagset.h
+    torrentgroup.h
     torrentfileguard.h
     torrentfileswatcher.h
     torrentfilter.h
@@ -197,6 +198,7 @@ add_library(qbt_base STATIC
     settingsstorage.cpp
     tag.cpp
     tagset.cpp
+    torrentgroup.cpp
     torrentfileguard.cpp
     torrentfileswatcher.cpp
     torrentfilter.cpp

@@ -102,12 +102,18 @@ public slots:
     void applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void previewFile(const Path &filePath);
     void renameSelectedTorrent();
+    void createGroupFromSelection();
+    void addSelectionToGroup();
+    void removeSelectionFromGroup();
+    void deleteGroup();
+    void renameGroup();
 
 signals:
     void currentTorrentChanged(BitTorrent::Torrent *torrent);
 
 private slots:
     void torrentDoubleClicked();
+    void torrentDoubleClickedIndex(const QModelIndex &proxyIndex);
     void displayListMenu();
     void displayColumnHeaderMenu();
     void currentChanged(const QModelIndex &current, const QModelIndex&) override;
@@ -135,9 +141,12 @@ private:
     void confirmRemoveAllTagsForSelection();
     TagSet askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
+    BitTorrent::Torrent *resolveTorrent(const QModelIndex &proxyIndex) const;
     QList<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
 
     TransferListModel *m_listModel = nullptr;
+    class TransferListGroupModel *m_groupModel = nullptr; // optional hierarchical model
     TransferListSortModel *m_sortFilterModel = nullptr;
+    QString m_contextGroupName; // group name from last context menu invocation (group parent)
 };
