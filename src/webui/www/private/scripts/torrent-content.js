@@ -84,12 +84,12 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const getAllChildren = (id, fileId) => {
         const node = torrentFilesTable.getNode(id);
-        const rowIds = [node.data.rowId];
-        const fileIds = [node.data.fileId];
+        const rowIds = [node.rowId];
+        const fileIds = [node.fileId];
 
         const getChildFiles = (node) => {
-            rowIds.push(node.data.rowId);
-            fileIds.push(node.data.fileId);
+            rowIds.push(node.rowId);
+            fileIds.push(node.fileId);
 
             if (node.isFolder) {
                 node.children.forEach((child) => {
@@ -214,8 +214,8 @@ window.qBittorrent.TorrentContent ??= (() => {
     };
 
     const getComboboxPriority = (id) => {
-        const row = torrentFilesTable.rows.get(id.toString());
-        return normalizePriority(row.full_data.priority, 10);
+        const node = torrentFilesTable.getNode(id.toString());
+        return normalizePriority(node.priority, 10);
     };
 
     const switchGlobalCheckboxState = (e) => {
@@ -230,8 +230,9 @@ window.qBittorrent.TorrentContent ??= (() => {
             setCheckboxUnchecked(checkbox);
             torrentFilesTable.rows.forEach((row) => {
                 const rowId = row.rowId;
-                const fileId = row.full_data.fileId;
-                const isChecked = (getCheckboxState(rowId) === TriState.Checked);
+                const node = torrentFilesTable.getNode(rowId);
+                const fileId = node.fileId;
+                const isChecked = (node.checked === TriState.Checked);
                 if (isChecked) {
                     rowIds.push(rowId);
                     fileIds.push(fileId);
@@ -242,8 +243,9 @@ window.qBittorrent.TorrentContent ??= (() => {
             setCheckboxChecked(checkbox);
             torrentFilesTable.rows.forEach((row) => {
                 const rowId = row.rowId;
-                const fileId = row.full_data.fileId;
-                const isUnchecked = (getCheckboxState(rowId) === TriState.Unchecked);
+                const node = torrentFilesTable.getNode(rowId);
+                const fileId = node.fileId;
+                const isUnchecked = (node.checked === TriState.Unchecked);
                 if (isUnchecked) {
                     rowIds.push(rowId);
                     fileIds.push(fileId);
@@ -285,26 +287,22 @@ window.qBittorrent.TorrentContent ??= (() => {
         checkbox.indeterminate = true;
     };
 
-    const getCheckboxState = (id) => {
-        const row = torrentFilesTable.rows.get(id.toString());
-        return Number(row.full_data.checked);
-    };
-
     const setFilePriority = (ids, fileIds, priority) => {
         priority = normalizePriority(priority);
 
         if (onFilePriorityChanged)
             onFilePriorityChanged(fileIds, priority);
 
-        const ignore = (priority === FilePriority.Ignored);
-        ids.forEach((id) => {
-            id = id.toString();
-            torrentFilesTable.setIgnored(id, ignore);
-
-            const row = torrentFilesTable.rows.get(id);
-            row.full_data.priority = priority;
-            row.full_data.checked = triStateFromPriority(priority);
+        const nodes = ids.map((id) => {
+            const node = torrentFilesTable.getNode(id.toString());
+            node.priority = priority;
+            node.checked = triStateFromPriority(priority);
+            return node;
         });
+
+        // must update all nodes above before recalculating
+        for (const node of nodes)
+            node.calculateRemaining();
     };
 
     const updateData = (files) => {
@@ -318,7 +316,6 @@ window.qBittorrent.TorrentContent ??= (() => {
                 size: file.size,
                 progress: window.qBittorrent.Misc.toFixedPointString((file.progress * 100), 1),
                 priority: normalizePriority(file.priority),
-                remaining: (ignore ? 0 : (file.size * (1 - file.progress))),
                 availability: file.availability
             };
 
@@ -372,19 +369,17 @@ window.qBittorrent.TorrentContent ??= (() => {
             });
 
             const isChecked = row.checked ? TriState.Checked : TriState.Unchecked;
-            const remaining = (row.priority === FilePriority.Ignored) ? 0 : row.remaining;
             const childNode = new window.qBittorrent.FileTree.FileNode();
             childNode.name = row.name;
             childNode.path = row.fileName;
             childNode.rowId = rowId;
+            childNode.fileId = row.fileId;
             childNode.size = row.size;
             childNode.checked = isChecked;
-            childNode.remaining = remaining;
             childNode.progress = row.progress;
             childNode.priority = row.priority;
             childNode.availability = row.availability;
             childNode.root = parent;
-            childNode.data = row;
             parent.addChild(childNode);
 
             ++rowId;
@@ -430,6 +425,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         const updateComplete = () => {
             // we've finished recursing
             updateGlobalCheckbox();
+            torrentFilesTable.calculateRemaining();
             torrentFilesTable.updateTable(true);
         };
 
@@ -447,7 +443,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         let indeterminateCount = 0;
         let desiredComboboxPriority = null;
         for (const sibling of siblings) {
-            switch (getCheckboxState(sibling.rowId)) {
+            switch (sibling.checked) {
                 case TriState.Checked:
                     ++checkedCount;
                     break;
@@ -465,7 +461,7 @@ window.qBittorrent.TorrentContent ??= (() => {
                 desiredComboboxPriority = FilePriority.Mixed;
         }
 
-        const currentCheckboxState = getCheckboxState(parent.rowId);
+        const currentCheckboxState = parent.checked;
         let desiredCheckboxState = TriState.Unchecked;
         if ((indeterminateCount > 0) || ((checkedCount > 0) && (uncheckedCount > 0)))
             desiredCheckboxState = TriState.Partial;
@@ -474,9 +470,9 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         const currentComboboxPriority = getComboboxPriority(parent.rowId);
         if ((currentCheckboxState !== desiredCheckboxState) || (currentComboboxPriority !== desiredComboboxPriority)) {
-            const row = torrentFilesTable.rows.get(parent.rowId.toString());
-            row.full_data.priority = desiredComboboxPriority;
-            row.full_data.checked = desiredCheckboxState;
+            const node = torrentFilesTable.getNode(parent.rowId.toString());
+            node.priority = desiredComboboxPriority;
+            node.checked = desiredCheckboxState;
 
             updateParentFolder(parent.rowId);
         }
