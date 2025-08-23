@@ -162,6 +162,55 @@ namespace
         }
     };
 #endif // Q_OS_WIN
+
+    // Validates a file name, where "file" refers to both files and directories in Windows and Unix-like systems.
+    // Rejects empty or special names (".", ".."), platform-specific lengths or reserved names, and forbidden characters.
+    bool isInvalidName(const QString &name)
+    {
+        // Reject empty names or special directory names (".", "..")
+        if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
+            return true;
+
+#ifdef Q_OS_WIN
+        // Windows restricts file names to 255 characters and prohibits trailing dots
+        if ((name.length() > 255) || name.endsWith(u'.'))
+            return true;
+#else
+        // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
+        if (name.toUtf8().length() > 255)
+            return true;
+#endif
+
+#ifdef Q_OS_WIN
+        // Windows reserves certain names for devices, which cannot be used as file names
+        const QSet reservedNames{
+            u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
+            u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
+            u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
+            u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
+            u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
+            u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
+            u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s};
+        const QString baseName = name.section(u'.', 0, 0).toUpper();
+        if (reservedNames.contains(baseName))
+            return true;
+#endif
+
+        // Check for control characters, delete character and forward slash
+        for (const QChar &c : name)
+        {
+            const ushort unicode = c.unicode();
+            if (unicode < 32 || unicode == 127 || c == u'/')
+                return true;
+#ifdef Q_OS_WIN
+            // Windows forbids reserved characters in file names
+            if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') ||
+                (c == u'|') || (c == u'?') || (c == u'*'))
+                return true;
+#endif
+        }
+        return false;
+    }
 }
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
@@ -273,56 +322,6 @@ int TorrentContentModel::columnCount([[maybe_unused]] const QModelIndex &parent)
     return TorrentContentModelItem::NB_COL;
 }
 
-// Validates a file name, where "file" refers to both files and directories in Windows and Unix-like systems.
-// Rejects empty or special names (".", ".."), platform-specific lengths or reserved names, and forbidden characters.
-bool TorrentContentModel::isInvalidName(const QString &name) const
-{
-    // Reject empty names or special directory names (".", "..")
-    if (name.isEmpty() || name == u"."_s || name == u".."_s)
-        return true;
-
-    #ifdef Q_OS_WIN
-        // Windows restricts file names to 255 characters and prohibits trailing dots
-        if (name.length() > 255 || name.endsWith(u'.'))
-            return true;
-    #else
-        // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
-        if (name.toUtf8().length() > 255)
-            return true;
-    #endif
-
-    #ifdef Q_OS_WIN
-        // Windows reserves certain names for devices, which cannot be used as file names
-        static const QStringList reservedNames {
-            QStringLiteral("CON"), QStringLiteral("PRN"), QStringLiteral("AUX"), QStringLiteral("NUL"),
-            QStringLiteral("COM1"), QStringLiteral("COM2"), QStringLiteral("COM3"), QStringLiteral("COM4"),
-            QStringLiteral("COM5"), QStringLiteral("COM6"), QStringLiteral("COM7"), QStringLiteral("COM8"),
-            QStringLiteral("COM9"), QStringLiteral("COM¹"), QStringLiteral("COM²"), QStringLiteral("COM³"),
-            QStringLiteral("LPT1"), QStringLiteral("LPT2"), QStringLiteral("LPT3"), QStringLiteral("LPT4"),
-            QStringLiteral("LPT5"), QStringLiteral("LPT6"), QStringLiteral("LPT7"), QStringLiteral("LPT8"),
-            QStringLiteral("LPT9"), QStringLiteral("LPT¹"), QStringLiteral("LPT²"), QStringLiteral("LPT³")
-        };
-        const QString baseName = name.section(u'.', 0, 0);
-    if (reservedNames.contains(baseName, Qt::CaseInsensitive))
-        return true;
-    #endif
-
-    // Check for control characters, delete character and forward slash
-    for (const QChar &c : name)
-    {
-        const ushort unicode = c.unicode();
-        if (unicode < 32 || unicode == 127 || c == u'/')
-            return true;
-    #ifdef Q_OS_WIN
-        // Windows forbids reserved characters in file names
-        if (c == u'\\' || c == u'<' || c == u'>' || c == u':' || c == u'"' ||
-            c == u'|' || c == u'?' || c == u'*')
-            return true;
-    #endif
-    }
-    return false;
-}
-
 bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &value, const int role)
 {
     if (!index.isValid())
@@ -353,9 +352,9 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
                 if (currentName != newName)
                 {
-                    if (isInvalidName(newName))
+                    if (::isInvalidName(newName))
                     {
-                        emit renameFailed(tr("The name \"%1\" is invalid.").arg(newName));
+                        emit renameFailed(tr("The name is invalid: \"%1\"").arg(newName));
                         return false;
                     }
 
