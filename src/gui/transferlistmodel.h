@@ -87,6 +87,7 @@ public:
         TR_INFOHASH_V2,
         TR_REANNOUNCE,
         TR_PRIVATE,
+        TR_PERCENT_SELECTED,
 
         NB_COLUMNS
     };
