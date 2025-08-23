@@ -30,6 +30,8 @@
 #pragma once
 
 #include <QTreeView>
+#include <qcontainerfwd.h>
+#include <qevent.h>
 
 #include "base/bittorrent/downloadpriority.h"
 #include "base/pathfwd.h"
@@ -104,6 +106,8 @@ signals:
 private:
     void setModel(QAbstractItemModel *model) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
     QModelIndex currentNameCell() const;
     void displayColumnHeaderMenu();
@@ -118,6 +122,9 @@ private:
     void onItemDoubleClicked(const QModelIndex &index);
     // Expand single-item folders recursively.
     // This will trigger sorting and filtering so do it after all relevant data is loaded.
+    void onNameChange(const QString &objectName);
+
+    bool shouldDrag(QMouseEvent *event);
     void expandRecursively();
 
     TorrentContentModel *m_model;
@@ -126,4 +133,5 @@ private:
     ColumnsVisibilityMode m_columnsVisibilityMode = ColumnsVisibilityMode::Editable;
     QShortcut *m_openFileHotkeyEnter = nullptr;
     QShortcut *m_openFileHotkeyReturn = nullptr;
+    bool allowDrag;
 };

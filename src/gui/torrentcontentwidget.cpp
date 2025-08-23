@@ -38,6 +38,8 @@
 #include <QModelIndexList>
 #include <QShortcut>
 #include <QWheelEvent>
+#include <qevent.h>
+#include <qobject.h>
 
 #include "base/bittorrent/torrentcontenthandler.h"
 #include "base/path.h"
@@ -71,14 +73,17 @@ namespace
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    setDragEnabled(true);
     setDragDropMode(QAbstractItemView::DragOnly);
     setExpandsOnDoubleClick(false);
+    setMouseTracking(true);
+    setSelectionMode(QAbstractItemView::MultiSelection);
     setSortingEnabled(true);
     setUniformRowHeights(true);
     header()->setSortIndicator(0, Qt::AscendingOrder);
     header()->setFirstSectionMovable(true);
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
+
+    allowDrag = true;
 
     m_model = new TorrentContentModel(this);
     connect(m_model, &TorrentContentModel::renameFailed, this, [this](const QString &errorMessage)
@@ -100,6 +105,7 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     connect(header(), &QHeaderView::sectionMoved, this, &TorrentContentWidget::stateChanged);
     connect(header(), &QHeaderView::sectionResized, this, &TorrentContentWidget::stateChanged);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TorrentContentWidget::stateChanged);
+    connect(this, &QObject::objectNameChanged, this, &TorrentContentWidget::onNameChange);
 
     const auto *renameFileHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(renameFileHotkey, &QShortcut::activated, this, &TorrentContentWidget::renameSelectedFile);
@@ -247,6 +253,23 @@ void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
 
     for (const QPersistentModelIndex &index : selection)
         model()->setData(index, state, Qt::CheckStateRole);
+}
+
+void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
+{
+    setDragEnabled(shouldDrag(event));
+
+    QTreeView::mousePressEvent(event);
+}
+
+void TorrentContentWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    if (shouldDrag(event))
+        setCursor(Qt::OpenHandCursor);
+    else
+        setCursor(Qt::ArrowCursor);
+
+    QTreeView::mouseMoveEvent(event);
 }
 
 void TorrentContentWidget::renameSelectedFile()
@@ -507,6 +530,46 @@ void TorrentContentWidget::onItemDoubleClicked(const QModelIndex &index)
         renameSelectedFile();
     else
         openItem(index);
+}
+
+void TorrentContentWidget::onNameChange(const QString &objectName)
+{
+    if (objectName == u"contentTreeView"_s)
+        allowDrag = false;
+}
+
+bool TorrentContentWidget::shouldDrag(QMouseEvent *event)
+{
+    const QPointF pressPosition = event->position();
+
+    if (allowDrag == false && QGuiApplication::mouseButtons() != Qt::LeftButton)
+        return false;
+
+    int columnIndex = columnAt(pressPosition.x());
+
+    if (columnIndex == TorrentContentWidget::Name)
+    {
+        QModelIndex cIndex = indexAt(pressPosition.toPoint());
+        if (!cIndex.isValid())
+            return false;
+
+        int namePosX = columnViewportPosition(columnIndex);
+        int depth = 0;
+        while(cIndex != cIndex.parent())
+        {
+            depth++;
+            cIndex = cIndex.parent();
+        }
+
+        int iconLeft = namePosX + (indentation() * (depth + 1));
+        int iconRight = iconLeft + indentation();
+
+        if (pressPosition.x() > iconLeft &&
+            pressPosition.x() < iconRight)
+            return true;
+    }
+
+    return false;
 }
 
 void TorrentContentWidget::expandRecursively()
