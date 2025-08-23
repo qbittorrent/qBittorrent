@@ -56,6 +56,7 @@ public:
     void disableTagFilter();
     void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();
+    TorrentFilter::Type getType() const;
 
 private:
     int compare(const QModelIndex &left, const QModelIndex &right) const;
