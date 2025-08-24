@@ -1976,10 +1976,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         getFilteredAndSortedRows() {
             const getSizeFilters = () => {
-                let minSize = (window.qBittorrent.Search.searchSizeFilter.min > 0.00) ? (window.qBittorrent.Search.searchSizeFilter.min * Math.pow(1024, window.qBittorrent.Search.searchSizeFilter.minUnit)) : 0.00;
-                let maxSize = (window.qBittorrent.Search.searchSizeFilter.max > 0.00) ? (window.qBittorrent.Search.searchSizeFilter.max * Math.pow(1024, window.qBittorrent.Search.searchSizeFilter.maxUnit)) : 0.00;
+                let minSize = (window.qBittorrent.Search.searchSizeFilter.min > 0) ? (window.qBittorrent.Search.searchSizeFilter.min * Math.pow(1024, window.qBittorrent.Search.searchSizeFilter.minUnit)) : 0;
+                let maxSize = (window.qBittorrent.Search.searchSizeFilter.max > 0) ? (window.qBittorrent.Search.searchSizeFilter.max * Math.pow(1024, window.qBittorrent.Search.searchSizeFilter.maxUnit)) : 0;
 
-                if ((minSize > maxSize) && (maxSize > 0.00)) {
+                if ((minSize > maxSize) && (maxSize > 0)) {
                     const tmp = minSize;
                     minSize = maxSize;
                     maxSize = tmp;
@@ -2014,16 +2014,16 @@ window.qBittorrent.DynamicTable ??= (() => {
             const seedsFilters = getSeedsFilters();
             const searchInTorrentName = document.getElementById("searchInTorrentName").value === "names";
 
-            if (searchInTorrentName || (filterTerms.length > 0) || (window.qBittorrent.Search.searchSizeFilter.min > 0.00) || (window.qBittorrent.Search.searchSizeFilter.max > 0.00)) {
+            if (searchInTorrentName || (filterTerms.length > 0) || (window.qBittorrent.Search.searchSizeFilter.min > 0) || (window.qBittorrent.Search.searchSizeFilter.max > 0)) {
                 for (const row of this.getRowValues()) {
 
                     if (searchInTorrentName && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, searchTerms))
                         continue;
                     if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, filterTerms))
                         continue;
-                    if ((sizeFilters.min > 0.00) && (row.full_data.fileSize < sizeFilters.min))
+                    if ((sizeFilters.min > 0) && (row.full_data.fileSize < sizeFilters.min))
                         continue;
-                    if ((sizeFilters.max > 0.00) && (row.full_data.fileSize > sizeFilters.max))
+                    if ((sizeFilters.max > 0) && (row.full_data.fileSize > sizeFilters.max))
                         continue;
                     if ((seedsFilters.min > 0) && (row.full_data.nbSeeders < seedsFilters.min))
                         continue;
@@ -2751,7 +2751,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             if (ignore)
                 row.full_data.remaining = 0;
             else
-                row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
+                row.full_data.remaining = (row.full_data.size * (1 - (row.full_data.progress / 100)));
         }
 
         setupCommonEvents() {
@@ -3216,7 +3216,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             if (ignore)
                 row.full_data.remaining = 0;
             else
-                row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
+                row.full_data.remaining = (row.full_data.size * (1 - (row.full_data.progress / 100)));
         }
 
         setupCommonEvents() {

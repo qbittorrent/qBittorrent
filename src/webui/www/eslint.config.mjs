@@ -68,6 +68,7 @@ export default [
             "Stylistic/quote-props": ["error", "consistent-as-needed"],
             "Stylistic/semi": "error",
             "Stylistic/spaced-comment": ["error", "always", { exceptions: ["*"] }],
+            "Unicorn/no-zero-fractions": "error",
             "Unicorn/prefer-number-properties": "error"
         }
     }
