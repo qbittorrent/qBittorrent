@@ -69,7 +69,8 @@ export default [
             "Stylistic/semi": "error",
             "Stylistic/spaced-comment": ["error", "always", { exceptions: ["*"] }],
             "Unicorn/no-zero-fractions": "error",
-            "Unicorn/prefer-number-properties": "error"
+            "Unicorn/prefer-number-properties": "error",
+            "Unicorn/switch-case-braces": ["error", "avoid"]
         }
     }
 ];

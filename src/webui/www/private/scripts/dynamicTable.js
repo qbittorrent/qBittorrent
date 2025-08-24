@@ -183,18 +183,17 @@ window.qBittorrent.DynamicTable ??= (() => {
                     return;
 
                 switch (e.key) {
-                    case "ArrowUp": {
+                    case "ArrowUp":
                         e.preventDefault();
                         this.selectPreviousRow();
                         this.dynamicTableDiv.querySelector(".selected").scrollIntoView({ block: "nearest" });
                         break;
-                    }
-                    case "ArrowDown": {
+
+                    case "ArrowDown":
                         e.preventDefault();
                         this.selectNextRow();
                         this.dynamicTableDiv.querySelector(".selected").scrollIntoView({ block: "nearest" });
                         break;
-                    }
                 }
             });
         }
@@ -1628,7 +1627,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         return false;
                     break; // do nothing
 
-                default: {
+                default:
                     if (!useSubcategories) {
                         if (category !== row["full_data"].category)
                             return false;
@@ -1643,7 +1642,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                         }
                     }
                     break;
-                }
             }
 
             switch (tag) {

@@ -142,7 +142,7 @@ window.qBittorrent.Search ??= (() => {
 
         document.getElementById("SearchPanel").addEventListener("keydown", (event) => {
             switch (event.key) {
-                case "Enter": {
+                case "Enter":
                     event.preventDefault();
                     event.stopPropagation();
 
@@ -156,7 +156,6 @@ window.qBittorrent.Search ??= (() => {
                     }
 
                     break;
-                }
             }
         });
 
