@@ -183,14 +183,16 @@ namespace
 
 #ifdef Q_OS_WIN
         // Windows reserves certain names for devices, which cannot be used as file names
-        const QSet reservedNames{
+        const QSet reservedNames
+        {
             u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
             u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
             u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
             u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
             u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
             u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
-            u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s};
+            u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
+        };
         const QString baseName = name.section(u'.', 0, 0).toUpper();
         if (reservedNames.contains(baseName))
             return true;
@@ -200,7 +202,7 @@ namespace
         for (const QChar &c : name)
         {
             const ushort unicode = c.unicode();
-            if (unicode < 32 || unicode == 127 || c == u'/')
+            if ((unicode < 32) || (unicode == 127) || (c == u'/'))
                 return true;
 #ifdef Q_OS_WIN
             // Windows forbids reserved characters in file names
@@ -209,6 +211,7 @@ namespace
                 return true;
 #endif
         }
+        
         return false;
     }
 }
@@ -352,7 +355,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
                 if (currentName != newName)
                 {
-                    if (::isInvalidName(newName))
+                    if (isInvalidName(newName))
                     {
                         emit renameFailed(tr("The name is invalid: \"%1\"").arg(newName));
                         return false;
