@@ -583,7 +583,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (!categoryList)
             return;
 
-        [...categoryList.children].forEach((el) => { el.remove(); });
+        for (const el of [...categoryList.children])
+            el.remove();
 
         const categoryItemTemplate = document.getElementById("categoryFilterItem");
 
@@ -704,7 +705,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (tagFilterList === null)
             return;
 
-        [...tagFilterList.children].forEach((el) => { el.remove(); });
+        for (const el of [...tagFilterList.children])
+            el.remove();
 
         const tagItemTemplate = document.getElementById("tagFilterItem");
 
@@ -757,7 +759,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (trackerFilterList === null)
             return;
 
-        [...trackerFilterList.children].forEach((el) => { el.remove(); });
+        for (const el of [...trackerFilterList.children])
+            el.remove();
 
         const trackerItemTemplate = document.getElementById("trackerFilterItem");
 

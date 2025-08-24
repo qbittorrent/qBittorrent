@@ -233,7 +233,8 @@
                                     feedsToUpdate.add(row);
                             }
                         }
-                        feedsToUpdate.forEach((feed) => refreshFeed(feed.full_data.dataUid));
+                        for (const feed of feedsToUpdate)
+                            refreshFeed(feed.full_data.dataUid);
                     },
                     markRead: markSelectedAsRead,
                     rename: (el) => {
@@ -424,7 +425,8 @@
         };
 
         const clearDetails = () => {
-            [...document.getElementById("rssDetailsView").children].forEach((el) => { el.remove(); });
+            for (const el of [...document.getElementById("rssDetailsView").children])
+                el.remove();
         };
 
         const showDetails = (feedUid, articleID) => {

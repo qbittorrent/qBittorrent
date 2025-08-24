@@ -161,11 +161,8 @@
              */
             fileRenamer.onChanged = (matchedRows) => {
                 // Clear renamed column
-                document
-                    .querySelectorAll("span[id^='filesTablefileRenamed']")
-                    .forEach((span) => {
-                        span.textContent = "";
-                    });
+                for (const span of document.querySelectorAll("span[id^='filesTablefileRenamed']"))
+                    span.textContent = "";
 
                 // Update renamed column for matched rows
                 for (let i = 0; i < matchedRows.length; ++i) {
@@ -312,14 +309,14 @@
                 const rootNode = new window.qBittorrent.FileTree.FolderNode();
                 rootNode.autoCalculateCheckedState = false;
 
-                rows.forEach((row) => {
+                for (const row of rows) {
                     const pathItems = row.path.split(window.qBittorrent.Filesystem.PathSeparator);
 
                     pathItems.pop(); // remove last item (i.e. file name)
                     let parent = rootNode;
-                    pathItems.forEach((folderName) => {
+                    for (const folderName of pathItems) {
                         if (folderName === ".unwanted")
-                            return;
+                            continue;
 
                         let folderNode = null;
                         if (parent.children !== null) {
@@ -349,7 +346,7 @@
                         }
 
                         parent = folderNode;
-                    });
+                    }
 
                     const childNode = new window.qBittorrent.FileTree.FileNode();
                     childNode.rowId = rowId;
@@ -362,7 +359,7 @@
                     parent.addChild(childNode);
 
                     ++rowId;
-                });
+                }
 
                 bulkRenameFilesTable.populateTable(rootNode);
                 bulkRenameFilesTable.updateTable(false);
