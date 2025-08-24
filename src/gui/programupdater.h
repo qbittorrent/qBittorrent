@@ -45,10 +45,11 @@ class ProgramUpdater final : public QObject
     Q_DISABLE_COPY_MOVE(ProgramUpdater)
 
 public:
-    using QObject::QObject;
     using Version = Utils::Version<4, 3>;
 
-    void checkForUpdates() const;
+    using QObject::QObject;
+
+    void checkForUpdates();
     Version getNewVersion() const;
     bool updateProgram() const;
 
@@ -57,14 +58,22 @@ signals:
 
 private slots:
     void rssDownloadFinished(const Net::DownloadResult &result);
-    void fallbackDownloadFinished(const Net::DownloadResult &result);
+    void fallbackDownloadFinished(const Net::DownloadResult &result, Version &version);
 
 private:
-    void handleFinishedRequest();
-    bool shouldUseFallback() const;
+    enum class RemoteSource
+    {
+        Fosshub,
+        QbtMain,
+        QbtBackup
+    };
 
-    mutable bool m_hasCompletedOneReq = false;
-    Version m_remoteVersion;
-    Version m_fallbackRemoteVersion;
+    void handleFinishedRequest();
+    RemoteSource getLatestRemoteSource() const;
+
+    int m_pendingRequestCount = 0;
+    Version m_fosshubVersion;
+    Version m_qbtMainVersion;
+    Version m_qbtBackupVersion;
     QUrl m_updateURL;
 };

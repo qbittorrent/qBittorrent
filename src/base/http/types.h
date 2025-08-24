@@ -60,7 +60,7 @@ namespace Http
     inline const QString HEADER_X_CONTENT_TYPE_OPTIONS = u"x-content-type-options"_s;
     inline const QString HEADER_X_FORWARDED_FOR = u"x-forwarded-for"_s;
     inline const QString HEADER_X_FORWARDED_HOST = u"x-forwarded-host"_s;
-    inline const QString HEADER_X_FORWARDED_PROTO = u"X-forwarded-proto"_s;
+    inline const QString HEADER_X_FORWARDED_PROTO = u"x-forwarded-proto"_s;
     inline const QString HEADER_X_FRAME_OPTIONS = u"x-frame-options"_s;
     inline const QString HEADER_X_XSS_PROTECTION = u"x-xss-protection"_s;
 
