@@ -80,9 +80,9 @@ window.qBittorrent.Search ??= (() => {
         max: 0
     };
     const searchSizeFilter = {
-        min: 0.00,
+        min: 0,
         minUnit: 2, // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
-        max: 0.00,
+        max: 0,
         maxUnit: 3
     };
 
@@ -142,7 +142,7 @@ window.qBittorrent.Search ??= (() => {
 
         document.getElementById("SearchPanel").addEventListener("keydown", (event) => {
             switch (event.key) {
-                case "Enter": {
+                case "Enter":
                     event.preventDefault();
                     event.stopPropagation();
 
@@ -156,7 +156,6 @@ window.qBittorrent.Search ??= (() => {
                     }
 
                     break;
-                }
             }
         });
 
@@ -789,9 +788,9 @@ window.qBittorrent.Search ??= (() => {
         document.getElementById("searchMinSeedsFilter").value = searchSeedsFilter.min;
         document.getElementById("searchMaxSeedsFilter").value = searchSeedsFilter.max;
 
-        searchSizeFilter.min = 0.00;
+        searchSizeFilter.min = 0;
         searchSizeFilter.minUnit = 2; // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
-        searchSizeFilter.max = 0.00;
+        searchSizeFilter.max = 0;
         searchSizeFilter.maxUnit = 3;
         document.getElementById("searchMinSizeFilter").value = searchSizeFilter.min;
         document.getElementById("searchMinSizePrefix").value = searchSizeFilter.minUnit;

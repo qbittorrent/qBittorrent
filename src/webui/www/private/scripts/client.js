@@ -1618,7 +1618,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         },
         column: "mainColumn",
         onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-            const isHidden = (parseInt(document.getElementById("propertiesPanel").style.height, 10) === 0);
+            const isHidden = (Number.parseInt(document.getElementById("propertiesPanel").style.height, 10) === 0);
             if (!isHidden)
                 saveColumnSizes();
         }),
@@ -1628,7 +1628,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (prop_h !== null)
         prop_h = Number(prop_h) * Window.getSize().y;
     else
-        prop_h = Window.getSize().y / 2.0;
+        prop_h = Window.getSize().y / 2;
     new MochaUI.Panel({
         id: "propertiesPanel",
         title: "Panel",
