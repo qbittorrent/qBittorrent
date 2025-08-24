@@ -603,10 +603,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             const val = LocalPreferences.get(`columns_order_${this.dynamicTableDivId}`);
             if ((val === null) || (val === undefined))
                 return;
-            val.split(",").forEach((v) => {
+            for (const v of val.split(",")) {
                 if ((v in this.columns) && (!columnsOrder.contains(v)))
                     columnsOrder.push(v);
-            });
+            }
 
             for (let i = 0; i < this.columns.length; ++i) {
                 if (!columnsOrder.contains(this.columns[i].name))
@@ -2474,9 +2474,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         populateTable(root) {
             this.fileTree.setRoot(root);
-            root.children.forEach((node) => {
+            for (const node of root.children)
                 this.#addNodeToTable(node, 0, root);
-            });
         }
 
         #addNodeToTable(node, depth, parent) {
@@ -2490,9 +2489,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 rowId: node.rowId,
             });
 
-            node.children.forEach((child) => {
+            for (const child of node.children)
                 this.#addNodeToTable(child, depth + 1, node);
-            });
         }
 
         getRoot() {

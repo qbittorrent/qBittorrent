@@ -2144,7 +2144,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         // Advanced Tab
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
-            [...document.getElementById("networkInterface").children].forEach((el) => { el.remove(); });
+            for (const el of [...document.getElementById("networkInterface").children])
+                el.remove();
 
             fetch("api/v2/app/networkInterfaceList", {
                     method: "GET",
@@ -2165,15 +2166,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
 
                     document.getElementById("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
-                    ifaces.forEach((item, index) => {
+                    for (const item of ifaces)
                         document.getElementById("networkInterface").options.add(new Option(item.name, item.value));
-                    });
                     document.getElementById("networkInterface").value = default_iface;
                 });
         };
 
         const updateInterfaceAddresses = (iface, default_addr) => {
-            [...document.getElementById("optionalIPAddressToBind").children].forEach((el) => { el.remove(); });
+            for (const el of [...document.getElementById("optionalIPAddressToBind").children])
+                el.remove();
 
             const url = new URL("api/v2/app/networkInterfaceAddressList", window.location);
             url.search = new URLSearchParams({
@@ -2196,9 +2197,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
                     document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
                     document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
-                    addresses.forEach((item, index) => {
+                    for (const item of addresses)
                         document.getElementById("optionalIPAddressToBind").options.add(new Option(item, item));
-                    });
                     document.getElementById("optionalIPAddressToBind").value = default_addr;
                 });
         };

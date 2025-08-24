@@ -166,8 +166,10 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         searchAndAddTargets() {
-            if (this.options.targets.length > 0)
-                document.querySelectorAll(this.options.targets).forEach((target) => { this.addTarget(target); });
+            if (this.options.targets.length > 0) {
+                for (const target of document.querySelectorAll(this.options.targets))
+                    this.addTarget(target);
+            }
         }
 
         triggerMenu(e, el) {
@@ -327,7 +329,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const categoryCount = new Map();
 
             const selectedRows = torrentsTable.selectedRowsIds();
-            selectedRows.forEach((item, index) => {
+            for (const item of selectedRows) {
                 const data = torrentsTable.getRow(item).full_data;
 
                 if (data["seq_dl"] !== true)
@@ -373,7 +375,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const torrentCategory = data["category"];
                 const count = categoryCount.get(torrentCategory);
                 categoryCount.set(torrentCategory, ((count !== undefined) ? (count + 1) : 1));
-            });
+            }
 
             // hide renameFiles when more than 1 torrent is selected
             if (selectedRows.length === 1) {
@@ -459,7 +461,9 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         updateCategoriesSubMenu(categories) {
             const contextCategoryList = document.getElementById("contextCategoryList");
-            [...contextCategoryList.children].forEach((el) => { el.remove(); });
+
+            for (const el of [...contextCategoryList.children])
+                el.remove();
 
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");

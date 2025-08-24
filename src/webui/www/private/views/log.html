@@ -210,9 +210,8 @@
                 menu: "logTableMenu",
                 actions: {
                     Clear: () => {
-                        tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach((rowId) => {
+                        for (const rowId of tableInfo[currentSelectedTab].instance.selectedRowsIds())
                             tableInfo[currentSelectedTab].instance.removeRow(rowId);
-                        });
 
                         updateLabelCount();
                     }

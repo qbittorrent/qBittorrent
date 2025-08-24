@@ -91,7 +91,7 @@
                         if (!confirm("QBT_TR(Are you sure you want to delete selected tasks?)QBT_TR[CONTEXT=TorrentCreator]"))
                             return;
 
-                        selectedTasks.forEach(task => {
+                        for (const task of selectedTasks) {
                             fetch("api/v2/torrentcreator/deleteTask", {
                                 method: "POST",
                                 body: new URLSearchParams({
@@ -100,7 +100,7 @@
                             }).then((response) => {
                                 load();
                             });
-                        });
+                        }
                     },
                     exportTorrent: exportTorrents,
                 },
