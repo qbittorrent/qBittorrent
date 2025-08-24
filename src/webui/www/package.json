@@ -6,8 +6,8 @@
     "url": "https://github.com/qbittorrent/qBittorrent.git"
   },
   "scripts": {
-    "format": "js-beautify -r *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && prettier --write **.css",
-    "lint": "eslint --cache *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && stylelint --cache **/*.css && html-validate private public",
+    "format": "js-beautify -r *.mjs private/*.html private/*.js private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && prettier --write **.css",
+    "lint": "eslint --cache *.mjs private/*.html private/*.js private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && stylelint --cache **/*.css && html-validate private public",
     "test": "vitest run --dom"
   },
   "devDependencies": {
