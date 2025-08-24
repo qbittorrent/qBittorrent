@@ -211,7 +211,7 @@ namespace
                 return true;
 #endif
         }
-        
+
         return false;
     }
 }
