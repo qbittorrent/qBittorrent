@@ -285,7 +285,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const onStart = function(el, event) {
                 if (this.canResize) {
                     this.currentHeaderAction = "resize";
-                    this.startWidth = parseInt(this.resizeTh.style.width, 10);
+                    this.startWidth = Number.parseInt(this.resizeTh.style.width, 10);
                 }
                 else {
                     this.currentHeaderAction = "drag";
