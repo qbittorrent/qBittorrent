@@ -2928,7 +2928,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             let maxRatio = -1;
             if (document.getElementById("maxRatioCheckbox").checked) {
                 maxRatio = Number(document.getElementById("maxRatioValue").value);
-                if (isNaN(maxRatio) || (maxRatio < 0)) {
+                if (Number.isNaN(maxRatio) || (maxRatio < 0)) {
                     alert("QBT_TR(Share ratio limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
