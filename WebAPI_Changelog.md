@@ -51,6 +51,12 @@
     * In this case, the fields `ip` and `port` are not returned
 * [#23085](https://github.com/qbittorrent/qBittorrent/pull/23085)
   * `torrents/parseMetadata` now responds with an array of metadata in the same order as the files in the request. It previously responded with an object keyed off of the submitted file name.
+* [#23095](https://github.com/qbittorrent/qBittorrent/pull/23095)
+  * Add `push/subscribe` endpoint with parameter `subscription` for registering WebPush notifications
+  * Add `push/subscriptions` endpoint for listing all subscribed WebPush subscriptions
+  * Add `push/test` endpoint for testing WebPush notifications
+  * Add `push/unsubscribe` endpoint with parameter `endpoint` for unregistering WebPush notifications
+  * Add `push/vapidPublicKey` endpoint for retrieving the VAPID public key for WebPush notifications subscribing
 
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
