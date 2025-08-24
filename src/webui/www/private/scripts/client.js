@@ -1618,7 +1618,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         },
         column: "mainColumn",
         onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-            const isHidden = (parseInt(document.getElementById("propertiesPanel").style.height, 10) === 0);
+            const isHidden = (Number.parseInt(document.getElementById("propertiesPanel").style.height, 10) === 0);
             if (!isHidden)
                 saveColumnSizes();
         }),
