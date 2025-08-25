@@ -47,7 +47,10 @@ namespace Utils::Net
     std::optional<Subnet> parseSubnet(const QString &subnetStr);
     bool isIPInSubnets(const QHostAddress &addr, const QList<Subnet> &subnets);
     QString subnetToString(const Subnet &subnet);
+    std::pair<QHostAddress, QHostAddress> subnetToIpRange(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
+
+    std::optional<std::pair<QString, QString>> parseIpRange(const QString &filterStr);
 
     inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
     QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);

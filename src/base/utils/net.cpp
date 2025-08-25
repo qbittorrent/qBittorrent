@@ -83,6 +83,73 @@ namespace Utils
             return subnet.first.toString() + u'/' + QString::number(subnet.second);
         }
 
+        std::pair<QHostAddress, QHostAddress> subnetToIpRange(const Subnet &subnet)
+        {
+            const QHostAddress &address = subnet.first;
+            int prefixLength = subnet.second;
+
+            auto addressFamily = address.protocol();
+
+            if (addressFamily == QAbstractSocket::IPv4Protocol)
+            {
+                quint32 ip = address.toIPv4Address();
+                quint32 mask = 0;
+
+                if (prefixLength >= 0 && prefixLength <= 32)
+                {
+                    mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
+                }
+
+                quint32 network = ip & mask;
+                quint32 broadcast = network | (~mask & 0xFFFFFFFF);
+
+                QHostAddress start(network);
+                QHostAddress end(broadcast);
+
+                return std::make_pair(start, end);
+            }
+            else if (addressFamily == QAbstractSocket::IPv6Protocol)
+            {
+                quint8 ip6[16];
+                quint8 mask6[16] = {0};
+
+                QIPv6Address addressBytes = address.toIPv6Address();
+
+                memcpy(ip6, addressBytes.c, 16);
+
+                int bytes = prefixLength / 8;
+                int bits = prefixLength % 8;
+
+                for (int i = 0; i < bytes; i++)
+                {
+                    mask6[i] = 0xFF;
+                }
+                if (bytes < 16)
+                {
+                    mask6[bytes] = (0xFF << (8 - bits)) & 0xFF;
+                }
+
+                for (int i = 0; i < 16; i++)
+                {
+                    ip6[i] &= mask6[i];
+                }
+
+                QHostAddress start = QHostAddress(ip6);
+
+                for (int i = 0; i < 16; i++)
+                {
+                    ip6[i] |= ~mask6[i];
+                }
+
+                QHostAddress end = QHostAddress(ip6);
+
+                return std::make_pair(start, end);
+            }
+
+            // fallback
+            return std::make_pair(address, address);
+        }
+
         QHostAddress canonicalIPv6Addr(const QHostAddress &addr)
         {
             // Link-local IPv6 textual address always contains a scope id (or zone index)
@@ -112,6 +179,46 @@ namespace Utils
             QHostAddress canonical(addr.toIPv6Address());
             canonical.setScopeId(QString::number(id));
             return canonical;
+        }
+
+        std::optional<std::pair<QString, QString>> parseIpRange(const QString &filterStr)
+        {
+            const QChar iprange_sep = u'-';
+            const QChar cidr_indicator = u'/';
+            QString first, last;
+            if (filterStr.contains(iprange_sep))
+            {
+                // ipfilter.dat's ip range format eg.
+                // "127.0.0.0 - 127.255.255.255"
+                const QStringList ip_range = filterStr.split(iprange_sep);
+                if (ip_range.length() != 2)
+                {
+                    // invalid range
+                    return std::nullopt;
+                }
+                first = ip_range[0].trimmed();
+                last = ip_range[1].trimmed();
+            }
+            else if (filterStr.contains(cidr_indicator))
+            {
+                const std::optional<Subnet> subnet = parseSubnet(filterStr);
+                if (subnet.has_value())
+                {
+                    const std::pair<QHostAddress, QHostAddress> ip_range = subnetToIpRange(subnet.value());
+                    first = ip_range.first.toString();
+                    last = ip_range.second.toString();
+                }
+                else
+                {
+                    return std::nullopt;
+                }
+            }
+            else
+            {
+                first = filterStr;
+                last = filterStr;
+            }
+            return std::make_pair(first, last);
         }
 
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
