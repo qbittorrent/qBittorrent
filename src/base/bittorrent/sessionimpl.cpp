@@ -1783,10 +1783,19 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     for (const QString &ip : asConst(m_bannedIPs.get()))
     {
         lt::error_code ec;
-        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+        lt::address first, last;
+        const std::optional<std::pair<QString, QString>> ip_range = Utils::Net::parseIpRange(ip);
+        if (!ip_range.has_value())
+            continue;
+        first = lt::make_address(ip_range.value().first.toLatin1().constData(), ec);
         Q_ASSERT(!ec);
-        if (!ec)
-            filter.add_rule(addr, addr, lt::ip_filter::blocked);
+        if (ec)
+            continue;
+        last = lt::make_address(ip_range.value().second.toLatin1().constData(), ec);
+        Q_ASSERT(!ec);
+        if (ec)
+            continue;
+        filter.add_rule(first, last, lt::ip_filter::blocked);
     }
 }
 
@@ -2454,15 +2463,22 @@ void SessionImpl::banIP(const QString &ip)
         return;
 
     lt::error_code ec;
-    const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+    const std::optional<std::pair<QString, QString>> ip_range = Utils::Net::parseIpRange(ip);
+    if (!ip_range.has_value())
+        return;
+    const lt::address first = lt::make_address(ip_range.value().first.toLatin1().constData(), ec);
+    Q_ASSERT(!ec);
+    if (ec)
+        return;
+    const lt::address last = lt::make_address(ip_range.value().second.toLatin1().constData(), ec);
     Q_ASSERT(!ec);
     if (ec)
         return;
 
-    invokeAsync([session = m_nativeSession, addr]
+    invokeAsync([session = m_nativeSession, first, last]
     {
         lt::ip_filter filter = session->get_ip_filter();
-        filter.add_rule(addr, addr, lt::ip_filter::blocked);
+        filter.add_rule(first, last, lt::ip_filter::blocked);
         session->set_ip_filter(std::move(filter));
     });
 
@@ -4164,12 +4180,15 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
     QStringList filteredList;
     for (const QString &ip : newList)
     {
-        if (Utils::Net::isValidIP(ip))
+        if (Utils::Net::parseIpRange(ip).has_value())
         {
             // the same IPv6 addresses could be written in different forms;
             // QHostAddress::toString() result format follows RFC5952;
             // thus we avoid duplicate entries pointing to the same address
-            filteredList << QHostAddress(ip).toString();
+            if (Utils::Net::isValidIP(ip))
+                filteredList << QHostAddress(ip).toString();
+            else
+                filteredList << ip;
         }
         else
         {
