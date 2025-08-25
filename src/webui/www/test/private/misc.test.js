@@ -27,6 +27,7 @@
  */
 
 import { expect, test } from "vitest";
+
 import "../../private/scripts/misc.js";
 
 test("Test toFixedPointString()", () => {

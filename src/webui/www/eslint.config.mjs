@@ -3,9 +3,10 @@ import Html from "eslint-plugin-html";
 import Js from "@eslint/js";
 import PluginQbtWebUI from "eslint-plugin-qbt-webui";
 import PreferArrowFunctions from "eslint-plugin-prefer-arrow-functions";
-import * as RegexpPlugin from "eslint-plugin-regexp";
 import Stylistic from "@stylistic/eslint-plugin";
 import Unicorn from "eslint-plugin-unicorn";
+
+import * as RegexpPlugin from "eslint-plugin-regexp";
 
 export default [
     Js.configs.recommended,
@@ -45,6 +46,7 @@ export default [
             "prefer-template": "error",
             "radix": "error",
             "require-await": "error",
+            "sort-imports": ["error", { allowSeparatedGroups: true }],
             "PluginQbtWebUI/prefix-inc-dec-operators": "error",
             "PreferArrowFunctions/prefer-arrow-functions": "error",
             "Stylistic/no-extra-semi": "error",
