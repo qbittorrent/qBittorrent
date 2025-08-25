@@ -133,5 +133,5 @@ private:
     ColumnsVisibilityMode m_columnsVisibilityMode = ColumnsVisibilityMode::Editable;
     QShortcut *m_openFileHotkeyEnter = nullptr;
     QShortcut *m_openFileHotkeyReturn = nullptr;
-    bool allowDrag;
+    bool allowDrag = true;
 };

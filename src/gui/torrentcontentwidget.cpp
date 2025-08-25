@@ -40,6 +40,8 @@
 #include <QWheelEvent>
 #include <qevent.h>
 #include <qobject.h>
+#include <qstyle.h>
+#include <qstyleoption.h>
 
 #include "base/bittorrent/torrentcontenthandler.h"
 #include "base/path.h"
@@ -82,8 +84,6 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     header()->setSortIndicator(0, Qt::AscendingOrder);
     header()->setFirstSectionMovable(true);
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-
-    allowDrag = true;
 
     m_model = new TorrentContentModel(this);
     connect(m_model, &TorrentContentModel::renameFailed, this, [this](const QString &errorMessage)
@@ -549,23 +549,24 @@ bool TorrentContentWidget::shouldDrag(QMouseEvent *event)
 
     if (columnIndex == TorrentContentWidget::Name)
     {
-        QModelIndex cIndex = indexAt(pressPosition.toPoint());
-        if (!cIndex.isValid())
+        QModelIndex rowIndex = indexAt(pressPosition.toPoint());
+        if (!rowIndex.isValid())
             return false;
 
-        int namePosX = columnViewportPosition(columnIndex);
         int depth = 0;
-        while(cIndex != cIndex.parent())
+        while(rowIndex != rowIndex.parent())
         {
             depth++;
-            cIndex = cIndex.parent();
+            rowIndex = rowIndex.parent();
         }
+        const int nameColumnX = columnViewportPosition(columnIndex);
+        const int checkboxWidth = 24;
+        const int areaWidth = 24;
+        const int areaLeft = nameColumnX + (indentation() * depth) + checkboxWidth;
+        const int areaRight = areaLeft + areaWidth;
 
-        int iconLeft = namePosX + (indentation() * (depth + 1));
-        int iconRight = iconLeft + indentation();
-
-        if (pressPosition.x() > iconLeft &&
-            pressPosition.x() < iconRight)
+        if (pressPosition.x() > areaLeft &&
+            pressPosition.x() < areaRight)
             return true;
     }
 
