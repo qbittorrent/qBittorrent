@@ -368,6 +368,7 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
     int64_t finishedResumeDataCount = 0;
     bool isLoadFinished = false;
     bool isLoadedResumeDataHandlingEnqueued = false;
+    QSet<QString> recoveredCategories;
 #ifdef QBT_USES_LIBTORRENT2
     QSet<TorrentID> indexedTorrents;
     QSet<TorrentID> skippedIDs;
@@ -1582,6 +1583,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
             
             if (addCategory(category, recoveredOptions))
             {
+                context->recoveredCategories.insert(category);
                 needStore = true;
                 if (resumeData.useAutoTMM)
                 {
@@ -1625,15 +1627,17 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
                .arg(torrentID.toString(), category,
                     wasAutoTMM ? tr(". Switched to Manual mode.") : QString()), Log::WARNING);
     }
-    else if (!category.isEmpty() && m_categories.contains(category) && resumeData.useAutoTMM)
+    else if (!category.isEmpty() && context->recoveredCategories.contains(category) && m_categories.contains(category) && resumeData.useAutoTMM)
     {
-        // Category exists but might have empty paths - update with actual paths from AutoTMM torrent
+        // Category was recovered but might have empty paths - update with actual paths from AutoTMM torrent
+        // Only do this for recovered categories, not for legitimate empty categories
         // Use ltAddTorrentParams.save_path as source of truth since qBt savePath/downloadPath are empty for AutoTMM
         CategoryOptions currentOptions = m_categories[category];
         bool categoryNeedsUpdate = false;
         
         const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
-        if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty())
+        // Only set category save path if it's empty AND the actual path is not the default save path
+        if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty() && actualSavePath != savePath())
         {
             currentOptions.savePath = actualSavePath;
             categoryNeedsUpdate = true;
@@ -1646,7 +1650,6 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         if (categoryNeedsUpdate)
         {
             editCategory(category, currentOptions);
-            needStore = true;
             LogMsg(tr("Updated category with save path from AutoTMM torrent."
                       " Torrent: \"%1\". Category: \"%2\". SavePath: \"%3\"")
                    .arg(torrentID.toString(), category, currentOptions.savePath.toString()), Log::WARNING);
