@@ -588,6 +588,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_recentErroredTorrentsTimer {new QTimer(this)}
     , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker(savePath())}
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
+    , m_categoryStoreTimer {new QTimer(this)}
 {
     // It is required to perform async access to libtorrent sequentially
     m_asyncWorker->setMaxThreadCount(1);
@@ -695,7 +696,6 @@ SessionImpl::SessionImpl(QObject *parent)
     }
 
     // Timer to debounce category writes and prevent excessive I/O
-    m_categoryStoreTimer = new QTimer(this);
     m_categoryStoreTimer->setSingleShot(true);
     m_categoryStoreTimer->setInterval(500); // 500ms debounce
     connect(m_categoryStoreTimer, &QTimer::timeout, this, &SessionImpl::storeCategoriesImpl);
@@ -1643,7 +1643,6 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
         const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
         // Only set category save path if it's empty AND the actual path is not the expected category path
-        // Use categorySavePath to properly handle subcategories
         const Path expectedCategoryPath = categorySavePath(category, CategoryOptions{});
         if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty() && actualSavePath != expectedCategoryPath)
         {
