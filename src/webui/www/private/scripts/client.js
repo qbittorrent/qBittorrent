@@ -69,6 +69,7 @@ window.qBittorrent.Client ??= (() => {
             "show_status_bar",
             "show_filters_sidebar",
             "hide_zero_status_filters",
+            "date_format",
             "color_scheme",
             "full_url_tracker_column",
             "use_alt_row_colors",
