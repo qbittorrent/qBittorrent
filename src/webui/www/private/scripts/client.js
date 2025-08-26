@@ -130,7 +130,7 @@ window.qBittorrent.Client ??= (() => {
         return showingLogViewer;
     };
 
-    const createAddTorrentWindow = (title, source, metadata = undefined) => {
+    const createAddTorrentWindow = (title, source, metadata = undefined, downloader = undefined) => {
         const isFirefox = navigator.userAgent.includes("Firefox");
         const isSafari = navigator.userAgent.includes("AppleWebKit") && !navigator.userAgent.includes("Chrome");
         let height = 855;
@@ -147,7 +147,8 @@ window.qBittorrent.Client ??= (() => {
             v: "${CACHEID}",
             source: source,
             fetch: metadata === undefined,
-            windowId: id
+            windowId: id,
+            downloader: downloader ?? ""
         });
 
         new MochaUI.Window({

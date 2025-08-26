@@ -560,8 +560,8 @@ window.qBittorrent.Search ??= (() => {
 
     const downloadSearchTorrent = () => {
         for (const rowID of searchResultsTable.selectedRowsIds()) {
-            const { fileName, fileUrl } = searchResultsTable.getRow(rowID).full_data;
-            qBittorrent.Client.createAddTorrentWindow(fileName, fileUrl);
+            const { engineName, fileName, fileUrl } = searchResultsTable.getRow(rowID).full_data;
+            qBittorrent.Client.createAddTorrentWindow(fileName, fileUrl, undefined, engineName);
         }
     };
 
