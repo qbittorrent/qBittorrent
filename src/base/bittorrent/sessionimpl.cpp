@@ -368,7 +368,6 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
     int64_t finishedResumeDataCount = 0;
     bool isLoadFinished = false;
     bool isLoadedResumeDataHandlingEnqueued = false;
-    QSet<QString> recoveredCategories;
 #ifdef QBT_USES_LIBTORRENT2
     QSet<TorrentID> indexedTorrents;
     QSet<TorrentID> skippedIDs;
@@ -1552,48 +1551,99 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     // == END UPGRADE CODE ==
 
     const QString category = resumeData.category;
-    bool isCategoryRecovered = context->recoveredCategories.contains(category);
-    if (!category.isEmpty() && (isCategoryRecovered || !m_categories.contains(category)))
+    bool invalidCategory = false;
+    
+    if (!category.isEmpty() && !m_categories.contains(category))
     {
-        if (!isCategoryRecovered)
+        if (isValidCategoryName(category))
         {
-            if (addCategory(category))
+            CategoryOptions recoveredOptions;
+            
+            if (resumeData.useAutoTMM)
             {
-                context->recoveredCategories.insert(category);
-                isCategoryRecovered = true;
+                // For AutoTMM torrents, recover category from the torrent's actual path in libtorrent data
+                // Use ltAddTorrentParams.save_path as source of truth since qBt savePath/downloadPath are empty for AutoTMM
+                const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
+                if (!actualSavePath.isEmpty())
+                {
+                    recoveredOptions.savePath = actualSavePath;
+                }
+                
+                // Don't attempt to recover download path from AutoTMM torrents since we can't
+                // reliably determine it from the current save path alone
+            }
+            // For manual torrents (not AutoTMM), category is just a label - leave options empty
+            
+            if (addCategory(category, recoveredOptions))
+            {
                 needStore = true;
-                LogMsg(tr("Detected inconsistent data: category is missing from the configuration file."
-                          " Category will be recovered but its settings will be reset to default."
-                          " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
+                if (resumeData.useAutoTMM)
+                {
+                    LogMsg(tr("Detected inconsistent data: category is missing from the configuration file."
+                              " Category will be recovered with save path from torrent location."
+                              " Torrent: \"%1\". Category: \"%2\"")
+                           .arg(torrentID.toString(), category), Log::WARNING);
+                }
+                else
+                {
+                    LogMsg(tr("Detected inconsistent data: category is missing from the configuration file."
+                              " Category will be recovered."
+                              " Torrent: \"%1\". Category: \"%2\"")
+                           .arg(torrentID.toString(), category), Log::WARNING);
+                }
             }
             else
             {
-                resumeData.category.clear();
-                needStore = true;
-                LogMsg(tr("Detected inconsistent data: invalid category. Torrent: \"%1\". Category: \"%2\"")
-                       .arg(torrentID.toString(), category), Log::WARNING);
+                // Category addition failed - treat as invalid category
+                invalidCategory = true;
             }
         }
-
-        // We should check isCategoryRecovered again since the category
-        // can be just recovered by the code above
-        if (isCategoryRecovered && resumeData.useAutoTMM)
+        else
         {
-            const Path storageLocation {resumeData.ltAddTorrentParams.save_path};
-            if ((storageLocation != categorySavePath(resumeData.category)) && (storageLocation != categoryDownloadPath(resumeData.category)))
-            {
-                resumeData.useAutoTMM = false;
-                resumeData.savePath = storageLocation;
-                resumeData.downloadPath = {};
-                needStore = true;
-                LogMsg(tr("Detected mismatch between the save paths of the recovered category and the current save path of the torrent."
-                          " Torrent is now switched to Manual mode."
-                          " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
-            }
-            else
-            {
-                needStore = true;
-            }
+            invalidCategory = true;
+        }
+    }
+    
+    if (invalidCategory)
+    {
+        resumeData.category.clear();
+        bool wasAutoTMM = resumeData.useAutoTMM;
+        if (resumeData.useAutoTMM)
+        {
+            resumeData.useAutoTMM = false;
+            resumeData.savePath = Path{resumeData.ltAddTorrentParams.save_path};
+            resumeData.downloadPath = {};
+        }
+        needStore = true;
+        LogMsg(tr("Detected inconsistent data: invalid category. Torrent: \"%1\". Category: \"%2\"%3")
+               .arg(torrentID.toString(), category,
+                    wasAutoTMM ? tr(". Switched to Manual mode.") : QString()), Log::WARNING);
+    }
+    else if (!category.isEmpty() && m_categories.contains(category) && resumeData.useAutoTMM)
+    {
+        // Category exists but might have empty paths - update with actual paths from AutoTMM torrent
+        // Use ltAddTorrentParams.save_path as source of truth since qBt savePath/downloadPath are empty for AutoTMM
+        CategoryOptions currentOptions = m_categories[category];
+        bool categoryNeedsUpdate = false;
+        
+        const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
+        if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty())
+        {
+            currentOptions.savePath = actualSavePath;
+            categoryNeedsUpdate = true;
+        }
+        
+        // For download path, we can't reliably determine it from ltAddTorrentParams.save_path alone
+        // since AutoTMM torrents use different paths during download vs completion
+        // Skip download path recovery for now to avoid incorrect assumptions
+        
+        if (categoryNeedsUpdate)
+        {
+            editCategory(category, currentOptions);
+            needStore = true;
+            LogMsg(tr("Updated category with save path from AutoTMM torrent."
+                      " Torrent: \"%1\". Category: \"%2\". SavePath: \"%3\"")
+                   .arg(torrentID.toString(), category, currentOptions.savePath.toString()), Log::WARNING);
         }
     }
 
