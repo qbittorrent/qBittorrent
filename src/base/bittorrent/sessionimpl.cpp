@@ -692,6 +692,12 @@ SessionImpl::SessionImpl(QObject *parent)
         updateTrackersFromURL();
         m_updateTrackersFromURLTimer->start();
     }
+
+    // Timer to debounce category writes and prevent excessive I/O
+    m_categoryStoreTimer = new QTimer(this);
+    m_categoryStoreTimer->setSingleShot(true);
+    m_categoryStoreTimer->setInterval(500); // 500ms debounce
+    connect(m_categoryStoreTimer, &QTimer::timeout, this, &SessionImpl::storeCategoriesImpl);
 }
 
 SessionImpl::~SessionImpl()
@@ -5560,7 +5566,21 @@ void SessionImpl::processPendingFinishedTorrents()
         emit allTorrentsFinished();
 }
 
-void SessionImpl::storeCategories() const
+void SessionImpl::storeCategories()
+{
+    // Use QMetaObject::invokeMethod to ensure thread safety
+    // This will queue the operation on SessionImpl's thread
+    QMetaObject::invokeMethod(this, [this]()
+    {
+        // Debounce category writes to prevent excessive I/O
+        if (!m_categoryStoreTimer->isActive())
+        {
+            m_categoryStoreTimer->start();
+        }
+    }, Qt::QueuedConnection);
+}
+
+void SessionImpl::storeCategoriesImpl() const
 {
     QJsonObject jsonObj;
     for (auto it = m_categories.cbegin(); it != m_categories.cend(); ++it)
