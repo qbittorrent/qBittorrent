@@ -1650,6 +1650,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         if (categoryNeedsUpdate)
         {
             editCategory(category, currentOptions);
+            context->recoveredCategories.remove(category);
             LogMsg(tr("Updated category with save path from AutoTMM torrent."
                       " Torrent: \"%1\". Category: \"%2\". SavePath: \"%3\"")
                    .arg(torrentID.toString(), category, currentOptions.savePath.toString()), Log::WARNING);
