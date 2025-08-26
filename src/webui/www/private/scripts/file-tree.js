@@ -131,7 +131,7 @@ window.qBittorrent.FileTree ??= (() => {
         }
 
         calculateRemaining() {
-            this.remaining = this.isIgnored() ? 0 : (this.size * (1.0 - (this.progress / 100)));
+            this.remaining = this.isIgnored() ? 0 : (this.size * (1 - (this.progress / 100)));
         }
 
         serialize() {

@@ -1628,7 +1628,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (prop_h !== null)
         prop_h = Number(prop_h) * Window.getSize().y;
     else
-        prop_h = Window.getSize().y / 2.0;
+        prop_h = Window.getSize().y / 2;
     new MochaUI.Panel({
         id: "propertiesPanel",
         title: "Panel",

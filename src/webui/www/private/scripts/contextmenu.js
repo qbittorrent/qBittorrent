@@ -340,7 +340,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 else
                     there_are_f_l_piece_prio = true;
 
-                if (data["progress"] !== 1.0) // not downloaded
+                if (data["progress"] !== 1) // not downloaded
                     all_are_downloaded = false;
                 else if (data["super_seeding"] !== true)
                     all_are_super_seeding = false;
