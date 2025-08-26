@@ -1059,7 +1059,6 @@ void TorrentsController::addAction()
 
     BitTorrent::AddTorrentParams addTorrentParams
     {
-        // TODO: Check if destination actually exists
         .name = torrentName,
         .category = category,
         .tags = {tags.cbegin(), tags.cend()},
