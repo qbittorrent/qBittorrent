@@ -1636,8 +1636,9 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         bool categoryNeedsUpdate = false;
 
         const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
-        // Only set category save path if it's empty AND the actual path is not the default save path
-        if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty() && actualSavePath != savePath())
+        // Only set category save path if it's empty AND the actual path is not the default category path
+        const Path expectedCategoryPath = savePath() / Path{category};
+        if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty() && actualSavePath != expectedCategoryPath)
         {
             currentOptions.savePath = actualSavePath;
             categoryNeedsUpdate = true;
