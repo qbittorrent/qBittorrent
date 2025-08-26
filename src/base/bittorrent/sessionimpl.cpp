@@ -1573,7 +1573,13 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
                 const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
                 if (!actualSavePath.isEmpty())
                 {
-                    recoveredOptions.savePath = actualSavePath;
+                    // For subcategories, we need to be careful about which level gets the save path
+                    // Only set save path if this doesn't match the expected default category structure
+                    const Path expectedCategoryPath = categorySavePath(category, CategoryOptions{});
+                    if (actualSavePath != expectedCategoryPath)
+                    {
+                        recoveredOptions.savePath = actualSavePath;
+                    }
                 }
 
                 // Don't attempt to recover download path from AutoTMM torrents since we can't
@@ -1636,8 +1642,9 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         bool categoryNeedsUpdate = false;
 
         const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
-        // Only set category save path if it's empty AND the actual path is not the default category path
-        const Path expectedCategoryPath = savePath() / Path{category};
+        // Only set category save path if it's empty AND the actual path is not the expected category path
+        // Use categorySavePath to properly handle subcategories
+        const Path expectedCategoryPath = categorySavePath(category, CategoryOptions{});
         if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty() && actualSavePath != expectedCategoryPath)
         {
             currentOptions.savePath = actualSavePath;
