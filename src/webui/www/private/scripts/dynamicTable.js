@@ -635,8 +635,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateHeader(header) {
             const ths = this.getRowCells(header);
-            for (let i = 0; i < ths.length; ++i) {
-                const th = ths[i];
+            for (const [i, th] of ths.entries()) {
                 if (th.columnName !== this.columns[i].name) {
                     th.title = this.columns[i].caption;
                     th.textContent = this.columns[i].caption;
@@ -866,14 +865,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const trs = [...this.getTrs()];
                 const trMap = new Map(trs.map(tr => [tr.rowId, tr]));
 
-                for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
-                    const rowId = rows[rowPos].rowId;
+                for (const row of rows) {
+                    const rowId = row.rowId;
                     const existingTr = trMap.get(rowId);
                     if (existingTr !== undefined) {
                         this.updateRow(existingTr, fullUpdate);
                     }
                     else {
-                        const tr = this.createRowElement(rows[rowPos]);
+                        const tr = this.createRowElement(row);
 
                         // TODO look into using DocumentFragment or appending all trs at once for add'l performance gains
                         // add to end of table - we'll move into the proper order later
@@ -886,8 +885,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 // reorder table rows
                 let prevTr = null;
-                for (let rowPos = 0; rowPos < rows.length; ++rowPos) {
-                    const { rowId } = rows[rowPos];
+                for (const [rowPos, { rowId }] of rows.entries()) {
                     const tr = trMap.get(rowId);
                     trMap.delete(rowId);
 
@@ -1062,8 +1060,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const selectedRowId = this.getSelectedRowId();
 
             let selectedIndex = -1;
-            for (let i = 0; i < visibleRows.length; ++i) {
-                const row = visibleRows[i];
+            for (const [i, row] of visibleRows.entries()) {
                 if (row.getAttribute("data-row-id") === selectedRowId) {
                     selectedIndex = i;
                     break;
@@ -1084,8 +1081,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const selectedRowId = this.getSelectedRowId();
 
             let selectedIndex = -1;
-            for (let i = 0; i < visibleRows.length; ++i) {
-                const row = visibleRows[i];
+            for (const [i, row] of visibleRows.entries()) {
                 if (row.getAttribute("data-row-id") === selectedRowId) {
                     selectedIndex = i;
                     break;

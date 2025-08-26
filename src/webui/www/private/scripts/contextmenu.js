@@ -106,8 +106,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // position the sub-menu
             const uls = this.menu.getElementsByTagName("ul");
-            for (let i = 0; i < uls.length; ++i) {
-                const ul = uls[i];
+            for (const ul of uls) {
                 if (ul.classList.contains("scrollableMenu"))
                     ul.style.maxHeight = `${scrollableMenuMaxHeight}px`;
                 const rectParent = ul.parentNode.getBoundingClientRect();
@@ -536,9 +535,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const sortedTags = [...tags.keys()];
             sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
 
-            for (let i = 0; i < sortedTags.length; ++i) {
-                const tagName = sortedTags[i];
-
+            for (const [i, tagName] of sortedTags.entries()) {
                 const input = document.createElement("input");
                 input.type = "checkbox";
                 input.addEventListener("click", (event) => {
