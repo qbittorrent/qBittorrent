@@ -1551,9 +1551,6 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     }
     // == END UPGRADE CODE ==
 
-    if (needStore)
-        m_resumeDataStorage->store(torrentID, resumeData);
-
     const QString category = resumeData.category;
     bool isCategoryRecovered = context->recoveredCategories.contains(category);
     if (!category.isEmpty() && (isCategoryRecovered || !m_categories.contains(category)))
@@ -1564,6 +1561,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
             {
                 context->recoveredCategories.insert(category);
                 isCategoryRecovered = true;
+                needStore = true;
                 LogMsg(tr("Detected inconsistent data: category is missing from the configuration file."
                           " Category will be recovered but its settings will be reset to default."
                           " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
@@ -1571,6 +1569,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
             else
             {
                 resumeData.category.clear();
+                needStore = true;
                 LogMsg(tr("Detected inconsistent data: invalid category. Torrent: \"%1\". Category: \"%2\"")
                        .arg(torrentID.toString(), category), Log::WARNING);
             }
@@ -1586,12 +1585,20 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
                 resumeData.useAutoTMM = false;
                 resumeData.savePath = storageLocation;
                 resumeData.downloadPath = {};
+                needStore = true;
                 LogMsg(tr("Detected mismatch between the save paths of the recovered category and the current save path of the torrent."
                           " Torrent is now switched to Manual mode."
                           " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
             }
+            else
+            {
+                needStore = true;
+            }
         }
     }
+
+    if (needStore)
+        m_resumeDataStorage->store(torrentID, resumeData);
 
     std::erase_if(resumeData.tags, [this, &torrentID](const Tag &tag)
     {
