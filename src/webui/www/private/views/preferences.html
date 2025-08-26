@@ -1,10 +1,26 @@
 <div id="BehaviorTab" class="PrefTab">
     <fieldset class="settings">
-        <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="locale_select">
-            ${LANGUAGE_OPTIONS}
-        </select>
+        <legend>QBT_TR(Localization)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="locale_select">
+                            ${LANGUAGE_OPTIONS}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dateFormatSelect">QBT_TR(Date format:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="dateFormatSelect">
+                            <option value="default" selected>QBT_TR(Browser default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </fieldset>
 
     <fieldset class="settings">
@@ -2261,6 +2277,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             window.parent.qBittorrent.Cache.preferences.init()
                 .then((pref) => {
                     const clientData = window.parent.qBittorrent.ClientData;
+                    const dateFormat = clientData.get("date_format");
                     const colorScheme = clientData.get("color_scheme");
                     const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
                     const useVirtualList = clientData.get("use_virtual_list");
@@ -2271,8 +2288,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const useAltRowColors = clientData.get("use_alt_row_colors");
 
                     // Behavior tab
-                    // Language
+                    // Localization
                     updateWebuiLocaleSelect(pref.locale);
+                    const now = new Date();
+                    const dateFormatSelect = document.getElementById("dateFormatSelect");
+                    for (const format of Object.keys(window.qBittorrent.Misc.DateFormatOptions)) {
+                        const option = document.createElement("option");
+                        option.value = format;
+                        option.textContent = window.qBittorrent.Misc.formatDate(now, format);
+                        option.selected = format === dateFormat;
+                        dateFormatSelect.appendChild(option);
+                    }
+
+                    // Interface
                     updateColoSchemeSelect(colorScheme);
 
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
@@ -2714,6 +2742,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Behavior tab
             // Language
             settings["locale"] = document.getElementById("locale_select").value;
+            clientData.date_format = document.getElementById("dateFormatSelect").getSelected()[0].value;
             const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
             if (colorScheme === 0)
                 clientData.color_scheme = null;
