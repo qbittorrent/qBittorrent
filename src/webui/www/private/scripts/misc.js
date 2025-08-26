@@ -46,6 +46,7 @@ window.qBittorrent.Misc ??= (() => {
             containsAllTerms: containsAllTerms,
             sleep: sleep,
             downloadFile: downloadFile,
+            formatDate: formatDate,
             // variables
             FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
@@ -300,6 +301,14 @@ window.qBittorrent.Misc ??= (() => {
         catch (error) {
             alert(errorMessage);
         }
+    };
+
+    /**
+     * @param {Date} date
+     * @returns {string}
+     */
+    const formatDate = (date) => {
+        return date.toLocaleString();
     };
 
     return exports();

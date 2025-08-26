@@ -177,7 +177,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                     document.getElementById("reannounce").textContent = window.qBittorrent.Misc.friendlyDuration(data.reannounce);
 
                     const lastSeen = (data.last_seen >= 0)
-                        ? new Date(data.last_seen * 1000).toLocaleString()
+                        ? window.qBittorrent.Misc.formatDate(new Date(data.last_seen * 1000))
                         : "QBT_TR(Never)QBT_TR[CONTEXT=PropertiesWidget]";
                     document.getElementById("last_seen").textContent = lastSeen;
 
@@ -195,17 +195,17 @@ window.qBittorrent.PropGeneral ??= (() => {
                     document.getElementById("created_by").textContent = data.created_by;
 
                     const additionDate = (data.addition_date >= 0)
-                        ? new Date(data.addition_date * 1000).toLocaleString()
+                        ? window.qBittorrent.Misc.formatDate(new Date(data.addition_date * 1000))
                         : "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
                     document.getElementById("addition_date").textContent = additionDate;
 
                     const completionDate = (data.completion_date >= 0)
-                        ? new Date(data.completion_date * 1000).toLocaleString()
+                        ? window.qBittorrent.Misc.formatDate(new Date(data.completion_date * 1000))
                         : "";
                     document.getElementById("completion_date").textContent = completionDate;
 
                     const creationDate = (data.creation_date >= 0)
-                        ? new Date(data.creation_date * 1000).toLocaleString()
+                        ? window.qBittorrent.Misc.formatDate(new Date(data.creation_date * 1000))
                         : "";
                     document.getElementById("creation_date").textContent = creationDate;
 

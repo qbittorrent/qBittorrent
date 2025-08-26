@@ -1423,7 +1423,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // added on
             this.columns["added_on"].updateTd = function(td, row) {
-                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                 td.textContent = date;
                 td.title = date;
             };
@@ -1436,7 +1436,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = "";
                 }
                 else {
-                    const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                    const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                     td.textContent = date;
                     td.title = date;
                 }
@@ -1943,7 +1943,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
             const displayDate = function(td, row) {
                 const value = this.getRowValue(row) * 1000;
-                const formattedValue = (Number.isNaN(value) || (value <= 0)) ? "" : (new Date(value).toLocaleString());
+                const formattedValue = (Number.isNaN(value) || (value <= 0)) ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
                 td.textContent = formattedValue;
                 td.title = formattedValue;
             };
@@ -3343,7 +3343,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumnsFunctions() {
             this.columns["timestamp"].updateTd = function(td, row) {
-                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3421,7 +3421,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("reason", "", "QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
 
             this.columns["timestamp"].updateTd = function(td, row) {
-                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3645,7 +3645,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = "";
                 }
                 else {
-                    const date = new Date(val).toLocaleString();
+                    const date = window.qBittorrent.Misc.formatDate(new Date(val));
                     td.textContent = date;
                     td.title = date;
                 }
