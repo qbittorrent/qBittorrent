@@ -1559,13 +1559,13 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
     const QString category = resumeData.category;
     bool invalidCategory = false;
-    
+
     if (!category.isEmpty() && !m_categories.contains(category))
     {
         if (isValidCategoryName(category))
         {
             CategoryOptions recoveredOptions;
-            
+
             if (resumeData.useAutoTMM)
             {
                 // For AutoTMM torrents, recover category from the torrent's actual path in libtorrent data
@@ -1575,12 +1575,12 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
                 {
                     recoveredOptions.savePath = actualSavePath;
                 }
-                
+
                 // Don't attempt to recover download path from AutoTMM torrents since we can't
                 // reliably determine it from the current save path alone
             }
             // For manual torrents (not AutoTMM), category is just a label - leave options empty
-            
+
             if (addCategory(category, recoveredOptions))
             {
                 context->recoveredCategories.insert(category);
@@ -1611,7 +1611,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
             invalidCategory = true;
         }
     }
-    
+
     if (invalidCategory)
     {
         resumeData.category.clear();
@@ -1634,7 +1634,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
         // Use ltAddTorrentParams.save_path as source of truth since qBt savePath/downloadPath are empty for AutoTMM
         CategoryOptions currentOptions = m_categories[category];
         bool categoryNeedsUpdate = false;
-        
+
         const Path actualSavePath = Path{resumeData.ltAddTorrentParams.save_path};
         // Only set category save path if it's empty AND the actual path is not the default save path
         if (currentOptions.savePath.isEmpty() && !actualSavePath.isEmpty() && actualSavePath != savePath())
@@ -1642,11 +1642,11 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
             currentOptions.savePath = actualSavePath;
             categoryNeedsUpdate = true;
         }
-        
+
         // For download path, we can't reliably determine it from ltAddTorrentParams.save_path alone
         // since AutoTMM torrents use different paths during download vs completion
         // Skip download path recovery for now to avoid incorrect assumptions
-        
+
         if (categoryNeedsUpdate)
         {
             editCategory(category, currentOptions);
