@@ -65,12 +65,12 @@ window.qBittorrent.DynamicTable ??= (() => {
         return 0;
     };
 
-    let DynamicTableHeaderContextMenuClass = null;
-
     if (typeof LocalPreferences === "undefined")
         window.LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
 
     class DynamicTable {
+        #DynamicTableHeaderContextMenuClass = null;
+
         setup(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu, useVirtualList = false) {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
@@ -377,7 +377,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         setupDynamicTableHeaderContextMenuClass() {
-            DynamicTableHeaderContextMenuClass ??= class extends window.qBittorrent.ContextMenu.ContextMenu {
+            this.#DynamicTableHeaderContextMenuClass ??= class extends window.qBittorrent.ContextMenu.ContextMenu {
                 updateMenuItems() {
                     for (let i = 0; i < this.dynamicTable.columns.length; ++i) {
                         if (this.dynamicTable.columns[i].caption === "")
@@ -542,7 +542,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             ul.insertBefore(autoResizeElement, ul.firstElementChild);
             document.body.append(ul);
 
-            this.headerContextMenu = new DynamicTableHeaderContextMenuClass({
+            this.headerContextMenu = new this.#DynamicTableHeaderContextMenuClass({
                 targets: `#${this.dynamicTableFixedHeaderDivId} tr th`,
                 actions: actions,
                 menu: menuId,
