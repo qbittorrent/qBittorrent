@@ -1589,7 +1589,12 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
             if (addCategory(category, recoveredOptions))
             {
-                context->recoveredCategories.insert(category);
+                // track recovery when only have an empty path on the category
+                if (recoveredOptions.savePath.isEmpty())
+                {
+                    context->recoveredCategories.insert(category);
+                }
+
                 needStore = true;
                 if (resumeData.useAutoTMM)
                 {
