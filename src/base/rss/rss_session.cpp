@@ -142,7 +142,7 @@ nonstd::expected<void, QString> Session::addFolder(const QString &path)
 {
     const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     auto *destFolder = result.value();
     addItem(new Folder(path), destFolder);
@@ -157,7 +157,7 @@ nonstd::expected<void, QString> Session::addFeed(const QString &url, const QStri
 
     const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     auto *destFolder = result.value();
     auto *feed = new Feed(generateUID(), url, path, this);
@@ -216,7 +216,7 @@ nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &des
 
     const nonstd::expected<Folder *, QString> result = prepareItemDest(destPath);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     auto *destFolder = result.value();
     if (static_cast<Item *>(destFolder) == item)
