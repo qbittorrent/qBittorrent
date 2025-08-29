@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.13.1
+* [#23163](https://github.com/qbittorrent/qBittorrent/pull/23163)
+  * `torrents/add` endpoint now supports downloading from a search plugin via the `downloader` parameter
+  * `torrents/fetchMetadata` endpoint now supports fetching from a search plugin via the `downloader` parameter
+
 ## 2.13.0
 * [#23045](https://github.com/qbittorrent/qBittorrent/pull/23045)
   * `torrents/trackers` returns three new fields: `next_announce`, `min_announce` and `endpoints`

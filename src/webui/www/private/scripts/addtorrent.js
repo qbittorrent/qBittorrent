@@ -42,6 +42,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     let defaultTempPathEnabled = false;
     let windowId = "";
     let source = "";
+    let downloader = "";
 
     const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
 
@@ -214,14 +215,17 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     let loadMetadataTimer = -1;
-    const loadMetadata = (sourceUrl = undefined) => {
+    const loadMetadata = (sourceUrl = undefined, downloaderName = undefined) => {
         if (sourceUrl !== undefined)
             source = sourceUrl;
+        if (downloaderName !== undefined)
+            downloader = downloaderName;
 
         fetch("api/v2/torrents/fetchMetadata", {
                 method: "POST",
                 body: new URLSearchParams({
-                    source: source
+                    source: source,
+                    downloader: downloader
                 })
             })
             .then(async (response) => {

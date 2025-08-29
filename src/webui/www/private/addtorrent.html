@@ -49,6 +49,13 @@
             const windowId = searchParams.get("windowId");
             window.qBittorrent.AddTorrent.setWindowId(windowId);
 
+            const downloader = searchParams.get("downloader");
+            if (downloader?.length > 0) {
+                const downloaderInput = document.getElementById("downloader");
+                downloaderInput.value = downloader;
+                downloaderInput.disabled = false;
+            }
+
             document.getElementById("uploadForm").addEventListener("submit", (event) => {
                 submitted = true;
                 window.qBittorrent.AddTorrent.submitForm();
@@ -81,7 +88,7 @@
             window.qBittorrent.TorrentContent.init("addTorrentFilesTableDiv", window.qBittorrent.DynamicTable.AddTorrentFilesTable);
 
             if (fetchMetadata)
-                window.qBittorrent.AddTorrent.loadMetadata(source);
+                window.qBittorrent.AddTorrent.loadMetadata(source, downloader);
         });
     </script>
 
@@ -144,6 +151,7 @@
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center; padding: 10px 12px;" target="upload_frame" autocorrect="off" autocapitalize="none">
         <input type="hidden" id="urls" name="urls">
         <input type="hidden" id="filePriorities" name="filePriorities">
+        <input type="hidden" id="downloader" name="downloader" disabled>
         <div class="container">
             <div class="column">
                 <fieldset class="settings" style="text-align: left;">
