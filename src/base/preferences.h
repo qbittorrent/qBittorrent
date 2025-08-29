@@ -129,6 +129,8 @@ public:
     void setStatusbarExternalIPDisplayed(bool displayed);
     bool isToolbarDisplayed() const;
     void setToolbarDisplayed(bool displayed);
+    bool isTorrentContentDragEnabled() const;
+    void setTorrentContentDragEnabled(bool enabled);
     bool isSplashScreenDisabled() const;
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspendWhenDownloading() const;

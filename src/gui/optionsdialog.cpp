@@ -290,6 +290,8 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->checkBoxHideZeroStatusFilters->setChecked(pref->getHideZeroStatusFilters());
 
+    m_ui->checkTorrentContentDrag->setChecked(pref->isTorrentContentDragEnabled());
+
 #ifndef Q_OS_WIN
     m_ui->checkStartup->setVisible(false);
 #endif
@@ -402,6 +404,8 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxHideZeroStatusFilters, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
+    connect(m_ui->checkTorrentContentDrag, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+
 #ifdef Q_OS_WIN
     connect(m_ui->checkStartup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
@@ -498,6 +502,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
 
     pref->setHideZeroStatusFilters(m_ui->checkBoxHideZeroStatusFilters->isChecked());
+
+    pref->setTorrentContentDragEnabled(m_ui->checkTorrentContentDrag->isChecked());
 
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());

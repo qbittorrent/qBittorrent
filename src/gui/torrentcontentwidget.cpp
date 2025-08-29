@@ -71,8 +71,9 @@ namespace
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    setDragEnabled(true);
     setDragDropMode(QAbstractItemView::DragOnly);
+    setDragEnabled(false);
+    setSelectionMode(QAbstractItemView::MultiSelection);
     setExpandsOnDoubleClick(false);
     setSortingEnabled(true);
     setUniformRowHeights(true);
@@ -222,6 +223,27 @@ void TorrentContentWidget::checkNone()
 {
     for (int i = 0; i < model()->rowCount(); ++i)
         model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Unchecked, Qt::CheckStateRole);
+}
+
+void TorrentContentWidget::setContentDragAllowed(const bool allowed)
+{
+    m_contentDragAllowed = allowed;
+}
+
+void TorrentContentWidget::setContentDragEnabled(const bool enabled)
+{
+    m_contentDragEnabled = enabled;
+}
+
+void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
+{
+    if (m_contentDragAllowed)
+    {
+        const bool hasAlt = event->modifiers().testFlag(Qt::AltModifier);
+        setDragEnabled(hasAlt ? !m_contentDragEnabled : m_contentDragEnabled);
+    }
+
+    QTreeView::mousePressEvent(event);
 }
 
 void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
