@@ -175,8 +175,7 @@ window.qBittorrent.Client ??= (() => {
     const uploadTorrentFiles = (files) => {
         const fileNames = [];
         const formData = new FormData();
-        for (let i = 0; i < files.length; ++i) {
-            const file = files[i];
+        for (const [i, file] of files.entries()) {
             fileNames.push(file.name);
             // send dummy file name as file name won't be used and may not be encoded properly
             formData.append("file", file, i);
@@ -193,8 +192,7 @@ window.qBittorrent.Client ??= (() => {
                 }
 
                 const json = await response.json();
-                for (let i = 0; i < json.length; ++i) {
-                    const metadata = json[i];
+                for (const [i, metadata] of json.entries()) {
                     const title = metadata.name || fileNames[i];
                     const hash = metadata.infohash_v2 || metadata.infohash_v1;
                     createAddTorrentWindow(title, hash, metadata);

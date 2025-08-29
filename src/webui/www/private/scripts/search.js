@@ -770,9 +770,9 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const getPlugin = (name) => {
-        for (let i = 0; i < searchPlugins.length; ++i) {
-            if (searchPlugins[i].name === name)
-                return searchPlugins[i];
+        for (const searchPlugin of searchPlugins) {
+            if (searchPlugin.name === name)
+                return searchPlugin;
         }
 
         return null;
@@ -875,8 +875,7 @@ window.qBittorrent.Search ??= (() => {
 
                     if (responseJSON.results) {
                         const results = responseJSON.results;
-                        for (let i = 0; i < results.length; ++i) {
-                            const result = results[i];
+                        for (const result of results) {
                             const row = {
                                 rowId: state.rowId,
                                 descrLink: result.descrLink,

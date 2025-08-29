@@ -187,8 +187,7 @@ window.qBittorrent.MultiRename ??= (() => {
                     const match = matches[i];
                     let replacement = this.#inner_replacement;
                     // Replace numerical groups
-                    for (let g = 0; g < match.length; ++g) {
-                        const group = match[g];
+                    for (const [g, group] of match.entries()) {
                         if (!group)
                             continue;
                         replacement = replaceGroup(replacement, `$${g}`, group, "\\", false);

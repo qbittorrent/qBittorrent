@@ -200,8 +200,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const selectComboboxPriority = (combobox, priority) => {
         const options = combobox.options;
-        for (let i = 0; i < options.length; ++i) {
-            const option = options[i];
+        for (const option of options) {
             if (normalizePriority(option.value) === priority)
                 option.selected = true;
             else
@@ -404,8 +403,8 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         const uniqueRowIds = new Set();
         const uniqueFileIds = new Set();
-        for (let i = 0; i < rowIds.length; ++i) {
-            const rows = getAllChildren(rowIds[i], fileIds[i]);
+        for (const [i, rowId] of rowIds.entries()) {
+            const rows = getAllChildren(rowId, fileIds[i]);
             for (const rowId of rows.rowIds)
                 uniqueRowIds.add(rowId);
             for (const fileId of rows.fileIds)

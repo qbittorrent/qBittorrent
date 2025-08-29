@@ -178,16 +178,16 @@
         const updateTable = () => {
             const oldPlugins = [...searchPluginsTable.getRowIds()];
             // remove old rows from the table
-            for (let i = 0; i < oldPlugins.length; ++i) {
+            for (const oldPlugin of oldPlugins) {
                 let found = false;
                 for (let j = 0; j < window.qBittorrent.Search.searchPlugins.length; ++j) {
-                    if (window.qBittorrent.Search.searchPlugins[j].name === oldPlugins[i]) {
+                    if (window.qBittorrent.Search.searchPlugins[j].name === oldPlugin) {
                         found = true;
                         break;
                     }
                 }
                 if (!found)
-                    searchPluginsTable.removeRow(oldPlugins[i]);
+                    searchPluginsTable.removeRow(oldPlugin);
             }
 
             for (let i = 0; i < window.qBittorrent.Search.searchPlugins.length; ++i) {
