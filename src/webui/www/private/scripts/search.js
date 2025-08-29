@@ -46,6 +46,8 @@ window.qBittorrent.Search ??= (() => {
         };
     };
 
+    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
     const searchTabIdPrefix = "Search-";
     let loadSearchPluginsTimer = -1;
     const searchPlugins = [];
@@ -108,7 +110,7 @@ window.qBittorrent.Search ??= (() => {
 
     const init = () => {
         // load "Search in" preference from local storage
-        document.getElementById("searchInTorrentName").value = (LocalPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
+        document.getElementById("searchInTorrentName").value = (localPreferences.get("search_in_filter") === "names") ? "names" : "everywhere";
         const searchResultsTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
             targets: "#searchResultsTableDiv tbody tr",
             menu: "searchResultsTableMenu",
@@ -160,7 +162,7 @@ window.qBittorrent.Search ??= (() => {
         });
 
         // restore search tabs
-        const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
+        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
         for (const { id, pattern } of searchJobs)
             createSearchTab(id, pattern);
     };
@@ -241,11 +243,11 @@ window.qBittorrent.Search ??= (() => {
             })
         });
 
-        const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
+        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
         const jobIndex = searchJobs.findIndex((job) => job.id === oldSearchId);
         if (jobIndex >= 0) {
             searchJobs[jobIndex].id = searchId;
-            LocalPreferences.set("search_jobs", JSON.stringify(searchJobs));
+            localPreferences.set("search_jobs", JSON.stringify(searchJobs));
         }
 
         // update existing tab w/ new search id
@@ -292,11 +294,11 @@ window.qBittorrent.Search ??= (() => {
             })
         });
 
-        const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
+        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
         const jobIndex = searchJobs.findIndex((job) => job.id === searchId);
         if (jobIndex >= 0) {
             searchJobs.splice(jobIndex, 1);
-            LocalPreferences.set("search_jobs", JSON.stringify(searchJobs));
+            localPreferences.set("search_jobs", JSON.stringify(searchJobs));
         }
 
         if (numSearchTabs() === 0) {
@@ -450,9 +452,9 @@ window.qBittorrent.Search ??= (() => {
                 const searchId = responseJSON.id;
                 createSearchTab(searchId, pattern);
 
-                const searchJobs = JSON.parse(LocalPreferences.get("search_jobs", "[]"));
+                const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
                 searchJobs.push({ id: searchId, pattern: pattern });
-                LocalPreferences.set("search_jobs", JSON.stringify(searchJobs));
+                localPreferences.set("search_jobs", JSON.stringify(searchJobs));
             });
     };
 
@@ -802,7 +804,7 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const searchInTorrentName = () => {
-        LocalPreferences.set("search_in_filter", getSearchInTorrentName());
+        localPreferences.set("search_in_filter", getSearchInTorrentName());
         searchFilterChanged();
     };
 

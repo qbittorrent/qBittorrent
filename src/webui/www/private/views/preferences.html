@@ -1797,6 +1797,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             };
         };
 
+        const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
         // Behavior tab
         const numberInputLimiter = (input) => {
             const inputNumber = Number(input.value);
@@ -2217,7 +2219,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const updateColoSchemeSelect = () => {
             const combobox = document.getElementById("colorSchemeSelect");
-            const colorScheme = LocalPreferences.get("color_scheme");
+            const colorScheme = localPreferences.get("color_scheme");
 
             if (colorScheme === "light")
                 combobox.options[1].selected = true;
@@ -2236,14 +2238,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     updateColoSchemeSelect();
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
-                    document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
-                    document.getElementById("useVirtualList").checked = (LocalPreferences.get("use_virtual_list", "false") === "true");
-                    document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
-                    document.getElementById("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
-                    document.getElementById("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
-                    document.getElementById("dblclickFiltersSelect").value = LocalPreferences.get("dblclick_filter", "1");
+                    document.getElementById("displayFullURLTrackerColumn").checked = (localPreferences.get("full_url_tracker_column", "false") === "true");
+                    document.getElementById("useVirtualList").checked = (localPreferences.get("use_virtual_list", "false") === "true");
+                    document.getElementById("hideZeroFiltersCheckbox").checked = (localPreferences.get("hide_zero_status_filters", "false") === "true");
+                    document.getElementById("dblclickDownloadSelect").value = localPreferences.get("dblclick_download", "1");
+                    document.getElementById("dblclickCompleteSelect").value = localPreferences.get("dblclick_complete", "1");
+                    document.getElementById("dblclickFiltersSelect").value = localPreferences.get("dblclick_filter", "1");
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
-                    document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
+                    document.getElementById("useAltRowColorsInput").checked = (localPreferences.get("use_alt_row_colors", "true") === "true");
                     document.getElementById("filelog_checkbox").checked = pref.file_log_enabled;
                     document.getElementById("filelog_save_path_input").value = pref.file_log_path;
                     document.getElementById("filelog_backup_checkbox").checked = pref.file_log_backup_enabled;
@@ -2665,21 +2667,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["locale"] = document.getElementById("locale_select").value;
             const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
             if (colorScheme === 0)
-                LocalPreferences.remove("color_scheme");
+                localPreferences.remove("color_scheme");
             else if (colorScheme === 1)
-                LocalPreferences.set("color_scheme", "light");
+                localPreferences.set("color_scheme", "light");
             else
-                LocalPreferences.set("color_scheme", "dark");
+                localPreferences.set("color_scheme", "dark");
             settings["status_bar_external_ip"] = document.getElementById("statusBarExternalIP").checked;
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
-            LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
-            LocalPreferences.set("use_virtual_list", document.getElementById("useVirtualList").checked.toString());
-            LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
-            LocalPreferences.set("dblclick_download", document.getElementById("dblclickDownloadSelect").value);
-            LocalPreferences.set("dblclick_complete", document.getElementById("dblclickCompleteSelect").value);
-            LocalPreferences.set("dblclick_filter", document.getElementById("dblclickFiltersSelect").value);
+            localPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
+            localPreferences.set("use_virtual_list", document.getElementById("useVirtualList").checked.toString());
+            localPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
+            localPreferences.set("dblclick_download", document.getElementById("dblclickDownloadSelect").value);
+            localPreferences.set("dblclick_complete", document.getElementById("dblclickCompleteSelect").value);
+            localPreferences.set("dblclick_filter", document.getElementById("dblclickFiltersSelect").value);
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
-            LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
+            localPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
             settings["file_log_enabled"] = document.getElementById("filelog_checkbox").checked;
             settings["file_log_path"] = document.getElementById("filelog_save_path_input").value;
             settings["file_log_backup_enabled"] = document.getElementById("filelog_backup_checkbox").checked;

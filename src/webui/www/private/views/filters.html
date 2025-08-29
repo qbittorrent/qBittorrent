@@ -82,9 +82,11 @@
             };
         };
 
+        const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
         const toggleCategoryDisplay = (filterItemID) => {
             const filterItem = document.getElementById(filterItemID);
-            LocalPreferences.set(`category_${filterItemID}_collapsed`, filterItem.classList.toggle("collapsedCategory").toString());
+            localPreferences.set(`category_${filterItemID}_collapsed`, filterItem.classList.toggle("collapsedCategory").toString());
         };
 
         new window.qBittorrent.ContextMenu.StatusesFilterContextMenu({
@@ -222,16 +224,16 @@
             }
         });
 
-        if (LocalPreferences.get("filter_status_collapsed") === "true")
+        if (localPreferences.get("filter_status_collapsed") === "true")
             toggleFilterDisplay("statusFilterList");
 
-        if (LocalPreferences.get("filter_category_collapsed") === "true")
+        if (localPreferences.get("filter_category_collapsed") === "true")
             toggleFilterDisplay("categoryFilterList");
 
-        if (LocalPreferences.get("filter_tag_collapsed") === "true")
+        if (localPreferences.get("filter_tag_collapsed") === "true")
             toggleFilterDisplay("tagFilterList");
 
-        if (LocalPreferences.get("filter_tracker_collapsed") === "true")
+        if (localPreferences.get("filter_tracker_collapsed") === "true")
             toggleFilterDisplay("trackerFilterList");
 
         document.getElementById("Filters_pad").addEventListener("click", (event) => {
@@ -261,7 +263,7 @@
         });
 
         document.getElementById("Filters_pad").addEventListener("dblclick", (event) => {
-            if (LocalPreferences.get("dblclick_filter", "1") !== "1")
+            if (localPreferences.get("dblclick_filter", "1") !== "1")
                 return;
 
             const filterItem = event.target.closest("li");

@@ -108,8 +108,6 @@ window.qBittorrent.Dialog ??= (() => {
 })();
 Object.freeze(window.qBittorrent.Dialog);
 
-const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
-
 let saveWindowSize = () => {};
 let loadWindowWidth = () => {};
 let loadWindowHeight = () => {};
@@ -159,23 +157,25 @@ let setQueuePositionFN = () => {};
 let exportTorrentFN = () => {};
 
 const initializeWindows = () => {
+    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
     saveWindowSize = (windowName, windowId = windowName) => {
         const windowInstance = MochaUI.Windows.instances[windowId];
         const size = windowInstance.contentWrapperEl.getSize();
-        LocalPreferences.set(`window_${windowName}_width`, size.x);
-        LocalPreferences.set(`window_${windowName}_height`, size.y);
+        localPreferences.set(`window_${windowName}_width`, size.x);
+        localPreferences.set(`window_${windowName}_height`, size.y);
     };
 
     loadWindowWidth = (windowId, defaultValue, limitToViewportWidth = true) => {
         if (limitToViewportWidth)
             defaultValue = window.qBittorrent.Dialog.limitWidthToViewport(defaultValue);
-        return LocalPreferences.get(`window_${windowId}_width`, defaultValue);
+        return localPreferences.get(`window_${windowId}_width`, defaultValue);
     };
 
     loadWindowHeight = (windowId, defaultValue, limitToViewportHeight = true) => {
         if (limitToViewportHeight)
             defaultValue = window.qBittorrent.Dialog.limitHeightToViewport(defaultValue);
-        return LocalPreferences.get(`window_${windowId}_height`, defaultValue);
+        return localPreferences.get(`window_${windowId}_height`, defaultValue);
     };
 
     const addClickEvent = (el, fn) => {
