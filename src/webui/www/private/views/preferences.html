@@ -2801,7 +2801,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             if (document.getElementById("maxConnectionsPerSeedingTorrentCheckbox").checked) {
                 maxConnecPerSeedingTorrent = Number(document.getElementById("maxConnectionsPerSeedingTorrentValue").value);
                 if (Number.isNaN(maxConnecPerSeedingTorrent) || (maxConnecPerSeedingTorrent <= 0)) {
-                    alert("QBT_TR(Maximum number of seed connections per torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
+                    alert("QBT_TR(Maximum number of connections per seeding torrent limit must be greater than 0 or disabled.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
             }
