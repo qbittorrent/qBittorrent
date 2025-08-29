@@ -10,6 +10,9 @@
   * `torrents/editTracker` endpoint now supports setting a tracker's tier via `tier` parameter
   * `torrents/editTracker` endpoint always responds with a 204 when successful
   * `torrents/editTracker` endpoint `origUrl` parameter renamed to `url`
+* [#23061](https://github.com/qbittorrent/qBittorrent/pull/23061)
+  * `sync/torrentPeers` returns one new field: `i2p_dest`, only when the peer is from I2P
+    * In this case, the fields `ip` and `port` are not returned
 * [#23085](https://github.com/qbittorrent/qBittorrent/pull/23085)
   * `torrents/parseMetadata` now responds with an array of metadata in the same order as the files in the request. It previously responded with an object keyed off of the submitted file name.
 
