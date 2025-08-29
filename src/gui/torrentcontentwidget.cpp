@@ -41,6 +41,7 @@
 
 #include "base/bittorrent/torrentcontenthandler.h"
 #include "base/path.h"
+#include "base/preferences.h"
 #include "base/utils/string.h"
 #include "autoexpandabledialog.h"
 #include "raisedmessagebox.h"
@@ -71,8 +72,11 @@ namespace
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    setDragEnabled(true);
+    const auto *preferences = Preferences::instance();
+
     setDragDropMode(QAbstractItemView::DragOnly);
+    setDragEnabled(preferences->isTorrentContentDragEnabled());
+    setSelectionMode(QAbstractItemView::MultiSelection);
     setExpandsOnDoubleClick(false);
     setSortingEnabled(true);
     setUniformRowHeights(true);
@@ -93,6 +97,7 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     auto *itemDelegate = new TorrentContentItemDelegate(this);
     setItemDelegate(itemDelegate);
 
+    connect(preferences, &Preferences::changed, this, &TorrentContentWidget::onPreferencesChanged);
     connect(this, &QAbstractItemView::clicked, this, qOverload<const QModelIndex &>(&QAbstractItemView::edit));
     connect(this, &QAbstractItemView::doubleClicked, this, &TorrentContentWidget::onItemDoubleClicked);
     connect(this, &QWidget::customContextMenuRequested, this, &TorrentContentWidget::displayContextMenu);
@@ -507,6 +512,11 @@ void TorrentContentWidget::onItemDoubleClicked(const QModelIndex &index)
         renameSelectedFile();
     else
         openItem(index);
+}
+
+void TorrentContentWidget::onPreferencesChanged()
+{
+    setDragEnabled(Preferences::instance()->isTorrentContentDragEnabled());
 }
 
 void TorrentContentWidget::expandRecursively()

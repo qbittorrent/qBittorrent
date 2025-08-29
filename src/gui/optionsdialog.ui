@@ -460,6 +460,22 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="boxTorrentContent">
+              <property name="title">
+               <string>Torrent Content View</string>
+              </property>
+              <layout class="QVBoxLayout" name="layoutTorrentContent">
+               <item>
+                <widget class="QCheckBox" name="checkTorrentContentDrag">
+                 <property name="text">
+                  <string>Enable drag on rows</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="systrayBox">
               <property name="title">
                <string>Desktop</string>
