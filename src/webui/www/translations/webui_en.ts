@@ -2055,7 +2055,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>PeerListWidget</name>
     <message>
-        <source>IP</source>
+        <source>IP/Address</source>
         <translation type="unfinished" />
     </message>
     <message>

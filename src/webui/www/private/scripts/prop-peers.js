@@ -86,6 +86,12 @@ window.qBittorrent.PropPeers ??= (() => {
                                 continue;
 
                             responseJSON["peers"][key]["rowId"] = key;
+
+                            if (Object.hasOwn(responseJSON["peers"][key], "i2p_dest")) {
+                                responseJSON["peers"][key]["ip"] = responseJSON["peers"][key]["i2p_dest"];
+                                responseJSON["peers"][key]["port"] = "N/A";
+                            }
+
                             torrentPeersTable.updateRowData(responseJSON["peers"][key]);
                         }
                     }
