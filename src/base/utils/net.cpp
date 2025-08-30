@@ -188,7 +188,7 @@ namespace Utils
             QString first, last;
             if (filterStr.contains(iprange_sep))
             {
-                // ipfilter.dat's ip range format eg.
+                // ip range format eg.
                 // "127.0.0.0 - 127.255.255.255"
                 const QStringList ip_range = filterStr.split(iprange_sep);
                 if (ip_range.length() != 2)
