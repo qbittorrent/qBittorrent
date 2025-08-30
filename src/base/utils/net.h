@@ -31,6 +31,9 @@
 #include <optional>
 #include <utility>
 
+#include <libtorrent/address.hpp>
+#include <libtorrent/error_code.hpp>
+
 #include <QtContainerFwd>
 #include <QHostAddress>
 
@@ -50,7 +53,8 @@ namespace Utils::Net
     std::pair<QHostAddress, QHostAddress> subnetToIpRange(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
-    std::optional<std::pair<QString, QString>> parseIpRange(const QString &filterStr);
+    std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(const QString &filterStr);
+    lt::address convertAddressType(const QHostAddress &addr, lt::error_code &ec);
 
     inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
     QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);
