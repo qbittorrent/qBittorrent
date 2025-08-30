@@ -43,8 +43,7 @@ jobs:
           command: |
             brew update > /dev/null
             brew install \
-              cmake ninja \
-              openssl@3 zlib
+              zlib
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
