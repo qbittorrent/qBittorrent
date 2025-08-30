@@ -201,6 +201,8 @@ namespace Utils
             }
             else if (filterStr.contains(cidr_indicator))
             {
+                // CIDR notation
+                // "127.0.0.0/8"
                 const std::optional<Subnet> subnet = parseSubnet(filterStr);
                 if (subnet.has_value())
                 {
