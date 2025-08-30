@@ -35,6 +35,7 @@
 #include <QList>
 #include <QMetaObject>
 
+#include "base/global.h"
 #include "apierror.h"
 
 void APIResult::clear()
@@ -75,14 +76,17 @@ const DataMap &APIController::data() const
 
 void APIController::requireParams(const QList<QString> &requiredParams) const
 {
-    const bool hasAllRequiredParams = std::all_of(requiredParams.cbegin(), requiredParams.cend()
-        , [this](const QString &requiredParam)
-    {
-        return params().contains(requiredParam);
-    });
+    QStringList missingParams;
+    missingParams.reserve(requiredParams.size());
 
-    if (!hasAllRequiredParams)
-        throw APIError(APIErrorType::BadParams);
+    for (const QString &requiredParam : requiredParams)
+    {
+        if (!params().contains(requiredParam))
+            missingParams.append(requiredParam);
+    }
+
+    if (!missingParams.isEmpty())
+        throw APIError(APIErrorType::BadParams, tr("Missing required parameters: %1").arg(missingParams.join(u", "_s)));
 }
 
 void APIController::setResult(const QString &result)
