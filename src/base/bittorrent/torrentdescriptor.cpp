@@ -132,7 +132,7 @@ try
     const lt::entry torrentEntry = lt::write_torrent_file(m_ltAddTorrentParams);
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, torrentEntry);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     return {};
 }

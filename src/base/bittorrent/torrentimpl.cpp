@@ -2780,7 +2780,7 @@ nonstd::expected<QByteArray, QString> TorrentImpl::exportToBuffer() const
 {
     const nonstd::expected<lt::entry, QString> preparationResult = exportTorrent();
     if (!preparationResult)
-        return preparationResult.get_unexpected();
+        return nonstd::make_unexpected(preparationResult.error());
 
     // usually torrent size should be smaller than 1 MB,
     // however there are >100 MB v2/hybrid torrent files out in the wild
@@ -2794,11 +2794,11 @@ nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) cons
 {
     const nonstd::expected<lt::entry, QString> preparationResult = exportTorrent();
     if (!preparationResult)
-        return preparationResult.get_unexpected();
+        return nonstd::make_unexpected(preparationResult.error());
 
     const nonstd::expected<void, QString> saveResult = Utils::IO::saveToFile(path, preparationResult.value());
     if (!saveResult)
-        return saveResult.get_unexpected();
+        return nonstd::make_unexpected(saveResult.error());
 
     return {};
 }
