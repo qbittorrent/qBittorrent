@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  sledgehammer999 <hammered999@gmail.com>
+ * Copyright (C) 2025  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,29 +26,26 @@
  * exception statement from your version.
  */
 
-"use strict";
+#pragma once
 
-window.qBittorrent ??= {};
-window.qBittorrent.ColorScheme ??= (() => {
-    const exports = () => {
-        return {
-            update,
-        };
-    };
+#include <QJsonObject>
 
-    const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const clientData = window.parent.qBittorrent.ClientData;
+#include "base/3rdparty/expected.hpp"
+#include "base/path.h"
 
-    const update = () => {
-        const root = document.documentElement;
-        const colorScheme = clientData.getCached("color_scheme");
-        const validScheme = (colorScheme === "light") || (colorScheme === "dark");
-        const isDark = colorSchemeQuery.matches;
-        root.classList.toggle("dark", ((!validScheme && isDark) || (colorScheme === "dark")));
-    };
+class ClientDataStorage : public QObject
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(ClientDataStorage)
 
-    colorSchemeQuery.addEventListener("change", update);
+public:
+    ClientDataStorage(QObject *parent = nullptr);
 
-    return exports();
-})();
-Object.freeze(window.qBittorrent.ColorScheme);
+    nonstd::expected<void, QString> storeData(const QJsonObject &object);
+    QJsonObject loadData() const;
+    QJsonObject loadData(const QStringList &keys) const;
+
+private:
+    Path m_clientDataFilePath;
+    QJsonObject m_clientData;
+};
