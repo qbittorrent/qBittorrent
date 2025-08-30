@@ -181,11 +181,11 @@ namespace Utils
             return canonical;
         }
 
-        std::optional<std::pair<QString, QString>> parseIpRange(const QString &filterStr)
+        std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(const QString &filterStr)
         {
             const QChar iprange_sep = u'-';
             const QChar cidr_indicator = u'/';
-            QString first, last;
+            QHostAddress first, last;
             if (filterStr.contains(iprange_sep))
             {
                 // ip range format eg.
@@ -196,8 +196,8 @@ namespace Utils
                     // invalid range
                     return std::nullopt;
                 }
-                first = ip_range[0].trimmed();
-                last = ip_range[1].trimmed();
+                first = QHostAddress(ip_range[0].trimmed());
+                last = QHostAddress(ip_range[1].trimmed());
             }
             else if (filterStr.contains(cidr_indicator))
             {
@@ -207,8 +207,8 @@ namespace Utils
                 if (subnet.has_value())
                 {
                     const std::pair<QHostAddress, QHostAddress> ip_range = subnetToIpRange(subnet.value());
-                    first = ip_range.first.toString();
-                    last = ip_range.second.toString();
+                    first = QHostAddress(ip_range.first.toString());
+                    last = QHostAddress(ip_range.second.toString());
                 }
                 else
                 {
@@ -217,10 +217,17 @@ namespace Utils
             }
             else
             {
-                first = filterStr;
-                last = filterStr;
+                QHostAddress addr = QHostAddress(filterStr);
+                first = addr;
+                last = addr;
             }
             return std::make_pair(first, last);
+        }
+
+        lt::address convertAddressType(const QHostAddress &addr, lt::error_code &ec)
+        {
+            lt::address result = lt::make_address(addr.toString().toLatin1().constData(), ec);
+            return result;
         }
 
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)

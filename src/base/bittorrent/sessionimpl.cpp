@@ -1784,14 +1784,14 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     {
         lt::error_code ec;
         lt::address first, last;
-        const std::optional<std::pair<QString, QString>> ip_range = Utils::Net::parseIpRange(ip);
+        const std::optional<std::pair<QHostAddress, QHostAddress>> ip_range = Utils::Net::parseIpRange(ip);
         if (!ip_range.has_value())
             continue;
-        first = lt::make_address(ip_range.value().first.toLatin1().constData(), ec);
+        first = Utils::Net::convertAddressType(ip_range.value().first, ec);
         Q_ASSERT(!ec);
         if (ec)
             continue;
-        last = lt::make_address(ip_range.value().second.toLatin1().constData(), ec);
+        last = Utils::Net::convertAddressType(ip_range.value().second, ec);
         Q_ASSERT(!ec);
         if (ec)
             continue;
