@@ -1876,15 +1876,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const ip1 = this.getRowValue(row1);
                 const ip2 = this.getRowValue(row2);
 
-                const a = ip1.split(".");
-                const b = ip2.split(".");
-
-                for (let i = 0; i < 4; ++i) {
-                    if (a[i] !== b[i])
-                        return a[i] - b[i];
-                }
-
-                return 0;
+                return window.qBittorrent.Misc.naturalSortCollator.compare(ip1, ip2);
             };
 
             // flags
