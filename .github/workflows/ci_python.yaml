@@ -69,9 +69,12 @@ jobs:
 
       - name: Check typings (search engine)
         run: |
+          curl \
+            -L \
+            -o src/searchengine/nova3/socks.pyi "https://github.com/python/typeshed/raw/refs/heads/main/stubs/PySocks/socks.pyi"
           MYPYPATH="src/searchengine/nova3" \
           mypy \
-            --follow-imports skip \
+            --explicit-package-bases \
             --strict \
             $PY_FILES
           pyright \
