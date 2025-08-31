@@ -3151,7 +3151,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                         img_path = "images/task-reject.svg";
                         break;
                     case "isLoading":
-                        img_path = "images/spinner.gif";
+                        img_path = "images/spinner.svg";
                         break;
                     case "unread":
                         img_path = "images/mail-inbox.svg";
