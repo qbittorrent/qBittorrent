@@ -59,44 +59,25 @@ jobs:
           python-version: '3.9'
 
       - name: Install tools (search engine)
-        run: pip install bandit isort mypy pycodestyle pyflakes pyright
-
-      - name: Gather files (search engine)
+        working-directory: src/searchengine/nova3
         run: |
-          export "PY_FILES=$(find . -type f -name '*.py' -path '*searchengine*' ! -name 'socks.py' -printf '%p ')"
-          echo $PY_FILES
-          echo "PY_FILES=$PY_FILES" >> "$GITHUB_ENV"
+          pip install uv
+          uv sync
 
       - name: Check typings (search engine)
-        run: |
-          curl \
-            -L \
-            -o src/searchengine/nova3/socks.pyi "https://github.com/python/typeshed/raw/refs/heads/main/stubs/PySocks/socks.pyi"
-          MYPYPATH="src/searchengine/nova3" \
-          mypy \
-            --explicit-package-bases \
-            --strict \
-            $PY_FILES
-          pyright \
-            $PY_FILES
+        working-directory: src/searchengine/nova3
+        run: uv run just check
 
       - name: Lint code (search engine)
-        run: |
-          pyflakes $PY_FILES
-          bandit --skip B110,B310,B314,B405 $PY_FILES
+        working-directory: src/searchengine/nova3
+        run: uv run just lint
 
       - name: Format code (search engine)
+        working-directory: src/searchengine/nova3
         run: |
-          pycodestyle \
-            --ignore=E265,E402 \
-            --max-line-length=1000 \
-            --statistics \
-            $PY_FILES
-          isort \
-             --check \
-             --diff \
-             $PY_FILES
+          uv run just format
+          git diff --exit-code
 
       - name: Build code (search engine)
-        run: |
-          python -m compileall $PY_FILES
+        working-directory: src/searchengine/nova3
+        run: uv run just build
