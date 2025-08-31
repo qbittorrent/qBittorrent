@@ -59,7 +59,7 @@ void AuthController::loginAction()
 {
     if (m_sessionManager->session())
     {
-        setResult(u"Ok."_s);
+        setStatus(APIStatus::Ok);
         return;
     }
 
@@ -84,17 +84,17 @@ void AuthController::loginAction()
         m_clientFailedLogins.remove(clientAddr);
 
         m_sessionManager->sessionStart();
-        setResult(u"Ok."_s);
+        setStatus(APIStatus::Ok);
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }
     else
     {
         if (Preferences::instance()->getWebUIMaxAuthFailCount() > 0)
             increaseFailedAttempts();
-        setResult(u"Fails."_s);
         LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
                 .arg(QString::number(failedAttemptsCount()), clientAddr, usernameFromWeb)
             , Log::WARNING);
+        throw APIError(APIErrorType::Unauthorized);
     }
 }
 

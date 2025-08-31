@@ -415,6 +415,8 @@ void WebApplication::doProcessRequest()
             throw ConflictHTTPError(error.message());
         case APIErrorType::NotFound:
             throw NotFoundHTTPError(error.message());
+        case APIErrorType::Unauthorized:
+            throw UnauthorizedHTTPError(error.message());
         default:
             Q_UNREACHABLE();
             break;
