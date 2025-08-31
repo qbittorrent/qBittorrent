@@ -42,9 +42,13 @@ jobs:
         run: npm test
 
       - name: Lint code
+        id: lint
+        continue-on-error: true
         run: npm run lint
 
       - name: Format code
+        id: format
+        continue-on-error: true
         run: |
           npm run format
           git diff --exit-code
@@ -56,4 +60,26 @@ jobs:
           languages: javascript
 
       - name: Run CodeQL analysis
+        id: codeql
+        continue-on-error: true
         uses: github/codeql-action/analyze@v3
+
+      - name: Check for failures
+        if: always()
+        run: |
+          if [[ "${{ steps.lint.outcome }}" != "success" ]]; then
+            echo "Linting failed"
+            exit_code=1
+          fi
+
+          if [[ "${{ steps.format.outcome }}" != "success" ]]; then
+            echo "Code formatting check failed"
+            exit_code=1
+          fi
+
+          if [[ "${{ steps.codeql.outcome }}" != "success" ]]; then
+            echo "CodeQL analysis failed"
+            exit_code=1
+          fi
+
+          exit ${exit_code:-0}
