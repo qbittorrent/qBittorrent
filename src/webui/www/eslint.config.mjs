@@ -71,6 +71,7 @@ export default [
             "Stylistic/semi": "error",
             "Stylistic/spaced-comment": ["error", "always", { exceptions: ["*"] }],
             "Unicorn/no-array-for-each": "error",
+            "Unicorn/no-for-loop": "error",
             "Unicorn/no-zero-fractions": "error",
             "Unicorn/prefer-number-properties": "error",
             "Unicorn/switch-case-braces": ["error", "avoid"]

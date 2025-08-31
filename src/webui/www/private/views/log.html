@@ -387,27 +387,27 @@
                         clearTimeout(logFilterTimer);
                         logFilterTimer = -1;
 
-                        for (let i = 0; i < responseJSON.length; ++i) {
+                        for (const logEntry of responseJSON) {
                             let row;
                             if (curTab === "main") {
                                 row = {
-                                    rowId: responseJSON[i].id,
-                                    message: responseJSON[i].message,
-                                    timestamp: responseJSON[i].timestamp,
-                                    type: responseJSON[i].type,
+                                    rowId: logEntry.id,
+                                    message: logEntry.message,
+                                    timestamp: logEntry.timestamp,
+                                    type: logEntry.type,
                                 };
                             }
                             else {
                                 row = {
-                                    rowId: responseJSON[i].id,
-                                    ip: responseJSON[i].ip,
-                                    timestamp: responseJSON[i].timestamp,
-                                    blocked: responseJSON[i].blocked,
-                                    reason: responseJSON[i].reason,
+                                    rowId: logEntry.id,
+                                    ip: logEntry.ip,
+                                    timestamp: logEntry.timestamp,
+                                    blocked: logEntry.blocked,
+                                    reason: logEntry.reason,
                                 };
                             }
                             tableInfo[curTab].instance.updateRowData(row);
-                            tableInfo[curTab].last_id = Math.max(Number(responseJSON[i].id), tableInfo[curTab].last_id);
+                            tableInfo[curTab].last_id = Math.max(Number(logEntry.id), tableInfo[curTab].last_id);
                         }
 
                         tableInfo[curTab].instance.updateTable();

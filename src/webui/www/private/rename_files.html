@@ -167,8 +167,7 @@
                     span.textContent = "";
 
                 // Update renamed column for matched rows
-                for (let i = 0; i < matchedRows.length; ++i) {
-                    const row = matchedRows[i];
+                for (const row of matchedRows) {
                     const element = document.getElementById(`filesTablefileRenamed${row.rowId}`);
                     if (element === null)
                         continue;

@@ -558,8 +558,7 @@
                     // subtract 'unread' row
                     if ((rssFeedRows.length - 1) === flattenedResp.length) {
                         match = true;
-                        for (let i = 0; i < flattenedResp.length; ++i) {
-                            const newData = flattenedResp[i];
+                        for (const [i, newData] of flattenedResp.entries()) {
                             const existingData = rssFeedRows[i + 1].full_data;
 
                             if (newData.fullName !== existingData.dataPath) {
@@ -578,14 +577,14 @@
                         // partial refresh
                         // update status
                         let statusDiffers = false;
-                        for (let i = 0; i < flattenedResp.length; ++i) {
+                        for (const [i, item] of flattenedResp.entries()) {
                             const oldStatus = rssFeedRows[i + 1].full_data.status;
                             let status = "default";
-                            if (flattenedResp[i].hasError)
+                            if (item.hasError)
                                 status = "hasError";
-                            if (flattenedResp[i].isLoading)
+                            if (item.isLoading)
                                 status = "isLoading";
-                            if (flattenedResp[i].isFolder)
+                            if (item.isFolder)
                                 status = "isFolder";
 
                             if (oldStatus !== status) {
