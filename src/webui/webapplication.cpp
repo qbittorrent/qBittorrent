@@ -55,6 +55,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
+#include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "api/apierror.h"
@@ -95,6 +96,14 @@ namespace
             ret.insert(name, value);
         }
         return ret;
+    }
+
+    QString parseAuthorizationHeader(const QString &authHeader)
+    {
+        if (authHeader.startsWith(u"Bearer "_s))
+            return authHeader.mid(7).trimmed();
+
+        return {};
     }
 
     QUrl urlFromHostHeader(const QString &hostHeader)
@@ -312,11 +321,14 @@ void WebApplication::setPasswordHash(const QByteArray &passwordHash)
     m_authController->setPasswordHash(passwordHash);
 }
 
-void WebApplication::doProcessRequest()
+void WebApplication::doProcessRequest(const bool isUsingApiKey)
 {
     const QRegularExpressionMatch match = m_apiPathPattern.match(request().path);
     if (!match.hasMatch())
     {
+        if (isUsingApiKey)
+            throw NotFoundHTTPError();
+
         sendWebUIFile();
         return;
     }
@@ -335,9 +347,16 @@ void WebApplication::doProcessRequest()
     if (!controller)
     {
         if (scope == u"auth")
+        {
+            if (isUsingApiKey)
+                throw ForbiddenHTTPError();
+
             controller = m_authController;
+        }
         else
+        {
             throw NotFoundHTTPError();
+        }
     }
 
     // Filter HTTP methods
@@ -635,8 +654,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
     try
     {
+        const bool isUsingApiKey = m_request.headers.contains(u"authorization"_s);
+
         // block suspicious requests
-        if ((m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
+        if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
             || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
         {
             throw UnauthorizedHTTPError();
@@ -645,8 +666,12 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         // reverse proxy resolve client address
         m_clientAddress = resolveClientAddress();
 
-        sessionInitialize();
-        doProcessRequest();
+        if (isUsingApiKey)
+            apiKeySessionInitialize();
+        else
+            sessionInitialize();
+
+        doProcessRequest(isUsingApiKey);
     }
     catch (const HTTPError &error)
     {
@@ -699,6 +724,28 @@ void WebApplication::sessionInitialize()
         sessionStart();
 }
 
+void WebApplication::apiKeySessionInitialize()
+{
+    Q_ASSERT(!m_currentSession);
+
+    QString sessionId;
+    if (const QString apiKey = parseAuthorizationHeader(m_request.headers.value(u"authorization"_s));
+        Utils::Password::slowEquals(apiKey.toUtf8(), Preferences::instance()->getWebUIApiKey()))
+    {
+        sessionId = apiKey;
+    }
+
+    if (!sessionId.isEmpty())
+    {
+        m_currentSession = m_sessions.value(sessionId);
+        // api key sessions don't "expire" since there's no point in triggering re-auth
+        if (m_currentSession)
+            m_currentSession->updateTimestamp();
+        else
+            sessionStartImpl(sessionId, false);
+    }
+}
+
 QString WebApplication::generateSid() const
 {
     QString sid;
@@ -731,6 +778,11 @@ bool WebApplication::isPublicAPI(const QString &scope, const QString &action) co
 
 void WebApplication::sessionStart()
 {
+    sessionStartImpl(generateSid(), true);
+}
+
+void WebApplication::sessionStartImpl(const QString &sessionId, const bool useCookie)
+{
     Q_ASSERT(!m_currentSession);
 
     // remove outdated sessions
@@ -745,7 +797,7 @@ void WebApplication::sessionStart()
         return false;
     });
 
-    m_currentSession = new WebSession(generateSid(), app());
+    m_currentSession = new WebSession(sessionId, app());
     m_sessions[m_currentSession->id()] = m_currentSession;
 
     m_currentSession->registerAPIController(u"app"_s, new AppController(app(), m_currentSession));
@@ -762,15 +814,18 @@ void WebApplication::sessionStart()
     connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
 
-    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
-    cookie.setHttpOnly(true);
-    cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
-    cookie.setPath(u"/"_s);
-    if (m_isCSRFProtectionEnabled)
-        cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
-    else if (cookie.isSecure())
-        cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
-    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+    if (useCookie)
+    {
+        QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
+        cookie.setHttpOnly(true);
+        cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
+        cookie.setPath(u"/"_s);
+        if (m_isCSRFProtectionEnabled)
+            cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
+        else if (cookie.isSecure())
+            cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
+        setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+    }
 }
 
 void WebApplication::sessionEnd()
@@ -822,6 +877,7 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
 
     if (originValue.isEmpty() && refererValue.isEmpty())
     {
+        // TODO maybe we can change this once the api key is supported?
         // owasp.org recommends to block this request, but doing so will inevitably lead Web API users to spoof headers
         // so lets be permissive here
         return false;

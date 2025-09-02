@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2025  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,25 +26,29 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "apikey.h"
 
-class QByteArray;
-class QString;
+#include <QString>
 
-namespace Utils::Password
+#include "base/global.h"
+#include "base/utils/password.h"
+
+namespace Utils
 {
-    // Implements constant-time comparison to protect against timing attacks
-    // Taken from https://crackstation.net/hashing-security.htm
-    bool slowEquals(const QByteArray &a, const QByteArray &b);
-
-    QString generate(int passwordLength);
-
-    namespace PBKDF2
+    namespace APIKey
     {
-        QByteArray generate(const QString &password);
-        QByteArray generate(const QByteArray &password);
-
-        bool verify(const QByteArray &secret, const QString &password);
-        bool verify(const QByteArray &secret, const QByteArray &password);
+        const int keyLength = 28;
+        const QString prefix = u"qbt_"_s;
     }
+}
+
+QString Utils::APIKey::generate()
+{
+    return Utils::APIKey::prefix + Utils::Password::generate(Utils::APIKey::keyLength);
+}
+
+bool Utils::APIKey::isValid(const QString &key)
+{
+    return key.startsWith(Utils::APIKey::prefix)
+            && (key.length() == (Utils::APIKey::prefix.length() + Utils::APIKey::keyLength));
 }
