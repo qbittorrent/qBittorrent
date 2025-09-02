@@ -1,8 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (C) 2025  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,36 +30,22 @@
 
 #include <QJsonObject>
 
-#include "apicontroller.h"
+#include "base/3rdparty/expected.hpp"
 #include "base/path.h"
 
-class AppController : public APIController
+class ClientDataStorage final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(AppController)
+    Q_DISABLE_COPY_MOVE(ClientDataStorage)
 
 public:
-    explicit AppController(IApplication *app, QObject *parent = nullptr);
+    ClientDataStorage(QObject *parent = nullptr);
 
-private slots:
-    void webapiVersionAction();
-    void versionAction();
-    void buildInfoAction();
-    void shutdownAction();
-    void preferencesAction();
-    void setPreferencesAction();
-    void defaultSavePathAction();
-    void sendTestEmailAction();
-    void getDirectoryContentAction();
-    void cookiesAction();
-    void setCookiesAction();
-    void clientDataAction();
-    void setClientDataAction();
-
-    void networkInterfaceListAction();
-    void networkInterfaceAddressListAction();
+    nonstd::expected<void, QString> storeData(const QJsonObject &object);
+    QJsonObject loadData() const;
+    QJsonObject loadData(const QStringList &keys) const;
 
 private:
-    static Path m_clientDataFilePath;
-    static QJsonObject m_clientData;
+    Path m_clientDataFilePath;
+    QJsonObject m_clientData;
 };

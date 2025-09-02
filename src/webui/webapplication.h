@@ -53,10 +53,11 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 13, 0};
+inline const Utils::Version<3, 2> API_VERSION {2, 13, 1};
 
 class APIController;
 class AuthController;
+class ClientDataStorage;
 class WebApplication;
 
 namespace BitTorrent
@@ -148,11 +149,13 @@ private:
     {
         // <<controller name, action name>, HTTP method>
         {{u"app"_s, u"sendTestEmail"_s}, Http::METHOD_POST},
+        {{u"app"_s, u"setClientData"_s}, Http::METHOD_POST},
         {{u"app"_s, u"setCookies"_s}, Http::METHOD_POST},
         {{u"app"_s, u"setPreferences"_s}, Http::METHOD_POST},
         {{u"app"_s, u"shutdown"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"login"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"logout"_s}, Http::METHOD_POST},
+        {{u"clientdata"_s, u"store"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
@@ -259,4 +262,5 @@ private:
     QList<Http::Header> m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+    ClientDataStorage *m_clientDataStorage = nullptr;
 };
