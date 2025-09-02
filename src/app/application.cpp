@@ -954,10 +954,12 @@ int Application::exec()
 #ifndef DISABLE_GUI
         m_webui = new WebUI(this);
 #else
-        const auto *pref = Preferences::instance();
+        auto *pref = Preferences::instance();
 
         const QString tempPassword = pref->getWebUIPassword().isEmpty()
-                ? Utils::Password::generate() : QString();
+                ? Utils::Password::generate(9) : QString();
+        if (pref->getWebUIApiKey().isEmpty())
+            pref->setWebUIApiKey(Utils::Password::generate(28));
         m_webui = new WebUI(this, (!tempPassword.isEmpty() ? Utils::Password::PBKDF2::generate(tempPassword) : QByteArray()));
         connect(m_webui, &WebUI::error, this, [](const QString &message)
         {
