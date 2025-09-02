@@ -67,10 +67,11 @@ bool Utils::Password::slowEquals(const QByteArray &a, const QByteArray &b)
     return (diff == 0);
 }
 
-QString Utils::Password::generate()
+QString Utils::Password::generate(const int passwordLength)
 {
+    Q_ASSERT(passwordLength > 0);
+
     const QString alphanum = u"23456789ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz"_s;
-    const int passwordLength = 9;
     QString pass;
     pass.reserve(passwordLength);
     while (pass.length() < passwordLength)
