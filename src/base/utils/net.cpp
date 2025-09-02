@@ -190,15 +190,15 @@ namespace Utils
             {
                 // ip range format eg.
                 // "127.0.0.0 - 127.255.255.255"
-                const QStringView filterStrView = QStringView(filterStr);
-                const QList<QStringView> ip_range = filterStrView.split(iprange_sep);
-                if (ip_range.length() != 2)
+                if (filterStr.count(iprange_sep) != 1)
                 {
                     // invalid range
+                    qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
                     return std::nullopt;
                 }
-                first = QHostAddress(ip_range[0].trimmed().toString());
-                last = QHostAddress(ip_range[1].trimmed().toString());
+                const int i = filterStr.indexOf(iprange_sep);
+                first = QHostAddress(filterStr.first(i).trimmed());
+                last = QHostAddress(filterStr.sliced(i + 1).trimmed());
             }
             else if (filterStr.contains(cidr_indicator))
             {
