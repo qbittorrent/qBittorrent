@@ -37,6 +37,7 @@
 
 const QString PARAM_CATEGORY = u"category"_s;
 const QString PARAM_TAGS = u"tags"_s;
+const QString PARAM_RENAMED_FILES = u"renamed_files"_s;
 const QString PARAM_SAVEPATH = u"save_path"_s;
 const QString PARAM_USEDOWNLOADPATH = u"use_download_path"_s;
 const QString PARAM_DOWNLOADPATH = u"download_path"_s;
@@ -111,6 +112,7 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .name = {},
         .category = jsonObj.value(PARAM_CATEGORY).toString(),
         .tags = parseTagSet(jsonObj.value(PARAM_TAGS).toArray()),
+        .renamedFiles = {},
         .savePath = Path(jsonObj.value(PARAM_SAVEPATH).toString()),
         .useDownloadPath = getOptionalBool(jsonObj, PARAM_USEDOWNLOADPATH),
         .downloadPath = Path(jsonObj.value(PARAM_DOWNLOADPATH).toString()),

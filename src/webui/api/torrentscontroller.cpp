@@ -1017,6 +1017,7 @@ void TorrentsController::addAction()
     const std::optional<bool> useDownloadPath = parseBool(params()[u"useDownloadPath"_s]);
     const QString category = params()[u"category"_s];
     const QStringList tags = params()[u"tags"_s].split(u',', Qt::SkipEmptyParts);
+    const QStringList renamedFiles = params()[u"renamed_files"_s].split(u'|', Qt::SkipEmptyParts);
     const QString torrentName = params()[u"rename"_s].trimmed();
     const int upLimit = parseInt(params()[u"upLimit"_s]).value_or(-1);
     const int dlLimit = parseInt(params()[u"dlLimit"_s]).value_or(-1);
@@ -1062,6 +1063,7 @@ void TorrentsController::addAction()
         .name = torrentName,
         .category = category,
         .tags = {tags.cbegin(), tags.cend()},
+        .renamedFiles = {renamedFiles.cbegin(), renamedFiles.cend()},
         .savePath = Path(savepath),
         .useDownloadPath = useDownloadPath,
         .downloadPath = Path(downloadPath),

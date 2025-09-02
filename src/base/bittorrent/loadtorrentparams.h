@@ -48,6 +48,7 @@ namespace BitTorrent
         QString name;
         QString category;
         TagSet tags;
+        QStringList renamedFiles;
         Path savePath;
         Path downloadPath;
         QString comment;
