@@ -53,7 +53,7 @@ namespace Utils::Net
     std::pair<QHostAddress, QHostAddress> subnetToIpRange(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
-    std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(const QString &filterStr);
+    std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(QStringView filterStr);
     lt::address convertAddressType(const QHostAddress &addr, lt::error_code &ec);
 
     inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;

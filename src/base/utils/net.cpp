@@ -181,8 +181,9 @@ namespace Utils
             return canonical;
         }
 
-        std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(const QString &filterStr)
+        std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(QStringView filterStr)
         {
+            filterStr = filterStr.trimmed();
             const QChar iprange_sep = u'-';
             const QChar cidr_indicator = u'/';
             QHostAddress first, last;
@@ -197,14 +198,14 @@ namespace Utils
                     return std::nullopt;
                 }
                 const int i = filterStr.indexOf(iprange_sep);
-                first = QHostAddress(filterStr.first(i).trimmed());
-                last = QHostAddress(filterStr.sliced(i + 1).trimmed());
+                first = QHostAddress(filterStr.first(i).trimmed().toString());
+                last = QHostAddress(filterStr.sliced(i + 1).trimmed().toString());
             }
             else if (filterStr.contains(cidr_indicator))
             {
                 // CIDR notation
                 // "127.0.0.0/8"
-                const std::optional<Subnet> subnet = parseSubnet(filterStr);
+                const std::optional<Subnet> subnet = parseSubnet(filterStr.toString());
                 if (subnet.has_value())
                 {
                     const std::pair<QHostAddress, QHostAddress> ip_range = subnetToIpRange(subnet.value());
@@ -218,7 +219,7 @@ namespace Utils
             }
             else
             {
-                QHostAddress addr = QHostAddress(filterStr);
+                QHostAddress addr = QHostAddress(filterStr.toString());
                 first = addr;
                 last = addr;
             }
