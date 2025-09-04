@@ -69,7 +69,7 @@
 #include "api/transfercontroller.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
-const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
+const QString SESSION_COOKIE_NAME_PREFIX = u"QBT_SID_"_s;
 
 const QString WWW_FOLDER = u":/www"_s;
 const QString PUBLIC_FOLDER = u"/public"_s;
@@ -459,7 +459,7 @@ void WebApplication::configure()
             LogMsg(tr("Unacceptable session cookie name is specified: '%1'. Default one is used.")
                    .arg(m_sessionCookieName), Log::WARNING);
         }
-        m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME;
+        m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
     }
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
