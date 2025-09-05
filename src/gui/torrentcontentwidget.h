@@ -116,6 +116,7 @@ private:
     void applyPrioritiesByOrder();
     Path getFullPath(const QModelIndex &index) const;
     void onItemDoubleClicked(const QModelIndex &index);
+    void onPreferencesChanged();
     // Expand single-item folders recursively.
     // This will trigger sorting and filtering so do it after all relevant data is loaded.
     void expandRecursively();

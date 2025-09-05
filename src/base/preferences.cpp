@@ -372,6 +372,19 @@ void Preferences::setToolbarDisplayed(const bool displayed)
     setValue(u"Preferences/General/ToolbarDisplayed"_s, displayed);
 }
 
+bool Preferences::isTorrentContentDragEnabled() const
+{
+    return value(u"Preferences/General/TorrentContentDragEnabled"_s, true);
+}
+
+void Preferences::setTorrentContentDragEnabled(const bool enabled)
+{
+    if (enabled == isTorrentContentDragEnabled())
+        return;
+
+    setValue(u"Preferences/General/TorrentContentDragEnabled"_s, enabled);
+}
+
 bool Preferences::isStatusbarDisplayed() const
 {
     return value(u"Preferences/General/StatusbarDisplayed"_s, true);
