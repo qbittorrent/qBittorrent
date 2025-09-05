@@ -38,7 +38,7 @@ namespace Utils::Password
     // Taken from https://crackstation.net/hashing-security.htm
     bool slowEquals(const QByteArray &a, const QByteArray &b);
 
-    QString generate();
+    QString generate(const int passwordLength);
 
     namespace PBKDF2
     {

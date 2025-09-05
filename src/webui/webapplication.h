@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <optional>
 #include <type_traits>
 #include <utility>
 
@@ -105,10 +106,10 @@ public:
 private:
     QString clientId() const override;
     WebSession *session() override;
-    void sessionStart() override;
+    void sessionStart(const std::optional<QString> &sessionId = std::nullopt) override;
     void sessionEnd() override;
 
-    void doProcessRequest();
+    void doProcessRequest(const bool includeFiles);
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
@@ -121,6 +122,7 @@ private:
     // Session management
     QString generateSid() const;
     void sessionInitialize();
+    void apiKeySessionInitialize();
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 

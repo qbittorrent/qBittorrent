@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QVariant>
 
 class QString;
@@ -43,6 +45,6 @@ struct ISessionManager
     virtual ~ISessionManager() = default;
     virtual QString clientId() const = 0;
     virtual ISession *session() = 0;
-    virtual void sessionStart() = 0;
+    virtual void sessionStart(const std::optional<QString> &sessionId = std::nullopt) = 0;
     virtual void sessionEnd() = 0;
 };
