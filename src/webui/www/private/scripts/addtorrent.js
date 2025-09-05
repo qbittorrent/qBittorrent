@@ -241,6 +241,10 @@ window.qBittorrent.AddTorrent ??= (() => {
                     metadataCompleted();
                 else
                     loadMetadataTimer = loadMetadata.delay(1000);
+            }, (error) => {
+                console.error(error);
+
+                loadMetadataTimer = loadMetadata.delay(1000);
             });
     };
 
