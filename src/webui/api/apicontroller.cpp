@@ -59,7 +59,7 @@ APIResult APIController::run(const QString &action, const StringMap &params, con
 
     const QByteArray methodName = action.toLatin1() + "Action";
     if (!QMetaObject::invokeMethod(this, methodName.constData()))
-        throw APIError(APIErrorType::NotFound);
+        throw APIError(APIErrorType::NotFound, tr("Endpoint does not exist"));
 
     return m_result;
 }

@@ -1,5 +1,13 @@
 # WebAPI Changelog
 
+## 2.14.0
+* [#23202](https://github.com/qbittorrent/qBittorrent/pull/23202)
+  * WebAPI responds with the error message "Endpoint does not exist" when the endpoint does not exist, to better differentiate from unrelated Not Found (i.e. 404) responses
+  * `auth/login` endpoint responds to invalid credentials with a 401
+  * `torrents/add` endpoint responds with `success_count`, `pending_count`, `failure_count`, and `added_torrent_ids`
+    * When `pending_count` is non-zero, response code 202 is used
+    * When all torrents fail to be added, response code 409 is used
+
 ## 2.13.1
 * [#23163](https://github.com/qbittorrent/qBittorrent/pull/23163)
   * `torrents/add` endpoint now supports downloading from a search plugin via the `downloader` parameter
