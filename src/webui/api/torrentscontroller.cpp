@@ -32,6 +32,7 @@
 #include <functional>
 
 #include <QBitArray>
+#include <QFileInfo>
 #include <QFuture>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -1847,6 +1848,10 @@ void TorrentsController::renameFileAction()
 {
     requireParams({u"hash"_s, u"oldPath"_s, u"newPath"_s});
 
+    const QString newFileName = QFileInfo(params()[u"newPath"_s]).fileName();
+    if (!Utils::Fs::isValidName(newFileName))
+        throw APIError(APIErrorType::Conflict, tr("Invalid filename"));    
+
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
@@ -1870,6 +1875,10 @@ void TorrentsController::renameFileAction()
 void TorrentsController::renameFolderAction()
 {
     requireParams({u"hash"_s, u"oldPath"_s, u"newPath"_s});
+
+    const QString newFolderName = QFileInfo(params()[u"newPath"_s]).fileName();
+    if (!Utils::Fs::isValidName(newFolderName))
+        throw APIError(APIErrorType::Conflict, tr("Invalid foldername"));
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
