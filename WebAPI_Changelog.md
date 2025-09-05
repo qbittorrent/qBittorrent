@@ -4,6 +4,8 @@
 * [#23163](https://github.com/qbittorrent/qBittorrent/pull/23163)
   * `torrents/add` endpoint now supports downloading from a search plugin via the `downloader` parameter
   * `torrents/fetchMetadata` endpoint now supports fetching from a search plugin via the `downloader` parameter
+* [#23088](https://github.com/qbittorrent/qBittorrent/pull/23088)
+  * Add `clientdata/load` and `clientdata/store` endpoints for managing WebUI-specific client settings and other shared data
 
 ## 2.13.0
 * [#23045](https://github.com/qbittorrent/qBittorrent/pull/23045)
