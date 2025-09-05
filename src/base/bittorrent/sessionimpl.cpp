@@ -1783,10 +1783,19 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     for (const QString &ip : asConst(m_bannedIPs.get()))
     {
         lt::error_code ec;
-        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+        lt::address first, last;
+        const std::optional<std::pair<QHostAddress, QHostAddress>> ip_range = Utils::Net::parseIpRange(ip);
+        if (!ip_range.has_value())
+            continue;
+        first = Utils::Net::convertAddressType(ip_range.value().first, ec);
         Q_ASSERT(!ec);
-        if (!ec)
-            filter.add_rule(addr, addr, lt::ip_filter::blocked);
+        if (ec)
+            continue;
+        last = Utils::Net::convertAddressType(ip_range.value().second, ec);
+        Q_ASSERT(!ec);
+        if (ec)
+            continue;
+        filter.add_rule(first, last, lt::ip_filter::blocked);
     }
 }
 
@@ -4164,12 +4173,15 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
     QStringList filteredList;
     for (const QString &ip : newList)
     {
-        if (Utils::Net::isValidIP(ip))
+        if (Utils::Net::parseIpRange(ip).has_value())
         {
             // the same IPv6 addresses could be written in different forms;
             // QHostAddress::toString() result format follows RFC5952;
             // thus we avoid duplicate entries pointing to the same address
-            filteredList << QHostAddress(ip).toString();
+            if (Utils::Net::isValidIP(ip))
+                filteredList << QHostAddress(ip).toString();
+            else
+                filteredList << ip;
         }
         else
         {
