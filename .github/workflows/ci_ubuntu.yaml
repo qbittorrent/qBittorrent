@@ -34,6 +34,11 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
       - name: Install dependencies
         run: |
           sudo apt update
@@ -97,6 +102,11 @@ jobs:
             -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
+
+      - name: Install node dependencies
+        working-directory: src/webui/www
+        run: |
+          npm install
 
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL

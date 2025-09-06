@@ -38,6 +38,9 @@ jobs:
           npm ls --all
           echo "::endgroup::"
 
+      - name: Compile TS
+        run: npm run build
+
       - name: Run tests
         run: npm test
 
