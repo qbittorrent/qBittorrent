@@ -2220,6 +2220,7 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         .name = m_name,
         .category = m_category,
         .tags = m_tags,
+        .filePaths = m_filePaths,
         .savePath = (!m_useAutoTMM ? m_savePath : Path()),
         .downloadPath = (!m_useAutoTMM ? m_downloadPath : Path()),
         .comment = m_comment,
