@@ -26,10 +26,8 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
-window.qBittorrent.Misc ??= (() => {
+const miscModule = (() => {
     const exports = () => {
         return {
             getHost: getHost,
@@ -46,6 +44,7 @@ window.qBittorrent.Misc ??= (() => {
             containsAllTerms: containsAllTerms,
             sleep: sleep,
             downloadFile: downloadFile,
+            getElementById: getElementById,
             // variables
             FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
@@ -53,7 +52,7 @@ window.qBittorrent.Misc ??= (() => {
     };
 
     // getHost emulate the GUI version `QString getHost(const QString &url)`
-    const getHost = (url) => {
+    const getHost = (url: string) => {
         // We want the hostname.
         // If failed to parse the domain, original input should be returned
 
@@ -76,11 +75,11 @@ window.qBittorrent.Misc ??= (() => {
         }
     };
 
-    const createDebounceHandler = (delay, func) => {
+    const createDebounceHandler = (delay: number, func: (...params) => void) => {
         let timer = -1;
         return (...params) => {
             clearTimeout(timer);
-            timer = setTimeout(() => {
+            timer = window.setTimeout(() => {
                 func(...params);
 
                 timer = -1;
@@ -91,7 +90,7 @@ window.qBittorrent.Misc ??= (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const friendlyUnit = (value, isSpeed) => {
+    const friendlyUnit = (value: number | null | undefined, isSpeed ? : boolean) => {
         if ((value === undefined) || (value === null) || Number.isNaN(value) || (value < 0))
             return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
@@ -138,7 +137,7 @@ window.qBittorrent.Misc ??= (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const friendlyDuration = (seconds, maxCap = -1) => {
+    const friendlyDuration = (seconds: number, maxCap = -1) => {
         if ((seconds < 0) || ((seconds >= maxCap) && (maxCap >= 0)))
             return "∞";
         if (seconds === 0)
@@ -147,21 +146,21 @@ window.qBittorrent.Misc ??= (() => {
             return "QBT_TR(< 1m)QBT_TR[CONTEXT=misc]";
         let minutes = seconds / 60;
         if (minutes < 60)
-            return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(minutes));
+            return "QBT_TR(%1m)QBT_TR[CONTEXT=misc]".replace("%1", String(Math.floor(minutes)));
         let hours = minutes / 60;
         minutes %= 60;
         if (hours < 24)
-            return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(hours)).replace("%2", Math.floor(minutes));
+            return "QBT_TR(%1h %2m)QBT_TR[CONTEXT=misc]".replace("%1", String(Math.floor(hours))).replace("%2", String(Math.floor(minutes)));
         let days = hours / 24;
         hours %= 24;
         if (days < 365)
-            return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(days)).replace("%2", Math.floor(hours));
+            return "QBT_TR(%1d %2h)QBT_TR[CONTEXT=misc]".replace("%1", String(Math.floor(days))).replace("%2", String(Math.floor(hours)));
         const years = days / 365;
         days %= 365;
-        return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", Math.floor(years)).replace("%2", Math.floor(days));
+        return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", String(Math.floor(years))).replace("%2", String(Math.floor(days)));
     };
 
-    const friendlyPercentage = (value) => {
+    const friendlyPercentage = (value: number) => {
         let percentage = value * 100;
         if (Number.isNaN(percentage) || (percentage < 0))
             percentage = 0;
@@ -173,12 +172,12 @@ window.qBittorrent.Misc ??= (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const parseHtmlLinks = (text) => {
-        const exp = /(\b(https?|ftp|file):\/\/[-\w+&@#/%?=~|!:,.;]*[-\w+&@#/%=~|])/gi;
+    const parseHtmlLinks = (text: string) => {
+        const exp = /(\b(?:https?|ftp|file):\/\/[-\w+&@#/%?=~|!:,.;]*[-\w+&@#/%=~|])/gi;
         return text.replace(exp, "<a target='_blank' rel='noopener noreferrer' href='$1'>$1</a>");
     };
 
-    const parseVersion = (versionString) => {
+    const parseVersion = (versionString: string) => {
         const failure = {
             valid: false
         };
@@ -186,7 +185,7 @@ window.qBittorrent.Misc ??= (() => {
         if (typeof versionString !== "string")
             return failure;
 
-        const tryToNumber = (str) => {
+        const tryToNumber = (str: string) => {
             const num = Number(str);
             return (Number.isNaN(num) ? str : num);
         };
@@ -212,7 +211,7 @@ window.qBittorrent.Misc ??= (() => {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator/Collator#parameters
     const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, usage: "sort" });
 
-    const safeTrim = (value) => {
+    const safeTrim = (value: string) => {
         try {
             return value.trim();
         }
@@ -223,14 +222,16 @@ window.qBittorrent.Misc ??= (() => {
         }
     };
 
-    const toFixedPointString = (number, digits) => {
+    const toFixedPointString = (number: number, digits: number) => {
         if (Number.isNaN(number))
             return number.toString();
 
         const sign = (number < 0) ? "-" : "";
         // Do not round up `number`
         // Small floating point numbers are imprecise, thus process as a String
-        const tmp = Math.trunc(`${Math.abs(number)}e${digits}`).toString();
+        /* beautify ignore:start */
+        const tmp = Math.trunc(`${Math.abs(number)}e${digits}` as any).toString();
+        /* beautify ignore:end */
         if (digits <= 0) {
             return (tmp === "0") ? tmp : `${sign}${tmp}`;
         }
@@ -249,7 +250,7 @@ window.qBittorrent.Misc ??= (() => {
      * @param {Array<String>} terms terms to search for within the text
      * @returns {Boolean} true if all terms match the text, false otherwise
      */
-    const containsAllTerms = (text, terms) => {
+    const containsAllTerms = (text: string, terms: string[]) => {
         const textToSearch = text.toLowerCase();
         return terms.every((term) => {
             const isTermRequired = term.startsWith("+");
@@ -267,13 +268,13 @@ window.qBittorrent.Misc ??= (() => {
         });
     };
 
-    const sleep = (ms) => {
+    const sleep = (ms: number) => {
         return new Promise((resolve) => {
             setTimeout(resolve, ms);
         });
     };
 
-    const downloadFile = async (url, defaultFileName, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
+    const downloadFile = async (url: string | URL, defaultFileName: string, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
         try {
             const response = await fetch(url, { method: "GET" });
             if (!response.ok) {
@@ -302,6 +303,23 @@ window.qBittorrent.Misc ??= (() => {
         }
     };
 
+    type ElementTypeMap = {
+        input: HTMLInputElement;
+        select: HTMLSelectElement;
+        image: HTMLImageElement;
+        button: HTMLButtonElement;
+        ul: HTMLUListElement;
+        li: HTMLLIElement;
+        frame: HTMLIFrameElement;
+        template: HTMLTemplateElement;
+    };
+
+    const getElementById = < T extends keyof ElementTypeMap > (id: string, type: T): ElementTypeMap[T] => {
+        return document.getElementById(id) as ElementTypeMap[T];
+    };
+
     return exports();
 })();
+
+window.qBittorrent.Misc ??= miscModule;
 Object.freeze(window.qBittorrent.Misc);

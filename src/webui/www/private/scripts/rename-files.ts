@@ -1,5 +1,3 @@
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.MultiRename ??= (() => {
     const exports = () => {

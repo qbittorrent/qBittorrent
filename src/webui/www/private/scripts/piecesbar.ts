@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PiecesBar ??= (() => {
     const exports = () => {
@@ -71,10 +69,11 @@ window.qBittorrent.PiecesBar ??= (() => {
             this.#ctx = this.#canvasEl.getContext("2d");
 
             this.attachShadow({ mode: "open" });
-            this.shadowRoot.host.id = `piecesbar_${this.#id}`;
-            this.shadowRoot.host.style.display = "block";
-            this.shadowRoot.host.style.height = `${this.#styles.height}px`;
-            this.shadowRoot.host.style.border = `${this.#styles.borderSize}px solid ${this.#styles.borderColor}`;
+            const host = this.shadowRoot.host as HTMLElement;
+            host.id = `piecesbar_${this.#id}`;
+            host.style.display = "block";
+            host.style.height = `${this.#styles.height}px`;
+            host.style.border = `${this.#styles.borderSize}px solid ${this.#styles.borderColor}`;
             this.shadowRoot.append(this.#canvasEl);
 
             this.#resizeObserver = new ResizeObserver(window.qBittorrent.Misc.createDebounceHandler(100, () => {

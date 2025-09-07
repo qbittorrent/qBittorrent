@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PropPeers ??= (() => {
     const exports = () => {
@@ -58,11 +56,11 @@ window.qBittorrent.PropPeers ??= (() => {
             clearTimeout(loadTorrentPeersTimer);
             return;
         }
-        const url = new URL("api/v2/sync/torrentPeers", window.location);
+        const url = new URL("api/v2/sync/torrentPeers", window.location.href);
         url.search = new URLSearchParams({
             hash: current_hash,
-            rid: syncTorrentPeersLastResponseId,
-        });
+            rid: String(syncTorrentPeersLastResponseId),
+        }).toString();
         fetch(url, {
                 method: "GET",
                 cache: "no-store"
@@ -117,7 +115,7 @@ window.qBittorrent.PropPeers ??= (() => {
             })
             .finally(() => {
                 clearTimeout(loadTorrentPeersTimer);
-                loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
+                loadTorrentPeersTimer = window.setTimeout(loadTorrentPeersData, window.qBittorrent.Client.getSyncMainDataInterval());
             });
     };
 

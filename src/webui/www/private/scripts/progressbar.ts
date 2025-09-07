@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.ProgressBar ??= (() => {
     const exports = () => {
@@ -79,13 +77,14 @@ window.qBittorrent.ProgressBar ??= (() => {
             this.#light.style.lineHeight = `${ProgressBar.#styles.height}px`;
 
             this.attachShadow({ mode: "open" });
-            this.shadowRoot.host.id = this.#id;
-            this.shadowRoot.host.style.display = "block";
-            this.shadowRoot.host.style.border = "1px solid var(--color-border-default)";
-            this.shadowRoot.host.style.boxSizing = "content-box";
-            this.shadowRoot.host.style.height = `${ProgressBar.#styles.height}px`;
-            this.shadowRoot.host.style.position = "relative";
-            this.shadowRoot.host.style.margin = "0 auto";
+            const host = this.shadowRoot.host as HTMLElement;
+            host.id = String(this.#id);
+            host.style.display = "block";
+            host.style.border = "1px solid var(--color-border-default)";
+            host.style.boxSizing = "content-box";
+            host.style.height = `${ProgressBar.#styles.height}px`;
+            host.style.position = "relative";
+            host.style.margin = "0 auto";
             this.shadowRoot.appendChild(this.#dark);
             this.shadowRoot.appendChild(this.#light);
 

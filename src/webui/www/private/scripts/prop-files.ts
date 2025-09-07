@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PropFiles ??= (() => {
     const exports = () => {
@@ -58,7 +56,7 @@ window.qBittorrent.PropFiles ??= (() => {
                 if (!response.ok)
                     return;
 
-                loadTorrentFilesDataTimer = loadTorrentFilesData.delay(1000);
+                loadTorrentFilesDataTimer = window.setTimeout(loadTorrentFilesData, 1000);
             });
     };
 
@@ -84,10 +82,10 @@ window.qBittorrent.PropFiles ??= (() => {
             loadedNewTorrent = true;
         }
 
-        const url = new URL("api/v2/torrents/files", window.location);
+        const url = new URL("api/v2/torrents/files", window.location.href);
         url.search = new URLSearchParams({
             hash: current_hash
-        });
+        }).toString();
         fetch(url, {
                 method: "GET",
                 cache: "no-store"
@@ -111,7 +109,7 @@ window.qBittorrent.PropFiles ??= (() => {
             })
             .finally(() => {
                 clearTimeout(loadTorrentFilesDataTimer);
-                loadTorrentFilesDataTimer = loadTorrentFilesData.delay(5000);
+                loadTorrentFilesDataTimer = window.setTimeout(loadTorrentFilesData, 1000);
             });
     };
 

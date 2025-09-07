@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PropWebseeds ??= (() => {
     const exports = () => {
@@ -61,10 +59,10 @@ window.qBittorrent.PropWebseeds ??= (() => {
             current_hash = new_hash;
         }
 
-        const url = new URL("api/v2/torrents/webseeds", window.location);
+        const url = new URL("api/v2/torrents/webseeds", window.location.href);
         url.search = new URLSearchParams({
             hash: current_hash
-        });
+        }).toString();
         fetch(url, {
                 method: "GET",
                 cache: "no-store"
@@ -94,7 +92,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             })
             .finally(() => {
                 clearTimeout(loadWebSeedsDataTimer);
-                loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
+                loadWebSeedsDataTimer = window.setTimeout(loadWebSeedsData, 10000);
             });
     };
 

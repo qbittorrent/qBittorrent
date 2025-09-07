@@ -26,10 +26,8 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
-window.qBittorrent.FileTree ??= (() => {
+const fileTreeModule = (() => {
     const exports = () => {
         return {
             FilePriority: FilePriority,
@@ -57,14 +55,14 @@ window.qBittorrent.FileTree ??= (() => {
     Object.freeze(TriState);
 
     class FileTree {
-        #root = null;
-        #nodeMap = {}; // Object with Number as keys is faster than anything
+        #root: FileNode | FolderNode = null;
+        #nodeMap: Record<number, FileNode | FolderNode> = {}; // Object with Number as keys is faster than anything
 
         setRoot(root) {
             this.#root = root;
             this.#generateNodeMap(root);
 
-            if (this.#root.isFolder)
+            if (this.#root instanceof FolderNode)
                 this.#root.calculateSize();
         }
 
@@ -113,8 +111,8 @@ window.qBittorrent.FileTree ??= (() => {
     class FileNode {
         name = "";
         path = "";
-        rowId = null;
-        fileId = null;
+        rowId: number = null;
+        fileId: number = null;
         size = 0;
         checked = TriState.Unchecked;
         remaining = 0;
@@ -122,9 +120,9 @@ window.qBittorrent.FileTree ??= (() => {
         priority = FilePriority.Normal;
         availability = 0;
         depth = 0;
-        root = null;
+        root: FileNode | FolderNode = null;
         isFolder = false;
-        children = [];
+        children: (FileNode | FolderNode)[] = [];
 
         isIgnored() {
             return this.priority === FilePriority.Ignored;
@@ -166,13 +164,13 @@ window.qBittorrent.FileTree ??= (() => {
          * Calculate size of node and its children
          */
         calculateSize() {
-            const stack = [this];
-            const visited = [];
+            const stack: (FileNode | FolderNode)[] = [this];
+            const visited: (FileNode | FolderNode)[] = [];
 
             while (stack.length > 0) {
                 const root = stack.at(-1);
 
-                if (root.isFolder) {
+                if (root instanceof FolderNode) {
                     if (visited.at(-1) !== root) {
                         visited.push(root);
                         stack.push(...root.children);
@@ -235,4 +233,6 @@ window.qBittorrent.FileTree ??= (() => {
 
     return exports();
 })();
+
+window.qBittorrent.FileTree ??= fileTreeModule;
 Object.freeze(window.qBittorrent.FileTree);

@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 // This file is the JavaScript implementation of base/utils/fs.cpp
 
 window.qBittorrent ??= {};

@@ -27,8 +27,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.LocalPreferences ??= (() => {
     const exports = () => {
@@ -39,7 +37,7 @@ window.qBittorrent.LocalPreferences ??= (() => {
     };
 
     class LocalPreferences {
-        get(key, defaultValue) {
+        get(key, defaultValue = undefined) {
             const value = localStorage.getItem(key);
             return ((value === null) && (defaultValue !== undefined))
                 ? defaultValue

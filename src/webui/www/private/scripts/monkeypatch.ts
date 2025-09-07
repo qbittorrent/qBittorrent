@@ -27,8 +27,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.MonkeyPatch ??= (() => {
     const exports = () => {
@@ -48,10 +46,10 @@ window.qBittorrent.MonkeyPatch ??= (() => {
         // from allocating a `uniqueNumber` for elements that don't need it.
         // MooTools and MochaUI use it internally.
 
-        if (document.id === undefined)
+        if ((document as any).id === undefined)
             return;
 
-        document.id = (el) => {
+        (document as any).id = (el) => {
             if ((el === null) || (el === undefined))
                 return null;
 
@@ -82,14 +80,16 @@ window.qBittorrent.MonkeyPatch ??= (() => {
             // If asset doesn't load by a number of tries, fire onload anyway.
             else if (MUI.files[source] === "loading") {
                 let tries = 0;
+                let interval = -1;
                 const checker = (function() {
                     ++tries;
-                    if ((MUI.files[source] === "loading") && (tries < "100"))
+                    if ((MUI.files[source] === "loading") && (tries < 100))
                         return;
-                    $clear(checker);
+                    window.clearInterval(interval);
                     if (typeof onload === "function")
                         onload();
-                }).periodical(50);
+                });
+                interval = window.setInterval(checker, 50);
             }
 
             // If the asset is not yet loaded or loading, start loading the asset.
@@ -97,7 +97,7 @@ window.qBittorrent.MonkeyPatch ??= (() => {
                 MUI.files[source] = "loading";
 
                 const properties = {
-                    onload: (onload !== "undefined") ? onload : $empty
+                    onload: (onload !== "undefined") ? onload : () => {}
                 };
 
                 // Add to the onload function

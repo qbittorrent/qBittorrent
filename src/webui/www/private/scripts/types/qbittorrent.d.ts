@@ -15,7 +15,11 @@ declare global {
   const LANG: string;
 
   interface QBittorrent {
+    AddTorrent?: typeof addTorrentModule;
+    Cache?: typeof cacheModule;
+    ColorScheme?: typeof colorSchemeModule;
     ContextMenu?: typeof contextMenuModule;
+    FileTree?: typeof fileTreeModule;
     Misc?: typeof miscModule;
     [key: string]: any;
   }

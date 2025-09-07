@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PropTrackers ??= (() => {
     const exports = () => {
@@ -83,10 +81,10 @@ window.qBittorrent.PropTrackers ??= (() => {
             current_hash = new_hash;
         }
 
-        const url = new URL("api/v2/torrents/trackers", window.location);
+        const url = new URL("api/v2/torrents/trackers", window.location.href);
         url.search = new URLSearchParams({
             hash: current_hash
-        });
+        }).toString();
         fetch(url, {
                 method: "GET",
                 cache: "no-store"
@@ -155,7 +153,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             })
             .finally(() => {
                 clearTimeout(loadTrackersDataTimer);
-                loadTrackersDataTimer = loadTrackersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
+                loadTrackersDataTimer = window.setTimeout(loadTrackersData, window.qBittorrent.Client.getSyncMainDataInterval());
             });
     };
 
@@ -256,13 +254,13 @@ window.qBittorrent.PropTrackers ??= (() => {
             return;
 
         const tracker = torrentTrackersTable.getRow(torrentTrackersTable.getSelectedRowId());
-        const contentURL = new URL("edittracker.html", window.location);
+        const contentURL = new URL("edittracker.html", window.location.href);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hash: current_hash,
             url: tracker.full_data.url,
             tier: tracker.full_data.tier
-        });
+        }).toString();
 
         new MochaUI.Window({
             id: "trackersPage",

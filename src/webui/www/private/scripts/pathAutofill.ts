@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 /*
 File implementing auto-fill for the path input field in the path dialogs.
 */

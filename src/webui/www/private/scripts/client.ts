@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-"use strict";
+type Category = { categoryName: string, categoryCount: number, nameSegments: string[] } & { children ? : any[], isRoot ? : boolean, forceExpand ? : boolean };
 
 window.qBittorrent ??= {};
 window.qBittorrent.Client ??= (() => {
@@ -51,9 +51,9 @@ window.qBittorrent.Client ??= (() => {
     };
 
     // Map<category: String, {savePath: String, torrents: Set}>
-    const categoryMap = new Map();
+    const categoryMap: Map < string, { savePath: string, torrents: Set < any > } > = new Map();
     // Map<tag: String, torrents: Set>
-    const tagMap = new Map();
+    const tagMap: Map < string, Set < any >> = new Map();
 
     let cacheAllSettled;
     const setup = () => {
@@ -142,14 +142,14 @@ window.qBittorrent.Client ??= (() => {
         const staticId = "uploadPage";
         const id = `${staticId}-${encodeURIComponent(source)}`;
 
-        const contentURL = new URL("addtorrent.html", window.location);
+        const contentURL = new URL("addtorrent.html", window.location.href);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             source: source,
-            fetch: metadata === undefined,
+            fetch: String(metadata === undefined),
             windowId: id,
             downloader: downloader ?? ""
-        });
+        }).toString();
 
         new MochaUI.Window({
             id: id,
@@ -168,12 +168,12 @@ window.qBittorrent.Client ??= (() => {
             }),
             onContentLoaded: () => {
                 if (metadata !== undefined)
-                    document.getElementById(`${id}_iframe`).contentWindow.postMessage(metadata, window.origin);
+                    window.qBittorrent.Misc.getElementById(`${id}_iframe`, "frame").contentWindow.postMessage(metadata, window.origin);
             }
         });
     };
 
-    const uploadTorrentFiles = (files) => {
+    const uploadTorrentFiles = (files: FileList) => {
         const fileNames = [];
         const formData = new FormData();
         for (const [i, file] of Array.prototype.entries.call(files)) {
@@ -231,14 +231,14 @@ const CATEGORIES_ALL = "b4af0e4c-e76d-4bac-a392-46cbc18d9655";
 const CATEGORIES_UNCATEGORIZED = "e24bd469-ea22-404c-8e2e-a17c82f37ea0";
 
 let selectedCategory = localPreferences.get("selected_category", CATEGORIES_ALL);
-let setCategoryFilter = () => {};
+let setCategoryFilter = (category) => {};
 
 /* Tags filter */
 const TAGS_ALL = "b4af0e4c-e76d-4bac-a392-46cbc18d9655";
 const TAGS_UNTAGGED = "e24bd469-ea22-404c-8e2e-a17c82f37ea0";
 
 let selectedTag = localPreferences.get("selected_tag", TAGS_ALL);
-let setTagFilter = () => {};
+let setTagFilter = (tag) => {};
 
 /* Trackers filter */
 const TRACKERS_ALL = "b4af0e4c-e76d-4bac-a392-46cbc18d9655";
@@ -247,16 +247,15 @@ const TRACKERS_ERROR = "b551cfc3-64e9-4393-bc88-5d6ea2fab5cc";
 const TRACKERS_TRACKERLESS = "e24bd469-ea22-404c-8e2e-a17c82f37ea0";
 const TRACKERS_WARNING = "82a702c5-210c-412b-829f-97632d7557e9";
 
-// Map<trackerHost: String, Map<trackerURL: String, torrents: Set>>
-const trackerMap = new Map();
+const trackerMap: Map < string, Map < string, Set < string >>> = new Map();
 
 let selectedTracker = localPreferences.get("selected_tracker", TRACKERS_ALL);
-let setTrackerFilter = () => {};
+let setTrackerFilter = (tracker) => {};
 
 /* All filters */
 let selectedStatus = localPreferences.get("selected_filter", "all");
-let setStatusFilter = () => {};
-let toggleFilterDisplay = () => {};
+let setStatusFilter = (name) => {};
+let toggleFilterDisplay = (filterListID) => {};
 
 window.addEventListener("DOMContentLoaded", (event) => {
     window.qBittorrent.LocalPreferences.upgrade();
@@ -268,7 +267,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const saveColumnSizes = () => {
         const filters_width = document.getElementById("Filters").getSize().x;
         localPreferences.set("filters_width", filters_width);
-        const properties_height_rel = document.getElementById("propertiesPanel").getSize().y / Window.getSize().y;
+        const properties_height_rel = document.getElementById("propertiesPanel").getSize().y / document.getSize().y;
         localPreferences.set("properties_height_rel", properties_height_rel);
     };
 
@@ -428,28 +427,28 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // Show Top Toolbar is enabled by default
     let showTopToolbar = localPreferences.get("show_top_toolbar", "true") === "true";
     if (!showTopToolbar) {
-        document.getElementById("showTopToolbarLink").firstElementChild.style.opacity = "0";
+        (document.getElementById("showTopToolbarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
         document.getElementById("mochaToolbar").classList.add("invisible");
     }
 
     // Show Status Bar is enabled by default
     let showStatusBar = localPreferences.get("show_status_bar", "true") === "true";
     if (!showStatusBar) {
-        document.getElementById("showStatusBarLink").firstElementChild.style.opacity = "0";
+        (document.getElementById("showStatusBarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
         document.getElementById("desktopFooterWrapper").classList.add("invisible");
     }
 
     // Show Filters Sidebar is enabled by default
     let showFiltersSidebar = localPreferences.get("show_filters_sidebar", "true") === "true";
     if (!showFiltersSidebar) {
-        document.getElementById("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
+        (document.getElementById("showFiltersSidebarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
         document.getElementById("filtersColumn").classList.add("invisible");
         document.getElementById("filtersColumn_handle").classList.add("invisible");
     }
 
     let speedInTitle = localPreferences.get("speed_in_browser_title_bar") === "true";
     if (!speedInTitle)
-        document.getElementById("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "0";
+        (document.getElementById("speedInBrowserTitleBarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
 
     // After showing/hiding the toolbar + status bar
     window.qBittorrent.Client.showSearchEngine(localPreferences.get("show_search_engine") !== "false");
@@ -460,7 +459,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     MochaUI.Desktop.setDesktopSize();
 
     let syncMainDataLastResponseId = 0;
-    const serverState = {};
+    const serverState: Record < string, any > = {};
 
     const removeTorrentFromCategoryList = (hash) => {
         if (hash === undefined)
@@ -586,10 +585,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         for (const el of [...categoryList.children])
             el.remove();
 
-        const categoryItemTemplate = document.getElementById("categoryFilterItem");
+        const categoryItemTemplate = window.qBittorrent.Misc.getElementById("categoryFilterItem", "template");
 
         const createLink = (category, text, count) => {
-            const categoryFilterItem = categoryItemTemplate.content.cloneNode(true).firstElementChild;
+            const categoryFilterItem = (categoryItemTemplate.content.cloneNode(true) as DocumentFragment).firstElementChild as HTMLLIElement;
             categoryFilterItem.id = category;
             categoryFilterItem.classList.toggle("selectedFilter", (category === selectedCategory));
 
@@ -599,18 +598,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
             return categoryFilterItem;
         };
 
-        const createCategoryTree = (category) => {
-            const stack = [{ parent: categoriesFragment, category: category }];
+        const createCategoryTree = (category: Category) => {
+            const stack: { parent: HTMLElement | DocumentFragment, category: Category } [] = [{ parent: categoriesFragment, category: category }];
             while (stack.length > 0) {
                 const { parent, category } = stack.pop();
                 const displayName = category.nameSegments.at(-1);
                 const listItem = createLink(category.categoryName, displayName, category.categoryCount);
-                listItem.firstElementChild.style.paddingLeft = `${(category.nameSegments.length - 1) * 20 + 6}px`;
+                (listItem.firstElementChild as HTMLSpanElement).style.paddingLeft = `${(category.nameSegments.length - 1) * 20 + 6}px`;
 
                 parent.appendChild(listItem);
 
                 if (category.children.length > 0) {
-                    listItem.querySelector(".categoryToggle").style.visibility = "visible";
+                    (listItem.querySelector(".categoryToggle") as HTMLButtonElement).style.visibility = "visible";
                     const unorderedList = document.createElement("ul");
                     listItem.appendChild(unorderedList);
                     for (const subcategory of category.children.reverse())
@@ -628,7 +627,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 uncategorized += 1;
         }
 
-        const sortedCategories = [];
+        const sortedCategories: Category[] = [];
         for (const [category, categoryData] of window.qBittorrent.Client.categoryMap) {
             sortedCategories.push({
                 categoryName: category,
@@ -708,10 +707,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         for (const el of [...tagFilterList.children])
             el.remove();
 
-        const tagItemTemplate = document.getElementById("tagFilterItem");
+        const tagItemTemplate = window.qBittorrent.Misc.getElementById("tagFilterItem", "template");
 
         const createLink = (tag, text, count) => {
-            const tagFilterItem = tagItemTemplate.content.cloneNode(true).firstElementChild;
+            const tagFilterItem = (tagItemTemplate.content.cloneNode(true) as DocumentFragment).firstElementChild;
             tagFilterItem.id = tag;
             tagFilterItem.classList.toggle("selectedFilter", (tag === selectedTag));
 
@@ -762,26 +761,27 @@ window.addEventListener("DOMContentLoaded", (event) => {
         for (const el of [...trackerFilterList.children])
             el.remove();
 
-        const trackerItemTemplate = document.getElementById("trackerFilterItem");
+        const trackerItemTemplate = window.qBittorrent.Misc.getElementById("trackerFilterItem", "template");
 
         const createLink = (host, text, count) => {
-            const trackerFilterItem = trackerItemTemplate.content.cloneNode(true).firstElementChild;
+            const trackerFilterItem = (trackerItemTemplate.content.cloneNode(true) as DocumentFragment).firstElementChild;
             trackerFilterItem.id = host;
             trackerFilterItem.classList.toggle("selectedFilter", (host === selectedTracker));
 
             const span = trackerFilterItem.firstElementChild;
             span.lastChild.textContent = `${text} (${count})`;
 
+            const img = span.lastElementChild as HTMLImageElement;
             switch (host) {
                 case TRACKERS_ANNOUNCE_ERROR:
                 case TRACKERS_ERROR:
-                    span.lastElementChild.src = "images/tracker-error.svg";
+                    img.src = "images/tracker-error.svg";
                     break;
                 case TRACKERS_TRACKERLESS:
-                    span.lastElementChild.src = "images/trackerless.svg";
+                    img.src = "images/trackerless.svg";
                     break;
                 case TRACKERS_WARNING:
-                    span.lastElementChild.src = "images/tracker-warning.svg";
+                    img.src = "images/tracker-warning.svg";
                     break;
             }
 
@@ -864,10 +864,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let syncRequestInProgress = false;
     const syncMainData = () => {
         syncRequestInProgress = true;
-        const url = new URL("api/v2/sync/maindata", window.location);
+        const url = new URL("api/v2/sync/maindata", window.location.href);
         url.search = new URLSearchParams({
-            rid: syncMainDataLastResponseId
-        });
+            rid: String(syncMainDataLastResponseId)
+        }).toString();
         fetch(url, {
                 method: "GET",
                 cache: "no-store"
@@ -951,7 +951,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                                     trackerListItem = new Map();
                                     trackerMap.set(host, trackerListItem);
                                 }
-                                trackerListItem.set(tracker, new Set(torrents));
+                                trackerListItem.set(tracker, new Set(torrents as string[]));
                             }
                             updateTrackers = true;
                         }
@@ -1072,7 +1072,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (window.qBittorrent.Client.isStopped())
             return;
 
-        syncMainDataTimeoutID = syncMainData.delay(delay);
+        syncMainDataTimeoutID = window.setTimeout(syncMainData, delay);
     };
 
     const processServerState = () => {
@@ -1133,21 +1133,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
         window.qBittorrent.Statistics.save(serverState);
         window.qBittorrent.Statistics.render();
 
+        const connectionStatusImg = document.getElementById("connectionStatus") as HTMLImageElement;
         switch (serverState.connection_status) {
             case "connected":
-                document.getElementById("connectionStatus").src = "images/connected.svg";
-                document.getElementById("connectionStatus").alt = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
-                document.getElementById("connectionStatus").title = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
+                connectionStatusImg.src = "images/connected.svg";
+                connectionStatusImg.alt = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
+                connectionStatusImg.title = "QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]";
                 break;
             case "firewalled":
-                document.getElementById("connectionStatus").src = "images/firewalled.svg";
-                document.getElementById("connectionStatus").alt = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
-                document.getElementById("connectionStatus").title = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
+                connectionStatusImg.src = "images/firewalled.svg";
+                connectionStatusImg.alt = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
+                connectionStatusImg.title = "QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]";
                 break;
             default:
-                document.getElementById("connectionStatus").src = "images/disconnected.svg";
-                document.getElementById("connectionStatus").alt = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
-                document.getElementById("connectionStatus").title = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
+                connectionStatusImg.src = "images/disconnected.svg";
+                connectionStatusImg.alt = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
+                connectionStatusImg.title = "QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]";
                 break;
         }
 
@@ -1187,15 +1188,16 @@ window.addEventListener("DOMContentLoaded", (event) => {
     };
 
     const updateAltSpeedIcon = (enabled) => {
+        const alternativeSpeedLimitsImg = window.qBittorrent.Misc.getElementById("alternativeSpeedLimits", "image");
         if (enabled) {
-            document.getElementById("alternativeSpeedLimits").src = "images/slow.svg";
-            document.getElementById("alternativeSpeedLimits").alt = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
-            document.getElementById("alternativeSpeedLimits").title = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
+            alternativeSpeedLimitsImg.src = "images/slow.svg";
+            alternativeSpeedLimitsImg.alt = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
+            alternativeSpeedLimitsImg.title = "QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]";
         }
         else {
-            document.getElementById("alternativeSpeedLimits").src = "images/slow_off.svg";
-            document.getElementById("alternativeSpeedLimits").alt = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
-            document.getElementById("alternativeSpeedLimits").title = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
+            alternativeSpeedLimitsImg.src = "images/slow_off.svg";
+            alternativeSpeedLimitsImg.alt = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
+            alternativeSpeedLimitsImg.title = "QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]";
         }
     };
 
@@ -1225,11 +1227,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         showTopToolbar = !showTopToolbar;
         localPreferences.set("show_top_toolbar", showTopToolbar.toString());
         if (showTopToolbar) {
-            document.getElementById("showTopToolbarLink").firstElementChild.style.opacity = "1";
+            (document.getElementById("showTopToolbarLink").firstElementChild as HTMLImageElement).style.opacity = "1";
             document.getElementById("mochaToolbar").classList.remove("invisible");
         }
         else {
-            document.getElementById("showTopToolbarLink").firstElementChild.style.opacity = "0";
+            (document.getElementById("showTopToolbarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
             document.getElementById("mochaToolbar").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
@@ -1239,11 +1241,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         showStatusBar = !showStatusBar;
         localPreferences.set("show_status_bar", showStatusBar.toString());
         if (showStatusBar) {
-            document.getElementById("showStatusBarLink").firstElementChild.style.opacity = "1";
+            (document.getElementById("showStatusBarLink").firstElementChild as HTMLImageElement).style.opacity = "1";
             document.getElementById("desktopFooterWrapper").classList.remove("invisible");
         }
         else {
-            document.getElementById("showStatusBarLink").firstElementChild.style.opacity = "0";
+            (document.getElementById("showStatusBarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
             document.getElementById("desktopFooterWrapper").classList.add("invisible");
         }
         MochaUI.Desktop.setDesktopSize();
@@ -1265,8 +1267,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const templateHashString = hashParams.toString().replace("download=", "download=%s");
         const templateUrl = `${location.origin}${location.pathname}${location.search}#${templateHashString}`;
 
-        navigator.registerProtocolHandler("magnet", templateUrl,
-            "qBittorrent WebUI magnet handler");
+        navigator.registerProtocolHandler("magnet", templateUrl);
     };
     document.getElementById("registerMagnetHandlerLink").addEventListener("click", (e) => {
         registerMagnetHandler();
@@ -1276,12 +1277,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
         showFiltersSidebar = !showFiltersSidebar;
         localPreferences.set("show_filters_sidebar", showFiltersSidebar.toString());
         if (showFiltersSidebar) {
-            document.getElementById("showFiltersSidebarLink").firstElementChild.style.opacity = "1";
+            (document.getElementById("showFiltersSidebarLink").firstElementChild as HTMLImageElement).style.opacity = "1";
             document.getElementById("filtersColumn").classList.remove("invisible");
             document.getElementById("filtersColumn_handle").classList.remove("invisible");
         }
         else {
-            document.getElementById("showFiltersSidebarLink").firstElementChild.style.opacity = "0";
+            (document.getElementById("showFiltersSidebarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
             document.getElementById("filtersColumn").classList.add("invisible");
             document.getElementById("filtersColumn_handle").classList.add("invisible");
         }
@@ -1292,9 +1293,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         speedInTitle = !speedInTitle;
         localPreferences.set("speed_in_browser_title_bar", speedInTitle.toString());
         if (speedInTitle)
-            document.getElementById("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "1";
+            (document.getElementById("speedInBrowserTitleBarLink").firstElementChild as HTMLImageElement).style.opacity = "1";
         else
-            document.getElementById("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "0";
+            (document.getElementById("speedInBrowserTitleBarLink").firstElementChild as HTMLImageElement).style.opacity = "0";
         processServerState();
     });
 
@@ -1318,42 +1319,42 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     const updateTabDisplay = () => {
         if (window.qBittorrent.Client.isShowRssReader()) {
-            document.getElementById("showRssReaderLink").firstElementChild.style.opacity = "1";
+            (document.getElementById("showRssReaderLink").firstElementChild as HTMLImageElement).style.opacity = "1";
             document.getElementById("mainWindowTabs").classList.remove("invisible");
             document.getElementById("rssTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.RssPanel)
                 addRssPanel();
         }
         else {
-            document.getElementById("showRssReaderLink").firstElementChild.style.opacity = "0";
+            (document.getElementById("showRssReaderLink").firstElementChild as HTMLImageElement).style.opacity = "0";
             document.getElementById("rssTabLink").classList.add("invisible");
             if (document.getElementById("rssTabLink").classList.contains("selected"))
                 document.getElementById("transfersTabLink").click();
         }
 
         if (window.qBittorrent.Client.isShowSearchEngine()) {
-            document.getElementById("showSearchEngineLink").firstElementChild.style.opacity = "1";
+            (document.getElementById("showSearchEngineLink").firstElementChild as HTMLImageElement).style.opacity = "1";
             document.getElementById("mainWindowTabs").classList.remove("invisible");
             document.getElementById("searchTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.SearchPanel)
                 addSearchPanel();
         }
         else {
-            document.getElementById("showSearchEngineLink").firstElementChild.style.opacity = "0";
+            (document.getElementById("showSearchEngineLink").firstElementChild as HTMLImageElement).style.opacity = "0";
             document.getElementById("searchTabLink").classList.add("invisible");
             if (document.getElementById("searchTabLink").classList.contains("selected"))
                 document.getElementById("transfersTabLink").click();
         }
 
         if (window.qBittorrent.Client.isShowLogViewer()) {
-            document.getElementById("showLogViewerLink").firstElementChild.style.opacity = "1";
+            (document.getElementById("showLogViewerLink").firstElementChild as HTMLImageElement).style.opacity = "1";
             document.getElementById("mainWindowTabs").classList.remove("invisible");
             document.getElementById("logTabLink").classList.remove("invisible");
             if (!MochaUI.Panels.instances.LogPanel)
                 addLogPanel();
         }
         else {
-            document.getElementById("showLogViewerLink").firstElementChild.style.opacity = "0";
+            (document.getElementById("showLogViewerLink").firstElementChild as HTMLImageElement).style.opacity = "0";
             document.getElementById("logTabLink").classList.add("invisible");
             if (document.getElementById("logTabLink").classList.contains("selected"))
                 document.getElementById("transfersTabLink").click();
@@ -1629,9 +1630,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     });
     let prop_h = localPreferences.get("properties_height_rel");
     if (prop_h !== null)
-        prop_h = Number(prop_h) * Window.getSize().y;
+        prop_h = Number(prop_h) * document.getSize().y;
     else
-        prop_h = Window.getSize().y / 2;
+        prop_h = document.getSize().y / 2;
     new MochaUI.Panel({
         id: "propertiesPanel",
         title: "Panel",
@@ -1730,7 +1731,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let torrentsFilterInputTimer = -1;
     document.getElementById("torrentsFilterInput").addEventListener("input", (event) => {
         clearTimeout(torrentsFilterInputTimer);
-        torrentsFilterInputTimer = setTimeout(() => {
+        torrentsFilterInputTimer = window.setTimeout(() => {
             torrentsFilterInputTimer = -1;
             torrentsTable.updateTable();
         }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
@@ -1790,20 +1791,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     });
 
                 for (const url of urls)
-                    qBittorrent.Client.createAddTorrentWindow(url, url);
+                    window.qBittorrent.Client.createAddTorrentWindow(url, url);
             }
         });
     };
     registerDragAndDrop();
 
     window.addEventListener("keydown", (event) => {
+        const target = event.target as HTMLElement;
         switch (event.key) {
             case "a":
             case "A":
                 if (event.ctrlKey || event.metaKey) {
-                    if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
+                    if ((target.nodeName === "INPUT") || (target.nodeName === "TEXTAREA"))
                         return;
-                    if (event.target.isContentEditable)
+                    if (target.isContentEditable)
                         return;
                     event.preventDefault();
                     torrentsTable.selectAll();
@@ -1811,25 +1813,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 break;
 
             case "Delete":
-                if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
+                if ((target.nodeName === "INPUT") || (target.nodeName === "TEXTAREA"))
                     return;
-                if (event.target.isContentEditable)
+                if (target.isContentEditable)
                     return;
                 event.preventDefault();
                 deleteSelectedTorrentsFN(event.shiftKey);
                 break;
 
             case "Escape": {
-                if (event.target.isContentEditable)
+                if (target.isContentEditable)
                     return;
 
                 event.preventDefault();
-                const modalInstances = Object.values(MochaUI.Windows.instances);
+                const modalInstances: Window[] = Object.values(MochaUI.Windows.instances);
                 if (modalInstances.length <= 0)
                     return;
 
                 // MochaUI.currentModal does not update after a modal is closed
-                const focusedModal = modalInstances.find((modal) => {
+                const focusedModal = modalInstances.find((modal: any) => {
                     return modal.windowEl.hasClass("isFocused");
                 });
                 if (focusedModal !== undefined)
@@ -1840,9 +1842,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
             case "f":
             case "F":
                 if (event.ctrlKey || event.metaKey) {
-                    if ((event.target.nodeName === "INPUT") || (event.target.nodeName === "TEXTAREA"))
+                    if ((target.nodeName === "INPUT") || (target.nodeName === "TEXTAREA"))
                         return;
-                    if (event.target.isContentEditable)
+                    if (target.isContentEditable)
                         return;
 
                     const logsFilterElem = document.getElementById("filterTextInput");

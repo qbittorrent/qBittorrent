@@ -26,10 +26,8 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
-window.qBittorrent.ColorScheme ??= (() => {
+const colorSchemeModule = (() => {
     const exports = () => {
         return {
             update,
@@ -51,6 +49,8 @@ window.qBittorrent.ColorScheme ??= (() => {
 
     return exports();
 })();
+
+window.qBittorrent.ColorScheme ??= colorSchemeModule;
 Object.freeze(window.qBittorrent.ColorScheme);
 
 window.qBittorrent.ColorScheme.update();

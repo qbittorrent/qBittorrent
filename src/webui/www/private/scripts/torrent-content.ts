@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.TorrentContent ??= (() => {
     const exports = () => {
@@ -212,7 +210,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const getComboboxPriority = (id) => {
         const node = torrentFilesTable.getNode(id.toString());
-        return normalizePriority(node.priority, 10);
+        return normalizePriority(node.priority);
     };
 
     const switchGlobalCheckboxState = (e) => {
@@ -220,7 +218,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         const rowIds = [];
         const fileIds = [];
-        const checkbox = document.getElementById("tristate_cb");
+        const checkbox = document.getElementById("tristate_cb") as FileCheckbox;
         const priority = (checkbox.state === TriState.Checked) ? FilePriority.Ignored : FilePriority.Normal;
 
         if (checkbox.state === TriState.Checked) {
@@ -534,10 +532,10 @@ window.qBittorrent.TorrentContent ??= (() => {
             clearTimeout(torrentFilesFilterInputTimer);
             torrentFilesFilterInputTimer = -1;
 
-            const value = document.getElementById("torrentFilesFilterInput").value;
+            const value = window.qBittorrent.Misc.getElementById("torrentFilesFilterInput", "input").value;
             torrentFilesTable.setFilter(value);
 
-            torrentFilesFilterInputTimer = setTimeout(() => {
+            torrentFilesFilterInputTimer = window.setTimeout(() => {
                 torrentFilesFilterInputTimer = -1;
 
                 torrentFilesTable.updateTable();

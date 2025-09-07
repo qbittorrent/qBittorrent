@@ -26,8 +26,6 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PropGeneral ??= (() => {
     const exports = () => {
@@ -74,7 +72,7 @@ window.qBittorrent.PropGeneral ??= (() => {
         piecesBar.clear();
     };
 
-    let loadTorrentDataTimer = -1;
+    let loadTorrentDataTimer: number = -1;
     const loadTorrentData = () => {
         if (document.hidden)
             return;
@@ -90,10 +88,10 @@ window.qBittorrent.PropGeneral ??= (() => {
             return;
         }
 
-        const propertiesURL = new URL("api/v2/torrents/properties", window.location);
+        const propertiesURL = new URL("api/v2/torrents/properties", window.location.href);
         propertiesURL.search = new URLSearchParams({
             hash: current_id
-        });
+        }).toString();
         fetch(propertiesURL, {
                 method: "GET",
                 cache: "no-store"
@@ -102,7 +100,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                 if (!response.ok) {
                     document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     clearTimeout(loadTorrentDataTimer);
-                    loadTorrentDataTimer = loadTorrentData.delay(10000);
+                    loadTorrentDataTimer = window.setTimeout(loadTorrentData, 10000);
                     return;
                 }
 
@@ -233,19 +231,19 @@ window.qBittorrent.PropGeneral ??= (() => {
                     clearData();
                 }
                 clearTimeout(loadTorrentDataTimer);
-                loadTorrentDataTimer = loadTorrentData.delay(5000);
+                loadTorrentDataTimer = window.setTimeout(loadTorrentData, 5000);
             }, (error) => {
                 console.error(error);
 
                 document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadTorrentDataTimer);
-                loadTorrentDataTimer = loadTorrentData.delay(10000);
+                loadTorrentDataTimer = window.setTimeout(loadTorrentData, 10000);
             });
 
-        const pieceStatesURL = new URL("api/v2/torrents/pieceStates", window.location);
+        const pieceStatesURL = new URL("api/v2/torrents/pieceStates", window.location.href);
         pieceStatesURL.search = new URLSearchParams({
             hash: current_id
-        });
+        }).toString();
         fetch(pieceStatesURL, {
                 method: "GET",
                 cache: "no-store"
@@ -254,7 +252,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                 if (!response.ok) {
                     document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                     clearTimeout(loadTorrentDataTimer);
-                    loadTorrentDataTimer = loadTorrentData.delay(10000);
+                    loadTorrentDataTimer = window.setTimeout(loadTorrentData, 10000);
                     return;
                 }
 
@@ -267,13 +265,13 @@ window.qBittorrent.PropGeneral ??= (() => {
                     clearData();
 
                 clearTimeout(loadTorrentDataTimer);
-                loadTorrentDataTimer = loadTorrentData.delay(5000);
+                loadTorrentDataTimer = window.setTimeout(loadTorrentData, 5000);
             }, (error) => {
                 console.error(error);
 
                 document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadTorrentDataTimer);
-                loadTorrentDataTimer = loadTorrentData.delay(10000);
+                loadTorrentDataTimer = window.setTimeout(loadTorrentData, 10000);
             });
     };
 

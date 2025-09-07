@@ -255,7 +255,7 @@
         const syncLogWithInterval = (interval) => {
             if (!tableInfo[currentSelectedTab].progress) {
                 clearTimeout(tableInfo[currentSelectedTab].timer);
-                tableInfo[currentSelectedTab].timer = syncLogData.delay(interval, null, currentSelectedTab);
+                tableInfo[currentSelectedTab].timer = window.setTimeout(() => { syncLogData(currentSelectedTab); }, interval);
             }
         };
 
@@ -292,7 +292,7 @@
 
         const logFilterChanged = () => {
             clearTimeout(logFilterTimer);
-            logFilterTimer = setTimeout((curTab) => {
+            logFilterTimer = window.setTimeout((curTab) => {
                 logFilterTimer = -1;
 
                 tableInfo[curTab].instance.updateTable(false);

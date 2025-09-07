@@ -26,10 +26,8 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
-window.qBittorrent.ContextMenu ??= (() => {
+const contextMenuModule = (() => {
     const exports = () => {
         return {
             ContextMenu: ContextMenu,
@@ -47,6 +45,12 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     let lastShownContextMenu = null;
     class ContextMenu {
+        options: Record < string,
+        any > ;
+        menu: HTMLUListElement;
+        touchStartAt: number;
+        touchStartEvent: any;
+
         constructor(options) {
             this.options = {
                 actions: {},
@@ -65,7 +69,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             };
 
             // option diffs menu
-            this.menu = document.getElementById(this.options.menu);
+            this.menu = window.qBittorrent.Misc.getElementById(this.options.menu, "ul");
 
             // hide and begin the listener
             this.hide().startListener();
@@ -109,7 +113,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             for (const ul of uls) {
                 if (ul.classList.contains("scrollableMenu"))
                     ul.style.maxHeight = `${scrollableMenuMaxHeight}px`;
-                const rectParent = ul.parentNode.getBoundingClientRect();
+                const rectParent = (ul.parentNode as HTMLElement).getBoundingClientRect();
                 const xPosOrigin = rectParent.left;
                 const yPosOrigin = rectParent.bottom;
                 let xPos = xPosOrigin + rectParent.width - 1;
@@ -194,13 +198,13 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             /* menu items */
             this.menu.addEventListener("click", (e) => {
-                const menuItem = e.target.closest("li");
+                const menuItem = (e.target as HTMLElement).closest("li");
                 if (!menuItem)
                     return;
 
                 e.preventDefault();
                 if (!menuItem.classList.contains("disabled")) {
-                    const anchor = menuItem.firstElementChild;
+                    const anchor = menuItem.firstElementChild as HTMLAnchorElement;
                     this.execute(anchor.href.split("#")[1], this.options.element);
                     this.options.onClick.call(this, anchor, e);
                 }
@@ -219,7 +223,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         updateMenuItems() {}
 
         // show menu
-        show(trigger) {
+        show() {
             if (lastShownContextMenu && (lastShownContextMenu !== this))
                 lastShownContextMenu.hide();
             this.menu.classList.add("visible");
@@ -229,7 +233,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         // hide the menu
-        hide(trigger) {
+        hide() {
             if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== "hidden")) {
                 this.menu.classList.remove("visible");
                 this.options.onHide.call(this);
@@ -238,24 +242,24 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         setItemChecked(item, checked) {
-            this.menu.querySelector(`a[href$="${item}"]`).firstElementChild.style.opacity =
+            (this.menu.querySelector(`a[href$="${item}"]`).firstElementChild as HTMLElement).style.opacity =
                 checked ? "1" : "0";
             return this;
         }
 
         getItemChecked(item) {
-            return this.menu.querySelector(`a[href$="${item}"]`).firstElementChild.style.opacity !== "0";
+            return (this.menu.querySelector(`a[href$="${item}"]`).firstElementChild as HTMLElement).style.opacity !== "0";
         }
 
         // hide an item
         hideItem(item) {
-            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.add("invisible");
+            (this.menu.querySelector(`a[href$="${item}"]`).parentNode as HTMLElement).classList.add("invisible");
             return this;
         }
 
         // show an item
         showItem(item) {
-            this.menu.querySelector(`a[href$="${item}"]`).parentNode.classList.remove("invisible");
+            (this.menu.querySelector(`a[href$="${item}"]`).parentNode as HTMLElement).classList.remove("invisible");
             return this;
         }
 
@@ -286,6 +290,8 @@ window.qBittorrent.ContextMenu ??= (() => {
     }
 
     class FilterListContextMenu extends ContextMenu {
+        torrentObserver: MutationObserver;
+
         constructor(options) {
             super(options);
             this.torrentObserver = new MutationObserver((records, observer) => {
@@ -394,7 +400,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             if (all_are_downloaded) {
                 this.hideItem("downloadLimit");
-                this.menu.querySelector("a[href$=uploadLimit]").parentNode.classList.add("separator");
+                (this.menu.querySelector("a[href$=uploadLimit]").parentNode as HTMLElement).classList.add("separator");
                 this.hideItem("sequentialDownload");
                 this.hideItem("firstLastPiecePrio");
                 this.showItem("superSeeding");
@@ -404,7 +410,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const show_seq_dl = (all_are_seq_dl || !there_are_seq_dl);
                 const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
 
-                this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode.classList.toggle("separator", (!show_seq_dl && show_f_l_piece_prio));
+                (this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode as HTMLElement).classList.toggle("separator", (!show_seq_dl && show_f_l_piece_prio));
 
                 if (show_seq_dl)
                     this.showItem("sequentialDownload");
@@ -420,7 +426,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.setItemChecked("firstLastPiecePrio", all_are_f_l_piece_prio);
 
                 this.showItem("downloadLimit");
-                this.menu.querySelector("a[href$=uploadLimit]").parentNode.classList.remove("separator");
+                (this.menu.querySelector("a[href$=uploadLimit]").parentNode as HTMLElement).classList.remove("separator");
                 this.hideItem("superSeeding");
             }
 
@@ -441,7 +447,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const contextTagList = document.getElementById("contextTagList");
             for (const tag of window.qBittorrent.Client.tagMap.keys()) {
-                const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`);
+                const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`) as HTMLInputElement;
                 const count = tagCount.get(tag);
                 const hasCount = (count !== undefined);
                 const isLesser = (count < selectedRows.length);
@@ -621,7 +627,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class SearchPluginsTableContextMenu extends ContextMenu {
         updateMenuItems() {
-            const enabledColumnIndex = (text) => {
+            const enabledColumnIndex = () => {
                 const columns = document.querySelectorAll("#searchPluginsTableFixedHeaderRow th");
                 return Array.prototype.findIndex.call(columns, (column => column.textContent === "Enabled"));
             };
@@ -636,11 +642,11 @@ window.qBittorrent.ContextMenu ??= (() => {
     class RssFeedContextMenu extends ContextMenu {
         updateMenuItems() {
             const selectedRows = window.qBittorrent.Rss.rssFeedTable.selectedRowsIds();
-            this.menu.querySelector("a[href$=newSubscription]").parentNode.classList.add("separator");
+            (this.menu.querySelector("a[href$=newSubscription]").parentNode as HTMLElement).classList.add("separator");
             switch (selectedRows.length) {
                 case 0:
                     // remove separator on top of newSubscription entry to avoid double line
-                    this.menu.querySelector("a[href$=newSubscription]").parentNode.classList.remove("separator");
+                    (this.menu.querySelector("a[href$=newSubscription]").parentNode as HTMLElement).classList.remove("separator");
                     // menu when nothing selected
                     this.hideItem("update");
                     this.hideItem("markRead");
@@ -758,4 +764,6 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     return exports();
 })();
+
+window.qBittorrent.ContextMenu ??= contextMenuModule;
 Object.freeze(window.qBittorrent.ContextMenu);
