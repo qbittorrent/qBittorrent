@@ -176,7 +176,7 @@ window.qBittorrent.Client ??= (() => {
     const uploadTorrentFiles = (files) => {
         const fileNames = [];
         const formData = new FormData();
-        for (const [i, file] of files.entries()) {
+        for (const [i, file] of Array.prototype.entries.call(files)) {
             fileNames.push(file.name);
             // send dummy file name as file name won't be used and may not be encoded properly
             formData.append("file", file, i);
