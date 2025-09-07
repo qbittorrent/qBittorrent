@@ -153,6 +153,7 @@ let copyInfohashFN = (policy) => {};
 let copyMagnetLinkFN = () => {};
 let copyIdFN = () => {};
 let copyCommentFN = () => {};
+let copyContentPathFN = () => {};
 let setQueuePositionFN = () => {};
 let exportTorrentFN = () => {};
 
@@ -1217,6 +1218,17 @@ const initializeWindows = () => {
             }
         }
         return comments.join("\n---------\n");
+    };
+
+    copyContentPathFN = () => {
+        const selectedRows = torrentsTable.selectedRowsIds();
+        const contentPaths = [];
+        if (selectedRows.length > 0) {
+            const rows = torrentsTable.getFilteredAndSortedRows();
+            for (const hash of selectedRows)
+                contentPaths.push(rows[hash].full_data.content_path);
+        }
+        return contentPaths.join("\n");
     };
 
     exportTorrentFN = async () => {
