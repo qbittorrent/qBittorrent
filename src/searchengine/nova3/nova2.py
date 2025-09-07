@@ -1,4 +1,4 @@
-# VERSION: 1.49
+# VERSION: 1.50
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -39,6 +39,7 @@ import sys
 import traceback
 import urllib.parse
 import xml.etree.ElementTree as ET
+from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from enum import Enum
 from glob import glob
@@ -77,19 +78,21 @@ Category = Enum('Category', ['all', 'anime', 'books', 'games', 'movies', 'music'
 EngineModuleName = str  # the filename of the engine plugin
 
 
-class Engine:
-    url: str
+class Engine(ABC):
     name: str
+    url: str
     supported_categories: dict[str, str]
 
-    def __init__(self) -> None:
-        pass
+    @abstractmethod
+    def search(self, query: str, category: str = Category.all.name) -> None:
+        #novaprinter.prettyPrinter()
+        raise NotImplementedError
 
-    def search(self, what: str, cat: str = Category.all.name) -> None:
-        pass
-
-    def download_torrent(self, info: str) -> None:
-        pass
+    """
+    Provide customized .torrent file download implementation. For example in your own subclass:
+    def download_torrent(self, url: str) -> None:
+        print(helpers.download_file(url))
+    """
 
 
 # global state
