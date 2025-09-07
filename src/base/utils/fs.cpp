@@ -219,6 +219,33 @@ Path Utils::Fs::tempPath()
     return path;
 }
 
+Path Utils::Fs::expandTilde(const Path &path)
+{
+    if (path.isEmpty())
+        return path;
+        
+    const QString pathStr = path.data();
+    
+    // Check if path starts with ~ (tilde)
+    if (pathStr.startsWith(u'~'))
+    {
+        if (pathStr.size() == 1)
+        {
+            // Just ~ means home directory
+            return homePath();
+        }
+        else if (pathStr.at(1) == u'/')
+        {
+            // ~/something means home directory + something
+            return homePath() / Path(pathStr.sliced(2));
+        }
+        // ~username is not supported for simplicity and security
+    }
+    
+    // Return original path if no tilde expansion needed
+    return path;
+}
+
 bool Utils::Fs::isRegularFile(const Path &path)
 {
     std::error_code ec;
