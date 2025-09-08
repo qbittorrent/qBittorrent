@@ -36,6 +36,7 @@ export default [
             "curly": ["error", "multi-or-nest", "consistent"],
             "eqeqeq": "error",
             "guard-for-in": "error",
+            "no-implicit-coercion": "error",
             "no-undef": "off",
             "no-unused-vars": "off",
             "no-var": "error",
@@ -74,6 +75,7 @@ export default [
             "Unicorn/no-for-loop": "error",
             "Unicorn/no-zero-fractions": "error",
             "Unicorn/prefer-classlist-toggle": "error",
+            "Unicorn/prefer-native-coercion-functions": "error",
             "Unicorn/prefer-number-properties": "error",
             "Unicorn/switch-case-braces": ["error", "avoid"]
         }
