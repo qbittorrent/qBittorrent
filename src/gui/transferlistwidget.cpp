@@ -531,7 +531,8 @@ void TransferListWidget::copyContentPaths() const
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
         const Path contentPath = torrent->contentPath();
-        contentPaths << (!contentPath.isEmpty() ? contentPath.toString() : torrent->savePath().toString());
+        if (!contentPath.isEmpty())
+            contentPaths << contentPath.toString();
     }
 
     qApp->clipboard()->setText(contentPaths.join(u'\n'));
@@ -1012,7 +1013,7 @@ void TransferListWidget::displayListMenu()
     connect(actionCopyHash1, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version1); });
     auto *actionCopyHash2 = new QAction(UIThemeManager::instance()->getIcon(u"hash"_s, u"edit-copy"_s), tr("Info h&ash v2"), listMenu);
     connect(actionCopyHash2, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version2); });
-    auto *actionCopyContentPath = new QAction(UIThemeManager::instance()->getIcon(u"content-path"_s, u"edit-copy"_s), tr("Content &Path"), listMenu);
+    auto *actionCopyContentPath = new QAction(UIThemeManager::instance()->getIcon(u"directory"_s, u"edit-copy"_s), tr("Content &Path"), listMenu);
     connect(actionCopyContentPath, &QAction::triggered, this, &TransferListWidget::copyContentPaths);
     auto *actionSuperSeedingMode = new TriStateAction(tr("Super seeding mode"), listMenu);
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
