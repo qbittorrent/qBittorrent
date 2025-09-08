@@ -77,6 +77,7 @@ export default [
             "Unicorn/prefer-classlist-toggle": "error",
             "Unicorn/prefer-native-coercion-functions": "error",
             "Unicorn/prefer-number-properties": "error",
+            "Unicorn/prefer-single-call": "error",
             "Unicorn/switch-case-braces": ["error", "avoid"]
         }
     }
