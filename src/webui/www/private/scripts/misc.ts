@@ -47,7 +47,7 @@ const miscModule = (() => {
             getElementById: getElementById,
             // variables
             FILTER_INPUT_DELAY: 400,
-            MAX_ETA: 8640000
+            MAX_ETA: 8640000,
         };
     };
 
@@ -90,7 +90,7 @@ const miscModule = (() => {
     /*
      * JS counterpart of the function in src/misc.cpp
      */
-    const friendlyUnit = (value: number | null | undefined, isSpeed ? : boolean) => {
+    const friendlyUnit = (value: number | null | undefined, isSpeed?: boolean) => {
         if ((value === undefined) || (value === null) || Number.isNaN(value) || (value < 0))
             return "QBT_TR(Unknown)QBT_TR[CONTEXT=misc]";
 
@@ -101,7 +101,7 @@ const miscModule = (() => {
             "QBT_TR(GiB)QBT_TR[CONTEXT=misc]",
             "QBT_TR(TiB)QBT_TR[CONTEXT=misc]",
             "QBT_TR(PiB)QBT_TR[CONTEXT=misc]",
-            "QBT_TR(EiB)QBT_TR[CONTEXT=misc]"
+            "QBT_TR(EiB)QBT_TR[CONTEXT=misc]",
         ];
 
         const friendlyUnitPrecision = (sizeUnit) => {
@@ -109,7 +109,8 @@ const miscModule = (() => {
                 return 1;
             else if (sizeUnit === 3) // GiB
                 return 2;
-            else // TiB, PiB, EiB
+            // TiB, PiB, EiB
+            else
                 return 3;
         };
 
@@ -179,7 +180,7 @@ const miscModule = (() => {
 
     const parseVersion = (versionString: string) => {
         const failure = {
-            valid: false
+            valid: false,
         };
 
         if (typeof versionString !== "string")
@@ -196,7 +197,7 @@ const miscModule = (() => {
             major: ver[0],
             minor: ver[1],
             fix: ver[2],
-            patch: ver[3]
+            patch: ver[3],
         };
     };
 
@@ -288,7 +289,7 @@ const miscModule = (() => {
             let fileName = defaultFileName;
             if (fileNameHeader.startsWith(fileNamePrefix)) {
                 fileName = fileNameHeader.substring(fileNamePrefix.length);
-                if (fileName.startsWith("\"") && fileName.endsWith("\""))
+                if (fileName.startsWith('"') && fileName.endsWith('"'))
                     fileName = fileName.slice(1, -1);
             }
 
@@ -314,7 +315,7 @@ const miscModule = (() => {
         template: HTMLTemplateElement;
     };
 
-    const getElementById = < T extends keyof ElementTypeMap > (id: string, type: T): ElementTypeMap[T] => {
+    const getElementById = <T extends keyof ElementTypeMap>(id: string, type: T): ElementTypeMap[T] => {
         return document.getElementById(id) as ElementTypeMap[T];
     };
 

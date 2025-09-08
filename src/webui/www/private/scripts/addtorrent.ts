@@ -31,7 +31,7 @@ const addTorrentModule = (() => {
             metadataCompleted: metadataCompleted,
             populateMetadata: populateMetadata,
             setWindowId: setWindowId,
-            submitForm: submitForm
+            submitForm: submitForm,
         };
     };
 
@@ -75,7 +75,7 @@ const addTorrentModule = (() => {
             translations: {
                 all: (window.parent.qBittorrent.Client.tagMap.length === 0) ? "" : "QBT_TR(All)QBT_TR[CONTEXT=AddNewTorrentDialog]",
             },
-            keepInlineStyles: false
+            keepInlineStyles: false,
         });
     };
 
@@ -222,12 +222,12 @@ const addTorrentModule = (() => {
             downloader = downloaderName;
 
         fetch("api/v2/torrents/fetchMetadata", {
-                method: "POST",
-                body: new URLSearchParams({
-                    source: source,
-                    downloader: downloader
-                })
-            })
+            method: "POST",
+            body: new URLSearchParams({
+                source: source,
+                downloader: downloader,
+            }),
+        })
             .then(async (response) => {
                 if (!response.ok) {
                     metadataFailed();

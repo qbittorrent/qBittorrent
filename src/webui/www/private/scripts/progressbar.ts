@@ -30,7 +30,7 @@ window.qBittorrent ??= {};
 window.qBittorrent.ProgressBar ??= (() => {
     const exports = () => {
         return {
-            ProgressBar: ProgressBar
+            ProgressBar: ProgressBar,
         };
     };
 

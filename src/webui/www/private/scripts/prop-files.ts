@@ -31,7 +31,7 @@ window.qBittorrent.PropFiles ??= (() => {
     const exports = () => {
         return {
             updateData: updateData,
-            clear: clear
+            clear: clear,
         };
     };
 
@@ -45,13 +45,13 @@ window.qBittorrent.PropFiles ??= (() => {
         loadTorrentFilesDataTimer = -1;
 
         fetch("api/v2/torrents/filePrio", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hash: current_hash,
-                    id: fileIds.join("|"),
-                    priority: priority
-                })
-            })
+            method: "POST",
+            body: new URLSearchParams({
+                hash: current_hash,
+                id: fileIds.join("|"),
+                priority: priority,
+            }),
+        })
             .then((response) => {
                 if (!response.ok)
                     return;
@@ -64,8 +64,10 @@ window.qBittorrent.PropFiles ??= (() => {
     const loadTorrentFilesData = () => {
         if (document.hidden)
             return;
-        if (document.getElementById("propFiles").classList.contains("invisible")
-            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
+        if (
+            document.getElementById("propFiles").classList.contains("invisible")
+            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")
+        ) {
             // Tab changed, don't do anything
             return;
         }
@@ -84,12 +86,12 @@ window.qBittorrent.PropFiles ??= (() => {
 
         const url = new URL("api/v2/torrents/files", window.location.href);
         url.search = new URLSearchParams({
-            hash: current_hash
+            hash: current_hash,
         }).toString();
         fetch(url, {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(async (response) => {
                 if (!response.ok)
                     return;
@@ -137,7 +139,7 @@ window.qBittorrent.PropFiles ??= (() => {
             height: 100,
             onCloseComplete: () => {
                 updateData();
-            }
+            },
         });
     };
 
@@ -159,7 +161,7 @@ window.qBittorrent.PropFiles ??= (() => {
             resizeLimit: { x: [800], y: [420] },
             onCloseComplete: () => {
                 updateData();
-            }
+            },
         });
     };
 

@@ -34,7 +34,7 @@ window.qBittorrent ??= {};
 window.qBittorrent.pathAutofill ??= (() => {
     const exports = () => {
         return {
-            attachPathAutofill: attachPathAutofill
+            attachPathAutofill: attachPathAutofill,
         };
     };
 
@@ -63,24 +63,30 @@ window.qBittorrent.pathAutofill ??= (() => {
             return;
 
         fetch(`api/v2/app/getDirectoryContent?dirPath=${partialPath}&mode=${mode}`, {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(response => response.json())
-            .then(filesList => { showInputSuggestions(element, filesList); })
+            .then(filesList => {
+                showInputSuggestions(element, filesList);
+            })
             .catch(error => {});
     };
 
     function attachPathAutofill() {
         const directoryInputs = document.querySelectorAll(".pathDirectory:not(.pathAutoFillInitialized)");
         for (const input of directoryInputs) {
-            input.addEventListener("input", function(event) { showPathSuggestions(this, "dirs"); });
+            input.addEventListener("input", function(event) {
+                showPathSuggestions(this, "dirs");
+            });
             input.classList.add("pathAutoFillInitialized");
         }
 
         const fileInputs = document.querySelectorAll(".pathFile:not(.pathAutoFillInitialized)");
         for (const input of fileInputs) {
-            input.addEventListener("input", function(event) { showPathSuggestions(this, "all"); });
+            input.addEventListener("input", function(event) {
+                showPathSuggestions(this, "all");
+            });
             input.classList.add("pathAutoFillInitialized");
         }
     }

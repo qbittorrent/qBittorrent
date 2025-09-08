@@ -38,7 +38,7 @@ window.qBittorrent.TorrentContent ??= (() => {
             createPriorityCombo: createPriorityCombo,
             updatePriorityCombo: updatePriorityCombo,
             updateData: updateData,
-            clearFilterInputTimer: clearFilterInputTimer
+            clearFilterInputTimer: clearFilterInputTimer,
         };
     };
 
@@ -100,7 +100,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         return {
             rowIds: rowIds,
-            fileIds: fileIds
+            fileIds: fileIds,
         };
     };
 
@@ -176,13 +176,13 @@ window.qBittorrent.TorrentContent ??= (() => {
         select.classList.add("combo_priority");
         select.addEventListener("change", fileComboboxChanged);
 
-        select.appendChild(createOption(FilePriority.Ignored, (FilePriority.Ignored === selectedPriority), "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
-        select.appendChild(createOption(FilePriority.Normal, (FilePriority.Normal === selectedPriority), "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]"));
-        select.appendChild(createOption(FilePriority.High, (FilePriority.High === selectedPriority), "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]"));
-        select.appendChild(createOption(FilePriority.Maximum, (FilePriority.Maximum === selectedPriority), "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Ignored, FilePriority.Ignored === selectedPriority, "QBT_TR(Do not download)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Normal, FilePriority.Normal === selectedPriority, "QBT_TR(Normal)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.High, FilePriority.High === selectedPriority, "QBT_TR(High)QBT_TR[CONTEXT=PropListDelegate]"));
+        select.appendChild(createOption(FilePriority.Maximum, FilePriority.Maximum === selectedPriority, "QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]"));
 
         // "Mixed" priority is for display only; it shouldn't be selectable
-        const mixedPriorityOption = createOption(FilePriority.Mixed, (FilePriority.Mixed === selectedPriority), "QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]");
+        const mixedPriorityOption = createOption(FilePriority.Mixed, FilePriority.Mixed === selectedPriority, "QBT_TR(Mixed)QBT_TR[CONTEXT=PropListDelegate]");
         mixedPriorityOption.disabled = true;
         select.appendChild(mixedPriorityOption);
 
@@ -227,7 +227,7 @@ window.qBittorrent.TorrentContent ??= (() => {
                 const rowId = row.rowId;
                 const node = torrentFilesTable.getNode(rowId);
                 const fileId = node.fileId;
-                const isChecked = (node.checked === TriState.Checked);
+                const isChecked = node.checked === TriState.Checked;
                 if (isChecked) {
                     rowIds.push(rowId);
                     fileIds.push(fileId);
@@ -240,7 +240,7 @@ window.qBittorrent.TorrentContent ??= (() => {
                 const rowId = row.rowId;
                 const node = torrentFilesTable.getNode(rowId);
                 const fileId = node.fileId;
-                const isUnchecked = (node.checked === TriState.Unchecked);
+                const isUnchecked = node.checked === TriState.Unchecked;
                 if (isUnchecked) {
                     rowIds.push(rowId);
                     fileIds.push(fileId);
@@ -302,16 +302,16 @@ window.qBittorrent.TorrentContent ??= (() => {
 
     const updateData = (files) => {
         const rows = files.map((file, index) => {
-            const ignore = (file.priority === FilePriority.Ignored);
+            const ignore = file.priority === FilePriority.Ignored;
             const row = {
                 fileId: index,
                 checked: (ignore ? TriState.Unchecked : TriState.Checked),
                 fileName: file.name,
                 name: window.qBittorrent.Filesystem.fileName(file.name),
                 size: file.size,
-                progress: window.qBittorrent.Misc.toFixedPointString((file.progress * 100), 1),
+                progress: window.qBittorrent.Misc.toFixedPointString(file.progress * 100, 1),
                 priority: normalizePriority(file.priority),
-                availability: file.availability
+                availability: file.availability,
             };
 
             return row;
@@ -349,9 +349,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
                 if (folderNode === null) {
                     folderNode = new window.qBittorrent.FileTree.FolderNode();
-                    folderNode.path = (parent.path === "")
-                        ? folderName
-                        : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
+                    folderNode.path = (parent.path === "") ? folderName : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
                     folderNode.name = folderName;
                     folderNode.rowId = rowId;
                     folderNode.root = parent;
@@ -502,11 +500,11 @@ window.qBittorrent.TorrentContent ??= (() => {
                 },
                 FilePrioMaximum: (element, ref) => {
                     filesPriorityMenuClicked(FilePriority.Maximum);
-                }
+                },
             },
             offsets: {
                 x: 0,
-                y: 2
+                y: 2,
             },
         });
 

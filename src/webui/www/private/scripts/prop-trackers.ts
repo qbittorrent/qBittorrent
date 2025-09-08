@@ -32,7 +32,7 @@ window.qBittorrent.PropTrackers ??= (() => {
         return {
             editTracker: editTrackerFN,
             updateData: updateData,
-            clear: clear
+            clear: clear,
         };
     };
 
@@ -63,8 +63,10 @@ window.qBittorrent.PropTrackers ??= (() => {
     const loadTrackersData = () => {
         if (document.hidden)
             return;
-        if (document.getElementById("propTrackers").classList.contains("invisible")
-            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
+        if (
+            document.getElementById("propTrackers").classList.contains("invisible")
+            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")
+        ) {
             // Tab changed, don't do anything
             return;
         }
@@ -83,12 +85,12 @@ window.qBittorrent.PropTrackers ??= (() => {
 
         const url = new URL("api/v2/torrents/trackers", window.location.href);
         url.search = new URLSearchParams({
-            hash: current_hash
+            hash: current_hash,
         }).toString();
         fetch(url, {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(async (response) => {
                 if (!response.ok)
                     return;
@@ -116,7 +118,7 @@ window.qBittorrent.PropTrackers ??= (() => {
                             minAnnounce: tracker.min_announce,
                             _isTracker: true,
                             _hasEndpoints: tracker.endpoints && (tracker.endpoints.length > 0),
-                            _sortable: !tracker.url.startsWith("** [")
+                            _sortable: !tracker.url.startsWith("** ["),
                         };
 
                         torrentTrackersTable.updateRowData(row);
@@ -181,11 +183,11 @@ window.qBittorrent.PropTrackers ??= (() => {
             },
             ReannounceAllTrackers: (element, ref) => {
                 reannounceTrackersFN(element, []);
-            }
+            },
         },
         offsets: {
             x: 0,
-            y: 2
+            y: 2,
         },
         onShow: function() {
             const selectedTrackers = torrentTrackersTable.selectedRowsIds();
@@ -218,7 +220,7 @@ window.qBittorrent.PropTrackers ??= (() => {
                     this.showItem("ReannounceAllTrackers");
                 }
             }
-        }
+        },
     });
 
     const addTrackerFN = () => {
@@ -245,7 +247,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             height: 260,
             onCloseComplete: () => {
                 updateData();
-            }
+            },
         });
     };
 
@@ -259,7 +261,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             v: "${CACHEID}",
             hash: current_hash,
             url: tracker.full_data.url,
-            tier: tracker.full_data.tier
+            tier: tracker.full_data.tier,
         }).toString();
 
         new MochaUI.Window({
@@ -278,7 +280,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             height: 200,
             onCloseComplete: () => {
                 updateData();
-            }
+            },
         });
     };
 
@@ -291,12 +293,12 @@ window.qBittorrent.PropTrackers ??= (() => {
             current_hash = selectedTorrents.map(encodeURIComponent).join("|");
 
         fetch("api/v2/torrents/removeTrackers", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hash: current_hash,
-                    urls: torrentTrackersTable.selectedRowsIds().map(encodeURIComponent).join("|")
-                })
-            })
+            method: "POST",
+            body: new URLSearchParams({
+                hash: current_hash,
+                urls: torrentTrackersTable.selectedRowsIds().map(encodeURIComponent).join("|"),
+            }),
+        })
             .then((response) => {
                 if (!response.ok)
                     return;
@@ -310,15 +312,15 @@ window.qBittorrent.PropTrackers ??= (() => {
             return;
 
         const body = new URLSearchParams({
-            hashes: current_hash
+            hashes: current_hash,
         });
         if (trackers.length > 0)
             body.set("urls", trackers.map(encodeURIComponent).join("|"));
 
         fetch("api/v2/torrents/reannounce", {
-                method: "POST",
-                body: body
-            })
+            method: "POST",
+            body: body,
+        })
             .then((response) => {
                 if (!response.ok)
                     return;

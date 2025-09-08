@@ -32,16 +32,14 @@ window.qBittorrent.LocalPreferences ??= (() => {
     const exports = () => {
         return {
             LocalPreferences: LocalPreferences,
-            upgrade: upgrade
+            upgrade: upgrade,
         };
     };
 
     class LocalPreferences {
         get(key, defaultValue = undefined) {
             const value = localStorage.getItem(key);
-            return ((value === null) && (defaultValue !== undefined))
-                ? defaultValue
-                : value;
+            return ((value === null) && (defaultValue !== undefined)) ? defaultValue : value;
         }
 
         set(key, value) {

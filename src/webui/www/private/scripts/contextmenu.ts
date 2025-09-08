@@ -39,14 +39,13 @@ const contextMenuModule = (() => {
             SearchPluginsTableContextMenu: SearchPluginsTableContextMenu,
             RssFeedContextMenu: RssFeedContextMenu,
             RssArticleContextMenu: RssArticleContextMenu,
-            RssDownloaderRuleContextMenu: RssDownloaderRuleContextMenu
+            RssDownloaderRuleContextMenu: RssDownloaderRuleContextMenu,
         };
     };
 
     let lastShownContextMenu = null;
     class ContextMenu {
-        options: Record < string,
-        any > ;
+        options: Record<string, any>;
         menu: HTMLUListElement;
         touchStartAt: number;
         touchStartEvent: any;
@@ -59,13 +58,13 @@ const contextMenuModule = (() => {
                 targets: "body",
                 offsets: {
                     x: 0,
-                    y: 0
+                    y: 0,
                 },
                 onShow: () => {},
                 onHide: () => {},
                 onClick: () => {},
                 touchTimer: 600,
-                ...options
+                ...options,
             };
 
             // option diffs menu
@@ -119,7 +118,7 @@ const contextMenuModule = (() => {
                 let xPos = xPosOrigin + rectParent.width - 1;
                 let yPos = yPosOrigin - rectParent.height - 1;
                 if ((xPos + ul.offsetWidth) > document.documentElement.clientWidth)
-                    xPos -= (ul.offsetWidth + rectParent.width - 2);
+                    xPos -= ul.offsetWidth + rectParent.width - 2;
                 if ((yPos + ul.offsetHeight) > document.documentElement.clientHeight)
                     yPos = document.documentElement.clientHeight - ul.offsetHeight;
                 if (xPos < 0)
@@ -242,8 +241,7 @@ const contextMenuModule = (() => {
         }
 
         setItemChecked(item, checked) {
-            (this.menu.querySelector(`a[href$="${item}"]`).firstElementChild as HTMLElement).style.opacity =
-                checked ? "1" : "0";
+            (this.menu.querySelector(`a[href$="${item}"]`).firstElementChild as HTMLElement).style.opacity = checked ? "1" : "0";
             return this;
         }
 
@@ -374,12 +372,12 @@ const contextMenuModule = (() => {
                 const torrentTags = data["tags"].split(", ");
                 for (const tag of torrentTags) {
                     const count = tagCount.get(tag);
-                    tagCount.set(tag, ((count !== undefined) ? (count + 1) : 1));
+                    tagCount.set(tag, (count !== undefined) ? (count + 1) : 1);
                 }
 
                 const torrentCategory = data["category"];
                 const count = categoryCount.get(torrentCategory);
-                categoryCount.set(torrentCategory, ((count !== undefined) ? (count + 1) : 1));
+                categoryCount.set(torrentCategory, (count !== undefined) ? (count + 1) : 1);
             }
 
             // hide renameFiles when more than 1 torrent is selected
@@ -389,9 +387,7 @@ const contextMenuModule = (() => {
 
                 this.showItem("rename");
                 // hide renameFiles when metadata hasn't been downloaded yet
-                metadata_downloaded
-                    ? this.showItem("renameFiles")
-                    : this.hideItem("renameFiles");
+                metadata_downloaded ? this.showItem("renameFiles") : this.hideItem("renameFiles");
             }
             else {
                 this.hideItem("renameFiles");
@@ -407,10 +403,10 @@ const contextMenuModule = (() => {
                 this.setItemChecked("superSeeding", all_are_super_seeding);
             }
             else {
-                const show_seq_dl = (all_are_seq_dl || !there_are_seq_dl);
-                const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
+                const show_seq_dl = all_are_seq_dl || !there_are_seq_dl;
+                const show_f_l_piece_prio = all_are_f_l_piece_prio || !there_are_f_l_piece_prio;
 
-                (this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode as HTMLElement).classList.toggle("separator", (!show_seq_dl && show_f_l_piece_prio));
+                (this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode as HTMLElement).classList.toggle("separator", !show_seq_dl && show_f_l_piece_prio);
 
                 if (show_seq_dl)
                     this.showItem("sequentialDownload");
@@ -449,17 +445,17 @@ const contextMenuModule = (() => {
             for (const tag of window.qBittorrent.Client.tagMap.keys()) {
                 const checkbox = contextTagList.querySelector(`a[href="#Tag/${tag}"] input[type="checkbox"]`) as HTMLInputElement;
                 const count = tagCount.get(tag);
-                const hasCount = (count !== undefined);
-                const isLesser = (count < selectedRows.length);
-                checkbox.indeterminate = (hasCount ? isLesser : false);
-                checkbox.checked = (hasCount ? !isLesser : false);
+                const hasCount = count !== undefined;
+                const isLesser = count < selectedRows.length;
+                checkbox.indeterminate = hasCount ? isLesser : false;
+                checkbox.checked = hasCount ? !isLesser : false;
             }
 
             const contextCategoryList = document.getElementById("contextCategoryList");
             for (const category of window.qBittorrent.Client.categoryMap.keys()) {
                 const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category}"] img`);
                 const count = categoryCount.get(category);
-                const isEqual = ((count !== undefined) && (count === selectedRows.length));
+                const isEqual = (count !== undefined) && (count === selectedRows.length);
                 categoryIcon.classList.toggle("highlightedCategoryIcon", isEqual);
             }
         }
@@ -485,8 +481,12 @@ const contextMenuModule = (() => {
 
                 return item;
             };
-            contextCategoryList.appendChild(createMenuItem("QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", (event) => { torrentNewCategoryFN(); }));
-            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => { torrentSetCategoryFN(""); }));
+            contextCategoryList.appendChild(createMenuItem("QBT_TR(New...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", (event) => {
+                torrentNewCategoryFN();
+            }));
+            contextCategoryList.appendChild(createMenuItem("QBT_TR(Reset)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => {
+                torrentSetCategoryFN("");
+            }));
 
             const sortedCategories = [...categories.keys()];
             sortedCategories.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
@@ -535,8 +535,12 @@ const contextMenuModule = (() => {
 
                 return item;
             };
-            contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", (event) => { torrentAddTagsFN(); }));
-            contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => { torrentRemoveAllTagsFN(); }));
+            contextTagList.appendChild(createMenuItem("QBT_TR(Add...)QBT_TR[CONTEXT=TransferListWidget]", "images/list-add.svg", (event) => {
+                torrentAddTagsFN();
+            }));
+            contextTagList.appendChild(createMenuItem("QBT_TR(Remove All)QBT_TR[CONTEXT=TransferListWidget]", "images/edit-clear.svg", (event) => {
+                torrentRemoveAllTagsFN();
+            }));
 
             const sortedTags = [...tags.keys()];
             sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
@@ -629,11 +633,11 @@ const contextMenuModule = (() => {
         updateMenuItems() {
             const enabledColumnIndex = () => {
                 const columns = document.querySelectorAll("#searchPluginsTableFixedHeaderRow th");
-                return Array.prototype.findIndex.call(columns, (column => column.textContent === "Enabled"));
+                return Array.prototype.findIndex.call(columns, column => column.textContent === "Enabled");
             };
 
             this.showItem("Enabled");
-            this.setItemChecked("Enabled", (this.options.element.children[enabledColumnIndex()].textContent === "Yes"));
+            this.setItemChecked("Enabled", this.options.element.children[enabledColumnIndex()].textContent === "Yes");
 
             this.showItem("Uninstall");
         }

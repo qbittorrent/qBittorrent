@@ -32,7 +32,7 @@ const cacheModule = (() => {
         return {
             buildInfo: new BuildInfoCache(),
             preferences: new PreferencesCache(),
-            qbtVersion: new QbtVersionCache()
+            qbtVersion: new QbtVersionCache(),
         };
     };
 
@@ -53,9 +53,9 @@ const cacheModule = (() => {
 
         init() {
             return fetch("api/v2/app/buildInfo", {
-                    method: "GET",
-                    cache: "no-store"
-                })
+                method: "GET",
+                cache: "no-store",
+            })
                 .then(async (response) => {
                     if (!response.ok)
                         return;
@@ -76,9 +76,9 @@ const cacheModule = (() => {
 
         async init() {
             return await fetch("api/v2/app/preferences", {
-                    method: "GET",
-                    cache: "no-store"
-                })
+                method: "GET",
+                cache: "no-store",
+            })
                 .then(async (response) => {
                     if (!response.ok)
                         return;
@@ -101,11 +101,11 @@ const cacheModule = (() => {
                 throw new Error("`data` is not an object.");
 
             return await fetch("api/v2/app/setPreferences", {
-                    method: "POST",
-                    body: new URLSearchParams({
-                        json: JSON.stringify(data)
-                    })
-                })
+                method: "POST",
+                body: new URLSearchParams({
+                    json: JSON.stringify(data),
+                }),
+            })
                 .then((response) => {
                     if (!response.ok)
                         return;
@@ -128,9 +128,9 @@ const cacheModule = (() => {
 
         init() {
             return fetch("api/v2/app/version", {
-                    method: "GET",
-                    cache: "no-store"
-                })
+                method: "GET",
+                cache: "no-store",
+            })
                 .then(async (response) => {
                     if (!response.ok)
                         return;

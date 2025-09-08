@@ -31,7 +31,7 @@ window.qBittorrent ??= {};
 window.qBittorrent.MonkeyPatch ??= (() => {
     const exports = () => {
         return {
-            patch: patch
+            patch: patch,
         };
     };
 
@@ -75,29 +75,27 @@ window.qBittorrent.MonkeyPatch ??= (() => {
                     onload();
                 return true;
             }
-
             // If the asset is loading, wait until it is loaded and then fire the onload function.
             // If asset doesn't load by a number of tries, fire onload anyway.
             else if (MUI.files[source] === "loading") {
                 let tries = 0;
                 let interval = -1;
-                const checker = (function() {
+                const checker = function() {
                     ++tries;
                     if ((MUI.files[source] === "loading") && (tries < 100))
                         return;
                     window.clearInterval(interval);
                     if (typeof onload === "function")
                         onload();
-                });
+                };
                 interval = window.setInterval(checker, 50);
             }
-
             // If the asset is not yet loaded or loading, start loading the asset.
             else {
                 MUI.files[source] = "loading";
 
                 const properties = {
-                    onload: (onload !== "undefined") ? onload : () => {}
+                    onload: (onload !== "undefined") ? onload : () => {},
                 };
 
                 // Add to the onload function

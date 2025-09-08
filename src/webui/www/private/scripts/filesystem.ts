@@ -35,7 +35,7 @@ window.qBittorrent.Filesystem ??= (() => {
             PathSeparator: PathSeparator,
             fileExtension: fileExtension,
             fileName: fileName,
-            folderName: folderName
+            folderName: folderName,
         };
     };
 

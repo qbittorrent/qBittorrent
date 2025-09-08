@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "format": "js-beautify -r *.mjs private/*.html private/scripts/*.ts private/views/*.html public/*.html public/scripts/*.js test/*/*.js && prettier --write **.css",
+    "format": "js-beautify -r *.mjs private/*.html private/views/*.html public/*.html public/scripts/*.js test/*/*.js && dprint fmt private/scripts/*.ts && prettier --write **.css",
     "lint": "eslint --cache *.mjs private/*.html private/scripts/*.ts private/views/*.html public/*.html public/scripts/*.js test/*/*.js && stylelint --cache **/*.css && html-validate private public",
     "test": "vitest run --dom"
   },
@@ -16,6 +16,7 @@
     "@stylistic/eslint-plugin": "*",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
+    "dprint": "^0.50.1",
     "eslint": "*",
     "eslint-plugin-html": "*",
     "eslint-plugin-prefer-arrow-functions": "*",

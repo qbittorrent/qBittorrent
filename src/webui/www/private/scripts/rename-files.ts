@@ -3,14 +3,14 @@ window.qBittorrent.MultiRename ??= (() => {
     const exports = () => {
         return {
             AppliesTo: AppliesTo,
-            RenameFiles: RenameFiles
+            RenameFiles: RenameFiles,
         };
     };
 
     const AppliesTo = {
         FilenameExtension: "FilenameExtension",
         Filename: "Filename",
-        Extension: "Extension"
+        Extension: "Extension",
     };
 
     class RenameFiles {
@@ -149,7 +149,6 @@ window.qBittorrent.MultiRename ??= (() => {
                 // Ignore files
                 if (!row.isFolder && !this.includeFiles)
                     continue;
-
                 // Ignore folders
                 else if (row.isFolder && !this.includeFolders)
                     continue;
@@ -231,20 +230,16 @@ window.qBittorrent.MultiRename ??= (() => {
 
                 const isFolder = match.isFolder;
                 const parentPath = window.qBittorrent.Filesystem.folderName(match.path);
-                const oldPath = parentPath
-                    ? parentPath + window.qBittorrent.Filesystem.PathSeparator + match.original
-                    : match.original;
-                const newPath = parentPath
-                    ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName
-                    : newName;
+                const oldPath = parentPath ? parentPath + window.qBittorrent.Filesystem.PathSeparator + match.original : match.original;
+                const newPath = parentPath ? parentPath + window.qBittorrent.Filesystem.PathSeparator + newName : newName;
                 try {
-                    await fetch((isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile"), {
+                    await fetch(isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile", {
                         method: "POST",
                         body: new URLSearchParams({
                             hash: this.hash,
                             oldPath: oldPath,
-                            newPath: newPath
-                        })
+                            newPath: newPath,
+                        }),
                     });
                     replaced.push(match);
                 }

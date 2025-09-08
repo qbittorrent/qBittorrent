@@ -30,7 +30,7 @@ window.qBittorrent ??= {};
 window.qBittorrent.PiecesBar ??= (() => {
     const exports = () => {
         return {
-            PiecesBar: PiecesBar
+            PiecesBar: PiecesBar,
         };
     };
 
@@ -59,7 +59,7 @@ window.qBittorrent.PiecesBar ??= (() => {
                 haveColor: "hsl(210deg 55% 55%)", // @TODO palette vars not supported for this value, apply average
                 borderSize: 1,
                 borderColor: "var(--color-border-default)",
-                ...styles
+                ...styles,
             };
 
             this.#canvasEl = document.createElement("canvas");
@@ -170,7 +170,7 @@ window.qBittorrent.PiecesBar ??= (() => {
 
                 const statusValues = {
                     [PiecesBar.#STATUS_DOWNLOADING]: 0,
-                    [PiecesBar.#STATUS_DOWNLOADED]: 0
+                    [PiecesBar.#STATUS_DOWNLOADED]: 0,
                 };
 
                 // aggregate the status of each piece that contributes to this pixel
@@ -203,8 +203,10 @@ window.qBittorrent.PiecesBar ??= (() => {
                     lastValue = statusValues;
 
                 // group contiguous colors together and draw as a single rectangle
-                if ((lastValue[PiecesBar.#STATUS_DOWNLOADING] === statusValues[PiecesBar.#STATUS_DOWNLOADING])
-                    && (lastValue[PiecesBar.#STATUS_DOWNLOADED] === statusValues[PiecesBar.#STATUS_DOWNLOADED]))
+                if (
+                    (lastValue[PiecesBar.#STATUS_DOWNLOADING] === statusValues[PiecesBar.#STATUS_DOWNLOADING])
+                    && (lastValue[PiecesBar.#STATUS_DOWNLOADED] === statusValues[PiecesBar.#STATUS_DOWNLOADED])
+                )
                     continue;
 
                 const rectangleWidth = x - rectangleStart;

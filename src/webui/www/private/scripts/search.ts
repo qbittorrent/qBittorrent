@@ -73,37 +73,41 @@ window.qBittorrent.Search ??= (() => {
     const searchState = new Map();
     const searchText = {
         pattern: "",
-        filterPattern: ""
+        filterPattern: "",
     };
     const searchSeedsFilter = {
         min: 0,
-        max: 0
+        max: 0,
     };
     const searchSizeFilter = {
         min: 0,
         minUnit: 2, // B = 0, KiB = 1, MiB = 2, GiB = 3, TiB = 4, PiB = 5, EiB = 6
         max: 0,
-        maxUnit: 3
+        maxUnit: 3,
     };
 
     const searchResultsTabsContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
         targets: ".searchTab",
         menu: "searchResultsTabsMenu",
         actions: {
-            refreshTab: (tab) => { refreshSearch(tab); },
-            closeTab: (tab) => { closeSearchTab(tab); },
+            refreshTab: (tab) => {
+                refreshSearch(tab);
+            },
+            closeTab: (tab) => {
+                closeSearchTab(tab);
+            },
             closeAllTabs: () => {
                 for (const tab of document.querySelectorAll("#searchTabs .searchTab"))
                     closeSearchTab(tab);
-            }
+            },
         },
         offsets: {
             x: 2,
-            y: -60
+            y: -60,
         },
         onShow: function() {
             setActiveTab(this.options.element);
-        }
+        },
     });
 
     const init = () => {
@@ -114,18 +118,20 @@ window.qBittorrent.Search ??= (() => {
             menu: "searchResultsTableMenu",
             actions: {
                 Download: downloadSearchTorrent,
-                OpenDescriptionUrl: openSearchTorrentDescriptionUrl
+                OpenDescriptionUrl: openSearchTorrentDescriptionUrl,
             },
             offsets: {
                 x: 0,
-                y: -60
-            }
+                y: -60,
+            },
         });
         searchResultsTable = new window.qBittorrent.DynamicTable.SearchResultsTable();
         searchResultsTable.setup("searchResultsTableDiv", "searchResultsTableFixedHeaderDiv", searchResultsTableContextMenu);
         getPlugins();
 
-        searchResultsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { downloadSearchTorrent(); });
+        searchResultsTable.dynamicTableDiv.addEventListener("dblclick", (e) => {
+            downloadSearchTorrent();
+        });
 
         // listen for changes to searchInNameFilter
         let searchInNameFilterTimer = -1;
@@ -237,8 +243,8 @@ window.qBittorrent.Search ??= (() => {
         fetch("api/v2/search/delete", {
             method: "POST",
             body: new URLSearchParams({
-                id: oldSearchId
-            })
+                id: oldSearchId,
+            }),
         });
 
         const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
@@ -288,8 +294,8 @@ window.qBittorrent.Search ??= (() => {
         fetch("api/v2/search/delete", {
             method: "POST",
             body: new URLSearchParams({
-                id: String(searchId)
-            })
+                id: String(searchId),
+            }),
         });
 
         const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
@@ -433,13 +439,13 @@ window.qBittorrent.Search ??= (() => {
     const startSearch = (pattern, category, plugins) => {
         searchPatternChanged = false;
         fetch("api/v2/search/start", {
-                method: "POST",
-                body: new URLSearchParams({
-                    pattern: pattern,
-                    category: category,
-                    plugins: plugins
-                })
-            })
+            method: "POST",
+            body: new URLSearchParams({
+                pattern: pattern,
+                category: category,
+                plugins: plugins,
+            }),
+        })
             .then(async (response) => {
                 if (!response.ok)
                     return;
@@ -467,13 +473,13 @@ window.qBittorrent.Search ??= (() => {
 
         searchPatternChanged = false;
         fetch("api/v2/search/start", {
-                method: "POST",
-                body: new URLSearchParams({
-                    pattern: state.searchPattern,
-                    category: window.qBittorrent.Misc.getElementById("categorySelect", "select").value,
-                    plugins: window.qBittorrent.Misc.getElementById("pluginsSelect", "select").value
-                })
-            })
+            method: "POST",
+            body: new URLSearchParams({
+                pattern: state.searchPattern,
+                category: window.qBittorrent.Misc.getElementById("categorySelect", "select").value,
+                plugins: window.qBittorrent.Misc.getElementById("pluginsSelect", "select").value,
+            }),
+        })
             .then(async (response) => {
                 if (!response.ok)
                     return;
@@ -488,11 +494,11 @@ window.qBittorrent.Search ??= (() => {
 
     const stopSearch = (searchId) => {
         fetch("api/v2/search/stop", {
-                method: "POST",
-                body: new URLSearchParams({
-                    id: searchId
-                })
-            })
+            method: "POST",
+            body: new URLSearchParams({
+                id: searchId,
+            }),
+        })
             .then((response) => {
                 if (!response.ok)
                     return;
@@ -588,7 +594,7 @@ window.qBittorrent.Search ??= (() => {
                 onClose: () => {
                     clearTimeout(loadSearchPluginsTimer);
                     loadSearchPluginsTimer = -1;
-                }
+                },
             });
         }
     };
@@ -704,9 +710,9 @@ window.qBittorrent.Search ??= (() => {
 
     const getPlugins = () => {
         fetch("api/v2/search/plugins", {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(async (response) => {
                 if (!response.ok)
                     return;
@@ -732,7 +738,7 @@ window.qBittorrent.Search ??= (() => {
                     pluginOptions.push(createOption("QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]", "enabled"));
                     pluginOptions.push(createOption("QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]", "all"));
 
-                    const searchPluginsEmpty = (searchPlugins.length === 0);
+                    const searchPluginsEmpty = searchPlugins.length === 0;
                     if (!searchPluginsEmpty) {
                         document.getElementById("searchResultsNoPlugins").classList.add("invisible");
                         if (numSearchTabs() === 0)
@@ -838,12 +844,12 @@ window.qBittorrent.Search ??= (() => {
         url.search = new URLSearchParams({
             id: searchId,
             limit: "500",
-            offset: state.rowId
+            offset: state.rowId,
         }).toString();
         fetch(url, {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(async (response) => {
                 if (!response.ok) {
                     if ((response.status === 400) || (response.status === 404)) {
@@ -853,7 +859,9 @@ window.qBittorrent.Search ??= (() => {
                     }
                     else {
                         clearTimeout(state.loadResultsTimer);
-                        state.loadResultsTimer = window.setTimeout(() => { loadSearchResultsData(searchId); }, 3000);
+                        state.loadResultsTimer = window.setTimeout(() => {
+                            loadSearchResultsData(searchId);
+                        }, 3000);
                     }
                     return;
                 }
@@ -914,19 +922,25 @@ window.qBittorrent.Search ??= (() => {
                 }
 
                 clearTimeout(state.loadResultsTimer);
-                state.loadResultsTimer = window.setTimeout(() => { loadSearchResultsData(searchId); }, 2000);
+                state.loadResultsTimer = window.setTimeout(() => {
+                    loadSearchResultsData(searchId);
+                }, 2000);
             }, (error) => {
                 console.error(error);
 
                 clearTimeout(state.loadResultsTimer);
-                state.loadResultsTimer = window.setTimeout(() => { loadSearchResultsData(searchId); }, 3000);
+                state.loadResultsTimer = window.setTimeout(() => {
+                    loadSearchResultsData(searchId);
+                }, 3000);
             });
     };
 
     const updateSearchResultsData = (searchId) => {
         const state = searchState.get(searchId);
         clearTimeout(state.loadResultsTimer);
-        state.loadResultsTimer = window.setTimeout(() => { loadSearchResultsData(searchId); }, 500);
+        state.loadResultsTimer = window.setTimeout(() => {
+            loadSearchResultsData(searchId);
+        }, 500);
     };
 
     for (const element of document.getElementsByClassName("copySearchDataToClipboard")) {

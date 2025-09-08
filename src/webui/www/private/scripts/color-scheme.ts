@@ -42,7 +42,7 @@ const colorSchemeModule = (() => {
         const colorScheme = localPreferences.get("color_scheme");
         const validScheme = (colorScheme === "light") || (colorScheme === "dark");
         const isDark = colorSchemeQuery.matches;
-        root.classList.toggle("dark", ((!validScheme && isDark) || (colorScheme === "dark")));
+        root.classList.toggle("dark", (!validScheme && isDark) || (colorScheme === "dark"));
     };
 
     colorSchemeQuery.addEventListener("change", update);

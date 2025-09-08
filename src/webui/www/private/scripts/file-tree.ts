@@ -43,14 +43,14 @@ const fileTreeModule = (() => {
         Normal: 1,
         High: 6,
         Maximum: 7,
-        Mixed: -1
+        Mixed: -1,
     };
     Object.freeze(FilePriority);
 
     const TriState = {
         Unchecked: 0,
         Checked: 1,
-        Partial: 2
+        Partial: 2,
     };
     Object.freeze(TriState);
 
@@ -142,7 +142,7 @@ const fileTreeModule = (() => {
                 remaining: this.remaining,
                 progress: this.progress,
                 priority: this.priority,
-                availability: this.availability
+                availability: this.availability,
             };
         }
     }
@@ -205,8 +205,8 @@ const fileTreeModule = (() => {
 
                         if (!child.isIgnored()) {
                             root.remaining += child.remaining;
-                            root.progress += (child.progress * child.size);
-                            root.availability += (child.availability * child.size);
+                            root.progress += child.progress * child.size;
+                            root.availability += child.availability * child.size;
                         }
                     }
 

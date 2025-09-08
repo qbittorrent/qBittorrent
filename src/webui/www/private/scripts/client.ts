@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-type Category = { categoryName: string, categoryCount: number, nameSegments: string[] } & { children ? : any[], isRoot ? : boolean, forceExpand ? : boolean };
+type Category = { categoryName: string; categoryCount: number; nameSegments: string[]; } & { children?: any[]; isRoot?: boolean; forceExpand?: boolean; };
 
 window.qBittorrent ??= {};
 window.qBittorrent.Client ??= (() => {
@@ -46,14 +46,14 @@ window.qBittorrent.Client ??= (() => {
             createAddTorrentWindow: createAddTorrentWindow,
             uploadTorrentFiles: uploadTorrentFiles,
             categoryMap: categoryMap,
-            tagMap: tagMap
+            tagMap: tagMap,
         };
     };
 
     // Map<category: String, {savePath: String, torrents: Set}>
-    const categoryMap: Map < string, { savePath: string, torrents: Set < any > } > = new Map();
+    const categoryMap: Map<string, { savePath: string; torrents: Set<any>; }> = new Map();
     // Map<tag: String, torrents: Set>
-    const tagMap: Map < string, Set < any >> = new Map();
+    const tagMap: Map<string, Set<any>> = new Map();
 
     let cacheAllSettled;
     const setup = () => {
@@ -61,7 +61,7 @@ window.qBittorrent.Client ??= (() => {
         cacheAllSettled = Promise.allSettled([
             window.qBittorrent.Cache.buildInfo.init(),
             window.qBittorrent.Cache.preferences.init(),
-            window.qBittorrent.Cache.qbtVersion.init()
+            window.qBittorrent.Cache.qbtVersion.init(),
         ]);
     };
 
@@ -148,7 +148,7 @@ window.qBittorrent.Client ??= (() => {
             source: source,
             fetch: String(metadata === undefined),
             windowId: id,
-            downloader: downloader ?? ""
+            downloader: downloader ?? "",
         }).toString();
 
         new MochaUI.Window({
@@ -169,7 +169,7 @@ window.qBittorrent.Client ??= (() => {
             onContentLoaded: () => {
                 if (metadata !== undefined)
                     window.qBittorrent.Misc.getElementById(`${id}_iframe`, "frame").contentWindow.postMessage(metadata, window.origin);
-            }
+            },
         });
     };
 
@@ -183,9 +183,9 @@ window.qBittorrent.Client ??= (() => {
         }
 
         fetch("api/v2/torrents/parseMetadata", {
-                method: "POST",
-                body: formData
-            })
+            method: "POST",
+            body: formData,
+        })
             .then(async (response) => {
                 if (!response.ok) {
                     alert(await response.text());
@@ -247,7 +247,7 @@ const TRACKERS_ERROR = "b551cfc3-64e9-4393-bc88-5d6ea2fab5cc";
 const TRACKERS_TRACKERLESS = "e24bd469-ea22-404c-8e2e-a17c82f37ea0";
 const TRACKERS_WARNING = "82a702c5-210c-412b-829f-97632d7557e9";
 
-const trackerMap: Map < string, Map < string, Set < string >>> = new Map();
+const trackerMap: Map<string, Map<string, Set<string>>> = new Map();
 
 let selectedTracker = localPreferences.get("selected_tracker", TRACKERS_ALL);
 let setTrackerFilter = (tracker) => {};
@@ -271,11 +271,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
         localPreferences.set("properties_height_rel", properties_height_rel);
     };
 
-    window.addEventListener("resize", window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-        // only save sizes if the columns are visible
-        if (!document.getElementById("mainColumn").classList.contains("invisible"))
-            saveColumnSizes();
-    }));
+    window.addEventListener(
+        "resize",
+        window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
+            // only save sizes if the columns are visible
+            if (!document.getElementById("mainColumn").classList.contains("invisible"))
+                saveColumnSizes();
+        })
+    );
 
     /* MochaUI.Desktop = new MochaUI.Desktop();
     MochaUI.Desktop.desktop.style.background = "#fff";
@@ -290,11 +293,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 saveColumnSizes();
             }),
             width: Number(localPreferences.get("filters_width", 210)),
-            resizeLimit: [1, 1000]
+            resizeLimit: [1, 1000],
         });
         new MochaUI.Column({
             id: "mainColumn",
-            placement: "main"
+            placement: "main",
         });
     };
 
@@ -302,7 +305,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         new MochaUI.Column({
             id: "searchTabColumn",
             placement: "main",
-            width: null
+            width: null,
         });
 
         // start off hidden
@@ -313,7 +316,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         new MochaUI.Column({
             id: "rssTabColumn",
             placement: "main",
-            width: null
+            width: null,
         });
 
         // start off hidden
@@ -324,7 +327,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         new MochaUI.Column({
             id: "logTabColumn",
             placement: "main",
-            width: null
+            width: null,
         });
 
         // start off hidden
@@ -412,7 +415,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             top: 0,
             right: 0,
             bottom: 0,
-            left: 0
+            left: 0,
         },
         loadMethod: "xhr",
         contentURL: "views/filters.html?v=${CACHEID}",
@@ -420,7 +423,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             highlightSelectedStatus();
         },
         column: "filtersColumn",
-        height: 300
+        height: 300,
     });
     initializeWindows();
 
@@ -459,7 +462,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     MochaUI.Desktop.setDesktopSize();
 
     let syncMainDataLastResponseId = 0;
-    const serverState: Record < string, any > = {};
+    const serverState: Record<string, any> = {};
 
     const removeTorrentFromCategoryList = (hash) => {
         if (hash === undefined)
@@ -487,7 +490,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         let categoryData = window.qBittorrent.Client.categoryMap.get(category);
         if (categoryData === undefined) { // This should not happen
             categoryData = {
-                torrents: new Set()
+                torrents: new Set(),
             };
             window.qBittorrent.Client.categoryMap.set(category, categoryData);
         }
@@ -574,7 +577,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const statusFilter = document.getElementById("statusFilterList");
         const filterID = `${selectedStatus}_filter`;
         for (const status of statusFilter.children)
-            status.classList.toggle("selectedFilter", (status.id === filterID));
+            status.classList.toggle("selectedFilter", status.id === filterID);
     };
 
     const updateCategoryList = () => {
@@ -590,7 +593,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const createLink = (category, text, count) => {
             const categoryFilterItem = (categoryItemTemplate.content.cloneNode(true) as DocumentFragment).firstElementChild as HTMLLIElement;
             categoryFilterItem.id = category;
-            categoryFilterItem.classList.toggle("selectedFilter", (category === selectedCategory));
+            categoryFilterItem.classList.toggle("selectedFilter", category === selectedCategory);
 
             const span = categoryFilterItem.firstElementChild;
             span.lastElementChild.textContent = `${text} (${count})`;
@@ -599,7 +602,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         };
 
         const createCategoryTree = (category: Category) => {
-            const stack: { parent: HTMLElement | DocumentFragment, category: Category } [] = [{ parent: categoriesFragment, category: category }];
+            const stack: { parent: HTMLElement | DocumentFragment; category: Category; }[] = [{ parent: categoriesFragment, category: category }];
             while (stack.length > 0) {
                 const { parent, category } = stack.pop();
                 const displayName = category.nameSegments.at(-1);
@@ -636,8 +639,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 ...(useSubcategories && {
                     children: [],
                     isRoot: true,
-                    forceExpand: localPreferences.get(`category_${category}_collapsed`) === null
-                })
+                    forceExpand: localPreferences.get(`category_${category}_collapsed`) === null,
+                }),
             });
         }
         sortedCategories.sort((left, right) => {
@@ -645,8 +648,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             const rightSegments = right.nameSegments;
 
             for (let i = 0, iMax = Math.min(leftSegments.length, rightSegments.length); i < iMax; ++i) {
-                const compareResult = window.qBittorrent.Misc.naturalSortCollator.compare(
-                    leftSegments[i], rightSegments[i]);
+                const compareResult = window.qBittorrent.Misc.naturalSortCollator.compare(leftSegments[i], rightSegments[i]);
                 if (compareResult !== 0)
                     return compareResult;
             }
@@ -662,8 +664,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             categoryList.classList.add("subcategories");
             for (let i = 0; i < sortedCategories.length; ++i) {
                 const category = sortedCategories[i];
-                for (let j = (i + 1);
-                    ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(`${category.categoryName}/`)); ++j) {
+                for (let j = i + 1; ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(`${category.categoryName}/`)); ++j) {
                     const subcategory = sortedCategories[j];
                     category.categoryCount += subcategory.categoryCount;
                     category.forceExpand ||= subcategory.forceExpand;
@@ -696,7 +697,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             return;
 
         for (const category of categoryList.getElementsByTagName("li"))
-            category.classList.toggle("selectedFilter", (category.id === selectedCategory));
+            category.classList.toggle("selectedFilter", category.id === selectedCategory);
     };
 
     const updateTagList = () => {
@@ -712,7 +713,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const createLink = (tag, text, count) => {
             const tagFilterItem = (tagItemTemplate.content.cloneNode(true) as DocumentFragment).firstElementChild;
             tagFilterItem.id = tag;
-            tagFilterItem.classList.toggle("selectedFilter", (tag === selectedTag));
+            tagFilterItem.classList.toggle("selectedFilter", tag === selectedTag);
 
             const span = tagFilterItem.firstElementChild;
             span.lastChild.textContent = `${text} (${count})`;
@@ -733,7 +734,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         for (const [tag, torrents] of window.qBittorrent.Client.tagMap) {
             sortedTags.push({
                 tagName: tag,
-                tagSize: torrents.size
+                tagSize: torrents.size,
             });
         }
         sortedTags.sort((left, right) => window.qBittorrent.Misc.naturalSortCollator.compare(left.tagName, right.tagName));
@@ -750,7 +751,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             return;
 
         for (const tag of tagFilterList.children)
-            tag.classList.toggle("selectedFilter", (tag.id === selectedTag));
+            tag.classList.toggle("selectedFilter", tag.id === selectedTag);
     };
 
     const updateTrackerList = () => {
@@ -766,7 +767,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         const createLink = (host, text, count) => {
             const trackerFilterItem = (trackerItemTemplate.content.cloneNode(true) as DocumentFragment).firstElementChild;
             trackerFilterItem.id = host;
-            trackerFilterItem.classList.toggle("selectedFilter", (host === selectedTracker));
+            trackerFilterItem.classList.toggle("selectedFilter", host === selectedTracker);
 
             const span = trackerFilterItem.firstElementChild;
             span.lastChild.textContent = `${text} (${count})`;
@@ -835,7 +836,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             return;
 
         for (const tracker of trackerFilterList.children)
-            tracker.classList.toggle("selectedFilter", (tracker.id === selectedTracker));
+            tracker.classList.toggle("selectedFilter", tracker.id === selectedTracker);
     };
 
     const statusSortOrder = Object.freeze({
@@ -857,7 +858,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         stoppedUP: 14,
         moving: 15,
         missingFiles: 16,
-        error: 17
+        error: 17,
     });
 
     let syncMainDataTimeoutID = -1;
@@ -866,195 +867,192 @@ window.addEventListener("DOMContentLoaded", (event) => {
         syncRequestInProgress = true;
         const url = new URL("api/v2/sync/maindata", window.location.href);
         url.search = new URLSearchParams({
-            rid: String(syncMainDataLastResponseId)
+            rid: String(syncMainDataLastResponseId),
         }).toString();
         fetch(url, {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(async (response) => {
-                    if (response.ok) {
-                        document.getElementById("error_div").textContent = "";
+                if (response.ok) {
+                    document.getElementById("error_div").textContent = "";
 
-                        const responseJSON = await response.json();
+                    const responseJSON = await response.json();
 
-                        clearTimeout(torrentsFilterInputTimer);
-                        torrentsFilterInputTimer = -1;
+                    clearTimeout(torrentsFilterInputTimer);
+                    torrentsFilterInputTimer = -1;
 
-                        let torrentsTableSelectedRows;
-                        let updateStatuses = false;
-                        let updateCategories = false;
-                        let updateTags = false;
-                        let updateTrackers = false;
-                        let updateTorrents = false;
-                        const fullUpdate = (responseJSON["fullUpdate"] === true);
-                        if (fullUpdate) {
-                            torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
-                            updateStatuses = true;
-                            updateCategories = true;
-                            updateTags = true;
-                            updateTrackers = true;
-                            updateTorrents = true;
-                            torrentsTable.clear();
-                            window.qBittorrent.Client.categoryMap.clear();
-                            window.qBittorrent.Client.tagMap.clear();
-                            trackerMap.clear();
-                        }
-                        if (responseJSON["rid"])
-                            syncMainDataLastResponseId = responseJSON["rid"];
-                        if (responseJSON["categories"]) {
-                            for (const responseName in responseJSON["categories"]) {
-                                if (!Object.hasOwn(responseJSON["categories"], responseName))
-                                    continue;
+                    let torrentsTableSelectedRows;
+                    let updateStatuses = false;
+                    let updateCategories = false;
+                    let updateTags = false;
+                    let updateTrackers = false;
+                    let updateTorrents = false;
+                    const fullUpdate = responseJSON["fullUpdate"] === true;
+                    if (fullUpdate) {
+                        torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
+                        updateStatuses = true;
+                        updateCategories = true;
+                        updateTags = true;
+                        updateTrackers = true;
+                        updateTorrents = true;
+                        torrentsTable.clear();
+                        window.qBittorrent.Client.categoryMap.clear();
+                        window.qBittorrent.Client.tagMap.clear();
+                        trackerMap.clear();
+                    }
+                    if (responseJSON["rid"])
+                        syncMainDataLastResponseId = responseJSON["rid"];
+                    if (responseJSON["categories"]) {
+                        for (const responseName in responseJSON["categories"]) {
+                            if (!Object.hasOwn(responseJSON["categories"], responseName))
+                                continue;
 
-                                const responseData = responseJSON["categories"][responseName];
-                                const categoryData = window.qBittorrent.Client.categoryMap.get(responseName);
-                                if (categoryData === undefined) {
-                                    window.qBittorrent.Client.categoryMap.set(responseName, {
-                                        savePath: responseData.savePath,
-                                        downloadPath: responseData.download_path ?? null,
-                                        torrents: new Set()
-                                    });
-                                }
-                                else {
-                                    if (responseData.savePath !== undefined)
-                                        categoryData.savePath = responseData.savePath;
-                                    if (responseData.download_path !== undefined)
-                                        categoryData.downloadPath = responseData.download_path;
-                                }
+                            const responseData = responseJSON["categories"][responseName];
+                            const categoryData = window.qBittorrent.Client.categoryMap.get(responseName);
+                            if (categoryData === undefined) {
+                                window.qBittorrent.Client.categoryMap.set(responseName, {
+                                    savePath: responseData.savePath,
+                                    downloadPath: responseData.download_path ?? null,
+                                    torrents: new Set(),
+                                });
                             }
-                            updateCategories = true;
-                        }
-                        if (responseJSON["categories_removed"]) {
-                            for (const category of responseJSON["categories_removed"])
-                                window.qBittorrent.Client.categoryMap.delete(category);
-                            updateCategories = true;
-                        }
-                        if (responseJSON["tags"]) {
-                            for (const tag of responseJSON["tags"]) {
-                                if (!window.qBittorrent.Client.tagMap.has(tag))
-                                    window.qBittorrent.Client.tagMap.set(tag, new Set());
+                            else {
+                                if (responseData.savePath !== undefined)
+                                    categoryData.savePath = responseData.savePath;
+                                if (responseData.download_path !== undefined)
+                                    categoryData.downloadPath = responseData.download_path;
                             }
-                            updateTags = true;
                         }
-                        if (responseJSON["tags_removed"]) {
-                            for (const tag of responseJSON["tags_removed"])
-                                window.qBittorrent.Client.tagMap.delete(tag);
-                            updateTags = true;
+                        updateCategories = true;
+                    }
+                    if (responseJSON["categories_removed"]) {
+                        for (const category of responseJSON["categories_removed"])
+                            window.qBittorrent.Client.categoryMap.delete(category);
+                        updateCategories = true;
+                    }
+                    if (responseJSON["tags"]) {
+                        for (const tag of responseJSON["tags"]) {
+                            if (!window.qBittorrent.Client.tagMap.has(tag))
+                                window.qBittorrent.Client.tagMap.set(tag, new Set());
                         }
-                        if (responseJSON["trackers"]) {
-                            for (const [tracker, torrents] of Object.entries(responseJSON["trackers"])) {
-                                const host = window.qBittorrent.Misc.getHost(tracker);
+                        updateTags = true;
+                    }
+                    if (responseJSON["tags_removed"]) {
+                        for (const tag of responseJSON["tags_removed"])
+                            window.qBittorrent.Client.tagMap.delete(tag);
+                        updateTags = true;
+                    }
+                    if (responseJSON["trackers"]) {
+                        for (const [tracker, torrents] of Object.entries(responseJSON["trackers"])) {
+                            const host = window.qBittorrent.Misc.getHost(tracker);
 
-                                let trackerListItem = trackerMap.get(host);
-                                if (trackerListItem === undefined) {
-                                    trackerListItem = new Map();
-                                    trackerMap.set(host, trackerListItem);
-                                }
-                                trackerListItem.set(tracker, new Set(torrents as string[]));
+                            let trackerListItem = trackerMap.get(host);
+                            if (trackerListItem === undefined) {
+                                trackerListItem = new Map();
+                                trackerMap.set(host, trackerListItem);
                             }
-                            updateTrackers = true;
+                            trackerListItem.set(tracker, new Set(torrents as string[]));
                         }
-                        if (responseJSON["trackers_removed"]) {
-                            for (let i = 0; i < responseJSON["trackers_removed"].length; ++i) {
-                                const tracker = responseJSON["trackers_removed"][i];
-                                const host = window.qBittorrent.Misc.getHost(tracker);
+                        updateTrackers = true;
+                    }
+                    if (responseJSON["trackers_removed"]) {
+                        for (let i = 0; i < responseJSON["trackers_removed"].length; ++i) {
+                            const tracker = responseJSON["trackers_removed"][i];
+                            const host = window.qBittorrent.Misc.getHost(tracker);
 
-                                const trackerTorrentMap = trackerMap.get(host);
-                                if (trackerTorrentMap !== undefined) {
-                                    trackerTorrentMap.delete(tracker);
-                                    // Remove unused trackers
-                                    if (trackerTorrentMap.size === 0) {
-                                        trackerMap.delete(host);
-                                        if (selectedTracker === host) {
-                                            selectedTracker = TRACKERS_ALL;
-                                            localPreferences.set("selected_tracker", selectedTracker);
-                                        }
+                            const trackerTorrentMap = trackerMap.get(host);
+                            if (trackerTorrentMap !== undefined) {
+                                trackerTorrentMap.delete(tracker);
+                                // Remove unused trackers
+                                if (trackerTorrentMap.size === 0) {
+                                    trackerMap.delete(host);
+                                    if (selectedTracker === host) {
+                                        selectedTracker = TRACKERS_ALL;
+                                        localPreferences.set("selected_tracker", selectedTracker);
                                     }
                                 }
                             }
+                        }
+                        updateTrackers = true;
+                    }
+                    if (responseJSON["torrents"]) {
+                        for (const key in responseJSON["torrents"]) {
+                            if (!Object.hasOwn(responseJSON["torrents"], key))
+                                continue;
+
+                            responseJSON["torrents"][key]["hash"] = key;
+                            responseJSON["torrents"][key]["rowId"] = key;
+                            if (responseJSON["torrents"][key]["state"]) {
+                                const state = responseJSON["torrents"][key]["state"];
+                                responseJSON["torrents"][key]["status"] = state;
+                                responseJSON["torrents"][key]["_statusOrder"] = statusSortOrder[state];
+                                updateStatuses = true;
+                            }
+                            torrentsTable.updateRowData(responseJSON["torrents"][key]);
+                            if (addTorrentToCategoryList(responseJSON["torrents"][key]))
+                                updateCategories = true;
+                            if (addTorrentToTagList(responseJSON["torrents"][key]))
+                                updateTags = true;
                             updateTrackers = true;
-                        }
-                        if (responseJSON["torrents"]) {
-                            for (const key in responseJSON["torrents"]) {
-                                if (!Object.hasOwn(responseJSON["torrents"], key))
-                                    continue;
-
-                                responseJSON["torrents"][key]["hash"] = key;
-                                responseJSON["torrents"][key]["rowId"] = key;
-                                if (responseJSON["torrents"][key]["state"]) {
-                                    const state = responseJSON["torrents"][key]["state"];
-                                    responseJSON["torrents"][key]["status"] = state;
-                                    responseJSON["torrents"][key]["_statusOrder"] = statusSortOrder[state];
-                                    updateStatuses = true;
-                                }
-                                torrentsTable.updateRowData(responseJSON["torrents"][key]);
-                                if (addTorrentToCategoryList(responseJSON["torrents"][key]))
-                                    updateCategories = true;
-                                if (addTorrentToTagList(responseJSON["torrents"][key]))
-                                    updateTags = true;
-                                updateTrackers = true;
-                                updateTorrents = true;
-                            }
-                        }
-                        if (responseJSON["torrents_removed"]) {
-                            responseJSON["torrents_removed"].each((hash) => {
-                                torrentsTable.removeRow(hash);
-                                removeTorrentFromCategoryList(hash);
-                                updateCategories = true; // Always to update All category
-                                removeTorrentFromTagList(hash);
-                                updateTags = true; // Always to update All tag
-                                updateTrackers = true;
-                            });
                             updateTorrents = true;
-                            updateStatuses = true;
                         }
-
-                        // don't update the table unnecessarily
-                        if (updateTorrents)
-                            torrentsTable.updateTable(fullUpdate);
-
-                        if (responseJSON["server_state"]) {
-                            const tmp = responseJSON["server_state"];
-                            for (const k in tmp) {
-                                if (!Object.hasOwn(tmp, k))
-                                    continue;
-                                serverState[k] = tmp[k];
-                            }
-                            processServerState();
-                        }
-
-                        if (updateStatuses)
-                            updateFiltersList();
-
-                        if (updateCategories) {
-                            updateCategoryList();
-                            window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(window.qBittorrent.Client.categoryMap);
-                        }
-                        if (updateTags) {
-                            updateTagList();
-                            window.qBittorrent.TransferList.contextMenu.updateTagsSubMenu(window.qBittorrent.Client.tagMap);
-                        }
-                        if (updateTrackers)
-                            updateTrackerList();
-
-                        if (fullUpdate)
-                            // re-select previously selected rows
-                            torrentsTable.reselectRows(torrentsTableSelectedRows);
+                    }
+                    if (responseJSON["torrents_removed"]) {
+                        responseJSON["torrents_removed"].each((hash) => {
+                            torrentsTable.removeRow(hash);
+                            removeTorrentFromCategoryList(hash);
+                            updateCategories = true; // Always to update All category
+                            removeTorrentFromTagList(hash);
+                            updateTags = true; // Always to update All tag
+                            updateTrackers = true;
+                        });
+                        updateTorrents = true;
+                        updateStatuses = true;
                     }
 
-                    syncRequestInProgress = false;
-                    syncData(window.qBittorrent.Client.getSyncMainDataInterval());
-                },
-                (error) => {
-                    const errorDiv = document.getElementById("error_div");
-                    if (errorDiv)
-                        errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
-                    syncRequestInProgress = false;
-                    syncData(document.hidden
-                        ? (window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 1000) / 2
-                        : 2000);
-                });
+                    // don't update the table unnecessarily
+                    if (updateTorrents)
+                        torrentsTable.updateTable(fullUpdate);
+
+                    if (responseJSON["server_state"]) {
+                        const tmp = responseJSON["server_state"];
+                        for (const k in tmp) {
+                            if (!Object.hasOwn(tmp, k))
+                                continue;
+                            serverState[k] = tmp[k];
+                        }
+                        processServerState();
+                    }
+
+                    if (updateStatuses)
+                        updateFiltersList();
+
+                    if (updateCategories) {
+                        updateCategoryList();
+                        window.qBittorrent.TransferList.contextMenu.updateCategoriesSubMenu(window.qBittorrent.Client.categoryMap);
+                    }
+                    if (updateTags) {
+                        updateTagList();
+                        window.qBittorrent.TransferList.contextMenu.updateTagsSubMenu(window.qBittorrent.Client.tagMap);
+                    }
+                    if (updateTrackers)
+                        updateTrackerList();
+
+                    if (fullUpdate)
+                        // re-select previously selected rows
+                        torrentsTable.reselectRows(torrentsTableSelectedRows);
+                }
+
+                syncRequestInProgress = false;
+                syncData(window.qBittorrent.Client.getSyncMainDataInterval());
+            }, (error) => {
+                const errorDiv = document.getElementById("error_div");
+                if (errorDiv)
+                    errorDiv.textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                syncRequestInProgress = false;
+                syncData(document.hidden ? (window.qBittorrent.Cache.preferences.get().web_ui_session_timeout * 1000) / 2 : 2000);
+            });
     };
 
     updateMainData = () => {
@@ -1088,10 +1086,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("UpInfos").textContent = transfer_info;
 
         document.title = (speedInTitle
-                ? ("QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
-                    .replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true))
-                    .replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)))
-                : "")
+            ? ("QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
+                .replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true))
+                .replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)))
+            : "")
             + window.qBittorrent.Client.mainTitle();
 
         document.getElementById("freeSpaceOnDisk").textContent = "QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk));
@@ -1206,8 +1204,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
         updateAltSpeedIcon(!alternativeSpeedLimits);
 
         fetch("api/v2/transfer/toggleSpeedLimitsMode", {
-                method: "POST"
-            })
+            method: "POST",
+        })
             .then((response) => {
                 if (!response.ok) {
                     // Restore icon in case of failure
@@ -1220,8 +1218,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
             });
     });
 
-    document.getElementById("DlInfos").addEventListener("click", (event) => { globalDownloadLimitFN(); });
-    document.getElementById("UpInfos").addEventListener("click", (event) => { globalUploadLimitFN(); });
+    document.getElementById("DlInfos").addEventListener("click", (event) => {
+        globalDownloadLimitFN();
+    });
+    document.getElementById("UpInfos").addEventListener("click", (event) => {
+        globalUploadLimitFN();
+    });
 
     document.getElementById("showTopToolbarLink").addEventListener("click", (e) => {
         showTopToolbar = !showTopToolbar;
@@ -1365,7 +1367,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
             document.getElementById("mainWindowTabs").classList.add("invisible");
     };
 
-    document.getElementById("StatisticsLink").addEventListener("click", (event) => { StatisticsLinkFN(); });
+    document.getElementById("StatisticsLink").addEventListener("click", (event) => {
+        StatisticsLinkFN();
+    });
 
     // main window tabs
 
@@ -1515,7 +1519,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 top: 0,
                 right: 0,
                 bottom: 0,
-                left: 0
+                left: 0,
             },
             loadMethod: "xhr",
             contentURL: "views/search.html?v=${CACHEID}",
@@ -1527,7 +1531,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             },
             content: "",
             column: "searchTabColumn",
-            height: null
+            height: null,
         });
     };
 
@@ -1540,7 +1544,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 top: 0,
                 right: 0,
                 bottom: 0,
-                left: 0
+                left: 0,
             },
             loadMethod: "xhr",
             contentURL: "views/rss.html?v=${CACHEID}",
@@ -1549,7 +1553,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             },
             content: "",
             column: "rssTabColumn",
-            height: null
+            height: null,
         });
     };
 
@@ -1562,7 +1566,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 top: 0,
                 right: 0,
                 bottom: 0,
-                left: 0
+                left: 0,
             },
             loadMethod: "xhr",
             contentURL: "views/log.html?v=${CACHEID}",
@@ -1588,7 +1592,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             collapsible: false,
             content: "",
             column: "logTabColumn",
-            height: null
+            height: null,
         });
     };
 
@@ -1600,7 +1604,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
         const url = decodeURIComponent(location.hash.substring(downloadHash.length));
         // Remove the processed hash from the URL
-        history.replaceState("", document.title, (location.pathname + location.search));
+        history.replaceState("", document.title, location.pathname + location.search);
         showDownloadPage([url]);
     };
 
@@ -1612,7 +1616,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             top: 0,
             right: 0,
             bottom: 0,
-            left: 0
+            left: 0,
         },
         loadMethod: "xhr",
         contentURL: "views/transferlist.html?v=${CACHEID}",
@@ -1622,11 +1626,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
         },
         column: "mainColumn",
         onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-            const isHidden = (Number.parseInt(document.getElementById("propertiesPanel").style.height, 10) === 0);
+            const isHidden = Number.parseInt(document.getElementById("propertiesPanel").style.height, 10) === 0;
             if (!isHidden)
                 saveColumnSizes();
         }),
-        height: null
+        height: null,
     });
     let prop_h = localPreferences.get("properties_height_rel");
     if (prop_h !== null)
@@ -1640,7 +1644,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             top: 0,
             right: 0,
             bottom: 0,
-            left: 0
+            left: 0,
         },
         contentURL: "views/properties.html?v=${CACHEID}",
         require: {
@@ -1649,7 +1653,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 "scripts/prop-trackers.js?v=${CACHEID}",
                 "scripts/prop-peers.js?v=${CACHEID}",
                 "scripts/prop-webseeds.js?v=${CACHEID}",
-                "scripts/prop-files.js?v=${CACHEID}"
+                "scripts/prop-files.js?v=${CACHEID}",
             ],
             onload: () => {
                 updatePropertiesPanel = () => {
@@ -1671,7 +1675,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                             break;
                     }
                 };
-            }
+            },
         },
         tabsURL: "views/propertiesToolbar.html?v=${CACHEID}",
         tabsOnload: () => {}, // must be included, otherwise panel won't load properly
@@ -1724,7 +1728,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 document.getElementById("torrentFilesFilterToolbar").classList.remove("invisible");
         },
         column: "mainColumn",
-        height: prop_h
+        height: prop_h,
     });
 
     // listen for changes to torrentsFilterInput
@@ -1737,12 +1741,22 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
     });
 
-    document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => { torrentsTable.updateTable(); });
+    document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => {
+        torrentsTable.updateTable();
+    });
 
-    document.getElementById("transfersTabLink").addEventListener("click", (event) => { showTransfersTab(); });
-    document.getElementById("searchTabLink").addEventListener("click", (event) => { showSearchTab(); });
-    document.getElementById("rssTabLink").addEventListener("click", (event) => { showRssTab(); });
-    document.getElementById("logTabLink").addEventListener("click", (event) => { showLogTab(); });
+    document.getElementById("transfersTabLink").addEventListener("click", (event) => {
+        showTransfersTab();
+    });
+    document.getElementById("searchTabLink").addEventListener("click", (event) => {
+        showSearchTab();
+    });
+    document.getElementById("rssTabLink").addEventListener("click", (event) => {
+        showRssTab();
+    });
+    document.getElementById("logTabLink").addEventListener("click", (event) => {
+        showLogTab();
+    });
     updateTabDisplay();
 
     const registerDragAndDrop = () => {
