@@ -383,6 +383,8 @@ a.propButton img {
     background: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     left: -999em;
+    transition: left 1s;
+    transition-behavior: allow-discrete;
     margin: -29px 0 0 100%;
     padding: 0;
     position: absolute;
@@ -409,6 +411,8 @@ a.propButton img {
 .contextMenu li:not(.disabled):hover > ul {
     /* lists nested under hovered list items */
     left: auto;
+    transition: left 0s;
+    transition-behavior: allow-discrete;
 }
 
 .contextMenu li img {
