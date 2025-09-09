@@ -147,12 +147,20 @@ namespace
 
         QString value(const QString &arg) const
         {
-            QStringList parts = arg.split(u'=');
-            if (parts.size() == 2)
-                return Utils::String::unquote(parts[1], u"'\""_s);
-            throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
+            int const index = arg.indexOf(u'=');
+            if (index == -1)
+                throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
                                             .arg(fullParameter(), u"<value>"_s));
+
+            const QString val = arg.mid(index + 1);
+
+            if (val.isEmpty())
+                throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
+                                                        "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
+                                            .arg(fullParameter(), u"<value>"_s));
+
+            return Utils::String::unquote(val, u"'\""_s);
         }
 
         QString value(const QProcessEnvironment &env, const QString &defaultValue = {}) const
