@@ -147,7 +147,7 @@ namespace
 
         QString value(const QString &arg) const
         {
-            int const index = arg.indexOf(u'=');
+            const int index = arg.indexOf(u'=');
             if (index == -1)
                 throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
