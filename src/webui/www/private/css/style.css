@@ -383,11 +383,11 @@ a.propButton img {
     background: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     left: -999em;
-    transition: left 1s;
-    transition-behavior: allow-discrete;
     margin: -29px 0 0 100%;
     padding: 0;
     position: absolute;
+    transition: left 1s;
+    transition-behavior: allow-discrete;
     width: max-content;
     z-index: 8000;
 }
