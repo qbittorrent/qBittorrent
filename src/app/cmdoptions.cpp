@@ -170,7 +170,7 @@ namespace
 
         friend bool operator==(const StringOption &option, const QString &arg)
         {
-            return arg == option.fullParameter() || arg.startsWith(option.parameterAssignment());
+            return (arg == option.fullParameter()) || arg.startsWith(option.parameterAssignment());
         }
 
     private:
