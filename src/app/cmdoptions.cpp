@@ -147,12 +147,14 @@ namespace
 
         QString value(const QString &arg) const
         {
-            QStringList parts = arg.split(u'=');
-            if (parts.size() == 2)
-                return Utils::String::unquote(parts[1], u"'\""_s);
-            throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
+            const qsizetype index = arg.indexOf(u'=');
+            if (index == -1)
+                throw CommandLineParameterError(QCoreApplication::translate("CMD Options", "Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
                                             .arg(fullParameter(), u"<value>"_s));
+
+            const QStringView val = QStringView(arg).sliced(index + 1);
+            return Utils::String::unquote(val, u"'\""_s).toString();
         }
 
         QString value(const QProcessEnvironment &env, const QString &defaultValue = {}) const
@@ -168,7 +170,7 @@ namespace
 
         friend bool operator==(const StringOption &option, const QString &arg)
         {
-            return arg.startsWith(option.parameterAssignment());
+            return (arg == option.fullParameter()) || arg.startsWith(option.parameterAssignment());
         }
 
     private:
