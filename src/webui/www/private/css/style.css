@@ -386,8 +386,7 @@ a.propButton img {
     margin: -29px 0 0 100%;
     padding: 0;
     position: absolute;
-    transition: left 1s;
-    transition-behavior: allow-discrete;
+    transition: left 1s allow-discrete;
     width: max-content;
     z-index: 8000;
 }
@@ -411,8 +410,7 @@ a.propButton img {
 .contextMenu li:not(.disabled):hover > ul {
     /* lists nested under hovered list items */
     left: auto;
-    transition: left 0s;
-    transition-behavior: allow-discrete;
+    transition: left 0s allow-discrete;
 }
 
 .contextMenu li img {
