@@ -209,6 +209,8 @@ public:
     void setWebUIUsername(const QString &username);
     QByteArray getWebUIPassword() const;
     void setWebUIPassword(const QByteArray &password);
+    QByteArray getWebUIApiKey() const;
+    void setWebUIApiKey(const QByteArray &apiKey);
     int getWebUIMaxAuthFailCount() const;
     void setWebUIMaxAuthFailCount(int count);
     std::chrono::seconds getWebUIBanDuration() const;

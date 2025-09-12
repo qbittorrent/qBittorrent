@@ -101,6 +101,7 @@
 #ifndef DISABLE_WEBUI
 #include "webui/webui.h"
 #ifdef DISABLE_GUI
+#include "base/utils/apikey.h"
 #include "base/utils/password.h"
 #endif
 #endif
@@ -954,10 +955,12 @@ int Application::exec()
 #ifndef DISABLE_GUI
         m_webui = new WebUI(this);
 #else
-        const auto *pref = Preferences::instance();
+        auto *pref = Preferences::instance();
 
         const QString tempPassword = pref->getWebUIPassword().isEmpty()
-                ? Utils::Password::generate() : QString();
+                ? Utils::Password::generate(9) : QString();
+        if (!Utils::APIKey::isValid(QString::fromUtf8(pref->getWebUIApiKey())))
+            pref->setWebUIApiKey(Utils::APIKey::generate().toUtf8());
         m_webui = new WebUI(this, (!tempPassword.isEmpty() ? Utils::Password::PBKDF2::generate(tempPassword) : QByteArray()));
         connect(m_webui, &WebUI::error, this, [](const QString &message)
         {

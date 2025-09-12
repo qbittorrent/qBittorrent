@@ -107,9 +107,10 @@ private:
     QString clientId() const override;
     WebSession *session() override;
     void sessionStart() override;
+    void sessionStartImpl(const QString &sessionId, bool useCookie);
     void sessionEnd() override;
 
-    void doProcessRequest();
+    void doProcessRequest(bool isUsingApiKey);
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
@@ -122,6 +123,7 @@ private:
     // Session management
     QString generateSid() const;
     void sessionInitialize();
+    void apiKeySessionInitialize();
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
