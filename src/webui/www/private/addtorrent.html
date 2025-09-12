@@ -85,10 +85,7 @@
             });
 
             window.qBittorrent.pathAutofill.attachPathAutofill();
-            window.qBittorrent.TorrentContent.init("addTorrentFilesTableDiv", window.qBittorrent.DynamicTable.AddTorrentFilesTable);
-
-            if (fetchMetadata)
-                window.qBittorrent.AddTorrent.loadMetadata(source, downloader);
+            window.qBittorrent.AddTorrent.init(source, downloader, fetchMetadata);
         });
     </script>
 
