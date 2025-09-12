@@ -3067,6 +3067,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             this.initColumnsFunctions();
         }
+
+        getFileTreeArray() {
+            return this.fileTree.toArray();
+        }
     }
 
     class RssFeedTable extends DynamicTable {
