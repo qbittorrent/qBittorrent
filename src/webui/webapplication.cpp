@@ -71,7 +71,7 @@
 #include "clientdatastorage.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
-const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_s;
+const QString SESSION_COOKIE_NAME_PREFIX = u"QBT_SID_"_s;
 
 const QString WWW_FOLDER = u":/www"_s;
 const QString PUBLIC_FOLDER = u"/public"_s;
@@ -141,18 +141,6 @@ namespace
 
         return languages.join(u'\n');
     }
-
-    bool isValidCookieName(const QString &cookieName)
-    {
-        if (cookieName.isEmpty() || (cookieName.size() > 128))
-            return false;
-
-        const QRegularExpression invalidNameRegex {u"[^a-zA-Z0-9_\\-]"_s};
-        if (invalidNameRegex.match(cookieName).hasMatch())
-            return false;
-
-        return true;
-    }
 }
 
 WebApplication::WebApplication(IApplication *app, QObject *parent)
@@ -166,17 +154,6 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
 
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebApplication::configure);
-
-    m_sessionCookieName = Preferences::instance()->getWebAPISessionCookieName();
-    if (!isValidCookieName(m_sessionCookieName))
-    {
-        if (!m_sessionCookieName.isEmpty())
-        {
-            LogMsg(tr("Unacceptable session cookie name is specified: '%1'. Default one is used.")
-                   .arg(m_sessionCookieName), Log::WARNING);
-        }
-        m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME;
-    }
 }
 
 WebApplication::~WebApplication()
@@ -466,6 +443,7 @@ void WebApplication::configure()
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
     m_sessionTimeout = pref->getWebUISessionTimeout();
+    m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
