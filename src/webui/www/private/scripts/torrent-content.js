@@ -44,9 +44,10 @@ window.qBittorrent.TorrentContent ??= (() => {
         };
     };
 
-    let torrentFilesTable;
     const FilePriority = window.qBittorrent.FileTree.FilePriority;
     const TriState = window.qBittorrent.FileTree.TriState;
+    const BY_SHOWN_ORDER = -2;
+    let torrentFilesTable;
     let torrentFilesFilterInputTimer = -1;
     let onFilePriorityChanged = null;
 
@@ -411,7 +412,28 @@ window.qBittorrent.TorrentContent ??= (() => {
                 uniqueFileIds.add(fileId);
         }
 
-        setFilePriority([...uniqueRowIds.keys()], [...uniqueFileIds.keys()], priority);
+        if (priority !== BY_SHOWN_ORDER) {
+            setFilePriority([...uniqueRowIds.keys()], [...uniqueFileIds.keys()], priority);
+        }
+        else {
+            const groupsNum = 3;
+            const priorityGroupSize = Math.max(Math.floor(fileIds.length / groupsNum), 1);
+
+            let start = 0;
+            let limit = 0;
+            for (let i = -1; i < groupsNum; ++i) {
+                limit = ((i + 1) * priorityGroupSize);
+                limit = Math.min(limit, fileIds.length);
+                if (i === (groupsNum - 1))
+                    limit = fileIds.length;
+                setFilePriority(
+                    rowIds.slice(start, limit),
+                    fileIds.slice(start, limit),
+                    [FilePriority.Maximum, FilePriority.High, FilePriority.Normal][i]
+                );
+                start = limit;
+            }
+        }
         for (const id of rowIds)
             updateParentFolder(id);
     };
@@ -504,6 +526,9 @@ window.qBittorrent.TorrentContent ??= (() => {
                 },
                 FilePrioMaximum: (element, ref) => {
                     filesPriorityMenuClicked(FilePriority.Maximum);
+                },
+                FilePrioByShownOrder: (element, ref) => {
+                    filesPriorityMenuClicked(BY_SHOWN_ORDER);
                 }
             },
             offsets: {
