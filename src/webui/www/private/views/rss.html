@@ -321,7 +321,7 @@
         };
 
         const load = () => {
-            feedRefreshTimer = setTimeout(() => {
+            feedRefreshTimer = window.setTimeout(() => {
                 updateRssFeedList();
                 load();
             }, serverSyncRssDataInterval);

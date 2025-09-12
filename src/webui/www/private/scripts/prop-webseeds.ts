@@ -26,14 +26,12 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PropWebseeds ??= (() => {
     const exports = () => {
         return {
             updateData: updateData,
-            clear: clear
+            clear: clear,
         };
     };
 
@@ -45,8 +43,10 @@ window.qBittorrent.PropWebseeds ??= (() => {
     const loadWebSeedsData = () => {
         if (document.hidden)
             return;
-        if (document.getElementById("propWebSeeds").classList.contains("invisible")
-            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
+        if (
+            document.getElementById("propWebSeeds").classList.contains("invisible")
+            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")
+        ) {
             // Tab changed, don't do anything
             return;
         }
@@ -61,14 +61,14 @@ window.qBittorrent.PropWebseeds ??= (() => {
             current_hash = new_hash;
         }
 
-        const url = new URL("api/v2/torrents/webseeds", window.location);
+        const url = new URL("api/v2/torrents/webseeds", window.location.href);
         url.search = new URLSearchParams({
-            hash: current_hash
-        });
+            hash: current_hash,
+        }).toString();
         fetch(url, {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(async (response) => {
                 if (!response.ok)
                     return;
@@ -94,7 +94,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             })
             .finally(() => {
                 clearTimeout(loadWebSeedsDataTimer);
-                loadWebSeedsDataTimer = loadWebSeedsData.delay(10000);
+                loadWebSeedsDataTimer = window.setTimeout(loadWebSeedsData, 10000);
             });
     };
 
@@ -118,11 +118,11 @@ window.qBittorrent.PropWebseeds ??= (() => {
             },
             RemoveWebSeed: (element, ref) => {
                 removeWebSeedFN(element);
-            }
+            },
         },
         offsets: {
             x: 0,
-            y: 2
+            y: 2,
         },
         onShow: function() {
             const selectedWebseeds = torrentWebseedsTable.selectedRowsIds();
@@ -141,7 +141,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
                 this.showItem("RemoveWebSeed");
                 this.showItem("CopyWebseedUrl");
             }
-        }
+        },
     });
 
     const addWebseedFN = () => {
@@ -163,7 +163,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             height: 260,
             onCloseComplete: () => {
                 updateData();
-            }
+            },
         });
     };
 
@@ -192,7 +192,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             height: 150,
             onCloseComplete: () => {
                 updateData();
-            }
+            },
         });
     };
 
@@ -201,12 +201,12 @@ window.qBittorrent.PropWebseeds ??= (() => {
             return;
 
         fetch("api/v2/torrents/removeWebSeeds", {
-                method: "POST",
-                body: new URLSearchParams({
-                    hash: current_hash,
-                    urls: torrentWebseedsTable.selectedRowsIds().map(webseed => encodeURIComponent(webseed)).join("|")
-                })
-            })
+            method: "POST",
+            body: new URLSearchParams({
+                hash: current_hash,
+                urls: torrentWebseedsTable.selectedRowsIds().map(webseed => encodeURIComponent(webseed)).join("|"),
+            }),
+        })
             .then((response) => {
                 if (!response.ok)
                     return;

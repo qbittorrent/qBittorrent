@@ -26,15 +26,13 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
-window.qBittorrent.Cache ??= (() => {
+const cacheModule = (() => {
     const exports = () => {
         return {
             buildInfo: new BuildInfoCache(),
             preferences: new PreferencesCache(),
-            qbtVersion: new QbtVersionCache()
+            qbtVersion: new QbtVersionCache(),
         };
     };
 
@@ -51,13 +49,13 @@ window.qBittorrent.Cache ??= (() => {
     };
 
     class BuildInfoCache {
-        #m_store = {};
+        #m_store: Record<string, any> = {};
 
         init() {
             return fetch("api/v2/app/buildInfo", {
-                    method: "GET",
-                    cache: "no-store"
-                })
+                method: "GET",
+                cache: "no-store",
+            })
                 .then(async (response) => {
                     if (!response.ok)
                         return;
@@ -74,13 +72,13 @@ window.qBittorrent.Cache ??= (() => {
     }
 
     class PreferencesCache {
-        #m_store = {};
+        #m_store: Record<string, any> = {};
 
         async init() {
             return await fetch("api/v2/app/preferences", {
-                    method: "GET",
-                    cache: "no-store"
-                })
+                method: "GET",
+                cache: "no-store",
+            })
                 .then(async (response) => {
                     if (!response.ok)
                         return;
@@ -103,11 +101,11 @@ window.qBittorrent.Cache ??= (() => {
                 throw new Error("`data` is not an object.");
 
             return await fetch("api/v2/app/setPreferences", {
-                    method: "POST",
-                    body: new URLSearchParams({
-                        json: JSON.stringify(data)
-                    })
-                })
+                method: "POST",
+                body: new URLSearchParams({
+                    json: JSON.stringify(data),
+                }),
+            })
                 .then((response) => {
                     if (!response.ok)
                         return;
@@ -130,9 +128,9 @@ window.qBittorrent.Cache ??= (() => {
 
         init() {
             return fetch("api/v2/app/version", {
-                    method: "GET",
-                    cache: "no-store"
-                })
+                method: "GET",
+                cache: "no-store",
+            })
                 .then(async (response) => {
                     if (!response.ok)
                         return;
@@ -149,4 +147,6 @@ window.qBittorrent.Cache ??= (() => {
 
     return exports();
 })();
+
+window.qBittorrent.Cache ??= cacheModule;
 Object.freeze(window.qBittorrent.Cache);

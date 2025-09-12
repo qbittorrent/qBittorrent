@@ -32,6 +32,11 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
       - name: Install dependencies
         uses: Wandalen/wretry.action@v3
         env:
@@ -102,6 +107,11 @@ jobs:
             -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
+
+      - name: Install node dependencies
+        working-directory: src/webui/www
+        run: |
+          npm install
 
       - name: Build qBittorrent
         run: |

@@ -31,6 +31,11 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
       - name: Setup devcmd
         uses: ilammy/msvc-dev-cmd@v1
 
@@ -137,6 +142,11 @@ jobs:
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-md-release
           cmake --build build
           cmake --install build
+
+      - name: Install node dependencies
+        working-directory: src/webui/www
+        run: |
+          npm install
 
       - name: Build qBittorrent
         run: |

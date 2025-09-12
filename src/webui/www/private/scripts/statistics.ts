@@ -21,8 +21,6 @@
  * THE SOFTWARE.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.Statistics ??= (() => {
     const exports = () => {
@@ -69,13 +67,13 @@ window.qBittorrent.Statistics ??= (() => {
         document.getElementById("AlltimeDL").textContent = window.qBittorrent.Misc.friendlyUnit(statistics.alltimeDL, false);
         document.getElementById("AlltimeUL").textContent = window.qBittorrent.Misc.friendlyUnit(statistics.alltimeUL, false);
         document.getElementById("TotalWastedSession").textContent = window.qBittorrent.Misc.friendlyUnit(statistics.totalWastedSession, false);
-        document.getElementById("GlobalRatio").textContent = statistics.globalRatio;
-        document.getElementById("TotalPeerConnections").textContent = statistics.totalPeerConnections;
+        document.getElementById("GlobalRatio").textContent = String(statistics.globalRatio);
+        document.getElementById("TotalPeerConnections").textContent = String(statistics.totalPeerConnections);
         document.getElementById("ReadCacheHits").textContent = `${statistics.readCacheHits}%`;
         document.getElementById("TotalBuffersSize").textContent = window.qBittorrent.Misc.friendlyUnit(statistics.totalBuffersSize, false);
         document.getElementById("WriteCacheOverload").textContent = `${statistics.writeCacheOverload}%`;
         document.getElementById("ReadCacheOverload").textContent = `${statistics.readCacheOverload}%`;
-        document.getElementById("QueuedIOJobs").textContent = statistics.queuedIOJobs;
+        document.getElementById("QueuedIOJobs").textContent = String(statistics.queuedIOJobs);
         document.getElementById("AverageTimeInQueue").textContent = `${statistics.averageTimeInQueue} ms`;
         document.getElementById("TotalQueuedSize").textContent = window.qBittorrent.Misc.friendlyUnit(statistics.totalQueuedSize, false);
     };

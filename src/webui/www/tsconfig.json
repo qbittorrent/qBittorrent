@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ESNext",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "outDir": "./private/scripts",
+    "rootDir": "./private/scripts",
+
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+
+    "strict": true,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": false,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": false,
+    "alwaysStrict": true,
+
+    "allowJs": false,
+    "checkJs": false,
+
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": false,
+    "removeComments": false,
+    "preserveConstEnums": true,
+
+    "forceConsistentCasingInFileNames": false,
+    "skipLibCheck": true,
+    "useDefineForClassFields": true
+  },
+  "include": [
+    "private/scripts/**/*.ts",
+    "private/scripts/types/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "private/scripts/lib/**/*",
+    "private/scripts/**/*.js"
+  ]
+}

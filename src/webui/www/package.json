@@ -6,12 +6,17 @@
     "url": "https://github.com/qbittorrent/qBittorrent.git"
   },
   "scripts": {
-    "format": "js-beautify -r *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && prettier --write **.css",
-    "lint": "eslint --cache *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && stylelint --cache **/*.css && html-validate private public",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "format": "js-beautify -r *.mjs private/*.html private/views/*.html public/*.html public/scripts/*.js test/*/*.js && dprint fmt private/scripts/*.ts && prettier --write **.css",
+    "lint": "eslint --cache *.mjs private/*.html private/scripts/*.ts private/views/*.html public/*.html public/scripts/*.js test/*/*.js && stylelint --cache **/*.css && html-validate private public",
     "test": "vitest run --dom"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "dprint": "^0.50.1",
     "eslint": "*",
     "eslint-plugin-html": "*",
     "eslint-plugin-prefer-arrow-functions": "*",
@@ -25,6 +30,7 @@
     "stylelint": "*",
     "stylelint-config-standard": "*",
     "stylelint-order": "*",
+    "typescript": "^5.0.0",
     "vitest": "*"
   }
 }

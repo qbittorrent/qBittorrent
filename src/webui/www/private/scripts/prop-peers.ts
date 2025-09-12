@@ -26,14 +26,12 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PropPeers ??= (() => {
     const exports = () => {
         return {
             updateData: updateData,
-            clear: clear
+            clear: clear,
         };
     };
 
@@ -45,8 +43,10 @@ window.qBittorrent.PropPeers ??= (() => {
     const loadTorrentPeersData = () => {
         if (document.hidden)
             return;
-        if (document.getElementById("propPeers").classList.contains("invisible")
-            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")) {
+        if (
+            document.getElementById("propPeers").classList.contains("invisible")
+            || document.getElementById("propertiesPanel_collapseToggle").classList.contains("panel-expand")
+        ) {
             syncTorrentPeersLastResponseId = 0;
             torrentPeersTable.clear();
             return;
@@ -58,15 +58,15 @@ window.qBittorrent.PropPeers ??= (() => {
             clearTimeout(loadTorrentPeersTimer);
             return;
         }
-        const url = new URL("api/v2/sync/torrentPeers", window.location);
+        const url = new URL("api/v2/sync/torrentPeers", window.location.href);
         url.search = new URLSearchParams({
             hash: current_hash,
-            rid: syncTorrentPeersLastResponseId,
-        });
+            rid: String(syncTorrentPeersLastResponseId),
+        }).toString();
         fetch(url, {
-                method: "GET",
-                cache: "no-store"
-            })
+            method: "GET",
+            cache: "no-store",
+        })
             .then(async (response) => {
                 if (!response.ok)
                     return;
@@ -75,7 +75,7 @@ window.qBittorrent.PropPeers ??= (() => {
 
                 document.getElementById("error_div").textContent = "";
                 if (responseJSON) {
-                    const full_update = (responseJSON["full_update"] === true);
+                    const full_update = responseJSON["full_update"] === true;
                     if (full_update)
                         torrentPeersTable.clear();
                     if (responseJSON["rid"])
@@ -113,11 +113,10 @@ window.qBittorrent.PropPeers ??= (() => {
                 else {
                     torrentPeersTable.clear();
                 }
-
             })
             .finally(() => {
                 clearTimeout(loadTorrentPeersTimer);
-                loadTorrentPeersTimer = loadTorrentPeersData.delay(window.qBittorrent.Client.getSyncMainDataInterval());
+                loadTorrentPeersTimer = window.setTimeout(loadTorrentPeersData, window.qBittorrent.Client.getSyncMainDataInterval());
             });
     };
 
@@ -152,7 +151,7 @@ window.qBittorrent.PropPeers ??= (() => {
                     paddingVertical: 0,
                     paddingHorizontal: 0,
                     width: window.qBittorrent.Dialog.limitWidthToViewport(350),
-                    height: 260
+                    height: 260,
                 });
             },
             banPeer: (element, ref) => {
@@ -165,15 +164,15 @@ window.qBittorrent.PropPeers ??= (() => {
                         method: "POST",
                         body: new URLSearchParams({
                             hash: torrentsTable.getCurrentTorrentID(),
-                            peers: selectedPeers.join("|")
-                        })
+                            peers: selectedPeers.join("|"),
+                        }),
                     });
                 }
-            }
+            },
         },
         offsets: {
             x: 0,
-            y: 2
+            y: 2,
         },
         onShow: function() {
             const selectedPeers = torrentPeersTable.selectedRowsIds();
@@ -186,7 +185,7 @@ window.qBittorrent.PropPeers ??= (() => {
                 this.hideItem("copyPeer");
                 this.hideItem("banPeer");
             }
-        }
+        },
     });
 
     document.getElementById("CopyPeerInfo").addEventListener("click", async (event) => {

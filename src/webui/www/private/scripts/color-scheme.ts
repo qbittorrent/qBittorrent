@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2019  Thomas Piccirello <thomas@piccirello.com>
+ * Copyright (C) 2024  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,47 +26,31 @@
  * exception statement from your version.
  */
 
-"use strict";
-
-// This file is the JavaScript implementation of base/utils/fs.cpp
-
 window.qBittorrent ??= {};
-window.qBittorrent.Filesystem ??= (() => {
+const colorSchemeModule = (() => {
     const exports = () => {
         return {
-            PathSeparator: PathSeparator,
-            fileExtension: fileExtension,
-            fileName: fileName,
-            folderName: folderName
+            update,
         };
     };
 
-    const PathSeparator = "/";
+    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+    const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    /**
-     * Returns the file extension part of a file name.
-     */
-    const fileExtension = (filename) => {
-        const pointIndex = filename.lastIndexOf(".");
-        if (pointIndex === -1)
-            return "";
-        return filename.substring(pointIndex + 1);
+    const update = () => {
+        const root = document.documentElement;
+        const colorScheme = localPreferences.get("color_scheme");
+        const validScheme = (colorScheme === "light") || (colorScheme === "dark");
+        const isDark = colorSchemeQuery.matches;
+        root.classList.toggle("dark", (!validScheme && isDark) || (colorScheme === "dark"));
     };
 
-    const fileName = (filepath) => {
-        const slashIndex = filepath.lastIndexOf(PathSeparator);
-        if (slashIndex === -1)
-            return filepath;
-        return filepath.substring(slashIndex + 1);
-    };
-
-    const folderName = (filepath) => {
-        const slashIndex = filepath.lastIndexOf(PathSeparator);
-        if (slashIndex === -1)
-            return "";
-        return filepath.substring(0, slashIndex);
-    };
+    colorSchemeQuery.addEventListener("change", update);
 
     return exports();
 })();
-Object.freeze(window.qBittorrent.Filesystem);
+
+window.qBittorrent.ColorScheme ??= colorSchemeModule;
+Object.freeze(window.qBittorrent.ColorScheme);
+
+window.qBittorrent.ColorScheme.update();

@@ -1,0 +1,36 @@
+{
+  "indentWidth": 4,
+  "useTabs": false,
+  "newLineKind": "lf",
+  "lineWidth": 1000,
+  "typescript": {
+    "bracePosition": "sameLine",
+    "singleBodyPosition": "nextLine",
+    "nextControlFlowPosition": "maintain",
+    "useBraces": "maintain",
+    "operatorPosition": "maintain",
+    "binaryExpression.operatorPosition": "nextLine",
+    "memberExpression.linePerExpression": false,
+    "binaryExpression.linePerExpression": false,
+    "trailingCommas": "onlyMultiLine",
+    "quoteStyle": "preferDouble",
+    "quoteProps": "asNeeded",
+    "semiColons": "always",
+    "arguments.preferSingleLine": true,
+    "conditionalExpression.preferSingleLine": true,
+    "parameters.preferSingleLine": true,
+    "parentheses.preferSingleLine": true,
+    "preferHanging": false,
+    "arguments.preferHanging": "never",
+    "arguments.trailingCommas": "never",
+    "forOfStatement.preferHanging": false,
+    "forStatement.preferHanging": false,
+    "ifStatement.preferHanging": false
+  },
+  "excludes": [
+    "**/node_modules"
+  ],
+  "plugins": [
+    "https://plugins.dprint.dev/typescript-0.95.11.wasm"
+  ]
+}

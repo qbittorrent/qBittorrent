@@ -4,6 +4,8 @@ import Js from "@eslint/js";
 import PluginQbtWebUI from "eslint-plugin-qbt-webui";
 import PreferArrowFunctions from "eslint-plugin-prefer-arrow-functions";
 import Stylistic from "@stylistic/eslint-plugin";
+import TypescriptEslint from "@typescript-eslint/eslint-plugin";
+import TypescriptParser from "@typescript-eslint/parser";
 import Unicorn from "eslint-plugin-unicorn";
 
 import * as RegexpPlugin from "eslint-plugin-regexp";
@@ -16,10 +18,11 @@ export default [
         files: [
             "**/*.html",
             "**/*.js",
-            "**/*.mjs"
+            "**/*.mjs",
+            "**/*.ts"
         ],
         languageOptions: {
-            ecmaVersion: 2022,
+            ecmaVersion: 2023,
             globals: {
                 ...Globals.browser
             }
@@ -75,6 +78,19 @@ export default [
             "Unicorn/no-zero-fractions": "error",
             "Unicorn/prefer-number-properties": "error",
             "Unicorn/switch-case-braces": ["error", "avoid"]
+        }
+    },
+    // TypeScript files - use same rules but with TypeScript parser
+    {
+        files: ["**/*.ts"],
+        languageOptions: {
+            parser: TypescriptParser,
+            parserOptions: {
+                project: "./tsconfig.json"
+            }
+        },
+        plugins: {
+            "@typescript-eslint": TypescriptEslint
         }
     }
 ];

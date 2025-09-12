@@ -26,13 +26,11 @@
  * exception statement from your version.
  */
 
-"use strict";
-
 window.qBittorrent ??= {};
 window.qBittorrent.PiecesBar ??= (() => {
     const exports = () => {
         return {
-            PiecesBar: PiecesBar
+            PiecesBar: PiecesBar,
         };
     };
 
@@ -61,7 +59,7 @@ window.qBittorrent.PiecesBar ??= (() => {
                 haveColor: "hsl(210deg 55% 55%)", // @TODO palette vars not supported for this value, apply average
                 borderSize: 1,
                 borderColor: "var(--color-border-default)",
-                ...styles
+                ...styles,
             };
 
             this.#canvasEl = document.createElement("canvas");
@@ -71,10 +69,11 @@ window.qBittorrent.PiecesBar ??= (() => {
             this.#ctx = this.#canvasEl.getContext("2d");
 
             this.attachShadow({ mode: "open" });
-            this.shadowRoot.host.id = `piecesbar_${this.#id}`;
-            this.shadowRoot.host.style.display = "block";
-            this.shadowRoot.host.style.height = `${this.#styles.height}px`;
-            this.shadowRoot.host.style.border = `${this.#styles.borderSize}px solid ${this.#styles.borderColor}`;
+            const host = this.shadowRoot.host as HTMLElement;
+            host.id = `piecesbar_${this.#id}`;
+            host.style.display = "block";
+            host.style.height = `${this.#styles.height}px`;
+            host.style.border = `${this.#styles.borderSize}px solid ${this.#styles.borderColor}`;
             this.shadowRoot.append(this.#canvasEl);
 
             this.#resizeObserver = new ResizeObserver(window.qBittorrent.Misc.createDebounceHandler(100, () => {
@@ -171,7 +170,7 @@ window.qBittorrent.PiecesBar ??= (() => {
 
                 const statusValues = {
                     [PiecesBar.#STATUS_DOWNLOADING]: 0,
-                    [PiecesBar.#STATUS_DOWNLOADED]: 0
+                    [PiecesBar.#STATUS_DOWNLOADED]: 0,
                 };
 
                 // aggregate the status of each piece that contributes to this pixel
@@ -204,8 +203,10 @@ window.qBittorrent.PiecesBar ??= (() => {
                     lastValue = statusValues;
 
                 // group contiguous colors together and draw as a single rectangle
-                if ((lastValue[PiecesBar.#STATUS_DOWNLOADING] === statusValues[PiecesBar.#STATUS_DOWNLOADING])
-                    && (lastValue[PiecesBar.#STATUS_DOWNLOADED] === statusValues[PiecesBar.#STATUS_DOWNLOADED]))
+                if (
+                    (lastValue[PiecesBar.#STATUS_DOWNLOADING] === statusValues[PiecesBar.#STATUS_DOWNLOADING])
+                    && (lastValue[PiecesBar.#STATUS_DOWNLOADED] === statusValues[PiecesBar.#STATUS_DOWNLOADED])
+                )
                     continue;
 
                 const rectangleWidth = x - rectangleStart;
