@@ -620,8 +620,8 @@
 
                                 if (articlesDiffer) {
                                     // update unread count
-                                    const oldUnread = feedData[r.uid].map((art) => !art.isRead).filter((v) => v).length;
-                                    const newUnread = r.articles.map((art) => !art.isRead).filter((v) => v).length;
+                                    const oldUnread = feedData[r.uid].map((art) => !art.isRead).filter(Boolean).length;
+                                    const newUnread = r.articles.map((art) => !art.isRead).filter(Boolean).length;
                                     const unreadDifference = newUnread - oldUnread;
 
                                     // find all parents (and self) and add unread difference
@@ -733,7 +733,7 @@
                                 });
 
                                 // calculate number of unread
-                                const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter((v) => v).length;
+                                const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter(Boolean).length;
                                 // find all items that contain this rss feed and add unread count
                                 for (const row of rssFeedTable.getRowValues()) {
                                     if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)

@@ -730,9 +730,7 @@ window.qBittorrent.Search ??= (() => {
                     for (const plugin of responseJSON)
                         searchPlugins.push(plugin);
 
-                    const pluginOptions = [];
-                    pluginOptions.push(createOption("QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]", "enabled"));
-                    pluginOptions.push(createOption("QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]", "all"));
+                    const pluginOptions = [createOption("QBT_TR(Only enabled)QBT_TR[CONTEXT=SearchEngineWidget]", "enabled"), createOption("QBT_TR(All plugins)QBT_TR[CONTEXT=SearchEngineWidget]", "all")];
 
                     const searchPluginsEmpty = (searchPlugins.length === 0);
                     if (!searchPluginsEmpty) {

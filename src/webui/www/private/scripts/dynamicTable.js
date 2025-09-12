@@ -710,10 +710,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 colElem.classList.toggle("reverse", isReverse);
             }
             const oldColElem = getCol(this.dynamicTableFixedHeaderDivId, oldColumn);
-            if (oldColElem !== null) {
-                oldColElem.classList.remove("sorted");
-                oldColElem.classList.remove("reverse");
-            }
+            if (oldColElem !== null)
+                oldColElem.classList.remove("sorted", "reverse");
         }
 
         getSelectedRowId() {

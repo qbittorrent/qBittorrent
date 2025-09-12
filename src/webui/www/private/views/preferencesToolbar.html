@@ -36,12 +36,8 @@
         MochaUI.initializeTabs("preferencesTabs");
 
         const showTab = (element) => {
-            for (const tab of document.querySelectorAll(".PrefTab")) {
-                if (tab === element)
-                    tab.classList.remove("invisible");
-                else
-                    tab.classList.add("invisible");
-            }
+            for (const tab of document.querySelectorAll(".PrefTab"))
+                tab.classList.toggle("invisible", (tab !== element));
         };
 
         document.getElementById("PrefBehaviorLink").addEventListener("click", (e) => {
