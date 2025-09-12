@@ -1,0 +1,25 @@
+[project]
+name = "qBittorrent-search-engine"
+description = "Search engine for qBittorrent search feature"
+readme = "README.md"
+requires-python = ">=3.9"
+dynamic = ["version"]
+
+[dependency-groups]
+dev = [
+    "bandit",
+    "isort",
+    "mypy",
+    "pycodestyle",
+    "pyflakes",
+    "pyright",
+    "pytest",
+    "rust-just",
+]
+
+[tool.mypy]
+explicit_package_bases = true
+strict = true
+
+[tool.setuptools.packages.find]
+where = ["./"]
