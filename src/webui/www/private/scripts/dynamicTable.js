@@ -1123,6 +1123,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("completion_on", "", "QBT_TR(Completed On)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("tracker", "", "QBT_TR(Tracker)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("tracker_status", "", "QBT_TR(Tracker Status)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("dl_limit", "", "QBT_TR(Down Limit)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("up_limit", "", "QBT_TR(Up Limit)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("downloaded", "", "QBT_TR(Downloaded)QBT_TR[CONTEXT=TransferListModel]", 100, false);
@@ -1448,6 +1449,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const tracker = displayFullURLTrackerColumn ? value : window.qBittorrent.Misc.getHost(value);
                 td.textContent = tracker;
                 td.title = value;
+            };
+
+            // tracker_status
+            this.columns["tracker_status"].updateTd = function(td, row) {
+                const trackerStatus = this.getRowValue(row);
+                // Display the tracker message directly (now a string from backend)
+                const statusText = trackerStatus || "QBT_TR(Unknown)QBT_TR[CONTEXT=TrackerListWidget]";
+                td.textContent = statusText;
+                td.title = statusText;
             };
 
             //  dl_limit, up_limit
