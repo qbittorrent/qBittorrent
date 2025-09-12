@@ -29,14 +29,15 @@ window.qBittorrent.AddTorrent ??= (() => {
         return {
             changeCategorySelect: changeCategorySelect,
             changeTMM: changeTMM,
-            loadMetadata: loadMetadata,
             metadataCompleted: metadataCompleted,
             populateMetadata: populateMetadata,
             setWindowId: setWindowId,
-            submitForm: submitForm
+            submitForm: submitForm,
+            init: init
         };
     };
 
+    let table = null;
     let defaultSavePath = "";
     let defaultTempPath = "";
     let defaultTempPathEnabled = false;
@@ -307,10 +308,10 @@ window.qBittorrent.AddTorrent ??= (() => {
         document.getElementById("dlLimitHidden").value = Number(document.getElementById("dlLimitText").value) * 1024;
         document.getElementById("upLimitHidden").value = Number(document.getElementById("upLimitText").value) * 1024;
 
-        document.getElementById("filePriorities").value = [...document.getElementsByClassName("combo_priority")]
-            .filter((el) => !window.qBittorrent.TorrentContent.isFolder(Number(el.dataset.fileId)))
-            .sort((el1, el2) => Number(el1.dataset.fileId) - Number(el2.dataset.fileId))
-            .map((el) => Number(el.value));
+        document.getElementById("filePriorities").value = table.getFileTreeArray()
+            .filter((node) => !node.isFolder)
+            .sort((node1, node2) => (node1.fileId - node2.fileId))
+            .map((node) => node.priority);
 
         if (!isAutoTMMEnabled())
             document.getElementById("useDownloadPathHidden").value = document.getElementById("useDownloadPath").checked;
@@ -324,6 +325,12 @@ window.qBittorrent.AddTorrent ??= (() => {
             else
                 localPreferences.set("add_torrent_default_category", category);
         }
+    };
+
+    const init = (source, downloader, fetchMetadata) => {
+        table = window.qBittorrent.TorrentContent.init("addTorrentFilesTableDiv", window.qBittorrent.DynamicTable.AddTorrentFilesTable);
+        if (fetchMetadata)
+            loadMetadata(source, downloader);
     };
 
     window.addEventListener("load", async (event) => {
