@@ -1227,7 +1227,7 @@ const initializeWindows = () => {
             const rows = torrentsTable.getFilteredAndSortedRows();
             for (const hash of selectedRows) {
                 const contentPath = rows[hash].full_data.content_path;
-                if ((contentPath !== null) && (contentPath !== ""))
+                if ((contentPath !== null) && (contentPath.length > 0))
                     contentPaths.push(contentPath);
             }
         }
