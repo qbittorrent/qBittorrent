@@ -1886,6 +1886,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
             case "copyComment":
                 setupClickEvent(copyCommentFN);
                 break;
+            case "copyContentPath":
+                setupClickEvent(copyContentPathFN);
+                break;
         }
     }
 
