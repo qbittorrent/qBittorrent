@@ -58,7 +58,7 @@ public:
     ~TrackersAdditionDialog();
 
 private slots:
-    void onAccepted() const;
+    void onAccepted();
     void onDownloadButtonClicked();
     void onTorrentListDownloadFinished(const Net::DownloadResult &result);
 
