@@ -1850,7 +1850,7 @@ void TorrentsController::renameFileAction()
 
     const QString newFileName = QFileInfo(params()[u"newPath"_s]).fileName();
     if (!Utils::Fs::isValidName(newFileName))
-        throw APIError(APIErrorType::Conflict, tr("Invalid filename"));
+        throw APIError(APIErrorType::Conflict, tr("File name has invalid characters"));
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
     BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
