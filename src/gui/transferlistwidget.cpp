@@ -525,6 +525,19 @@ void TransferListWidget::copySelectedNames() const
     qApp->clipboard()->setText(torrentNames.join(u'\n'));
 }
 
+void TransferListWidget::copyContentPaths() const
+{
+    QStringList contentPaths;
+    for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
+    {
+        const Path contentPath = torrent->contentPath();
+        if (!contentPath.isEmpty())
+            contentPaths << contentPath.toString();
+    }
+
+    qApp->clipboard()->setText(contentPaths.join(u'\n'));
+}
+
 void TransferListWidget::copySelectedInfohashes(const CopyInfohashPolicy policy) const
 {
     const auto selectedTorrents = getSelectedTorrents();
@@ -1000,6 +1013,8 @@ void TransferListWidget::displayListMenu()
     connect(actionCopyHash1, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version1); });
     auto *actionCopyHash2 = new QAction(UIThemeManager::instance()->getIcon(u"hash"_s, u"edit-copy"_s), tr("Info h&ash v2"), listMenu);
     connect(actionCopyHash2, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version2); });
+    auto *actionCopyContentPath = new QAction(UIThemeManager::instance()->getIcon(u"directory"_s, u"edit-copy"_s), tr("Content &Path"), listMenu);
+    connect(actionCopyContentPath, &QAction::triggered, this, &TransferListWidget::copyContentPaths);
     auto *actionSuperSeedingMode = new TriStateAction(tr("Super seeding mode"), listMenu);
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
     auto *actionRename = new QAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Re&name..."), listMenu);
@@ -1282,6 +1297,7 @@ void TransferListWidget::displayListMenu()
     copySubMenu->addAction(actionCopyMagnetLink);
     copySubMenu->addAction(actionCopyID);
     copySubMenu->addAction(actionCopyComment);
+    copySubMenu->addAction(actionCopyContentPath);
 
     actionExportTorrent->setToolTip(tr("Exported torrent is not necessarily the same as the imported"));
     listMenu->addAction(actionExportTorrent);

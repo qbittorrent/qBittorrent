@@ -85,6 +85,7 @@ public slots:
     void bottomQueuePosSelectedTorrents();
     void copySelectedMagnetURIs() const;
     void copySelectedNames() const;
+    void copyContentPaths() const;
     void copySelectedInfohashes(CopyInfohashPolicy policy) const;
     void copySelectedIDs() const;
     void copySelectedComments() const;
