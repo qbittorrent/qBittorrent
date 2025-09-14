@@ -137,7 +137,7 @@ namespace
     };
 
     // Option with string value. May not have a shortcut
-    struct StringOption : protected Option
+    class StringOption : protected Option
     {
     public:
         explicit constexpr StringOption(const QStringView name)
