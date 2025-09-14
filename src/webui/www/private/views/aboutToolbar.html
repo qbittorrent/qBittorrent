@@ -17,12 +17,8 @@
         MochaUI.initializeTabs("aboutTabs");
 
         const showContent = (element) => {
-            for (const content of document.querySelectorAll(".aboutTabContent")) {
-                if (content === element)
-                    content.classList.remove("invisible");
-                else
-                    content.classList.add("invisible");
-            }
+            for (const content of document.querySelectorAll(".aboutTabContent"))
+                content.classList.toggle("invisible", (content !== element));
         };
 
         document.getElementById("aboutAboutLink").addEventListener("click", (event) => {
