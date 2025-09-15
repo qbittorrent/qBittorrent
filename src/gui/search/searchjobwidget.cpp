@@ -64,10 +64,12 @@ namespace
         return QApplication::palette().color(QPalette::Disabled, QPalette::WindowText);
     }
 
-    QString statusText(SearchJobWidget::Status st)
+    QString statusText(const SearchJobWidget::Status st)
     {
         switch (st)
         {
+        case SearchJobWidget::Status::Ready:
+            break;
         case SearchJobWidget::Status::Ongoing:
             return SearchJobWidget::tr("Searching...");
         case SearchJobWidget::Status::Finished:
@@ -78,9 +80,8 @@ namespace
             return SearchJobWidget::tr("An error occurred during search...");
         case SearchJobWidget::Status::NoResults:
             return SearchJobWidget::tr("Search returned no results");
-        default:
-            return {};
         }
+        return {};
     }
 }
 
@@ -402,7 +403,7 @@ void SearchJobWidget::copyField(const int column) const
         QApplication::clipboard()->setText(list.join(u'\n'));
 }
 
-void SearchJobWidget::setStatus(Status value)
+void SearchJobWidget::setStatus(const Status value)
 {
     if (m_status == value)
         return;
@@ -426,9 +427,12 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
     else
     {
         SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(engineName, torrentUrl);
-        connect(downloadHandler, &SearchDownloadHandler::downloadFinished
-            , this, [this, option](const QString &source) { addTorrentToSession(source, option); });
-        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this
+            , [this, downloadHandler, option](const QString &source, [[maybe_unused]] const QString &errorMessage)
+        {
+            addTorrentToSession(source, option);
+            downloadHandler->deleteLater();
+        });
     }
 
     setRowVisited(rowIndex.row());
@@ -631,7 +635,7 @@ void SearchJobWidget::searchFinished(bool cancelled)
         setStatus(Status::Finished);
 }
 
-void SearchJobWidget::searchFailed()
+void SearchJobWidget::searchFailed([[maybe_unused]] const QString &errorMessage)
 {
     setStatus(Status::Error);
 }

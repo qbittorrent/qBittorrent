@@ -114,8 +114,8 @@ void SearchController::startAction()
 
     const auto id = generateSearchId();
     const std::shared_ptr<SearchHandler> searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
-    QObject::connect(searchHandler.get(), &SearchHandler::searchFinished, this, [id, this]() { m_activeSearches.remove(id); });
-    QObject::connect(searchHandler.get(), &SearchHandler::searchFailed, this, [id, this]() { m_activeSearches.remove(id); });
+    connect(searchHandler.get(), &SearchHandler::searchFinished, this, [this, id] { m_activeSearches.remove(id); });
+    connect(searchHandler.get(), &SearchHandler::searchFailed, this, [this, id]([[maybe_unused]] const QString &errorMessage) { m_activeSearches.remove(id); });
 
     m_searchHandlers.insert(id, searchHandler);
 
@@ -235,8 +235,8 @@ void SearchController::downloadTorrentAction()
     else
     {
         SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(pluginName, torrentUrl);
-        connect(downloadHandler, &SearchDownloadHandler::downloadFinished
-                , this, [this, downloadHandler](const QString &source)
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this
+            , [this, downloadHandler](const QString &source, [[maybe_unused]] const QString &errorMessage)
         {
             app()->addTorrentManager()->addTorrent(source);
             downloadHandler->deleteLater();
