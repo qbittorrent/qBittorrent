@@ -46,8 +46,10 @@ const submitLoginForm = (event) => {
         })
         .then(async (response) => {
                 if (response.ok) {
-                    location.replace(location); // redirect
-                    location.reload(true);
+                    // normalize the URL so there's always _some_ path
+                    const url = new URL(location.href);
+                    // reload the page
+                    location.href = url.toString();
                 }
                 else {
                     const responseText = await response.text();
