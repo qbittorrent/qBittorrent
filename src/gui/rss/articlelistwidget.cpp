@@ -64,7 +64,7 @@ QListWidgetItem *ArticleListWidget::mapRSSArticle(RSS::Article *rssArticle) cons
     return m_rssArticleToListItemMapping.value(rssArticle);
 }
 
-void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
+void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly, QString const& filter)
 {
     // Clear the list first
     clear();
@@ -80,9 +80,10 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
         connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
         connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
 
+        QString loweredFilter = filter.toLower();
         for (auto *article : asConst(rssItem->articles()))
         {
-            if (!(m_unreadOnly && article->isRead()))
+            if (!(m_unreadOnly && article->isRead()) && (filter.isEmpty() || article->title().toLower().contains(loweredFilter)))
             {
                 auto *item = createItem(article);
                 addItem(item);

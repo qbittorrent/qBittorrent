@@ -33,6 +33,7 @@
 #include <QWidget>
 
 #include "gui/guiapplicationcomponent.h"
+#include "gui/lineedit.h"
 
 class QListWidgetItem;
 class QTreeWidgetItem;
@@ -85,10 +86,12 @@ private slots:
     void on_rssDownloaderBtn_clicked();
     void handleSessionProcessingStateChanged(bool enabled);
     void handleUnreadCountChanged();
+    void handleRSSFilterTextChanged(const QString& newFilter);
 
 private:
     bool eventFilter(QObject *obj, QEvent *event) override;
     void renderArticle(const RSS::Article *article) const;
 
+    LineEdit* m_rssFilter = nullptr;
     Ui::RSSWidget *m_ui = nullptr;
 };

@@ -130,6 +130,20 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
 #endif
 
+    auto *rssFilter = new LineEdit(this);
+    rssFilter->setObjectName("rssFilter");
+    QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+    sizePolicy.setHorizontalStretch(200);
+    sizePolicy.setVerticalStretch(0);
+    sizePolicy.setHeightForWidth(rssFilter->sizePolicy().hasHeightForWidth());
+    rssFilter->setSizePolicy(sizePolicy);
+    rssFilter->setProperty("placeholderText", u"Filter..."_s);
+    m_rssFilter = rssFilter;
+
+    const auto spacer_index = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
+    m_ui->horizontalLayout->insertWidget(spacer_index+1, rssFilter);
+
+    connect(rssFilter, &QLineEdit::textChanged, this, &RSSWidget::handleRSSFilterTextChanged);
     connect(m_ui->articleListWidget, &ArticleListWidget::customContextMenuRequested, this, &RSSWidget::displayItemsListMenu);
     connect(m_ui->articleListWidget, &ArticleListWidget::currentItemChanged, this, &RSSWidget::handleCurrentArticleItemChanged);
     connect(m_ui->articleListWidget, &ArticleListWidget::itemDoubleClicked, this, &RSSWidget::downloadSelectedTorrents);
@@ -568,7 +582,8 @@ void RSSWidget::copySelectedFeedsURL()
 void RSSWidget::handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem)
 {
     m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
-                                    , (currentItem == m_ui->feedListWidget->stickyUnreadItem()));
+                                    , (currentItem == m_ui->feedListWidget->stickyUnreadItem())
+                                    , m_rssFilter->text());
 }
 
 void RSSWidget::on_markReadButton_clicked()
@@ -639,6 +654,14 @@ void RSSWidget::handleSessionProcessingStateChanged(bool enabled)
 void RSSWidget::handleUnreadCountChanged()
 {
     emit unreadCountUpdated(RSS::Session::instance()->rootFolder()->unreadCount());
+}
+
+void RSSWidget::handleRSSFilterTextChanged([[maybe_unused]] const QString& newFilter)
+{
+    auto *currentItem = m_ui->feedListWidget->currentItem();
+    m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
+                                    , (currentItem == m_ui->feedListWidget->stickyUnreadItem())
+                                    , newFilter);
 }
 
 bool RSSWidget::eventFilter(QObject *obj, QEvent *event)
