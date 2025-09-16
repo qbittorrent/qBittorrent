@@ -137,7 +137,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     sizePolicy.setVerticalStretch(0);
     sizePolicy.setHeightForWidth(rssFilter->sizePolicy().hasHeightForWidth());
     rssFilter->setSizePolicy(sizePolicy);
-    rssFilter->setProperty("placeholderText", u"Filter..."_s);
+    rssFilter->setProperty("placeholderText", tr("Filter torrents..."));
     m_rssFilter = rssFilter;
 
     const auto spacer_index = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
