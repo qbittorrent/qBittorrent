@@ -64,7 +64,7 @@ QListWidgetItem *ArticleListWidget::mapRSSArticle(RSS::Article *rssArticle) cons
     return m_rssArticleToListItemMapping.value(rssArticle);
 }
 
-void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly, QString const& filter)
+void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly, const QString &filter)
 {
     // Clear the list first
     clear();
