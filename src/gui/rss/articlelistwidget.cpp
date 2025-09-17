@@ -80,7 +80,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly, const QS
         connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
         connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
 
-        QString loweredFilter = filter.toLower();
+        const QString loweredFilter = filter.toLower();
         for (auto *article : asConst(rssItem->articles()))
         {
             if (!(m_unreadOnly && article->isRead()) && (filter.isEmpty() || article->title().toLower().contains(loweredFilter)))
