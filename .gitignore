@@ -41,3 +41,6 @@ src/icons/skin/build-icons/icons/*.png
 
 # CMake build directory
 build/
+
+# clangd index
+.cache/clangd/
