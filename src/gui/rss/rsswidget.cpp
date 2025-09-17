@@ -656,7 +656,7 @@ void RSSWidget::handleUnreadCountChanged()
     emit unreadCountUpdated(RSS::Session::instance()->rootFolder()->unreadCount());
 }
 
-void RSSWidget::handleRSSFilterTextChanged([[maybe_unused]] const QString& newFilter)
+void RSSWidget::handleRSSFilterTextChanged(const QString &newFilter)
 {
     auto *currentItem = m_ui->feedListWidget->currentItem();
     m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
