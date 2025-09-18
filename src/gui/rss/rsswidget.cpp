@@ -130,15 +130,14 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
 #endif
 
-    auto *rssFilter = new LineEdit(this);
-    rssFilter->setObjectName("rssFilter");
-    QSizePolicy sizePolicy(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+    m_rssFilter = new LineEdit(this);
+    m_rssFilter->setObjectName("rssFilter");
+    QSizePolicy sizePolicy {QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed};
     sizePolicy.setHorizontalStretch(200);
     sizePolicy.setVerticalStretch(0);
     sizePolicy.setHeightForWidth(rssFilter->sizePolicy().hasHeightForWidth());
-    rssFilter->setSizePolicy(sizePolicy);
-    rssFilter->setProperty("placeholderText", tr("Filter torrents..."));
-    m_rssFilter = rssFilter;
+    m_rssFilter->setSizePolicy(sizePolicy);
+    m_rssFilter->setPlaceholderText(tr("Filter torrents..."));
 
     const auto spacer_index = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
     m_ui->horizontalLayout->insertWidget(spacer_index+1, rssFilter);
