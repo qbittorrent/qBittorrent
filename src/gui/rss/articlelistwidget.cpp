@@ -83,7 +83,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly, const QS
         const QString loweredFilter = filter.toLower();
         for (auto *article : asConst(rssItem->articles()))
         {
-            if (!(m_unreadOnly && article->isRead()) && (filter.isEmpty() || article->title().toLower().contains(loweredFilter)))
+            if (!(m_unreadOnly && article->isRead()) && (filter.isEmpty() || article->title().contains(filter, Qt::CaseInsensitive)))
             {
                 auto *item = createItem(article);
                 addItem(item);
