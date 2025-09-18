@@ -135,14 +135,14 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     QSizePolicy sizePolicy {QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed};
     sizePolicy.setHorizontalStretch(200);
     sizePolicy.setVerticalStretch(0);
-    sizePolicy.setHeightForWidth(rssFilter->sizePolicy().hasHeightForWidth());
+    sizePolicy.setHeightForWidth(m_rssFilter->sizePolicy().hasHeightForWidth());
     m_rssFilter->setSizePolicy(sizePolicy);
     m_rssFilter->setPlaceholderText(tr("Filter torrents..."));
 
     const auto spacer_index = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
-    m_ui->horizontalLayout->insertWidget(spacer_index+1, rssFilter);
+    m_ui->horizontalLayout->insertWidget(spacer_index+1, m_rssFilter);
 
-    connect(rssFilter, &QLineEdit::textChanged, this, &RSSWidget::handleRSSFilterTextChanged);
+    connect(m_rssFilter, &QLineEdit::textChanged, this, &RSSWidget::handleRSSFilterTextChanged);
     connect(m_ui->articleListWidget, &ArticleListWidget::customContextMenuRequested, this, &RSSWidget::displayItemsListMenu);
     connect(m_ui->articleListWidget, &ArticleListWidget::currentItemChanged, this, &RSSWidget::handleCurrentArticleItemChanged);
     connect(m_ui->articleListWidget, &ArticleListWidget::itemDoubleClicked, this, &RSSWidget::downloadSelectedTorrents);
