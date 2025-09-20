@@ -299,9 +299,16 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         case TorrentContentModelItem::COL_NAME:
             {
                 const QString currentName = item->name();
-                const QString newName = value.toString();
+                const QString newName = value.toString().trimmed();
+
                 if (currentName != newName)
                 {
+                    if (!Utils::Fs::isValidName(newName))
+                    {
+                        emit renameFailed(tr("The name is invalid: \"%1\"").arg(newName));
+                        return false;
+                    }
+
                     try
                     {
                         const Path parentPath = getItemPath(index.parent());
