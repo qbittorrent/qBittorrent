@@ -443,7 +443,7 @@
                 visibleArticles = visibleArticles.filter((a) => !a.isRead);
 
             const rssFilterInput = document.getElementById("rssFilterInput");
-            if (rssFilterInput.value) {
+            if (rssFilterInput.value.length > 0) {
                 const lowerFilter = rssFilterInput.value.toLowerCase();
                 visibleArticles = visibleArticles.filter((a) => a.title.toLowerCase().includes(lowerFilter));
             }
