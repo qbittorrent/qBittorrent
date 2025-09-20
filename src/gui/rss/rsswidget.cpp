@@ -653,7 +653,7 @@ void RSSWidget::handleUnreadCountChanged()
 
 void RSSWidget::handleRSSFilterTextChanged(const QString &newFilter)
 {
-    auto *currentItem = m_ui->feedListWidget->currentItem();
+    QTreeWidgetItem *currentItem = m_ui->feedListWidget->currentItem();
     m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
                                     , (currentItem == m_ui->feedListWidget->stickyUnreadItem())
                                     , newFilter);
