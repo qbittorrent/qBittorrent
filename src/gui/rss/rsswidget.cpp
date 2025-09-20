@@ -49,6 +49,7 @@
 #include "base/rss/rss_session.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/interfaces/iguiapplication.h"
+#include "gui/lineedit.h"
 #include "gui/uithememanager.h"
 #include "gui/utils/keysequence.h"
 #include "articlelistwidget.h"

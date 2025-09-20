@@ -33,8 +33,8 @@
 #include <QWidget>
 
 #include "gui/guiapplicationcomponent.h"
-#include "gui/lineedit.h"
 
+class LineEdit;
 class QListWidgetItem;
 class QTreeWidgetItem;
 
