@@ -132,12 +132,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
 #endif
 
     m_rssFilter = new LineEdit(this);
-    m_rssFilter->setObjectName("rssFilter");
-    QSizePolicy sizePolicy {QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed};
-    sizePolicy.setHorizontalStretch(200);
-    sizePolicy.setVerticalStretch(0);
-    sizePolicy.setHeightForWidth(m_rssFilter->sizePolicy().hasHeightForWidth());
-    m_rssFilter->setSizePolicy(sizePolicy);
+    m_rssFilter->setMaximumWidth(200);
     m_rssFilter->setPlaceholderText(tr("Filter feed items..."));
 
     const auto spacer_index = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
