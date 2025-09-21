@@ -92,6 +92,6 @@ private:
     bool eventFilter(QObject *obj, QEvent *event) override;
     void renderArticle(const RSS::Article *article) const;
 
-    LineEdit *m_rssFilter = nullptr;
     Ui::RSSWidget *m_ui = nullptr;
+    LineEdit *m_rssFilter = nullptr;
 };
