@@ -109,6 +109,7 @@ namespace
 RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::RSSWidget}
+    , m_rssFilter {new LineEdit(this)}
 {
     m_ui->setupUi(this);
 
@@ -131,7 +132,6 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
 #endif
 
-    m_rssFilter = new LineEdit(this);
     m_rssFilter->setMaximumWidth(200);
     m_rssFilter->setPlaceholderText(tr("Filter feed items..."));
 
