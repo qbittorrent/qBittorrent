@@ -36,6 +36,7 @@
 #include <limits>
 
 #include <QApplication>
+#include <QClipboard>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QDialogButtonBox>
@@ -62,6 +63,7 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/utils/apikey.h"
 #include "base/utils/compare.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
@@ -131,6 +133,15 @@ namespace
     bool isValidWebUIPassword(const QString &password)
     {
         return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
+    }
+
+    QString maskAPIKey(const QString &key)
+    {
+        Q_ASSERT(Utils::APIKey::isValid(key));
+        if (!Utils::APIKey::isValid(key)) [[unlikely]]
+            return {};
+
+        return key.first(4) + QString((key.length() - 10), QChar(u'•')) + key.last(6);
     }
 
     // Shortcuts for frequently used signals that have more than one overload. They would require
@@ -1336,6 +1347,25 @@ void OptionsDialog::loadWebUITabOptions()
     webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath());
     webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath());
     m_ui->textWebUIUsername->setText(pref->getWebUIUsername());
+
+    // API Key
+    if (const QString apiKey = pref->getWebUIApiKey(); Utils::APIKey::isValid(apiKey))
+    {
+        m_currentAPIKey = apiKey;
+        m_ui->textWebUIAPIKey->setText(maskAPIKey(m_currentAPIKey));
+        m_ui->textWebUIAPIKey->setEnabled(true);
+        m_ui->btnWebUIAPIKeyCopy->setEnabled(true);
+        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Rotate API key"));
+    }
+    else
+    {
+        m_currentAPIKey.clear();
+        m_ui->textWebUIAPIKey->clear();
+        m_ui->textWebUIAPIKey->setEnabled(false);
+        m_ui->btnWebUIAPIKeyCopy->setEnabled(false);
+        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Generate API key"));
+    }
+
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUILocalAuthEnabled());
     m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUIAuthSubnetWhitelistEnabled());
     m_ui->IPSubnetWhitelistButton->setEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
@@ -1376,6 +1406,8 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->btnWebUIAPIKeyCopy, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyCopy);
+    connect(m_ui->btnWebUIAPIKeyRotate, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyRotate);
 
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1450,6 +1482,38 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setDynDomainName(m_ui->domainNameTxt->text());
     pref->setDynDNSUsername(m_ui->DNSUsernameTxt->text());
     pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
+}
+
+void OptionsDialog::onBtnWebUIAPIKeyCopy()
+{
+    if (!m_currentAPIKey.isEmpty())
+        QApplication::clipboard()->setText(m_currentAPIKey);
+}
+
+void OptionsDialog::onBtnWebUIAPIKeyRotate()
+{
+    const QString title = m_currentAPIKey.isEmpty()
+        ? tr("Generate API key")
+        : tr("Rotate API key");
+    const QString message = m_currentAPIKey.isEmpty()
+        ? tr("Generate an API key? This key can be used to interact with qBittorrent's API.")
+        : tr("Rotate this API key? The current key will immediately stop working and a new key will be generated.");
+
+    const QMessageBox::StandardButton button = QMessageBox::question(
+        this, title, message, (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
+
+    if (button == QMessageBox::Yes)
+    {
+        m_currentAPIKey = Utils::APIKey::generate();
+        m_ui->textWebUIAPIKey->setText(maskAPIKey(m_currentAPIKey));
+        m_ui->textWebUIAPIKey->setEnabled(true);
+        m_ui->btnWebUIAPIKeyCopy->setEnabled(true);
+        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Rotate API key"));
+
+        auto *preferences = Preferences::instance();
+        preferences->setWebUIApiKey(m_currentAPIKey);
+        preferences->apply();
+    }
 }
 #endif // DISABLE_WEBUI
 
