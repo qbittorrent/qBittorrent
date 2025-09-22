@@ -136,7 +136,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     m_rssFilter->setPlaceholderText(tr("Filter feed items..."));
 
     const int spacerIndex = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
-    m_ui->horizontalLayout->insertWidget(spacerIndex + 1, m_rssFilter);
+    m_ui->horizontalLayout->insertWidget((spacerIndex + 1), m_rssFilter);
 
     connect(m_rssFilter, &QLineEdit::textChanged, this, &RSSWidget::handleRSSFilterTextChanged);
     connect(m_ui->articleListWidget, &ArticleListWidget::customContextMenuRequested, this, &RSSWidget::displayItemsListMenu);
