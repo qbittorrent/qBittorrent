@@ -30,14 +30,7 @@
 
 #include <QObject>
 
-#include "base/exceptions.h"
 #include "base/path.h"
-
-class AsyncFileStorageError final : public RuntimeError
-{
-public:
-    using RuntimeError::RuntimeError;
-};
 
 class AsyncFileStorage final : public QObject
 {

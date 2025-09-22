@@ -31,6 +31,7 @@
 #include <QDebug>
 #include <QMetaObject>
 
+#include "base/logger.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 
@@ -41,7 +42,11 @@ AsyncFileStorage::AsyncFileStorage(const Path &storageFolderPath, QObject *paren
     Q_ASSERT(m_storageDir.isAbsolute());
 
     if (!Utils::Fs::mkpath(m_storageDir))
-        throw AsyncFileStorageError(tr("Could not create directory '%1'.").arg(m_storageDir.toString()));
+    {
+        const QString errorMessage = tr("Could not create directory '%1'.").arg(m_storageDir.toString());
+        LogMsg(errorMessage, Log::CRITICAL);
+        qFatal() << errorMessage;
+    }
 }
 
 void AsyncFileStorage::store(const Path &filePath, const QByteArray &data)
