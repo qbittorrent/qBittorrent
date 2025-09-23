@@ -113,6 +113,7 @@ const QString KEY_PROP_PEERS = u"peers"_s;
 const QString KEY_PROP_PEERS_TOTAL = u"peers_total"_s;
 const QString KEY_PROP_RATIO = u"share_ratio"_s;
 const QString KEY_PROP_POPULARITY = u"popularity"_s;
+const QString KEY_PROP_IMPORTANCE = u"importance"_s;
 const QString KEY_PROP_REANNOUNCE = u"reannounce"_s;
 const QString KEY_PROP_TOTAL_SIZE = u"total_size"_s;
 const QString KEY_PROP_PIECES_NUM = u"pieces_num"_s;
@@ -676,6 +677,7 @@ void TorrentsController::infoAction()
 //   - "peers_total": Torrent total number of peers
 //   - "share_ratio": Torrent share ratio
 //   - "popularity": Torrent popularity
+//   - "importance": Torrent importance
 //   - "reannounce": Torrent next reannounce time
 //   - "total_size": Torrent total size
 //   - "pieces_num": Torrent pieces count
@@ -711,6 +713,7 @@ void TorrentsController::propertiesAction()
     const int uploadLimit = torrent->uploadLimit();
     const qreal ratio = torrent->realRatio();
     const qreal popularity = torrent->popularity();
+    const qreal importance = torrent->importance();
     const bool hasMetadata = torrent->hasMetadata();
     const bool isPrivate = torrent->isPrivate();
 
@@ -742,6 +745,7 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PEERS_TOTAL, torrent->totalLeechersCount()},
         {KEY_PROP_RATIO, ((ratio >= BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio)},
         {KEY_PROP_POPULARITY, ((popularity >= BitTorrent::Torrent::MAX_RATIO) ? -1 : popularity)},
+        {KEY_PROP_IMPORTANCE, ((importance >= BitTorrent::Torrent::MAX_RATIO) ? -1 : importance)},
         {KEY_PROP_REANNOUNCE, torrent->nextAnnounce()},
         {KEY_PROP_TOTAL_SIZE, torrent->totalSize()},
         {KEY_PROP_PIECES_NUM, torrent->piecesCount()},
