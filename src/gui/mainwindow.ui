@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>914</width>
+    <width>932</width>
     <height>563</height>
    </rect>
   </property>
@@ -34,8 +34,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>914</width>
-     <height>22</height>
+     <width>932</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEdit">
@@ -159,6 +159,8 @@
    <addaction name="actionIncreaseQueuePos"/>
    <addaction name="actionDecreaseQueuePos"/>
    <addaction name="actionBottomQueuePos"/>
+   <addaction name="separator"/>
+   <addaction name="actionCreateTorrent"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock"/>
