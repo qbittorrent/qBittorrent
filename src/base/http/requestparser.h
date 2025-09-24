@@ -62,7 +62,7 @@ namespace Http
 
         ParseResult doParse(QByteArrayView data);
         bool parseStartLines(QByteArrayView data);
-        bool parseRequestLine(const QString &line);
+        bool parseRequestLine(QByteArrayView line);
 
         bool parsePostMessage(QByteArrayView data);
         bool parseFormData(QByteArrayView data);
