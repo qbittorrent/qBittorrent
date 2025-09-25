@@ -406,7 +406,7 @@ void AutoDownloader::handleFeedURLChanged(Feed *feed, const QString &oldURL)
 {
     for (AutoDownloadRule &rule : m_rules)
     {
-        if (const auto i = rule.feedURLs().indexOf(oldURL); i >= 0)
+        if (const qsizetype i = rule.feedURLs().indexOf(oldURL); i >= 0)
         {
             auto feedURLs = rule.feedURLs();
             feedURLs.replace(i, feed->url());

@@ -637,7 +637,7 @@ void TorrentsController::infoAction()
         });
     }
 
-    const int size = torrentList.size();
+    const qsizetype size = torrentList.size();
     // normalize offset
     if (offset < 0)
         offset = size + offset;
@@ -993,11 +993,11 @@ void TorrentsController::pieceStatesAction()
 
     QJsonArray pieceStates;
     const QBitArray states = torrent->pieces();
-    for (int i = 0; i < states.size(); ++i)
+    for (qsizetype i = 0; i < states.size(); ++i)
         pieceStates.append(static_cast<int>(states[i]) * 2);
 
     const QBitArray dlstates = torrent->fetchDownloadingPieces().takeResult();
-    for (int i = 0; i < states.size(); ++i)
+    for (qsizetype i = 0; i < states.size(); ++i)
     {
         if (dlstates[i])
             pieceStates[i] = 1;

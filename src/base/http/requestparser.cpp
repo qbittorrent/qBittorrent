@@ -63,7 +63,7 @@ namespace
     std::optional<QStringPair> parseHeaderLine(const QByteArrayView line)
     {
         // [rfc7230] 3.2. Header Fields
-        const int i = line.indexOf(u':');
+        const qsizetype i = line.indexOf(u':');
         if (i <= 0)
         {
             qWarning() << Q_FUNC_INFO << "invalid http header:" << line;
@@ -85,7 +85,7 @@ RequestParser::ParseResult RequestParser::parse(const QByteArray &data)
 RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
 {
     // we don't handle malformed requests which use double `LF` as delimiter
-    const int headerEnd = data.indexOf(EOH);
+    const qsizetype headerEnd = data.indexOf(EOH);
     if (headerEnd < 0)
     {
         qDebug() << Q_FUNC_INFO << "incomplete request";
@@ -99,7 +99,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
         return {ParseStatus::BadRequest, Request(), 0};
     }
 
-    const int headerLength = headerEnd + EOH.length();
+    const qsizetype headerLength = headerEnd + EOH.length();
 
     // handle supported methods
     if ((m_request.method == HEADER_REQUEST_METHOD_GET) || (m_request.method == HEADER_REQUEST_METHOD_HEAD))
@@ -117,7 +117,7 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArrayView data)
             return Utils::String::parseInt(rawValue).value_or(-1);
         };
 
-        const int contentLength = parseContentLength();
+        const qsizetype contentLength = parseContentLength();
         if (contentLength < 0)
         {
             qWarning() << Q_FUNC_INFO << "bad request: content-length invalid";
@@ -266,7 +266,7 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
 
         // find boundary delimiter
         const QString boundaryFieldName = u"boundary="_s;
-        const int idx = contentType.indexOf(boundaryFieldName);
+        const qsizetype idx = contentType.indexOf(boundaryFieldName);
         if (idx < 0)
         {
             qWarning() << Q_FUNC_INFO << "Could not find boundary in multipart/form-data header!";
@@ -305,7 +305,7 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
 
 bool RequestParser::parseFormData(const QByteArrayView data)
 {
-    const int eohPos = data.indexOf(EOH);
+    const qsizetype eohPos = data.indexOf(EOH);
 
     if (eohPos < 0)
     {
@@ -333,7 +333,7 @@ bool RequestParser::parseFormData(const QByteArrayView data)
 
             for (const auto &directive : directives)
             {
-                const int idx = directive.indexOf(u'=');
+                const qsizetype idx = directive.indexOf(u'=');
                 if (idx < 0)
                     continue;
 
