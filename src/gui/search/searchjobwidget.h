@@ -112,7 +112,7 @@ private:
     void contextMenuEvent(QContextMenuEvent *event) override;
     void onItemDoubleClicked(const QModelIndex &index);
     void searchFinished(bool cancelled);
-    void searchFailed();
+    void searchFailed(const QString &errorMessage);
     void appendSearchResults(const QList<SearchResult> &results);
     void updateResultsCount();
     void setStatus(Status value);
