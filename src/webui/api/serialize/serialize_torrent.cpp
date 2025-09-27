@@ -85,6 +85,70 @@ namespace
             return u"unknown"_s;
         }
     }
+
+    QString getOverallTrackerStatus(const BitTorrent::Torrent &torrent)
+    {
+        const QList<BitTorrent::TrackerEntryStatus> trackers = torrent.trackers();
+
+        if (trackers.isEmpty())
+            return u"Not contacted"_s;
+
+        // Find the tracker with the highest priority status
+        QString workingMessage;
+        QString updatingMessage;
+        QString trackerErrorMessage;
+        QString unreachableMessage;
+        QString notWorkingMessage;
+        QString notContactedMessage;
+
+        for (const BitTorrent::TrackerEntryStatus &tracker : trackers)
+        {
+            switch (tracker.state)
+            {
+            case BitTorrent::TrackerEndpointState::Working:
+                if (workingMessage.isEmpty())
+                    workingMessage = tracker.message.isEmpty() ? u"Working"_s : tracker.message;
+                break;
+            case BitTorrent::TrackerEndpointState::Updating:
+                if (updatingMessage.isEmpty())
+                    updatingMessage = tracker.message.isEmpty() ? u"Updating"_s : tracker.message;
+                break;
+            case BitTorrent::TrackerEndpointState::TrackerError:
+                if (trackerErrorMessage.isEmpty())
+                    trackerErrorMessage = tracker.message.isEmpty() ? u"Tracker error"_s : tracker.message;
+                break;
+            case BitTorrent::TrackerEndpointState::Unreachable:
+                if (unreachableMessage.isEmpty())
+                    unreachableMessage = tracker.message.isEmpty() ? u"Unreachable"_s : tracker.message;
+                break;
+            case BitTorrent::TrackerEndpointState::NotWorking:
+                if (notWorkingMessage.isEmpty())
+                    notWorkingMessage = tracker.message.isEmpty() ? u"Not working"_s : tracker.message;
+                break;
+            case BitTorrent::TrackerEndpointState::NotContacted:
+                if (notContactedMessage.isEmpty())
+                    notContactedMessage = tracker.message.isEmpty() ? u"Not contacted"_s : tracker.message;
+                break;
+            }
+        }
+
+        // Priority: Working > Updating > TrackerError > Unreachable > NotWorking > NotContacted
+        if (!workingMessage.isEmpty())
+            return workingMessage;
+        if (!updatingMessage.isEmpty())
+            return updatingMessage;
+        if (!trackerErrorMessage.isEmpty())
+            return trackerErrorMessage;
+        if (!unreachableMessage.isEmpty())
+            return unreachableMessage;
+        if (!notWorkingMessage.isEmpty())
+            return notWorkingMessage;
+        if (!notContactedMessage.isEmpty())
+            return notContactedMessage;
+
+        // Default case - should not happen with non-empty tracker list
+        return u"Not contacted"_s;
+    }
 }
 
 QVariantMap serialize(const BitTorrent::Torrent &torrent)
@@ -152,6 +216,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_ADDED_ON, Utils::DateTime::toSecsSinceEpoch(torrent.addedTime())},
         {KEY_TORRENT_COMPLETION_ON, Utils::DateTime::toSecsSinceEpoch(torrent.completedTime())},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},
+        {KEY_TORRENT_TRACKER_STATUS, getOverallTrackerStatus(torrent)},
         {KEY_TORRENT_TRACKERS_COUNT, torrent.trackers().size()},
         {KEY_TORRENT_DL_LIMIT, torrent.downloadLimit()},
         {KEY_TORRENT_UP_LIMIT, torrent.uploadLimit()},
