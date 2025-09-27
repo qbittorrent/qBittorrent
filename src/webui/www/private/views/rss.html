@@ -503,7 +503,7 @@
                 const iframeElement = document.createElement("iframe");
                 iframeElement.id = "rssDescription";
                 iframeElement.sandbox = "allow-same-origin"; // allowed to get parent css
-                iframeElement.srcdoc = `<html ${rootColor}><head><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="css/style.css?v=${CACHEID}"></head><body>${articleDescription}</body></html>`;
+                iframeElement.srcdoc = `<html ${rootColor}><head><meta charset="utf-8"><meta name="referrer" content="same-origin"><link rel="stylesheet" type="text/css" href="css/style.css?v=${CACHEID}"></head><body>${articleDescription}</body></html>`;
 
                 detailsView.append(iframeElement);
             }
