@@ -87,7 +87,7 @@ namespace
     // savePath is a folder, not an absolute file path
     int indexOfPath(const FileSystemPathComboEdit *fsPathEdit, const Path &savePath)
     {
-        for (int i = 0; i < fsPathEdit->count(); ++i)
+        for (qsizetype i = 0; i < fsPathEdit->count(); ++i)
         {
             if (fsPathEdit->item(i) == savePath)
                 return i;
@@ -130,7 +130,7 @@ namespace
 
         auto pathList = settings()->loadValue<QStringList>(settingsKey);
 
-        const int selectedSavePathIndex = pathList.indexOf(path.toString());
+        const qsizetype selectedSavePathIndex = pathList.indexOf(path.toString());
         if (selectedSavePathIndex > -1)
             pathList.move(selectedSavePathIndex, 0);
         else
@@ -598,7 +598,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
         const auto torrentInfo = *torrentDescr.info();
         const QList<BitTorrent::DownloadPriority> &priorities = m_contentAdaptor->filePriorities();
         Q_ASSERT(priorities.size() == torrentInfo.filesCount());
-        for (int i = 0; i < priorities.size(); ++i)
+        for (qsizetype i = 0; i < priorities.size(); ++i)
         {
             if (priorities[i] > BitTorrent::DownloadPriority::Ignored)
                 torrentSize += torrentInfo.fileSize(i);

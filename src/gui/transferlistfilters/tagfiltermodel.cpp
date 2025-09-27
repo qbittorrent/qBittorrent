@@ -322,7 +322,7 @@ int TagFilterModel::findRow(const Tag &tag) const
     if (!tag.isValid())
         return -1;
 
-    for (int i = 0; i < m_tagItems.size(); ++i)
+    for (qsizetype i = 0; i < m_tagItems.size(); ++i)
     {
         if (m_tagItems[i].tag() == tag)
             return i;

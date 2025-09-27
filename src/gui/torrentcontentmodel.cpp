@@ -194,7 +194,7 @@ void TorrentContentModel::updateFilesProgress()
     if (m_filesIndex.size() != filesProgress.size()) [[unlikely]]
         return;
 
-    for (int i = 0; i < filesProgress.size(); ++i)
+    for (qsizetype i = 0; i < filesProgress.size(); ++i)
         m_filesIndex[i]->setProgress(filesProgress[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
@@ -211,7 +211,7 @@ void TorrentContentModel::updateFilesPriorities()
     if (m_filesIndex.size() != fprio.size())
         return;
 
-    for (int i = 0; i < fprio.size(); ++i)
+    for (qsizetype i = 0; i < fprio.size(); ++i)
         m_filesIndex[i]->setPriority(static_cast<BitTorrent::DownloadPriority>(fprio[i]));
 }
 
@@ -226,7 +226,7 @@ void TorrentContentModel::updateFilesAvailability()
         if (!m_contentHandler || (m_contentHandler != handler))
             return;
 
-        for (int i = 0; i < m_filesIndex.size(); ++i)
+        for (qsizetype i = 0; i < m_filesIndex.size(); ++i)
             m_filesIndex[i]->setAvailability(availableFileFractions.value(i, 0));
         // Update folders progress in the tree
         m_rootItem->recalculateProgress();

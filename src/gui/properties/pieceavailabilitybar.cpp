@@ -145,7 +145,7 @@ QImage PieceAvailabilityBar::renderImage()
     QList<float> scaledPieces = intToFloatVector(m_pieces, image.width());
 
     // filling image
-    for (int x = 0; x < scaledPieces.size(); ++x)
+    for (qsizetype x = 0; x < scaledPieces.size(); ++x)
     {
         float piecesToValue = scaledPieces.at(x);
         image.setPixel(x, 0, pieceColors()[piecesToValue * 255]);

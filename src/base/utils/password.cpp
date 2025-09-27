@@ -57,11 +57,11 @@ namespace Utils
 // Taken from https://crackstation.net/hashing-security.htm
 bool Utils::Password::slowEquals(const QByteArray &a, const QByteArray &b)
 {
-    const int lengthA = a.length();
-    const int lengthB = b.length();
+    const qsizetype lengthA = a.length();
+    const qsizetype lengthB = b.length();
 
-    int diff = lengthA ^ lengthB;
-    for (int i = 0; (i < lengthA) && (i < lengthB); ++i)
+    qsizetype diff = lengthA ^ lengthB;
+    for (qsizetype i = 0; (i < lengthA) && (i < lengthB); ++i)
         diff |= a[i] ^ b[i];
 
     return (diff == 0);

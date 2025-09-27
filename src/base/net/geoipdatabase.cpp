@@ -305,7 +305,7 @@ QVariantHash GeoIPDatabase::readMetadata() const
     }
 
     const QByteArray data = QByteArray::fromRawData(ptr, size);
-    int index = data.lastIndexOf(METADATA_BEGIN_MARK);
+    qsizetype index = data.lastIndexOf(METADATA_BEGIN_MARK);
     if (index >= 0)
     {
         if (m_size > MAX_METADATA_SIZE)

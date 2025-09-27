@@ -100,12 +100,12 @@ public:
             m_parent->decreaseTorrentsCount(delta);
     }
 
-    int pos() const
+    qsizetype pos() const
     {
         if (!m_parent)
             return -1;
 
-        if (const int posByName = m_parent->m_childUids.indexOf(m_name); posByName >= 0)
+        if (const qsizetype posByName = m_parent->m_childUids.indexOf(m_name); posByName >= 0)
             return posByName;
 
         // special cases
@@ -174,7 +174,7 @@ namespace
 {
     QString shortName(const QString &fullName)
     {
-        const int pos = fullName.lastIndexOf(u'/');
+        const qsizetype pos = fullName.lastIndexOf(u'/');
         if (pos >= 0)
             return fullName.sliced(pos + 1);
         return fullName;

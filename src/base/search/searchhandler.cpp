@@ -206,7 +206,7 @@ void SearchHandler::readSearchOutput()
 bool SearchHandler::parseSearchResult(const QByteArrayView line, SearchResult &searchResult)
 {
     const QList<QByteArrayView> parts = Utils::ByteArray::splitToViews(line, "|");
-    const int nbFields = parts.size();
+    const qsizetype nbFields = parts.size();
 
     if (nbFields <= PL_ENGINE_URL)
         return false; // Anything after ENGINE_URL is optional

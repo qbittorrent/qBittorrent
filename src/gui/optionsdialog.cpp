@@ -1868,7 +1868,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
     if (index < 0)
     {
         //Attempt to find a language match without a country
-        const int pos = name.indexOf(u'_');
+        const qsizetype pos = name.indexOf(u'_');
         if (pos > -1)
         {
             const QString lang = name.first(pos);

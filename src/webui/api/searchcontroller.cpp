@@ -184,7 +184,7 @@ void SearchController::resultsAction()
 
     const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
     const QList<SearchResult> searchResults = searchHandler->results();
-    const int size = searchResults.size();
+    const qsizetype size = searchResults.size();
 
     if (offset > size)
         throw APIError(APIErrorType::Conflict, tr("Offset is out of range"));

@@ -543,7 +543,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
 
     const auto replaceVariables = [torrent](QString str) -> QString
     {
-        for (int i = (str.length() - 2); i >= 0; --i)
+        for (qsizetype i = (str.length() - 2); i >= 0; --i)
         {
             if (str[i] != u'%')
                 continue;

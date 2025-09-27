@@ -184,7 +184,7 @@ QByteArray TorrentInfo::rawData() const
     if (!isValid()) return {};
 #ifdef QBT_USES_LIBTORRENT2
     const lt::span<const char> infoSection {m_nativeInfo->info_section()};
-    return {infoSection.data(), static_cast<int>(infoSection.size())};
+    return {infoSection.data(), static_cast<qsizetype>(infoSection.size())};
 #else
     return {m_nativeInfo->metadata().get(), m_nativeInfo->metadata_size()};
 #endif
@@ -214,7 +214,7 @@ QList<int> TorrentInfo::fileIndicesForPiece(const int pieceIndex) const
     res.reserve(static_cast<decltype(res)::size_type>(files.size()));
     for (const lt::file_slice &fileSlice : files)
     {
-        const int index = m_nativeIndexes.indexOf(fileSlice.file_index);
+        const qsizetype index = m_nativeIndexes.indexOf(fileSlice.file_index);
         if (index >= 0)
             res.append(index);
     }
