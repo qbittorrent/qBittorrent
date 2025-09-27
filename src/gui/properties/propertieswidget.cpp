@@ -86,6 +86,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_contentFilterLine, &LineEdit::textChanged, this, &PropertiesWidget::setContentFilterPattern);
     m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
+    m_ui->filesList->setContentDragAllowed(true);
     m_ui->filesList->setDoubleClickAction(TorrentContentWidget::DoubleClickAction::Open);
     m_ui->filesList->setOpenByEnterKey(true);
 
@@ -572,8 +573,13 @@ void PropertiesWidget::displayWebSeedListMenu()
 
 void PropertiesWidget::configure()
 {
+    const auto *preferences = Preferences::instance();
+
+    // Torrent Content Widget
+    m_ui->filesList->setContentDragEnabled(preferences->isTorrentContentDragEnabled());
+
     // Speed widget
-    if (Preferences::instance()->isSpeedWidgetEnabled())
+    if (preferences->isSpeedWidgetEnabled())
     {
         if (!qobject_cast<SpeedWidget *>(m_speedWidget))
         {
