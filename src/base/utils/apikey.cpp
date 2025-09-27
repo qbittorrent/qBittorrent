@@ -1,8 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
- * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
+ * Copyright (C) 2025  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,32 +26,25 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "apikey.h"
 
-#include "apicontroller.h"
+#include <QString>
 
-class AppController : public APIController
+#include "base/global.h"
+#include "base/utils/password.h"
+
+namespace
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(AppController)
+    const int keyLength = 28;
+    const QString prefix = u"qbt_"_s;
+}
 
-public:
-    using APIController::APIController;
+QString Utils::APIKey::generate()
+{
+    return prefix + Utils::Password::generate(keyLength);
+}
 
-private slots:
-    void webapiVersionAction();
-    void versionAction();
-    void buildInfoAction();
-    void shutdownAction();
-    void preferencesAction();
-    void setPreferencesAction();
-    void defaultSavePathAction();
-    void sendTestEmailAction();
-    void getDirectoryContentAction();
-    void cookiesAction();
-    void setCookiesAction();
-    void rotateAPIKeyAction();
-
-    void networkInterfaceListAction();
-    void networkInterfaceAddressListAction();
-};
+bool Utils::APIKey::isValid(const QString &key)
+{
+    return key.startsWith(prefix) && (key.length() == (prefix.length() + keyLength));
+}
