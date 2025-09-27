@@ -843,7 +843,7 @@ void TransferListWidget::exportTorrent()
             while (newTorrentPath.exists())
             {
                 // Append number to torrent name to make it unique
-                torrentExportFilename = u"%1 %2.torrent"_s.arg(validName).arg(++counter);
+                torrentExportFilename = u"%1 (%2).torrent"_s.arg(validName).arg(++counter);
                 newTorrentPath = savePath / Path(torrentExportFilename);
             }
 
