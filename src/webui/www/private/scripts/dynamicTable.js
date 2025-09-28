@@ -2478,6 +2478,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.#addNodeToTable(child, depth + 1, node);
         }
 
+        getFileTreeArray() {
+            return this.fileTree.toArray();
+        }
+
         getRoot() {
             return this.fileTree.getRoot();
         }
