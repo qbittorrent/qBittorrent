@@ -31,13 +31,13 @@
 #include "requestparser.h"
 
 #include <algorithm>
+#include <cctype>
 #include <optional>
 #include <utility>
 
 #include <QByteArrayList>
 #include <QByteArrayView>
 #include <QDebug>
-#include <QRegularExpression>
 #include <QUrl>
 #include <QUrlQuery>
 
@@ -52,6 +52,16 @@ using QStringPair = std::pair<QString, QString>;
 namespace
 {
     const QByteArray EOH = CRLF.repeated(2);
+
+    bool isDigit(const char c)
+    {
+        return std::isdigit(c) != 0;
+    }
+
+    bool isUpper(const char c)
+    {
+        return std::isupper(c) != 0;
+    }
 
     const QByteArrayView viewWithoutEndingWith(const QByteArrayView in, const QByteArrayView str)
     {
@@ -174,7 +184,7 @@ bool RequestParser::parseStartLines(const QByteArrayView data)
     if (requestLines.isEmpty())
         return false;
 
-    if (!parseRequestLine(QString::fromLatin1(requestLines[0])))
+    if (!parseRequestLine(requestLines[0]))
         return false;
 
     for (auto i = ++(requestLines.begin()); i != requestLines.end(); ++i)
@@ -190,39 +200,44 @@ bool RequestParser::parseStartLines(const QByteArrayView data)
     return true;
 }
 
-bool RequestParser::parseRequestLine(const QString &line)
+bool RequestParser::parseRequestLine(const QByteArrayView line)
 {
     // [rfc7230] 3.1.1. Request Line
 
-    static const QRegularExpression re(u"^([A-Z]+)\\s+(\\S+)\\s+HTTP\\/(\\d\\.\\d)$"_s);
-    const QRegularExpressionMatch match = re.match(line);
-
-    if (!match.hasMatch())
+    const QList<QByteArrayView> parts = splitToViews(line, " ", Qt::KeepEmptyParts);
+    if (parts.length() != 3)
     {
-        qWarning() << Q_FUNC_INFO << "invalid http header:" << line;
+        qWarning() << Q_FUNC_INFO << "invalid http request-line:" << line;
         return false;
     }
 
-    // Request Methods
-    m_request.method = match.captured(1);
+    // [rfc7231] 4. Request Methods
+    const QByteArrayView method = parts[0];
+    if (!std::ranges::all_of(method, isUpper))
+    {
+        qWarning() << Q_FUNC_INFO << "invalid http method:" << method;
+        return false;
+    }
+    m_request.method = QString::fromLatin1(method);
 
     // Request Target
-    const QByteArray url {match.capturedView(2).toLatin1()};
-    const int sepPos = url.indexOf('?');
-    const QByteArrayView pathComponent = ((sepPos == -1) ? url : QByteArrayView(url).first(sepPos));
+    const QByteArrayView url = parts[1];
+    const qsizetype sepPos = url.indexOf('?');
+    const QByteArrayView pathComponent = ((sepPos == -1) ? url : url.first(sepPos));
 
     m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(asQByteArray(pathComponent)));
 
     if (sepPos >= 0)
     {
-        const QByteArrayView query = QByteArrayView(url).sliced(sepPos + 1);
+        const QByteArrayView query = url.sliced(sepPos + 1);
 
         // [rfc3986] 2.4 When to Encode or Decode
         // URL components should be separated before percent-decoding
         for (const QByteArrayView &param : asConst(splitToViews(query, "&")))
         {
-            const int eqCharPos = param.indexOf('=');
-            if (eqCharPos <= 0) continue;  // ignores params without name
+            const qsizetype eqCharPos = param.indexOf('=');
+            if (eqCharPos <= 0)
+                continue;  // ignores params without name
 
             const QByteArrayView nameComponent = param.first(eqCharPos);
             const QByteArrayView valueComponent = param.sliced(eqCharPos + 1);
@@ -235,7 +250,15 @@ bool RequestParser::parseRequestLine(const QString &line)
     }
 
     // HTTP-version
-    m_request.version = match.captured(3);
+    const QByteArrayView version = parts[2];
+    const QByteArray prefix = "HTTP/"_ba;
+    if ((version.length() != 8) || !version.startsWith(prefix)
+        || !isDigit(version[5]) || (version[6] != '.') || !isDigit(version[7]))
+    {
+        qWarning() << Q_FUNC_INFO << "invalid http version:" << version;
+        return false;
+    }
+    m_request.version = QString::fromLatin1(version.sliced(prefix.length()));
 
     return true;
 }
