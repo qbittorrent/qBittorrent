@@ -836,21 +836,21 @@ void TransferListWidget::exportTorrent()
         bool hasError = false;
         for (const BitTorrent::Torrent *torrent : torrents)
         {
-            const QString validName = Utils::Fs::toValidFileName(torrent->name(), u"_"_s);
-            const Path filePath = savePath / Path(validName + u".torrent");
-            if (filePath.exists())
+            const QString validName = Utils::Fs::toValidFileName(torrent->name());
+            QString torrentExportFilename = u"%1.torrent"_s.arg(validName);
+            Path newTorrentPath = savePath / Path(torrentExportFilename);
+            int counter = 0;
+            while (newTorrentPath.exists())
             {
-                LogMsg(errorMsg.arg(torrent->name(), filePath.toString(), tr("A file with the same name already exists")) , Log::WARNING);
-                hasError = true;
-                continue;
+                // Append number to torrent name to make it unique
+                torrentExportFilename = u"%1 (%2).torrent"_s.arg(validName).arg(++counter);
+                newTorrentPath = savePath / Path(torrentExportFilename);
             }
 
-            const nonstd::expected<void, QString> result = torrent->exportToFile(filePath);
-            if (!result)
+            if (const nonstd::expected<void, QString> result = torrent->exportToFile(newTorrentPath); !result)
             {
-                LogMsg(errorMsg.arg(torrent->name(), filePath.toString(), result.error()) , Log::WARNING);
+                LogMsg(errorMsg.arg(torrent->name(), newTorrentPath.toString(), result.error()) , Log::WARNING);
                 hasError = true;
-                continue;
             }
         }
 
