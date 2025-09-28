@@ -101,7 +101,7 @@ QList<QVariantHash> RSS::Private::FeedSerializer::loadArticles(const QByteArray 
     QList<QVariantHash> result;
     const QJsonArray jsonArr = jsonDoc.array();
     result.reserve(jsonArr.size());
-    for (int i = 0; i < jsonArr.size(); ++i)
+    for (qsizetype i = 0; i < jsonArr.size(); ++i)
     {
         const QJsonValue jsonVal = jsonArr[i];
         if (!jsonVal.isObject())

@@ -170,8 +170,8 @@ namespace
 
     std::pair<QString, QString> joinColumns(const QList<Column> &columns)
     {
-        int namesSize = columns.size();
-        int valuesSize = columns.size();
+        qsizetype namesSize = columns.size();
+        qsizetype valuesSize = columns.size();
         for (const Column &column : columns)
         {
             namesSize += column.name.size() + 2;

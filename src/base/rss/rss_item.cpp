@@ -94,7 +94,7 @@ QStringList Item::expandPath(const QString &path)
     //    if (!isValidRSSFolderName(folder))
     //        return result;
 
-    int index = 0;
+    qsizetype index = 0;
     while ((index = path.indexOf(Item::PathSeparator, index)) >= 0)
     {
         result << path.first(index);
@@ -107,12 +107,12 @@ QStringList Item::expandPath(const QString &path)
 
 QString Item::parentPath(const QString &path)
 {
-    const int pos = path.lastIndexOf(Item::PathSeparator);
+    const qsizetype pos = path.lastIndexOf(Item::PathSeparator);
     return (pos >= 0) ? path.first(pos) : QString();
 }
 
 QString Item::relativeName(const QString &path)
 {
-    const int pos = path.lastIndexOf(Item::PathSeparator);
+    const qsizetype pos = path.lastIndexOf(Item::PathSeparator);
     return (pos >= 0) ? path.sliced(pos + 1) : path;
 }

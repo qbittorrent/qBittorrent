@@ -356,7 +356,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 {
     QBtCommandLineParameters result {QProcessEnvironment::systemEnvironment()};
 
-    for (int i = 1; i < args.count(); ++i)
+    for (qsizetype i = 1; i < args.count(); ++i)
     {
         const QString &arg = args[i];
 

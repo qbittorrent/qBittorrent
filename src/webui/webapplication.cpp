@@ -88,7 +88,7 @@ namespace
 
         for (const auto &cookie : cookies)
         {
-            const int idx = cookie.indexOf(u'=');
+            const qsizetype idx = cookie.indexOf(u'=');
             if (idx < 0)
                 continue;
 
@@ -230,9 +230,9 @@ void WebApplication::translateDocument(QString &data) const
 {
     const QRegularExpression regex(u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_s);
 
-    int i = 0;
+    qsizetype i = 0;
     bool found = true;
-    while (i < data.size() && found)
+    while ((i < data.size()) && found)
     {
         QRegularExpressionMatch regexMatch;
         i = data.indexOf(regex, i, &regexMatch);
@@ -483,7 +483,7 @@ void WebApplication::configure()
 
         for (const QStringView line : customHeaderLines)
         {
-            const int idx = line.indexOf(u':');
+            const qsizetype idx = line.indexOf(u':');
             if (idx < 0)
             {
                 // require separator `:` to be present even if `value` field can be empty

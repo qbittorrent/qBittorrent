@@ -404,7 +404,7 @@ bool Session::isValidCategoryName(const QString &name)
 
 QString Session::subcategoryName(const QString &category)
 {
-    const int sepIndex = category.lastIndexOf(u'/');
+    const qsizetype sepIndex = category.lastIndexOf(u'/');
     if (sepIndex >= 0)
         return category.sliced(sepIndex + 1);
 
@@ -413,7 +413,7 @@ QString Session::subcategoryName(const QString &category)
 
 QString Session::parentCategoryName(const QString &category)
 {
-    const int sepIndex = category.lastIndexOf(u'/');
+    const qsizetype sepIndex = category.lastIndexOf(u'/');
     if (sepIndex >= 0)
         return category.first(sepIndex);
 
@@ -2843,7 +2843,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         if (!filePriorities.isEmpty())
         {
-            for (int i = 0; i < filePriorities.size(); ++i)
+            for (qsizetype i = 0; i < filePriorities.size(); ++i)
                 p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(filePriorities[i]);
         }
 
@@ -2944,7 +2944,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         {
             const TorrentInfo torrentInfo {*p.ti};
             const auto nativeIndexes = torrentInfo.nativeIndexes();
-            for (int i = 0; i < result.fileNames.size(); ++i)
+            for (qsizetype i = 0; i < result.fileNames.size(); ++i)
                 p.renamed_files[nativeIndexes[i]] = result.fileNames[i].toString().toStdString();
         }
 
@@ -4146,7 +4146,7 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
     };
 
     priorities.resize(files.count(), DownloadPriority::Normal);
-    for (int i = 0; i < priorities.size(); ++i)
+    for (qsizetype i = 0; i < priorities.size(); ++i)
     {
         if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
             continue;

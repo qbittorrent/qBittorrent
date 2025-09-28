@@ -143,7 +143,7 @@ Path Path::rootItem() const
 {
     // does not support UNC path
 
-    const int slashIndex = m_pathStr.indexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.indexOf(u'/');
     if (slashIndex < 0)
         return *this;
 
@@ -162,7 +162,7 @@ Path Path::parentPath() const
 {
     // does not support UNC path
 
-    const int slashIndex = m_pathStr.lastIndexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return {};
 
@@ -180,7 +180,7 @@ Path Path::parentPath() const
 
 QString Path::filename() const
 {
-    const int slashIndex = m_pathStr.lastIndexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return m_pathStr;
 
@@ -193,9 +193,9 @@ QString Path::extension() const
     if (!suffix.isEmpty())
         return (u"." + suffix);
 
-    const int slashIndex = m_pathStr.lastIndexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.lastIndexOf(u'/');
     const auto filename = QStringView(m_pathStr).sliced(slashIndex + 1);
-    const int dotIndex = filename.lastIndexOf(u'.', -2);
+    const qsizetype dotIndex = filename.lastIndexOf(u'.', -2);
     return ((dotIndex == -1) ? QString() : filename.sliced(dotIndex).toString());
 }
 

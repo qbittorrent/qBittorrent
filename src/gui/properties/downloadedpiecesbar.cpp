@@ -154,7 +154,7 @@ QImage DownloadedPiecesBar::renderImage()
     QList<float> scaledPiecesDl = bitfieldToFloatVector(m_downloadedPieces, image.width());
 
     // filling image
-    for (int x = 0; x < scaledPieces.size(); ++x)
+    for (qsizetype x = 0; x < scaledPieces.size(); ++x)
     {
         float piecesToValue = scaledPieces.at(x);
         float piecesToValueDl = scaledPiecesDl.at(x);
