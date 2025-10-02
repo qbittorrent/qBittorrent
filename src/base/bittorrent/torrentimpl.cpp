@@ -207,7 +207,7 @@ namespace
             // remove outdated endpoints
             trackerEntryStatus.endpoints.removeIf([&nativeEntry](const QHash<std::pair<QString, int>, TrackerEndpointStatus>::iterator &iter)
             {
-                return std::none_of(nativeEntry.endpoints.cbegin(), nativeEntry.endpoints.cend()
+                return std::ranges::none_of(nativeEntry.endpoints
                         , [&endpointName = std::get<0>(iter.key())](const auto &existingEndpoint)
                 {
                     return (endpointName == toString(existingEndpoint.local_endpoint));
@@ -676,7 +676,7 @@ void TorrentImpl::addTrackers(QList<TrackerEntry> trackers)
         m_nativeHandle.add_tracker(makeNativeAnnounceEntry(tracker.url, tracker.tier));
         m_trackerEntryStatuses.append({tracker.url, tracker.tier});
     }
-    std::sort(m_trackerEntryStatuses.begin(), m_trackerEntryStatuses.end()
+    std::ranges::sort(m_trackerEntryStatuses
         , [](const TrackerEntryStatus &left, const TrackerEntryStatus &right) { return left.tier < right.tier; });
 
     deferredRequestResumeData();
@@ -713,7 +713,7 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
     // Filter out duplicate trackers
     const auto uniqueTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend());
     trackers = QList<TrackerEntry>(uniqueTrackers.cbegin(), uniqueTrackers.cend());
-    std::sort(trackers.begin(), trackers.end()
+    std::ranges::sort(trackers
         , [](const TrackerEntry &left, const TrackerEntry &right) { return left.tier < right.tier; });
 
     std::vector<lt::announce_entry> nativeTrackers;
@@ -1739,7 +1739,7 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
 
 TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entry &announceEntry, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo)
 {
-    const auto it = std::find_if(m_trackerEntryStatuses.begin(), m_trackerEntryStatuses.end()
+    const auto it = std::ranges::find_if(m_trackerEntryStatuses
             , [&announceEntry](const TrackerEntryStatus &trackerEntryStatus)
     {
         return (trackerEntryStatus.url == QString::fromStdString(announceEntry.url));

@@ -93,8 +93,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     while (iter.hasNext())
         dirList << iter.next() + u'/';
     // sort descending by directory depth
-    std::sort(dirList.begin(), dirList.end()
-              , [](const QString &l, const QString &r) { return l.count(u'/') > r.count(u'/'); });
+    std::ranges::sort(dirList, [](const QString &l, const QString &r) { return l.count(u'/') > r.count(u'/'); });
 
     for (const QString &p : asConst(dirList))
     {
@@ -108,7 +107,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
 
         // deleteFilesList contains unwanted files, usually created by the OS
         // temp files on linux usually end with '~', e.g. `filename~`
-        const bool hasOtherFiles = std::any_of(tmpFileList.cbegin(), tmpFileList.cend(), [&deleteFilesList](const QString &f)
+        const bool hasOtherFiles = std::ranges::any_of(tmpFileList, [&deleteFilesList](const QString &f)
         {
             return (!f.endsWith(u'~') && !deleteFilesList.contains(f, Qt::CaseInsensitive));
         });

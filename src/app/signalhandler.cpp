@@ -87,7 +87,7 @@ namespace
     void normalExitHandler(const int signum)
     {
         const char *msgs[] = {"Catching signal: ", sysSigName[signum], "\nExiting cleanly\n"};
-        std::for_each(std::begin(msgs), std::end(msgs), safePrint);
+        std::ranges::for_each(msgs, safePrint);
         signal(signum, SIG_DFL);
         QMetaObject::invokeMethod(qApp, [] { QCoreApplication::exit(); }, Qt::QueuedConnection);  // unsafe, but exit anyway
     }
@@ -103,7 +103,7 @@ namespace
         const std::string stacktrace = getStacktrace();
 
         const char *msgs[] = {msg, sigName, "\n```\n", stacktrace.c_str(), "```\n\n"};
-        std::for_each(std::begin(msgs), std::end(msgs), safePrint);
+        std::ranges::for_each(msgs, safePrint);
 
 #ifndef DISABLE_GUI
         StacktraceDialog dlg;  // unsafe
