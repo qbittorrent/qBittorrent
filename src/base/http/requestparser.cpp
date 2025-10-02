@@ -316,7 +316,7 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
         const QByteArray endDelimiter = QByteArray("--") + delimiter + QByteArray("--") + CRLF;
         multipart.push_back(viewWithoutEndingWith(multipart.takeLast(), endDelimiter));
 
-        return std::all_of(multipart.cbegin(), multipart.cend(), [this](const QByteArrayView &part)
+        return std::ranges::all_of(asConst(multipart), [this](const QByteArrayView &part)
         {
             return this->parseFormData(part);
         });

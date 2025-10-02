@@ -582,7 +582,7 @@ void TransferListWidget::copySelectedComments() const
             torrentComments << torrent->comment();
     }
 
-    qApp->clipboard()->setText(torrentComments.join(u"\n---------\n"_s));
+    qApp->clipboard()->setText(torrentComments.join(u"\n---------\n"));
 }
 
 void TransferListWidget::hideQueuePosColumn(bool hide)
@@ -793,9 +793,10 @@ void TransferListWidget::editTorrentTrackers()
             for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
                 trackerSet.insert({.url = status.url, .tier = status.tier});
 
-            commonTrackers.erase(std::remove_if(commonTrackers.begin(), commonTrackers.end()
-                , [&trackerSet](const BitTorrent::TrackerEntry &entry) { return !trackerSet.contains(entry); })
-                , commonTrackers.end());
+            commonTrackers.removeIf([&trackerSet](const BitTorrent::TrackerEntry &entry)
+            {
+                return !trackerSet.contains(entry);
+            });
         }
     }
 
@@ -1170,7 +1171,7 @@ void TransferListWidget::displayListMenu()
 
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon(u"view-categories"_s), tr("Categor&y"));
 

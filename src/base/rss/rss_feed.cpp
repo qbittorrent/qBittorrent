@@ -32,6 +32,7 @@
 #include "rss_feed.h"
 
 #include <algorithm>
+#include <ranges>
 #include <utility>
 #include <vector>
 
@@ -426,20 +427,13 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     std::vector<ArticleSortAdaptor> sortData;
     const QList<Article *> existingArticles = articles();
     sortData.reserve(existingArticles.size() + newArticles.size());
-    std::transform(existingArticles.begin(), existingArticles.end(), std::back_inserter(sortData)
-                   , [](const Article *article)
-    {
-        return std::make_pair(article->date(), nullptr);
-    });
-    std::transform(newArticles.begin(), newArticles.end(), std::back_inserter(sortData)
-                   , [](const QVariantHash &article)
-    {
-        return std::make_pair(article[Article::KeyDate].toDateTime(), &article);
-    });
+    for (const Article *article : existingArticles)
+        sortData.push_back(std::make_pair(article->date(), nullptr));
+    for (const QVariantHash &article : asConst(newArticles))
+        sortData.push_back(std::make_pair(article[Article::KeyDate].toDateTime(), &article));
 
     // Sort article list in reverse chronological order
-    std::sort(sortData.begin(), sortData.end()
-              , [](const ArticleSortAdaptor &a1, const ArticleSortAdaptor &a2)
+    std::ranges::sort(sortData, [](const ArticleSortAdaptor &a1, const ArticleSortAdaptor &a2)
     {
         return (a1.first > a2.first);
     });
@@ -448,14 +442,14 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
         sortData.resize(m_session->maxArticlesPerFeed());
 
     int newArticlesCount = 0;
-    std::for_each(sortData.crbegin(), sortData.crend(), [this, &newArticlesCount](const ArticleSortAdaptor &a)
+    for (const ArticleSortAdaptor &a : std::views::reverse(sortData))
     {
         if (a.second)
         {
             addArticle(*a.second);
             ++newArticlesCount;
         }
-    });
+    }
 
     return newArticlesCount;
 }

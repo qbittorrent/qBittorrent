@@ -460,7 +460,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
 
     // Load categories
     QStringList categories = session->categories();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     const QString defaultCategory = m_storeDefaultCategory;
 
     if (!addTorrentParams.category.isEmpty())

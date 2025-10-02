@@ -167,7 +167,7 @@ void AddTorrentParamsWidget::populate()
     m_ui->categoryComboBox->disconnect(this);
     m_ui->categoryComboBox->clear();
     QStringList categories = BitTorrent::Session::instance()->categories();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     if (!m_addTorrentParams.category.isEmpty())
         m_ui->categoryComboBox->addItem(m_addTorrentParams.category);
     m_ui->categoryComboBox->addItem(u""_s);

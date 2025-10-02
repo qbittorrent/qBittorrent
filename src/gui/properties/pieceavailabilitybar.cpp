@@ -48,11 +48,11 @@ QList<float> PieceAvailabilityBar::intToFloatVector(const QList<int> &vecin, int
 
     const float ratio = static_cast<float>(vecin.size()) / reqSize;
 
-    const int maxElement = *std::max_element(vecin.begin(), vecin.end());
+    const int maxElement = *std::ranges::max_element(vecin);
 
     // std::max because in normalization we don't want divide by 0
     // if maxElement == 0 check will be disabled please enable this line:
-    // const int maxElement = std::max(*std::max_element(avail.begin(), avail.end()), 1);
+    // const int maxElement = std::max(*std::ranges::max_element(avail), 1);
 
     if (maxElement == 0)
         return result;
