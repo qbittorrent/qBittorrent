@@ -447,7 +447,7 @@ void AutoDownloader::setRule_impl(const AutoDownloadRule &rule)
 
 void AutoDownloader::sortRules()
 {
-    std::sort(m_rules.begin(), m_rules.end(), [](const AutoDownloadRule &lhs, const AutoDownloadRule &rhs)
+    std::ranges::sort(m_rules, [](const AutoDownloadRule &lhs, const AutoDownloadRule &rhs)
     {
         return (lhs.priority() < rhs.priority());
     });

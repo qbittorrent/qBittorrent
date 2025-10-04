@@ -434,8 +434,8 @@ void CategoryFilterModel::populate()
 
     // Uncategorized torrents
     using Torrent = BitTorrent::Torrent;
-    const int torrentsCount = std::count_if(torrents.begin(), torrents.end()
-            , [](Torrent *torrent) { return torrent->category().isEmpty(); });
+    const int torrentsCount = std::ranges::count_if(torrents
+            , [](const Torrent *torrent) { return torrent->category().isEmpty(); });
     m_rootItem->addChild(CategoryModelItem::UID_UNCATEGORIZED
             , new CategoryModelItem(nullptr, tr("Uncategorized"), torrentsCount));
 
@@ -450,8 +450,8 @@ void CategoryFilterModel::populate()
                 const QString subcatName = shortName(subcat);
                 if (!parent->hasChild(subcatName))
                 {
-                    const int torrentsCount = std::count_if(torrents.cbegin(), torrents.cend()
-                            , [subcat](Torrent *torrent) { return torrent->category() == subcat; });
+                    const int torrentsCount = std::ranges::count_if(torrents
+                            , [&subcat](const Torrent *torrent) { return torrent->category() == subcat; });
                     new CategoryModelItem(parent, subcatName, torrentsCount);
                 }
                 parent = parent->child(subcatName);
@@ -462,8 +462,8 @@ void CategoryFilterModel::populate()
     {
         for (const QString &categoryName : asConst(session->categories()))
         {
-            const int torrentsCount = std::count_if(torrents.begin(), torrents.end()
-                    , [categoryName](Torrent *torrent) { return torrent->belongsToCategory(categoryName); });
+            const int torrentsCount = std::ranges::count_if(torrents
+                    , [&categoryName](const Torrent *torrent) { return torrent->belongsToCategory(categoryName); });
             new CategoryModelItem(m_rootItem, categoryName, torrentsCount);
         }
     }

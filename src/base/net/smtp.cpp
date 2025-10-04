@@ -92,7 +92,7 @@ namespace
 
     bool canEncodeAsLatin1(const QStringView string)
     {
-        return std::none_of(string.cbegin(), string.cend(), [](const QChar &ch)
+        return std::ranges::none_of(string, [](const QChar &ch)
         {
             return ch > QChar(0xff);
         });

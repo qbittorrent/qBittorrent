@@ -231,7 +231,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     m_ui->comboCategory->addItem(QString());
 
     m_categories = session->categories();
-    std::sort(m_categories.begin(), m_categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(m_categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     for (const QString &category : asConst(m_categories))
     {
         if (m_allSameCategory && (category == firstTorrentCategory))

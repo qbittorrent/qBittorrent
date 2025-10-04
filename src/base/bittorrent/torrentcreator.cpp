@@ -139,7 +139,7 @@ void TorrentCreator::run()
                 const QString dirPath = dirInfo.filePath();
                 dirs.append(dirPath);
             }
-            std::sort(dirs.begin(), dirs.end(), naturalLessThan);
+            std::ranges::sort(dirs, naturalLessThan);
 
             QStringList fileNames;
             QHash<QString, qint64> fileSizeMap;
@@ -173,7 +173,7 @@ void TorrentCreator::run()
                     fileSizeMap[tmpNames.last()] = fileSize;
                 }
 
-                std::sort(tmpNames.begin(), tmpNames.end(), naturalLessThan);
+                std::ranges::sort(tmpNames, naturalLessThan);
                 fileNames += tmpNames;
             }
 

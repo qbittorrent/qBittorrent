@@ -54,7 +54,7 @@ namespace
 {
     QString cleanPath(const QString &path)
     {
-        const bool hasSeparator = std::any_of(path.cbegin(), path.cend(), [](const QChar c)
+        const bool hasSeparator = std::ranges::any_of(path, [](const QChar c)
         {
             return (c == u'/') || (c == u'\\');
         });

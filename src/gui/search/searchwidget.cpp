@@ -564,7 +564,7 @@ void SearchWidget::fillCatCombobox()
     const auto selectedPlugin = m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
     for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin)))
         tmpList << std::make_pair(SearchPluginManager::categoryFullName(cat), cat);
-    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
+    std::ranges::sort(tmpList, [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     for (const QStrPair &p : asConst(tmpList))
     {
@@ -587,7 +587,7 @@ void SearchWidget::fillPluginComboBox()
     QList<QStrPair> tmpList;
     for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
         tmpList << std::make_pair(SearchPluginManager::instance()->pluginFullName(name), name);
-    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
+    std::ranges::sort(tmpList, [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     for (const QStrPair &p : asConst(tmpList))
         m_ui->selectPlugin->addItem(p.first, p.second);

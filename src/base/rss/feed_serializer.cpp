@@ -120,7 +120,7 @@ QList<QVariantHash> RSS::Private::FeedSerializer::loadArticles(const QByteArray 
         result.push_back(varHash);
     }
 
-    std::sort(result.begin(), result.end(), [](const QVariantHash &left, const QVariantHash &right)
+    std::ranges::sort(result, [](const QVariantHash &left, const QVariantHash &right)
     {
         return (left.value(Article::KeyDate).toDateTime() > right.value(Article::KeyDate).toDateTime());
     });
