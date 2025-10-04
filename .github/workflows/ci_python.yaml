@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup python (auxiliary scripts)
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3'  # use default version
 
@@ -54,7 +54,7 @@ jobs:
           python -m compileall $PY_FILES
 
       - name: Setup python (search engine)
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.9'
 
