@@ -243,7 +243,7 @@ window.qBittorrent.MultiRename ??= (() => {
                     await fetch((isFolder ? "api/v2/torrents/renameFolder" : "api/v2/torrents/renameFile"), {
                         method: "POST",
                         body: new URLSearchParams({
-                            hash: this.hash,
+                            hash: match.data.torrentHash,
                             oldPath: oldPath,
                             newPath: newPath
                         })
