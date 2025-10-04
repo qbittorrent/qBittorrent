@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.14.1
+* [#23212](https://github.com/qbittorrent/qBittorrent/pull/23212)
+  * Add `app/rotateAPIKey` endpoint for generating, and rotating, the WebAPI API key
+
 ## 2.14.0
 * [#23202](https://github.com/qbittorrent/qBittorrent/pull/23202)
   * WebAPI responds with the error message "Endpoint does not exist" when the endpoint does not exist, to better differentiate from unrelated Not Found (i.e. 404) responses
