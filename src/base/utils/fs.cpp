@@ -186,12 +186,103 @@ bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
     return true;
 }
 
+/**
+ * Converts a string to a valid file name by replacing reserved characters with \a pad,
+ * removing trailing dots on Windows, truncating to platform limits, and handling Windows reserved device names.
+ * \param name The input string to validate.
+ * \param pad The replacement string for reserved characters (default: space).
+ * \return The sanitized file name.
+ */
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
-    const QRegularExpression regex {u"[\\\\/:?\"*<>|]+"_s};
+
+    // Replace empty names or special directory names "." and ".." with pad
+    if (name.isEmpty() || name == u"."_s || name == u".."_s)
+        return pad;
 
     QString validName = name.trimmed();
-    validName.replace(regex, pad);
+
+    // Identify reserved characters: control, DEL, '/', Windows-specific
+    auto isReservedCharacter = [](const QChar &c) -> bool
+    {
+        const ushort unicode = c.unicode();
+        if ((unicode < 32) || (unicode == 127) || (c == u'/'))
+            return true;
+#ifdef Q_OS_WIN
+        static const QSet<QChar> reservedChars {u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
+        if (reservedChars.contains(c))
+            return true;
+#endif
+        return false;
+    };
+
+    // Replace one or more reserved characters with a single pad
+    QString newName;
+    newName.reserve(validName.size());
+    bool inReservedSequence = false;
+    std::ranges::for_each(validName, [&](const QChar &c)
+    {
+        if (isReservedCharacter(c)) {
+            if (!inReservedSequence) {
+                newName += pad;
+                inReservedSequence = true;
+            }
+        } else {
+            newName += c;
+            inReservedSequence = false;
+        }
+    });
+    validName = std::move(newName);
+
+    // Remove one or more trailing dots on Windows
+#ifdef Q_OS_WIN
+    while (validName.endsWith(u'.')) {
+        validName.chop(1);
+    }
+#endif
+
+    // Extract base and extension for truncation and reserved device name handling
+    QString base = validName;
+    QString ext;
+    int dotIndex = validName.lastIndexOf(u'.');
+    if (dotIndex != -1) {
+        ext = validName.mid(dotIndex);
+        base = validName.left(dotIndex);
+    }
+
+    // Truncate to platform-specific length limit
+#ifdef Q_OS_WIN
+    const int maxLen = 255;
+    if (validName.length() > maxLen) {
+        base = base.left(maxLen - ext.length());
+        validName = base + ext;
+    }
+#else
+    while (validName.toUtf8().length() > 255) {
+        if (base.isEmpty()) break;
+        base.chop(1);
+        validName = base + ext;
+    }
+#endif
+
+    // Handle Windows reserved device names
+#ifdef Q_OS_WIN
+    const QSet<QString> reservedDeviceNames
+    {
+        u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
+        u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
+        u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
+        u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
+        u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
+        u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
+        u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
+    };
+    QString reservedBase = (dotIndex == -1) ? validName : validName.left(dotIndex);
+    if (reservedDeviceNames.contains(reservedBase.toUpper())) {
+        base += pad + u"1"_s;
+        validName = base + ext;
+    }
+#endif
 
     return validName;
 }
@@ -220,7 +311,7 @@ Path Utils::Fs::tempPath()
 
 // Validates a file name, where "file" refers to both files and directories in Windows and Unix-like systems.
 // Returns true if the name is valid, false if it contains empty/special names, exceeds platform-specific lengths,
-// uses reserved names, or includes forbidden characters.
+// uses reserved names, or includes reserved characters.
 bool Utils::Fs::isValidName(const QString &name)
 {
     // Reject empty names or special directory names (".", "..")
@@ -254,19 +345,24 @@ bool Utils::Fs::isValidName(const QString &name)
         return false;
 #endif
 
-    // Check for control characters, delete character, and forward slash
-    for (const QChar &c : name)
+     // Check for control characters, delete character, forward slash, and Windows reserved characters
+    auto isReservedCharacter = [](const QChar &c) -> bool
     {
         const ushort unicode = c.unicode();
         if ((unicode < 32) || (unicode == 127) || (c == u'/'))
-            return false;
+            return true;
 #ifdef Q_OS_WIN
-        // Windows forbids reserved characters in file names
-        if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') ||
-            (c == u'|') || (c == u'?') || (c == u'*'))
-            return false;
+        const QSet<QChar> reservedChars
+        {
+            u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'
+        };
+        if (reservedChars.contains(c))
+            return true;
 #endif
-    }
+        return false;
+    };
+    if (std::ranges::any_of(name, isReservedCharacter))
+        return false;
 
     // If none of the invalid conditions are met, the name is valid
     return true;
