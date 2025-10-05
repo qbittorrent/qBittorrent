@@ -460,6 +460,22 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="dockDisplayBox">
+              <property name="title">
+               <string>Display</string>
+              </property>
+              <layout class="QVBoxLayout" name="dockDisplayBoxLayout">
+               <item>
+                <widget class="QCheckBox" name="checkShowSpeedInDock">
+                 <property name="text">
+                  <string>Show speed in Dock</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="boxTorrentContent">
               <property name="title">
                <string>Torrent Content View</string>
@@ -2648,22 +2664,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 <widget class="QCheckBox" name="checkLimitLocalPeerRate">
                  <property name="text">
                   <string>Apply rate limit to peers on LAN</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QGroupBox" name="dockDisplayBox">
-              <property name="title">
-               <string>Display</string>
-              </property>
-              <layout class="QVBoxLayout" name="dockDisplayBoxLayout">
-               <item>
-                <widget class="QCheckBox" name="checkShowSpeedInDock">
-                 <property name="text">
-                  <string>Show speed in Dock</string>
                  </property>
                 </widget>
                </item>
