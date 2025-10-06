@@ -91,27 +91,25 @@ namespace
 
 TransferListModel::TransferListModel(QObject *parent)
     : QAbstractListModel {parent}
-    , m_statusStrings
-    {
-          {BitTorrent::TorrentState::Downloading, tr("Downloading")},
-          {BitTorrent::TorrentState::StalledDownloading, tr("Stalled", "Torrent is waiting for download to begin")},
-          {BitTorrent::TorrentState::DownloadingMetadata, tr("Downloading metadata", "Used when loading a magnet link")},
-          {BitTorrent::TorrentState::ForcedDownloadingMetadata, tr("[F] Downloading metadata", "Used when forced to load a magnet link. You probably shouldn't translate the F.")},
-          {BitTorrent::TorrentState::ForcedDownloading, tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
-          {BitTorrent::TorrentState::Uploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
-          {BitTorrent::TorrentState::StalledUploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
-          {BitTorrent::TorrentState::ForcedUploading, tr("[F] Seeding", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
-          {BitTorrent::TorrentState::QueuedDownloading, tr("Queued", "Torrent is queued")},
-          {BitTorrent::TorrentState::QueuedUploading, tr("Queued", "Torrent is queued")},
-          {BitTorrent::TorrentState::CheckingDownloading, tr("Checking", "Torrent local data is being checked")},
-          {BitTorrent::TorrentState::CheckingUploading, tr("Checking", "Torrent local data is being checked")},
-          {BitTorrent::TorrentState::CheckingResumeData, tr("Checking resume data", "Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.")},
-          {BitTorrent::TorrentState::StoppedDownloading, tr("Stopped")},
-          {BitTorrent::TorrentState::StoppedUploading, tr("Completed")},
-          {BitTorrent::TorrentState::Moving, tr("Moving", "Torrent local data are being moved/relocated")},
-          {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
-          {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
-    }
+    , m_statusStrings {
+        {BitTorrent::TorrentState::Downloading, tr("Downloading")},
+        {BitTorrent::TorrentState::StalledDownloading, tr("Stalled", "Torrent is waiting for download to begin")},
+        {BitTorrent::TorrentState::DownloadingMetadata, tr("Downloading metadata", "Used when loading a magnet link")},
+        {BitTorrent::TorrentState::ForcedDownloadingMetadata, tr("[F] Downloading metadata", "Used when forced to load a magnet link. You probably shouldn't translate the F.")},
+        {BitTorrent::TorrentState::ForcedDownloading, tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
+        {BitTorrent::TorrentState::Uploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
+        {BitTorrent::TorrentState::StalledUploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
+        {BitTorrent::TorrentState::ForcedUploading, tr("[F] Seeding", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
+        {BitTorrent::TorrentState::QueuedDownloading, tr("Queued", "Torrent is queued")},
+        {BitTorrent::TorrentState::QueuedUploading, tr("Queued", "Torrent is queued")},
+        {BitTorrent::TorrentState::CheckingDownloading, tr("Checking", "Torrent local data is being checked")},
+        {BitTorrent::TorrentState::CheckingUploading, tr("Checking", "Torrent local data is being checked")},
+        {BitTorrent::TorrentState::CheckingResumeData, tr("Checking resume data", "Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.")},
+        {BitTorrent::TorrentState::StoppedDownloading, tr("Stopped")},
+        {BitTorrent::TorrentState::StoppedUploading, tr("Completed")},
+        {BitTorrent::TorrentState::Moving, tr("Moving", "Torrent local data are being moved/relocated")},
+        {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
+        {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
@@ -137,6 +135,8 @@ TransferListModel::TransferListModel(QObject *parent)
     connect(Session::instance(), &Session::torrentStarted, this, &TransferListModel::handleTorrentStatusUpdated);
     connect(Session::instance(), &Session::torrentStopped, this, &TransferListModel::handleTorrentStatusUpdated);
     connect(Session::instance(), &Session::torrentFinishedChecking, this, &TransferListModel::handleTorrentStatusUpdated);
+
+    connect(Session::instance(), &Session::trackerEntryStatusesUpdated, this, &TransferListModel::handleTorrentStatusUpdated);
 }
 
 int TransferListModel::rowCount(const QModelIndex &) const

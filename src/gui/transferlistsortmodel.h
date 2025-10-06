@@ -54,6 +54,7 @@ public:
     void disableCategoryFilter();
     void setTagFilter(const Tag &tag);
     void disableTagFilter();
+    void setAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
     void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();
 

@@ -184,6 +184,18 @@ void TransferListSortModel::disableTagFilter()
 #endif
 }
 
+void TransferListSortModel::setAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setAnnounceStatus(announceStatus);
+    endFilterChange(Direction::Rows);
+#else
+    if (m_filter.setAnnounceStatus(announceStatus))
+        invalidateRowsFilter();
+#endif
+}
+
 void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)

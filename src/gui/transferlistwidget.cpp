@@ -1342,14 +1342,17 @@ void TransferListWidget::applyTagFilter(const std::optional<Tag> &tag)
         m_sortFilterModel->setTagFilter(*tag);
 }
 
-void TransferListWidget::applyTrackerFilterAll()
+void TransferListWidget::applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus)
 {
-    m_sortFilterModel->disableTrackerFilter();
+    m_sortFilterModel->setAnnounceStatusFilter(announceStatus);
 }
 
 void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
-    m_sortFilterModel->setTrackerFilter(torrentIDs);
+    if (torrentIDs.isEmpty())
+        m_sortFilterModel->disableTrackerFilter();
+    else
+        m_sortFilterModel->setTrackerFilter(torrentIDs);
 }
 
 void TransferListWidget::applyFilter(const QString &name, const TransferListModel::Column &type)

@@ -400,6 +400,9 @@ public:
     bool getCategoryFilterState() const;
     bool getTagFilterState() const;
     bool getTrackerFilterState() const;
+    bool getTrackerStatusFilterState() const;
+    bool useSeparateTrackerStatusFilter() const;
+    void setUseSeparateTrackerStatusFilter(bool value);
     int getTransSelFilter() const;
     void setTransSelFilter(int index);
     bool getHideZeroStatusFilters() const;
@@ -449,6 +452,7 @@ public slots:
     void setCategoryFilterState(bool checked);
     void setTagFilterState(bool checked);
     void setTrackerFilterState(bool checked);
+    void setTrackerStatusFilterState(bool checked);
 
     void apply();
 

@@ -34,16 +34,18 @@
 const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<Tag> TorrentFilter::AnyTag;
+const std::optional<TorrentFilter::TorrentAnnounceStatus> TorrentFilter::AnyAnnounceStatus;
 
 using BitTorrent::Torrent;
 
-TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> isPrivate)
+TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDSet> &idSet, const std::optional<QString> &category
+        , const std::optional<Tag> &tag, const std::optional<bool> &isPrivate, const std::optional<TorrentAnnounceStatus> &announceStatus)
     : m_status {status}
     , m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
     , m_private {isPrivate}
+    , m_announceStatus {announceStatus}
 {
 }
 
@@ -102,14 +104,28 @@ bool TorrentFilter::setPrivate(const std::optional<bool> isPrivate)
     return false;
 }
 
-bool TorrentFilter::match(const Torrent *const torrent) const
+bool TorrentFilter::setAnnounceStatus(const std::optional<TorrentAnnounceStatus> &announceStatus)
 {
-    if (!torrent) return false;
+    if (m_announceStatus != announceStatus)
+    {
+        m_announceStatus = announceStatus;
+        return true;
+    }
 
-    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent) && matchPrivate(torrent));
+    return false;
 }
 
-bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
+bool TorrentFilter::match(const Torrent *const torrent) const
+{
+    Q_ASSERT(torrent);
+    if (!torrent) [[unlikely]]
+        return false;
+
+    return (matchStatus(torrent) && matchHash(torrent) && matchCategory(torrent)
+            && matchTag(torrent) && matchPrivate(torrent) && matchAnnounceStatus(torrent));
+}
+
+bool TorrentFilter::matchStatus(const BitTorrent::Torrent *const torrent) const
 {
     const BitTorrent::TorrentState state = torrent->state();
 
@@ -188,4 +204,17 @@ bool TorrentFilter::matchPrivate(const BitTorrent::Torrent *const torrent) const
         return true;
 
     return m_private == torrent->isPrivate();
+}
+
+bool TorrentFilter::matchAnnounceStatus(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_announceStatus)
+        return true;
+
+    const TorrentAnnounceStatus announceStatus = torrent->announceStatus();
+    const TorrentAnnounceStatus &testAnnounceStatus = *m_announceStatus;
+    if (!testAnnounceStatus)
+        return !announceStatus;
+
+    return announceStatus.testAnyFlags(testAnnounceStatus);
 }
