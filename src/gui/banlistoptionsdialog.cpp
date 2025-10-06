@@ -120,7 +120,7 @@ void BanListOptionsDialog::on_buttonBanIP_clicked()
 void BanListOptionsDialog::on_buttonDeleteIP_clicked()
 {
     QModelIndexList selection = m_ui->bannedIPList->selectionModel()->selectedIndexes();
-    std::sort(selection.begin(), selection.end(), [](const QModelIndex &left, const QModelIndex &right)
+    std::ranges::sort(selection, [](const QModelIndex &left, const QModelIndex &right)
     {
         return (left.row() > right.row());
     });

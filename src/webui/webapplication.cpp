@@ -446,7 +446,8 @@ void WebApplication::configure()
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
-    std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
+    for (QString &entry : m_domainList)
+        entry = entry.trimmed();
 
     m_isCSRFProtectionEnabled = pref->isWebUICSRFProtectionEnabled();
     m_isSecureCookieEnabled = pref->isWebUISecureCookieEnabled();

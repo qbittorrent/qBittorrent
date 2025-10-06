@@ -401,7 +401,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
 
             const auto *folder = static_cast<TorrentContentModelFolder *>(item);
             const auto childItems = folder->children();
-            const bool hasIgnored = std::any_of(childItems.cbegin(), childItems.cend()
+            const bool hasIgnored = std::ranges::any_of(childItems
                          , [](const TorrentContentModelItem *childItem)
             {
                 const auto prio = childItem->priority();
@@ -583,8 +583,7 @@ void TorrentContentModel::populate()
         QList<QStringView> pathFolders = QStringView(path).split(u'/', Qt::SkipEmptyParts);
         const QString fileName = pathFolders.takeLast().toString();
 
-        if (!std::equal(lastParentPath.begin(), lastParentPath.end()
-                        , pathFolders.begin(), pathFolders.end()))
+        if (!std::ranges::equal(asConst(lastParentPath), asConst(pathFolders)))
         {
             lastParentPath.clear();
             lastParentPath.reserve(pathFolders.size());
