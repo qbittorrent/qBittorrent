@@ -5923,12 +5923,15 @@ TorrentImpl *SessionImpl::getTorrent(const lt::torrent_handle &nativeHandle) con
 
 QList<TorrentImpl *> SessionImpl::getQueuedTorrentsByID(const QList<TorrentID> &torrentIDs) const
 {
-    auto torrents = torrentIDs
-            | std::views::transform([this](const TorrentID &torrentID) { return m_torrents.value(torrentID); })
-            | std::views::filter([](const TorrentImpl *torrent) { return torrent && (torrent->queuePosition() >= 0); });
-
-    QList<TorrentImpl *> queuedTorrents = {torrents.begin(), torrents.end()};
-    std::ranges::sort(queuedTorrents, std::less<>(), &TorrentImpl::queuePosition);
+    QList<TorrentImpl *> queuedTorrents;
+    queuedTorrents.reserve(torrentIDs.size());
+    for (const TorrentID &torrentID : torrentIDs)
+    {
+        TorrentImpl *torrent = m_torrents.value(torrentID);
+        if (torrent && (torrent->queuePosition() >= 0))
+            queuedTorrents.push_back(torrent);
+    }
+    std::ranges::sort(queuedTorrents, std::less(), &TorrentImpl::queuePosition);
     return queuedTorrents;
 }
 
