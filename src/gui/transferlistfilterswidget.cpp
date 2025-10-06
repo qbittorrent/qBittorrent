@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -43,18 +43,15 @@
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
-#include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
 #include "base/utils/compare.h"
-#include "base/utils/fs.h"
 #include "transferlistfilters/categoryfilterwidget.h"
 #include "transferlistfilters/statusfilterwidget.h"
 #include "transferlistfilters/tagfilterwidget.h"
 #include "transferlistfilters/trackersfilterwidget.h"
+#include "transferlistfilters/trackerstatusfilterwidget.h"
 #include "transferlistwidget.h"
-#include "uithememanager.h"
 #include "utils.h"
 
 namespace
@@ -150,6 +147,19 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     toggleTagFilter(pref->getTagFilterState());
     mainWidgetLayout->addWidget(m_tagFilterWidget);
 
+    if (pref->useSeparateTrackerStatusFilter())
+    {
+        QCheckBox *trackerStatusLabel = new ArrowCheckBox(tr("Tracker status"), this);
+        trackerStatusLabel->setChecked(pref->getTrackerStatusFilterState());
+        trackerStatusLabel->setFont(font);
+        connect(trackerStatusLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerStatusFilterState);
+        mainWidgetLayout->addWidget(trackerStatusLabel);
+
+        m_trackerStatusFilterWidget = new TrackerStatusFilterWidget(this, transferList);
+        connect(trackerStatusLabel, &QCheckBox::toggled, m_trackerStatusFilterWidget, &TrackerStatusFilterWidget::toggleFilter);
+        mainWidgetLayout->addWidget(m_trackerStatusFilterWidget);
+    }
+
     QCheckBox *trackerLabel = new ArrowCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
     trackerLabel->setFont(font);
@@ -176,25 +186,31 @@ void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
     m_trackersFilterWidget->setDownloadTrackerFavicon(value);
 }
 
-void TransferListFiltersWidget::addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers)
+void TransferListFiltersWidget::handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers)
 {
-    m_trackersFilterWidget->addTrackers(torrent, trackers);
+    m_trackersFilterWidget->handleTorrentTrackersAdded(torrent, trackers);
 }
 
-void TransferListFiltersWidget::removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers)
+void TransferListFiltersWidget::handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent, const QStringList &trackers)
 {
-    m_trackersFilterWidget->removeTrackers(torrent, trackers);
+    m_trackersFilterWidget->handleTorrentTrackersRemoved(torrent, trackers);
+    if (m_trackerStatusFilterWidget)
+        m_trackerStatusFilterWidget->handleTorrentTrackersRemoved(torrent);
 }
 
-void TransferListFiltersWidget::refreshTrackers(const BitTorrent::Torrent *torrent)
+void TransferListFiltersWidget::handleTorrentTrackersReset(const BitTorrent::Torrent *torrent)
 {
-    m_trackersFilterWidget->refreshTrackers(torrent);
+    m_trackersFilterWidget->handleTorrentTrackersReset(torrent);
+    if (m_trackerStatusFilterWidget)
+        m_trackerStatusFilterWidget->handleTorrentTrackersReset(torrent);
 }
 
 void TransferListFiltersWidget::trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
         , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers)
 {
     m_trackersFilterWidget->handleTrackerStatusesUpdated(torrent, updatedTrackers);
+    if (m_trackerStatusFilterWidget)
+        m_trackerStatusFilterWidget->handleTrackerStatusesUpdated(torrent);
 }
 
 void TransferListFiltersWidget::onCategoryFilterStateChanged(bool enabled)

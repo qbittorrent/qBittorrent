@@ -1885,6 +1885,32 @@ void Preferences::setTrackerFilterState(const bool checked)
     setValue(u"TransferListFilters/trackerFilterState"_s, checked);
 }
 
+bool Preferences::getTrackerStatusFilterState() const
+{
+    return value(u"TransferListFilters/TrackerStatusFilterState"_s, true);
+}
+
+bool Preferences::useSeparateTrackerStatusFilter() const
+{
+    return value(u"TransferListFilters/SeparateTrackerStatusFilter"_s, false);
+}
+
+void Preferences::setUseSeparateTrackerStatusFilter(const bool value)
+{
+    if (value == useSeparateTrackerStatusFilter())
+        return;
+
+    setValue(u"TransferListFilters/SeparateTrackerStatusFilter"_s, value);
+}
+
+void Preferences::setTrackerStatusFilterState(const bool checked)
+{
+    if (checked == getTrackerStatusFilterState())
+        return;
+
+    setValue(u"TransferListFilters/TrackerStatusFilterState"_s, checked);
+}
+
 int Preferences::getTransSelFilter() const
 {
     return value<int>(u"TransferListFilters/selectedFilterIndex"_s, 0);

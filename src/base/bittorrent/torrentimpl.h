@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -217,6 +217,7 @@ namespace BitTorrent
         int connectionsCount() const override;
         int connectionsLimit() const override;
         qlonglong nextAnnounce() const override;
+        TorrentAnnounceStatus announceStatus() const override;
 
         void setName(const QString &name) override;
         void setSequentialDownload(bool enable) override;
@@ -349,6 +350,7 @@ namespace BitTorrent
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
         QList<TrackerEntryStatus> m_trackerEntryStatuses;
+        mutable std::optional<TorrentAnnounceStatus> m_announceStatus;
         QList<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;
 

@@ -57,9 +57,9 @@ public:
     TrackersFilterWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     ~TrackersFilterWidget() override;
 
-    void addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void refreshTrackers(const BitTorrent::Torrent *torrent);
+    void handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
+    void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent, const QStringList &trackers);
+    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent);
     void handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
             , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
     void setDownloadTrackerFavicon(bool value);
@@ -85,6 +85,8 @@ private:
     void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
     void removeTracker(const QString &tracker);
 
+    qsizetype numSpecialRows() const;
+
     struct TrackerData
     {
         QSet<BitTorrent::TorrentID> torrents;
@@ -98,5 +100,6 @@ private:
     PathList m_iconPaths;
     int m_totalTorrents = 0;
     bool m_downloadTrackerFavicon = false;
+    bool m_handleTrackerStatuses = true;
     QHash<QString, QSet<QString>> m_downloadingFavicons;   // <favicon URL, tracker hosts>
 };

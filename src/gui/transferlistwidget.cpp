@@ -1342,14 +1342,17 @@ void TransferListWidget::applyTagFilter(const std::optional<Tag> &tag)
         m_sortFilterModel->setTagFilter(*tag);
 }
 
-void TransferListWidget::applyTrackerFilterAll()
+void TransferListWidget::applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus)
 {
-    m_sortFilterModel->disableTrackerFilter();
+    m_sortFilterModel->setAnnounceStatusFilter(announceStatus);
 }
 
 void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
-    m_sortFilterModel->setTrackerFilter(torrentIDs);
+    if (torrentIDs.isEmpty())
+        m_sortFilterModel->disableTrackerFilter();
+    else
+        m_sortFilterModel->setTrackerFilter(torrentIDs);
 }
 
 void TransferListWidget::applyFilter(const QString &name, const TransferListModel::Column &type)
@@ -1362,7 +1365,7 @@ void TransferListWidget::applyFilter(const QString &name, const TransferListMode
 
 void TransferListWidget::applyStatusFilter(const int filterIndex)
 {
-    const auto filterType = static_cast<TorrentFilter::Type>(filterIndex);
+    const auto filterType = static_cast<TorrentFilter::Status>(filterIndex);
     m_sortFilterModel->setStatusFilter(((filterType >= TorrentFilter::All) && (filterType < TorrentFilter::_Count)) ? filterType : TorrentFilter::All);
     // Select first item if nothing is selected
     if (selectionModel()->selectedRows(0).empty() && (m_sortFilterModel->rowCount() > 0))

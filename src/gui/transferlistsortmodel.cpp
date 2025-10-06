@@ -124,14 +124,14 @@ void TransferListSortModel::sort(const int column, const Qt::SortOrder order)
     QSortFilterProxyModel::sort(column, order);
 }
 
-void TransferListSortModel::setStatusFilter(const TorrentFilter::Type filter)
+void TransferListSortModel::setStatusFilter(const TorrentFilter::Status filter)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
     beginFilterChange();
-    m_filter.setType(filter);
+    m_filter.setStatus(filter);
     endFilterChange(Direction::Rows);
 #else
-    if (m_filter.setType(filter))
+    if (m_filter.setStatus(filter))
         invalidateRowsFilter();
 #endif
 }
@@ -180,6 +180,18 @@ void TransferListSortModel::disableTagFilter()
     endFilterChange(Direction::Rows);
 #else
     if (m_filter.setTag(TorrentFilter::AnyTag))
+        invalidateRowsFilter();
+#endif
+}
+
+void TransferListSortModel::setAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setAnnounceStatus(announceStatus);
+    endFilterChange(Direction::Rows);
+#else
+    if (m_filter.setAnnounceStatus(announceStatus))
         invalidateRowsFilter();
 #endif
 }

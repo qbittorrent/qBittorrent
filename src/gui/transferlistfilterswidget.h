@@ -38,6 +38,7 @@ class CategoryFilterWidget;
 class StatusFilterWidget;
 class TagFilterWidget;
 class TrackersFilterWidget;
+class TrackerStatusFilterWidget;
 class TransferListWidget;
 
 namespace BitTorrent
@@ -56,9 +57,9 @@ public:
     void setDownloadTrackerFavicon(bool value);
 
 public slots:
-    void addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void refreshTrackers(const BitTorrent::Torrent *torrent);
+    void handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
+    void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent, const QStringList &trackers);
+    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent);
     void trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
             , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
 
@@ -72,6 +73,7 @@ private:
 
     TransferListWidget *m_transferList = nullptr;
     TrackersFilterWidget *m_trackersFilterWidget = nullptr;
+    TrackerStatusFilterWidget *m_trackerStatusFilterWidget = nullptr;
     CategoryFilterWidget *m_categoryFilterWidget = nullptr;
     TagFilterWidget *m_tagFilterWidget = nullptr;
 };
