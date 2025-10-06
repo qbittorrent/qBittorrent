@@ -86,7 +86,7 @@ void APIController::requireParams(const QList<QString> &requiredParams) const
     }
 
     if (!missingParams.isEmpty())
-        throw APIError(APIErrorType::BadParams, tr("Missing required parameters: %1").arg(missingParams.join(u", "_s)));
+        throw APIError(APIErrorType::BadParams, tr("Missing required parameters: %1").arg(missingParams.join(u", ")));
 }
 
 void APIController::setResult(const QString &result)

@@ -255,7 +255,7 @@ bool AutoDownloadRule::matchesMustContainExpression(const QString &articleTitle)
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Accept if any complete expression matches.
-    return std::any_of(m_dataPtr->mustContain.cbegin(), m_dataPtr->mustContain.cend(), [this, &articleTitle](const QString &expression)
+    return std::ranges::any_of(asConst(m_dataPtr->mustContain), [this, &articleTitle](const QString &expression)
     {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         return matchesExpression(articleTitle, expression);
@@ -269,7 +269,7 @@ bool AutoDownloadRule::matchesMustNotContainExpression(const QString &articleTit
 
     // Each expression is either a regex, or a set of wildcards separated by whitespace.
     // Reject if any complete expression matches.
-    return std::none_of(m_dataPtr->mustNotContain.cbegin(), m_dataPtr->mustNotContain.cend(), [this, &articleTitle](const QString &expression)
+    return std::ranges::none_of(asConst(m_dataPtr->mustNotContain), [this, &articleTitle](const QString &expression)
     {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         return matchesExpression(articleTitle, expression);

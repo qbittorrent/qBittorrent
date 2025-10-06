@@ -2495,7 +2495,7 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
         m_removingTorrents[torrentID] = {torrentName, torrent->actualStorageLocation(), {}, deleteOption};
 
         const lt::torrent_handle nativeHandle {torrent->nativeHandle()};
-        const auto iter = std::find_if(m_moveStorageQueue.cbegin(), m_moveStorageQueue.cend()
+        const auto iter = std::ranges::find_if(asConst(m_moveStorageQueue)
             , [&nativeHandle](const MoveStorageJob &job)
         {
             return job.torrentHandle == nativeHandle;
@@ -2520,7 +2520,7 @@ bool SessionImpl::removeTorrent(const TorrentID &id, const TorrentRemoveOption d
         {
             // Delete "move storage job" for the deleted torrent
             // (note: we shouldn't delete active job)
-            const auto iter = std::find_if((m_moveStorageQueue.cbegin() + 1), m_moveStorageQueue.cend()
+            const auto iter = std::ranges::find_if(std::views::drop(asConst(m_moveStorageQueue), 1)
                 , [torrent](const MoveStorageJob &job)
             {
                 return job.torrentHandle == torrent->nativeHandle();
@@ -2581,7 +2581,7 @@ void SessionImpl::decreaseTorrentsQueuePos(const QList<TorrentID> &ids)
     const QList<TorrentImpl *> queuedTorrents = getQueuedTorrentsByID(ids);
 
     // Decrease torrents queue position (starting with the one in the lowest queue position)
-    for (TorrentImpl *torrent : (queuedTorrents | std::views::reverse))
+    for (const TorrentImpl *torrent : std::views::reverse(queuedTorrents))
         torrentQueuePositionDown(torrent->nativeHandle());
 
     for (const lt::torrent_handle &torrentHandle : asConst(m_downloadedMetadata))
@@ -2595,7 +2595,7 @@ void SessionImpl::topTorrentsQueuePos(const QList<TorrentID> &ids)
     const QList<TorrentImpl *> queuedTorrents = getQueuedTorrentsByID(ids);
 
     // Top torrents queue position (starting with the one in the lowest queue position)
-    for (TorrentImpl *torrent : (queuedTorrents | std::views::reverse))
+    for (const TorrentImpl *torrent : std::views::reverse(queuedTorrents))
         torrentQueuePositionTop(torrent->nativeHandle());
 
     m_torrentsQueueChanged = true;
@@ -2857,7 +2857,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     if (isAddTrackersEnabled() && !(hasMetadata && p.ti->priv()))
     {
-        const auto maxTierIter = std::max_element(p.tracker_tiers.cbegin(), p.tracker_tiers.cend());
+        const auto maxTierIter = std::ranges::max_element(asConst(p.tracker_tiers));
         const int baseTier = (maxTierIter != p.tracker_tiers.cend()) ? (*maxTierIter + 1) : 0;
 
         p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerEntries.size()));
@@ -2872,7 +2872,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
     if (isAddTrackersFromURLEnabled() && !(hasMetadata && p.ti->priv()))
     {
-        const auto maxTierIter = std::max_element(p.tracker_tiers.cbegin(), p.tracker_tiers.cend());
+        const auto maxTierIter = std::ranges::max_element(asConst(p.tracker_tiers));
         const int baseTier = (maxTierIter != p.tracker_tiers.cend()) ? (*maxTierIter + 1) : 0;
 
         p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerEntriesFromURL.size()));
@@ -3094,7 +3094,7 @@ bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
     {
         // Use "additional trackers" when metadata retrieving (this can help when the DHT nodes are few)
 
-        const auto maxTierIter = std::max_element(p.tracker_tiers.cbegin(), p.tracker_tiers.cend());
+        const auto maxTierIter = std::ranges::max_element(asConst(p.tracker_tiers));
         const int baseTier = (maxTierIter != p.tracker_tiers.cend()) ? (*maxTierIter + 1) : 0;
 
         p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerEntries.size()));
@@ -4132,7 +4132,7 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
 
     const auto isFilenameExcluded = [patterns = m_excludedFileNamesRegExpList](const Path &fileName)
     {
-        return std::any_of(patterns.begin(), patterns.end(), [&fileName](const QRegularExpression &re)
+        return std::ranges::any_of(patterns, [&fileName](const QRegularExpression &re)
         {
             Path path = fileName;
             while (!re.match(path.filename()).hasMatch())
@@ -5377,13 +5377,13 @@ bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &new
 
     if (m_moveStorageQueue.size() > 1)
     {
-        auto iter = std::find_if((m_moveStorageQueue.cbegin() + 1), m_moveStorageQueue.cend()
+        const auto iter = std::ranges::find_if(std::views::drop(asConst(m_moveStorageQueue), 1)
                 , [&torrentHandle](const MoveStorageJob &job)
         {
             return job.torrentHandle == torrentHandle;
         });
 
-        if (iter != m_moveStorageQueue.end())
+        if (iter != m_moveStorageQueue.cend())
         {
             // remove existing inactive job
             torrent->handleMoveStorageJobFinished(currentLocation, iter->context, torrentHasActiveJob);
@@ -5453,7 +5453,7 @@ void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)
     if (!m_moveStorageQueue.isEmpty())
         moveTorrentStorage(m_moveStorageQueue.constFirst());
 
-    const auto iter = std::find_if(m_moveStorageQueue.cbegin(), m_moveStorageQueue.cend()
+    const auto iter = std::ranges::find_if(asConst(m_moveStorageQueue)
             , [&finishedJob](const MoveStorageJob &job)
     {
         return job.torrentHandle == finishedJob.torrentHandle;
@@ -5495,7 +5495,7 @@ void SessionImpl::processPendingFinishedTorrents()
 
     m_pendingFinishedTorrents.clear();
 
-    const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    const bool hasUnfinishedTorrents = std::ranges::any_of(asConst(m_torrents), [](const TorrentImpl *torrent)
     {
         return !(torrent->isFinished() || torrent->isStopped() || torrent->isErrored());
     });
@@ -5588,7 +5588,7 @@ void SessionImpl::loadCategories()
 
 bool SessionImpl::hasPerTorrentRatioLimit() const
 {
-    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    return std::ranges::any_of(asConst(m_torrents), [](const TorrentImpl *torrent)
     {
         return (torrent->ratioLimit() >= 0);
     });
@@ -5596,7 +5596,7 @@ bool SessionImpl::hasPerTorrentRatioLimit() const
 
 bool SessionImpl::hasPerTorrentSeedingTimeLimit() const
 {
-    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    return std::ranges::any_of(asConst(m_torrents), [](const TorrentImpl *torrent)
     {
         return (torrent->seedingTimeLimit() >= 0);
     });
@@ -5604,7 +5604,7 @@ bool SessionImpl::hasPerTorrentSeedingTimeLimit() const
 
 bool SessionImpl::hasPerTorrentInactiveSeedingTimeLimit() const
 {
-    return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    return std::ranges::any_of(asConst(m_torrents), [](const TorrentImpl *torrent)
     {
        return (torrent->inactiveSeedingTimeLimit() >= 0);
     });

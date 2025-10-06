@@ -1762,7 +1762,7 @@ void OptionsDialog::initializeStyleCombo()
     m_ui->comboStyle->insertSeparator(1);
 
     QStringList styleNames = QStyleFactory::keys();
-    std::sort(styleNames.begin(), styleNames.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(styleNames, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     for (const QString &styleName : asConst(styleNames))
         m_ui->comboStyle->addItem(styleName, styleName);
 

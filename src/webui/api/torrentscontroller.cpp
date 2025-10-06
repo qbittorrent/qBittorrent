@@ -628,7 +628,7 @@ void TorrentsController::infoAction()
             return false;
         };
 
-        std::sort(torrentList.begin(), torrentList.end()
+        std::ranges::sort(torrentList
             , [reverse, &sortedColumn, &lessThan](const QVariant &torrent1, const QVariant &torrent2)
         {
             const QVariant value1 {torrent1.toMap().value(sortedColumn)};
@@ -931,8 +931,7 @@ void TorrentsController::filesAction()
         const int filesCount = torrent->filesCount();
         const QStringList indexStrings = idxIt.value().split(u'|');
         fileIndexes.reserve(indexStrings.size());
-        std::transform(indexStrings.cbegin(), indexStrings.cend(), std::back_inserter(fileIndexes)
-                       , [&filesCount](const QString &indexString) -> int
+        for (const QString &indexString : indexStrings)
         {
             bool ok = false;
             const int index = indexString.toInt(&ok);
@@ -940,8 +939,8 @@ void TorrentsController::filesAction()
                 throw APIError(APIErrorType::Conflict, tr("\"%1\" is not a valid file index.").arg(indexString));
             if (index >= filesCount)
                 throw APIError(APIErrorType::Conflict, tr("Index %1 is out of bounds.").arg(indexString));
-            return index;
-        });
+            fileIndexes.push_back(index);
+        }
     }
 
     QJsonArray fileList = getFiles(torrent, fileIndexes);
@@ -1348,7 +1347,7 @@ void TorrentsController::addPeersAction()
 
     applyToTorrents(hashes, [peers, peerList, &results](BitTorrent::Torrent *const torrent)
     {
-        const int peersAdded = std::count_if(peerList.cbegin(), peerList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
+        const int peersAdded = std::ranges::count_if(peerList, [torrent](const BitTorrent::PeerAddress &peer)
         {
             return torrent->connectPeer(peer);
         });

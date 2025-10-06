@@ -197,8 +197,8 @@ PathList TorrentInfo::filesForPiece(const int pieceIndex) const
 
     PathList res;
     res.reserve(fileIndices.size());
-    std::transform(fileIndices.begin(), fileIndices.end(), std::back_inserter(res)
-                   , [this](int i) { return filePath(i); });
+    for (const int i : fileIndices)
+        res.push_back(filePath(i));
 
     return res;
 }

@@ -980,7 +980,7 @@ void AppController::setPreferencesAction()
         const QString ifaceValue {it.value().toString()};
 
         const QList<QNetworkInterface> ifaces = QNetworkInterface::allInterfaces();
-        const auto ifacesIter = std::find_if(ifaces.cbegin(), ifaces.cend(), [&ifaceValue](const QNetworkInterface &iface)
+        const auto ifacesIter = std::ranges::find_if(ifaces, [&ifaceValue](const QNetworkInterface &iface)
         {
             return (!iface.addressEntries().isEmpty()) && (iface.name() == ifaceValue);
         });
