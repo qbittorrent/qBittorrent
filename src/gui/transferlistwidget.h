@@ -89,7 +89,8 @@ public slots:
     void copySelectedInfohashes(CopyInfohashPolicy policy) const;
     void copySelectedIDs() const;
     void copySelectedComments() const;
-    void openSelectedTorrentsFolder() const;
+    void openSelectedTorrentsFolder();
+    void openDestinationFolder(const BitTorrent::Torrent *torrent);
     void recheckSelectedTorrents();
     void reannounceSelectedTorrents();
     void setTorrentOptions();
