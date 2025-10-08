@@ -367,7 +367,7 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
 
     const QString episodeStr = computeEpisodeName(articleTitle);
     if (episodeStr.isEmpty())
-        return true;
+        return false; // Don't accept articles with unrecognized episode number
 
     // See if this episode has been downloaded before
     const bool previouslyMatched = m_dataPtr->previouslyMatchedEpisodes.contains(episodeStr);
