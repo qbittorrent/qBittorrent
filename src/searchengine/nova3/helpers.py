@@ -27,6 +27,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+import certifi
 import datetime
 import gzip
 import html
@@ -97,6 +98,9 @@ htmlentitydecode = html.unescape
 def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None, unescape_html_entities: bool = True) -> str:
     """ Return the content of the url page as a string """
 
+    if ssl_context is None:
+        ssl_context = ssl.create_default_context(cafile=certifi.where())
+
     request = urllib.request.Request(url, request_data, {**_headers, **custom_headers})
     try:
         response = urllib.request.urlopen(request, context=ssl_context)
@@ -127,6 +131,9 @@ def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data:
 
 def download_file(url: str, referer: Optional[str] = None, ssl_context: Optional[ssl.SSLContext] = None) -> str:
     """ Download file at url and write it to a file, return the path to the file and the url """
+
+    if ssl_context is None:
+        ssl_context = ssl.create_default_context(cafile=certifi.where())
 
     # Download url
     request = urllib.request.Request(url, headers=_headers)
