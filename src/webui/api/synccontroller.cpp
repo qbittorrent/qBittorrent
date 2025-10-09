@@ -46,6 +46,7 @@
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
+#include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
@@ -92,6 +93,7 @@ namespace
     const QString KEY_TRANSFER_UPDATA = u"up_info_data"_s;
     const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_s;
     const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_s;
+    const QString KEY_TRANSFER_UPTIME = u"uptime"_s;
 
     // Statistics keys
     const QString KEY_TRANSFER_ALLTIME_DL = u"alltime_dl"_s;
@@ -191,6 +193,8 @@ namespace
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
             : u"disconnected"_s;
+
+        map[KEY_TRANSFER_UPTIME] = Utils::Misc::applicationUptime();
 
         return map;
     }
@@ -519,6 +523,7 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "queueing": queue system usage flag
 //  - "refresh_interval": torrents table refresh interval
 //  - "free_space_on_disk": Free space on the default save path
+//  - "uptime": qBittorrent uptime in seconds
 // GET param:
 //   - rid (int): last response id
 void SyncController::maindataAction()

@@ -28,6 +28,7 @@
 
 #include "misc.h"
 
+#include <chrono>
 #include <optional>
 
 #include <boost/version.hpp>
@@ -91,6 +92,8 @@ namespace
         }
         return {{value, static_cast<Utils::Misc::SizeUnit>(i)}};
     }
+
+    const auto APP_START_TIME = std::chrono::steady_clock::now();
 }
 
 QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
@@ -260,6 +263,12 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
     qlonglong years = (days / 365);
     days -= (years * 365);
     return QCoreApplication::translate("misc", "%1y %2d", "e.g: 2 years 10 days").arg(QString::number(years), QString::number(days));
+}
+
+qint64 Utils::Misc::applicationUptime()
+{
+    const auto uptime = std::chrono::steady_clock::now() - APP_START_TIME;
+    return std::chrono::duration_cast<std::chrono::seconds>(uptime).count();
 }
 
 QString Utils::Misc::languageToLocalizedString(const QStringView localeStr)

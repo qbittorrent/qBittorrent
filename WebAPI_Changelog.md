@@ -1,5 +1,8 @@
 # WebAPI Changelog
 
+## 2.14.1
+* `sync/maindata` returns one new field in `server_state`: `uptime`, reporting the qBittorrent process uptime in seconds
+
 ## 2.14.0
 * [#23202](https://github.com/qbittorrent/qBittorrent/pull/23202)
   * WebAPI responds with the error message "Endpoint does not exist" when the endpoint does not exist, to better differentiate from unrelated Not Found (i.e. 404) responses
