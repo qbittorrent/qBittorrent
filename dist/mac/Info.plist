@@ -32,6 +32,30 @@
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>!qB</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>qBitTorrentIncompleteFile</string>
+			<key>CFBundleTypeName</key>
+			<string>BitTorrent Incomplete Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.bittorrent.incompleteDocument</string>
+			</array>
+			<key>NSExportableTypes</key>
+			<array>
+				<string>org.bittorrent.incompleteDocument</string>
+			</array>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -98,6 +122,28 @@
 				<key>public.mime-type</key>
 				<array>
 					<string>application/x-bittorrent</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.item</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>BitTorrent Incomplete Document</string>
+			<key>UTTypeIconFile</key>
+			<string>qBitTorrentIncompleteFile</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.bittorrent.incompleteDocument</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://www.bittorrent.org/beps/bep_0000.html</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>!qB</string>
 				</array>
 			</dict>
 		</dict>
