@@ -138,6 +138,7 @@ namespace
         case SearchJobWidget::Status::Aborted:
             return u"task-reject"_s;
         case SearchJobWidget::Status::Error:
+            return u"error"_s;
         case SearchJobWidget::Status::NoResults:
             return u"dialog-warning"_s;
         default:
