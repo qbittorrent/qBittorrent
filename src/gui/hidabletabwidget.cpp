@@ -38,6 +38,8 @@
 HidableTabWidget::HidableTabWidget(QWidget *parent)
     : QTabWidget(parent)
 {
+    // Prevent tab bar from capturing keyboard focus, which would trap Tab key navigation.
+    tabBar()->setFocusPolicy(Qt::NoFocus);
 }
 
 void HidableTabWidget::tabInserted(const int index)
