@@ -190,11 +190,7 @@ bool AddTorrentManager::handleDuplicateTorrent(const QString &source
 
     LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: \"%2\". Torrent infohash: %3. Result: %4")
             .arg(source, existingTorrent->name(), existingTorrent->infoHash().toString(), message));
-    if (added)
-    {
-        emit torrentAdded(source, torrent);
-    }
-    else
+    if (!added)
     {
         emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
     }
