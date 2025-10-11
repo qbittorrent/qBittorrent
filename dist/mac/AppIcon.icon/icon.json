@@ -25,8 +25,8 @@
       "layers" : [
         {
           "glass" : false,
-          "image-name" : "border 2.svg",
-          "name" : "border 2",
+          "image-name" : "border.svg",
+          "name" : "border",
           "position" : {
             "scale" : 1.05,
             "translation-in-points" : [
