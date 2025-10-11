@@ -38,20 +38,20 @@
 				<string>!qB</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>qBitTorrentIncompleteFile</string>
+			<string>qBitTorrentIncompleteData</string>
 			<key>CFBundleTypeName</key>
-			<string>BitTorrent Incomplete Document</string>
+			<string>qBitTorrent Incomplete Data</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSHandlerRank</key>
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.bittorrent.incompleteDocument</string>
+				<string>org.bittorrent.incompleteData</string>
 			</array>
 			<key>NSExportableTypes</key>
 			<array>
-				<string>org.bittorrent.incompleteDocument</string>
+				<string>org.bittorrent.incompleteData</string>
 			</array>
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
@@ -132,13 +132,11 @@
 				<string>public.item</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>BitTorrent Incomplete Document</string>
+			<string>qBitTorrent Incomplete Data</string>
 			<key>UTTypeIconFile</key>
-			<string>qBitTorrentIncompleteFile</string>
+			<string>qBitTorrentIncompleteData</string>
 			<key>UTTypeIdentifier</key>
-			<string>org.bittorrent.incompleteDocument</string>
-			<key>UTTypeReferenceURL</key>
-			<string>https://www.bittorrent.org/beps/bep_0000.html</string>
+			<string>org.bittorrent.incompleteData</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

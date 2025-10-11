@@ -1,21 +1,13 @@
 {
-  "fill" : {
-    "automatic-gradient" : "extended-srgb:0.00000,0.53333,1.00000,1.00000"
-  },
+  "fill" : "automatic",
   "groups" : [
     {
       "blur-material" : null,
       "layers" : [
         {
-          "image-name" : "qb.png",
-          "name" : "qb",
-          "position" : {
-            "scale" : 1.17,
-            "translation-in-points" : [
-              0,
-              0
-            ]
-          }
+          "hidden" : false,
+          "image-name" : "qb.svg",
+          "name" : "qb"
         }
       ],
       "shadow" : {
@@ -29,12 +21,14 @@
       }
     },
     {
+      "hidden" : false,
       "layers" : [
         {
-          "image-name" : "background.png",
-          "name" : "background",
+          "glass" : false,
+          "image-name" : "border 2.svg",
+          "name" : "border 2",
           "position" : {
-            "scale" : 1.17,
+            "scale" : 1.05,
             "translation-in-points" : [
               0,
               0
@@ -42,10 +36,12 @@
           }
         },
         {
-          "image-name" : "border.png",
-          "name" : "border",
+          "fill" : "automatic",
+          "glass" : false,
+          "image-name" : "background.svg",
+          "name" : "background",
           "position" : {
-            "scale" : 1.28,
+            "scale" : 1.46,
             "translation-in-points" : [
               0,
               0
@@ -53,8 +49,9 @@
           }
         }
       ],
+      "lighting" : "individual",
       "shadow" : {
-        "kind" : "neutral",
+        "kind" : "none",
         "opacity" : 0.5
       },
       "specular" : false,

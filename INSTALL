@@ -44,12 +44,6 @@ Please ensure you are building with an officially supported configuration when r
 
   will install and execute qBittorrent.
 
-2c) Compile and install qBittorrent with Qt graphical interface on macOS
-  $ cmake -B build -DCMAKE_BUILD_TYPE=Release
-  $ cmake --build build
-  $ macdeployqt <path to app>
-  $ codesign --force --deep --sign - <path to app>
-
 DOCUMENTATION:
 Please note that there is a "Compilation" section at https://wiki.qbittorrent.org.
 
