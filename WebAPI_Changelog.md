@@ -1,7 +1,7 @@
 # WebAPI Changelog
 
 ## 2.14.1
-* `sync/maindata` returns one new field in `server_state`: `uptime`, reporting the qBittorrent process uptime in seconds
+* `sync/maindata` returns one new field in `server_state`: `app_uptime`, reporting the qBittorrent application uptime in seconds
 
 ## 2.14.0
 * [#23202](https://github.com/qbittorrent/qBittorrent/pull/23202)
