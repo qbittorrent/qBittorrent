@@ -73,7 +73,7 @@ protected:
     bool addTorrentToSession(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr
             , const BitTorrent::AddTorrentParams &addTorrentParams);
     void handleAddTorrentFailed(const QString &source, const QString &reason);
-    void handleDuplicateTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent);
+    bool handleDuplicateTorrent(const QString &source, const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent);
     void setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard);
     std::shared_ptr<TorrentFileGuard> releaseTorrentFileGuard(const QString &source);
 

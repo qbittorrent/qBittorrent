@@ -158,7 +158,7 @@ void AddTorrentManager::handleAddTorrentFailed(const QString &source, const QStr
     emit addTorrentFailed(source, {BitTorrent::AddTorrentError::Other, reason});
 }
 
-void AddTorrentManager::handleDuplicateTorrent(const QString &source
+bool AddTorrentManager::handleDuplicateTorrent(const QString &source
         , const BitTorrent::TorrentDescriptor &torrentDescr, BitTorrent::Torrent *existingTorrent)
 {
     const bool hasMetadata = torrentDescr.info().has_value();
@@ -170,6 +170,7 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
 
     const bool isPrivate = existingTorrent->isPrivate() || (hasMetadata && torrentDescr.info()->isPrivate());
     QString message;
+    bool added = false;
     if (!btSession()->isMergeTrackersEnabled())
     {
         message = tr("Merging of trackers is disabled");
@@ -184,11 +185,20 @@ void AddTorrentManager::handleDuplicateTorrent(const QString &source
         existingTorrent->addTrackers(torrentDescr.trackers());
         existingTorrent->addUrlSeeds(torrentDescr.urlSeeds());
         message = tr("Trackers are merged from new source");
+        added = true;
     }
 
     LogMsg(tr("Detected an attempt to add a duplicate torrent. Source: %1. Existing torrent: \"%2\". Torrent infohash: %3. Result: %4")
             .arg(source, existingTorrent->name(), existingTorrent->infoHash().toString(), message));
-    emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
+    if (added)
+    {
+        emit torrentAdded(source, torrent);
+    }
+    else
+    {
+        emit addTorrentFailed(source, {BitTorrent::AddTorrentError::DuplicateTorrent, message});
+    }
+    return added;
 }
 
 void AddTorrentManager::setTorrentFileGuard(const QString &source, std::shared_ptr<TorrentFileGuard> torrentFileGuard)
@@ -209,8 +219,7 @@ bool AddTorrentManager::processTorrent(const QString &source, const BitTorrent::
     if (BitTorrent::Torrent *torrent = btSession()->findTorrent(infoHash))
     {
         // a duplicate torrent is being added
-        handleDuplicateTorrent(source, torrentDescr, torrent);
-        return false;
+        return handleDuplicateTorrent(source, torrentDescr, torrent);
     }
 
     return addTorrentToSession(source, torrentDescr, addTorrentParams);

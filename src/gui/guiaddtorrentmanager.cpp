@@ -219,12 +219,13 @@ bool GUIAddTorrentManager::processTorrent(const QString &source
                 {
                     torrent->addTrackers(torrentDescr.trackers());
                     torrent->addUrlSeeds(torrentDescr.urlSeeds());
+                    return true;
                 }
             }
         }
         else
         {
-            handleDuplicateTorrent(source, torrentDescr, torrent);
+            return handleDuplicateTorrent(source, torrentDescr, torrent);
         }
 
         return false;
