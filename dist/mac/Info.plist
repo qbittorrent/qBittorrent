@@ -47,11 +47,11 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.bittorrent.incompleteData</string>
+				<string>org.bittorrent.incompletedata</string>
 			</array>
 			<key>NSExportableTypes</key>
 			<array>
-				<string>org.bittorrent.incompleteData</string>
+				<string>org.bittorrent.incompletedata</string>
 			</array>
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
@@ -136,7 +136,7 @@
 			<key>UTTypeIconFile</key>
 			<string>qBitTorrentIncompleteData</string>
 			<key>UTTypeIdentifier</key>
-			<string>org.bittorrent.incompleteData</string>
+			<string>org.bittorrent.incompletedata</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
