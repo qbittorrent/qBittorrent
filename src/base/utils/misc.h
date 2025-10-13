@@ -85,7 +85,4 @@ namespace Utils::Misc
     QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1, TimeResolution resolution = TimeResolution::Minutes);
 
     QString languageToLocalizedString(QStringView localeStr);
-
-    // Returns the time in seconds since the qBittorrent process started.
-    qint64 applicationUptime();
 }

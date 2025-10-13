@@ -269,6 +269,8 @@ Application::Application(int &argc, char **argv)
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
 
+    m_uptime.start();
+
     setApplicationName(u"qBittorrent"_s);
     setOrganizationDomain(u"qbittorrent.org"_s);
 #if !defined(DISABLE_GUI)
@@ -1340,6 +1342,11 @@ void Application::adjustThreadPriority() const
     ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_ABOVE_NORMAL);
 }
 #endif
+
+std::chrono::seconds Application::uptime() const
+{
+    return std::chrono::seconds {m_uptime.elapsed() / 1000};
+}
 
 void Application::cleanup()
 {

@@ -46,7 +46,7 @@
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
-#include "base/utils/misc.h"
+#include "base/interfaces/iapplication.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
@@ -150,7 +150,7 @@ namespace
     std::pair<QVariantList, QVariantList> processList(QVariantList prevData, const QVariantList &data);
     QJsonObject generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
-    QVariantMap getTransferInfo()
+    QVariantMap getTransferInfo(IApplication *app)
     {
         QVariantMap map;
         const auto *session = BitTorrent::Session::instance();
@@ -194,7 +194,7 @@ namespace
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
             : u"disconnected"_s;
 
-        map[KEY_TRANSFER_APP_UPTIME] = Utils::Misc::applicationUptime();
+        map[KEY_TRANSFER_APP_UPTIME] = static_cast<qlonglong>(app->uptime().count());
 
         return map;
     }
@@ -617,7 +617,7 @@ void SyncController::makeMaindataSnapshot()
     for (const auto &[tracker, torrentIDs] : m_knownTrackers.asKeyValueRange())
         m_maindataSnapshot.trackers[tracker] = asStrings(torrentIDs);
 
-    m_maindataSnapshot.serverState = getTransferInfo();
+    m_maindataSnapshot.serverState = getTransferInfo(app());
     m_maindataSnapshot.serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
@@ -771,7 +771,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     }
     m_removedTrackers.clear();
 
-    QVariantMap serverState = getTransferInfo();
+    QVariantMap serverState = getTransferInfo(app());
     serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
