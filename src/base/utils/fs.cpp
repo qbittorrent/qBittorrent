@@ -62,6 +62,114 @@
 
 #include "base/path.h"
 
+namespace
+{
+    // Shared set of reserved device names for Windows
+#ifdef Q_OS_WIN
+    const QSet<QString> reservedDeviceNames{
+        u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
+        u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
+        u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
+        u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
+        u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
+        u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
+        u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s};
+#endif
+
+    // Check if a character is reserved (control, DEL, '/', or Windows-specific)
+    bool isReservedCharacter(const QChar &c)
+    {
+        const ushort unicode = c.unicode();
+        if ((unicode < 32) || (unicode == 127) || (c == u'/'))
+            return true;
+#ifdef Q_OS_WIN
+        static const QSet<QChar> reservedChars{u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
+        return reservedChars.contains(c);
+#else
+        return false;
+#endif
+    }
+
+    // Check if a name is valid without sanitizing
+    bool isValidNameInternal(const QString &name)
+    {
+        // Reject empty names or special directory names
+        if (name.isEmpty() || name == u"."_s || name == u".."_s)
+            return false;
+
+        // Check for reserved characters
+        if (std::ranges::any_of(name, isReservedCharacter))
+            return false;
+
+        // Check platform-specific length limit
+#ifdef Q_OS_WIN
+        if (name.length() > 255 || name.endsWith(u'.'))
+            return false;
+#else
+        if (name.toUtf8().length() > 255)
+            return false;
+#endif
+
+        // Check Windows reserved device names
+#ifdef Q_OS_WIN
+        const QString baseName = name.section(u'.', 0, 0).toUpper();
+        if (reservedDeviceNames.contains(baseName))
+            return false;
+#endif
+
+        return true;
+    }
+
+    // Clean path or filename
+    QString sanitizeName(const QString &name, const QString &pad)
+    {
+        // Handle empty names or special directory names
+        if (name.isEmpty() || name == u"."_s || name == u".."_s)
+            return pad;
+
+        QString validName = name.trimmed();
+
+        // Replace one or more reserved characters with pad
+        QString newName;
+        newName.reserve(validName.size());
+        bool inReservedSequence = false;
+        std::ranges::for_each(validName, [&](const QChar &c)
+                              {
+            if (isReservedCharacter(c))
+            {
+                if (!inReservedSequence)
+                {
+                    newName += pad;
+                    inReservedSequence = true;
+                }
+            }
+            else
+            {
+                newName += c;
+                inReservedSequence = false;
+            } });
+        validName = std::move(newName);
+
+        // Handle Windows-specific trailing dots
+#ifdef Q_OS_WIN
+        while (validName.endsWith(u'.'))
+            validName.chop(1);
+#endif
+
+// Handle Windows reserved device names
+#ifdef Q_OS_WIN
+        const QString reservedBase = validName.section(u'.', 0, 0);
+        if (reservedDeviceNames.contains(reservedBase.toUpper()))
+        {
+            QString newReservedBase = reservedBase + pad + u"1"_s;
+            validName = newReservedBase + validName.mid(reservedBase.length());
+        }
+#endif
+
+        return validName;
+    }
+}
+
 /**
  * This function will first check if there are only system cache files, e.g. `Thumbs.db`,
  * `.DS_Store` and/or only temp files that end with '~', e.g. `filename~`.
@@ -186,205 +294,24 @@ bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
     return true;
 }
 
-/**
- * Converts a string to a valid file name by replacing reserved characters with \a pad,
- * removing trailing dots on Windows, truncating to platform limits, and handling Windows reserved device names.
- * \param name The input string to validate.
- * \param pad The replacement string for reserved characters (default: space).
- * \return The sanitized file name.
- */
-QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
+bool Utils::Fs::isValidFileName(const QString &name)
 {
-
-    // Replace empty names or special directory names "." and ".." with pad
-    if (name.isEmpty() || name == u"."_s || name == u".."_s)
-        return pad;
-
-    QString validName = name.trimmed();
-
-    // Identify reserved characters: control, DEL, '/', Windows-specific
-    auto isReservedCharacter = [](const QChar &c) -> bool
-    {
-        const ushort unicode = c.unicode();
-        if ((unicode < 32) || (unicode == 127) || (c == u'/'))
-            return true;
-#ifdef Q_OS_WIN
-        static const QSet<QChar> reservedChars {u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
-        if (reservedChars.contains(c))
-            return true;
-#endif
-        return false;
-    };
-
-    // Replace one or more reserved characters with a single pad
-    QString newName;
-    newName.reserve(validName.size());
-    bool inReservedSequence = false;
-    std::ranges::for_each(validName, [&](const QChar &c)
-    {
-        if (isReservedCharacter(c)) {
-            if (!inReservedSequence) {
-                newName += pad;
-                inReservedSequence = true;
-            }
-        } else {
-            newName += c;
-            inReservedSequence = false;
-        }
-    });
-    validName = std::move(newName);
-
-    // Remove one or more trailing dots on Windows
-#ifdef Q_OS_WIN
-    while (validName.endsWith(u'.')) {
-        validName.chop(1);
-    }
-#endif
-
-    // Extract base and extension for truncation and reserved device name handling
-    QString base = validName;
-    QString ext;
-    int dotIndex = validName.lastIndexOf(u'.');
-    if (dotIndex != -1) {
-        ext = validName.mid(dotIndex);
-        base = validName.left(dotIndex);
-    }
-
-    // Truncate to platform-specific length limit
-#ifdef Q_OS_WIN
-    const int maxLen = 255;
-    if (validName.length() > maxLen) {
-        base = base.left(maxLen - ext.length());
-        validName = base + ext;
-    }
-#else
-    while (validName.toUtf8().length() > 255) {
-        if (base.isEmpty()) break;
-        base.chop(1);
-        validName = base + ext;
-    }
-#endif
-
-    // Handle Windows reserved device names
-#ifdef Q_OS_WIN
-    const QSet<QString> reservedDeviceNames
-    {
-        u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
-        u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
-        u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
-        u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
-        u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
-        u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
-        u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
-    };
-    QString reservedBase = (dotIndex == -1) ? validName : validName.left(dotIndex);
-    if (reservedDeviceNames.contains(reservedBase.toUpper())) {
-        base += pad + u"1"_s;
-        validName = base + ext;
-    }
-#endif
-
-    return validName;
+    return isValidNameInternal(name);
 }
 
-/**
- * Converts a string to a valid path by replacing reserved characters with \a pad,
- * removing trailing dots on Windows, truncating to platform limits, and handling Windows reserved device names.
- * \param name The input string to validate.
- * \param pad The replacement string for reserved characters (default: "_").
- * \return The sanitized path as a Path object.
- */
+QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
+{
+    return sanitizeName(name, pad);
+}
+
 Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
 {
-    // Return pad for empty paths or when the entire path is "." or ".."
-    if (name.isEmpty() || name == u"."_s || name == u".."_s)
-        return Path(pad);
+    const QRegularExpression regex {u"[:?\"*<>|]+"_s};
 
-    QString validName = name.trimmed();
+    QString validPathStr = name;
+    validPathStr.replace(regex, pad);
 
-    // Identify reserved characters: Control, DEL, '/', Windows-specific
-    auto isReservedCharacter = [](const QChar &c) -> bool
-    {
-        const ushort unicode = c.unicode();
-        if ((unicode < 32) || (unicode == 127) || (c == u'/'))
-            return true;
-#ifdef Q_OS_WIN
-        static const QSet<QChar> reservedChars {u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
-        if (reservedChars.contains(c))
-            return true;
-#endif
-        return false;
-    };
-
-    // Replace one or more reserved characters with a single pad
-    QString newName;
-    newName.reserve(validName.size());
-    bool inReservedSequence = false;
-    std::ranges::for_each(validName, [&](const QChar &c)
-    {
-        if (isReservedCharacter(c)) {
-            if (!inReservedSequence) {
-                newName += pad;
-                inReservedSequence = true;
-            }
-        } else {
-            newName += c;
-            inReservedSequence = false;
-        }
-    });
-    validName = std::move(newName);
-
-    // Remove one or more trailing dots on Windows
-#ifdef Q_OS_WIN
-    while (validName.endsWith(u'.')) {
-        validName.chop(1);
-    }
-#endif
-
-    // Extract base and extension for truncation and reserved device name handling
-    QString base = validName;
-    QString ext;
-    int dotIndex = validName.lastIndexOf(u'.');
-    if (dotIndex != -1) {
-        ext = validName.mid(dotIndex);
-        base = validName.left(dotIndex);
-    }
-
-    // Truncate to platform-specific length limit
-#ifdef Q_OS_WIN
-    const int maxLen = 255;
-    if (validName.length() > maxLen) {
-        base = base.left(maxLen - ext.length());
-        validName = base + ext;
-    }
-#else
-    while (validName.toUtf8().length() > 255) {
-        if (base.isEmpty()) break;
-        base.chop(1);
-        validName = base + ext;
-    }
-#endif
-
-    // Handle Windows reserved device names
-#ifdef Q_OS_WIN
-    const QSet<QString> reservedDeviceNames
-    {
-        u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
-        u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
-        u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
-        u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
-        u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
-        u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
-        u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
-    };
-    QString reservedBase = (dotIndex == -1) ? validName : validName.left(dotIndex);
-    if (reservedDeviceNames.contains(reservedBase.toUpper())) {
-        base += pad + u"1"_s;
-        validName = base + ext;
-    }
-#endif
-
-    return Path(validName);
+    return Path(validPathStr);
 }
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
@@ -397,65 +324,6 @@ Path Utils::Fs::tempPath()
     static const Path path = Path(QDir::tempPath()) / Path(u".qBittorrent"_s);
     mkdir(path);
     return path;
-}
-
-// Validates a file name, where "file" refers to both files and directories in Windows and Unix-like systems.
-// Returns true if the name is valid, false if it contains empty/special names, exceeds platform-specific lengths,
-// uses reserved names, or includes reserved characters.
-bool Utils::Fs::isValidName(const QString &name)
-{
-    // Reject empty names or special directory names (".", "..")
-    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
-        return false;
-
-#ifdef Q_OS_WIN
-    // Windows restricts file names to 255 characters and prohibits trailing dots
-    if ((name.length() > 255) || name.endsWith(u'.'))
-        return false;
-#else
-    // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
-    if (name.toUtf8().length() > 255)
-        return false;
-#endif
-
-#ifdef Q_OS_WIN
-    // Windows reserves certain names for devices, which cannot be used as file names
-    const QSet reservedNames
-    {
-        u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
-        u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
-        u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
-        u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
-        u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
-        u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
-        u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
-    };
-    const QString baseName = name.section(u'.', 0, 0).toUpper();
-    if (reservedNames.contains(baseName))
-        return false;
-#endif
-
-     // Check for control characters, delete character, forward slash, and Windows reserved characters
-    auto isReservedCharacter = [](const QChar &c) -> bool
-    {
-        const ushort unicode = c.unicode();
-        if ((unicode < 32) || (unicode == 127) || (c == u'/'))
-            return true;
-#ifdef Q_OS_WIN
-        const QSet<QChar> reservedChars
-        {
-            u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'
-        };
-        if (reservedChars.contains(c))
-            return true;
-#endif
-        return false;
-    };
-    if (std::ranges::any_of(name, isReservedCharacter))
-        return false;
-
-    // If none of the invalid conditions are met, the name is valid
-    return true;
 }
 
 bool Utils::Fs::isRegularFile(const Path &path)
@@ -582,7 +450,6 @@ nonstd::expected<void, QString> Utils::Fs::moveFileToTrash(const Path &path)
     const QString errorMessage = file.errorString();
     return nonstd::make_unexpected(!errorMessage.isEmpty() ? errorMessage : QCoreApplication::translate("fs", "Unknown error"));
 }
-
 
 bool Utils::Fs::isReadable(const Path &path)
 {
