@@ -1,0 +1,50 @@
+name: Windows Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      VCPKG_ROOT: ${{ github.workspace }}\vcpkg
+      VCPKG_DEFAULT_TRIPLET: x64-windows
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies via Chocolatey
+      run: |
+        choco install cmake -y
+        choco install ninja -y
+        choco install python3 -y
+        choco install 7zip -y
+
+    - name: Clone and bootstrap vcpkg
+      run: |
+        git clone https://github.com/microsoft/vcpkg.git
+        .\vcpkg\bootstrap-vcpkg.bat
+
+    - name: Install libraries via vcpkg
+      run: |
+        .\vcpkg\vcpkg install qt5-base boost-system boost-filesystem openssl libtorrent-rasterbar
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -G "Ninja" ^
+          -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}\scripts\buildsystems\vcpkg.cmake ^
+          -DCMAKE_BUILD_TYPE=Release ^
+          -DQT5=ON
+
+    - name: Build qBittorrent
+      run: |
+        cd build
+        cmake --build . --config Release
