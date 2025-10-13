@@ -95,7 +95,7 @@ bool TorrentInfo::isPrivate() const
 {
     if (!isValid()) return false;
 
-    return m_nativeInfo->priv();
+    return false; // Всегда считаем торрент публичным
 }
 
 qlonglong TorrentInfo::totalSize() const
