@@ -110,11 +110,11 @@ namespace
             return false;
 #endif
 
-        // Check Windows reserved device names
 #ifdef Q_OS_WIN
-        const QString baseName = name.section(u'.', 0, 0).toUpper();
-        if (reservedDeviceNames.contains(baseName))
-            return false;
+    const qsizetype lastDotIndex = name.lastIndexOf(u'.');
+    const QString baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
+    if (reservedDeviceNames.contains(baseName.toUpper()))
+        return false;
 #endif
 
         return true;
@@ -158,12 +158,10 @@ namespace
 
 // Handle Windows reserved device names
 #ifdef Q_OS_WIN
-        const QString reservedBase = validName.section(u'.', 0, 0);
-        if (reservedDeviceNames.contains(reservedBase.toUpper()))
-        {
-            QString newReservedBase = reservedBase + pad + u"1"_s;
-            validName = newReservedBase + validName.mid(reservedBase.length());
-        }
+    const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
+    const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
+    if (reservedDeviceNames.contains(baseName.toUpper()))
+        validName = baseName + pad + u"1"_s + validName.mid(lastDotIndex);
 #endif
 
         return validName;
@@ -302,16 +300,6 @@ bool Utils::Fs::isValidFileName(const QString &name)
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
     return sanitizeName(name, pad);
-}
-
-Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
-{
-    const QRegularExpression regex {u"[:?\"*<>|]+"_s};
-
-    QString validPathStr = name;
-    validPathStr.replace(regex, pad);
-
-    return Path(validPathStr);
 }
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
