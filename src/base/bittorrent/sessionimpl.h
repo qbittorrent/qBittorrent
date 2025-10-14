@@ -628,6 +628,7 @@ namespace BitTorrent
         void populateAdditionalTrackersFromURL();
 
         void fetchPendingAlerts(lt::time_duration time = lt::time_duration::zero());
+        void endAlertSequence(int alertType, qsizetype alertCount);
 
         void moveTorrentStorage(const MoveStorageJob &job) const;
         void handleMoveTorrentStorageJobFinished(const Path &newPath);

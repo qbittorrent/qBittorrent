@@ -5715,6 +5715,25 @@ void SessionImpl::fetchPendingAlerts(const lt::time_duration time)
     m_nativeSession->pop_alerts(&m_alerts);
 }
 
+void SessionImpl::endAlertSequence(const int alertType, const qsizetype alertCount)
+{
+    qDebug() << "End alert sequence. Alert:" << lt::alert_name(alertType) << "Count:" << alertCount;
+
+    if (alertType == lt::add_torrent_alert::alert_type)
+    {
+        emit addTorrentAlertsReceived(alertCount);
+
+        if (!m_loadedTorrents.isEmpty())
+        {
+            if (isRestored())
+                m_torrentsQueueChanged = true;
+
+            emit torrentsLoaded(m_loadedTorrents);
+            m_loadedTorrents.clear();
+        }
+    }
+}
+
 TorrentContentLayout SessionImpl::torrentContentLayout() const
 {
     return m_torrentContentLayout;
@@ -5731,28 +5750,26 @@ void SessionImpl::readAlerts()
     fetchPendingAlerts();
 
     Q_ASSERT(m_loadedTorrents.isEmpty());
-    Q_ASSERT(m_receivedAddTorrentAlertsCount == 0);
 
     if (!isRestored())
         m_loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
 
+    int previousAlertType = -1;
+    qsizetype alertSequenceSize = 0;
     for (lt::alert *a : m_alerts)
-        handleAlert(a);
-
-    if (m_receivedAddTorrentAlertsCount > 0)
     {
-        emit addTorrentAlertsReceived(m_receivedAddTorrentAlertsCount);
-        m_receivedAddTorrentAlertsCount = 0;
-
-        if (!m_loadedTorrents.isEmpty())
+        const int alertType = a->type();
+        if ((alertType != previousAlertType) && (previousAlertType != -1))
         {
-            if (isRestored())
-                m_torrentsQueueChanged = true;
-
-            emit torrentsLoaded(m_loadedTorrents);
-            m_loadedTorrents.clear();
+            endAlertSequence(previousAlertType, alertSequenceSize);
+            alertSequenceSize = 0;
         }
+
+        handleAlert(a);
+        ++alertSequenceSize;
+        previousAlertType = alertType;
     }
+    endAlertSequence(previousAlertType, alertSequenceSize);
 
     // Some torrents may become "finished" after different alerts handling.
     processPendingFinishedTorrents();
@@ -5760,8 +5777,6 @@ void SessionImpl::readAlerts()
 
 void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
 {
-    ++m_receivedAddTorrentAlertsCount;
-
     Q_ASSERT(!m_addTorrentAlertHandlers.isEmpty());
     if (m_addTorrentAlertHandlers.isEmpty()) [[unlikely]]
         return;
