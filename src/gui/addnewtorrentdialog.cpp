@@ -508,7 +508,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
     {
         m_ui->lblMetaLoading->setVisible(false);
         m_ui->progMetaLoading->setVisible(false);
-        m_ui->buttonSave->setVisible(false);
+        m_ui->buttonSave->setVisible(true);
         setupTreeview();
     }
     else
@@ -520,6 +520,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
         m_ui->labelDateData->setText(tr("Not Available", "This date is unavailable"));
         updateDiskSpaceLabel();
         setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
+        m_ui->buttonSave->setVisible(false);
     }
 
     TMMChanged(m_ui->comboTMM->currentIndex());
