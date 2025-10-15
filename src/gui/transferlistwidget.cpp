@@ -1306,9 +1306,16 @@ void TransferListWidget::displayListMenu()
     listMenu->popup(QCursor::pos());
 }
 
-void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex&)
+void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     qDebug("CURRENT CHANGED");
+
+    // Call base class to ensure Qt's accessibility system is notified of focus changes.
+    // This is critical for screen readers to announce the currently selected torrent.
+    // Without this call, users relying on assistive technologies cannot effectively
+    // navigate the torrent list with keyboard arrow keys.
+    QTreeView::currentChanged(current, previous);
+
     BitTorrent::Torrent *torrent = nullptr;
     if (current.isValid())
     {
