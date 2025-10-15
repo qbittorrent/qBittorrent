@@ -38,25 +38,28 @@
 HidableTabWidget::HidableTabWidget(QWidget *parent)
     : QTabWidget(parent)
 {
-    // Skip tab bar in keyboard navigation when there's only one tab (no point navigating to it)
-    // Focus policy is dynamically adjusted in tabInserted/tabRemoved based on tab count
+    // Skip single tab in keyboard navigation (no point navigating to it)
     tabBar()->setFocusPolicy(Qt::NoFocus);
 }
 
 void HidableTabWidget::tabInserted(const int index)
 {
     QTabWidget::tabInserted(index);
-    tabBar()->setVisible(count() != 1);
-    // Skip single tab in keyboard navigation (no point navigating to it)
-    tabBar()->setFocusPolicy((count() > 1) ? Qt::StrongFocus : Qt::NoFocus);
+    tabsCountChanged();
 }
 
 void HidableTabWidget::tabRemoved(const int index)
 {
     QTabWidget::tabRemoved(index);
-    tabBar()->setVisible(count() != 1);
+    tabsCountChanged();
+}
+
+void HidableTabWidget::tabsCountChanged()
+{
+    const qsizetype tabsCount = count();
+    tabBar()->setVisible(tabsCount != 1);
     // Skip single tab in keyboard navigation (no point navigating to it)
-    tabBar()->setFocusPolicy((count() > 1) ? Qt::StrongFocus : Qt::NoFocus);
+    tabBar()->setFocusPolicy((tabsCount > 1) ? Qt::StrongFocus : Qt::NoFocus);
 }
 
 #ifdef Q_OS_MACOS
