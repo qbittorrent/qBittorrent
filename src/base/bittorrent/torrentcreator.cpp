@@ -238,15 +238,15 @@ void TorrentCreator::run()
         {
             Path finalTorrentFilePath = torrentFilePath;
 
-                // Extract the filename and parent path
-                const QString fileName = torrentFilePath.filename();
-                const Path parentPath = torrentFilePath.parentPath();
+            // Extract the filename and parent path
+            const QString fileName = torrentFilePath.filename();
+            const Path parentPath = torrentFilePath.parentPath();
 
-                // Sanitize the filename using toValidFileName
-                const QString validFileName = Utils::Fs::toValidFileName(fileName);
+            // Sanitize the filename using toValidFileName
+            const QString validFileName = Utils::Fs::toValidFileName(fileName);
 
-                // Reconstruct the full path with the sanitized filename
-                finalTorrentFilePath = parentPath / Path(validFileName);
+            // Reconstruct the full path with the sanitized filename
+            finalTorrentFilePath = parentPath / Path(validFileName);
 
             // Fall back to saving a temporary file if the path is invalid
             if (!finalTorrentFilePath.isValid())
