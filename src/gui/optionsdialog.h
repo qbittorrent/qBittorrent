@@ -112,6 +112,8 @@ private slots:
     void on_registerDNSBtn_clicked();
     void onBtnWebUIAPIKeyCopy();
     void onBtnWebUIAPIKeyRotate();
+    void onBtnWebUIAPIKeyDeleteClicked();
+    void setupWebUIAPIKey();
 #endif
 
 private:
