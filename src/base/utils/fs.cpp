@@ -298,6 +298,16 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
     return validName;
 }
 
+Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
+{
+    const QRegularExpression regex {u"[?\"*<>|]+"_s};
+
+    QString validPathStr = name;
+    validPathStr.replace(regex, pad);
+
+    return Path(validPathStr);
+}
+
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
 {
     return QStorageInfo(path.data()).bytesAvailable();

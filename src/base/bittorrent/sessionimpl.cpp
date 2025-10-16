@@ -940,12 +940,12 @@ Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOp
         // use implicit save path
         if (isSubcategoriesEnabled())
         {
-            path = Path(Utils::Fs::toValidFileName(subcategoryName(categoryName)));
+            path = Utils::Fs::toValidPath(subcategoryName(categoryName));
             basePath = categorySavePath(parentCategoryName(categoryName));
         }
         else
         {
-            path = Path(Utils::Fs::toValidFileName(categoryName));
+            path = Utils::Fs::toValidPath(categoryName);
         }
     }
 
@@ -970,7 +970,7 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     const QString name = useSubcategories ? subcategoryName(categoryName) : categoryName;
     const Path path = !downloadPathOption.path.isEmpty()
             ? downloadPathOption.path
-            : Path(Utils::Fs::toValidFileName(name)); // use implicit download path
+            : Utils::Fs::toValidPath(name); // use implicit download path
 
     if (path.isAbsolute())
         return path;
@@ -985,6 +985,7 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     const Path basePath = parentDownloadPath.isEmpty() ? downloadPath() : parentDownloadPath;
     return (basePath / path);
 }
+
 
 DownloadPathOption SessionImpl::resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const
 {
