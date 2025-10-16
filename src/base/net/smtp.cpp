@@ -104,14 +104,8 @@ using namespace Net;
 Smtp::Smtp(QObject *parent)
     : QObject(parent)
 {
-    static bool needToRegisterMetaType = true;
-
-    if (needToRegisterMetaType)
-    {
-        qRegisterMetaType<QAbstractSocket::SocketError>();
-        needToRegisterMetaType = false;
-    }
-
+    qRegisterMetaType<QAbstractSocket::SocketError>();
+    
 #ifndef QT_NO_OPENSSL
     m_socket = new QSslSocket(this);
 #else
