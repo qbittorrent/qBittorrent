@@ -1,0 +1,49 @@
+<div id="confirmRotateAPIKeyDialog">
+    <div class="genericConfirmGrid">
+        <span class="confirmGridItem confirmWarning"></span>
+        <span class="confirmGridItem dialogMessage"></span>
+    </div>
+</div>
+<div>
+    <input type="button" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" id="confirmRotateButton">
+    <input type="button" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" id="cancelRotateButton">
+</div>
+
+<script>
+    "use strict";
+
+    (() => {
+        const { windowEl, options } = window.MUI.Windows.instances["confirmRotateAPIKeyDialog"];
+        const { message } = options.data;
+
+        const confirmButton = document.getElementById("confirmRotateButton");
+        const cancelButton = document.getElementById("cancelRotateButton");
+        const dialog = document.getElementById("confirmRotateAPIKeyDialog");
+
+        dialog.querySelector("span.dialogMessage").textContent = message;
+
+        cancelButton.addEventListener("click", (e) => {
+            window.qBittorrent.Client.closeWindow(dialog);
+        });
+        confirmButton.addEventListener("click", (e) => {
+            window.qBittorrent.Preferences.rotateAPIKey();
+            window.qBittorrent.Client.closeWindow(dialog);
+        });
+
+        // set tabindex so window element receives keydown events
+        windowEl.setAttribute("tabindex", "-1");
+        windowEl.focus();
+        windowEl.addEventListener("keydown", (e) => {
+            switch (e.key) {
+                case "Enter":
+                    e.stopPropagation();
+                    confirmButton.click();
+                    break;
+                case "Escape":
+                    e.stopPropagation();
+                    window.qBittorrent.Client.closeWindow(dialog);
+                    break;
+            }
+        });
+    })();
+</script>
