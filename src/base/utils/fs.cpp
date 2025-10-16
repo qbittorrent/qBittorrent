@@ -164,7 +164,10 @@ namespace
         const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
         const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
         if (reservedDeviceNames.contains(baseName.toUpper()))
-            validName = baseName + pad + u"1"_s + validName.mid(lastDotIndex);
+        {
+            QString suffix = (lastDotIndex == -1) ? QString() : validName.mid(lastDotIndex);
+            validName = baseName + pad + u"1"_s + suffix;
+        }
 #endif
 
         return validName;
