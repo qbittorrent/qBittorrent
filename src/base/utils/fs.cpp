@@ -89,89 +89,6 @@ namespace
         return false;
 #endif
     }
-
-    // Check if a name is valid without sanitizing
-    bool isValidFileNameInternal(const QString &name)
-    {
-        // Reject empty names or special directory names
-        if (name.isEmpty() || name == u"."_s || name == u".."_s)
-            return false;
-
-        // Check for reserved characters
-        if (std::ranges::any_of(name, isReservedCharacter))
-            return false;
-
-        // Check platform-specific length limit and trailing dot in Windows
-#ifdef Q_OS_WIN
-        if (name.length() > 255 || name.endsWith(u'.'))
-            return false;
-#else
-        if (name.toUtf8().length() > 255)
-            return false;
-#endif
-
-        // Check Windows reserved device names
-#ifdef Q_OS_WIN
-        const qsizetype lastDotIndex = name.lastIndexOf(u'.');
-        const QString baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
-        if (reservedDeviceNames.contains(baseName.toUpper()))
-            return false;
-#endif
-
-        return true;
-    }
-
-    // Sanitize name using pad
-    QString toValidFileNameInternal(const QString &name, const QString &pad)
-    {
-        // Handle empty names or special directory names
-        if (name.isEmpty() || name == u"."_s || name == u".."_s)
-            return pad;
-
-        // Trim leading/trailing whitespace from name
-        QString validName = name.trimmed();
-
-        // Replace one or more reserved characters with pad
-        QString newName;
-        newName.reserve(validName.size());
-        bool inReservedSequence = false;
-        std::ranges::for_each(validName, [&](const QChar &c)
-        {
-            if (isReservedCharacter(c))
-            {
-                if (!inReservedSequence)
-                {
-                    newName += pad;
-                    inReservedSequence = true;
-                }
-            }
-            else
-            {
-                newName += c;
-                inReservedSequence = false;
-            }
-        });
-        validName = std::move(newName);
-
-        // Handle Windows-specific trailing dots
-#ifdef Q_OS_WIN
-        while (validName.endsWith(u'.'))
-            validName.chop(1);
-#endif
-
-        // Handle Windows reserved device names
-#ifdef Q_OS_WIN
-        const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
-        const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
-        if (reservedDeviceNames.contains(baseName.toUpper()))
-        {
-            QString suffix = (lastDotIndex == -1) ? QString() : validName.mid(lastDotIndex);
-            validName = baseName + pad + u"1"_s + suffix;
-        }
-#endif
-
-        return validName;
-    }
 }
 
 /**
@@ -298,14 +215,87 @@ bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
     return true;
 }
 
+// Check if a name is valid without sanitizing
 bool Utils::Fs::isValidFileName(const QString &name)
 {
-    return isValidFileNameInternal(name);
+    // Reject empty names or special directory names
+    if (name.isEmpty() || name == u"."_s || name == u".."_s)
+        return false;
+
+    // Check for reserved characters
+    if (std::ranges::any_of(name, isReservedCharacter))
+        return false;
+
+    // Check platform-specific length limit and trailing dot in Windows
+#ifdef Q_OS_WIN
+    if (name.length() > 255 || name.endsWith(u'.'))
+        return false;
+#else
+    if (name.toUtf8().length() > 255)
+        return false;
+#endif
+
+    // Check Windows reserved device names
+#ifdef Q_OS_WIN
+    const qsizetype lastDotIndex = name.lastIndexOf(u'.');
+    const QString baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
+    if (reservedDeviceNames.contains(baseName.toUpper()))
+        return false;
+#endif
+
+    return true;
 }
 
+// Sanitize name using pad
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
-    return toValidFileNameInternal(name, pad);
+    // Handle empty names or special directory names
+    if (name.isEmpty() || name == u"."_s || name == u".."_s)
+        return pad;
+
+    // Trim leading/trailing whitespace from name
+    QString validName = name.trimmed();
+
+    // Replace one or more reserved characters with pad
+    QString newName;
+    newName.reserve(validName.size());
+    bool inReservedSequence = false;
+    std::ranges::for_each(validName, [&](const QChar &c)
+    {
+            if (isReservedCharacter(c))
+            {
+                if (!inReservedSequence)
+                {
+                    newName += pad;
+                    inReservedSequence = true;
+                }
+            }
+            else
+            {
+                newName += c;
+                inReservedSequence = false;
+            }
+    });
+    validName = std::move(newName);
+
+    // Handle Windows-specific trailing dots
+#ifdef Q_OS_WIN
+    while (validName.endsWith(u'.'))
+        validName.chop(1);
+#endif
+
+    // Handle Windows reserved device names
+#ifdef Q_OS_WIN
+    const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
+    const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
+    if (reservedDeviceNames.contains(baseName.toUpper()))
+    {
+        QString suffix = (lastDotIndex == -1) ? QString() : validName.mid(lastDotIndex);
+        validName = baseName + pad + u"1"_s + suffix;
+    }
+#endif
+
+    return validName;
 }
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
