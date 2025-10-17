@@ -3861,6 +3861,35 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                          </property>
                         </widget>
                        </item>
+                       <item>
+                        <widget class="QPushButton" name="btnWebUIAPIKeyDelete">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>32</width>
+                           <height>32</height>
+                          </size>
+                         </property>
+                         <property name="toolTip">
+                          <string>Delete API key</string>
+                         </property>
+                         <property name="text">
+                          <string/>
+                         </property>
+                         <property name="icon">
+                          <iconset resource="../icons.qrc">
+                           <normaloff>:/icons/list-remove.svg</normaloff>:/icons/list-remove.svg</iconset>
+                         </property>
+                         <property name="flat">
+                          <bool>false</bool>
+                         </property>
+                        </widget>
+                       </item>
                       </layout>
                      </item>
                     </layout>
