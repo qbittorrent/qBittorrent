@@ -66,7 +66,7 @@ namespace
 {
     // Shared set of reserved device names for Windows
 #ifdef Q_OS_WIN
-    const QSet<QString> reservedDeviceNames{
+    const QSet<QString> reservedDeviceNames {
         u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
         u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
         u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
