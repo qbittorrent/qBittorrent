@@ -110,8 +110,8 @@ private slots:
     void webUIHttpsCertChanged(const Path &path);
     void webUIHttpsKeyChanged(const Path &path);
     void on_registerDNSBtn_clicked();
-    void onBtnWebUIAPIKeyCopy();
-    void onBtnWebUIAPIKeyRotate();
+    void onBtnWebUIAPIKeyCopyClicked();
+    void onBtnWebUIAPIKeyRotateClicked();
     void onBtnWebUIAPIKeyDeleteClicked();
     void setupWebUIAPIKey();
 #endif

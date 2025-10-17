@@ -1401,8 +1401,8 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->btnWebUIAPIKeyCopy, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyCopy);
-    connect(m_ui->btnWebUIAPIKeyRotate, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyRotate);
+    connect(m_ui->btnWebUIAPIKeyCopy, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyCopyClicked);
+    connect(m_ui->btnWebUIAPIKeyRotate, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyRotateClicked);
     connect(m_ui->btnWebUIAPIKeyDelete, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyDeleteClicked);
 
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1480,13 +1480,13 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
 }
 
-void OptionsDialog::onBtnWebUIAPIKeyCopy()
+void OptionsDialog::onBtnWebUIAPIKeyCopyClicked()
 {
     if (!m_currentAPIKey.isEmpty())
         QApplication::clipboard()->setText(m_currentAPIKey);
 }
 
-void OptionsDialog::onBtnWebUIAPIKeyRotate()
+void OptionsDialog::onBtnWebUIAPIKeyRotateClicked()
 {
     const QString title = m_currentAPIKey.isEmpty()
         ? tr("Generate API key")
