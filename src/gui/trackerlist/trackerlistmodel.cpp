@@ -741,7 +741,7 @@ void TrackerListModel::onTrackersChanged()
         trackerItemIDs.insert(m_items->at(i)->name);
 
     QList<std::shared_ptr<Item>> newTrackerItems;
-    for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : m_torrent->trackers())
+    for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : asConst(m_torrent->trackers()))
     {
         trackerItemIDs.insert(trackerEntryStatus.url);
 
