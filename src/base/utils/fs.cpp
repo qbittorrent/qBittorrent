@@ -246,34 +246,31 @@ bool Utils::Fs::isValidFileName(const QString &name)
     return true;
 }
 
+// Validates if the path contains only valid filename components (allows '/' separator)
 bool Utils::Fs::isValidPath(const Path &path)
 {
-    // does not support UNC path
+    QString pathStr = path.data();
 
-    if (path.isEmpty())
+    if (pathStr.isEmpty() || pathStr == u"."_s || pathStr == u".."_s )
         return false;
 
-    // https://stackoverflow.com/a/31976060
-#if defined(Q_OS_WIN)
-    QStringView view = path.data();
-    if (Utils::Fs::isDriveLetterPath(path))
+    // Remove Windows drive letter prefix (e.g., "C:/") if present
+#ifdef Q_OS_WIN
+    if (isDriveLetterPath(path))
     {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-        view.slice(3);
-#else
-        view = view.sliced(3);
+        pathStr = pathStr.mid(3);
+    }
 #endif
+
+    // Split path into components and validate each one
+    const QStringList components = pathStr.split(u'/');
+    for (const QString &component : components)
+    {
+        if (!isValidFileName(component))
+            return false;
     }
 
-    // \\37 is using base-8 number system
-    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
-    return !regex.match(view).hasMatch();
-#elif defined(Q_OS_MACOS)
-    const QRegularExpression regex {u"[\\0:]"_s};
-#else
-    const QRegularExpression regex {u"\\0"_s};
-#endif
-    return !path.data().contains(regex);
+    return true;
 }
 
 // Detects Windows drive letter on path (e.g., "C:/").
