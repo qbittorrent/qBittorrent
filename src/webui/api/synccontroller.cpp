@@ -150,7 +150,7 @@ namespace
     std::pair<QVariantList, QVariantList> processList(QVariantList prevData, const QVariantList &data);
     QJsonObject generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
-    QVariantMap getTransferInfo(IApplication *app)
+    QVariantMap getTransferInfo(const IApplication *app)
     {
         QVariantMap map;
         const auto *session = BitTorrent::Session::instance();
