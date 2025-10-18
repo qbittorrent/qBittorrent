@@ -959,7 +959,7 @@ int Application::exec()
         const auto *pref = Preferences::instance();
 
         const QString tempPassword = pref->getWebUIPassword().isEmpty()
-                ? Utils::Password::generate() : QString();
+                ? Utils::Password::generate(9) : QString();
         m_webui = new WebUI(this, (!tempPassword.isEmpty() ? Utils::Password::PBKDF2::generate(tempPassword) : QByteArray()));
         connect(m_webui, &WebUI::error, this, [](const QString &message)
         {

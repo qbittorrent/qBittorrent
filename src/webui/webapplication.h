@@ -107,9 +107,10 @@ private:
     QString clientId() const override;
     WebSession *session() override;
     void sessionStart() override;
+    void sessionStartImpl(const QString &sessionId, bool useCookie);
     void sessionEnd() override;
 
-    void doProcessRequest();
+    void doProcessRequest(bool isUsingApiKey);
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
@@ -122,6 +123,7 @@ private:
     // Session management
     QString generateSid() const;
     void sessionInitialize();
+    void apiKeySessionInitialize();
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
@@ -148,6 +150,7 @@ private:
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
     {
         // <<controller name, action name>, HTTP method>
+        {{u"app"_s, u"rotateAPIKey"_s}, Http::METHOD_POST},
         {{u"app"_s, u"sendTestEmail"_s}, Http::METHOD_POST},
         {{u"app"_s, u"setCookies"_s}, Http::METHOD_POST},
         {{u"app"_s, u"setPreferences"_s}, Http::METHOD_POST},
@@ -245,6 +248,7 @@ private:
     QList<Utils::Net::Subnet> m_authSubnetWhitelist;
     int m_sessionTimeout = 0;
     QString m_sessionCookieName;
+    QString m_apiKey;
 
     // security related
     QStringList m_domainList;

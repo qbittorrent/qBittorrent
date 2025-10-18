@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2019  sledgehammer999 <hammered999@gmail.com>
+ * Copyright (C) 2025  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,35 +26,25 @@
  * exception statement from your version.
  */
 
-#include "logfiltermodel.h"
+#include "apikey.h"
 
-#include <QtVersionChecks>
+#include <QString>
 
-#include "logmodel.h"
+#include "base/global.h"
+#include "base/utils/password.h"
 
-LogFilterModel::LogFilterModel(const Log::MsgTypes types, QObject *parent)
-    : QSortFilterProxyModel(parent)
-    , m_types(types)
+namespace
 {
+    const int keyLength = 28;
+    const QString prefix = u"qbt_"_s;
 }
 
-void LogFilterModel::setMessageTypes(const Log::MsgTypes types)
+QString Utils::APIKey::generate()
 {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
-    beginFilterChange();
-    m_types = types;
-    endFilterChange(Direction::Rows);
-#else
-    m_types = types;
-    invalidateRowsFilter();
-#endif
+    return prefix + Utils::Password::generate(keyLength);
 }
 
-bool LogFilterModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
+bool Utils::APIKey::isValid(const QString &key)
 {
-    const QAbstractItemModel *const sourceModel = this->sourceModel();
-    const QModelIndex index = sourceModel->index(sourceRow, 0, sourceParent);
-    const Log::MsgType type = static_cast<Log::MsgType>(sourceModel->data(index, BaseLogModel::TypeRole).toInt());
-
-    return m_types.testFlag(type);
+    return key.startsWith(prefix) && (key.length() == (prefix.length() + keyLength));
 }
