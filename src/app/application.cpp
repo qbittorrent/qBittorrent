@@ -1345,7 +1345,7 @@ void Application::adjustThreadPriority() const
 
 std::chrono::seconds Application::uptime() const
 {
-    return std::chrono::seconds {m_uptime.elapsed() / 1000};
+    return std::duration_cast<std::chrono::seconds>(m_uptime.durationElapsed());
 }
 
 void Application::cleanup()
