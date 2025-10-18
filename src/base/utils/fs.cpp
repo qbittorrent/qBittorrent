@@ -192,7 +192,7 @@ qint64 Utils::Fs::computePathSize(const Path &path)
  * the paths refers to nothing and therefore we cannot say the files are same
  * (because there are no files!)
  */
-bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
+bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 {
     QFile f1 {path1.data()};
     QFile f2 {path2.data()};
@@ -244,6 +244,47 @@ bool Utils::Fs::isValidFileName(const QString &name)
 #endif
 
     return true;
+}
+
+bool Utils::Fs::isValidPath(const Path &path)
+{
+    // does not support UNC path
+
+    if (path.isEmpty())
+        return false;
+
+    // https://stackoverflow.com/a/31976060
+#if defined(Q_OS_WIN)
+    QStringView view = path.data();
+    if (Utils::Fs::isDriveLetterPath(path))
+    {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
+        view.slice(3);
+#else
+        view = view.sliced(3);
+#endif
+    }
+
+    // \\37 is using base-8 number system
+    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
+    return !regex.match(view).hasMatch();
+#elif defined(Q_OS_MACOS)
+    const QRegularExpression regex {u"[\\0:]"_s};
+#else
+    const QRegularExpression regex {u"\\0"_s};
+#endif
+    return !path.data().contains(regex);
+}
+
+// Detects Windows drive letter on path (e.g., "C:/").
+bool Utils::Fs::isDriveLetterPath(const Path &path)
+{
+#ifdef Q_OS_WIN
+    const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
+    return driveLetterRegex.match(path.data()).hasMatch();
+#else
+    return false;
+#endif
 }
 
 // Sanitize name using pad
