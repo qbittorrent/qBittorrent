@@ -46,6 +46,7 @@
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
+#include "base/interfaces/iapplication.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
@@ -81,6 +82,7 @@ namespace
     const QString KEY_PEER_UP_SPEED = u"up_speed"_s;
 
     // TransferInfo keys
+    const QString KEY_TRANSFER_APP_UPTIME = u"app_uptime"_s;
     const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
     const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_s;
     const QString KEY_TRANSFER_DLDATA = u"dl_info_data"_s;
@@ -148,11 +150,11 @@ namespace
     std::pair<QVariantList, QVariantList> processList(QVariantList prevData, const QVariantList &data);
     QJsonObject generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
-    QVariantMap getTransferInfo()
+    QVariantMap getTransferInfo(const IApplication *app)
     {
         QVariantMap map;
         const auto *session = BitTorrent::Session::instance();
-
+        map[KEY_TRANSFER_APP_UPTIME] = static_cast<qlonglong>(app->uptime().count());
         const BitTorrent::SessionStatus &sessionStatus = session->status();
         const BitTorrent::CacheStatus &cacheStatus = session->cacheStatus();
         map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
@@ -175,11 +177,11 @@ namespace
         map[KEY_TRANSFER_TOTAL_BUFFERS_SIZE] = cacheStatus.totalUsedBuffers * 16 * 1024;
 
         map[KEY_TRANSFER_WRITE_CACHE_OVERLOAD] = ((sessionStatus.diskWriteQueue > 0) && (sessionStatus.peersCount > 0))
-            ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue / sessionStatus.peersCount), 2)
-            : u"0"_s;
+                                                     ? Utils::String::fromDouble((100. * sessionStatus.diskWriteQueue / sessionStatus.peersCount), 2)
+                                                     : u"0"_s;
         map[KEY_TRANSFER_READ_CACHE_OVERLOAD] = ((sessionStatus.diskReadQueue > 0) && (sessionStatus.peersCount > 0))
-            ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue / sessionStatus.peersCount), 2)
-            : u"0"_s;
+                                                    ? Utils::String::fromDouble((100. * sessionStatus.diskReadQueue / sessionStatus.peersCount), 2)
+                                                    : u"0"_s;
 
         map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
@@ -189,8 +191,8 @@ namespace
         map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = session->lastExternalIPv6Address();
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
-            ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
-            : u"disconnected"_s;
+                                                  ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
+                                                  : u"disconnected"_s;
 
         return map;
     }
@@ -210,30 +212,30 @@ namespace
             switch (value.userType())
             {
             case QMetaType::QVariantMap:
-                {
-                    const QVariantMap map = processMap(prevData[key].toMap(), value.toMap());
-                    if (!map.isEmpty())
-                        syncData[key] = map;
-                }
-                break;
+            {
+                const QVariantMap map = processMap(prevData[key].toMap(), value.toMap());
+                if (!map.isEmpty())
+                    syncData[key] = map;
+            }
+            break;
             case QMetaType::QVariantHash:
-                {
-                    const auto [map, removedItems] = processHash(prevData[key].toHash(), value.toHash());
-                    if (!map.isEmpty())
-                        syncData[key] = map;
-                    if (!removedItems.isEmpty())
-                        syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
-                }
-                break;
+            {
+                const auto [map, removedItems] = processHash(prevData[key].toHash(), value.toHash());
+                if (!map.isEmpty())
+                    syncData[key] = map;
+                if (!removedItems.isEmpty())
+                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+            }
+            break;
             case QMetaType::QVariantList:
-                {
-                    const auto [list, removedItems] = processList(prevData[key].toList(), value.toList());
-                    if (!list.isEmpty())
-                        syncData[key] = list;
-                    if (!removedItems.isEmpty())
-                        syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
-                }
-                break;
+            {
+                const auto [list, removedItems] = processList(prevData[key].toList(), value.toList());
+                if (!list.isEmpty())
+                    syncData[key] = list;
+                if (!removedItems.isEmpty())
+                    syncData[key + KEY_SUFFIX_REMOVED] = removedItems;
+            }
+            break;
             case QMetaType::QString:
             case QMetaType::LongLong:
             case QMetaType::Float:
@@ -519,6 +521,7 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "queueing": queue system usage flag
 //  - "refresh_interval": torrents table refresh interval
 //  - "free_space_on_disk": Free space on the default save path
+//  - "app_uptime": qBittorrent application uptime in seconds
 // GET param:
 //   - rid (int): last response id
 void SyncController::maindataAction()
@@ -612,7 +615,7 @@ void SyncController::makeMaindataSnapshot()
     for (const auto &[tracker, torrentIDs] : m_knownTrackers.asKeyValueRange())
         m_maindataSnapshot.trackers[tracker] = asStrings(torrentIDs);
 
-    m_maindataSnapshot.serverState = getTransferInfo();
+    m_maindataSnapshot.serverState = getTransferInfo(app());
     m_maindataSnapshot.serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
@@ -766,7 +769,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     }
     m_removedTrackers.clear();
 
-    QVariantMap serverState = getTransferInfo();
+    QVariantMap serverState = getTransferInfo(app());
     serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
@@ -852,18 +855,18 @@ void SyncController::torrentPeersAction()
         if (pi.address().ip.isNull() && !useI2PSocket) continue;
 
         QVariantMap peer =
-        {
-            {KEY_PEER_CLIENT, pi.client()},
-            {KEY_PEER_ID_CLIENT, pi.peerIdClient()},
-            {KEY_PEER_PROGRESS, pi.progress()},
-            {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
-            {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
-            {KEY_PEER_TOT_DOWN, pi.totalDownload()},
-            {KEY_PEER_TOT_UP, pi.totalUpload()},
-            {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
-            {KEY_PEER_FLAGS, pi.flags()},
-            {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
-            {KEY_PEER_RELEVANCE, pi.relevance()}
+            {
+                {KEY_PEER_CLIENT, pi.client()},
+                {KEY_PEER_ID_CLIENT, pi.peerIdClient()},
+                {KEY_PEER_PROGRESS, pi.progress()},
+                {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
+                {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
+                {KEY_PEER_TOT_DOWN, pi.totalDownload()},
+                {KEY_PEER_TOT_UP, pi.totalUpload()},
+                {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
+                {KEY_PEER_FLAGS, pi.flags()},
+                {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
+                {KEY_PEER_RELEVANCE, pi.relevance()}
         };
 
         if (torrent->hasMetadata())
@@ -1052,7 +1055,7 @@ void SyncController::onTorrentTrackersChanged(BitTorrent::Torrent *torrent)
     const TorrentID torrentID = torrent->id();
     Algorithm::removeIf(m_knownTrackers
         , [this, torrentID, currentTrackers](const QString &knownTracker, QSet<TorrentID> &torrentIDs)
-    {
+                        {
         if (auto idIter = torrentIDs.find(torrentID)
                 ; (idIter != torrentIDs.end()) && !currentTrackers.contains(knownTracker))
         {

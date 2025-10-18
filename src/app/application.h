@@ -31,9 +31,11 @@
 #pragma once
 
 #include <atomic>
+#include <chrono>
 
 #include <QtSystemDetection>
 #include <QCoreApplication>
+#include <QElapsedTimer>
 #include <QPointer>
 #include <QStringList>
 #include <QTranslator>
@@ -80,7 +82,7 @@ using BaseIApplication = IGUIApplication;
 #ifdef Q_OS_WIN
 class QSessionManager;
 #endif
-#else // DISABLE_GUI
+#else  // DISABLE_GUI
 using AddTorrentManagerImpl = AddTorrentManager;
 using BaseApplication = QCoreApplication;
 using BaseIApplication = IApplication;
@@ -107,6 +109,8 @@ public:
 
     QString instanceName() const override;
     void setInstanceName(const QString &name) override;
+
+    std::chrono::seconds uptime() const override;
 
     // FileLogger properties
     bool isFileLoggerEnabled() const override;
@@ -190,6 +194,7 @@ private:
     bool m_isProcessingParamsAllowed = false;
     ShutdownDialogAction m_shutdownAct = ShutdownDialogAction::Exit;
     QBtCommandLineParameters m_commandLineArgs;
+    QElapsedTimer m_uptime;
 
     // FileLog
     QPointer<FileLogger> m_fileLogger;
