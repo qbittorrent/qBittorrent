@@ -65,6 +65,7 @@ public:
 
     virtual QString instanceName() const = 0;
     virtual void setInstanceName(const QString &name) = 0;
+    virtual std::chrono::seconds uptime() const = 0;
 
     // FileLogger properties
     virtual bool isFileLoggerEnabled() const = 0;
@@ -86,7 +87,6 @@ public:
     virtual void setMemoryWorkingSetLimit(int size) = 0;
 
     virtual void sendTestEmail() const = 0;
-    virtual std::chrono::seconds uptime() const = 0;
 
 #ifdef Q_OS_WIN
     virtual MemoryPriority processMemoryPriority() const = 0;

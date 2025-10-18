@@ -82,7 +82,7 @@ using BaseIApplication = IGUIApplication;
 #ifdef Q_OS_WIN
 class QSessionManager;
 #endif
-#else // DISABLE_GUI
+#else  // DISABLE_GUI
 using AddTorrentManagerImpl = AddTorrentManager;
 using BaseApplication = QCoreApplication;
 using BaseIApplication = IApplication;
@@ -110,6 +110,8 @@ public:
     QString instanceName() const override;
     void setInstanceName(const QString &name) override;
 
+    std::chrono::seconds uptime() const override;
+
     // FileLogger properties
     bool isFileLoggerEnabled() const override;
     void setFileLoggerEnabled(bool value) override;
@@ -130,8 +132,6 @@ public:
     void setMemoryWorkingSetLimit(int size) override;
 
     void sendTestEmail() const override;
-
-    std::chrono::seconds uptime() const override;
 
 #ifdef Q_OS_WIN
     MemoryPriority processMemoryPriority() const override;
