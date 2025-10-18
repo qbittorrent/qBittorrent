@@ -77,13 +77,13 @@ namespace
 #endif
 
     // Shared check if a character is reserved (Control, DEL, '/', or Windows-specific)
-    bool isReservedCharacter(const QChar &c)
+    bool isReservedCharacter(const QChar c)
     {
         const ushort unicode = c.unicode();
         if ((unicode < 32) || (unicode == 127) || (c == u'/'))
             return true;
 #ifdef Q_OS_WIN
-        static const QSet<QChar> reservedChars{u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
+        const QSet<QChar> reservedChars{u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
         return reservedChars.contains(c);
 #else
         return false;
@@ -228,7 +228,7 @@ bool Utils::Fs::isValidFileName(const QString &name)
 
     // Check platform-specific length limit and trailing dot in Windows
 #ifdef Q_OS_WIN
-    if (name.length() > 255 || name.endsWith(u'.'))
+    if ((name.length() > 255) || name.endsWith(u'.'))
         return false;
 #else
     if (name.toUtf8().length() > 255)
@@ -251,7 +251,7 @@ bool Utils::Fs::isValidPath(const Path &path)
 {
     QString pathStr = path.data();
 
-    if (pathStr.isEmpty() || pathStr == u"."_s || pathStr == u".."_s )
+    if (pathStr.isEmpty() || (pathStr == u"."_s) || (pathStr == u".."_s))
         return false;
 
     // Remove Windows drive letter prefix (e.g., "C:/") if present
@@ -298,7 +298,7 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
     QString newName;
     newName.reserve(validName.size());
     bool inReservedSequence = false;
-    std::ranges::for_each(validName, [&](const QChar &c)
+    for (const QChar c : asConst(validName))
     {
             if (isReservedCharacter(c))
             {
@@ -313,8 +313,8 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
                 newName += c;
                 inReservedSequence = false;
             }
-    });
-    validName = std::move(newName);
+    };
+    validName = newName;
 
     // Handle Windows-specific trailing dots
 #ifdef Q_OS_WIN
@@ -328,7 +328,7 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
     const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
     if (reservedDeviceNames.contains(baseName.toUpper()))
     {
-        QString suffix = (lastDotIndex == -1) ? QString() : validName.mid(lastDotIndex);
+        const QString suffix = (lastDotIndex == -1) ? QString() : validName.mid(lastDotIndex);
         validName = baseName + pad + u"1"_s + suffix;
     }
 #endif
