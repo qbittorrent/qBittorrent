@@ -42,6 +42,7 @@ public:
 private:
     void tabInserted(int index) override;
     void tabRemoved(int index) override;
+    void tabsCountChanged();
 
 #ifdef Q_OS_MACOS
     void paintEvent(QPaintEvent *event) override;
