@@ -276,7 +276,7 @@ bool Utils::Fs::isValidPath(const Path &path)
 }
 
 // Detects Windows drive letter on path (e.g., "C:/").
-bool Utils::Fs::isDriveLetterPath(const Path &path)
+bool Utils::Fs::isDriveLetterPath([[maybe_unused]] const Path &path)
 {
 #ifdef Q_OS_WIN
     const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
