@@ -46,6 +46,7 @@
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
 #include "base/preferences.h"
+#include "base/interfaces/iapplication.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
@@ -81,6 +82,7 @@ namespace
     const QString KEY_PEER_UP_SPEED = u"up_speed"_s;
 
     // TransferInfo keys
+    const QString KEY_TRANSFER_APP_UPTIME = u"app_uptime"_s;
     const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_s;
     const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_s;
     const QString KEY_TRANSFER_DLDATA = u"dl_info_data"_s;
@@ -148,11 +150,14 @@ namespace
     std::pair<QVariantList, QVariantList> processList(QVariantList prevData, const QVariantList &data);
     QJsonObject generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
-    QVariantMap getTransferInfo()
+    QVariantMap getTransferInfo(const IApplication *app)
     {
-        QVariantMap map;
-        const auto *session = BitTorrent::Session::instance();
+    QVariantMap map;
+    {
+        map[KEY_TRANSFER_APP_UPTIME] = static_cast<qlonglong>(app->uptime().count());
+    };
 
+        const auto *session = BitTorrent::Session::instance();
         const BitTorrent::SessionStatus &sessionStatus = session->status();
         const BitTorrent::CacheStatus &cacheStatus = session->cacheStatus();
         map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
@@ -519,6 +524,7 @@ void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
 //  - "queueing": queue system usage flag
 //  - "refresh_interval": torrents table refresh interval
 //  - "free_space_on_disk": Free space on the default save path
+//  - "app_uptime": qBittorrent application uptime in seconds
 // GET param:
 //   - rid (int): last response id
 void SyncController::maindataAction()
@@ -612,7 +618,7 @@ void SyncController::makeMaindataSnapshot()
     for (const auto &[tracker, torrentIDs] : asConst(m_knownTrackers).asKeyValueRange())
         m_maindataSnapshot.trackers[tracker] = asStrings(torrentIDs);
 
-    m_maindataSnapshot.serverState = getTransferInfo();
+    m_maindataSnapshot.serverState = getTransferInfo(app());
     m_maindataSnapshot.serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
@@ -766,7 +772,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     }
     m_removedTrackers.clear();
 
-    QVariantMap serverState = getTransferInfo();
+    QVariantMap serverState = getTransferInfo(app());
     serverState[KEY_TRANSFER_FREESPACEONDISK] = m_freeDiskSpace;
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
