@@ -647,6 +647,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
         ::CloseHandle(args->startupInfo->hStdError);
         args->startupInfo->hStdInput = nullptr;
         args->startupInfo->hStdOutput = nullptr;
+        args->startupInfo->hStdError = nullptr;
     });
 
     if (proc.startDetached())
