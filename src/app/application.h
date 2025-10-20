@@ -82,7 +82,7 @@ using BaseIApplication = IGUIApplication;
 #ifdef Q_OS_WIN
 class QSessionManager;
 #endif
-#else  // DISABLE_GUI
+#else // DISABLE_GUI
 using AddTorrentManagerImpl = AddTorrentManager;
 using BaseApplication = QCoreApplication;
 using BaseIApplication = IApplication;
