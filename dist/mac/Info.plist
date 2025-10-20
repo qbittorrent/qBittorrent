@@ -32,6 +32,30 @@
 			<key>LSIsAppleDefaultForType</key>
 			<true/>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>!qB</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>qBitTorrentIncompleteData</string>
+			<key>CFBundleTypeName</key>
+			<string>qBitTorrent Incomplete Data</string>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.qbittorrent.qBittorrent.incompletedata</string>
+			</array>
+			<key>NSExportableTypes</key>
+			<array>
+				<string>org.qbittorrent.qBittorrent.incompletedata</string>
+			</array>
+			<key>LSIsAppleDefaultForType</key>
+			<true/>
+		</dict>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -98,6 +122,26 @@
 				<key>public.mime-type</key>
 				<array>
 					<string>application/x-bittorrent</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.item</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>qBitTorrent Incomplete Data</string>
+			<key>UTTypeIconFile</key>
+			<string>qBitTorrentIncompleteData</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.qbittorrent.qBittorrent.incompletedata</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>!qB</string>
 				</array>
 			</dict>
 		</dict>
