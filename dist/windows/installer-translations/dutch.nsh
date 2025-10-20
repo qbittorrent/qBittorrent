@@ -32,6 +32,10 @@ LangString inst_requires_64bit ${LANG_DUTCH} "Dit installatieprogramma werkt all
 LangString inst_requires_win10 ${LANG_DUTCH}  "Dit installatieprogramma vereist ten minste Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_DUTCH} "qBittorrent verwijderen"
+;LangString inst_arch_mismatch_x64_on_arm64 ${LANG_ENGLISH} "Error: This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
+LangString inst_arch_mismatch_x64_on_arm64 ${LANG_DUTCH} "This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
+;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "Error: This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+LangString inst_arch_mismatch_arm64_on_x64 ${LANG_DUTCH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 
 ;------------------------------------
 ;Uninstaller strings
