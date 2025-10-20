@@ -79,8 +79,9 @@ SetCompressorDictSize 64
 ; The name of the installer
 Name "qBittorrent ${QBT_INSTALLER_WINDOWNAME}"
 
-; Installer icon
+; define icons
 Icon "qbittorrent.ico"
+UninstallIcon "qbittorrent_uninstall.ico"
 
 ; The file to write
 OutFile "qbittorrent_${QBT_INSTALLER_FILENAME}_setup.exe"
