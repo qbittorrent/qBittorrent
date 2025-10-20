@@ -898,6 +898,19 @@ void Preferences::setWebUIPassword(const QByteArray &password)
     setValue(u"Preferences/WebUI/Password_PBKDF2"_s, password);
 }
 
+QString Preferences::getWebUIApiKey() const
+{
+    return value<QString>(u"Preferences/WebUI/APIKey"_s);
+}
+
+void Preferences::setWebUIApiKey(const QString &apiKey)
+{
+    if (apiKey == getWebUIApiKey())
+        return;
+
+    setValue(u"Preferences/WebUI/APIKey"_s, apiKey);
+}
+
 int Preferences::getWebUIMaxAuthFailCount() const
 {
     return value<int>(u"Preferences/WebUI/MaxAuthenticationFailCount"_s, 5);

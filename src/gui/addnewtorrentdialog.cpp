@@ -460,7 +460,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
 
     // Load categories
     QStringList categories = session->categories();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     const QString defaultCategory = m_storeDefaultCategory;
 
     if (!addTorrentParams.category.isEmpty())
@@ -511,7 +511,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
     {
         m_ui->lblMetaLoading->setVisible(false);
         m_ui->progMetaLoading->setVisible(false);
-        m_ui->buttonSave->setVisible(false);
+        m_ui->buttonSave->setVisible(true);
         setupTreeview();
     }
     else
@@ -523,6 +523,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
         m_ui->labelDateData->setText(tr("Not Available", "This date is unavailable"));
         updateDiskSpaceLabel();
         setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
+        m_ui->buttonSave->setVisible(false);
     }
 
     TMMChanged(m_ui->comboTMM->currentIndex());

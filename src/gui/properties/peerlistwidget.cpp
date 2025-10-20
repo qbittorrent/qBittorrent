@@ -293,7 +293,7 @@ void PeerListWidget::showPeerListMenu()
         , this, [this, torrent]()
     {
         const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
-        const int peerCount = std::count_if(peersList.cbegin(), peersList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
+        const int peerCount = std::ranges::count_if(peersList, [torrent](const BitTorrent::PeerAddress &peer)
         {
             return torrent->connectPeer(peer);
         });

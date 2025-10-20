@@ -582,7 +582,7 @@ void TransferListWidget::copySelectedComments() const
             torrentComments << torrent->comment();
     }
 
-    qApp->clipboard()->setText(torrentComments.join(u"\n---------\n"_s));
+    qApp->clipboard()->setText(torrentComments.join(u"\n---------\n"));
 }
 
 void TransferListWidget::hideQueuePosColumn(bool hide)
@@ -793,9 +793,10 @@ void TransferListWidget::editTorrentTrackers()
             for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
                 trackerSet.insert({.url = status.url, .tier = status.tier});
 
-            commonTrackers.erase(std::remove_if(commonTrackers.begin(), commonTrackers.end()
-                , [&trackerSet](const BitTorrent::TrackerEntry &entry) { return !trackerSet.contains(entry); })
-                , commonTrackers.end());
+            commonTrackers.removeIf([&trackerSet](const BitTorrent::TrackerEntry &entry)
+            {
+                return !trackerSet.contains(entry);
+            });
         }
     }
 
@@ -1170,7 +1171,7 @@ void TransferListWidget::displayListMenu()
 
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon(u"view-categories"_s), tr("Categor&y"));
 
@@ -1305,9 +1306,16 @@ void TransferListWidget::displayListMenu()
     listMenu->popup(QCursor::pos());
 }
 
-void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex&)
+void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     qDebug("CURRENT CHANGED");
+
+    // Call base class to ensure Qt's accessibility system is notified of focus changes.
+    // This is critical for screen readers to announce the currently selected torrent.
+    // Without this call, users relying on assistive technologies cannot effectively
+    // navigate the torrent list with keyboard arrow keys.
+    QTreeView::currentChanged(current, previous);
+
     BitTorrent::Torrent *torrent = nullptr;
     if (current.isValid())
     {

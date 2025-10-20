@@ -402,7 +402,7 @@ void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torren
                 if (trackerErrorHashesIt != m_trackerErrors.end())
                     trackerErrorHashesIt->remove(trackerEntryStatus.url);
 
-                const bool hasNoWarningMessages = std::all_of(trackerEntryStatus.endpoints.cbegin(), trackerEntryStatus.endpoints.cend()
+                const bool hasNoWarningMessages = std::ranges::all_of(trackerEntryStatus.endpoints
                     , [](const BitTorrent::TrackerEndpointStatus &endpointEntry)
                 {
                     return endpointEntry.message.isEmpty() || (endpointEntry.state != BitTorrent::TrackerEndpointState::Working);
@@ -630,7 +630,7 @@ void TrackersFilterWidget::handleTorrentsLoaded(const QList<BitTorrent::Torrent 
             torrentsPerTracker[NULL_HOST].append(torrentID);
     }
 
-    for (const auto &[trackerURL, torrents] : torrentsPerTracker.asKeyValueRange())
+    for (const auto &[trackerURL, torrents] : asConst(torrentsPerTracker).asKeyValueRange())
     {
         addItems(trackerURL, torrents);
     }

@@ -167,7 +167,7 @@ namespace
             PathList versions = getRegSubkeys(hkPythonCore);
             // ordinary sort won't suffice, it needs to sort ["3.9", "3.10"] correctly
             const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> comparator;
-            std::sort(versions.begin(), versions.end(), [&comparator](const Path &left, const Path &right)
+            std::ranges::sort(versions, [&comparator](const Path &left, const Path &right)
             {
                 return comparator(left.data(), right.data());
             });
