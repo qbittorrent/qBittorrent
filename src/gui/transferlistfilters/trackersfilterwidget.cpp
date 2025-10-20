@@ -630,7 +630,7 @@ void TrackersFilterWidget::handleTorrentsLoaded(const QList<BitTorrent::Torrent 
             torrentsPerTracker[NULL_HOST].append(torrentID);
     }
 
-    for (const auto &[trackerURL, torrents] : torrentsPerTracker.asKeyValueRange())
+    for (const auto &[trackerURL, torrents] : asConst(torrentsPerTracker).asKeyValueRange())
     {
         addItems(trackerURL, torrents);
     }

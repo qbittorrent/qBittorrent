@@ -996,7 +996,7 @@ int Application::exec()
 #endif // DISABLE_WEBUI
 
         m_isProcessingParamsAllowed = true;
-        for (const QBtCommandLineParameters &params : m_paramsQueue)
+        for (const QBtCommandLineParameters &params : asConst(m_paramsQueue))
             processParams(params);
         m_paramsQueue.clear();
     });
