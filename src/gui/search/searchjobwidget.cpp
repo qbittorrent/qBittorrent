@@ -152,9 +152,7 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
     connect(header(), &QHeaderView::sectionResized, this, [this](int logicalIndex)
     {
         if (logicalIndex < SearchSortModel::DL_LINK)
-        {
             saveSettings();
-        }
     });
     connect(header(), &QHeaderView::sectionMoved, this, &SearchJobWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &SearchJobWidget::saveSettings);
