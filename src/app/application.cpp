@@ -121,7 +121,7 @@ namespace
     const int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
 
 #ifndef DISABLE_GUI
-    const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024; // 64MiB
+    const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
 #endif
 
     const QString PARAM_ADDSTOPPED = u"@addStopped"_s;
@@ -247,7 +247,8 @@ namespace
 }
 
 Application::Application(int &argc, char **argv)
-    : BaseApplication(argc, argv), m_commandLineArgs(parseCommandLine(Application::arguments()))
+    : BaseApplication(argc, argv)
+    , m_commandLineArgs(parseCommandLine(Application::arguments()))
     , m_storeInstanceName(SETTINGS_KEY(u"InstanceName"_s))
     , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY(u"Enabled"_s))
     , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY(u"Backup"_s))
@@ -258,12 +259,11 @@ Application::Application(int &argc, char **argv)
     , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY(u"Path"_s))
     , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_s))
 #ifdef Q_OS_WIN
-      ,
-      m_processMemoryPriority(SETTINGS_KEY(u"ProcessMemoryPriority"_s))
+    , m_processMemoryPriority(SETTINGS_KEY(u"ProcessMemoryPriority"_s))
 #endif
 #ifndef DISABLE_GUI
-      , m_startUpWindowState(u"GUI/StartUpWindowState"_s)
-      , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY(u"TorrentAdded"_s))
+    , m_startUpWindowState(u"GUI/StartUpWindowState"_s)
+    , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY(u"TorrentAdded"_s))
 #endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
@@ -315,7 +315,7 @@ Application::Application(int &argc, char **argv)
 #endif
 
     LogMsg(tr("qBittorrent %1 started. Process ID: %2", "qBittorrent v3.2.0alpha started")
-            .arg(QStringLiteral(QBT_VERSION), QString::number(QCoreApplication::applicationPid())));
+        .arg(QStringLiteral(QBT_VERSION), QString::number(QCoreApplication::applicationPid())));
     if (portableModeEnabled)
     {
         LogMsg(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir.toString()));
@@ -647,7 +647,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
         ::CloseHandle(args->startupInfo->hStdError);
         args->startupInfo->hStdInput = nullptr;
         args->startupInfo->hStdOutput = nullptr;
-     });
+    });
 
     if (proc.startDetached())
         LogMsg(logMsg.arg(torrent->name(), program));
@@ -707,9 +707,9 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
     const Preferences *pref = Preferences::instance();
     auto *smtp = new Net::Smtp(this);
     smtp->sendMail(pref->getMailNotificationSender(),
-                      pref->getMailNotificationEmail(),
-                      tr("Torrent \"%1\" has finished downloading").arg(torrent->name()),
-                      content);
+                     pref->getMailNotificationEmail(),
+                     tr("Torrent \"%1\" has finished downloading").arg(torrent->name()),
+                     content);
 }
 
 void Application::sendTestEmail() const
@@ -724,9 +724,9 @@ void Application::sendTestEmail() const
         // Send the notification email
         auto *smtp = new Net::Smtp();
         smtp->sendMail(pref->getMailNotificationSender(),
-                       pref->getMailNotificationEmail(),
-                       tr("Test email"),
-                       content);
+                        pref->getMailNotificationEmail(),
+                        tr("Test email"),
+                        content);
     }
 }
 
@@ -897,7 +897,7 @@ int Application::exec()
     }
 #endif
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
-        {
+    {
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
@@ -1037,7 +1037,7 @@ void Application::createStartupProgressDialog()
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::startupProgressUpdated, m_startupProgressDialog, &QProgressDialog::setValue);
 
     connect(m_desktopIntegration, &DesktopIntegration::activationRequested, m_startupProgressDialog, [this]()
-            {
+    {
 #ifdef Q_OS_MACOS
         if (!m_startupProgressDialog->isVisible())
         {
@@ -1061,7 +1061,7 @@ void Application::createStartupProgressDialog()
             m_startupProgressDialog->hide();
         }
 #endif
-        });
+    });
 }
 
 void Application::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent)
@@ -1069,7 +1069,8 @@ void Application::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torr
     const auto torrentID = torrent->id();
 
     QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
-            , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name()), (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), mainWindow());
+            , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name())
+            , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), mainWindow());
     confirmBox->setAttribute(Qt::WA_DeleteOnClose);
 
     const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
@@ -1245,7 +1246,7 @@ void Application::applyMemoryWorkingSetLimit() const
         {
             const auto message = QString::fromLocal8Bit(strerror(errno));
             LogMsg(tr("Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: \"%4\"")
-                       .arg(QString::number(newSize), QString::number(limit.rlim_max), QString::number(errno), message), Log::WARNING);
+                .arg(QString::number(newSize), QString::number(limit.rlim_max), QString::number(errno), message), Log::WARNING);
             return;
         }
     }
