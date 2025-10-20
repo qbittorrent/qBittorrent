@@ -1374,7 +1374,8 @@ void Application::cleanup()
 
 #ifdef Q_OS_WIN
         const std::wstring msg = tr("Saving torrent progress...").toStdWString();
-        ::ShutdownBlockReasonCreate(reinterpret_cast<HWND>(m_window->effectiveWinId()), msg.c_str());
+        ::ShutdownBlockReasonCreate(reinterpret_cast<HWND>(m_window->effectiveWinId())
+            , msg.c_str());
 #endif // Q_OS_WIN
 
         // Do manual cleanup in MainWindow to force widgets
