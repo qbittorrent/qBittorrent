@@ -152,9 +152,12 @@ namespace
 
     QVariantMap getTransferInfo(const IApplication *app)
     {
-        QVariantMap map;
-        const auto *session = BitTorrent::Session::instance();
+    QVariantMap map;
+    {
         map[KEY_TRANSFER_APP_UPTIME] = static_cast<qlonglong>(app->uptime().count());
+    };
+
+        const auto *session = BitTorrent::Session::instance();
         const BitTorrent::SessionStatus &sessionStatus = session->status();
         const BitTorrent::CacheStatus &cacheStatus = session->cacheStatus();
         map[KEY_TRANSFER_DLSPEED] = sessionStatus.payloadDownloadRate;
