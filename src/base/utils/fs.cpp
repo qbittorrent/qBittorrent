@@ -264,11 +264,11 @@ bool Utils::Fs::isValidPath(const Path &path)
         pathStr = pathStr.mid(3);
 #endif
 
-    // Split path into components and validate each one
+    // Split path into components and validate each NON-EMPTY one
     const QStringList components = pathStr.split(u'/');
     for (const QString &component : components)
     {
-        if (!isValidFileName(component))
+        if (!component.isEmpty() && !isValidFileName(component))
             return false;
     }
 
