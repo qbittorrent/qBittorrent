@@ -149,7 +149,13 @@ SearchJobWidget::SearchJobWidget(const QString &id, IGUIApplication *app, QWidge
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), &QWidget::customContextMenuRequested, this, &SearchJobWidget::displayColumnHeaderMenu);
-    connect(header(), &QHeaderView::sectionResized, this, &SearchJobWidget::saveSettings);
+    connect(header(), &QHeaderView::sectionResized, this, [this](int logicalIndex)
+    {
+        if (logicalIndex < SearchSortModel::DL_LINK)
+        {
+            saveSettings();
+        }
+    });
     connect(header(), &QHeaderView::sectionMoved, this, &SearchJobWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &SearchJobWidget::saveSettings);
 
