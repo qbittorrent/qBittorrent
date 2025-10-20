@@ -65,6 +65,7 @@ public:
 
     virtual QString instanceName() const = 0;
     virtual void setInstanceName(const QString &name) = 0;
+
     virtual std::chrono::seconds uptime() const = 0;
 
     // FileLogger properties
