@@ -56,7 +56,6 @@ ManifestDPIAware true
 ;Setting the compression
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
-XPStyle on
 
 !include "MUI2.nsh"
 !include "UAC.nsh"
@@ -79,6 +78,12 @@ XPStyle on
 
 ; The name of the installer
 Name "qBittorrent ${QBT_INSTALLER_WINDOWNAME}"
+
+; Installer icon
+Icon "qbittorrent.ico"
+
+; Branding Text
+BrandingText "qBittorrent - A Bittorrent Client"
 
 ; The file to write
 OutFile "qbittorrent_${QBT_INSTALLER_FILENAME}_setup.exe"
