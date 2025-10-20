@@ -87,7 +87,7 @@ namespace
 #ifdef Q_OS_WIN
         const QSet<QChar> reservedChars {u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
         return reservedChars.contains(c);
-#elif defined(Q_OS_OSX)
+#elif defined(Q_OS_MACOS)
         return (c == u':');
 #else
         return false;
