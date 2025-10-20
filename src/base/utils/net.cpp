@@ -45,6 +45,23 @@ namespace Utils
             return !QHostAddress(ip).isNull();
         }
 
+        bool isValidIPRange(const QHostAddress first, const QHostAddress last)
+        {
+            if (first.isNull() || last.isNull())
+                return false;
+            if (first.protocol() != last.protocol())
+                return false;
+            if (first.protocol() == QAbstractSocket::IPv4Protocol)
+                return first.toIPv4Address() <= last.toIPv4Address();
+            if (first.protocol() == QAbstractSocket::IPv6Protocol)
+            {
+                const Q_IPV6ADDR firstIPv6 = first.toIPv6Address();
+                const Q_IPV6ADDR lastIPv6 = last.toIPv6Address();
+                return memcmp(firstIPv6.c, lastIPv6.c, sizeof(firstIPv6.c)) <= 0;
+            }
+            return false;
+        }
+
         std::optional<Subnet> parseSubnet(const QString &subnetStr)
         {
             const Subnet subnet = QHostAddress::parseSubnet(subnetStr);
@@ -223,6 +240,8 @@ namespace Utils
                 first = addr;
                 last = addr;
             }
+            if (!isValidIPRange(first, last))
+                return std::nullopt;
             return std::make_pair(first, last);
         }
 
