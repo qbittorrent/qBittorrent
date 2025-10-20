@@ -82,9 +82,6 @@ Name "qBittorrent ${QBT_INSTALLER_WINDOWNAME}"
 ; Installer icon
 Icon "qbittorrent.ico"
 
-; Branding Text
-BrandingText "qBittorrent - A Bittorrent Client"
-
 ; The file to write
 OutFile "qbittorrent_${QBT_INSTALLER_FILENAME}_setup.exe"
 
