@@ -112,6 +112,13 @@ SectionEnd
 ;--------------------------------
 
 Function .onInit
+  ; create a mutex ensures only one installer is running
+  System::Call 'kernel32::CreateMutexA(i 0, i 0, t "qbt_installer") i .r1 ?e'
+  Pop $R0
+
+  StrCmp $R0 0 +3
+  MessageBox MB_OK|MB_ICONEXCLAMATION "The installer is already running." /SD IDOK
+  Abort
 
   !insertmacro Init "installer"
   !insertmacro MUI_LANGDLL_DISPLAY
