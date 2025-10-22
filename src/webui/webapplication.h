@@ -53,7 +53,7 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 14, 0};
+inline const Utils::Version<3, 2> API_VERSION {2, 14, 1};
 
 class APIController;
 class AuthController;
@@ -150,6 +150,7 @@ private:
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
     {
         // <<controller name, action name>, HTTP method>
+        {{u"app"_s, u"deleteAPIKey"_s}, Http::METHOD_POST},
         {{u"app"_s, u"rotateAPIKey"_s}, Http::METHOD_POST},
         {{u"app"_s, u"sendTestEmail"_s}, Http::METHOD_POST},
         {{u"app"_s, u"setCookies"_s}, Http::METHOD_POST},

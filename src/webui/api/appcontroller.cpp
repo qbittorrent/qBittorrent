@@ -1326,6 +1326,13 @@ void AppController::rotateAPIKeyAction()
     setResult(QJsonObject {{u"apiKey"_s, key}});
 }
 
+void AppController::deleteAPIKeyAction()
+{
+    auto *preferences = Preferences::instance();
+    preferences->setWebUIApiKey({});
+    preferences->apply();
+}
+
 void AppController::networkInterfaceListAction()
 {
     QJsonArray ifaceList;
