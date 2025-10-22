@@ -153,18 +153,25 @@ FunctionEnd
 
 Function check_instance
 
-  check:
   FindProcDLL::FindProc "qbittorrent.exe"
   StrCmp $R0 "1" 0 notfound
-  MessageBox MB_RETRYCANCEL|MB_ICONEXCLAMATION $(inst_warning) /SD IDCANCEL IDRETRY check IDCANCEL canceled
+
+  MessageBox MB_YESNO|MB_ICONQUESTION $(inst_warning) IDYES killit IDNO canceled
+
+  killit:
+    FindProcDLL::KillProc "qbittorrent.exe"
+    FindProcDLL::WaitProcEnd "qbittorrent.exe" -1
+    Goto notfound
 
   canceled:
-  SetErrorLevel 15618 # WinError.h: `ERROR_PACKAGES_IN_USE`
-  Abort
+    SetErrorLevel 15618 # WinError.h: `ERROR_PACKAGES_IN_USE`
+    Abort
 
   notfound:
 
 FunctionEnd
+
+
 
 Function PageFinishRun
 
