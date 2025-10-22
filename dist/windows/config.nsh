@@ -48,6 +48,8 @@
 
 Unicode true
 ManifestDPIAware true
+; an undocument function in NSIS, PMv2 requires Win10 1703+
+ManifestDPIAwareness "PerMonitorV2,System" 
 
 !ifdef USE_UPX
 !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
