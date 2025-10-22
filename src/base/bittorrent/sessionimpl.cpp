@@ -4171,22 +4171,25 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
         return; // do nothing
     // here filter out incorrect IP
     QStringList filteredList;
-    for (const QString &ip : newList)
+    for (const QString &entry : newList)
     {
-        if (Utils::Net::parseIpRange(ip).has_value())
+        std::optional<std::pair<QHostAddress, QHostAddress>> ip_range = Utils::Net::parseIpRange(entry);
+        if (ip_range.has_value())
         {
             // the same IPv6 addresses could be written in different forms;
             // QHostAddress::toString() result format follows RFC5952;
             // thus we avoid duplicate entries pointing to the same address
-            if (Utils::Net::isValidIP(ip))
-                filteredList << QHostAddress(ip).toString();
+            QHostAddress firstIP = ip_range.value().first;
+            QHostAddress lastIP = ip_range.value().second;
+            if (firstIP == lastIP)
+                filteredList << firstIP.toString();
             else
-                filteredList << ip;
+                filteredList << QString(u"%1 - %2").arg(firstIP.toString(), lastIP.toString());
         }
         else
         {
             LogMsg(tr("Rejected invalid IP address while applying the list of banned IP addresses. IP: \"%1\"")
-                   .arg(ip)
+                   .arg(entry)
                 , Log::WARNING);
         }
     }
