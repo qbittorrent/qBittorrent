@@ -41,6 +41,7 @@
 
 #include "base/concepts/stringable.h"
 #include "base/global.h"
+#include "base/utils/fs.h"
 
 #if defined(Q_OS_WIN)
 const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
@@ -60,14 +61,6 @@ namespace
         });
         return hasSeparator ? QDir::cleanPath(path) : path;
     }
-
-#ifdef Q_OS_WIN
-    bool hasDriveLetter(const QStringView path)
-    {
-        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
-        return driveLetterRegex.match(path).hasMatch();
-    }
-#endif
 }
 
 // `Path` should satisfy `Stringable` concept in order to be stored in settings as string
@@ -85,32 +78,7 @@ Path::Path(const std::string &pathStr)
 
 bool Path::isValid() const
 {
-    // does not support UNC path
-
-    if (isEmpty())
-        return false;
-
-    // https://stackoverflow.com/a/31976060
-#if defined(Q_OS_WIN)
-    QStringView view = m_pathStr;
-    if (hasDriveLetter(view))
-    {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-        view.slice(3);
-#else
-        view = view.sliced(3);
-#endif
-    }
-
-    // \\37 is using base-8 number system
-    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
-    return !regex.match(view).hasMatch();
-#elif defined(Q_OS_MACOS)
-    const QRegularExpression regex {u"[\\0:]"_s};
-#else
-    const QRegularExpression regex {u"\\0"_s};
-#endif
-    return !m_pathStr.contains(regex);
+    return Utils::Fs::isValidPath(*this);
 }
 
 bool Path::isEmpty() const
@@ -152,7 +120,7 @@ Path Path::rootItem() const
 
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
-    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
+    if ((slashIndex == 2) && Utils::Fs::isDriveLetterPath(*this))
         return createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
     return createUnchecked(m_pathStr.first(slashIndex));
@@ -172,7 +140,7 @@ Path Path::parentPath() const
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
     // Windows "drive letter" is limited to one alphabet
-    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
+    if ((slashIndex == 2) && Utils::Fs::isDriveLetterPath(*this))
         return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
     return createUnchecked(m_pathStr.first(slashIndex));
