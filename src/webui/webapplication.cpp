@@ -30,7 +30,6 @@
 #include "webapplication.h"
 
 #include <algorithm>
-#include <chrono>
 
 #include <QDateTime>
 #include <QDebug>
@@ -88,7 +87,7 @@ namespace
         QStringMap ret;
         const QList<QStringView> cookies = cookieStr.split(u';', Qt::SkipEmptyParts);
 
-        for (const auto &cookie : cookies)
+        for (const QStringView cookie : cookies)
         {
             const qsizetype idx = cookie.indexOf(u'=');
             if (idx < 0)
@@ -462,8 +461,12 @@ void WebApplication::configure()
     m_isLocalAuthEnabled = pref->isWebUILocalAuthEnabled();
     m_isAuthSubnetWhitelistEnabled = pref->isWebUIAuthSubnetWhitelistEnabled();
     m_authSubnetWhitelist = pref->getWebUIAuthSubnetWhitelist();
-    m_sessionTimeout = pref->getWebUISessionTimeout();
+    m_sessionTimeout = std::chrono::seconds(pref->getWebUISessionTimeout());
     m_sessionCookieName = SESSION_COOKIE_NAME_PREFIX + QString::number(pref->getWebUIPort());
+
+    // all sessions need to update the cookie expiration date
+    for (WebSession *session : asConst(m_sessions))
+        session->setCookieRefreshTime(0s);
 
     m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
     for (QString &entry : m_domainList)
@@ -682,7 +685,7 @@ void WebApplication::sessionInitialize()
 {
     Q_ASSERT(!m_currentSession);
 
-    const QString sessionId {parseCookie(m_request.headers.value(u"cookie"_s)).value(m_sessionCookieName)};
+    const QString sessionId {parseCookie(m_request.headers.value(Http::HEADER_COOKIE)).value(m_sessionCookieName)};
 
     // TODO: Additional session check
 
@@ -699,17 +702,34 @@ void WebApplication::sessionInitialize()
             }
             else
             {
+                if (m_currentSession->shouldRefreshCookie())
+                    setSessionCookie();
                 m_currentSession->updateTimestamp();
             }
-        }
-        else
-        {
-            qDebug() << Q_FUNC_INFO << "session does not exist!";
         }
     }
 
     if (!m_currentSession && !isAuthNeeded())
         sessionStart();
+}
+
+void WebApplication::setSessionCookie()
+{
+    // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
+    const std::chrono::seconds expireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
+
+    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
+    cookie.setExpirationDate(QDateTime::currentDateTime().addDuration(expireDuration));
+    cookie.setHttpOnly(true);
+    cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
+    cookie.setPath(u"/"_s);
+    if (m_isCSRFProtectionEnabled)
+        cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
+    else if (cookie.isSecure())
+        cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
+
+    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+    m_currentSession->setCookieRefreshTime(expireDuration);
 }
 
 void WebApplication::apiKeySessionInitialize()
@@ -807,17 +827,7 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const bool useCo
     m_currentSession->registerAPIController(u"sync"_s, syncController);
 
     if (useCookie)
-    {
-        QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
-        cookie.setHttpOnly(true);
-        cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
-        cookie.setPath(u"/"_s);
-        if (m_isCSRFProtectionEnabled)
-            cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
-        else if (cookie.isSecure())
-            cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
-        setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
-    }
+        setSessionCookie();
 }
 
 void WebApplication::sessionEnd()
@@ -986,16 +996,29 @@ QString WebSession::id() const
     return m_sid;
 }
 
-bool WebSession::hasExpired(const qint64 seconds) const
+bool WebSession::hasExpired(const std::chrono::milliseconds duration) const
 {
-    if (seconds <= 0)
+    // don't expire for special values
+    if (duration <= 0ms)
         return false;
-    return m_timer.hasExpired(seconds * 1000);
+    return m_timestamp.durationElapsed() > duration;
 }
 
 void WebSession::updateTimestamp()
 {
-    m_timer.start();
+    m_timestamp.start();
+}
+
+bool WebSession::shouldRefreshCookie() const
+{
+    return m_cookieRefreshTimer.hasExpired();
+}
+
+void WebSession::setCookieRefreshTime(const std::chrono::seconds timeout)
+{
+    // Safari browser does not persist cookies for more than 7 days, so we refresh cookies older than 1 day
+    const std::chrono::seconds time = std::min((timeout / 2), std::chrono::duration_cast<std::chrono::seconds>(std::chrono::days(1)));
+    m_cookieRefreshTimer.setRemainingTime(time);
 }
 
 void WebSession::registerAPIController(const QString &scope, APIController *controller)

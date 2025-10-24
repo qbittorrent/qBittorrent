@@ -51,6 +51,7 @@ namespace Http
     inline const QString HEADER_CONTENT_LENGTH = u"content-length"_s;
     inline const QString HEADER_CONTENT_SECURITY_POLICY = u"content-security-policy"_s;
     inline const QString HEADER_CONTENT_TYPE = u"content-type"_s;
+    inline const QString HEADER_COOKIE = u"cookie"_s;
     inline const QString HEADER_CROSS_ORIGIN_OPENER_POLICY  = u"cross-origin-opener-policy"_s;
     inline const QString HEADER_DATE = u"date"_s;
     inline const QString HEADER_HOST = u"host"_s;
