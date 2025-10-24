@@ -3245,7 +3245,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (!tr)
                     return;
 
-                const { name, torrentURL } = this._this.rows.get(this.rowId).full_data;
+                const { name, torrentURL } = this.getRow(tr.rowId).full_data;
                 qBittorrent.Client.createAddTorrentWindow(name, torrentURL);
             });
         }
