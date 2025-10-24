@@ -29,10 +29,12 @@
 
 #pragma once
 
+#include <chrono>
 #include <type_traits>
 #include <utility>
 
 #include <QDateTime>
+#include <QDeadlineTimer>
 #include <QElapsedTimer>
 #include <QHash>
 #include <QHostAddress>
@@ -53,6 +55,8 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
+using namespace std::chrono_literals;
+
 inline const Utils::Version<3, 2> API_VERSION {2, 14, 1};
 
 class APIController;
@@ -72,15 +76,18 @@ public:
 
     QString id() const override;
 
-    bool hasExpired(qint64 seconds) const;
+    bool hasExpired(std::chrono::milliseconds duration) const;
     void updateTimestamp();
+    bool shouldRefreshCookie() const;
+    void setCookieRefreshTime(std::chrono::seconds timeout);
 
     void registerAPIController(const QString &scope, APIController *controller);
     APIController *getAPIController(const QString &scope) const;
 
 private:
     const QString m_sid;
-    QElapsedTimer m_timer;  // timestamp
+    QElapsedTimer m_timestamp;
+    QDeadlineTimer m_cookieRefreshTimer;
     QMap<QString, APIController *> m_apiControllers;
 };
 
@@ -123,6 +130,7 @@ private:
     // Session management
     QString generateSid() const;
     void sessionInitialize();
+    void setSessionCookie();
     void apiKeySessionInitialize();
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
@@ -247,7 +255,7 @@ private:
     bool m_isLocalAuthEnabled = false;
     bool m_isAuthSubnetWhitelistEnabled = false;
     QList<Utils::Net::Subnet> m_authSubnetWhitelist;
-    int m_sessionTimeout = 0;
+    std::chrono::seconds m_sessionTimeout = 0s;
     QString m_sessionCookieName;
     QString m_apiKey;
 
