@@ -16,10 +16,21 @@ body {
 }
 
 #main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     padding-top: 5em;
     text-align: center;
+}
+
+.login-input {
+    box-sizing: border-box;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    width: 100%;
 }
 
 #formplace {
@@ -33,7 +44,9 @@ body {
 }
 
 #loginButton {
-    float: right;
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 100%;
 }
 
 #logo img {
