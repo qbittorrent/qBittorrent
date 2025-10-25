@@ -104,20 +104,6 @@ namespace
         return false;
     }
 
-    void openDestinationFolder(const BitTorrent::Torrent *const torrent)
-    {
-        const Path contentPath = torrent->contentPath();
-        const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
-#ifdef Q_OS_MACOS
-        MacUtils::openFiles({openedPath});
-#else
-        if (torrent->filesCount() == 1)
-            Utils::Gui::openFolderSelect(openedPath);
-        else
-            Utils::Gui::openPath(openedPath);
-#endif
-    }
-
     void removeTorrents(const QList<BitTorrent::Torrent *> &torrents, const bool isDeleteFileSelected)
     {
         auto *session = BitTorrent::Session::instance();
@@ -592,7 +578,7 @@ void TransferListWidget::hideQueuePosColumn(bool hide)
         resizeColumnToContents(TransferListModel::TR_QUEUE_POSITION);
 }
 
-void TransferListWidget::openSelectedTorrentsFolder() const
+void TransferListWidget::openSelectedTorrentsFolder()
 {
     QSet<Path> paths;
 #ifdef Q_OS_MACOS
@@ -612,13 +598,27 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         if (!paths.contains(openedPath))
         {
             if (torrent->filesCount() == 1)
-                Utils::Gui::openFolderSelect(openedPath);
+                Utils::Gui::openFolderSelect(openedPath, this);
             else
                 Utils::Gui::openPath(openedPath);
         }
         paths.insert(openedPath);
     }
 #endif // Q_OS_MACOS
+}
+
+void TransferListWidget::openDestinationFolder(const BitTorrent::Torrent *const torrent)
+{
+    const Path contentPath = torrent->contentPath();
+    const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
+#ifdef Q_OS_MACOS
+    MacUtils::openFiles({openedPath});
+#else
+    if (torrent->filesCount() == 1)
+        Utils::Gui::openFolderSelect(openedPath, this);
+    else
+        Utils::Gui::openPath(openedPath);
+#endif
 }
 
 void TransferListWidget::previewSelectedTorrents()

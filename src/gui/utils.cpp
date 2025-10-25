@@ -144,7 +144,7 @@ void Utils::Gui::openPath(const Path &path)
 
 // Open the parent directory of the given path with a file manager and select
 // (if possible) the item at the given path
-void Utils::Gui::openFolderSelect(const Path &path)
+void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *parent)
 {
     // If the item to select doesn't exist, try to open its parent
     if (!path.exists())
@@ -175,11 +175,11 @@ void Utils::Gui::openFolderSelect(const Path &path)
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     const int lineMaxLength = 64;
 
-    auto lookupProc = new QProcess();
+    auto lookupProc = new QProcess(parent);
     lookupProc->setProcessChannelMode(QProcess::ForwardedErrorChannel);
     lookupProc->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
     QObject::connect(lookupProc, &QProcess::finished, lookupProc
-        , [path, lookupProc]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
+        , [parent, path, lookupProc]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
     {
         lookupProc->deleteLater();
 
@@ -191,7 +191,7 @@ void Utils::Gui::openFolderSelect(const Path &path)
         else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
             || (output == u"nautilus-folder-handler.desktop"))
         {
-            auto deProcess = new QProcess();
+            auto deProcess = new QProcess(parent);
             deProcess->setProcessChannelMode(QProcess::ForwardedErrorChannel);
             deProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
             QObject::connect(deProcess, &QProcess::finished, deProcess
