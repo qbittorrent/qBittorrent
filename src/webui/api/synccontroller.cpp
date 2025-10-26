@@ -615,7 +615,7 @@ void SyncController::makeMaindataSnapshot()
     for (const Tag &tag : asConst(session->tags()))
         m_maindataSnapshot.tags.append(tag.toString());
 
-    for (const auto &[tracker, torrentIDs] : m_knownTrackers.asKeyValueRange())
+    for (const auto &[tracker, torrentIDs] : asConst(m_knownTrackers).asKeyValueRange())
         m_maindataSnapshot.trackers[tracker] = asStrings(torrentIDs);
 
     m_maindataSnapshot.serverState = getTransferInfo(app());

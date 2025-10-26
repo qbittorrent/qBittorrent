@@ -35,12 +35,15 @@
 ;End of user configurable options
 ;==============================================================================
 
+; QBT_CPU_ARCH (x64 or arm64)
+!define /ifndef QBT_CPU_ARCH "x64"
+
 !ifndef QBT_INSTALLER_WINDOWNAME | QBT_INSTALLER_FILENAME
   ; The name of the installer
-  !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} x64"
+  !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} ${QBT_CPU_ARCH}"
 
   ; The file to write
-  !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_x64"
+  !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_${QBT_CPU_ARCH}"
 !endif
 
 !define /ifndef QBT_DIST_DIR "qBittorrent"

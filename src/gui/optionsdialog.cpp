@@ -1356,21 +1356,10 @@ void OptionsDialog::loadWebUITabOptions()
 
     // API Key
     if (const QString apiKey = pref->getWebUIApiKey(); Utils::APIKey::isValid(apiKey))
-    {
         m_currentAPIKey = apiKey;
-        m_ui->textWebUIAPIKey->setText(maskAPIKey(m_currentAPIKey));
-        m_ui->textWebUIAPIKey->setEnabled(true);
-        m_ui->btnWebUIAPIKeyCopy->setEnabled(true);
-        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Rotate API key"));
-    }
     else
-    {
         m_currentAPIKey.clear();
-        m_ui->textWebUIAPIKey->clear();
-        m_ui->textWebUIAPIKey->setEnabled(false);
-        m_ui->btnWebUIAPIKeyCopy->setEnabled(false);
-        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Generate API key"));
-    }
+    setupWebUIAPIKey();
 
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUILocalAuthEnabled());
     m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUIAuthSubnetWhitelistEnabled());
@@ -1412,8 +1401,9 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->btnWebUIAPIKeyCopy, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyCopy);
-    connect(m_ui->btnWebUIAPIKeyRotate, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyRotate);
+    connect(m_ui->btnWebUIAPIKeyCopy, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyCopyClicked);
+    connect(m_ui->btnWebUIAPIKeyRotate, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyRotateClicked);
+    connect(m_ui->btnWebUIAPIKeyDelete, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyDeleteClicked);
 
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1490,13 +1480,13 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
 }
 
-void OptionsDialog::onBtnWebUIAPIKeyCopy()
+void OptionsDialog::onBtnWebUIAPIKeyCopyClicked()
 {
     if (!m_currentAPIKey.isEmpty())
         QApplication::clipboard()->setText(m_currentAPIKey);
 }
 
-void OptionsDialog::onBtnWebUIAPIKeyRotate()
+void OptionsDialog::onBtnWebUIAPIKeyRotateClicked()
 {
     const QString title = m_currentAPIKey.isEmpty()
         ? tr("Generate API key")
@@ -1511,14 +1501,49 @@ void OptionsDialog::onBtnWebUIAPIKeyRotate()
     if (button == QMessageBox::Yes)
     {
         m_currentAPIKey = Utils::APIKey::generate();
-        m_ui->textWebUIAPIKey->setText(maskAPIKey(m_currentAPIKey));
-        m_ui->textWebUIAPIKey->setEnabled(true);
-        m_ui->btnWebUIAPIKeyCopy->setEnabled(true);
-        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Rotate API key"));
+        setupWebUIAPIKey();
 
         auto *preferences = Preferences::instance();
         preferences->setWebUIApiKey(m_currentAPIKey);
         preferences->apply();
+    }
+}
+
+void OptionsDialog::onBtnWebUIAPIKeyDeleteClicked()
+{
+    const QString title = tr("Delete API key");
+    const QString message = tr("Delete this API key? The current key will immediately stop working.");
+    const QMessageBox::StandardButton button = QMessageBox::question(
+        this, title, message, (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
+
+    if (button == QMessageBox::Yes)
+    {
+        m_currentAPIKey.clear();
+        setupWebUIAPIKey();
+
+        auto *preferences = Preferences::instance();
+        preferences->setWebUIApiKey(m_currentAPIKey);
+        preferences->apply();
+    }
+}
+
+void OptionsDialog::setupWebUIAPIKey()
+{
+    if (Utils::APIKey::isValid(m_currentAPIKey))
+    {
+        m_ui->textWebUIAPIKey->setText(maskAPIKey(m_currentAPIKey));
+        m_ui->textWebUIAPIKey->setEnabled(true);
+        m_ui->btnWebUIAPIKeyCopy->setEnabled(true);
+        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Rotate API key"));
+        m_ui->btnWebUIAPIKeyDelete->setEnabled(true);
+    }
+    else
+    {
+        m_ui->textWebUIAPIKey->clear();
+        m_ui->textWebUIAPIKey->setEnabled(false);
+        m_ui->btnWebUIAPIKeyCopy->setEnabled(false);
+        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Generate API key"));
+        m_ui->btnWebUIAPIKeyDelete->setEnabled(false);
     }
 }
 #endif // DISABLE_WEBUI

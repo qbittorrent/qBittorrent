@@ -1012,6 +1012,11 @@
                                     <img src="images/force-recheck.svg" alt="QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]" title="QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]" width="16" height="16" style="margin: 4px; top: 2px; position: relative;">
                                 </button>
                             </td>
+                            <td>
+                                <button type="button" disabled id="webUIAPIKeyDeleteButton" style="padding: 0;" data-has-key="false" aria-label="QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]">
+                                    <img src="images/list-remove.svg" alt="QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]" title="QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]" width="16" height="16" style="margin: 4px; top: 2px; position: relative;">
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -1823,6 +1828,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateWebuiLocaleSelect: updateWebuiLocaleSelect,
                 registerDynDns: registerDynDns,
                 rotateAPIKey: rotateAPIKey,
+                deleteAPIKey: deleteAPIKey,
                 applyPreferences: applyPreferences
             };
         };
@@ -2586,6 +2592,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         document.getElementById("webUIAPIKeyCopyButton").disabled = false;
                         document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "true";
                         document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                        document.getElementById("webUIAPIKeyDeleteButton").disabled = false;
                     }
 
                     // Use alternative WebUI
@@ -3287,9 +3294,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webUIAPIKeyCopyButton").disabled = false;
                     document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "true";
                     document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                    document.getElementById("webUIAPIKeyDeleteButton").disabled = false;
                 })
                 .catch((error) => {
                     alert(`QBT_TR(Unable to rotate API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                });
+        };
+
+        const deleteAPIKey = () => {
+            fetch("api/v2/app/deleteAPIKey", {
+                    method: "POST",
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        alert(await response.text());
+                        return;
+                    }
+
+                    const apiKeyTextElem = document.getElementById("WebUIAPIKeyText");
+                    apiKeyTextElem.value = "";
+                    apiKeyTextElem.dataset.apiKey = "";
+
+                    document.getElementById("webUIAPIKeyCopyButton").disabled = true;
+                    document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "false";
+                    document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                    document.getElementById("webUIAPIKeyDeleteButton").disabled = true;
+                })
+                .catch((error) => {
+                    alert(`QBT_TR(Unable to delete API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
                 });
         };
 
@@ -3310,7 +3342,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         });
 
         document.getElementById("webUIAPIKeyRotateButton").addEventListener("click", (e) => {
-            const hasKey = e.target.parentElement.dataset.hasKey;
+            const hasKey = e.target.parentElement.dataset.hasKey === "true";
             const title = hasKey
                 ? "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
                 : "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
@@ -3320,11 +3352,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             new MochaUI.Modal({
                 ...window.qBittorrent.Dialog.baseModalOptions,
-                id: "confirmRotateAPIKeyDialog",
                 title: title,
-                contentURL: "views/confirmRotateAPIKey.html?v=${CACHEID}",
+                id: "confirmAPIKeyDialog",
+                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
                 data: {
-                    hasKey: hasKey,
+                    action: "rotate",
+                    message: message,
+                },
+            });
+        });
+
+        document.getElementById("webUIAPIKeyDeleteButton").addEventListener("click", (e) => {
+            const title = "QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
+            const message = "QBT_TR(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+            new MochaUI.Modal({
+                ...window.qBittorrent.Dialog.baseModalOptions,
+                title: title,
+                id: "confirmAPIKeyDialog",
+                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
+                data: {
+                    action: "delete",
                     message: message,
                 },
             });
