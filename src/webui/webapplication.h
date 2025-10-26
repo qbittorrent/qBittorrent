@@ -57,7 +57,7 @@
 
 using namespace std::chrono_literals;
 
-inline const Utils::Version<3, 2> API_VERSION{2, 14, 2};
+inline const Utils::Version<3, 2> API_VERSION {2, 14, 2};
 
 class APIController;
 class AuthController;
