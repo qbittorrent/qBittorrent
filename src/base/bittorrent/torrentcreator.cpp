@@ -233,7 +233,6 @@ void TorrentCreator::run()
 
         checkInterruptionRequested();
 
-        // Save the generated torrent data to the specified path, sanitizing the filename and falling back to a temporary file if invalid
         const auto result = std::invoke([torrentFilePath = m_params.torrentFilePath, entry]() -> nonstd::expected<Path, QString>
         {
             const Path parentPath = torrentFilePath.parentPath();
@@ -244,7 +243,6 @@ void TorrentCreator::run()
             if (!finalTorrentFilePath.isValid())
                 return Utils::IO::saveToTempFile(entry);
 
-            // Attempt to save the file to disk
             const nonstd::expected<void, QString> result = Utils::IO::saveToFile(finalTorrentFilePath, entry);
             if (!result)
                 return nonstd::make_unexpected(result.error());

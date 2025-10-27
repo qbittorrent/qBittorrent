@@ -85,8 +85,9 @@ namespace
         if ((unicode < 32) || (unicode == 127) || (c == u'/'))
             return true;
 #ifdef Q_OS_WIN
-        const QSet<QChar> reservedChars {u'\\', u'<', u'>', u':', u'"', u'|', u'?', u'*'};
-        return reservedChars.contains(c);
+        if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') ||
+            (c == u'|') || (c == u'?') || (c == u'*'))
+            return true;
 #elif defined(Q_OS_MACOS)
         return (c == u':');
 #else
