@@ -88,6 +88,7 @@ namespace
         if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') ||
             (c == u'|') || (c == u'?') || (c == u'*'))
             return true;
+        return false;
 #elif defined(Q_OS_MACOS)
         return (c == u':');
 #else
