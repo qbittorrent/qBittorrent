@@ -274,7 +274,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
     m_ui->checkUseTorrentStatesColors->setChecked(pref->useTorrentStatesColors());
     m_ui->checkProgressBarFollowsTextColor->setChecked(pref->getProgressBarFollowsTextColor());
-    m_ui->checkProgressBarFollowsTextColor->setEnabled(m_ui->checkProgressBarFollowsTextColor->isChecked());
+    m_ui->checkProgressBarFollowsTextColor->setEnabled(m_ui->checkUseTorrentStatesColors->isChecked());
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
