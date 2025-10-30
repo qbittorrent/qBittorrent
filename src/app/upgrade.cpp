@@ -284,7 +284,6 @@ namespace
             {u"BitTorrent/Session/MaxActiveUploads"_s, u"Preferences/Queueing/MaxActiveUploads"_s},
             {u"BitTorrent/Session/MaxConnections"_s, u"Preferences/Bittorrent/MaxConnecs"_s},
             {u"BitTorrent/Session/MaxConnectionsPerDownloadingTorrent"_s, u"Preferences/Bittorrent/MaxConnecsPerTorrent"_s},
-            {u"BitTorrent/Session/MaxConnectionsPerDownloadingTorrent"_s, u"BitTorrent/Session/MaxConnectionsPerTorrent"_s},
             {u"BitTorrent/Session/MaxHalfOpenConnections"_s, u"Preferences/Connection/MaxHalfOpenConnec"_s},
             {u"BitTorrent/Session/MaxRatioAction"_s, u"Preferences/Bittorrent/MaxRatioAction"_s},
             {u"BitTorrent/Session/MaxUploads"_s, u"Preferences/Bittorrent/MaxUploads"_s},
@@ -479,6 +478,16 @@ namespace
         settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
         settingsStorage->removeValue(oldKey);
     }
+
+    void migrateMaxConnectionSettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto oldKey = u"BitTorrent/Session/MaxConnectionsPerTorrent"_s;
+        const auto newKey = u"BitTorrent/Session/MaxConnectionsPerDownloadingTorrent"_s;
+
+        settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
+        settingsStorage->removeValue(oldKey);
+    }
 }
 
 bool upgrade()
@@ -522,6 +531,9 @@ bool upgrade()
 
         if (version < 8)
             migrateAddPausedSetting();
+
+        if (version < 9)
+            migrateMaxConnectionSettings();
 
         version = MIGRATION_VERSION;
     }
