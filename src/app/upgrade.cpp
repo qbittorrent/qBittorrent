@@ -479,7 +479,7 @@ namespace
         settingsStorage->removeValue(oldKey);
     }
 
-    void migrateMaxConnectionSettings()
+    void migrateMaxConnectionSetting()
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"BitTorrent/Session/MaxConnectionsPerTorrent"_s;
@@ -533,7 +533,7 @@ bool upgrade()
             migrateAddPausedSetting();
 
         if (version < 9)
-            migrateMaxConnectionSettings();
+            migrateMaxConnectionSetting();
 
         version = MIGRATION_VERSION;
     }
