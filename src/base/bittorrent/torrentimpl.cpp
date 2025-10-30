@@ -2542,7 +2542,7 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
     const bool wasUploading = isUploading();
     updateState();
 
-    if (wasUploading ^ isUploading()) {
+    if (wasUploading != isUploading()) {
         // Switching from Stopped to Uploading or vice versa may require updating the connection limits.
         updateMaxConnections();
     }
