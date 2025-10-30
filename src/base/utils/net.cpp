@@ -198,27 +198,72 @@ namespace Utils
             return canonical;
         }
 
+        bool isValidIPv4ForGUI(QStringView ip)
+        {
+            if (ip.contains(kCIDRIndicator))
+                ip = ip.first(ip.indexOf(kCIDRIndicator));
+            ip = ip.trimmed();
+            if (ip.count(kIPv4Separator) != 3)
+                return false;
+            const QList<QStringView> octets = ip.split(kIPv4Separator);
+            for (int i = 0; i < 4; ++i)
+            {
+                const int len = octets[i].length();
+                if (len == 0 || len > 3)
+                    return false;
+                for (int j = 0; j < len; ++j) {
+                    const QChar ch = octets[i][j];
+                    if (ch < u'0' || ch > u'9')
+                        return false;
+                }
+                if (len == 3)
+                {
+                    if (octets[i][0] < u'2')
+                        continue;
+                    if (octets[i][0] > u'2')
+                        return false;
+                    if (octets[i][1] < u'5')
+                        continue;
+                    if (octets[i][1] > u'5')
+                        return false;
+                    if (octets[i][2] > u'5')
+                        return false;
+                }
+            }
+            return true;
+        }
+
         std::optional<IPRange> parseIPRange(QStringView filterStr)
         {
+            return parseIPRange(filterStr, false);
+        }
+
+        std::optional<IPRange> parseIPRange(QStringView filterStr, const bool &isGUI)
+        {
             filterStr = filterStr.trimmed();
-            const QChar iprangeSeparator = u'-';
-            const QChar cidrIndicator = u'/';
             QHostAddress first, last;
-            if (filterStr.contains(iprangeSeparator))
+            if (filterStr.contains(kIPRangeSeparator))
             {
                 // ip range format eg.
                 // "127.0.0.0 - 127.255.255.255"
-                if (filterStr.count(iprangeSeparator) != 1)
+                if (filterStr.count(kIPRangeSeparator) != 1)
                 {
                     // invalid range
                     qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
                     return std::nullopt;
                 }
-                const int i = filterStr.indexOf(iprangeSeparator);
-                first = QHostAddress(filterStr.first(i).trimmed().toString());
-                last = QHostAddress(filterStr.sliced(i + 1).trimmed().toString());
+                const int i = filterStr.indexOf(kIPRangeSeparator);
+                const QString firstIPStr = filterStr.first(i).trimmed().toString();
+                const QString lastIPStr = filterStr.sliced(i + 1).trimmed().toString();
+                first = QHostAddress(firstIPStr);
+                last = QHostAddress(lastIPStr);
+                if (isGUI && first.protocol() == QAbstractSocket::IPv4Protocol)
+                {
+                    if (!isValidIPv4ForGUI(firstIPStr) || !isValidIPv4ForGUI(lastIPStr))
+                        return std::nullopt;
+                }
             }
-            else if (filterStr.contains(cidrIndicator))
+            else if (filterStr.contains(kCIDRIndicator))
             {
                 // CIDR notation
                 // "127.0.0.0/8"
@@ -228,6 +273,11 @@ namespace Utils
                     const IPRange ipRange = subnetToIPRange(subnet.value());
                     first = QHostAddress(ipRange.first.toString());
                     last = QHostAddress(ipRange.second.toString());
+                    if (isGUI && first.protocol() == QAbstractSocket::IPv4Protocol)
+                    {
+                        if (!isValidIPv4ForGUI(filterStr))
+                            return std::nullopt;
+                    }
                 }
                 else
                 {
@@ -239,6 +289,11 @@ namespace Utils
                 const QHostAddress addr {filterStr.toString()};
                 first = addr;
                 last = addr;
+                if (isGUI && addr.protocol() == QAbstractSocket::IPv4Protocol)
+                {
+                    if (!isValidIPv4ForGUI(filterStr))
+                        return std::nullopt;
+                }
             }
             if (!isValidIPRange(first, last))
                 return std::nullopt;
