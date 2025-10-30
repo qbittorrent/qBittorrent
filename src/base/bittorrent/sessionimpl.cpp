@@ -1784,14 +1784,14 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     {
         lt::error_code ec;
         lt::address first, last;
-        const std::optional<std::pair<QHostAddress, QHostAddress>> ip_range = Utils::Net::parseIpRange(ip);
-        if (!ip_range.has_value())
+        const std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(ip);
+        if (!ipRange)
             continue;
-        first = Utils::Net::convertAddressType(ip_range.value().first, ec);
+        first = lt::make_address(ipRange.value().first.toString().toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec)
             continue;
-        last = Utils::Net::convertAddressType(ip_range.value().second, ec);
+        last = lt::make_address(ipRange.value().second.toString().toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec)
             continue;
@@ -4173,18 +4173,13 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
     QStringList filteredList;
     for (const QString &entry : newList)
     {
-        std::optional<std::pair<QHostAddress, QHostAddress>> ip_range = Utils::Net::parseIpRange(entry);
-        if (ip_range.has_value())
+        std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(entry);
+        if (ipRange)
         {
             // the same IPv6 addresses could be written in different forms;
             // QHostAddress::toString() result format follows RFC5952;
             // thus we avoid duplicate entries pointing to the same address
-            QHostAddress firstIP = ip_range.value().first;
-            QHostAddress lastIP = ip_range.value().second;
-            if (firstIP == lastIP)
-                filteredList << firstIP.toString();
-            else
-                filteredList << QString(u"%1 - %2").arg(firstIP.toString(), lastIP.toString());
+            filteredList << Utils::Net::ipRangeToString(ipRange.value());
         }
         else
         {

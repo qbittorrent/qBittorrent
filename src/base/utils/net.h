@@ -45,16 +45,17 @@ namespace Utils::Net
 {
     // alias for `QHostAddress::parseSubnet()` return type
     using Subnet = std::pair<QHostAddress, int>;
+    using IPRange = std::pair<QHostAddress, QHostAddress>;
 
     bool isValidIP(const QString &ip);
     std::optional<Subnet> parseSubnet(const QString &subnetStr);
     bool isIPInSubnets(const QHostAddress &addr, const QList<Subnet> &subnets);
     QString subnetToString(const Subnet &subnet);
-    std::pair<QHostAddress, QHostAddress> subnetToIpRange(const Subnet &subnet);
+    IPRange subnetToIPRange(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
-    std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(QStringView filterStr);
-    lt::address convertAddressType(const QHostAddress &addr, lt::error_code &ec);
+    std::optional<IPRange> parseIPRange(QStringView filterStr);
+    QString ipRangeToString(const IPRange &ipRange);
 
     inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
     QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);

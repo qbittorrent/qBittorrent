@@ -100,28 +100,28 @@ namespace Utils
             return subnet.first.toString() + u'/' + QString::number(subnet.second);
         }
 
-        std::pair<QHostAddress, QHostAddress> subnetToIpRange(const Subnet &subnet)
+        IPRange subnetToIPRange(const Subnet &subnet)
         {
             const QHostAddress &address = subnet.first;
-            int prefixLength = subnet.second;
+            const int prefixLength = subnet.second;
 
             auto addressFamily = address.protocol();
 
             if (addressFamily == QAbstractSocket::IPv4Protocol)
             {
-                quint32 ip = address.toIPv4Address();
+                const quint32 ip = address.toIPv4Address();
                 quint32 mask = 0;
 
-                if (prefixLength >= 0 && prefixLength <= 32)
+                if ((prefixLength >= 0) && (prefixLength <= 32))
                 {
                     mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
                 }
 
-                quint32 network = ip & mask;
-                quint32 broadcast = network | (~mask & 0xFFFFFFFF);
+                const quint32 network = ip & mask;
+                const quint32 broadcast = network | (~mask & 0xFFFFFFFF);
 
-                QHostAddress start(network);
-                QHostAddress end(broadcast);
+                const QHostAddress start {network};
+                const QHostAddress end {broadcast};
 
                 return std::make_pair(start, end);
             }
@@ -130,12 +130,12 @@ namespace Utils
                 quint8 ip6[16];
                 quint8 mask6[16] = {0};
 
-                QIPv6Address addressBytes = address.toIPv6Address();
+                const Q_IPV6ADDR addressBytes = address.toIPv6Address();
 
                 memcpy(ip6, addressBytes.c, 16);
 
-                int bytes = prefixLength / 8;
-                int bits = prefixLength % 8;
+                const int bytes = prefixLength / 8;
+                const int bits = prefixLength % 8;
 
                 for (int i = 0; i < bytes; i++)
                 {
@@ -146,19 +146,19 @@ namespace Utils
                     mask6[bytes] = (0xFF << (8 - bits)) & 0xFF;
                 }
 
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < 16; ++i)
                 {
                     ip6[i] &= mask6[i];
                 }
 
-                QHostAddress start = QHostAddress(ip6);
+                const QHostAddress start = QHostAddress(ip6);
 
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < 16; ++i)
                 {
                     ip6[i] |= ~mask6[i];
                 }
 
-                QHostAddress end = QHostAddress(ip6);
+                const QHostAddress end = QHostAddress(ip6);
 
                 return std::make_pair(start, end);
             }
@@ -198,36 +198,36 @@ namespace Utils
             return canonical;
         }
 
-        std::optional<std::pair<QHostAddress, QHostAddress>> parseIpRange(QStringView filterStr)
+        std::optional<IPRange> parseIPRange(QStringView filterStr)
         {
             filterStr = filterStr.trimmed();
-            const QChar iprange_sep = u'-';
-            const QChar cidr_indicator = u'/';
+            const QChar iprangeSeparator = u'-';
+            const QChar cidrIndicator = u'/';
             QHostAddress first, last;
-            if (filterStr.contains(iprange_sep))
+            if (filterStr.contains(iprangeSeparator))
             {
                 // ip range format eg.
                 // "127.0.0.0 - 127.255.255.255"
-                if (filterStr.count(iprange_sep) != 1)
+                if (filterStr.count(iprangeSeparator) != 1)
                 {
                     // invalid range
                     qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
                     return std::nullopt;
                 }
-                const int i = filterStr.indexOf(iprange_sep);
+                const int i = filterStr.indexOf(iprangeSeparator);
                 first = QHostAddress(filterStr.first(i).trimmed().toString());
                 last = QHostAddress(filterStr.sliced(i + 1).trimmed().toString());
             }
-            else if (filterStr.contains(cidr_indicator))
+            else if (filterStr.contains(cidrIndicator))
             {
                 // CIDR notation
                 // "127.0.0.0/8"
                 const std::optional<Subnet> subnet = parseSubnet(filterStr.toString());
-                if (subnet.has_value())
+                if (subnet)
                 {
-                    const std::pair<QHostAddress, QHostAddress> ip_range = subnetToIpRange(subnet.value());
-                    first = QHostAddress(ip_range.first.toString());
-                    last = QHostAddress(ip_range.second.toString());
+                    const IPRange ipRange = subnetToIPRange(subnet.value());
+                    first = QHostAddress(ipRange.first.toString());
+                    last = QHostAddress(ipRange.second.toString());
                 }
                 else
                 {
@@ -236,7 +236,7 @@ namespace Utils
             }
             else
             {
-                QHostAddress addr = QHostAddress(filterStr.toString());
+                const QHostAddress addr {filterStr.toString()};
                 first = addr;
                 last = addr;
             }
@@ -245,10 +245,14 @@ namespace Utils
             return std::make_pair(first, last);
         }
 
-        lt::address convertAddressType(const QHostAddress &addr, lt::error_code &ec)
+        QString ipRangeToString(const IPRange &ipRange)
         {
-            lt::address result = lt::make_address(addr.toString().toLatin1().constData(), ec);
-            return result;
+            const QHostAddress firstIP = ipRange.first;
+            const QHostAddress lastIP = ipRange.second;
+            if (firstIP == lastIP)
+                return firstIP.toString();
+            else
+                return QString(u"%1 - %2").arg(firstIP.toString(), lastIP.toString());
         }
 
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)

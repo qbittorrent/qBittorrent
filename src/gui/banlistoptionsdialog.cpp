@@ -92,7 +92,7 @@ void BanListOptionsDialog::on_buttonBox_accepted()
 void BanListOptionsDialog::on_buttonBanIP_clicked()
 {
     QString ip = m_ui->txtIP->text();
-    if (!Utils::Net::parseIpRange(ip).has_value())
+    if (!Utils::Net::parseIPRange(ip))
     {
         QMessageBox::warning(this, tr("Warning"), tr("The entered IP address or range is invalid."));
         return;
@@ -133,5 +133,5 @@ void BanListOptionsDialog::on_buttonDeleteIP_clicked()
 
 void BanListOptionsDialog::on_txtIP_textChanged(const QString &ip)
 {
-    m_ui->buttonBanIP->setEnabled(Utils::Net::parseIpRange(ip).has_value());
+    m_ui->buttonBanIP->setEnabled(Utils::Net::parseIPRange(ip).has_value());
 }
