@@ -45,6 +45,23 @@ namespace Utils
             return !QHostAddress(ip).isNull();
         }
 
+        bool isValidIPRange(const QHostAddress first, const QHostAddress last)
+        {
+            if (first.isNull() || last.isNull())
+                return false;
+            if (first.protocol() != last.protocol())
+                return false;
+            if (first.protocol() == QAbstractSocket::IPv4Protocol)
+                return first.toIPv4Address() <= last.toIPv4Address();
+            if (first.protocol() == QAbstractSocket::IPv6Protocol)
+            {
+                const Q_IPV6ADDR firstIPv6 = first.toIPv6Address();
+                const Q_IPV6ADDR lastIPv6 = last.toIPv6Address();
+                return memcmp(firstIPv6.c, lastIPv6.c, sizeof(firstIPv6.c)) <= 0;
+            }
+            return false;
+        }
+
         std::optional<Subnet> parseSubnet(const QString &subnetStr)
         {
             const Subnet subnet = QHostAddress::parseSubnet(subnetStr);
@@ -83,6 +100,73 @@ namespace Utils
             return subnet.first.toString() + u'/' + QString::number(subnet.second);
         }
 
+        IPRange subnetToIPRange(const Subnet &subnet)
+        {
+            const QHostAddress &address = subnet.first;
+            const int prefixLength = subnet.second;
+
+            auto addressFamily = address.protocol();
+
+            if (addressFamily == QAbstractSocket::IPv4Protocol)
+            {
+                const quint32 ip = address.toIPv4Address();
+                quint32 mask = 0;
+
+                if ((prefixLength >= 0) && (prefixLength <= 32))
+                {
+                    mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
+                }
+
+                const quint32 network = ip & mask;
+                const quint32 broadcast = network | (~mask & 0xFFFFFFFF);
+
+                const QHostAddress start {network};
+                const QHostAddress end {broadcast};
+
+                return std::make_pair(start, end);
+            }
+            else if (addressFamily == QAbstractSocket::IPv6Protocol)
+            {
+                quint8 ip6[16];
+                quint8 mask6[16] = {0};
+
+                const Q_IPV6ADDR addressBytes = address.toIPv6Address();
+
+                memcpy(ip6, addressBytes.c, 16);
+
+                const int bytes = prefixLength / 8;
+                const int bits = prefixLength % 8;
+
+                for (int i = 0; i < bytes; i++)
+                {
+                    mask6[i] = 0xFF;
+                }
+                if (bytes < 16)
+                {
+                    mask6[bytes] = (0xFF << (8 - bits)) & 0xFF;
+                }
+
+                for (int i = 0; i < 16; ++i)
+                {
+                    ip6[i] &= mask6[i];
+                }
+
+                const QHostAddress start = QHostAddress(ip6);
+
+                for (int i = 0; i < 16; ++i)
+                {
+                    ip6[i] |= ~mask6[i];
+                }
+
+                const QHostAddress end = QHostAddress(ip6);
+
+                return std::make_pair(start, end);
+            }
+
+            // fallback
+            return std::make_pair(address, address);
+        }
+
         QHostAddress canonicalIPv6Addr(const QHostAddress &addr)
         {
             // Link-local IPv6 textual address always contains a scope id (or zone index)
@@ -112,6 +196,118 @@ namespace Utils
             QHostAddress canonical(addr.toIPv6Address());
             canonical.setScopeId(QString::number(id));
             return canonical;
+        }
+
+        bool isValidIPv4ForGUI(QStringView ip)
+        {
+            if (ip.contains(kCIDRIndicator))
+                ip = ip.first(ip.indexOf(kCIDRIndicator));
+            ip = ip.trimmed();
+            if (ip.count(kIPv4Separator) != 3)
+                return false;
+            const QList<QStringView> octets = ip.split(kIPv4Separator);
+            for (int i = 0; i < 4; ++i)
+            {
+                const int len = octets[i].length();
+                if (len == 0 || len > 3)
+                    return false;
+                for (int j = 0; j < len; ++j) {
+                    const QChar ch = octets[i][j];
+                    if (ch < u'0' || ch > u'9')
+                        return false;
+                }
+                if (len == 3)
+                {
+                    if (octets[i][0] < u'2')
+                        continue;
+                    if (octets[i][0] > u'2')
+                        return false;
+                    if (octets[i][1] < u'5')
+                        continue;
+                    if (octets[i][1] > u'5')
+                        return false;
+                    if (octets[i][2] > u'5')
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        std::optional<IPRange> parseIPRange(QStringView filterStr)
+        {
+            return parseIPRange(filterStr, false);
+        }
+
+        std::optional<IPRange> parseIPRange(QStringView filterStr, const bool &isGUI)
+        {
+            filterStr = filterStr.trimmed();
+            QHostAddress first, last;
+            if (filterStr.contains(kIPRangeSeparator))
+            {
+                // ip range format eg.
+                // "127.0.0.0 - 127.255.255.255"
+                if (filterStr.count(kIPRangeSeparator) != 1)
+                {
+                    // invalid range
+                    qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
+                    return std::nullopt;
+                }
+                const int i = filterStr.indexOf(kIPRangeSeparator);
+                const QString firstIPStr = filterStr.first(i).trimmed().toString();
+                const QString lastIPStr = filterStr.sliced(i + 1).trimmed().toString();
+                first = QHostAddress(firstIPStr);
+                last = QHostAddress(lastIPStr);
+                if (isGUI && first.protocol() == QAbstractSocket::IPv4Protocol)
+                {
+                    if (!isValidIPv4ForGUI(firstIPStr) || !isValidIPv4ForGUI(lastIPStr))
+                        return std::nullopt;
+                }
+            }
+            else if (filterStr.contains(kCIDRIndicator))
+            {
+                // CIDR notation
+                // "127.0.0.0/8"
+                const std::optional<Subnet> subnet = parseSubnet(filterStr.toString());
+                if (subnet)
+                {
+                    const IPRange ipRange = subnetToIPRange(subnet.value());
+                    first = QHostAddress(ipRange.first.toString());
+                    last = QHostAddress(ipRange.second.toString());
+                    if (isGUI && first.protocol() == QAbstractSocket::IPv4Protocol)
+                    {
+                        if (!isValidIPv4ForGUI(filterStr))
+                            return std::nullopt;
+                    }
+                }
+                else
+                {
+                    return std::nullopt;
+                }
+            }
+            else
+            {
+                const QHostAddress addr {filterStr.toString()};
+                first = addr;
+                last = addr;
+                if (isGUI && addr.protocol() == QAbstractSocket::IPv4Protocol)
+                {
+                    if (!isValidIPv4ForGUI(filterStr))
+                        return std::nullopt;
+                }
+            }
+            if (!isValidIPRange(first, last))
+                return std::nullopt;
+            return std::make_pair(first, last);
+        }
+
+        QString ipRangeToString(const IPRange &ipRange)
+        {
+            const QHostAddress firstIP = ipRange.first;
+            const QHostAddress lastIP = ipRange.second;
+            if (firstIP == lastIP)
+                return firstIP.toString();
+            else
+                return QString(u"%1 - %2").arg(firstIP.toString(), lastIP.toString());
         }
 
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
