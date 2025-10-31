@@ -81,8 +81,8 @@ void SearchSortModel::setNameFilter(const QString &searchTerm)
 
 void SearchSortModel::setSizeFilter(qint64 minSize, qint64 maxSize)
 {
-    minSize = std::max(static_cast<qint64>(0), minSize);
-    maxSize = std::max(static_cast<qint64>(-1), maxSize);
+    minSize = std::max<qint64>(0, minSize);
+    maxSize = std::max<qint64>(-1, maxSize);
 
     if ((m_minSize == minSize) && (m_maxSize == maxSize))
         return;
