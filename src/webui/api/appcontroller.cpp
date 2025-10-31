@@ -1230,7 +1230,7 @@ void AppController::getDirectoryContentAction()
             const QFileInfo fileInfo = it.nextFileInfo();
             QJsonObject fileObject
             {
-                {KEY_FILE_METADATA_NAME, fileInfo.fileName()},
+                {KEY_FILE_METADATA_NAME, Path(fileInfo.fileName()).toString()},
                 {KEY_FILE_METADATA_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(fileInfo.birthTime())},
                 {KEY_FILE_METADATA_LAST_ACCESS_DATE, Utils::DateTime::toSecsSinceEpoch(fileInfo.lastRead())},
                 {KEY_FILE_METADATA_LAST_MODIFICATION_DATE, Utils::DateTime::toSecsSinceEpoch(fileInfo.lastModified())},
@@ -1250,7 +1250,7 @@ void AppController::getDirectoryContentAction()
         }
         else
         {
-            ret.append(it.next());
+            ret.append(Path(it.next()).toString());
         }
     }
     setResult(ret);
