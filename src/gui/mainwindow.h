@@ -121,6 +121,7 @@ private slots:
     void notifyOfUpdate(const QString &);
     void showConnectionSettings();
     void minimizeWindow();
+    void fillWindow();
     // Keyboard shortcuts
     void createKeyboardShortcuts();
     void displayTransferTab() const;

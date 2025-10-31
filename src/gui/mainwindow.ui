@@ -481,6 +481,11 @@
     <string>Close Window</string>
    </property>
   </action>
+  <action name="actionFill">
+   <property name="text">
+    <string>Fill</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

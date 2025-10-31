@@ -209,6 +209,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
 #ifdef Q_OS_MACOS
     m_ui->menuView->addAction(m_ui->actionMinimize);
+    m_ui->menuView->addAction(m_ui->actionFill);
 #endif
 
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
@@ -323,6 +324,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_ui->actionDecreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::decreaseQueuePosSelectedTorrents);
     connect(m_ui->actionBottomQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::bottomQueuePosSelectedTorrents);
     connect(m_ui->actionMinimize, &QAction::triggered, this, &MainWindow::minimizeWindow);
+    connect(m_ui->actionFill, &QAction::triggered, this, &MainWindow::fillWindow);
     connect(m_ui->actionUseAlternativeSpeedLimits, &QAction::triggered, this, &MainWindow::toggleAlternativeSpeeds);
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
@@ -927,6 +929,7 @@ void MainWindow::createKeyboardShortcuts()
 #ifdef Q_OS_MACOS
     m_ui->actionMinimize->setShortcut(Qt::CTRL | Qt::Key_M);
     addAction(m_ui->actionMinimize);
+    m_ui->actionFill->setShortcut(Qt::CTRL | Qt::Key_F);
 #endif
 }
 
@@ -1731,6 +1734,11 @@ void MainWindow::showConnectionSettings()
 void MainWindow::minimizeWindow()
 {
     setWindowState(windowState() | Qt::WindowMinimized);
+}
+
+void MainWindow::fillWindow()
+{
+    setWindowState(windowState() | Qt::WindowMaximized);
 }
 
 void MainWindow::on_actionExecutionLogs_triggered(bool checked)
