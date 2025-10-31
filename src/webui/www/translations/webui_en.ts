@@ -2777,6 +2777,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Tracker Status</source>
+        <comment>Torrent tracker status (e.g. working, not working)</comment>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
         <translation type="unfinished" />
