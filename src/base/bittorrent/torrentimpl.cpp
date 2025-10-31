@@ -1186,25 +1186,7 @@ bool TorrentImpl::isCompleted() const
 
 bool TorrentImpl::isActive() const
 {
-    switch (m_state)
-    {
-    case TorrentState::StalledDownloading:
-        return (uploadPayloadRate() > 0);
-
-    case TorrentState::DownloadingMetadata:
-    case TorrentState::ForcedDownloadingMetadata:
-    case TorrentState::Downloading:
-    case TorrentState::ForcedDownloading:
-    case TorrentState::Uploading:
-    case TorrentState::ForcedUploading:
-    case TorrentState::Moving:
-        return true;
-
-    default:
-        break;
-    };
-
-    return false;
+    return ((uploadPayloadRate() > 0) || (downloadPayloadRate() > 0));
 }
 
 bool TorrentImpl::isInactive() const
