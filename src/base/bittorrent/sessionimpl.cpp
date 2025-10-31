@@ -4372,7 +4372,7 @@ void SessionImpl::setMaxConnectionsPerDownloadingTorrent(int max)
         {
             try
             {
-                if ((m_maxConnectionsPerSeedingTorrent == -1) || !torrent->isUploading())
+                if (!torrent->isUploading())
                 {
                     torrent->nativeHandle().set_max_connections(max);
                 }
