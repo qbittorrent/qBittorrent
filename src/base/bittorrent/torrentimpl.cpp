@@ -2610,7 +2610,7 @@ void TorrentImpl::updateMaxConnections()
     const bool useSeedingLimit = (maxSeedingConnections != -1) && isUploading();
     const int maxConnections = useSeedingLimit ? maxSeedingConnections : maxDownloadingConnections;
 
-    nativeHandle().set_max_connections(max);
+    nativeHandle().set_max_connections(maxConnections);
 }
 
 void TorrentImpl::setRatioLimit(qreal limit)
