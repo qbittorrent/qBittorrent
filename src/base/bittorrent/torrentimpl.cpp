@@ -2542,7 +2542,8 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
     const bool wasUploading = isUploading();
     updateState();
 
-    if (wasUploading != isUploading()) {
+    if (wasUploading != isUploading())
+    {
         // Switching from Stopped to Uploading or vice versa may require updating the connection limits.
         updateMaxConnections();
     }
@@ -2607,10 +2608,7 @@ void TorrentImpl::updateMaxConnections()
     const int maxDownloadingConnections = m_session->maxConnectionsPerDownloadingTorrent();
     const int maxSeedingConnections = m_session->maxConnectionsPerSeedingTorrent();
     const bool useSeedingLimit = (maxSeedingConnections != -1) && isUploading();
-    const int max = useSeedingLimit ? maxSeedingConnections : maxDownloadingConnections;
-
-    if (nativeHandle().max_connections() == max)
-        return;
+    const int maxConnections = useSeedingLimit ? maxSeedingConnections : maxDownloadingConnections;
 
     nativeHandle().set_max_connections(max);
 }
