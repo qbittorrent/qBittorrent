@@ -207,6 +207,10 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
 
+#ifdef Q_OS_MACOS
+    m_ui->menuView->addAction(m_ui->actionMinimize);
+#endif
+
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::speedLimitModeChanged, this, &MainWindow::updateAltSpeedsBtn);
