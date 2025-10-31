@@ -43,6 +43,7 @@ namespace Http
     inline const QString METHOD_GET = u"GET"_s;
     inline const QString METHOD_POST = u"POST"_s;
 
+    inline const QString HEADER_AUTHORIZATION = u"authorization"_s;
     inline const QString HEADER_CACHE_CONTROL = u"cache-control"_s;
     inline const QString HEADER_CONNECTION = u"connection"_s;
     inline const QString HEADER_CONTENT_DISPOSITION = u"content-disposition"_s;
@@ -50,6 +51,7 @@ namespace Http
     inline const QString HEADER_CONTENT_LENGTH = u"content-length"_s;
     inline const QString HEADER_CONTENT_SECURITY_POLICY = u"content-security-policy"_s;
     inline const QString HEADER_CONTENT_TYPE = u"content-type"_s;
+    inline const QString HEADER_COOKIE = u"cookie"_s;
     inline const QString HEADER_CROSS_ORIGIN_OPENER_POLICY  = u"cross-origin-opener-policy"_s;
     inline const QString HEADER_DATE = u"date"_s;
     inline const QString HEADER_HOST = u"host"_s;
@@ -60,7 +62,7 @@ namespace Http
     inline const QString HEADER_X_CONTENT_TYPE_OPTIONS = u"x-content-type-options"_s;
     inline const QString HEADER_X_FORWARDED_FOR = u"x-forwarded-for"_s;
     inline const QString HEADER_X_FORWARDED_HOST = u"x-forwarded-host"_s;
-    inline const QString HEADER_X_FORWARDED_PROTO = u"X-forwarded-proto"_s;
+    inline const QString HEADER_X_FORWARDED_PROTO = u"x-forwarded-proto"_s;
     inline const QString HEADER_X_FRAME_OPTIONS = u"x-frame-options"_s;
     inline const QString HEADER_X_XSS_PROTECTION = u"x-xss-protection"_s;
 

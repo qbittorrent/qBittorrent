@@ -113,6 +113,10 @@ public:
     void showSpeedInTitleBar(bool show);
     bool useAlternatingRowColors() const;
     void setAlternatingRowColors(bool b);
+    bool useTorrentStatesColors() const;
+    void setUseTorrentStatesColors(bool value);
+    bool getProgressBarFollowsTextColor() const;
+    void setProgressBarFollowsTextColor(bool value);
     bool getHideZeroValues() const;
     void setHideZeroValues(bool b);
     int getHideZeroComboValues() const;
@@ -125,6 +129,8 @@ public:
     void setStatusbarExternalIPDisplayed(bool displayed);
     bool isToolbarDisplayed() const;
     void setToolbarDisplayed(bool displayed);
+    bool isTorrentContentDragEnabled() const;
+    void setTorrentContentDragEnabled(bool enabled);
     bool isSplashScreenDisabled() const;
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspendWhenDownloading() const;
@@ -205,14 +211,14 @@ public:
     void setWebUIUsername(const QString &username);
     QByteArray getWebUIPassword() const;
     void setWebUIPassword(const QByteArray &password);
+    QString getWebUIApiKey() const;
+    void setWebUIApiKey(const QString &apiKey);
     int getWebUIMaxAuthFailCount() const;
     void setWebUIMaxAuthFailCount(int count);
     std::chrono::seconds getWebUIBanDuration() const;
     void setWebUIBanDuration(std::chrono::seconds duration);
     int getWebUISessionTimeout() const;
     void setWebUISessionTimeout(int timeout);
-    QString getWebAPISessionCookieName() const;
-    void setWebAPISessionCookieName(const QString &cookieName);
 
     // WebUI security
     bool isWebUIClickjackingProtectionEnabled() const;

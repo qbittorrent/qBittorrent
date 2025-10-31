@@ -94,7 +94,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(TorrentImpl)
 
     public:
-        TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         ~TorrentImpl() override;
 
         bool isValid() const;
@@ -106,6 +106,7 @@ namespace BitTorrent
         QDateTime creationDate() const override;
         QString creator() const override;
         QString comment() const override;
+        void setComment(const QString &comment) override;
         bool isPrivate() const override;
         qlonglong totalSize() const override;
         qlonglong wantedSize() const override;
@@ -264,8 +265,18 @@ namespace BitTorrent
         // Session interface
         lt::torrent_handle nativeHandle() const;
 
-        void handleAlert(const lt::alert *a);
+        int fileIndexFromNative(lt::file_index_t nativeFileIndex) const;
+
         void handleStateUpdate(const lt::torrent_status &nativeStatus);
+        void handleFastResumeRejected();
+        void handleFileCompleted(lt::file_index_t nativeFileIndex);
+        void handleFileError(FileErrorInfo fileError);
+        void handleFileRenamed(lt::file_index_t nativeFileIndex, const Path &newActualFilePath, const Path &oldActualFilePath);
+        void handleFileRenameFailed(lt::file_index_t nativeFileIndex);
+        void handleMetadataReceived();
+        void handleSaveResumeData(lt::add_torrent_params params);
+        void handleTorrentChecked();
+        void handleTorrentFinished();
         void handleQueueingModeChanged();
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
@@ -285,23 +296,6 @@ namespace BitTorrent
         void updateProgress();
         void updateState();
 
-        void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
-        void handleFileCompletedAlert(const lt::file_completed_alert *p);
-        void handleFileErrorAlert(const lt::file_error_alert *p);
-#ifdef QBT_USES_LIBTORRENT2
-        void handleFilePrioAlert(const lt::file_prio_alert *p);
-#endif
-        void handleFileRenamedAlert(const lt::file_renamed_alert *p);
-        void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p);
-        void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
-        void handlePerformanceAlert(const lt::performance_alert *p) const;
-        void handleSaveResumeDataAlert(const lt::save_resume_data_alert *p);
-        void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p);
-        void handleTorrentCheckedAlert(const lt::torrent_checked_alert *p);
-        void handleTorrentFinishedAlert(const lt::torrent_finished_alert *p);
-        void handleTorrentPausedAlert(const lt::torrent_paused_alert *p);
-        void handleTorrentResumedAlert(const lt::torrent_resumed_alert *p);
-
         bool isMoveInProgress() const;
 
         void setAutoManaged(bool enable);
@@ -314,7 +308,7 @@ namespace BitTorrent
         void manageActualFilePaths();
         void applyFirstLastPiecePriority(bool enabled);
 
-        void prepareResumeData(const lt::add_torrent_params &params);
+        void prepareResumeData(lt::add_torrent_params resumeData);
         void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
         void reload();
 
@@ -380,7 +374,7 @@ namespace BitTorrent
 
         bool m_unchecked = false;
 
-        lt::add_torrent_params m_ltAddTorrentParams;
+        mutable lt::add_torrent_params m_ltAddTorrentParams;
 
         int m_downloadLimit = 0;
         int m_uploadLimit = 0;

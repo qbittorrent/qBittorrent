@@ -29,12 +29,17 @@
 #include "macutilities.h"
 
 #import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
+#import <UserNotifications/UserNotifications.h>
 #include <objc/message.h>
 
+#include <QCoreApplication>
 #include <QPixmap>
 #include <QSize>
 #include <QString>
 
+#include "base/logger.h"
 #include "base/path.h"
 
 QImage qt_mac_toQImage(CGImageRef image);
@@ -45,7 +50,8 @@ namespace MacUtils
     {
         @autoreleasepool
         {
-            NSImage *image = [[NSWorkspace sharedWorkspace] iconForFileType:ext.toNSString()];
+            const NSImage *image = [[NSWorkspace sharedWorkspace]
+                iconForContentType:[UTType typeWithFilenameExtension:ext.toNSString()]];
             if (image)
             {
                 NSRect rect = NSMakeRect(0, 0, size.width(), size.height());
@@ -83,16 +89,36 @@ namespace MacUtils
         }
     }
 
+    void askForNotificationPermission()
+    {
+        @autoreleasepool
+        {
+            [UNUserNotificationCenter.currentNotificationCenter requestAuthorizationWithOptions:
+                    (UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                            completionHandler:^([[maybe_unused]] BOOL granted, NSError * _Nullable error)
+                            {
+                                if (error)
+                                {
+                                    LogMsg(QCoreApplication::translate("MacUtils", "Permission for notifications not granted. Error: \"%1\"").arg
+                                                                               (QString::fromNSString(error.localizedDescription)), Log::WARNING);
+                                }
+                            }];
+        }
+    }
+
     void displayNotification(const QString &title, const QString &message)
     {
         @autoreleasepool
         {
-            NSUserNotification *notification = [[NSUserNotification alloc] init];
-            notification.title = title.toNSString();
-            notification.informativeText = message.toNSString();
-            notification.soundName = NSUserNotificationDefaultSoundName;
-
-            [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+            UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+            content.title = title.toNSString();
+            content.body = message.toNSString();
+            content.sound = [UNNotificationSound defaultSound];
+            UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:
+                                              [[NSUUID UUID] UUIDString] content:content
+                                                                                trigger:nil];
+            [UNUserNotificationCenter.currentNotificationCenter
+                addNotificationRequest:request withCompletionHandler:nil];
         }
     }
 
@@ -114,6 +140,46 @@ namespace MacUtils
             {
                 [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:pathURLs];
             });
+        }
+    }
+
+    bool isMagnetLinkAssocSet()
+    {
+        @autoreleasepool
+        {
+            const NSURL *magnetStandardURL = [[NSWorkspace sharedWorkspace] URLForApplicationToOpenURL:[NSURL URLWithString:@"magnet:"]];
+            const NSURL *qbtURL = [[NSBundle mainBundle] bundleURL];
+            return [magnetStandardURL isEqual:qbtURL];
+        }
+    }
+
+    void setMagnetLinkAssoc()
+    {
+        @autoreleasepool
+        {
+            [[NSWorkspace sharedWorkspace] setDefaultApplicationAtURL:[[NSBundle mainBundle] bundleURL]
+                toOpenURLsWithScheme:@"magnet" completionHandler:nil];
+        }
+    }
+
+    bool isTorrentFileAssocSet()
+    {
+        @autoreleasepool
+        {
+            const NSURL *torrentStandardURL = [[NSWorkspace sharedWorkspace]
+                URLForApplicationToOpenContentType:[UTType typeWithFilenameExtension:@"torrent"]];
+            const NSURL *qbtURL = [[NSBundle mainBundle] bundleURL];
+            return [torrentStandardURL isEqual:qbtURL];
+        }
+    }
+
+    void setTorrentFileAssoc()
+    {
+        @autoreleasepool
+        {
+            [[NSWorkspace sharedWorkspace] setDefaultApplicationAtURL:[[NSBundle mainBundle] bundleURL]
+                toOpenContentType:[UTType typeWithFilenameExtension:@"torrent"]
+                completionHandler:nil];
         }
     }
 

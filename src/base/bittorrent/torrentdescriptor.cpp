@@ -57,9 +57,10 @@ namespace
         //      == 20 (SHA-1 length in bytes) * 1.6 (the efficiency of Base32 encoding)
         const int V1_HEX_SIZE = SHA1Hash::length() * 2;
         const int V1_BASE32_SIZE = SHA1Hash::length() * 1.6;
+        const qsizetype strSize = string.size();
 
-        return ((((string.size() == V1_HEX_SIZE)) && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_s)))
-                || ((string.size() == V1_BASE32_SIZE) && !string.contains(QRegularExpression(u"[^2-7A-Za-z]"_s))));
+        return (((strSize == V1_HEX_SIZE) && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_s)))
+                || ((strSize == V1_BASE32_SIZE) && !string.contains(QRegularExpression(u"[^2-7A-Za-z]"_s))));
     }
 
     bool isV2Hash(const QString &string)
@@ -132,9 +133,25 @@ try
     const lt::entry torrentEntry = lt::write_torrent_file(m_ltAddTorrentParams);
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, torrentEntry);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     return {};
+}
+catch (const lt::system_error &err)
+{
+    return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+}
+
+nonstd::expected<QByteArray, QString> BitTorrent::TorrentDescriptor::saveToBuffer() const
+try
+{
+    const lt::entry torrentEntry = lt::write_torrent_file(m_ltAddTorrentParams);
+    // usually torrent size should be smaller than 1 MB,
+    // however there are >100 MB v2/hybrid torrent files out in the wild
+    QByteArray buffer;
+    buffer.reserve(1024 * 1024);
+    lt::bencode(std::back_inserter(buffer), torrentEntry);
+    return buffer;
 }
 catch (const lt::system_error &err)
 {

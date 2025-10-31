@@ -52,7 +52,7 @@ public:
 
 private slots:
     void loginAction();
-    void logoutAction() const;
+    void logoutAction();
 
 private:
     bool isBanned() const;

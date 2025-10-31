@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2016  Eugene Shalygin
  * Copyright (C) 2006  Christophe Dumez
  *
@@ -42,6 +42,7 @@
 #include "base/indexrange.h"
 #include "base/path.h"
 #include "base/utils/misc.h"
+#include "gui/uithememanager.h"
 
 namespace
 {
@@ -216,17 +217,20 @@ void PiecesBar::redraw()
 
 QColor PiecesBar::backgroundColor() const
 {
-    return palette().color(QPalette::Active, QPalette::Base);
+    const QColor color = UIThemeManager::instance()->getColor(u"PiecesBar.MissingPiece"_s);
+    return color.isValid() ? color : palette().color(QPalette::Active, QPalette::Base);
 }
 
 QColor PiecesBar::borderColor() const
 {
-    return palette().color(QPalette::Active, QPalette::Dark);
+    const QColor color = UIThemeManager::instance()->getColor(u"PiecesBar.Border"_s);
+    return color.isValid() ? color : palette().color(QPalette::Active, QPalette::Dark);
 }
 
 QColor PiecesBar::pieceColor() const
 {
-    return palette().color(QPalette::Active, QPalette::Highlight);
+    const QColor color = UIThemeManager::instance()->getColor(u"PiecesBar.Piece"_s);
+    return color.isValid() ? color : palette().color(QPalette::Active, QPalette::Highlight);
 }
 
 QColor PiecesBar::highlightedPieceColor() const

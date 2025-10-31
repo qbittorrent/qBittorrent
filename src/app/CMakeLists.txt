@@ -82,10 +82,24 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set_source_files_properties(
         "${qBittorrent_SOURCE_DIR}/dist/mac/qt.conf"
         "${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentDocument.icns"
+		"${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentIncompleteData.icns"
         "${qBittorrent_SOURCE_DIR}/dist/mac/qbittorrent_mac.icns"
             PROPERTIES
                 MACOSX_PACKAGE_LOCATION Resources
     )
+    # Generate lproj folders for the translations
+    foreach(TS_FILE IN LISTS QBT_TS_FILES)
+        string(FIND "${TS_FILE}" "_" POS)
+        math(EXPR START "${POS} + 1")
+        string(SUBSTRING "${TS_FILE}" ${START} -1 LPROJ_FOLDER)
+        string(REPLACE ".ts" ".lproj" LPROJ_FOLDER "${LPROJ_FOLDER}")
+        # @ is not valid as a language code for a lproj folder on MacOS
+        string(REPLACE "@" "-" LPROJ_FOLDER "${LPROJ_FOLDER}")
+        add_custom_command(TARGET qbt_app POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E make_directory
+            "$<TARGET_FILE_DIR:qbt_app>/../Resources/${LPROJ_FOLDER}"
+        )
+    endforeach()
     # provide variables for substitution in dist/mac/Info.plist
     get_target_property(EXECUTABLE_NAME qbt_app OUTPUT_NAME)
     # This variable name should be changed once qmake is no longer used. Refer to the discussion in PR #14813
@@ -99,6 +113,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${QT_TRANSLATIONS}
         ${qBittorrent_SOURCE_DIR}/dist/mac/qt.conf
         ${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentDocument.icns
+		${qBittorrent_SOURCE_DIR}/dist/mac/qBitTorrentIncompleteData.icns
         ${qBittorrent_SOURCE_DIR}/dist/mac/qbittorrent_mac.icns
     )
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")

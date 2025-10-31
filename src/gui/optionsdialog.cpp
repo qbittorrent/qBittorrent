@@ -36,6 +36,7 @@
 #include <limits>
 
 #include <QApplication>
+#include <QClipboard>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QDialogButtonBox>
@@ -62,6 +63,7 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/utils/apikey.h"
 #include "base/utils/compare.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
@@ -88,9 +90,9 @@
 #include "base/net/dnsupdater.h"
 #endif
 
-#if defined Q_OS_MACOS || defined Q_OS_WIN
-#include "base/utils/os.h"
-#endif // defined Q_OS_MACOS || defined Q_OS_WIN
+#ifdef Q_OS_MACOS
+#include "macutilities.h"
+#endif
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
 
@@ -131,6 +133,15 @@ namespace
     bool isValidWebUIPassword(const QString &password)
     {
         return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
+    }
+
+    QString maskAPIKey(const QString &key)
+    {
+        Q_ASSERT(Utils::APIKey::isValid(key));
+        if (!Utils::APIKey::isValid(key)) [[unlikely]]
+            return {};
+
+        return key.first(4) + QString((key.length() - 10), QChar(u'•')) + key.last(6);
     }
 
     // Shortcuts for frequently used signals that have more than one overload. They would require
@@ -261,6 +272,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
+    m_ui->checkUseTorrentStatesColors->setChecked(pref->useTorrentStatesColors());
+    m_ui->checkProgressBarFollowsTextColor->setChecked(pref->getProgressBarFollowsTextColor());
+    m_ui->checkProgressBarFollowsTextColor->setEnabled(m_ui->checkUseTorrentStatesColors->isChecked());
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
@@ -286,6 +300,8 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
 
     m_ui->checkBoxHideZeroStatusFilters->setChecked(pref->getHideZeroStatusFilters());
+
+    m_ui->checkTorrentContentDrag->setChecked(pref->isTorrentContentDragEnabled());
 
 #ifndef Q_OS_WIN
     m_ui->checkStartup->setVisible(false);
@@ -326,9 +342,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
-    m_ui->checkAssociateTorrents->setChecked(Utils::OS::isTorrentFileAssocSet());
+    m_ui->checkAssociateTorrents->setChecked(MacUtils::isTorrentFileAssocSet());
     m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
-    m_ui->checkAssociateMagnetLinks->setChecked(Utils::OS::isMagnetLinkAssocSet());
+    m_ui->checkAssociateMagnetLinks->setChecked(MacUtils::isMagnetLinkAssocSet());
     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 
@@ -389,12 +405,17 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkUseTorrentStatesColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkUseTorrentStatesColors, &QAbstractButton::toggled, m_ui->checkProgressBarFollowsTextColor, &QWidget::setEnabled);
+    connect(m_ui->checkProgressBarFollowsTextColor, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, m_ui->comboHideZero, &QWidget::setEnabled);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboHideZero, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentDlOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxHideZeroStatusFilters, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+
+    connect(m_ui->checkTorrentContentDrag, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
 #ifdef Q_OS_WIN
     connect(m_ui->checkStartup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -483,6 +504,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
+    pref->setUseTorrentStatesColors(m_ui->checkUseTorrentStatesColors->isChecked());
+    pref->setProgressBarFollowsTextColor(m_ui->checkProgressBarFollowsTextColor->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 
@@ -490,6 +513,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
 
     pref->setHideZeroStatusFilters(m_ui->checkBoxHideZeroStatusFilters->isChecked());
+
+    pref->setTorrentContentDragEnabled(m_ui->checkTorrentContentDrag->isChecked());
 
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
@@ -509,14 +534,14 @@ void OptionsDialog::saveBehaviorTabOptions() const
 #ifdef Q_OS_MACOS
     if (m_ui->checkAssociateTorrents->isChecked())
     {
-        Utils::OS::setTorrentFileAssoc();
-        m_ui->checkAssociateTorrents->setChecked(Utils::OS::isTorrentFileAssocSet());
+        MacUtils::setTorrentFileAssoc();
+        m_ui->checkAssociateTorrents->setChecked(MacUtils::isTorrentFileAssocSet());
         m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     }
     if (m_ui->checkAssociateMagnetLinks->isChecked())
     {
-        Utils::OS::setMagnetLinkAssoc();
-        m_ui->checkAssociateMagnetLinks->setChecked(Utils::OS::isMagnetLinkAssocSet());
+        MacUtils::setMagnetLinkAssoc();
+        m_ui->checkAssociateMagnetLinks->setChecked(MacUtils::isMagnetLinkAssocSet());
         m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
     }
 #endif
@@ -663,7 +688,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 #else
     m_ui->autoRunConsole->hide();
 #endif
-    const auto autoRunStr = u"%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n    %12\n    %13\n%14"_s
+    const auto autoRunStr = u"%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n    %12\n    %13\n    %14\n%15"_s
         .arg(tr("Supported parameters (case sensitive):")
             , tr("%N: Torrent name")
             , tr("%L: Category")
@@ -1328,6 +1353,14 @@ void OptionsDialog::loadWebUITabOptions()
     webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath());
     webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath());
     m_ui->textWebUIUsername->setText(pref->getWebUIUsername());
+
+    // API Key
+    if (const QString apiKey = pref->getWebUIApiKey(); Utils::APIKey::isValid(apiKey))
+        m_currentAPIKey = apiKey;
+    else
+        m_currentAPIKey.clear();
+    setupWebUIAPIKey();
+
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUILocalAuthEnabled());
     m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUIAuthSubnetWhitelistEnabled());
     m_ui->IPSubnetWhitelistButton->setEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
@@ -1368,6 +1401,9 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->btnWebUIAPIKeyCopy, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyCopyClicked);
+    connect(m_ui->btnWebUIAPIKeyRotate, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyRotateClicked);
+    connect(m_ui->btnWebUIAPIKeyDelete, &QPushButton::clicked, this, &ThisType::onBtnWebUIAPIKeyDeleteClicked);
 
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassAuthSubnetWhitelist, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1442,6 +1478,73 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setDynDomainName(m_ui->domainNameTxt->text());
     pref->setDynDNSUsername(m_ui->DNSUsernameTxt->text());
     pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
+}
+
+void OptionsDialog::onBtnWebUIAPIKeyCopyClicked()
+{
+    if (!m_currentAPIKey.isEmpty())
+        QApplication::clipboard()->setText(m_currentAPIKey);
+}
+
+void OptionsDialog::onBtnWebUIAPIKeyRotateClicked()
+{
+    const QString title = m_currentAPIKey.isEmpty()
+        ? tr("Generate API key")
+        : tr("Rotate API key");
+    const QString message = m_currentAPIKey.isEmpty()
+        ? tr("Generate an API key? This key can be used to interact with qBittorrent's API.")
+        : tr("Rotate this API key? The current key will immediately stop working and a new key will be generated.");
+
+    const QMessageBox::StandardButton button = QMessageBox::question(
+        this, title, message, (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
+
+    if (button == QMessageBox::Yes)
+    {
+        m_currentAPIKey = Utils::APIKey::generate();
+        setupWebUIAPIKey();
+
+        auto *preferences = Preferences::instance();
+        preferences->setWebUIApiKey(m_currentAPIKey);
+        preferences->apply();
+    }
+}
+
+void OptionsDialog::onBtnWebUIAPIKeyDeleteClicked()
+{
+    const QString title = tr("Delete API key");
+    const QString message = tr("Delete this API key? The current key will immediately stop working.");
+    const QMessageBox::StandardButton button = QMessageBox::question(
+        this, title, message, (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
+
+    if (button == QMessageBox::Yes)
+    {
+        m_currentAPIKey.clear();
+        setupWebUIAPIKey();
+
+        auto *preferences = Preferences::instance();
+        preferences->setWebUIApiKey(m_currentAPIKey);
+        preferences->apply();
+    }
+}
+
+void OptionsDialog::setupWebUIAPIKey()
+{
+    if (Utils::APIKey::isValid(m_currentAPIKey))
+    {
+        m_ui->textWebUIAPIKey->setText(maskAPIKey(m_currentAPIKey));
+        m_ui->textWebUIAPIKey->setEnabled(true);
+        m_ui->btnWebUIAPIKeyCopy->setEnabled(true);
+        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Rotate API key"));
+        m_ui->btnWebUIAPIKeyDelete->setEnabled(true);
+    }
+    else
+    {
+        m_ui->textWebUIAPIKey->clear();
+        m_ui->textWebUIAPIKey->setEnabled(false);
+        m_ui->btnWebUIAPIKeyCopy->setEnabled(false);
+        m_ui->btnWebUIAPIKeyRotate->setToolTip(tr("Generate API key"));
+        m_ui->btnWebUIAPIKeyDelete->setEnabled(false);
+    }
 }
 #endif // DISABLE_WEBUI
 
@@ -1748,7 +1851,7 @@ void OptionsDialog::initializeStyleCombo()
     m_ui->comboStyle->insertSeparator(1);
 
     QStringList styleNames = QStyleFactory::keys();
-    std::sort(styleNames.begin(), styleNames.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(styleNames, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     for (const QString &styleName : asConst(styleNames))
         m_ui->comboStyle->addItem(styleName, styleName);
 
@@ -1760,9 +1863,9 @@ void OptionsDialog::initializeStyleCombo()
     m_ui->labelStyle->hide();
     m_ui->comboStyle->hide();
     m_ui->labelStyleHint->hide();
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyle);
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboStyle);
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelStyleHint);
+    m_ui->layoutStyle->removeWidget(m_ui->labelStyle);
+    m_ui->layoutStyle->removeWidget(m_ui->comboStyle);
+    m_ui->layoutStyle->removeWidget(m_ui->labelStyleHint);
 #endif
 }
 
@@ -1776,9 +1879,9 @@ void OptionsDialog::initializeColorSchemeOptions()
 #else
     m_ui->labelColorScheme->hide();
     m_ui->comboColorScheme->hide();
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->labelColorScheme);
-    m_ui->UISettingsBoxLayout->removeWidget(m_ui->comboColorScheme);
-    m_ui->UISettingsBoxLayout->removeItem(m_ui->spacerColorScheme);
+    m_ui->layoutStyle->removeWidget(m_ui->labelColorScheme);
+    m_ui->layoutStyle->removeWidget(m_ui->comboColorScheme);
+    m_ui->layoutStyle->removeItem(m_ui->spacerColorScheme);
 #endif
 }
 
@@ -1860,7 +1963,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
     if (index < 0)
     {
         //Attempt to find a language match without a country
-        const int pos = name.indexOf(u'_');
+        const qsizetype pos = name.indexOf(u'_');
         if (pos > -1)
         {
             const QString lang = name.first(pos);

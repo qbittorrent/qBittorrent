@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -28,18 +29,26 @@
 
 #pragma once
 
+#include <QColor>
+#include <QObject>
 #include <QProgressBar>
 
 class QStyleOptionViewItem;
 
-class ProgressBarPainter
+class ProgressBarPainter : public QObject
 {
-public:
-    ProgressBarPainter();
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(ProgressBarPainter)
 
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress) const;
+public:
+    explicit ProgressBarPainter(QObject *parent = nullptr);
+
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, int progress, const QColor &color = {}) const;
 
 private:
+    void applyUITheme();
+
+    QColor m_chunkColor;
     // for painting progressbar with stylesheet option, a dummy progress bar is required
     QProgressBar m_dummyProgressBar;
 };

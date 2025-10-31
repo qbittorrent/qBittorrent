@@ -27,6 +27,7 @@
  */
 
 import { expect, test } from "vitest";
+
 import "../../private/scripts/misc.js";
 
 test("Test toFixedPointString()", () => {
@@ -68,11 +69,11 @@ test("Test toFixedPointString()", () => {
     expect(toFixedPointString(-35.855, 3)).toBe("-35.855");
     expect(toFixedPointString(-35.855, 4)).toBe("-35.8550");
 
-    expect(toFixedPointString(100.00, 0)).toBe("100");
-    expect(toFixedPointString(100.00, 1)).toBe("100.0");
-    expect(toFixedPointString(100.00, 2)).toBe("100.00");
+    expect(toFixedPointString(100, 0)).toBe("100");
+    expect(toFixedPointString(100, 1)).toBe("100.0");
+    expect(toFixedPointString(100, 2)).toBe("100.00");
 
-    expect(toFixedPointString(-100.00, 0)).toBe("-100");
-    expect(toFixedPointString(-100.00, 1)).toBe("-100.0");
-    expect(toFixedPointString(-100.00, 2)).toBe("-100.00");
+    expect(toFixedPointString(-100, 0)).toBe("-100");
+    expect(toFixedPointString(-100, 1)).toBe("-100.0");
+    expect(toFixedPointString(-100, 2)).toBe("-100.00");
 });

@@ -3,8 +3,8 @@
         text-align: center;
     }
 
-    #createTorrentForm input[type="text"],
-    #createTorrentForm textarea,
+    #createTorrentForm table input[type="text"],
+    #createTorrentForm table textarea,
     #createTorrentForm table {
         width: 100%;
     }
@@ -127,6 +127,8 @@
             };
         };
 
+        const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
         const formatUrls = (urls) => {
             return urls.split("\n").map(encodeURIComponent).join("|");
         };
@@ -207,11 +209,11 @@
                 comments: document.getElementById("comments").value,
                 source: document.getElementById("source").value,
             };
-            LocalPreferences.set("torrent_creator", JSON.stringify(preference));
+            localPreferences.set("torrent_creator", JSON.stringify(preference));
         };
 
         const loadPreference = () => {
-            const preference = JSON.parse(LocalPreferences.get("torrent_creator") ?? "{}");
+            const preference = JSON.parse(localPreferences.get("torrent_creator") ?? "{}");
             document.getElementById("sourcePath").value = preference.sourcePath ?? "";
             document.getElementById("torrentFormat").value = preference.torrentFormat ?? "hybrid";
             document.getElementById("pieceSize").value = preference.pieceSize ?? 0;

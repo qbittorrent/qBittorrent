@@ -160,6 +160,8 @@
    <addaction name="actionDecreaseQueuePos"/>
    <addaction name="actionBottomQueuePos"/>
    <addaction name="separator"/>
+   <addaction name="actionCreateTorrent"/>
+   <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock"/>
   </widget>

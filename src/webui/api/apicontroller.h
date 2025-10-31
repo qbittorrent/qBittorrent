@@ -34,6 +34,7 @@
 #include <QVariant>
 
 #include "base/applicationcomponent.h"
+#include "apistatus.h"
 
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
@@ -43,6 +44,7 @@ struct APIResult
     QVariant data;
     QString mimeType;
     QString filename;
+    APIStatus status = APIStatus::Ok;
 
     void clear();
 };
@@ -66,6 +68,8 @@ protected:
     void setResult(const QJsonArray &result);
     void setResult(const QJsonObject &result);
     void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
+
+    void setStatus(APIStatus status);
 
 private:
     StringMap m_params;

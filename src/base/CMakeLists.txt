@@ -103,6 +103,7 @@ add_library(qbt_base STATIC
     torrentfilter.h
     types.h
     unicodestrings.h
+    utils/apikey.h
     utils/bytearray.h
     utils/compare.h
     utils/datetime.h
@@ -200,6 +201,7 @@ add_library(qbt_base STATIC
     torrentfileguard.cpp
     torrentfileswatcher.cpp
     torrentfilter.cpp
+    utils/apikey.cpp
     utils/bytearray.cpp
     utils/compare.cpp
     utils/datetime.cpp

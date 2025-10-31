@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -38,17 +39,22 @@
 #endif
 
 #include "base/global.h"
+#include "gui/uithememanager.h"
 
-ProgressBarPainter::ProgressBarPainter()
+ProgressBarPainter::ProgressBarPainter(QObject *parent)
+    : QObject(parent)
 {
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    auto *fusionStyle = new QProxyStyle {u"fusion"_s};
+    auto *fusionStyle = new QProxyStyle(u"fusion"_s);
     fusionStyle->setParent(&m_dummyProgressBar);
     m_dummyProgressBar.setStyle(fusionStyle);
 #endif
+
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &ProgressBarPainter::applyUITheme);
 }
 
-void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress) const
+void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &option, const QString &text, const int progress, const QColor &color) const
 {
     QStyleOptionProgressBar styleOption;
     styleOption.initFrom(&m_dummyProgressBar);
@@ -59,16 +65,30 @@ void ProgressBarPainter::paint(QPainter *painter, const QStyleOptionViewItem &op
     styleOption.text = text;
     styleOption.textVisible = true;
     // QStyleOption fields
-    styleOption.rect = option.rect;
+    styleOption.rect = option.rect.adjusted(0, 1, 0, -1);
     // Qt 6 requires QStyle::State_Horizontal to be set for correctly drawing horizontal progress bar
     styleOption.state = option.state | QStyle::State_Horizontal;
 
     const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
     styleOption.palette.setCurrentColorGroup(isEnabled ? QPalette::Active : QPalette::Disabled);
 
+    if (color.isValid())
+    {
+        styleOption.palette.setColor(QPalette::Highlight, color);
+    }
+    else if (m_chunkColor.isValid())
+    {
+        styleOption.palette.setColor(QPalette::Highlight, m_chunkColor);
+    }
+
     painter->save();
     const QStyle *style = m_dummyProgressBar.style();
     style->drawPrimitive(QStyle::PE_PanelItemViewItem, &option, painter, option.widget);
     style->drawControl(QStyle::CE_ProgressBar, &styleOption, painter, &m_dummyProgressBar);
     painter->restore();
+}
+
+void ProgressBarPainter::applyUITheme()
+{
+    m_chunkColor = UIThemeManager::instance()->getColor(u"ProgressBar"_s);
 }

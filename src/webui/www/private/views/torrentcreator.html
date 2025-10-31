@@ -91,7 +91,7 @@
                         if (!confirm("QBT_TR(Are you sure you want to delete selected tasks?)QBT_TR[CONTEXT=TorrentCreator]"))
                             return;
 
-                        selectedTasks.forEach(task => {
+                        for (const task of selectedTasks) {
                             fetch("api/v2/torrentcreator/deleteTask", {
                                 method: "POST",
                                 body: new URLSearchParams({
@@ -100,7 +100,7 @@
                             }).then((response) => {
                                 load();
                             });
-                        });
+                        }
                     },
                     exportTorrent: exportTorrents,
                 },
@@ -165,7 +165,7 @@
                 icon: "images/list-add.svg",
                 title: "QBT_TR(Create New Torrent)QBT_TR[CONTEXT=TorrentCreator]",
                 loadMethod: "xhr",
-                contentURL: "views/createtorrent.html",
+                contentURL: "views/createtorrent.html?v=${CACHEID}",
                 scrollbars: true,
                 maximizable: false,
                 closable: true,
@@ -242,23 +242,23 @@
                 table.clear();
 
                 if (responseJSON.length > 0) {
-                    for (let i = 0; i < responseJSON.length; ++i) {
-                        const status = responseJSON[i].status;
+                    for (const entry of responseJSON) {
+                        const status = entry.status;
                         const row = {
-                            rowId: responseJSON[i].taskID,
-                            source_path: responseJSON[i].sourcePath,
-                            progress: status === "Finished" ? 100 : responseJSON[i].progress,
+                            rowId: entry.taskID,
+                            source_path: entry.sourcePath,
+                            progress: status === "Finished" ? 100 : entry.progress,
                             status: status,
-                            torrent_format: responseJSON[i].format,
-                            piece_size: responseJSON[i].pieceSize,
-                            private: responseJSON[i].private,
-                            added_on: responseJSON[i].timeAdded,
-                            start_on: responseJSON[i].timeStarted,
-                            completion_on: responseJSON[i].timeFinished,
-                            trackers: responseJSON[i].trackers,
-                            comment: responseJSON[i].comment,
-                            source: responseJSON[i].source,
-                            error_message: responseJSON[i].errorMessage,
+                            torrent_format: entry.format,
+                            piece_size: entry.pieceSize,
+                            private: entry.private,
+                            added_on: entry.timeAdded,
+                            start_on: entry.timeStarted,
+                            completion_on: entry.timeFinished,
+                            trackers: entry.trackers,
+                            comment: entry.comment,
+                            source: entry.source,
+                            error_message: entry.errorMessage,
                         };
 
                         table.updateRowData(row);

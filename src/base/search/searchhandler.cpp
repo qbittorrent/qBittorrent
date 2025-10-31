@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -31,13 +31,16 @@
 
 #include <chrono>
 
+#include <QtLogging>
 #include <QList>
 #include <QMetaObject>
 #include <QProcess>
 #include <QTimer>
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/path.h"
+#include "base/utils/bytearray.h"
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "searchpluginmanager.h"
@@ -57,6 +60,26 @@ namespace
         PL_DESC_LINK,
         PL_PUB_DATE,
         NB_PLUGIN_COLUMNS
+    };
+
+    QString toString(const QProcess::ProcessError error)
+    {
+        switch (error)
+        {
+        case QProcess::FailedToStart:
+            return SearchHandler::tr("Process failed to start");
+        case QProcess::Crashed:
+            return SearchHandler::tr("Process crashed");
+        case QProcess::Timedout:
+            return SearchHandler::tr("Process timed out");
+        case QProcess::WriteError:
+            return SearchHandler::tr("Process write error");
+        case QProcess::ReadError:
+            return SearchHandler::tr("Process read error");
+        case QProcess::UnknownError:
+            return SearchHandler::tr("Process unknown error");
+        }
+        return {};
     };
 }
 
@@ -85,7 +108,16 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     };
     m_searchProcess->setArguments(params + m_pattern.split(u' '));
 
-    connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
+    connect(m_searchProcess, &QProcess::errorOccurred, this, [this](const QProcess::ProcessError error)
+    {
+        if (!m_searchCancelled)
+        {
+            const auto errMsg = toString(error);
+            LogMsg(tr("Search process failed. Search query: \"%1\". Category: \"%2\". Engines: \"%3\". Error: \"%4\".")
+                .arg(m_pattern, m_category, m_usedPlugins.join(u", "), errMsg), Log::WARNING);
+            emit searchFailed(errMsg);
+        }
+    });
     connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchHandler::readSearchOutput);
     connect(m_searchProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
             , this, &SearchHandler::processFinished);
@@ -126,12 +158,20 @@ void SearchHandler::processFinished(const int exitcode)
 {
     m_searchTimeout->stop();
 
+    const auto errMsg = QString::fromUtf8(m_searchProcess->readAllStandardError()).trimmed();
+    if (!errMsg.isEmpty())
+    {
+        qWarning("%s", qUtf8Printable(errMsg));
+        LogMsg(tr("Error occurred in search engine. Search query: \"%1\". Category: \"%2\". Engines: \"%3\". Error: \"%4\".")
+            .arg(m_pattern, m_category, m_usedPlugins.join(u", "), errMsg), Log::WARNING);
+    }
+
     if (m_searchCancelled)
         emit searchFinished(true);
     else if ((m_searchProcess->exitStatus() == QProcess::NormalExit) && (exitcode == 0))
         emit searchFinished(false);
     else
-        emit searchFailed();
+        emit searchFailed(errMsg);
 }
 
 // search QProcess return output as soon as it gets new
@@ -139,52 +179,41 @@ void SearchHandler::processFinished(const int exitcode)
 // line to SearchResult calling parseSearchResult().
 void SearchHandler::readSearchOutput()
 {
-    QByteArray output = m_searchProcess->readAllStandardOutput();
-    output.replace('\r', "");
+    const QByteArray output = m_searchResultLineTruncated + m_searchProcess->readAllStandardOutput();
+    QList<QByteArrayView> lines = Utils::ByteArray::splitToViews(output, "\n", Qt::KeepEmptyParts);
 
-    QList<QByteArray> lines = output.split('\n');
-    if (!m_searchResultLineTruncated.isEmpty())
-        lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
-    m_searchResultLineTruncated = lines.takeLast().trimmed();
+    m_searchResultLineTruncated = lines.takeLast().trimmed().toByteArray();
 
     QList<SearchResult> searchResultList;
     searchResultList.reserve(lines.size());
 
-    for (const QByteArray &line : asConst(lines))
+    for (const QByteArrayView &line : asConst(lines))
     {
-        SearchResult searchResult;
-        if (parseSearchResult(QString::fromUtf8(line), searchResult))
-            searchResultList << searchResult;
+        if (SearchResult searchResult; parseSearchResult(line, searchResult))
+            searchResultList.append(std::move(searchResult));
     }
 
     if (!searchResultList.isEmpty())
     {
-        for (const SearchResult &result : searchResultList)
-            m_results.append(result);
+        m_results.append(searchResultList);
         emit newSearchResults(searchResultList);
     }
-}
-
-void SearchHandler::processFailed()
-{
-    if (!m_searchCancelled)
-        emit searchFailed();
 }
 
 // Parse one line of search results list
 // Line is in the following form:
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &searchResult)
+bool SearchHandler::parseSearchResult(const QByteArrayView line, SearchResult &searchResult)
 {
-    const QList<QStringView> parts = line.split(u'|');
-    const int nbFields = parts.size();
+    const QList<QByteArrayView> parts = Utils::ByteArray::splitToViews(line, "|");
+    const qsizetype nbFields = parts.size();
 
     if (nbFields <= PL_ENGINE_URL)
         return false; // Anything after ENGINE_URL is optional
 
     searchResult = SearchResult();
-    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed().toString(); // download URL
-    searchResult.fileName = parts.at(PL_NAME).trimmed().toString(); // Name
+    searchResult.fileUrl = QString::fromUtf8(parts.at(PL_DL_LINK).trimmed()); // download URL
+    searchResult.fileName = QString::fromUtf8(parts.at(PL_NAME).trimmed()); // Name
     searchResult.fileSize = parts.at(PL_SIZE).trimmed().toLongLong(); // Size
 
     bool ok = false;
@@ -197,11 +226,11 @@ bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &sear
     if (!ok || (searchResult.nbLeechers < 0))
         searchResult.nbLeechers = -1;
 
-    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed().toString(); // Search engine site URL
+    searchResult.siteUrl = QString::fromUtf8(parts.at(PL_ENGINE_URL).trimmed()); // Search engine site URL
     searchResult.engineName = m_manager->pluginNameBySiteURL(searchResult.siteUrl); // Search engine name
 
     if (nbFields > PL_DESC_LINK)
-        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed().toString(); // Description Link
+        searchResult.descrLink = QString::fromUtf8(parts.at(PL_DESC_LINK).trimmed()); // Description Link
 
     if (nbFields > PL_PUB_DATE)
     {

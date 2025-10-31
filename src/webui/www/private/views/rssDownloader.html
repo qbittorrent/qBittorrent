@@ -494,12 +494,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     const responseJSON = await response.json();
 
                     rssDownloaderRulesTable.clear();
-                    let rowCount = 0;
+                    let rowID = -1;
                     for (const rule in responseJSON) {
                         if (!Object.hasOwn(responseJSON, rule))
                             continue;
                         rssDownloaderRulesTable.updateRowData({
-                            rowId: rowCount++,
+                            rowId: ++rowID,
                             checked: responseJSON[rule].enabled,
                             name: rule
                         });
@@ -532,11 +532,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
-                contentURL: "newrule.html",
+                contentURL: "newrule.html?v=${CACHEID}",
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 100
             });
         };
@@ -547,11 +547,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
-                contentURL: `rename_rule.html?rule=${encodeURIComponent(rule)}`,
+                contentURL: `rename_rule.html?v=${CACHEID}&rule=${encodeURIComponent(rule)}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 100
             });
         };
@@ -570,11 +570,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
-                contentURL: `confirmruledeletion.html?rules=${encodeURIComponent(encodedRules.join("|"))}`,
+                contentURL: `confirmruledeletion.html?v=${CACHEID}&rules=${encodeURIComponent(encodedRules.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 360,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(360),
                 height: 90
             });
         };
@@ -586,11 +586,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]",
                 loadMethod: "iframe",
-                contentURL: `confirmruleclear.html?rules=${encodeURIComponent(encodedRules.join("|"))}`,
+                contentURL: `confirmruleclear.html?v=${CACHEID}&rules=${encodeURIComponent(encodedRules.join("|"))}`,
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
-                width: 350,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 85
             });
         };
@@ -677,18 +677,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     const responseJSON = await response.json();
 
                     rssDownloaderArticlesTable.clear();
-                    let rowCount = 0;
+                    let rowID = -1;
                     for (const feed in responseJSON) {
                         if (!Object.hasOwn(responseJSON, feed))
                             continue;
                         rssDownloaderArticlesTable.updateRowData({
-                            rowId: rowCount++,
+                            rowId: ++rowID,
                             name: feed,
                             isFeed: true
                         });
                         responseJSON[feed].each((article) => {
                             rssDownloaderArticlesTable.updateRowData({
-                                rowId: rowCount++,
+                                rowId: ++rowID,
                                 name: article,
                                 isFeed: false
                             });
@@ -767,7 +767,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
                 // calculate days since last match
                 if (rulesList[ruleName].lastMatch !== "") {
-                    const timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
+                    const timeDiffInMs = Date.now() - new Date(rulesList[ruleName].lastMatch).getTime();
                     const daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
                     document.getElementById("lastMatchText").textContent = " QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]".replace("%1", daysAgo);
                 }
@@ -788,15 +788,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 setElementTitles();
 
                 rssDownloaderFeedSelectionTable.clear();
-                let rowCount = 0;
-                feedList.forEach((feed) => {
+                let rowID = -1;
+                for (const feed of feedList) {
                     rssDownloaderFeedSelectionTable.updateRowData({
-                        rowId: rowCount++,
+                        rowId: ++rowID,
                         checked: rulesList[ruleName].affectedFeeds.contains(feed.url),
                         name: feed.name,
                         url: feed.url
                     });
-                });
+                }
                 rssDownloaderFeedSelectionTable.updateTable(false);
                 updateMatchingArticles(ruleName);
             }

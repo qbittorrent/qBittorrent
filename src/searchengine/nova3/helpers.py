@@ -1,4 +1,4 @@
-# VERSION: 1.54
+# VERSION: 1.55
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -40,7 +40,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections.abc import Mapping
-from typing import Any, Optional
+from typing import Any, Optional, cast
 
 import socks
 
@@ -61,7 +61,7 @@ def _getBrowserUserAgent() -> str:
     return f"Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:{nowVersion}.0) Gecko/20100101 Firefox/{nowVersion}.0"
 
 
-_headers: dict[str, Any] = {'User-Agent': _getBrowserUserAgent()}
+_headers: dict[str, str] = {'User-Agent': _getBrowserUserAgent()}
 _original_socket = socket.socket
 
 
@@ -73,10 +73,10 @@ def enable_socks_proxy(enable: bool) -> None:
             resolveHostname = (parts.scheme == "socks4a") or (parts.scheme == "socks5h")
             if (parts.scheme == "socks4") or (parts.scheme == "socks4a"):
                 socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS4, parts.hostname, parts.port, resolveHostname)
-                socket.socket = socks.socksocket  # type: ignore[misc]
+                socket.socket = cast(type[socket.socket], socks.socksocket)  # type: ignore[misc]
             elif (parts.scheme == "socks5") or (parts.scheme == "socks5h"):
                 socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, resolveHostname, parts.username, parts.password)
-                socket.socket = socks.socksocket  # type: ignore[misc]
+                socket.socket = cast(type[socket.socket], socks.socksocket)  # type: ignore[misc]
         else:
             # the following code provide backward compatibility for older qbt versions
             # TODO: scheduled be removed with qbt >= 5.3
@@ -85,7 +85,7 @@ def enable_socks_proxy(enable: bool) -> None:
                 legacySocksURL = f"socks5h://{legacySocksURL.strip()}"
                 parts = urllib.parse.urlsplit(legacySocksURL)
                 socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, True, parts.username, parts.password)
-                socket.socket = socks.socksocket  # type: ignore[misc]
+                socket.socket = cast(type[socket.socket], socks.socksocket)  # type: ignore[misc]
     else:
         socket.socket = _original_socket  # type: ignore[misc]
 
@@ -94,7 +94,7 @@ def enable_socks_proxy(enable: bool) -> None:
 htmlentitydecode = html.unescape
 
 
-def retrieve_url(url: str, custom_headers: Mapping[str, Any] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None, unescape_html_entities: bool = True) -> str:
+def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None, unescape_html_entities: bool = True) -> str:
     """ Return the content of the url page as a string """
 
     request = urllib.request.Request(url, request_data, {**_headers, **custom_headers})

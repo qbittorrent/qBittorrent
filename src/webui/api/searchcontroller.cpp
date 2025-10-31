@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
+ * Copyright (C) 2018  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -114,8 +114,8 @@ void SearchController::startAction()
 
     const auto id = generateSearchId();
     const std::shared_ptr<SearchHandler> searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
-    QObject::connect(searchHandler.get(), &SearchHandler::searchFinished, this, [id, this]() { m_activeSearches.remove(id); });
-    QObject::connect(searchHandler.get(), &SearchHandler::searchFailed, this, [id, this]() { m_activeSearches.remove(id); });
+    connect(searchHandler.get(), &SearchHandler::searchFinished, this, [this, id] { m_activeSearches.remove(id); });
+    connect(searchHandler.get(), &SearchHandler::searchFailed, this, [this, id]([[maybe_unused]] const QString &errorMessage) { m_activeSearches.remove(id); });
 
     m_searchHandlers.insert(id, searchHandler);
 
@@ -142,6 +142,8 @@ void SearchController::stopAction()
         searchHandler->cancelSearch();
         m_activeSearches.remove(id);
     }
+
+    setResult(QString());
 }
 
 void SearchController::statusAction()
@@ -182,7 +184,7 @@ void SearchController::resultsAction()
 
     const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
     const QList<SearchResult> searchResults = searchHandler->results();
-    const int size = searchResults.size();
+    const qsizetype size = searchResults.size();
 
     if (offset > size)
         throw APIError(APIErrorType::Conflict, tr("Offset is out of range"));
@@ -215,6 +217,8 @@ void SearchController::deleteAction()
     searchHandler->cancelSearch();
     m_activeSearches.remove(id);
     m_searchHandlers.erase(iter);
+
+    setResult(QString());
 }
 
 void SearchController::downloadTorrentAction()
@@ -231,13 +235,15 @@ void SearchController::downloadTorrentAction()
     else
     {
         SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(pluginName, torrentUrl);
-        connect(downloadHandler, &SearchDownloadHandler::downloadFinished
-                , this, [this, downloadHandler](const QString &source)
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this
+            , [this, downloadHandler](const QString &source, [[maybe_unused]] const QString &errorMessage)
         {
             app()->addTorrentManager()->addTorrent(source);
             downloadHandler->deleteLater();
         });
     }
+
+    setResult(QString());
 }
 
 void SearchController::pluginsAction()
@@ -253,6 +259,8 @@ void SearchController::installPluginAction()
     const QStringList sources = params()[u"sources"_s].split(u'|');
     for (const QString &source : sources)
         SearchPluginManager::instance()->installPlugin(source);
+
+    setResult(QString());
 }
 
 void SearchController::uninstallPluginAction()
@@ -262,6 +270,8 @@ void SearchController::uninstallPluginAction()
     const QStringList names = params()[u"names"_s].split(u'|');
     for (const QString &name : names)
         SearchPluginManager::instance()->uninstallPlugin(name.trimmed());
+
+    setResult(QString());
 }
 
 void SearchController::enablePluginAction()
@@ -273,6 +283,8 @@ void SearchController::enablePluginAction()
 
     for (const QString &name : names)
         SearchPluginManager::instance()->enablePlugin(name.trimmed(), enable);
+
+    setResult(QString());
 }
 
 void SearchController::updatePluginsAction()
@@ -282,6 +294,8 @@ void SearchController::updatePluginsAction()
     connect(pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &SearchController::checkForUpdatesFinished);
     connect(pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &SearchController::checkForUpdatesFailed);
     pluginManager->checkForUpdates();
+
+    setResult(QString());
 }
 
 void SearchController::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
@@ -300,6 +314,8 @@ void SearchController::checkForUpdatesFinished(const QHash<QString, PluginVersio
         LogMsg(tr("Updating plugin %1").arg(pluginName), Log::INFO);
         pluginManager->updatePlugin(pluginName);
     }
+
+    setResult(QString());
 }
 
 void SearchController::checkForUpdatesFailed(const QString &reason)

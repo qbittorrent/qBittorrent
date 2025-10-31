@@ -194,7 +194,7 @@ void TorrentContentModel::updateFilesProgress()
     if (m_filesIndex.size() != filesProgress.size()) [[unlikely]]
         return;
 
-    for (int i = 0; i < filesProgress.size(); ++i)
+    for (qsizetype i = 0; i < filesProgress.size(); ++i)
         m_filesIndex[i]->setProgress(filesProgress[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
@@ -211,7 +211,7 @@ void TorrentContentModel::updateFilesPriorities()
     if (m_filesIndex.size() != fprio.size())
         return;
 
-    for (int i = 0; i < fprio.size(); ++i)
+    for (qsizetype i = 0; i < fprio.size(); ++i)
         m_filesIndex[i]->setPriority(static_cast<BitTorrent::DownloadPriority>(fprio[i]));
 }
 
@@ -226,7 +226,7 @@ void TorrentContentModel::updateFilesAvailability()
         if (!m_contentHandler || (m_contentHandler != handler))
             return;
 
-        for (int i = 0; i < m_filesIndex.size(); ++i)
+        for (qsizetype i = 0; i < m_filesIndex.size(); ++i)
             m_filesIndex[i]->setAvailability(availableFileFractions.value(i, 0));
         // Update folders progress in the tree
         m_rootItem->recalculateProgress();
@@ -299,9 +299,16 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         case TorrentContentModelItem::COL_NAME:
             {
                 const QString currentName = item->name();
-                const QString newName = value.toString();
+                const QString newName = value.toString().trimmed();
+
                 if (currentName != newName)
                 {
+                    if (!Utils::Fs::isValidName(newName))
+                    {
+                        emit renameFailed(tr("The name is invalid: \"%1\"").arg(newName));
+                        return false;
+                    }
+
                     try
                     {
                         const Path parentPath = getItemPath(index.parent());
@@ -394,7 +401,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
 
             const auto *folder = static_cast<TorrentContentModelFolder *>(item);
             const auto childItems = folder->children();
-            const bool hasIgnored = std::any_of(childItems.cbegin(), childItems.cend()
+            const bool hasIgnored = std::ranges::any_of(childItems
                          , [](const TorrentContentModelItem *childItem)
             {
                 const auto prio = childItem->priority();
@@ -576,8 +583,7 @@ void TorrentContentModel::populate()
         QList<QStringView> pathFolders = QStringView(path).split(u'/', Qt::SkipEmptyParts);
         const QString fileName = pathFolders.takeLast().toString();
 
-        if (!std::equal(lastParentPath.begin(), lastParentPath.end()
-                        , pathFolders.begin(), pathFolders.end()))
+        if (!std::ranges::equal(asConst(lastParentPath), asConst(pathFolders)))
         {
             lastParentPath.clear();
             lastParentPath.reserve(pathFolders.size());

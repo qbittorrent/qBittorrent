@@ -30,6 +30,7 @@
 
 #include <type_traits>
 
+#include <QtVersionChecks>
 #include <QDateTime>
 
 #include "base/bittorrent/infohash.h"
@@ -125,44 +126,86 @@ void TransferListSortModel::sort(const int column, const Qt::SortOrder order)
 
 void TransferListSortModel::setStatusFilter(const TorrentFilter::Type filter)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setType(filter);
+    endFilterChange(Direction::Rows);
+#else
     if (m_filter.setType(filter))
         invalidateRowsFilter();
+#endif
 }
 
 void TransferListSortModel::setCategoryFilter(const QString &category)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setCategory(category);
+    endFilterChange(Direction::Rows);
+#else
     if (m_filter.setCategory(category))
         invalidateRowsFilter();
+#endif
 }
 
 void TransferListSortModel::disableCategoryFilter()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setCategory(TorrentFilter::AnyCategory);
+    endFilterChange(Direction::Rows);
+#else
     if (m_filter.setCategory(TorrentFilter::AnyCategory))
         invalidateRowsFilter();
+#endif
 }
 
 void TransferListSortModel::setTagFilter(const Tag &tag)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setTag(tag);
+    endFilterChange(Direction::Rows);
+#else
     if (m_filter.setTag(tag))
         invalidateRowsFilter();
+#endif
 }
 
 void TransferListSortModel::disableTagFilter()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setTag(TorrentFilter::AnyTag);
+    endFilterChange(Direction::Rows);
+#else
     if (m_filter.setTag(TorrentFilter::AnyTag))
         invalidateRowsFilter();
+#endif
 }
 
 void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setTorrentIDSet(torrentIDs);
+    endFilterChange(Direction::Rows);
+#else
     if (m_filter.setTorrentIDSet(torrentIDs))
         invalidateRowsFilter();
+#endif
 }
 
 void TransferListSortModel::disableTrackerFilter()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setTorrentIDSet(TorrentFilter::AnyID);
+    endFilterChange(Direction::Rows);
+#else
     if (m_filter.setTorrentIDSet(TorrentFilter::AnyID))
         invalidateRowsFilter();
+#endif
 }
 
 int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &right) const

@@ -40,6 +40,7 @@
 #include <QString>
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/rss/rss_article.h"
@@ -48,6 +49,7 @@
 #include "base/rss/rss_session.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/interfaces/iguiapplication.h"
+#include "gui/lineedit.h"
 #include "gui/uithememanager.h"
 #include "gui/utils/keysequence.h"
 #include "articlelistwidget.h"
@@ -107,6 +109,7 @@ namespace
 RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     : GUIApplicationComponent(app, parent)
     , m_ui {new Ui::RSSWidget}
+    , m_rssFilter {new LineEdit(this)}
 {
     m_ui->setupUi(this);
 
@@ -129,6 +132,13 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
 #endif
 
+    m_rssFilter->setMaximumWidth(200);
+    m_rssFilter->setPlaceholderText(tr("Filter feed items..."));
+
+    const int spacerIndex = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
+    m_ui->horizontalLayout->insertWidget((spacerIndex + 1), m_rssFilter);
+
+    connect(m_rssFilter, &QLineEdit::textChanged, this, &RSSWidget::handleRSSFilterTextChanged);
     connect(m_ui->articleListWidget, &ArticleListWidget::customContextMenuRequested, this, &RSSWidget::displayItemsListMenu);
     connect(m_ui->articleListWidget, &ArticleListWidget::currentItemChanged, this, &RSSWidget::handleCurrentArticleItemChanged);
     connect(m_ui->articleListWidget, &ArticleListWidget::itemDoubleClicked, this, &RSSWidget::downloadSelectedTorrents);
@@ -433,16 +443,52 @@ void RSSWidget::downloadSelectedTorrents()
 // open the url of the selected RSS articles in the Web browser
 void RSSWidget::openSelectedArticlesUrls()
 {
+    qsizetype emptyLinkCount = 0;
+    qsizetype badLinkCount = 0;
+    QString articleTitle;
     for (QListWidgetItem *item : asConst(m_ui->articleListWidget->selectedItems()))
     {
         auto *article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
-        // Mark as read
         article->markAsRead();
 
-        if (!article->link().isEmpty())
-            QDesktopServices::openUrl(QUrl(article->link()));
+        const QString articleLink = article->link();
+        const QUrl articleLinkURL {articleLink};
+        if (articleLinkURL.isEmpty()) [[unlikely]]
+        {
+            if (articleTitle.isEmpty())
+                articleTitle = article->title();
+            ++emptyLinkCount;
+        }
+        else if (articleLinkURL.isLocalFile()) [[unlikely]]
+        {
+            if (badLinkCount == 0)
+                articleTitle = article->title();
+            ++badLinkCount;
+
+            LogMsg(tr("Blocked opening RSS article URL. URL pointing to local file might be malicious behaviour. Article: \"%1\". URL: \"%2\".")
+                    .arg(article->title(), articleLink), Log::WARNING);
+        }
+        else [[likely]]
+        {
+            QDesktopServices::openUrl(articleLinkURL);
+        }
+    }
+
+    if (badLinkCount > 0)
+    {
+        QString message = tr("Blocked opening RSS article URL. The following article URL is pointing to local file and it may be malicious behaviour:\n%1").arg(articleTitle);
+        if (badLinkCount > 1)
+            message.append(u"\n" + tr("There are %1 more articles with the same issue.").arg(badLinkCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
+    }
+    else if (emptyLinkCount > 0)
+    {
+        QString message = tr("The following article has no news URL provided:\n%1").arg(articleTitle);
+        if (emptyLinkCount > 1)
+            message.append(u"\n" + tr("There are %1 more articles with the same issue.").arg(emptyLinkCount - 1));
+        QMessageBox::warning(this, u"qBittorrent"_s, message, QMessageBox::Ok);
     }
 }
 
@@ -531,7 +577,8 @@ void RSSWidget::copySelectedFeedsURL()
 void RSSWidget::handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem)
 {
     m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
-                                    , (currentItem == m_ui->feedListWidget->stickyUnreadItem()));
+                                    , (currentItem == m_ui->feedListWidget->stickyUnreadItem())
+                                    , m_rssFilter->text());
 }
 
 void RSSWidget::on_markReadButton_clicked()
@@ -602,6 +649,14 @@ void RSSWidget::handleSessionProcessingStateChanged(bool enabled)
 void RSSWidget::handleUnreadCountChanged()
 {
     emit unreadCountUpdated(RSS::Session::instance()->rootFolder()->unreadCount());
+}
+
+void RSSWidget::handleRSSFilterTextChanged(const QString &newFilter)
+{
+    QTreeWidgetItem *currentItem = m_ui->feedListWidget->currentItem();
+    m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
+                                    , (currentItem == m_ui->feedListWidget->stickyUnreadItem())
+                                    , newFilter);
 }
 
 bool RSSWidget::eventFilter(QObject *obj, QEvent *event)

@@ -186,6 +186,32 @@ void Preferences::setAlternatingRowColors(const bool b)
     setValue(u"Preferences/General/AlternatingRowColors"_s, b);
 }
 
+bool Preferences::useTorrentStatesColors() const
+{
+    return value(u"GUI/TransferList/UseTorrentStatesColors"_s, true);
+}
+
+void Preferences::setUseTorrentStatesColors(const bool value)
+{
+    if (value == useTorrentStatesColors())
+        return;
+
+    setValue(u"GUI/TransferList/UseTorrentStatesColors"_s, value);
+}
+
+bool Preferences::getProgressBarFollowsTextColor() const
+{
+    return value(u"GUI/TransferList/ProgressBarFollowsTextColor"_s, false);
+}
+
+void Preferences::setProgressBarFollowsTextColor(const bool value)
+{
+    if (value == getProgressBarFollowsTextColor())
+        return;
+
+    setValue(u"GUI/TransferList/ProgressBarFollowsTextColor"_s, value);
+}
+
 bool Preferences::getHideZeroValues() const
 {
     return value(u"Preferences/General/HideZeroValues"_s, false);
@@ -344,6 +370,19 @@ void Preferences::setToolbarDisplayed(const bool displayed)
         return;
 
     setValue(u"Preferences/General/ToolbarDisplayed"_s, displayed);
+}
+
+bool Preferences::isTorrentContentDragEnabled() const
+{
+    return value(u"Preferences/General/TorrentContentDragEnabled"_s, false);
+}
+
+void Preferences::setTorrentContentDragEnabled(const bool enabled)
+{
+    if (enabled == isTorrentContentDragEnabled())
+        return;
+
+    setValue(u"Preferences/General/TorrentContentDragEnabled"_s, enabled);
 }
 
 bool Preferences::isStatusbarDisplayed() const
@@ -859,6 +898,19 @@ void Preferences::setWebUIPassword(const QByteArray &password)
     setValue(u"Preferences/WebUI/Password_PBKDF2"_s, password);
 }
 
+QString Preferences::getWebUIApiKey() const
+{
+    return value<QString>(u"Preferences/WebUI/APIKey"_s);
+}
+
+void Preferences::setWebUIApiKey(const QString &apiKey)
+{
+    if (apiKey == getWebUIApiKey())
+        return;
+
+    setValue(u"Preferences/WebUI/APIKey"_s, apiKey);
+}
+
 int Preferences::getWebUIMaxAuthFailCount() const
 {
     return value<int>(u"Preferences/WebUI/MaxAuthenticationFailCount"_s, 5);
@@ -896,19 +948,6 @@ void Preferences::setWebUISessionTimeout(const int timeout)
         return;
 
     setValue(u"Preferences/WebUI/SessionTimeout"_s, timeout);
-}
-
-QString Preferences::getWebAPISessionCookieName() const
-{
-    return value<QString>(u"WebAPI/SessionCookieName"_s);
-}
-
-void Preferences::setWebAPISessionCookieName(const QString &cookieName)
-{
-    if (cookieName == getWebAPISessionCookieName())
-        return;
-
-    setValue(u"WebAPI/SessionCookieName"_s, cookieName);
 }
 
 bool Preferences::isWebUIClickjackingProtectionEnabled() const

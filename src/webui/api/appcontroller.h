@@ -52,6 +52,8 @@ private slots:
     void getDirectoryContentAction();
     void cookiesAction();
     void setCookiesAction();
+    void rotateAPIKeyAction();
+    void deleteAPIKeyAction();
 
     void networkInterfaceListAction();
     void networkInterfaceAddressListAction();

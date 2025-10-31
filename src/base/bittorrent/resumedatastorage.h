@@ -60,7 +60,7 @@ namespace BitTorrent
 
         virtual QList<TorrentID> registeredTorrents() const = 0;
         virtual LoadResumeDataResult load(const TorrentID &id) const = 0;
-        virtual void store(const TorrentID &id, const LoadTorrentParams &resumeData) const = 0;
+        virtual void store(const TorrentID &id, LoadTorrentParams resumeData) const = 0;
         virtual void remove(const TorrentID &id) const = 0;
         virtual void storeQueue(const QList<TorrentID> &queue) const = 0;
 
@@ -72,7 +72,7 @@ namespace BitTorrent
         void loadFinished();
 
     protected:
-        void onResumeDataLoaded(const TorrentID &torrentID, const LoadResumeDataResult &loadResumeDataResult) const;
+        void onResumeDataLoaded(const TorrentID &torrentID, LoadResumeDataResult loadResumeDataResult) const;
 
     private:
         virtual void doLoadAll() const = 0;

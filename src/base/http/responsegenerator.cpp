@@ -87,7 +87,7 @@ void Http::compressContent(Response &response)
     response.headers.remove(HEADER_CONTENT_ENCODING);
 
     // for very small files, compressing them only wastes cpu cycles
-    const int contentSize = response.content.size();
+    const qsizetype contentSize = response.content.size();
     if (contentSize <= 1024)  // 1 kb
         return;
 

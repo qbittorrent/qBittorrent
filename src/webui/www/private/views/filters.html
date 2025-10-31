@@ -74,13 +74,19 @@
             return {
                 categoriesFilterContextMenu: categoriesFilterContextMenu,
                 tagsFilterContextMenu: tagsFilterContextMenu,
-                trackersFilterContextMenu: trackersFilterContextMenu
+                trackersFilterContextMenu: trackersFilterContextMenu,
+                clearStatusFilter: clearStatusFilter,
+                clearCategoryFilter: clearCategoryFilter,
+                clearTagFilter: clearTagFilter,
+                clearTrackerFilter: clearTrackerFilter
             };
         };
 
+        const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
         const toggleCategoryDisplay = (filterItemID) => {
             const filterItem = document.getElementById(filterItemID);
-            LocalPreferences.set(`category_${filterItemID}_collapsed`, filterItem.classList.toggle("collapsedCategory").toString());
+            localPreferences.set(`category_${filterItemID}_collapsed`, filterItem.classList.toggle("collapsedCategory").toString());
         };
 
         new window.qBittorrent.ContextMenu.StatusesFilterContextMenu({
@@ -218,16 +224,16 @@
             }
         });
 
-        if (LocalPreferences.get("filter_status_collapsed") === "true")
+        if (localPreferences.get("filter_status_collapsed") === "true")
             toggleFilterDisplay("statusFilterList");
 
-        if (LocalPreferences.get("filter_category_collapsed") === "true")
+        if (localPreferences.get("filter_category_collapsed") === "true")
             toggleFilterDisplay("categoryFilterList");
 
-        if (LocalPreferences.get("filter_tag_collapsed") === "true")
+        if (localPreferences.get("filter_tag_collapsed") === "true")
             toggleFilterDisplay("tagFilterList");
 
-        if (LocalPreferences.get("filter_tracker_collapsed") === "true")
+        if (localPreferences.get("filter_tracker_collapsed") === "true")
             toggleFilterDisplay("trackerFilterList");
 
         document.getElementById("Filters_pad").addEventListener("click", (event) => {
@@ -249,6 +255,42 @@
                     break;
                 case "trackerFilterList":
                     setTrackerFilter(filterItemID);
+                    break;
+                default:
+                    console.error(`Unexpected filterListID: ${filterListID}`);
+                    break;
+            }
+        });
+
+        document.getElementById("Filters_pad").addEventListener("dblclick", (event) => {
+            if (localPreferences.get("dblclick_filter", "1") !== "1")
+                return;
+
+            const filterItem = event.target.closest("li");
+            if (filterItem === null)
+                return;
+
+            const { id: filterListID } = filterItem.closest("ul[id]");
+            switch (filterListID) {
+                case "statusFilterList":
+                    clearCategoryFilter();
+                    clearTagFilter();
+                    clearTrackerFilter();
+                    break;
+                case "categoryFilterList":
+                    clearStatusFilter();
+                    clearTagFilter();
+                    clearTrackerFilter();
+                    break;
+                case "tagFilterList":
+                    clearStatusFilter();
+                    clearCategoryFilter();
+                    clearTrackerFilter();
+                    break;
+                case "trackerFilterList":
+                    clearStatusFilter();
+                    clearCategoryFilter();
+                    clearTagFilter();
                     break;
                 default:
                     console.error(`Unexpected filterListID: ${filterListID}`);
@@ -280,6 +322,11 @@
 
             toggleCategoryDisplay(filterItem.id);
         });
+
+        const clearStatusFilter = () => { setStatusFilter("all"); };
+        const clearCategoryFilter = () => { setCategoryFilter(CATEGORIES_ALL); };
+        const clearTagFilter = () => { setTagFilter(TAGS_ALL); };
+        const clearTrackerFilter = () => { setTrackerFilter(TRACKERS_ALL); };
 
         return exports();
     })();

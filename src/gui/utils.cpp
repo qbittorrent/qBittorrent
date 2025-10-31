@@ -144,7 +144,7 @@ void Utils::Gui::openPath(const Path &path)
 
 // Open the parent directory of the given path with a file manager and select
 // (if possible) the item at the given path
-void Utils::Gui::openFolderSelect(const Path &path)
+void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *parent)
 {
     // If the item to select doesn't exist, try to open its parent
     if (!path.exists())
@@ -175,44 +175,61 @@ void Utils::Gui::openFolderSelect(const Path &path)
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     const int lineMaxLength = 64;
 
-    QProcess proc;
-    proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
-    proc.start(u"xdg-mime"_s, {u"query"_s, u"default"_s, u"inode/directory"_s});
-    proc.waitForFinished();
-    const auto output = QString::fromLocal8Bit(proc.readLine(lineMaxLength).simplified());
-    if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
+    auto lookupProc = new QProcess(parent);
+    lookupProc->setProcessChannelMode(QProcess::ForwardedErrorChannel);
+    lookupProc->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+    QObject::connect(lookupProc, &QProcess::finished, lookupProc
+        , [parent, path, lookupProc]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
     {
-        proc.startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
-    }
-    else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
-                 || (output == u"nautilus-folder-handler.desktop"))
-    {
-        proc.start(u"nautilus"_s, {u"--version"_s});
-        proc.waitForFinished();
-        const auto nautilusVerStr = QString::fromLocal8Bit(proc.readLine(lineMaxLength)).remove(QRegularExpression(u"[^0-9.]"_s));
-        using NautilusVersion = Utils::Version<3>;
-        if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
-            proc.startDetached(u"nautilus"_s, {(Fs::isDir(path) ? path.parentPath() : path).toString()});
+        lookupProc->deleteLater();
+
+        const auto output = QString::fromLocal8Bit(lookupProc->readLine(lineMaxLength).simplified());
+        if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
+        {
+            QProcess::startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
+        }
+        else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
+            || (output == u"nautilus-folder-handler.desktop"))
+        {
+            auto deProcess = new QProcess(parent);
+            deProcess->setProcessChannelMode(QProcess::ForwardedErrorChannel);
+            deProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
+            QObject::connect(deProcess, &QProcess::finished, deProcess
+                , [deProcess, path]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
+            {
+                deProcess->deleteLater();
+
+                const auto nautilusVerStr = QString::fromLocal8Bit(deProcess->readLine(lineMaxLength))
+                    .remove(QRegularExpression(u"[^0-9.]"_s));
+                using NautilusVersion = Utils::Version<3>;
+                const QString pathParam = (Fs::isDir(path) ? path.parentPath() : path).toString();
+
+                if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
+                    QProcess::startDetached(u"nautilus"_s, {pathParam});
+                else
+                    QProcess::startDetached(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
+            });
+            deProcess->start(u"nautilus"_s, {u"--version"_s});
+        }
+        else if (output == u"nemo.desktop")
+        {
+            QProcess::startDetached(u"nemo"_s, {u"--no-desktop"_s, (Fs::isDir(path) ? path.parentPath() : path).toString()});
+        }
+        else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
+        {
+            QProcess::startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
+        }
+        else if (output == u"thunar.desktop")
+        {
+            QProcess::startDetached(u"thunar"_s, {path.toString()});
+        }
         else
-            proc.startDetached(u"nautilus"_s, {u"--no-desktop"_s, (Fs::isDir(path) ? path.parentPath() : path).toString()});
-    }
-    else if (output == u"nemo.desktop")
-    {
-        proc.startDetached(u"nemo"_s, {u"--no-desktop"_s, (Fs::isDir(path) ? path.parentPath() : path).toString()});
-    }
-    else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
-    {
-        proc.startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
-    }
-    else if (output == u"thunar.desktop")
-    {
-        proc.startDetached(u"thunar"_s, {path.toString()});
-    }
-    else
-    {
-        // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-        openPath(path.parentPath());
-    }
+        {
+            // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
+            openPath(path.parentPath());
+        }
+    });
+    lookupProc->start(u"xdg-mime"_s, {u"query"_s, u"default"_s, u"inode/directory"_s});
 #else
     openPath(path.parentPath());
 #endif

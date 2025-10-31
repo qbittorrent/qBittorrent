@@ -85,10 +85,12 @@ public slots:
     void bottomQueuePosSelectedTorrents();
     void copySelectedMagnetURIs() const;
     void copySelectedNames() const;
+    void copyContentPaths() const;
     void copySelectedInfohashes(CopyInfohashPolicy policy) const;
     void copySelectedIDs() const;
     void copySelectedComments() const;
-    void openSelectedTorrentsFolder() const;
+    void openSelectedTorrentsFolder();
+    void openDestinationFolder(const BitTorrent::Torrent *torrent);
     void recheckSelectedTorrents();
     void reannounceSelectedTorrents();
     void setTorrentOptions();
@@ -110,7 +112,7 @@ private slots:
     void torrentDoubleClicked();
     void displayListMenu();
     void displayColumnHeaderMenu();
-    void currentChanged(const QModelIndex &current, const QModelIndex&) override;
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
     void setSelectedTorrentsSequentialDownload(bool enabled) const;
     void setSelectedFirstLastPiecePrio(bool enabled) const;

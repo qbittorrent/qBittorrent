@@ -93,8 +93,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     while (iter.hasNext())
         dirList << iter.next() + u'/';
     // sort descending by directory depth
-    std::sort(dirList.begin(), dirList.end()
-              , [](const QString &l, const QString &r) { return l.count(u'/') > r.count(u'/'); });
+    std::ranges::sort(dirList, [](const QString &l, const QString &r) { return l.count(u'/') > r.count(u'/'); });
 
     for (const QString &p : asConst(dirList))
     {
@@ -104,11 +103,11 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
         if (!dir.isEmpty(QDir::Dirs | QDir::NoDotAndDotDot))
             continue;
 
-        const QStringList tmpFileList = dir.entryList(QDir::Files);
+        const QStringList tmpFileList = dir.entryList(QDir::Files | QDir::Hidden);
 
         // deleteFilesList contains unwanted files, usually created by the OS
         // temp files on linux usually end with '~', e.g. `filename~`
-        const bool hasOtherFiles = std::any_of(tmpFileList.cbegin(), tmpFileList.cend(), [&deleteFilesList](const QString &f)
+        const bool hasOtherFiles = std::ranges::any_of(tmpFileList, [&deleteFilesList](const QString &f)
         {
             return (!f.endsWith(u'~') && !deleteFilesList.contains(f, Qt::CaseInsensitive));
         });
@@ -217,6 +216,60 @@ Path Utils::Fs::tempPath()
     static const Path path = Path(QDir::tempPath()) / Path(u".qBittorrent"_s);
     mkdir(path);
     return path;
+}
+
+// Validates a file name, where "file" refers to both files and directories in Windows and Unix-like systems.
+// Returns true if the name is valid, false if it contains empty/special names, exceeds platform-specific lengths,
+// uses reserved names, or includes forbidden characters.
+bool Utils::Fs::isValidName(const QString &name)
+{
+    // Reject empty names or special directory names (".", "..")
+    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
+        return false;
+
+#ifdef Q_OS_WIN
+    // Windows restricts file names to 255 characters and prohibits trailing dots
+    if ((name.length() > 255) || name.endsWith(u'.'))
+        return false;
+#else
+    // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
+    if (name.toUtf8().length() > 255)
+        return false;
+#endif
+
+#ifdef Q_OS_WIN
+    // Windows reserves certain names for devices, which cannot be used as file names
+    const QSet reservedNames
+    {
+        u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
+        u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
+        u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
+        u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
+        u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
+        u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
+        u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
+    };
+    const QString baseName = name.section(u'.', 0, 0).toUpper();
+    if (reservedNames.contains(baseName))
+        return false;
+#endif
+
+    // Check for control characters, delete character, and forward slash
+    for (const QChar &c : name)
+    {
+        const ushort unicode = c.unicode();
+        if ((unicode < 32) || (unicode == 127) || (c == u'/'))
+            return false;
+#ifdef Q_OS_WIN
+        // Windows forbids reserved characters in file names
+        if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') ||
+            (c == u'|') || (c == u'?') || (c == u'*'))
+            return false;
+#endif
+    }
+
+    // If none of the invalid conditions are met, the name is valid
+    return true;
 }
 
 bool Utils::Fs::isRegularFile(const Path &path)

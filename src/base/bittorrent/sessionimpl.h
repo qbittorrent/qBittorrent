@@ -45,7 +45,6 @@
 #include <QMap>
 #include <QMutex>
 #include <QPointer>
-#include <QQueue>
 #include <QSet>
 #include <QThreadPool>
 
@@ -478,7 +477,7 @@ namespace BitTorrent
         void handleTorrentTrackersChanged(TorrentImpl *torrent);
         void handleTorrentUrlSeedsAdded(TorrentImpl *torrent, const QList<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QList<QUrl> &urlSeeds);
-        void handleTorrentResumeDataReady(TorrentImpl *torrent, const LoadTorrentParams &data);
+        void handleTorrentResumeDataReady(TorrentImpl *torrent, LoadTorrentParams data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
         void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
 
@@ -579,8 +578,7 @@ namespace BitTorrent
         void updateSeedingLimitTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
-        void handleAlert(const lt::alert *alert);
-        void dispatchTorrentAlert(const lt::torrent_alert *alert);
+        void handleAlert(lt::alert *alert);
         void handleAddTorrentAlert(const lt::add_torrent_alert *alert);
         void handleStateUpdateAlert(const lt::state_update_alert *alert);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *alert);
@@ -607,10 +605,21 @@ namespace BitTorrent
         void handleTrackerAlert(const lt::tracker_alert *alert);
 #ifdef QBT_USES_LIBTORRENT2
         void handleTorrentConflictAlert(const lt::torrent_conflict_alert *alert);
+        void handleFilePrioAlert(const lt::file_prio_alert *alert);
 #endif
+        void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *alert);
+        void handleFileCompletedAlert(const lt::file_completed_alert *alert);
+        void handleFileRenamedAlert(const lt::file_renamed_alert *alert);
+        void handleFileRenameFailedAlert(const lt::file_rename_failed_alert *alert);
+        void handlePerformanceAlert(const lt::performance_alert *alert) const;
+        void handleSaveResumeDataAlert(lt::save_resume_data_alert *alert);
+        void handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *alert);
+        void handleTorrentCheckedAlert(const lt::torrent_checked_alert *alert);
+        void handleTorrentFinishedAlert(const lt::torrent_finished_alert *alert);
 
-        TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+        TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
+        QList<TorrentImpl *> getQueuedTorrentsByID(const QList<TorrentID> &torrentIDs) const;
 
         void saveResumeData();
         void saveTorrentsQueue();
@@ -619,6 +628,7 @@ namespace BitTorrent
         void populateAdditionalTrackersFromURL();
 
         void fetchPendingAlerts(lt::time_duration time = lt::time_duration::zero());
+        void endAlertSequence(int alertType, qsizetype alertCount);
 
         void moveTorrentStorage(const MoveStorageJob &job) const;
         void handleMoveTorrentStorageJobFinished(const Path &newPath);
@@ -818,7 +828,7 @@ namespace BitTorrent
         TorrentContentRemover *m_torrentContentRemover = nullptr;
 
         using AddTorrentAlertHandler = std::function<void (const lt::add_torrent_alert *alert)>;
-        QQueue<AddTorrentAlertHandler> m_addTorrentAlertHandlers;
+        QList<AddTorrentAlertHandler> m_addTorrentAlertHandlers;
 
         QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 

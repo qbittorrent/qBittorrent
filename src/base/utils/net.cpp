@@ -71,7 +71,7 @@ namespace Utils
                 protocolEquivalentAddress = QHostAddress(addr.toIPv4Address(&addrConversionOk));
             }
 
-            return std::any_of(subnets.begin(), subnets.end(), [&](const Subnet &subnet)
+            return std::ranges::any_of(subnets, [&](const Subnet &subnet)
             {
                 return addr.isInSubnet(subnet)
                     || (addrConversionOk && protocolEquivalentAddress.isInSubnet(subnet));
@@ -117,7 +117,7 @@ namespace Utils
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
         {
             const QList<QSslCertificate> certs {QSslCertificate::fromData(data)};
-            const bool hasInvalidCerts = std::any_of(certs.cbegin(), certs.cend(), [](const QSslCertificate &cert)
+            const bool hasInvalidCerts = std::ranges::any_of(certs, [](const QSslCertificate &cert)
             {
                 return cert.isNull();
             });

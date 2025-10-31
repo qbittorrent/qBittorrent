@@ -287,16 +287,23 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macosdockbadge/badger.mm
         macosdockbadge/badgeview.h
         macosdockbadge/badgeview.mm
-        macosshiftclickhandler.h
         macosshiftclickhandler.cpp
+        macosshiftclickhandler.h
+        macosstatusitem/itemview.h
+        macosstatusitem/itemview.mm
+        macosstatusitem/statusitem.h
+        macosstatusitem/statusitem.mm
         macutilities.h
         macutilities.mm
-        powermanagement/inhibitormacos.h
         powermanagement/inhibitormacos.cpp
-        programupdater.h
+        powermanagement/inhibitormacos.h
         programupdater.cpp
+        programupdater.h
     )
-    target_link_libraries(qbt_gui PRIVATE objc)
+    target_link_libraries(qbt_gui PRIVATE
+        objc
+        "-framework UserNotifications"
+    )
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Windows")

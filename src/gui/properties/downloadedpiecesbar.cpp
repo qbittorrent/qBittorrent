@@ -36,11 +36,16 @@
 #include <QList>
 
 #include "base/global.h"
+#include "gui/uithememanager.h"
 
 namespace
 {
     QColor dlPieceColor(const QColor &pieceColor)
     {
+        const QColor color = UIThemeManager::instance()->getColor(u"PiecesBar.PartialPiece"_s);
+        if (color.isValid())
+            return color;
+
         const QColor green {Qt::green};
         return QColor::fromHsl(green.hslHue(), pieceColor.hslSaturation(), pieceColor.lightness());
     }
@@ -149,7 +154,7 @@ QImage DownloadedPiecesBar::renderImage()
     QList<float> scaledPiecesDl = bitfieldToFloatVector(m_downloadedPieces, image.width());
 
     // filling image
-    for (int x = 0; x < scaledPieces.size(); ++x)
+    for (qsizetype x = 0; x < scaledPieces.size(); ++x)
     {
         float piecesToValue = scaledPieces.at(x);
         float piecesToValueDl = scaledPiecesDl.at(x);

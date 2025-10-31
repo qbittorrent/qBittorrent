@@ -87,7 +87,7 @@ namespace
     // savePath is a folder, not an absolute file path
     int indexOfPath(const FileSystemPathComboEdit *fsPathEdit, const Path &savePath)
     {
-        for (int i = 0; i < fsPathEdit->count(); ++i)
+        for (qsizetype i = 0; i < fsPathEdit->count(); ++i)
         {
             if (fsPathEdit->item(i) == savePath)
                 return i;
@@ -130,7 +130,7 @@ namespace
 
         auto pathList = settings()->loadValue<QStringList>(settingsKey);
 
-        const int selectedSavePathIndex = pathList.indexOf(path.toString());
+        const qsizetype selectedSavePathIndex = pathList.indexOf(path.toString());
         if (selectedSavePathIndex > -1)
             pathList.move(selectedSavePathIndex, 0);
         else
@@ -376,7 +376,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
     connect(m_filterLine, &LineEdit::textChanged, this, &AddNewTorrentDialog::setContentFilterPattern);
     connect(m_ui->buttonSelectAll, &QPushButton::clicked, m_ui->contentTreeView, &TorrentContentWidget::checkAll);
     connect(m_ui->buttonSelectNone, &QPushButton::clicked, m_ui->contentTreeView, &TorrentContentWidget::checkNone);
-    connect(Preferences::instance(), &Preferences::changed, []
+    connect(Preferences::instance(), &Preferences::changed, this, []
     {
         const int length = Preferences::instance()->addNewTorrentDialogSavePathHistoryLength();
         settings()->storeValue(KEY_SAVEPATHHISTORY, settings()->loadValue<QStringList>(KEY_SAVEPATHHISTORY).mid(0, length));
@@ -460,7 +460,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
 
     // Load categories
     QStringList categories = session->categories();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
     const QString defaultCategory = m_storeDefaultCategory;
 
     if (!addTorrentParams.category.isEmpty())
@@ -511,7 +511,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
     {
         m_ui->lblMetaLoading->setVisible(false);
         m_ui->progMetaLoading->setVisible(false);
-        m_ui->buttonSave->setVisible(false);
+        m_ui->buttonSave->setVisible(true);
         setupTreeview();
     }
     else
@@ -523,6 +523,7 @@ void AddNewTorrentDialog::setCurrentContext(const std::shared_ptr<Context> conte
         m_ui->labelDateData->setText(tr("Not Available", "This date is unavailable"));
         updateDiskSpaceLabel();
         setMetadataProgressIndicator(true, tr("Retrieving metadata..."));
+        m_ui->buttonSave->setVisible(false);
     }
 
     TMMChanged(m_ui->comboTMM->currentIndex());
@@ -598,7 +599,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
         const auto torrentInfo = *torrentDescr.info();
         const QList<BitTorrent::DownloadPriority> &priorities = m_contentAdaptor->filePriorities();
         Q_ASSERT(priorities.size() == torrentInfo.filesCount());
-        for (int i = 0; i < priorities.size(); ++i)
+        for (qsizetype i = 0; i < priorities.size(); ++i)
         {
             if (priorities[i] > BitTorrent::DownloadPriority::Ignored)
                 torrentSize += torrentInfo.fileSize(i);

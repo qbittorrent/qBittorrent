@@ -39,6 +39,8 @@ window.qBittorrent.MonkeyPatch ??= (() => {
 
     const patch = () => {
         patchMootoolsDocumentId();
+        patchMochaGetAsset();
+        patchMochaWindowOptions();
     };
 
     const patchMootoolsDocumentId = () => {
@@ -62,6 +64,75 @@ window.qBittorrent.MonkeyPatch ??= (() => {
 
             return null;
         };
+    };
+
+    /**
+     * Modified to support specifying an asset with a version query param (`?v=`) for cache busting
+     */
+    const patchMochaGetAsset = () => {
+        MUI.Require.prototype.getAsset = (source, onload) => {
+            // If the asset is loaded, fire the onload function.
+            if (MUI.files[source] === "loaded") {
+                if (typeof onload === "function")
+                    onload();
+                return true;
+            }
+
+            // If the asset is loading, wait until it is loaded and then fire the onload function.
+            // If asset doesn't load by a number of tries, fire onload anyway.
+            else if (MUI.files[source] === "loading") {
+                let tries = 0;
+                const checker = (function() {
+                    ++tries;
+                    if ((MUI.files[source] === "loading") && (tries < "100"))
+                        return;
+                    $clear(checker);
+                    if (typeof onload === "function")
+                        onload();
+                }).periodical(50);
+            }
+
+            // If the asset is not yet loaded or loading, start loading the asset.
+            else {
+                MUI.files[source] = "loading";
+
+                const properties = {
+                    onload: (onload !== "undefined") ? onload : $empty
+                };
+
+                // Add to the onload function
+                const oldonload = properties.onload;
+                properties.onload = () => {
+                    MUI.files[source] = "loaded";
+                    if (oldonload)
+                        oldonload();
+                };
+
+                switch (source.match(/(\.\w+)(?:\?v=\w+)?$/)[1]) {
+                    case ".js":
+                        return Asset.javascript(source, properties);
+                    case ".css":
+                        return Asset.css(source, properties);
+                    case ".jpg":
+                    case ".png":
+                    case ".gif":
+                        return Asset.image(source, properties);
+                }
+
+                alert(`The required file "${source}" could not be loaded`);
+            }
+        };
+    };
+
+    /**
+     * Disable canvas in MochaUI windows
+     */
+    const patchMochaWindowOptions = () => {
+        const options = MUI.Window.prototype.options;
+        options.shadowBlur = 0;
+        options.shadowOffset = { x: 0, y: 0 };
+        options.useCanvas = false;
+        options.useCanvasControls = false;
     };
 
     return exports();
