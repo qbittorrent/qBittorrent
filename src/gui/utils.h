@@ -31,6 +31,7 @@
 
 #include "base/pathfwd.h"
 
+class QObject;
 class QPixmap;
 class QPoint;
 class QSize;
@@ -52,7 +53,7 @@ namespace Utils::Gui
     QPoint screenCenter(const QWidget *w);
 
     void openPath(const Path &path);
-    void openFolderSelect(const Path &path);
+    void openFolderSelect(const Path &path, QObject *parent);
 
     QString tagToWidgetText(const Tag &tag);
     Tag widgetTextToTag(const QString &text);
