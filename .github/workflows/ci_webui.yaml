@@ -26,7 +26,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup nodejs
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: 'lts/*'
 
@@ -52,7 +52,7 @@ jobs:
           git diff --exit-code
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         if: ${{ !cancelled() }}
         with:
           config-file: .github/workflows/helper/codeql/js.yaml
@@ -60,4 +60,4 @@ jobs:
 
       - name: Run CodeQL analysis
         if: ${{ !cancelled() }}
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
