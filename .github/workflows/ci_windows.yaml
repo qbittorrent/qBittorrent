@@ -200,13 +200,13 @@ jobs:
           copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libt_version }}
           path: upload
 
       - name: Install NSIS
-        uses: repolevedavaj/install-nsis@265e893c16602d8ccfb0a9ca44173b084078917c # v1.0.3
+        uses: repolevedavaj/install-nsis@a55ed92772254d1e51d880f85ce9b5719f907801 # v1.1.0
         with:
           nsis-version: '3.11'
 
@@ -216,7 +216,7 @@ jobs:
           makensis /DQBT_CPU_ARCH="${{ matrix.config.arch }}" /DQBT_DIST_DIR="../../upload/qBittorrent" /WX dist/windows/qbittorrent.nsi
 
       - name: Upload installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libt_version }}-setup
           path: dist/windows/qbittorrent_*_setup.exe
