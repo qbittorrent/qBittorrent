@@ -1477,7 +1477,8 @@ void MainWindow::loadSessionStats()
         m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
         m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
     }
-    else {
+    else
+    {
         m_badger->updateSpeed(0, 0);
     }
 #else
