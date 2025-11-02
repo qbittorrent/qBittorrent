@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2013  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -39,34 +40,103 @@ SearchSortModel::SearchSortModel(QObject *parent)
 
 void SearchSortModel::enableNameFilter(const bool enabled)
 {
+    if (m_isNameFilterEnabled == enabled)
+        return;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
     m_isNameFilterEnabled = enabled;
+    endFilterChange(Direction::Rows);
+#else
+    m_isNameFilterEnabled = enabled;
+    invalidateRowsFilter();
+#endif
 }
 
 void SearchSortModel::setNameFilter(const QString &searchTerm)
 {
+    if (m_searchTerm == searchTerm)
+        return;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+
     m_searchTerm = searchTerm;
     if ((searchTerm.length() > 2) && searchTerm.startsWith(u'"') && searchTerm.endsWith(u'"'))
         m_searchTermWords = QStringList(m_searchTerm.sliced(1, (m_searchTerm.length() - 2)));
     else
         m_searchTermWords = searchTerm.split(u' ', Qt::SkipEmptyParts);
+
+    endFilterChange(Direction::Rows);
+#else
+    m_searchTerm = searchTerm;
+    if ((searchTerm.length() > 2) && searchTerm.startsWith(u'"') && searchTerm.endsWith(u'"'))
+        m_searchTermWords = QStringList(m_searchTerm.sliced(1, (m_searchTerm.length() - 2)));
+    else
+        m_searchTermWords = searchTerm.split(u' ', Qt::SkipEmptyParts);
+
+    invalidateRowsFilter();
+#endif
 }
 
-void SearchSortModel::setSizeFilter(const qint64 minSize, const qint64 maxSize)
+void SearchSortModel::setSizeFilter(qint64 minSize, qint64 maxSize)
 {
-    m_minSize = std::max(static_cast<qint64>(0), minSize);
-    m_maxSize = std::max(static_cast<qint64>(-1), maxSize);
+    minSize = std::max<qint64>(0, minSize);
+    maxSize = std::max<qint64>(-1, maxSize);
+
+    if ((m_minSize == minSize) && (m_maxSize == maxSize))
+        return;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_minSize = minSize;
+    m_maxSize = maxSize;
+    endFilterChange(Direction::Rows);
+#else
+    m_minSize = minSize;
+    m_maxSize = maxSize;
+    invalidateRowsFilter();
+#endif
 }
 
-void SearchSortModel::setSeedsFilter(const int minSeeds, const int maxSeeds)
+void SearchSortModel::setSeedsFilter(int minSeeds, int maxSeeds)
 {
-    m_minSeeds = std::max(0, minSeeds);
-    m_maxSeeds = std::max(-1, maxSeeds);
+    minSeeds = std::max(0, minSeeds);
+    maxSeeds = std::max(-1, maxSeeds);
+
+    if ((m_minSeeds == minSeeds) && (m_maxSeeds == maxSeeds))
+        return;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_minSeeds = minSeeds;
+    m_maxSeeds = maxSeeds;
+    endFilterChange(Direction::Rows);
+#else
+    m_minSeeds = minSeeds;
+    m_maxSeeds = maxSeeds;
+    invalidateRowsFilter();
+#endif
 }
 
-void SearchSortModel::setLeechesFilter(const int minLeeches, const int maxLeeches)
+void SearchSortModel::setLeechesFilter(int minLeeches, int maxLeeches)
 {
-    m_minLeeches = std::max(0, minLeeches);
-    m_maxLeeches = std::max(-1, maxLeeches);
+    minLeeches = std::max(0, minLeeches);
+    maxLeeches = std::max(-1, maxLeeches);
+
+    if ((m_minLeeches == minLeeches) && (m_maxLeeches == maxLeeches))
+        return;
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_minLeeches = minLeeches;
+    m_maxLeeches = maxLeeches;
+    endFilterChange(Direction::Rows);
+#else
+    m_minLeeches = minLeeches;
+    m_maxLeeches = maxLeeches;
+    invalidateRowsFilter();
+#endif
 }
 
 bool SearchSortModel::isNameFilterEnabled() const
