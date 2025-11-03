@@ -39,6 +39,7 @@ repos:
       args: ["--fix=lf"]
       exclude: |
         (?x)^(
+          src/base/3rdparty/expected.hpp |
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
           dist/windows/license.txt |
