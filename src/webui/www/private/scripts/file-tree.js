@@ -103,7 +103,7 @@ window.qBittorrent.FileTree ??= (() => {
             return nodes;
         },
 
-        _getArrayOfNodes: function(node, array) {
+        _getArrayOfNodes: (node, array) => {
             array.push(node);
             node.children.each((child) => {
                 this._getArrayOfNodes(child, array);

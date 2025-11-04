@@ -110,7 +110,7 @@ private slots:
     void torrentDoubleClicked();
     void displayListMenu();
     void displayColumnHeaderMenu();
-    void currentChanged(const QModelIndex &current, const QModelIndex&) override;
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
     void setSelectedTorrentsSequentialDownload(bool enabled) const;
     void setSelectedFirstLastPiecePrio(bool enabled) const;

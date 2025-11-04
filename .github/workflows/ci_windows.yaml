@@ -191,6 +191,11 @@ jobs:
           name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
           path: upload
 
+      - name: Install NSIS
+        uses: repolevedavaj/install-nsis@265e893c16602d8ccfb0a9ca44173b084078917c # v1.0.3
+        with:
+          nsis-version: '3.11'
+
       - name: Create installer
         run: |
           7z x -o"dist/windows/" "dist/windows/NSISPlugins.zip"

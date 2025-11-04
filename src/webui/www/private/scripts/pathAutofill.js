@@ -73,7 +73,7 @@ window.qBittorrent.pathAutofill ??= (() => {
             .catch(error => {});
     };
 
-    function attachPathAutofill() {
+    const attachPathAutofill = () => {
         const directoryInputs = document.querySelectorAll(".pathDirectory:not(.pathAutoFillInitialized)");
         for (const input of directoryInputs) {
             input.addEventListener("input", function() { showPathSuggestions(this, "dirs"); });
