@@ -33,9 +33,9 @@ LangString inst_requires_win10 ${LANG_GERMAN}  "Diese Installation erfordert min
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_GERMAN} "qBittorrent deinstallieren"
 ;LangString inst_arch_mismatch_x64_on_arm64 ${LANG_ENGLISH} "Error: This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
-LangString inst_arch_mismatch_x64_on_arm64 ${LANG_GERMAN} "This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
+LangString inst_arch_mismatch_x64_on_arm64 ${LANG_GERMAN} "Diese x64-Version von qBittorrent läuft nicht auf ARM64-Systemen. Bitten die Installation für ARM64 herunterladen."
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "Error: This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
-LangString inst_arch_mismatch_arm64_on_x64 ${LANG_GERMAN} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+LangString inst_arch_mismatch_arm64_on_x64 ${LANG_GERMAN} "Diese ARM64-Version von qBittorrent läuft nicht auf x64-Systemen. Bitten die Installation für x64 herunterladen."
 
 ;------------------------------------
 ;Uninstaller strings
