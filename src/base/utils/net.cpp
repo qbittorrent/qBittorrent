@@ -105,7 +105,7 @@ namespace Utils
             const QHostAddress &address = subnet.first;
             const int prefixLength = subnet.second;
 
-            auto addressFamily = address.protocol();
+            const auto addressFamily = address.protocol();
 
             if (addressFamily == QAbstractSocket::IPv4Protocol)
             {
@@ -211,7 +211,8 @@ namespace Utils
                 const int len = octets[i].length();
                 if (len == 0 || len > 3)
                     return false;
-                for (int j = 0; j < len; ++j) {
+                for (int j = 0; j < len; ++j)
+                {
                     const QChar ch = octets[i][j];
                     if (ch < u'0' || ch > u'9')
                         return false;
@@ -238,7 +239,7 @@ namespace Utils
             return parseIPRange(filterStr, false);
         }
 
-        std::optional<IPRange> parseIPRange(QStringView filterStr, const bool &isGUI)
+        std::optional<IPRange> parseIPRange(QStringView filterStr, const bool isGUI)
         {
             filterStr = filterStr.trimmed();
             QHostAddress first, last;

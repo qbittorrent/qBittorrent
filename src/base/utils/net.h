@@ -31,9 +31,6 @@
 #include <optional>
 #include <utility>
 
-#include <libtorrent/address.hpp>
-#include <libtorrent/error_code.hpp>
-
 #include <QtContainerFwd>
 #include <QHostAddress>
 
@@ -59,7 +56,7 @@ namespace Utils::Net
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
     std::optional<IPRange> parseIPRange(QStringView filterStr);
-    std::optional<IPRange> parseIPRange(QStringView filterStr, const bool &isGUI);
+    std::optional<IPRange> parseIPRange(QStringView filterStr, const bool isGUI);
     QString ipRangeToString(const IPRange &ipRange);
 
     inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;

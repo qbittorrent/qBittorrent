@@ -1783,19 +1783,18 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     for (const QString &ip : asConst(m_bannedIPs.get()))
     {
         lt::error_code ec;
-        lt::address first, last;
         const std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(ip);
         if (!ipRange)
             continue;
-        first = lt::make_address(ipRange.value().first.toString().toLatin1().constData(), ec);
+        const lt::address firstAddr = lt::make_address(ipRange.value().first.toString().toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec)
             continue;
-        last = lt::make_address(ipRange.value().second.toString().toLatin1().constData(), ec);
+        const lt::address lastAddr = lt::make_address(ipRange.value().second.toString().toLatin1().constData(), ec);
         Q_ASSERT(!ec);
         if (ec)
             continue;
-        filter.add_rule(first, last, lt::ip_filter::blocked);
+        filter.add_rule(firstAddr, lastAddr, lt::ip_filter::blocked);
     }
 }
 
