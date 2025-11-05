@@ -307,7 +307,7 @@ namespace Utils
             if (firstIP == lastIP)
                 return firstIP.toString();
             else
-                return QString(u"%1 - %2").arg(firstIP.toString(), lastIP.toString());
+                return QString(firstIP.toString() + u" - " + lastIP.toString());
         }
 
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
