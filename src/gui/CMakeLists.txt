@@ -130,6 +130,7 @@ add_library(qbt_gui STATIC
     transferlistfilters/tagfilterwidget.h
     transferlistfilters/trackersfilterwidget.h
     transferlistfilterswidget.h
+    transferlistfilterswidgetitem.h
     transferlistmodel.h
     transferlistsortmodel.h
     transferlistwidget.h
@@ -231,6 +232,7 @@ add_library(qbt_gui STATIC
     transferlistfilters/tagfilterwidget.cpp
     transferlistfilters/trackersfilterwidget.cpp
     transferlistfilterswidget.cpp
+    transferlistfilterswidgetitem.cpp
     transferlistmodel.cpp
     transferlistsortmodel.cpp
     transferlistwidget.cpp
