@@ -437,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Коефіцієнт розподілу не може мати від'ємне значення.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Часовий ліміт для роздачі не повинен мати від'ємне значення.</translation>
     </message>
 </context>
 <context>

@@ -141,7 +141,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>qBittorrent afsluiten</translation>
+        <translation>Sluit qBittorrent af</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -345,7 +345,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation>De poort gebruikt voor inkomende verbindingen moet liggen tussen 0 en 65535.</translation>
+        <translation>De poort gebruikt voor inkomende verbindingen moet tussen 0 en 65535 liggen.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -369,7 +369,7 @@
     </message>
     <message>
         <source>Reverse proxy setup examples</source>
-        <translation type="unfinished" />
+        <translation>Voorbeelden van omgekeerde proxy-instelling</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Unable to delete torrents.</source>
-        <translation type="unfinished" />
+        <translation>Kon torrents niet verwijderen.</translation>
     </message>
     <message>
         <source>URL</source>
@@ -401,19 +401,19 @@
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Weet u zeker dat u %1 uit de overdrachtlijst wilt verwijderen?</translation>
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
-        <translation type="unfinished" />
+        <translation>Kon automatisch torrent-beheer niet inschakelen voor de geselecteerde torrents.</translation>
     </message>
     <message>
         <source>Unable to stop torrents.</source>
-        <translation type="unfinished" />
+        <translation>Kon torrents niet stoppen.</translation>
     </message>
     <message>
         <source>Unable to download file</source>
-        <translation type="unfinished" />
+        <translation>Kon bestand niet downloaden</translation>
     </message>
     <message>
         <source>External IPs: %1, %2</source>
@@ -421,15 +421,15 @@
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
-        <translation type="unfinished" />
+        <translation>Kon torrents niet opnieuw controleren.</translation>
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
-        <translation type="unfinished" />
+        <translation>Lijst van toe te voegen webseeds (een per regel):</translation>
     </message>
     <message>
         <source>Unable to start torrents.</source>
-        <translation type="unfinished" />
+        <translation>Kon torrents niet starten.</translation>
     </message>
     <message>
         <source>Add web seeds</source>
@@ -437,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Begrenzing voor deelverhouding mag niet negatief zijn.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Begrenzing voor seed-tijd mag niet negatief zijn.</translation>
     </message>
 </context>
 <context>
@@ -504,7 +504,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Torrent-koppeling toevoegen</translation>
+        <translation>Torrent-koppeling toevoegen...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -584,7 +584,7 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>Om deze functie te gebruiken, moet de WebUI toegankelijk zijn via https.</translation>
+        <translation>Om deze functie te gebruiken, moet de WebUI via HTTPS worden geopend.</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -676,7 +676,7 @@
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Kan torrentbestand niet exporteren</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1173,7 +1173,7 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation>µTP-TCP gemengde modus algoritme</translation>
+        <translation>μTP-TCP gemengde modus algoritme:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
@@ -1469,7 +1469,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Alle trackers opnieuw aankondigen wanneer IP of poort wijzigt:</translation>
+        <translation>Opnieuw aankondigen bij alle trackers wanneer IP of poort wijzigt:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1865,7 +1865,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation>Kleurenschema</translation>
+        <translation>Kleurenschema:</translation>
     </message>
     <message>
         <source>Show external IP in status bar</source>
@@ -1901,7 +1901,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
-        <translation type="unfinished" />
+        <translation>Volledige aankondiging-URL weergeven in de Tracker-kolom</translation>
     </message>
     <message>
         <source>URL:</source>
@@ -1909,11 +1909,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished" />
+        <translation>Overdrachtlijst</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>De aankondigingspoort moet tussen 0 en 65535 liggen.</translation>
     </message>
     <message>
         <source>Light</source>
@@ -1941,7 +1941,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished" />
+        <translation>Secure-flag van cookie inschakelen (vereist https of localhost-verbinding)</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
@@ -1953,7 +1953,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval voor opslaan van statistieken:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -1969,7 +1969,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Trackers van URL automatisch toevoegen aan nieuwe downloads:</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1989,7 +1989,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Lijst van alternatieve WebUI</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
@@ -1997,11 +1997,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation type="unfinished" />
+        <translation>Poort gemeld aan trackers (opnieuw starten vereist) [0: luisterpoort]:</translation>
     </message>
     <message>
         <source>User interface language:</source>
-        <translation type="unfinished" />
+        <translation>Taal gebruikersinterface:</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -2009,15 +2009,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
-        <translation type="unfinished" />
+        <translation>Torrent opnieuw controleren bevestigen:</translation>
     </message>
     <message>
         <source>Custom WebUI settings</source>
-        <translation type="unfinished" />
+        <translation>Aangepaste WebUI-instellingen</translation>
     </message>
     <message>
         <source>Following settings are WebUI only</source>
-        <translation type="unfinished" />
+        <translation>De volgende instellingen zijn alleen beschikbaar in WebUI</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
@@ -2041,7 +2041,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Log Files</source>
-        <translation type="unfinished" />
+        <translation>Logbestanden</translation>
     </message>
 </context>
 <context>
@@ -2333,7 +2333,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Info-hash v2</translation>
+        <translation>Info Hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
@@ -2413,7 +2413,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Replace option</source>
-        <translation type="unfinished" />
+        <translation>Optie vervangen</translation>
     </message>
     <message>
         <source>Edit web seed URL...</source>
@@ -2437,7 +2437,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Apply to which filename part</source>
-        <translation type="unfinished" />
+        <translation>Toepassen op welk deel van de bestandsnaam</translation>
     </message>
     <message>
         <source>No</source>
@@ -2872,7 +2872,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Status Icon</source>
-        <translation type="unfinished" />
+        <translation>Statuspictogram</translation>
     </message>
 </context>
 <context>
@@ -3105,7 +3105,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Collapse/expand category</source>
-        <translation type="unfinished" />
+        <translation>Categorie samenvouwen/uitvouwen</translation>
     </message>
 </context>
 <context>
@@ -3294,7 +3294,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation>Automatische modus betekent dat verschillende torrent-eigenschappen (bijvoorbeeld opslagpad) bepaald zullen worden door de bijbehorende categorie.</translation>
+        <translation>Automatische modus betekent dat verschillende torrent-eigenschappen (bijvoorbeeld het opslagpad) worden bepaald door de bijbehorende categorie.</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3567,7 +3567,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Min size prefix</source>
-        <translation type="unfinished" />
+        <translation>Minimale grootte prefix</translation>
     </message>
     <message>
         <source>Start a search above.</source>
@@ -3575,7 +3575,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Max size prefix</source>
-        <translation type="unfinished" />
+        <translation>Maximale grootte prefix</translation>
     </message>
     <message>
         <source>Select plugins</source>
@@ -3820,7 +3820,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>De gratis IP to Country Lite database van DB-IP wordt gebruikt voor het oplossen van de landen van peers. De database is gelicenseerd onder de Creative Commons Attribution 4.0 International License.</translation>
+        <translation>De gratis IP to Country Lite-database van DB-IP wordt gebruikt om de landen van peers op te lossen. De database valt onder de Creative Commons Attribution 4.0 Internationale Licentie.</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -4020,15 +4020,15 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Unable to update URL</source>
-        <translation type="unfinished" />
+        <translation>Kon URL niet bijwerken</translation>
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation type="unfinished" />
+        <translation>URL is niet gewijzigd</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>URL mag niet leeg zijn</translation>
     </message>
 </context>
 <context>
@@ -4047,11 +4047,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation>zal met alle artikels overeenkomen.</translation>
+        <translation> komt overeen met alle artikelen.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation>Afleveringsfilter-regels:</translation>
+        <translation>Afleveringsfilterregels: </translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
@@ -4111,7 +4111,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Example: </source>
-        <translation>Voorbeeld:</translation>
+        <translation>Voorbeeld: </translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -4143,7 +4143,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>Er worden drie bereiktypes voor afleveringen ondersteund:</translation>
+        <translation>Er worden drie bereiktypes voor afleveringen ondersteund: </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -4223,7 +4223,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation>U kunt volgende jokertekens gebruiken:</translation>
+        <translation>Jokertekens: u kunt gebruiken</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
@@ -4277,11 +4277,11 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Remove rule</source>
-        <translation type="unfinished" />
+        <translation>Regel verwijderen</translation>
     </message>
     <message>
         <source>Add rule</source>
-        <translation type="unfinished" />
+        <translation>Regel toevoegen</translation>
     </message>
     <message>
         <source>Add Stopped:</source>
@@ -4418,7 +4418,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>item</source>
-        <translation>Item</translation>
+        <translation>item</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4446,7 +4446,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>items</source>
-        <translation>Items</translation>
+        <translation>items</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4465,7 +4465,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Weet u zeker dat u tracker %1 uit alle torrents wilt verwijderen?</translation>
     </message>
 </context>
 <context>
@@ -4484,7 +4484,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Unable to set category</source>
-        <translation type="unfinished" />
+        <translation>Kan categorie niet instellen</translation>
     </message>
 </context>
 <context>
@@ -4555,7 +4555,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-WebUI</translation>
     </message>
     <message>
         <source>Password</source>
@@ -4571,11 +4571,11 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Server response:</source>
-        <translation type="unfinished" />
+        <translation>Serverrespons:</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Kan niet inloggen, server is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
         <source>Username</source>

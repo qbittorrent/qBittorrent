@@ -80,11 +80,11 @@
     </message>
     <message>
         <source>Select .torrent files</source>
-        <translation type="unfinished" />
+        <translation>Selecionar ficheiros .torrent</translation>
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>Opções do torrent</translation>
     </message>
 </context>
 <context>
@@ -365,11 +365,11 @@
     </message>
     <message>
         <source>External IP: N/A</source>
-        <translation type="unfinished" />
+        <translation>IP externo: N/A</translation>
     </message>
     <message>
         <source>Reverse proxy setup examples</source>
-        <translation type="unfinished" />
+        <translation>Exemplos de configuração de proxy reverso</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Unable to delete torrents.</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível eliminar os torrents.</translation>
     </message>
     <message>
         <source>URL</source>
@@ -393,11 +393,11 @@
     </message>
     <message>
         <source>External IP: %1%2</source>
-        <translation type="unfinished" />
+        <translation>IP externo: %1%2</translation>
     </message>
     <message>
         <source>Edit web seed</source>
-        <translation type="unfinished" />
+        <translation>Editar fonte da web</translation>
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
@@ -405,35 +405,35 @@
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
-        <translation type="unfinished" />
+        <translation>Não é possível definir a Gestão Automática de Torrents para os torrents selecionados.</translation>
     </message>
     <message>
         <source>Unable to stop torrents.</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível parar os torrents.</translation>
     </message>
     <message>
         <source>Unable to download file</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível transferir o ficheiro</translation>
     </message>
     <message>
         <source>External IPs: %1, %2</source>
-        <translation type="unfinished" />
+        <translation>IPs externos: %1, %2</translation>
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível verificar novamente os torrents.</translation>
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
-        <translation type="unfinished" />
+        <translation>Lista de fontes da web a adicionar (um por linha):</translation>
     </message>
     <message>
         <source>Unable to start torrents.</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível iniciar os torrents.</translation>
     </message>
     <message>
         <source>Add web seeds</source>
-        <translation type="unfinished" />
+        <translation>Adicionar seeds da web</translation>
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
@@ -660,7 +660,7 @@
     </message>
     <message>
         <source>Use regular expression</source>
-        <translation type="unfinished" />
+        <translation>Usar expressão regular</translation>
     </message>
     <message>
         <source>Would you like to start all torrents?</source>
@@ -676,7 +676,7 @@
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Não foi possível exportar o arquivo torrent</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1865,15 +1865,15 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Color scheme:</source>
-        <translation type="unfinished" />
+        <translation>Esquema de cor:</translation>
     </message>
     <message>
         <source>Show external IP in status bar</source>
-        <translation type="unfinished" />
+        <translation>Mostrar IP externo na barra de status</translation>
     </message>
     <message>
         <source>Fetched trackers</source>
-        <translation type="unfinished" />
+        <translation>Rastreadores buscados</translation>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
@@ -1881,11 +1881,11 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Ignorar erros SSL:</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>Escuro</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
@@ -1901,7 +1901,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
-        <translation type="unfinished" />
+        <translation>Exibir URL de anúncio completo na coluna Rastreador</translation>
     </message>
     <message>
         <source>URL:</source>
@@ -1913,11 +1913,11 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>A porta de anúncio deve estar entre 0 e 65535.</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>Claro</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
@@ -1929,7 +1929,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Start / stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Iniciar / Parar torrent</translation>
     </message>
     <message>
         <source>Send test email</source>
@@ -1941,7 +1941,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished" />
+        <translation>Habilitar sinalizador de cookie seguro (requer conexão HTTPS ou localhost)</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
@@ -1953,7 +1953,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation type="unfinished" />
+        <translation>Intervalo para salvar estatísticas:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -1961,7 +1961,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Run on torrent finished:</source>
-        <translation type="unfinished" />
+        <translation>Executar ao concluir o torrent:</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
@@ -1969,7 +1969,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Automaticamente adicionar estes rastreadores do URL aos novos downloads:</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1989,19 +1989,19 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation type="unfinished" />
+        <translation>Lista de interface web alternativa</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
-        <translation type="unfinished" />
+        <translation>Executar ao adicionar o torrent:</translation>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation type="unfinished" />
+        <translation>Porta reportada aos trackers (necessário reiniciar) [0: porta de escuta]:</translation>
     </message>
     <message>
         <source>User interface language:</source>
-        <translation type="unfinished" />
+        <translation>Idioma da interface do usuário:</translation>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
@@ -2009,15 +2009,15 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
-        <translation type="unfinished" />
+        <translation>Confirmar nova verificação do torrent:</translation>
     </message>
     <message>
         <source>Custom WebUI settings</source>
-        <translation type="unfinished" />
+        <translation>Configurações personalizadas da WebUI</translation>
     </message>
     <message>
         <source>Following settings are WebUI only</source>
-        <translation type="unfinished" />
+        <translation>As configurações a seguir são apenas para a WebUI</translation>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
@@ -2041,7 +2041,7 @@ Utilize ';' para dividir várias entradas. Pode usar o asterisco '*'.</translati
     </message>
     <message>
         <source>Log Files</source>
-        <translation type="unfinished" />
+        <translation>Arquivos do log</translation>
     </message>
 </context>
 <context>

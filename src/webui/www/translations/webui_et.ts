@@ -293,7 +293,7 @@
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Üleslaadimise kiiruse piirang peab olema rohkem kui 0.</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -313,7 +313,7 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Allalaadimise kiiruse piirang peab olema suurem kui 0.</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -373,7 +373,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Ei saa ühendust qBittorrentiga</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Unable to delete torrents.</source>
-        <translation type="unfinished" />
+        <translation>Ei saa kustutada torrenteid.</translation>
     </message>
     <message>
         <source>URL</source>
@@ -413,7 +413,7 @@
     </message>
     <message>
         <source>Unable to download file</source>
-        <translation type="unfinished" />
+        <translation>Ei saa allalaadida faili</translation>
     </message>
     <message>
         <source>External IPs: %1, %2</source>
@@ -676,7 +676,7 @@
     </message>
     <message>
         <source>Unable to export torrent file</source>
-        <translation type="unfinished" />
+        <translation>Ei saa eksportida torrent faili</translation>
     </message>
     <message>
         <source>Name</source>
@@ -1877,7 +1877,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ignore SSL errors:</source>
-        <translation type="unfinished" />
+        <translation>Ignoreeri SSL vigu:</translation>
     </message>
     <message>
         <source>Dark</source>
@@ -1905,7 +1905,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Transfer list</source>
-        <translation type="unfinished" />
+        <translation>Ülekandeloend</translation>
     </message>
     <message>
         <source>The announce port must be between 0 and 65535.</source>
@@ -1949,7 +1949,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation type="unfinished" />
+        <translation>Statistika salvestamise intervall:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -1969,7 +1969,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrenti sisu eemaldamise režiim:</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
@@ -2005,7 +2005,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
-        <translation type="unfinished" />
+        <translation>Kinnita torrenti ülekontroll:</translation>
     </message>
     <message>
         <source>Custom WebUI settings</source>
@@ -3302,7 +3302,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add tags</source>
-        <translation type="unfinished" />
+        <translation>Lisa silte</translation>
     </message>
     <message>
         <source>Category:</source>
@@ -4461,7 +4461,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Oled kindel, et soovid tracker %1 eemaldada kõikidelt torrentitelt?</translation>
     </message>
 </context>
 <context>

@@ -755,7 +755,7 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>localhost의 클라이언트에 대한 인증 우회</translation>
+        <translation>localhost에서 클라이언트에 대한 인증 우회하기</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
@@ -1941,7 +1941,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation>쿠키 보안 플래그 사용 (HTTPS 또는 로컬 호스트 연결 필요)</translation>
+        <translation>쿠키 보안 플래그 사용 (HTTPS 또는 localhost 연결 필요)</translation>
     </message>
     <message>
         <source>When duplicate torrent is being added</source>
@@ -3022,7 +3022,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Seeding</source>
-        <translation>시딩</translation>
+        <translation>배포중</translation>
     </message>
     <message>
         <source>Queued</source>

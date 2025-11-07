@@ -203,7 +203,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="167"/>
         <source>Torrent options</source>
-        <translation type="unfinished"></translation>
+        <translation>Opções do torrent</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="209"/>
@@ -364,7 +364,7 @@
         <translation>Guardar como ficheiro .torrent...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="697"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="698"/>
         <source>I/O Error</source>
         <translation>Erro I/O</translation>
     </message>
@@ -381,7 +381,7 @@
         <translation>Indisponível</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="909"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="910"/>
         <source>Not available</source>
         <translation>Indisponível</translation>
     </message>
@@ -428,33 +428,33 @@
         <translation>N/D</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="606"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="607"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1 (Espaço livre no disco: %2)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="607"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="608"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>Indisponível</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="684"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="685"/>
         <source>Torrent file (*%1)</source>
         <translation>Ficheiro torrent (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="686"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="687"/>
         <source>Save as torrent file</source>
         <translation>Guardar como ficheiro torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="698"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="699"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>Não foi possível exportar o arquivo de metadados do torrent &apos;%1&apos;. Motivo: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="879"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="880"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>Não é possível criar o torrent v2 até que seus dados sejam totalmente transferidos.</translation>
     </message>
@@ -464,12 +464,12 @@
         <translation>Filtrar ficheiros...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="858"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="859"/>
         <source>Parsing metadata...</source>
         <translation>Análise de metadados...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="862"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="863"/>
         <source>Metadata retrieval complete</source>
         <translation>Obtenção de metadados terminada</translation>
     </message>
@@ -2371,12 +2371,12 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>O torrent atingiu o limite de tempo inativo a semear.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5704"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5719"/>
         <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
         <translation>Falha ao carregar o torrent. Motivo: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6375"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6390"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
         <translation>Erro I2P. Mensagem: &quot;%1&quot;.</translation>
     </message>
@@ -2519,7 +2519,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Removido o URL da semente do torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6526"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6541"/>
         <source>Failed to remove partfile. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2589,75 +2589,75 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Falha ao analisar o ficheiro de filtro dos IPs</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5943"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5958"/>
         <source>Restored torrent. Torrent: &quot;%1&quot;</source>
         <translation>Torrent restaurado. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5947"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5962"/>
         <source>Added new torrent. Torrent: &quot;%1&quot;</source>
         <translation>Novo torrent adicionado. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="5953"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="5968"/>
         <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation>Erro de torrent. Torrent: &quot;%1&quot;. Erro: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6001"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6016"/>
         <source>Torrent is missing SSL parameters. Torrent: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6051"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6066"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Alerta de erro no ficheiro. Torrent: &quot;%1&quot;. Ficheiro: &quot;%2&quot;. Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6062"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6077"/>
         <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
         <translation>Falha no mapeamento das portas UPnP/NAT-PMP. Mensagem: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6068"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6083"/>
         <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
         <translation>Mapeamento das portas UPnP/NAT-PMP realizado com sucesso. Mensagem: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6077"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6092"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>Filtro de IP</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6080"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6095"/>
         <source>filtered port (%1)</source>
         <comment>this peer was blocked. Reason: filtered port (8899).</comment>
         <translation>porta filtrada (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6086"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6101"/>
         <source>privileged port (%1)</source>
         <comment>this peer was blocked. Reason: privileged port (80).</comment>
         <translation>porta privilegiada (%1)</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6116"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6131"/>
         <source>URL seed connection failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6167"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6182"/>
         <source>BitTorrent session encountered a serious error. Reason: &quot;%1&quot;</source>
         <translation>A sessão BitTorrent encontrou um erro grave. Motivo: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6365"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6380"/>
         <source>SOCKS5 proxy error. Address: %1. Message: &quot;%2&quot;.</source>
         <translation>Erro de proxy SOCKS5. Endereço: %1. Mensagem: &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6083"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6098"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 restrições de modo misto</translation>
@@ -2673,49 +2673,49 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Ocorreu um erro ao carregar a configuração das Categorias. Ficheiro: &quot;%1&quot;. Erro: &quot;Formato de dados inválido&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6089"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6104"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 encontra-se inativo</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6092"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6107"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 está desativado</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6122"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6137"/>
         <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
         <translation>Mensagem de erro recebida do URL da semente. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Mensagem: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6131"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6146"/>
         <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
         <translation>A receber com sucesso através do IP. IP: &quot;%1&quot;. Porta: &quot;%2/%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6138"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6153"/>
         <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Falha de recepção no IP. IP: &quot;%1&quot;. Porta: &quot;%2/%3&quot;. Motivo: &quot;%4&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6146"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6161"/>
         <source>Detected external IP. IP: &quot;%1&quot;</source>
         <translation>IP externo detetado. IP: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6275"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6290"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
         <translation>Erro: A fila de alertas internos está cheia e os alertas foram perdidos, poderá experienciar uma degradação na performance. Tipos de alertas perdidos: &quot;%1&quot;. Mensagem: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6297"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6312"/>
         <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
         <translation>Torrent movido com sucesso. Torrent: &quot;%1&quot;. Destino: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/sessionimpl.cpp" line="6320"/>
+        <location filename="../base/bittorrent/sessionimpl.cpp" line="6335"/>
         <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
         <translation>Falha ao mover o torrent. Torrent: &quot;%1&quot;. Fonte: &quot;%2&quot;. Destino: &quot;%3&quot;. Motivo: &quot;%4&quot;</translation>
     </message>
@@ -2826,189 +2826,189 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
 <context>
     <name>CMD Options</name>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="153"/>
+        <location filename="../app/cmdoptions.cpp" line="152"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
         <translation>O parâmetro &apos;%1&apos; deverá seguir a sintaxe &apos;%1=%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="199"/>
+        <location filename="../app/cmdoptions.cpp" line="201"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
         <translation>O parâmetro &apos;%1&apos; deverá seguir a sintaxe &apos;%1=%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="215"/>
+        <location filename="../app/cmdoptions.cpp" line="217"/>
         <source>Expected integer number in environment variable &apos;%1&apos;, but got &apos;%2&apos;</source>
         <translation>Era esperado o número inteiro na variável ambiente &apos;%1&apos;, mas foi obtido &apos;%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="293"/>
+        <location filename="../app/cmdoptions.cpp" line="295"/>
         <source>Expected %1 in environment variable &apos;%2&apos;, but got &apos;%3&apos;</source>
         <translation>Era esperado %1 na variável ambiente &apos;%2&apos;, mas foi obtido &apos;%3&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="383"/>
-        <location filename="../app/cmdoptions.cpp" line="391"/>
+        <location filename="../app/cmdoptions.cpp" line="385"/>
+        <location filename="../app/cmdoptions.cpp" line="393"/>
         <source>%1 must specify a valid port (1 to 65535).</source>
         <translation>%1 deverá especificar uma porta válida (entre 1 e 65535).</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="500"/>
+        <location filename="../app/cmdoptions.cpp" line="502"/>
         <source>Usage:</source>
         <translation>Utilização:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="501"/>
+        <location filename="../app/cmdoptions.cpp" line="503"/>
         <source>[options] [(&lt;filename&gt; | &lt;url&gt;)...]</source>
         <translation>[opções] [(&lt;filename&gt; | &lt;url&gt;)...]</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="503"/>
+        <location filename="../app/cmdoptions.cpp" line="505"/>
         <source>Options:</source>
         <translation>Opções:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="506"/>
+        <location filename="../app/cmdoptions.cpp" line="508"/>
         <source>Display program version and exit</source>
         <translation>Mostrar a versão do programa e sair</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="504"/>
+        <location filename="../app/cmdoptions.cpp" line="506"/>
         <source>Display this help message and exit</source>
         <translation>Mostrar esta mensagem de ajuda e sair</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="266"/>
+        <location filename="../app/cmdoptions.cpp" line="268"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
         <comment>e.g. Parameter &apos;--add-stopped&apos; must follow syntax &apos;--add-stopped=&lt;true|false&gt;&apos;</comment>
         <translation>O parâmetro &apos;%1&apos; deverá seguir a sintaxe &apos;%1=%2&apos;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="508"/>
+        <location filename="../app/cmdoptions.cpp" line="510"/>
         <source>Confirm the legal notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="509"/>
-        <location filename="../app/cmdoptions.cpp" line="512"/>
+        <location filename="../app/cmdoptions.cpp" line="511"/>
+        <location filename="../app/cmdoptions.cpp" line="514"/>
         <source>port</source>
         <translation>porta</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="510"/>
+        <location filename="../app/cmdoptions.cpp" line="512"/>
         <source>Change the WebUI port</source>
         <translation>Alterar a porta WebUI</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="513"/>
+        <location filename="../app/cmdoptions.cpp" line="515"/>
         <source>Change the torrenting port</source>
         <translation>Alterar a porta de torrent</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="516"/>
+        <location filename="../app/cmdoptions.cpp" line="518"/>
         <source>Disable splash screen</source>
         <translation>Desativar ecrã de arranque</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="518"/>
+        <location filename="../app/cmdoptions.cpp" line="520"/>
         <source>Run in daemon-mode (background)</source>
         <translation>Executar no modo daemon (em segundo plano)</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="521"/>
+        <location filename="../app/cmdoptions.cpp" line="523"/>
         <source>dir</source>
         <extracomment>Use appropriate short form or abbreviation of &quot;directory&quot;</extracomment>
         <translation>dir</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="522"/>
+        <location filename="../app/cmdoptions.cpp" line="524"/>
         <source>Store configuration files in &lt;dir&gt;</source>
         <translation>Guardar ficheiros de configuração em &lt;dir&gt;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="523"/>
-        <location filename="../app/cmdoptions.cpp" line="536"/>
+        <location filename="../app/cmdoptions.cpp" line="525"/>
+        <location filename="../app/cmdoptions.cpp" line="538"/>
         <source>name</source>
         <translation>nome</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="524"/>
+        <location filename="../app/cmdoptions.cpp" line="526"/>
         <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
         <translation>Guardar ficheiros de configuração em diretorias qBittorrent_&lt;name&gt;</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="526"/>
+        <location filename="../app/cmdoptions.cpp" line="528"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
         <translation>Retalhar em ficheiros fastresume libtorrent e fazer caminhos de ficheiro relativos para a diretoria do perfil</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="528"/>
+        <location filename="../app/cmdoptions.cpp" line="530"/>
         <source>files or URLs</source>
         <translation>ficheiros ou URLs</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="529"/>
+        <location filename="../app/cmdoptions.cpp" line="531"/>
         <source>Download the torrents passed by the user</source>
         <translation>Transferir os torrents enviados pelo utilizador</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="532"/>
+        <location filename="../app/cmdoptions.cpp" line="534"/>
         <source>Options when adding new torrents:</source>
         <translation>Opções ao adicionar novos torrents:</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="533"/>
+        <location filename="../app/cmdoptions.cpp" line="535"/>
         <source>path</source>
         <translation>caminho</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="533"/>
+        <location filename="../app/cmdoptions.cpp" line="535"/>
         <source>Torrent save path</source>
         <translation>Caminho para guardar o torrent</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="534"/>
+        <location filename="../app/cmdoptions.cpp" line="536"/>
         <source>Add torrents as running or stopped</source>
         <translation>Adicionar torrents como em execução ou parados</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="535"/>
+        <location filename="../app/cmdoptions.cpp" line="537"/>
         <source>Skip hash check</source>
         <translation>Ignorar a verificação do hash</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="537"/>
+        <location filename="../app/cmdoptions.cpp" line="539"/>
         <source>Assign torrents to category. If the category doesn&apos;t exist, it will be created.</source>
         <translation>Atribuir os torrents a categorias. Se ela não existir será criada.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="539"/>
+        <location filename="../app/cmdoptions.cpp" line="541"/>
         <source>Download files in sequential order</source>
         <translation>Transferir os  ficheiros por ordem sequencial</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="541"/>
+        <location filename="../app/cmdoptions.cpp" line="543"/>
         <source>Download first and last pieces first</source>
         <translation>Transferir a primeira e a última parte primeiro</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="543"/>
+        <location filename="../app/cmdoptions.cpp" line="545"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
         <translation>Especifica se a caixa de diálogo &quot;Adicionar novo torrent&quot; é aberta ao adicionar um torrent.</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="547"/>
+        <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
         <translation>Os valores das opções podem ser fornecidos através de variáveis de ambiente. Para a opção denominada &apos;nome-parâmetro&apos;, o nome da variável de ambiente é &apos;QBT_PARAMETER_NAME&apos; (em maiúsculas, &apos;-&apos; substituído por &apos;_&apos;). Para passar os valores do sinalizador, defina a variável como &apos;1&apos; ou &apos;VERDADEIRO&apos;. Por exemplo, para desativar o ecrã inicial: </translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="552"/>
+        <location filename="../app/cmdoptions.cpp" line="554"/>
         <source>Command line parameters take precedence over environment variables</source>
         <translation>Os parâmetros da linha de comando têm precedência sobre as variáveis de ambiente</translation>
     </message>
     <message>
-        <location filename="../app/cmdoptions.cpp" line="560"/>
+        <location filename="../app/cmdoptions.cpp" line="562"/>
         <source>Help</source>
         <translation>Ajuda</translation>
     </message>
@@ -6068,12 +6068,12 @@ Requerimento mínimo: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1638"/>
         <source>Run on torrent added:</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ao adicionar o torrent:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1656"/>
         <source>Run on torrent finished:</source>
-        <translation type="unfinished"></translation>
+        <translation>Executar ao concluir o torrent:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1728"/>
@@ -6272,7 +6272,7 @@ Desativar encriptação: Apenas liga a fontes sem protocolo de encriptação</tr
     <message>
         <location filename="../gui/optionsdialog.ui" line="3156"/>
         <source>Automatically append trackers from URL to new downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>Automaticamente adicionar estes rastreadores do URL aos novos downloads:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3170"/>
@@ -6282,7 +6282,7 @@ Desativar encriptação: Apenas liga a fontes sem protocolo de encriptação</tr
     <message>
         <location filename="../gui/optionsdialog.ui" line="3182"/>
         <source>Fetched trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>Rastreadores buscados</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3247"/>
@@ -6464,7 +6464,7 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="198"/>
         <source>Color scheme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Esquema de cor:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="304"/>
@@ -6475,7 +6475,7 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
         <location filename="../gui/optionsdialog.ui" line="344"/>
         <location filename="../gui/optionsdialog.ui" line="393"/>
         <source>Start / stop torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Iniciar / Parar torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="359"/>
@@ -6542,7 +6542,7 @@ Utilize &apos;;&apos; para dividir várias entradas. Pode usar o asterisco &apos
     <message>
         <location filename="../gui/optionsdialog.ui" line="825"/>
         <source>Show external IP in status bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar IP externo na barra de status</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="887"/>
@@ -7353,7 +7353,7 @@ readme[0-9].txt: filtra &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, mas n�
     <message>
         <location filename="../gui/optionsdialog.ui" line="3902"/>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished"></translation>
+        <translation>Habilitar sinalizador de cookie seguro (requer conexão HTTPS ou localhost)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3909"/>
@@ -7571,13 +7571,13 @@ readme[0-9].txt: filtra &apos;readme1.txt&apos;, &apos;readme2.txt&apos;, mas n�
         <location filename="../gui/optionsdialog.cpp" line="1768"/>
         <source>Dark</source>
         <comment>Dark color scheme</comment>
-        <translation type="unfinished"></translation>
+        <translation>Escuro</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1769"/>
         <source>Light</source>
         <comment>Light color scheme</comment>
-        <translation type="unfinished"></translation>
+        <translation>Claro</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1770"/>
@@ -8353,9 +8353,9 @@ Esses plugins foram desativados.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <location filename="../gui/programupdater.cpp" line="108"/>
-        <location filename="../gui/programupdater.cpp" line="178"/>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
+        <location filename="../gui/programupdater.cpp" line="127"/>
+        <location filename="../gui/programupdater.cpp" line="199"/>
+        <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -10018,7 +10018,7 @@ Para instalar alguns, clique no botão &quot;Plugins de pesquisa...&quot; locali
         <location filename="../gui/statusbar.cpp" line="90"/>
         <location filename="../gui/statusbar.cpp" line="232"/>
         <source>External IP: N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>IP externo: N/A</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="93"/>
@@ -10051,12 +10051,12 @@ Para instalar alguns, clique no botão &quot;Plugins de pesquisa...&quot; locali
     <message>
         <location filename="../gui/statusbar.cpp" line="238"/>
         <source>External IPs: %1, %2</source>
-        <translation type="unfinished"></translation>
+        <translation>IPs externos: %1, %2</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="240"/>
         <source>External IP: %1%2</source>
-        <translation type="unfinished"></translation>
+        <translation>IP externo: %1%2</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="288"/>
@@ -11990,9 +11990,8 @@ Por favor, escolha um nome diferente e tente novamente.</translation>
         <translation>Falha ao exportar o arquivo .torrent. Torrent: &quot;%1&quot;. Caminho para salvar: &quot;%2&quot;. Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>A file with the same name already exists</source>
-        <translation>Um arquivo com o mesmo nome já existe</translation>
+        <translation type="vanished">Um arquivo com o mesmo nome já existe</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

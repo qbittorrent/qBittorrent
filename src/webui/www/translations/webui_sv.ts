@@ -1737,7 +1737,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation>Python körbar sökväg (kan kräva omstart):</translation>
+        <translation>Sökväg till körbar Python-fil (kan kräva omstart):</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
@@ -1765,7 +1765,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>.torrent file size limit:</source>
-        <translation>.torrent-filstorleksgräns:</translation>
+        <translation>Storleksgräns för .torrent-filer:</translation>
     </message>
     <message>
         <source>(Auto detect if empty)</source>
@@ -1973,7 +1973,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation>Torrent-innehåll borttagningsläge:</translation>
+        <translation>Läge för borttagning av torrentinnehåll:</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>

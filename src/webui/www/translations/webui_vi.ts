@@ -437,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tỷ lệ chia sẻ không được có giá trị âm.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn thời gian gieo hạt không được có giá trị âm.</translation>
     </message>
 </context>
 <context>

@@ -52,15 +52,15 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>მეტაინფორმაცია მიღებულია</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>ფაილები შემოწმებულია</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>შეჩერების პირობა</translation>
     </message>
     <message>
         <source>None</source>
@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>რიგის თავში დამატება</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
@@ -1601,7 +1601,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>ფაილები შემოწმებულია</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1613,7 +1613,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>მეტაინფორმაცია მიღებულია</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1701,7 +1701,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>რიგის თავში დამატება</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>

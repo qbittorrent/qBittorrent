@@ -1997,7 +1997,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation>Сообщаемый трекерам порт (нужен перезапуск) [0: порт прослушивания]:</translation>
+        <translation>Сообщаемый трекерам порт (нужен перезапуск) [0: прослушиваемый]:</translation>
     </message>
     <message>
         <source>User interface language:</source>

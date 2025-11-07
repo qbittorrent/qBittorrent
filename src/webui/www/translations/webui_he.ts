@@ -84,7 +84,7 @@
     </message>
     <message>
         <source>Torrent options</source>
-        <translation type="unfinished" />
+        <translation>אפשרויות טורנט</translation>
     </message>
 </context>
 <context>

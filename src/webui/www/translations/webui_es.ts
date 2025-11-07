@@ -437,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>El límite de ratio de acciones no debe tener un valor negativo.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>El límite de tiempo de siembra no debe tener un valor negativo.</translation>
     </message>
 </context>
 <context>
@@ -4024,11 +4024,11 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation type="unfinished" />
+        <translation>La URL no ha cambiado</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>La URL no puede estar vacía</translation>
     </message>
 </context>
 <context>
@@ -4465,7 +4465,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <name>TrackersFilterWidget</name>
     <message>
         <source>Are you sure you want to remove tracker %1 from all torrents?</source>
-        <translation type="unfinished" />
+        <translation>¿Estás seguro de que quieres eliminar el rastreador "%1" de todos los torrents?</translation>
     </message>
 </context>
 <context>
@@ -4484,7 +4484,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Unable to set category</source>
-        <translation type="unfinished" />
+        <translation>No se pudo establecer la categoría</translation>
     </message>
 </context>
 <context>
@@ -4499,7 +4499,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Add Cookie</source>
-        <translation type="unfinished" />
+        <translation>Añadir Cookie</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -4555,7 +4555,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <name>Login</name>
     <message>
         <source>qBittorrent WebUI</source>
-        <translation type="unfinished" />
+        <translation>Interfaz web de qBittorrent</translation>
     </message>
     <message>
         <source>Password</source>
@@ -4571,11 +4571,11 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Server response:</source>
-        <translation type="unfinished" />
+        <translation>Respuesta del servidor:</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>No se puede iniciar sesión, probablemente el servidor no esté disponible.</translation>
     </message>
     <message>
         <source>Username</source>

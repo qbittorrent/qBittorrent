@@ -437,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Delingsforholdsgrense kan ikke være negativ.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Delingstidsgrensen kan ikke være negativ.</translation>
     </message>
 </context>
 <context>

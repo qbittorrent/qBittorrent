@@ -377,7 +377,7 @@
     </message>
     <message>
         <source>Remember choice</source>
-        <translation>Запомніць выбар</translation>
+        <translation>Памятаць выбар</translation>
     </message>
     <message>
         <source>Are you sure you want to remove these %1 torrents from the transfer list?</source>

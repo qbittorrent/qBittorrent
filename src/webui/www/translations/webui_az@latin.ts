@@ -437,11 +437,11 @@
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Paylaşma reytinq məhdudiyyəti mənfi dəyər olmamalıdır.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Paylaşma vaxtı məhdudiyyəti mənfi dəyər olmamalıdır.</translation>
     </message>
 </context>
 <context>

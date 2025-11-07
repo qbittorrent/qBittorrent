@@ -80,7 +80,7 @@
     </message>
     <message>
         <source>Select .torrent files</source>
-        <translation>Wähle .torrent-Dateien</translation>
+        <translation>.torrent-Dateien wählen</translation>
     </message>
     <message>
         <source>Torrent options</source>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation>Unbenutzte Kategorien entfernen</translation>
+        <translation>Ungenutzte Kategorien entfernen</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -397,7 +397,7 @@
     </message>
     <message>
         <source>Edit web seed</source>
-        <translation>Webseed editieren</translation>
+        <translation>Webseed bearbeiten</translation>
     </message>
     <message>
         <source>Are you sure you want to remove %1 from the transfer list?</source>
@@ -588,11 +588,11 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation>Verbindungs-Status: hinter einer Firewall</translation>
+        <translation>Verbindungsstatus: Hinter einer Firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation>Verbindungs-Status: Verbunden</translation>
+        <translation>Verbindungsstatus: Verbunden</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
@@ -612,7 +612,7 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation>Verbindungs-Status: Nicht verbunden</translation>
+        <translation>Verbindungsstatus: Nicht verbunden</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -624,7 +624,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Filter Seitenleiste</translation>
+        <translation>Filterseitenleiste</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -636,7 +636,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Ausführungs-Log</translation>
+        <translation>Ausführungsprotokoll</translation>
     </message>
     <message>
         <source>Log</source>
@@ -751,7 +751,7 @@
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
-        <translation>HTTPS anstatt von HTTP benutzen</translation>
+        <translation>HTTPS statt HTTP verwenden</translation>
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
@@ -771,11 +771,11 @@
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation>.torrent Dateien kopieren nach:</translation>
+        <translation>.torrent-Dateien kopieren nach:</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Kopiere die .torrent Dateien von beendeten Downloads nach:</translation>
+        <translation>.torrent-Dateien von beendeten Downloads kopieren nach:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -787,7 +787,7 @@
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation>.torrent-Dateien aus diesem Verzeichnis automatisch hinzufügen:</translation>
+        <translation>.torrent-Dateien automatisch hinzufügen von:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
@@ -1053,7 +1053,7 @@
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tipp: Setze Parameter zwischen Anführungszeichen damit Text bei Leerzeichen nicht abgeschnitten wird (z.B. "%N").</translation>
+        <translation>Tipp: Parameter zwischen Anführungszeichen setzen, damit Text bei Leerzeichen nicht abgeschnitten wird (z. B. "%N").</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1101,7 +1101,7 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Wechsle den Torrent in den manuellen Modus</translation>
+        <translation>Torrent in den manuellen Modus wechseln</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
@@ -1145,7 +1145,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Wechsle betroffene Torrents in den manuellen Modus</translation>
+        <translation>Betroffene Torrents in den manuellen Modus wechseln</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1213,7 +1213,7 @@
     </message>
     <message>
         <source>File pool size:</source>
-        <translation>Größe des Datei-Pools:</translation>
+        <translation>Größe des Dateipools:</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -1233,7 +1233,7 @@
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation>Entferne Torrent und seine Dateien</translation>
+        <translation>Torrent und seine Dateien entfernen</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
@@ -1257,7 +1257,7 @@
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation>Sende Empfehlungen für Upload-Teil:</translation>
+        <translation>Empfehlungen für Upload-Teil senden:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
@@ -1333,7 +1333,7 @@
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation>Sitzungs-Auszeit:</translation>
+        <translation>Sitzungszeitlimit:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
@@ -1361,7 +1361,7 @@
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation>Aktiviere RSS-Feeds</translation>
+        <translation>RSS-Feeds aktivieren</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1377,7 +1377,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation>Netzwerk Interface:</translation>
+        <translation>Netzwerkschnittstelle:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1389,7 +1389,7 @@
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation>Lade REPACK/PROPER Episoden herunter</translation>
+        <translation>REPACK/PROPER-Episoden herunterladen</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
@@ -1421,7 +1421,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation>Aktiviere automatisches Herunterladen von RSS-Torrents</translation>
+        <translation>Automatisches Herunterladen von RSS-Torrents aktivieren</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1441,7 +1441,7 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>Erstelle Unterordner</translation>
+        <translation>Unterordner erstellen</translation>
     </message>
     <message>
         <source>Original</source>
@@ -1449,7 +1449,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Erstelle keinen Unterordner</translation>
+        <translation>Keinen Unterordner erstellen</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1595,7 +1595,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Geben Sie Reverse-Proxy-IPs an (oder Subnetze, z.B. 0.0.0.0/24), um weitergeleitete Client-Adressen zu verwenden (Attribut X-Forwarded-For), verwenden Sie ';', um mehrere Einträge aufzuteilen.</translation>
+        <translation>Geben Sie Reverse-Proxy-IPs an (oder Subnetze, z. B. 0.0.0.0/24), um weitergeleitete Client-Adressen zu verwenden (Attribut X-Forwarded-For). Verwenden Sie „;“, um mehrere Einträge zu trennen.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1647,7 +1647,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation>Sichere die Protokolldatei nach:</translation>
+        <translation>Protokolldatei sichern nach:</translation>
     </message>
     <message>
         <source>days</source>
@@ -1659,7 +1659,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation>Lösche Sicherungen älter als:</translation>
+        <translation>Sicherungen löschen älter als:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1711,7 +1711,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation>Halte die Tracker-Auszeit an [0: deaktiviert]:</translation>
+        <translation>Tracker-Auszeit anhalten [0: deaktiviert]</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
@@ -1775,11 +1775,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Keep unselected files in ".unwanted" folder</source>
-        <translation>Behalte abgewählte Dateien im Verzeichnis ".unwanted"</translation>
+        <translation>Nicht gewählte Dateien im Ordner „.unwanted“ behalten</translation>
     </message>
     <message>
         <source>Enable Mark-of-the-Web (MOTW) for downloaded files (require macOS or Windows):</source>
-        <translation>Aktiviere 'Mark-of-the-Web' (MOTW) für heruntergeladene Dateien (erfordert macOS oder Windows):</translation>
+        <translation>„Mark-of-the-Web“ (MOTW) für heruntergeladene Dateien aktivieren (erfordert macOS oder Windows):</translation>
     </message>
     <message>
         <source> sec</source>
@@ -1803,11 +1803,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Use alternative WebUI</source>
-        <translation>Verwende alternatives Webinterface</translation>
+        <translation>Alternative Weboberfläche verwenden</translation>
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation>Ablauf-Intervall für Festplatten-Cache</translation>
+        <translation>Ablaufintervall für Festplatten-Cache</translation>
     </message>
     <message>
         <source>I2P outbound length:</source>
@@ -1935,7 +1935,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Send test email</source>
-        <translation>Test-Email senden</translation>
+        <translation>Test-E-Mail senden</translation>
     </message>
     <message>
         <source>Completed torrents:</source>
@@ -1975,7 +1975,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
-        <translation>Lösch-Modus für Torrent-Inhalte:</translation>
+        <translation>Löschmodus für Torrent-Inhalte:</translation>
     </message>
     <message>
         <source>Move files to trash (if possible)</source>
@@ -2182,7 +2182,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     <name>PropertiesWidget</name>
     <message>
         <source>Downloaded:</source>
-        <translation>Runtergeladen:</translation>
+        <translation>Heruntergeladen:</translation>
     </message>
     <message>
         <source>Transfer</source>
@@ -2251,7 +2251,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation>Letzter Seeder (100%) gesehen:</translation>
+        <translation>Letzter Seeder (100 %) gesehen:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -2367,7 +2367,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation>Fehler beim Umbenennen: Datei oder Verzeichnis existiert bereits</translation>
+        <translation>Fehler beim Umbenennen: Datei oder Ordner existiert bereits</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2395,7 +2395,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation>Verzeichnisse einschließen</translation>
+        <translation>Ordner einschließen</translation>
     </message>
     <message>
         <source>Search Files</source>
@@ -2419,7 +2419,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Edit web seed URL...</source>
-        <translation>Webseed-URL editieren ...</translation>
+        <translation>Webseed-URL bearbeiten ...</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
@@ -2451,7 +2451,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Web seed editing</source>
-        <translation>Webseed editieren</translation>
+        <translation>Webseed bearbeiten</translation>
     </message>
     <message>
         <source>Add web seeds...</source>
@@ -2466,7 +2466,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     <name>ScanFoldersModel</name>
     <message>
         <source>Monitored Folder</source>
-        <translation>Beobachtetes Verzeichnis</translation>
+        <translation>Beobachteter Ordner</translation>
     </message>
     <message>
         <source>Override Save Location</source>
@@ -2474,7 +2474,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Monitored folder</source>
-        <translation>Beobachtetes Verzeichnis</translation>
+        <translation>Beobachteter Ordner</translation>
     </message>
     <message>
         <source>Default save location</source>
@@ -2486,7 +2486,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>Verzeichnisnamen eingeben</translation>
+        <translation>Ordnernamen eingeben</translation>
     </message>
 </context>
 <context>
@@ -2504,7 +2504,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>User statistics</source>
-        <translation>Benutzer-Statistiken </translation>
+        <translation>Benutzerstatistiken</translation>
     </message>
     <message>
         <source>Cache statistics</source>
@@ -2548,15 +2548,15 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation>Eingereihte I/O Aufgaben:</translation>
+        <translation>Eingereihte I/O-Aufgaben:</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
-        <translation>Überlast Schreibpuffer:</translation>
+        <translation>Überlastschreibpuffer:</translation>
     </message>
     <message>
         <source>Read cache overload:</source>
-        <translation>Überlast Lesepuffer:</translation>
+        <translation>Überlastlesepuffer:</translation>
     </message>
     <message>
         <source>Total queued size:</source>
@@ -2583,7 +2583,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Seeding (0)</source>
-        <translation>Seede (0)</translation>
+        <translation>Seeden (0)</translation>
     </message>
     <message>
         <source>Completed (0)</source>
@@ -2611,7 +2611,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation>Seede (%1)</translation>
+        <translation>Seeden (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
@@ -2655,19 +2655,19 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation>Überprüfe (%1)</translation>
+        <translation>Überprüfung (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation>Überprüfe (0)</translation>
+        <translation>Überprüfung (0)</translation>
     </message>
     <message>
         <source>Moving (%1)</source>
-        <translation>Verschiebe (%1)</translation>
+        <translation>Verschieben (%1)</translation>
     </message>
     <message>
         <source>Moving (0)</source>
-        <translation>Verschiebe (0)</translation>
+        <translation>Verschieben (0)</translation>
     </message>
     <message>
         <source>Running (0)</source>
@@ -2823,7 +2823,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation>Verhältnis-Grenze</translation>
+        <translation>Verhältnisgrenze</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
@@ -2874,7 +2874,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Status Icon</source>
-        <translation>Status Icon</translation>
+        <translation>Statussymbol</translation>
     </message>
 </context>
 <context>
@@ -2901,7 +2901,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Aktualisiere ...</translation>
+        <translation>Wird aktualisiert ...</translation>
     </message>
     <message>
         <source>Working</source>
@@ -2933,11 +2933,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Tracker-URL editieren ...</translation>
+        <translation>Tracker-URL bearbeiten ...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>Tracker editieren</translation>
+        <translation>Tracker bearbeiten</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -3016,15 +3016,15 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation>Verschiebe</translation>
+        <translation>Verschieben</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation>[F] Seede</translation>
+        <translation>[F] Seeden</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation>Seede</translation>
+        <translation>Seeden</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -3036,11 +3036,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation>[F] Herunterladen</translation>
+        <translation>[F] Lädt herunter</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation>Lade Metadaten</translation>
+        <translation>Metadaten werden geladen</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -3056,7 +3056,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Downloading</source>
-        <translation>Lade</translation>
+        <translation>Lädt herunter</translation>
     </message>
     <message>
         <source>Checking resume data</source>
@@ -3072,7 +3072,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[F] Lade Metadaten</translation>
+        <translation>[F] Metadaten werden geladen</translation>
     </message>
     <message>
         <source>Stopped</source>
@@ -3184,7 +3184,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation>Erzwinge erneute Überprüfung</translation>
+        <translation>Erneute Überprüfung erzwingen</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
@@ -3208,7 +3208,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Erzwinge erneute Anmeldung</translation>
+        <translation>Erneute Anmeldung erzwingen</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -3331,7 +3331,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Set share limit to</source>
-        <translation>Setze Begrenzung für das Verhältnis auf</translation>
+        <translation>Begrenzung für das Verhältnis setzen auf</translation>
     </message>
     <message>
         <source>ratio</source>
@@ -3513,7 +3513,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Search in:</source>
-        <translation>Suche in:</translation>
+        <translation>Suchen in:</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -3521,7 +3521,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Torrent names only</source>
-        <translation>Nur Torrent-Namen</translation>
+        <translation>Nur Torrentnamen</translation>
     </message>
     <message>
         <source>Only enabled</source>
@@ -3557,7 +3557,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Klicke den "Such-Plugins ..."-Knopf unten rechts, um welche zu installieren.</translation>
+        <translation>Auf die Schaltfläche „Plugins suchen...“ unten rechts im Fenster klicken, um einige zu installieren.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
@@ -3720,7 +3720,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation>Unbenutzte Label entfernen</translation>
+        <translation>Ungenutzte Label entfernen</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
@@ -3896,7 +3896,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Searching...</source>
-        <translation>Suche ...</translation>
+        <translation>Suche läuft ...</translation>
     </message>
     <message>
         <source>Search aborted</source>
@@ -3930,7 +3930,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation>Bitte einen Verzeichnisnamen wählen</translation>
+        <translation>Bitte einen Ordnernamen wählen</translation>
     </message>
     <message>
         <source>New feed name:</source>
@@ -3946,11 +3946,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation>RSS Downloader ...</translation>
+        <translation>RSS-Downloader ...</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation>Markiere Einträge als gelesen</translation>
+        <translation>Einträge als gelesen markieren</translation>
     </message>
     <message>
         <source>Update all feeds</source>
@@ -3958,15 +3958,15 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation>Kopiere Feed-URL</translation>
+        <translation>Feed-URL kopieren</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation>Torrents: (Doppel-Klick zum Runterladen)</translation>
+        <translation>Torrents: (Doppelklicken zum Herunterladen)</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation>Öffne News-URL</translation>
+        <translation>News-URL öffnen</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -3990,11 +3990,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation>Verzeichnisname:</translation>
+        <translation>Ordnername:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation>Bitte eine RSS-Feed Adresse eingeben</translation>
+        <translation>Bitte eine RSS-Feed-Adresse eingeben</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
@@ -4014,11 +4014,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation>Lade Torrent</translation>
+        <translation>Torrent herunterladen</translation>
     </message>
     <message>
         <source>Edit feed URL...</source>
-        <translation>Feed-URL editieren ...</translation>
+        <translation>Feed-URL bearbeiten ...</translation>
     </message>
     <message>
         <source>Unable to update URL</source>
@@ -4041,7 +4041,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation>Übereinstimmende RSS Artikel</translation>
+        <translation>Übereinstimmende RSS-Artikel</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
@@ -4101,7 +4101,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation>Entferne bereits heruntergeladene Folgen</translation>
+        <translation>Heruntergeladene Folgen entfernen</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
@@ -4109,7 +4109,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation>Ein Ausdruck mit einer leeren Klausel %1 (z.B. %2)</translation>
+        <translation>Ein Ausdruck mit einer leeren Klausel %1 (z. B. %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -4173,7 +4173,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation>Folgen-Nummer ist zwingend ein positiver Wert</translation>
+        <translation>Folgennummer ist zwingend ein positiver Wert</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -4193,11 +4193,11 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation>RSS Downloader</translation>
+        <translation>RSS-Downloader</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Staffel-Nummer ist zwingend ein Wert ungleich Null</translation>
+        <translation>Staffelnummer ist zwingend ein Wert ungleich Null</translation>
     </message>
     <message>
         <source>Never</source>
@@ -4213,7 +4213,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation>Verwende den Smart-Folgenfilter</translation>
+        <translation>Smart-Folgenfilter verwenden</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
@@ -4237,7 +4237,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation>Ignoriere nachfolgende Übereinstimmungen für (0 zum Deaktivieren)</translation>
+        <translation>Nachfolgende Übereinstimmungen ignorieren für (0 zum Deaktivieren)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -4249,7 +4249,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation>Entferne bereits heruntergeladene Folgen ...</translation>
+        <translation>Heruntergeladene Folgen entfernen ...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
@@ -4263,7 +4263,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>Erstelle Unterordner</translation>
+        <translation>Unterordner erstellen</translation>
     </message>
     <message>
         <source>Original</source>
@@ -4271,7 +4271,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Erstelle keinen Unterordner</translation>
+        <translation>Keinen Unterordner erstellen</translation>
     </message>
     <message>
         <source>Add Tags:</source>
@@ -4420,7 +4420,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>item</source>
-        <translation>item</translation>
+        <translation>Eintrag</translation>
     </message>
     <message>
         <source>IP</source>
@@ -4448,7 +4448,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>items</source>
-        <translation>items</translation>
+        <translation>Einträge</translation>
     </message>
     <message>
         <source>Results</source>
@@ -4460,7 +4460,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Wähle ein Log Level ...</translation>
+        <translation>Protokollebene wählen ...</translation>
     </message>
 </context>
 <context>
@@ -4543,7 +4543,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Recheck confirmation</source>
-        <translation>Überprüfe Bestätigung</translation>
+        <translation>Bestätigung erneut prüfen</translation>
     </message>
 </context>
 <context>
@@ -4573,7 +4573,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Server response:</source>
-        <translation>Server-Antwort:</translation>
+        <translation>Serverantwort:</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>

@@ -953,7 +953,7 @@
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Activer l'échange de clients (PeX) avec les autres pairs</translation>
+        <translation>Activer l'échange de pairs (PeX) pour trouver plus de pairs</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
@@ -1017,7 +1017,7 @@
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
-        <translation>Paramètres supportés (sensible à la casse) :</translation>
+        <translation>Paramètres supportés (sensibles à la casse)  :</translation>
     </message>
     <message>
         <source>%N: Torrent name</source>
@@ -1205,7 +1205,7 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>Lorsque le ratio est atteint</translation>
+        <translation>Lorsque le ratio atteint</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1361,7 +1361,7 @@
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation>Active la réception de flux RSS</translation>
+        <translation>Activer la récupération de flux RSS</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1736,7 +1736,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
-        <translation>Chemin de l’exécutable Python (peut nécessiter un redémarrage) :</translation>
+        <translation>Chemin de l’exécutable de Python (peut nécessiter un redémarrage) :</translation>
     </message>
     <message>
         <source>Resets to default if empty</source>
@@ -1936,7 +1936,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation>Torrents téléchargés:</translation>
+        <translation>Torrents téléchargés :</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -1992,7 +1992,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Run on torrent added:</source>
-        <translation>Exécution sur torrent ajoutée :</translation>
+        <translation>Exécution à l'ajout d'un torrent :</translation>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
@@ -3640,7 +3640,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Published On</source>
-        <translation>Publié sur</translation>
+        <translation>Publié le</translation>
     </message>
     <message>
         <source>Engine URL</source>
@@ -3995,7 +3995,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>La récupération automatique des flux RSS est actuellement désactivée ! Vous pouvez l'activer depuis les paramètres de l'application.</translation>
+        <translation>La récupération de flux RSS est actuellement désactivée ! Vous pouvez l'activer depuis les paramètres de l'application.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>

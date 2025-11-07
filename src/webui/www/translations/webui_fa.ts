@@ -181,11 +181,11 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>حداکثر تعداد جایگاه‌های بارگذاری برای هر تورنت باید بیشتر از 0 باشد یا غیرفعال شود.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>ناتوان در ذخیره تنظیمات برنامه. احتمالاً دسترسی به qBittorrent ممکن نیست.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -214,7 +214,7 @@
     </message>
     <message>
         <source>Information about certificates</source>
-        <translation type="unfinished" />
+        <translation>اطلاعات مربوط به گواهینامه‌ها</translation>
     </message>
     <message>
         <source>Set location</source>
@@ -226,7 +226,7 @@
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>نسبت محدودیت بارگیری</translation>
     </message>
     <message>
         <source>Rename torrent</source>
