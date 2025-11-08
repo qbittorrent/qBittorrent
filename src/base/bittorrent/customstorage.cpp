@@ -69,7 +69,14 @@ lt::storage_holder CustomDiskIOThread::new_torrent(const lt::storage_params &sto
     m_storageData[storageHolder] =
     {
         savePath,
+        #if LIBTORRENT_VERSION_NUM < 20100
+        // libtorrent < 2.1.0
         storageParams.mapped_files ? *storageParams.mapped_files : storageParams.files,
+        #else
+        // libtorrent >= 2.1.0
+        // fix: error: 'const struct libtorrent::storage_params' has no member named 'mapped_files'
+        storageParams.files,
+        #endif
         storageParams.priorities
     };
 
