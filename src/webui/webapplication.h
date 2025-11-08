@@ -117,6 +117,7 @@ private:
     void sessionStartImpl(const QString &sessionId, bool useCookie);
     void sessionEnd() override;
 
+    QStringView getRequestPath() const;
     void doProcessRequest(bool isUsingApiKey);
     void configure();
 
@@ -258,6 +259,7 @@ private:
     std::chrono::seconds m_sessionTimeout = 0s;
     QString m_sessionCookieName;
     QString m_apiKey;
+    QString m_basePath;
 
     // security related
     QStringList m_domainList;

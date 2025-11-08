@@ -173,26 +173,28 @@ WebApplication::~WebApplication()
 
 void WebApplication::sendWebUIFile()
 {
-    if (request().path.contains(u'\\'))
+    QStringView requestPath = getRequestPath();
+
+    if (requestPath.contains(u'\\'))
         throw BadRequestHTTPError();
 
-    if (const QList<QStringView> pathItems = QStringView(request().path).split(u'/', Qt::SkipEmptyParts)
+    if (const QList<QStringView> pathItems = requestPath.split(u'/', Qt::SkipEmptyParts)
             ; pathItems.contains(u".") || pathItems.contains(u".."))
     {
         throw BadRequestHTTPError();
     }
 
-    const QString path = (request().path != u"/")
-        ? request().path
-        : INDEX_HTML;
+    if (requestPath == u"/")
+        requestPath = INDEX_HTML;
 
+    Path path(requestPath.toString());
     Path localPath = m_rootFolder
                 / Path(session() ? PRIVATE_FOLDER : PUBLIC_FOLDER)
-                / Path(path);
+                / path;
     if (!localPath.exists() && session())
     {
         // try to send public file if there is no private one
-        localPath = m_rootFolder / Path(PUBLIC_FOLDER) / Path(path);
+        localPath = m_rootFolder / Path(PUBLIC_FOLDER) / path;
     }
 
     if (m_isAltUIUsed)
@@ -273,6 +275,7 @@ void WebApplication::translateDocument(QString &data) const
 
         data.replace(u"${LANG}"_s, m_currentLocale.left(2));
         data.replace(u"${CACHEID}"_s, m_cacheID);
+        data.replace(u"${BASE}"_s, m_basePath);
     }
 }
 
@@ -301,9 +304,39 @@ void WebApplication::setPasswordHash(const QByteArray &passwordHash)
     m_authController->setPasswordHash(passwordHash);
 }
 
+QStringView WebApplication::getRequestPath() const
+{
+    const QStringView base = m_basePath;
+    QStringView path = request().path;
+
+    if (base.isEmpty())
+        return path;
+
+    // Remove the leading slash from the path
+    if (path.startsWith(u'/'))
+        path.slice(1);
+
+    if (!path.startsWith(base))
+        throw NotFoundHTTPError();
+
+    // Strip the base prefix from the path
+    path.slice(base.length());
+
+    // If the base is equal to the base, return the index path
+    if (path.isEmpty())
+        return u"/"_s;
+
+    // Ensure that the base prefix wasn't in the middle of a
+    // component of the path
+    if (!path.startsWith(u'/'))
+        throw NotFoundHTTPError();
+
+    return path;
+}
+
 void WebApplication::doProcessRequest(const bool isUsingApiKey)
 {
-    const QRegularExpressionMatch match = m_apiPathPattern.match(request().path);
+    const QRegularExpressionMatch match = m_apiPathPattern.matchView(getRequestPath());
     if (!match.hasMatch())
     {
         if (isUsingApiKey)
@@ -555,6 +588,18 @@ void WebApplication::configure()
 
     if (const QString apiKey = pref->getWebUIApiKey(); apiKey.isEmpty() || Utils::APIKey::isValid(apiKey))
         m_apiKey = apiKey;
+
+    QString newBasePath = pref->getWebUIBasePath();
+    // Normalize the base path
+    if (newBasePath.startsWith(u'/'))
+        newBasePath.slice(1);
+    if (newBasePath.endsWith(u'/'))
+        newBasePath.chop(1);
+
+    if (newBasePath != m_basePath) {
+        m_basePath = newBasePath;
+        m_translatedFiles.clear();
+    }
 }
 
 void WebApplication::declarePublicAPI(const QString &apiPath)
