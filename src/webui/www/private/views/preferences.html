@@ -2218,7 +2218,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             for (const el of [...document.getElementById("optionalIPAddressToBind").children])
                 el.remove();
 
-            const url = new URL("api/v2/app/networkInterfaceAddressList", window.location);
+            const url = new URL("api/v2/app/networkInterfaceAddressList", document.baseURI);
             url.search = new URLSearchParams({
                 iface: iface
             });

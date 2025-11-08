@@ -192,7 +192,7 @@
                 if (row.full_data.status !== "Finished")
                     continue;
 
-                const url = new URL("api/v2/torrentcreator/torrentFile", window.location);
+                const url = new URL("api/v2/torrentcreator/torrentFile", document.baseURI);
                 url.search = new URLSearchParams({
                     taskID: task
                 });

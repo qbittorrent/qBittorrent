@@ -58,7 +58,7 @@ window.qBittorrent.PropPeers ??= (() => {
             clearTimeout(loadTorrentPeersTimer);
             return;
         }
-        const url = new URL("api/v2/sync/torrentPeers", window.location);
+        const url = new URL("api/v2/sync/torrentPeers", document.baseURI);
         url.search = new URLSearchParams({
             hash: current_hash,
             rid: syncTorrentPeersLastResponseId,

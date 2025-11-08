@@ -90,7 +90,7 @@ window.qBittorrent.PropGeneral ??= (() => {
             return;
         }
 
-        const propertiesURL = new URL("api/v2/torrents/properties", window.location);
+        const propertiesURL = new URL("api/v2/torrents/properties", document.baseURI);
         propertiesURL.search = new URLSearchParams({
             hash: current_id
         });
@@ -242,7 +242,7 @@ window.qBittorrent.PropGeneral ??= (() => {
                 loadTorrentDataTimer = loadTorrentData.delay(10000);
             });
 
-        const pieceStatesURL = new URL("api/v2/torrents/pieceStates", window.location);
+        const pieceStatesURL = new URL("api/v2/torrents/pieceStates", document.baseURI);
         pieceStatesURL.search = new URLSearchParams({
             hash: current_id
         });

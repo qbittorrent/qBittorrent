@@ -188,7 +188,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaSpinner {
-    background: url("../images/spinner.svg") no-repeat;
+    background: url("/${BASE}/images/spinner.svg") no-repeat;
     bottom: 7px;
     display: none;
     height: 16px;
@@ -198,7 +198,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaErrorIcon {
-    background: url("../images/error.svg") no-repeat;
+    background: url("/${BASE}/images/error.svg") no-repeat;
     background-size: 16px;
     bottom: 7px;
     height: 16px;

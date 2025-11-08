@@ -67,7 +67,7 @@
             });
 
             document.getElementById("saveTorrent").addEventListener("click", (event) => {
-                const url = new URL("api/v2/torrents/saveMetadata", window.location);
+                const url = new URL("api/v2/torrents/saveMetadata", document.baseURI);
                 url.search = new URLSearchParams({
                     source: source
                 });

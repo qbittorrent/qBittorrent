@@ -91,7 +91,7 @@
 
     #rssButtonBar input {
         background-color: var(--color-background-default);
-        background-image: url("../images/edit-find.svg");
+        background-image: url("/${BASE}/images/edit-find.svg");
         background-position: 2px;
         background-repeat: no-repeat;
         background-size: 1.5em;
@@ -552,7 +552,7 @@
         };
 
         const updateRssFeedList = () => {
-            const url = new URL("api/v2/rss/items", window.location);
+            const url = new URL("api/v2/rss/items", document.baseURI);
             url.search = new URLSearchParams({
                 withData: true
             });
@@ -840,7 +840,7 @@
         };
 
         const editUrl = (path, url) => {
-            const contentURL = new URL("editfeedurl.html", window.location);
+            const contentURL = new URL("editfeedurl.html", document.baseURI);
             contentURL.search = new URLSearchParams({
                 v: "${CACHEID}",
                 path: path,

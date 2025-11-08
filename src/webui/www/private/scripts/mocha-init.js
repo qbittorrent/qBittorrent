@@ -194,7 +194,7 @@ const initializeWindows = () => {
 
     showDownloadPage = (urls) => {
         const id = "downloadPage";
-        const contentURL = new URL("download.html", window.location);
+        const contentURL = new URL("download.html", document.baseURI);
 
         if (urls && (urls.length > 0)) {
             contentURL.search = new URLSearchParams({
@@ -326,7 +326,7 @@ const initializeWindows = () => {
     }
 
     globalUploadLimitFN = () => {
-        const contentURL = new URL("speedlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hashes: "global",
@@ -353,7 +353,7 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
-        const contentURL = new URL("speedlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hashes: hashes.join("|"),
@@ -399,7 +399,7 @@ const initializeWindows = () => {
             }
         }
 
-        const contentURL = new URL("shareratio.html", window.location);
+        const contentURL = new URL("shareratio.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hashes: hashes.join("|"),
@@ -476,7 +476,7 @@ const initializeWindows = () => {
     };
 
     globalDownloadLimitFN = () => {
-        const contentURL = new URL("speedlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hashes: "global",
@@ -524,7 +524,7 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
-        const contentURL = new URL("speedlimit.html", window.location);
+        const contentURL = new URL("speedlimit.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hashes: hashes.join("|"),
@@ -708,7 +708,7 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
-        const contentURL = new URL("setlocation.html", window.location);
+        const contentURL = new URL("setlocation.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hashes: hashes.join("|"),
@@ -739,7 +739,7 @@ const initializeWindows = () => {
         if (!row)
             return;
 
-        const contentURL = new URL("rename.html", window.location);
+        const contentURL = new URL("rename.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hash: hashes[0],
@@ -875,7 +875,7 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
-        const contentURL = new URL("newcategory.html", window.location);
+        const contentURL = new URL("newcategory.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             action: "set",
@@ -918,7 +918,7 @@ const initializeWindows = () => {
     };
 
     createCategoryFN = () => {
-        const contentURL = new URL("newcategory.html", window.location);
+        const contentURL = new URL("newcategory.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             action: "create"
@@ -940,7 +940,7 @@ const initializeWindows = () => {
     };
 
     createSubcategoryFN = (category) => {
-        const contentURL = new URL("newcategory.html", window.location);
+        const contentURL = new URL("newcategory.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             action: "createSubcategory",
@@ -963,7 +963,7 @@ const initializeWindows = () => {
     };
 
     editCategoryFN = (category) => {
-        const contentURL = new URL("newcategory.html", window.location);
+        const contentURL = new URL("newcategory.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             action: "edit",
@@ -1027,7 +1027,7 @@ const initializeWindows = () => {
         if (hashes.length <= 0)
             return;
 
-        const contentURL = new URL("newtag.html", window.location);
+        const contentURL = new URL("newtag.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             action: "set",
@@ -1076,7 +1076,7 @@ const initializeWindows = () => {
     };
 
     createTagFN = () => {
-        const contentURL = new URL("newtag.html", window.location);
+        const contentURL = new URL("newtag.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             action: "create"
@@ -1131,7 +1131,7 @@ const initializeWindows = () => {
             || (trackerHost === TRACKERS_WARNING))
             return;
 
-        const contentURL = new URL("confirmtrackerdeletion.html", window.location);
+        const contentURL = new URL("confirmtrackerdeletion.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             host: trackerHost,
@@ -1242,7 +1242,7 @@ const initializeWindows = () => {
                 continue;
 
             const name = row.full_data.name;
-            const url = new URL("api/v2/torrents/export", window.location);
+            const url = new URL("api/v2/torrents/export", document.baseURI);
             url.search = new URLSearchParams({
                 hash: hash
             });

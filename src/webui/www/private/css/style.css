@@ -459,7 +459,7 @@ a.propButton img {
 }
 
 #mochaToolbar .divider {
-    background-image: url("../images/toolbox-divider.svg");
+    background-image: url("/${BASE}/images/toolbox-divider.svg");
     background-position: left center;
     background-repeat: no-repeat;
     padding-left: 14px;
@@ -486,7 +486,7 @@ a.propButton img {
 
 #torrentsFilterInput {
     background-color: var(--color-background-default);
-    background-image: url("../images/edit-find.svg");
+    background-image: url("/${BASE}/images/edit-find.svg");
     background-position: 2px;
     background-repeat: no-repeat;
     background-size: 1.5em;
@@ -501,7 +501,7 @@ a.propButton img {
 }
 
 #torrentsFilterRegexBox + label {
-    background-image: url("../images/regex.svg");
+    background-image: url("/${BASE}/images/regex.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 1.5em;
@@ -516,7 +516,7 @@ a.propButton img {
 
 #torrentsFilterRegexBox:checked + label {
     background-color: var(--color-background-default);
-    background-image: url("../images/regex.svg");
+    background-image: url("/${BASE}/images/regex.svg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 1.5em;
@@ -538,7 +538,7 @@ a.propButton img {
 }
 
 #torrentFilesFilterInput {
-    background-image: url("../images/edit-find.svg");
+    background-image: url("/${BASE}/images/edit-find.svg");
     background-position: 1px;
     background-repeat: no-repeat;
     background-size: 1.5em;
@@ -654,7 +654,7 @@ span.link :is(img, button) {
 }
 
 .categoryToggle {
-    background: url("../images/go-down.svg") center center / 10px no-repeat
+    background: url("/${BASE}/images/go-down.svg") center center / 10px no-repeat
         transparent;
     border: none;
     display: none;
@@ -781,7 +781,7 @@ td.noWrap {
 }
 
 td.statusBarSeparator {
-    background-image: url("../images/toolbox-divider.svg");
+    background-image: url("/${BASE}/images/toolbox-divider.svg");
     background-position: center 1px;
     background-repeat: no-repeat;
     background-size: 2px 18px;
@@ -864,7 +864,7 @@ td.statusBarSeparator {
 }
 
 #rememberBtn {
-    background: url("../images/object-locked.svg") center center / 24px
+    background: url("/${BASE}/images/object-locked.svg") center center / 24px
         no-repeat var(--color-background-popup);
     height: 38px;
     padding: 4px 6px;
@@ -904,11 +904,11 @@ td.statusBarSeparator {
 
 .confirmWarning,
 .confirmDialogWarning {
-    background: url("../images/dialog-warning.svg") center center no-repeat;
+    background: url("/${BASE}/images/dialog-warning.svg") center center no-repeat;
     height: 38px;
     width: 38px;
 }
 
 .confirmWarning {
-    background-image: url("../images/help-about.svg");
+    background-image: url("/${BASE}/images/help-about.svg");
 }

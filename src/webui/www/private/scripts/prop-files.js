@@ -84,7 +84,7 @@ window.qBittorrent.PropFiles ??= (() => {
             loadedNewTorrent = true;
         }
 
-        const url = new URL("api/v2/torrents/files", window.location);
+        const url = new URL("api/v2/torrents/files", document.baseURI);
         url.search = new URLSearchParams({
             hash: current_hash
         });

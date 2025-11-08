@@ -373,7 +373,7 @@
             };
 
             const setupTable = (selectedRows) => {
-                const url = new URL("api/v2/torrents/files", window.location);
+                const url = new URL("api/v2/torrents/files", document.baseURI);
                 url.search = new URLSearchParams({
                     hash: data.hash
                 });

@@ -41,7 +41,7 @@
     }
 
     #filterTextInput {
-        background-image: url("../images/edit-find.svg");
+    background-image: url("/${BASE}/images/edit-find.svg");
         background-repeat: no-repeat;
         background-position: 2px;
         background-size: 1.5em;
@@ -346,7 +346,7 @@
             let url;
             switch (curTab) {
                 case "main":
-                    url = new URL("api/v2/log/main", window.location);
+                    url = new URL("api/v2/log/main", document.baseURI);
                     url.search = new URLSearchParams({
                         normal: selectedLogLevels.includes("1"),
                         info: selectedLogLevels.includes("2"),
@@ -356,7 +356,7 @@
                     break;
 
                 case "peer":
-                    url = new URL("api/v2/log/peers", window.location);
+                    url = new URL("api/v2/log/peers", document.baseURI);
                     break;
             }
 

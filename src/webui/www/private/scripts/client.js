@@ -142,7 +142,7 @@ window.qBittorrent.Client ??= (() => {
         const staticId = "uploadPage";
         const id = `${staticId}-${encodeURIComponent(source)}`;
 
-        const contentURL = new URL("addtorrent.html", window.location);
+        const contentURL = new URL("addtorrent.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             source: source,
@@ -864,7 +864,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     let syncRequestInProgress = false;
     const syncMainData = () => {
         syncRequestInProgress = true;
-        const url = new URL("api/v2/sync/maindata", window.location);
+        const url = new URL("api/v2/sync/maindata", document.baseURI);
         url.search = new URLSearchParams({
             rid: syncMainDataLastResponseId
         });

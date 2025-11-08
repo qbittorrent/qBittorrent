@@ -83,7 +83,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             current_hash = new_hash;
         }
 
-        const url = new URL("api/v2/torrents/trackers", window.location);
+        const url = new URL("api/v2/torrents/trackers", document.baseURI);
         url.search = new URLSearchParams({
             hash: current_hash
         });
@@ -256,7 +256,7 @@ window.qBittorrent.PropTrackers ??= (() => {
             return;
 
         const tracker = torrentTrackersTable.getRow(torrentTrackersTable.getSelectedRowId());
-        const contentURL = new URL("edittracker.html", window.location);
+        const contentURL = new URL("edittracker.html", document.baseURI);
         contentURL.search = new URLSearchParams({
             v: "${CACHEID}",
             hash: current_hash,

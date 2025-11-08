@@ -450,7 +450,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     }
                 });
             // get all rss feed
-            const url = new URL("api/v2/rss/items", window.location);
+            const url = new URL("api/v2/rss/items", document.baseURI);
             url.search = new URLSearchParams({
                 withData: false
             });
@@ -662,7 +662,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const updateMatchingArticles = (ruleName) => {
-            const url = new URL("api/v2/rss/matchingArticles", window.location);
+            const url = new URL("api/v2/rss/matchingArticles", document.baseURI);
             url.search = new URLSearchParams({
                 ruleName: ruleName
             });

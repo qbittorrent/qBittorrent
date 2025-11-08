@@ -834,7 +834,7 @@ window.qBittorrent.Search ??= (() => {
 
     const loadSearchResultsData = (searchId) => {
         const state = searchState.get(searchId);
-        const url = new URL("api/v2/search/results", window.location);
+        const url = new URL("api/v2/search/results", document.baseURI);
         url.search = new URLSearchParams({
             id: searchId,
             limit: 500,

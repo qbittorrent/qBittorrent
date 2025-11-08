@@ -61,7 +61,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
             current_hash = new_hash;
         }
 
-        const url = new URL("api/v2/torrents/webseeds", window.location);
+        const url = new URL("api/v2/torrents/webseeds", document.baseURI);
         url.search = new URLSearchParams({
             hash: current_hash
         });
