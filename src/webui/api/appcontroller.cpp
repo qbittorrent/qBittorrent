@@ -328,6 +328,7 @@ void AppController::preferencesAction()
     data[u"use_https"_s] = pref->isWebUIHttpsEnabled();
     data[u"web_ui_https_cert_path"_s] = pref->getWebUIHttpsCertificatePath().toString();
     data[u"web_ui_https_key_path"_s] = pref->getWebUIHttpsKeyPath().toString();
+    data[u"web_ui_base_path"_s] = pref->getWebUIBasePath();
     // Authentication
     data[u"web_ui_username"_s] = pref->getWebUIUsername();
     data[u"bypass_local_auth"_s] = !pref->isWebUILocalAuthEnabled();
@@ -895,6 +896,8 @@ void AppController::setPreferencesAction()
         pref->setWebUIHttpsCertificatePath(Path(it.value().toString()));
     if (hasKey(u"web_ui_https_key_path"_s))
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
+    if (hasKey(u"web_ui_base_path"_s))
+        pref->setWebUIBasePath(it.value().toString());
     // Authentication
     if (hasKey(u"web_ui_username"_s))
         pref->setWebUIUsername(it.value().toString());

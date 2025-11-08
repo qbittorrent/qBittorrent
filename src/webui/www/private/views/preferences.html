@@ -964,6 +964,10 @@
             </table>
             <div style="padding-left: 10px;"><a target="_blank" href="https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts">QBT_TR(Information about certificates)QBT_TR[CONTEXT=HttpServer]</a></div>
         </fieldset>
+        <div class="formRow">
+            <label for="webuiBasePath">QBT_TR(Base Path:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="webuiBasePath">
+        </div>
 
         <fieldset class="settings">
             <legend>QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</legend>
@@ -2573,6 +2577,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("use_https_checkbox").checked = pref.use_https;
                     document.getElementById("ssl_cert_text").value = pref.web_ui_https_cert_path;
                     document.getElementById("ssl_key_text").value = pref.web_ui_https_key_path;
+                    document.getElementById("webuiBasePath").value = pref.web_ui_base_path;
                     updateHttpsSettings();
 
                     // Authentication
@@ -3051,6 +3056,29 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 alert("QBT_TR(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
+
+            let webUIBasePath = document.getElementById("webuiBasePath").value.trim();
+            if (webUIBasePath.length !== 0 && webUIBasePath !== "/") {
+                let basePath = webUIBasePath;
+                if (basePath.startsWith('/'))
+                    basePath = basePath.slice(1);
+                if (basePath.endsWith('/'))
+                    basePath = basePath.slice(0, -1);
+                for (let segment of basePath.split('/')) {
+                    if (segment.length === 0) {
+                        alert("QBT_TR(The WebUI base path cannot have empty segments)QBT_TR[CONTEXT=OptionsDialog]");
+                        return;
+                    }
+                    if (!segment.match(/^[-_0-9a-zA-Z]+$/)) {
+                        alert("QBT_TR(The WebUI base path can only contain alphanumeric characters, dashes or underscores)QBT_TR[CONTEXT=OptionsDialog]");
+                        return;
+                    }
+                }
+            } else {
+                document.getElementById("webuiBasePath").value = "/";
+                webUIBasePath = "/";
+            }
+            settings["web_ui_base_path"] = webUIBasePath;
 
             // Authentication
             const web_ui_username = document.getElementById("webui_username_text").value;

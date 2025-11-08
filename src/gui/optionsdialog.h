@@ -200,6 +200,7 @@ private:
     QString webUIPassword() const;
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
+    bool isWebUIBasePathValid();
 #endif
 
     bool schedTimesOk();

@@ -1352,6 +1352,7 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->checkWebUIHttps->setChecked(pref->isWebUIHttpsEnabled());
     webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath());
     webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath());
+    m_ui->textWebUIBasePath->setText(pref->getWebUIBasePath());
     m_ui->textWebUIUsername->setText(pref->getWebUIUsername());
 
     // API Key
@@ -1398,6 +1399,7 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsCertChanged);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsKeyChanged);
+    connect(m_ui->textWebUIBasePath, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -1450,6 +1452,9 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIMaxAuthFailCount(m_ui->spinBanCounter->value());
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
+    if (m_ui->textWebUIBasePath->text().isEmpty())
+        m_ui->textWebUIBasePath->setText(u"/"_s);
+    pref->setWebUIBasePath(m_ui->textWebUIBasePath->text());
     // Authentication
     if (const QString username = webUIUsername(); isValidWebUIUsername(username))
         pref->setWebUIUsername(username);
@@ -1746,15 +1751,13 @@ bool OptionsDialog::applySettings()
         return false;
     }
 #ifndef DISABLE_WEBUI
-    if (isWebUIEnabled() && !webUIAuthenticationOk())
+    if (isWebUIEnabled())
     {
-        m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-        return false;
-    }
-    if (!isAlternativeWebUIPathValid())
-    {
-        m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
-        return false;
+        if (!webUIAuthenticationOk() || !isAlternativeWebUIPathValid() || !isWebUIBasePathValid())
+        {
+            m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
+            return false;
+        }
     }
 #endif
 
@@ -2137,6 +2140,33 @@ bool OptionsDialog::isAlternativeWebUIPathValid()
     {
         QMessageBox::warning(this, tr("Location Error"), tr("The alternative WebUI files location cannot be blank."));
         return false;
+    }
+    return true;
+}
+
+
+bool OptionsDialog::isWebUIBasePathValid()
+{
+    const QRegularExpression re(u"^[-_0-9a-zA-Z]+$"_s);
+    QStringView basePath = m_ui->textWebUIBasePath->text();
+
+    if (basePath.isEmpty() || basePath == u"/"_s)
+        return true;
+    if (basePath.startsWith(u'/'))
+        basePath.slice(1);
+    if (basePath.endsWith(u'/'))
+        basePath.chop(1);
+    for (QStringView segment : basePath.split(u'/')) {
+        if (segment.isEmpty())
+        {
+            QMessageBox::warning(this, tr("Parsing error"), tr("The WebUI base path cannot have empty segments"));
+            return false;
+        }
+        if (!re.matchView(segment).hasMatch())
+        {
+            QMessageBox::warning(this, tr("Parsing error"), tr("The WebUI base path can only contain alphanumeric characters, dashes or underscores"));
+            return false;
+        }
     }
     return true;
 }
