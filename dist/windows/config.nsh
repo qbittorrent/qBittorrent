@@ -73,8 +73,8 @@ XPStyle on
 !define SHCNF_IDLIST 0
 
 ;For special folder detection
-!define CSIDL_APPDATA '0x1A' ;Application Data path
-!define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
+!define FOLDERID_RoamingAppData {3EB685DB-65F9-4CF6-A03A-E3EF65729F3D} ; %APPDATA% (%USERPROFILE%\AppData\Roaming)
+!define FOLDERID_LocalAppData {F1B32785-6FBA-4FCF-9D55-7B8E7F157091} ; %LOCALAPPDATA% (%USERPROFILE%\AppData\Local)
 
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
