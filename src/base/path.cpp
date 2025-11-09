@@ -65,7 +65,7 @@ namespace
     bool hasDriveLetter(const QStringView path)
     {
         const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
-        return driveLetterRegex.match(path).hasMatch();
+        return driveLetterRegex.matchView(path).hasMatch();
     }
 #endif
 }
@@ -104,7 +104,7 @@ bool Path::isValid() const
 
     // \\37 is using base-8 number system
     const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
-    return !regex.match(view).hasMatch();
+    return !regex.matchView(view).hasMatch();
 #elif defined(Q_OS_MACOS)
     const QRegularExpression regex {u"[\\0:]"_s};
 #else
