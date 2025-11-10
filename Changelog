@@ -1,3 +1,20 @@
+Tue Nov 11th 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.3
+    - BUGFIX: Don't leave an empty folder when deleting or moving torrents (Ryu481)
+    - BUGFIX: Fix invalid Transifex links (rekayno)
+    - BUGFIX: Don't fail because of existing files when exporting torrent files (glassez)
+    - BUGFIX: Allow equals character in the command line value (Mark Yu)
+    - BUGFIX: Fix "Save as .torrent file" button being visible before metadata retrieved (glassez)
+    - BUGFIX: Fix crash related with the processing order of libtorrent alerts (glassez)
+    - BUGFIX: Fix screen reader accessibility in torrent list (Andrew Johnson)
+    - BUGFIX: Improve tab key focus in hidable tab bar widget (Andrew Johnson)
+    - WEBUI: Fix http header affecting reverse proxy  (Chocobo1)
+    - WEBAPI: Use native separators for path autofill suggestions (glassez)
+    - SEARCH: Plugin updater should work again now (Chocobo1)
+    - WINDOWS: Program update checker should work again now (Cloudflare related) (Chocobo1)
+    - WINDOWS: NSIS: Add Catalan and Kurdish translations (Ramon López i Cros, Halbast)
+    - LINUX: Fix crashes related to getrandom() on specific setups (Chocobo1)
+    - MACOS: Fix system language autodetection on MacOS (Ryu481)
+
 Wed Jul 02nd 2025 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.1.2
     - BUGFIX: Don't expose palette colors in UI theme editor since they are not customizable (glassez)
     - BUGFIX: Add fallback to update mechanism (sledgehammer999)
