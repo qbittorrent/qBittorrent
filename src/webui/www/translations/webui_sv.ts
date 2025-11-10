@@ -373,7 +373,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation>Kunde inte kontakta qBittorrent</translation>
+        <translation>Det gick inte att kontakta qBittorrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -1453,7 +1453,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Typ av tjänst (TOS) för anslutningar till jämlikar</translation>
+        <translation>Typ av tjänst (ToS) för anslutningar till jämlikar</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>

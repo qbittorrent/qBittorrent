@@ -8354,14 +8354,10 @@ De här insticksmodulerna inaktiverades.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">Hämtningen av uppdateringsinformationen misslyckades. URL: %1. Fel: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Misslyckades med att hämta ner information om programuppdatering. URL: &quot;%1&quot;. Fel: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -8829,7 +8825,7 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="223"/>
         <source>Couldn&apos;t move folder into itself.</source>
-        <translation>Kunde inte flytta mappen in i sig själv.</translation>
+        <translation>Det gick inte att flytta mappen in i sig själv.</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="240"/>
@@ -11996,10 +11992,6 @@ Välj ett annat namn och försök igen.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Det gick inte att exportera .torrent-fil. Torrent: &quot;%1&quot;. Sparsökväg: &quot;%2&quot;. Orsak: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">En fil med samma namn finns redan</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

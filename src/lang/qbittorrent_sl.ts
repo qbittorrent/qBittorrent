@@ -11979,10 +11979,6 @@ Prosimo da izberete drugo ime in poizkusite znova.</translation>
         <translation>Izvoz datoteke .torrent ni uspel. Torrent: &quot;%1&quot;. Pot shranjevanja: &quot;%2&quot;. Razlog: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Datoteka s tem imenom že obstaja</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>Napaka pri izvozu datoteke .torrent</translation>

@@ -11990,10 +11990,6 @@ Por favor, escolha um nome diferente e tente novamente.</translation>
         <translation>Falha ao exportar o arquivo .torrent. Torrent: &quot;%1&quot;. Caminho para salvar: &quot;%2&quot;. Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Um arquivo com o mesmo nome já existe</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>Erro ao exportar arquivo .torrent</translation>

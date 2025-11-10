@@ -11964,10 +11964,6 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Tiedosto samalla nimellä on jo olemassa</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation type="unfinished"></translation>

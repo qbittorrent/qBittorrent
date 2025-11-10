@@ -11990,10 +11990,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>.torrent fitxategia esportatzeak huts egin du. Torrenta: &quot;%1&quot;. Biltegia: &quot;%2&quot;. Arrazoia: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Badago izen bereko fitxategi bat</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>.torrent fitxategiaren esportazio errorea</translation>

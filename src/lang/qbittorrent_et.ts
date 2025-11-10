@@ -11971,10 +11971,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation>Nurjus .torrent faili eksportimine. Torrent: &quot;%1&quot;. Salvestuse asukoht: &quot;%2&quot;. Selgitus: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Sama nimega fail on juba olemas </translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>Viga .torrent faili eksportimisega</translation>

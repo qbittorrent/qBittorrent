@@ -8530,16 +8530,12 @@ Errore: %2</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">Impossibile scaricare le informazioni sull&apos;aggiornamento. 
-URL: %1. 
-Errore: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile scaricare le informazioni sull&apos;aggiornamento del programma.
+URL: &quot;%1&quot;. 
+Errore: &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -12215,10 +12211,6 @@ I torrent potranno essere spostati.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Esportazione file .torrent non riuscita. Torrent: &quot;%1&quot;. Percorso salvataggio: &quot;%2&quot;. Motivo: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Esiste già un file con lo stesso nome</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

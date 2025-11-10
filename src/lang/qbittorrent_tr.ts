@@ -6210,7 +6210,7 @@ Disable encryption: Only connect to peers without protocol encryption</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3363"/>
         <source>Enable fetching RSS feeds</source>
-        <translation>RSS bildirimlerini almayı etkinleştir</translation>
+        <translation>RSS bildirimlerini getirmeyi etkinleştir</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3372"/>
@@ -8354,14 +8354,10 @@ Bu eklentiler etkisizleştirildi.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">Güncelleme bilgisini indirme başarısız. URL: %1. Hata: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Program güncelleme bilgisini indirme başarısız. URL: &quot;%1&quot;. Hata: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -8902,7 +8898,7 @@ Bu eklentiler etkisizleştirildi.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="31"/>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>RSS bildirimlerinin alınması şimdi etkisizleştirildi! Uygulama ayarlarından etkinleştirebilirsiniz.</translation>
+        <translation>RSS bildirimlerinin getirilmesi şimdi etkisizleştirildi! Uygulama ayarlarından etkinleştirebilirsiniz.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.ui" line="43"/>
@@ -11996,10 +11992,6 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>.torrent dosyası dışa aktarma başarısız oldu. Torrent: &quot;%1&quot;. Kaydetme yolu: &quot;%2&quot;. Sebep: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Aynı ada sahip bir dosya zaten var</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

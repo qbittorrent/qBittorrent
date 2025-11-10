@@ -8356,14 +8356,10 @@ Diese Plugins wurden deaktiviert.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">Konnte die Update-Info nicht herunterladen. URL: %1. Fehler: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte die Update-Info vom Programm nicht herunterladen. URL: &quot;%1&quot;. Fehler: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -12000,10 +11996,6 @@ Please choose a different name and try again.</source>
         <translation>Exportieren der .torrent-Datei fehlgeschlagen. Torrent: &quot;%1&quot;. Speicherpfad: &quot;%2&quot;. Grund: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Eine Datei mit gleichem Namen existiert bereits.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>Exportieren der .torrent-Datei fehlgeschlagen</translation>
@@ -12385,17 +12377,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="281"/>
         <source>Failed to find `python3` executable in PATH environment variable. PATH: &quot;%1&quot;</source>
-        <translation>Konnte Ausführungdatei für `python3` in der Pfad-Umgebungsvariable PATH nicht finden. PATH: &quot;%1&quot;</translation>
+        <translation>Konnte Ausführungdatei für &apos;python3&apos; in der Pfad-Umgebungsvariable nicht finden. PATH: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="286"/>
         <source>Failed to find `python` executable in PATH environment variable. PATH: &quot;%1&quot;</source>
-        <translation>Konnte Ausführungdatei für `python` in der Pfad-Umgebungsvariable PATH nicht finden. PATH: &quot;%1&quot;</translation>
+        <translation>Konnte Ausführungdatei für &apos;python&apos; in der Pfad-Umgebungsvariable nicht finden. PATH: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="292"/>
         <source>Failed to find `python` executable in Windows Registry.</source>
-        <translation>Konnte Ausführungdatei für `python` in der Windows-Registry nicht finden.</translation>
+        <translation>Konnte Ausführungdatei für &apos;python&apos; in der Windows-Registry nicht finden.</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="295"/>

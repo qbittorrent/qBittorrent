@@ -8346,10 +8346,6 @@ Ti dodaci su onemogućeni.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">Preuzimanje informacija o ažuriranju nije uspjelo. URL: %1. Pogreška: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
@@ -11988,10 +11984,6 @@ Odaberite drugo ime i pokušajte ponovno.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Izvoz .torrent datoteke nije uspio. Torrent: &quot;%1&quot;. Putanja spremanja: &quot;%2&quot;. Razlog: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Datoteka s istim nazivom već postoji</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

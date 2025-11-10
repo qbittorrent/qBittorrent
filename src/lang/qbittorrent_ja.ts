@@ -8356,10 +8356,6 @@ Those plugins were disabled.</source>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">更新情報がダウンロードできませんでした。 URL: %1. エラー: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
@@ -11998,10 +11994,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>&quot;.torrent&quot;ファイルがエクスポートできませんでした。Torrent: &quot;%1&quot;. 保存パス: &quot;%2&quot;. 理由: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">同名のファイルがすでに存在します</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

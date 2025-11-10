@@ -11986,10 +11986,6 @@ Please choose a different name and try again.</source>
         <translation>Изнасяне на .torrent файл неуспешно. Торент &quot;%1&quot;. Път на запазване: &quot;%2&quot;. Причина: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Файл със същото име вече съществува</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>Грешка при изнасяне на .torrent файл</translation>

@@ -114,7 +114,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="108"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>De gratis IP to Country Lite-database van DB-IP wordt gebruikt om de landen van peers op te lossen. De database valt onder de Creative Commons Attribution 4.0 Internationale Licentie.</translation>
+        <translation>De gratis IP to Country Lite database van DB-IP wordt gebruikt voor het oplossen van de landen van peers. De database is gelicenseerd onder de Creative Commons Attribution 4.0 International License.</translation>
     </message>
 </context>
 <context>
@@ -1617,7 +1617,7 @@
     <message>
         <location filename="../app/application.cpp" line="1340"/>
         <source>qBittorrent termination initiated</source>
-        <translation>Beëindiging van qBittorrent gestart</translation>
+        <translation>Afsluiten van qBittorrent gestart</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="1346"/>
@@ -1800,7 +1800,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="113"/>
         <source>Three range types for episodes are supported: </source>
-        <translation>Er worden drie bereiktypes voor afleveringen ondersteund: </translation>
+        <translation>Er worden drie bereiktypes voor afleveringen ondersteund:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="114"/>
@@ -2020,7 +2020,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="704"/>
         <source> will match all articles.</source>
-        <translation> zal met alle artikelen overeenkomen.</translation>
+        <translation>zal met alle artikelen overeenkomen.</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="705"/>
@@ -2940,7 +2940,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <message>
         <location filename="../app/cmdoptions.cpp" line="528"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
-        <translation>Hack libtorrent fastresume-bestanden en maak bestandspaden relatief ten opzichte van de profieldirectory</translation>
+        <translation>In de bestanden voor snel hervatten van libtorrent hacken en bestandspaden relatief aan de profielmap maken.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="530"/>
@@ -3740,7 +3740,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <message>
         <location filename="../gui/mainwindow.ui" line="395"/>
         <source>Sh&amp;utdown System</source>
-        <translation>Afsluiten</translation>
+        <translation>Systeem afsluiten</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="403"/>
@@ -3932,7 +3932,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <message>
         <location filename="../gui/mainwindow.ui" line="217"/>
         <source>Add Torrent &amp;Link...</source>
-        <translation>Torrent &amp;koppeling toevoegen</translation>
+        <translation>Torrent-koppeling toevoegen...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="363"/>
@@ -4128,7 +4128,7 @@ Installeer het handmatig.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="2003"/>
         <source>Exit code: %1.</source>
-        <translation>Exitcode: %1.</translation>
+        <translation>Exit-code: %1</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="2004"/>
@@ -4138,7 +4138,7 @@ Installeer het handmatig.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="2005"/>
         <source>Python installation failed.</source>
-        <translation>Installeren van Python mislukt.</translation>
+        <translation>De installatie van Python is mislukt.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="2008"/>
@@ -4233,7 +4233,7 @@ Minimale vereiste: %2.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1902"/>
         <source>Python installation in progress...</source>
-        <translation>Installeren van Python aan de gang...</translation>
+        <translation>Python wordt geïnstalleerd...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1921"/>
@@ -5968,7 +5968,7 @@ Minimale vereiste: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="440"/>
         <source>Start qBittorrent on Windows start up</source>
-        <translation>Start qBittorrent bij het opstarten van Windows</translation>
+        <translation>qBittorrent starten bij het opstarten van Windows</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="447"/>
@@ -6283,7 +6283,7 @@ Versleuteling uitschakelen: uitsluitend verbinden met peers zonder protocolversl
     <message>
         <location filename="../gui/optionsdialog.ui" line="3182"/>
         <source>Fetched trackers</source>
-        <translation>Opgehaalde trackers</translation>
+        <translation>Trackers opgehaald</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3247"/>
@@ -6435,7 +6435,7 @@ Gebruik &apos;;&apos; om meerdere items te splitsen. Jokerteken &apos;*&apos; ka
     <message>
         <location filename="../gui/optionsdialog.ui" line="523"/>
         <source>Minimize qBittorrent to notification area</source>
-        <translation>Minimaliseer qBittorrent naar het systeemvak</translation>
+        <translation>qBittorrent naar het systeemvak minimaliseren</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="77"/>
@@ -6476,13 +6476,13 @@ Gebruik &apos;;&apos; om meerdere items te splitsen. Jokerteken &apos;*&apos; ka
         <location filename="../gui/optionsdialog.ui" line="344"/>
         <location filename="../gui/optionsdialog.ui" line="393"/>
         <source>Start / stop torrent</source>
-        <translation>Torrent starten / stoppen</translation>
+        <translation>Torrent starten/stoppen</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="359"/>
         <location filename="../gui/optionsdialog.ui" line="408"/>
         <source>Open torrent options dialog</source>
-        <translation>Torrent-opties-dialoogvenster openen</translation>
+        <translation>Dialoogvenster met torrent-opties openen</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="545"/>
@@ -6503,12 +6503,12 @@ Gebruik &apos;;&apos; om meerdere items te splitsen. Jokerteken &apos;*&apos; ka
     <message>
         <location filename="../gui/optionsdialog.ui" line="610"/>
         <source>Use qBittorrent for .torrent files</source>
-        <translation>Gebruik qBittorrent voor .torrent-bestanden</translation>
+        <translation>qBittorrent gebruiken voor .torrent-bestanden</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="617"/>
         <source>Use qBittorrent for magnet links</source>
-        <translation>Gebruik qBittorrent voor magnet-links</translation>
+        <translation>qBittorrent gebruiken voor magneetkoppelingen</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="655"/>
@@ -6563,7 +6563,7 @@ Gebruik &apos;;&apos; om meerdere items te splitsen. Jokerteken &apos;*&apos; ka
     <message>
         <location filename="../gui/optionsdialog.ui" line="1071"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
-        <translation>Verwijder ook .torrent-bestanden waarvan de toevoeging is geannuleerd.</translation>
+        <translation>Ook .torrent-bestanden verwijderen waarvan de toevoeging is geannuleerd</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1074"/>
@@ -6640,7 +6640,7 @@ Gebruik &apos;;&apos; om meerdere items te splitsen. Jokerteken &apos;*&apos; ka
     <message>
         <location filename="../gui/optionsdialog.ui" line="511"/>
         <source>Show &amp;qBittorrent in notification area</source>
-        <translation>Toon &amp;qBittorrent in het systeemvak</translation>
+        <translation>qBittorrent in het systeemvak weergeven</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="893"/>
@@ -6828,7 +6828,7 @@ Handmatig: verschillende torrent-eigenschappen (bijvoorbeeld opslagpad) moeten h
     <message>
         <location filename="../gui/optionsdialog.ui" line="466"/>
         <source>qBittorrent window state on start up</source>
-        <translation>qBittorrent-vensterstatus bij opstarten</translation>
+        <translation>Status van qBittorrent-venster bij opstarten</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="983"/>
@@ -7414,7 +7414,7 @@ readme[0-9].txt: filtert &apos;readme1.txt&apos;, &apos;readme2.txt&apos; maar n
     <message>
         <location filename="../gui/optionsdialog.cpp" line="254"/>
         <source>Select qBittorrent UI Theme file</source>
-        <translation>Selecteer qBittorrent UI-thema-bestand</translation>
+        <translation>qBittorrent-UI-themabestand selecteren</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1312"/>
@@ -7524,7 +7524,7 @@ readme[0-9].txt: filtert &apos;readme1.txt&apos;, &apos;readme2.txt&apos; maar n
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1091"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
-        <translation>Een torrent wordt als traag beschouwd als de download- en uploadsnelheden gedurende de &quot;Torrent inactiviteitstimer&quot; seconden onder deze waarden blijven.</translation>
+        <translation>Een torrent zal als traag beschouwd worden als zijn download- en uploadsnelheden onder deze waarden blijven gedurende het aantal seconden in &quot;inactiviteitstimer van torrent&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1306"/>
@@ -8354,14 +8354,10 @@ Deze plugins zijn uitgeschakeld.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">Downloaden van update-info mislukt. URL: %1. Fout: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Downloaden van de programm-update-info mislukt. URL: &quot;%1&quot;. Fout: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -9039,25 +9035,26 @@ Deze plugins zijn uitgeschakeld.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="443"/>
         <source>Blocked opening RSS article URL. URL pointing to local file might be malicious behaviour. Article: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
-        <translation>Geblokkeerde opening RSS-artikel-URL. URL die naar een lokaal bestand verwijst, kan kwaadaardig gedrag zijn. Artikel: &quot;%1&quot;. URL: &quot;%2&quot;.</translation>
+        <translation>Openen van RSS-artikel-URL geblokkeerd. URL die naar een lokaal bestand verwijst, kan schadelijk zijn. Artikel: “%1”. URL: “%2”.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="454"/>
         <source>Blocked opening RSS article URL. The following article URL is pointing to local file and it may be malicious behaviour:
 %1</source>
-        <translation>Geblokkeerde opening RSS-artikel-URL. De volgende artikel-URL verwijst naar een lokaal bestand en kan schadelijk zijn: %1</translation>
+        <translation>Openen van RSS-artikel-URL geblokkeerd. De volgende artikel-URL verwijst naar een lokaal bestand en kan schadelijk zijn:
+%1</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="456"/>
         <location filename="../gui/rss/rsswidget.cpp" line="463"/>
         <source>There are %1 more articles with the same issue.</source>
-        <translation>Er zijn nog %1 artikelen over hetzelfde onderwerp.</translation>
+        <translation>Er zijn nog %1 artikelen met hetzelfde probleem.</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="461"/>
         <source>The following article has no news URL provided:
 %1</source>
-        <translation>Geen nieuws-URL opgegeven voor artikel:
+        <translation>Het volgende artikel heeft geen nieuws-URL:
 %1</translation>
     </message>
     <message>
@@ -9231,28 +9228,29 @@ Deze plugins zijn uitgeschakeld.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="348"/>
         <source>Blocked opening search result description page URL. URL pointing to local file might be malicious behaviour. Name: &quot;%1&quot;. URL: &quot;%2&quot;.</source>
-        <translation>Geblokkeerde URL van de beschrijvingspagina van zoekresultaten. Een URL die naar een lokaal bestand verwijst, kan schadelijk zijn. Naam: &quot;%1&quot;. URL: &quot;%2&quot;.</translation>
+        <translation>Openen van de URL van de beschrijvingspagina van het zoekresultaat geblokkeerd. Een URL die naar een lokaal bestand verwijst, kan kwaadaardig zijn. Naam: “%1”. URL: “%2”.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="359"/>
         <source>Blocked opening search result description page URL. The following result URL is pointing to local file and it may be malicious behaviour:
 %1</source>
-        <translation>De URL van de beschrijvingspagina van het zoekresultaat is geblokkeerd. De volgende resultaat-URL verwijst naar een lokaal bestand en kan schadelijk zijn: %1</translation>
+        <translation>Openen van de URL van de beschrijvingspagina van het zoekresultaat geblokkeerd. De volgende resultaat-URL verwijst naar een lokaal bestand en kan schadelijk zijn:
+%1</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="361"/>
         <source>There are %1 more results with the same issue.</source>
-        <translation>Er zijn nog %1 resultaten over hetzelfde onderwerp.</translation>
+        <translation>Er zijn nog %1 resultaten met hetzelfde probleem.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="366"/>
         <source>Entry &quot;%1&quot; has no description page URL provided.</source>
-        <translation>Geen beschrijvingspagina-URL opgegeven voor item &quot;%1&quot;.</translation>
+        <translation>Voor vermelding “%1” is geen URL voor de beschrijvingspagina opgegeven.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="368"/>
         <source>There are %1 more entries with the same issue.</source>
-        <translation>Er zijn nog %1 items over hetzelfde onderwerp.</translation>
+        <translation>Er zijn nog %1 vermeldingen met hetzelfde probleem.</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="446"/>
@@ -10057,7 +10055,7 @@ Klik op de knop &quot;zoekplugins...&quot; rechtsonder in het venster om er een 
     <message>
         <location filename="../gui/statusbar.cpp" line="238"/>
         <source>External IPs: %1, %2</source>
-        <translation>Externe IPs: %1, %2</translation>
+        <translation>Externe IP&apos;s: %1, %2</translation>
     </message>
     <message>
         <location filename="../gui/statusbar.cpp" line="240"/>
@@ -10863,7 +10861,7 @@ Kies een andere naam en probeer het opnieuw.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="495"/>
         <source>Rejecting failed torrent file: %1</source>
-        <translation>Afgewezen torrent-bestand: %1</translation>
+        <translation>Mislukt torrentbestand verwerpen: %11</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="534"/>
@@ -10922,7 +10920,7 @@ Kies een andere naam en probeer het opnieuw.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
         <source>Torrent Speed Limits</source>
-        <translation>Torrent-sneheidsbegrenzing</translation>
+        <translation>Torrent-snelheidsbegrenzing</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="109"/>
@@ -10933,7 +10931,7 @@ Kies een andere naam en probeer het opnieuw.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="152"/>
         <source>These will not exceed the global limits</source>
-        <translation>Deze zullen de algemene limieten niet overschrijden.</translation>
+        <translation>Deze zullen de algemene begrenzing niet overschrijden.</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="92"/>
@@ -11457,7 +11455,7 @@ Kies een andere naam en probeer het opnieuw.</translation>
     <message>
         <location filename="../gui/trackersadditiondialog.ui" line="40"/>
         <source>µTorrent compatible list URL:</source>
-        <translation>µTorrent compatibiliteitslijst URL:</translation>
+        <translation>URL van µTorrent-compatibele lijst:</translation>
     </message>
     <message>
         <location filename="../gui/trackersadditiondialog.ui" line="52"/>
@@ -11996,10 +11994,6 @@ Kies een andere naam en probeer het opnieuw.</translation>
         <translation>Exporteren van .torrent-bestand mislukt. Torrent: &quot;%1&quot;. Opslagpad: &quot;%2&quot;. Reden: &quot;%3&quot;.</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Er bestaat al een bestand met dezelfde naam</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>Fout bij exporteren van .torrent-bestand</translation>
@@ -12165,7 +12159,7 @@ Kies een andere naam en probeer het opnieuw.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1258"/>
         <source>Can not force reannounce if torrent is Stopped/Queued/Errored/Checking</source>
-        <translation>Kan heraankondiging niet forceren als torrent is gestopt/in de wachtrij staat/een foutmelding geeft/wordt gecontroleerd</translation>
+        <translation>Kan opnieuw aankondigen niet forceren als een torrent gestopt is, in wachtrij geplaatst is, fouten heeft of aan het controleren is.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1265"/>
@@ -12300,12 +12294,12 @@ Kies een andere naam en probeer het opnieuw.</translation>
         <location filename="../gui/uithemedialog.cpp" line="380"/>
         <location filename="../gui/uithemedialog.cpp" line="389"/>
         <source>Couldn&apos;t remove icon file. File: %1.</source>
-        <translation>Het pictogrambestand kan niet worden verwijderd. Bestand: %1.</translation>
+        <translation>Kon pictogrambestand niet verwijderen. Bestand: %1</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.cpp" line="398"/>
         <source>Couldn&apos;t copy icon file. Source: %1. Destination: %2.</source>
-        <translation>Kan pictogrambestand niet kopiëren. Bron: %1. Bestemming: %2.</translation>
+        <translation>Kon pictogrambestand niet kopiëren. Bron: %1. Bestemming: %2</translation>
     </message>
 </context>
 <context>
@@ -12503,7 +12497,7 @@ Kies een andere naam en probeer het opnieuw.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="417"/>
         <source>Using built-in WebUI.</source>
-        <translation>Met behulp van de ingebouwde WebUI.</translation>
+        <translation>Ingebouwde WebUI gebruiken</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="419"/>

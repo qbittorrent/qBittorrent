@@ -11991,10 +11991,6 @@ Please choose a different name and try again.</source>
         <translation>فشل تصدير ملف .torrent. تورنت: &quot;%1&quot;. حفظ المسار: &quot;%2&quot;. السبب: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">يوجد ملف بنفس الاسم بالفعل</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>خطأ في تصدير ملف torrent.</translation>

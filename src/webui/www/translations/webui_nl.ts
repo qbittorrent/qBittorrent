@@ -80,7 +80,7 @@
     </message>
     <message>
         <source>Select .torrent files</source>
-        <translation>.torrent-bestanden kiezen</translation>
+        <translation>.torrent-bestanden selecteren</translation>
     </message>
     <message>
         <source>Torrent options</source>
@@ -141,7 +141,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>Sluit qBittorrent af</translation>
+        <translation>qBittorrent afsluiten</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -369,7 +369,7 @@
     </message>
     <message>
         <source>Reverse proxy setup examples</source>
-        <translation>Voorbeelden van omgekeerde proxy-instelling</translation>
+        <translation>Voorbeelden van reverse proxy-configuraties</translation>
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Unable to delete torrents.</source>
-        <translation>Kon torrents niet verwijderen.</translation>
+        <translation>Kan torrents niet verwijderen.</translation>
     </message>
     <message>
         <source>URL</source>
@@ -405,23 +405,23 @@
     </message>
     <message>
         <source>Unable to set Auto Torrent Management for the selected torrents.</source>
-        <translation>Kon automatisch torrent-beheer niet inschakelen voor de geselecteerde torrents.</translation>
+        <translation>Kan automatisch torrent-beheer niet inschakelen voor de geselecteerde torrents.</translation>
     </message>
     <message>
         <source>Unable to stop torrents.</source>
-        <translation>Kon torrents niet stoppen.</translation>
+        <translation>Kan torrents niet stoppen.</translation>
     </message>
     <message>
         <source>Unable to download file</source>
-        <translation>Kon bestand niet downloaden</translation>
+        <translation>Kan bestand niet downloaden</translation>
     </message>
     <message>
         <source>External IPs: %1, %2</source>
-        <translation>Externe IPs: %1, %2</translation>
+        <translation>Externe IP's: %1, %2</translation>
     </message>
     <message>
         <source>Unable to recheck torrents.</source>
-        <translation>Kon torrents niet opnieuw controleren.</translation>
+        <translation>Kan torrents niet opnieuw controleren.</translation>
     </message>
     <message>
         <source>List of web seeds to add (one per line):</source>
@@ -429,7 +429,7 @@
     </message>
     <message>
         <source>Unable to start torrents.</source>
-        <translation>Kon torrents niet starten.</translation>
+        <translation>Kan torrents niet starten.</translation>
     </message>
     <message>
         <source>Add web seeds</source>
@@ -1401,7 +1401,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Maximaal aantal artikels per feed:</translation>
+        <translation>Maximaal aantal artikelen per feed:</translation>
     </message>
     <message>
         <source> min</source>
@@ -1873,7 +1873,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Fetched trackers</source>
-        <translation>Opgehaalde trackers</translation>
+        <translation>Trackers opgehaald</translation>
     </message>
     <message>
         <source>Confirm when deleting torrents</source>
@@ -1901,7 +1901,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Display full announce URL in the Tracker column</source>
-        <translation>Volledige aankondiging-URL weergeven in de Tracker-kolom</translation>
+        <translation>Volledige aankondigings-URL weergeven in de tracker-kolom</translation>
     </message>
     <message>
         <source>URL:</source>
@@ -1929,7 +1929,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Start / stop torrent</source>
-        <translation>Torrent starten / stoppen</translation>
+        <translation>Torrent starten/stoppen</translation>
     </message>
     <message>
         <source>Send test email</source>
@@ -1989,7 +1989,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>List of alternative WebUI</source>
-        <translation>Lijst van alternatieve WebUI</translation>
+        <translation>Lijst van alternatieve WebUI's</translation>
     </message>
     <message>
         <source>Run on torrent added:</source>
@@ -4020,7 +4020,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Unable to update URL</source>
-        <translation>Kon URL niet bijwerken</translation>
+        <translation>Kan URL niet bijwerken</translation>
     </message>
     <message>
         <source>URL is unchanged</source>
@@ -4039,7 +4039,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation>Overeenkomstige RSS-artikels</translation>
+        <translation>Overeenkomstige RSS-artikelen</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
@@ -4083,7 +4083,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation>Komt overeen met artikels gebaseerd op afleveringsfilter.</translation>
+        <translation>Komt overeen met artikelen gebaseerd op afleveringsfilter.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -4223,11 +4223,11 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation>Jokertekens: u kunt gebruiken</translation>
+        <translation>U kunt volgende jokertekens gebruiken:</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation> zal alle artikels uitsluiten.</translation>
+        <translation> zal alle artikelen uitsluiten.</translation>
     </message>
     <message>
         <source>Delete rule</source>
@@ -4571,11 +4571,11 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     </message>
     <message>
         <source>Server response:</source>
-        <translation>Serverrespons:</translation>
+        <translation>Reactie van server:</translation>
     </message>
     <message>
         <source>Unable to log in, server is probably unreachable.</source>
-        <translation>Kan niet inloggen, server is waarschijnlijk onbereikbaar.</translation>
+        <translation>Kan niet aanmelden. De server is waarschijnlijk niet bereikbaar.</translation>
     </message>
     <message>
         <source>Username</source>

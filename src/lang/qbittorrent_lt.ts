@@ -11974,10 +11974,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Failas tokiu pavadinimu jau yra</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation type="unfinished"></translation>

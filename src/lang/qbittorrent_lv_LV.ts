@@ -11991,10 +11991,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>.torrent faila eksportēšana neizdvās: &quot;%1&quot;. Saglabāšanas vieta: &quot;%2&quot;. Iemesls: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Fails ar tādu nosaukumu jau pastāv</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>.torrent datnes izgūšanas kļūda</translation>

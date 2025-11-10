@@ -11977,10 +11977,6 @@ Please choose a different name and try again.</source>
         <translation>יצוא קובץ טורנט נכשל. טורנט: &quot;%1&quot;. נתיב שמירה: &quot;%2&quot;. סיבה: &quot;%3&quot;</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">קובץ עם אותו השם קיים כבר</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>שגיאת יצוא קובץ טורנט</translation>

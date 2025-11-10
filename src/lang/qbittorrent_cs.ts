@@ -1473,7 +1473,7 @@
     <message>
         <location filename="../app/application.cpp" line="977"/>
         <source>You should set your own password in program preferences.</source>
-        <translation>Měli byste nastavit své vlastní heslo v nastavení programu.</translation>
+        <translation>Měli byste nastavit své vlastní heslo v předvolbách programu.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="983"/>
@@ -8354,14 +8354,10 @@ Tyto pluginy byly vypnuty.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">Selhalo stažení informací aktualizace. URL: %1. Chyba: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Selhalo stažení informací o aktualizaci programu. URL: &quot;%1&quot;. Chyba: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -11996,10 +11992,6 @@ Prosím zvolte jiný název kategorie a zkuste to znovu.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Export .torrent souboru selhal. Torrent: &quot;%1&quot;. Cesta pro uložení: &quot;%2&quot;. Důvod: &quot;%3&quot;</translation>
-    </message>
-    <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Soubor s tímto názvem již existuje</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

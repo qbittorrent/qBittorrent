@@ -8356,14 +8356,10 @@ Aquests connectors s&apos;han inhabilitat.</translation>
 <context>
     <name>ProgramUpdater</name>
     <message>
-        <source>Failed to download the update info. URL: %1. Error: %2</source>
-        <translation type="vanished">No s&apos;ha pogut descarregar l&apos;URL d&apos;informació d&apos;actualització: %1. Error: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>No s&apos;ha pogut baixar la informació d&apos;actualització del programa. URL: %1. Error: %2</translation>
     </message>
 </context>
 <context>
@@ -11997,10 +11993,6 @@ Trieu-ne un altre i torneu-ho a provar.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
         <translation>Ha fallat l&apos;exportació del fitxer .torrent. Torrent: &quot;%1&quot;. Desa el camí: &quot;%2&quot;. Raó: &quot;% 3&quot;</translation>
-    </message>
-    <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">Ja existeix un fitxer amb el mateix nom.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>

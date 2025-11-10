@@ -11989,10 +11989,6 @@ Please choose a different name and try again.</source>
         <translation>匯出 .torrent 檔案失敗。Torrent：「%1」。儲存路徑：「%2」。理由：「%3」</translation>
     </message>
     <message>
-        <source>A file with the same name already exists</source>
-        <translation type="vanished">已存在同名檔案</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Export .torrent file error</source>
         <translation>匯出 .torrent 文件錯誤</translation>
