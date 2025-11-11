@@ -303,7 +303,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
                 if (currentName != newName)
                 {
-                    if (!Utils::Fs::isValidName(newName))
+                    if (!Utils::Fs::isValidFileName(newName))
                     {
                         emit renameFailed(tr("The name is invalid: \"%1\"").arg(newName));
                         return false;

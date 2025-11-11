@@ -44,6 +44,7 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/compare.h"
+#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/version.h"
 #include "lttypecast.h"
@@ -234,14 +235,19 @@ void TorrentCreator::run()
 
         const auto result = std::invoke([torrentFilePath = m_params.torrentFilePath, entry]() -> nonstd::expected<Path, QString>
         {
-            if (!torrentFilePath.isValid())
+            const Path parentPath = torrentFilePath.parentPath();
+            const QString validFileName = Utils::Fs::toValidFileName(torrentFilePath.filename());
+            const Path finalTorrentFilePath = parentPath / Path(validFileName);
+
+            // Fall back to saving a temporary file if the path is invalid
+            if (!finalTorrentFilePath.isValid())
                 return Utils::IO::saveToTempFile(entry);
 
-            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(torrentFilePath, entry);
+            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(finalTorrentFilePath, entry);
             if (!result)
                 return nonstd::make_unexpected(result.error());
 
-            return torrentFilePath;
+            return finalTorrentFilePath;
         });
         if (!result)
             throw RuntimeError(result.error());
