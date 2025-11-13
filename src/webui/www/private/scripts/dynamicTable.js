@@ -2691,32 +2691,30 @@ window.qBittorrent.DynamicTable ??= (() => {
         #filterNodes(root, filterTerms) {
             const ret = [];
             const stack = [root];
-            const visited = [];
 
             while (stack.length > 0) {
                 const node = stack.at(-1);
 
                 if (node.isFolder && (!this.useVirtualList || !this.isCollapsed(node.rowId))) {
-                    const lastVisited = visited.at(-1);
-
-                    if ((visited.length <= 0) || (lastVisited !== node)) {
-                        visited.push(node);
+                    if (node._visited === undefined) {
+                        node._visited = true;
                         stack.push(...node.children);
                         continue;
                     }
 
-                    // has children added or itself matches
-                    if (lastVisited.has_children_added || window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
+                    // ready to check results from children at this point
+
+                    if (node._hasChildrenAdded || window.qBittorrent.Misc.containsAllTerms(node.name, filterTerms)) {
                         ret.push(this.getRow(node));
-                        delete node.has_children_added;
+                        delete node._hasChildrenAdded;
 
                         // propagate up
                         const parent = node.root;
                         if (parent !== undefined)
-                            parent.has_children_added = true;
+                            parent._hasChildrenAdded = true;
                     }
 
-                    visited.pop();
+                    delete node._visited;
                 }
                 else {
                     if (window.qBittorrent.Misc.containsAllTerms(node[this.fileNameColumn], filterTerms)) {
@@ -2724,7 +2722,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                         const parent = node.root;
                         if (parent !== undefined)
-                            parent.has_children_added = true;
+                            parent._hasChildrenAdded = true;
                     }
                 }
 
