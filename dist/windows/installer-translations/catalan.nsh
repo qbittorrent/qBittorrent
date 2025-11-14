@@ -36,7 +36,8 @@ LangString inst_uninstall_link_description ${LANG_CATALAN} "Desinstal·lar qBitt
 LangString inst_arch_mismatch_x64_on_arm64 ${LANG_CATALAN} "Aquesta versió x64 de qBittorrent no pot funcionar en sistemes ARM64. Siusplau, descarrega l'instal·lador ARM64."
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "Error: This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_CATALAN} "Aquesta versió ARM64 de qBittorrent no pot funcionar en sistemes x64. Siusplau, descarrega l'instal·lador x64."
-
+;LangString inst_already_running ${LANG_ENGLISH} "Another instance of the installer is already running."
+LangString inst_already_running ${LANG_CATALAN} "Another instance of the installer is already running."
 
 ;------------------------------------
 ;Uninstaller strings
