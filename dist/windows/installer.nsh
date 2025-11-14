@@ -112,6 +112,18 @@ SectionEnd
 ;--------------------------------
 
 Function .onInit
+  ; create a mutex to ensure only one installer is running
+  System::Call 'kernel32::CreateMutex(p 0, b 0, t "qbt_installer") p . r1 ?e'
+  Var /GLOBAL CreateMutexResult
+  Pop $CreateMutexResult
+  IntCmpU $CreateMutexResult 183 isDuplicateInstance isUniqueInstance isUniqueInstance
+
+  isDuplicateInstance:
+    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_already_running) /SD IDOK
+    SetErrorLevel 183 # WinError.h: `ERROR_ALREADY_EXISTS`
+    Abort
+
+  isUniqueInstance:
 
   !insertmacro Init "installer"
   !insertmacro MUI_LANGDLL_DISPLAY
