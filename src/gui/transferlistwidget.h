@@ -100,7 +100,7 @@ public slots:
     void applyStatusFilter(int filterIndex);
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const std::optional<Tag> &tag);
-    void applyTrackerFilterAll();
+    void applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
     void applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void previewFile(const Path &filePath);
     void renameSelectedTorrent();

@@ -38,6 +38,7 @@
 #include "base/pathfwd.h"
 #include "base/tagset.h"
 #include "sharelimitaction.h"
+#include "torrentannouncestatus.h"
 #include "torrentcontenthandler.h"
 
 class QBitArray;
@@ -290,6 +291,7 @@ namespace BitTorrent
         virtual int connectionsCount() const = 0;
         virtual int connectionsLimit() const = 0;
         virtual qlonglong nextAnnounce() const = 0;
+        virtual TorrentAnnounceStatus announceStatus() const = 0;
 
         virtual void setName(const QString &name) = 0;
         virtual void setSequentialDownload(bool enable) = 0;
