@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.14.2
+* [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
+  * `sync/maindata` returns one new field in `server_state`: `app_uptime`, reporting the qBittorrent application uptime in seconds
+
 ## 2.14.1
 * [#23212](https://github.com/qbittorrent/qBittorrent/pull/23212)
   * Add `app/rotateAPIKey` endpoint for generating, and rotating, the WebAPI API key
