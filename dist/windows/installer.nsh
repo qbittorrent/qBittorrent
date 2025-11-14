@@ -51,7 +51,7 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   WriteRegStr HKLM "Software\Classes\magnet" "Content Type" "application/x-magnet"
   WriteRegStr HKLM "Software\Classes\magnet" "URL Protocol" ""
 
-  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, p 0, p 0)'
+  System::Call 'shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, p 0, p 0)'
 
   ; Write the uninstall keys for Windows
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayName" "qBittorrent"
