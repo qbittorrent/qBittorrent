@@ -103,7 +103,7 @@ window.qBittorrent.FileTree ??= (() => {
             return nodes;
         },
 
-        _getArrayOfNodes: (node, array) => {
+        _getArrayOfNodes: function(node, array) { // eslint-disable-line PreferArrowFunctions/prefer-arrow-functions
             array.push(node);
             node.children.each((child) => {
                 this._getArrayOfNodes(child, array);

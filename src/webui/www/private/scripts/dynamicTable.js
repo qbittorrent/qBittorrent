@@ -2316,7 +2316,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.updateGlobalCheckbox();
         },
 
-        _sortNodesByColumn: (nodes, column) => {
+        _sortNodesByColumn: function(nodes, column) { // eslint-disable-line PreferArrowFunctions/prefer-arrow-functions
             nodes.sort((row1, row2) => {
                 // list folders before files when sorting by name
                 if (column.name === "original") {
@@ -2633,7 +2633,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["availability"].updateTd = displayPercentage;
         },
 
-        _sortNodesByColumn: (nodes, column) => {
+        _sortNodesByColumn: function(nodes, column) { // eslint-disable-line PreferArrowFunctions/prefer-arrow-functions
             nodes.sort((row1, row2) => {
                 // list folders before files when sorting by name
                 if (column.name === "name") {
