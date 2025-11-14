@@ -247,7 +247,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${IOKit_LIBRARY}
     )
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    target_link_libraries(qbt_base PRIVATE Iphlpapi PowrProf)
+    target_link_libraries(qbt_base PRIVATE iphlpapi powrprof)
 endif()
 
 if (NOT GUI)
