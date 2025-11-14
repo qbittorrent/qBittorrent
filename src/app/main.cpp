@@ -127,10 +127,12 @@ namespace
 #endif
     }
 
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     void displayVersion()
     {
         printf("%s %s\n", qUtf8Printable(qApp->applicationName()), QBT_VERSION);
     }
+#endif
 
 #ifndef DISABLE_GUI
     void showSplashScreen()
