@@ -51,6 +51,8 @@
 
 Unicode true
 ManifestDPIAware true
+; add an undocumented function in NSIS, PMv2 requires Win10 1703+
+ManifestDPIAwareness "PerMonitorV2,System"
 
 !ifdef USE_UPX
 !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
@@ -59,7 +61,6 @@ ManifestDPIAware true
 ;Setting the compression
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
-XPStyle on
 
 !include "MUI2.nsh"
 !include "UAC.nsh"
