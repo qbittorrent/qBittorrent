@@ -182,12 +182,10 @@
             }
         };
 
-        const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
-
         let logFilterTimer = -1;
         let inputtedFilterText = "";
         let selectBox;
-        let selectedLogLevels = JSON.parse(localPreferences.get("qbt_selected_log_levels")) || ["1", "2", "4", "8"];
+        let selectedLogLevels = window.qBittorrent.ClientData.get("qbt_selected_log_levels") ?? ["1", "2", "4", "8"];
 
         const init = () => {
             for (const option of document.getElementById("logLevelSelect").options)
@@ -277,7 +275,8 @@
             if (selectedLogLevels !== value) {
                 tableInfo[currentSelectedTab].last_id = -1;
                 selectedLogLevels = value;
-                localPreferences.set("qbt_selected_log_levels", JSON.stringify(selectedLogLevels));
+                // don't await this
+                window.qBittorrent.ClientData.set({ qbt_selected_log_levels: selectedLogLevels }).catch(console.error);
                 logFilterChanged();
             }
         };
