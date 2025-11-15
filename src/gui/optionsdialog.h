@@ -169,7 +169,8 @@ private:
     bool isUPnPEnabled() const;
     // Bittorrent options
     int getMaxConnections() const;
-    int getMaxConnectionsPerTorrent() const;
+    int getMaxConnectionsPerDownloadingTorrent() const;
+    int getMaxConnectionsPerSeedingTorrent() const;
     int getMaxUploads() const;
     int getMaxUploadsPerTorrent() const;
     bool isDHTEnabled() const;
