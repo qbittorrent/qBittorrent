@@ -34,7 +34,9 @@
 #include <QCloseEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QMetaObject>
 #include <QMimeData>
+#include <QThreadPool>
 #include <QUrl>
 
 #include "base/bittorrent/session.h"
@@ -300,16 +302,24 @@ void TorrentCreatorDialog::updateProgressBar(int progress)
 
 void TorrentCreatorDialog::updatePiecesCount()
 {
+    m_ui->buttonCalcTotalPieces->setEnabled(false);
+    m_ui->labelTotalPieces->setText(tr("Calculating..."));
+
     const Path path = m_ui->textInputPath->selectedPath();
 #ifdef QBT_USES_LIBTORRENT2
-    const int count = BitTorrent::TorrentCreator::calculateTotalPieces(
-        path, getPieceSize(), getTorrentFormat());
+    auto *calculator = new PiecesCountCalculator(path, getPieceSize(), getTorrentFormat(),this);
 #else
     const bool isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked();
-    const int count = BitTorrent::TorrentCreator::calculateTotalPieces(path
-        , getPieceSize(), isAlignmentOptimized, getPaddedFileSizeLimit());
+    auto *calculator = new PiecesCountCalculator(path, getPieceSize(), isAlignmentOptimized, getPaddedFileSizeLimit(), this);
 #endif
+    m_threadPool.start(calculator);
+}
+
+void TorrentCreatorDialog::piecesCountCalculated(const int count)
+{
     m_ui->labelTotalPieces->setText(QString::number(count));
+    m_ui->buttonCalcTotalPieces->setText(tr("Calculate number of pieces:"));
+    m_ui->buttonCalcTotalPieces->setEnabled(true);
 }
 
 void TorrentCreatorDialog::setInteractionEnabled(const bool enabled) const
@@ -381,4 +391,36 @@ void TorrentCreatorDialog::loadSettings()
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
+}
+
+#ifdef QBT_USES_LIBTORRENT2
+TorrentCreatorDialog::PiecesCountCalculator::PiecesCountCalculator(
+    const Path &path, int pieceSize, BitTorrent::TorrentFormat format, TorrentCreatorDialog *receiver)
+    : m_path(path)
+    , m_pieceSize(pieceSize)
+    , m_format(format)
+    , m_receiver(receiver)
+#else
+TorrentCreatorDialog::PiecesCountCalculator::PiecesCountCalculator(
+    const Path &path, int pieceSize, bool optimizeAlignment, int paddedFileSizeLimit, TorrentCreatorDialog *receiver)
+    : m_path(path)
+    , m_pieceSize(pieceSize)
+    , m_optimizeAlignment(optimizeAlignment)
+    , m_paddedFileSizeLimit(paddedFileSizeLimit)
+    , m_receiver(receiver)
+#endif
+{
+    setAutoDelete(true);
+}
+
+void TorrentCreatorDialog::PiecesCountCalculator::run()
+{
+#ifdef QBT_USES_LIBTORRENT2
+    const int count = BitTorrent::TorrentCreator::calculateTotalPieces(m_path, m_pieceSize, m_format);
+#else
+    const int count = BitTorrent::TorrentCreator::calculateTotalPieces(m_path, m_pieceSize, m_optimizeAlignment, m_paddedFileSizeLimit);
+#endif
+    if (m_receiver) {
+        QMetaObject::invokeMethod(m_receiver.data(), &TorrentCreatorDialog::piecesCountCalculated, Qt::QueuedConnection, count);
+    }
 }
