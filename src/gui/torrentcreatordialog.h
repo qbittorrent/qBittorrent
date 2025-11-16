@@ -31,6 +31,9 @@
 #pragma once
 
 #include <QDialog>
+#include <QObject>
+#include <QPointer>
+#include <QRunnable>
 #include <QThreadPool>
 
 #include "base/bittorrent/torrentcreator.h"
@@ -60,6 +63,7 @@ private slots:
     void onAddFolderButtonClicked();
     void handleCreationFailure(const QString &msg);
     void handleCreationSuccess(const BitTorrent::TorrentCreatorResult &result);
+    void piecesCountCalculated(int count);
 
 private:
     void dropEvent(QDropEvent *event) override;
@@ -97,4 +101,27 @@ private:
     SettingValue<QString> m_storeComments;
     SettingValue<Path> m_storeLastSavePath;
     SettingValue<QString> m_storeSource;
+
+    class PiecesCountCalculator final : public QRunnable
+    {
+    public:
+#ifdef QBT_USES_LIBTORRENT2
+        PiecesCountCalculator(const Path &path, int pieceSize, BitTorrent::TorrentFormat format, TorrentCreatorDialog *receiver);
+#else
+        PiecesCountCalculator(const Path &path, int pieceSize, bool optimizeAlignment, int paddedFileSizeLimit, TorrentCreatorDialog *receiver);
+#endif
+
+        void run() override;
+
+    private:
+        Path m_path;
+        int m_pieceSize;
+#ifdef QBT_USES_LIBTORRENT2
+        BitTorrent::TorrentFormat m_format;
+#else
+        bool m_optimizeAlignment;
+        int m_paddedFileSizeLimit;
+#endif
+        QPointer<TorrentCreatorDialog> m_receiver;
+    };
 };
