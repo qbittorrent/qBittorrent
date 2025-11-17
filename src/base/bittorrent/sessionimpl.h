@@ -647,7 +647,7 @@ namespace BitTorrent
         void handleRemovedTorrent(const TorrentID &torrentID, const QString &partfileRemoveError = {});
 
         void setAdditionalTrackersFromURL(const QString &trackers);
-        void updateTrackersFromURL();
+        void updateTrackersFromURL(const std::function<void()> &onFinished = {});
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;

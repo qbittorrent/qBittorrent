@@ -683,15 +683,24 @@ SessionImpl::SessionImpl(QObject *parent)
     // start embedded tracker
     enableTracker(isTrackerEnabled());
 
-    prepareStartup();
-
     m_updateTrackersFromURLTimer = new QTimer(this);
     m_updateTrackersFromURLTimer->setInterval(24h);
-    connect(m_updateTrackersFromURLTimer, &QTimer::timeout, this, &SessionImpl::updateTrackersFromURL);
-    if (isAddTrackersFromURLEnabled())
+    connect(m_updateTrackersFromURLTimer, &QTimer::timeout, this, [this]()
     {
         updateTrackersFromURL();
+    });
+
+    if (isAddTrackersFromURLEnabled())
+    {
+        updateTrackersFromURL([this]()
+        {
+            prepareStartup();
+        });
         m_updateTrackersFromURLTimer->start();
+    }
+    else
+    {
+        prepareStartup();
     }
 }
 
@@ -4024,26 +4033,32 @@ void SessionImpl::setAdditionalTrackersFromURL(const QString &trackers)
     }
 }
 
-void SessionImpl::updateTrackersFromURL()
+void SessionImpl::updateTrackersFromURL(const std::function<void()> &onFinished)
 {
     const QString url = additionalTrackersURL();
     if (url.isEmpty())
     {
         setAdditionalTrackersFromURL({});
+        if (onFinished)
+            onFinished();
     }
     else
     {
         Net::DownloadManager::instance()->download(Net::DownloadRequest(url)
-                , Preferences::instance()->useProxyForGeneralPurposes(), this, [this](const Net::DownloadResult &result)
+                , Preferences::instance()->useProxyForGeneralPurposes(), this, [this, onFinished](const Net::DownloadResult &result)
         {
             if (result.status == Net::DownloadStatus::Success)
             {
                 setAdditionalTrackersFromURL(QString::fromUtf8(result.data));
                 LogMsg(tr("Tracker list updated"), Log::INFO);
+                if (onFinished)
+                    onFinished();
                 return;
             }
 
             LogMsg(tr("Failed to update tracker list. Reason: \"%1\"").arg(result.errorString), Log::WARNING);
+            if (onFinished)
+                onFinished();
         });
     }
 }
