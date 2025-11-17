@@ -39,7 +39,7 @@ jobs:
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build \
-            libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
+            libssl-dev zlib1g-dev
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -123,6 +123,11 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
+          if [ "${{ matrix.qbt_gui }}" = "GUI=ON" ]; then
+            QT_QPA_PLATFORM=offscreen build/qbittorrent -v
+          else
+            build/qbittorrent-nox -v
+          fi
           DESTDIR="qbittorrent" cmake --install build
 
       - name: Run CodeQL analysis
