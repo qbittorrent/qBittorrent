@@ -2026,8 +2026,7 @@ void MainWindow::onClipboardDataChanged()
 
     if (mimeData->hasText()) {
         const QString source = mimeData->text();
-        if (source.startsWith(u"magnet:", Qt::CaseInsensitive) ||
-            (source.startsWith(u"http", Qt::CaseInsensitive) && source.endsWith(u".torrent", Qt::CaseInsensitive)))
+        if (Utils::Misc::isTorrentLink(source))
         {
             app()->addTorrentManager()->addTorrent(source);
         }
