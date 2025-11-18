@@ -141,6 +141,7 @@ private slots:
     void updateAltSpeedsBtn(bool alternative);
     void updateNbTorrents();
     void handleRSSUnreadCountUpdated(int count);
+    void onClipboardDataChanged();
 
     void on_actionSearchWidget_triggered();
     void on_actionRSSReader_triggered();

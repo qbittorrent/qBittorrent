@@ -503,6 +503,10 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     connect(pref, &Preferences::changed, this, &MainWindow::optionsSaved);
 
+    // monitor clipboard if a torrent or magnet url is copied
+    const QClipboard* clipboard = QGuiApplication::clipboard();
+    connect(clipboard, &QClipboard::dataChanged, this, &MainWindow::onClipboardDataChanged);
+
     qDebug("GUI Built");
 }
 
@@ -2014,3 +2018,18 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     installer->start(exePath.toString(), {u"/passive"_s});
 }
 #endif // Q_OS_WIN
+
+void MainWindow::onClipboardDataChanged()
+{
+    QClipboard* clipboard = QGuiApplication::clipboard();
+    const QMimeData* mimeData = clipboard->mimeData();
+
+    if (mimeData->hasText()) {
+        const QString source = mimeData->text();
+        if (source.startsWith(u"magnet:", Qt::CaseInsensitive) ||
+            (source.startsWith(u"http", Qt::CaseInsensitive) && source.endsWith(u".torrent", Qt::CaseInsensitive)))
+        {
+            app()->addTorrentManager()->addTorrent(source);
+        }
+    }
+}
