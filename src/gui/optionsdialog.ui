@@ -1908,7 +1908,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <number>2</number>
                  </property>
                  <property name="maximum">
-                  <number>2000</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>500</number>
@@ -1944,7 +1944,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <number>2</number>
                  </property>
                  <property name="maximum">
-                  <number>2000</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>100</number>
@@ -1961,7 +1961,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="2" column="1">
                 <widget class="QSpinBox" name="spinMaxUploads">
                  <property name="maximum">
-                  <number>2000</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>8</number>
@@ -1978,7 +1978,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="3" column="1">
                 <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
                  <property name="maximum">
-                  <number>500</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>4</number>
@@ -3789,9 +3789,6 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                       <layout class="QHBoxLayout" name="horizontalLayoutAPIKey">
                        <item>
                         <widget class="QLineEdit" name="textWebUIAPIKey">
-                         <property name="enabled">
-                          <bool>false</bool>
-                         </property>
                          <property name="readOnly">
                           <bool>true</bool>
                          </property>
@@ -3805,88 +3802,34 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                          <property name="enabled">
                           <bool>false</bool>
                          </property>
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>32</width>
-                           <height>32</height>
-                          </size>
-                         </property>
                          <property name="toolTip">
                           <string>Copy API key</string>
                          </property>
-                         <property name="text">
-                          <string/>
-                         </property>
                          <property name="icon">
-                          <iconset resource="../icons.qrc">
+                          <iconset>
                            <normaloff>:/icons/edit-copy.svg</normaloff>:/icons/edit-copy.svg</iconset>
-                         </property>
-                         <property name="flat">
-                          <bool>false</bool>
                          </property>
                         </widget>
                        </item>
                        <item>
                         <widget class="QPushButton" name="btnWebUIAPIKeyRotate">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>32</width>
-                           <height>32</height>
-                          </size>
-                         </property>
                          <property name="toolTip">
                           <string>Generate API key</string>
                          </property>
-                         <property name="text">
-                          <string/>
-                         </property>
                          <property name="icon">
-                          <iconset resource="../icons.qrc">
+                          <iconset>
                            <normaloff>:/icons/view-refresh.svg</normaloff>:/icons/view-refresh.svg</iconset>
-                         </property>
-                         <property name="flat">
-                          <bool>false</bool>
                          </property>
                         </widget>
                        </item>
                        <item>
                         <widget class="QPushButton" name="btnWebUIAPIKeyDelete">
-                         <property name="sizePolicy">
-                          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                           <horstretch>0</horstretch>
-                           <verstretch>0</verstretch>
-                          </sizepolicy>
-                         </property>
-                         <property name="maximumSize">
-                          <size>
-                           <width>32</width>
-                           <height>32</height>
-                          </size>
-                         </property>
                          <property name="toolTip">
                           <string>Delete API key</string>
                          </property>
-                         <property name="text">
-                          <string/>
-                         </property>
                          <property name="icon">
-                          <iconset resource="../icons.qrc">
+                          <iconset>
                            <normaloff>:/icons/list-remove.svg</normaloff>:/icons/list-remove.svg</iconset>
-                         </property>
-                         <property name="flat">
-                          <bool>false</bool>
                          </property>
                         </widget>
                        </item>
