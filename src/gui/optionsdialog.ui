@@ -872,7 +872,7 @@
             <item>
              <widget class="QCheckBox" name="monitorClipboardForTorrentLink">
               <property name="text">
-               <string>Monitor clipboard for torrent link</string>
+               <string>Monitor clipboard for torrent link, magnet link and info hash</string>
               </property>
              </widget>
             </item>

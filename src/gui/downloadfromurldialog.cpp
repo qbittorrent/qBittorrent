@@ -39,24 +39,10 @@
 #include <QStringView>
 
 #include "base/net/downloadmanager.h"
+#include "base/utils/misc.h"
 #include "ui_downloadfromurldialog.h"
-#include "utils.h"
 
 #define SETTINGS_KEY(name) u"DownloadFromURLDialog/" name
-
-namespace
-{
-    bool isDownloadable(const QString &str)
-    {
-        return (Net::DownloadManager::hasSupportedScheme(str)
-            || str.startsWith(u"magnet:", Qt::CaseInsensitive)
-#ifdef QBT_USES_LIBTORRENT2
-            || ((str.size() == 64) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_s))) // v2 hex-encoded SHA-256 info-hash
-#endif
-            || ((str.size() == 40) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_s))) // v1 hex-encoded SHA-1 info-hash
-            || ((str.size() == 32) && !str.contains(QRegularExpression(u"[^2-7A-Za-z]"_s)))); // v1 Base32 encoded SHA-1 info-hash
-    }
-}
 
 DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     : QDialog(parent)
@@ -86,7 +72,7 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
         if (url.isEmpty())
             continue;
 
-        if (const QString urlString = url.toString(); isDownloadable(urlString))
+        if (const QString urlString = url.toString(); Utils::Misc::isDownloadable(urlString))
             urls << urlString;
     }
 
