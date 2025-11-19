@@ -35,20 +35,6 @@ const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<Tag> TorrentFilter::AnyTag;
 
-const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
-const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
-const TorrentFilter TorrentFilter::CompletedTorrent(TorrentFilter::Completed);
-const TorrentFilter TorrentFilter::StoppedTorrent(TorrentFilter::Stopped);
-const TorrentFilter TorrentFilter::RunningTorrent(TorrentFilter::Running);
-const TorrentFilter TorrentFilter::ActiveTorrent(TorrentFilter::Active);
-const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
-const TorrentFilter TorrentFilter::StalledTorrent(TorrentFilter::Stalled);
-const TorrentFilter TorrentFilter::StalledUploadingTorrent(TorrentFilter::StalledUploading);
-const TorrentFilter TorrentFilter::StalledDownloadingTorrent(TorrentFilter::StalledDownloading);
-const TorrentFilter TorrentFilter::CheckingTorrent(TorrentFilter::Checking);
-const TorrentFilter TorrentFilter::MovingTorrent(TorrentFilter::Moving);
-const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
-
 using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet

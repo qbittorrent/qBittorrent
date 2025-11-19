@@ -71,20 +71,6 @@ public:
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<Tag> AnyTag;
 
-    static const TorrentFilter DownloadingTorrent;
-    static const TorrentFilter SeedingTorrent;
-    static const TorrentFilter CompletedTorrent;
-    static const TorrentFilter StoppedTorrent;
-    static const TorrentFilter RunningTorrent;
-    static const TorrentFilter ActiveTorrent;
-    static const TorrentFilter InactiveTorrent;
-    static const TorrentFilter StalledTorrent;
-    static const TorrentFilter StalledUploadingTorrent;
-    static const TorrentFilter StalledDownloadingTorrent;
-    static const TorrentFilter CheckingTorrent;
-    static const TorrentFilter MovingTorrent;
-    static const TorrentFilter ErroredTorrent;
-
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
     TorrentFilter(Type type
