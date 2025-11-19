@@ -504,7 +504,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(pref, &Preferences::changed, this, &MainWindow::optionsSaved);
 
     // monitor clipboard if a torrent or magnet url is copied
-    const QClipboard* clipboard = QGuiApplication::clipboard();
+    const QClipboard *clipboard = QGuiApplication::clipboard();
     connect(clipboard, &QClipboard::dataChanged, this, &MainWindow::onClipboardDataChanged);
 
     qDebug("GUI Built");
@@ -2023,8 +2023,8 @@ void MainWindow::onClipboardDataChanged()
 {
     const Preferences *pref = Preferences::instance();
     if (pref->getMonitorClipboardForTorrentLink()) {
-        const QClipboard* clipboard = QGuiApplication::clipboard();
-        const QMimeData* mimeData = clipboard->mimeData();
+        const QClipboard *clipboard = QGuiApplication::clipboard();
+        const QMimeData *mimeData = clipboard->mimeData();
 
         if (mimeData->hasText()) {
             const QString source = mimeData->text();
