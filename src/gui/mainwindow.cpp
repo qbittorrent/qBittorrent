@@ -2021,14 +2021,17 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
 
 void MainWindow::onClipboardDataChanged()
 {
-    QClipboard* clipboard = QGuiApplication::clipboard();
-    const QMimeData* mimeData = clipboard->mimeData();
+    const Preferences *pref = Preferences::instance();
+    if (pref->getMonitorClipboardForTorrentLink()) {
+        const QClipboard* clipboard = QGuiApplication::clipboard();
+        const QMimeData* mimeData = clipboard->mimeData();
 
-    if (mimeData->hasText()) {
-        const QString source = mimeData->text();
-        if (Utils::Misc::isTorrentLink(source))
-        {
-            app()->addTorrentManager()->addTorrent(source);
+        if (mimeData->hasText()) {
+            const QString source = mimeData->text();
+            if (Utils::Misc::isTorrentLink(source))
+            {
+                app()->addTorrentManager()->addTorrent(source);
+            }
         }
     }
 }

@@ -2124,3 +2124,16 @@ void Preferences::apply()
     if (SettingsStorage::instance()->save())
         emit changed();
 }
+
+bool Preferences::getMonitorClipboardForTorrentLink() const
+{
+    return value(u"Preferences/General/MonitorClipboardForTorrentLink"_s, false);
+}
+
+void Preferences::setMonitorClipboardForTorrentLink(const bool value)
+{
+    if (value == getMonitorClipboardForTorrentLink())
+        return;
+
+    setValue(u"Preferences/General/MonitorClipboardForTorrentLink"_s, value);
+}

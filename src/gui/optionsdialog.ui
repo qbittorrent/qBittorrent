@@ -870,6 +870,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="monitorClipboardForTorrentLink">
+              <property name="text">
+               <string>Monitor clipboard for torrent link</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
               <property name="text">
                <string>Show free disk space in status bar</string>

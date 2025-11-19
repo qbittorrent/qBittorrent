@@ -137,6 +137,8 @@ public:
     void setPreventFromSuspendWhenDownloading(bool b);
     bool preventFromSuspendWhenSeeding() const;
     void setPreventFromSuspendWhenSeeding(bool b);
+    bool getMonitorClipboardForTorrentLink() const;
+    void setMonitorClipboardForTorrentLink(bool value);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);
