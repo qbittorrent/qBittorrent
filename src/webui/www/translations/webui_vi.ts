@@ -723,7 +723,7 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Thông báo qua email khi hoàn tất quá trình tải xuống</translation>
+        <translation>Thông báo qua email khi tải xuống hoàn tất</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -775,7 +775,7 @@
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Sao chép các tệp .torrent để tải xuống hoàn tất đến:</translation>
+        <translation>Sao chép tệp .torrent để tải xuống kết thúc đến:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -783,7 +783,7 @@
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Nối phần mở rộng .!QB vào các tệp chưa xong</translation>
+        <translation>Nối mở rộng .!QB vào các tệp chưa hoàn tất</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -1249,7 +1249,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation>Kiểm tra lại torrent khi hoàn thành:</translation>
+        <translation>Kiểm tra lại torrent khi hoàn tất:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1325,11 +1325,11 @@
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>Lưu khoảng thời gian dữ liệu tiếp tục:</translation>
+        <translation>Chu kỳ lưu dữ liệu hồi phục:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation>Luôn thông báo cho tất cả những máy theo dõi trong một cấp:</translation>
+        <translation>Luôn thông báo cho tất cả các máy theo dõi trong một cấp:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1365,7 +1365,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation>Tỷ lệ phần trăm ngưỡng doanh thu ngang hàng:</translation>
+        <translation>Tỉ lệ ngưỡng luân chuyển ngang hàng:</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1393,11 +1393,11 @@
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation>Khoảng thời gian làm mới nguồn cấp dữ liệu:</translation>
+        <translation>Chu kỳ làm mới nguồn cấp:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation>Tỷ lệ ngắt kết nối luân chuyển ngang hàng:</translation>
+        <translation>Tỉ lệ ngắt kết nối luân chuyển ngang hàng:</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1409,7 +1409,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>Khoảng thời gian ngắt kết nối luân chuyển ngang hàng:</translation>
+        <translation>Chu kỳ ngắt kết nối luân chuyển ngang hàng:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1533,7 +1533,7 @@
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation>Nó kiểm soát khoảng thời gian cập nhật trạng thái nội bộ, do đó sẽ ảnh hưởng đến các bản cập nhật giao diện người dùng</translation>
+        <translation>Nó kiểm soát chu kỳ cập nhật trạng thái nội bộ, nó sẽ ảnh hưởng đến cập nhật UI</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1561,7 +1561,7 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation>Khoảng thời gian làm mới:</translation>
+        <translation>Chu kỳ làm mới:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1805,7 +1805,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation>Khoảng thời gian hết hạn của bộ đệm đĩa:</translation>
+        <translation>Chu kỳ hết hạn bộ nhớ đệm đĩa:</translation>
     </message>
     <message>
         <source>I2P outbound length:</source>
@@ -1937,7 +1937,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Completed torrents:</source>
-        <translation>Torrent đã hoàn tất:</translation>
+        <translation>Các torrent hoàn tất:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
@@ -1953,7 +1953,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation>Lưu khoảng thời gian thống kê:</translation>
+        <translation>Chu kỳ lưu thống kê:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -1961,7 +1961,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Run on torrent finished:</source>
-        <translation>Chạy trên torrent đã hoàn thành:</translation>
+        <translation>Chạy trên torrent kết thúc:</translation>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
@@ -2249,7 +2249,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation>Lần Cuối Trông Thấy Hoàn Thành:</translation>
+        <translation>Lần Cuối Trông Thấy Hoàn Tất:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -2269,7 +2269,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Đã Xong Lúc:</translation>
+        <translation>Hoàn Tất Lúc:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -2585,7 +2585,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation>Đã Hoàn Tất (0)</translation>
+        <translation>Hoàn Tất (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -2613,7 +2613,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation>Đã Hoàn Tất (%1)</translation>
+        <translation>Hoàn tất (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2762,7 +2762,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Đã Xong Lúc</translation>
+        <translation>Hoàn Tất Lúc</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2816,7 +2816,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Đã Hoàn Tất</translation>
+        <translation>Hoàn tất</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
@@ -2826,7 +2826,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Lần Cuối Trông Thấy Hoàn Thành</translation>
+        <translation>Lần Cuối Trông Thấy Hoàn Tất</translation>
     </message>
     <message>
         <source>Last Activity</source>
@@ -2955,7 +2955,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Tier</source>
-        <translation>Hạng</translation>
+        <translation>Cấp</translation>
     </message>
     <message>
         <source>Download Priority</source>
@@ -3010,7 +3010,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Completed</source>
-        <translation>Đã Hoàn Tất</translation>
+        <translation>Hoàn Tất</translation>
     </message>
     <message>
         <source>Moving</source>

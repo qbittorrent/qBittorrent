@@ -849,7 +849,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="628"/>
         <source>Use piece extent affinity</source>
-        <translation>Parça kapsam benzeşimi kullan</translation>
+        <translation>Parça kapsamı benzeşimini kullan</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="631"/>

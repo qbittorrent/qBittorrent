@@ -9014,7 +9014,7 @@ De här insticksmodulerna inaktiverades.</translation>
         <location filename="../gui/rss/rsswidget.cpp" line="314"/>
         <location filename="../gui/rss/rsswidget.cpp" line="510"/>
         <source>Please type a RSS feed URL</source>
-        <translation>Ange en URL för RSS-flödet</translation>
+        <translation>Ange en RSS-flödes-URL</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="314"/>

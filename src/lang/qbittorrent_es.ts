@@ -8359,7 +8359,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>No se pudo descargar la información de actualización del programa. URL: &quot;%1&quot;. Error: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>

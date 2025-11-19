@@ -1029,7 +1029,7 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F : Chemin vers le contenu (même chemin que le chemin racine pour les torrents composés de plusieurs fichiers)</translation>
+        <translation>%F : Chemin du contenu (le même que le chemin racine pour les torrents composés de plusieurs fichiers)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>

@@ -1453,7 +1453,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Kişilere bağlantılar için hizmet türü (ToS)</translation>
+        <translation>Kişilere bağlantılar için hizmet türü (ToS):</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1549,7 +1549,7 @@
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation>Parça kapsam benzeşimi kullan</translation>
+        <translation>Parça kapsamı benzeşimini kullan:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>

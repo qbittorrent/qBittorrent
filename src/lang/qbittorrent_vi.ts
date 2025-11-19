@@ -198,7 +198,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="122"/>
         <source>Use another path for incomplete torrent</source>
-        <translation>Dùng đường dẫn khác cho torrent chưa xong</translation>
+        <translation>Dùng đường dẫn khác cho torrent chưa hoàn tất</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="167"/>
@@ -240,7 +240,7 @@
         <location filename="../gui/addnewtorrentdialog.cpp" line="313"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="491"/>
         <source>Metadata received</source>
-        <translation>Dữ liệu mô tả đã nhận</translation>
+        <translation>Đã nhận dữ liệu mô tả</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="314"/>
@@ -537,7 +537,7 @@
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="74"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation>Dùng đường dẫn khác cho torrent chưa xong:</translation>
+        <translation>Dùng đường dẫn khác cho torrent chưa hoàn tất:</translation>
     </message>
     <message>
         <location filename="../gui/addtorrentparamswidget.ui" line="107"/>
@@ -828,7 +828,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="585"/>
         <source>Disk cache expiry interval</source>
-        <translation>Khoảng thời gian hết hạn bộ nhớ đệm trên đĩa</translation>
+        <translation>Chu kỳ hết hạn bộ nhớ đệm đĩa</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="593"/>
@@ -869,7 +869,7 @@
         <location filename="../gui/advancedsettings.cpp" line="686"/>
         <source>Save resume data interval [0: disabled]</source>
         <comment>How often the fastresume file is saved.</comment>
-        <translation>Khoảng thời gian lưu dữ liệu tiếp tục [0: tắt]</translation>
+        <translation>Chu kỳ lưu dữ liệu hồi phục [0: tắt]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="705"/>
@@ -1051,7 +1051,7 @@
         <location filename="../gui/advancedsettings.cpp" line="693"/>
         <source>Save statistics interval [0: disabled]</source>
         <comment>How often the statistics file is saved.</comment>
-        <translation>Lưu khoảng thời gian thống kê [0: tắt]</translation>
+        <translation>Chu kỳ lưu thống kê [0: tắt]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="699"/>
@@ -1111,12 +1111,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="772"/>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation>Kiểm soát khoảng thời gian cập nhật trạng thái nội bộ, nó sẽ ảnh hưởng đến cập nhật giao diện người dùng</translation>
+        <translation>Nó kiểm soát chu kỳ cập nhật trạng thái nội bộ, nó sẽ ảnh hưởng đến cập nhật UI</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="773"/>
         <source>Refresh interval</source>
-        <translation>Khoảng thời gian làm mới</translation>
+        <translation>Chu kỳ làm mới</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="779"/>
@@ -1212,17 +1212,17 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="947"/>
         <source>Peer turnover disconnect percentage</source>
-        <translation>Phần trăm ngắt kết nối xoay vòng ngang hàng</translation>
+        <translation>Tỉ lệ ngắt kết nối luân chuyển ngang hàng</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="953"/>
         <source>Peer turnover threshold percentage</source>
-        <translation>Phần trăm ngưỡng xoay vòng ngang hàng</translation>
+        <translation>Tỉ lệ ngưỡng luân chuyển ngang hàng</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="959"/>
         <source>Peer turnover disconnect interval</source>
-        <translation>Khoảng ngắt kết nối xoay vòng ngang hàng</translation>
+        <translation>Chu kỳ ngắt kết nối luân chuyển ngang hàng</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="968"/>
@@ -1493,7 +1493,7 @@
     <message>
         <location filename="../app/application.cpp" line="700"/>
         <source>Torrent &quot;%1&quot; has finished downloading</source>
-        <translation>Torrent &quot;%1&quot; đã hoàn tất tải xuống</translation>
+        <translation>Torrent &quot;%1&quot; đã kết thúc tải xuống</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="836"/>
@@ -1540,7 +1540,7 @@
     <message>
         <location filename="../app/application.cpp" line="914"/>
         <source>Download completed</source>
-        <translation>Đã tải về xong</translation>
+        <translation>Hoàn tất tải xuống</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="315"/>
@@ -1562,7 +1562,7 @@
         <location filename="../app/application.cpp" line="914"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
-        <translation>&apos;%1&apos; đã tải về hoàn tất.</translation>
+        <translation>&apos;%1&apos; đã kết thúc tải xuống.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="957"/>
@@ -2388,7 +2388,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="677"/>
         <source>Saving resume data completed.</source>
-        <translation>Lưu dữ liệu hồi phục đã hoàn tất.</translation>
+        <translation>Lưu dữ liệu hồi phục hoàn tất.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="688"/>
@@ -2531,7 +2531,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5423"/>
         <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
-        <translation>Tải xuống torrent đã hoàn tất. Torrent: &quot;%1&quot;</translation>
+        <translation>Đã kết thúc tải xuống torrent. Torrent: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5337"/>
@@ -3232,7 +3232,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/properties/downloadedpiecesbar.cpp" line="197"/>
         <source>Completed pieces</source>
-        <translation>Mảnh đã hoàn tất</translation>
+        <translation>Các mảnh hoàn tất</translation>
     </message>
 </context>
 <context>
@@ -5953,7 +5953,7 @@ Yêu cầu tối thiểu: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="385"/>
         <source>Completed torrents:</source>
-        <translation>Torrent đã hoàn tất:</translation>
+        <translation>Các torrent hoàn tất:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="424"/>
@@ -5983,7 +5983,7 @@ Yêu cầu tối thiểu: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="501"/>
         <source>Confirmation on auto-exit when downloads finish</source>
-        <translation>Xác nhận tự động thoát khi tải xuống hoàn tất</translation>
+        <translation>Xác nhận tự động thoát khi tải xuống kết thúc</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="642"/>
@@ -6059,7 +6059,7 @@ Yêu cầu tối thiểu: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1518"/>
         <source>Email notification &amp;upon download completion</source>
-        <translation>Thông báo qua email khi tải về xong</translation>
+        <translation>Thông báo qua email khi tải xuống hoàn tất</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1622"/>
@@ -6074,7 +6074,7 @@ Yêu cầu tối thiểu: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1656"/>
         <source>Run on torrent finished:</source>
-        <translation>Chạy trên torrent đã hoàn thành:</translation>
+        <translation>Chạy trên torrent kết thúc:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1728"/>
@@ -6215,7 +6215,7 @@ Tắt mã hóa: Chỉ kết nối đến máy ngang hàng không có giao thức
     <message>
         <location filename="../gui/optionsdialog.ui" line="3372"/>
         <source>Feeds refresh interval:</source>
-        <translation>Khoảng làm mới luồng:</translation>
+        <translation>Chu kỳ làm mới nguồn cấp:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3408"/>
@@ -6655,7 +6655,7 @@ Sử dụng &apos;;&apos; để chia nhiều mục nhập. Có thể sử dụng
     <message>
         <location filename="../gui/optionsdialog.ui" line="1369"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>Sao chép các tệp .torrent đã tải về xong vào:</translation>
+        <translation>Sao chép tệp .torrent để tải xuống kết thúc đến:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1114"/>
@@ -6861,7 +6861,7 @@ Thủ công: Các thuộc tính torrent khác nhau (ví dụ: đường dẫn l�
     <message>
         <location filename="../gui/optionsdialog.ui" line="1349"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation>Dùng một đường dẫn khác cho các torrent chưa xong:</translation>
+        <translation>Dùng đường dẫn khác cho torrent chưa hoàn tất:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1384"/>
@@ -7449,7 +7449,7 @@ readme[0-9].txt: lọc &apos;readme1.txt&apos;, &apos;readme2.txt&apos; nhưng k
     <message>
         <location filename="../gui/optionsdialog.cpp" line="557"/>
         <source>Torrent will stop after metadata is received.</source>
-        <translation>Torrent sẽ dừng sau khi nhận được dữ liệu mô tả.</translation>
+        <translation>Torrent sẽ dừng sau khi nhận dữ liệu mô tả.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="559"/>
@@ -8514,7 +8514,7 @@ Các plugin đó đã bị vô hiệu hóa.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="581"/>
         <source>Last Seen Complete:</source>
-        <translation>Lần Cuối Trông Thấy Hoàn Thành:</translation>
+        <translation>Lần Cuối Trông Thấy Hoàn Tất:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="610"/>
@@ -8550,7 +8550,7 @@ Các plugin đó đã bị vô hiệu hóa.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="776"/>
         <source>Completed On:</source>
-        <translation>Hoàn Thành Lúc:</translation>
+        <translation>Hoàn Tất Lúc:</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="805"/>
@@ -9971,7 +9971,7 @@ Nhấp vào nút &quot;Tìm kiếm plugin ...&quot; ở dưới cùng bên phả
     <message>
         <location filename="../gui/statsdialog.ui" line="119"/>
         <source>Total buffer size:</source>
-        <translation>Tổng kích cỡ bộ đệm:</translation>
+        <translation>Tổng kích thước bộ đệm:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="136"/>
@@ -9996,7 +9996,7 @@ Nhấp vào nút &quot;Tìm kiếm plugin ...&quot; ở dưới cùng bên phả
     <message>
         <location filename="../gui/statsdialog.ui" line="198"/>
         <source>Total queued size:</source>
-        <translation>Tổng kích cỡ hàng đợi:</translation>
+        <translation>Tổng kích thước hàng đợi:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.cpp" line="112"/>
@@ -10094,7 +10094,7 @@ Nhấp vào nút &quot;Tìm kiếm plugin ...&quot; ở dưới cùng bên phả
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="56"/>
         <source>Completed (0)</source>
-        <translation>Đã hoàn tất (0)</translation>
+        <translation>Hoàn Tất (0)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="59"/>
@@ -10164,7 +10164,7 @@ Nhấp vào nút &quot;Tìm kiếm plugin ...&quot; ở dưới cùng bên phả
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="169"/>
         <source>Completed (%1)</source>
-        <translation>Đã hoàn tất (%1)</translation>
+        <translation>Hoàn tất (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/statusfilterwidget.cpp" line="170"/>
@@ -10328,7 +10328,7 @@ Nhấp vào nút &quot;Tìm kiếm plugin ...&quot; ở dưới cùng bên phả
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="64"/>
         <source>Save path for incomplete torrents:</source>
-        <translation>Lưu đường dẫn cho torrent chưa hoàn chỉnh:</translation>
+        <translation>Đường dẫn lưu cho torrent chưa hoàn tất:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
@@ -10465,7 +10465,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="168"/>
         <source>Total Size</source>
-        <translation>Tổng Kích Cỡ</translation>
+        <translation>Tổng Kích Thước</translation>
     </message>
 </context>
 <context>
@@ -10614,7 +10614,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="228"/>
         <source>Torrent creation is still unfinished.</source>
-        <translation>Tạo torrent vẫn chưa hoàn thành.</translation>
+        <translation>Tạo torrent vẫn chưa kết thúc.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentcreatorcontroller.cpp" line="231"/>
@@ -10729,7 +10729,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="326"/>
         <source>You can separate tracker tiers / groups with an empty line.</source>
-        <translation>Bạn có thể phân biệt các hạng / nhóm máy theo theo dõi bằng một hàng rỗng.</translation>
+        <translation>Bạn có thể tách các cấp / nhóm máy theo theo dõi bằng một dòng trống.</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.ui" line="339"/>
@@ -11240,9 +11240,9 @@ Vui lòng chọn một tên khác và thử lại.</translation>
 - All trackers within the same group will belong to the same tier.
 - The group on top will be tier 0, the next group tier 1 and so on.
 - Below will show the common subset of trackers of the selected torrents.</source>
-        <translation>Một URL máy theo dõi trên một dòng.
+        <translation>Một URL máy theo dõi mỗi dòng.
 
-- Bạn có thể chia các máy theo dõi thành các nhóm bằng cách chèn dòng trắng.
+- Bạn có thể chia các máy theo dõi thành các nhóm bằng cách chèn dòng trống.
 - Tất cả các máy theo dõi trong cùng một nhóm sẽ thuộc cùng một cấp.
 - Nhóm trên cùng là cấp 0, nhóm tiếp theo là cấp 1, v.v.
 - Dưới đây sẽ hiển thị tập hợp con phổ biến của máy theo dõi các torrent đã chọn.</translation>
@@ -11328,7 +11328,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="496"/>
         <source>Tier</source>
-        <translation>Hạng</translation>
+        <translation>Cấp</translation>
     </message>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="500"/>
@@ -11650,7 +11650,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="110"/>
         <source>Completed</source>
-        <translation>Đã hoàn tất</translation>
+        <translation>Hoàn tất</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="111"/>
@@ -11759,7 +11759,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Hoàn Thành Lúc</translation>
+        <translation>Hoàn Tất Lúc</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="176"/>
@@ -11840,7 +11840,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Đã hoàn tất</translation>
+        <translation>Hoàn tất</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="188"/>
@@ -11852,7 +11852,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="189"/>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Lần Cuối Trông Thấy Hoàn Thành</translation>
+        <translation>Lần Cuối Trông Thấy Hoàn Tất</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="190"/>

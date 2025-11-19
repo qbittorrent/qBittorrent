@@ -7473,7 +7473,7 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
     <message>
         <location filename="../gui/optionsdialog.cpp" line="668"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F&#x202f;: Répertoire du contenu (le même que le répertoire racine pour les torrents composés de plusieurs fichiers)</translation>
+        <translation>%F&#x202f;: Chemin du contenu (le même que le chemin racine pour les torrents composés de plusieurs fichiers)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="669"/>
@@ -8355,7 +8355,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du téléchargement des informations de mise à jour du programme. URL&#xa0;: «&#xa0;%1&#xa0;». Erreur&#xa0;: «&#xa0;%2&#xa0;»</translation>
     </message>
 </context>
 <context>
@@ -11306,7 +11306,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="494"/>
         <source>URL/Announce Endpoint</source>
-        <translation>URL/Announce Endpoint</translation>
+        <translation>URL/Annonce du point de terminaison</translation>
     </message>
     <message>
         <location filename="../gui/trackerlist/trackerlistmodel.cpp" line="498"/>

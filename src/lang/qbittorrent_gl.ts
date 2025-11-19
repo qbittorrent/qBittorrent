@@ -8358,7 +8358,7 @@ Desactiváronse estes engadidos.</translation>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Non se puido descargar a información de actualización do programa. URL: &quot;%1&quot;. Erro: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>

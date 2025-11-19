@@ -3992,7 +3992,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation>Ange en URL för RSS-flödet</translation>
+        <translation>Ange en RSS-flödes-URL</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
