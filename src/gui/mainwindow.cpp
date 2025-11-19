@@ -2030,7 +2030,7 @@ void MainWindow::onClipboardDataChanged()
             const QString source = mimeData->text();
             if (Utils::Misc::isTorrentLink(source) || Utils::Misc::isDownloadable(source))
             {
-                app()->addTorrentManager()->addTorrent(source);
+                app()->addTorrentManager()->addTorrent(source, {}, AddTorrentOption::ShowDialog);
             }
         }
     }
