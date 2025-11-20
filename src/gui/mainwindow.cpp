@@ -2022,14 +2022,16 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
 void MainWindow::onClipboardDataChanged()
 {
     const Preferences *pref = Preferences::instance();
-    if (pref->getMonitorClipboardForTorrentLink()) {
+    if (pref->getMonitorClipboardForTorrentLink())
+    {
         const QClipboard *clipboard = QGuiApplication::clipboard();
         const QMimeData *mimeData = clipboard->mimeData();
 
-        if (mimeData->hasText()) {
+        if (mimeData->hasText())
+        {
             const QString source = mimeData->text();
             if (Utils::Misc::isTorrentLink(source) || Utils::Misc::isDownloadable(source))
-           {
+            {
                 // ignore http url that isn't a torrent file
                 if (source.startsWith(u"http", Qt::CaseInsensitive) && !source.endsWith(TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
                     return;
