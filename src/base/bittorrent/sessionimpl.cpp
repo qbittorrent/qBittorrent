@@ -568,6 +568,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 500)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
+    , m_fileFilterRulesData(BITTORRENT_SESSION_KEY(u"FileFilterRules"_s))
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_s), ResumeDataStorageType::Legacy)
     , m_isMergeTrackersEnabled(BITTORRENT_KEY(u"MergeTrackersEnabled"_s), false)
@@ -643,6 +644,18 @@ SessionImpl::SessionImpl(QObject *parent)
     populateAdditionalTrackers();
     if (isExcludedFileNamesEnabled())
         populateExcludedFileNamesRegExpList();
+
+    // Load file filter rules from settings
+    const QStringList rulesDataList = m_fileFilterRulesData;
+    QJsonArray rulesArray;
+    for (const QString &ruleJson : rulesDataList)
+    {
+        const QJsonDocument doc = QJsonDocument::fromJson(ruleJson.toUtf8());
+        if (doc.isObject())
+            rulesArray.append(doc.object());
+    }
+    m_fileFilterRules = parseFileFilterRules(rulesArray);
+    populateFileFilterRulesCache();
 
     connect(Net::ProxyConfigurationManager::instance()
         , &Net::ProxyConfigurationManager::proxyConfigurationChanged
@@ -2828,10 +2841,20 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
 
         // Filename filter should be applied before `findIncompleteFiles()` is called.
-        if (filePriorities.isEmpty() && isExcludedFileNamesEnabled())
+        if (filePriorities.isEmpty())
         {
+            // Gather file sizes
+            QList<qint64> fileSizes;
+            fileSizes.reserve(nativeIndexes.size());
+            for (int idx = 0; idx < nativeIndexes.size(); ++idx)
+                fileSizes.append(torrentInfo.fileSize(idx));
+
             // Check file name blacklist when priorities are not explicitly set
-            applyFilenameFilter(filePaths, filePriorities);
+            if (isExcludedFileNamesEnabled())
+                applyFilenameFilter(filePaths, filePriorities);
+
+            // Apply new file filter rules with size info
+            applyFilenameFilter(filePaths, fileSizes, addTorrentParams.tags, filePriorities);
         }
 
         if (!loadTorrentParams.hasFinishedStatus)
@@ -4153,6 +4176,153 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
 
         if (isFilenameExcluded(files.at(i)))
             priorities[i] = BitTorrent::DownloadPriority::Ignored;
+    }
+}
+
+void SessionImpl::applyFilenameFilter(const PathList &files, const TagSet &torrentTags, QList<DownloadPriority> &priorities)
+{
+    // Delegate to version without file sizes (name-based filtering only)
+    QList<qint64> emptySizes;
+    applyFilenameFilter(files, emptySizes, torrentTags, priorities);
+}
+
+void SessionImpl::applyFilenameFilter(const PathList &files, const QList<qint64> &fileSizes, const TagSet &torrentTags, QList<DownloadPriority> &priorities)
+{
+    // First apply legacy excluded file names filter
+    if (isExcludedFileNamesEnabled())
+        applyFilenameFilter(files, priorities);
+
+    // Then apply new file filter rules
+    priorities.resize(files.count(), DownloadPriority::Normal);
+    const bool hasSizeInfo = !fileSizes.isEmpty() && (fileSizes.size() == files.size());
+
+    for (const CompiledFilterRule &rule : m_compiledFilterRules)
+    {
+        if (!rule.enabled)
+            continue;
+
+        // Check if rule applies to this torrent's tags
+        // Empty tags in rule means apply to all torrents
+        if (!rule.tags.isEmpty())
+        {
+            bool tagMatches = false;
+            for (const Tag &tag : rule.tags)
+            {
+                if (torrentTags.contains(tag))
+                {
+                    tagMatches = true;
+                    break;
+                }
+            }
+            if (!tagMatches)
+                continue;
+        }
+
+        // Apply rule to each file
+        for (qsizetype i = 0; i < files.size(); ++i)
+        {
+            if (priorities[i] == DownloadPriority::Ignored)
+                continue;
+
+            const Path &filePath = files.at(i);
+            const QString fileName = filePath.filename();
+
+            // Whitelist has highest priority - if matched, keep the file
+            if (!rule.whitelistRegex.pattern().isEmpty() && rule.whitelistRegex.match(fileName).hasMatch())
+                continue;
+
+            // Check file size constraints
+            if (hasSizeInfo)
+            {
+                const qint64 fileSize = fileSizes.at(i);
+
+                // Check minimum file size (files smaller than this are excluded)
+                if (rule.minFileSizeBytes > 0 && fileSize < rule.minFileSizeBytes)
+                {
+                    priorities[i] = DownloadPriority::Ignored;
+                    continue;
+                }
+
+                // Check maximum file size (files larger than this are excluded)
+                if (rule.maxFileSizeBytes > 0 && fileSize > rule.maxFileSizeBytes)
+                {
+                    priorities[i] = DownloadPriority::Ignored;
+                    continue;
+                }
+            }
+
+            // Blacklist - if matched, exclude the file
+            if (!rule.blacklistRegex.pattern().isEmpty() && rule.blacklistRegex.match(fileName).hasMatch())
+                priorities[i] = DownloadPriority::Ignored;
+        }
+    }
+}
+
+QList<FileFilterRule> SessionImpl::fileFilterRules() const
+{
+    return m_fileFilterRules;
+}
+
+void SessionImpl::setFileFilterRules(const QList<FileFilterRule> &rules)
+{
+    if (rules == m_fileFilterRules)
+        return;
+
+    m_fileFilterRules = rules;
+
+    // Save to settings
+    QStringList rulesDataList;
+    const QJsonArray rulesArray = serializeFileFilterRules(rules);
+    for (const QJsonValue &value : rulesArray)
+    {
+        const QJsonDocument doc(value.toObject());
+        rulesDataList.append(QString::fromUtf8(doc.toJson(QJsonDocument::Compact)));
+    }
+    m_fileFilterRulesData = rulesDataList;
+
+    // Update compiled rules cache
+    populateFileFilterRulesCache();
+}
+
+void SessionImpl::populateFileFilterRulesCache()
+{
+    m_compiledFilterRules.clear();
+    m_compiledFilterRules.reserve(m_fileFilterRules.size());
+
+    for (const FileFilterRule &rule : m_fileFilterRules)
+    {
+        CompiledFilterRule compiled;
+        compiled.enabled = rule.enabled;
+        compiled.tags = rule.tags;
+        compiled.minFileSizeBytes = rule.minFileSizeBytes;
+        compiled.maxFileSizeBytes = rule.maxFileSizeBytes;
+
+        // Compile regex patterns
+        if (!rule.whitelistPattern.isEmpty())
+        {
+            compiled.whitelistRegex = QRegularExpression(rule.whitelistPattern,
+                                                         QRegularExpression::CaseInsensitiveOption);
+            if (!compiled.whitelistRegex.isValid())
+            {
+                LogMsg(tr("File filter rule '%1' has invalid whitelist pattern: %2")
+                       .arg(rule.name, compiled.whitelistRegex.errorString()), Log::WARNING);
+                compiled.whitelistRegex = QRegularExpression(); // Clear invalid regex
+            }
+        }
+
+        if (!rule.blacklistPattern.isEmpty())
+        {
+            compiled.blacklistRegex = QRegularExpression(rule.blacklistPattern,
+                                                         QRegularExpression::CaseInsensitiveOption);
+            if (!compiled.blacklistRegex.isValid())
+            {
+                LogMsg(tr("File filter rule '%1' has invalid blacklist pattern: %2")
+                       .arg(rule.name, compiled.blacklistRegex.errorString()), Log::WARNING);
+                compiled.blacklistRegex = QRegularExpression(); // Clear invalid regex
+            }
+        }
+
+        m_compiledFilterRules.append(compiled);
     }
 }
 

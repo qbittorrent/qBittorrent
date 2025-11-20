@@ -54,6 +54,7 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
+#include "filefilterrule.h"
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
@@ -414,7 +415,11 @@ namespace BitTorrent
         void setExcludedFileNamesEnabled(bool enabled) override;
         QStringList excludedFileNames() const override;
         void setExcludedFileNames(const QStringList &excludedFileNames) override;
+        QList<FileFilterRule> fileFilterRules() const override;
+        void setFileFilterRules(const QList<FileFilterRule> &rules) override;
         void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) override;
+        void applyFilenameFilter(const PathList &files, const TagSet &torrentTags, QList<BitTorrent::DownloadPriority> &priorities) override;
+        void applyFilenameFilter(const PathList &files, const QList<qint64> &fileSizes, const TagSet &torrentTags, QList<BitTorrent::DownloadPriority> &priorities) override;
         QStringList bannedIPs() const override;
         void setBannedIPs(const QStringList &newList) override;
         ResumeDataStorageType resumeDataStorageType() const override;
@@ -567,6 +572,7 @@ namespace BitTorrent
         void disableIPFilter();
         void processTorrentShareLimits(TorrentImpl *torrent);
         void populateExcludedFileNamesRegExpList();
+        void populateFileFilterRulesCache();
         void prepareStartup();
         void handleLoadedResumeData(ResumeSessionContext *context);
         void processNextResumeData(ResumeSessionContext *context);
@@ -767,6 +773,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_requestQueueSize;
         CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
+        CachedSettingValue<QStringList> m_fileFilterRulesData;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
         CachedSettingValue<bool> m_isMergeTrackersEnabled;
@@ -803,6 +810,17 @@ namespace BitTorrent
         QList<TrackerEntry> m_additionalTrackerEntries;
         QList<TrackerEntry> m_additionalTrackerEntriesFromURL;
         QList<QRegularExpression> m_excludedFileNamesRegExpList;
+        QList<FileFilterRule> m_fileFilterRules;
+
+        struct CompiledFilterRule {
+            bool enabled;
+            TagSet tags;
+            QRegularExpression whitelistRegex;
+            QRegularExpression blacklistRegex;
+            qint64 minFileSizeBytes;
+            qint64 maxFileSizeBytes;
+        };
+        QList<CompiledFilterRule> m_compiledFilterRules;
 
         // Statistics
         mutable QElapsedTimer m_statisticsLastUpdateTimer;

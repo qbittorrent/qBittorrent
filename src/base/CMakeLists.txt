@@ -9,6 +9,7 @@ add_library(qbt_base STATIC
     bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
+    bittorrent/filefilterrule.h
     bittorrent/bandwidthscheduler.h
     bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h
@@ -130,6 +131,7 @@ add_library(qbt_base STATIC
     bittorrent/abstractfilestorage.cpp
     bittorrent/addtorrentparams.cpp
     bittorrent/bandwidthscheduler.cpp
+    bittorrent/filefilterrule.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/categoryoptions.cpp
     bittorrent/customstorage.cpp

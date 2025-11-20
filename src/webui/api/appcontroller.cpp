@@ -48,6 +48,7 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include "base/bittorrent/filefilterrule.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/interfaces/iapplication.h"
@@ -204,6 +205,11 @@ void AppController::preferencesAction()
     // Excluded file names
     data[u"excluded_file_names_enabled"_s] = session->isExcludedFileNamesEnabled();
     data[u"excluded_file_names"_s] = session->excludedFileNames().join(u'\n');
+
+    // File filter rules
+    const QList<BitTorrent::FileFilterRule> rules = session->fileFilterRules();
+    const QJsonArray rulesArray = BitTorrent::serializeFileFilterRules(rules);
+    data[u"file_filter_rules"_s] = rulesArray;
 
     // Email notification upon download completion
     data[u"mail_notification_enabled"_s] = pref->isMailNotificationEnabled();
@@ -663,6 +669,14 @@ void AppController::setPreferencesAction()
         session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_s))
         session->setExcludedFileNames(it.value().toString().split(u'\n'));
+
+    // File filter rules
+    if (hasKey(u"file_filter_rules"_s))
+    {
+        const QJsonArray rulesArray = it.value().toArray();
+        const QList<BitTorrent::FileFilterRule> rules = BitTorrent::parseFileFilterRules(rulesArray);
+        session->setFileFilterRules(rules);
+    }
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))
