@@ -213,6 +213,7 @@ private:
     QString m_windowTitle;
     QString m_downloadRate;
     QString m_uploadRate;
+    QString m_lastClipboardTorrentSource;
     bool m_posInitialized = false;
     bool m_neverShown = true;
 

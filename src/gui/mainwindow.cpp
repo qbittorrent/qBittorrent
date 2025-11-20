@@ -2029,7 +2029,21 @@ void MainWindow::onClipboardDataChanged()
         if (mimeData->hasText()) {
             const QString source = mimeData->text();
             if (Utils::Misc::isTorrentLink(source) || Utils::Misc::isDownloadable(source))
-            {
+           {
+                // ignore http url that isn't a torrent file
+                if (source.startsWith(u"http", Qt::CaseInsensitive) && !source.endsWith(TORRENT_FILE_EXTENSION, Qt::CaseInsensitive))
+                    return;
+
+#ifdef Q_OS_UNIX
+                // QClipboard::dataChanged is misbehaving in Linux so we cache the last source from clipboard and ignore if
+                // it's the same string
+                if (source == m_lastClipboardTorrentSource)
+                    return;
+#endif
+
+
+                m_lastClipboardTorrentSource = source;
+                LogMsg(tr("Adding new torrent from clipboard: \"%1\".").arg(source), Log::INFO);
                 app()->addTorrentManager()->addTorrent(source, {}, AddTorrentOption::ShowDialog);
             }
         }
