@@ -347,6 +347,12 @@ namespace BitTorrent
         void setQueueingSystemEnabled(bool enabled) override;
         bool ignoreSlowTorrentsForQueueing() const override;
         void setIgnoreSlowTorrentsForQueueing(bool ignore) override;
+        bool autoMoveSlowTorrentsToQueueEnd() const override;
+        void setAutoMoveSlowTorrentsToQueueEnd(bool enabled) override;
+        int autoMoveSlowTorrentsMinDownloadMB() const override;
+        void setAutoMoveSlowTorrentsMinDownloadMB(int mb) override;
+        int autoMoveSlowTorrentsTimeWindowMinutes() const override;
+        void setAutoMoveSlowTorrentsTimeWindowMinutes(int minutes) override;
         int downloadRateForSlowTorrents() const override;
         void setDownloadRateForSlowTorrents(int rateInKibiBytes) override;
         int uploadRateForSlowTorrents() const override;
@@ -649,6 +655,9 @@ namespace BitTorrent
         void setAdditionalTrackersFromURL(const QString &trackers);
         void updateTrackersFromURL();
 
+        void processAutoMoveSlowTorrents();
+        void updateAutoMoveSlowTorrentsTimer();
+
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
@@ -684,6 +693,9 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxActiveUploads;
         CachedSettingValue<int> m_maxActiveTorrents;
         CachedSettingValue<bool> m_ignoreSlowTorrentsForQueueing;
+        CachedSettingValue<bool> m_autoMoveSlowTorrentsToQueueEnd;
+        CachedSettingValue<int> m_autoMoveSlowTorrentsMinDownloadMB;
+        CachedSettingValue<int> m_autoMoveSlowTorrentsTimeWindowMinutes;
         CachedSettingValue<int> m_downloadRateForSlowTorrents;
         CachedSettingValue<int> m_uploadRateForSlowTorrents;
         CachedSettingValue<int> m_slowTorrentsInactivityTimer;
@@ -878,6 +890,15 @@ namespace BitTorrent
         FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
+
+        // Auto move slow torrents to queue end
+        struct TorrentDownloadHistoryEntry
+        {
+            qlonglong downloadAmount;
+            qint64 timestamp; // msecs since epoch
+        };
+        QTimer *m_autoMoveSlowTorrentsTimer = nullptr;
+        QHash<TorrentID, TorrentDownloadHistoryEntry> m_torrentDownloadHistory;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

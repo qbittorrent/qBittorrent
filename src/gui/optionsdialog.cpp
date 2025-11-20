@@ -1126,6 +1126,15 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->spinUploadRateForSlowTorrents->setValue(session->uploadRateForSlowTorrents());
     m_ui->spinSlowTorrentsInactivityTimer->setValue(session->slowTorrentsInactivityTimer());
 
+    m_ui->checkAutoMoveSlowTorrentsToQueueEnd->setChecked(session->autoMoveSlowTorrentsToQueueEnd());
+    const QString autoMoveExplanation = u"<html><body><p>"
+            + tr("Torrents that download less than the specified amount within the time window will be moved to the end of the queue")
+            + u"</p></body></html>";
+    m_ui->labelAutoMoveMinDownload->setToolTip(autoMoveExplanation);
+    m_ui->labelAutoMoveTimeWindow->setToolTip(autoMoveExplanation);
+    m_ui->spinAutoMoveMinDownloadMB->setValue(session->autoMoveSlowTorrentsMinDownloadMB());
+    m_ui->spinAutoMoveTimeWindowMinutes->setValue(session->autoMoveSlowTorrentsTimeWindowMinutes());
+
     if (session->globalMaxRatio() >= 0.)
     {
         // Enable
@@ -1200,6 +1209,29 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->spinDownloadRateForSlowTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinUploadRateForSlowTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSlowTorrentsInactivityTimer, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkAutoMoveSlowTorrentsToQueueEnd, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinAutoMoveMinDownloadMB, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinAutoMoveTimeWindowMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+
+    // Mutual exclusion between ignore slow torrents and auto move slow torrents
+    connect(m_ui->checkIgnoreSlowTorrentsForQueueing, &QGroupBox::toggled, this, [this](bool checked)
+    {
+        if (checked && m_ui->checkAutoMoveSlowTorrentsToQueueEnd->isChecked())
+        {
+            QMessageBox::warning(this, tr("Warning"),
+                tr("\"Do not count slow torrents\" and \"Automatically move slow torrents\" cannot be enabled simultaneously."));
+            m_ui->checkIgnoreSlowTorrentsForQueueing->setChecked(false);
+        }
+    });
+    connect(m_ui->checkAutoMoveSlowTorrentsToQueueEnd, &QGroupBox::toggled, this, [this](bool checked)
+    {
+        if (checked && m_ui->checkIgnoreSlowTorrentsForQueueing->isChecked())
+        {
+            QMessageBox::warning(this, tr("Warning"),
+                tr("\"Do not count slow torrents\" and \"Automatically move slow torrents\" cannot be enabled simultaneously."));
+            m_ui->checkAutoMoveSlowTorrentsToQueueEnd->setChecked(false);
+        }
+    });
 
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, m_ui->spinMaxRatio, &QWidget::setEnabled);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
@@ -1242,6 +1274,9 @@ void OptionsDialog::saveBittorrentTabOptions() const
     session->setDownloadRateForSlowTorrents(m_ui->spinDownloadRateForSlowTorrents->value());
     session->setUploadRateForSlowTorrents(m_ui->spinUploadRateForSlowTorrents->value());
     session->setSlowTorrentsInactivityTimer(m_ui->spinSlowTorrentsInactivityTimer->value());
+    session->setAutoMoveSlowTorrentsToQueueEnd(m_ui->checkAutoMoveSlowTorrentsToQueueEnd->isChecked());
+    session->setAutoMoveSlowTorrentsMinDownloadMB(m_ui->spinAutoMoveMinDownloadMB->value());
+    session->setAutoMoveSlowTorrentsTimeWindowMinutes(m_ui->spinAutoMoveTimeWindowMinutes->value());
 
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());

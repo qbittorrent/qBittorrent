@@ -784,6 +784,32 @@
                 </tbody>
             </table>
         </fieldset>
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="autoMoveSlowTorrentsCheckbox" onclick="qBittorrent.Preferences.updateAutoMoveSlowTorrentsSettings();">
+                <label for="autoMoveSlowTorrentsCheckbox">QBT_TR(Automatically move slow torrents to queue end)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="autoMoveMinDownloadValue">QBT_TR(Minimum download (MB):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="autoMoveMinDownloadValue" style="width: 6em;">&nbsp;&nbsp;QBT_TR(MB)QBT_TR[CONTEXT=OptionsDialog]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="autoMoveTimeWindowValue">QBT_TR(Time window (minutes):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="autoMoveTimeWindowValue" style="width: 6em;">&nbsp;&nbsp;QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -1815,6 +1841,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateSchedulingEnabled: updateSchedulingEnabled,
                 updateQueueingSystem: updateQueueingSystem,
                 updateSlowTorrentsSettings: updateSlowTorrentsSettings,
+                updateAutoMoveSlowTorrentsSettings: updateAutoMoveSlowTorrentsSettings,
                 updateMaxRatioTimeEnabled: updateMaxRatioTimeEnabled,
                 updateAddTrackersEnabled: updateAddTrackersEnabled,
                 updateAddTrackersFromURLEnabled: updateAddTrackersFromURLEnabled,
@@ -2084,14 +2111,40 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("maxActiveUpValue").disabled = !isQueueingEnabled;
             document.getElementById("maxActiveToValue").disabled = !isQueueingEnabled;
             document.getElementById("dontCountSlowTorrentsCheckbox").disabled = !isQueueingEnabled;
+            document.getElementById("autoMoveSlowTorrentsCheckbox").disabled = !isQueueingEnabled;
             updateSlowTorrentsSettings();
+            updateAutoMoveSlowTorrentsSettings();
         };
 
         const updateSlowTorrentsSettings = () => {
-            const isDontCountSlowTorrentsEnabled = (!document.getElementById("dontCountSlowTorrentsCheckbox").disabled) && document.getElementById("dontCountSlowTorrentsCheckbox").checked;
+            const dontCountCheckbox = document.getElementById("dontCountSlowTorrentsCheckbox");
+            const autoMoveCheckbox = document.getElementById("autoMoveSlowTorrentsCheckbox");
+
+            // Mutual exclusion
+            if (dontCountCheckbox.checked && autoMoveCheckbox.checked) {
+                alert("QBT_TR(\"Do not count slow torrents\" and \"Automatically move slow torrents\" cannot be enabled simultaneously.)QBT_TR[CONTEXT=OptionsDialog]");
+                dontCountCheckbox.checked = false;
+            }
+
+            const isDontCountSlowTorrentsEnabled = (!dontCountCheckbox.disabled) && dontCountCheckbox.checked;
             document.getElementById("dlRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
             document.getElementById("ulRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
             document.getElementById("torrentInactiveTimerValue").disabled = !isDontCountSlowTorrentsEnabled;
+        };
+
+        const updateAutoMoveSlowTorrentsSettings = () => {
+            const dontCountCheckbox = document.getElementById("dontCountSlowTorrentsCheckbox");
+            const autoMoveCheckbox = document.getElementById("autoMoveSlowTorrentsCheckbox");
+
+            // Mutual exclusion
+            if (autoMoveCheckbox.checked && dontCountCheckbox.checked) {
+                alert("QBT_TR(\"Do not count slow torrents\" and \"Automatically move slow torrents\" cannot be enabled simultaneously.)QBT_TR[CONTEXT=OptionsDialog]");
+                autoMoveCheckbox.checked = false;
+            }
+
+            const isAutoMoveSlowTorrentsEnabled = (!autoMoveCheckbox.disabled) && autoMoveCheckbox.checked;
+            document.getElementById("autoMoveMinDownloadValue").disabled = !isAutoMoveSlowTorrentsEnabled;
+            document.getElementById("autoMoveTimeWindowValue").disabled = !isAutoMoveSlowTorrentsEnabled;
         };
 
         const updateMaxRatioTimeEnabled = () => {
@@ -2518,6 +2571,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dlRateThresholdValue").value = Number(pref.slow_torrent_dl_rate_threshold);
                     document.getElementById("ulRateThresholdValue").value = Number(pref.slow_torrent_ul_rate_threshold);
                     document.getElementById("torrentInactiveTimerValue").value = Number(pref.slow_torrent_inactive_timer);
+                    document.getElementById("autoMoveSlowTorrentsCheckbox").checked = pref.auto_move_slow_torrents_to_queue_end;
+                    document.getElementById("autoMoveMinDownloadValue").value = Number(pref.auto_move_slow_torrents_min_download_mb);
+                    document.getElementById("autoMoveTimeWindowValue").value = Number(pref.auto_move_slow_torrents_time_window_minutes);
                     updateQueueingSystem();
 
                     // Share Limiting
@@ -2970,6 +3026,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
                 settings["slow_torrent_inactive_timer"] = torrentInactiveTimer;
+
+                settings["auto_move_slow_torrents_to_queue_end"] = document.getElementById("autoMoveSlowTorrentsCheckbox").checked;
+
+                const autoMoveMinDownload = Number(document.getElementById("autoMoveMinDownloadValue").value);
+                if (Number.isNaN(autoMoveMinDownload) || (autoMoveMinDownload < 1)) {
+                    alert("QBT_TR(Minimum download must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings["auto_move_slow_torrents_min_download_mb"] = autoMoveMinDownload;
+
+                const autoMoveTimeWindow = Number(document.getElementById("autoMoveTimeWindowValue").value);
+                if (Number.isNaN(autoMoveTimeWindow) || (autoMoveTimeWindow < 1)) {
+                    alert("QBT_TR(Time window must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings["auto_move_slow_torrents_time_window_minutes"] = autoMoveTimeWindow;
             }
 
             // Share Ratio Limiting
