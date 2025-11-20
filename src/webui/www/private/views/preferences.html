@@ -300,6 +300,14 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Advanced File Filter Rules)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div style="margin-bottom: 10px;">
+            <button id="addFileFilterRuleBtn" onclick="qBittorrent.Preferences.addFileFilterRule();">QBT_TR(Add Rule)QBT_TR[CONTEXT=OptionsDialog]</button>
+        </div>
+        <div id="fileFilterRulesContainer"></div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="mail_notification_checkbox" onclick="qBittorrent.Preferences.updateMailNotification();">
             <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -1797,6 +1805,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateExportDirFinEnabled: updateExportDirFinEnabled,
                 addWatchFolder: addWatchFolder,
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
+                addFileFilterRule: addFileFilterRule,
+                editFileFilterRule: editFileFilterRule,
+                deleteFileFilterRule: deleteFileFilterRule,
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
@@ -1950,6 +1961,185 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+        };
+
+        let fileFilterRules = [];
+        let fileFilterRuleIdCounter = 0;
+
+        const addFileFilterRule = () => {
+            const rule = {
+                id: fileFilterRuleIdCounter++,
+                name: `Rule ${fileFilterRuleIdCounter}`,
+                enabled: true,
+                tags: [],
+                whitelist_pattern: "",
+                blacklist_pattern: "",
+                min_file_size_bytes: 0,
+                max_file_size_bytes: 0,
+                size_unit: 2 // MiB
+            };
+            fileFilterRules.push(rule);
+            renderFileFilterRules();
+        };
+
+        const editFileFilterRule = (id) => {
+            const rule = fileFilterRules.find(r => r.id === id);
+            if (!rule)
+                return;
+            // Rule editing is done inline in the UI
+        };
+
+        const deleteFileFilterRule = (id) => {
+            fileFilterRules = fileFilterRules.filter(r => r.id !== id);
+            renderFileFilterRules();
+        };
+
+        const renderFileFilterRules = () => {
+            const container = document.getElementById("fileFilterRulesContainer");
+            if (!container)
+                return;
+
+            container.innerHTML = "";
+
+            if (fileFilterRules.length === 0) {
+                container.innerHTML = "<p style='color: #666;'>QBT_TR(No rules defined. Click 'Add Rule' to create one.)QBT_TR[CONTEXT=OptionsDialog]</p>";
+                return;
+            }
+
+            fileFilterRules.forEach((rule, index) => {
+                const ruleDiv = document.createElement("div");
+                ruleDiv.style.cssText = "border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 4px;";
+
+                ruleDiv.innerHTML = `
+                    <div style="margin-bottom: 8px;">
+                        <label>
+                            <input type="checkbox" id="ffr_enabled_${rule.id}" ${rule.enabled ? "checked" : ""}
+                                   onchange="qBittorrent.Preferences.updateFileFilterRuleField(${rule.id}, 'enabled', this.checked);">
+                            <strong>QBT_TR(Rule Name:)QBT_TR[CONTEXT=OptionsDialog]</strong>
+                        </label>
+                        <input type="text" id="ffr_name_${rule.id}" value="${escapeHtml(rule.name)}"
+                               style="width: 300px; margin-left: 10px;"
+                               onchange="qBittorrent.Preferences.updateFileFilterRuleField(${rule.id}, 'name', this.value);">
+                        <button onclick="qBittorrent.Preferences.deleteFileFilterRule(${rule.id});"
+                                style="float: right;">QBT_TR(Delete)QBT_TR[CONTEXT=OptionsDialog]</button>
+                    </div>
+                    <div style="margin-bottom: 6px;">
+                        <label for="ffr_tags_${rule.id}">QBT_TR(Tags (comma-separated, empty = all):)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+                        <input type="text" id="ffr_tags_${rule.id}" value="${rule.tags.join(', ')}"
+                               style="width: 100%;"
+                               onchange="qBittorrent.Preferences.updateFileFilterRuleTags(${rule.id}, this.value);">
+                    </div>
+                    <div style="margin-bottom: 6px;">
+                        <label for="ffr_whitelist_${rule.id}">QBT_TR(Whitelist Pattern (regex):)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+                        <input type="text" id="ffr_whitelist_${rule.id}" value="${escapeHtml(rule.whitelist_pattern)}"
+                               style="width: 100%;"
+                               onchange="qBittorrent.Preferences.updateFileFilterRuleField(${rule.id}, 'whitelist_pattern', this.value);">
+                    </div>
+                    <div style="margin-bottom: 6px;">
+                        <label for="ffr_blacklist_${rule.id}">QBT_TR(Blacklist Pattern (regex):)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+                        <input type="text" id="ffr_blacklist_${rule.id}" value="${escapeHtml(rule.blacklist_pattern)}"
+                               style="width: 100%;"
+                               onchange="qBittorrent.Preferences.updateFileFilterRuleField(${rule.id}, 'blacklist_pattern', this.value);">
+                    </div>
+                    <div style="margin-bottom: 6px; display: flex; gap: 20px;">
+                        <div style="flex: 1;">
+                            <label for="ffr_minsize_${rule.id}">QBT_TR(Min File Size (0 = no limit):)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+                            <input type="number" id="ffr_minsize_${rule.id}" min="0"
+                                   value="${getSizeInUnit(rule.min_file_size_bytes, rule.size_unit)}"
+                                   style="width: 150px;"
+                                   onchange="qBittorrent.Preferences.updateFileFilterRuleSize(${rule.id}, 'min', this.value);">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="ffr_maxsize_${rule.id}">QBT_TR(Max File Size (0 = no limit):)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+                            <input type="number" id="ffr_maxsize_${rule.id}" min="0"
+                                   value="${getSizeInUnit(rule.max_file_size_bytes, rule.size_unit)}"
+                                   style="width: 150px;"
+                                   onchange="qBittorrent.Preferences.updateFileFilterRuleSize(${rule.id}, 'max', this.value);">
+                        </div>
+                        <div>
+                            <label for="ffr_unit_${rule.id}">QBT_TR(Unit:)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+                            <select id="ffr_unit_${rule.id}"
+                                    onchange="qBittorrent.Preferences.updateFileFilterRuleUnit(${rule.id}, this.value);">
+                                <option value="0" ${rule.size_unit === 0 ? "selected" : ""}>Bytes</option>
+                                <option value="1" ${rule.size_unit === 1 ? "selected" : ""}>KiB</option>
+                                <option value="2" ${rule.size_unit === 2 ? "selected" : ""}>MiB</option>
+                                <option value="3" ${rule.size_unit === 3 ? "selected" : ""}>GiB</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(ruleDiv);
+            });
+        };
+
+        const escapeHtml = (text) => {
+            const div = document.createElement("div");
+            div.textContent = text;
+            return div.innerHTML;
+        };
+
+        const getSizeInUnit = (bytes, unit) => {
+            switch (unit) {
+                case 0: return bytes;
+                case 1: return Math.floor(bytes / 1024);
+                case 2: return Math.floor(bytes / (1024 * 1024));
+                case 3: return Math.floor(bytes / (1024 * 1024 * 1024));
+                default: return bytes;
+            }
+        };
+
+        const convertToBytes = (size, unit) => {
+            switch (parseInt(unit)) {
+                case 0: return size;
+                case 1: return size * 1024;
+                case 2: return size * 1024 * 1024;
+                case 3: return size * 1024 * 1024 * 1024;
+                default: return size;
+            }
+        };
+
+        window.qBittorrent.Preferences.updateFileFilterRuleField = (id, field, value) => {
+            const rule = fileFilterRules.find(r => r.id === id);
+            if (rule)
+                rule[field] = value;
+        };
+
+        window.qBittorrent.Preferences.updateFileFilterRuleTags = (id, tagsStr) => {
+            const rule = fileFilterRules.find(r => r.id === id);
+            if (rule) {
+                rule.tags = tagsStr.split(',').map(t => t.trim()).filter(t => t.length > 0);
+            }
+        };
+
+        window.qBittorrent.Preferences.updateFileFilterRuleSize = (id, type, value) => {
+            const rule = fileFilterRules.find(r => r.id === id);
+            if (rule) {
+                const bytes = convertToBytes(parseFloat(value) || 0, rule.size_unit);
+                if (type === 'min')
+                    rule.min_file_size_bytes = bytes;
+                else
+                    rule.max_file_size_bytes = bytes;
+            }
+        };
+
+        window.qBittorrent.Preferences.updateFileFilterRuleUnit = (id, newUnit) => {
+            const rule = fileFilterRules.find(r => r.id === id);
+            if (rule) {
+                // Get current values in current unit
+                const minInCurrentUnit = getSizeInUnit(rule.min_file_size_bytes, rule.size_unit);
+                const maxInCurrentUnit = getSizeInUnit(rule.max_file_size_bytes, rule.size_unit);
+
+                // Update unit
+                rule.size_unit = parseInt(newUnit);
+
+                // Recalculate bytes based on new unit
+                rule.min_file_size_bytes = convertToBytes(minInCurrentUnit, rule.size_unit);
+                rule.max_file_size_bytes = convertToBytes(maxInCurrentUnit, rule.size_unit);
+
+                // Re-render to update input fields
+                renderFileFilterRules();
+            }
         };
 
         const updateExportDirEnabled = () => {
@@ -2377,6 +2567,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
 
+                    // File filter rules
+                    if (pref.file_filter_rules && Array.isArray(pref.file_filter_rules)) {
+                        fileFilterRules = pref.file_filter_rules.map((rule, index) => ({
+                            id: index,
+                            name: rule.name || `Rule ${index + 1}`,
+                            enabled: rule.enabled !== false,
+                            tags: rule.tags || [],
+                            whitelist_pattern: rule.whitelist_pattern || "",
+                            blacklist_pattern: rule.blacklist_pattern || "",
+                            min_file_size_bytes: rule.min_file_size_bytes || 0,
+                            max_file_size_bytes: rule.max_file_size_bytes || 0,
+                            size_unit: rule.size_unit !== undefined ? rule.size_unit : 2
+                        }));
+                        fileFilterRuleIdCounter = fileFilterRules.length;
+                        renderFileFilterRules();
+                    }
+
                     // Email notification upon download completion
                     document.getElementById("mail_notification_checkbox").checked = pref.mail_notification_enabled;
                     document.getElementById("src_email_txt").value = pref.mail_notification_sender;
@@ -2774,6 +2981,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Excluded file names
             settings["excluded_file_names_enabled"] = document.getElementById("excludedFileNamesCheckbox").checked;
             settings["excluded_file_names"] = document.getElementById("excludedFileNamesTextarea").value;
+
+            // File filter rules
+            settings["file_filter_rules"] = fileFilterRules.map(rule => ({
+                name: rule.name,
+                enabled: rule.enabled,
+                tags: rule.tags,
+                whitelist_pattern: rule.whitelist_pattern,
+                blacklist_pattern: rule.blacklist_pattern,
+                min_file_size_bytes: rule.min_file_size_bytes,
+                max_file_size_bytes: rule.max_file_size_bytes,
+                size_unit: rule.size_unit
+            }));
 
             // Email notification upon download completion
             settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;
