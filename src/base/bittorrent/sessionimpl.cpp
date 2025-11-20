@@ -478,6 +478,9 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_maxActiveUploads(BITTORRENT_SESSION_KEY(u"MaxActiveUploads"_s), 3, lowerLimited(-1))
     , m_maxActiveTorrents(BITTORRENT_SESSION_KEY(u"MaxActiveTorrents"_s), 5, lowerLimited(-1))
     , m_ignoreSlowTorrentsForQueueing(BITTORRENT_SESSION_KEY(u"IgnoreSlowTorrentsForQueueing"_s), false)
+    , m_autoMoveSlowTorrentsToQueueEnd(BITTORRENT_SESSION_KEY(u"AutoMoveSlowTorrentsToQueueEnd"_s), false)
+    , m_autoMoveSlowTorrentsMinDownloadMB(BITTORRENT_SESSION_KEY(u"AutoMoveSlowTorrentsMinDownloadMB"_s), 10, lowerLimited(1))
+    , m_autoMoveSlowTorrentsTimeWindowMinutes(BITTORRENT_SESSION_KEY(u"AutoMoveSlowTorrentsTimeWindowMinutes"_s), 10, lowerLimited(1))
     , m_downloadRateForSlowTorrents(BITTORRENT_SESSION_KEY(u"SlowTorrentsDownloadRate"_s), 2)
     , m_uploadRateForSlowTorrents(BITTORRENT_SESSION_KEY(u"SlowTorrentsUploadRate"_s), 2)
     , m_slowTorrentsInactivityTimer(BITTORRENT_SESSION_KEY(u"SlowTorrentsInactivityTimer"_s), 60)
@@ -586,6 +589,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_ioThread {new QThread}
     , m_asyncWorker {new QThreadPool(this)}
     , m_recentErroredTorrentsTimer {new QTimer(this)}
+    , m_autoMoveSlowTorrentsTimer {new QTimer(this)}
     , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker(savePath())}
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
 {
@@ -619,6 +623,9 @@ SessionImpl::SessionImpl(QObject *parent)
             processTorrentShareLimits(torrent);
     });
 
+    m_autoMoveSlowTorrentsTimer->setInterval(30s);
+    connect(m_autoMoveSlowTorrentsTimer, &QTimer::timeout, this, &SessionImpl::processAutoMoveSlowTorrents);
+
     initializeNativeSession();
     configureComponents();
 
@@ -640,6 +647,7 @@ SessionImpl::SessionImpl(QObject *parent)
     }
 
     updateSeedingLimitTimer();
+    updateAutoMoveSlowTorrentsTimer();
     populateAdditionalTrackers();
     if (isExcludedFileNamesEnabled())
         populateExcludedFileNamesRegExpList();
@@ -4736,6 +4744,8 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
 
         for (TorrentImpl *torrent : asConst(m_torrents))
             torrent->handleQueueingModeChanged();
+
+        updateAutoMoveSlowTorrentsTimer();
     }
 }
 
@@ -4751,6 +4761,7 @@ void SessionImpl::setMaxActiveDownloads(int max)
     {
         m_maxActiveDownloads = max;
         configureDeferred();
+        updateAutoMoveSlowTorrentsTimer();
     }
 }
 
@@ -4795,6 +4806,46 @@ void SessionImpl::setIgnoreSlowTorrentsForQueueing(const bool ignore)
     {
         m_ignoreSlowTorrentsForQueueing = ignore;
         configureDeferred();
+    }
+}
+
+bool SessionImpl::autoMoveSlowTorrentsToQueueEnd() const
+{
+    return m_autoMoveSlowTorrentsToQueueEnd;
+}
+
+void SessionImpl::setAutoMoveSlowTorrentsToQueueEnd(const bool enabled)
+{
+    if (enabled != m_autoMoveSlowTorrentsToQueueEnd)
+    {
+        m_autoMoveSlowTorrentsToQueueEnd = enabled;
+        updateAutoMoveSlowTorrentsTimer();
+    }
+}
+
+int SessionImpl::autoMoveSlowTorrentsMinDownloadMB() const
+{
+    return m_autoMoveSlowTorrentsMinDownloadMB;
+}
+
+void SessionImpl::setAutoMoveSlowTorrentsMinDownloadMB(const int mb)
+{
+    if (mb != m_autoMoveSlowTorrentsMinDownloadMB)
+        m_autoMoveSlowTorrentsMinDownloadMB = mb;
+}
+
+int SessionImpl::autoMoveSlowTorrentsTimeWindowMinutes() const
+{
+    return m_autoMoveSlowTorrentsTimeWindowMinutes;
+}
+
+void SessionImpl::setAutoMoveSlowTorrentsTimeWindowMinutes(const int minutes)
+{
+    if (minutes != m_autoMoveSlowTorrentsTimeWindowMinutes)
+    {
+        m_autoMoveSlowTorrentsTimeWindowMinutes = minutes;
+        // Clear history when time window changes
+        m_torrentDownloadHistory.clear();
     }
 }
 
@@ -6614,4 +6665,94 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
     }
 
     m_removingTorrents.erase(removingTorrentDataIter);
+}
+
+void SessionImpl::processAutoMoveSlowTorrents()
+{
+    if (!autoMoveSlowTorrentsToQueueEnd() || !isQueueingSystemEnabled())
+        return;
+
+    const int maxActiveDownloads = this->maxActiveDownloads();
+    // Feature only works when queuing is limited
+    if (maxActiveDownloads < 0)
+        return;
+
+    const int timeWindowMinutes = autoMoveSlowTorrentsTimeWindowMinutes();
+    const qint64 timeWindowMsecs = static_cast<qint64>(timeWindowMinutes) * 60 * 1000;
+    const qlonglong minDownloadBytes = static_cast<qlonglong>(autoMoveSlowTorrentsMinDownloadMB()) * 1024 * 1024;
+    const qint64 currentTime = QDateTime::currentMSecsSinceEpoch();
+
+    QList<TorrentImpl *> slowTorrents;
+
+    for (TorrentImpl *torrent : asConst(m_torrents))
+    {
+        // Only check downloading torrents
+        if (!torrent->isDownloading())
+            continue;
+
+        const TorrentID torrentID = torrent->id();
+        const qlonglong currentDownload = torrent->totalDownload();
+
+        // If this is the first time we see this torrent, record its current download
+        if (!m_torrentDownloadHistory.contains(torrentID))
+        {
+            m_torrentDownloadHistory[torrentID] = {currentDownload, currentTime};
+            continue;
+        }
+
+        TorrentDownloadHistoryEntry &entry = m_torrentDownloadHistory[torrentID];
+        const qint64 timeSinceRecord = currentTime - entry.timestamp;
+
+        // Only check if enough time has passed
+        if (timeSinceRecord >= timeWindowMsecs)
+        {
+            // Calculate download amount in the time window
+            const qlonglong downloadedInWindow = currentDownload - entry.downloadAmount;
+
+            // Check if download amount is below threshold
+            if (downloadedInWindow < minDownloadBytes)
+            {
+                slowTorrents.append(torrent);
+            }
+
+            // Update the history (sliding window)
+            entry.downloadAmount = currentDownload;
+            entry.timestamp = currentTime;
+        }
+    }
+
+    // Move slow torrents to the end of the queue
+    if (!slowTorrents.isEmpty())
+    {
+        for (TorrentImpl *torrent : slowTorrents)
+        {
+            torrentQueuePositionBottom(torrent->nativeHandle());
+            LogMsg(tr("Torrent moved to queue end due to slow download: \"%1\"").arg(torrent->name()));
+        }
+    }
+
+    // Clean up history for removed torrents
+    auto it = m_torrentDownloadHistory.begin();
+    while (it != m_torrentDownloadHistory.end())
+    {
+        if (!m_torrents.contains(it.key()))
+            it = m_torrentDownloadHistory.erase(it);
+        else
+            ++it;
+    }
+}
+
+void SessionImpl::updateAutoMoveSlowTorrentsTimer()
+{
+    if (autoMoveSlowTorrentsToQueueEnd() && isQueueingSystemEnabled() && (maxActiveDownloads() > 0))
+    {
+        if (!m_autoMoveSlowTorrentsTimer->isActive())
+            m_autoMoveSlowTorrentsTimer->start();
+    }
+    else
+    {
+        if (m_autoMoveSlowTorrentsTimer->isActive())
+            m_autoMoveSlowTorrentsTimer->stop();
+        m_torrentDownloadHistory.clear();
+    }
 }

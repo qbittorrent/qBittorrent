@@ -3057,6 +3057,80 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </layout>
                 </widget>
                </item>
+               <item row="4" column="0" colspan="3">
+                <widget class="QGroupBox" name="checkAutoMoveSlowTorrentsToQueueEnd">
+                 <property name="title">
+                  <string>Automatically move slow torrents to queue end</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_autoMoveSlowTorrents">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelAutoMoveMinDownload">
+                    <property name="text">
+                     <string>Minimum download (MB):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="spinAutoMoveMinDownloadMB">
+                    <property name="suffix">
+                     <string> MB</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>100000</number>
+                    </property>
+                    <property name="value">
+                     <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_autoMove1">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelAutoMoveTimeWindow">
+                    <property name="text">
+                     <string>Time window (minutes):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinAutoMoveTimeWindowMinutes">
+                    <property name="suffix">
+                     <string> min</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>1440</number>
+                    </property>
+                    <property name="value">
+                     <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
