@@ -1291,6 +1291,19 @@ void Preferences::setShutdownWhenDownloadsComplete(const bool shutdown)
     setValue(u"Preferences/Downloads/AutoShutDownOnCompletion"_s, shutdown);
 }
 
+bool Preferences::rebootWhenDownloadsComplete() const
+{
+    return value(u"Preferences/Downloads/AutoRebootOnCompletion"_s, false);
+}
+
+void Preferences::setRebootWhenDownloadsComplete(const bool reboot)
+{
+    if (reboot == rebootWhenDownloadsComplete())
+        return;
+
+    setValue(u"Preferences/Downloads/AutoRebootOnCompletion"_s, reboot);
+}
+
 bool Preferences::suspendWhenDownloadsComplete() const
 {
     return value(u"Preferences/Downloads/AutoSuspendOnCompletion"_s, false);
