@@ -294,7 +294,7 @@ void FeedListWidget::dropEvent(QDropEvent *event)
     for (QTreeWidgetItem *srcItem : asConst(selectedItems()))
     {
         auto *rssItem = getRSSItem(srcItem);
-        RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(destFolder->path(), rssItem->name()));
+        std::ignore = RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(destFolder->path(), rssItem->name()));
     }
 
     QTreeWidget::dropEvent(event);

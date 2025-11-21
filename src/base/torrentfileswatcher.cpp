@@ -413,7 +413,7 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
                     }
 
                     file.close();
-                    Utils::Fs::removeFile(filePath);
+                    std::ignore = Utils::Fs::removeFile(filePath);
                 }
                 else
                 {
@@ -430,7 +430,7 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
             if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(filePath))
             {
                 emit torrentFound(loadResult.value(), addTorrentParams);
-                Utils::Fs::removeFile(filePath);
+                std::ignore = Utils::Fs::removeFile(filePath);
             }
             else
             {
@@ -485,7 +485,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                 }
 
                 emit torrentFound(loadResult.value(), addTorrentParams);
-                Utils::Fs::removeFile(torrentPath);
+                std::ignore = Utils::Fs::removeFile(torrentPath);
 
                 return true;
             }

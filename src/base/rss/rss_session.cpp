@@ -467,7 +467,7 @@ void Session::addItem(Item *item, Folder *destFolder)
             if (feed->name() == oldURL)
             {
                 // If feed still use an URL as a name trying to rename it to match new URL...
-                moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
+                std::ignore = moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
             }
 
             emit feedURLChanged(feed, oldURL);
@@ -594,7 +594,7 @@ void Session::handleFeedTitleChanged(Feed *feed)
     {
         // Now we have something better than a URL.
         // Trying to rename feed...
-        moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
+        std::ignore = moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
     }
 }
 
