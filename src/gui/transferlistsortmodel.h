@@ -49,7 +49,7 @@ public:
 
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
-    void setStatusFilter(TorrentFilter::Type filter);
+    void setStatusFilter(TorrentFilter::Status status);
     void setCategoryFilter(const QString &category);
     void disableCategoryFilter();
     void setTagFilter(const Tag &tag);

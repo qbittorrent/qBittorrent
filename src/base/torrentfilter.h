@@ -46,7 +46,7 @@ using TorrentIDSet = QSet<BitTorrent::TorrentID>;
 class TorrentFilter
 {
 public:
-    enum Type
+    enum Status
     {
         All,
         Downloading,
@@ -73,7 +73,7 @@ public:
 
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
-    TorrentFilter(Type type
+    TorrentFilter(Status status
             , const std::optional<TorrentIDSet> &idSet = AnyID
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tag = AnyTag
@@ -85,8 +85,8 @@ public:
             , std::optional<bool> isPrivate = {});
 
 
-    bool setType(Type type);
-    bool setTypeByName(const QString &filter);
+    bool setStatus(Status status);
+    bool setStatusByName(const QString &filter);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
@@ -101,7 +101,7 @@ private:
     bool matchTag(const BitTorrent::Torrent *torrent) const;
     bool matchPrivate(const BitTorrent::Torrent *torrent) const;
 
-    Type m_type {All};
+    Status m_status {All};
     std::optional<QString> m_category;
     std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;

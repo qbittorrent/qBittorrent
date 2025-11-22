@@ -124,14 +124,14 @@ void TransferListSortModel::sort(const int column, const Qt::SortOrder order)
     QSortFilterProxyModel::sort(column, order);
 }
 
-void TransferListSortModel::setStatusFilter(const TorrentFilter::Type filter)
+void TransferListSortModel::setStatusFilter(const TorrentFilter::Status status)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
     beginFilterChange();
-    m_filter.setType(filter);
+    m_filter.setStatus(status);
     endFilterChange(Direction::Rows);
 #else
-    if (m_filter.setType(filter))
+    if (m_filter.setStatus(status))
         invalidateRowsFilter();
 #endif
 }

@@ -37,9 +37,9 @@ const std::optional<Tag> TorrentFilter::AnyTag;
 
 using BitTorrent::Torrent;
 
-TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet
+TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDSet> &idSet
         , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> isPrivate)
-    : m_type {type}
+    : m_status {status}
     , m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
@@ -54,52 +54,52 @@ TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentI
     , m_idSet {idSet}
     , m_private {isPrivate}
 {
-    setTypeByName(filter);
+    setStatusByName(filter);
 }
 
-bool TorrentFilter::setType(Type type)
+bool TorrentFilter::setStatus(Status status)
 {
-    if (m_type != type)
+    if (m_status != status)
     {
-        m_type = type;
+        m_status = status;
         return true;
     }
 
     return false;
 }
 
-bool TorrentFilter::setTypeByName(const QString &filter)
+bool TorrentFilter::setStatusByName(const QString &filter)
 {
-    Type type = All;
+    Status status = All;
 
     if (filter == u"downloading")
-        type = Downloading;
+        status = Downloading;
     else if (filter == u"seeding")
-        type = Seeding;
+        status = Seeding;
     else if (filter == u"completed")
-        type = Completed;
+        status = Completed;
     else if (filter == u"stopped")
-        type = Stopped;
+        status = Stopped;
     else if (filter == u"running")
-        type = Running;
+        status = Running;
     else if (filter == u"active")
-        type = Active;
+        status = Active;
     else if (filter == u"inactive")
-        type = Inactive;
+        status = Inactive;
     else if (filter == u"stalled")
-        type = Stalled;
+        status = Stalled;
     else if (filter == u"stalled_uploading")
-        type = StalledUploading;
+        status = StalledUploading;
     else if (filter == u"stalled_downloading")
-        type = StalledDownloading;
+        status = StalledDownloading;
     else if (filter == u"checking")
-        type = Checking;
+        status = Checking;
     else if (filter == u"moving")
-        type = Moving;
+        status = Moving;
     else if (filter == u"errored")
-        type = Errored;
+        status = Errored;
 
-    return setType(type);
+    return setStatus(status);
 }
 
 bool TorrentFilter::setTorrentIDSet(const std::optional<TorrentIDSet> &idSet)
@@ -157,7 +157,7 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
 {
     const BitTorrent::TorrentState state = torrent->state();
 
-    switch (m_type)
+    switch (m_status)
     {
     case All:
         return true;
