@@ -64,6 +64,7 @@ private slots:
 private:
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
+    void setPiecesCount(int count);
 
     void saveSettings();
     void loadSettings();
