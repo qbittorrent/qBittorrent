@@ -54,9 +54,8 @@ public:
     void disableCategoryFilter();
     void setTagFilter(const Tag &tag);
     void disableTagFilter();
+    void setTrackerFilter(const std::optional<QString> &trackerHost);
     void setAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
-    void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
-    void disableTrackerFilter();
 
 private:
     int compare(const QModelIndex &left, const QModelIndex &right) const;

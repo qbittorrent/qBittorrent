@@ -184,6 +184,18 @@ void TransferListSortModel::disableTagFilter()
 #endif
 }
 
+void TransferListSortModel::setTrackerFilter(const std::optional<QString> &trackerHost)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_filter.setTrackerHost(trackerHost);
+    endFilterChange(Direction::Rows);
+#else
+    if (m_filter.setTrackerHost(trackerHost))
+        invalidateRowsFilter();
+#endif
+}
+
 void TransferListSortModel::setAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus)
 {
 #if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
@@ -192,30 +204,6 @@ void TransferListSortModel::setAnnounceStatusFilter(const std::optional<BitTorre
     endFilterChange(Direction::Rows);
 #else
     if (m_filter.setAnnounceStatus(announceStatus))
-        invalidateRowsFilter();
-#endif
-}
-
-void TransferListSortModel::setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
-{
-#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
-    beginFilterChange();
-    m_filter.setTorrentIDSet(torrentIDs);
-    endFilterChange(Direction::Rows);
-#else
-    if (m_filter.setTorrentIDSet(torrentIDs))
-        invalidateRowsFilter();
-#endif
-}
-
-void TransferListSortModel::disableTrackerFilter()
-{
-#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
-    beginFilterChange();
-    m_filter.setTorrentIDSet(TorrentFilter::AnyID);
-    endFilterChange(Direction::Rows);
-#else
-    if (m_filter.setTorrentIDSet(TorrentFilter::AnyID))
         invalidateRowsFilter();
 #endif
 }

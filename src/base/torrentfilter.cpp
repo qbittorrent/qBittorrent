@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,23 +28,45 @@
 
 #include "torrentfilter.h"
 
-#include "bittorrent/infohash.h"
-#include "bittorrent/torrent.h"
+#include <algorithm>
 
-const std::optional<QString> TorrentFilter::AnyCategory;
+#include <QUrl>
+
+#include "base/bittorrent/infohash.h"
+#include "base/bittorrent/torrent.h"
+#include "base/bittorrent/trackerentrystatus.h"
+#include "base/global.h"
+
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
+const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<Tag> TorrentFilter::AnyTag;
+const std::optional<QString> TorrentFilter::AnyTrackerHost;
 const std::optional<TorrentFilter::TorrentAnnounceStatus> TorrentFilter::AnyAnnounceStatus;
+
+namespace
+{
+    QString getTrackerHost(const QString &url)
+    {
+        // We want the hostname.
+        if (const QString host = QUrl(url).host(); !host.isEmpty())
+            return host;
+
+        // If failed to parse the domain, original input should be returned
+        return url;
+    }
+}
 
 using BitTorrent::Torrent;
 
 TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDSet> &idSet, const std::optional<QString> &category
-        , const std::optional<Tag> &tag, const std::optional<bool> &isPrivate, const std::optional<TorrentAnnounceStatus> &announceStatus)
+        , const std::optional<Tag> &tag, const std::optional<bool> &isPrivate, const std::optional<QString> &trackerHost
+        , const std::optional<TorrentAnnounceStatus> &announceStatus)
     : m_status {status}
     , m_category {category}
     , m_tag {tag}
     , m_idSet {idSet}
     , m_private {isPrivate}
+    , m_trackerHost {trackerHost}
     , m_announceStatus {announceStatus}
 {
 }
@@ -104,6 +126,17 @@ bool TorrentFilter::setPrivate(const std::optional<bool> isPrivate)
     return false;
 }
 
+bool TorrentFilter::setTrackerHost(const std::optional<QString> &trackerHost)
+{
+    if (m_trackerHost != trackerHost)
+    {
+        m_trackerHost = trackerHost;
+        return true;
+    }
+
+    return false;
+}
+
 bool TorrentFilter::setAnnounceStatus(const std::optional<TorrentAnnounceStatus> &announceStatus)
 {
     if (m_announceStatus != announceStatus)
@@ -122,7 +155,8 @@ bool TorrentFilter::match(const Torrent *const torrent) const
         return false;
 
     return (matchStatus(torrent) && matchHash(torrent) && matchCategory(torrent)
-            && matchTag(torrent) && matchPrivate(torrent) && matchAnnounceStatus(torrent));
+            && matchTag(torrent) && matchPrivate(torrent) && matchTrackerHost(torrent)
+            && matchAnnounceStatus(torrent));
 }
 
 bool TorrentFilter::matchStatus(const BitTorrent::Torrent *const torrent) const
@@ -204,6 +238,21 @@ bool TorrentFilter::matchPrivate(const BitTorrent::Torrent *const torrent) const
         return true;
 
     return m_private == torrent->isPrivate();
+}
+
+bool TorrentFilter::matchTrackerHost(const BitTorrent::Torrent *torrent) const
+{
+    if (!m_trackerHost)
+        return true;
+
+    // Trackerless torrent
+    if (m_trackerHost->isEmpty())
+        return torrent->trackers().isEmpty();
+
+    return std::ranges::any_of(asConst(torrent->trackers()), [trackerHost = m_trackerHost](const BitTorrent::TrackerEntryStatus &trackerEntryStatus)
+    {
+        return getTrackerHost(trackerEntryStatus.url) == trackerHost;
+    });
 }
 
 bool TorrentFilter::matchAnnounceStatus(const BitTorrent::Torrent *const torrent) const

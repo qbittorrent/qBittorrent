@@ -635,10 +635,56 @@ void TrackersFilterWidget::showMenu()
 
 void TrackersFilterWidget::applyFilter(const int row)
 {
-    if (row == ALL_ROW)
-        transferList()->applyTrackerFilter({});
-    else if (isVisible())
-        transferList()->applyTrackerFilter(getTorrentIDs(row));
+    if (m_handleTrackerStatuses)
+    {
+        switch (row)
+        {
+        case ALL_ROW:
+            transferList()->applyTrackerFilter(std::nullopt);
+            transferList()->applyAnnounceStatusFilter(std::nullopt);
+            break;
+
+        case TRACKERLESS_ROW:
+            transferList()->applyTrackerFilter(u""_s);
+            transferList()->applyAnnounceStatusFilter(std::nullopt);
+            break;
+
+        case OTHERERROR_ROW:
+            transferList()->applyAnnounceStatusFilter(BitTorrent::TorrentAnnounceStatusFlag::HasOtherError);
+            transferList()->applyTrackerFilter(std::nullopt);
+            break;
+
+        case TRACKERERROR_ROW:
+            transferList()->applyAnnounceStatusFilter(BitTorrent::TorrentAnnounceStatusFlag::HasTrackerError);
+            transferList()->applyTrackerFilter(std::nullopt);
+            break;
+
+        case WARNING_ROW:
+            transferList()->applyAnnounceStatusFilter(BitTorrent::TorrentAnnounceStatusFlag::HasWarning);
+            transferList()->applyTrackerFilter(std::nullopt);
+            break;
+
+        default:
+            transferList()->applyTrackerFilter(trackerFromRow(row));
+            transferList()->applyAnnounceStatusFilter(std::nullopt);
+        }
+    }
+    else
+    {
+        switch (row)
+        {
+        case ALL_ROW:
+            transferList()->applyTrackerFilter(std::nullopt);
+            break;
+
+        case TRACKERLESS_ROW:
+            transferList()->applyTrackerFilter(u""_s);
+            break;
+
+        default:
+            transferList()->applyTrackerFilter(trackerFromRow(row));
+        }
+    }
 }
 
 void TrackersFilterWidget::handleTorrentsLoaded(const QList<BitTorrent::Torrent *> &torrents)
@@ -726,31 +772,4 @@ int TrackersFilterWidget::rowFromTracker(const QString &tracker) const
             return i;
     }
     return -1;
-}
-
-QSet<BitTorrent::TorrentID> TrackersFilterWidget::getTorrentIDs(const int row) const
-{
-    switch (row)
-    {
-    case TRACKERLESS_ROW:
-        return m_trackers.value(NULL_HOST).torrents;
-
-    case OTHERERROR_ROW:
-        if (m_handleTrackerStatuses)
-            return {m_errors.keyBegin(), m_errors.keyEnd()};
-        [[fallthrough]];
-
-    case TRACKERERROR_ROW:
-        if (m_handleTrackerStatuses)
-            return {m_trackerErrors.keyBegin(), m_trackerErrors.keyEnd()};
-        [[fallthrough]];
-
-    case WARNING_ROW:
-        if (m_handleTrackerStatuses)
-            return {m_warnings.keyBegin(), m_warnings.keyEnd()};
-        [[fallthrough]];
-
-    default:
-        return m_trackers.value(trackerFromRow(row)).torrents;
-    }
 }

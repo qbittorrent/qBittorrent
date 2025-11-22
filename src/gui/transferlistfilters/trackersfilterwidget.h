@@ -81,7 +81,6 @@ private:
     void removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id);
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
-    QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
     void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
     void removeTracker(const QString &tracker);
 

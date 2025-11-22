@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -70,9 +70,10 @@ public:
     using TorrentAnnounceStatus = BitTorrent::TorrentAnnounceStatus;
 
     // These mean any permutation, including no category / tag.
-    static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
+    static const std::optional<QString> AnyCategory;
     static const std::optional<Tag> AnyTag;
+    static const std::optional<QString> AnyTrackerHost;
     static const std::optional<TorrentAnnounceStatus> AnyAnnounceStatus;
 
     TorrentFilter() = default;
@@ -82,6 +83,7 @@ public:
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tag = AnyTag
             , const std::optional<bool> &isPrivate = {}
+            , const std::optional<QString> &trackerHost = AnyTrackerHost
             , const std::optional<TorrentAnnounceStatus> &announceStatus = AnyAnnounceStatus);
 
     bool setStatus(Status status);
@@ -89,6 +91,7 @@ public:
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
     bool setPrivate(std::optional<bool> isPrivate);
+    bool setTrackerHost(const std::optional<QString> &trackerHost);
     bool setAnnounceStatus(const std::optional<TorrentAnnounceStatus> &announceStatus);
 
     bool match(const BitTorrent::Torrent *torrent) const;
@@ -99,6 +102,7 @@ private:
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
     bool matchPrivate(const BitTorrent::Torrent *torrent) const;
+    bool matchTrackerHost(const BitTorrent::Torrent *torrent) const;
     bool matchAnnounceStatus(const BitTorrent::Torrent *torrent) const;
 
     Status m_status {All};
@@ -106,5 +110,6 @@ private:
     std::optional<Tag> m_tag;
     std::optional<TorrentIDSet> m_idSet;
     std::optional<bool> m_private;
+    std::optional<QString> m_trackerHost;
     std::optional<TorrentAnnounceStatus> m_announceStatus;
 };
