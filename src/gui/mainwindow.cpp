@@ -1796,33 +1796,28 @@ void MainWindow::on_actionCriticalMessages_triggered(const bool checked)
     setExecutionLogMsgTypes(flags);
 }
 
-void MainWindow::on_actionAutoExit_toggled(bool enabled)
+void MainWindow::on_actionAutoExit_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownqBTWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoSuspend_toggled(bool enabled)
+void MainWindow::on_actionAutoSuspend_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setSuspendWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoHibernate_toggled(bool enabled)
+void MainWindow::on_actionAutoHibernate_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setHibernateWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
+void MainWindow::on_actionAutoShutdown_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoReboot_toggled(bool enabled)
+void MainWindow::on_actionAutoReboot_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setRebootWhenDownloadsComplete(enabled);
 }
 

@@ -778,7 +778,7 @@ void Application::allTorrentsFinished()
     bool isHibernate = pref->hibernateWhenDownloadsComplete();
     bool isReboot = pref->rebootWhenDownloadsComplete();
 
-    bool haveAction = isExit || isShutdown || isSuspend || isHibernate || isReboot;
+    const bool haveAction = isExit || isShutdown || isSuspend || isHibernate || isReboot;
     if (!haveAction) return;
 
     ShutdownDialogAction action = ShutdownDialogAction::Exit;

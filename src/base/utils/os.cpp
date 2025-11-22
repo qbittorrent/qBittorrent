@@ -91,13 +91,13 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
     {
         std::wstring msg = QCoreApplication::translate("misc"
             , "qBittorrent will shutdown the computer now because all downloads are complete.").toStdWString();
-        ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, (action == ShutdownDialogAction::Reboot));
+        ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, FALSE);
     }
     else if (action == ShutdownDialogAction::Reboot)
     {
         std::wstring msg = QCoreApplication::translate("misc"
             , "qBittorrent will reboot the computer now because all downloads are complete.").toStdWString();
-        ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, (action == ShutdownDialogAction::Reboot));
+        ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, TRUE);
     }
 
     // Disable shutdown privilege.
@@ -105,7 +105,7 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
     ::AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, NULL, 0);
 
 #elif defined(Q_OS_MACOS)
-    AEEventID EventToSend;
+    AEEventID EventToSend {};
     if (action == ShutdownDialogAction::Suspend)
         EventToSend = kAESleep;
     else if (action == ShutdownDialogAction::Reboot)
@@ -141,7 +141,7 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
 
 #elif defined(QBT_USES_DBUS)
     // Use dbus to power off / suspend the system
-    if (action == ShutdownDialogAction::Suspend || action == ShutdownDialogAction::Hibernate)
+    if ((action == ShutdownDialogAction::Suspend) || (action == ShutdownDialogAction::Hibernate))
     {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
