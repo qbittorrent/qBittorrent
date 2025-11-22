@@ -47,17 +47,7 @@ TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDS
 {
 }
 
-TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
-        , const std::optional<QString> &category, const std::optional<Tag> &tag, const std::optional<bool> isPrivate)
-    : m_category {category}
-    , m_tag {tag}
-    , m_idSet {idSet}
-    , m_private {isPrivate}
-{
-    setStatusByName(filter);
-}
-
-bool TorrentFilter::setStatus(Status status)
+bool TorrentFilter::setStatus(const Status status)
 {
     if (m_status != status)
     {
@@ -66,40 +56,6 @@ bool TorrentFilter::setStatus(Status status)
     }
 
     return false;
-}
-
-bool TorrentFilter::setStatusByName(const QString &filter)
-{
-    Status status = All;
-
-    if (filter == u"downloading")
-        status = Downloading;
-    else if (filter == u"seeding")
-        status = Seeding;
-    else if (filter == u"completed")
-        status = Completed;
-    else if (filter == u"stopped")
-        status = Stopped;
-    else if (filter == u"running")
-        status = Running;
-    else if (filter == u"active")
-        status = Active;
-    else if (filter == u"inactive")
-        status = Inactive;
-    else if (filter == u"stalled")
-        status = Stalled;
-    else if (filter == u"stalled_uploading")
-        status = StalledUploading;
-    else if (filter == u"stalled_downloading")
-        status = StalledDownloading;
-    else if (filter == u"checking")
-        status = Checking;
-    else if (filter == u"moving")
-        status = Moving;
-    else if (filter == u"errored")
-        status = Errored;
-
-    return setStatus(status);
 }
 
 bool TorrentFilter::setTorrentIDSet(const std::optional<TorrentIDSet> &idSet)

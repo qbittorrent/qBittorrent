@@ -78,15 +78,8 @@ public:
             , const std::optional<QString> &category = AnyCategory
             , const std::optional<Tag> &tag = AnyTag
             , std::optional<bool> isPrivate = {});
-    TorrentFilter(const QString &filter
-            , const std::optional<TorrentIDSet> &idSet = AnyID
-            , const std::optional<QString> &category = AnyCategory
-            , const std::optional<Tag> &tags = AnyTag
-            , std::optional<bool> isPrivate = {});
-
 
     bool setStatus(Status status);
-    bool setStatusByName(const QString &filter);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
     bool setCategory(const std::optional<QString> &category);
     bool setTag(const std::optional<Tag> &tag);
