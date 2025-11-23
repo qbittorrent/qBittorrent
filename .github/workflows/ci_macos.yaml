@@ -119,6 +119,11 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
+          if [ "${{ matrix.qbt_gui }}" = "GUI=ON" ]; then
+            build/qbittorrent.app/Contents/MacOS/qbittorrent -v
+          else
+            build/qbittorrent-nox.app/Contents/MacOS/qbittorrent-nox -v
+          fi
 
       - name: Prepare build artifacts
         run: |
