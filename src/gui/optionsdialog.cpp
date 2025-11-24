@@ -43,12 +43,9 @@
 #include <QEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QStyleFactory>
 #include <QSystemTrayIcon>
 #include <QTranslator>
-
-#ifdef Q_OS_WIN
-#include <QStyleFactory>
-#endif
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimitaction.h"
@@ -376,11 +373,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
     connect(m_ui->comboLanguage, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-
-#ifdef Q_OS_WIN
     connect(m_ui->comboStyle, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-#endif
-
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     connect(m_ui->comboColorScheme, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 #endif
@@ -488,9 +481,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
-#ifdef Q_OS_WIN
     pref->setStyle(m_ui->comboStyle->currentData().toString());
-#endif
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     UIThemeManager::instance()->setColorScheme(m_ui->comboColorScheme->currentData().value<ColorScheme>());
@@ -1846,6 +1837,11 @@ void OptionsDialog::initializeStyleCombo()
 #ifdef Q_OS_WIN
     m_ui->labelStyleHint->setText(tr("%1 is recommended for best compatibility with Windows dark mode"
             , "Fusion is recommended for best compatibility with Windows dark mode").arg(u"Fusion"_s));
+#else
+    m_ui->labelStyleHint->hide();
+    m_ui->layoutStyle->removeWidget(m_ui->labelStyleHint);
+#endif
+
     m_ui->comboStyle->addItem(tr("System", "System default Qt style"), u"system"_s);
     m_ui->comboStyle->setItemData(0, tr("Let Qt decide the style for this system"), Qt::ToolTipRole);
     m_ui->comboStyle->insertSeparator(1);
@@ -1859,14 +1855,6 @@ void OptionsDialog::initializeStyleCombo()
     const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
     const int styleIndex = m_ui->comboStyle->findData(selectedStyleName, Qt::UserRole, Qt::MatchFixedString);
     m_ui->comboStyle->setCurrentIndex(std::max(0, styleIndex));
-#else
-    m_ui->labelStyle->hide();
-    m_ui->comboStyle->hide();
-    m_ui->labelStyleHint->hide();
-    m_ui->layoutStyle->removeWidget(m_ui->labelStyle);
-    m_ui->layoutStyle->removeWidget(m_ui->comboStyle);
-    m_ui->layoutStyle->removeWidget(m_ui->labelStyleHint);
-#endif
 }
 
 void OptionsDialog::initializeColorSchemeOptions()
