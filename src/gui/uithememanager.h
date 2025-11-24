@@ -41,7 +41,7 @@
 
 #include "uithemesource.h"
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)) && defined(Q_OS_WIN)
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 8, 0))
 #define QBT_HAS_COLORSCHEME_OPTION
 #endif
 
