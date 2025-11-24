@@ -95,17 +95,16 @@ TrackerStatusFilterWidget::TrackerStatusFilterWidget(QWidget *parent, TransferLi
 
     for (const BitTorrent::Torrent *torrent : torrents)
     {
-        const BitTorrent::TorrentID torrentID = torrent->id();
         const BitTorrent::TorrentAnnounceStatus announceStatus = torrent->announceStatus();
 
         if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasWarning))
-            m_warnings.insert(torrentID);
+            m_warnings.insert(torrent);
 
         if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasTrackerError))
-            m_trackerErrors.insert(torrentID);
+            m_trackerErrors.insert(torrent);
 
         if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasOtherError))
-            m_errors.insert(torrentID);
+            m_errors.insert(torrent);
     }
 
     anyStatusItem->setText(formatItemText(ANY_ROW, m_totalTorrents));
@@ -122,7 +121,8 @@ void TrackerStatusFilterWidget::handleTorrentTrackersRemoved(const BitTorrent::T
     refreshItems(torrent);
 }
 
-void TrackerStatusFilterWidget::handleTorrentTrackersReset(const BitTorrent::Torrent *torrent)
+void TrackerStatusFilterWidget::handleTorrentTrackersReset(const BitTorrent::Torrent *torrent
+        , [[maybe_unused]] const QList<BitTorrent::TrackerEntryStatus> &oldEntries, [[maybe_unused]] const QList<BitTorrent::TrackerEntry> &newEntries)
 {
     refreshItems(torrent);
 }
@@ -177,23 +177,22 @@ void TrackerStatusFilterWidget::handleTorrentsLoaded(const QList<BitTorrent::Tor
 
 void TrackerStatusFilterWidget::refreshItems(const BitTorrent::Torrent *torrent)
 {
-    const BitTorrent::TorrentID torrentID = torrent->id();
     const BitTorrent::TorrentAnnounceStatus announceStatus = torrent->announceStatus();
 
     if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasWarning))
-        m_warnings.insert(torrentID);
+        m_warnings.insert(torrent);
     else
-        m_warnings.remove(torrentID);
+        m_warnings.remove(torrent);
 
     if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasTrackerError))
-        m_trackerErrors.insert(torrentID);
+        m_trackerErrors.insert(torrent);
     else
-        m_trackerErrors.remove(torrentID);
+        m_trackerErrors.remove(torrent);
 
     if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasOtherError))
-        m_errors.insert(torrentID);
+        m_errors.insert(torrent);
     else
-        m_errors.remove(torrentID);
+        m_errors.remove(torrent);
 
     item(OTHERERROR_ROW)->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
     item(TRACKERERROR_ROW)->setText(formatItemText(TRACKERERROR_ROW, m_trackerErrors.size()));
@@ -202,11 +201,9 @@ void TrackerStatusFilterWidget::refreshItems(const BitTorrent::Torrent *torrent)
 
 void TrackerStatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent)
 {
-    const BitTorrent::TorrentID torrentID = torrent->id();
-
-    m_warnings.remove(torrentID);
-    m_trackerErrors.remove(torrentID);
-    m_errors.remove(torrentID);
+    m_warnings.remove(torrent);
+    m_trackerErrors.remove(torrent);
+    m_errors.remove(torrent);
 
     item(ANY_ROW)->setText(formatItemText(ANY_ROW, --m_totalTorrents));
     item(WARNING_ROW)->setText(formatItemText(WARNING_ROW, m_warnings.size()));

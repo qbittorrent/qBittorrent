@@ -45,7 +45,8 @@ public:
     TrackerStatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
 
     void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent);
-    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent);
+    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntryStatus> &oldEntries
+            , const QList<BitTorrent::TrackerEntry> &newEntries);
     void handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent);
 
 private:
@@ -58,8 +59,8 @@ private:
 
     void refreshItems(const BitTorrent::Torrent *torrent);
 
-    QSet<BitTorrent::TorrentID> m_errors;
-    QSet<BitTorrent::TorrentID> m_trackerErrors;
-    QSet<BitTorrent::TorrentID> m_warnings;
+    QSet<const BitTorrent::Torrent *> m_errors;
+    QSet<const BitTorrent::Torrent *> m_trackerErrors;
+    QSet<const BitTorrent::Torrent *> m_warnings;
     int m_totalTorrents = 0;
 };

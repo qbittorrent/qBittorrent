@@ -43,20 +43,17 @@ const std::optional<Tag> TorrentFilter::AnyTag;
 const std::optional<QString> TorrentFilter::AnyTrackerHost;
 const std::optional<TorrentFilter::TorrentAnnounceStatus> TorrentFilter::AnyAnnounceStatus;
 
-namespace
-{
-    QString getTrackerHost(const QString &url)
-    {
-        // We want the hostname.
-        if (const QString host = QUrl(url).host(); !host.isEmpty())
-            return host;
-
-        // If failed to parse the domain, original input should be returned
-        return url;
-    }
-}
-
 using BitTorrent::Torrent;
+
+QString getTrackerHost(const QString &url)
+{
+    // We want the hostname.
+    if (const QString host = QUrl(url).host(); !host.isEmpty())
+        return host;
+
+    // If failed to parse the domain, original input should be returned
+    return url;
+}
 
 TorrentFilter::TorrentFilter(const Status status, const std::optional<TorrentIDSet> &idSet, const std::optional<QString> &category
         , const std::optional<Tag> &tag, const std::optional<bool> &isPrivate, const std::optional<QString> &trackerHost

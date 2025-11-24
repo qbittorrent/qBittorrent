@@ -59,7 +59,8 @@ public:
 public slots:
     void handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
     void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent);
+    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntryStatus> &oldEntries
+            , const QList<BitTorrent::TrackerEntry> &newEntries);
     void trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
             , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
 

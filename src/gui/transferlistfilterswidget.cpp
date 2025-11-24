@@ -163,11 +163,12 @@ void TransferListFiltersWidget::handleTorrentTrackersRemoved(const BitTorrent::T
         m_trackerStatusFilterWidget->handleTorrentTrackersRemoved(torrent);
 }
 
-void TransferListFiltersWidget::handleTorrentTrackersReset(const BitTorrent::Torrent *torrent)
+void TransferListFiltersWidget::handleTorrentTrackersReset(const BitTorrent::Torrent *torrent
+        , const QList<BitTorrent::TrackerEntryStatus> &oldEntries, const QList<BitTorrent::TrackerEntry> &newEntries)
 {
-    m_trackersFilterWidget->handleTorrentTrackersReset(torrent);
+    m_trackersFilterWidget->handleTorrentTrackersReset(torrent, oldEntries, newEntries);
     if (m_trackerStatusFilterWidget)
-        m_trackerStatusFilterWidget->handleTorrentTrackersReset(torrent);
+        m_trackerStatusFilterWidget->handleTorrentTrackersReset(torrent, oldEntries, newEntries);
 }
 
 void TransferListFiltersWidget::trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent

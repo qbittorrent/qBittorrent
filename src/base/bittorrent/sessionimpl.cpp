@@ -5279,9 +5279,9 @@ void SessionImpl::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const
     emit trackersRemoved(torrent, deletedTrackers);
 }
 
-void SessionImpl::handleTorrentTrackersChanged(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentTrackersReset(TorrentImpl *const torrent, const QList<TrackerEntryStatus> &oldEntries, const QList<TrackerEntry> &newEntries)
 {
-    emit trackersChanged(torrent);
+    emit trackersReset(torrent, oldEntries, newEntries);
 }
 
 void SessionImpl::handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QList<QUrl> &newUrlSeeds)

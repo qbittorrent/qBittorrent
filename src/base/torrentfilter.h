@@ -113,3 +113,5 @@ private:
     std::optional<QString> m_trackerHost;
     std::optional<TorrentAnnounceStatus> m_announceStatus;
 };
+
+QString getTrackerHost(const QString &url);

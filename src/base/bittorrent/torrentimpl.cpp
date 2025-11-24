@@ -718,9 +718,9 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
 
     std::vector<lt::announce_entry> nativeTrackers;
     nativeTrackers.reserve(trackers.size());
-    m_trackerEntryStatuses.clear();
+    const auto oldEntries = std::exchange(m_trackerEntryStatuses, {});
 
-    for (const TrackerEntry &tracker : trackers)
+    for (const TrackerEntry &tracker : asConst(trackers))
     {
         nativeTrackers.emplace_back(makeNativeAnnounceEntry(tracker.url, tracker.tier));
         m_trackerEntryStatuses.append({tracker.url, tracker.tier});
@@ -734,7 +734,7 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
         clearPeers();
 
     deferredRequestResumeData();
-    m_session->handleTorrentTrackersChanged(this);
+    m_session->handleTorrentTrackersReset(this, oldEntries, trackers);
 }
 
 QList<QUrl> TorrentImpl::urlSeeds() const
