@@ -69,7 +69,14 @@ lt::storage_holder CustomDiskIOThread::new_torrent(const lt::storage_params &sto
     m_storageData[storageHolder] =
     {
         savePath,
+        #if LIBTORRENT_VERSION_NUM < 20100
+        // libtorrent < 2.1.0
         storageParams.mapped_files ? *storageParams.mapped_files : storageParams.files,
+        #else
+        // libtorrent >= 2.1.0
+        // fix: error: 'const struct libtorrent::storage_params' has no member named 'mapped_files'
+        storageParams.files,
+        #endif
         storageParams.priorities
     };
 
@@ -156,7 +163,17 @@ void CustomDiskIOThread::async_rename_file(lt::storage_index_t storage, lt::file
             , [=, this, handler = std::move(handler)](const std::string &name, lt::file_index_t index, const lt::storage_error &error)
     {
         if (!error)
+        {
+            #if LIBTORRENT_VERSION_NUM < 20100
+            // libtorrent < 2.1.0
             m_storageData[storage].files.rename_file(index, name);
+            #else
+            // libtorrent >= 2.1.0
+            // FIXME rename_file is deprecated since libtorrent 77eb55f31e53f798d9b88c946d434b8076310d00
+            // https://github.com/arvidn/libtorrent/pull/7983
+            m_storageData[storage].files.rename_file(index, name);
+            #endif
+        }
         handler(name, index, error);
     });
 }
