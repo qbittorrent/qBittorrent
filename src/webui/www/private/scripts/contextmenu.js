@@ -217,9 +217,8 @@ window.qBittorrent.ContextMenu ??= (() => {
                 if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
                     const grandParentNode = parentNode.parentNode;
                     if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
-                        const submenuItem = parentNode.getElementsByTagName("ul");
-                        // if the menu item has a submenu, the context menu
-                        if (submenuItem.length > 0)
+                        const submenuNodes = parentNode.getElementsByTagName("ul");
+                        if (submenuNodes.length > 0)
                             return;
                     }
                 }
