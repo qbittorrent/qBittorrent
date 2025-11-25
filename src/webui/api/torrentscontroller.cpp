@@ -566,7 +566,6 @@ void TorrentsController::statsAction(){
     constexpr int maxState = static_cast<int>(State::Error);
     
     constexpr int numStates = maxState - minState + 1;
-    qDebug() << numStates << " " << sizeof(TorrentStateKeyList) / sizeof(*TorrentStateKeyList);
     static_assert(
         sizeof(TorrentStateKeyList) / sizeof(*TorrentStateKeyList) 
         == 
