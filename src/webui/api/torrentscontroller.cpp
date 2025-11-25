@@ -157,6 +157,49 @@ const QString KEY_TORRENTINFO_PIECE_LENGTH = u"piece_length"_s;
 const QString KEY_TORRENTINFO_TRACKERS = u"trackers"_s;
 const QString KEY_TORRENTINFO_WEBSEEDS = u"webseeds"_s;
 
+// Torrent State info
+const QString KEY_TORRENTSTATE_UNKNOWN = u"unknown"_s;
+const QString KEY_TORRENTSTATE_FORCED_DOWNLOADING = u"forced_downloading"_s;
+const QString KEY_TORRENTSTATE_DOWNLOADING = u"downloading"_s;
+const QString KEY_TORRENTSTATE_FORCED_DOWNLOADING_METADATA = u"forced_downloading_metadata"_s;
+const QString KEY_TORRENTSTATE_DOWNLOADING_METADATA = u"downloading_metadata"_s;
+const QString KEY_TORRENTSTATE_STALLED_DOWNLOADING = u"stalled_downloading"_s;
+const QString KEY_TORRENTSTATE_FORCED_UPLOADING = u"forced_uploading"_s;
+const QString KEY_TORRENTSTATE_UPLOADING = u"uploading"_s;
+const QString KEY_TORRENTSTATE_STALLED_UPLOADING = u"stalled_uploading"_s;
+const QString KEY_TORRENTSTATE_CHECKING_RESUME_DATA = u"checking_resume_data"_s;
+const QString KEY_TORRENTSTATE_QUEUED_DOWNLOADING = u"queued_downloading"_s;
+const QString KEY_TORRENTSTATE_QUEUED_UPLOADING = u"queued_uploading"_s;
+const QString KEY_TORRENTSTATE_CHECKING_UPLOADING = u"checking_uploading"_s;
+const QString KEY_TORRENTSTATE_CHECKING_DOWNLOADING = u"checking_downloading"_s;
+const QString KEY_TORRENTSTATE_STOPPED_DOWNLOADING = u"stopped_downloading"_s;
+const QString KEY_TORRENTSTATE_STOPPED_UPLOADING = u"stopped_uploading"_s;
+const QString KEY_TORRENTSTATE_MOVING = u"moving"_s;
+const QString KEY_TORRENTSTATE_MISSING_FILES = u"missing_files"_s;
+const QString KEY_TORRENTSTATE_ERROR = u"error"_s;
+
+const QString *TorrentStateKeyList[] = {
+    &KEY_TORRENTSTATE_UNKNOWN,                    
+    &KEY_TORRENTSTATE_FORCED_DOWNLOADING,
+    &KEY_TORRENTSTATE_DOWNLOADING,
+    &KEY_TORRENTSTATE_FORCED_DOWNLOADING_METADATA,
+    &KEY_TORRENTSTATE_DOWNLOADING_METADATA,
+    &KEY_TORRENTSTATE_STALLED_DOWNLOADING,
+    &KEY_TORRENTSTATE_FORCED_UPLOADING,
+    &KEY_TORRENTSTATE_UPLOADING,
+    &KEY_TORRENTSTATE_STALLED_UPLOADING,
+    &KEY_TORRENTSTATE_CHECKING_RESUME_DATA,
+    &KEY_TORRENTSTATE_QUEUED_DOWNLOADING,
+    &KEY_TORRENTSTATE_QUEUED_UPLOADING,
+    &KEY_TORRENTSTATE_CHECKING_UPLOADING,
+    &KEY_TORRENTSTATE_CHECKING_DOWNLOADING,
+    &KEY_TORRENTSTATE_STOPPED_DOWNLOADING,
+    &KEY_TORRENTSTATE_STOPPED_UPLOADING,
+    &KEY_TORRENTSTATE_MOVING,
+    &KEY_TORRENTSTATE_MISSING_FILES,
+    &KEY_TORRENTSTATE_ERROR
+};
+
 namespace
 {
     using Utils::String::parseBool;
@@ -512,6 +555,38 @@ TorrentsController::TorrentsController(IApplication *app, QObject *parent)
     : APIController(app, parent)
 {
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::metadataDownloaded, this, &TorrentsController::onMetadataDownloaded);
+}
+
+void TorrentsController::statsAction(){
+    using State = BitTorrent::TorrentState;
+
+    BitTorrent::Session* const session = BitTorrent::Session::instance();
+    const auto torrents = session->torrents();
+    constexpr int minState = static_cast<int>(State::Unknown);
+    constexpr int maxState = static_cast<int>(State::Error);
+    
+    constexpr int numStates = maxState - minState + 1;
+    qDebug() << numStates << " " << sizeof(TorrentStateKeyList) / sizeof(*TorrentStateKeyList);
+    static_assert(
+        sizeof(TorrentStateKeyList) / sizeof(*TorrentStateKeyList) 
+        == 
+        numStates,
+        "TorrentStateKeyList: number of keys does not match TorrentState enum count"
+    );
+
+    QVector<int> stateCounts(numStates, 0);
+    for (const BitTorrent::Torrent* const torrent : torrents) {
+        const int stateIndex = static_cast<int>(torrent->state()) - minState;
+        if (stateIndex >= 0 && stateIndex < stateCounts.size()) {
+            ++stateCounts[stateIndex];
+        }
+    }
+    
+    QJsonObject res;
+    for (int idx = 0; idx < stateCounts.size(); ++idx) {
+        res[*TorrentStateKeyList[idx]] = stateCounts[idx];
+    }
+    setResult(res);
 }
 
 void TorrentsController::countAction()

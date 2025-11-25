@@ -57,6 +57,7 @@ public:
     explicit TorrentsController(IApplication *app, QObject *parent = nullptr);
 
 private slots:
+    void statsAction();
     void countAction();
     void infoAction();
     void propertiesAction();
