@@ -637,8 +637,6 @@
                                 });
                             }
                         }
-                        if (statusDiffers)
-                            rssFeedTable.updateIcons();
 
                         // get currently opened feed
                         let openedFeedPath = undefined;
@@ -788,7 +786,6 @@
                             ++rowCount;
                         }
                         rssFeedTable.updateTable(false);
-                        rssFeedTable.updateIcons();
                     }
                 });
         };
@@ -799,7 +796,6 @@
                 if (row.full_data.dataUid === feedUid)
                     row.full_data.status = "isLoading";
             }
-            rssFeedTable.updateIcons();
 
             fetch("api/v2/rss/refreshItem", {
                     method: "POST",
