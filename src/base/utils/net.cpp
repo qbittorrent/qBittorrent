@@ -307,8 +307,8 @@ namespace Utils
             const QHostAddress lastIP = ipRange.second;
             if (firstIP == lastIP)
                 return firstIP.toString();
-            else
-                return QString(firstIP.toString() + u" - " + lastIP.toString());
+
+            return QString(firstIP.toString() + u" - " + lastIP.toString());
         }
 
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
