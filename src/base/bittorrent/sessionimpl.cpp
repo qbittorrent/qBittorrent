@@ -481,6 +481,10 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_downloadRateForSlowTorrents(BITTORRENT_SESSION_KEY(u"SlowTorrentsDownloadRate"_s), 2)
     , m_uploadRateForSlowTorrents(BITTORRENT_SESSION_KEY(u"SlowTorrentsUploadRate"_s), 2)
     , m_slowTorrentsInactivityTimer(BITTORRENT_SESSION_KEY(u"SlowTorrentsInactivityTimer"_s), 60)
+    , m_isSlowTorrentDetectionEnabled(BITTORRENT_SESSION_KEY(u"SlowTorrentDetectionEnabled"_s), false)
+    , m_slowTorrentDetectionDuration(BITTORRENT_SESSION_KEY(u"SlowTorrentDetectionDuration"_s), 10, lowerLimited(1))
+    , m_slowTorrentMinimumProgress(BITTORRENT_SESSION_KEY(u"SlowTorrentMinimumProgress"_s), 10, lowerLimited(1))
+    , m_slowTorrentExcludedTag(BITTORRENT_SESSION_KEY(u"SlowTorrentExcludedTag"_s))
     , m_outgoingPortsMin(BITTORRENT_SESSION_KEY(u"OutgoingPortsMin"_s), 0)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY(u"OutgoingPortsMax"_s), 0)
     , m_UPnPLeaseDuration(BITTORRENT_SESSION_KEY(u"UPnPLeaseDuration"_s), 0)
@@ -583,6 +587,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_startPaused {BITTORRENT_SESSION_KEY(u"StartPaused"_s)}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
+    , m_slowTorrentDetectionTimer {new QTimer(this)}
     , m_ioThread {new QThread}
     , m_asyncWorker {new QThreadPool(this)}
     , m_recentErroredTorrentsTimer {new QTimer(this)}
@@ -618,6 +623,9 @@ SessionImpl::SessionImpl(QObject *parent)
         for (TorrentImpl *torrent : torrents)
             processTorrentShareLimits(torrent);
     });
+
+    m_slowTorrentDetectionTimer->setInterval(10s);
+    connect(m_slowTorrentDetectionTimer, &QTimer::timeout, this, &SessionImpl::processSlowTorrentDetection);
 
     initializeNativeSession();
     configureComponents();
@@ -4730,9 +4738,22 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
         configureDeferred();
 
         if (enabled)
+        {
             m_torrentsQueueChanged = true;
+            
+            // Start slow torrent detection timer if enabled
+            if (isSlowTorrentDetectionEnabled() && !m_slowTorrentDetectionTimer->isActive())
+                m_slowTorrentDetectionTimer->start();
+        }
         else
+        {
             removeTorrentsQueue();
+            
+            // Stop slow torrent detection timer when queueing is disabled
+            if (m_slowTorrentDetectionTimer->isActive())
+                m_slowTorrentDetectionTimer->stop();
+            m_downloadProgressRecords.clear();
+        }
 
         for (TorrentImpl *torrent : asConst(m_torrents))
             torrent->handleQueueingModeChanged();
@@ -4838,6 +4859,71 @@ void SessionImpl::setSlowTorrentsInactivityTimer(const int timeInSeconds)
 
     m_slowTorrentsInactivityTimer = timeInSeconds;
     configureDeferred();
+}
+
+bool SessionImpl::isSlowTorrentDetectionEnabled() const
+{
+    return m_isSlowTorrentDetectionEnabled;
+}
+
+void SessionImpl::setSlowTorrentDetectionEnabled(const bool enabled)
+{
+    if (enabled != m_isSlowTorrentDetectionEnabled)
+    {
+        m_isSlowTorrentDetectionEnabled = enabled;
+        
+        if (enabled && isQueueingSystemEnabled())
+        {
+            if (!m_slowTorrentDetectionTimer->isActive())
+                m_slowTorrentDetectionTimer->start();
+        }
+        else
+        {
+            if (m_slowTorrentDetectionTimer->isActive())
+                m_slowTorrentDetectionTimer->stop();
+            m_downloadProgressRecords.clear();
+        }
+    }
+}
+
+int SessionImpl::slowTorrentDetectionDuration() const
+{
+    return m_slowTorrentDetectionDuration;
+}
+
+void SessionImpl::setSlowTorrentDetectionDuration(const int minutes)
+{
+    if (minutes == m_slowTorrentDetectionDuration)
+        return;
+
+    m_slowTorrentDetectionDuration = minutes;
+    m_downloadProgressRecords.clear();
+}
+
+int SessionImpl::slowTorrentMinimumProgress() const
+{
+    return m_slowTorrentMinimumProgress;
+}
+
+void SessionImpl::setSlowTorrentMinimumProgress(const int megabytes)
+{
+    if (megabytes == m_slowTorrentMinimumProgress)
+        return;
+
+    m_slowTorrentMinimumProgress = megabytes;
+}
+
+QString SessionImpl::slowTorrentExcludedTag() const
+{
+    return m_slowTorrentExcludedTag;
+}
+
+void SessionImpl::setSlowTorrentExcludedTag(const QString &tag)
+{
+    if (tag == m_slowTorrentExcludedTag)
+        return;
+
+    m_slowTorrentExcludedTag = tag;
 }
 
 int SessionImpl::outgoingPortsMin() const
@@ -6614,4 +6700,113 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
     }
 
     m_removingTorrents.erase(removingTorrentDataIter);
+}
+
+void SessionImpl::processSlowTorrentDetection()
+{
+    // Only run if both queueing and slow torrent detection are enabled
+    if (!isQueueingSystemEnabled() || !isSlowTorrentDetectionEnabled())
+    {
+        m_downloadProgressRecords.clear();
+        return;
+    }
+
+    // Check if there are any queued torrents
+    bool hasQueuedTorrents = false;
+    for (TorrentImpl *torrent : asConst(m_torrents))
+    {
+        if (torrent->state() == TorrentState::QueuedDownloading)
+        {
+            hasQueuedTorrents = true;
+            break;
+        }
+    }
+
+    // If no queued torrents, clear records and return
+    if (!hasQueuedTorrents)
+    {
+        m_downloadProgressRecords.clear();
+        return;
+    }
+
+    // Calculate the number of samples needed for the monitoring window
+    // Using ceiling division: (duration_minutes * 60 + 9) / 10
+    // This ensures we have enough samples for the full monitoring window
+    // Example: 10 minutes = 600 seconds, 600/10 = 60 samples needed
+    const int monitoringSamplesCount = (m_slowTorrentDetectionDuration * 60 + 9) / 10;
+    const qint64 minimumProgressBytes = static_cast<qint64>(m_slowTorrentMinimumProgress) * 1024 * 1024;
+    const QString excludedTag = m_slowTorrentExcludedTag;
+
+    // Collect current download states for active downloading torrents
+    QHash<TorrentID, qint64> currentDownloadStates;
+    for (TorrentImpl *torrent : asConst(m_torrents))
+    {
+        const TorrentState state = torrent->state();
+        
+        // Only monitor downloading, metaDL, and stalledDL states
+        if (state != TorrentState::Downloading 
+            && state != TorrentState::DownloadingMetadata 
+            && state != TorrentState::StalledDownloading)
+        {
+            continue;
+        }
+
+        // Skip if torrent has the excluded tag
+        if (!excludedTag.isEmpty())
+        {
+            const TagSet torrentTags = torrent->tags();
+            if (torrentTags.contains(Tag(excludedTag)))
+                continue;
+        }
+
+        currentDownloadStates.insert(torrent->id(), torrent->totalDownload());
+    }
+
+    // Remove records for torrents that are no longer being monitored
+    QMutableHashIterator<TorrentID, QList<qint64>> iter(m_downloadProgressRecords);
+    while (iter.hasNext())
+    {
+        iter.next();
+        if (!currentDownloadStates.contains(iter.key()))
+            iter.remove();
+    }
+
+    // Update progress records for each torrent
+    for (auto it = currentDownloadStates.cbegin(); it != currentDownloadStates.cend(); ++it)
+    {
+        const TorrentID &torrentID = it.key();
+        const qint64 downloadedBytes = it.value();
+
+        QList<qint64> &records = m_downloadProgressRecords[torrentID];
+        records.append(downloadedBytes);
+
+        // Keep only the last N samples
+        while (records.size() > monitoringSamplesCount)
+            records.removeFirst();
+    }
+
+    // Identify stagnant torrents that need to be moved to queue bottom
+    QList<TorrentID> stagnantTorrentIDs;
+    for (auto it = m_downloadProgressRecords.cbegin(); it != m_downloadProgressRecords.cend(); ++it)
+    {
+        const QList<qint64> &records = it.value();
+        
+        // Only check torrents that have been monitored for the full window
+        if (records.size() == monitoringSamplesCount)
+        {
+            const qint64 progressDifference = records.last() - records.first();
+            if (progressDifference < minimumProgressBytes)
+                stagnantTorrentIDs.append(it.key());
+        }
+    }
+
+    // Move stagnant torrents to bottom of queue
+    if (!stagnantTorrentIDs.isEmpty())
+    {
+        bottomTorrentsQueuePos(stagnantTorrentIDs);
+
+        // Clear records for torrents that were moved to bottom
+        for (const TorrentID &torrentID : asConst(stagnantTorrentIDs))
+            m_downloadProgressRecords.remove(torrentID);
+    }
 }

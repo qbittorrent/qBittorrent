@@ -3057,6 +3057,104 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </layout>
                 </widget>
                </item>
+               <item row="4" column="0" colspan="3">
+                <widget class="QGroupBox" name="checkEnableSlowTorrentDetection">
+                 <property name="title">
+                  <string>Move slow downloading torrents to queue end</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_14">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelSlowTorrentDetectionDuration">
+                    <property name="text">
+                     <string>Time:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="spinSlowTorrentDetectionDuration">
+                    <property name="suffix">
+                     <string> min</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>999999</number>
+                    </property>
+                    <property name="value">
+                     <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <spacer name="horizontalSpacer_10">
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>40</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelSlowTorrentMinimumProgress">
+                    <property name="text">
+                     <string>Minimum size:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinSlowTorrentMinimumProgress">
+                    <property name="suffix">
+                     <string> MiB</string>
+                    </property>
+                    <property name="minimum">
+                     <number>1</number>
+                    </property>
+                    <property name="maximum">
+                     <number>999999</number>
+                    </property>
+                    <property name="value">
+                     <number>10</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="labelSlowTorrentExcludedTag">
+                    <property name="text">
+                     <string>Excluded tag:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QComboBox" name="comboSlowTorrentExcludedTag">
+                    <property name="editable">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0" colspan="3">
+                   <widget class="QLabel" name="labelSlowTorrentDetectionInfo">
+                    <property name="text">
+                     <string>Torrents that fail to reach the minimum size within the time window will be moved to the end of the queue.</string>
+                    </property>
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

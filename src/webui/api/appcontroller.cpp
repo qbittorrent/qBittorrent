@@ -304,6 +304,10 @@ void AppController::preferencesAction()
     data[u"slow_torrent_dl_rate_threshold"_s] = session->downloadRateForSlowTorrents();
     data[u"slow_torrent_ul_rate_threshold"_s] = session->uploadRateForSlowTorrents();
     data[u"slow_torrent_inactive_timer"_s] = session->slowTorrentsInactivityTimer();
+    data[u"slow_torrent_detection_enabled"_s] = session->isSlowTorrentDetectionEnabled();
+    data[u"slow_torrent_detection_duration"_s] = session->slowTorrentDetectionDuration();
+    data[u"slow_torrent_minimum_progress"_s] = session->slowTorrentMinimumProgress();
+    data[u"slow_torrent_excluded_tag"_s] = session->slowTorrentExcludedTag();
     // Share Ratio Limiting
     data[u"max_ratio_enabled"_s] = (session->globalMaxRatio() >= 0.);
     data[u"max_ratio"_s] = session->globalMaxRatio();
@@ -837,6 +841,14 @@ void AppController::setPreferencesAction()
         session->setUploadRateForSlowTorrents(it.value().toInt());
     if (hasKey(u"slow_torrent_inactive_timer"_s))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
+    if (hasKey(u"slow_torrent_detection_enabled"_s))
+        session->setSlowTorrentDetectionEnabled(it.value().toBool());
+    if (hasKey(u"slow_torrent_detection_duration"_s))
+        session->setSlowTorrentDetectionDuration(it.value().toInt());
+    if (hasKey(u"slow_torrent_minimum_progress"_s))
+        session->setSlowTorrentMinimumProgress(it.value().toInt());
+    if (hasKey(u"slow_torrent_excluded_tag"_s))
+        session->setSlowTorrentExcludedTag(it.value().toString());
     // Share Ratio Limiting
     if (hasKey(u"max_ratio_enabled"_s) && !it.value().toBool())
         session->setGlobalMaxRatio(-1);

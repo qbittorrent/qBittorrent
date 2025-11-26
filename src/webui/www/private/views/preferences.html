@@ -784,6 +784,45 @@
                 </tbody>
             </table>
         </fieldset>
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="slowTorrentDetectionCheckbox" onclick="qBittorrent.Preferences.updateSlowTorrentDetectionSettings();">
+                <label for="slowTorrentDetectionCheckbox">QBT_TR(Move slow downloading torrents to queue end)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="slowTorrentDetectionDuration">QBT_TR(Time:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="slowTorrentDetectionDuration" style="width: 6em;">&nbsp;&nbsp;QBT_TR(minutes)QBT_TR[CONTEXT=OptionsDialog]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="slowTorrentMinimumProgress">QBT_TR(Minimum size:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="text" id="slowTorrentMinimumProgress" style="width: 6em;">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="slowTorrentExcludedTag">QBT_TR(Excluded tag:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <select id="slowTorrentExcludedTag" style="width: 10em;"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div style="padding: 5px;">QBT_TR(Torrents that fail to reach the minimum size within the time window will be moved to the end of the queue.)QBT_TR[CONTEXT=OptionsDialog]</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -1815,6 +1854,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateSchedulingEnabled: updateSchedulingEnabled,
                 updateQueueingSystem: updateQueueingSystem,
                 updateSlowTorrentsSettings: updateSlowTorrentsSettings,
+                updateSlowTorrentDetectionSettings: updateSlowTorrentDetectionSettings,
                 updateMaxRatioTimeEnabled: updateMaxRatioTimeEnabled,
                 updateAddTrackersEnabled: updateAddTrackersEnabled,
                 updateAddTrackersFromURLEnabled: updateAddTrackersFromURLEnabled,
@@ -2084,7 +2124,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("maxActiveUpValue").disabled = !isQueueingEnabled;
             document.getElementById("maxActiveToValue").disabled = !isQueueingEnabled;
             document.getElementById("dontCountSlowTorrentsCheckbox").disabled = !isQueueingEnabled;
+            document.getElementById("slowTorrentDetectionCheckbox").disabled = !isQueueingEnabled;
             updateSlowTorrentsSettings();
+            updateSlowTorrentDetectionSettings();
         };
 
         const updateSlowTorrentsSettings = () => {
@@ -2092,6 +2134,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("dlRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
             document.getElementById("ulRateThresholdValue").disabled = !isDontCountSlowTorrentsEnabled;
             document.getElementById("torrentInactiveTimerValue").disabled = !isDontCountSlowTorrentsEnabled;
+        };
+
+        const updateSlowTorrentDetectionSettings = () => {
+            const isSlowTorrentDetectionEnabled = (!document.getElementById("slowTorrentDetectionCheckbox").disabled) && document.getElementById("slowTorrentDetectionCheckbox").checked;
+            document.getElementById("slowTorrentDetectionDuration").disabled = !isSlowTorrentDetectionEnabled;
+            document.getElementById("slowTorrentMinimumProgress").disabled = !isSlowTorrentDetectionEnabled;
+            document.getElementById("slowTorrentExcludedTag").disabled = !isSlowTorrentDetectionEnabled;
         };
 
         const updateMaxRatioTimeEnabled = () => {
@@ -2518,6 +2567,25 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dlRateThresholdValue").value = Number(pref.slow_torrent_dl_rate_threshold);
                     document.getElementById("ulRateThresholdValue").value = Number(pref.slow_torrent_ul_rate_threshold);
                     document.getElementById("torrentInactiveTimerValue").value = Number(pref.slow_torrent_inactive_timer);
+                    document.getElementById("slowTorrentDetectionCheckbox").checked = pref.slow_torrent_detection_enabled;
+                    document.getElementById("slowTorrentDetectionDuration").value = Number(pref.slow_torrent_detection_duration);
+                    document.getElementById("slowTorrentMinimumProgress").value = Number(pref.slow_torrent_minimum_progress);
+                    
+                    // Populate tag dropdown
+                    fetch("api/v2/torrents/tags")
+                        .then(res => res.json())
+                        .then(tags => {
+                            const tagSelect = document.getElementById("slowTorrentExcludedTag");
+                            tagSelect.innerHTML = '<option value="">QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]</option>';
+                            tags.forEach(tag => {
+                                const option = document.createElement("option");
+                                option.value = tag;
+                                option.textContent = tag;
+                                tagSelect.appendChild(option);
+                            });
+                            tagSelect.value = pref.slow_torrent_excluded_tag || "";
+                        });
+                    
                     updateQueueingSystem();
 
                     // Share Limiting
@@ -2970,6 +3038,24 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
                 settings["slow_torrent_inactive_timer"] = torrentInactiveTimer;
+                
+                settings["slow_torrent_detection_enabled"] = document.getElementById("slowTorrentDetectionCheckbox").checked;
+                
+                const slowTorrentDetectionDuration = Number(document.getElementById("slowTorrentDetectionDuration").value);
+                if (Number.isNaN(slowTorrentDetectionDuration) || (slowTorrentDetectionDuration < 1)) {
+                    alert("QBT_TR(Monitoring window duration must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings["slow_torrent_detection_duration"] = slowTorrentDetectionDuration;
+                
+                const slowTorrentMinimumProgress = Number(document.getElementById("slowTorrentMinimumProgress").value);
+                if (Number.isNaN(slowTorrentMinimumProgress) || (slowTorrentMinimumProgress < 1)) {
+                    alert("QBT_TR(Minimum file progress must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+                settings["slow_torrent_minimum_progress"] = slowTorrentMinimumProgress;
+                
+                settings["slow_torrent_excluded_tag"] = document.getElementById("slowTorrentExcludedTag").value;
             }
 
             // Share Ratio Limiting

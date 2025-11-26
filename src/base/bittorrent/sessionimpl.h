@@ -353,6 +353,14 @@ namespace BitTorrent
         void setUploadRateForSlowTorrents(int rateInKibiBytes) override;
         int slowTorrentsInactivityTimer() const override;
         void setSlowTorrentsInactivityTimer(int timeInSeconds) override;
+        bool isSlowTorrentDetectionEnabled() const override;
+        void setSlowTorrentDetectionEnabled(bool enabled) override;
+        int slowTorrentDetectionDuration() const override;
+        void setSlowTorrentDetectionDuration(int minutes) override;
+        int slowTorrentMinimumProgress() const override;
+        void setSlowTorrentMinimumProgress(int megabytes) override;
+        QString slowTorrentExcludedTag() const override;
+        void setSlowTorrentExcludedTag(const QString &tag) override;
         int outgoingPortsMin() const override;
         void setOutgoingPortsMin(int min) override;
         int outgoingPortsMax() const override;
@@ -521,6 +529,7 @@ namespace BitTorrent
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void torrentContentRemovingFinished(const QString &torrentName, const QString &errorMessage);
+        void processSlowTorrentDetection();
 
     private:
         struct ResumeSessionContext;
@@ -687,6 +696,10 @@ namespace BitTorrent
         CachedSettingValue<int> m_downloadRateForSlowTorrents;
         CachedSettingValue<int> m_uploadRateForSlowTorrents;
         CachedSettingValue<int> m_slowTorrentsInactivityTimer;
+        CachedSettingValue<bool> m_isSlowTorrentDetectionEnabled;
+        CachedSettingValue<int> m_slowTorrentDetectionDuration;
+        CachedSettingValue<int> m_slowTorrentMinimumProgress;
+        CachedSettingValue<QString> m_slowTorrentExcludedTag;
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<int> m_UPnPLeaseDuration;
@@ -815,6 +828,8 @@ namespace BitTorrent
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;
+        QTimer *m_slowTorrentDetectionTimer = nullptr;
+        QHash<TorrentID, QList<qint64>> m_downloadProgressRecords;
         // IP filtering
         QPointer<FilterParserThread> m_filterParser;
         QPointer<BandwidthScheduler> m_bwScheduler;

@@ -1117,6 +1117,21 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->spinUploadRateForSlowTorrents->setValue(session->uploadRateForSlowTorrents());
     m_ui->spinSlowTorrentsInactivityTimer->setValue(session->slowTorrentsInactivityTimer());
 
+    m_ui->checkEnableSlowTorrentDetection->setChecked(session->isSlowTorrentDetectionEnabled());
+    m_ui->spinSlowTorrentDetectionDuration->setValue(session->slowTorrentDetectionDuration());
+    m_ui->spinSlowTorrentMinimumProgress->setValue(session->slowTorrentMinimumProgress());
+    
+    // Populate tag combo box
+    m_ui->comboSlowTorrentExcludedTag->clear();
+    m_ui->comboSlowTorrentExcludedTag->addItem(tr("None"), QString());
+    const TagSet tags = session->tags();
+    for (const Tag &tag : tags)
+        m_ui->comboSlowTorrentExcludedTag->addItem(tag.toString(), tag.toString());
+    
+    const QString excludedTag = session->slowTorrentExcludedTag();
+    const int tagIndex = m_ui->comboSlowTorrentExcludedTag->findData(excludedTag);
+    m_ui->comboSlowTorrentExcludedTag->setCurrentIndex(tagIndex >= 0 ? tagIndex : 0);
+
     if (session->globalMaxRatio() >= 0.)
     {
         // Enable
@@ -1191,6 +1206,10 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->spinDownloadRateForSlowTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinUploadRateForSlowTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinSlowTorrentsInactivityTimer, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkEnableSlowTorrentDetection, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinSlowTorrentDetectionDuration, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinSlowTorrentMinimumProgress, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboSlowTorrentExcludedTag, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, m_ui->spinMaxRatio, &QWidget::setEnabled);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
@@ -1233,6 +1252,10 @@ void OptionsDialog::saveBittorrentTabOptions() const
     session->setDownloadRateForSlowTorrents(m_ui->spinDownloadRateForSlowTorrents->value());
     session->setUploadRateForSlowTorrents(m_ui->spinUploadRateForSlowTorrents->value());
     session->setSlowTorrentsInactivityTimer(m_ui->spinSlowTorrentsInactivityTimer->value());
+    session->setSlowTorrentDetectionEnabled(m_ui->checkEnableSlowTorrentDetection->isChecked());
+    session->setSlowTorrentDetectionDuration(m_ui->spinSlowTorrentDetectionDuration->value());
+    session->setSlowTorrentMinimumProgress(m_ui->spinSlowTorrentMinimumProgress->value());
+    session->setSlowTorrentExcludedTag(m_ui->comboSlowTorrentExcludedTag->currentData().toString());
 
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
