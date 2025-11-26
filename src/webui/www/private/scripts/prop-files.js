@@ -74,6 +74,7 @@ window.qBittorrent.PropFiles ??= (() => {
         const new_hash = torrentsTable.getCurrentTorrentID();
         if (new_hash === "") {
             torrentFilesTable.clear();
+            current_hash = "";
             clearTimeout(loadTorrentFilesDataTimer);
             return;
         }
@@ -176,6 +177,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const clear = () => {
         torrentFilesTable.clear();
+        current_hash = "";
     };
 
     return exports();
