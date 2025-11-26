@@ -125,7 +125,7 @@ namespace Utils
 
                 return std::make_pair(start, end);
             }
-            else if (addressFamily == QAbstractSocket::IPv6Protocol)
+            if (addressFamily == QAbstractSocket::IPv6Protocol)
             {
                 quint8 ip6[16];
                 quint8 mask6[16] = {0};
