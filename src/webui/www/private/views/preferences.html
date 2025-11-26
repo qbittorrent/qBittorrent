@@ -297,6 +297,77 @@
             <label id="excludedFileNamesLabel" for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <textarea id="excludedFileNamesTextarea" rows="6" cols="70" aria-labelledby="excludedFileNamesLabel"></textarea>
+        
+        <fieldset class="settings" style="margin-top: 10px;">
+            <legend>
+                <input type="checkbox" id="advancedFilterCheckbox" onclick="qBittorrent.Preferences.updateAdvancedFilterEnabled();">
+                <label for="advancedFilterCheckbox">QBT_TR(Advanced filtering mode)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label for="advancedFilterTagSelect">QBT_TR(Target tag:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <select id="advancedFilterTagSelect">
+                                <option value="">(None)</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="advancedFilterMinSize">QBT_TR(Min file size:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="number" id="advancedFilterMinSize" min="0" max="999999" value="0" style="width: 10em;">
+                            <select id="advancedFilterMinSizeUnit">
+                                <option value="1024">KB</option>
+                                <option value="1048576" selected>MB</option>
+                                <option value="1073741824">GB</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="advancedFilterMaxSize">QBT_TR(Max file size:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <input type="number" id="advancedFilterMaxSize" min="0" max="999999" value="0" style="width: 10em;">
+                            <select id="advancedFilterMaxSizeUnit">
+                                <option value="1024">KB</option>
+                                <option value="1048576" selected>MB</option>
+                                <option value="1073741824">GB</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="advancedFilterWhitelist">QBT_TR(Whitelist patterns:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <textarea id="advancedFilterWhitelist" rows="3" cols="50" title="Regex patterns for whitelisted file names (one per line).
+Files matching these patterns bypass file size and blacklist filters.
+Patterns are automatically anchored to match the complete filename.
+Example: .*exe matches test.exe but not test.exea
+Leave empty to apply file size and blacklist filters to all files."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="advancedFilterBlacklist">QBT_TR(Blacklist patterns:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                        </td>
+                        <td>
+                            <textarea id="advancedFilterBlacklist" rows="3" cols="50" title="Regex patterns for blacklisted file names (one per line).
+Files matching these patterns will be excluded (unless whitelisted).
+Patterns are automatically anchored to match the complete filename.
+Example: .*zip matches test.zip but not test.zipa
+Leave empty to only apply file size filters."></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
     </fieldset>
 
     <fieldset class="settings">
@@ -1797,6 +1868,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateExportDirFinEnabled: updateExportDirFinEnabled,
                 addWatchFolder: addWatchFolder,
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
+                updateAdvancedFilterEnabled: updateAdvancedFilterEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
@@ -1834,6 +1906,34 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
+        // Constants for file size units
+        const BYTES_PER_KB = 1024;
+        const BYTES_PER_MB = 1048576;
+        const BYTES_PER_GB = 1073741824;
+
+        // Helper function to convert bytes to display unit
+        const convertBytesToDisplayUnit = (bytes, inputId, unitId) => {
+            const input = document.getElementById(inputId);
+            const unitSelect = document.getElementById(unitId);
+            
+            if (bytes === 0) {
+                input.value = 0;
+                unitSelect.value = BYTES_PER_MB.toString();
+            }
+            else if (bytes % BYTES_PER_GB === 0) {
+                input.value = bytes / BYTES_PER_GB;
+                unitSelect.value = BYTES_PER_GB.toString();
+            }
+            else if (bytes % BYTES_PER_MB === 0) {
+                input.value = bytes / BYTES_PER_MB;
+                unitSelect.value = BYTES_PER_MB.toString();
+            }
+            else {
+                input.value = bytes / BYTES_PER_KB;
+                unitSelect.value = BYTES_PER_KB.toString();
+            }
+        };
 
         // Behavior tab
         const numberInputLimiter = (input) => {
@@ -1950,6 +2050,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+        };
+
+        const updateAdvancedFilterEnabled = () => {
+            const isAdvancedFilterEnabled = document.getElementById("advancedFilterCheckbox").checked;
+            document.getElementById("advancedFilterTagSelect").disabled = !isAdvancedFilterEnabled;
+            document.getElementById("advancedFilterMinSize").disabled = !isAdvancedFilterEnabled;
+            document.getElementById("advancedFilterMinSizeUnit").disabled = !isAdvancedFilterEnabled;
+            document.getElementById("advancedFilterMaxSize").disabled = !isAdvancedFilterEnabled;
+            document.getElementById("advancedFilterMaxSizeUnit").disabled = !isAdvancedFilterEnabled;
+            document.getElementById("advancedFilterWhitelist").disabled = !isAdvancedFilterEnabled;
+            document.getElementById("advancedFilterBlacklist").disabled = !isAdvancedFilterEnabled;
         };
 
         const updateExportDirEnabled = () => {
@@ -2377,6 +2488,52 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("excludedFileNamesCheckbox").checked = pref.excluded_file_names_enabled;
                     document.getElementById("excludedFileNamesTextarea").value = pref.excluded_file_names;
 
+                    // Advanced filter
+                    document.getElementById("advancedFilterCheckbox").checked = pref.advanced_filter_enabled || false;
+                    
+                    // Populate tag dropdown - need to fetch tags first
+                    const tagSelect = document.getElementById("advancedFilterTagSelect");
+                    tagSelect.innerHTML = '<option value="">(None)</option>';
+                    // We'll populate tags dynamically when preferences are loaded
+                    
+                    // Set target tag
+                    const targetTag = pref.advanced_filter_target_tag || "";
+                    // Will be set after tags are loaded
+                    
+                    // Load file sizes and convert from bytes
+                    const minSizeBytes = pref.advanced_filter_min_file_size || 0;
+                    const maxSizeBytes = pref.advanced_filter_max_file_size || 0;
+                    
+                    // Convert sizes to appropriate units using helper function
+                    convertBytesToDisplayUnit(minSizeBytes, "advancedFilterMinSize", "advancedFilterMinSizeUnit");
+                    convertBytesToDisplayUnit(maxSizeBytes, "advancedFilterMaxSize", "advancedFilterMaxSizeUnit");
+                    
+                    document.getElementById("advancedFilterWhitelist").value = pref.advanced_filter_whitelist_patterns || "";
+                    document.getElementById("advancedFilterBlacklist").value = pref.advanced_filter_blacklist_patterns || "";
+                    
+                    // Fetch and populate tags
+                    fetch("api/v2/torrents/tags")
+                        .then(response => response.json())
+                        .then(tags => {
+                            const tagSelect = document.getElementById("advancedFilterTagSelect");
+                            tagSelect.innerHTML = '<option value="">(None)</option>';
+                            tags.forEach(tag => {
+                                const option = document.createElement("option");
+                                option.value = tag;
+                                option.textContent = tag;
+                                if (tag === targetTag) {
+                                    option.selected = true;
+                                }
+                                tagSelect.appendChild(option);
+                            });
+                        })
+                        .catch((error) => {
+                            // Log error if tag fetching fails
+                            console.error("Failed to fetch tags for advanced filter:", error);
+                        });
+                    
+                    updateAdvancedFilterEnabled();
+
                     // Email notification upon download completion
                     document.getElementById("mail_notification_checkbox").checked = pref.mail_notification_enabled;
                     document.getElementById("src_email_txt").value = pref.mail_notification_sender;
@@ -2774,6 +2931,30 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Excluded file names
             settings["excluded_file_names_enabled"] = document.getElementById("excludedFileNamesCheckbox").checked;
             settings["excluded_file_names"] = document.getElementById("excludedFileNamesTextarea").value;
+
+            // Advanced filter
+            settings["advanced_filter_enabled"] = document.getElementById("advancedFilterCheckbox").checked;
+            settings["advanced_filter_target_tag"] = document.getElementById("advancedFilterTagSelect").value;
+            
+            // Convert file sizes to bytes
+            const minSizeValue = parseInt(document.getElementById("advancedFilterMinSize").value) || 0;
+            const minSizeUnit = parseInt(document.getElementById("advancedFilterMinSizeUnit").value);
+            const minSizeBytes = minSizeValue * minSizeUnit;
+            settings["advanced_filter_min_file_size"] = minSizeBytes;
+            
+            const maxSizeValue = parseInt(document.getElementById("advancedFilterMaxSize").value) || 0;
+            const maxSizeUnit = parseInt(document.getElementById("advancedFilterMaxSizeUnit").value);
+            const maxSizeBytes = maxSizeValue * maxSizeUnit;
+            settings["advanced_filter_max_file_size"] = maxSizeBytes;
+            
+            // Validate: min size should not be greater than max size (if both are set)
+            if (settings["advanced_filter_enabled"] && minSizeBytes > 0 && maxSizeBytes > 0 && minSizeBytes > maxSizeBytes) {
+                alert("QBT_TR(Minimum file size cannot be greater than maximum file size.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+            
+            settings["advanced_filter_whitelist_patterns"] = document.getElementById("advancedFilterWhitelist").value;
+            settings["advanced_filter_blacklist_patterns"] = document.getElementById("advancedFilterBlacklist").value;
 
             // Email notification upon download completion
             settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;

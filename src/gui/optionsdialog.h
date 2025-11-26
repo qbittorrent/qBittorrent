@@ -203,6 +203,8 @@ private:
 #endif
 
     bool schedTimesOk();
+    bool advancedFilterSettingsOk();
+    qint64 getFileSizeInBytes(int sizeValue, int unitIndex) const;
 
     Ui::OptionsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;

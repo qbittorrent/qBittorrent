@@ -568,6 +568,12 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 500)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
+    , m_isAdvancedFilterEnabled(BITTORRENT_KEY(u"AdvancedFilterEnabled"_s), false)
+    , m_advancedFilterTargetTag(BITTORRENT_SESSION_KEY(u"AdvancedFilterTargetTag"_s))
+    , m_advancedFilterMinFileSize(BITTORRENT_SESSION_KEY(u"AdvancedFilterMinFileSize"_s), 0)
+    , m_advancedFilterMaxFileSize(BITTORRENT_SESSION_KEY(u"AdvancedFilterMaxFileSize"_s), 0)
+    , m_advancedFilterWhitelistPatterns(BITTORRENT_SESSION_KEY(u"AdvancedFilterWhitelistPatterns"_s))
+    , m_advancedFilterBlacklistPatterns(BITTORRENT_SESSION_KEY(u"AdvancedFilterBlacklistPatterns"_s))
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_s), ResumeDataStorageType::Legacy)
     , m_isMergeTrackersEnabled(BITTORRENT_KEY(u"MergeTrackersEnabled"_s), false)
@@ -2828,10 +2834,15 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
 
         // Filename filter should be applied before `findIncompleteFiles()` is called.
-        if (filePriorities.isEmpty() && isExcludedFileNamesEnabled())
+        if (filePriorities.isEmpty())
         {
             // Check file name blacklist when priorities are not explicitly set
-            applyFilenameFilter(filePaths, filePriorities);
+            if (isExcludedFileNamesEnabled())
+                applyFilenameFilter(filePaths, filePriorities);
+
+            // Apply advanced filter after the basic excluded file names filter
+            if (isAdvancedFilterEnabled())
+                applyAdvancedFilter(addTorrentParams.tags, torrentInfo, filePaths, filePriorities);
         }
 
         if (!loadTorrentParams.hasFinishedStatus)
@@ -4153,6 +4164,237 @@ void SessionImpl::applyFilenameFilter(const PathList &files, QList<DownloadPrior
 
         if (isFilenameExcluded(files.at(i)))
             priorities[i] = BitTorrent::DownloadPriority::Ignored;
+    }
+}
+
+bool SessionImpl::isAdvancedFilterEnabled() const
+{
+    return m_isAdvancedFilterEnabled;
+}
+
+void SessionImpl::setAdvancedFilterEnabled(const bool enabled)
+{
+    if (m_isAdvancedFilterEnabled == enabled)
+        return;
+
+    m_isAdvancedFilterEnabled = enabled;
+
+    if (enabled)
+        populateAdvancedFilterRegExpLists();
+    else
+    {
+        m_advancedFilterWhitelistRegExpList.clear();
+        m_advancedFilterBlacklistRegExpList.clear();
+    }
+}
+
+Tag SessionImpl::advancedFilterTargetTag() const
+{
+    return Tag(m_advancedFilterTargetTag.get());
+}
+
+void SessionImpl::setAdvancedFilterTargetTag(const Tag &tag)
+{
+    m_advancedFilterTargetTag = tag.toString();
+}
+
+qint64 SessionImpl::advancedFilterMinFileSize() const
+{
+    return m_advancedFilterMinFileSize;
+}
+
+void SessionImpl::setAdvancedFilterMinFileSize(const qint64 size)
+{
+    m_advancedFilterMinFileSize = size;
+}
+
+qint64 SessionImpl::advancedFilterMaxFileSize() const
+{
+    return m_advancedFilterMaxFileSize;
+}
+
+void SessionImpl::setAdvancedFilterMaxFileSize(const qint64 size)
+{
+    m_advancedFilterMaxFileSize = size;
+}
+
+QString SessionImpl::advancedFilterWhitelistPatterns() const
+{
+    return m_advancedFilterWhitelistPatterns;
+}
+
+void SessionImpl::setAdvancedFilterWhitelistPatterns(const QString &patterns)
+{
+    if (patterns != m_advancedFilterWhitelistPatterns)
+    {
+        m_advancedFilterWhitelistPatterns = patterns;
+        if (isAdvancedFilterEnabled())
+            populateAdvancedFilterRegExpLists();
+    }
+}
+
+QString SessionImpl::advancedFilterBlacklistPatterns() const
+{
+    return m_advancedFilterBlacklistPatterns;
+}
+
+void SessionImpl::setAdvancedFilterBlacklistPatterns(const QString &patterns)
+{
+    if (patterns != m_advancedFilterBlacklistPatterns)
+    {
+        m_advancedFilterBlacklistPatterns = patterns;
+        if (isAdvancedFilterEnabled())
+            populateAdvancedFilterRegExpLists();
+    }
+}
+
+void SessionImpl::populateAdvancedFilterRegExpLists()
+{
+    // Populate whitelist patterns
+    m_advancedFilterWhitelistRegExpList.clear();
+    const QString whitelistStr = advancedFilterWhitelistPatterns().trimmed();
+    if (!whitelistStr.isEmpty())
+    {
+        const QStringList patterns = whitelistStr.split(u'\n', Qt::SkipEmptyParts);
+        m_advancedFilterWhitelistRegExpList.reserve(patterns.size());
+        for (const QString &pattern : patterns)
+        {
+            QString trimmedPattern = pattern.trimmed();
+            if (!trimmedPattern.isEmpty())
+            {
+                // Anchor the pattern to match the entire filename
+                // Add ^ at the beginning if not present
+                if (!trimmedPattern.startsWith(u'^'))
+                    trimmedPattern = u"^"_s + trimmedPattern;
+                // Add $ at the end if not present
+                if (!trimmedPattern.endsWith(u'$'))
+                    trimmedPattern = trimmedPattern + u"$"_s;
+                
+                const QRegularExpression re(trimmedPattern, QRegularExpression::CaseInsensitiveOption);
+                if (re.isValid())
+                {
+                    m_advancedFilterWhitelistRegExpList.append(re);
+                }
+                else
+                {
+                    LogMsg(tr("Invalid regex pattern in advanced filter whitelist: \"%1\"").arg(trimmedPattern), Log::WARNING);
+                }
+            }
+        }
+    }
+
+    // Populate blacklist patterns
+    m_advancedFilterBlacklistRegExpList.clear();
+    const QString blacklistStr = advancedFilterBlacklistPatterns().trimmed();
+    if (!blacklistStr.isEmpty())
+    {
+        const QStringList patterns = blacklistStr.split(u'\n', Qt::SkipEmptyParts);
+        m_advancedFilterBlacklistRegExpList.reserve(patterns.size());
+        for (const QString &pattern : patterns)
+        {
+            QString trimmedPattern = pattern.trimmed();
+            if (!trimmedPattern.isEmpty())
+            {
+                // Anchor the pattern to match the entire filename
+                // Add ^ at the beginning if not present
+                if (!trimmedPattern.startsWith(u'^'))
+                    trimmedPattern = u"^"_s + trimmedPattern;
+                // Add $ at the end if not present
+                if (!trimmedPattern.endsWith(u'$'))
+                    trimmedPattern = trimmedPattern + u"$"_s;
+                
+                const QRegularExpression re(trimmedPattern, QRegularExpression::CaseInsensitiveOption);
+                if (re.isValid())
+                {
+                    m_advancedFilterBlacklistRegExpList.append(re);
+                }
+                else
+                {
+                    LogMsg(tr("Invalid regex pattern in advanced filter blacklist: \"%1\"").arg(trimmedPattern), Log::WARNING);
+                }
+            }
+        }
+    }
+}
+
+void SessionImpl::applyAdvancedFilter(const TagSet &tags, const TorrentInfo &torrentInfo, const PathList &files, QList<DownloadPriority> &priorities)
+{
+    if (!isAdvancedFilterEnabled())
+        return;
+
+    // Check if target tag is set and matches
+    const Tag targetTag = advancedFilterTargetTag();
+    if (!targetTag.toString().isEmpty())
+    {
+        if (!tags.contains(targetTag))
+            return;
+    }
+
+    if (!torrentInfo.isValid())
+        return;
+
+    const qint64 minSize = advancedFilterMinFileSize();
+    const qint64 maxSize = advancedFilterMaxFileSize();
+
+    const auto isFilenameWhitelisted = [patterns = m_advancedFilterWhitelistRegExpList](const Path &fileName)
+    {
+        if (patterns.isEmpty())
+            return true;  // No whitelist means all files are whitelisted
+
+        return std::ranges::any_of(patterns, [&fileName](const QRegularExpression &re)
+        {
+            return re.match(fileName.data()).hasMatch();
+        });
+    };
+
+    const auto isFilenameBlacklisted = [patterns = m_advancedFilterBlacklistRegExpList](const Path &fileName)
+    {
+        if (patterns.isEmpty())
+            return false;  // No blacklist means no files are blacklisted
+
+        return std::ranges::any_of(patterns, [&fileName](const QRegularExpression &re)
+        {
+            return re.match(fileName.data()).hasMatch();
+        });
+    };
+
+    priorities.resize(files.count(), DownloadPriority::Normal);
+    for (qsizetype i = 0; i < priorities.size(); ++i)
+    {
+        if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
+            continue;
+
+        const Path &filePath = files.at(i);
+        const qint64 fileSize = torrentInfo.fileSize(i);
+
+        // Logic from auto.sh:
+        // exclude = (if whitelist exists then (NOT match whitelist) else true) AND (size < min OR blacklist)
+        // When whitelist is empty: exclude if (size < min OR size > max OR blacklisted)
+        // When whitelist is set: exclude if (NOT whitelisted) AND (size < min OR size > max OR blacklisted)
+        // This means files matching whitelist are kept regardless of size/blacklist
+        
+        const bool hasWhitelist = !m_advancedFilterWhitelistRegExpList.isEmpty();
+        const bool matchesWhitelist = isFilenameWhitelisted(filePath);
+        const bool isTooSmall = (minSize > 0 && fileSize < minSize);
+        const bool isTooLarge = (maxSize > 0 && fileSize > maxSize);
+        const bool matchesBlacklist = isFilenameBlacklisted(filePath);
+        
+        bool shouldExclude = false;
+        if (hasWhitelist)
+        {
+            // With whitelist: exclude if (NOT whitelisted) AND (size issue OR blacklisted)
+            shouldExclude = !matchesWhitelist && (isTooSmall || isTooLarge || matchesBlacklist);
+        }
+        else
+        {
+            // Without whitelist: exclude if (size issue OR blacklisted)
+            shouldExclude = isTooSmall || isTooLarge || matchesBlacklist;
+        }
+        
+        if (shouldExclude)
+        {
+            priorities[i] = BitTorrent::DownloadPriority::Ignored;
+        }
     }
 }
 

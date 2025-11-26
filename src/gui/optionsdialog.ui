@@ -1566,6 +1566,185 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QGroupBox" name="groupAdvancedFilter">
+                 <property name="title">
+                  <string>Advanced filtering mode</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>Apply advanced filtering rules based on tags, file sizes, and patterns.
+When a target tag is set, only torrents with that tag will be filtered.
+If whitelist is set: files matching whitelist are kept regardless of size; other files are excluded if outside size range or blacklisted.
+If whitelist is empty: files are excluded if outside size range or blacklisted.</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_advancedFilter">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="labelTargetTag">
+                    <property name="text">
+                     <string>Target tag:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1" colspan="3">
+                   <widget class="QComboBox" name="comboAdvancedFilterTag">
+                    <property name="toolTip">
+                     <string>Select a tag to filter. Leave empty to apply filter to all torrents.</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="labelMinFileSize">
+                    <property name="text">
+                     <string>Min file size:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinAdvancedFilterMinSize">
+                    <property name="toolTip">
+                     <string>Minimum file size. Files smaller than this will be excluded. Set to 0 to disable.</string>
+                    </property>
+                    <property name="suffix">
+                     <string/>
+                    </property>
+                    <property name="minimum">
+                     <number>0</number>
+                    </property>
+                    <property name="maximum">
+                     <number>999999</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QComboBox" name="comboAdvancedFilterMinSizeUnit">
+                    <item>
+                     <property name="text">
+                      <string>KB</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>MB</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>GB</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="labelMaxFileSize">
+                    <property name="text">
+                     <string>Max file size:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="spinAdvancedFilterMaxSize">
+                    <property name="toolTip">
+                     <string>Maximum file size. Files larger than this will be excluded. Set to 0 to disable.</string>
+                    </property>
+                    <property name="suffix">
+                     <string/>
+                    </property>
+                    <property name="minimum">
+                     <number>0</number>
+                    </property>
+                    <property name="maximum">
+                     <number>999999</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QComboBox" name="comboAdvancedFilterMaxSizeUnit">
+                    <item>
+                     <property name="text">
+                      <string>KB</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>MB</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>GB</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="labelWhitelist">
+                    <property name="text">
+                     <string>Whitelist patterns:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1" colspan="3">
+                   <widget class="QPlainTextEdit" name="textAdvancedFilterWhitelist">
+                    <property name="toolTip">
+                     <string>Regex patterns for whitelisted file names (one per line).
+Only files matching these patterns will be downloaded.
+Patterns are automatically anchored to match the complete filename.
+Example: .*exe matches test.exe but not test.exea
+Leave empty to whitelist all files.</string>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="tabChangesFocus">
+                     <bool>true</bool>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="labelBlacklist">
+                    <property name="text">
+                     <string>Blacklist patterns:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1" colspan="3">
+                   <widget class="QPlainTextEdit" name="textAdvancedFilterBlacklist">
+                    <property name="toolTip">
+                     <string>Regex patterns for blacklisted file names (one per line).
+Files matching these patterns will be excluded from download.
+Patterns are automatically anchored to match the complete filename.
+Example: .*zip matches test.zip but not test.zipa
+Leave empty to not blacklist any files.</string>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>16777215</width>
+                      <height>80</height>
+                     </size>
+                    </property>
+                    <property name="tabChangesFocus">
+                     <bool>true</bool>
+                    </property>
+                    <property name="lineWrapMode">
+                     <enum>QPlainTextEdit::LineWrapMode::NoWrap</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

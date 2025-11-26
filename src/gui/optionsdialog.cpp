@@ -661,6 +661,73 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->groupExcludedFileNames->setChecked(session->isExcludedFileNamesEnabled());
     m_ui->textExcludedFileNames->setPlainText(session->excludedFileNames().join(u'\n'));
 
+    // Load advanced filter settings
+    m_ui->groupAdvancedFilter->setChecked(session->isAdvancedFilterEnabled());
+    
+    // Populate tag combo box
+    m_ui->comboAdvancedFilterTag->clear();
+    m_ui->comboAdvancedFilterTag->addItem(tr("(None)"), QString());
+    const TagSet tags = session->tags();
+    for (const Tag &tag : tags)
+    {
+        m_ui->comboAdvancedFilterTag->addItem(tag.toString(), tag.toString());
+    }
+    
+    const Tag currentTag = session->advancedFilterTargetTag();
+    const int tagIndex = m_ui->comboAdvancedFilterTag->findData(currentTag.toString());
+    m_ui->comboAdvancedFilterTag->setCurrentIndex(tagIndex >= 0 ? tagIndex : 0);
+    
+    // Load file size settings
+    const qint64 minSize = session->advancedFilterMinFileSize();
+    const qint64 maxSize = session->advancedFilterMaxFileSize();
+    
+    // Convert bytes to appropriate units for min size
+    if (minSize == 0)
+    {
+        m_ui->spinAdvancedFilterMinSize->setValue(0);
+        m_ui->comboAdvancedFilterMinSizeUnit->setCurrentIndex(1); // MB
+    }
+    else if (minSize % (1024LL * 1024LL * 1024LL) == 0)
+    {
+        m_ui->spinAdvancedFilterMinSize->setValue(minSize / (1024LL * 1024LL * 1024LL));
+        m_ui->comboAdvancedFilterMinSizeUnit->setCurrentIndex(2); // GB
+    }
+    else if (minSize % (1024LL * 1024LL) == 0)
+    {
+        m_ui->spinAdvancedFilterMinSize->setValue(minSize / (1024LL * 1024LL));
+        m_ui->comboAdvancedFilterMinSizeUnit->setCurrentIndex(1); // MB
+    }
+    else
+    {
+        m_ui->spinAdvancedFilterMinSize->setValue(minSize / 1024LL);
+        m_ui->comboAdvancedFilterMinSizeUnit->setCurrentIndex(0); // KB
+    }
+    
+    // Convert bytes to appropriate units for max size
+    if (maxSize == 0)
+    {
+        m_ui->spinAdvancedFilterMaxSize->setValue(0);
+        m_ui->comboAdvancedFilterMaxSizeUnit->setCurrentIndex(1); // MB
+    }
+    else if (maxSize % (1024LL * 1024LL * 1024LL) == 0)
+    {
+        m_ui->spinAdvancedFilterMaxSize->setValue(maxSize / (1024LL * 1024LL * 1024LL));
+        m_ui->comboAdvancedFilterMaxSizeUnit->setCurrentIndex(2); // GB
+    }
+    else if (maxSize % (1024LL * 1024LL) == 0)
+    {
+        m_ui->spinAdvancedFilterMaxSize->setValue(maxSize / (1024LL * 1024LL));
+        m_ui->comboAdvancedFilterMaxSizeUnit->setCurrentIndex(1); // MB
+    }
+    else
+    {
+        m_ui->spinAdvancedFilterMaxSize->setValue(maxSize / 1024LL);
+        m_ui->comboAdvancedFilterMaxSizeUnit->setCurrentIndex(0); // KB
+    }
+    
+    m_ui->textAdvancedFilterWhitelist->setPlainText(session->advancedFilterWhitelistPatterns());
+    m_ui->textAdvancedFilterBlacklist->setPlainText(session->advancedFilterBlacklistPatterns());
+
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
@@ -746,6 +813,14 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     connect(m_ui->groupExcludedFileNames, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textExcludedFileNames, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupAdvancedFilter, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboAdvancedFilterTag, &QComboBox::currentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinAdvancedFilterMinSize, &QSpinBox::valueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboAdvancedFilterMinSizeUnit, &QComboBox::currentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinAdvancedFilterMaxSize, &QSpinBox::valueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboAdvancedFilterMaxSizeUnit, &QComboBox::currentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textAdvancedFilterWhitelist, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textAdvancedFilterBlacklist, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->removeWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
 
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -813,6 +888,22 @@ void OptionsDialog::saveDownloadsTabOptions() const
 
     session->setExcludedFileNamesEnabled(m_ui->groupExcludedFileNames->isChecked());
     session->setExcludedFileNames(m_ui->textExcludedFileNames->toPlainText().split(u'\n', Qt::SkipEmptyParts));
+
+    // Save advanced filter settings
+    session->setAdvancedFilterEnabled(m_ui->groupAdvancedFilter->isChecked());
+    
+    const QString selectedTagData = m_ui->comboAdvancedFilterTag->currentData().toString();
+    session->setAdvancedFilterTargetTag(Tag(selectedTagData));
+    
+    const qint64 minSizeBytes = getFileSizeInBytes(m_ui->spinAdvancedFilterMinSize->value(),
+                                                    m_ui->comboAdvancedFilterMinSizeUnit->currentIndex());
+    const qint64 maxSizeBytes = getFileSizeInBytes(m_ui->spinAdvancedFilterMaxSize->value(),
+                                                    m_ui->comboAdvancedFilterMaxSizeUnit->currentIndex());
+    
+    session->setAdvancedFilterMinFileSize(minSizeBytes);
+    session->setAdvancedFilterMaxFileSize(maxSizeBytes);
+    session->setAdvancedFilterWhitelistPatterns(m_ui->textAdvancedFilterWhitelist->toPlainText());
+    session->setAdvancedFilterBlacklistPatterns(m_ui->textAdvancedFilterBlacklist->toPlainText());
 
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
@@ -1736,6 +1827,11 @@ bool OptionsDialog::applySettings()
         m_ui->tabSelection->setCurrentRow(TAB_SPEED);
         return false;
     }
+    if (!advancedFilterSettingsOk())
+    {
+        m_ui->tabSelection->setCurrentRow(TAB_DOWNLOADS);
+        return false;
+    }
 #ifndef DISABLE_WEBUI
     if (isWebUIEnabled() && !webUIAuthenticationOk())
     {
@@ -2174,6 +2270,40 @@ bool OptionsDialog::schedTimesOk()
         QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
         return false;
     }
+    return true;
+}
+
+qint64 OptionsDialog::getFileSizeInBytes(const int sizeValue, const int unitIndex) const
+{
+    if (sizeValue <= 0)
+        return 0;
+
+    if (unitIndex == 0) // KB
+        return static_cast<qint64>(sizeValue) * 1024LL;
+    if (unitIndex == 1) // MB
+        return static_cast<qint64>(sizeValue) * 1024LL * 1024LL;
+    // GB
+    return static_cast<qint64>(sizeValue) * 1024LL * 1024LL * 1024LL;
+}
+
+bool OptionsDialog::advancedFilterSettingsOk()
+{
+    if (!m_ui->groupAdvancedFilter->isChecked())
+        return true;
+
+    const qint64 minSizeBytes = getFileSizeInBytes(m_ui->spinAdvancedFilterMinSize->value(),
+                                                    m_ui->comboAdvancedFilterMinSizeUnit->currentIndex());
+    const qint64 maxSizeBytes = getFileSizeInBytes(m_ui->spinAdvancedFilterMaxSize->value(),
+                                                    m_ui->comboAdvancedFilterMaxSizeUnit->currentIndex());
+
+    // Validate: min size should not be greater than max size (if both are set)
+    if (minSizeBytes > 0 && maxSizeBytes > 0 && minSizeBytes > maxSizeBytes)
+    {
+        QMessageBox::warning(this, tr("Invalid Configuration"),
+            tr("Minimum file size cannot be greater than maximum file size."));
+        return false;
+    }
+
     return true;
 }
 
