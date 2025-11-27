@@ -146,6 +146,7 @@ private:
     BitTorrent::Torrent *resolveTorrent(const QModelIndex &proxyIndex) const;
     QList<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
+    void updateGroupModel();
 
     TransferListModel *m_listModel = nullptr;
     class TransferListGroupModel *m_groupModel = nullptr; // optional hierarchical model

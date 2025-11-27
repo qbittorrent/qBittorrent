@@ -1,3 +1,31 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  AlfEspadero
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
 #include "torrentgroup.h"
 
 #include <QJsonArray>
@@ -7,7 +35,8 @@
 #include "base/settingvalue.h"
 #include "base/bittorrent/infohash.h"
 
-namespace {
+namespace
+{
     const QString kPrefKey = QStringLiteral("TorrentGroups/Groups");
 }
 
@@ -46,7 +75,9 @@ bool TorrentGroupManager::createGroup(const QString &name, const QSet<BitTorrent
     const QString trimmed = name.trimmed();
     if (trimmed.isEmpty() || hasGroup(trimmed))
         return false;
-    TorrentGroup g; g.name = trimmed; g.members = initialMembers;
+    TorrentGroup g;
+    g.name = trimmed;
+    g.members = initialMembers;
     m_groups.insert(trimmed, g);
     emit groupsChanged();
     if (!initialMembers.isEmpty())
@@ -56,9 +87,11 @@ bool TorrentGroupManager::createGroup(const QString &name, const QSet<BitTorrent
 
 bool TorrentGroupManager::renameGroup(const QString &oldName, const QString &newName)
 {
-    if (!hasGroup(oldName)) return false;
+    if (!hasGroup(oldName))
+        return false;
     const QString trimmed = newName.trimmed();
-    if (trimmed.isEmpty() || hasGroup(trimmed)) return false;
+    if (trimmed.isEmpty() || hasGroup(trimmed))
+        return false;
     TorrentGroup g = m_groups.take(oldName);
     g.name = trimmed;
     m_groups.insert(trimmed, g);
@@ -76,7 +109,8 @@ bool TorrentGroupManager::renameGroup(const QString &oldName, const QString &new
 
 bool TorrentGroupManager::deleteGroup(const QString &name)
 {
-    if (!hasGroup(name)) return false;
+    if (!hasGroup(name))
+        return false;
     m_groups.remove(name);
     emit groupsChanged();
     return true;
@@ -84,7 +118,8 @@ bool TorrentGroupManager::deleteGroup(const QString &name)
 
 bool TorrentGroupManager::addMembers(const QString &groupName, const QSet<BitTorrent::TorrentID> &members)
 {
-    if (!hasGroup(groupName) || members.isEmpty()) return false;
+    if (!hasGroup(groupName) || members.isEmpty())
+        return false;
     TorrentGroup &g = m_groups[groupName];
     const int oldSize = g.members.size();
     g.members.unite(members);
@@ -95,7 +130,8 @@ bool TorrentGroupManager::addMembers(const QString &groupName, const QSet<BitTor
 
 bool TorrentGroupManager::removeMembers(const QString &groupName, const QSet<BitTorrent::TorrentID> &members)
 {
-    if (!hasGroup(groupName) || members.isEmpty()) return false;
+    if (!hasGroup(groupName) || members.isEmpty())
+        return false;
     TorrentGroup &g = m_groups[groupName];
     bool changed = false;
     for (const BitTorrent::TorrentID &id : members)
@@ -121,18 +157,23 @@ void TorrentGroupManager::load()
     m_expandedGroups.clear();
     SettingValue<QByteArray> rawSetting {kPrefKey};
     const QByteArray raw = rawSetting.get();
-    if (raw.isEmpty()) return;
+    if (raw.isEmpty())
+        return;
     const QJsonDocument doc = QJsonDocument::fromJson(raw);
-    if (!doc.isObject()) return;
+    if (!doc.isObject())
+        return;
     const QJsonObject root = doc.object();
     const QJsonArray groupsArr = root.value(QStringLiteral("groups")).toArray();
     for (const QJsonValue &val : groupsArr)
     {
-        if (!val.isObject()) continue;
+        if (!val.isObject())
+            continue;
         const QJsonObject obj = val.toObject();
         const QString name = obj.value(QStringLiteral("name")).toString();
-        if (name.trimmed().isEmpty()) continue;
-        TorrentGroup g; g.name = name;
+        if (name.trimmed().isEmpty())
+            continue;
+        TorrentGroup g;
+        g.name = name;
         const QJsonArray memArr = obj.value(QStringLiteral("members")).toArray();
         for (const QJsonValue &mVal : memArr)
             g.members.insert(BitTorrent::TorrentID::fromString(mVal.toString()));

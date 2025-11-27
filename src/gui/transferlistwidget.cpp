@@ -137,59 +137,9 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     setModel(m_sortFilterModel);
 
     // When groups change, we rebuild or install a group model wrapper.
-    connect(TorrentGroupManager::instance(), &TorrentGroupManager::groupsChanged, this, [this]
-    {
-        const bool hasGroups = !TorrentGroupManager::instance()->groups().isEmpty();
-        if (hasGroups)
-        {
-            if (!m_groupModel)
-            {
-                m_groupModel = new TransferListGroupModel(m_listModel, this);
-            }
-            else
-            {
-                m_groupModel->rebuild();
-            }
-            m_sortFilterModel->setSourceModel(m_groupModel); // chain: group -> sort
-            setRootIsDecorated(true);
-            setItemsExpandable(true);
-            setExpandsOnDoubleClick(false); // we'll manage double-click manually
-            // Restore expansion state
-            const QStringList expanded = TorrentGroupManager::instance()->expandedGroups();
-            for (int r = 0; r < m_groupModel->rowCount({}); ++r)
-            {
-                const QModelIndex srcIdx = m_groupModel->index(r, 0, {});
-                if (expanded.contains(m_groupModel->groupName(srcIdx)))
-                    expand(m_sortFilterModel->mapFromSource(srcIdx));
-            }
-        }
-        else
-        {
-            if (m_groupModel)
-            {
-                m_sortFilterModel->setSourceModel(m_listModel);
-                setRootIsDecorated(false);
-                setItemsExpandable(false);
-                setExpandsOnDoubleClick(true);
-            }
-        }
-    });
+    connect(TorrentGroupManager::instance(), &TorrentGroupManager::groupsChanged, this, &TransferListWidget::updateGroupModel);
     // Initial install if groups already exist (loaded from settings before widget constructed)
-    if (!TorrentGroupManager::instance()->groups().isEmpty())
-    {
-        m_groupModel = new TransferListGroupModel(m_listModel, this);
-        m_sortFilterModel->setSourceModel(m_groupModel);
-        setRootIsDecorated(true);
-        setItemsExpandable(true);
-        setExpandsOnDoubleClick(false);
-        const QStringList expanded = TorrentGroupManager::instance()->expandedGroups();
-        for (int r = 0; r < m_groupModel->rowCount({}); ++r)
-        {
-            const QModelIndex srcIdx = m_groupModel->index(r, 0, {});
-            if (expanded.contains(m_groupModel->groupName(srcIdx)))
-                expand(m_sortFilterModel->mapFromSource(srcIdx));
-        }
-    }
+    updateGroupModel();
 
     // Visual settings
     setUniformRowHeights(true);
@@ -790,6 +740,44 @@ int TransferListWidget::visibleColumnsCount() const
     }
 
     return count;
+}
+
+void TransferListWidget::updateGroupModel()
+{
+    const bool hasGroups = !TorrentGroupManager::instance()->groups().isEmpty();
+    if (hasGroups)
+    {
+        if (!m_groupModel)
+        {
+            m_groupModel = new TransferListGroupModel(m_listModel, this);
+        }
+        else
+        {
+            m_groupModel->rebuild();
+        }
+        m_sortFilterModel->setSourceModel(m_groupModel); // chain: group -> sort
+        setRootIsDecorated(true);
+        setItemsExpandable(true);
+        setExpandsOnDoubleClick(false); // we'll manage double-click manually
+        // Restore expansion state
+        const QStringList expanded = TorrentGroupManager::instance()->expandedGroups();
+        for (int r = 0; r < m_groupModel->rowCount({}); ++r)
+        {
+            const QModelIndex srcIdx = m_groupModel->index(r, 0, {});
+            if (expanded.contains(m_groupModel->groupName(srcIdx)))
+                expand(m_sortFilterModel->mapFromSource(srcIdx));
+        }
+    }
+    else
+    {
+        if (m_groupModel)
+        {
+            m_sortFilterModel->setSourceModel(m_listModel);
+            setRootIsDecorated(false);
+            setItemsExpandable(false);
+            setExpandsOnDoubleClick(true);
+        }
+    }
 }
 
 // hide/show columns menu

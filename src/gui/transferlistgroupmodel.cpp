@@ -1,3 +1,31 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  AlfEspadero
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
 #include "transferlistgroupmodel.h"
 
 #include <QIcon>
@@ -22,9 +50,12 @@ namespace
         qint64 remaining = 0;
         qint64 dlSpeed = 0;
         qint64 upSpeed = 0;
-        qint64 seeds = 0; qint64 totalSeeds = 0;
-        qint64 peers = 0; qint64 totalPeers = 0;
-        qint64 downloaded = 0; qint64 uploaded = 0;
+        qint64 seeds = 0;
+        qint64 totalSeeds = 0;
+        qint64 peers = 0;
+        qint64 totalPeers = 0;
+        qint64 downloaded = 0;
+        qint64 uploaded = 0;
         qint64 totalSize = 0;
     };
 
@@ -33,7 +64,8 @@ namespace
         GroupAggregates aggr;
         for (BitTorrent::Torrent *t : members)
         {
-            if (!t) continue;
+            if (!t)
+                continue;
             aggr.wanted += t->wantedSize();
             aggr.completed += t->completedSize();
             aggr.remaining += t->remainingSize();
@@ -74,7 +106,9 @@ void TransferListGroupModel::rebuild()
     const QList<TorrentGroup> groups = mgr->groups();
     for (const auto &g : groups)
     {
-        GroupItem gi; gi.name = g.name; gi.members.clear();
+        GroupItem gi;
+        gi.name = g.name;
+        gi.members.clear();
         m_groupRowByName.insert(g.name, m_groups.size());
         m_groups.push_back(gi);
     }
