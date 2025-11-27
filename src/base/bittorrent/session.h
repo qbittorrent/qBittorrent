@@ -379,6 +379,14 @@ namespace BitTorrent
         virtual void setUploadRateForSlowTorrents(int rateInKibiBytes) = 0;
         virtual int slowTorrentsInactivityTimer() const = 0;
         virtual void setSlowTorrentsInactivityTimer(int timeInSeconds) = 0;
+        virtual bool isSlowTorrentDetectionEnabled() const = 0;
+        virtual void setSlowTorrentDetectionEnabled(bool enabled) = 0;
+        virtual int slowTorrentDetectionDuration() const = 0;
+        virtual void setSlowTorrentDetectionDuration(int minutes) = 0;
+        virtual int slowTorrentMinimumProgress() const = 0;
+        virtual void setSlowTorrentMinimumProgress(int megabytes) = 0;
+        virtual QString slowTorrentExcludedTag() const = 0;
+        virtual void setSlowTorrentExcludedTag(const QString &tag) = 0;
         virtual int outgoingPortsMin() const = 0;
         virtual void setOutgoingPortsMin(int min) = 0;
         virtual int outgoingPortsMax() const = 0;
