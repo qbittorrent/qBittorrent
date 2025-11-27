@@ -460,6 +460,25 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="boxTorrentContent">
+              <property name="title">
+               <string>Torrent Content View</string>
+              </property>
+              <layout class="QVBoxLayout" name="layoutTorrentContent">
+               <item>
+                <widget class="QCheckBox" name="checkTorrentContentDrag">
+                 <property name="toolTip">
+                  <string>Replaces multi-selection (hold Alt key to invert)</string>
+                 </property>
+                 <property name="text">
+                  <string>Drag content from qBittorrent</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="systrayBox">
               <property name="title">
                <string>Desktop</string>
@@ -1889,7 +1908,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <number>2</number>
                  </property>
                  <property name="maximum">
-                  <number>2000</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>500</number>
@@ -1925,7 +1944,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <number>2</number>
                  </property>
                  <property name="maximum">
-                  <number>2000</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>100</number>
@@ -1942,7 +1961,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="2" column="1">
                 <widget class="QSpinBox" name="spinMaxUploads">
                  <property name="maximum">
-                  <number>2000</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>8</number>
@@ -1959,7 +1978,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="3" column="1">
                 <widget class="QSpinBox" name="spinMaxUploadsPerTorrent">
                  <property name="maximum">
-                  <number>500</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>4</number>
@@ -3718,35 +3737,106 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_35">
                   <item>
-                   <layout class="QGridLayout" name="gridLayout_8">
-                    <item row="0" column="0">
-                     <widget class="QLabel" name="lblWebUIUsername">
-                      <property name="text">
-                       <string>Username:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="0" column="1">
-                     <widget class="QLineEdit" name="textWebUIUsername"/>
-                    </item>
-                    <item row="1" column="0">
-                     <widget class="QLabel" name="lblWebUIPassword">
-                      <property name="text">
-                       <string>Password:</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item row="1" column="1">
-                     <widget class="QLineEdit" name="textWebUIPassword">
-                      <property name="echoMode">
-                       <enum>QLineEdit::EchoMode::Password</enum>
-                      </property>
-                      <property name="placeholderText">
-                       <string>Change current password</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
+                   <widget class="QGroupBox" name="groupWebUIUser">
+                    <property name="title">
+                     <string>User</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayoutUser">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="lblWebUIUsername">
+                       <property name="text">
+                        <string>Username:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QLineEdit" name="textWebUIUsername"/>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QLabel" name="lblWebUIPassword">
+                       <property name="text">
+                        <string>Password:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="1">
+                      <widget class="QLineEdit" name="textWebUIPassword">
+                       <property name="echoMode">
+                        <enum>QLineEdit::EchoMode::Password</enum>
+                       </property>
+                       <property name="placeholderText">
+                        <string>Change current password</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QGroupBox" name="groupWebUIAPIKey">
+                    <property name="title">
+                     <string>API Key</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayoutAPIKey">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="lblWebUIAPIKey">
+                       <property name="text">
+                        <string>Key:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <layout class="QHBoxLayout" name="horizontalLayoutAPIKey">
+                       <item>
+                        <widget class="QLineEdit" name="textWebUIAPIKey">
+                         <property name="readOnly">
+                          <bool>true</bool>
+                         </property>
+                         <property name="placeholderText">
+                          <string>Generate a key</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btnWebUIAPIKeyCopy">
+                         <property name="enabled">
+                          <bool>false</bool>
+                         </property>
+                         <property name="toolTip">
+                          <string>Copy API key</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>:/icons/edit-copy.svg</normaloff>:/icons/edit-copy.svg</iconset>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btnWebUIAPIKeyRotate">
+                         <property name="toolTip">
+                          <string>Generate API key</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>:/icons/view-refresh.svg</normaloff>:/icons/view-refresh.svg</iconset>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="btnWebUIAPIKeyDelete">
+                         <property name="toolTip">
+                          <string>Delete API key</string>
+                         </property>
+                         <property name="icon">
+                          <iconset>
+                           <normaloff>:/icons/list-remove.svg</normaloff>:/icons/list-remove.svg</iconset>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                   <item>
                    <widget class="QCheckBox" name="checkBypassLocalAuth">

@@ -72,7 +72,7 @@ namespace
             u"ECDHE-ECDSA-AES128-SHA"_s, u"ECDHE-RSA-AES128-SHA"_s, u"DHE-RSA-AES128-SHA"_s};
         const QList<QSslCipher> allCiphers {QSslConfiguration::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
-        std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers),
+        std::ranges::copy_if(allCiphers, std::back_inserter(safeCiphers),
                      [&badCiphers, &badRSAShorthandSuites, &badAESShorthandSuites](const QSslCipher &cipher)
         {
             const QString name = cipher.name();
@@ -87,7 +87,7 @@ namespace
                 return false;
             }
 
-            return std::none_of(badCiphers.cbegin(), badCiphers.cend(), [&cipher](const QString &badCipher)
+            return std::ranges::none_of(badCiphers, [&cipher](const QString &badCipher)
             {
                 return cipher.name().contains(badCipher, Qt::CaseInsensitive);
             });

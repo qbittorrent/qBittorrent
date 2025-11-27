@@ -1,0 +1,56 @@
+<div id="confirmAPIKeyDialog">
+    <div class="genericConfirmGrid">
+        <span class="confirmGridItem confirmWarning"></span>
+        <span class="confirmGridItem dialogMessage"></span>
+    </div>
+</div>
+<div>
+    <input type="button" value="QBT_TR(Yes)QBT_TR[CONTEXT=MainWindow]" id="confirmAPIKeyButton">
+    <input type="button" value="QBT_TR(No)QBT_TR[CONTEXT=MainWindow]" id="cancelAPIKeyButton">
+</div>
+
+<script>
+    "use strict";
+
+    (() => {
+        const { windowEl, options } = window.MUI.Windows.instances["confirmAPIKeyDialog"];
+        const { message, action } = options.data;
+
+        const confirmButton = document.getElementById("confirmAPIKeyButton");
+        const cancelButton = document.getElementById("cancelAPIKeyButton");
+        const dialog = document.getElementById("confirmAPIKeyDialog");
+
+        dialog.querySelector("span.dialogMessage").textContent = message;
+
+        cancelButton.addEventListener("click", (e) => {
+            window.qBittorrent.Client.closeWindow(dialog);
+        });
+        confirmButton.addEventListener("click", (e) => {
+            switch (action) {
+                case "rotate":
+                    window.qBittorrent.Preferences.rotateAPIKey();
+                    break;
+                case "delete":
+                    window.qBittorrent.Preferences.deleteAPIKey();
+                    break;
+            }
+            window.qBittorrent.Client.closeWindow(dialog);
+        });
+
+        // set tabindex so window element receives keydown events
+        windowEl.setAttribute("tabindex", "-1");
+        windowEl.focus();
+        windowEl.addEventListener("keydown", (e) => {
+            switch (e.key) {
+                case "Enter":
+                    e.stopPropagation();
+                    confirmButton.click();
+                    break;
+                case "Escape":
+                    e.stopPropagation();
+                    window.qBittorrent.Client.closeWindow(dialog);
+                    break;
+            }
+        });
+    })();
+</script>

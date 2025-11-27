@@ -105,6 +105,7 @@
 
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
+#include "macosstatusitem/statusitem.h"
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
@@ -138,6 +139,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     , m_storeExecutionLogTypes {EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL}
 #ifdef Q_OS_MACOS
     , m_badger {std::make_unique<MacUtils::Badger>()}
+    , m_statusItem {std::make_unique<MacUtils::StatusItem>()}
 #endif // Q_OS_MACOS
 {
     m_ui->setupUi(this);
@@ -1182,7 +1184,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #endif // Q_OS_MACOS
 
     const QList<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
-    const bool hasActiveTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](BitTorrent::Torrent *torrent)
+    const bool hasActiveTorrents = std::ranges::any_of(allTorrents, [](const BitTorrent::Torrent *torrent)
     {
         return torrent->isActive();
     });
@@ -1257,7 +1259,7 @@ bool MainWindow::event(QEvent *e)
                 qDebug() << "Has active window:" << (qApp->activeWindow() != nullptr);
                 // Check if there is a modal window
                 const QWidgetList allWidgets = QApplication::allWidgets();
-                const bool hasModalWindow = std::any_of(allWidgets.cbegin(), allWidgets.cend()
+                const bool hasModalWindow = std::ranges::any_of(allWidgets
                     , [](const QWidget *widget) { return widget->isModal(); });
                 // Iconify if there is no modal window
                 if (!hasModalWindow)
@@ -1465,6 +1467,7 @@ void MainWindow::loadSessionStats()
     // update global information
 #ifdef Q_OS_MACOS
     m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS
@@ -1818,7 +1821,7 @@ void MainWindow::updatePowerManagementState() const
     const bool preventFromSuspendWhenSeeding = pref->preventFromSuspendWhenSeeding();
 
     const QList<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
-    const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
+    const bool inhibitSuspend = std::ranges::any_of(allTorrents, [&](const BitTorrent::Torrent *torrent)
     {
         if (preventFromSuspendWhenDownloading && (!torrent->isFinished() && !torrent->isStopped() && !torrent->isErrored() && torrent->hasMetadata()))
             return true;

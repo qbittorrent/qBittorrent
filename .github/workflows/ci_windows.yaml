@@ -10,8 +10,8 @@ concurrency:
 
 jobs:
   ci:
-    name: Build
-    runs-on: windows-latest
+    name: Build (${{ matrix.libt_version }}, ${{ matrix.config.arch }})
+    runs-on: ${{ matrix.config.os }}
     permissions:
       actions: write
 
@@ -19,6 +19,10 @@ jobs:
       fail-fast: false
       matrix:
         libt_version: ["2.0.11", "1.2.20"]
+        config:
+        - os: windows-latest
+          arch: x64
+          qt_arch: win64_msvc2022_64
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -27,12 +31,14 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           persist-credentials: false
 
       - name: Setup devcmd
         uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.config.arch }}
 
       - name: Install build tools
         run: |
@@ -45,7 +51,7 @@ jobs:
 
       # https://learn.microsoft.com/en-us/vcpkg/users/binarycaching#gha
       - name: Set variables for vcpkg
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             core.exportVariable('ACTIONS_CACHE_URL', (process.env.ACTIONS_CACHE_URL || ''));
@@ -57,19 +63,19 @@ jobs:
           New-Item `
             -Force `
             -ItemType File `
-            -Path "${{ env.vcpkg_path }}/triplets_overlay/x64-windows-static-md-release.cmake"
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ matrix.config.arch }}-windows-static-md-release.cmake"
           # OpenSSL isn't compatible with `/guard:cf` flag so we omit it for now, see: https://github.com/openssl/openssl/issues/22554
           Add-Content `
-            -Path "${{ env.vcpkg_path }}/triplets_overlay/x64-windows-static-md-release.cmake" `
-            -Value @("set(VCPKG_TARGET_ARCHITECTURE x64)",
+            -Path "${{ env.vcpkg_path }}/triplets_overlay/${{ matrix.config.arch }}-windows-static-md-release.cmake" `
+            -Value @("set(VCPKG_TARGET_ARCHITECTURE ${{ matrix.config.arch }})",
               "set(VCPKG_LIBRARY_LINKAGE static)",
               "set(VCPKG_CRT_LINKAGE dynamic)",
               "set(VCPKG_BUILD_TYPE release)")
           # clear buildtrees after each package installation to reduce disk space requirements
           $packages = `
-            "boost-build:x64-windows-static-md-release",
-            "openssl:x64-windows-static-md-release",
-            "zlib:x64-windows-static-md-release"
+            "boost-build:${{ matrix.config.arch }}-windows-static-md-release",
+            "openssl:${{ matrix.config.arch }}-windows-static-md-release",
+            "zlib:${{ matrix.config.arch }}-windows-static-md-release"
           ${{ env.vcpkg_path }}/vcpkg.exe upgrade `
             --no-dry-run `
             --overlay-triplets="${{ env.vcpkg_path }}/triplets_overlay"
@@ -97,7 +103,7 @@ jobs:
           move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
           cd "${{ env.boost_path }}"
           #.\bootstrap.bat
-          ${{ env.vcpkg_path }}/installed/x64-windows-static-md-release/tools/boost-build/b2.exe `
+          ${{ env.vcpkg_path }}/installed/${{ matrix.config.arch }}-windows-static-md-release/tools/boost-build/b2.exe `
             stage `
             toolset=msvc `
             --stagedir=.\ `
@@ -107,7 +113,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: "6.9.1"
-          arch: win64_msvc2022_64
+          arch: ${{ matrix.config.qt_arch }}
           archives: qtbase qtsvg qttools
           cache: true
 
@@ -134,7 +140,7 @@ jobs:
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
             -Dstatic_runtime=OFF `
-            -DVCPKG_TARGET_TRIPLET=x64-windows-static-md-release
+            -DVCPKG_TARGET_TRIPLET=${{ matrix.config.arch }}-windows-static-md-release
           cmake --build build
           cmake --install build
 
@@ -151,7 +157,7 @@ jobs:
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/install/lib/cmake/LibtorrentRasterbar" `
             -DMSVC_RUNTIME_DYNAMIC=ON `
             -DTESTING=ON `
-            -DVCPKG_TARGET_TRIPLET=x64-windows-static-md-release `
+            -DVCPKG_TARGET_TRIPLET=${{ matrix.config.arch }}-windows-static-md-release `
             -DVERBOSE_CONFIGURE=ON `
             --graphviz=build/target_graph.dot
           cmake --build build --target qbt_update_translations
@@ -194,18 +200,23 @@ jobs:
           copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
-          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
+          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libt_version }}
           path: upload
+
+      - name: Install NSIS
+        uses: repolevedavaj/install-nsis@a55ed92772254d1e51d880f85ce9b5719f907801 # v1.1.0
+        with:
+          nsis-version: '3.11'
 
       - name: Create installer
         run: |
           7z x -o"dist/windows/" "dist/windows/NSISPlugins.zip"
-          makensis /DQBT_DIST_DIR="../../upload/qBittorrent" /WX dist/windows/qbittorrent.nsi
+          makensis /DQBT_CPU_ARCH="${{ matrix.config.arch }}" /DQBT_DIST_DIR="../../upload/qBittorrent" /WX dist/windows/qbittorrent.nsi
 
       - name: Upload installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
-          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}-setup
+          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libt_version }}-setup
           path: dist/windows/qbittorrent_*_setup.exe

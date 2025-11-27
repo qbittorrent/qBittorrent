@@ -182,10 +182,12 @@
             }
         };
 
+        const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
         let logFilterTimer = -1;
         let inputtedFilterText = "";
         let selectBox;
-        let selectedLogLevels = JSON.parse(LocalPreferences.get("qbt_selected_log_levels")) || ["1", "2", "4", "8"];
+        let selectedLogLevels = JSON.parse(localPreferences.get("qbt_selected_log_levels")) || ["1", "2", "4", "8"];
 
         const init = () => {
             for (const option of document.getElementById("logLevelSelect").options)
@@ -210,9 +212,8 @@
                 menu: "logTableMenu",
                 actions: {
                     Clear: () => {
-                        tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach((rowId) => {
+                        for (const rowId of tableInfo[currentSelectedTab].instance.selectedRowsIds())
                             tableInfo[currentSelectedTab].instance.removeRow(rowId);
-                        });
 
                         updateLabelCount();
                     }
@@ -276,7 +277,7 @@
             if (selectedLogLevels !== value) {
                 tableInfo[currentSelectedTab].last_id = -1;
                 selectedLogLevels = value;
-                LocalPreferences.set("qbt_selected_log_levels", JSON.stringify(selectedLogLevels));
+                localPreferences.set("qbt_selected_log_levels", JSON.stringify(selectedLogLevels));
                 logFilterChanged();
             }
         };
@@ -386,27 +387,27 @@
                         clearTimeout(logFilterTimer);
                         logFilterTimer = -1;
 
-                        for (let i = 0; i < responseJSON.length; ++i) {
+                        for (const logEntry of responseJSON) {
                             let row;
                             if (curTab === "main") {
                                 row = {
-                                    rowId: responseJSON[i].id,
-                                    message: responseJSON[i].message,
-                                    timestamp: responseJSON[i].timestamp,
-                                    type: responseJSON[i].type,
+                                    rowId: logEntry.id,
+                                    message: logEntry.message,
+                                    timestamp: logEntry.timestamp,
+                                    type: logEntry.type,
                                 };
                             }
                             else {
                                 row = {
-                                    rowId: responseJSON[i].id,
-                                    ip: responseJSON[i].ip,
-                                    timestamp: responseJSON[i].timestamp,
-                                    blocked: responseJSON[i].blocked,
-                                    reason: responseJSON[i].reason,
+                                    rowId: logEntry.id,
+                                    ip: logEntry.ip,
+                                    timestamp: logEntry.timestamp,
+                                    blocked: logEntry.blocked,
+                                    reason: logEntry.reason,
                                 };
                             }
                             tableInfo[curTab].instance.updateRowData(row);
-                            tableInfo[curTab].last_id = Math.max(Number(responseJSON[i].id), tableInfo[curTab].last_id);
+                            tableInfo[curTab].last_id = Math.max(Number(logEntry.id), tableInfo[curTab].last_id);
                         }
 
                         tableInfo[curTab].instance.updateTable();
@@ -415,6 +416,12 @@
 
                     tableInfo[curTab].progress = false;
                     syncLogWithInterval(getSyncLogDataInterval());
+                }, (error) => {
+                    console.error(error);
+
+                    document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
+                    tableInfo[curTab].progress = false;
+                    syncLogWithInterval(10000);
                 });
         };
 

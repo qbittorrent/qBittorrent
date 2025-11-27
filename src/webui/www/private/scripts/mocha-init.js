@@ -108,8 +108,6 @@ window.qBittorrent.Dialog ??= (() => {
 })();
 Object.freeze(window.qBittorrent.Dialog);
 
-const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
-
 let saveWindowSize = () => {};
 let loadWindowWidth = () => {};
 let loadWindowHeight = () => {};
@@ -155,27 +153,30 @@ let copyInfohashFN = (policy) => {};
 let copyMagnetLinkFN = () => {};
 let copyIdFN = () => {};
 let copyCommentFN = () => {};
+let copyContentPathFN = () => {};
 let setQueuePositionFN = () => {};
 let exportTorrentFN = () => {};
 
 const initializeWindows = () => {
+    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
     saveWindowSize = (windowName, windowId = windowName) => {
         const windowInstance = MochaUI.Windows.instances[windowId];
         const size = windowInstance.contentWrapperEl.getSize();
-        LocalPreferences.set(`window_${windowName}_width`, size.x);
-        LocalPreferences.set(`window_${windowName}_height`, size.y);
+        localPreferences.set(`window_${windowName}_width`, size.x);
+        localPreferences.set(`window_${windowName}_height`, size.y);
     };
 
     loadWindowWidth = (windowId, defaultValue, limitToViewportWidth = true) => {
         if (limitToViewportWidth)
             defaultValue = window.qBittorrent.Dialog.limitWidthToViewport(defaultValue);
-        return LocalPreferences.get(`window_${windowId}_width`, defaultValue);
+        return localPreferences.get(`window_${windowId}_width`, defaultValue);
     };
 
     loadWindowHeight = (windowId, defaultValue, limitToViewportHeight = true) => {
         if (limitToViewportHeight)
             defaultValue = window.qBittorrent.Dialog.limitHeightToViewport(defaultValue);
-        return LocalPreferences.get(`window_${windowId}_height`, defaultValue);
+        return localPreferences.get(`window_${windowId}_height`, defaultValue);
     };
 
     const addClickEvent = (el, fn) => {
@@ -383,8 +384,7 @@ const initializeWindows = () => {
         let torrentsHaveSameShareRatio = true;
 
         // check if all selected torrents have same share ratio
-        for (let i = 0; i < hashes.length; ++i) {
-            const hash = hashes[i];
+        for (const hash of hashes) {
             const row = torrentsTable.getRow(hash).full_data;
             const origValues = `${row.ratio_limit}|${row.seeding_time_limit}|${row.inactive_seeding_time_limit}|${row.max_ratio}`
                 + `|${row.max_seeding_time}|${row.max_inactive_seeding_time}|${row.share_limit_action}`;
@@ -1160,10 +1160,8 @@ const initializeWindows = () => {
         const names = [];
         if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
-            for (let i = 0; i < selectedRows.length; ++i) {
-                const hash = selectedRows[i];
+            for (const hash of selectedRows)
                 names.push(rows[hash].full_data.name);
-            }
         }
         return names.join("\n");
     };
@@ -1198,10 +1196,8 @@ const initializeWindows = () => {
         const magnets = [];
         if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
-            for (let i = 0; i < selectedRows.length; ++i) {
-                const hash = selectedRows[i];
+            for (const hash of selectedRows)
                 magnets.push(rows[hash].full_data.magnet_uri);
-            }
         }
         return magnets.join("\n");
     };
@@ -1215,14 +1211,27 @@ const initializeWindows = () => {
         const comments = [];
         if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
-            for (let i = 0; i < selectedRows.length; ++i) {
-                const hash = selectedRows[i];
+            for (const hash of selectedRows) {
                 const comment = rows[hash].full_data.comment;
                 if (comment && (comment !== ""))
                     comments.push(comment);
             }
         }
         return comments.join("\n---------\n");
+    };
+
+    copyContentPathFN = () => {
+        const selectedRows = torrentsTable.selectedRowsIds();
+        const contentPaths = [];
+        if (selectedRows.length > 0) {
+            const rows = torrentsTable.getFilteredAndSortedRows();
+            for (const hash of selectedRows) {
+                const contentPath = rows[hash].full_data.content_path;
+                if ((contentPath !== null) && (contentPath.length > 0))
+                    contentPaths.push(contentPath);
+            }
+        }
+        return contentPaths.join("\n");
     };
 
     exportTorrentFN = async () => {

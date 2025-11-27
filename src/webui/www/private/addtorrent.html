@@ -49,6 +49,13 @@
             const windowId = searchParams.get("windowId");
             window.qBittorrent.AddTorrent.setWindowId(windowId);
 
+            const downloader = searchParams.get("downloader");
+            if (downloader?.length > 0) {
+                const downloaderInput = document.getElementById("downloader");
+                downloaderInput.value = downloader;
+                downloaderInput.disabled = false;
+            }
+
             document.getElementById("uploadForm").addEventListener("submit", (event) => {
                 submitted = true;
                 window.qBittorrent.AddTorrent.submitForm();
@@ -78,10 +85,7 @@
             });
 
             window.qBittorrent.pathAutofill.attachPathAutofill();
-            window.qBittorrent.TorrentContent.init("addTorrentFilesTableDiv", window.qBittorrent.DynamicTable.AddTorrentFilesTable);
-
-            if (fetchMetadata)
-                window.qBittorrent.AddTorrent.loadMetadata(source);
+            window.qBittorrent.AddTorrent.init(source, downloader, fetchMetadata);
         });
     </script>
 
@@ -124,6 +128,15 @@
             background-color: initial;
         }
 
+        #loadingSpinner {
+            position: absolute;
+            left: 6px;
+            bottom: 2px;
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+
     </style>
 </head>
 
@@ -144,6 +157,7 @@
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center; padding: 10px 12px;" target="upload_frame" autocorrect="off" autocapitalize="none">
         <input type="hidden" id="urls" name="urls">
         <input type="hidden" id="filePriorities" name="filePriorities">
+        <input type="hidden" id="downloader" name="downloader" disabled>
         <div class="container">
             <div class="column">
                 <fieldset class="settings" style="text-align: left;">
@@ -388,7 +402,7 @@
             </div>
         </div>
         <div id="submitbutton" style="display: flex; margin-top: 10px; align-items: center; position: relative;">
-            <div id="loadingSpinner" class="mochaSpinner" style="display: block; bottom: 2px;"></div>
+            <img id="loadingSpinner" src="images/spinner.svg" alt="" aria-hidden="true">
             <div id="errorIcon" class="mochaErrorIcon invisible" style="bottom: 2px;"></div>
             <span id="metadataStatus" style="padding-left: 28px;">Retrieving metadata</span>
             <button id="saveTorrent" type="button" class="invisible" style="font-size: 1em;">QBT_TR(Save as .torrent file)QBT_TR[CONTEXT=AddNewTorrentDialog]</button>

@@ -1,0 +1,54 @@
+PY_FILES := `find . -maxdepth 1 -type f -name '*.py' ! -name 'socks.py' -printf '%P '`
+
+# Show available recipes to run
+default:
+    just --list
+
+# Run type check
+check files=PY_FILES: fetch_aux
+    mypy \
+        {{ files }}
+    pyright \
+        {{ files }}
+
+# Byte-compile files
+build files=PY_FILES:
+    python \
+        -m compileall \
+        {{ files }}
+
+# Fetch auxiliary files
+[private]
+fetch_aux:
+    #!/usr/bin/sh
+    if [ ! -f 'socks.pyi' ]; then
+        curl -L -o socks.pyi "https://github.com/python/typeshed/raw/refs/heads/main/stubs/PySocks/socks.pyi"
+    fi
+
+# Apply formatting
+format files=PY_FILES:
+    pycodestyle \
+        --ignore=E265,E402 \
+        --max-line-length=1000 \
+        --statistics \
+        {{ files }}
+    isort \
+        --line-length 1000 \
+        {{ files }}
+    just \
+        --fmt \
+        --unstable
+
+# Run static analyzer
+lint files=PY_FILES:
+    pyflakes \
+        {{ files }}
+    bandit \
+        --skip B110,B310,B314,B405 \
+        {{ files }}
+
+# Run tests
+test files='tests/*.py': fetch_aux
+    pytest \
+        --showlocals \
+        {{ files }}

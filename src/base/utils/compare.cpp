@@ -74,7 +74,7 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
                 return (numViewL.length() - numViewR.length());
 
             // both string/view has the same length
-            for (int i = 0; i < numViewL.length(); ++i)
+            for (qsizetype i = 0; i < numViewL.length(); ++i)
             {
                 const QChar numL = numViewL[i];
                 const QChar numR = numViewR[i];

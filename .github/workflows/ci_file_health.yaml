@@ -16,12 +16,12 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           persist-credentials: false
 
       - name: Setup python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "*"
 
@@ -65,7 +65,7 @@ jobs:
             > "${{ runner.temp }}/zizmor_results.sarif"
 
       - name: Upload zizmor results
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           category: zizmor
           sarif_file: "${{ runner.temp }}/zizmor_results.sarif"

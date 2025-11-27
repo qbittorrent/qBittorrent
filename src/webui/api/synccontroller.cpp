@@ -72,6 +72,7 @@ namespace
     const QString KEY_PEER_FLAGS = u"flags"_s;
     const QString KEY_PEER_FLAGS_DESCRIPTION = u"flags_desc"_s;
     const QString KEY_PEER_IP = u"ip"_s;
+    const QString KEY_PEER_I2P_DEST = u"i2p_dest"_s;
     const QString KEY_PEER_PORT = u"port"_s;
     const QString KEY_PEER_PROGRESS = u"progress"_s;
     const QString KEY_PEER_RELEVANCE = u"relevance"_s;
@@ -608,7 +609,7 @@ void SyncController::makeMaindataSnapshot()
     for (const Tag &tag : asConst(session->tags()))
         m_maindataSnapshot.tags.append(tag.toString());
 
-    for (const auto &[tracker, torrentIDs] : m_knownTrackers.asKeyValueRange())
+    for (const auto &[tracker, torrentIDs] : asConst(m_knownTrackers).asKeyValueRange())
         m_maindataSnapshot.trackers[tracker] = asStrings(torrentIDs);
 
     m_maindataSnapshot.serverState = getTransferInfo();
@@ -847,12 +848,11 @@ void SyncController::torrentPeersAction()
 
     for (const BitTorrent::PeerInfo &pi : peersList)
     {
-        if (pi.address().ip.isNull()) continue;
+        const bool useI2PSocket = pi.useI2PSocket();
+        if (pi.address().ip.isNull() && !useI2PSocket) continue;
 
         QVariantMap peer =
         {
-            {KEY_PEER_IP, pi.address().ip.toString()},
-            {KEY_PEER_PORT, pi.address().port},
             {KEY_PEER_CLIENT, pi.client()},
             {KEY_PEER_ID_CLIENT, pi.peerIdClient()},
             {KEY_PEER_PROGRESS, pi.progress()},
@@ -876,13 +876,23 @@ void SyncController::torrentPeersAction()
             peer.insert(KEY_PEER_FILES, filesForPiece.join(u'\n'));
         }
 
-        if (resolvePeerCountries)
+        if (resolvePeerCountries && !useI2PSocket)
         {
             peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
             peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
         }
 
-        peers[pi.address().toString()] = peer;
+        if (useI2PSocket)
+        {
+            peer[KEY_PEER_I2P_DEST] = pi.I2PAddress();
+            peers[pi.I2PAddress()] = peer;
+        }
+        else
+        {
+            peer[KEY_PEER_IP] = pi.address().ip.toString();
+            peer[KEY_PEER_PORT] = pi.address().port;
+            peers[pi.address().toString()] = peer;
+        }
     }
     data[u"peers"_s] = peers;
 

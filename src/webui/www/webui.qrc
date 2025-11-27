@@ -424,6 +424,7 @@
         <file>private/views/confirmAutoTMM.html</file>
         <file>private/views/confirmdeletion.html</file>
         <file>private/views/confirmRecheck.html</file>
+        <file>private/views/confirmAPIKey.html</file>
         <file>private/views/cookies.html</file>
         <file>private/views/createtorrent.html</file>
         <file>private/views/filters.html</file>

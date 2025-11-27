@@ -29,6 +29,7 @@
 #include "logger.h"
 
 #include <algorithm>
+#include <ranges>
 
 #include <QDateTime>
 #include <QList>
@@ -40,7 +41,7 @@ namespace
     {
         QList<T> ret;
         ret.reserve(static_cast<typename decltype(ret)::size_type>(src.size()) - offset);
-        std::copy((src.begin() + offset), src.end(), std::back_inserter(ret));
+        std::ranges::copy(std::views::drop(src, offset), std::back_inserter(ret));
         return ret;
     }
 }

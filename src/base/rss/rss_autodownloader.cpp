@@ -406,7 +406,7 @@ void AutoDownloader::handleFeedURLChanged(Feed *feed, const QString &oldURL)
 {
     for (AutoDownloadRule &rule : m_rules)
     {
-        if (const auto i = rule.feedURLs().indexOf(oldURL); i >= 0)
+        if (const qsizetype i = rule.feedURLs().indexOf(oldURL); i >= 0)
         {
             auto feedURLs = rule.feedURLs();
             feedURLs.replace(i, feed->url());
@@ -447,7 +447,7 @@ void AutoDownloader::setRule_impl(const AutoDownloadRule &rule)
 
 void AutoDownloader::sortRules()
 {
-    std::sort(m_rules.begin(), m_rules.end(), [](const AutoDownloadRule &lhs, const AutoDownloadRule &rhs)
+    std::ranges::sort(m_rules, [](const AutoDownloadRule &lhs, const AutoDownloadRule &rhs)
     {
         return (lhs.priority() < rhs.priority());
     });

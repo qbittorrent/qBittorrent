@@ -35,12 +35,15 @@
 ;End of user configurable options
 ;==============================================================================
 
+; QBT_CPU_ARCH (x64 or arm64)
+!define /ifndef QBT_CPU_ARCH "x64"
+
 !ifndef QBT_INSTALLER_WINDOWNAME | QBT_INSTALLER_FILENAME
   ; The name of the installer
-  !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} x64"
+  !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} ${QBT_CPU_ARCH}"
 
   ; The file to write
-  !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_x64"
+  !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_${QBT_CPU_ARCH}"
 !endif
 
 !define /ifndef QBT_DIST_DIR "qBittorrent"
@@ -48,6 +51,8 @@
 
 Unicode true
 ManifestDPIAware true
+; add an undocumented function in NSIS, PMv2 requires Win10 1703+
+ManifestDPIAwareness "PerMonitorV2,System"
 
 !ifdef USE_UPX
 !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
@@ -56,7 +61,6 @@ ManifestDPIAware true
 ;Setting the compression
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
-XPStyle on
 
 !include "MUI2.nsh"
 !include "UAC.nsh"
@@ -70,8 +74,8 @@ XPStyle on
 !define SHCNF_IDLIST 0
 
 ;For special folder detection
-!define CSIDL_APPDATA '0x1A' ;Application Data path
-!define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
+!define FOLDERID_RoamingAppData {3EB685DB-65F9-4CF6-A03A-E3EF65729F3D} ; %APPDATA% (%USERPROFILE%\AppData\Roaming)
+!define FOLDERID_LocalAppData {F1B32785-6FBA-4FCF-9D55-7B8E7F157091} ; %LOCALAPPDATA% (%USERPROFILE%\AppData\Local)
 
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun

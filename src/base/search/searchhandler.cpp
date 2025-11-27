@@ -31,12 +31,14 @@
 
 #include <chrono>
 
+#include <QtLogging>
 #include <QList>
 #include <QMetaObject>
 #include <QProcess>
 #include <QTimer>
 
 #include "base/global.h"
+#include "base/logger.h"
 #include "base/path.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/foreignapps.h"
@@ -58,6 +60,26 @@ namespace
         PL_DESC_LINK,
         PL_PUB_DATE,
         NB_PLUGIN_COLUMNS
+    };
+
+    QString toString(const QProcess::ProcessError error)
+    {
+        switch (error)
+        {
+        case QProcess::FailedToStart:
+            return SearchHandler::tr("Process failed to start");
+        case QProcess::Crashed:
+            return SearchHandler::tr("Process crashed");
+        case QProcess::Timedout:
+            return SearchHandler::tr("Process timed out");
+        case QProcess::WriteError:
+            return SearchHandler::tr("Process write error");
+        case QProcess::ReadError:
+            return SearchHandler::tr("Process read error");
+        case QProcess::UnknownError:
+            return SearchHandler::tr("Process unknown error");
+        }
+        return {};
     };
 }
 
@@ -86,7 +108,16 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     };
     m_searchProcess->setArguments(params + m_pattern.split(u' '));
 
-    connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
+    connect(m_searchProcess, &QProcess::errorOccurred, this, [this](const QProcess::ProcessError error)
+    {
+        if (!m_searchCancelled)
+        {
+            const auto errMsg = toString(error);
+            LogMsg(tr("Search process failed. Search query: \"%1\". Category: \"%2\". Engines: \"%3\". Error: \"%4\".")
+                .arg(m_pattern, m_category, m_usedPlugins.join(u", "), errMsg), Log::WARNING);
+            emit searchFailed(errMsg);
+        }
+    });
     connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchHandler::readSearchOutput);
     connect(m_searchProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished)
             , this, &SearchHandler::processFinished);
@@ -127,12 +158,20 @@ void SearchHandler::processFinished(const int exitcode)
 {
     m_searchTimeout->stop();
 
+    const auto errMsg = QString::fromUtf8(m_searchProcess->readAllStandardError()).trimmed();
+    if (!errMsg.isEmpty())
+    {
+        qWarning("%s", qUtf8Printable(errMsg));
+        LogMsg(tr("Error occurred in search engine. Search query: \"%1\". Category: \"%2\". Engines: \"%3\". Error: \"%4\".")
+            .arg(m_pattern, m_category, m_usedPlugins.join(u", "), errMsg), Log::WARNING);
+    }
+
     if (m_searchCancelled)
         emit searchFinished(true);
     else if ((m_searchProcess->exitStatus() == QProcess::NormalExit) && (exitcode == 0))
         emit searchFinished(false);
     else
-        emit searchFailed();
+        emit searchFailed(errMsg);
 }
 
 // search QProcess return output as soon as it gets new
@@ -161,19 +200,13 @@ void SearchHandler::readSearchOutput()
     }
 }
 
-void SearchHandler::processFailed()
-{
-    if (!m_searchCancelled)
-        emit searchFailed();
-}
-
 // Parse one line of search results list
 // Line is in the following form:
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
 bool SearchHandler::parseSearchResult(const QByteArrayView line, SearchResult &searchResult)
 {
     const QList<QByteArrayView> parts = Utils::ByteArray::splitToViews(line, "|");
-    const int nbFields = parts.size();
+    const qsizetype nbFields = parts.size();
 
     if (nbFields <= PL_ENGINE_URL)
         return false; // Anything after ENGINE_URL is optional

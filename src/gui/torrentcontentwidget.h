@@ -98,18 +98,22 @@ public:
     void checkAll();
     void checkNone();
 
+    void setContentDragAllowed(bool allowed);
+    void setContentDragEnabled(bool enabled);
+
 signals:
     void stateChanged();
 
 private:
     void setModel(QAbstractItemModel *model) override;
+    void mousePressEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
     QModelIndex currentNameCell() const;
     void displayColumnHeaderMenu();
     void displayContextMenu();
     void openItem(const QModelIndex &index) const;
-    void openParentFolder(const QModelIndex &index) const;
+    void openParentFolder(const QModelIndex &index);
     void openSelectedFile();
     void renameSelectedFile();
     void applyPriorities(BitTorrent::DownloadPriority priority);
@@ -126,4 +130,7 @@ private:
     ColumnsVisibilityMode m_columnsVisibilityMode = ColumnsVisibilityMode::Editable;
     QShortcut *m_openFileHotkeyEnter = nullptr;
     QShortcut *m_openFileHotkeyReturn = nullptr;
+
+    bool m_contentDragAllowed = false;
+    bool m_contentDragEnabled = false;
 };

@@ -54,7 +54,7 @@ namespace
 {
     QString cleanPath(const QString &path)
     {
-        const bool hasSeparator = std::any_of(path.cbegin(), path.cend(), [](const QChar c)
+        const bool hasSeparator = std::ranges::any_of(path, [](const QChar c)
         {
             return (c == u'/') || (c == u'\\');
         });
@@ -65,7 +65,7 @@ namespace
     bool hasDriveLetter(const QStringView path)
     {
         const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
-        return driveLetterRegex.match(path).hasMatch();
+        return driveLetterRegex.matchView(path).hasMatch();
     }
 #endif
 }
@@ -104,7 +104,7 @@ bool Path::isValid() const
 
     // \\37 is using base-8 number system
     const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
-    return !regex.match(view).hasMatch();
+    return !regex.matchView(view).hasMatch();
 #elif defined(Q_OS_MACOS)
     const QRegularExpression regex {u"[\\0:]"_s};
 #else
@@ -143,7 +143,7 @@ Path Path::rootItem() const
 {
     // does not support UNC path
 
-    const int slashIndex = m_pathStr.indexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.indexOf(u'/');
     if (slashIndex < 0)
         return *this;
 
@@ -162,7 +162,7 @@ Path Path::parentPath() const
 {
     // does not support UNC path
 
-    const int slashIndex = m_pathStr.lastIndexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return {};
 
@@ -180,7 +180,7 @@ Path Path::parentPath() const
 
 QString Path::filename() const
 {
-    const int slashIndex = m_pathStr.lastIndexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return m_pathStr;
 
@@ -193,9 +193,9 @@ QString Path::extension() const
     if (!suffix.isEmpty())
         return (u"." + suffix);
 
-    const int slashIndex = m_pathStr.lastIndexOf(u'/');
+    const qsizetype slashIndex = m_pathStr.lastIndexOf(u'/');
     const auto filename = QStringView(m_pathStr).sliced(slashIndex + 1);
-    const int dotIndex = filename.lastIndexOf(u'.', -2);
+    const qsizetype dotIndex = filename.lastIndexOf(u'.', -2);
     return ((dotIndex == -1) ? QString() : filename.sliced(dotIndex).toString());
 }
 

@@ -32,11 +32,12 @@
 
 enum class APIErrorType
 {
+    AccessDenied,
     BadParams,
     BadData,
+    Conflict,
     NotFound,
-    AccessDenied,
-    Conflict
+    Unauthorized
 };
 
 class APIError : public RuntimeError

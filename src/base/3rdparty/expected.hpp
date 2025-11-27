@@ -1,6 +1,6 @@
 // This version targets C++11 and later.
 //
-// Copyright (C) 2016-2020 Martin Moene.
+// Copyright (C) 2016-2025 Martin Moene.
 //
 // Distributed under the Boost Software License, Version 1.0.
 // (See accompanying file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -13,7 +13,7 @@
 #define NONSTD_EXPECTED_LITE_HPP
 
 #define expected_lite_MAJOR  0
-#define expected_lite_MINOR  8
+#define expected_lite_MINOR  9
 #define expected_lite_PATCH  0
 
 #define expected_lite_VERSION  expected_STRINGIFY(expected_lite_MAJOR) "." expected_STRINGIFY(expected_lite_MINOR) "." expected_STRINGIFY(expected_lite_PATCH)
@@ -81,6 +81,22 @@
 # define nsel_P2505R  5
 #endif
 
+// Lean and mean inclusion of Windows.h, if applicable; default on for MSVC:
+
+#if !defined(nsel_CONFIG_WIN32_LEAN_AND_MEAN) && defined(_MSC_VER)
+# define nsel_CONFIG_WIN32_LEAN_AND_MEAN  1
+#else
+# define nsel_CONFIG_WIN32_LEAN_AND_MEAN  0
+#endif
+
+// Control marking class expected with [[nodiscard]]]:
+
+#if !defined(nsel_CONFIG_NO_NODISCARD)
+# define nsel_CONFIG_NO_NODISCARD  0
+#else
+# define nsel_CONFIG_NO_NODISCARD  1
+#endif
+
 // Control presence of C++ exception handling (try and auto discover):
 
 #ifndef nsel_CONFIG_NO_EXCEPTIONS
@@ -96,8 +112,10 @@
 
 // at default use SEH with MSVC for no C++ exceptions
 
-#ifndef  nsel_CONFIG_NO_EXCEPTIONS_SEH
-# define nsel_CONFIG_NO_EXCEPTIONS_SEH  ( nsel_CONFIG_NO_EXCEPTIONS && _MSC_VER )
+#if !defined(nsel_CONFIG_NO_EXCEPTIONS_SEH) && defined(_MSC_VER)
+# define nsel_CONFIG_NO_EXCEPTIONS_SEH  nsel_CONFIG_NO_EXCEPTIONS
+#else
+# define nsel_CONFIG_NO_EXCEPTIONS_SEH  0
 #endif
 
 // C++ language version detection (C++23 is speculative):
@@ -243,10 +261,23 @@ namespace nonstd {
 
     // Unconditionally provide make_unexpected():
 
-    template< typename E>
+    template< typename E >
     constexpr auto make_unexpected( E && value ) -> unexpected< typename std::decay<E>::type >
     {
         return unexpected< typename std::decay<E>::type >( std::forward<E>(value) );
+    }
+
+    template
+    <
+        typename E, typename... Args,
+        typename = std::enable_if<
+            std::is_constructible<E, Args...>::value
+        >
+    >
+    constexpr auto
+    make_unexpected( std::in_place_t inplace, Args &&... args ) -> unexpected_type< typename std::decay<E>::type >
+    {
+        return unexpected_type< typename std::decay<E>::type >( inplace, std::forward<Args>(args)...);
     }
 }  // namespace nonstd
 
@@ -263,6 +294,12 @@ namespace nonstd {
 #include <utility>
 
 // additional includes:
+
+#if nsel_CONFIG_WIN32_LEAN_AND_MEAN
+# ifndef  WIN32_LEAN_AND_MEAN
+#  define WIN32_LEAN_AND_MEAN
+# endif
+#endif
 
 #if nsel_CONFIG_NO_EXCEPTIONS
 # if nsel_CONFIG_NO_EXCEPTIONS_SEH
@@ -390,11 +427,17 @@ nsel_DISABLE_MSVC_WARNINGS( 26409 )
 
 // Presence of language and library features:
 
+#define nsel_CPP11_000  (nsel_CPP11_OR_GREATER)
 #define nsel_CPP17_000  (nsel_CPP17_OR_GREATER)
+
+// Presence of C++11 library features:
+
+#define nsel_HAVE_ADDRESSOF   nsel_CPP11_000
 
 // Presence of C++17 language features:
 
 #define nsel_HAVE_DEPRECATED  nsel_CPP17_000
+#define nsel_HAVE_NODISCARD   nsel_CPP17_000
 
 // C++ feature usage:
 
@@ -404,11 +447,36 @@ nsel_DISABLE_MSVC_WARNINGS( 26409 )
 # define nsel_deprecated(msg) /*[[deprecated]]*/
 #endif
 
+#if nsel_HAVE_NODISCARD && !nsel_CONFIG_NO_NODISCARD
+# define nsel_NODISCARD  [[nodiscard]]
+#else
+# define nsel_NODISCARD  /*[[nodiscard]]*/
+#endif
+
 //
 // expected:
 //
 
 namespace nonstd { namespace expected_lite {
+
+// library features C++11:
+
+namespace std11 {
+
+// #if 0 && nsel_HAVE_ADDRESSOF
+#if nsel_HAVE_ADDRESSOF
+    using std::addressof;
+#else
+    template< class T >
+    T * addressof( T & arg ) noexcept
+    {
+        return &arg;
+    }
+
+    template< class T >
+    const T * addressof( const T && ) = delete;
+#endif
+} // namespace std11
 
 // type traits C++17:
 
@@ -529,29 +597,29 @@ public:
 
     void construct_value()
     {
-        new( &m_value ) value_type();
+        new( std11::addressof(m_value) ) value_type();
     }
 
     // void construct_value( value_type const & e )
     // {
-    //     new( &m_value ) value_type( e );
+    //     new( std11::addressof(m_value) ) value_type( e );
     // }
 
     // void construct_value( value_type && e )
     // {
-    //     new( &m_value ) value_type( std::move( e ) );
+    //     new( std11::addressof(m_value) ) value_type( std::move( e ) );
     // }
 
     template< class... Args >
     void emplace_value( Args&&... args )
     {
-        new( &m_value ) value_type( std::forward<Args>(args)...);
+        new( std11::addressof(m_value) ) value_type( std::forward<Args>(args)...);
     }
 
     template< class U, class... Args >
     void emplace_value( std::initializer_list<U> il, Args&&... args )
     {
-        new( &m_value ) value_type( il, std::forward<Args>(args)... );
+        new( std11::addressof(m_value) ) value_type( il, std::forward<Args>(args)... );
     }
 
     void destruct_value()
@@ -561,24 +629,24 @@ public:
 
     // void construct_error( error_type const & e )
     // {
-    //     // new( &m_error ) error_type( e );
+    //     // new( std11::addressof(m_error) ) error_type( e );
     // }
 
     // void construct_error( error_type && e )
     // {
-    //     // new( &m_error ) error_type( std::move( e ) );
+    //     // new( std11::addressof(m_error) ) error_type( std::move( e ) );
     // }
 
     template< class... Args >
     void emplace_error( Args&&... args )
     {
-        new( &m_error ) error_type( std::forward<Args>(args)...);
+        new( std11::addressof(m_error) ) error_type( std::forward<Args>(args)...);
     }
 
     template< class U, class... Args >
     void emplace_error( std::initializer_list<U> il, Args&&... args )
     {
-        new( &m_error ) error_type( il, std::forward<Args>(args)... );
+        new( std11::addressof(m_error) ) error_type( il, std::forward<Args>(args)... );
     }
 
     void destruct_error()
@@ -608,12 +676,12 @@ public:
 
     value_type const * value_ptr() const
     {
-        return &m_value;
+        return std11::addressof(m_value);
     }
 
     value_type * value_ptr()
     {
-        return &m_value;
+        return std11::addressof(m_value);
     }
 
     error_type const & error() const &
@@ -675,29 +743,29 @@ public:
 
     void construct_value()
     {
-        new( &m_value ) value_type();
+        new( std11::addressof(m_value) ) value_type();
     }
 
     void construct_value( value_type const & e )
     {
-        new( &m_value ) value_type( e );
+        new( std11::addressof(m_value) ) value_type( e );
     }
 
     void construct_value( value_type && e )
     {
-        new( &m_value ) value_type( std::move( e ) );
+        new( std11::addressof(m_value) ) value_type( std::move( e ) );
     }
 
     template< class... Args >
     void emplace_value( Args&&... args )
     {
-        new( &m_value ) value_type( std::forward<Args>(args)...);
+        new( std11::addressof(m_value) ) value_type( std::forward<Args>(args)...);
     }
 
     template< class U, class... Args >
     void emplace_value( std::initializer_list<U> il, Args&&... args )
     {
-        new( &m_value ) value_type( il, std::forward<Args>(args)... );
+        new( std11::addressof(m_value) ) value_type( il, std::forward<Args>(args)... );
     }
 
     void destruct_value()
@@ -707,24 +775,24 @@ public:
 
     void construct_error( error_type const & e )
     {
-        new( &m_error ) error_type( e );
+        new( std11::addressof(m_error) ) error_type( e );
     }
 
     void construct_error( error_type && e )
     {
-        new( &m_error ) error_type( std::move( e ) );
+        new( std11::addressof(m_error) ) error_type( std::move( e ) );
     }
 
     template< class... Args >
     void emplace_error( Args&&... args )
     {
-        new( &m_error ) error_type( std::forward<Args>(args)...);
+        new( std11::addressof(m_error) ) error_type( std::forward<Args>(args)...);
     }
 
     template< class U, class... Args >
     void emplace_error( std::initializer_list<U> il, Args&&... args )
     {
-        new( &m_error ) error_type( il, std::forward<Args>(args)... );
+        new( std11::addressof(m_error) ) error_type( il, std::forward<Args>(args)... );
     }
 
     void destruct_error()
@@ -754,12 +822,12 @@ public:
 
     value_type const * value_ptr() const
     {
-        return &m_value;
+        return std11::addressof(m_value);
     }
 
     value_type * value_ptr()
     {
-        return &m_value;
+        return std11::addressof(m_value);
     }
 
     error_type const & error() const &
@@ -805,7 +873,7 @@ private:
 /// discriminated union to hold only 'error'.
 
 template< typename E >
-struct storage_t_impl<void, E>
+struct storage_t_impl< void, E >
 {
     template< typename, typename > friend class nonstd::expected_lite::expected;
 
@@ -823,24 +891,24 @@ public:
 
     void construct_error( error_type const & e )
     {
-        new( &m_error ) error_type( e );
+        new( std11::addressof(m_error) ) error_type( e );
     }
 
     void construct_error( error_type && e )
     {
-        new( &m_error ) error_type( std::move( e ) );
+        new( std11::addressof(m_error) ) error_type( std::move( e ) );
     }
 
     template< class... Args >
     void emplace_error( Args&&... args )
     {
-        new( &m_error ) error_type( std::forward<Args>(args)...);
+        new( std11::addressof(m_error) ) error_type( std::forward<Args>(args)...);
     }
 
     template< class U, class... Args >
     void emplace_error( std::initializer_list<U> il, Args&&... args )
     {
-        new( &m_error ) error_type( il, std::forward<Args>(args)... );
+        new( std11::addressof(m_error) ) error_type( il, std::forward<Args>(args)... );
     }
 
     void destruct_error()
@@ -1172,11 +1240,11 @@ nsel_constexpr auto invoke( F && f, Args && ... args )
 }
 
 template< typename F, typename ... Args >
-using invoke_result_nocvref_t = typename std20::remove_cvref< decltype( invoke( std::declval< F >(), std::declval< Args >()... ) ) >::type;
+using invoke_result_nocvref_t = typename std20::remove_cvref< decltype( ::nonstd::expected_lite::detail::invoke( std::declval< F >(), std::declval< Args >()... ) ) >::type;
 
 #if nsel_P2505R >= 5
 template< typename F, typename ... Args >
-using transform_invoke_result_t = typename std::remove_cv< decltype( invoke( std::declval< F >(), std::declval< Args >()... ) ) >::type;
+using transform_invoke_result_t = typename std::remove_cv< decltype( ::nonstd::expected_lite::detail::invoke( std::declval< F >(), std::declval< Args >()... ) ) >::type;
 #else
 template< typename F, typename ... Args >
 using transform_invoke_result_t = invoke_result_nocvref_t
@@ -1548,10 +1616,10 @@ inline constexpr bool operator>=( unexpected_type<std::exception_ptr> const & x,
 
 #if nsel_P0323R <= 3
 
-template< typename E>
+template< typename E >
 struct is_unexpected : std::false_type {};
 
-template< typename E>
+template< typename E >
 struct is_unexpected< unexpected_type<E> > : std::true_type {};
 
 #endif // nsel_P0323R
@@ -1560,11 +1628,24 @@ struct is_unexpected< unexpected_type<E> > : std::true_type {};
 
 // keep make_unexpected() removed in p0323r2 for pre-C++17:
 
-template< typename E>
+template< typename E >
 nsel_constexpr14 auto
 make_unexpected( E && value ) -> unexpected_type< typename std::decay<E>::type >
 {
     return unexpected_type< typename std::decay<E>::type >( std::forward<E>(value) );
+}
+
+template
+<
+    typename E, typename... Args,
+    typename = std::enable_if<
+        std::is_constructible<E, Args...>::value
+    >
+>
+nsel_constexpr14 auto
+make_unexpected( nonstd_lite_in_place_t(E), Args &&... args ) -> unexpected_type< typename std::decay<E>::type >
+{
+    return std::move( unexpected_type< typename std::decay<E>::type >( nonstd_lite_in_place(E), std::forward<Args>(args)...) );
 }
 
 #if nsel_P0323R <= 3
@@ -1580,12 +1661,12 @@ make_unexpected_from_current_exception() -> unexpected_type< std::exception_ptr 
 /// x.x.6, x.x.7 expected access error
 
 template< typename E >
-class bad_expected_access;
+class nsel_NODISCARD bad_expected_access;
 
 /// x.x.7 bad_expected_access<void>: expected access error
 
 template <>
-class bad_expected_access< void > : public std::exception
+class nsel_NODISCARD bad_expected_access< void > : public std::exception
 {
 public:
     explicit bad_expected_access()
@@ -1598,7 +1679,7 @@ public:
 #if !nsel_CONFIG_NO_EXCEPTIONS
 
 template< typename E >
-class bad_expected_access : public bad_expected_access< void >
+class nsel_NODISCARD bad_expected_access : public bad_expected_access< void >
 {
 public:
     using error_type = E;
@@ -1758,10 +1839,10 @@ namespace expected_lite {
 
 #if nsel_P0323R <= 2
 template< typename T, typename E = std::exception_ptr >
-class expected
+class nsel_NODISCARD expected
 #else
 template< typename T, typename E >
-class expected
+class nsel_NODISCARD expected
 #endif // nsel_P0323R
 {
 private:
@@ -2212,7 +2293,6 @@ public:
             ? ( contained.value() )
             : ( error_traits<error_type>::rethrow( contained.error() ), contained.value() );
     }
-    nsel_RESTORE_MSVC_WARNINGS()
 
 #if !nsel_COMPILER_GNUC_VERSION || nsel_COMPILER_GNUC_VERSION >= 490
 
@@ -2231,6 +2311,7 @@ public:
     }
 
 #endif
+    nsel_RESTORE_MSVC_WARNINGS()
 
     constexpr error_type const & error() const &
     {
@@ -2264,7 +2345,7 @@ public:
     template< typename Ex >
     bool has_exception() const
     {
-        using ContainedEx = typename std::remove_reference< decltype( get_unexpected().value() ) >::type;
+        using ContainedEx = typename std::remove_reference< decltype( get_unexpected().error() ) >::type;
         return ! has_value() && std::is_base_of< Ex, ContainedEx>::value;
     }
 
@@ -2649,7 +2730,7 @@ private:
 /// class expected, void specialization
 
 template< typename E >
-class expected<void, E>
+class expected< void, E >
 {
 private:
     template< typename, typename > friend class expected;
@@ -2846,7 +2927,7 @@ public:
     template< typename Ex >
     bool has_exception() const
     {
-        using ContainedEx = typename std::remove_reference< decltype( get_unexpected().value() ) >::type;
+        using ContainedEx = typename std::remove_reference< decltype( get_unexpected().error() ) >::type;
         return ! has_value() && std::is_base_of< Ex, ContainedEx>::value;
     }
 

@@ -789,14 +789,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
                 rssDownloaderFeedSelectionTable.clear();
                 let rowID = -1;
-                feedList.forEach((feed) => {
+                for (const feed of feedList) {
                     rssDownloaderFeedSelectionTable.updateRowData({
                         rowId: ++rowID,
                         checked: rulesList[ruleName].affectedFeeds.contains(feed.url),
                         name: feed.name,
                         url: feed.url
                     });
-                });
+                }
                 rssDownloaderFeedSelectionTable.updateTable(false);
                 updateMatchingArticles(ruleName);
             }

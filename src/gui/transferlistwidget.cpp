@@ -107,20 +107,6 @@ namespace
         return false;
     }
 
-    void openDestinationFolder(const BitTorrent::Torrent *const torrent)
-    {
-        const Path contentPath = torrent->contentPath();
-        const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
-#ifdef Q_OS_MACOS
-        MacUtils::openFiles({openedPath});
-#else
-        if (torrent->filesCount() == 1)
-            Utils::Gui::openFolderSelect(openedPath);
-        else
-            Utils::Gui::openPath(openedPath);
-#endif
-    }
-
     void removeTorrents(const QList<BitTorrent::Torrent *> &torrents, const bool isDeleteFileSelected)
     {
         auto *session = BitTorrent::Session::instance();
@@ -637,6 +623,19 @@ void TransferListWidget::copySelectedNames() const
     qApp->clipboard()->setText(torrentNames.join(u'\n'));
 }
 
+void TransferListWidget::copyContentPaths() const
+{
+    QStringList contentPaths;
+    for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
+    {
+        const Path contentPath = torrent->contentPath();
+        if (!contentPath.isEmpty())
+            contentPaths << contentPath.toString();
+    }
+
+    qApp->clipboard()->setText(contentPaths.join(u'\n'));
+}
+
 void TransferListWidget::copySelectedInfohashes(const CopyInfohashPolicy policy) const
 {
     const auto selectedTorrents = getSelectedTorrents();
@@ -681,7 +680,7 @@ void TransferListWidget::copySelectedComments() const
             torrentComments << torrent->comment();
     }
 
-    qApp->clipboard()->setText(torrentComments.join(u"\n---------\n"_s));
+    qApp->clipboard()->setText(torrentComments.join(u"\n---------\n"));
 }
 
 void TransferListWidget::hideQueuePosColumn(bool hide)
@@ -691,7 +690,7 @@ void TransferListWidget::hideQueuePosColumn(bool hide)
         resizeColumnToContents(TransferListModel::TR_QUEUE_POSITION);
 }
 
-void TransferListWidget::openSelectedTorrentsFolder() const
+void TransferListWidget::openSelectedTorrentsFolder()
 {
     QSet<Path> paths;
 #ifdef Q_OS_MACOS
@@ -711,13 +710,27 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         if (!paths.contains(openedPath))
         {
             if (torrent->filesCount() == 1)
-                Utils::Gui::openFolderSelect(openedPath);
+                Utils::Gui::openFolderSelect(openedPath, this);
             else
                 Utils::Gui::openPath(openedPath);
         }
         paths.insert(openedPath);
     }
 #endif // Q_OS_MACOS
+}
+
+void TransferListWidget::openDestinationFolder(const BitTorrent::Torrent *const torrent)
+{
+    const Path contentPath = torrent->contentPath();
+    const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
+#ifdef Q_OS_MACOS
+    MacUtils::openFiles({openedPath});
+#else
+    if (torrent->filesCount() == 1)
+        Utils::Gui::openFolderSelect(openedPath, this);
+    else
+        Utils::Gui::openPath(openedPath);
+#endif
 }
 
 void TransferListWidget::previewSelectedTorrents()
@@ -892,9 +905,10 @@ void TransferListWidget::editTorrentTrackers()
             for (const BitTorrent::TrackerEntryStatus &status : asConst(torrent->trackers()))
                 trackerSet.insert({.url = status.url, .tier = status.tier});
 
-            commonTrackers.erase(std::remove_if(commonTrackers.begin(), commonTrackers.end()
-                , [&trackerSet](const BitTorrent::TrackerEntry &entry) { return !trackerSet.contains(entry); })
-                , commonTrackers.end());
+            commonTrackers.removeIf([&trackerSet](const BitTorrent::TrackerEntry &entry)
+            {
+                return !trackerSet.contains(entry);
+            });
         }
     }
 
@@ -935,21 +949,21 @@ void TransferListWidget::exportTorrent()
         bool hasError = false;
         for (const BitTorrent::Torrent *torrent : torrents)
         {
-            const QString validName = Utils::Fs::toValidFileName(torrent->name(), u"_"_s);
-            const Path filePath = savePath / Path(validName + u".torrent");
-            if (filePath.exists())
+            const QString validName = Utils::Fs::toValidFileName(torrent->name());
+            QString torrentExportFilename = u"%1.torrent"_s.arg(validName);
+            Path newTorrentPath = savePath / Path(torrentExportFilename);
+            int counter = 0;
+            while (newTorrentPath.exists())
             {
-                LogMsg(errorMsg.arg(torrent->name(), filePath.toString(), tr("A file with the same name already exists")) , Log::WARNING);
-                hasError = true;
-                continue;
+                // Append number to torrent name to make it unique
+                torrentExportFilename = u"%1 (%2).torrent"_s.arg(validName).arg(++counter);
+                newTorrentPath = savePath / Path(torrentExportFilename);
             }
 
-            const nonstd::expected<void, QString> result = torrent->exportToFile(filePath);
-            if (!result)
+            if (const nonstd::expected<void, QString> result = torrent->exportToFile(newTorrentPath); !result)
             {
-                LogMsg(errorMsg.arg(torrent->name(), filePath.toString(), result.error()) , Log::WARNING);
+                LogMsg(errorMsg.arg(torrent->name(), newTorrentPath.toString(), result.error()) , Log::WARNING);
                 hasError = true;
-                continue;
             }
         }
 
@@ -1247,6 +1261,8 @@ void TransferListWidget::displayListMenu()
     connect(actionCopyHash1, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version1); });
     auto *actionCopyHash2 = new QAction(UIThemeManager::instance()->getIcon(u"hash"_s, u"edit-copy"_s), tr("Info h&ash v2"), listMenu);
     connect(actionCopyHash2, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version2); });
+    auto *actionCopyContentPath = new QAction(UIThemeManager::instance()->getIcon(u"directory"_s, u"edit-copy"_s), tr("Content &Path"), listMenu);
+    connect(actionCopyContentPath, &QAction::triggered, this, &TransferListWidget::copyContentPaths);
     auto *actionSuperSeedingMode = new TriStateAction(tr("Super seeding mode"), listMenu);
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
     auto *actionRename = new QAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Re&name..."), listMenu);
@@ -1414,7 +1430,7 @@ void TransferListWidget::displayListMenu()
 
     // Category Menu
     QStringList categories = BitTorrent::Session::instance()->categories();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    std::ranges::sort(categories, Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon(u"view-categories"_s), tr("Categor&y"));
 
@@ -1541,6 +1557,7 @@ void TransferListWidget::displayListMenu()
     copySubMenu->addAction(actionCopyMagnetLink);
     copySubMenu->addAction(actionCopyID);
     copySubMenu->addAction(actionCopyComment);
+    copySubMenu->addAction(actionCopyContentPath);
 
     actionExportTorrent->setToolTip(tr("Exported torrent is not necessarily the same as the imported"));
     listMenu->addAction(actionExportTorrent);
@@ -1550,11 +1567,15 @@ void TransferListWidget::displayListMenu()
 
 void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
-    // Let base class update internal current index state & visuals
+    qDebug("CURRENT CHANGED");
+
+    // Call base class to ensure Qt's accessibility system is notified of focus changes.
+    // This is critical for screen readers to announce the currently selected torrent.
+    // Without this call, users relying on assistive technologies cannot effectively
+    // navigate the torrent list with keyboard arrow keys.
     QTreeView::currentChanged(current, previous);
 
     BitTorrent::Torrent *torrent = resolveTorrent(current);
-    // Avoid selecting group parent as current torrent: resolveTorrent returns nullptr for parents; that's fine.
     if (current.isValid())
         QMetaObject::invokeMethod(this, [this, current] { scrollTo(current); }, Qt::QueuedConnection);
     emit currentTorrentChanged(torrent);
