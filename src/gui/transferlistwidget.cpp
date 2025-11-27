@@ -1092,8 +1092,6 @@ void TransferListWidget::addSelectionToGroup()
     TorrentGroupManager::instance()->addMembers(name, ids);
     TorrentGroupManager::instance()->save();
 }
-    TorrentGroupManager::instance()->save();
-}
 
 void TransferListWidget::removeSelectionFromGroup()
 {
