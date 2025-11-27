@@ -1120,14 +1120,14 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->checkEnableSlowTorrentDetection->setChecked(session->isSlowTorrentDetectionEnabled());
     m_ui->spinSlowTorrentDetectionDuration->setValue(session->slowTorrentDetectionDuration());
     m_ui->spinSlowTorrentMinimumProgress->setValue(session->slowTorrentMinimumProgress());
-    
+
     // Populate tag combo box
     m_ui->comboSlowTorrentExcludedTag->clear();
     m_ui->comboSlowTorrentExcludedTag->addItem(tr("None"), QString());
     const TagSet tags = session->tags();
     for (const Tag &tag : tags)
         m_ui->comboSlowTorrentExcludedTag->addItem(tag.toString(), tag.toString());
-    
+
     const QString excludedTag = session->slowTorrentExcludedTag();
     const int tagIndex = m_ui->comboSlowTorrentExcludedTag->findData(excludedTag);
     m_ui->comboSlowTorrentExcludedTag->setCurrentIndex(tagIndex >= 0 ? tagIndex : 0);

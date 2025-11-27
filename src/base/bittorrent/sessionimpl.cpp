@@ -4740,7 +4740,7 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
         if (enabled)
         {
             m_torrentsQueueChanged = true;
-            
+
             // Start slow torrent detection timer if enabled
             if (isSlowTorrentDetectionEnabled() && !m_slowTorrentDetectionTimer->isActive())
                 m_slowTorrentDetectionTimer->start();
@@ -4748,7 +4748,7 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
         else
         {
             removeTorrentsQueue();
-            
+
             // Stop slow torrent detection timer when queueing is disabled
             if (m_slowTorrentDetectionTimer->isActive())
                 m_slowTorrentDetectionTimer->stop();
@@ -4871,7 +4871,7 @@ void SessionImpl::setSlowTorrentDetectionEnabled(const bool enabled)
     if (enabled != m_isSlowTorrentDetectionEnabled)
     {
         m_isSlowTorrentDetectionEnabled = enabled;
-        
+
         if (enabled && isQueueingSystemEnabled())
         {
             if (!m_slowTorrentDetectionTimer->isActive())
@@ -6742,10 +6742,10 @@ void SessionImpl::processSlowTorrentDetection()
     for (TorrentImpl *torrent : asConst(m_torrents))
     {
         const TorrentState state = torrent->state();
-        
+
         // Only monitor downloading, metaDL, and stalledDL states
-        if (state != TorrentState::Downloading 
-            && state != TorrentState::DownloadingMetadata 
+        if (state != TorrentState::Downloading
+            && state != TorrentState::DownloadingMetadata
             && state != TorrentState::StalledDownloading)
         {
             continue;
@@ -6790,7 +6790,7 @@ void SessionImpl::processSlowTorrentDetection()
     for (auto it = m_downloadProgressRecords.cbegin(); it != m_downloadProgressRecords.cend(); ++it)
     {
         const QList<qint64> &records = it.value();
-        
+
         // Only check torrents that have been monitored for the full window
         if (records.size() == monitoringSamplesCount)
         {

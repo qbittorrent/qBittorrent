@@ -2570,22 +2570,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("slowTorrentDetectionCheckbox").checked = pref.slow_torrent_detection_enabled;
                     document.getElementById("slowTorrentDetectionDuration").value = Number(pref.slow_torrent_detection_duration);
                     document.getElementById("slowTorrentMinimumProgress").value = Number(pref.slow_torrent_minimum_progress);
-                    
+
                     // Populate tag dropdown
                     fetch("api/v2/torrents/tags")
                         .then(res => res.json())
                         .then(tags => {
                             const tagSelect = document.getElementById("slowTorrentExcludedTag");
                             tagSelect.innerHTML = '<option value="">QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]</option>';
-                            tags.forEach(tag => {
+                            for (const tag of tags) {
                                 const option = document.createElement("option");
                                 option.value = tag;
                                 option.textContent = tag;
                                 tagSelect.appendChild(option);
-                            });
+                            }
                             tagSelect.value = pref.slow_torrent_excluded_tag || "";
                         });
-                    
+
                     updateQueueingSystem();
 
                     // Share Limiting
@@ -3038,23 +3038,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     return;
                 }
                 settings["slow_torrent_inactive_timer"] = torrentInactiveTimer;
-                
+
                 settings["slow_torrent_detection_enabled"] = document.getElementById("slowTorrentDetectionCheckbox").checked;
-                
+
                 const slowTorrentDetectionDuration = Number(document.getElementById("slowTorrentDetectionDuration").value);
                 if (Number.isNaN(slowTorrentDetectionDuration) || (slowTorrentDetectionDuration < 1)) {
                     alert("QBT_TR(Monitoring window duration must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_detection_duration"] = slowTorrentDetectionDuration;
-                
+
                 const slowTorrentMinimumProgress = Number(document.getElementById("slowTorrentMinimumProgress").value);
                 if (Number.isNaN(slowTorrentMinimumProgress) || (slowTorrentMinimumProgress < 1)) {
                     alert("QBT_TR(Minimum file progress must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
                 settings["slow_torrent_minimum_progress"] = slowTorrentMinimumProgress;
-                
+
                 settings["slow_torrent_excluded_tag"] = document.getElementById("slowTorrentExcludedTag").value;
             }
 
