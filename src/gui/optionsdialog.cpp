@@ -663,7 +663,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     // Load advanced filter settings
     m_ui->groupAdvancedFilter->setChecked(session->isAdvancedFilterEnabled());
-    
+
     // Populate tag combo box
     m_ui->comboAdvancedFilterTag->clear();
     m_ui->comboAdvancedFilterTag->addItem(tr("(None)"), QString());
@@ -672,15 +672,15 @@ void OptionsDialog::loadDownloadsTabOptions()
     {
         m_ui->comboAdvancedFilterTag->addItem(tag.toString(), tag.toString());
     }
-    
+
     const Tag currentTag = session->advancedFilterTargetTag();
     const int tagIndex = m_ui->comboAdvancedFilterTag->findData(currentTag.toString());
     m_ui->comboAdvancedFilterTag->setCurrentIndex(tagIndex >= 0 ? tagIndex : 0);
-    
+
     // Load file size settings
     const qint64 minSize = session->advancedFilterMinFileSize();
     const qint64 maxSize = session->advancedFilterMaxFileSize();
-    
+
     // Convert bytes to appropriate units for min size
     if (minSize == 0)
     {
@@ -702,7 +702,7 @@ void OptionsDialog::loadDownloadsTabOptions()
         m_ui->spinAdvancedFilterMinSize->setValue(minSize / 1024LL);
         m_ui->comboAdvancedFilterMinSizeUnit->setCurrentIndex(0); // KB
     }
-    
+
     // Convert bytes to appropriate units for max size
     if (maxSize == 0)
     {
@@ -724,7 +724,7 @@ void OptionsDialog::loadDownloadsTabOptions()
         m_ui->spinAdvancedFilterMaxSize->setValue(maxSize / 1024LL);
         m_ui->comboAdvancedFilterMaxSizeUnit->setCurrentIndex(0); // KB
     }
-    
+
     m_ui->textAdvancedFilterWhitelist->setPlainText(session->advancedFilterWhitelistPatterns());
     m_ui->textAdvancedFilterBlacklist->setPlainText(session->advancedFilterBlacklistPatterns());
 
@@ -891,15 +891,15 @@ void OptionsDialog::saveDownloadsTabOptions() const
 
     // Save advanced filter settings
     session->setAdvancedFilterEnabled(m_ui->groupAdvancedFilter->isChecked());
-    
+
     const QString selectedTagData = m_ui->comboAdvancedFilterTag->currentData().toString();
     session->setAdvancedFilterTargetTag(Tag(selectedTagData));
-    
+
     const qint64 minSizeBytes = getFileSizeInBytes(m_ui->spinAdvancedFilterMinSize->value(),
                                                     m_ui->comboAdvancedFilterMinSizeUnit->currentIndex());
     const qint64 maxSizeBytes = getFileSizeInBytes(m_ui->spinAdvancedFilterMaxSize->value(),
                                                     m_ui->comboAdvancedFilterMaxSizeUnit->currentIndex());
-    
+
     session->setAdvancedFilterMinFileSize(minSizeBytes);
     session->setAdvancedFilterMaxFileSize(maxSizeBytes);
     session->setAdvancedFilterWhitelistPatterns(m_ui->textAdvancedFilterWhitelist->toPlainText());

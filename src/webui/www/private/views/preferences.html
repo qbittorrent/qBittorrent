@@ -297,12 +297,13 @@
             <label id="excludedFileNamesLabel" for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <textarea id="excludedFileNamesTextarea" rows="6" cols="70" aria-labelledby="excludedFileNamesLabel"></textarea>
-        
+
         <fieldset class="settings" style="margin-top: 10px;">
             <legend>
                 <input type="checkbox" id="advancedFilterCheckbox" onclick="qBittorrent.Preferences.updateAdvancedFilterEnabled();">
                 <label for="advancedFilterCheckbox">QBT_TR(Advanced filtering mode)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
+
             <table>
                 <tbody>
                     <tr>
@@ -321,7 +322,7 @@
                         </td>
                         <td>
                             <input type="number" id="advancedFilterMinSize" min="0" max="999999" value="0" style="width: 10em;">
-                            <select id="advancedFilterMinSizeUnit">
+                            <select id="advancedFilterMinSizeUnit" aria-label="QBT_TR(Min file size unit)QBT_TR[CONTEXT=OptionsDialog]">
                                 <option value="1024">KB</option>
                                 <option value="1048576" selected>MB</option>
                                 <option value="1073741824">GB</option>
@@ -334,7 +335,7 @@
                         </td>
                         <td>
                             <input type="number" id="advancedFilterMaxSize" min="0" max="999999" value="0" style="width: 10em;">
-                            <select id="advancedFilterMaxSizeUnit">
+                            <select id="advancedFilterMaxSizeUnit" aria-label="QBT_TR(Max file size unit)QBT_TR[CONTEXT=OptionsDialog]">
                                 <option value="1024">KB</option>
                                 <option value="1048576" selected>MB</option>
                                 <option value="1073741824">GB</option>
@@ -347,10 +348,10 @@
                         </td>
                         <td>
                             <textarea id="advancedFilterWhitelist" rows="3" cols="50" title="Regex patterns for whitelisted file names (one per line).
-Files matching these patterns bypass file size and blacklist filters.
+Files matching these patterns are protected and will always be downloaded, bypassing size and blacklist filters.
 Patterns are automatically anchored to match the complete filename.
-Example: .*exe matches test.exe but not test.exea
-Leave empty to apply file size and blacklist filters to all files."></textarea>
+Example: .*\.exe matches test.exe but not test.exea
+Leave empty to apply size and blacklist filters to all files."></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -359,10 +360,10 @@ Leave empty to apply file size and blacklist filters to all files."></textarea>
                         </td>
                         <td>
                             <textarea id="advancedFilterBlacklist" rows="3" cols="50" title="Regex patterns for blacklisted file names (one per line).
-Files matching these patterns will be excluded (unless whitelisted).
+Files matching these patterns will be excluded from download (unless they match whitelist patterns).
 Patterns are automatically anchored to match the complete filename.
-Example: .*zip matches test.zip but not test.zipa
-Leave empty to only apply file size filters."></textarea>
+Example: .*\.zip matches test.zip but not test.zipa
+Leave empty to only apply size filters."></textarea>
                         </td>
                     </tr>
                 </tbody>
@@ -1916,7 +1917,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const convertBytesToDisplayUnit = (bytes, inputId, unitId) => {
             const input = document.getElementById(inputId);
             const unitSelect = document.getElementById(unitId);
-            
+
             if (bytes === 0) {
                 input.value = 0;
                 unitSelect.value = BYTES_PER_MB.toString();
@@ -2050,10 +2051,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const updateExcludedFileNamesEnabled = () => {
             const isAExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
             document.getElementById("excludedFileNamesTextarea").disabled = !isAExcludedFileNamesEnabled;
+
+            // Advanced filter requires excluded file names to be enabled
+            const advancedFilterCheckbox = document.getElementById("advancedFilterCheckbox");
+            advancedFilterCheckbox.disabled = !isAExcludedFileNamesEnabled;
+            if (!isAExcludedFileNamesEnabled) {
+                advancedFilterCheckbox.checked = false;
+                updateAdvancedFilterEnabled();
+            }
         };
 
         const updateAdvancedFilterEnabled = () => {
-            const isAdvancedFilterEnabled = document.getElementById("advancedFilterCheckbox").checked;
+            const isExcludedFileNamesEnabled = document.getElementById("excludedFileNamesCheckbox").checked;
+            const isAdvancedFilterEnabled = document.getElementById("advancedFilterCheckbox").checked && isExcludedFileNamesEnabled;
             document.getElementById("advancedFilterTagSelect").disabled = !isAdvancedFilterEnabled;
             document.getElementById("advancedFilterMinSize").disabled = !isAdvancedFilterEnabled;
             document.getElementById("advancedFilterMinSizeUnit").disabled = !isAdvancedFilterEnabled;
@@ -2490,48 +2500,48 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     // Advanced filter
                     document.getElementById("advancedFilterCheckbox").checked = pref.advanced_filter_enabled || false;
-                    
+                    updateExcludedFileNamesEnabled();
+
                     // Populate tag dropdown - need to fetch tags first
                     const tagSelect = document.getElementById("advancedFilterTagSelect");
                     tagSelect.innerHTML = '<option value="">(None)</option>';
                     // We'll populate tags dynamically when preferences are loaded
-                    
+
                     // Set target tag
                     const targetTag = pref.advanced_filter_target_tag || "";
                     // Will be set after tags are loaded
-                    
+
                     // Load file sizes and convert from bytes
                     const minSizeBytes = pref.advanced_filter_min_file_size || 0;
                     const maxSizeBytes = pref.advanced_filter_max_file_size || 0;
-                    
+
                     // Convert sizes to appropriate units using helper function
                     convertBytesToDisplayUnit(minSizeBytes, "advancedFilterMinSize", "advancedFilterMinSizeUnit");
                     convertBytesToDisplayUnit(maxSizeBytes, "advancedFilterMaxSize", "advancedFilterMaxSizeUnit");
-                    
+
                     document.getElementById("advancedFilterWhitelist").value = pref.advanced_filter_whitelist_patterns || "";
                     document.getElementById("advancedFilterBlacklist").value = pref.advanced_filter_blacklist_patterns || "";
-                    
+
                     // Fetch and populate tags
                     fetch("api/v2/torrents/tags")
                         .then(response => response.json())
                         .then(tags => {
                             const tagSelect = document.getElementById("advancedFilterTagSelect");
                             tagSelect.innerHTML = '<option value="">(None)</option>';
-                            tags.forEach(tag => {
+                            for (const tag of tags) {
                                 const option = document.createElement("option");
                                 option.value = tag;
                                 option.textContent = tag;
-                                if (tag === targetTag) {
+                                if (tag === targetTag)
                                     option.selected = true;
-                                }
                                 tagSelect.appendChild(option);
-                            });
+                            }
                         })
                         .catch((error) => {
                             // Log error if tag fetching fails
                             console.error("Failed to fetch tags for advanced filter:", error);
                         });
-                    
+
                     updateAdvancedFilterEnabled();
 
                     // Email notification upon download completion
@@ -2935,24 +2945,24 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Advanced filter
             settings["advanced_filter_enabled"] = document.getElementById("advancedFilterCheckbox").checked;
             settings["advanced_filter_target_tag"] = document.getElementById("advancedFilterTagSelect").value;
-            
+
             // Convert file sizes to bytes
-            const minSizeValue = parseInt(document.getElementById("advancedFilterMinSize").value) || 0;
-            const minSizeUnit = parseInt(document.getElementById("advancedFilterMinSizeUnit").value);
+            const minSizeValue = Number.parseInt(document.getElementById("advancedFilterMinSize").value, 10) || 0;
+            const minSizeUnit = Number.parseInt(document.getElementById("advancedFilterMinSizeUnit").value, 10);
             const minSizeBytes = minSizeValue * minSizeUnit;
             settings["advanced_filter_min_file_size"] = minSizeBytes;
-            
-            const maxSizeValue = parseInt(document.getElementById("advancedFilterMaxSize").value) || 0;
-            const maxSizeUnit = parseInt(document.getElementById("advancedFilterMaxSizeUnit").value);
+
+            const maxSizeValue = Number.parseInt(document.getElementById("advancedFilterMaxSize").value, 10) || 0;
+            const maxSizeUnit = Number.parseInt(document.getElementById("advancedFilterMaxSizeUnit").value, 10);
             const maxSizeBytes = maxSizeValue * maxSizeUnit;
             settings["advanced_filter_max_file_size"] = maxSizeBytes;
-            
+
             // Validate: min size should not be greater than max size (if both are set)
-            if (settings["advanced_filter_enabled"] && minSizeBytes > 0 && maxSizeBytes > 0 && minSizeBytes > maxSizeBytes) {
+            if (settings["advanced_filter_enabled"] && (minSizeBytes > 0) && (maxSizeBytes > 0) && (minSizeBytes > maxSizeBytes)) {
                 alert("QBT_TR(Minimum file size cannot be greater than maximum file size.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
-            
+
             settings["advanced_filter_whitelist_patterns"] = document.getElementById("advancedFilterWhitelist").value;
             settings["advanced_filter_blacklist_patterns"] = document.getElementById("advancedFilterBlacklist").value;
 

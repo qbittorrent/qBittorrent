@@ -2837,12 +2837,14 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         if (filePriorities.isEmpty())
         {
             // Check file name blacklist when priorities are not explicitly set
-            if (isExcludedFileNamesEnabled())
-                applyFilenameFilter(filePaths, filePriorities);
-
-            // Apply advanced filter after the basic excluded file names filter
-            if (isAdvancedFilterEnabled())
+            if (isExcludedFileNamesEnabled() && isAdvancedFilterEnabled())
+            {
                 applyAdvancedFilter(addTorrentParams.tags, torrentInfo, filePaths, filePriorities);
+            }
+            else if (isExcludedFileNamesEnabled())
+            {
+                applyFilenameFilter(filePaths, filePriorities);
+            }
         }
 
         if (!loadTorrentParams.hasFinishedStatus)
@@ -4269,7 +4271,7 @@ void SessionImpl::populateAdvancedFilterRegExpLists()
                 // Add $ at the end if not present
                 if (!trimmedPattern.endsWith(u'$'))
                     trimmedPattern = trimmedPattern + u"$"_s;
-                
+
                 const QRegularExpression re(trimmedPattern, QRegularExpression::CaseInsensitiveOption);
                 if (re.isValid())
                 {
@@ -4302,7 +4304,7 @@ void SessionImpl::populateAdvancedFilterRegExpLists()
                 // Add $ at the end if not present
                 if (!trimmedPattern.endsWith(u'$'))
                     trimmedPattern = trimmedPattern + u"$"_s;
-                
+
                 const QRegularExpression re(trimmedPattern, QRegularExpression::CaseInsensitiveOption);
                 if (re.isValid())
                 {
@@ -4372,13 +4374,13 @@ void SessionImpl::applyAdvancedFilter(const TagSet &tags, const TorrentInfo &tor
         // When whitelist is empty: exclude if (size < min OR size > max OR blacklisted)
         // When whitelist is set: exclude if (NOT whitelisted) AND (size < min OR size > max OR blacklisted)
         // This means files matching whitelist are kept regardless of size/blacklist
-        
+
         const bool hasWhitelist = !m_advancedFilterWhitelistRegExpList.isEmpty();
         const bool matchesWhitelist = isFilenameWhitelisted(filePath);
         const bool isTooSmall = (minSize > 0 && fileSize < minSize);
         const bool isTooLarge = (maxSize > 0 && fileSize > maxSize);
         const bool matchesBlacklist = isFilenameBlacklisted(filePath);
-        
+
         bool shouldExclude = false;
         if (hasWhitelist)
         {
@@ -4390,7 +4392,7 @@ void SessionImpl::applyAdvancedFilter(const TagSet &tags, const TorrentInfo &tor
             // Without whitelist: exclude if (size issue OR blacklisted)
             shouldExclude = isTooSmall || isTooLarge || matchesBlacklist;
         }
-        
+
         if (shouldExclude)
         {
             priorities[i] = BitTorrent::DownloadPriority::Ignored;
