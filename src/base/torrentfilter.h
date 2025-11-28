@@ -67,14 +67,12 @@ public:
         _Count
     };
 
-    using TorrentAnnounceStatus = BitTorrent::TorrentAnnounceStatus;
-
     // These mean any permutation, including no category / tag.
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<QString> AnyCategory;
     static const std::optional<Tag> AnyTag;
     static const std::optional<QString> AnyTrackerHost;
-    static const std::optional<TorrentAnnounceStatus> AnyAnnounceStatus;
+    static const std::optional<BitTorrent::TorrentAnnounceStatus> AnyAnnounceStatus;
 
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
@@ -84,7 +82,7 @@ public:
             , const std::optional<Tag> &tag = AnyTag
             , const std::optional<bool> &isPrivate = {}
             , const std::optional<QString> &trackerHost = AnyTrackerHost
-            , const std::optional<TorrentAnnounceStatus> &announceStatus = AnyAnnounceStatus);
+            , const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus = AnyAnnounceStatus);
 
     bool setStatus(Status status);
     bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
@@ -92,7 +90,7 @@ public:
     bool setTag(const std::optional<Tag> &tag);
     bool setPrivate(std::optional<bool> isPrivate);
     bool setTrackerHost(const std::optional<QString> &trackerHost);
-    bool setAnnounceStatus(const std::optional<TorrentAnnounceStatus> &announceStatus);
+    bool setAnnounceStatus(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
 
     bool match(const BitTorrent::Torrent *torrent) const;
 
@@ -102,8 +100,7 @@ private:
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
     bool matchPrivate(const BitTorrent::Torrent *torrent) const;
-    bool matchTrackerHost(const BitTorrent::Torrent *torrent) const;
-    bool matchAnnounceStatus(const BitTorrent::Torrent *torrent) const;
+    bool matchTracker(const BitTorrent::Torrent *torrent) const;
 
     Status m_status {All};
     std::optional<QString> m_category;
@@ -111,7 +108,7 @@ private:
     std::optional<TorrentIDSet> m_idSet;
     std::optional<bool> m_private;
     std::optional<QString> m_trackerHost;
-    std::optional<TorrentAnnounceStatus> m_announceStatus;
+    std::optional<BitTorrent::TorrentAnnounceStatus> m_announceStatus;
 };
 
 QString getTrackerHost(const QString &url);
