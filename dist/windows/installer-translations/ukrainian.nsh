@@ -32,9 +32,9 @@ LangString inst_requires_64bit ${LANG_UKRAINIAN} "Ця програма уста
 LangString inst_requires_win10 ${LANG_UKRAINIAN}  "Програма встановлення потребує мінімум Windows 10 (1809) / Windows Server 2019."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_UKRAINIAN} "Видалити qBittorrent"
-;LangString inst_arch_mismatch_x64_on_arm64 ${LANG_ENGLISH} "Error: This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
+;LangString inst_arch_mismatch_x64_on_arm64 ${LANG_ENGLISH} "This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
 LangString inst_arch_mismatch_x64_on_arm64 ${LANG_UKRAINIAN} "Ця x64 версія qBittorrent не може бути запущена на архітектурі ARM64. Будь ласка, скачайте ARM64 інсталятор."
-;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "Error: This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_UKRAINIAN} "Ця ARM64 версія qBittorrent не може бути запущена на архітектурі x64. Будь ласка, скачайте x64 інсталятор."
 
 
