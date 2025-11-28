@@ -295,6 +295,7 @@ namespace BitTorrent
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateProgress();
         void updateState();
+        void updateMaxConnections();
 
         bool isMoveInProgress() const;
 
