@@ -36,6 +36,8 @@ LangString inst_uninstall_link_description ${LANG_SIMPCHINESE} "卸载 qBittorre
 LangString inst_arch_mismatch_x64_on_arm64 ${LANG_SIMPCHINESE} "X64 版本的 qBittorrent 不能运行在 ARM64 系统上。请下载 ARM64 安装程序。"
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "Error: This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_SIMPCHINESE} "ARM64 版本的 qBittorrent 不能运行在 X64 系统上。请下载 X64 安装程序。"
+;LangString inst_already_running ${LANG_ENGLISH} "Another instance of the installer is already running."
+LangString inst_already_running ${LANG_SIMPCHINESE} "另一个安装程序实例正在运行。"
 
 ;------------------------------------
 ;Uninstaller strings
