@@ -122,12 +122,17 @@ namespace
         }
     };
 
-    bool isValidWebUIUsername(const QString &username)
+    bool isValidWebUIUsernameLength(const QString &username)
     {
         return (username.length() >= WEBUI_MIN_USERNAME_LENGTH);
     }
 
-    bool isValidWebUIPassword(const QString &password)
+    bool isValidWebUIUsernameCharacterSet(const QString &username)
+    {
+        return !username.contains(u":");
+    }
+
+    bool isValidWebUIPasswordLength(const QString &password)
     {
         return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
     }
@@ -1444,9 +1449,9 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
     // Authentication
-    if (const QString username = webUIUsername(); isValidWebUIUsername(username))
+    if (const QString username = webUIUsername(); isValidWebUIUsernameLength(username) && isValidWebUIUsernameCharacterSet(username))
         pref->setWebUIUsername(username);
-    if (const QString password = webUIPassword(); isValidWebUIPassword(password))
+    if (const QString password = webUIPassword(); isValidWebUIPasswordLength(password))
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(password));
     pref->setWebUILocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
     pref->setWebUIAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
@@ -2106,14 +2111,20 @@ QString OptionsDialog::webUIPassword() const
 
 bool OptionsDialog::webUIAuthenticationOk()
 {
-    if (!isValidWebUIUsername(webUIUsername()))
+    const QString username = webUIUsername();
+    if (!isValidWebUIUsernameLength(username))
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
         return false;
     }
+    if (!isValidWebUIUsernameCharacterSet(username))
+    {
+        QMessageBox::warning(this, tr("Character Error"), tr("The WebUI username must not contain a colon."));
+        return false;
+    }
 
     const bool dontChangePassword = webUIPassword().isEmpty() && !Preferences::instance()->getWebUIPassword().isEmpty();
-    if (!isValidWebUIPassword(webUIPassword()) && !dontChangePassword)
+    if (!isValidWebUIPasswordLength(webUIPassword()) && !dontChangePassword)
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
         return false;
