@@ -894,9 +894,16 @@ void AppController::setPreferencesAction()
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
     // Authentication
     if (hasKey(u"web_ui_username"_s))
-        pref->setWebUIUsername(it.value().toString());
+    {
+        const QString username = it.value().toString();
+        if (username.contains(u":"))
+            throw APIError(APIErrorType::BadParams, tr("WebUI username cannot contain a colon"));
+        pref->setWebUIUsername(username);
+    }
     if (hasKey(u"web_ui_password"_s))
+    {
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
+    }
     if (hasKey(u"bypass_local_auth"_s))
         pref->setWebUILocalAuthEnabled(!it.value().toBool());
     if (hasKey(u"bypass_auth_subnet_whitelist_enabled"_s))
