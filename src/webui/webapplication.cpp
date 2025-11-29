@@ -100,10 +100,10 @@ namespace
         return ret;
     }
 
-    QString parseAuthorizationHeader(const QString &authHeader)
+    QString parseAuthorizationHeader(const QString &authHeader, const QString &authType)
     {
-        if (authHeader.startsWith(u"Bearer ", Qt::CaseInsensitive))
-            return authHeader.sliced(7).trimmed();
+        if (authHeader.startsWith(authType + u" ", Qt::CaseInsensitive))
+            return authHeader.mid(authType.length() + 1).trimmed();
 
         return {};
     }
@@ -645,7 +645,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
     try
     {
-        const bool isUsingApiKey = m_request.headers.contains(Http::HEADER_AUTHORIZATION);
+        const bool isUsingApiKey = m_request.headers.contains(Http::HEADER_AUTHORIZATION)
+                                && m_request.headers.value(Http::HEADER_AUTHORIZATION).startsWith(u"Bearer ", Qt::CaseInsensitive);
 
         // block suspicious requests
         if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
@@ -709,8 +710,10 @@ void WebApplication::sessionInitialize()
         }
     }
 
-    if (!m_currentSession && !isAuthNeeded())
+    if (!m_currentSession && (!isAuthNeeded() || validateBasicAuth()))
+    {
         sessionStart();
+    }
 }
 
 void WebApplication::setSessionCookie()
@@ -740,7 +743,7 @@ void WebApplication::apiKeySessionInitialize()
         return;
 
     QString sessionId;
-    if (const QString submittedKey = parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION));
+    if (const QString submittedKey = parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION), u"Bearer"_s);
         Utils::Password::slowEquals(submittedKey.toLatin1(), m_apiKey.toLatin1()))
     {
         sessionId = submittedKey;
@@ -1015,6 +1018,24 @@ bool WebApplication::validateCredentials(const QString &username, const QString 
             , Log::WARNING);
         return false;
     }
+}
+
+bool WebApplication::validateBasicAuth()
+{
+    const QString credentials = parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION), u"Basic"_s);
+    if (credentials.isEmpty())
+        return false;
+
+    if (const QStringList usernamePassword = QString::fromUtf8(QByteArray::fromBase64(credentials.toLatin1())).split(u":"_s);
+        usernamePassword.size() == 2)
+    {
+        const QString username = usernamePassword[0];
+        const QString password = usernamePassword[1];
+        if (validateCredentials(username, password))
+            return true;
+    }
+
+    throw UnauthorizedHTTPError();
 }
 
 bool WebApplication::isBanned() const
