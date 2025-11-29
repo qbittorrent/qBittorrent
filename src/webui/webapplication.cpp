@@ -648,8 +648,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
     try
     {
-        const bool isUsingApiKey = m_request.headers.contains(Http::HEADER_AUTHORIZATION)
-                                && m_request.headers.value(Http::HEADER_AUTHORIZATION).startsWith(BEARER_AUTH + u" ", Qt::CaseInsensitive);
+        const bool isUsingApiKey = !parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION), BEARER_AUTH).isEmpty();
 
         // block suspicious requests
         if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
@@ -1022,15 +1021,14 @@ bool WebApplication::validateCredentials(const QString &username, const QString 
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
         return true;
     }
-    else
-    {
-        if (pref->getWebUIMaxAuthFailCount() > 0)
-            increaseFailedAttempts();
-        LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
-                .arg(QString::number(failedAttemptsCount()), clientAddr, username)
-            , Log::WARNING);
-        return false;
-    }
+
+    if (pref->getWebUIMaxAuthFailCount() > 0)
+        increaseFailedAttempts();
+
+    LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
+            .arg(QString::number(failedAttemptsCount()), clientAddr, username)
+        , Log::WARNING);
+    return false;
 }
 
 bool WebApplication::validateBasicAuth(const QString &credentials)
@@ -1040,8 +1038,7 @@ bool WebApplication::validateBasicAuth(const QString &credentials)
     {
         const QString username = usernamePassword.section(u':', 0, 0);
         const QString password = usernamePassword.section(u':', 1);
-        if (validateCredentials(username, password))
-            return true;
+        return validateCredentials(username, password);
     }
 
     return false;
