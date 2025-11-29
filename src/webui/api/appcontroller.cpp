@@ -896,12 +896,17 @@ void AppController::setPreferencesAction()
     if (hasKey(u"web_ui_username"_s))
     {
         const QString username = it.value().toString();
+        if (username.length() < 3)
+            throw APIError(APIErrorType::BadParams, tr("WebUI username must be at least 3 characters long"));
         if (username.contains(u":"))
             throw APIError(APIErrorType::BadParams, tr("WebUI username cannot contain a colon"));
         pref->setWebUIUsername(username);
     }
     if (hasKey(u"web_ui_password"_s))
     {
+        const QString password = it.value().toString();
+        if (password.length() < 6)
+            throw APIError(APIErrorType::BadParams, tr("WebUI password must be at least 6 characters long"));
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
     }
     if (hasKey(u"bypass_local_auth"_s))
