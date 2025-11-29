@@ -99,8 +99,6 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
         setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
     else
         setCurrentRow(storedRow, QItemSelectionModel::SelectCurrent);
-
-    toggleFilter(pref->getStatusFilterState());
 }
 
 StatusFilterWidget::~StatusFilterWidget()

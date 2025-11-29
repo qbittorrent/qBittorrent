@@ -57,12 +57,6 @@ public:
     TrackersFilterWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     ~TrackersFilterWidget() override;
 
-    void handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-    void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntryStatus> &oldEntries
-            , const QList<BitTorrent::TrackerEntry> &newEntries);
-    void handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
-            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
     void setDownloadTrackerFavicon(bool value);
 
 private slots:
@@ -76,6 +70,13 @@ private:
     void handleTorrentsLoaded(const QList<BitTorrent::Torrent *> &torrents) override;
     void torrentAboutToBeDeleted(BitTorrent::Torrent *torrent) override;
 
+    void handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
+    void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent, const QStringList &trackers);
+    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntryStatus> &oldEntries
+            , const QList<BitTorrent::TrackerEntry> &newEntries);
+    void handleTorrentTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
+
     void onRemoveTrackerTriggered();
 
     void increaseTorrentsCount(const QString &trackerHost, qsizetype torrentsCount);
@@ -85,6 +86,8 @@ private:
     int rowFromTracker(const QString &tracker) const;
     void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
     void removeTracker(const QString &trackerHost);
+
+    void enableTrackerStatusItems(bool value);
 
     qsizetype numSpecialRows() const;
 
@@ -101,6 +104,6 @@ private:
     PathList m_iconPaths;
     int m_totalTorrents = 0;
     bool m_downloadTrackerFavicon = false;
-    bool m_handleTrackerStatuses = true;
+    bool m_handleTrackerStatuses = false;
     QHash<QString, QSet<QString>> m_downloadingFavicons;   // <favicon URL, tracker hosts>
 };

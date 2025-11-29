@@ -144,8 +144,6 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
     : BaseFilterWidget(parent, transferList)
     , m_downloadTrackerFavicon {downloadFavicon}
 {
-    m_handleTrackerStatuses = !Preferences::instance()->useSeparateTrackerStatusFilter();
-
     auto *allTrackersItem = new QListWidgetItem(this);
     allTrackersItem->setData(Qt::DisplayRole, formatItemText(ALL_ROW, 0));
     allTrackersItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
@@ -155,43 +153,31 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
 
     m_trackers[NULL_HOST] = {0, trackerlessItem};
 
-    const QList<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
-
-    if (m_handleTrackerStatuses)
+    const auto *pref = Preferences::instance();
+    const bool useSeparateTrackerStatusFilter = pref->useSeparateTrackerStatusFilter();
+    if (useSeparateTrackerStatusFilter == m_handleTrackerStatuses)
+        enableTrackerStatusItems(!useSeparateTrackerStatusFilter);
+    connect(pref, &Preferences::changed, this, [this, pref]
     {
-        auto *trackerErrorItem = new QListWidgetItem(this);
-        trackerErrorItem->setData(Qt::DisplayRole, formatItemText(TRACKERERROR_ROW, 0));
-        trackerErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
-        auto *otherErrorItem = new QListWidgetItem(this);
-        otherErrorItem->setData(Qt::DisplayRole, formatItemText(OTHERERROR_ROW, 0));
-        otherErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
-        auto *warningItem = new QListWidgetItem(this);
-        warningItem->setData(Qt::DisplayRole, formatItemText(WARNING_ROW, 0));
-        warningItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
-
-        for (const BitTorrent::Torrent *torrent : torrents)
+        const bool useSeparateTrackerStatusFilter = pref->useSeparateTrackerStatusFilter();
+        if (useSeparateTrackerStatusFilter == m_handleTrackerStatuses)
         {
-            const BitTorrent::TorrentAnnounceStatus announceStatus = torrent->announceStatus();
-
-            if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasWarning))
-                m_warnings.insert(torrent);
-
-            if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasTrackerError))
-                m_trackerErrors.insert(torrent);
-
-            if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasOtherError))
-                m_errors.insert(torrent);
+            enableTrackerStatusItems(!useSeparateTrackerStatusFilter);
+            updateGeometry();
+            if (m_handleTrackerStatuses)
+                applyFilter(currentRow());
         }
+    });
 
-        warningItem->setText(formatItemText(WARNING_ROW, m_warnings.size()));
-        trackerErrorItem->setText(formatItemText(TRACKERERROR_ROW, m_trackerErrors.size()));
-        otherErrorItem->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
-    }
+    const auto *btSession = BitTorrent::Session::instance();
+    handleTorrentsLoaded(btSession->torrents());
 
-    handleTorrentsLoaded(torrents);
+    connect(btSession, &BitTorrent::Session::trackersAdded, this, &TrackersFilterWidget::handleTorrentTrackersAdded);
+    connect(btSession, &BitTorrent::Session::trackersRemoved, this, &TrackersFilterWidget::handleTorrentTrackersRemoved);
+    connect(btSession, &BitTorrent::Session::trackersReset, this, &TrackersFilterWidget::handleTorrentTrackersReset);
+    connect(btSession, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &TrackersFilterWidget::handleTorrentTrackerStatusesUpdated);
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
-    toggleFilter(Preferences::instance()->getTrackerFilterState());
 }
 
 TrackersFilterWidget::~TrackersFilterWidget()
@@ -372,7 +358,7 @@ void TrackersFilterWidget::setDownloadTrackerFavicon(bool value)
     }
 }
 
-void TrackersFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
+void TrackersFilterWidget::handleTorrentTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
         , [[maybe_unused]] const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers)
 {
     if (m_handleTrackerStatuses)
@@ -410,6 +396,64 @@ void TrackersFilterWidget::removeTracker(const QString &trackerHost)
     }
 
     updateGeometry();
+}
+
+void TrackersFilterWidget::enableTrackerStatusItems(const bool value)
+{
+    m_handleTrackerStatuses = value;
+    if (m_handleTrackerStatuses)
+    {
+        auto *trackerErrorItem = new QListWidgetItem;
+        trackerErrorItem->setData(Qt::DisplayRole, formatItemText(TRACKERERROR_ROW, 0));
+        trackerErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
+        insertItem(TRACKERERROR_ROW, trackerErrorItem);
+
+        auto *otherErrorItem = new QListWidgetItem;
+        otherErrorItem->setData(Qt::DisplayRole, formatItemText(OTHERERROR_ROW, 0));
+        otherErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
+        insertItem(OTHERERROR_ROW, otherErrorItem);
+
+        auto *warningItem = new QListWidgetItem;
+        warningItem->setData(Qt::DisplayRole, formatItemText(WARNING_ROW, 0));
+        warningItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
+        insertItem(WARNING_ROW, warningItem);
+
+        const QList<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
+        for (const BitTorrent::Torrent *torrent : torrents)
+        {
+            const BitTorrent::TorrentAnnounceStatus announceStatus = torrent->announceStatus();
+
+            if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasWarning))
+                m_warnings.insert(torrent);
+
+            if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasTrackerError))
+                m_trackerErrors.insert(torrent);
+
+            if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasOtherError))
+                m_errors.insert(torrent);
+        }
+
+        warningItem->setText(formatItemText(WARNING_ROW, m_warnings.size()));
+        trackerErrorItem->setText(formatItemText(TRACKERERROR_ROW, m_trackerErrors.size()));
+        otherErrorItem->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
+    }
+    else
+    {
+        if (const int row = currentRow();
+                (row == WARNING_ROW) || (row == TRACKERERROR_ROW) || (row == OTHERERROR_ROW))
+        {
+            setCurrentRow(0, QItemSelectionModel::ClearAndSelect);
+        }
+
+        // Need to be removed in reversed order
+        takeItem(WARNING_ROW);
+        takeItem(OTHERERROR_ROW);
+        takeItem(TRACKERERROR_ROW);
+
+        m_warnings.clear();
+        m_trackerErrors.clear();
+        m_errors.clear();
+    }
 }
 
 qsizetype TrackersFilterWidget::numSpecialRows() const

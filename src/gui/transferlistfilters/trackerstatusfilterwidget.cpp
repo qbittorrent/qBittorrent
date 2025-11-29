@@ -90,7 +90,9 @@ TrackerStatusFilterWidget::TrackerStatusFilterWidget(QWidget *parent, TransferLi
     auto *otherErrorItem = new QListWidgetItem(this);
     otherErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
 
-    const QList<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
+    const auto *btSession = BitTorrent::Session::instance();
+
+    const QList<BitTorrent::Torrent *> torrents = btSession->torrents();
     m_totalTorrents += torrents.count();
 
     for (const BitTorrent::Torrent *torrent : torrents)
@@ -106,6 +108,10 @@ TrackerStatusFilterWidget::TrackerStatusFilterWidget(QWidget *parent, TransferLi
         if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasOtherError))
             m_errors.insert(torrent);
     }
+
+    connect(btSession, &BitTorrent::Session::trackersRemoved, this, &TrackerStatusFilterWidget::handleTorrentTrackersRemoved);
+    connect(btSession, &BitTorrent::Session::trackersReset, this, &TrackerStatusFilterWidget::handleTorrentTrackersReset);
+    connect(btSession, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &TrackerStatusFilterWidget::handleTorrentTrackerStatusesUpdated);
 
     anyStatusItem->setText(formatItemText(ANY_ROW, m_totalTorrents));
     warningItem->setText(formatItemText(WARNING_ROW, m_warnings.size()));
@@ -127,7 +133,7 @@ void TrackerStatusFilterWidget::handleTorrentTrackersReset(const BitTorrent::Tor
     refreshItems(torrent);
 }
 
-void TrackerStatusFilterWidget::handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent)
+void TrackerStatusFilterWidget::handleTorrentTrackerStatusesUpdated(const BitTorrent::Torrent *torrent)
 {
     refreshItems(torrent);
 }

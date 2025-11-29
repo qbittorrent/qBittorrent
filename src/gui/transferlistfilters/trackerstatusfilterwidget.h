@@ -44,11 +44,6 @@ class TrackerStatusFilterWidget final : public BaseFilterWidget
 public:
     TrackerStatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
 
-    void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent);
-    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntryStatus> &oldEntries
-            , const QList<BitTorrent::TrackerEntry> &newEntries);
-    void handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent);
-
 private:
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
@@ -56,6 +51,11 @@ private:
     void applyFilter(int row) override;
     void handleTorrentsLoaded(const QList<BitTorrent::Torrent *> &torrents) override;
     void torrentAboutToBeDeleted(BitTorrent::Torrent *torrent) override;
+
+    void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent);
+    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntryStatus> &oldEntries
+            , const QList<BitTorrent::TrackerEntry> &newEntries);
+    void handleTorrentTrackerStatusesUpdated(const BitTorrent::Torrent *torrent);
 
     void refreshItems(const BitTorrent::Torrent *torrent);
 
