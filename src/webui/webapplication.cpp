@@ -293,12 +293,12 @@ const Http::Environment &WebApplication::env() const
 
 void WebApplication::setUsername(const QString &username)
 {
-    m_authController->setUsername(username);
+    m_username = username;
 }
 
 void WebApplication::setPasswordHash(const QByteArray &passwordHash)
 {
-    m_authController->setPasswordHash(passwordHash);
+    m_passwordHash = passwordHash;
 }
 
 void WebApplication::doProcessRequest(const bool isUsingApiKey)
@@ -980,6 +980,75 @@ QHostAddress WebApplication::resolveClientAddress() const
     }
 
     return m_env.clientAddress;
+}
+
+bool WebApplication::validateCredentials(const QString &username, const QString &password) const
+{
+    const QString clientAddr = clientId();
+
+    if (isBanned())
+    {
+        LogMsg(tr("WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2")
+                .arg(clientAddr, username)
+            , Log::WARNING);
+        throw ForbiddenHTTPError(tr("Your IP address has been banned after too many failed authentication attempts."));
+    }
+
+    const auto *pref = Preferences::instance();
+    const bool usernameEqual = Utils::Password::slowEquals(username.toUtf8(), pref->getWebUIUsername().toUtf8());
+    const bool passwordEqual = Utils::Password::PBKDF2::verify(pref->getWebUIPassword(), password);
+
+    if (usernameEqual && passwordEqual)
+    {
+        m_clientFailedLogins.remove(clientAddr);
+        LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
+        return true;
+    }
+    else
+    {
+        if (pref->getWebUIMaxAuthFailCount() > 0)
+            increaseFailedAttempts();
+        LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
+                .arg(QString::number(failedAttemptsCount()), clientAddr, username)
+            , Log::WARNING);
+        return false;
+    }
+}
+
+bool WebApplication::isBanned() const
+{
+    const auto failedLoginIter = m_clientFailedLogins.constFind(clientId());
+    if (failedLoginIter == m_clientFailedLogins.cend())
+        return false;
+
+    bool isBanned = (failedLoginIter->banTimer.remainingTime() >= 0);
+    if (isBanned && failedLoginIter->banTimer.hasExpired())
+    {
+        m_clientFailedLogins.erase(failedLoginIter);
+        isBanned = false;
+    }
+
+    return isBanned;
+}
+
+int WebApplication::failedAttemptsCount() const
+{
+    return m_clientFailedLogins.value(clientId()).failedAttemptsCount;
+}
+
+void WebApplication::increaseFailedAttempts() const
+{
+    Q_ASSERT(Preferences::instance()->getWebUIMaxAuthFailCount() > 0);
+
+    FailedLogin &failedLogin = m_clientFailedLogins[clientId()];
+    ++failedLogin.failedAttemptsCount;
+
+    if (failedLogin.failedAttemptsCount >= Preferences::instance()->getWebUIMaxAuthFailCount())
+    {
+        // Max number of failed attempts reached
+        // Start ban period
+        failedLogin.banTimer.setRemainingTime(Preferences::instance()->getWebUIBanDuration());
+    }
 }
 
 // WebSession
