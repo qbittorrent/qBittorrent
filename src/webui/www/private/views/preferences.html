@@ -3231,7 +3231,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 }
                 else {
                     // keep window open so user can reattempt saving
-                    alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                    if (error.name === "ServerError")
+                        alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
+                    else
+                        alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 }
             });
         };
