@@ -140,6 +140,7 @@ private:
     bool validateHostHeader(const QStringList &domains) const;
 
     bool validateCredentials(const QString &username, const QString &password) override;
+    bool validateBasicAuth(const QString &credentials);
     bool isBanned() const;
     int failedAttemptsCount() const;
     void increaseFailedAttempts();
