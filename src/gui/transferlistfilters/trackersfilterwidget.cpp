@@ -338,7 +338,7 @@ void TrackersFilterWidget::refreshStatusItems(const BitTorrent::Torrent *torrent
     item(WARNING_ROW)->setText(formatItemText(WARNING_ROW, m_warnings.size()));
 }
 
-void TrackersFilterWidget::setDownloadTrackerFavicon(bool value)
+void TrackersFilterWidget::setDownloadTrackerFavicon(const bool value)
 {
     if (value == m_downloadTrackerFavicon) return;
     m_downloadTrackerFavicon = value;
@@ -561,7 +561,7 @@ void TrackersFilterWidget::applyFilter(const int row)
             break;
 
         case TRACKERLESS_ROW:
-            transferList()->applyTrackerFilter(u""_s);
+            transferList()->applyTrackerFilter(NULL_HOST);
             transferList()->applyAnnounceStatusFilter(std::nullopt);
             break;
 
@@ -583,6 +583,7 @@ void TrackersFilterWidget::applyFilter(const int row)
         default:
             transferList()->applyTrackerFilter(trackerFromRow(row));
             transferList()->applyAnnounceStatusFilter(std::nullopt);
+            break;
         }
     }
     else
@@ -594,11 +595,12 @@ void TrackersFilterWidget::applyFilter(const int row)
             break;
 
         case TRACKERLESS_ROW:
-            transferList()->applyTrackerFilter(u""_s);
+            transferList()->applyTrackerFilter(NULL_HOST);
             break;
 
         default:
             transferList()->applyTrackerFilter(trackerFromRow(row));
+            break;
         }
     }
 }
