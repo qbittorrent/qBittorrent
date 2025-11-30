@@ -158,6 +158,7 @@ private slots:
     void on_actionAutoSuspend_toggled(bool);
     void on_actionAutoHibernate_toggled(bool);
     void on_actionAutoShutdown_toggled(bool);
+    void on_actionAutoReboot_toggled(bool);
     void on_actionAbout_triggered();
     void on_actionStatistics_triggered();
     void on_actionCreateTorrent_triggered();
