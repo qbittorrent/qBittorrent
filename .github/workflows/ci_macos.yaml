@@ -49,7 +49,7 @@ jobs:
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
-          store_cache: ${{ github.ref == 'refs/heads/master' }}
+          store_cache: ${{ (github.repository != 'qbittorrent/qBittorrent') || (github.ref == 'refs/heads/master') }}
           update_packager_index: false
           ccache_options: |
             max_size=1G
