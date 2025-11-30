@@ -278,6 +278,8 @@ Application::Application(int &argc, char **argv)
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
 
+    m_uptime.start();
+
     Logger::initInstance();
 
     const auto portableProfilePath = Path(QCoreApplication::applicationDirPath()) / DEFAULT_PORTABLE_MODE_PROFILE_DIR;
@@ -1344,6 +1346,11 @@ void Application::adjustThreadPriority() const
     ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_ABOVE_NORMAL);
 }
 #endif
+
+std::chrono::seconds Application::uptime() const
+{
+    return std::chrono::duration_cast<std::chrono::seconds>(m_uptime.durationElapsed());
+}
 
 void Application::cleanup()
 {
