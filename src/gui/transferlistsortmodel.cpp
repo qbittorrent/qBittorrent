@@ -36,6 +36,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
 #include "transferlistmodel.h"
+#include "transferlistgroupmodel.h"
 
 namespace
 {
@@ -319,11 +320,31 @@ bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIn
 
 bool TransferListSortModel::matchFilter(const int sourceRow, const QModelIndex &sourceParent) const
 {
-    const auto *model = qobject_cast<TransferListModel *>(sourceModel());
-    if (!model) return false;
-
-    const BitTorrent::Torrent *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
-    if (!torrent) return false;
-
-    return m_filter.match(torrent);
+    // Support either direct list model or grouped model
+    if (auto *model = qobject_cast<TransferListModel *>(sourceModel()))
+    {
+        const BitTorrent::Torrent *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
+        if (!torrent) return false;
+        return m_filter.match(torrent);
+    }
+    if (auto *groupModel = qobject_cast<TransferListGroupModel *>(sourceModel()))
+    {
+        const QModelIndex idx = groupModel->index(sourceRow, 0, sourceParent);
+        const BitTorrent::Torrent *torrent = groupModel->torrentHandle(idx);
+        if (!torrent)
+        {
+            // group parent: accept if any child matches (iterate children)
+            const int childCount = groupModel->rowCount(idx);
+            for (int i = 0; i < childCount; ++i)
+            {
+                const QModelIndex child = groupModel->index(i, 0, idx);
+                const BitTorrent::Torrent *childTorrent = groupModel->torrentHandle(child);
+                if (childTorrent && m_filter.match(childTorrent))
+                    return true;
+            }
+            return false;
+        }
+        return m_filter.match(torrent);
+    }
+    return false;
 }
