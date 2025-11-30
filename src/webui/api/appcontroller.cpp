@@ -205,6 +205,14 @@ void AppController::preferencesAction()
     data[u"excluded_file_names_enabled"_s] = session->isExcludedFileNamesEnabled();
     data[u"excluded_file_names"_s] = session->excludedFileNames().join(u'\n');
 
+    // Advanced filter
+    data[u"advanced_filter_enabled"_s] = session->isAdvancedFilterEnabled();
+    data[u"advanced_filter_target_tag"_s] = session->advancedFilterTargetTag().toString();
+    data[u"advanced_filter_min_file_size"_s] = session->advancedFilterMinFileSize();
+    data[u"advanced_filter_max_file_size"_s] = session->advancedFilterMaxFileSize();
+    data[u"advanced_filter_whitelist_patterns"_s] = session->advancedFilterWhitelistPatterns();
+    data[u"advanced_filter_blacklist_patterns"_s] = session->advancedFilterBlacklistPatterns();
+
     // Email notification upon download completion
     data[u"mail_notification_enabled"_s] = pref->isMailNotificationEnabled();
     data[u"mail_notification_sender"_s] = pref->getMailNotificationSender();
@@ -663,6 +671,20 @@ void AppController::setPreferencesAction()
         session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_s))
         session->setExcludedFileNames(it.value().toString().split(u'\n'));
+
+    // Advanced filter
+    if (hasKey(u"advanced_filter_enabled"_s))
+        session->setAdvancedFilterEnabled(it.value().toBool());
+    if (hasKey(u"advanced_filter_target_tag"_s))
+        session->setAdvancedFilterTargetTag(Tag(it.value().toString()));
+    if (hasKey(u"advanced_filter_min_file_size"_s))
+        session->setAdvancedFilterMinFileSize(it.value().toLongLong());
+    if (hasKey(u"advanced_filter_max_file_size"_s))
+        session->setAdvancedFilterMaxFileSize(it.value().toLongLong());
+    if (hasKey(u"advanced_filter_whitelist_patterns"_s))
+        session->setAdvancedFilterWhitelistPatterns(it.value().toString());
+    if (hasKey(u"advanced_filter_blacklist_patterns"_s))
+        session->setAdvancedFilterBlacklistPatterns(it.value().toString());
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))

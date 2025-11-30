@@ -415,6 +415,19 @@ namespace BitTorrent
         QStringList excludedFileNames() const override;
         void setExcludedFileNames(const QStringList &excludedFileNames) override;
         void applyFilenameFilter(const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) override;
+        bool isAdvancedFilterEnabled() const override;
+        void setAdvancedFilterEnabled(bool enabled) override;
+        Tag advancedFilterTargetTag() const override;
+        void setAdvancedFilterTargetTag(const Tag &tag) override;
+        qint64 advancedFilterMinFileSize() const override;
+        void setAdvancedFilterMinFileSize(qint64 size) override;
+        qint64 advancedFilterMaxFileSize() const override;
+        void setAdvancedFilterMaxFileSize(qint64 size) override;
+        QString advancedFilterWhitelistPatterns() const override;
+        void setAdvancedFilterWhitelistPatterns(const QString &patterns) override;
+        QString advancedFilterBlacklistPatterns() const override;
+        void setAdvancedFilterBlacklistPatterns(const QString &patterns) override;
+        void applyAdvancedFilter(const TagSet &tags, const TorrentInfo &torrentInfo, const PathList &files, QList<BitTorrent::DownloadPriority> &priorities) override;
         QStringList bannedIPs() const override;
         void setBannedIPs(const QStringList &newList) override;
         ResumeDataStorageType resumeDataStorageType() const override;
@@ -567,6 +580,7 @@ namespace BitTorrent
         void disableIPFilter();
         void processTorrentShareLimits(TorrentImpl *torrent);
         void populateExcludedFileNamesRegExpList();
+        void populateAdvancedFilterRegExpLists();
         void prepareStartup();
         void handleLoadedResumeData(ResumeSessionContext *context);
         void processNextResumeData(ResumeSessionContext *context);
@@ -767,6 +781,12 @@ namespace BitTorrent
         CachedSettingValue<int> m_requestQueueSize;
         CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
+        CachedSettingValue<bool> m_isAdvancedFilterEnabled;
+        CachedSettingValue<QString> m_advancedFilterTargetTag;
+        CachedSettingValue<qint64> m_advancedFilterMinFileSize;
+        CachedSettingValue<qint64> m_advancedFilterMaxFileSize;
+        CachedSettingValue<QString> m_advancedFilterWhitelistPatterns;
+        CachedSettingValue<QString> m_advancedFilterBlacklistPatterns;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
         CachedSettingValue<bool> m_isMergeTrackersEnabled;
@@ -803,6 +823,8 @@ namespace BitTorrent
         QList<TrackerEntry> m_additionalTrackerEntries;
         QList<TrackerEntry> m_additionalTrackerEntriesFromURL;
         QList<QRegularExpression> m_excludedFileNamesRegExpList;
+        QList<QRegularExpression> m_advancedFilterWhitelistRegExpList;
+        QList<QRegularExpression> m_advancedFilterBlacklistRegExpList;
 
         // Statistics
         mutable QElapsedTimer m_statisticsLastUpdateTimer;
