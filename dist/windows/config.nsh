@@ -157,16 +157,20 @@ ${Case} 0
 	${IfThen} $3 <> 0 ${|} ${Break} ${|} ;we are admin, let the show go on
 	${If} $1 = 3 ;RunAs completed successfully, but with a non-admin user
 		MessageBox mb_YesNo|mb_IconExclamation|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, try again" /SD IDNO IDYES uac_tryagain IDNO 0
+		SetErrorLevel 1314 # WinError.h: `ERROR_PRIVILEGE_NOT_HELD`
 	${EndIf}
 	;fall-through and die
 ${Case} 1223
 	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, aborting!"
+	SetErrorLevel 1223 # WinError.h: `ERROR_CANCELLED`
 	Quit
 ${Case} 1062
 	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Logon service not running, aborting!"
+	SetErrorLevel 1062 # WinError.h: `ERROR_SERVICE_NOT_ACTIVE`
 	Quit
 ${Default}
 	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Unable to elevate , error $0"
+	SetErrorLevel 1603 # WinError.h: `ERROR_INSTALL_FAILURE`
 	Quit
 ${EndSwitch}
 
