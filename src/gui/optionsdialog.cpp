@@ -1131,6 +1131,8 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->spinUploadRateForSlowTorrents->setValue(session->uploadRateForSlowTorrents());
     m_ui->spinSlowTorrentsInactivityTimer->setValue(session->slowTorrentsInactivityTimer());
 
+    m_ui->spinMaxRatio->setMaximum(std::numeric_limits<int>::max());
+
     if (session->globalMaxRatio() >= 0.)
     {
         // Enable
@@ -1175,7 +1177,7 @@ void OptionsDialog::loadBittorrentTabOptions()
 
     const QHash<BitTorrent::ShareLimitAction, int> actIndex =
     {
-                                                               {BitTorrent::ShareLimitAction::Stop, 0},
+        {BitTorrent::ShareLimitAction::Stop, 0},
         {BitTorrent::ShareLimitAction::Remove, 1},
         {BitTorrent::ShareLimitAction::RemoveWithContent, 2},
         {BitTorrent::ShareLimitAction::EnableSuperSeeding, 3}
