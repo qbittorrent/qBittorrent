@@ -718,9 +718,9 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
 
     std::vector<lt::announce_entry> nativeTrackers;
     nativeTrackers.reserve(trackers.size());
-    m_trackerEntryStatuses.clear();
+    const auto oldEntries = std::exchange(m_trackerEntryStatuses, {});
 
-    for (const TrackerEntry &tracker : trackers)
+    for (const TrackerEntry &tracker : asConst(trackers))
     {
         nativeTrackers.emplace_back(makeNativeAnnounceEntry(tracker.url, tracker.tier));
         m_trackerEntryStatuses.append({tracker.url, tracker.tier});
@@ -734,7 +734,7 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
         clearPeers();
 
     deferredRequestResumeData();
-    m_session->handleTorrentTrackersChanged(this);
+    m_session->handleTorrentTrackersReset(this, oldEntries, trackers);
 }
 
 QList<QUrl> TorrentImpl::urlSeeds() const
@@ -1557,6 +1557,46 @@ qlonglong TorrentImpl::nextAnnounce() const
     return lt::total_seconds(m_nativeStatus.next_announce);
 }
 
+TorrentAnnounceStatus TorrentImpl::announceStatus() const
+{
+    if (m_announceStatus)
+        return *m_announceStatus;
+
+    TorrentAnnounceStatus announceStatus = TorrentAnnounceStatusFlag::HasNoProblem;
+    for (const TrackerEntryStatus &trackerEntryStatus : asConst(m_trackerEntryStatuses))
+    {
+        switch (trackerEntryStatus.state)
+        {
+        case BitTorrent::TrackerEndpointState::Working:
+            if (!announceStatus.testFlag(TorrentAnnounceStatusFlag::HasWarning))
+            {
+                const bool hasWarningMessage = std::ranges::any_of(trackerEntryStatus.endpoints
+                        , [](const TrackerEndpointStatus &endpointEntry)
+                {
+                    return !endpointEntry.message.isEmpty() && (endpointEntry.state == BitTorrent::TrackerEndpointState::Working);
+                });
+                announceStatus.setFlag(TorrentAnnounceStatusFlag::HasWarning, hasWarningMessage);
+            }
+            break;
+
+        case BitTorrent::TrackerEndpointState::NotWorking:
+        case BitTorrent::TrackerEndpointState::Unreachable:
+            announceStatus.setFlag(TorrentAnnounceStatusFlag::HasOtherError);
+            break;
+
+        case BitTorrent::TrackerEndpointState::TrackerError:
+            announceStatus.setFlag(TorrentAnnounceStatusFlag::HasTrackerError);
+            break;
+
+        case BitTorrent::TrackerEndpointState::NotContacted:
+            break;
+        };
+    }
+
+    m_announceStatus = announceStatus;
+    return *m_announceStatus;
+}
+
 qreal TorrentImpl::popularity() const
 {
     // in order to produce floating-point numbers using `std::chrono::duration_cast`,
@@ -1743,6 +1783,7 @@ TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entr
 #endif
 
     ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo);
+    m_announceStatus.reset();
 
     return *it;
 }
@@ -1758,6 +1799,8 @@ void TorrentImpl::resetTrackerEntryStatuses()
         status.url = tempUrl;
         status.tier = tempTier;
     }
+
+    m_announceStatus = TorrentAnnounceStatusFlag::HasNoProblem;
 }
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const

@@ -456,6 +456,16 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxUseSeparateTrackerStatusFilter">
+                 <property name="toolTip">
+                  <string>Use separate &quot;Tracker status&quot; filter. Otherwise it gets merged with &quot;Trackers&quot; filter.</string>
+                 </property>
+                 <property name="text">
+                  <string>Use separate &quot;Tracker status&quot; filter</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

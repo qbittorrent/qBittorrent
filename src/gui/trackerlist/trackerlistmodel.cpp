@@ -267,7 +267,7 @@ TrackerListModel::TrackerListModel(BitTorrent::Session *btSession, QObject *pare
         if (torrent == m_torrent)
             onTrackersRemoved(deletedTrackers);
     });
-    connect(m_btSession, &BitTorrent::Session::trackersChanged, this
+    connect(m_btSession, &BitTorrent::Session::trackersReset, this
             , [this](BitTorrent::Torrent *torrent)
     {
         if (torrent == m_torrent)

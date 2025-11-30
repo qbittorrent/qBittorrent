@@ -49,13 +49,13 @@ public:
 
     void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
-    void setStatusFilter(TorrentFilter::Type filter);
+    void setStatusFilter(TorrentFilter::Status status);
     void setCategoryFilter(const QString &category);
     void disableCategoryFilter();
     void setTagFilter(const Tag &tag);
     void disableTagFilter();
-    void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
-    void disableTrackerFilter();
+    void setTrackerFilter(const std::optional<QString> &trackerHost);
+    void setAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
 
 private:
     int compare(const QModelIndex &left, const QModelIndex &right) const;

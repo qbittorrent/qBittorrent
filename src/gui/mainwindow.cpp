@@ -492,7 +492,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_transferListWidget->applyStatusFilter(pref->getTransSelFilter());
         m_transferListWidget->applyCategoryFilter(QString());
         m_transferListWidget->applyTagFilter(std::nullopt);
-        m_transferListWidget->applyTrackerFilterAll();
+        m_transferListWidget->applyTrackerFilter({});
     }
 
     // Start watching the executable for updates
@@ -1361,11 +1361,6 @@ void MainWindow::showFiltersSidebar(const bool show)
     if (show && !m_transferListFiltersWidget)
     {
         m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget, isDownloadTrackerFavicon());
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::refreshTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerEntryStatusesUpdated, m_transferListFiltersWidget, &TransferListFiltersWidget::trackerEntryStatusesUpdated);
-
         m_splitter->insertWidget(0, m_transferListFiltersWidget);
         m_splitter->setCollapsible(0, true);
         // From https://doc.qt.io/qt-5/qsplitter.html#setSizes:
