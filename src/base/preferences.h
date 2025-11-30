@@ -287,6 +287,8 @@ public:
 
     bool shutdownWhenDownloadsComplete() const;
     void setShutdownWhenDownloadsComplete(bool shutdown);
+    bool rebootWhenDownloadsComplete() const;
+    void setRebootWhenDownloadsComplete(bool reboot);
     bool suspendWhenDownloadsComplete() const;
     void setSuspendWhenDownloadsComplete(bool suspend);
     bool hibernateWhenDownloadsComplete() const;
