@@ -99,8 +99,6 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
         setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
     else
         setCurrentRow(storedRow, QItemSelectionModel::SelectCurrent);
-
-    toggleFilter(pref->getStatusFilterState());
 }
 
 StatusFilterWidget::~StatusFilterWidget()
@@ -128,7 +126,7 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
 {
     TorrentFilterBitset &torrentStatus = m_torrentsStatus[torrent];
 
-    const auto update = [torrent, &torrentStatus](const TorrentFilter::Type status, int &counter)
+    const auto update = [torrent, &torrentStatus](const TorrentFilter::Status status, int &counter)
     {
         const bool hasStatus = torrentStatus[status];
         const bool needStatus = TorrentFilter(status).match(torrent);

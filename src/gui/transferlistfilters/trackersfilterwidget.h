@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -57,11 +57,6 @@ public:
     TrackersFilterWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     ~TrackersFilterWidget() override;
 
-    void addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void refreshTrackers(const BitTorrent::Torrent *torrent);
-    void handleTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
-            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
     void setDownloadTrackerFavicon(bool value);
 
 private slots:
@@ -75,28 +70,40 @@ private:
     void handleTorrentsLoaded(const QList<BitTorrent::Torrent *> &torrents) override;
     void torrentAboutToBeDeleted(BitTorrent::Torrent *torrent) override;
 
+    void handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
+    void handleTorrentTrackersRemoved(const BitTorrent::Torrent *torrent, const QStringList &trackers);
+    void handleTorrentTrackersReset(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntryStatus> &oldEntries
+            , const QList<BitTorrent::TrackerEntry> &newEntries);
+    void handleTorrentTrackerStatusesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
+
     void onRemoveTrackerTriggered();
 
-    void addItems(const QString &trackerURL, const QList<BitTorrent::TorrentID> &torrents);
-    void removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id);
+    void increaseTorrentsCount(const QString &trackerHost, qsizetype torrentsCount);
+    void decreaseTorrentsCount(const QString &trackerHost);
+    void refreshStatusItems(const BitTorrent::Torrent *torrent);
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
-    QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
     void downloadFavicon(const QString &trackerHost, const QString &faviconURL);
-    void removeTracker(const QString &tracker);
+    void removeTracker(const QString &trackerHost);
+
+    void enableTrackerStatusItems(bool value);
+
+    qsizetype numSpecialRows() const;
 
     struct TrackerData
     {
-        QSet<BitTorrent::TorrentID> torrents;
+        qsizetype torrentsCount = 0;
         QListWidgetItem *item = nullptr;
     };
 
     QHash<QString, TrackerData> m_trackers;   // <tracker host, tracker data>
-    QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
-    QHash<BitTorrent::TorrentID, QSet<QString>> m_trackerErrors;  // <torrent ID, tracker hosts>
-    QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
+    QSet<const BitTorrent::Torrent *> m_errors;
+    QSet<const BitTorrent::Torrent *> m_trackerErrors;
+    QSet<const BitTorrent::Torrent *> m_warnings;
     PathList m_iconPaths;
     int m_totalTorrents = 0;
     bool m_downloadTrackerFavicon = false;
+    bool m_handleTrackerStatuses = false;
     QHash<QString, QSet<QString>> m_downloadingFavicons;   // <favicon URL, tracker hosts>
 };

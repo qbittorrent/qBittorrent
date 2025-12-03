@@ -518,7 +518,7 @@ namespace BitTorrent
         void torrentTagRemoved(Torrent *torrent, const Tag &tag);
         void trackerError(Torrent *torrent, const QString &tracker);
         void trackersAdded(Torrent *torrent, const QList<TrackerEntry> &trackers);
-        void trackersChanged(Torrent *torrent);
+        void trackersReset(Torrent *torrent, const QList<TrackerEntryStatus> &oldEntries, const QList<TrackerEntry> &newEntries);
         void trackersRemoved(Torrent *torrent, const QStringList &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
