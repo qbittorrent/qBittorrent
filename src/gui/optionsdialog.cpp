@@ -297,6 +297,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
 
     m_ui->checkBoxHideZeroStatusFilters->setChecked(pref->getHideZeroStatusFilters());
+    m_ui->checkBoxUseSeparateTrackerStatusFilter->setChecked(pref->useSeparateTrackerStatusFilter());
 
     m_ui->checkTorrentContentDrag->setChecked(pref->isTorrentContentDragEnabled());
 
@@ -407,6 +408,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->actionTorrentDlOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxHideZeroStatusFilters, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxUseSeparateTrackerStatusFilter, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkTorrentContentDrag, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
@@ -504,6 +506,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
 
     pref->setHideZeroStatusFilters(m_ui->checkBoxHideZeroStatusFilters->isChecked());
+    pref->setUseSeparateTrackerStatusFilter(m_ui->checkBoxUseSeparateTrackerStatusFilter->isChecked());
 
     pref->setTorrentContentDragEnabled(m_ui->checkTorrentContentDrag->isChecked());
 

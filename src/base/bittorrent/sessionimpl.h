@@ -474,7 +474,7 @@ namespace BitTorrent
         void handleTorrentFinished(TorrentImpl *torrent);
         void handleTorrentTrackersAdded(TorrentImpl *torrent, const QList<TrackerEntry> &newTrackers);
         void handleTorrentTrackersRemoved(TorrentImpl *torrent, const QStringList &deletedTrackers);
-        void handleTorrentTrackersChanged(TorrentImpl *torrent);
+        void handleTorrentTrackersReset(TorrentImpl *torrent, const QList<TrackerEntryStatus> &oldEntries, const QList<TrackerEntry> &newEntries);
         void handleTorrentUrlSeedsAdded(TorrentImpl *torrent, const QList<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QList<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *torrent, LoadTorrentParams data);
