@@ -149,12 +149,16 @@ namespace BitTorrent
 
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
+        bool setCategoryOptions(const QString &categoryName, const CategoryOptions &options) override;
         Path categorySavePath(const QString &categoryName) const override;
         Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
         Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
+        qreal categoryRatioLimit(const QString &categoryName) const override;
+        int categorySeedingTimeLimit(const QString &categoryName) const override;
+        int categoryInactiveSeedingTimeLimit(const QString &categoryName) const override;
+        ShareLimitAction categoryShareLimitAction(const QString &categoryName) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
-        bool editCategory(const QString &name, const CategoryOptions &options) override;
         bool removeCategory(const QString &name) override;
         bool useCategoryPathsInManualMode() const override;
         void setUseCategoryPathsInManualMode(bool value) override;

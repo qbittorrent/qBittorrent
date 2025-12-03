@@ -21,26 +21,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="comboBoxRatioMode">
-       <property name="currentIndex">
-        <number>-1</number>
-       </property>
-       <item>
-        <property name="text">
-         <string>Default</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Unlimited</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Set to</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="comboBoxRatioMode"/>
      </item>
      <item row="0" column="2">
       <widget class="QDoubleSpinBox" name="spinBoxRatioValue">
@@ -63,26 +44,7 @@
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QComboBox" name="comboBoxSeedingTimeMode">
-       <property name="currentIndex">
-        <number>-1</number>
-       </property>
-       <item>
-        <property name="text">
-         <string>Default</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Unlimited</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Set to</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="comboBoxSeedingTimeMode"/>
      </item>
      <item row="1" column="2">
       <widget class="QSpinBox" name="spinBoxSeedingTimeValue">
@@ -108,26 +70,7 @@
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QComboBox" name="comboBoxInactiveSeedingTimeMode">
-       <property name="currentIndex">
-        <number>-1</number>
-       </property>
-       <item>
-        <property name="text">
-         <string>Default</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Unlimited</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Set to</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="comboBoxInactiveSeedingTimeMode"/>
      </item>
      <item row="2" column="2">
       <widget class="QSpinBox" name="spinBoxInactiveSeedingTimeValue">
@@ -157,36 +100,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBoxAction">
-       <property name="currentIndex">
-        <number>-1</number>
-       </property>
-       <item>
-        <property name="text">
-         <string>Default</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Stop torrent</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Remove torrent</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Remove torrent and its content</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Enable super seeding for torrent</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QComboBox" name="comboBoxAction"/>
      </item>
      <item>
       <spacer name="actionLayoutSpacer">
