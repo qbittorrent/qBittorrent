@@ -515,7 +515,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_s)
         , Torrent::NO_SEEDING_TIME_LIMIT, lowerLimited(Torrent::NO_SEEDING_TIME_LIMIT))
     , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s)
-        , Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT, lowerLimited(Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT))
+        , Torrent::NO_SEEDING_TIME_LIMIT, lowerLimited(Torrent::NO_SEEDING_TIME_LIMIT))
     , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_s), false)
     , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
@@ -986,6 +986,34 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     return (basePath / path);
 }
 
+qreal SessionImpl::categoryRatioLimit(const QString &categoryName) const
+{
+    const CategoryOptions options = categoryOptions(categoryName);
+    return (options.ratioLimit == Torrent::DEFAULT_RATIO_LIMIT)
+            ? globalMaxRatio() : options.ratioLimit;
+}
+
+int SessionImpl::categorySeedingTimeLimit(const QString &categoryName) const
+{
+    const CategoryOptions options = categoryOptions(categoryName);
+    return (options.seedingTimeLimit == Torrent::DEFAULT_SEEDING_TIME_LIMIT)
+            ? globalMaxSeedingMinutes() : options.seedingTimeLimit;
+}
+
+int SessionImpl::categoryInactiveSeedingTimeLimit(const QString &categoryName) const
+{
+    const CategoryOptions options = categoryOptions(categoryName);
+    return (options.inactiveSeedingTimeLimit == Torrent::DEFAULT_SEEDING_TIME_LIMIT)
+            ? globalMaxInactiveSeedingMinutes() : options.inactiveSeedingTimeLimit;
+}
+
+ShareLimitAction SessionImpl::categoryShareLimitAction(const QString &categoryName) const
+{
+    const CategoryOptions options = categoryOptions(categoryName);
+    return (options.shareLimitAction == ShareLimitAction::Default)
+            ? shareLimitAction() : options.shareLimitAction;
+}
+
 DownloadPathOption SessionImpl::resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const
 {
     if (categoryName.isEmpty())
@@ -1025,9 +1053,9 @@ bool SessionImpl::addCategory(const QString &name, const CategoryOptions &option
     return true;
 }
 
-bool SessionImpl::editCategory(const QString &name, const CategoryOptions &options)
+bool SessionImpl::setCategoryOptions(const QString &categoryName, const CategoryOptions &options)
 {
-    const auto it = m_categories.find(name);
+    const auto it = m_categories.find(categoryName);
     if (it == m_categories.end())
         return false;
 
@@ -1035,14 +1063,15 @@ bool SessionImpl::editCategory(const QString &name, const CategoryOptions &optio
     if (options == currentOptions)
         return false;
 
-    if (isDisableAutoTMMWhenCategorySavePathChanged())
+    if (isDisableAutoTMMWhenCategorySavePathChanged()
+            && ((options.savePath != currentOptions.savePath) || (options.downloadPath != currentOptions.downloadPath)))
     {
         // This should be done before changing the category options
         // to prevent the torrent from being moved at the new save path.
 
         for (TorrentImpl *const torrent : asConst(m_torrents))
         {
-            if (torrent->category() == name)
+            if (torrent->category() == categoryName)
                 torrent->setAutoTMMEnabled(false);
         }
     }
@@ -1052,11 +1081,11 @@ bool SessionImpl::editCategory(const QString &name, const CategoryOptions &optio
 
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
-        if (torrent->category() == name)
+        if (torrent->category() == categoryName)
             torrent->handleCategoryOptionsChanged();
     }
 
-    emit categoryOptionsChanged(name);
+    emit categoryOptionsChanged(categoryName);
     return true;
 }
 
@@ -1313,7 +1342,7 @@ int SessionImpl::globalMaxInactiveSeedingMinutes() const
 
 void SessionImpl::setGlobalMaxInactiveSeedingMinutes(int minutes)
 {
-    minutes = std::max(minutes, Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT);
+    minutes = std::max(minutes, Torrent::NO_SEEDING_TIME_LIMIT);
 
     if (minutes != globalMaxInactiveSeedingMinutes())
     {
@@ -2356,14 +2385,9 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     if (!torrent->isFinished() || torrent->isForced())
         return;
 
-    const auto effectiveLimit = []<typename T>(const T limit, const T useGlobalLimit, const T globalLimit) -> T
-    {
-        return (limit == useGlobalLimit) ? globalLimit : limit;
-    };
-
-    const qreal ratioLimit = effectiveLimit(torrent->ratioLimit(), Torrent::USE_GLOBAL_RATIO, globalMaxRatio());
-    const int seedingTimeLimit = effectiveLimit(torrent->seedingTimeLimit(), Torrent::USE_GLOBAL_SEEDING_TIME, globalMaxSeedingMinutes());
-    const int inactiveSeedingTimeLimit = effectiveLimit(torrent->inactiveSeedingTimeLimit(), Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME, globalMaxInactiveSeedingMinutes());
+    const qreal ratioLimit = torrent->effectiveRatioLimit();
+    const int seedingTimeLimit = torrent->effectiveSeedingTimeLimit();
+    const int inactiveSeedingTimeLimit = torrent->effectiveInactiveSeedingTimeLimit();
 
     bool reached = false;
     QString description;
@@ -2390,7 +2414,7 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     if (reached)
     {
         const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
-        const ShareLimitAction shareLimitAction = (torrent->shareLimitAction() == ShareLimitAction::Default) ? m_shareLimitAction : torrent->shareLimitAction();
+        const ShareLimitAction shareLimitAction = torrent->effectiveShareLimitAction();
 
         if (shareLimitAction == ShareLimitAction::Remove)
         {
@@ -5220,7 +5244,7 @@ void SessionImpl::updateSeedingLimitTimer()
 {
     if ((globalMaxRatio() == Torrent::NO_RATIO_LIMIT) && !hasPerTorrentRatioLimit()
         && (globalMaxSeedingMinutes() == Torrent::NO_SEEDING_TIME_LIMIT) && !hasPerTorrentSeedingTimeLimit()
-        && (globalMaxInactiveSeedingMinutes() == Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT) && !hasPerTorrentInactiveSeedingTimeLimit())
+        && (globalMaxInactiveSeedingMinutes() == Torrent::NO_SEEDING_TIME_LIMIT) && !hasPerTorrentInactiveSeedingTimeLimit())
     {
         if (m_seedingLimitTimer->isActive())
             m_seedingLimitTimer->stop();

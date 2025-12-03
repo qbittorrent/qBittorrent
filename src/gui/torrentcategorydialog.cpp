@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017, 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,11 +32,12 @@
 #include <QPushButton>
 
 #include "base/bittorrent/session.h"
-#include "base/utils/fs.h"
+#include "base/bittorrent/torrent.h"
+#include "torrentsharelimitswidget.h"
 #include "ui_torrentcategorydialog.h"
 
 TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
-    : QDialog {parent}
+    : QDialog(parent)
     , m_ui {new Ui::TorrentCategoryDialog}
 {
     m_ui->setupUi(this);
@@ -117,7 +118,7 @@ void TorrentCategoryDialog::editCategory(QWidget *parent, const QString &categor
     dialog->setCategoryOptions(Session::instance()->categoryOptions(categoryName));
     connect(dialog, &TorrentCategoryDialog::accepted, parent, [dialog, categoryName]()
     {
-        Session::instance()->editCategory(categoryName, dialog->categoryOptions());
+        Session::instance()->setCategoryOptions(categoryName, dialog->categoryOptions());
     });
     dialog->open();
 }
@@ -149,6 +150,11 @@ BitTorrent::CategoryOptions TorrentCategoryDialog::categoryOptions() const
     else if (m_ui->comboUseDownloadPath->currentIndex() == 2)
         categoryOptions.downloadPath = {false, {}};
 
+    categoryOptions.ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit().value_or(BitTorrent::Torrent::DEFAULT_RATIO_LIMIT);
+    categoryOptions.seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit().value_or(BitTorrent::Torrent::DEFAULT_SEEDING_TIME_LIMIT);
+    categoryOptions.inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit().value_or(BitTorrent::Torrent::DEFAULT_SEEDING_TIME_LIMIT);
+    categoryOptions.shareLimitAction = m_ui->torrentShareLimitsWidget->shareLimitAction().value_or(BitTorrent::ShareLimitAction::Default);
+
     return categoryOptions;
 }
 
@@ -165,6 +171,11 @@ void TorrentCategoryDialog::setCategoryOptions(const BitTorrent::CategoryOptions
         m_ui->comboUseDownloadPath->setCurrentIndex(0);
         m_ui->comboDownloadPath->setSelectedPath({});
     }
+
+    m_ui->torrentShareLimitsWidget->setRatioLimit(categoryOptions.ratioLimit);
+    m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(categoryOptions.seedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(categoryOptions.inactiveSeedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setShareLimitAction(categoryOptions.shareLimitAction);
 }
 
 void TorrentCategoryDialog::categoryNameChanged(const QString &categoryName)

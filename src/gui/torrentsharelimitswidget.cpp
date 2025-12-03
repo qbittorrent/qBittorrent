@@ -83,7 +83,7 @@ TorrentShareLimitsWidget::~TorrentShareLimitsWidget()
 
 void TorrentShareLimitsWidget::setRatioLimit(const qreal ratioLimit)
 {
-    if (ratioLimit == BitTorrent::Torrent::USE_GLOBAL_RATIO)
+    if (ratioLimit == BitTorrent::Torrent::DEFAULT_RATIO_LIMIT)
     {
         m_ui->comboBoxRatioMode->setCurrentIndex(DefaultModeIndex);
     }
@@ -100,7 +100,7 @@ void TorrentShareLimitsWidget::setRatioLimit(const qreal ratioLimit)
 
 void TorrentShareLimitsWidget::setSeedingTimeLimit(const int seedingTimeLimit)
 {
-    if (seedingTimeLimit == BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME)
+    if (seedingTimeLimit == BitTorrent::Torrent::DEFAULT_SEEDING_TIME_LIMIT)
     {
         m_ui->comboBoxSeedingTimeMode->setCurrentIndex(DefaultModeIndex);
     }
@@ -117,11 +117,11 @@ void TorrentShareLimitsWidget::setSeedingTimeLimit(const int seedingTimeLimit)
 
 void TorrentShareLimitsWidget::setInactiveSeedingTimeLimit(const int inactiveSeedingTimeLimit)
 {
-    if (inactiveSeedingTimeLimit == BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME)
+    if (inactiveSeedingTimeLimit == BitTorrent::Torrent::DEFAULT_SEEDING_TIME_LIMIT)
     {
         m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(DefaultModeIndex);
     }
-    else if (inactiveSeedingTimeLimit == BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT)
+    else if (inactiveSeedingTimeLimit == BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT)
     {
         m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(UnlimitedModeIndex);
     }
@@ -181,7 +181,7 @@ std::optional<qreal> TorrentShareLimitsWidget::ratioLimit() const
     switch (m_ui->comboBoxRatioMode->currentIndex())
     {
     case DefaultModeIndex:
-        return BitTorrent::Torrent::USE_GLOBAL_RATIO;
+        return BitTorrent::Torrent::DEFAULT_RATIO_LIMIT;
     case UnlimitedModeIndex:
         return BitTorrent::Torrent::NO_RATIO_LIMIT;
     case AssignedModeIndex:
@@ -196,7 +196,7 @@ std::optional<int> TorrentShareLimitsWidget::seedingTimeLimit() const
     switch (m_ui->comboBoxSeedingTimeMode->currentIndex())
     {
     case DefaultModeIndex:
-        return BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME;
+        return BitTorrent::Torrent::DEFAULT_SEEDING_TIME_LIMIT;
     case UnlimitedModeIndex:
         return BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
     case AssignedModeIndex:
@@ -211,9 +211,9 @@ std::optional<int> TorrentShareLimitsWidget::inactiveSeedingTimeLimit() const
     switch (m_ui->comboBoxInactiveSeedingTimeMode->currentIndex())
     {
     case DefaultModeIndex:
-        return BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
+        return BitTorrent::Torrent::DEFAULT_SEEDING_TIME_LIMIT;
     case UnlimitedModeIndex:
-        return BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
+        return BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
     case AssignedModeIndex:
         return m_ui->spinBoxInactiveSeedingTimeValue->value();
     default:
