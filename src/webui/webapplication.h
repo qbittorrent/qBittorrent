@@ -57,7 +57,7 @@
 
 using namespace std::chrono_literals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 14, 1};
+inline const Utils::Version<3, 2> API_VERSION {2, 14, 2};
 
 class APIController;
 class AuthController;
@@ -92,7 +92,8 @@ private:
 };
 
 class WebApplication final : public ApplicationComponent<QObject>
-        , public Http::IRequestHandler, public ISessionManager
+        , public Http::IRequestHandler
+        , public ISessionManager
         , private Http::ResponseBuilder
 {
     Q_OBJECT
