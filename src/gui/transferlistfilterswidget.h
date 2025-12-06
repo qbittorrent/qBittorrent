@@ -53,4 +53,5 @@ public:
 private:
     TransferListWidget *m_transferList = nullptr;
     TrackersFilterWidget *m_trackersFilterWidget = nullptr;
+    bool m_useSeparateTrackerStatusFilter = false;
 };

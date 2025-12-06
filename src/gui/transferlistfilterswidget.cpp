@@ -159,12 +159,17 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
         delete layoutItem;
     };
 
-    if (pref->useSeparateTrackerStatusFilter())
+    m_useSeparateTrackerStatusFilter = pref->useSeparateTrackerStatusFilter();
+    if (m_useSeparateTrackerStatusFilter)
         createTrackerStatusItem();
 
-    connect(pref, &Preferences::changed, this, [pref, createTrackerStatusItem, removeTrackerStatusItem]
+    connect(pref, &Preferences::changed, this, [this, pref, createTrackerStatusItem, removeTrackerStatusItem]
     {
-        if (pref->useSeparateTrackerStatusFilter())
+        if (m_useSeparateTrackerStatusFilter == pref->useSeparateTrackerStatusFilter())
+            return;
+
+        m_useSeparateTrackerStatusFilter = !m_useSeparateTrackerStatusFilter;
+        if (m_useSeparateTrackerStatusFilter)
             createTrackerStatusItem();
         else
             removeTrackerStatusItem();
