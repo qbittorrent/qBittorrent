@@ -564,7 +564,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             column["force_hide"] = false;
             column["caption"] = caption;
             column["style"] = style;
-            column["width"] = localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth);
+            if (defaultWidth !== -1)
+                column["width"] = localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth);
             column["dataProperties"] = [name];
             column["getRowValue"] = function(row, pos) {
                 if (pos === undefined)
@@ -3098,9 +3099,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             return [...this.getRowValues()];
         }
         selectRow(rowId) {
-            this.selectedRows.push(rowId);
-            this.setRowClass();
-            this.onSelectedRowChanged();
+            super.selectRow(rowId);
 
             let path = "";
             for (const row of this.getRowValues()) {
@@ -3177,42 +3176,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
             }
         }
-        newColumn(name, style, caption, defaultWidth, defaultVisible) {
-            const column = {};
-            column["name"] = name;
-            column["title"] = name;
-            column["visible"] = defaultVisible;
-            column["force_hide"] = false;
-            column["caption"] = caption;
-            column["style"] = style;
-            if (defaultWidth !== -1)
-                column["width"] = defaultWidth;
-
-            column["dataProperties"] = [name];
-            column["getRowValue"] = function(row, pos) {
-                if (pos === undefined)
-                    pos = 0;
-                return row["full_data"][this.dataProperties[pos]];
-            };
-            column["compareRows"] = function(row1, row2) {
-                const value1 = this.getRowValue(row1);
-                const value2 = this.getRowValue(row2);
-                if ((typeof(value1) === "number") && (typeof(value2) === "number"))
-                    return compareNumbers(value1, value2);
-                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
-            };
-            column["updateTd"] = function(td, row) {
-                const value = this.getRowValue(row);
-                td.textContent = value;
-                td.title = value;
-            };
-            column["onResize"] = null;
-            this.columns.push(column);
-            this.columns[name] = column;
-
-            this.hiddenTableHeader.append(document.createElement("th"));
-            this.fixedTableHeader.append(document.createElement("th"));
-        }
     }
 
     class RssArticleTable extends DynamicTable {
@@ -3225,9 +3188,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             return [...this.getRowValues()];
         }
         selectRow(rowId) {
-            this.selectedRows.push(rowId);
-            this.setRowClass();
-            this.onSelectedRowChanged();
+            super.selectRow(rowId);
 
             let articleId = "";
             let feedUid = "";
@@ -3258,42 +3219,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             tr.classList.toggle("unreadArticle", !row.full_data.isRead);
 
             return super.updateRow(tr, fullUpdate);
-        }
-        newColumn(name, style, caption, defaultWidth, defaultVisible) {
-            const column = {};
-            column["name"] = name;
-            column["title"] = name;
-            column["visible"] = defaultVisible;
-            column["force_hide"] = false;
-            column["caption"] = caption;
-            column["style"] = style;
-            if (defaultWidth !== -1)
-                column["width"] = defaultWidth;
-
-            column["dataProperties"] = [name];
-            column["getRowValue"] = function(row, pos) {
-                if (pos === undefined)
-                    pos = 0;
-                return row["full_data"][this.dataProperties[pos]];
-            };
-            column["compareRows"] = function(row1, row2) {
-                const value1 = this.getRowValue(row1);
-                const value2 = this.getRowValue(row2);
-                if ((typeof(value1) === "number") && (typeof(value2) === "number"))
-                    return compareNumbers(value1, value2);
-                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
-            };
-            column["updateTd"] = function(td, row) {
-                const value = this.getRowValue(row);
-                td.textContent = value;
-                td.title = value;
-            };
-            column["onResize"] = null;
-            this.columns.push(column);
-            this.columns[name] = column;
-
-            this.hiddenTableHeader.append(document.createElement("th"));
-            this.fixedTableHeader.append(document.createElement("th"));
         }
     }
 
@@ -3342,46 +3267,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 window.qBittorrent.RssDownloader.renameRule(this.getRow(tr.rowId).full_data.name);
             });
         }
-        newColumn(name, style, caption, defaultWidth, defaultVisible) {
-            const column = {};
-            column["name"] = name;
-            column["title"] = name;
-            column["visible"] = defaultVisible;
-            column["force_hide"] = false;
-            column["caption"] = caption;
-            column["style"] = style;
-            if (defaultWidth !== -1)
-                column["width"] = defaultWidth;
-
-            column["dataProperties"] = [name];
-            column["getRowValue"] = function(row, pos) {
-                if (pos === undefined)
-                    pos = 0;
-                return row["full_data"][this.dataProperties[pos]];
-            };
-            column["compareRows"] = function(row1, row2) {
-                const value1 = this.getRowValue(row1);
-                const value2 = this.getRowValue(row2);
-                if ((typeof(value1) === "number") && (typeof(value2) === "number"))
-                    return compareNumbers(value1, value2);
-                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
-            };
-            column["updateTd"] = function(td, row) {
-                const value = this.getRowValue(row);
-                td.textContent = value;
-                td.title = value;
-            };
-            column["onResize"] = null;
-            this.columns.push(column);
-            this.columns[name] = column;
-
-            this.hiddenTableHeader.append(document.createElement("th"));
-            this.fixedTableHeader.append(document.createElement("th"));
-        }
         selectRow(rowId) {
-            this.selectedRows.push(rowId);
-            this.setRowClass();
-            this.onSelectedRowChanged();
+            super.selectRow(rowId);
 
             let name = "";
             for (const row of this.getRowValues()) {
@@ -3427,42 +3314,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         getFilteredAndSortedRows() {
             return [...this.getRowValues()];
         }
-        newColumn(name, style, caption, defaultWidth, defaultVisible) {
-            const column = {};
-            column["name"] = name;
-            column["title"] = name;
-            column["visible"] = defaultVisible;
-            column["force_hide"] = false;
-            column["caption"] = caption;
-            column["style"] = style;
-            if (defaultWidth !== -1)
-                column["width"] = defaultWidth;
-
-            column["dataProperties"] = [name];
-            column["getRowValue"] = function(row, pos) {
-                if (pos === undefined)
-                    pos = 0;
-                return row["full_data"][this.dataProperties[pos]];
-            };
-            column["compareRows"] = function(row1, row2) {
-                const value1 = this.getRowValue(row1);
-                const value2 = this.getRowValue(row2);
-                if ((typeof(value1) === "number") && (typeof(value2) === "number"))
-                    return compareNumbers(value1, value2);
-                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
-            };
-            column["updateTd"] = function(td, row) {
-                const value = this.getRowValue(row);
-                td.textContent = value;
-                td.title = value;
-            };
-            column["onResize"] = null;
-            this.columns.push(column);
-            this.columns[name] = column;
-
-            this.hiddenTableHeader.append(document.createElement("th"));
-            this.fixedTableHeader.append(document.createElement("th"));
-        }
         selectRow() {}
     }
 
@@ -3474,42 +3325,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         setupHeaderEvents() {}
         getFilteredAndSortedRows() {
             return [...this.getRowValues()];
-        }
-        newColumn(name, style, caption, defaultWidth, defaultVisible) {
-            const column = {};
-            column["name"] = name;
-            column["title"] = name;
-            column["visible"] = defaultVisible;
-            column["force_hide"] = false;
-            column["caption"] = caption;
-            column["style"] = style;
-            if (defaultWidth !== -1)
-                column["width"] = defaultWidth;
-
-            column["dataProperties"] = [name];
-            column["getRowValue"] = function(row, pos) {
-                if (pos === undefined)
-                    pos = 0;
-                return row["full_data"][this.dataProperties[pos]];
-            };
-            column["compareRows"] = function(row1, row2) {
-                const value1 = this.getRowValue(row1);
-                const value2 = this.getRowValue(row2);
-                if ((typeof(value1) === "number") && (typeof(value2) === "number"))
-                    return compareNumbers(value1, value2);
-                return window.qBittorrent.Misc.naturalSortCollator.compare(value1, value2);
-            };
-            column["updateTd"] = function(td, row) {
-                const value = this.getRowValue(row);
-                td.textContent = value;
-                td.title = value;
-            };
-            column["onResize"] = null;
-            this.columns.push(column);
-            this.columns[name] = column;
-
-            this.hiddenTableHeader.append(document.createElement("th"));
-            this.fixedTableHeader.append(document.createElement("th"));
         }
         selectRow() {}
         updateRow(tr, fullUpdate) {
