@@ -300,7 +300,7 @@ void TrackersFilterWidget::decreaseTorrentsCount(const QString &trackerHost)
 
     --trackerData.torrentsCount;
 
-    if (trackerData.torrentsCount == 0)
+    if ((trackerData.torrentsCount == 0) && (trackerHost != NULL_HOST))
     {
         if (currentItem() == trackerData.item)
             setCurrentRow(0, QItemSelectionModel::SelectCurrent);
