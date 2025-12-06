@@ -621,12 +621,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
 
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
-    m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
-    m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
-    m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
-
     m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
-    m_ui->checkUseCategoryPaths->setChecked(session->useCategoryPathsInManualMode());
 
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
@@ -726,12 +721,8 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->comboSavingMode, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboTorrentCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkUseSubcategories, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkUseCategoryPaths, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textDownloadPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -798,13 +789,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
-    session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
-    session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
-    session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
-
     session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
-    session->setUseCategoryPathsInManualMode(m_ui->checkUseCategoryPaths->isChecked());
-
     session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
     session->setDownloadPathEnabled(m_ui->checkUseDownloadPath->isChecked());
     session->setDownloadPath(m_ui->textDownloadPath->selectedPath());

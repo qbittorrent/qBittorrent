@@ -505,8 +505,7 @@ void TorrentImpl::setSavePath(const Path &path)
     if (isAutoTMMEnabled()) [[unlikely]]
         return;
 
-    const Path basePath = m_session->useCategoryPathsInManualMode()
-            ? m_session->categorySavePath(category()) : m_session->savePath();
+    const Path basePath = m_session->categorySavePath(category());
     const Path resolvedPath = (path.isAbsolute() ? path : (basePath / path));
     if (resolvedPath == savePath())
         return;
@@ -534,8 +533,7 @@ void TorrentImpl::setDownloadPath(const Path &path)
     if (isAutoTMMEnabled()) [[unlikely]]
         return;
 
-    const Path basePath = m_session->useCategoryPathsInManualMode()
-            ? m_session->categoryDownloadPath(category()) : m_session->downloadPath();
+    const Path basePath = m_session->categoryDownloadPath(category());
     const Path resolvedPath = (path.isEmpty() || path.isAbsolute()) ? path : (basePath / path);
     if (resolvedPath == m_downloadPath)
         return;
@@ -1622,13 +1620,6 @@ bool TorrentImpl::setCategory(const QString &category)
     {
         if (!category.isEmpty() && !m_session->categories().contains(category))
             return false;
-
-        if (m_session->isDisableAutoTMMWhenCategoryChanged())
-        {
-            // This should be done before changing the category name
-            // to prevent the torrent from being moved at the path of new category.
-            setAutoTMMEnabled(false);
-        }
 
         const QString oldCategory = m_category;
         m_category = category;

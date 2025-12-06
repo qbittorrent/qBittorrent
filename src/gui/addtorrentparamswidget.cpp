@@ -337,8 +337,7 @@ void AddTorrentParamsWidget::populateDefaultPaths()
 {
     const auto *btSession = BitTorrent::Session::instance();
 
-    const Path defaultSavePath = btSession->suggestedSavePath(
-            m_ui->categoryComboBox->currentText(), toOptionalBool(m_ui->comboTTM->currentData()));
+    const Path defaultSavePath = btSession->categorySavePath(m_ui->categoryComboBox->currentText());
     m_ui->savePathEdit->setPlaceholder(defaultSavePath);
 
     populateDefaultDownloadPath();
@@ -351,8 +350,8 @@ void AddTorrentParamsWidget::populateDefaultDownloadPath()
     const std::optional<bool> useDownloadPath = toOptionalBool(m_ui->useDownloadPathComboBox->currentData());
     if (useDownloadPath.value_or(btSession->isDownloadPathEnabled()))
     {
-        const Path defaultDownloadPath = btSession->suggestedDownloadPath(
-                m_ui->categoryComboBox->currentText(), toOptionalBool(m_ui->comboTTM->currentData()));
+        const Path categoryDownloadPath = btSession->categoryDownloadPath(m_ui->categoryComboBox->currentText());
+        const Path defaultDownloadPath = !categoryDownloadPath.isEmpty() ? categoryDownloadPath : btSession->downloadPath();
         m_ui->downloadPathEdit->setPlaceholder(defaultDownloadPath);
     }
     else
