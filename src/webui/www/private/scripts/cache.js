@@ -108,9 +108,12 @@ window.qBittorrent.Cache ??= (() => {
                         json: JSON.stringify(data)
                     })
                 })
-                .then((response) => {
-                    if (!response.ok)
-                        return;
+                .then(async (response) => {
+                    if (!response.ok) {
+                        const error = new Error(await response.text());
+                        error.name = "ServerError";
+                        throw error;
+                    }
 
                     this.#m_store = structuredClone(this.#m_store);
                     for (const key in data) {
