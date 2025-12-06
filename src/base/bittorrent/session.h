@@ -167,11 +167,6 @@ namespace BitTorrent
         virtual bool removeCategory(const QString &name) = 0;
         virtual bool isSubcategoriesEnabled() const = 0;
         virtual void setSubcategoriesEnabled(bool value) = 0;
-        virtual bool useCategoryPathsInManualMode() const = 0;
-        virtual void setUseCategoryPathsInManualMode(bool value) = 0;
-
-        virtual Path suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
-        virtual Path suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
 
         virtual TagSet tags() const = 0;
         virtual bool hasTag(const Tag &tag) const = 0;
@@ -188,15 +183,8 @@ namespace BitTorrent
         //     1. Default save path changed
         //     2. Torrent category save path changed
         //     3. Torrent category changed
-        //     (unless otherwise is specified)
         virtual bool isAutoTMMDisabledByDefault() const = 0;
         virtual void setAutoTMMDisabledByDefault(bool value) = 0;
-        virtual bool isDisableAutoTMMWhenCategoryChanged() const = 0;
-        virtual void setDisableAutoTMMWhenCategoryChanged(bool value) = 0;
-        virtual bool isDisableAutoTMMWhenDefaultSavePathChanged() const = 0;
-        virtual void setDisableAutoTMMWhenDefaultSavePathChanged(bool value) = 0;
-        virtual bool isDisableAutoTMMWhenCategorySavePathChanged() const = 0;
-        virtual void setDisableAutoTMMWhenCategorySavePathChanged(bool value) = 0;
 
         virtual qreal globalMaxRatio() const = 0;
         virtual void setGlobalMaxRatio(qreal ratio) = 0;
