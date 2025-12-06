@@ -158,11 +158,6 @@ namespace BitTorrent
         bool removeCategory(const QString &name) override;
         bool isSubcategoriesEnabled() const override;
         void setSubcategoriesEnabled(bool value) override;
-        bool useCategoryPathsInManualMode() const override;
-        void setUseCategoryPathsInManualMode(bool value) override;
-
-        Path suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const override;
-        Path suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const override;
 
         TagSet tags() const override;
         bool hasTag(const Tag &tag) const override;
@@ -171,12 +166,6 @@ namespace BitTorrent
 
         bool isAutoTMMDisabledByDefault() const override;
         void setAutoTMMDisabledByDefault(bool value) override;
-        bool isDisableAutoTMMWhenCategoryChanged() const override;
-        void setDisableAutoTMMWhenCategoryChanged(bool value) override;
-        bool isDisableAutoTMMWhenDefaultSavePathChanged() const override;
-        void setDisableAutoTMMWhenDefaultSavePathChanged(bool value) override;
-        bool isDisableAutoTMMWhenCategorySavePathChanged() const override;
-        void setDisableAutoTMMWhenCategorySavePathChanged(bool value) override;
 
         qreal globalMaxRatio() const override;
         void setGlobalMaxRatio(qreal ratio) override;
@@ -755,11 +744,7 @@ namespace BitTorrent
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
         CachedSettingValue<bool> m_isSubcategoriesEnabled;
-        CachedSettingValue<bool> m_useCategoryPathsInManualMode;
         CachedSettingValue<bool> m_isAutoTMMDisabledByDefault;
-        CachedSettingValue<bool> m_isDisableAutoTMMWhenCategoryChanged;
-        CachedSettingValue<bool> m_isDisableAutoTMMWhenDefaultSavePathChanged;
-        CachedSettingValue<bool> m_isDisableAutoTMMWhenCategorySavePathChanged;
         CachedSettingValue<bool> m_isTrackerEnabled;
         CachedSettingValue<int> m_peerTurnover;
         CachedSettingValue<int> m_peerTurnoverCutoff;

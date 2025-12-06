@@ -194,48 +194,11 @@
                         </select>
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <label for="torrent_changed_tmm_combobox">QBT_TR(When Torrent Category changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <select id="torrent_changed_tmm_combobox">
-                            <option value="true">QBT_TR(Relocate torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="false" selected>QBT_TR(Switch torrent to Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="save_path_changed_tmm_combobox">QBT_TR(When Default Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <select id="save_path_changed_tmm_combobox">
-                            <option value="true">QBT_TR(Relocate affected torrents)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="false" selected>QBT_TR(Switch affected torrents to Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="category_changed_tmm_combobox">QBT_TR(When Category Save Path changed:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                    </td>
-                    <td>
-                        <select id="category_changed_tmm_combobox">
-                            <option value="true">QBT_TR(Relocate affected torrents)QBT_TR[CONTEXT=OptionsDialog]</option>
-                            <option value="false" selected>QBT_TR(Switch affected torrents to Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        </select>
-                    </td>
-                </tr>
             </tbody>
         </table>
         <div class="formRow">
             <input type="checkbox" id="use_subcategories_checkbox">
             <label for="use_subcategories_checkbox">QBT_TR(Use Subcategories)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="categoryPathsManualModeCheckbox" title="QBT_TR(Resolve relative Save Path against appropriate Category path instead of Default one)QBT_TR[CONTEXT=OptionsDialog]">
-            <label for="categoryPathsManualModeCheckbox">QBT_TR(Use Category paths in Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <table>
             <tbody>
@@ -2329,11 +2292,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     // Saving Management
                     document.getElementById("default_tmm_combobox").value = pref.auto_tmm_enabled;
-                    document.getElementById("torrent_changed_tmm_combobox").value = pref.torrent_changed_tmm_enabled;
-                    document.getElementById("save_path_changed_tmm_combobox").value = pref.save_path_changed_tmm_enabled;
-                    document.getElementById("category_changed_tmm_combobox").value = pref.category_changed_tmm_enabled;
                     document.getElementById("use_subcategories_checkbox").checked = pref.use_subcategories;
-                    document.getElementById("categoryPathsManualModeCheckbox").checked = pref.use_category_paths_in_manual_mode;
                     document.getElementById("savepath_text").value = pref.save_path;
                     document.getElementById("temppath_checkbox").checked = pref.temp_path_enabled;
                     document.getElementById("temppath_text").value = pref.temp_path;
@@ -2751,11 +2710,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Saving Management
             settings["auto_tmm_enabled"] = (document.getElementById("default_tmm_combobox").value === "true");
-            settings["torrent_changed_tmm_enabled"] = (document.getElementById("torrent_changed_tmm_combobox").value === "true");
-            settings["save_path_changed_tmm_enabled"] = (document.getElementById("save_path_changed_tmm_combobox").value === "true");
-            settings["category_changed_tmm_enabled"] = (document.getElementById("category_changed_tmm_combobox").value === "true");
             settings["use_subcategories"] = document.getElementById("use_subcategories_checkbox").checked;
-            settings["use_category_paths_in_manual_mode"] = document.getElementById("categoryPathsManualModeCheckbox").checked;
             settings["save_path"] = document.getElementById("savepath_text").value;
             settings["temp_path_enabled"] = document.getElementById("temppath_checkbox").checked;
             settings["temp_path"] = document.getElementById("temppath_text").value;
