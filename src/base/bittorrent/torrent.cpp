@@ -44,14 +44,11 @@ namespace BitTorrent
 
     // Torrent
 
-    const qreal Torrent::USE_GLOBAL_RATIO = -2;
+    const qreal Torrent::DEFAULT_RATIO_LIMIT = -2;
     const qreal Torrent::NO_RATIO_LIMIT = -1;
 
-    const int Torrent::USE_GLOBAL_SEEDING_TIME = -2;
+    const int Torrent::DEFAULT_SEEDING_TIME_LIMIT = -2;
     const int Torrent::NO_SEEDING_TIME_LIMIT = -1;
-
-    const int Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME = -2;
-    const int Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT = -1;
 
     const qreal Torrent::MAX_RATIO = std::numeric_limits<qreal>::infinity();
 

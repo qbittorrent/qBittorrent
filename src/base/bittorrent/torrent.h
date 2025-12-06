@@ -125,14 +125,11 @@ namespace BitTorrent
         };
         Q_ENUM(StopCondition)
 
-        static const qreal USE_GLOBAL_RATIO;
+        static const qreal DEFAULT_RATIO_LIMIT;
         static const qreal NO_RATIO_LIMIT;
 
-        static const int USE_GLOBAL_SEEDING_TIME;
+        static const int DEFAULT_SEEDING_TIME_LIMIT;
         static const int NO_SEEDING_TIME_LIMIT;
-
-        static const int USE_GLOBAL_INACTIVE_SEEDING_TIME;
-        static const int NO_INACTIVE_SEEDING_TIME_LIMIT;
 
         static const qreal MAX_RATIO;
 
@@ -236,6 +233,10 @@ namespace BitTorrent
         virtual void setInactiveSeedingTimeLimit(int limit) = 0;
         virtual ShareLimitAction shareLimitAction() const = 0;
         virtual void setShareLimitAction(ShareLimitAction action) = 0;
+        virtual qreal effectiveRatioLimit() const = 0;
+        virtual int effectiveSeedingTimeLimit() const = 0;
+        virtual int effectiveInactiveSeedingTimeLimit() const = 0;
+        virtual ShareLimitAction effectiveShareLimitAction() const = 0;
 
         virtual PathList filePaths() const = 0;
         virtual PathList actualFilePaths() const = 0;
@@ -279,9 +280,6 @@ namespace BitTorrent
         virtual bool isLSDDisabled() const = 0;
         virtual QBitArray pieces() const = 0;
         virtual qreal distributedCopies() const = 0;
-        virtual qreal maxRatio() const = 0;
-        virtual int maxSeedingTime() const = 0;
-        virtual int maxInactiveSeedingTime() const = 0;
         virtual qreal realRatio() const = 0;
         virtual qreal popularity() const = 0;
         virtual int uploadPayloadRate() const = 0;

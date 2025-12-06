@@ -61,9 +61,9 @@ namespace BitTorrent
 
         bool addToQueueTop = false; // only for new torrents
 
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-        int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
+        qreal ratioLimit = Torrent::DEFAULT_RATIO_LIMIT;
+        int seedingTimeLimit = Torrent::DEFAULT_SEEDING_TIME_LIMIT;
+        int inactiveSeedingTimeLimit = Torrent::DEFAULT_SEEDING_TIME_LIMIT;
         ShareLimitAction shareLimitAction = ShareLimitAction::Default;
 
         SSLParameters sslParameters;

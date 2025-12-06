@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,6 +34,8 @@
 
 #include "base/path.h"
 #include "downloadpathoption.h"
+#include "sharelimitaction.h"
+#include "torrent.h"
 
 class QJsonObject;
 
@@ -43,6 +45,11 @@ namespace BitTorrent
     {
         Path savePath;
         std::optional<DownloadPathOption> downloadPath;
+
+        qreal ratioLimit = Torrent::DEFAULT_RATIO_LIMIT;
+        int seedingTimeLimit = Torrent::DEFAULT_SEEDING_TIME_LIMIT;
+        int inactiveSeedingTimeLimit = Torrent::DEFAULT_SEEDING_TIME_LIMIT;
+        ShareLimitAction shareLimitAction = ShareLimitAction::Default;
 
         static CategoryOptions fromJSON(const QJsonObject &jsonObj);
         QJsonObject toJSON() const;

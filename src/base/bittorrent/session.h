@@ -158,12 +158,16 @@ namespace BitTorrent
 
         virtual QStringList categories() const = 0;
         virtual CategoryOptions categoryOptions(const QString &categoryName) const = 0;
+        virtual bool setCategoryOptions(const QString &categoryName, const CategoryOptions &options) = 0;
         virtual Path categorySavePath(const QString &categoryName) const = 0;
         virtual Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const = 0;
+        virtual qreal categoryRatioLimit(const QString &categoryName) const = 0;
+        virtual int categorySeedingTimeLimit(const QString &categoryName) const = 0;
+        virtual int categoryInactiveSeedingTimeLimit(const QString &categoryName) const = 0;
+        virtual ShareLimitAction categoryShareLimitAction(const QString &categoryName) const = 0;
         virtual bool addCategory(const QString &name, const CategoryOptions &options = {}) = 0;
-        virtual bool editCategory(const QString &name, const CategoryOptions &options) = 0;
         virtual bool removeCategory(const QString &name) = 0;
         virtual bool isSubcategoriesEnabled() const = 0;
         virtual void setSubcategoriesEnabled(bool value) = 0;
