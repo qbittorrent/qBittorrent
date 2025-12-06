@@ -44,6 +44,7 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "uithememanager.h"
+#include "base/torrentgroup.h"
 
 namespace
 {
@@ -194,6 +195,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
+            case TR_GROUP: return tr("Group", "Virtual group name aggregating multiple torrents");
             default: return {};
             }
         }
@@ -443,6 +445,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_GROUP:
+        return TorrentGroupManager::instance()->groupOf(torrent->id());
     }
 
     return {};
@@ -526,6 +530,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_GROUP:
+        return TorrentGroupManager::instance()->groupOf(torrent->id());
     }
 
     return {};
@@ -568,6 +574,8 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_DOWNLOAD_PATH:
         case TR_INFOHASH_V1:
         case TR_INFOHASH_V2:
+            return displayValue(torrent, index.column());
+        case TR_GROUP:
             return displayValue(torrent, index.column());
         }
         break;
@@ -663,6 +671,13 @@ BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) 
     if (!index.isValid()) return nullptr;
 
     return m_torrentList.value(index.row());
+}
+
+QModelIndex TransferListModel::indexForTorrent(const BitTorrent::Torrent *torrent) const
+{
+    const int row = m_torrentMap.value(const_cast<BitTorrent::Torrent *>(torrent), -1);
+    if (row < 0) return {};
+    return index(row, 0);
 }
 
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
