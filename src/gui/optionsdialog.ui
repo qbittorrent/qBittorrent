@@ -1382,13 +1382,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkUseSubcategories">
-                 <property name="text">
-                  <string>Use Subcategories</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="checkUseCategoryPaths">
                  <property name="toolTip">
                   <string>Resolve relative Save Path against appropriate Category path instead of Default one</string>

@@ -555,7 +555,6 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_savePath(BITTORRENT_SESSION_KEY(u"DefaultSavePath"_s), specialFolderLocation(SpecialFolder::Downloads))
     , m_downloadPath(BITTORRENT_SESSION_KEY(u"TempPath"_s), (savePath() / Path(u"temp"_s)))
     , m_isDownloadPathEnabled(BITTORRENT_SESSION_KEY(u"TempPathEnabled"_s), false)
-    , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY(u"SubcategoriesEnabled"_s), false)
     , m_useCategoryPathsInManualMode(BITTORRENT_SESSION_KEY(u"UseCategoryPathsInManualMode"_s), false)
     , m_isAutoTMMDisabledByDefault(BITTORRENT_SESSION_KEY(u"DisableAutoTMMByDefault"_s), true)
     , m_isDisableAutoTMMWhenCategoryChanged(BITTORRENT_SESSION_KEY(u"DisableAutoTMMTriggers/CategoryChanged"_s), false)
@@ -626,11 +625,6 @@ SessionImpl::SessionImpl(QObject *parent)
         enableBandwidthScheduler();
 
     loadCategories();
-    if (isSubcategoriesEnabled())
-    {
-        // if subcategories support changed manually
-        m_categories = expandCategories(m_categories);
-    }
 
     const QStringList storedTags = m_storedTags.get();
     for (const QString &tagStr : storedTags)
@@ -938,15 +932,8 @@ Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOp
     if (path.isEmpty())
     {
         // use implicit save path
-        if (isSubcategoriesEnabled())
-        {
-            path = Utils::Fs::toValidPath(subcategoryName(categoryName));
-            basePath = categorySavePath(parentCategoryName(categoryName));
-        }
-        else
-        {
-            path = Utils::Fs::toValidPath(categoryName);
-        }
+        path = Utils::Fs::toValidPath(subcategoryName(categoryName));
+        basePath = categorySavePath(parentCategoryName(categoryName));
     }
 
     return (path.isAbsolute() ? path : (basePath / path));
@@ -966,8 +953,7 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     if (categoryName.isEmpty())
         return downloadPath();
 
-    const bool useSubcategories = isSubcategoriesEnabled();
-    const QString name = useSubcategories ? subcategoryName(categoryName) : categoryName;
+    const QString name = subcategoryName(categoryName);
     const Path path = !downloadPathOption.path.isEmpty()
             ? downloadPathOption.path
             : Utils::Fs::toValidPath(name); // use implicit download path
@@ -975,7 +961,7 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     if (path.isAbsolute())
         return path;
 
-    const QString parentName = useSubcategories ? parentCategoryName(categoryName) : QString();
+    const QString parentName = parentCategoryName(categoryName);
     CategoryOptions parentOptions = categoryOptions(parentName);
     // Even if download path of parent category is disabled (directly or by inheritance)
     // we need to construct the one as if it would be enabled.
@@ -994,7 +980,7 @@ DownloadPathOption SessionImpl::resolveCategoryDownloadPathOption(const QString 
     if (option.has_value())
         return *option;
 
-    const QString parentName = isSubcategoriesEnabled() ? parentCategoryName(categoryName) : QString();
+    const QString parentName = parentCategoryName(categoryName);
     return resolveCategoryDownloadPathOption(parentName, categoryOptions(parentName).downloadPath);
 }
 
@@ -1006,15 +992,12 @@ bool SessionImpl::addCategory(const QString &name, const CategoryOptions &option
     if (!isValidCategoryName(name) || m_categories.contains(name))
         return false;
 
-    if (isSubcategoriesEnabled())
+    for (const QString &parent : asConst(expandCategory(name)))
     {
-        for (const QString &parent : asConst(expandCategory(name)))
+        if ((parent != name) && !m_categories.contains(parent))
         {
-            if ((parent != name) && !m_categories.contains(parent))
-            {
-                m_categories[parent] = {};
-                emit categoryAdded(parent);
-            }
+            m_categories[parent] = {};
+            emit categoryAdded(parent);
         }
     }
 
@@ -1070,21 +1053,18 @@ bool SessionImpl::removeCategory(const QString &name)
 
     // remove stored category and its subcategories if exist
     bool result = false;
-    if (isSubcategoriesEnabled())
+    // remove subcategories
+    const QString test = name + u'/';
+    Algorithm::removeIf(m_categories, [this, &test, &result](const QString &category, const CategoryOptions &)
     {
-        // remove subcategories
-        const QString test = name + u'/';
-        Algorithm::removeIf(m_categories, [this, &test, &result](const QString &category, const CategoryOptions &)
+        if (category.startsWith(test))
         {
-            if (category.startsWith(test))
-            {
-                result = true;
-                emit categoryRemoved(category);
-                return true;
-            }
-            return false;
-        });
-    }
+            result = true;
+            emit categoryRemoved(category);
+            return true;
+        }
+        return false;
+    });
 
     result = (m_categories.remove(name) > 0) || result;
 
@@ -1096,32 +1076,6 @@ bool SessionImpl::removeCategory(const QString &name)
     }
 
     return result;
-}
-
-bool SessionImpl::isSubcategoriesEnabled() const
-{
-    return m_isSubcategoriesEnabled;
-}
-
-void SessionImpl::setSubcategoriesEnabled(const bool value)
-{
-    if (isSubcategoriesEnabled() == value) return;
-
-    if (value)
-    {
-        // expand categories to include all parent categories
-        m_categories = expandCategories(m_categories);
-        // update stored categories
-        storeCategories();
-    }
-    else
-    {
-        // reload categories
-        loadCategories();
-    }
-
-    m_isSubcategoriesEnabled = value;
-    emit subcategoriesSupportChanged();
 }
 
 bool SessionImpl::useCategoryPathsInManualMode() const
@@ -5584,6 +5538,8 @@ void SessionImpl::loadCategories()
         const auto categoryOptions = CategoryOptions::fromJSON(it.value().toObject());
         m_categories[categoryName] = categoryOptions;
     }
+
+    m_categories = expandCategories(m_categories);
 }
 
 bool SessionImpl::hasPerTorrentRatioLimit() const
