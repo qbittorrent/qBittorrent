@@ -761,13 +761,13 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
 
             let select = false;
-            for (const tr of this.getTrs()) {
-                if ((tr.rowId === rowId1) || (tr.rowId === rowId2)) {
+            for (const row of this.getFilteredAndSortedRows()) {
+                if ((row.rowId === rowId1) || (row.rowId === rowId2)) {
                     select = !select;
-                    this.selectedRows.push(tr.rowId);
+                    this.selectedRows.push(row.rowId);
                 }
                 else if (select) {
-                    this.selectedRows.push(tr.rowId);
+                    this.selectedRows.push(row.rowId);
                 }
             }
             this.setRowClass();
@@ -2359,6 +2359,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             for (const [key, _] of this.collapseState)
                 this.expandNode(key);
+
+            if (this.useVirtualList)
+                this.rerender();
         }
 
         collapseAllNodes() {
@@ -2370,6 +2373,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (state.depth >= 1)
                     this.collapseNode(key);
             }
+
+            if (this.useVirtualList)
+                this.rerender();
         }
 
         #updateNodeVisibility(node, shouldHide) {
@@ -2741,8 +2747,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         generateRowsSignature() {
             const rowsData = [];
-            for (const { rowId } of this.getRowValues())
-                rowsData.push({ ...this.getNode(rowId).serialize(), collapsed: this.isCollapsed(rowId) });
+            for (const { rowId } of this.getRowValues()) {
+                const node = this.getNode(rowId);
+                rowsData.push({ ...node.serialize(), collapsed: this.isCollapsed(node.rowId) });
+            }
             return JSON.stringify(rowsData);
         }
 
@@ -2771,7 +2779,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             // sort, then filter
             this.#sortNodesByColumn(root, this.columns[this.sortedColumn]);
             const rows = (() => {
-                if (this.filterTerms.length === 0) {
+                if (!this.useVirtualList && (this.filterTerms.length === 0)) {
                     const nodeArray = this.fileTree.toArray();
                     const filteredRows = nodeArray.map(node => this.getRow(node));
                     return filteredRows;

@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,29 +28,26 @@
 
 #pragma once
 
-#include <QtContainerFwd>
 #include <QWidget>
 
-class TrackersFilterWidget;
-class TransferListWidget;
+class QCheckBox;
+class QString;
 
-namespace BitTorrent
-{
-    class Torrent;
-    struct TrackerEntryStatus;
-}
-
-class TransferListFiltersWidget final : public QWidget
+class TransferListFiltersWidgetItem final : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TransferListFiltersWidget)
+    Q_DISABLE_COPY_MOVE(TransferListFiltersWidgetItem)
 
 public:
-    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
-    void setDownloadTrackerFavicon(bool value);
+    TransferListFiltersWidgetItem(const QString &caption, QWidget *filterWidget, QWidget *parent = nullptr);
+
+    bool isChecked() const;
+    void setChecked(bool value);
+
+signals:
+    void toggled(bool checked);
 
 private:
-    TransferListWidget *m_transferList = nullptr;
-    TrackersFilterWidget *m_trackersFilterWidget = nullptr;
-    bool m_useSeparateTrackerStatusFilter = false;
+    QCheckBox *m_caption = nullptr;
+    QWidget *m_filterWidget = nullptr;
 };

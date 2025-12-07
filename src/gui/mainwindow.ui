@@ -76,6 +76,7 @@
      <addaction name="actionAutoExit"/>
      <addaction name="actionAutoSuspend"/>
      <addaction name="actionAutoHibernate"/>
+     <addaction name="actionAutoReboot"/>
      <addaction name="actionAutoShutdown"/>
     </widget>
     <addaction name="actionCreateTorrent"/>
@@ -395,6 +396,14 @@
    </property>
    <property name="text">
     <string>Sh&amp;utdown System</string>
+   </property>
+  </action>
+  <action name="actionAutoReboot">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Reboot System</string>
    </property>
   </action>
   <action name="actionAutoShutdownDisabled">

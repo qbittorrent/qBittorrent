@@ -28,6 +28,8 @@
 
 #include "torrentsharelimitswidget.h"
 
+#include <limits>
+
 #include "base/bittorrent/torrent.h"
 #include "ui_torrentsharelimitswidget.h"
 
@@ -59,6 +61,7 @@ TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->spinBoxRatioValue->setEnabled(false);
+    m_ui->spinBoxRatioValue->setMaximum(std::numeric_limits<int>::max());
     m_ui->spinBoxRatioValue->setSuffix({});
     m_ui->spinBoxRatioValue->clear();
     m_ui->spinBoxSeedingTimeValue->setEnabled(false);

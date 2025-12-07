@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,29 +28,20 @@
 
 #pragma once
 
-#include <QtContainerFwd>
-#include <QWidget>
-
-class TrackersFilterWidget;
-class TransferListWidget;
+#include <QFlags>
 
 namespace BitTorrent
 {
-    class Torrent;
-    struct TrackerEntryStatus;
+    enum class TorrentAnnounceStatusFlag
+    {
+        HasNoProblem = 0,
+
+        HasWarning = 1,
+        HasTrackerError = 2,
+        HasOtherError = 4
+    };
+
+    Q_DECLARE_FLAGS(TorrentAnnounceStatus, TorrentAnnounceStatusFlag);
 }
 
-class TransferListFiltersWidget final : public QWidget
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TransferListFiltersWidget)
-
-public:
-    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
-    void setDownloadTrackerFavicon(bool value);
-
-private:
-    TransferListWidget *m_transferList = nullptr;
-    TrackersFilterWidget *m_trackersFilterWidget = nullptr;
-    bool m_useSeparateTrackerStatusFilter = false;
-};
+Q_DECLARE_OPERATORS_FOR_FLAGS(BitTorrent::TorrentAnnounceStatus);
