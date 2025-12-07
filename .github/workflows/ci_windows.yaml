@@ -112,7 +112,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.9.1"
+          version: "6.10.1"
           arch: ${{ matrix.config.qt_arch }}
           archives: qtbase qtsvg qttools
           cache: true
