@@ -36,8 +36,6 @@ LangString inst_uninstall_link_description ${LANG_SWEDISH} "Avinstallera qBittor
 LangString inst_arch_mismatch_x64_on_arm64 ${LANG_SWEDISH} "Denna x64-version av qBittorrent kan inte köras på ARM64-system. Hämta ARM64-installationsprogrammet."
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
 LangString inst_arch_mismatch_arm64_on_x64 ${LANG_SWEDISH} "Denna ARM64-version av qBittorrent kan inte köras på x64-system. Hämta x64-installationsprogrammet."
-;LangString inst_already_running ${LANG_ENGLISH} "Another instance of the installer is already running."
-LangString inst_already_running ${LANG_SWEDISH} "En annan instans av installationsprogrammet körs redan."
 
 ;------------------------------------
 ;Uninstaller strings
