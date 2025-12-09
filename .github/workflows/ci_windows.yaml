@@ -114,7 +114,8 @@ jobs:
         with:
           version: "6.10.1"
           arch: ${{ matrix.config.qt_arch }}
-          archives: qtbase qtsvg qttools qtimageformats
+          archives: qtbase qtsvg qttools
+          modules: qtimageformats
           cache: true
 
       - name: Install libtorrent
