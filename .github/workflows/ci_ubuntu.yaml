@@ -73,7 +73,7 @@ jobs:
         uses: jurplel/install-qt-action@v4
         with:
           version: ${{ matrix.qt_version }}
-          archives: icu qtbase qtdeclarative qtsvg qttools
+          archives: icu qtbase qtdeclarative qtsvg qttools qtimageformats
           cache: true
 
       - name: Install libtorrent
