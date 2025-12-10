@@ -186,6 +186,7 @@ jobs:
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qico.dll" upload/qBittorrent/plugins/imageformats
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qsvg.dll" upload/qBittorrent/plugins/imageformats
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qwebp.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qjpeg.dll" upload/qBittorrent/plugins/imageformats
           mkdir upload/qBittorrent/plugins/platforms
           copy "${{ env.Qt_ROOT_DIR }}/plugins/platforms/qwindows.dll" upload/qBittorrent/plugins/platforms
           mkdir upload/qBittorrent/plugins/sqldrivers
