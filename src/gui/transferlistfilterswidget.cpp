@@ -49,18 +49,6 @@
 #include "transferlistwidget.h"
 #include "utils.h"
 
-namespace
-{
-    enum ItemPos
-    {
-        StatusItemPos,
-        CategoryItemPos,
-        TagItemPos,
-        TrackerStatusItemPos,
-        TrackersItemPos
-    };
-}
-
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
     : QWidget(parent)
     , m_transferList {transferList}
@@ -80,7 +68,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
         auto *item = new TransferListFiltersWidgetItem(tr("Status"), new StatusFilterWidget(this, transferList), this);
         item->setChecked(pref->getStatusFilterState());
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setStatusFilterState);
-        mainWidgetLayout->insertWidget(StatusItemPos, item);
+        mainWidgetLayout->addWidget(item);
     }
 
     {
@@ -101,7 +89,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
             m_transferList->applyCategoryFilter(enabled ? categoryFilterWidget->currentCategory() : QString());
         });
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setCategoryFilterState);
-        mainWidgetLayout->insertWidget(CategoryItemPos, item);
+        mainWidgetLayout->addWidget(item);
     }
 
     {
@@ -122,8 +110,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
             m_transferList->applyTagFilter(enabled ? tagFilterWidget->currentTag() : std::nullopt);
         });
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTagFilterState);
-        mainWidgetLayout->insertWidget(TagItemPos, item);
+        mainWidgetLayout->addWidget(item);
     }
+
+    const int trackerStatusItemPos = mainWidgetLayout->count();
 
     {
         m_trackersFilterWidget = new TrackersFilterWidget(this, transferList, downloadFavicon);
@@ -131,7 +121,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
         auto *item = new TransferListFiltersWidgetItem(tr("Trackers"), m_trackersFilterWidget, this);
         item->setChecked(pref->getTrackerFilterState());
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerFilterState);
-        mainWidgetLayout->insertWidget(TrackersItemPos, item);
+        mainWidgetLayout->addWidget(item);
     }
 
     auto *scroll = new QScrollArea(this);
@@ -144,17 +134,17 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     vLayout->setContentsMargins(0, 0, 0, 0);
     vLayout->addWidget(scroll);
 
-    const auto createTrackerStatusItem = [this, mainWidgetLayout, pref]
+    const auto createTrackerStatusItem = [this, mainWidgetLayout, trackerStatusItemPos, pref]
     {
         auto *item = new TransferListFiltersWidgetItem(tr("Tracker status"), new TrackerStatusFilterWidget(this, m_transferList), this);
         item->setChecked(pref->getTrackerStatusFilterState());
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerStatusFilterState);
-        mainWidgetLayout->insertWidget(TrackerStatusItemPos, item);
+        mainWidgetLayout->insertWidget(trackerStatusItemPos, item);
     };
 
-    const auto removeTrackerStatusItem = [mainWidgetLayout]
+    const auto removeTrackerStatusItem = [mainWidgetLayout, trackerStatusItemPos]
     {
-        QLayoutItem *layoutItem = mainWidgetLayout->takeAt(TrackerStatusItemPos);
+        QLayoutItem *layoutItem = mainWidgetLayout->takeAt(trackerStatusItemPos);
         delete layoutItem->widget();
         delete layoutItem;
     };
