@@ -48,20 +48,18 @@
        </widget>
       </item>
       <item>
-        <widget class="QGroupBox" name="groupBoxRunOnFinished">
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-            <item>
-              <widget class="QCheckBox" name="runOnFinishedEnabled">
-                <property name="text">
-                  <string>Run external program when finished</string>
-                </property>
-              </widget>
-            </item>
-            <item>
-              <widget class="QLineEdit" name="runOnFinishedProgram"/>
-            </item>
-          </layout>
-        </widget>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+            <widget class="QCheckBox" name="runOnFinishedEnabled">
+              <property name="text">
+                <string>Run external program when finished</string>
+              </property>
+            </widget>
+          </item>
+          <item>
+            <widget class="QLineEdit" name="runOnFinishedProgram"/>
+          </item>
+        </layout>
       </item>
      </layout>
     </widget>
