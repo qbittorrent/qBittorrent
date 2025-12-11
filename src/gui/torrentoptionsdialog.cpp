@@ -36,6 +36,7 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QString>
+#include <qnamespace.h>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -222,6 +223,16 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     else
     {
         m_ui->checkUseDownloadPath->setCheckState(Qt::PartiallyChecked);
+    }
+
+    if (allSameRunOnFinishedProgram)
+    {
+        m_ui->runOnFinishedProgram->setText(firstRunOnFinishedProgram);
+        m_ui->runOnFinishedEnabled->setChecked(!firstRunOnFinishedProgram.isEmpty());
+    }
+    else
+    {
+        m_ui->runOnFinishedEnabled->setCheckState(Qt::PartiallyChecked);
     }
 
     if (!m_allSameCategory)
