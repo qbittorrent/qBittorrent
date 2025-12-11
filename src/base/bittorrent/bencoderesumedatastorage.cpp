@@ -234,6 +234,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         return nonstd::make_unexpected(tr("Cannot parse resume data: invalid format"));
 
     LoadTorrentParams torrentParams;
+    torrentParams.runOnFinishedProgram = fromLTString(resumeDataRoot.dict_find_string_value("qBt-runOnFinishedProgram"));
     torrentParams.category = fromLTString(resumeDataRoot.dict_find_string_value("qBt-category"));
     torrentParams.name = fromLTString(resumeDataRoot.dict_find_string_value("qBt-name"));
     torrentParams.comment = fromLTString(resumeDataRoot.dict_find_string_value("qBt-comment"));
@@ -435,6 +436,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-inactiveSeedingTimeLimit"] = resumeData.inactiveSeedingTimeLimit;
     data["qBt-shareLimitAction"] = Utils::String::fromEnum(resumeData.shareLimitAction).toStdString();
 
+    data["qBt-runOnFinishedProgram"] = resumeData.runOnFinishedProgram.toStdString();
     data["qBt-category"] = resumeData.category.toStdString();
     data["qBt-tags"] = setToEntryList(resumeData.tags);
     data["qBt-name"] = resumeData.name.toStdString();

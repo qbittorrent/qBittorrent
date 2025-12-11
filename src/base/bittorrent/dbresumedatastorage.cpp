@@ -129,6 +129,7 @@ namespace
     const Column DB_COLUMN_TORRENT_ID = makeColumn(u"torrent_id"_s);
     const Column DB_COLUMN_QUEUE_POSITION = makeColumn(u"queue_position"_s);
     const Column DB_COLUMN_NAME = makeColumn(u"name"_s);
+    const Column DB_COLUMN_RUN_ON_FINISHED_PROGRAM = makeColumn(u"run_on_finished_program"_s);
     const Column DB_COLUMN_CATEGORY = makeColumn(u"category"_s);
     const Column DB_COLUMN_TAGS = makeColumn(u"tags"_s);
     const Column DB_COLUMN_COMMENT = makeColumn(u"comment"_s);
@@ -460,6 +461,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_TORRENT_ID, u"BLOB NOT NULL UNIQUE"_s),
             makeColumnDefinition(DB_COLUMN_QUEUE_POSITION, u"INTEGER NOT NULL DEFAULT -1"_s),
             makeColumnDefinition(DB_COLUMN_NAME, u"TEXT"_s),
+            makeColumnDefinition(DB_COLUMN_RUN_ON_FINISHED_PROGRAM, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_CATEGORY, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_TAGS, u"TEXT"_s),
             makeColumnDefinition(DB_COLUMN_COMMENT, u"TEXT"_s),
@@ -623,6 +625,7 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
 {
     LoadTorrentParams resumeData;
     resumeData.name = query.value(DB_COLUMN_NAME.name).toString();
+    resumeData.runOnFinishedProgram = query.value(DB_COLUMN_RUN_ON_FINISHED_PROGRAM.name).toString();
     resumeData.category = query.value(DB_COLUMN_CATEGORY.name).toString();
     resumeData.comment = query.value(DB_COLUMN_COMMENT.name).toString();
     const QString tagsData = query.value(DB_COLUMN_TAGS.name).toString();
@@ -838,6 +841,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
         QList<Column> columns {
             DB_COLUMN_TORRENT_ID,
             DB_COLUMN_NAME,
+            DB_COLUMN_RUN_ON_FINISHED_PROGRAM,
             DB_COLUMN_CATEGORY,
             DB_COLUMN_TAGS,
             DB_COLUMN_COMMENT,
@@ -903,6 +907,7 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
 
             query.bindValue(DB_COLUMN_TORRENT_ID.placeholder, m_torrentID.toString());
             query.bindValue(DB_COLUMN_NAME.placeholder, m_resumeData.name);
+            query.bindValue(DB_COLUMN_RUN_ON_FINISHED_PROGRAM.placeholder, m_resumeData.runOnFinishedProgram);
             query.bindValue(DB_COLUMN_CATEGORY.placeholder, m_resumeData.category);
             query.bindValue(DB_COLUMN_TAGS.placeholder, (m_resumeData.tags.isEmpty()
                     ? QString() : Utils::String::joinIntoString(m_resumeData.tags, u","_s)));
