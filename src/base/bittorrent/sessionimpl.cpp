@@ -5245,6 +5245,10 @@ void SessionImpl::handleTorrentSavePathChanged(TorrentImpl *const torrent)
     emit torrentSavePathChanged(torrent);
 }
 
+void SessionImpl::handleTorrentRunOnFinishedProgramChanged(TorrentImpl *const torrent) {
+    emit torrentRunOnFinishedProgramChanged(torrent);
+}
+
 void SessionImpl::handleTorrentCategoryChanged(TorrentImpl *const torrent, const QString &oldCategory)
 {
     emit torrentCategoryChanged(torrent, oldCategory);

@@ -510,6 +510,7 @@ namespace BitTorrent
         void torrentMetadataReceived(Torrent *torrent);
         void torrentStopped(Torrent *torrent);
         void torrentStarted(Torrent *torrent);
+        void torrentRunOnFinishedProgramChanged(Torrent *torrent);
         void torrentSavePathChanged(Torrent *torrent);
         void torrentSavingModeChanged(Torrent *torrent);
         void torrentsLoaded(const QList<Torrent *> &torrents);

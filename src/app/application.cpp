@@ -743,8 +743,11 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
     const Preferences *pref = Preferences::instance();
 
     // AutoRun program
-    if (pref->isAutoRunOnTorrentFinishedEnabled())
+    if (!torrent->runOnFinishedProgram().isEmpty())
+        runExternalProgram(torrent->runOnFinishedProgram().trimmed(), torrent);
+    else if (pref->isAutoRunOnTorrentFinishedEnabled())
         runExternalProgram(pref->getAutoRunOnTorrentFinishedProgram().trimmed(), torrent);
+
 
     // Mail notification
     if (pref->isMailNotificationEnabled())

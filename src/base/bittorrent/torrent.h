@@ -204,6 +204,8 @@ namespace BitTorrent
         virtual void setDownloadPath(const Path &downloadPath) = 0;
         virtual Path rootPath() const = 0;
         virtual Path contentPath() const = 0;
+        virtual QString runOnFinishedProgram() const = 0;
+        virtual void setRunOnFinishedProgram(const QString &program) = 0;
         virtual QString category() const = 0;
         virtual bool belongsToCategory(const QString &category) const = 0;
         virtual bool setCategory(const QString &category) = 0;

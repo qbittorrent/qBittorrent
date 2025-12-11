@@ -463,6 +463,7 @@ namespace BitTorrent
         void handleTorrentShareLimitChanged(TorrentImpl *torrent);
         void handleTorrentNameChanged(TorrentImpl *torrent);
         void handleTorrentSavePathChanged(TorrentImpl *torrent);
+        void handleTorrentRunOnFinishedProgramChanged(TorrentImpl *torrent);
         void handleTorrentCategoryChanged(TorrentImpl *torrent, const QString &oldCategory);
         void handleTorrentTagAdded(TorrentImpl *torrent, const Tag &tag);
         void handleTorrentTagRemoved(TorrentImpl *torrent, const Tag &tag);

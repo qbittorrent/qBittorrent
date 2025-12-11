@@ -311,6 +311,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
     , m_name(params.name)
     , m_savePath(params.savePath)
     , m_downloadPath(params.downloadPath)
+    , m_runOnFinishedProgram(params.runOnFinishedProgram)
     , m_category(params.category)
     , m_tags(params.tags)
     , m_ratioLimit(params.ratioLimit)
@@ -2256,6 +2257,7 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         .stopped = m_isStopped,
         .stopCondition = m_stopCondition,
         .addToQueueTop = false,
+        .runOnFinishedProgram = m_runOnFinishedProgram,
         .ratioLimit = m_ratioLimit,
         .seedingTimeLimit = m_seedingTimeLimit,
         .inactiveSeedingTimeLimit = m_inactiveSeedingTimeLimit,
@@ -2618,6 +2620,18 @@ void TorrentImpl::updateProgress()
 
             pieceOffset += add;
         }
+    }
+}
+
+QString TorrentImpl::runOnFinishedProgram() const {
+    return m_runOnFinishedProgram;
+}
+
+void TorrentImpl::setRunOnFinishedProgram(const QString &program) {
+    if (m_runOnFinishedProgram != program) {
+        m_runOnFinishedProgram = program;
+        deferredRequestResumeData();
+        m_session->handleTorrentRunOnFinishedProgramChanged(this);
     }
 }
 

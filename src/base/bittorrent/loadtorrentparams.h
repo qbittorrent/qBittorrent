@@ -61,6 +61,7 @@ namespace BitTorrent
 
         bool addToQueueTop = false; // only for new torrents
 
+        QString runOnFinishedProgram;
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
         int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;

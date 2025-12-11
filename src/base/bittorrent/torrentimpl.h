@@ -124,6 +124,8 @@ namespace BitTorrent
         Path actualStorageLocation() const override;
         Path rootPath() const override;
         Path contentPath() const override;
+        QString runOnFinishedProgram() const override;
+        void setRunOnFinishedProgram(const QString &program) override;
         QString category() const override;
         bool belongsToCategory(const QString &category) const override;
         bool setCategory(const QString &category) override;
@@ -358,6 +360,7 @@ namespace BitTorrent
         QString m_name;
         Path m_savePath;
         Path m_downloadPath;
+        QString m_runOnFinishedProgram;
         QString m_category;
         TagSet m_tags;
         qreal m_ratioLimit = 0;
