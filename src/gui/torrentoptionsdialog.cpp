@@ -227,12 +227,23 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     if (allSameRunOnFinishedProgram)
     {
         m_ui->runOnFinishedProgram->setText(firstRunOnFinishedProgram);
-        m_ui->runOnFinishedEnabled->setChecked(!firstRunOnFinishedProgram.isEmpty());
+        const bool active = !firstRunOnFinishedProgram.isEmpty();
+        m_ui->runOnFinishedEnabled->setChecked(active);
+        m_ui->runOnFinishedProgram->setEnabled(active);
     }
     else
     {
         m_ui->runOnFinishedEnabled->setCheckState(Qt::PartiallyChecked);
+        m_ui->runOnFinishedProgram->setEnabled(false);
     }
+
+    QAction *runOnFinishedWarning = new QAction(this);
+    m_ui->runOnFinishedProgram->addAction(runOnFinishedWarning, QLineEdit::TrailingPosition);
+    runOnFinishedWarning->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+    runOnFinishedWarning->setToolTip(tr("This overrides the global setting"));
+
+    connect(m_ui->runOnFinishedEnabled, &QCheckBox::clicked,
+        this, &TorrentOptionsDialog::handleRunOnFinishedEnabledChanged);
 
     if (!m_allSameCategory)
     {
@@ -569,6 +580,12 @@ void TorrentOptionsDialog::handleTMMChanged()
             m_ui->checkUseDownloadPath->setCheckState(Qt::PartiallyChecked);
         }
     }
+}
+
+void TorrentOptionsDialog::handleRunOnFinishedEnabledChanged()
+{
+    const bool isChecked = m_ui->runOnFinishedEnabled->checkState() == Qt::Checked;
+    m_ui->runOnFinishedProgram->setEnabled(isChecked);
 }
 
 void TorrentOptionsDialog::handleUseDownloadPathChanged()

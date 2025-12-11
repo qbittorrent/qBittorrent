@@ -67,6 +67,7 @@ public slots:
 private slots:
     void handleCategoryChanged(int index);
     void handleTMMChanged();
+    void handleRunOnFinishedEnabledChanged();
     void handleUseDownloadPathChanged();
 
     void handleUpSpeedLimitChanged();
