@@ -358,7 +358,6 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     else
         m_ui->checkFirstLastPieces->setCheckState(Qt::PartiallyChecked);
 
-
     m_initialValues =
     {
         .savePath = m_ui->savePath->selectedPath(),
