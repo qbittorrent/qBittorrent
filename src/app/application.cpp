@@ -748,7 +748,6 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
     else if (pref->isAutoRunOnTorrentFinishedEnabled())
         runExternalProgram(pref->getAutoRunOnTorrentFinishedProgram().trimmed(), torrent);
 
-
     // Mail notification
     if (pref->isMailNotificationEnabled())
     {
