@@ -49,15 +49,6 @@
       </item>
       <item>
         <widget class="QGroupBox" name="groupBoxRunOnFinished">
-          <property name="title">
-            <string>Run on torrent finished:</string>
-          </property>
-          <property name="checkable">
-            <bool>false</bool>
-          </property>
-          <property name="checked">
-            <bool>false</bool>
-          </property>
           <layout class="QVBoxLayout" name="verticalLayout_4">
             <item>
               <widget class="QCheckBox" name="runOnFinishedEnabled">
