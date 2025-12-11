@@ -36,7 +36,6 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QString>
-#include <qnamespace.h>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
