@@ -183,7 +183,7 @@ jobs:
           mkdir upload/qBittorrent/plugins/iconengines
           copy "${{ env.Qt_ROOT_DIR }}/plugins/iconengines/qsvgicon.dll" upload/qBittorrent/plugins/iconengines
           mkdir upload/qBittorrent/plugins/imageformats
-          # include all imageformats dlls since CI (dev) build links dynamically                                        
+          # include all imageformats dlls since CI (dev) build links dynamically
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qgif.dll" upload/qBittorrent/plugins/imageformats
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qicns.dll" upload/qBittorrent/plugins/imageformats
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qico.dll" upload/qBittorrent/plugins/imageformats
