@@ -33,9 +33,14 @@
 #include <QDialog>
 #include <QThreadPool>
 
-#include "base/bittorrent/torrentcreator.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
+
+namespace BitTorrent
+{
+    enum class TorrentFormat;
+    struct TorrentCreatorResult;
+}
 
 namespace Ui
 {
@@ -54,7 +59,7 @@ public:
 
 private slots:
     void updateProgressBar(int progress);
-    void updatePiecesCount();
+    void onCalculatePiecesButtonClicked();
     void onCreateButtonClicked();
     void onAddFileButtonClicked();
     void onAddFolderButtonClicked();
