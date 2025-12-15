@@ -21,7 +21,7 @@ LangString inst_firewallinfo ${LANG_TURKISH} "Windows Güvenlik Duvarı kuralı 
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_TURKISH} "qBittorrent çalışıyor. Lütfen yüklemeden önce uygulamayı kapatın."
 ;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
-LangString inst_uninstall_question ${LANG_TURKISH} "Şu anki sürüm kaldırılacaktır. Kullanıcı ayarları ve torrent'ler bozulmadan kalacaktır."
+LangString inst_uninstall_question ${LANG_TURKISH} "Şu anki sürüm kaldırılacak. Kullanıcı ayarları ve torrent'ler bozulmadan kalacaktır."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_TURKISH} "Önceki sürüm kaldırılıyor."
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
@@ -33,9 +33,9 @@ LangString inst_requires_win10 ${LANG_TURKISH}  "Bu yükleyici en az Windows 10 
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_TURKISH} "qBittorrent'i kaldır"
 ;LangString inst_arch_mismatch_x64_on_arm64 ${LANG_ENGLISH} "Error: This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
-LangString inst_arch_mismatch_x64_on_arm64 ${LANG_TURKISH} "This x64 version of qBittorrent cannot run on ARM64 systems. Please download the ARM64 installer."
+LangString inst_arch_mismatch_x64_on_arm64 ${LANG_TURKISH} "qBittorrent'in bu x64 sürümü ARM64 sistemlerde çalışamaz. Lütfen ARM64 yükleyicisini indirin."
 ;LangString inst_arch_mismatch_arm64_on_x64 ${LANG_ENGLISH} "Error: This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
-LangString inst_arch_mismatch_arm64_on_x64 ${LANG_TURKISH} "This ARM64 version of qBittorrent cannot run on x64 systems. Please download the x64 installer."
+LangString inst_arch_mismatch_arm64_on_x64 ${LANG_TURKISH} "qBittorrent'in bu ARM64 sürümü x64 sistemlerde çalışamaz. Lütfen x64 yükleyicisini indirin."
 
 ;------------------------------------
 ;Uninstaller strings
