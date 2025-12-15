@@ -171,14 +171,10 @@ void AppController::preferencesAction()
     data[u"use_unwanted_folder"_s] = session->isUnwantedFolderEnabled();
     // Saving Management
     data[u"auto_tmm_enabled"_s] = !session->isAutoTMMDisabledByDefault();
-    data[u"torrent_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategoryChanged();
-    data[u"save_path_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
-    data[u"category_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
     data[u"use_subcategories"] = session->isSubcategoriesEnabled();
     data[u"save_path"_s] = session->savePath().toString();
     data[u"temp_path_enabled"_s] = session->isDownloadPathEnabled();
     data[u"temp_path"_s] = session->downloadPath().toString();
-    data[u"use_category_paths_in_manual_mode"_s] = session->useCategoryPathsInManualMode();
     data[u"export_dir"_s] = session->torrentExportDirectory().toString();
     data[u"export_dir_fin"_s] = session->finishedTorrentExportDirectory().toString();
 
@@ -587,12 +583,6 @@ void AppController::setPreferencesAction()
     // Saving Management
     if (hasKey(u"auto_tmm_enabled"_s))
         session->setAutoTMMDisabledByDefault(!it.value().toBool());
-    if (hasKey(u"torrent_changed_tmm_enabled"_s))
-        session->setDisableAutoTMMWhenCategoryChanged(!it.value().toBool());
-    if (hasKey(u"save_path_changed_tmm_enabled"_s))
-        session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
-    if (hasKey(u"category_changed_tmm_enabled"_s))
-        session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
     if (hasKey(u"use_subcategories"_s))
         session->setSubcategoriesEnabled(it.value().toBool());
     if (hasKey(u"save_path"_s))
@@ -601,8 +591,6 @@ void AppController::setPreferencesAction()
         session->setDownloadPathEnabled(it.value().toBool());
     if (hasKey(u"temp_path"_s))
         session->setDownloadPath(Path(it.value().toString()));
-    if (hasKey(u"use_category_paths_in_manual_mode"_s))
-        session->setUseCategoryPathsInManualMode(it.value().toBool());
     if (hasKey(u"export_dir"_s))
         session->setTorrentExportDirectory(Path(it.value().toString()));
     if (hasKey(u"export_dir_fin"_s))
