@@ -156,8 +156,6 @@ namespace BitTorrent
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
         bool editCategory(const QString &name, const CategoryOptions &options) override;
         bool removeCategory(const QString &name) override;
-        bool isSubcategoriesEnabled() const override;
-        void setSubcategoriesEnabled(bool value) override;
         bool useCategoryPathsInManualMode() const override;
         void setUseCategoryPathsInManualMode(bool value) override;
 
@@ -754,7 +752,6 @@ namespace BitTorrent
         CachedSettingValue<Path> m_savePath;
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
-        CachedSettingValue<bool> m_isSubcategoriesEnabled;
         CachedSettingValue<bool> m_useCategoryPathsInManualMode;
         CachedSettingValue<bool> m_isAutoTMMDisabledByDefault;
         CachedSettingValue<bool> m_isDisableAutoTMMWhenCategoryChanged;

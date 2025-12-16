@@ -222,7 +222,6 @@ let alternativeSpeedLimits = false;
 let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
-let useSubcategories = true;
 const useAutoHideZeroStatusFilters = localPreferences.get("hide_zero_status_filters", "false") === "true";
 const displayFullURLTrackerColumn = localPreferences.get("full_url_tracker_column", "false") === "true";
 
@@ -634,7 +633,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 categoryName: category,
                 categoryCount: categoryData.torrents.size,
                 nameSegments: category.split("/"),
-                ...(useSubcategories && {
+                ...({
                     children: [],
                     isRoot: true,
                     forceExpand: localPreferences.get(`category_${category}_collapsed`) === null
@@ -659,32 +658,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
         categoriesFragment.appendChild(createLink(CATEGORIES_ALL, "QBT_TR(All)QBT_TR[CONTEXT=CategoryFilterModel]", torrentsTable.getRowSize()));
         categoriesFragment.appendChild(createLink(CATEGORIES_UNCATEGORIZED, "QBT_TR(Uncategorized)QBT_TR[CONTEXT=CategoryFilterModel]", uncategorized));
 
-        if (useSubcategories) {
-            categoryList.classList.add("subcategories");
-            for (let i = 0; i < sortedCategories.length; ++i) {
-                const category = sortedCategories[i];
-                for (let j = (i + 1);
-                    ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(`${category.categoryName}/`)); ++j) {
-                    const subcategory = sortedCategories[j];
-                    category.categoryCount += subcategory.categoryCount;
-                    category.forceExpand ||= subcategory.forceExpand;
+        categoryList.classList.add("subcategories");
+        for (let i = 0; i < sortedCategories.length; ++i) {
+            const category = sortedCategories[i];
+            for (let j = (i + 1);
+                ((j < sortedCategories.length) && sortedCategories[j].categoryName.startsWith(`${category.categoryName}/`)); ++j) {
+                const subcategory = sortedCategories[j];
+                category.categoryCount += subcategory.categoryCount;
+                category.forceExpand ||= subcategory.forceExpand;
 
-                    const isDirectSubcategory = (subcategory.nameSegments.length - category.nameSegments.length) === 1;
-                    if (isDirectSubcategory) {
-                        subcategory.isRoot = false;
-                        category.children.push(subcategory);
-                    }
+                const isDirectSubcategory = (subcategory.nameSegments.length - category.nameSegments.length) === 1;
+                if (isDirectSubcategory) {
+                    subcategory.isRoot = false;
+                    category.children.push(subcategory);
                 }
             }
-            for (const category of sortedCategories) {
-                if (category.isRoot)
-                    createCategoryTree(category);
-            }
         }
-        else {
-            categoryList.classList.remove("subcategories");
-            for (const { categoryName, categoryCount } of sortedCategories)
-                categoriesFragment.appendChild(createLink(categoryName, categoryName, categoryCount));
+        for (const category of sortedCategories) {
+            if (category.isRoot)
+                createCategoryTree(category);
         }
 
         categoryList.appendChild(categoriesFragment);
@@ -1176,11 +1168,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if (alternativeSpeedLimits !== serverState.use_alt_speed_limits) {
             alternativeSpeedLimits = serverState.use_alt_speed_limits;
             updateAltSpeedIcon(alternativeSpeedLimits);
-        }
-
-        if (useSubcategories !== serverState.use_subcategories) {
-            useSubcategories = serverState.use_subcategories;
-            updateCategoryList();
         }
 
         serverSyncMainDataInterval = Math.max(serverState.refresh_interval, 500);

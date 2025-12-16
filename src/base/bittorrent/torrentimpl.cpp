@@ -934,7 +934,7 @@ bool TorrentImpl::belongsToCategory(const QString &category) const
     if (m_category == category)
         return true;
 
-    return (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + u'/'));
+    return m_category.startsWith(category + u'/');
 }
 
 TagSet TorrentImpl::tags() const

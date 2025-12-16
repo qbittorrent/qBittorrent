@@ -625,7 +625,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
 
-    m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
     m_ui->checkUseCategoryPaths->setChecked(session->useCategoryPathsInManualMode());
 
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
@@ -730,7 +729,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
-    connect(m_ui->checkUseSubcategories, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseCategoryPaths, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -802,7 +800,6 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
 
-    session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setUseCategoryPathsInManualMode(m_ui->checkUseCategoryPaths->isChecked());
 
     session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
