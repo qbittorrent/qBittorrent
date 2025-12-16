@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -72,9 +72,6 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
 #ifdef Q_OS_MACOS
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
-    m_defaultIndentation = indentation();
-    if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
-        setIndentation(0);
     setContextMenuPolicy(Qt::CustomContextMenu);
     sortByColumn(0, Qt::AscendingOrder);
     setCurrentIndex(model()->index(0, 0));
@@ -113,12 +110,8 @@ void CategoryFilterWidget::showMenu()
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first()))
     {
-        if (BitTorrent::Session::instance()->isSubcategoriesEnabled())
-        {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add subcategory...")
-                , this, &CategoryFilterWidget::addSubcategory);
-        }
-
+        menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add subcategory...")
+            , this, &CategoryFilterWidget::addSubcategory);
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s, u"document-edit"_s), tr("Edit category...")
             , this, &CategoryFilterWidget::editCategory);
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove category")
@@ -140,11 +133,6 @@ void CategoryFilterWidget::showMenu()
 
 void CategoryFilterWidget::callUpdateGeometry()
 {
-    if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
-        setIndentation(0);
-    else
-        setIndentation(m_defaultIndentation);
-
     updateGeometry();
 }
 

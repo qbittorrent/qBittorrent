@@ -1621,21 +1621,16 @@ window.qBittorrent.DynamicTable ??= (() => {
                         return false;
                     break; // do nothing
 
-                default:
-                    if (!useSubcategories) {
-                        if (category !== row["full_data"].category)
+                default: {
+                    const selectedCategory = window.qBittorrent.Client.categoryMap.get(category);
+                    if (selectedCategory !== undefined) {
+                        const selectedCategoryName = `${category}/`;
+                        const torrentCategoryName = `${row["full_data"].category}/`;
+                        if (!torrentCategoryName.startsWith(selectedCategoryName))
                             return false;
                     }
-                    else {
-                        const selectedCategory = window.qBittorrent.Client.categoryMap.get(category);
-                        if (selectedCategory !== undefined) {
-                            const selectedCategoryName = `${category}/`;
-                            const torrentCategoryName = `${row["full_data"].category}/`;
-                            if (!torrentCategoryName.startsWith(selectedCategoryName))
-                                return false;
-                        }
-                    }
                     break;
+                }
             }
 
             switch (tag) {

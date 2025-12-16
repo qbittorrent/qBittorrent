@@ -585,10 +585,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             if ((id !== CATEGORIES_ALL) && (id !== CATEGORIES_UNCATEGORIZED)) {
                 this.showItem("editCategory");
                 this.showItem("deleteCategory");
-                if (useSubcategories)
-                    this.showItem("createSubcategory");
-                else
-                    this.hideItem("createSubcategory");
+                this.showItem("createSubcategory");
             }
             else {
                 this.hideItem("editCategory");

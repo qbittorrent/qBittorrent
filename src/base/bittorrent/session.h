@@ -165,8 +165,6 @@ namespace BitTorrent
         virtual bool addCategory(const QString &name, const CategoryOptions &options = {}) = 0;
         virtual bool editCategory(const QString &name, const CategoryOptions &options) = 0;
         virtual bool removeCategory(const QString &name) = 0;
-        virtual bool isSubcategoriesEnabled() const = 0;
-        virtual void setSubcategoriesEnabled(bool value) = 0;
         virtual bool useCategoryPathsInManualMode() const = 0;
         virtual void setUseCategoryPathsInManualMode(bool value) = 0;
 

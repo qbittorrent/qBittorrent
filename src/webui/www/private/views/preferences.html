@@ -230,10 +230,6 @@
             </tbody>
         </table>
         <div class="formRow">
-            <input type="checkbox" id="use_subcategories_checkbox">
-            <label for="use_subcategories_checkbox">QBT_TR(Use Subcategories)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
             <input type="checkbox" id="categoryPathsManualModeCheckbox" title="QBT_TR(Resolve relative Save Path against appropriate Category path instead of Default one)QBT_TR[CONTEXT=OptionsDialog]">
             <label for="categoryPathsManualModeCheckbox">QBT_TR(Use Category paths in Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -2332,7 +2328,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("torrent_changed_tmm_combobox").value = pref.torrent_changed_tmm_enabled;
                     document.getElementById("save_path_changed_tmm_combobox").value = pref.save_path_changed_tmm_enabled;
                     document.getElementById("category_changed_tmm_combobox").value = pref.category_changed_tmm_enabled;
-                    document.getElementById("use_subcategories_checkbox").checked = pref.use_subcategories;
                     document.getElementById("categoryPathsManualModeCheckbox").checked = pref.use_category_paths_in_manual_mode;
                     document.getElementById("savepath_text").value = pref.save_path;
                     document.getElementById("temppath_checkbox").checked = pref.temp_path_enabled;
@@ -2754,7 +2749,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["torrent_changed_tmm_enabled"] = (document.getElementById("torrent_changed_tmm_combobox").value === "true");
             settings["save_path_changed_tmm_enabled"] = (document.getElementById("save_path_changed_tmm_combobox").value === "true");
             settings["category_changed_tmm_enabled"] = (document.getElementById("category_changed_tmm_combobox").value === "true");
-            settings["use_subcategories"] = document.getElementById("use_subcategories_checkbox").checked;
             settings["use_category_paths_in_manual_mode"] = document.getElementById("categoryPathsManualModeCheckbox").checked;
             settings["save_path"] = document.getElementById("savepath_text").value;
             settings["temp_path_enabled"] = document.getElementById("temppath_checkbox").checked;
