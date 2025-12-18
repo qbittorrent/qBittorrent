@@ -81,7 +81,18 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     connect(this, &QWidget::customContextMenuRequested, this, &CategoryFilterWidget::showMenu);
     connect(selectionModel(), &QItemSelectionModel::currentRowChanged
             , this, &CategoryFilterWidget::onCurrentRowChanged);
-    connect(model(), &QAbstractItemModel::modelReset, this, &CategoryFilterWidget::callUpdateGeometry);
+    connect(model(), &QAbstractItemModel::rowsRemoved, this, [this]
+    {
+        adjustIndentation();
+        updateGeometry();
+    });
+    connect(model(), &QAbstractItemModel::modelReset, this, [this]
+    {
+        adjustIndentation();
+        updateGeometry();
+    });
+
+    adjustIndentation();
 }
 
 QString CategoryFilterWidget::currentCategory() const
@@ -156,9 +167,12 @@ QSize CategoryFilterWidget::minimumSizeHint() const
     return size;
 }
 
-void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, int start, int end)
+void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, const int start, const int end)
 {
     QTreeView::rowsInserted(parent, start, end);
+
+    if (parent.isValid())
+        adjustIndentation();
 
     // Expand all parents if the parent(s) of the node are not expanded.
     QModelIndex p = parent;
@@ -170,6 +184,26 @@ void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, int start, in
     }
 
     updateGeometry();
+}
+
+bool CategoryFilterWidget::hasAnySubcategory() const
+{
+    const int rowCount = model()->rowCount();
+    for (int row = 0; row < rowCount; ++row)
+    {
+        if (model()->hasChildren(model()->index(row, 0)))
+            return true;
+    }
+
+    return false;
+}
+
+void CategoryFilterWidget::adjustIndentation()
+{
+    if (hasAnySubcategory())
+        resetIndentation();
+    else
+        setIndentation(0);
 }
 
 void CategoryFilterWidget::addCategory()
