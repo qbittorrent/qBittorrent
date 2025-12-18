@@ -1045,10 +1045,11 @@ bool SessionImpl::editCategory(const QString &name, const CategoryOptions &optio
 
 bool SessionImpl::removeCategory(const QString &name)
 {
+    const QString parentCategory = parentCategoryName(name);
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
         if (torrent->belongsToCategory(name))
-            torrent->setCategory(u""_s);
+            torrent->setCategory(parentCategory);
     }
 
     // remove stored category and its subcategories if exist
