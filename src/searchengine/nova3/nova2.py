@@ -106,7 +106,7 @@ def list_engines() -> list[EngineModuleName]:
         Return list of all engines' module name
     """
 
-    names = []
+    names: list[EngineModuleName] = []
 
     for engine_path in glob(path.join(path.dirname(__file__), 'engines', '*.py')):
         engine_module_name = path.basename(engine_path).split('.')[0].strip()

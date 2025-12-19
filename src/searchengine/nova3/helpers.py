@@ -44,6 +44,13 @@ from typing import Any, Optional, cast
 
 import socks
 
+# Ensure UTF-8 output (fixes UnicodeEncodeError on Windows for non-ASCII text)
+# This relies on the fact that this script is imported by nova2 and nova2dl
+if type(sys.stdout) is io.TextIOWrapper:
+    sys.stdout.reconfigure(encoding='utf-8')
+else:
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
 
 def _getBrowserUserAgent() -> str:
     """ Disguise as browser to circumvent website blocking """
