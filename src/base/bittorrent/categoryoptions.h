@@ -35,7 +35,6 @@
 #include "base/path.h"
 #include "downloadpathoption.h"
 #include "sharelimits.h"
-#include "torrent.h"
 
 class QJsonObject;
 
