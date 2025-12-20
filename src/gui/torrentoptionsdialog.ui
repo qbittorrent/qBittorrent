@@ -47,6 +47,20 @@
         </property>
        </widget>
       </item>
+      <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+            <widget class="QCheckBox" name="runOnFinishedEnabled">
+              <property name="text">
+                <string>Run external program when finished</string>
+              </property>
+            </widget>
+          </item>
+          <item>
+            <widget class="QLineEdit" name="runOnFinishedProgram"/>
+          </item>
+        </layout>
+      </item>
      </layout>
     </widget>
    </item>

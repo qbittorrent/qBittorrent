@@ -67,6 +67,7 @@ public slots:
 private slots:
     void handleCategoryChanged(int index);
     void handleTMMChanged();
+    void handleRunOnFinishedEnabledChanged();
     void handleUseDownloadPathChanged();
 
     void handleUpSpeedLimitChanged();
@@ -84,6 +85,8 @@ private:
     {
         Path savePath;
         Path downloadPath;
+        Qt::CheckState runOnFinishedEnabled;
+        QString runOnFinishedProgram;
         QString category;
         std::optional<qreal> ratio;
         std::optional<int> seedingTime;

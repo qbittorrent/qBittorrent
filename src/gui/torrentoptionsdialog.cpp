@@ -77,6 +77,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     m_ui->downloadPath->setDialogCaption(tr("Choose save path"));
 
     const auto *session = BitTorrent::Session::instance();
+    bool allSameRunOnFinishedProgram = true;
     bool allSameUpLimit = true;
     bool allSameDownLimit = true;
     bool allSameRatio = true;
@@ -96,6 +97,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     const bool isFirstTorrentAutoTMMEnabled = torrents[0]->isAutoTMMEnabled();
     const Path firstTorrentSavePath = torrents[0]->savePath();
     const Path firstTorrentDownloadPath = torrents[0]->downloadPath();
+    const QString firstRunOnFinishedProgram = torrents[0]->runOnFinishedProgram();
     const QString firstTorrentCategory = torrents[0]->category();
 
     const int firstTorrentUpLimit = std::max(0, torrents[0]->uploadLimit());
@@ -131,6 +133,11 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
         {
             if (torrent->downloadPath() != firstTorrentDownloadPath)
                 allSameDownloadPath = false;
+        }
+        if (allSameRunOnFinishedProgram)
+        {
+            if (torrent->runOnFinishedProgram() != firstRunOnFinishedProgram)
+                allSameRunOnFinishedProgram = false;
         }
         if (m_allSameCategory)
         {
@@ -216,6 +223,27 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     {
         m_ui->checkUseDownloadPath->setCheckState(Qt::PartiallyChecked);
     }
+
+    if (allSameRunOnFinishedProgram)
+    {
+        m_ui->runOnFinishedProgram->setText(firstRunOnFinishedProgram);
+        const bool active = !firstRunOnFinishedProgram.isEmpty();
+        m_ui->runOnFinishedEnabled->setChecked(active);
+        m_ui->runOnFinishedProgram->setEnabled(active);
+    }
+    else
+    {
+        m_ui->runOnFinishedEnabled->setCheckState(Qt::PartiallyChecked);
+        m_ui->runOnFinishedProgram->setEnabled(false);
+    }
+
+    QAction *runOnFinishedWarning = new QAction(this);
+    m_ui->runOnFinishedProgram->addAction(runOnFinishedWarning, QLineEdit::TrailingPosition);
+    runOnFinishedWarning->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+    runOnFinishedWarning->setToolTip(tr("This overrides the global setting"));
+
+    connect(m_ui->runOnFinishedEnabled, &QCheckBox::clicked,
+        this, &TorrentOptionsDialog::handleRunOnFinishedEnabledChanged);
 
     if (!m_allSameCategory)
     {
@@ -345,6 +373,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     {
         .savePath = m_ui->savePath->selectedPath(),
         .downloadPath = m_ui->downloadPath->selectedPath(),
+        .runOnFinishedEnabled = m_ui->runOnFinishedEnabled->checkState(),
+        .runOnFinishedProgram = m_ui->runOnFinishedProgram->text(),
         .category = m_ui->comboCategory->currentText(),
         .ratio = m_ui->torrentShareLimitsWidget->ratioLimit(),
         .seedingTime = m_ui->torrentShareLimitsWidget->seedingTimeLimit(),
@@ -415,6 +445,16 @@ void TorrentOptionsDialog::accept()
             {
                 torrent->setDownloadPath({});
             }
+        }
+
+        if(m_ui->runOnFinishedEnabled->checkState() == Qt::Checked)
+        {
+            const QString runOnFinishedProgram = m_ui->runOnFinishedProgram->text();
+            torrent->setRunOnFinishedProgram(runOnFinishedProgram);
+        }
+        else
+        {
+            torrent->setRunOnFinishedProgram(QString());
         }
 
         const QString category = m_ui->comboCategory->currentText();
@@ -540,6 +580,12 @@ void TorrentOptionsDialog::handleTMMChanged()
             m_ui->checkUseDownloadPath->setCheckState(Qt::PartiallyChecked);
         }
     }
+}
+
+void TorrentOptionsDialog::handleRunOnFinishedEnabledChanged()
+{
+    const bool isChecked = m_ui->runOnFinishedEnabled->checkState() == Qt::Checked;
+    m_ui->runOnFinishedProgram->setEnabled(isChecked);
 }
 
 void TorrentOptionsDialog::handleUseDownloadPathChanged()
