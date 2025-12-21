@@ -392,7 +392,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_RATIO:
         return ratioString(torrent->realRatio());
     case TR_RATIO_LIMIT:
-        return ratioString(torrent->maxRatio());
+        return ratioString(torrent->effectiveRatioLimit());
     case TR_POPULARITY:
         return ratioString(torrent->popularity());
     case TR_CATEGORY:
@@ -509,7 +509,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
-        return torrent->maxRatio();
+        return torrent->effectiveRatioLimit();
     case TR_SEEN_COMPLETE_DATE:
         return torrent->lastSeenComplete();
     case TR_LAST_ACTIVITY:

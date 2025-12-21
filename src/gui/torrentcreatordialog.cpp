@@ -347,9 +347,9 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
             params.skipChecking = true;
             if (m_ui->checkIgnoreShareLimits->isChecked())
             {
-                params.ratioLimit = BitTorrent::Torrent::NO_RATIO_LIMIT;
-                params.seedingTimeLimit = BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
-                params.inactiveSeedingTimeLimit = BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
+                params.ratioLimit = BitTorrent::NO_RATIO_LIMIT;
+                params.seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
+                params.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
             }
             params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
