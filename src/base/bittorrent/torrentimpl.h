@@ -156,6 +156,10 @@ namespace BitTorrent
         void setInactiveSeedingTimeLimit(int limit) override;
         ShareLimitAction shareLimitAction() const override;
         void setShareLimitAction(ShareLimitAction action) override;
+        qreal effectiveRatioLimit() const override;
+        int effectiveSeedingTimeLimit() const override;
+        int effectiveInactiveSeedingTimeLimit() const override;
+        ShareLimitAction effectiveShareLimitAction() const override;
 
         Path filePath(int index) const override;
         Path actualFilePath(int index) const override;
@@ -205,9 +209,6 @@ namespace BitTorrent
         bool isLSDDisabled() const override;
         QBitArray pieces() const override;
         qreal distributedCopies() const override;
-        qreal maxRatio() const override;
-        int maxSeedingTime() const override;
-        int maxInactiveSeedingTime() const override;
         qreal realRatio() const override;
         qreal popularity() const override;
         int uploadPayloadRate() const override;

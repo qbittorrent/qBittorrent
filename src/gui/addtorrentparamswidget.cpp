@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -190,6 +190,7 @@ void AddTorrentParamsWidget::populate()
         }
 
         populateDefaultPaths();
+        resetShareLimitsWidgetDefaults();
     });
 
     m_ui->savePathEdit->disconnect(this);
@@ -241,7 +242,7 @@ void AddTorrentParamsWidget::populate()
 
     m_ui->startTorrentComboBox->disconnect(this);
     m_ui->startTorrentComboBox->setCurrentIndex(m_addTorrentParams.addStopped
-                                                    ? m_ui->startTorrentComboBox->findData(!*m_addTorrentParams.addStopped) : 0);
+            ? m_ui->startTorrentComboBox->findData(!*m_addTorrentParams.addStopped) : 0);
     connect(m_ui->startTorrentComboBox, &QComboBox::currentIndexChanged, this, [this]
     {
         const QVariant data = m_ui->startTorrentComboBox->currentData();
@@ -270,6 +271,7 @@ void AddTorrentParamsWidget::populate()
             m_addTorrentParams.addToQueueTop = data.toBool();
     });
 
+    resetShareLimitsWidgetDefaults();
     m_ui->torrentShareLimitsWidget->setRatioLimit(m_addTorrentParams.ratioLimit);
     m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(m_addTorrentParams.seedingTimeLimit);
     m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(m_addTorrentParams.inactiveSeedingTimeLimit);
@@ -417,4 +419,12 @@ void AddTorrentParamsWidget::populateSavePathOptions()
     }
 
     populateDefaultPaths();
+}
+
+void AddTorrentParamsWidget::resetShareLimitsWidgetDefaults()
+{
+    const auto *btSession = BitTorrent::Session::instance();
+    m_ui->torrentShareLimitsWidget->setDefaults((m_addTorrentParams.category.isEmpty() ? TorrentShareLimitsWidget::UsedDefaults::Global : TorrentShareLimitsWidget::UsedDefaults::Category)
+            , btSession->categoryRatioLimit(m_addTorrentParams.category), btSession->categorySeedingTimeLimit(m_addTorrentParams.category)
+            , btSession->categoryInactiveSeedingTimeLimit(m_addTorrentParams.category), btSession->categoryShareLimitAction(m_addTorrentParams.category));
 }

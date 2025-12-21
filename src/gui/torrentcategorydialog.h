@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017, 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -52,6 +52,7 @@ public:
     static void editCategory(QWidget *parent, const QString &categoryName);
 
     explicit TorrentCategoryDialog(QWidget *parent = nullptr);
+    TorrentCategoryDialog(QWidget *parent, const QString &categoryName, const BitTorrent::CategoryOptions &categoryOptions);
     ~TorrentCategoryDialog() override;
 
     void setCategoryNameEditable(bool editable);
@@ -65,6 +66,9 @@ private slots:
     void useDownloadPathChanged(int index);
 
 private:
+    void resetShareLimitsWidgetDefaults();
+
     Ui::TorrentCategoryDialog *m_ui = nullptr;
     Path m_lastEnteredDownloadPath;
+    QString m_parentCategoryName;
 };

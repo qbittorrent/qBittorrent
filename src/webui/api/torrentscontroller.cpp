@@ -1066,9 +1066,9 @@ void TorrentsController::addAction()
     const QString torrentName = params()[u"rename"_s].trimmed();
     const int upLimit = parseInt(params()[u"upLimit"_s]).value_or(-1);
     const int dlLimit = parseInt(params()[u"dlLimit"_s]).value_or(-1);
-    const double ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_RATIO);
-    const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
-    const int inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
+    const double ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::DEFAULT_RATIO_LIMIT);
+    const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
+    const int inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
     const BitTorrent::ShareLimitAction shareLimitAction = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
     const std::optional<bool> autoTMM = parseBool(params()[u"autoTMM"_s]);
 
@@ -1897,7 +1897,7 @@ void TorrentsController::editCategoryAction()
         categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
     }
 
-    if (!BitTorrent::Session::instance()->editCategory(category, categoryOptions))
+    if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))
         throw APIError(APIErrorType::Conflict, tr("Unable to edit category"));
 
     setResult(QString());

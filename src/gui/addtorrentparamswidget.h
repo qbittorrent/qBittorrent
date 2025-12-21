@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -57,7 +57,7 @@ private:
     void populateDefaultPaths();
     void populateDefaultDownloadPath();
     void populateSavePathOptions();
-
+    void resetShareLimitsWidgetDefaults();
 
     Ui::AddTorrentParamsWidget *m_ui;
     BitTorrent::AddTorrentParams m_addTorrentParams;

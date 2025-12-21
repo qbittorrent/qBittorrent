@@ -125,9 +125,9 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM),
         .uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1),
         .downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1),
-        .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_SEEDING_TIME),
-        .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME),
-        .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(Torrent::USE_GLOBAL_RATIO),
+        .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
+        .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
+        .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(DEFAULT_RATIO_LIMIT),
         .shareLimitAction = getEnum<ShareLimitAction>(jsonObj, PARAM_SHARELIMITACTION, ShareLimitAction::Default),
         .sslParameters =
         {

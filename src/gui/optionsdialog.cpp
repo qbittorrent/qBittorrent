@@ -48,7 +48,7 @@
 #include <QTranslator>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/sharelimitaction.h"
+#include "base/bittorrent/sharelimits.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"

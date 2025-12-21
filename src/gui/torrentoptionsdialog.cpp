@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  thalieht
  * Copyright (C) 2011  Christian Kandeler
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
@@ -289,7 +289,12 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
                            , this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
     }
 
-    m_ui->torrentShareLimitsWidget->setDefaultLimits(session->globalMaxRatio(), session->globalMaxSeedingMinutes(), session->globalMaxInactiveSeedingMinutes());
+    if (m_allSameCategory)
+    {
+        m_ui->torrentShareLimitsWidget->setDefaults((firstTorrentCategory.isEmpty() ? TorrentShareLimitsWidget::UsedDefaults::Global : TorrentShareLimitsWidget::UsedDefaults::Category)
+                , session->categoryRatioLimit(firstTorrentCategory), session->categorySeedingTimeLimit(firstTorrentCategory)
+                , session->categoryInactiveSeedingTimeLimit(firstTorrentCategory), session->categoryShareLimitAction(firstTorrentCategory));
+    }
     if (allSameRatio)
         m_ui->torrentShareLimitsWidget->setRatioLimit(firstTorrentRatio);
     if (allSameSeedingTime)
@@ -477,30 +482,37 @@ void TorrentOptionsDialog::accept()
 
 void TorrentOptionsDialog::handleCategoryChanged([[maybe_unused]] const int index)
 {
-    if (m_ui->checkAutoTMM->checkState() == Qt::Checked)
-    {
-        if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
-        {
-            m_ui->savePath->setSelectedPath({});
-        }
-        else
-        {
-            const Path savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
-            m_ui->savePath->setSelectedPath(savePath);
-            const Path downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
-            m_ui->downloadPath->setSelectedPath(downloadPath);
-            m_ui->checkUseDownloadPath->setChecked(!downloadPath.isEmpty());
-        }
-    }
+    const auto *btSession = BitTorrent::Session::instance();
 
     if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
     {
+        if (m_ui->checkAutoTMM->checkState() == Qt::Checked)
+            m_ui->savePath->setSelectedPath({});
+
         m_ui->comboCategory->clearEditText();
         m_ui->comboCategory->lineEdit()->setPlaceholderText(m_currentCategoriesString);
+
+        m_ui->torrentShareLimitsWidget->setDefaults(TorrentShareLimitsWidget::UsedDefaults::Global
+                , BitTorrent::DEFAULT_RATIO_LIMIT, BitTorrent::DEFAULT_SEEDING_TIME_LIMIT
+                , BitTorrent::DEFAULT_SEEDING_TIME_LIMIT, BitTorrent::ShareLimitAction::Default);
     }
     else
     {
+        const QString categoryName = m_ui->comboCategory->currentText();
+
+        if (m_ui->checkAutoTMM->checkState() == Qt::Checked)
+        {
+            const Path savePath = btSession->categorySavePath(categoryName);
+            m_ui->savePath->setSelectedPath(savePath);
+            const Path downloadPath = btSession->categoryDownloadPath(categoryName);
+            m_ui->downloadPath->setSelectedPath(downloadPath);
+            m_ui->checkUseDownloadPath->setChecked(!downloadPath.isEmpty());
+        }
+
         m_ui->comboCategory->lineEdit()->setPlaceholderText(QString());
+        m_ui->torrentShareLimitsWidget->setDefaults((categoryName.isEmpty() ? TorrentShareLimitsWidget::UsedDefaults::Global : TorrentShareLimitsWidget::UsedDefaults::Category)
+                , btSession->categoryRatioLimit(categoryName), btSession->categorySeedingTimeLimit(categoryName)
+                , btSession->categoryInactiveSeedingTimeLimit(categoryName), btSession->categoryShareLimitAction(categoryName));
     }
 }
 
