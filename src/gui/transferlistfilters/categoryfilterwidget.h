@@ -60,4 +60,6 @@ private:
     QSize sizeHint() const override;
     QSize minimumSizeHint() const override;
     void rowsInserted(const QModelIndex &parent, int start, int end) override;
+    bool hasAnySubcategory() const;
+    void adjustIndentation();
 };
