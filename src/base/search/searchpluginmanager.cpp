@@ -554,6 +554,7 @@ void SearchPluginManager::update()
     const QStringList params
     {
         Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
+        Utils::ForeignApps::PYTHON_UTF8_MODE_FLAG,
         (engineLocation() / Path(u"/nova2.py"_s)).toString(),
         u"--capabilities"_s
     };
