@@ -1,4 +1,4 @@
-# VERSION: 1.50
+# VERSION: 1.51
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -61,7 +61,7 @@ THREADED: bool = True
 try:
     MAX_THREADS: int = cpu_count()
 except NotImplementedError:
-    MAX_THREADS = 1
+    MAX_THREADS = 1  # pyright: ignore[reportConstantRedefinition]
 
 Category = Enum('Category', ['all', 'anime', 'books', 'games', 'movies', 'music', 'pictures', 'software', 'tv'])
 
@@ -106,7 +106,7 @@ def list_engines() -> list[EngineModuleName]:
         Return list of all engines' module name
     """
 
-    names = []
+    names: list[EngineModuleName] = []
 
     for engine_path in glob(path.join(path.dirname(__file__), 'engines', '*.py')):
         engine_module_name = path.basename(engine_path).split('.')[0].strip()
