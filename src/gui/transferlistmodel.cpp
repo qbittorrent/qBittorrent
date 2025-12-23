@@ -171,6 +171,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_ETA: return tr("ETA", "i.e: Estimated Time of Arrival / Time left");
             case TR_CATEGORY: return tr("Category");
             case TR_TAGS: return tr("Tags");
+			case TR_CREATE_DATE: return tr("Created On", "Torrent was initially created on 01/01/2010 08:00");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
             case TR_TRACKER: return tr("Tracker");
@@ -399,6 +400,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return torrent->category();
     case TR_TAGS:
         return Utils::String::joinIntoString(torrent->tags(), u", "_s);
+    case TR_CREATE_DATE:
+        return QLocale().toString(torrent->creationDate().toLocalTime(), QLocale::ShortFormat);
     case TR_ADD_DATE:
         return QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_SEED_DATE:
@@ -480,6 +483,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->category();
     case TR_TAGS:
         return QVariant::fromValue(torrent->tags());
+    case TR_CREATE_DATE:
+        return torrent->creationDate();
     case TR_ADD_DATE:
         return torrent->addedTime();
     case TR_SEED_DATE:

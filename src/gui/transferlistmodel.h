@@ -65,6 +65,7 @@ public:
         TR_POPULARITY,
         TR_CATEGORY,
         TR_TAGS,
+		TR_CREATE_DATE,
         TR_ADD_DATE,
         TR_SEED_DATE,
         TR_TRACKER,
