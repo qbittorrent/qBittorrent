@@ -118,6 +118,7 @@ using namespace std::chrono_literals;
 using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
+const Path ADDITIONAL_TRACKERS_FILE_NAME {u"additional_trackers.txt"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
 const std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
 
@@ -4040,7 +4041,8 @@ void SessionImpl::updateTrackersFromURL()
     }
     else
     {
-        Net::DownloadManager::instance()->download(Net::DownloadRequest(url)
+        const Path path = specialFolderLocation(SpecialFolder::Config) / ADDITIONAL_TRACKERS_FILE_NAME;
+        Net::DownloadManager::instance()->download(Net::DownloadRequest(url).saveToFile(true).destFileName(path)
                 , Preferences::instance()->useProxyForGeneralPurposes(), this, [this](const Net::DownloadResult &result)
         {
             if (result.status == Net::DownloadStatus::Success)
