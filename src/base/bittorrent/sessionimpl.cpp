@@ -4049,7 +4049,7 @@ void SessionImpl::updateTrackersFromURL()
     }
     else
     {
-        const Path path = specialFolderLocation(SpecialFolder::Config) / ADDITIONAL_TRACKERS_FILE_NAME;
+        const Path path = specialFolderLocation(SpecialFolder::Data) / ADDITIONAL_TRACKERS_FILE_NAME;
         Net::DownloadManager::instance()->download(Net::DownloadRequest(url).saveToFile(true).destFileName(path)
                 , Preferences::instance()->useProxyForGeneralPurposes(), this, [this](const Net::DownloadResult &result)
         {
@@ -6638,7 +6638,7 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
 void SessionImpl::updateTrackersFromFile()
 {
     const int fileMaxSize = 1024 * 1024;
-    const Path path = specialFolderLocation(SpecialFolder::Config) / Path(ADDITIONAL_TRACKERS_FILE_NAME);
+    const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FILE_NAME);
 
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);
     if (!readResult)
