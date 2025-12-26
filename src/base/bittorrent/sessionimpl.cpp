@@ -4007,6 +4007,8 @@ void SessionImpl::setAddTrackersFromURLEnabled(const bool enabled)
         {
             m_updateTrackersFromURLTimer->stop();
             setAdditionalTrackersFromURL({});
+            const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FILE_NAME);
+            Utils::Fs::removeFile(path);
         }
     }
 }
