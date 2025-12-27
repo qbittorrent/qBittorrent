@@ -637,7 +637,8 @@ namespace BitTorrent
         void processPendingFinishedTorrents();
 
         void loadCategories();
-        void storeCategories() const;
+        void storeCategories();
+        void storeCategoriesImpl() const;
         void upgradeCategories();
         DownloadPathOption resolveCategoryDownloadPathOption(const QString &categoryName, const std::optional<DownloadPathOption> &option) const;
 
@@ -879,6 +880,8 @@ namespace BitTorrent
         FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
+
+        QTimer *m_categoryStoreTimer = nullptr;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();
