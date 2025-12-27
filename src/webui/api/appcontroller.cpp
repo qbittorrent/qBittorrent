@@ -461,7 +461,7 @@ void AppController::preferencesAction()
     // UPnP lease duration
     data[u"upnp_lease_duration"_s] = session->UPnPLeaseDuration();
     // Type of service
-    data[u"peer_tos"_s] = session->peerToS();
+    data[u"peer_tos"_s] = session->peerDSCP();
     // uTP-TCP mixed mode
     data[u"utp_tcp_mixed_mode"_s] = static_cast<int>(session->utpMixedMode());
     // Hostname resolver cache TTL
@@ -1114,7 +1114,7 @@ void AppController::setPreferencesAction()
         session->setUPnPLeaseDuration(it.value().toInt());
     // Type of service
     if (hasKey(u"peer_tos"_s))
-        session->setPeerToS(it.value().toInt());
+        session->setPeerDSCP(it.value().toInt());
     // uTP-TCP mixed mode
     if (hasKey(u"utp_tcp_mixed_mode"_s))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
