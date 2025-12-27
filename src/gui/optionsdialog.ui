@@ -470,6 +470,22 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="dockDisplayBox">
+              <property name="title">
+               <string>Display</string>
+              </property>
+              <layout class="QVBoxLayout" name="dockDisplayBoxLayout">
+               <item>
+                <widget class="QCheckBox" name="checkShowSpeedInDock">
+                 <property name="text">
+                  <string>Show speed in Dock</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="boxTorrentContent">
               <property name="title">
                <string>Torrent Content View</string>
