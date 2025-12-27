@@ -1114,6 +1114,10 @@ void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
 
 QString Preferences::getWebUITrustedReverseProxiesList() const
 {
+    const QString envStr = qEnvironmentVariable("QB_WEBUI_TRUSTED_REVERSE_PROXIES");
+    if (!envStr.isEmpty())
+        return envStr;
+
     return value<QString>(u"Preferences/WebUI/TrustedReverseProxiesList"_s);
 }
 
@@ -1123,6 +1127,40 @@ void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
         return;
 
     setValue(u"Preferences/WebUI/TrustedReverseProxiesList"_s, addr);
+}
+
+bool Preferences::isWebUIReverseProxyAuthEnabled() const
+{
+    const QString envStr = qEnvironmentVariable("QB_WEBUI_REVERSE_PROXY_AUTH_ENABLED");
+    if (!envStr.isEmpty())
+        return (envStr.compare(u"true", Qt::CaseInsensitive) == 0) || (envStr == u"1");
+
+    return value(u"Preferences/WebUI/ReverseProxyAuthEnabled"_s, false);
+}
+
+void Preferences::setWebUIReverseProxyAuthEnabled(const bool enabled)
+{
+    if (enabled == isWebUIReverseProxyAuthEnabled())
+        return;
+
+    setValue(u"Preferences/WebUI/ReverseProxyAuthEnabled"_s, enabled);
+}
+
+QString Preferences::getWebUIReverseProxyAuthHeader() const
+{
+    const QString envStr = qEnvironmentVariable("QB_WEBUI_REVERSE_PROXY_AUTH_HEADER");
+    if (!envStr.isEmpty())
+        return envStr;
+
+    return value<QString>(u"Preferences/WebUI/ReverseProxyAuthHeader"_s, u"X-Forwarded-User"_s);
+}
+
+void Preferences::setWebUIReverseProxyAuthHeader(const QString &header)
+{
+    if (header == getWebUIReverseProxyAuthHeader())
+        return;
+
+    setValue(u"Preferences/WebUI/ReverseProxyAuthHeader"_s, header);
 }
 
 bool Preferences::isDynDNSEnabled() const

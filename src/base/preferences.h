@@ -254,6 +254,12 @@ public:
     QString getWebUITrustedReverseProxiesList() const;
     void setWebUITrustedReverseProxiesList(const QString &addr);
 
+    // Reverse proxy authentication
+    bool isWebUIReverseProxyAuthEnabled() const;
+    void setWebUIReverseProxyAuthEnabled(bool enabled);
+    QString getWebUIReverseProxyAuthHeader() const;
+    void setWebUIReverseProxyAuthHeader(const QString &header);
+
     // Dynamic DNS
     bool isDynDNSEnabled() const;
     void setDynDNSEnabled(bool enabled);

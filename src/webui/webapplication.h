@@ -270,6 +270,8 @@ private:
     bool m_isReverseProxySupportEnabled = false;
     QList<Utils::Net::Subnet> m_trustedReverseProxyList;
     QHostAddress m_clientAddress;
+    bool m_isReverseProxyAuthEnabled = false;
+    QString m_reverseProxyAuthHeader;
 
     QList<Http::Header> m_prebuiltHeaders;
 

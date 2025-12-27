@@ -521,8 +521,11 @@ void WebApplication::configure()
         }
     }
 
+    m_isReverseProxyAuthEnabled = pref->isWebUIReverseProxyAuthEnabled();
+    m_reverseProxyAuthHeader = pref->getWebUIReverseProxyAuthHeader();
+
     m_isReverseProxySupportEnabled = pref->isWebUIReverseProxySupportEnabled();
-    if (m_isReverseProxySupportEnabled)
+    if (m_isReverseProxySupportEnabled || m_isReverseProxyAuthEnabled)
     {
         const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(u';', Qt::SkipEmptyParts);
 
@@ -779,6 +782,12 @@ bool WebApplication::isAuthNeeded()
         return false;
     if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
         return false;
+    if (m_isReverseProxyAuthEnabled
+        && Utils::Net::isIPInSubnets(m_env.clientAddress, m_trustedReverseProxyList)
+        && m_request.headers.contains(m_reverseProxyAuthHeader))
+    {
+        return false;
+    }
     return true;
 }
 
