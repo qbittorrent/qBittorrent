@@ -650,6 +650,7 @@ namespace BitTorrent
 
         void setAdditionalTrackersFromURL(const QString &trackers);
         void updateTrackersFromURL();
+        void updateTrackersFromFile();
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;
