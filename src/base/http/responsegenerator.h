@@ -38,6 +38,7 @@ namespace Http
     struct Response;
 
     QByteArray toByteArray(Response response);
+    QByteArray generateResponseHeaders(const Response &response);
     QString httpDate();
     void compressContent(Response &response);
 }

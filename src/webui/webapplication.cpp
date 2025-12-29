@@ -360,7 +360,42 @@ void WebApplication::doProcessRequest(const bool isUsingApiKey)
     try
     {
         const APIResult result = controller->run(action, m_params, data);
-        if (result.data.isNull())
+
+        if (result.streaming)
+        {
+            Http::Response &resp = responseRef();
+            resp.headers[Http::HEADER_CONTENT_TYPE] = result.mimeType;
+            resp.headers[Http::HEADER_CONTENT_DISPOSITION] = u"attachment; filename=\"%1\""_s.arg(result.filename);
+            resp.headers[Http::HEADER_ACCEPT_RANGES] = u"bytes"_s;
+
+            const qint64 totalSize = result.streaming->totalSize;
+            const QString rangeHeader = m_request.headers.value(Http::HEADER_RANGE);
+            const Http::RangeRequest range = Http::parseRangeHeader(rangeHeader, totalSize);
+
+            if (range.isValid)
+            {
+                resp.status = {206, u"Partial Content"_s};
+                resp.streaming = Http::StreamingInfo {
+                    .filePath = result.streaming->filePath,
+                    .offset = range.start,
+                    .size = range.length,
+                    .totalSize = totalSize
+                };
+                resp.headers[Http::HEADER_CONTENT_RANGE] =
+                    u"bytes %1-%2/%3"_s.arg(range.start).arg(range.end).arg(totalSize);
+            }
+            else
+            {
+                resp.status = {200, u"OK"_s};
+                resp.streaming = Http::StreamingInfo {
+                    .filePath = result.streaming->filePath,
+                    .offset = 0,
+                    .size = totalSize,
+                    .totalSize = totalSize
+                };
+            }
+        }
+        else if (result.data.isNull())
         {
             status(204);
         }

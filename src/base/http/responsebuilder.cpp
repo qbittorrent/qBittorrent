@@ -60,6 +60,11 @@ Response ResponseBuilder::response() const
     return m_response;
 }
 
+Response &ResponseBuilder::responseRef()
+{
+    return m_response;
+}
+
 void ResponseBuilder::print_impl(const QByteArray &data, const QString &type)
 {
     if (!m_response.headers.contains(HEADER_CONTENT_TYPE))
