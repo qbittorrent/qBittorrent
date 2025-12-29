@@ -700,6 +700,7 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
     if (!removedTrackers.isEmpty())
     {
         m_nativeHandle.replace_trackers(nativeTrackers);
+        m_announceStatus.reset();
 
         deferredRequestResumeData();
         m_session->handleTorrentTrackersRemoved(this, removedTrackers);
@@ -727,6 +728,7 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
     }
 
     m_nativeHandle.replace_trackers(nativeTrackers);
+    m_announceStatus.reset();
 
     // Clear the peer list if it's a private torrent since
     // we do not want to keep connecting with peers from old tracker.
