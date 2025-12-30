@@ -387,8 +387,8 @@ namespace BitTorrent
         virtual void setOutgoingPortsMax(int max) = 0;
         virtual int UPnPLeaseDuration() const = 0;
         virtual void setUPnPLeaseDuration(int duration) = 0;
-        virtual int peerToS() const = 0;
-        virtual void setPeerToS(int value) = 0;
+        virtual int peerDSCP() const = 0;
+        virtual void setPeerDSCP(int value) = 0;
         virtual bool ignoreLimitsOnLAN() const = 0;
         virtual void setIgnoreLimitsOnLAN(bool ignore) = 0;
         virtual bool includeOverheadInLimits() const = 0;

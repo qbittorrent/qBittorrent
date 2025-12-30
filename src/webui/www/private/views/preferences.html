@@ -1561,10 +1561,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
-                        <label for="peerToS">QBT_TR(Type of service (ToS) for connections to peers)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_tos" target="_blank">(?)</a></label>
+                        <label for="peerDSCP">QBT_TR(Differentiated Services Code Point (DSCP) for connections to peers)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_dscp" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="peerToS" style="width: 15em;">
+                        <input type="text" id="peerDSCP" style="width: 15em;">
                     </td>
                 </tr>
                 <tr>
@@ -2668,7 +2668,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("outgoingPortsMin").value = pref.outgoing_ports_min;
                     document.getElementById("outgoingPortsMax").value = pref.outgoing_ports_max;
                     document.getElementById("UPnPLeaseDuration").value = pref.upnp_lease_duration;
-                    document.getElementById("peerToS").value = pref.peer_tos;
+                    document.getElementById("peerDSCP").value = pref.peer_tos;
                     document.getElementById("utpTCPMixedModeAlgorithm").value = pref.utp_tcp_mixed_mode;
                     document.getElementById("hostnameCacheTTL").value = pref.hostname_cache_ttl;
                     document.getElementById("IDNSupportCheckbox").checked = pref.idn_support_enabled;
@@ -3156,12 +3156,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["outgoing_ports_max"] = Number(document.getElementById("outgoingPortsMax").value);
             settings["upnp_lease_duration"] = Number(document.getElementById("UPnPLeaseDuration").value);
 
-            const peerToS = Number(document.getElementById("peerToS").value);
-            if (Number.isNaN(peerToS) || (peerToS < 0) || (peerToS > 255)) {
-                alert("QBT_TR(Peer ToS must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
+            const peerDSCP = Number(document.getElementById("peerDSCP").value);
+            if (Number.isNaN(peerDSCP) || (peerDSCP < 0) || (peerDSCP > 255)) {
+                alert("QBT_TR(Peer DSCP must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
-            settings["peer_tos"] = peerToS;
+            settings["peer_tos"] = peerDSCP;
 
             settings["utp_tcp_mixed_mode"] = Number(document.getElementById("utpTCPMixedModeAlgorithm").value);
             settings["hostname_cache_ttl"] = Number(document.getElementById("hostnameCacheTTL").value);
