@@ -71,44 +71,32 @@
         <translation>إضافة لأعلى القائمة</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">رابط واحد لكل سطر (روابط HTTP ، والروابط الممغنطة ومعلومات التجزئة مدعومة)</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">إضافة روابط تورنت</translation>
-    </message>
-    <message>
-        <source>Torrent options</source>
-        <translation type="vanished">خيارات التورنت</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>تنزيل بترتيب تسلسلي</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>الحجم:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>حفظ في</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>معلومات التورنت</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>مسار الحفظ:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>معلومات التحقق من البيانات (الهاش) الإصدار 1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>إعادة تسمية التورنت</translation>
     </message>
     <message>
         <source>Add torrent</source>
@@ -116,39 +104,39 @@
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>غير متوفر</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>الأولوية</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>مرتفع</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>إعدادات التورنت</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>عادي</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>حفظ الملفات إلى المجلد:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>تعيين كفئة افتراضية</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>حد معدل الرفع</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>تصفية الملفات...</translation>
     </message>
     <message>
         <source>Add Torrent</source>
@@ -156,11 +144,11 @@
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>استخدم مسارًا آخر للتورنت غير المكتمل</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>التاريخ:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
@@ -168,27 +156,27 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>الكل</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>لا يوجد</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>أقصى أهمية</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>لا تنزّل</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>تنزيل أول وأخر قطعة أولًا</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>التعليق:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
@@ -196,19 +184,19 @@
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>معلومات التحقق من البيانات (الهاش) الإصدار 2:</translation>
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>الوسوم:</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>الملفات</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>حد معدل التنزيل</translation>
     </message>
 </context>
 <context>
@@ -316,29 +304,12 @@
         <translation>غير معروف</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">يجب أن يكون حد نسبة المشاركة بين 0 و9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">يجب أن يكون الحد الزمني للبذر بين 0 و525600 دقيقة.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>تطبيق</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>إضافة</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">رفع التورنتات</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">حفظ الملفات إلى المجلد:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -351,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>تحديد الموقع</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">حد معدل الرفع</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">حد معدل التنزيل</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">إعادة تسمية التورنت</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -402,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>خروج</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">رفع تورنت محلي</translation>
     </message>
     <message>
         <source>Save</source>
@@ -576,10 +531,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
@@ -609,6 +560,10 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1621,7 +1576,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>نوع الخدمة (ToS) للاتصالات مع الأقران</translation>
+        <translation type="vanished">نوع الخدمة (ToS) للاتصالات مع الأقران</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1694,10 +1649,6 @@
     <message>
         <source>POSIX-compliant</source>
         <translation>متوافق مع POSIX</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="vanished">هذا الخيار أقل فعالية على Linux</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1869,7 +1820,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>استخدام تصنيفات فرعية</translation>
+        <translation type="vanished">استخدام تصنيفات فرعية</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2112,10 +2063,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation type="vanished">عندما يتم إضافة تورنت مكررة</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>الإجراء عند النقر المزدوج</translation>
     </message>
@@ -2271,13 +2218,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Copy API key</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">الآي بي</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>المنفذ</translation>
@@ -2356,7 +2303,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>IP/Address</source>
-        <translation type="unfinished" />
+        <translation>IP/العنوان</translation>
     </message>
 </context>
 <context>
@@ -2540,14 +2487,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 (بمعدّل %2)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">حد التنزيل:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">حد الرفع:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>الأولوية</translation>
     </message>
@@ -2721,11 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">ك.ب/ث</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3110,10 +3045,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation type="vanished">الرابط</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>الحالة</translation>
     </message>
@@ -3255,7 +3186,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished" />
+        <translation>إجبار إعادة الإعلان لجميع المتتبعات</translation>
     </message>
 </context>
 <context>
@@ -3549,10 +3480,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">مسار الحفظ:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation type="unfinished" />
     </message>
@@ -3575,10 +3502,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tags</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="vanished">الفئة:</translation>
     </message>
     <message>
         <source>Content Path</source>
@@ -3617,11 +3540,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>إهمال</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>إزالة التورنت</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
@@ -3629,11 +3552,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>أوقف التورنت</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>تفعيل البذر الخارق للتورنت</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
@@ -3663,14 +3586,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download from URLs</source>
         <translation>تنزيل من عناوين المواقع</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">تنزيل</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">إضافة روابط التورنت</translation>
     </message>
 </context>
 <context>
@@ -4628,7 +4543,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>تحذير</translation>
     </message>
     <message>
         <source>Other error</source>
@@ -4808,39 +4723,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>حفظ مسار التورنتات غير المكتملة:</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>إهمال</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>تصنيف جديد</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>مسار الحفظ:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>نعم</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>الفئة:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>لا</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>المسار:</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>استخدم مسارًا آخر للتورنتات غير المكتملة:</translation>
     </message>
 </context>
 <context>
@@ -5138,19 +5053,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>تنزيل</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>رابط مغناطيسي</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>إضافة روابط تورنت</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>رابط واحد لكل سطر (روابط HTTP ، والروابط الممغنطة ومعلومات التجزئة مدعومة)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5158,7 +5073,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>إضافة روابط التورنت</translation>
     </message>
 </context>
 <context>
@@ -5173,15 +5088,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>حد الرفع:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>حد التنزيل:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>ك.ب/ث</translation>
     </message>
 </context>
 <context>

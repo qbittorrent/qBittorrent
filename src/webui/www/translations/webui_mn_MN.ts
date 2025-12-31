@@ -72,19 +72,19 @@
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>Дарааллаар нь татах</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Хэмжээ:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>Замд хадгалах</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>Торрентийн мэдээлэл</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -96,7 +96,7 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>Нэрийг өөрчлөх</translation>
     </message>
     <message>
         <source>Add torrent</source>
@@ -104,35 +104,35 @@
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>Боломжгүй</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Ээлж</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>Их</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>Торрентийн тохиргоо</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Хэвийн</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>Файлуудыг хадгалах байршил:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>Үндсэн хавтсаар тохируулах</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>Илгээлтийн зэргийн хязгаар</translation>
     </message>
     <message>
         <source>Filter files...</source>
@@ -148,7 +148,7 @@
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>Огноо:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
@@ -156,7 +156,7 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Бүгд</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -164,19 +164,19 @@
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>Маш их</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Бүү тат</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>Эхний болон сүүлийн хэсгүүдийг эхэлж татах</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>Сэтгэгдэл:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
@@ -196,7 +196,7 @@
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>Таталтын зэргийн хязгаар</translation>
     </message>
 </context>
 <context>
@@ -304,25 +304,12 @@
         <translation>Тодорхойгүй</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Хуваалцах харьцааны хязгаарлалт нь 0, 9998 хооронд байх ёстой.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Батлах</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>Нэмэх</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">Торрентуудыг илгээх</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">Файлуудыг хадгалах байршил:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -335,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>Байршлыг тодорхойлох</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">Илгээлтийн зэргийн хязгаар</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">Таталтын зэргийн хязгаар</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">Нэрийг өөрчлөх</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -386,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>Гарах</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">Торрент шинээр хуулах</translation>
     </message>
     <message>
         <source>Save</source>
@@ -560,10 +531,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
@@ -593,6 +560,10 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1604,10 +1575,6 @@
         <translation>Дэд хавтас үүсгэхгүй</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation type="unfinished" />
     </message>
@@ -1841,10 +1808,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use Subcategories</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2243,13 +2206,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Copy API key</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>Порт</translation>
@@ -3529,10 +3492,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Category:</source>
-        <translation type="vanished">Ангилал:</translation>
-    </message>
-    <message>
         <source>Content Path</source>
         <translation type="unfinished" />
     </message>
@@ -3615,10 +3574,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download from URLs</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Татах</translation>
     </message>
 </context>
 <context>
@@ -4576,7 +4531,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Анхаар</translation>
     </message>
     <message>
         <source>Other error</source>
@@ -4764,7 +4719,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Шинэ Ангилал</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -4772,15 +4727,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Тийм</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Ангилал:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Үгүй</translation>
     </message>
     <message>
         <source>Path:</source>
@@ -5086,11 +5041,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Татах</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Соронзон холбоос</translation>
     </message>
     <message>
         <source>Add torrent links</source>
