@@ -71,40 +71,32 @@
         <translation>Gehitu ilararen goiko aldera.</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">Lotura bat lerroko (HTTP loturak, Magnet loturak eta info-hashak daude sostengatuta)</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">Gehitu torrent loturak</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>Jeitsi hurrenkera sekuentzialean</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Neurria:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>Gordeta</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>Torrentaren argibideak</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Gordetze helburua:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Info hash v1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>Berrizendatu torrenta</translation>
     </message>
     <message>
         <source>Add torrent</source>
@@ -112,39 +104,39 @@
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>Eskuraezina</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Lehentasuna</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>Handia</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>Torrent ezarpenak</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Arrunta</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>Gorde agiriak kokaleku honetan:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>Ezarri berezko kategoria bezala</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>Mugatu igoera neurria</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Iragazi agiriak...</translation>
     </message>
     <message>
         <source>Add Torrent</source>
@@ -152,11 +144,11 @@
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>Erabili beste bide-izena bukatu gabeko torrententzat</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>Eguna:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
@@ -164,27 +156,27 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Guztiak</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>E/G</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>Gehiena</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Ez jeitsi</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>Jeitsi lehen eta azken atalak lehenik</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>Aipamena:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
@@ -192,19 +184,19 @@
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2:</translation>
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>Etiketak:</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>Agiriak</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>Mugatu jeisketa neurria</translation>
     </message>
 </context>
 <context>
@@ -312,29 +304,12 @@
         <translation>Ezezaguna</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Elkarbanatze maila muga 0 eta 9998 artekoa izan behar da.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Emaritza denbora muga 0 eta 525600 minutu artekoa izan behar da.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Ezarri</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>Gehitu</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">Igo Torrentak</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">Gorde agiriak kokaleku honetan:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -347,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>Ezarri kokalekua</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">Mugatu igoera neurria</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">Mugatu jeisketa neurria</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">Berrizendatu torrenta</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -398,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>Amaitu saioa</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">Igo tokiko torrenta</translation>
     </message>
     <message>
         <source>Save</source>
@@ -572,10 +531,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
@@ -605,6 +560,10 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1617,7 +1576,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Zerbitzu motak (ToS) konexio parekoentzat</translation>
+        <translation type="vanished">Zerbitzu motak (ToS) konexio parekoentzat</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1690,10 +1649,6 @@
     <message>
         <source>POSIX-compliant</source>
         <translation>POSIX betetzen du</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="vanished">Aukera honek eragin gutxiago du Linuxen</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1865,7 +1820,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>Erabili Azpikategoriak</translation>
+        <translation type="vanished">Erabili Azpikategoriak</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2108,10 +2063,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation type="vanished">Torrent bikoiztua gehitzen ari denean</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>Klik-bikoitzaren ekintza</translation>
     </message>
@@ -2267,13 +2218,13 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <source>Copy API key</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP-a</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>Ataka</translation>
@@ -2352,7 +2303,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>IP/Address</source>
-        <translation type="unfinished" />
+        <translation>IP/Helbidea</translation>
     </message>
 </context>
 <context>
@@ -2536,14 +2487,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <translation>%1 (%2 bat.-best.)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">Jeitsiera muga:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">Igoera muga:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>Lehentasuna</translation>
     </message>
@@ -2717,11 +2660,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">KiB/s</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3106,10 +3045,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation type="vanished">URL-a</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>Egoera</translation>
     </message>
@@ -3219,15 +3154,15 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>URL/Announce Endpoint</source>
-        <translation type="unfinished" />
+        <translation>URL/Iragarpen konexio-puntua</translation>
     </message>
     <message>
         <source>BT Protocol</source>
-        <translation type="unfinished" />
+        <translation>BT protokoloa</translation>
     </message>
     <message>
         <source>Next Announce</source>
-        <translation type="unfinished" />
+        <translation>Hurrengo iragarpena</translation>
     </message>
     <message>
         <source>Tier:</source>
@@ -3235,11 +3170,11 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>Aztarnari-errorea</translation>
     </message>
     <message>
         <source>Unreachable</source>
-        <translation type="unfinished" />
+        <translation>Iristezina</translation>
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
@@ -3247,11 +3182,11 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Min Announce</source>
-        <translation type="unfinished" />
+        <translation>Iragarpen min</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished" />
+        <translation>Behartu aztarnari guztien ber-iragarpena</translation>
     </message>
 </context>
 <context>
@@ -3545,10 +3480,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
         <translation>Behartu hasiera</translation>
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">Gordetze helburua:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation type="unfinished" />
     </message>
@@ -3571,10 +3502,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>Add tags</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="vanished">Kategoria:</translation>
     </message>
     <message>
         <source>Content Path</source>
@@ -3613,23 +3540,23 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Berezkoa</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Kendu torrenta</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Kendu torrenta eta bere edukia</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Gelditu torrenta</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Gaitu gain emaritza torrentarentzat</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
@@ -3659,14 +3586,6 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     <message>
         <source>Download from URLs</source>
         <translation>Jeitsi URL-tatik</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Jeitsi</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">Gehitu Torrent Loturak</translation>
     </message>
 </context>
 <context>
@@ -4620,11 +4539,11 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>Aztarnari-errorea</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Kontuz</translation>
     </message>
     <message>
         <source>Other error</source>
@@ -4804,39 +4723,39 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Gordetze bide-izena osatu gabeko torrentetarako:</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Berezkoa</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Kategoria Berria</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Gordetze helburua:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Bai</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategoria:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ez</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Helburua:</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Erabili beste bide-izena bukatu gabeko torrententzat:</translation>
     </message>
 </context>
 <context>
@@ -5134,19 +5053,19 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Jeitsi</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magnet esteka</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Gehitu torrent loturak</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Lotura bat lerroko (HTTP loturak, Magnet loturak eta info-hashak daude sostengatuta)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5154,7 +5073,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Gehitu Torrent Loturak</translation>
     </message>
 </context>
 <context>
@@ -5169,15 +5088,15 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Igoera muga:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Jeitsiera muga:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>

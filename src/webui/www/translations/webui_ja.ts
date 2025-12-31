@@ -71,44 +71,32 @@
         <translation>キューの先頭に追加する</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">1行に1リンク(HTTPリンク、マグネットリンク、infoハッシュに対応)</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">Torrentリンクを追加する</translation>
-    </message>
-    <message>
-        <source>Torrent options</source>
-        <translation type="vanished">Torrentのオプション</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>ピースを先頭から順番にダウンロードする</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>サイズ:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>保存先</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>Torrentの情報</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>保存パス:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Infoハッシュ v1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent名の変更</translation>
     </message>
     <message>
         <source>Add torrent</source>
@@ -116,39 +104,39 @@
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>取得できません</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>優先度</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>高</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>Torrentの設定</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>通常</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>ファイルの保存場所:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>デフォルトのカテゴリーにする</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>アップロード速度制限</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>ファイルを絞り込む...</translation>
     </message>
     <message>
         <source>Add Torrent</source>
@@ -156,11 +144,11 @@
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>未完了のTorrentは別のパスを使用する</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>日付:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
@@ -168,27 +156,27 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>すべて</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>最高</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>ダウンロードしない</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>最初と最後のピースを先にダウンロードする</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>コメント:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
@@ -196,19 +184,19 @@
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Infoハッシュ v2:</translation>
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>タグ:</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>ファイル</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>ダウンロード速度制限</translation>
     </message>
 </context>
 <context>
@@ -316,29 +304,12 @@
         <translation>不明</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">共有比は0から9998の間でなければなりません。</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">シード時間制限は0から525600分の間でなければなりません。</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>適用</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>追加</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">Torrentのアップロード</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">ファイルの保存場所:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -351,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>場所の設定</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">アップロード速度制限</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">ダウンロード速度制限</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">Torrent名の変更</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -402,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>ログアウト</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">ローカルのTorrentをアップロード</translation>
     </message>
     <message>
         <source>Save</source>
@@ -576,10 +531,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
@@ -609,6 +560,10 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1621,7 +1576,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>ピアに接続するサービスの種類(ToS)</translation>
+        <translation type="vanished">ピアに接続するサービスの種類(ToS)</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1694,10 +1649,6 @@
     <message>
         <source>POSIX-compliant</source>
         <translation>POSIX準拠</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="vanished">このオプションは、Linuxではあまり効果がありません</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1869,7 +1820,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>サブカテゴリーを使用する</translation>
+        <translation type="vanished">サブカテゴリーを使用する</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2112,10 +2063,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>クッキーのSecure属性を有効にする(HTTPSまたはローカルホスト接続が必要)</translation>
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation type="vanished">重複したTorrentの追加時</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>ダブルクリック時の動作</translation>
     </message>
@@ -2271,13 +2218,13 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Copy API key</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>ポート</translation>
@@ -2356,7 +2303,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>IP/Address</source>
-        <translation type="unfinished" />
+        <translation>IP/アドレス</translation>
     </message>
 </context>
 <context>
@@ -2540,14 +2487,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>%1 (平均%2)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">ダウンロード制限:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">アップロード制限:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
@@ -2721,11 +2660,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">KiB/s</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3110,10 +3045,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>状態</translation>
     </message>
@@ -3223,15 +3154,15 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>URL/Announce Endpoint</source>
-        <translation type="unfinished" />
+        <translation>URL/アナウンスエンドポイント</translation>
     </message>
     <message>
         <source>BT Protocol</source>
-        <translation type="unfinished" />
+        <translation>BTプロトコル</translation>
     </message>
     <message>
         <source>Next Announce</source>
-        <translation type="unfinished" />
+        <translation>次のアナウンス</translation>
     </message>
     <message>
         <source>Tier:</source>
@@ -3239,11 +3170,11 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>トラッカーエラー</translation>
     </message>
     <message>
         <source>Unreachable</source>
-        <translation type="unfinished" />
+        <translation>到達できません</translation>
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
@@ -3251,11 +3182,11 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Min Announce</source>
-        <translation type="unfinished" />
+        <translation>最低アナウンス</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished" />
+        <translation>全トラッカーに強制再アナウンス</translation>
     </message>
 </context>
 <context>
@@ -3549,10 +3480,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">保存パス:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation type="unfinished" />
     </message>
@@ -3575,10 +3502,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Add tags</source>
         <translation>タグの追加</translation>
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="vanished">カテゴリ:</translation>
     </message>
     <message>
         <source>Content Path</source>
@@ -3617,23 +3540,23 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>デフォルト</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrentを削除</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Torrentとそのコンテンツを削除する</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrentを停止する</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrentをスーパーシードにする</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
@@ -3663,14 +3586,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Download from URLs</source>
         <translation>URLからダウンロード</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">ダウンロード</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">Torrentリンクの追加</translation>
     </message>
 </context>
 <context>
@@ -4624,11 +4539,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>トラッカーエラー</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>警告</translation>
     </message>
     <message>
         <source>Other error</source>
@@ -4808,39 +4723,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>未完了Torrentの保存パス:</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>デフォルト</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>新規カテゴリ</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>保存パス:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>はい</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>カテゴリ:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>いいえ</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>パス:</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>未完了Torrentは別のパスを使用する:</translation>
     </message>
 </context>
 <context>
@@ -5138,19 +5053,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>ダウンロード</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>マグネットリンク</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Torrentリンクを追加する</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>1行に1リンク(HTTPリンク、マグネットリンク、infoハッシュに対応)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5158,7 +5073,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Torrentリンクの追加</translation>
     </message>
 </context>
 <context>
@@ -5173,15 +5088,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>アップロード制限:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>ダウンロード制限:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>

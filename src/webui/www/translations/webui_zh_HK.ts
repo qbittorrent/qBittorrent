@@ -71,40 +71,32 @@
         <translation>加至佇列頂部</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">一行一連結（支援HTTP連結、磁性連結和資料驗證碼）</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">加入Torrent連結</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>按順序下載</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>大小：</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>儲存於</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>Torrent資訊</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>儲存路徑：</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>資訊雜湊值 v1：</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>重新命名Torrent</translation>
     </message>
     <message>
         <source>Add torrent</source>
@@ -112,39 +104,39 @@
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>不可選用</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>優先權</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>高</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>Torrent設定</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>一般</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>儲存檔案到：</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>設定為預設分類</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>限制上載速度</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>過濾檔案…</translation>
     </message>
     <message>
         <source>Add Torrent</source>
@@ -152,11 +144,11 @@
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>使用其他路徑取得不完整的 torrent</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>日期：</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
@@ -164,27 +156,27 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>全部</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>最高</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>不要下載</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>先下載首片段和最後片段</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>評註：</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
@@ -192,7 +184,7 @@
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>資訊雜湊值 v2：</translation>
     </message>
     <message>
         <source>Tags:</source>
@@ -200,11 +192,11 @@
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>檔案</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>限制下載速度</translation>
     </message>
 </context>
 <context>
@@ -312,29 +304,12 @@
         <translation>未知</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">分享率限制須介乎0至9998。</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">做種時限須介乎0至525600分鐘。</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>套用</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>加入</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">上載Torrent</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">儲存檔案到：</translation>
     </message>
     <message>
         <source>More information</source>
@@ -347,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>設定存放位置</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">限制上載速度</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">限制下載速度</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">重新命名Torrent</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -398,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>登出</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">上載本機Torrent</translation>
     </message>
     <message>
         <source>Save</source>
@@ -572,10 +531,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
@@ -605,6 +560,10 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1617,7 +1576,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>與 peers 連線的服務類型 (ToS)</translation>
+        <translation type="vanished">與 peers 連線的服務類型 (ToS)</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1690,10 +1649,6 @@
     <message>
         <source>POSIX-compliant</source>
         <translation>遵循 POSIX</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="vanished">這個選項在 Linux 上沒那麼有效</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1865,7 +1820,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>使用子分類</translation>
+        <translation type="vanished">使用子分類</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2263,13 +2218,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Copy API key</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>埠</translation>
@@ -2532,14 +2487,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1（平均%2）</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">下載速度限制：</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">上載速度限制：</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>優先權</translation>
     </message>
@@ -2713,11 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">KiB/s</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3102,10 +3045,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation type="vanished">網址</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>狀態</translation>
     </message>
@@ -3247,7 +3186,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished" />
+        <translation>強制重新公告到全部追蹤器</translation>
     </message>
 </context>
 <context>
@@ -3541,10 +3480,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">儲存路徑：</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation type="unfinished" />
     </message>
@@ -3567,10 +3502,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tags</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="vanished">分類：</translation>
     </message>
     <message>
         <source>Content Path</source>
@@ -3609,11 +3540,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>預設</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>移除 torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
@@ -3625,7 +3556,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>為 torrent 啟用超級做種</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
@@ -3655,14 +3586,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download from URLs</source>
         <translation>從網址下載</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">下載</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">加入Torrent連結</translation>
     </message>
 </context>
 <context>
@@ -4620,7 +4543,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>警告</translation>
     </message>
     <message>
         <source>Other error</source>
@@ -4800,39 +4723,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>不完整 torrents 的儲存路徑：</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>預設</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>新分類</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>儲存路徑：</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>是</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>分類：</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>否</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>路徑：</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>使用其他路徑儲存不完整的 torrents：</translation>
     </message>
 </context>
 <context>
@@ -5130,19 +5053,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>下載</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>磁性連結</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>加入Torrent連結</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>一行一連結（支援HTTP連結、磁性連結和資料驗證碼）</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5150,7 +5073,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>加入Torrent連結</translation>
     </message>
 </context>
 <context>
@@ -5165,15 +5088,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>上載速度限制：</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>下載速度限制：</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>

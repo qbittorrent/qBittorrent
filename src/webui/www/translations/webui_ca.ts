@@ -71,148 +71,132 @@
         <translation>Afegeix al capdamunt de la cua</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">Un enllaç per línia (es permeten enllaços d'HTTP, enllaços magnètics i informació de funcions de resum)</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">Afegeix enllaços torrent</translation>
-    </message>
-    <message>
-        <source>Select .torrent files</source>
-        <translation type="vanished">Seleccioneu fitxers .torrent</translation>
-    </message>
-    <message>
-        <source>Torrent options</source>
-        <translation type="vanished">Opcions del torrent</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>Baixa en ordre seqüencial</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Mida:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>Desa a</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>Informació del torrent</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Camí on desar-ho:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Informació de la funció resum v1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>Canvia de nom el torrent</translation>
     </message>
     <message>
         <source>Add torrent</source>
-        <translation type="unfinished" />
+        <translation>Afegeix un torrent</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>No disponible</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioritat</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>Alta</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>Configuració del torrent</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normal</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>Desa els fitxers a la ubicació:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>Estableix com a categoria predeterminada</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>Limita la velocitat de pujada</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Filtra els fitxers...</translation>
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation type="unfinished" />
+        <translation>Afegeix un torrent</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>Usa un altre camí per al torrent incomplet</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>Data:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
-        <translation type="unfinished" />
+        <translation>Desa com a fitxer .torrent</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Tot</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N / D</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>Màxima</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>No ho baixis</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>Baixa primer els trossos del principi i del final</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>Comentari:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation type="unfinished" />
+        <translation>No es pot baixar el fitxer torrent.</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Informació de la funció resum v2:</translation>
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>Etiquetes:</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>Fitxers</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>Limita la velocitat de baixada</translation>
     </message>
 </context>
 <context>
@@ -320,29 +304,12 @@
         <translation>Desconegut</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">El límit de la ràtio de compartició ha de ser entre 0 i 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">El límit de la sembra ha de ser entre 0 i 525600 minuts.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Aplica</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>Afegeix</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">Puja torrents</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">Desa els fitxers a la ubicació:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -355,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>Estableix la ubicació</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">Limita la velocitat de pujada</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">Limita la velocitat de baixada</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">Canvia de nom el torrent</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -406,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>Tanca la sessió</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">Puja torrent locals</translation>
     </message>
     <message>
         <source>Save</source>
@@ -574,46 +525,50 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Unable to delete API key.</source>
-        <translation type="unfinished" />
+        <translation>No es pot suprimir la clau de l'API.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>El límit del temps de sembra no pot tenir un valor negatiu.</translation>
     </message>
     <message>
         <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Els clients han de ser entre 0 i 255.</translation>
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>El límit de la ràtio de compartició no pot tenir un valor negatiu.</translation>
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
-        <translation type="unfinished" />
+        <translation>L'interval de rotació del client ha de ser superior o igual a 0.</translation>
     </message>
     <message>
         <source>Unable to parse response.</source>
-        <translation type="unfinished" />
+        <translation>No s'ha pogut analitzar la resposta.</translation>
     </message>
     <message>
         <source>Unable to rotate API key.</source>
-        <translation type="unfinished" />
+        <translation>No es pot rotar la clau de l'API.</translation>
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
-        <translation type="unfinished" />
+        <translation>La rotació de clients ha de ser entre 0 i 100.</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
-        <translation type="unfinished" />
+        <translation>La memòria restant en comprovar torrents ha de ser superior a 0 i inferior a 1024.</translation>
     </message>
     <message>
         <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>No es poden carregar les preferències del programa, probablement no es pot accedir al qBittorrent.</translation>
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation>El límit de rotació de clients ha de ser entre 0 i 100.</translation>
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -873,7 +828,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Filter feed items...</source>
-        <translation type="unfinished" />
+        <translation>Filtra els elements del canal...</translation>
     </message>
 </context>
 <context>
@@ -1626,7 +1581,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Tipus de servei (ToS) per a connexions amb clients</translation>
+        <translation type="vanished">Tipus de servei (ToS) per a connexions amb clients</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1699,10 +1654,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>POSIX-compliant</source>
         <translation>Compatible amb POSIX</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="vanished">Aquesta opció és menys efectiva a Linux.</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1874,7 +1825,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>Usa subcategories</translation>
+        <translation type="vanished">Usa subcategories</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2117,10 +2068,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Activa la marca de seguretat de la galeta (requereix una connexió HTTPS o d'amfitrió local)</translation>
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation type="vanished">Quan s'afegeix un torrent duplicat</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>Acció a fer amb un doble click</translation>
     </message>
@@ -2234,55 +2181,55 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Rotate API key</source>
-        <translation type="unfinished" />
+        <translation>Gira la clau d'API</translation>
     </message>
     <message>
         <source>Generate a key</source>
-        <translation type="unfinished" />
+        <translation>Genera una clau</translation>
     </message>
     <message>
         <source>When adding a duplicate torrent</source>
-        <translation type="unfinished" />
+        <translation>En afegir un torrent duplicat</translation>
     </message>
     <message>
         <source>Delete API key</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix la clau d'API</translation>
     </message>
     <message>
         <source>%M: Comment</source>
-        <translation type="unfinished" />
+        <translation>%M: comentari</translation>
     </message>
     <message>
         <source>Generate API key</source>
-        <translation type="unfinished" />
+        <translation>Genera una clau d'API</translation>
     </message>
     <message>
         <source>Copied</source>
-        <translation type="unfinished" />
+        <translation>Copiat</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished" />
+        <translation>Usuari</translation>
     </message>
     <message>
         <source>Reset filter selection</source>
-        <translation type="unfinished" />
+        <translation>Restableix la selecció del filtre</translation>
     </message>
     <message>
         <source>API Key</source>
-        <translation type="unfinished" />
+        <translation>Clau d'API</translation>
     </message>
     <message>
         <source>Copy API key</source>
+        <translation>Copia la clau d'API</translation>
+    </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>Port</translation>
@@ -2361,7 +2308,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>IP/Address</source>
-        <translation type="unfinished" />
+        <translation>Adreça IP</translation>
     </message>
 </context>
 <context>
@@ -2545,14 +2492,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>%1 (%2 de mitjana)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">Límit de baixada:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">Límit de pujada:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>Prioritat</translation>
     </message>
@@ -2726,11 +2665,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">KiB/s</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3115,10 +3050,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>Estat</translation>
     </message>
@@ -3228,39 +3159,39 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>URL/Announce Endpoint</source>
-        <translation type="unfinished" />
+        <translation>URL / Anunci del punt final</translation>
     </message>
     <message>
         <source>BT Protocol</source>
-        <translation type="unfinished" />
+        <translation>Protocol de BT</translation>
     </message>
     <message>
         <source>Next Announce</source>
-        <translation type="unfinished" />
+        <translation>Anunci següent</translation>
     </message>
     <message>
         <source>Tier:</source>
-        <translation type="unfinished" />
+        <translation>Nivell:</translation>
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>Error del rastrejador</translation>
     </message>
     <message>
         <source>Unreachable</source>
-        <translation type="unfinished" />
+        <translation>Inabastable</translation>
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation type="unfinished" />
+        <translation>Força el reanunci als rastrejadors seleccionats</translation>
     </message>
     <message>
         <source>Min Announce</source>
-        <translation type="unfinished" />
+        <translation>Anunci min.</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished" />
+        <translation>Forca el reanunci a tots els rastrejadors</translation>
     </message>
 </context>
 <context>
@@ -3554,10 +3485,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>&amp;Força'n l'inici</translation>
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">Camí on desar-ho:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation>Ubicació:</translation>
     </message>
@@ -3582,12 +3509,8 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Afegeix etiquetes</translation>
     </message>
     <message>
-        <source>Category:</source>
-        <translation type="vanished">Categoria:</translation>
-    </message>
-    <message>
         <source>Content Path</source>
-        <translation type="unfinished" />
+        <translation>Camí del contingut</translation>
     </message>
 </context>
 <context>
@@ -3622,27 +3545,27 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Per defecte</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix el torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix el torrent i el contingut</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Interromp el torrent</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Habilita la supersembra per al torrent</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
-        <translation type="unfinished" />
+        <translation>Acció quan s'assoleix el límit</translation>
     </message>
 </context>
 <context>
@@ -3668,14 +3591,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Download from URLs</source>
         <translation>Baixa des d'URLs</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Baixa</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">Afegeix un enllaços de torrent</translation>
     </message>
 </context>
 <context>
@@ -4207,7 +4122,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Refresh tab</source>
-        <translation type="unfinished" />
+        <translation>Refresca la pestanya</translation>
     </message>
 </context>
 <context>
@@ -4629,15 +4544,15 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>Error del rastrejador</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Avís</translation>
     </message>
     <message>
         <source>Other error</source>
-        <translation type="unfinished" />
+        <translation>Altres errors</translation>
     </message>
 </context>
 <context>
@@ -4813,39 +4728,39 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Camí on desar-ho dels torrents incomplets:</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Per defecte</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Categoria nova</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Camí on desar-ho:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Sí</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Categoria:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>No</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Camí:</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Usa un altre camí per als torrents incomplets:</translation>
     </message>
 </context>
 <context>
@@ -5148,76 +5063,76 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Baixa</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Enllaç magnètic</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Afegeix enllaços torrent</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Un enllaç per línia (es permeten enllaços d'HTTP, enllaços magnètics i informació de funcions de resum)</translation>
     </message>
     <message>
         <source>URLs</source>
-        <translation type="unfinished" />
+        <translation>URLs</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Afegeix un enllaços de torrent</translation>
     </message>
 </context>
 <context>
     <name>SpeedLimit</name>
     <message>
         <source>Limit:</source>
-        <translation type="unfinished" />
+        <translation>Límit:</translation>
     </message>
     <message>
         <source>Speed limit</source>
-        <translation type="unfinished" />
+        <translation>Límit de velocitat</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Límit de pujada:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Límit de baixada:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>ListWidget</name>
     <message>
         <source>Resize All</source>
-        <translation type="unfinished" />
+        <translation>Canvia la mida de tot</translation>
     </message>
     <message>
         <source>Resize</source>
-        <translation type="unfinished" />
+        <translation>Canvia'n la mida</translation>
     </message>
 </context>
 <context>
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation type="unfinished" />
+        <translation>Voleu generar una clau d'API? Aquesta clau es pot usar per interactuar amb l'API de qBittorrent.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished" />
+        <translation>Voleu suprimir aquesta clau d'API? La clau actual deixarà de funcionar immediatament.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished" />
+        <translation>Voleu girar aquesta clau d'API? La clau actual deixarà de funcionar immediatament i se'n generarà una de nova.</translation>
     </message>
 </context>
 </TS>
