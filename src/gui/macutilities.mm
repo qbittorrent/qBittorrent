@@ -198,7 +198,7 @@ namespace MacUtils
     {
         @autoreleasepool
         {
-            // Get the native NSMenu from Qt's QMenuŲ
+            // Get the native NSMenu from Qt's QMenu
             NSMenu *nsMenu = menu.toNSMenu();
 
             // Use macOS system localized strings from AppKit framework
