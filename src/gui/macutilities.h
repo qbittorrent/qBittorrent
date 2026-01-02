@@ -35,6 +35,7 @@
 class QPixmap;
 class QSize;
 class QString;
+class QMenu;
 
 namespace MacUtils
 {
@@ -51,4 +52,6 @@ namespace MacUtils
 
     QString badgeLabelText();
     void setBadgeLabelText(const QString &text);
+
+    void setupWindowMenu(QMenu &menu);
 }

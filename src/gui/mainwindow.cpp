@@ -106,6 +106,7 @@
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
 #include "macosstatusitem/statusitem.h"
+#include "macutilities.h"
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
@@ -337,6 +338,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionAbout->setMenuRole(QAction::AboutRole);
     m_ui->actionCheckForUpdates->setMenuRole(QAction::ApplicationSpecificRole);
     m_ui->actionOptions->setMenuRole(QAction::PreferencesRole);
+
+#ifdef Q_OS_MACOS
+    // Set up native macOS Window menu
+    MacUtils::setupWindowMenu(*m_ui->menuWindow);
+#endif
 
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
 

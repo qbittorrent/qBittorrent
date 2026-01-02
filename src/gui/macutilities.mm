@@ -35,6 +35,7 @@
 #include <objc/message.h>
 
 #include <QCoreApplication>
+#include <QMenu>
 #include <QPixmap>
 #include <QSize>
 #include <QString>
@@ -191,5 +192,35 @@ namespace MacUtils
     void setBadgeLabelText(const QString &text)
     {
         NSApp.dockTile.badgeLabel = text.toNSString();
+    }
+
+    void setupWindowMenu([[maybe_unused]] QMenu &menu)
+    {
+        @autoreleasepool
+        {
+            // Get the native NSMenu from Qt's QMenuŲ
+            NSMenu *nsMenu = menu.toNSMenu();
+
+            NSMenuItem *minimizeItem = [[NSMenuItem alloc] initWithTitle:@"Minimize"
+                                                           action:@selector(performMiniaturize:)
+                                                           keyEquivalent:@"m"];
+            [nsMenu addItem:minimizeItem];
+
+            NSMenuItem *zoomItem = [[NSMenuItem alloc] initWithTitle:@"Zoom"
+                                                       action:@selector(performZoom:)
+                                                       keyEquivalent:@""];
+            [nsMenu addItem:zoomItem];
+
+            [nsMenu addItem:[NSMenuItem separatorItem]];
+
+            NSMenuItem *bringAllToFrontItem = [[NSMenuItem alloc] initWithTitle:@"Bring All to Front"
+                                                                  action:@selector(arrangeInFront:)
+                                                                  keyEquivalent:@""];
+            [nsMenu addItem:bringAllToFrontItem];
+
+            // Set it as the Window menu for the application
+            // macOS will automatically populate it with the remaing standard window operations
+            [NSApp setWindowsMenu:nsMenu];
+        }
     }
 }
