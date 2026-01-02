@@ -201,6 +201,8 @@ namespace MacUtils
             // Get the native NSMenu from Qt's QMenu
             NSMenu *nsMenu = menu.toNSMenu();
 
+            [nsMenu setTitle:NSLocalizedStringFromTableInBundle(@"Window", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")];
+
             // Use macOS system localized strings from AppKit framework
             NSMenuItem *minimizeItem = [[NSMenuItem alloc]
                 initWithTitle:NSLocalizedStringFromTableInBundle(@"Minimize", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")
