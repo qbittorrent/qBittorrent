@@ -201,21 +201,25 @@ namespace MacUtils
             // Get the native NSMenu from Qt's QMenuŲ
             NSMenu *nsMenu = menu.toNSMenu();
 
-            NSMenuItem *minimizeItem = [[NSMenuItem alloc] initWithTitle:@"Minimize"
-                                                           action:@selector(performMiniaturize:)
-                                                           keyEquivalent:@"m"];
+            // Use macOS system localized strings from AppKit framework
+            NSMenuItem *minimizeItem = [[NSMenuItem alloc]
+                initWithTitle:NSLocalizedStringFromTableInBundle(@"Minimize", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")
+                action:@selector(performMiniaturize:)
+                keyEquivalent:@"m"];
             [nsMenu addItem:minimizeItem];
 
-            NSMenuItem *zoomItem = [[NSMenuItem alloc] initWithTitle:@"Zoom"
-                                                       action:@selector(performZoom:)
-                                                       keyEquivalent:@""];
+            NSMenuItem *zoomItem = [[NSMenuItem alloc]
+                initWithTitle:NSLocalizedStringFromTableInBundle(@"Zoom", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")
+                action:@selector(performZoom:)
+                keyEquivalent:@""];
             [nsMenu addItem:zoomItem];
 
             [nsMenu addItem:[NSMenuItem separatorItem]];
 
-            NSMenuItem *bringAllToFrontItem = [[NSMenuItem alloc] initWithTitle:@"Bring All to Front"
-                                                                  action:@selector(arrangeInFront:)
-                                                                  keyEquivalent:@""];
+            NSMenuItem *bringAllToFrontItem = [[NSMenuItem alloc]
+                initWithTitle:NSLocalizedStringFromTableInBundle(@"Bring All to Front", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")
+                action:@selector(arrangeInFront:)
+                keyEquivalent:@""];
             [nsMenu addItem:bringAllToFrontItem];
 
             // Set it as the Window menu for the application
