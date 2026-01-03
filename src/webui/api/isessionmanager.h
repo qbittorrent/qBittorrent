@@ -41,8 +41,8 @@ struct ISession
 struct ISessionManager
 {
     virtual ~ISessionManager() = default;
-    virtual QString clientId() const = 0;
     virtual ISession *session() = 0;
     virtual void sessionStart() = 0;
     virtual void sessionEnd() = 0;
+    virtual bool validateCredentials(const QString &username, const QString &password) const = 0;
 };
