@@ -32,10 +32,11 @@
 
 #include "base/pathfwd.h"
 
+class QMenu;
+class QMenuBar;
 class QPixmap;
 class QSize;
 class QString;
-class QMenu;
 
 namespace MacUtils
 {
@@ -53,5 +54,5 @@ namespace MacUtils
     QString badgeLabelText();
     void setBadgeLabelText(const QString &text);
 
-    void setupWindowMenu(QMenu &menu);
+    void setupWindowMenu(QMenuBar *menuBar, QMenu *menuHelp);
 }

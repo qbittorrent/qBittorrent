@@ -340,8 +340,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionOptions->setMenuRole(QAction::PreferencesRole);
 
 #ifdef Q_OS_MACOS
-    // Set up native macOS Window menu
-    MacUtils::setupWindowMenu(*m_ui->menuWindow);
+    // Set up native macOS Window menu after Qt builds the menu bar
+    QTimer::singleShot(0, this, [this]()
+    {
+        MacUtils::setupWindowMenu(m_ui->menubar, m_ui->menuHelp);
+    });
 #endif
 
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
