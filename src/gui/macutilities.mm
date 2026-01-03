@@ -204,24 +204,24 @@ namespace MacUtils
             [nsMenu setTitle:NSLocalizedStringFromTableInBundle(@"Window", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")];
 
             // Use macOS system localized strings from AppKit framework
-            NSMenuItem *minimizeItem = [[NSMenuItem alloc]
+            NSMenuItem *minimizeItem = [[[NSMenuItem alloc]
                 initWithTitle:NSLocalizedStringFromTableInBundle(@"Minimize", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")
                 action:@selector(performMiniaturize:)
-                keyEquivalent:@"m"];
+                keyEquivalent:@"m"] autorelease];
             [nsMenu addItem:minimizeItem];
 
-            NSMenuItem *zoomItem = [[NSMenuItem alloc]
+            NSMenuItem *zoomItem = [[[NSMenuItem alloc]
                 initWithTitle:NSLocalizedStringFromTableInBundle(@"Zoom", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")
                 action:@selector(performZoom:)
-                keyEquivalent:@""];
+                keyEquivalent:@""] autorelease];
             [nsMenu addItem:zoomItem];
 
             [nsMenu addItem:[NSMenuItem separatorItem]];
 
-            NSMenuItem *bringAllToFrontItem = [[NSMenuItem alloc]
+            NSMenuItem *bringAllToFrontItem = [[[NSMenuItem alloc]
                 initWithTitle:NSLocalizedStringFromTableInBundle(@"Bring All to Front", @"MenuCommands", [NSBundle bundleForClass:[NSApplication class]], @"")
                 action:@selector(arrangeInFront:)
-                keyEquivalent:@""];
+                keyEquivalent:@""] autorelease];
             [nsMenu addItem:bringAllToFrontItem];
 
             // Set it as the Window menu for the application
