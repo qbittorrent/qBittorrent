@@ -225,7 +225,7 @@ namespace MacUtils
             [nsMenu addItem:bringAllToFrontItem];
 
             // Set it as the Window menu for the application
-            // macOS will automatically populate it with the remaing standard window operations
+            // macOS will automatically populate it with the remaining standard window operations
             [NSApp setWindowsMenu:nsMenu];
         }
     }
