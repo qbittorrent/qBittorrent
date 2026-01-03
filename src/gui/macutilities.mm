@@ -195,7 +195,8 @@ namespace MacUtils
         NSApp.dockTile.badgeLabel = text.toNSString();
     }
 
-    namespace {
+    namespace
+    {
         NSInteger findHelpMenuIndex(NSMenu *nsMenu, QMenu *menuHelp)
         {
             NSMenu *nsHelpMenu = menuHelp->toNSMenu();
