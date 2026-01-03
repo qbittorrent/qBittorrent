@@ -263,7 +263,7 @@
         });
 
         document.getElementById("Filters_pad").addEventListener("dblclick", (event) => {
-            if (localPreferences.get("dblclick_filter", "1") !== "1")
+            if ((window.qBittorrent.ClientData.get("dblclick_filter") ?? "1") !== "1")
                 return;
 
             const filterItem = event.target.closest("li");
