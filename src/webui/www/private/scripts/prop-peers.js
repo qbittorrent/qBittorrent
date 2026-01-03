@@ -194,7 +194,7 @@ window.qBittorrent.PropPeers ??= (() => {
         await clipboardCopy(text);
     });
 
-    torrentPeersTable.setup("torrentPeersTableDiv", "torrentPeersTableFixedHeaderDiv", torrentPeersContextMenu, true);
+    torrentPeersTable.setup("torrentPeersTableDiv", "torrentPeersTableFixedHeaderDiv", torrentPeersContextMenu);
 
     return exports();
 })();
