@@ -129,6 +129,7 @@
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuOptions"/>
+   <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
