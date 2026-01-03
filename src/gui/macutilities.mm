@@ -226,7 +226,7 @@ namespace MacUtils
         {
             if (!menuBar)
             {
-                qWarning("Menu bar is null, cannot setup macos Window menu");
+                qWarning("QMenuBar is null, cannot setup macos Window menu");
                 return;
 
             }
