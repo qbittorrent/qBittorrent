@@ -33,7 +33,6 @@
 #include "base/pathfwd.h"
 
 class QMenu;
-class QMenuBar;
 class QPixmap;
 class QSize;
 class QString;
