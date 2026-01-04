@@ -195,58 +195,30 @@ namespace MacUtils
         NSApp.dockTile.badgeLabel = text.toNSString();
     }
 
-    namespace
+    void setupWindowMenu(QMenu *windowMenu)
     {
-        NSInteger findHelpMenuIndex(NSMenu *nsMenu, QMenu *menuHelp)
+        if (!windowMenu)
         {
-            NSMenu *nsHelpMenu = menuHelp->toNSMenu();
-            if (!nsHelpMenu)
-                return -1;
-
-            QString helpTitle = menuHelp->title().remove(QLatin1Char('&'));
-            NSString *nsHelpTitle = helpTitle.toNSString();
-
-            for (NSInteger i = 0; i < [nsMenu numberOfItems]; i++)
-            {
-                NSMenuItem *item = [nsMenu itemAtIndex:i];
-                NSMenu *submenu = [item submenu];
-                if (submenu && [[submenu title] isEqualToString:nsHelpTitle])
-                {
-                    return i;
-                }
-            }
-
-            return -1;
+            qWarning("No QMenu provided for Window menu setup");
+            return;
         }
-    }
 
-    void setupWindowMenu(QMenuBar *menuBar, QMenu *menuHelp)
-    {
         @autoreleasepool
         {
-            if (!menuBar)
-            {
-                qWarning("QMenuBar is null, cannot setup macos Window menu");
-                return;
+            NSMenu *nsWindowMenu = windowMenu->toNSMenu();
 
-            }
-
-            NSMenu *nsMenu = menuBar->toNSMenu();
-            if (!nsMenu)
+            if (!nsWindowMenu)
             {
-                qWarning("Failed to get NSMenu from QMenuBar");
+                qWarning("Failed to get NSMenu from QMenu for Window menu setup");
                 return;
             }
 
-            // Get the native NSMenu from Qt's QMenu
-            NSMenu *windowMenu = [[[NSMenu alloc] initWithTitle:NSLocalizedStringFromTableInBundle(
-                                                @"Window",
-                                                @"MenuCommands",
-                                                [NSBundle bundleForClass:[NSApplication class]],
-                                                @"")]
-                                              autorelease];
+            [nsWindowMenu setTitle:NSLocalizedStringFromTableInBundle(
+                              @"Window",
+                              @"MenuCommands",
+                              [NSBundle bundleForClass:[NSApplication class]],
+                              @"")];
 
-            // Use macOS system localized strings from AppKit framework
             NSMenuItem *minimizeItem = [[[NSMenuItem alloc]
                 initWithTitle:NSLocalizedStringFromTableInBundle(
                     @"Minimize",
@@ -255,7 +227,7 @@ namespace MacUtils
                     @"")
                 action:@selector(performMiniaturize:)
                 keyEquivalent:@"m"] autorelease];
-            [windowMenu addItem:minimizeItem];
+            [nsWindowMenu addItem:minimizeItem];
 
             NSMenuItem *zoomItem = [[[NSMenuItem alloc]
                 initWithTitle:NSLocalizedStringFromTableInBundle(
@@ -265,9 +237,9 @@ namespace MacUtils
                     @"")
                 action:@selector(performZoom:)
                 keyEquivalent:@""] autorelease];
-            [windowMenu addItem:zoomItem];
+            [nsWindowMenu addItem:zoomItem];
 
-            [windowMenu addItem:[NSMenuItem separatorItem]];
+            [nsWindowMenu addItem:[NSMenuItem separatorItem]];
 
             NSMenuItem *bringAllToFrontItem = [[[NSMenuItem alloc]
                 initWithTitle:NSLocalizedStringFromTableInBundle(
@@ -277,30 +249,11 @@ namespace MacUtils
                     @"")
                 action:@selector(arrangeInFront:)
                 keyEquivalent:@""] autorelease];
-            [windowMenu addItem:bringAllToFrontItem];
-
-            NSMenuItem *windowMenuItem = [[[NSMenuItem alloc] initWithTitle:
-                                                                @""
-                                                                action:nil
-                                                                keyEquivalent:@""]
-                                                              autorelease];
-            [windowMenuItem setSubmenu:windowMenu];
-
-            NSInteger helpMenuIndex = findHelpMenuIndex(nsMenu, menuHelp);
-
-            // Insert before Help menu if found, otherwise append
-            if (helpMenuIndex != -1)
-            {
-                [nsMenu insertItem:windowMenuItem atIndex:helpMenuIndex];
-            }
-            else
-            {
-                [nsMenu addItem:windowMenuItem];
-            }
+            [nsWindowMenu addItem:bringAllToFrontItem];
 
             // Set it as the Window menu for the application
             // macOS will automatically populate it with the remaining standard window operations
-            [NSApp setWindowsMenu:windowMenu];
+            [NSApp setWindowsMenu:nsWindowMenu];
         }
     }
 }

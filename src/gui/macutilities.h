@@ -54,5 +54,5 @@ namespace MacUtils
     QString badgeLabelText();
     void setBadgeLabelText(const QString &text);
 
-    void setupWindowMenu(QMenuBar *menuBar, QMenu *menuHelp);
+    void setupWindowMenu(QMenu *windowMenu);
 }
