@@ -36,7 +36,6 @@
 
 #include <QCoreApplication>
 #include <QMenu>
-#include <QMenuBar>
 #include <QPixmap>
 #include <QSize>
 #include <QString>
