@@ -492,6 +492,14 @@ window.qBittorrent.TorrentContent ??= (() => {
                         onFileRenameHandler(torrentFilesTable.selectedRows, nodes);
                     }
                 },
+                Download: async (element, ref) => {
+                    const url = getSelectedFileUrl();
+                    await window.qBittorrent.Misc.downloadFileStream(url);
+                },
+                CopyURL: async (element, ref) => {
+                    const url = getSelectedFileUrl();
+                    await clipboardCopy(url);
+                },
 
                 FilePrioIgnore: (element, ref) => {
                     filesPriorityMenuClicked(FilePriority.Ignored);
@@ -510,6 +518,25 @@ window.qBittorrent.TorrentContent ??= (() => {
                 x: 0,
                 y: 2
             },
+            onShow: function() {
+                const selectedFiles = torrentFilesTable.selectedRowsIds();
+                if (selectedFiles.length !== 1) {
+                    this.hideItem("Download");
+                    this.hideItem("CopyURL");
+                }
+                else {
+                    const node = torrentFilesTable.getNode(selectedFiles[0]);
+                    const isFullyDownloaded = node.progress >= 100;
+                    if (!node.isFolder && isFullyDownloaded) {
+                        this.showItem("Download");
+                        this.showItem("CopyURL");
+                    }
+                    else {
+                        this.hideItem("Download");
+                        this.hideItem("CopyURL");
+                    }
+                }
+            }
         });
 
         torrentFilesTable.setup(tableId, "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu, true);
@@ -555,6 +582,24 @@ window.qBittorrent.TorrentContent ??= (() => {
     const clearFilterInputTimer = () => {
         clearTimeout(torrentFilesFilterInputTimer);
         torrentFilesFilterInputTimer = -1;
+    };
+
+    const getSelectedFileUrl = () => {
+        const current_hash = torrentsTable.getCurrentTorrentID();
+        if (current_hash.length === 0)
+            return;
+
+        const selectedFiles = torrentFilesTable.selectedRowsIds();
+        if (selectedFiles.length !== 1)
+            return;
+
+        const node = torrentFilesTable.getNode(selectedFiles[0]);
+        const url = new URL("api/v2/torrents/downloadFile", window.location);
+        url.search = new URLSearchParams({
+            hash: current_hash,
+            index: node.fileId
+        });
+        return url;
     };
 
     return exports();
