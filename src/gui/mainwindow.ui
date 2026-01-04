@@ -45,7 +45,7 @@
     <addaction name="actionStart"/>
     <addaction name="actionStop"/>
     <addaction name="separator"/>
-    <addaction name="actionDelete"/>
+	    <addaction name="actionDelete"/>
     <addaction name="actionTopQueuePos"/>
     <addaction name="actionIncreaseQueuePos"/>
     <addaction name="actionDecreaseQueuePos"/>
@@ -129,7 +129,6 @@
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuOptions"/>
-   <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="toolBar">

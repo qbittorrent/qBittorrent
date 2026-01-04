@@ -196,11 +196,9 @@ namespace MacUtils
 
     void setupWindowMenu(QMenu *windowMenu)
     {
-        if (!windowMenu)
-        {
-            qWarning("No QMenu provided for Window menu setup");
+        Q_ASSERT(windowMenu);
+        if (!windowMenu) [[unlikely]]
             return;
-        }
 
         @autoreleasepool
         {
