@@ -45,7 +45,7 @@
     <addaction name="actionStart"/>
     <addaction name="actionStop"/>
     <addaction name="separator"/>
-	    <addaction name="actionDelete"/>
+	<addaction name="actionDelete"/>
     <addaction name="actionTopQueuePos"/>
     <addaction name="actionIncreaseQueuePos"/>
     <addaction name="actionDecreaseQueuePos"/>
