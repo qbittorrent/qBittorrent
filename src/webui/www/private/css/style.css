@@ -159,6 +159,12 @@ body {
     text-align: left;
 }
 
+:root.compact body {
+    --icon-size: 13px;
+
+    line-height: 1.2;
+}
+
 /* targets dialog windows loaded via iframes */
 body:not(:has(#desktop)) {
     background-color: var(--color-background-popup);

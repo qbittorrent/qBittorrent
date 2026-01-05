@@ -80,7 +80,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.hiddenTableHeader = this.dynamicTableDiv.querySelector("thead tr");
             this.table = this.dynamicTableDiv.querySelector("table");
             this.tableBody = this.dynamicTableDiv.querySelector("tbody");
-            this.rowHeight = 26;
+            this.rowHeight = (clientData.get("display_density") === "compact") ? 22 : 26;
             this.rows = new Map();
             this.cachedElements = [];
             this.selectedRows = [];
@@ -1100,7 +1100,7 @@ window.qBittorrent.DynamicTable ??= (() => {
     class TorrentsTable extends DynamicTable {
         setupVirtualList() {
             super.setupVirtualList();
-            this.rowHeight = 22;
+            this.rowHeight = (clientData.get("display_density") === "compact") ? 18 : 22;
         }
 
         initColumns() {
