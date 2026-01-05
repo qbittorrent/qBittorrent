@@ -690,14 +690,13 @@ td.noWrap {
 
 .filesTableCollapseIcon {
     cursor: pointer;
-    height: 15px;
-    margin-bottom: -3px;
-    padding-right: 5px;
-    width: 15px;
+    height: var(--icon-size, 15px);
+    margin-right: 5px;
+    vertical-align: top;
+    width: var(--icon-size, 15px);
 }
 
 .filesTableCollapseIcon.rotate {
-    margin-bottom: -1px;
     transform: rotate(270deg);
 }
 
@@ -777,7 +776,9 @@ td.noWrap {
 
 .combo_priority {
     font-size: 1em;
-    padding: 2px 6px;
+    height: 1.5em;
+    padding: 0 6px;
+    vertical-align: top;
 }
 
 td.statusBarSeparator {
