@@ -3060,6 +3060,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 alert("QBT_TR(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
+            if (web_ui_username.includes(":")) {
+                alert("QBT_TR(The WebUI username must not contain a colon.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
             const web_ui_password = document.getElementById("webui_password_text").value;
             if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
                 alert("QBT_TR(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
@@ -3231,7 +3235,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 }
                 else {
                     // keep window open so user can reattempt saving
-                    alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                    if (error.name === "ServerError")
+                        alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
+                    else
+                        alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 }
             });
         };

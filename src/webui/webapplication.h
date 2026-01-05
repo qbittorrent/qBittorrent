@@ -111,7 +111,7 @@ public:
     void setPasswordHash(const QByteArray &passwordHash);
 
 private:
-    QString clientId() const override;
+    QString clientId() const;
     WebSession *session() override;
     void sessionStart() override;
     void sessionStartImpl(const QString &sessionId, bool useCookie);
@@ -138,6 +138,12 @@ private:
     bool isOriginTrustworthy() const;
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
+
+    bool validateCredentials(const QString &username, const QString &password) const override;
+    bool validateBasicAuth(const QString &credentials) const;
+    bool isBanned() const;
+    int failedAttemptsCount() const;
+    void increaseFailedAttempts() const;
 
     // reverse proxy
     QHostAddress resolveClientAddress() const;
@@ -258,6 +264,8 @@ private:
     std::chrono::seconds m_sessionTimeout = 0s;
     QString m_sessionCookieName;
     QString m_apiKey;
+    QString m_username;
+    QByteArray m_passwordHash;
 
     // security related
     QStringList m_domainList;
@@ -275,4 +283,11 @@ private:
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
+
+    struct FailedLogin
+    {
+        int failedAttemptsCount = 0;
+        QDeadlineTimer banTimer {-1};
+    };
+    mutable QHash<QString, FailedLogin> m_clientFailedLogins;
 };
