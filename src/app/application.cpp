@@ -44,6 +44,7 @@
 #endif
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QMetaObject>
@@ -278,7 +279,7 @@ Application::Application(int &argc, char **argv)
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
 
-    m_uptime.start();
+    m_launchTimeSecsSinceEpoch = QDateTime::currentSecsSinceEpoch();
 
     Logger::initInstance();
 
@@ -1347,9 +1348,9 @@ void Application::adjustThreadPriority() const
 }
 #endif
 
-std::chrono::seconds Application::uptime() const
+qint64 Application::launchTimeSecsSinceEpoch() const
 {
-    return std::chrono::duration_cast<std::chrono::seconds>(m_uptime.durationElapsed());
+    return m_launchTimeSecsSinceEpoch;
 }
 
 void Application::cleanup()
