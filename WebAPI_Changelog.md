@@ -2,7 +2,7 @@
 
 ## 2.14.2
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
-  * `app/buildInfo` returns one new field: `launch_time`, reporting the process launch time as UTC epoch seconds
+  * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)
 
 ## 2.14.1
 * [#23212](https://github.com/qbittorrent/qBittorrent/pull/23212)

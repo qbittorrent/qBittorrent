@@ -116,10 +116,18 @@ void AppController::buildInfoAction()
         {u"openssl"_s, Utils::Misc::opensslVersionString()},
         {u"zlib"_s, Utils::Misc::zlibVersionString()},
         {u"bitness"_s, (QT_POINTER_SIZE * 8)},
-        {u"platform"_s, platformName},
-        {u"launch_time"_s, app()->launchTimeSecsSinceEpoch()}
+        {u"platform"_s, platformName}
     };
     setResult(versions);
+}
+
+void AppController::processInfoAction()
+{
+    const QJsonObject info =
+    {
+        {u"launch_time"_s, app()->launchTimeSecsSinceEpoch()}
+    };
+    setResult(info);
 }
 
 void AppController::shutdownAction()
