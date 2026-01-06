@@ -512,7 +512,7 @@ window.qBittorrent.TorrentContent ??= (() => {
             },
         });
 
-        torrentFilesTable.setup(tableId, "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu, true);
+        torrentFilesTable.setup(tableId, "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu);
         // inject checkbox into table header
         const tableHeaders = document.querySelectorAll("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
         if (tableHeaders.length > 0) {

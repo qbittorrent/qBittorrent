@@ -123,7 +123,7 @@ window.qBittorrent.Search ??= (() => {
             }
         });
         searchResultsTable = new window.qBittorrent.DynamicTable.SearchResultsTable();
-        searchResultsTable.setup("searchResultsTableDiv", "searchResultsTableFixedHeaderDiv", searchResultsTableContextMenu, true);
+        searchResultsTable.setup("searchResultsTableDiv", "searchResultsTableFixedHeaderDiv", searchResultsTableContextMenu);
         getPlugins();
 
         searchResultsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { downloadSearchTorrent(); });

@@ -102,7 +102,7 @@
                 },
                 offsets: calculateContextMenuOffsets()
             });
-            searchPluginsTable.setup("searchPluginsTableDiv", "searchPluginsTableFixedHeaderDiv", searchPluginsTableContextMenu, true);
+            searchPluginsTable.setup("searchPluginsTableDiv", "searchPluginsTableFixedHeaderDiv", searchPluginsTableContextMenu);
 
             searchPluginsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { enablePlugin(); });
             searchPluginsTable.dynamicTableDiv.addEventListener("contextmenu", (e) => {

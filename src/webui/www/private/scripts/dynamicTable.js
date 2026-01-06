@@ -70,12 +70,13 @@ window.qBittorrent.DynamicTable ??= (() => {
 
     class DynamicTable {
         #DynamicTableHeaderContextMenuClass = null;
+        useVirtualList = true;
 
-        setup(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu, useVirtualList = false) {
+        setup(dynamicTableDivId, dynamicTableFixedHeaderDivId, contextMenu) {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
-            this.useVirtualList = useVirtualList && (clientData.get("use_virtual_list") === true);
+            this.useVirtualList = this.useVirtualList && (clientData.get("use_virtual_list") === true);
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
             this.hiddenTableHeader = this.dynamicTableDiv.querySelector("thead tr");
             this.table = this.dynamicTableDiv.querySelector("table");
@@ -3071,6 +3072,8 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class RssFeedTable extends DynamicTable {
+        useVirtualList = false;
+
         initColumns() {
             this.newColumn("state_icon", "", "", 30, true);
             this.newColumn("name", "", "QBT_TR(RSS feeds)QBT_TR[CONTEXT=FeedListWidget]", -1, true);
@@ -3173,6 +3176,8 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class RssArticleTable extends DynamicTable {
+        useVirtualList = false;
+
         initColumns() {
             this.newColumn("name", "", "QBT_TR(Torrents: (double-click to download))QBT_TR[CONTEXT=RSSWidget]", -1, true);
         }
@@ -3217,6 +3222,8 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class RssDownloaderRulesTable extends DynamicTable {
+        useVirtualList = false;
+
         initColumns() {
             this.newColumn("checked", "", "", 30, true);
             this.newColumn("name", "", "", -1, true);
@@ -3276,6 +3283,8 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class RssDownloaderFeedSelectionTable extends DynamicTable {
+        useVirtualList = false;
+
         initColumns() {
             this.newColumn("checked", "", "", 30, true);
             this.newColumn("name", "", "", -1, true);
@@ -3312,6 +3321,8 @@ window.qBittorrent.DynamicTable ??= (() => {
     }
 
     class RssDownloaderArticlesTable extends DynamicTable {
+        useVirtualList = false;
+
         initColumns() {
             this.newColumn("name", "", "", -1, true);
         }
