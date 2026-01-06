@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.15.1
+* [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
+  * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)
+
 ## 2.14.1
 * [#23212](https://github.com/qbittorrent/qBittorrent/pull/23212)
   * Add `app/rotateAPIKey` endpoint for generating, and rotating, the WebAPI API key

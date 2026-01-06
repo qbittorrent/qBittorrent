@@ -31,6 +31,7 @@
 #pragma once
 
 #include <QtSystemDetection>
+#include <QtTypes>
 #include <QMetaObject>
 
 #include "base/pathfwd.h"
@@ -63,6 +64,8 @@ public:
 
     virtual QString instanceName() const = 0;
     virtual void setInstanceName(const QString &name) = 0;
+
+    virtual qint64 launchTimeSecsSinceEpoch() const = 0;
 
     // FileLogger properties
     virtual bool isFileLoggerEnabled() const = 0;

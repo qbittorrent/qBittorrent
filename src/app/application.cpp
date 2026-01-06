@@ -44,6 +44,7 @@
 #endif
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QMetaObject>
@@ -277,6 +278,8 @@ Application::Application(int &argc, char **argv)
     setQuitLockEnabled(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
+
+    m_launchTimeSecsSinceEpoch = QDateTime::currentSecsSinceEpoch();
 
     Logger::initInstance();
 
@@ -1344,6 +1347,11 @@ void Application::adjustThreadPriority() const
     ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_ABOVE_NORMAL);
 }
 #endif
+
+qint64 Application::launchTimeSecsSinceEpoch() const
+{
+    return m_launchTimeSecsSinceEpoch;
+}
 
 void Application::cleanup()
 {
