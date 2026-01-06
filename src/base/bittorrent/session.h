@@ -37,7 +37,7 @@
 #include "addtorrenterror.h"
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
-#include "sharelimitaction.h"
+#include "sharelimits.h"
 #include "torrentcontentremoveoption.h"
 #include "trackerentry.h"
 #include "trackerentrystatus.h"
@@ -158,15 +158,17 @@ namespace BitTorrent
 
         virtual QStringList categories() const = 0;
         virtual CategoryOptions categoryOptions(const QString &categoryName) const = 0;
+        virtual bool setCategoryOptions(const QString &categoryName, const CategoryOptions &options) = 0;
         virtual Path categorySavePath(const QString &categoryName) const = 0;
         virtual Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const = 0;
+        virtual qreal categoryRatioLimit(const QString &categoryName) const = 0;
+        virtual int categorySeedingTimeLimit(const QString &categoryName) const = 0;
+        virtual int categoryInactiveSeedingTimeLimit(const QString &categoryName) const = 0;
+        virtual ShareLimitAction categoryShareLimitAction(const QString &categoryName) const = 0;
         virtual bool addCategory(const QString &name, const CategoryOptions &options = {}) = 0;
-        virtual bool editCategory(const QString &name, const CategoryOptions &options) = 0;
         virtual bool removeCategory(const QString &name) = 0;
-        virtual bool isSubcategoriesEnabled() const = 0;
-        virtual void setSubcategoriesEnabled(bool value) = 0;
         virtual bool useCategoryPathsInManualMode() const = 0;
         virtual void setUseCategoryPathsInManualMode(bool value) = 0;
 
@@ -385,8 +387,8 @@ namespace BitTorrent
         virtual void setOutgoingPortsMax(int max) = 0;
         virtual int UPnPLeaseDuration() const = 0;
         virtual void setUPnPLeaseDuration(int duration) = 0;
-        virtual int peerToS() const = 0;
-        virtual void setPeerToS(int value) = 0;
+        virtual int peerDSCP() const = 0;
+        virtual void setPeerDSCP(int value) = 0;
         virtual bool ignoreLimitsOnLAN() const = 0;
         virtual void setIgnoreLimitsOnLAN(bool ignore) = 0;
         virtual bool includeOverheadInLimits() const = 0;
@@ -518,7 +520,7 @@ namespace BitTorrent
         void torrentTagRemoved(Torrent *torrent, const Tag &tag);
         void trackerError(Torrent *torrent, const QString &tracker);
         void trackersAdded(Torrent *torrent, const QList<TrackerEntry> &trackers);
-        void trackersChanged(Torrent *torrent);
+        void trackersReset(Torrent *torrent, const QList<TrackerEntryStatus> &oldEntries, const QList<TrackerEntry> &newEntries);
         void trackersRemoved(Torrent *torrent, const QStringList &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);

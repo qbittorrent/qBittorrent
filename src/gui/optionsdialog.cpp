@@ -43,15 +43,12 @@
 #include <QEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QStyleFactory>
 #include <QSystemTrayIcon>
 #include <QTranslator>
 
-#ifdef Q_OS_WIN
-#include <QStyleFactory>
-#endif
-
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/sharelimitaction.h"
+#include "base/bittorrent/sharelimits.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
@@ -125,12 +122,17 @@ namespace
         }
     };
 
-    bool isValidWebUIUsername(const QString &username)
+    bool isValidWebUIUsernameLength(const QString &username)
     {
         return (username.length() >= WEBUI_MIN_USERNAME_LENGTH);
     }
 
-    bool isValidWebUIPassword(const QString &password)
+    bool isValidWebUIUsernameCharacterSet(const QString &username)
+    {
+        return !username.contains(u":");
+    }
+
+    bool isValidWebUIPasswordLength(const QString &password)
     {
         return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
     }
@@ -274,7 +276,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
     m_ui->checkUseTorrentStatesColors->setChecked(pref->useTorrentStatesColors());
     m_ui->checkProgressBarFollowsTextColor->setChecked(pref->getProgressBarFollowsTextColor());
-    m_ui->checkProgressBarFollowsTextColor->setEnabled(m_ui->checkProgressBarFollowsTextColor->isChecked());
+    m_ui->checkProgressBarFollowsTextColor->setEnabled(m_ui->checkUseTorrentStatesColors->isChecked());
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
@@ -300,6 +302,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
 
     m_ui->checkBoxHideZeroStatusFilters->setChecked(pref->getHideZeroStatusFilters());
+    m_ui->checkBoxUseSeparateTrackerStatusFilter->setChecked(pref->useSeparateTrackerStatusFilter());
 
     m_ui->checkTorrentContentDrag->setChecked(pref->isTorrentContentDragEnabled());
 
@@ -376,11 +379,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
     connect(m_ui->comboLanguage, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-
-#ifdef Q_OS_WIN
     connect(m_ui->comboStyle, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-#endif
-
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     connect(m_ui->comboColorScheme, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 #endif
@@ -414,6 +413,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->actionTorrentDlOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxHideZeroStatusFilters, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxUseSeparateTrackerStatusFilter, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkTorrentContentDrag, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
@@ -488,9 +488,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
-#ifdef Q_OS_WIN
     pref->setStyle(m_ui->comboStyle->currentData().toString());
-#endif
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     UIThemeManager::instance()->setColorScheme(m_ui->comboColorScheme->currentData().value<ColorScheme>());
@@ -513,6 +511,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
 
     pref->setHideZeroStatusFilters(m_ui->checkBoxHideZeroStatusFilters->isChecked());
+    pref->setUseSeparateTrackerStatusFilter(m_ui->checkBoxUseSeparateTrackerStatusFilter->isChecked());
 
     pref->setTorrentContentDragEnabled(m_ui->checkTorrentContentDrag->isChecked());
 
@@ -631,7 +630,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
 
-    m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
     m_ui->checkUseCategoryPaths->setChecked(session->useCategoryPathsInManualMode());
 
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
@@ -736,7 +734,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
-    connect(m_ui->checkUseSubcategories, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseCategoryPaths, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -808,7 +805,6 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
 
-    session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setUseCategoryPathsInManualMode(m_ui->checkUseCategoryPaths->isChecked());
 
     session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
@@ -1126,6 +1122,8 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->spinUploadRateForSlowTorrents->setValue(session->uploadRateForSlowTorrents());
     m_ui->spinSlowTorrentsInactivityTimer->setValue(session->slowTorrentsInactivityTimer());
 
+    m_ui->spinMaxRatio->setMaximum(std::numeric_limits<int>::max());
+
     if (session->globalMaxRatio() >= 0.)
     {
         // Enable
@@ -1170,7 +1168,7 @@ void OptionsDialog::loadBittorrentTabOptions()
 
     const QHash<BitTorrent::ShareLimitAction, int> actIndex =
     {
-                                                               {BitTorrent::ShareLimitAction::Stop, 0},
+        {BitTorrent::ShareLimitAction::Stop, 0},
         {BitTorrent::ShareLimitAction::Remove, 1},
         {BitTorrent::ShareLimitAction::RemoveWithContent, 2},
         {BitTorrent::ShareLimitAction::EnableSuperSeeding, 3}
@@ -1451,9 +1449,9 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
     // Authentication
-    if (const QString username = webUIUsername(); isValidWebUIUsername(username))
+    if (const QString username = webUIUsername(); isValidWebUIUsernameLength(username) && isValidWebUIUsernameCharacterSet(username))
         pref->setWebUIUsername(username);
-    if (const QString password = webUIPassword(); isValidWebUIPassword(password))
+    if (const QString password = webUIPassword(); isValidWebUIPasswordLength(password))
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(password));
     pref->setWebUILocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
     pref->setWebUIAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
@@ -1846,6 +1844,11 @@ void OptionsDialog::initializeStyleCombo()
 #ifdef Q_OS_WIN
     m_ui->labelStyleHint->setText(tr("%1 is recommended for best compatibility with Windows dark mode"
             , "Fusion is recommended for best compatibility with Windows dark mode").arg(u"Fusion"_s));
+#else
+    m_ui->labelStyleHint->hide();
+    m_ui->layoutStyle->removeWidget(m_ui->labelStyleHint);
+#endif
+
     m_ui->comboStyle->addItem(tr("System", "System default Qt style"), u"system"_s);
     m_ui->comboStyle->setItemData(0, tr("Let Qt decide the style for this system"), Qt::ToolTipRole);
     m_ui->comboStyle->insertSeparator(1);
@@ -1859,14 +1862,6 @@ void OptionsDialog::initializeStyleCombo()
     const QString selectedStyleName = prefStyleName.isEmpty() ? QApplication::style()->name() : prefStyleName;
     const int styleIndex = m_ui->comboStyle->findData(selectedStyleName, Qt::UserRole, Qt::MatchFixedString);
     m_ui->comboStyle->setCurrentIndex(std::max(0, styleIndex));
-#else
-    m_ui->labelStyle->hide();
-    m_ui->comboStyle->hide();
-    m_ui->labelStyleHint->hide();
-    m_ui->layoutStyle->removeWidget(m_ui->labelStyle);
-    m_ui->layoutStyle->removeWidget(m_ui->comboStyle);
-    m_ui->layoutStyle->removeWidget(m_ui->labelStyleHint);
-#endif
 }
 
 void OptionsDialog::initializeColorSchemeOptions()
@@ -2116,14 +2111,20 @@ QString OptionsDialog::webUIPassword() const
 
 bool OptionsDialog::webUIAuthenticationOk()
 {
-    if (!isValidWebUIUsername(webUIUsername()))
+    const QString username = webUIUsername();
+    if (!isValidWebUIUsernameLength(username))
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
         return false;
     }
+    if (!isValidWebUIUsernameCharacterSet(username))
+    {
+        QMessageBox::warning(this, tr("Character Error"), tr("The WebUI username must not contain a colon."));
+        return false;
+    }
 
     const bool dontChangePassword = webUIPassword().isEmpty() && !Preferences::instance()->getWebUIPassword().isEmpty();
-    if (!isValidWebUIPassword(webUIPassword()) && !dontChangePassword)
+    if (!isValidWebUIPasswordLength(webUIPassword()) && !dontChangePassword)
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
         return false;

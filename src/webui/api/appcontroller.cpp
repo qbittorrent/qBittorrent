@@ -174,7 +174,6 @@ void AppController::preferencesAction()
     data[u"torrent_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategoryChanged();
     data[u"save_path_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
     data[u"category_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
-    data[u"use_subcategories"] = session->isSubcategoriesEnabled();
     data[u"save_path"_s] = session->savePath().toString();
     data[u"temp_path_enabled"_s] = session->isDownloadPathEnabled();
     data[u"temp_path"_s] = session->downloadPath().toString();
@@ -462,7 +461,7 @@ void AppController::preferencesAction()
     // UPnP lease duration
     data[u"upnp_lease_duration"_s] = session->UPnPLeaseDuration();
     // Type of service
-    data[u"peer_tos"_s] = session->peerToS();
+    data[u"peer_tos"_s] = session->peerDSCP();
     // uTP-TCP mixed mode
     data[u"utp_tcp_mixed_mode"_s] = static_cast<int>(session->utpMixedMode());
     // Hostname resolver cache TTL
@@ -593,8 +592,6 @@ void AppController::setPreferencesAction()
         session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
     if (hasKey(u"category_changed_tmm_enabled"_s))
         session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
-    if (hasKey(u"use_subcategories"_s))
-        session->setSubcategoriesEnabled(it.value().toBool());
     if (hasKey(u"save_path"_s))
         session->setSavePath(Path(it.value().toString()));
     if (hasKey(u"temp_path_enabled"_s))
@@ -897,9 +894,21 @@ void AppController::setPreferencesAction()
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
     // Authentication
     if (hasKey(u"web_ui_username"_s))
-        pref->setWebUIUsername(it.value().toString());
+    {
+        const QString username = it.value().toString();
+        if (username.length() < 3)
+            throw APIError(APIErrorType::BadParams, tr("WebUI username must be at least 3 characters long"));
+        if (username.contains(u":"))
+            throw APIError(APIErrorType::BadParams, tr("WebUI username cannot contain a colon"));
+        pref->setWebUIUsername(username);
+    }
     if (hasKey(u"web_ui_password"_s))
+    {
+        const QString password = it.value().toString();
+        if (password.length() < 6)
+            throw APIError(APIErrorType::BadParams, tr("WebUI password must be at least 6 characters long"));
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
+    }
     if (hasKey(u"bypass_local_auth"_s))
         pref->setWebUILocalAuthEnabled(!it.value().toBool());
     if (hasKey(u"bypass_auth_subnet_whitelist_enabled"_s))
@@ -1117,7 +1126,7 @@ void AppController::setPreferencesAction()
         session->setUPnPLeaseDuration(it.value().toInt());
     // Type of service
     if (hasKey(u"peer_tos"_s))
-        session->setPeerToS(it.value().toInt());
+        session->setPeerDSCP(it.value().toInt());
     // uTP-TCP mixed mode
     if (hasKey(u"utp_tcp_mixed_mode"_s))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
@@ -1230,7 +1239,7 @@ void AppController::getDirectoryContentAction()
             const QFileInfo fileInfo = it.nextFileInfo();
             QJsonObject fileObject
             {
-                {KEY_FILE_METADATA_NAME, fileInfo.fileName()},
+                {KEY_FILE_METADATA_NAME, Path(fileInfo.fileName()).toString()},
                 {KEY_FILE_METADATA_CREATION_DATE, Utils::DateTime::toSecsSinceEpoch(fileInfo.birthTime())},
                 {KEY_FILE_METADATA_LAST_ACCESS_DATE, Utils::DateTime::toSecsSinceEpoch(fileInfo.lastRead())},
                 {KEY_FILE_METADATA_LAST_MODIFICATION_DATE, Utils::DateTime::toSecsSinceEpoch(fileInfo.lastModified())},
@@ -1250,7 +1259,7 @@ void AppController::getDirectoryContentAction()
         }
         else
         {
-            ret.append(it.next());
+            ret.append(Path(it.next()).toString());
         }
     }
     setResult(ret);

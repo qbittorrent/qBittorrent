@@ -388,10 +388,16 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     autoShutdownGroup->addAction(m_ui->actionAutoShutdown);
     autoShutdownGroup->addAction(m_ui->actionAutoSuspend);
     autoShutdownGroup->addAction(m_ui->actionAutoHibernate);
+    autoShutdownGroup->addAction(m_ui->actionAutoReboot);
 #if (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS)) || defined(QBT_USES_DBUS)
     m_ui->actionAutoShutdown->setChecked(pref->shutdownWhenDownloadsComplete());
+    m_ui->actionAutoReboot->setChecked(pref->rebootWhenDownloadsComplete());
     m_ui->actionAutoSuspend->setChecked(pref->suspendWhenDownloadsComplete());
     m_ui->actionAutoHibernate->setChecked(pref->hibernateWhenDownloadsComplete());
+#ifdef Q_OS_MACOS
+    // macOS doesn't support Hibernate via Apple Events API
+    m_ui->actionAutoHibernate->setDisabled(true);
+#endif
 #else
     m_ui->actionAutoShutdown->setDisabled(true);
     m_ui->actionAutoSuspend->setDisabled(true);
@@ -486,7 +492,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_transferListWidget->applyStatusFilter(pref->getTransSelFilter());
         m_transferListWidget->applyCategoryFilter(QString());
         m_transferListWidget->applyTagFilter(std::nullopt);
-        m_transferListWidget->applyTrackerFilterAll();
+        m_transferListWidget->applyTrackerFilter({});
     }
 
     // Start watching the executable for updates
@@ -1355,11 +1361,6 @@ void MainWindow::showFiltersSidebar(const bool show)
     if (show && !m_transferListFiltersWidget)
     {
         m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget, isDownloadTrackerFavicon());
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::refreshTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerEntryStatusesUpdated, m_transferListFiltersWidget, &TransferListFiltersWidget::trackerEntryStatusesUpdated);
-
         m_splitter->insertWidget(0, m_transferListFiltersWidget);
         m_splitter->setCollapsible(0, true);
         // From https://doc.qt.io/qt-5/qsplitter.html#setSizes:
@@ -1790,28 +1791,29 @@ void MainWindow::on_actionCriticalMessages_triggered(const bool checked)
     setExecutionLogMsgTypes(flags);
 }
 
-void MainWindow::on_actionAutoExit_toggled(bool enabled)
+void MainWindow::on_actionAutoExit_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownqBTWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoSuspend_toggled(bool enabled)
+void MainWindow::on_actionAutoSuspend_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setSuspendWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoHibernate_toggled(bool enabled)
+void MainWindow::on_actionAutoHibernate_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setHibernateWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
+void MainWindow::on_actionAutoShutdown_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownWhenDownloadsComplete(enabled);
+}
+
+void MainWindow::on_actionAutoReboot_toggled(const bool enabled)
+{
+    Preferences::instance()->setRebootWhenDownloadsComplete(enabled);
 }
 
 void MainWindow::updatePowerManagementState() const

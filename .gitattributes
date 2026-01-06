@@ -8,3 +8,6 @@ core.eol=lf
 
 dist/windows/license.txt text eol=crlf
 test/testdata/crlf.txt text eol=crlf
+
+# disable line endings conversions
+src/base/3rdparty/expected.hpp -text

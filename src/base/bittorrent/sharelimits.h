@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,6 +33,12 @@
 
 namespace BitTorrent
 {
+    inline const qreal DEFAULT_RATIO_LIMIT = -2;
+    inline const qreal NO_RATIO_LIMIT = -1;
+
+    inline const int DEFAULT_SEEDING_TIME_LIMIT = -2;
+    inline const int NO_SEEDING_TIME_LIMIT = -1;
+
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
     // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
     // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779

@@ -137,11 +137,11 @@ public:
     void setPreventFromSuspendWhenDownloading(bool b);
     bool preventFromSuspendWhenSeeding() const;
     void setPreventFromSuspendWhenSeeding(bool b);
+    QString getStyle() const;
+    void setStyle(const QString &styleName);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);
-    QString getStyle() const;
-    void setStyle(const QString &styleName);
 #endif
 
     // Downloads
@@ -287,6 +287,8 @@ public:
 
     bool shutdownWhenDownloadsComplete() const;
     void setShutdownWhenDownloadsComplete(bool shutdown);
+    bool rebootWhenDownloadsComplete() const;
+    void setRebootWhenDownloadsComplete(bool reboot);
     bool suspendWhenDownloadsComplete() const;
     void setSuspendWhenDownloadsComplete(bool suspend);
     bool hibernateWhenDownloadsComplete() const;
@@ -400,6 +402,9 @@ public:
     bool getCategoryFilterState() const;
     bool getTagFilterState() const;
     bool getTrackerFilterState() const;
+    bool getTrackerStatusFilterState() const;
+    bool useSeparateTrackerStatusFilter() const;
+    void setUseSeparateTrackerStatusFilter(bool value);
     int getTransSelFilter() const;
     void setTransSelFilter(int index);
     bool getHideZeroStatusFilters() const;
@@ -449,6 +454,7 @@ public slots:
     void setCategoryFilterState(bool checked);
     void setTagFilterState(bool checked);
     void setTrackerFilterState(bool checked);
+    void setTrackerStatusFilterState(bool checked);
 
     void apply();
 

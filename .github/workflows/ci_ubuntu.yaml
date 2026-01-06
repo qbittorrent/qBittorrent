@@ -19,7 +19,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.11", "1.2.20"]
+        libtorrent:
+          - version: "2.0.11"
+            boost_major_version: "1"
+            boost_minor_version: "77"
+            boost_patch_version: "0"
+          - version: "1.2.20"
+            boost_major_version: "1"
+            boost_minor_version: "77"
+            boost_patch_version: "0"
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["6.6.3"]
 
@@ -30,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -39,24 +47,20 @@ jobs:
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build \
-            libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
+            libssl-dev zlib1g-dev
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
-          store_cache: ${{ github.ref == 'refs/heads/master' }}
+          store_cache: ${{ (github.repository != 'qbittorrent/qBittorrent') || (github.ref == 'refs/heads/master') }}
           update_packager_index: false
           ccache_options: |
             max_size=1G
 
       - name: Install boost
-        env:
-          BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "77"
-          BOOST_PATCH_VERSION: "0"
         run: |
-          boost_url="https://archives.boost.io/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
-          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          boost_url="https://archives.boost.io/release/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/source/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
           set +e
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
           tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
@@ -74,12 +78,13 @@ jobs:
         with:
           version: ${{ matrix.qt_version }}
           archives: icu qtbase qtdeclarative qtsvg qttools
+          modules: qtimageformats
           cache: true
 
       - name: Install libtorrent
         run: |
           git clone \
-            --branch v${{ matrix.libt_version }} \
+            --branch v${{ matrix.libtorrent.version }} \
             --depth 1 \
             --recurse-submodules \
             https://github.com/arvidn/libtorrent.git \
@@ -100,8 +105,8 @@ jobs:
 
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
+        uses: github/codeql-action/init@v4
+        if: startsWith(matrix.libtorrent.version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
           languages: cpp
@@ -123,11 +128,16 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
+          if [ "${{ matrix.qbt_gui }}" = "GUI=ON" ]; then
+            QT_QPA_PLATFORM=offscreen build/qbittorrent -v
+          else
+            build/qbittorrent-nox -v
+          fi
           DESTDIR="qbittorrent" cmake --install build
 
       - name: Run CodeQL analysis
-        uses: github/codeql-action/analyze@v3
-        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON')
+        uses: github/codeql-action/analyze@v4
+        if: startsWith(matrix.libtorrent.version, 2) && (matrix.qbt_gui == 'GUI=ON')
         with:
           category: ${{ github.base_ref || github.ref_name }}
 
@@ -164,14 +174,15 @@ jobs:
         run: |
           rm -f "${{ runner.workspace }}/Qt/${{ matrix.qt_version }}/gcc_64/plugins/sqldrivers/libqsqlmimer.so"
           ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --plugin qt
-          rm qbittorrent/apprun-hooks/*
+          mkdir -p qbittorrent/apprun-hooks
+          rm -f qbittorrent/apprun-hooks/*
           cp .github/workflows/helper/appimage/export_vars.sh qbittorrent/apprun-hooks/export_vars.sh
           NO_APPSTREAM=1 \
             OUTPUT=upload/qbittorrent-CI_Ubuntu_x86_64.AppImage \
             ./linuxdeploy-x86_64.AppImage --appdir qbittorrent --output appimage
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
-          name: qBittorrent-CI_Ubuntu-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
+          name: qBittorrent-CI_Ubuntu-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libtorrent.version }}_Qt-${{ matrix.qt_version }}
           path: upload

@@ -492,14 +492,14 @@ void TorrentContentWidget::openItem(const QModelIndex &index) const
     Utils::Gui::openPath(getFullPath(index));
 }
 
-void TorrentContentWidget::openParentFolder(const QModelIndex &index) const
+void TorrentContentWidget::openParentFolder(const QModelIndex &index)
 {
     const Path path = getFullPath(index);
     m_model->contentHandler()->flushCache();  // Flush data
 #ifdef Q_OS_MACOS
     MacUtils::openFiles({path});
 #else
-    Utils::Gui::openFolderSelect(path);
+    Utils::Gui::openFolderSelect(path, this);
 #endif
 }
 

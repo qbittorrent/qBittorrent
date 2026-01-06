@@ -211,6 +211,18 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // hide on body click
             document.body.addEventListener("click", (event) => {
+                const parentNode = event.target.parentNode;
+
+                // make sure the click was on a context menu item
+                if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
+                    const grandParentNode = parentNode.parentNode;
+                    if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
+                        const submenuNodes = parentNode.getElementsByTagName("ul");
+                        if (submenuNodes.length > 0)
+                            return;
+                    }
+                }
+
                 this.hide();
                 this.options.element = null;
             });
@@ -573,10 +585,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             if ((id !== CATEGORIES_ALL) && (id !== CATEGORIES_UNCATEGORIZED)) {
                 this.showItem("editCategory");
                 this.showItem("deleteCategory");
-                if (useSubcategories)
-                    this.showItem("createSubcategory");
-                else
-                    this.hideItem("createSubcategory");
+                this.showItem("createSubcategory");
             }
             else {
                 this.hideItem("editCategory");

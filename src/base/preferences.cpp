@@ -494,10 +494,17 @@ void Preferences::setWinStartup(const bool b)
         settings.remove(profileID);
     }
 }
+#endif // Q_OS_WIN
 
 QString Preferences::getStyle() const
 {
-    return value<QString>(u"Appearance/Style"_s);
+#ifdef Q_OS_WIN
+    const QString defaultStyleName = u"Fusion"_s;
+#else
+    const QString defaultStyleName = u"system"_s;
+#endif
+    const auto styleName = value<QString>(u"Appearance/Style"_s);
+    return styleName.isEmpty() ? defaultStyleName : styleName;
 }
 
 void Preferences::setStyle(const QString &styleName)
@@ -507,7 +514,6 @@ void Preferences::setStyle(const QString &styleName)
 
     setValue(u"Appearance/Style"_s, styleName);
 }
-#endif // Q_OS_WIN
 
 // Downloads
 Path Preferences::getScanDirsLastPath() const
@@ -1291,6 +1297,19 @@ void Preferences::setShutdownWhenDownloadsComplete(const bool shutdown)
     setValue(u"Preferences/Downloads/AutoShutDownOnCompletion"_s, shutdown);
 }
 
+bool Preferences::rebootWhenDownloadsComplete() const
+{
+    return value(u"Preferences/Downloads/AutoRebootOnCompletion"_s, false);
+}
+
+void Preferences::setRebootWhenDownloadsComplete(const bool reboot)
+{
+    if (reboot == rebootWhenDownloadsComplete())
+        return;
+
+    setValue(u"Preferences/Downloads/AutoRebootOnCompletion"_s, reboot);
+}
+
 bool Preferences::suspendWhenDownloadsComplete() const
 {
     return value(u"Preferences/Downloads/AutoSuspendOnCompletion"_s, false);
@@ -1883,6 +1902,32 @@ void Preferences::setTrackerFilterState(const bool checked)
         return;
 
     setValue(u"TransferListFilters/trackerFilterState"_s, checked);
+}
+
+bool Preferences::getTrackerStatusFilterState() const
+{
+    return value(u"TransferListFilters/TrackerStatusFilterState"_s, true);
+}
+
+void Preferences::setTrackerStatusFilterState(const bool checked)
+{
+    if (checked == getTrackerStatusFilterState())
+        return;
+
+    setValue(u"TransferListFilters/TrackerStatusFilterState"_s, checked);
+}
+
+bool Preferences::useSeparateTrackerStatusFilter() const
+{
+    return value(u"TransferListFilters/SeparateTrackerStatusFilter"_s, false);
+}
+
+void Preferences::setUseSeparateTrackerStatusFilter(const bool value)
+{
+    if (value == useSeparateTrackerStatusFilter())
+        return;
+
+    setValue(u"TransferListFilters/SeparateTrackerStatusFilter"_s, value);
 }
 
 int Preferences::getTransSelFilter() const

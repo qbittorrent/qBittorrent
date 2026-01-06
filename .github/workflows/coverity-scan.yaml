@@ -14,9 +14,13 @@ jobs:
 
     strategy:
       matrix:
-        libt_version: ["2.0.11"]
+        libtorrent:
+          - version: "2.0.11"
+            boost_major_version: "1"
+            boost_minor_version: "90"
+            boost_patch_version: "0"
         qbt_gui: ["GUI=ON"]
-        qt_version: ["6.9.1"]
+        qt_version: ["6.10.1"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -25,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -37,13 +41,9 @@ jobs:
             libssl-dev libxkbcommon-x11-dev libxcb-cursor-dev zlib1g-dev
 
       - name: Install boost
-        env:
-          BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "88"
-          BOOST_PATCH_VERSION: "0"
         run: |
-          boost_url="https://archives.boost.io/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
-          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          boost_url="https://archives.boost.io/release/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/source/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
           set +e
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
           tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
@@ -66,7 +66,7 @@ jobs:
       - name: Install libtorrent
         run: |
           git clone \
-            --branch v${{ matrix.libt_version }} \
+            --branch v${{ matrix.libtorrent.version }} \
             --depth 1 \
             --recurse-submodules \
             https://github.com/arvidn/libtorrent.git \

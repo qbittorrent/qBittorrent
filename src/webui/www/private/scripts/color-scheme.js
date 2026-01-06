@@ -36,12 +36,12 @@ window.qBittorrent.ColorScheme ??= (() => {
         };
     };
 
-    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
     const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const clientData = window.parent.qBittorrent.ClientData;
 
     const update = () => {
         const root = document.documentElement;
-        const colorScheme = localPreferences.get("color_scheme");
+        const colorScheme = clientData.get("color_scheme");
         const validScheme = (colorScheme === "light") || (colorScheme === "dark");
         const isDark = colorSchemeQuery.matches;
         root.classList.toggle("dark", ((!validScheme && isDark) || (colorScheme === "dark")));
@@ -52,5 +52,3 @@ window.qBittorrent.ColorScheme ??= (() => {
     return exports();
 })();
 Object.freeze(window.qBittorrent.ColorScheme);
-
-window.qBittorrent.ColorScheme.update();

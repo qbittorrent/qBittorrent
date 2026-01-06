@@ -778,8 +778,9 @@ void Application::allTorrentsFinished()
     bool isShutdown = pref->shutdownWhenDownloadsComplete();
     bool isSuspend = pref->suspendWhenDownloadsComplete();
     bool isHibernate = pref->hibernateWhenDownloadsComplete();
+    bool isReboot = pref->rebootWhenDownloadsComplete();
 
-    bool haveAction = isExit || isShutdown || isSuspend || isHibernate;
+    const bool haveAction = isExit || isShutdown || isSuspend || isHibernate || isReboot;
     if (!haveAction) return;
 
     ShutdownDialogAction action = ShutdownDialogAction::Exit;
@@ -789,6 +790,8 @@ void Application::allTorrentsFinished()
         action = ShutdownDialogAction::Hibernate;
     else if (isShutdown)
         action = ShutdownDialogAction::Shutdown;
+    else if (isReboot)
+        action = ShutdownDialogAction::Reboot;
 
 #ifndef DISABLE_GUI
     // ask confirm
@@ -810,6 +813,7 @@ void Application::allTorrentsFinished()
         pref->setShutdownWhenDownloadsComplete(false);
         pref->setSuspendWhenDownloadsComplete(false);
         pref->setHibernateWhenDownloadsComplete(false);
+        pref->setRebootWhenDownloadsComplete(false);
         // Make sure preferences are synced before exiting
         m_shutdownAct = action;
     }

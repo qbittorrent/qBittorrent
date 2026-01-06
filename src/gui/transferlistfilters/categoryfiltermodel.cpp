@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -324,17 +324,17 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
 {
     CategoryModelItem *parent = m_rootItem;
 
-    if (m_isSubcategoriesEnabled)
-    {
-        QStringList expanded = BitTorrent::Session::expandCategory(categoryName);
-        if (expanded.count() > 1)
-            parent = findItem(expanded[expanded.count() - 2]);
-    }
+    const QStringList expanded = BitTorrent::Session::expandCategory(categoryName);
+    if (expanded.count() > 1)
+        parent = findItem(expanded[expanded.count() - 2]);
+
+    Q_ASSERT(parent);
+    if (!parent) [[unlikely]]
+        return;
 
     const int row = parent->childCount();
     beginInsertRows(index(parent), row, row);
-    new CategoryModelItem(
-            parent, m_isSubcategoriesEnabled ? shortName(categoryName) : categoryName);
+    new CategoryModelItem(parent, shortName(categoryName));
     endInsertRows();
 }
 
@@ -426,7 +426,6 @@ void CategoryFilterModel::populate()
 
     const auto *session = BitTorrent::Session::instance();
     const auto torrents = session->torrents();
-    m_isSubcategoriesEnabled = session->isSubcategoriesEnabled();
 
     // All torrents
     m_rootItem->addChild(CategoryModelItem::UID_ALL
@@ -440,31 +439,19 @@ void CategoryFilterModel::populate()
             , new CategoryModelItem(nullptr, tr("Uncategorized"), torrentsCount));
 
     using BitTorrent::Torrent;
-    if (m_isSubcategoriesEnabled)
+    for (const QString &categoryName : asConst(session->categories()))
     {
-        for (const QString &categoryName : asConst(session->categories()))
+        CategoryModelItem *parent = m_rootItem;
+        for (const QString &subcat : asConst(BitTorrent::Session::expandCategory(categoryName)))
         {
-            CategoryModelItem *parent = m_rootItem;
-            for (const QString &subcat : asConst(BitTorrent::Session::expandCategory(categoryName)))
+            const QString subcatName = shortName(subcat);
+            if (!parent->hasChild(subcatName))
             {
-                const QString subcatName = shortName(subcat);
-                if (!parent->hasChild(subcatName))
-                {
-                    const int torrentsCount = std::ranges::count_if(torrents
-                            , [&subcat](const Torrent *torrent) { return torrent->category() == subcat; });
-                    new CategoryModelItem(parent, subcatName, torrentsCount);
-                }
-                parent = parent->child(subcatName);
+                const int torrentsCount = std::ranges::count_if(torrents
+                        , [&subcat](const Torrent *torrent) { return torrent->category() == subcat; });
+                new CategoryModelItem(parent, subcatName, torrentsCount);
             }
-        }
-    }
-    else
-    {
-        for (const QString &categoryName : asConst(session->categories()))
-        {
-            const int torrentsCount = std::ranges::count_if(torrents
-                    , [&categoryName](const Torrent *torrent) { return torrent->belongsToCategory(categoryName); });
-            new CategoryModelItem(m_rootItem, categoryName, torrentsCount);
+            parent = parent->child(subcatName);
         }
     }
 }
@@ -473,9 +460,6 @@ CategoryModelItem *CategoryFilterModel::findItem(const QString &fullName) const
 {
     if (fullName.isEmpty())
         return m_rootItem->childAt(1); // "Uncategorized" item
-
-    if (!m_isSubcategoriesEnabled)
-        return m_rootItem->child(fullName);
 
     CategoryModelItem *item = m_rootItem;
     for (const QString &subcat : asConst(BitTorrent::Session::expandCategory(fullName)))

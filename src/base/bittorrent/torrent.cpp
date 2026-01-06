@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -43,15 +43,6 @@ namespace BitTorrent
     }
 
     // Torrent
-
-    const qreal Torrent::USE_GLOBAL_RATIO = -2;
-    const qreal Torrent::NO_RATIO_LIMIT = -1;
-
-    const int Torrent::USE_GLOBAL_SEEDING_TIME = -2;
-    const int Torrent::NO_SEEDING_TIME_LIMIT = -1;
-
-    const int Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME = -2;
-    const int Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT = -1;
 
     const qreal Torrent::MAX_RATIO = std::numeric_limits<qreal>::infinity();
 

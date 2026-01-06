@@ -21,5 +21,8 @@ dev = [
 explicit_package_bases = true
 strict = true
 
+[tool.pyright]
+typeCheckingMode = "strict"
+
 [tool.setuptools.packages.find]
 where = ["./"]
