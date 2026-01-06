@@ -31,8 +31,8 @@
 #pragma once
 
 #include <QtSystemDetection>
-#include <QMetaObject>
 #include <QtTypes>
+#include <QMetaObject>
 
 #include "base/pathfwd.h"
 
