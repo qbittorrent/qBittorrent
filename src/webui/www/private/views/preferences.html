@@ -1278,6 +1278,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="resolvePeerHostNames">QBT_TR(Resolve peer host names:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="resolvePeerHostNames">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="resolvePeerCountries">QBT_TR(Resolve peer countries:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
@@ -2641,6 +2649,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
                     document.getElementById("appInstanceName").value = pref.app_instance_name;
                     document.getElementById("refreshInterval").value = pref.refresh_interval;
+                    document.getElementById("resolvePeerHostNames").checked = pref.resolve_peer_host_names;
                     document.getElementById("resolvePeerCountries").checked = pref.resolve_peer_countries;
                     document.getElementById("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
                     document.getElementById("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
@@ -3125,6 +3134,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["recheck_completed_torrents"] = document.getElementById("recheckTorrentsOnCompletion").checked;
             settings["app_instance_name"] = document.getElementById("appInstanceName").value;
             settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
+            settings["resolve_peer_host_names"] = document.getElementById("resolvePeerHostNames").checked;
             settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
             settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
             settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;
