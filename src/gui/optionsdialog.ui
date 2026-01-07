@@ -1970,7 +1970,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   <number>2</number>
                  </property>
                  <property name="maximum">
-                  <number>2000</number>
+                  <number>2147483647</number>
                  </property>
                  <property name="value">
                   <number>40</number>
