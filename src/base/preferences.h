@@ -129,17 +129,19 @@ public:
     void setStatusbarExternalIPDisplayed(bool displayed);
     bool isToolbarDisplayed() const;
     void setToolbarDisplayed(bool displayed);
+    bool isTorrentContentDragEnabled() const;
+    void setTorrentContentDragEnabled(bool enabled);
     bool isSplashScreenDisabled() const;
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspendWhenDownloading() const;
     void setPreventFromSuspendWhenDownloading(bool b);
     bool preventFromSuspendWhenSeeding() const;
     void setPreventFromSuspendWhenSeeding(bool b);
+    QString getStyle() const;
+    void setStyle(const QString &styleName);
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);
-    QString getStyle() const;
-    void setStyle(const QString &styleName);
 #endif
 
     // Downloads
@@ -209,14 +211,14 @@ public:
     void setWebUIUsername(const QString &username);
     QByteArray getWebUIPassword() const;
     void setWebUIPassword(const QByteArray &password);
+    QString getWebUIApiKey() const;
+    void setWebUIApiKey(const QString &apiKey);
     int getWebUIMaxAuthFailCount() const;
     void setWebUIMaxAuthFailCount(int count);
     std::chrono::seconds getWebUIBanDuration() const;
     void setWebUIBanDuration(std::chrono::seconds duration);
     int getWebUISessionTimeout() const;
     void setWebUISessionTimeout(int timeout);
-    QString getWebAPISessionCookieName() const;
-    void setWebAPISessionCookieName(const QString &cookieName);
 
     // WebUI security
     bool isWebUIClickjackingProtectionEnabled() const;
@@ -285,6 +287,8 @@ public:
 
     bool shutdownWhenDownloadsComplete() const;
     void setShutdownWhenDownloadsComplete(bool shutdown);
+    bool rebootWhenDownloadsComplete() const;
+    void setRebootWhenDownloadsComplete(bool reboot);
     bool suspendWhenDownloadsComplete() const;
     void setSuspendWhenDownloadsComplete(bool suspend);
     bool hibernateWhenDownloadsComplete() const;
@@ -398,6 +402,9 @@ public:
     bool getCategoryFilterState() const;
     bool getTagFilterState() const;
     bool getTrackerFilterState() const;
+    bool getTrackerStatusFilterState() const;
+    bool useSeparateTrackerStatusFilter() const;
+    void setUseSeparateTrackerStatusFilter(bool value);
     int getTransSelFilter() const;
     void setTransSelFilter(int index);
     bool getHideZeroStatusFilters() const;
@@ -447,6 +454,7 @@ public slots:
     void setCategoryFilterState(bool checked);
     void setTagFilterState(bool checked);
     void setTrackerFilterState(bool checked);
+    void setTrackerStatusFilterState(bool checked);
 
     void apply();
 

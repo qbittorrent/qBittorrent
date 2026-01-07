@@ -56,7 +56,6 @@ namespace
     const QString KEY_SYNC_MAINDATA_QUEUEING = u"queueing"_s;
     const QString KEY_SYNC_MAINDATA_REFRESH_INTERVAL = u"refresh_interval"_s;
     const QString KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS = u"use_alt_speed_limits"_s;
-    const QString KEY_SYNC_MAINDATA_USE_SUBCATEGORIES = u"use_subcategories"_s;
 
     // Sync torrent peers keys
     const QString KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS = u"show_flags"_s;
@@ -72,6 +71,7 @@ namespace
     const QString KEY_PEER_FLAGS = u"flags"_s;
     const QString KEY_PEER_FLAGS_DESCRIPTION = u"flags_desc"_s;
     const QString KEY_PEER_IP = u"ip"_s;
+    const QString KEY_PEER_I2P_DEST = u"i2p_dest"_s;
     const QString KEY_PEER_PORT = u"port"_s;
     const QString KEY_PEER_PROGRESS = u"progress"_s;
     const QString KEY_PEER_RELEVANCE = u"relevance"_s;
@@ -546,7 +546,7 @@ void SyncController::maindataAction()
         connect(btSession, &BitTorrent::Session::torrentsUpdated, this, &SyncController::onTorrentsUpdated);
         connect(btSession, &BitTorrent::Session::trackersAdded, this, &SyncController::onTorrentTrackersChanged);
         connect(btSession, &BitTorrent::Session::trackersRemoved, this, &SyncController::onTorrentTrackersChanged);
-        connect(btSession, &BitTorrent::Session::trackersChanged, this, &SyncController::onTorrentTrackersChanged);
+        connect(btSession, &BitTorrent::Session::trackersReset, this, &SyncController::onTorrentTrackersChanged);
         connect(btSession, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &SyncController::onTorrentTrackerEntryStatusesUpdated);
     }
 
@@ -608,7 +608,7 @@ void SyncController::makeMaindataSnapshot()
     for (const Tag &tag : asConst(session->tags()))
         m_maindataSnapshot.tags.append(tag.toString());
 
-    for (const auto &[tracker, torrentIDs] : m_knownTrackers.asKeyValueRange())
+    for (const auto &[tracker, torrentIDs] : asConst(m_knownTrackers).asKeyValueRange())
         m_maindataSnapshot.trackers[tracker] = asStrings(torrentIDs);
 
     m_maindataSnapshot.serverState = getTransferInfo();
@@ -616,7 +616,6 @@ void SyncController::makeMaindataSnapshot()
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
-    m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_SUBCATEGORIES] = session->isSubcategoriesEnabled();
 }
 
 QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fullUpdate)
@@ -770,7 +769,6 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
-    serverState[KEY_SYNC_MAINDATA_USE_SUBCATEGORIES] = session->isSubcategoriesEnabled();
     if (const QVariantMap syncData = processMap(m_maindataSnapshot.serverState, serverState); !syncData.isEmpty())
     {
         m_maindataSyncBuf.serverState = syncData;
@@ -847,12 +845,11 @@ void SyncController::torrentPeersAction()
 
     for (const BitTorrent::PeerInfo &pi : peersList)
     {
-        if (pi.address().ip.isNull()) continue;
+        const bool useI2PSocket = pi.useI2PSocket();
+        if (pi.address().ip.isNull() && !useI2PSocket) continue;
 
         QVariantMap peer =
         {
-            {KEY_PEER_IP, pi.address().ip.toString()},
-            {KEY_PEER_PORT, pi.address().port},
             {KEY_PEER_CLIENT, pi.client()},
             {KEY_PEER_ID_CLIENT, pi.peerIdClient()},
             {KEY_PEER_PROGRESS, pi.progress()},
@@ -876,13 +873,23 @@ void SyncController::torrentPeersAction()
             peer.insert(KEY_PEER_FILES, filesForPiece.join(u'\n'));
         }
 
-        if (resolvePeerCountries)
+        if (resolvePeerCountries && !useI2PSocket)
         {
             peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
             peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
         }
 
-        peers[pi.address().toString()] = peer;
+        if (useI2PSocket)
+        {
+            peer[KEY_PEER_I2P_DEST] = pi.I2PAddress();
+            peers[pi.I2PAddress()] = peer;
+        }
+        else
+        {
+            peer[KEY_PEER_IP] = pi.address().ip.toString();
+            peer[KEY_PEER_PORT] = pi.address().port;
+            peers[pi.address().toString()] = peer;
+        }
     }
     data[u"peers"_s] = peers;
 

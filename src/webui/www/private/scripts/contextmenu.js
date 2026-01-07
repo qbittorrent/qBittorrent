@@ -60,22 +60,12 @@ window.qBittorrent.ContextMenu ??= (() => {
                 onShow: () => {},
                 onHide: () => {},
                 onClick: () => {},
-                fadeSpeed: 200,
                 touchTimer: 600,
                 ...options
             };
 
             // option diffs menu
             this.menu = document.getElementById(this.options.menu);
-
-            // fx
-            this.fx = new Fx.Tween(this.menu, {
-                property: "opacity",
-                duration: this.options.fadeSpeed,
-                onComplete: () => {
-                    this.menu.style.visibility = (getComputedStyle(this.menu).opacity > 0) ? "visible" : "hidden";
-                }
-            });
 
             // hide and begin the listener
             this.hide().startListener();
@@ -116,8 +106,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // position the sub-menu
             const uls = this.menu.getElementsByTagName("ul");
-            for (let i = 0; i < uls.length; ++i) {
-                const ul = uls[i];
+            for (const ul of uls) {
                 if (ul.classList.contains("scrollableMenu"))
                     ul.style.maxHeight = `${scrollableMenuMaxHeight}px`;
                 const rectParent = ul.parentNode.getBoundingClientRect();
@@ -176,8 +165,10 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         searchAndAddTargets() {
-            if (this.options.targets.length > 0)
-                document.querySelectorAll(this.options.targets).forEach((target) => { this.addTarget(target); });
+            if (this.options.targets.length > 0) {
+                for (const target of document.querySelectorAll(this.options.targets))
+                    this.addTarget(target);
+            }
         }
 
         triggerMenu(e, el) {
@@ -220,6 +211,18 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             // hide on body click
             document.body.addEventListener("click", (event) => {
+                const parentNode = event.target.parentNode;
+
+                // make sure the click was on a context menu item
+                if ((parentNode !== null) && (parentNode.tagName.toLowerCase() === "li")) {
+                    const grandParentNode = parentNode.parentNode;
+                    if ((grandParentNode !== null) && (grandParentNode.classList.contains("contextMenu"))) {
+                        const submenuNodes = parentNode.getElementsByTagName("ul");
+                        if (submenuNodes.length > 0)
+                            return;
+                    }
+                }
+
                 this.hide();
                 this.options.element = null;
             });
@@ -231,7 +234,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         show(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu !== this))
                 lastShownContextMenu.hide();
-            this.fx.start(1);
+            this.menu.classList.add("visible");
             this.options.onShow.call(this);
             lastShownContextMenu = this;
             return this;
@@ -240,7 +243,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         // hide the menu
         hide(trigger) {
             if (lastShownContextMenu && (lastShownContextMenu.menu.style.visibility !== "hidden")) {
-                this.fx.start(0);
+                this.menu.classList.remove("visible");
                 this.options.onHide.call(this);
             }
             return this;
@@ -337,7 +340,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const categoryCount = new Map();
 
             const selectedRows = torrentsTable.selectedRowsIds();
-            selectedRows.forEach((item, index) => {
+            for (const item of selectedRows) {
                 const data = torrentsTable.getRow(item).full_data;
 
                 if (data["seq_dl"] !== true)
@@ -350,7 +353,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 else
                     there_are_f_l_piece_prio = true;
 
-                if (data["progress"] !== 1.0) // not downloaded
+                if (data["progress"] !== 1) // not downloaded
                     all_are_downloaded = false;
                 else if (data["super_seeding"] !== true)
                     all_are_super_seeding = false;
@@ -383,7 +386,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 const torrentCategory = data["category"];
                 const count = categoryCount.get(torrentCategory);
                 categoryCount.set(torrentCategory, ((count !== undefined) ? (count + 1) : 1));
-            });
+            }
 
             // hide renameFiles when more than 1 torrent is selected
             if (selectedRows.length === 1) {
@@ -469,7 +472,9 @@ window.qBittorrent.ContextMenu ??= (() => {
 
         updateCategoriesSubMenu(categories) {
             const contextCategoryList = document.getElementById("contextCategoryList");
-            [...contextCategoryList.children].forEach((el) => { el.remove(); });
+
+            for (const el of [...contextCategoryList.children])
+                el.remove();
 
             const createMenuItem = (text, imgURL, clickFn) => {
                 const anchor = document.createElement("a");
@@ -542,9 +547,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const sortedTags = [...tags.keys()];
             sortedTags.sort(window.qBittorrent.Misc.naturalSortCollator.compare);
 
-            for (let i = 0; i < sortedTags.length; ++i) {
-                const tagName = sortedTags[i];
-
+            for (const [i, tagName] of sortedTags.entries()) {
                 const input = document.createElement("input");
                 input.type = "checkbox";
                 input.addEventListener("click", (event) => {
@@ -582,10 +585,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             if ((id !== CATEGORIES_ALL) && (id !== CATEGORIES_UNCATEGORIZED)) {
                 this.showItem("editCategory");
                 this.showItem("deleteCategory");
-                if (useSubcategories)
-                    this.showItem("createSubcategory");
-                else
-                    this.hideItem("createSubcategory");
+                this.showItem("createSubcategory");
             }
             else {
                 this.hideItem("editCategory");

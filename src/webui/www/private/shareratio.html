@@ -84,7 +84,7 @@
                     return;
 
                 const shareLimit = getSelectedRadioValue("shareLimit");
-                let ratioLimitValue = 0.00;
+                let ratioLimitValue = 0;
                 let seedingTimeLimitValue = 0;
                 let inactiveSeedingTimeLimitValue = 0;
                 let shareLimitActionValue = "Default";
@@ -127,8 +127,7 @@
         const getSelectedRadioValue = (name) => {
             const radios = document.getElementsByName(name);
 
-            for (let i = 0; i < radios.length; ++i) {
-                const radio = radios[i];
+            for (const radio of radios) {
                 if (radio.checked)
                     return radio.value;
             }
@@ -137,8 +136,7 @@
         const setSelectedRadioValue = (name, value) => {
             const radios = document.getElementsByName(name);
 
-            for (let i = 0; i < radios.length; ++i) {
-                const radio = radios[i];
+            for (const radio of radios) {
                 if (radio.value === value)
                     radio.checked = true;
             }

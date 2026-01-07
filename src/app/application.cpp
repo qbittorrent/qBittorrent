@@ -543,7 +543,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
 
     const auto replaceVariables = [torrent](QString str) -> QString
     {
-        for (int i = (str.length() - 2); i >= 0; --i)
+        for (qsizetype i = (str.length() - 2); i >= 0; --i)
         {
             if (str[i] != u'%')
                 continue;
@@ -776,8 +776,9 @@ void Application::allTorrentsFinished()
     bool isShutdown = pref->shutdownWhenDownloadsComplete();
     bool isSuspend = pref->suspendWhenDownloadsComplete();
     bool isHibernate = pref->hibernateWhenDownloadsComplete();
+    bool isReboot = pref->rebootWhenDownloadsComplete();
 
-    bool haveAction = isExit || isShutdown || isSuspend || isHibernate;
+    const bool haveAction = isExit || isShutdown || isSuspend || isHibernate || isReboot;
     if (!haveAction) return;
 
     ShutdownDialogAction action = ShutdownDialogAction::Exit;
@@ -787,6 +788,8 @@ void Application::allTorrentsFinished()
         action = ShutdownDialogAction::Hibernate;
     else if (isShutdown)
         action = ShutdownDialogAction::Shutdown;
+    else if (isReboot)
+        action = ShutdownDialogAction::Reboot;
 
 #ifndef DISABLE_GUI
     // ask confirm
@@ -808,6 +811,7 @@ void Application::allTorrentsFinished()
         pref->setShutdownWhenDownloadsComplete(false);
         pref->setSuspendWhenDownloadsComplete(false);
         pref->setHibernateWhenDownloadsComplete(false);
+        pref->setRebootWhenDownloadsComplete(false);
         // Make sure preferences are synced before exiting
         m_shutdownAct = action;
     }
@@ -957,7 +961,7 @@ int Application::exec()
         const auto *pref = Preferences::instance();
 
         const QString tempPassword = pref->getWebUIPassword().isEmpty()
-                ? Utils::Password::generate() : QString();
+                ? Utils::Password::generate(9) : QString();
         m_webui = new WebUI(this, (!tempPassword.isEmpty() ? Utils::Password::PBKDF2::generate(tempPassword) : QByteArray()));
         connect(m_webui, &WebUI::error, this, [](const QString &message)
         {
@@ -996,7 +1000,7 @@ int Application::exec()
 #endif // DISABLE_WEBUI
 
         m_isProcessingParamsAllowed = true;
-        for (const QBtCommandLineParameters &params : m_paramsQueue)
+        for (const QBtCommandLineParameters &params : asConst(m_paramsQueue))
             processParams(params);
         m_paramsQueue.clear();
     });

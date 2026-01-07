@@ -74,12 +74,11 @@ public:
 
 signals:
     void searchFinished(bool cancelled = false);
-    void searchFailed();
+    void searchFailed(const QString &errorMessage);
     void newSearchResults(const QList<SearchResult> &results);
 
 private:
     void readSearchOutput();
-    void processFailed();
     void processFinished(int exitcode);
     bool parseSearchResult(QByteArrayView line, SearchResult &searchResult);
 

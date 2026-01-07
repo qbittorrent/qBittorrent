@@ -18,9 +18,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.11", "1.2.20"]
+        libtorrent:
+          - version: "2.0.11"
+            boost_major_version: "1"
+            boost_minor_version: "90"
+            boost_patch_version: "0"
+          - version: "1.2.20"
+            boost_major_version: "1"
+            boost_minor_version: "86"
+            boost_patch_version: "0"
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["6.9.1"]
+        qt_version: ["6.10.1"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -28,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -43,25 +51,21 @@ jobs:
           command: |
             brew update > /dev/null
             brew install \
-              cmake ninja \
               openssl@3 zlib
+            # preinstalled on the image: cmake ninja
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
-          store_cache: ${{ github.ref == 'refs/heads/master' }}
+          store_cache: ${{ (github.repository != 'qbittorrent/qBittorrent') || (github.ref == 'refs/heads/master') }}
           update_packager_index: false
           ccache_options: |
             max_size=1G
 
       - name: Install boost
-        env:
-          BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "86"
-          BOOST_PATCH_VERSION: "0"
         run: |
-          boost_url="https://archives.boost.io/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
-          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          boost_url="https://archives.boost.io/release/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/source/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
+          boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
           set +e
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
           tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."; _exitCode="$?"
@@ -79,13 +83,14 @@ jobs:
         with:
           version: ${{ matrix.qt_version }}
           archives: qtbase qtdeclarative qtsvg qttools
+          modules: qtimageformats
           # Not sure why Qt made a hard dependency on qtdeclarative, try removing it when Qt > 6.4.0
           cache: true
 
       - name: Install libtorrent
         run: |
           git clone \
-            --branch v${{ matrix.libt_version }} \
+            --branch v${{ matrix.libtorrent.version }} \
             --depth 1 \
             --recurse-submodules \
             https://github.com/arvidn/libtorrent.git \
@@ -119,6 +124,11 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
+          if [ "${{ matrix.qbt_gui }}" = "GUI=ON" ]; then
+            build/qbittorrent.app/Contents/MacOS/qbittorrent -v
+          else
+            build/qbittorrent-nox.app/Contents/MacOS/qbittorrent-nox -v
+          fi
 
       - name: Prepare build artifacts
         run: |
@@ -131,7 +141,7 @@ jobs:
           macdeployqt "$appName.app" -no-strip
           # code signing
           xattr -cr "$appName.app"
-          codesign --force --sign - --options runtime \
+          codesign --force --sign - \
             "$appName.app" \
             "$appName.app/Contents/Frameworks"/* \
             "$appName.app/Contents/MacOS/$appName"
@@ -156,7 +166,7 @@ jobs:
           cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
-          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
+          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libtorrent.version }}_Qt-${{ matrix.qt_version }}
           path: upload

@@ -105,6 +105,7 @@
 
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
+#include "macosstatusitem/statusitem.h"
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
@@ -138,6 +139,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     , m_storeExecutionLogTypes {EXECUTIONLOG_SETTINGS_KEY(u"Types"_s), Log::MsgType::ALL}
 #ifdef Q_OS_MACOS
     , m_badger {std::make_unique<MacUtils::Badger>()}
+    , m_statusItem {std::make_unique<MacUtils::StatusItem>()}
 #endif // Q_OS_MACOS
 {
     m_ui->setupUi(this);
@@ -386,10 +388,16 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     autoShutdownGroup->addAction(m_ui->actionAutoShutdown);
     autoShutdownGroup->addAction(m_ui->actionAutoSuspend);
     autoShutdownGroup->addAction(m_ui->actionAutoHibernate);
+    autoShutdownGroup->addAction(m_ui->actionAutoReboot);
 #if (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS)) || defined(QBT_USES_DBUS)
     m_ui->actionAutoShutdown->setChecked(pref->shutdownWhenDownloadsComplete());
+    m_ui->actionAutoReboot->setChecked(pref->rebootWhenDownloadsComplete());
     m_ui->actionAutoSuspend->setChecked(pref->suspendWhenDownloadsComplete());
     m_ui->actionAutoHibernate->setChecked(pref->hibernateWhenDownloadsComplete());
+#ifdef Q_OS_MACOS
+    // macOS doesn't support Hibernate via Apple Events API
+    m_ui->actionAutoHibernate->setDisabled(true);
+#endif
 #else
     m_ui->actionAutoShutdown->setDisabled(true);
     m_ui->actionAutoSuspend->setDisabled(true);
@@ -484,7 +492,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_transferListWidget->applyStatusFilter(pref->getTransSelFilter());
         m_transferListWidget->applyCategoryFilter(QString());
         m_transferListWidget->applyTagFilter(std::nullopt);
-        m_transferListWidget->applyTrackerFilterAll();
+        m_transferListWidget->applyTrackerFilter({});
     }
 
     // Start watching the executable for updates
@@ -1182,7 +1190,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #endif // Q_OS_MACOS
 
     const QList<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
-    const bool hasActiveTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](BitTorrent::Torrent *torrent)
+    const bool hasActiveTorrents = std::ranges::any_of(allTorrents, [](const BitTorrent::Torrent *torrent)
     {
         return torrent->isActive();
     });
@@ -1257,7 +1265,7 @@ bool MainWindow::event(QEvent *e)
                 qDebug() << "Has active window:" << (qApp->activeWindow() != nullptr);
                 // Check if there is a modal window
                 const QWidgetList allWidgets = QApplication::allWidgets();
-                const bool hasModalWindow = std::any_of(allWidgets.cbegin(), allWidgets.cend()
+                const bool hasModalWindow = std::ranges::any_of(allWidgets
                     , [](const QWidget *widget) { return widget->isModal(); });
                 // Iconify if there is no modal window
                 if (!hasModalWindow)
@@ -1353,11 +1361,6 @@ void MainWindow::showFiltersSidebar(const bool show)
     if (show && !m_transferListFiltersWidget)
     {
         m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget, isDownloadTrackerFavicon());
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::refreshTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerEntryStatusesUpdated, m_transferListFiltersWidget, &TransferListFiltersWidget::trackerEntryStatusesUpdated);
-
         m_splitter->insertWidget(0, m_transferListFiltersWidget);
         m_splitter->setCollapsible(0, true);
         // From https://doc.qt.io/qt-5/qsplitter.html#setSizes:
@@ -1465,6 +1468,7 @@ void MainWindow::loadSessionStats()
     // update global information
 #ifdef Q_OS_MACOS
     m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS
@@ -1787,28 +1791,29 @@ void MainWindow::on_actionCriticalMessages_triggered(const bool checked)
     setExecutionLogMsgTypes(flags);
 }
 
-void MainWindow::on_actionAutoExit_toggled(bool enabled)
+void MainWindow::on_actionAutoExit_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownqBTWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoSuspend_toggled(bool enabled)
+void MainWindow::on_actionAutoSuspend_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setSuspendWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoHibernate_toggled(bool enabled)
+void MainWindow::on_actionAutoHibernate_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setHibernateWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
+void MainWindow::on_actionAutoShutdown_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownWhenDownloadsComplete(enabled);
+}
+
+void MainWindow::on_actionAutoReboot_toggled(const bool enabled)
+{
+    Preferences::instance()->setRebootWhenDownloadsComplete(enabled);
 }
 
 void MainWindow::updatePowerManagementState() const
@@ -1818,7 +1823,7 @@ void MainWindow::updatePowerManagementState() const
     const bool preventFromSuspendWhenSeeding = pref->preventFromSuspendWhenSeeding();
 
     const QList<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
-    const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
+    const bool inhibitSuspend = std::ranges::any_of(allTorrents, [&](const BitTorrent::Torrent *torrent)
     {
         if (preventFromSuspendWhenDownloading && (!torrent->isFinished() && !torrent->isStopped() && !torrent->isErrored() && torrent->hasMetadata()))
             return true;

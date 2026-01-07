@@ -89,8 +89,30 @@
         padding: 3px 6px;
     }
 
+    #rssButtonBar input {
+        background-color: var(--color-background-default);
+        background-image: url("../images/edit-find.svg");
+        background-position: 2px;
+        background-repeat: no-repeat;
+        background-size: 1.5em;
+        border: 1px solid var(--color-border-default);
+        border-radius: 3px;
+        min-width: 170px;
+        padding: 2px 2px 2px 25px;
+    }
+
+    #rssButtonBar div {
+        display: inline-block;
+        vertical-align: top;
+    }
+
     #rssButtonBar button img {
         margin: 0 5px -3px 0;
+    }
+
+    #rssFilterToolbar {
+        float: right;
+        margin-right: 5px;
     }
 
     #rssContentView table {
@@ -120,9 +142,12 @@
             <button type="button" id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">
                 <img alt="QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]" src="images/view-refresh.svg" width="16" height="16">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]
             </button>
-            <button type="button" id="rssDownloaderButton" class="alignRight" onclick="qBittorrent.Rss.openRssDownloader()">
-                <img alt="QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]" src="images/downloading.svg" width="16" height="16">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]
-            </button>
+            <div id="rssFilterToolbar" class="alignRight">
+                <input type="search" id="rssFilterInput" placeholder="QBT_TR(Filter feed items...)QBT_TR[CONTEXT=MainWindow]" aria-label="QBT_TR(Filter feed items...)QBT_TR[CONTEXT=MainWindow]" autocorrect="off" autocapitalize="none">
+                <button type="button" id="rssDownloaderButton" onclick="qBittorrent.Rss.openRssDownloader()">
+                    <img alt="QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]" src="images/downloading.svg" width="16" height="16">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]
+                </button>
+            </div>
         </div>
     </div>
     <div id="rssContentView">
@@ -233,7 +258,8 @@
                                     feedsToUpdate.add(row);
                             }
                         }
-                        feedsToUpdate.forEach((feed) => refreshFeed(feed.full_data.dataUid));
+                        for (const feed of feedsToUpdate)
+                            refreshFeed(feed.full_data.dataUid);
                     },
                     markRead: markSelectedAsRead,
                     rename: (el) => {
@@ -276,6 +302,17 @@
                     rssFeedContextMenu.updateMenuItems();
                 }
             });
+            document.getElementById("rssFilterInput").addEventListener("input", (event) => {
+                const rowId = rssFeedTable.selectedRows[0];
+                let path = "";
+                for (const row of rssFeedTable.getRowValues()) {
+                    if (row.rowId === rowId) {
+                        path = row.full_data.dataPath;
+                        break;
+                    }
+                }
+                qBittorrent.Rss.showRssFeed(path);
+            });
 
             document.getElementById("CopyFeedURL").addEventListener("click", async (event) => {
                 let joined = "";
@@ -294,10 +331,10 @@
                 menu: "rssArticleMenu",
                 actions: {
                     Download: (el) => {
-                        let dlString = "";
-                        for (const rowID of rssArticleTable.selectedRows)
-                            dlString += `${rssArticleTable.getRow(rowID).full_data.torrentURL}\n`;
-                        showDownloadPage([dlString]);
+                        for (const rowID of rssArticleTable.selectedRows) {
+                            const { name, torrentURL } = rssArticleTable.getRow(rowID).full_data;
+                            window.qBittorrent.Client.createAddTorrentWindow(name, torrentURL);
+                        }
                     },
                     OpenNews: (el) => {
                         for (const rowID of rssArticleTable.selectedRows)
@@ -384,7 +421,6 @@
 
         const showRssFeed = (path) => {
             rssArticleTable.clear();
-            let rowCount = 0;
 
             const childFeeds = new Set();
             for (const row of rssFeedTable.getRowValues()) {
@@ -406,10 +442,17 @@
             if (path === "")
                 visibleArticles = visibleArticles.filter((a) => !a.isRead);
 
+            const rssFilterInput = document.getElementById("rssFilterInput");
+            if (rssFilterInput.value.length > 0) {
+                const lowerFilter = rssFilterInput.value.toLowerCase();
+                visibleArticles = visibleArticles.filter((a) => a.title.toLowerCase().includes(lowerFilter));
+            }
+
+            let rowID = -1;
             visibleArticles.sort((e1, e2) => new Date(e2.date) - new Date(e1.date))
                 .each((torrentEntry) => {
                     rssArticleTable.updateRowData({
-                        rowId: rowCount++,
+                        rowId: ++rowID,
                         name: torrentEntry.title,
                         link: torrentEntry.link,
                         torrentURL: torrentEntry.torrentURL,
@@ -424,7 +467,8 @@
         };
 
         const clearDetails = () => {
-            [...document.getElementById("rssDetailsView").children].forEach((el) => { el.remove(); });
+            for (const el of [...document.getElementById("rssDetailsView").children])
+                el.remove();
         };
 
         const showDetails = (feedUid, articleID) => {
@@ -501,7 +545,7 @@
                 const iframeElement = document.createElement("iframe");
                 iframeElement.id = "rssDescription";
                 iframeElement.sandbox = "allow-same-origin"; // allowed to get parent css
-                iframeElement.srcdoc = `<html ${rootColor}><head><meta charset="utf-8"><link rel="stylesheet" type="text/css" href="css/style.css?v=${CACHEID}"></head><body>${articleDescription}</body></html>`;
+                iframeElement.srcdoc = `<html ${rootColor}><head><meta charset="utf-8"><meta name="referrer" content="same-origin"><link rel="stylesheet" type="text/css" href="css/style.css?v=${CACHEID}"></head><body>${articleDescription}</body></html>`;
 
                 detailsView.append(iframeElement);
             }
@@ -556,8 +600,7 @@
                     // subtract 'unread' row
                     if ((rssFeedRows.length - 1) === flattenedResp.length) {
                         match = true;
-                        for (let i = 0; i < flattenedResp.length; ++i) {
-                            const newData = flattenedResp[i];
+                        for (const [i, newData] of flattenedResp.entries()) {
                             const existingData = rssFeedRows[i + 1].full_data;
 
                             if (newData.fullName !== existingData.dataPath) {
@@ -576,14 +619,14 @@
                         // partial refresh
                         // update status
                         let statusDiffers = false;
-                        for (let i = 0; i < flattenedResp.length; ++i) {
+                        for (const [i, item] of flattenedResp.entries()) {
                             const oldStatus = rssFeedRows[i + 1].full_data.status;
                             let status = "default";
-                            if (flattenedResp[i].hasError)
+                            if (item.hasError)
                                 status = "hasError";
-                            if (flattenedResp[i].isLoading)
+                            if (item.isLoading)
                                 status = "isLoading";
-                            if (flattenedResp[i].isFolder)
+                            if (item.isFolder)
                                 status = "isFolder";
 
                             if (oldStatus !== status) {
@@ -619,8 +662,8 @@
 
                                 if (articlesDiffer) {
                                     // update unread count
-                                    const oldUnread = feedData[r.uid].map((art) => !art.isRead).filter((v) => v).length;
-                                    const newUnread = r.articles.map((art) => !art.isRead).filter((v) => v).length;
+                                    const oldUnread = feedData[r.uid].map((art) => !art.isRead).filter(Boolean).length;
+                                    const newUnread = r.articles.map((art) => !art.isRead).filter(Boolean).length;
                                     const unreadDifference = newUnread - oldUnread;
 
                                     // find all parents (and self) and add unread difference
@@ -732,7 +775,7 @@
                                 });
 
                                 // calculate number of unread
-                                const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter((v) => v).length;
+                                const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter(Boolean).length;
                                 // find all items that contain this rss feed and add unread count
                                 for (const row of rssFeedTable.getRowValues()) {
                                     if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)

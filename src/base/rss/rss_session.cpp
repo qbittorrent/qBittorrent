@@ -74,7 +74,7 @@ Session::Session()
     m_confFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
     m_confFileStorage->moveToThread(m_workingThread.get());
     connect(m_workingThread.get(), &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_confFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
+    connect(m_confFileStorage, &AsyncFileStorage::failed, this, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS session configuration. File: \"%1\". Error: \"%2\"")
                .arg(fileName.toString(), errorString), Log::WARNING);
@@ -83,7 +83,7 @@ Session::Session()
     m_dataFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Data) / Path(DATA_FOLDER_NAME));
     m_dataFileStorage->moveToThread(m_workingThread.get());
     connect(m_workingThread.get(), &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
+    connect(m_dataFileStorage, &AsyncFileStorage::failed, this, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS session data. File: \"%1\". Error: \"%2\"")
                .arg(fileName.toString(), errorString), Log::WARNING);
@@ -141,7 +141,7 @@ nonstd::expected<Folder *, QString> Session::addFolder(const QString &path)
 {
     const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     auto *destFolder = result.value();
     auto *folder = new Folder(path);
@@ -157,7 +157,7 @@ nonstd::expected<Feed *, QString> Session::addFeed(const QString &url, const QSt
 
     const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     auto *destFolder = result.value();
     auto *feed = new Feed(this, generateUID(), url, path, refreshInterval);
@@ -225,7 +225,7 @@ nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &des
 
     const nonstd::expected<Folder *, QString> result = prepareItemDest(destPath);
     if (!result)
-        return result.get_unexpected();
+        return nonstd::make_unexpected(result.error());
 
     auto *destFolder = result.value();
     auto *srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
@@ -405,12 +405,16 @@ void Session::loadLegacy()
         const QString feedUrl = Item::relativeName(legacyPath);
 
         for (const QString &folderPath : asConst(Item::expandPath(parentFolderPath)))
-            addFolder(folderPath);
+        {
+            if (const auto result = addFolder(folderPath); !result)
+                LogMsg(tr("Failed to add RSS folder item. Reason: \"%1\"").arg(result.error()), Log::WARNING);
+        }
 
         const QString feedPath = feedAliases[i].isEmpty()
                 ? legacyPath
                 : Item::joinPath(parentFolderPath, feedAliases[i]);
-        addFeed(feedUrl, feedPath);
+        if (const auto result = addFeed(feedUrl, feedPath); !result)
+            LogMsg(tr("Failed to add RSS feed item. Reason: \"%1\"").arg(result.error()), Log::WARNING);
         ++i;
     }
 }

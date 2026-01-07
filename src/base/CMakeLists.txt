@@ -34,10 +34,11 @@ add_library(qbt_base STATIC
     bittorrent/session.h
     bittorrent/sessionimpl.h
     bittorrent/sessionstatus.h
-    bittorrent/sharelimitaction.h
+    bittorrent/sharelimits.h
     bittorrent/speedmonitor.h
     bittorrent/sslparameters.h
     bittorrent/torrent.h
+    bittorrent/torrentannouncestatus.h
     bittorrent/torrentcontenthandler.h
     bittorrent/torrentcontentlayout.h
     bittorrent/torrentcontentremoveoption.h
@@ -103,6 +104,7 @@ add_library(qbt_base STATIC
     torrentfilter.h
     types.h
     unicodestrings.h
+    utils/apikey.h
     utils/bytearray.h
     utils/compare.h
     utils/datetime.h
@@ -200,6 +202,7 @@ add_library(qbt_base STATIC
     torrentfileguard.cpp
     torrentfileswatcher.cpp
     torrentfilter.cpp
+    utils/apikey.cpp
     utils/bytearray.cpp
     utils/compare.cpp
     utils/datetime.cpp
@@ -245,7 +248,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${IOKit_LIBRARY}
     )
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    target_link_libraries(qbt_base PRIVATE Iphlpapi PowrProf)
+    target_link_libraries(qbt_base PRIVATE iphlpapi powrprof)
 endif()
 
 if (NOT GUI)

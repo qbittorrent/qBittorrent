@@ -31,6 +31,7 @@
 
 #include <memory>
 
+#include <QtLogging>
 #include <QDir>
 #include <QDirIterator>
 #include <QDomDocument>
@@ -553,11 +554,19 @@ void SearchPluginManager::update()
     const QStringList params
     {
         Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
+        Utils::ForeignApps::PYTHON_UTF8_MODE_FLAG,
         (engineLocation() / Path(u"/nova2.py"_s)).toString(),
         u"--capabilities"_s
     };
     nova.start(Utils::ForeignApps::pythonInfo().executablePath.data(), params, QIODevice::ReadOnly);
     nova.waitForFinished();
+
+    if (const auto errMsg = QString::fromUtf8(nova.readAllStandardError()).trimmed()
+        ; !errMsg.isEmpty())
+    {
+        qWarning("%s", qUtf8Printable(errMsg));
+        LogMsg(tr("Error occurred when fetching search engine capabilities. Error: \"%1\".").arg(errMsg), Log::WARNING);
+    }
 
     const auto capabilities = QString::fromUtf8(nova.readAllStandardOutput());
     QDomDocument xmlDoc;

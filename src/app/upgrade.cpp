@@ -32,7 +32,7 @@
 #include <QCoreApplication>
 #include <QMetaEnum>
 
-#include "base/bittorrent/sharelimitaction.h"
+#include "base/bittorrent/sharelimits.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/global.h"
 #include "base/logger.h"

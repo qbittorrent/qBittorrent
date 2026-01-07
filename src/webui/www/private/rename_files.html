@@ -76,48 +76,50 @@
             const fileRenamer = new window.qBittorrent.MultiRename.RenameFiles();
             fileRenamer.hash = data.hash;
 
+            const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
             // Load Multi Rename Preferences
-            const multiRenamePrefChecked = LocalPreferences.get("multirename_rememberPreferences", "true") === "true";
+            const multiRenamePrefChecked = localPreferences.get("multirename_rememberPreferences", "true") === "true";
             document.getElementById("multirename_rememberprefs_checkbox").checked = multiRenamePrefChecked;
 
             if (multiRenamePrefChecked) {
-                const multirename_search = LocalPreferences.get("multirename_search", "");
+                const multirename_search = localPreferences.get("multirename_search", "");
                 fileRenamer.setSearch(multirename_search);
                 document.getElementById("multiRenameSearch").value = multirename_search;
 
-                const multirename_useRegex = LocalPreferences.get("multirename_useRegex", false);
+                const multirename_useRegex = localPreferences.get("multirename_useRegex", false);
                 fileRenamer.useRegex = multirename_useRegex === "true";
                 document.getElementById("use_regex_search").checked = fileRenamer.useRegex;
 
-                const multirename_matchAllOccurrences = LocalPreferences.get("multirename_matchAllOccurrences", false);
+                const multirename_matchAllOccurrences = localPreferences.get("multirename_matchAllOccurrences", false);
                 fileRenamer.matchAllOccurrences = multirename_matchAllOccurrences === "true";
                 document.getElementById("match_all_occurrences").checked = fileRenamer.matchAllOccurrences;
 
-                const multirename_caseSensitive = LocalPreferences.get("multirename_caseSensitive", false);
+                const multirename_caseSensitive = localPreferences.get("multirename_caseSensitive", false);
                 fileRenamer.caseSensitive = multirename_caseSensitive === "true";
                 document.getElementById("case_sensitive").checked = fileRenamer.caseSensitive;
 
-                const multirename_replace = LocalPreferences.get("multirename_replace", "");
+                const multirename_replace = localPreferences.get("multirename_replace", "");
                 fileRenamer.setReplacement(multirename_replace);
                 document.getElementById("multiRenameReplace").value = multirename_replace;
 
-                const multirename_appliesTo = LocalPreferences.get("multirename_appliesTo", window.qBittorrent.MultiRename.AppliesTo.FilenameExtension);
+                const multirename_appliesTo = localPreferences.get("multirename_appliesTo", window.qBittorrent.MultiRename.AppliesTo.FilenameExtension);
                 fileRenamer.appliesTo = window.qBittorrent.MultiRename.AppliesTo[multirename_appliesTo];
                 document.getElementById("applies_to_option").value = fileRenamer.appliesTo;
 
-                const multirename_includeFiles = LocalPreferences.get("multirename_includeFiles", true);
+                const multirename_includeFiles = localPreferences.get("multirename_includeFiles", true);
                 fileRenamer.includeFiles = multirename_includeFiles === "true";
                 document.getElementById("include_files").checked = fileRenamer.includeFiles;
 
-                const multirename_includeFolders = LocalPreferences.get("multirename_includeFolders", false);
+                const multirename_includeFolders = localPreferences.get("multirename_includeFolders", false);
                 fileRenamer.includeFolders = multirename_includeFolders === "true";
                 document.getElementById("include_folders").checked = fileRenamer.includeFolders;
 
-                const multirename_fileEnumerationStart = LocalPreferences.get("multirename_fileEnumerationStart", 0);
+                const multirename_fileEnumerationStart = localPreferences.get("multirename_fileEnumerationStart", 0);
                 fileRenamer.fileEnumerationStart = Number(multirename_fileEnumerationStart);
                 document.getElementById("file_counter").value = fileRenamer.fileEnumerationStart;
 
-                const multirename_replaceAll = LocalPreferences.get("multirename_replaceAll", false);
+                const multirename_replaceAll = localPreferences.get("multirename_replaceAll", false);
                 fileRenamer.replaceAll = multirename_replaceAll === "true";
                 const renameButtonValue = fileRenamer.replaceAll ? "Replace All" : "Replace";
                 document.getElementById("renameOptions").value = renameButtonValue;
@@ -137,22 +139,22 @@
 
                 // Search input has changed
                 document.getElementById("multiRenameSearch").style["border-color"] = "";
-                LocalPreferences.set("multirename_search", sanitized);
+                localPreferences.set("multirename_search", sanitized);
                 fileRenamer.setSearch(sanitized);
             });
             document.getElementById("use_regex_search").addEventListener("change", (e) => {
                 fileRenamer.useRegex = e.target.checked;
-                LocalPreferences.set("multirename_useRegex", e.target.checked);
+                localPreferences.set("multirename_useRegex", e.target.checked);
                 fileRenamer.update();
             });
             document.getElementById("match_all_occurrences").addEventListener("change", (e) => {
                 fileRenamer.matchAllOccurrences = e.target.checked;
-                LocalPreferences.set("multirename_matchAllOccurrences", e.target.checked);
+                localPreferences.set("multirename_matchAllOccurrences", e.target.checked);
                 fileRenamer.update();
             });
             document.getElementById("case_sensitive").addEventListener("change", (e) => {
                 fileRenamer.caseSensitive = e.target.checked;
-                LocalPreferences.set("multirename_caseSensitive", e.target.checked);
+                localPreferences.set("multirename_caseSensitive", e.target.checked);
                 fileRenamer.update();
             });
 
@@ -161,15 +163,11 @@
              */
             fileRenamer.onChanged = (matchedRows) => {
                 // Clear renamed column
-                document
-                    .querySelectorAll("span[id^='filesTablefileRenamed']")
-                    .forEach((span) => {
-                        span.textContent = "";
-                    });
+                for (const span of document.querySelectorAll("span[id^='filesTablefileRenamed']"))
+                    span.textContent = "";
 
                 // Update renamed column for matched rows
-                for (let i = 0; i < matchedRows.length; ++i) {
-                    const row = matchedRows[i];
+                for (const row of matchedRows) {
                     const element = document.getElementById(`filesTablefileRenamed${row.rowId}`);
                     if (element === null)
                         continue;
@@ -187,22 +185,22 @@
 
                 // Replace input has changed
                 document.getElementById("multiRenameReplace").style["border-color"] = "";
-                LocalPreferences.set("multirename_replace", sanitized);
+                localPreferences.set("multirename_replace", sanitized);
                 fileRenamer.setReplacement(sanitized);
             });
             document.getElementById("applies_to_option").addEventListener("change", (e) => {
                 fileRenamer.appliesTo = e.target.value;
-                LocalPreferences.set("multirename_appliesTo", e.target.value);
+                localPreferences.set("multirename_appliesTo", e.target.value);
                 fileRenamer.update();
             });
             document.getElementById("include_files").addEventListener("change", (e) => {
                 fileRenamer.includeFiles = e.target.checked;
-                LocalPreferences.set("multirename_includeFiles", e.target.checked);
+                localPreferences.set("multirename_includeFiles", e.target.checked);
                 fileRenamer.update();
             });
             document.getElementById("include_folders").addEventListener("change", (e) => {
                 fileRenamer.includeFolders = e.target.checked;
-                LocalPreferences.set("multirename_includeFolders", e.target.checked);
+                localPreferences.set("multirename_includeFolders", e.target.checked);
                 fileRenamer.update();
             });
             document.getElementById("file_counter").addEventListener("input", (e) => {
@@ -215,7 +213,7 @@
                     value = 99999999;
                 fileRenamer.fileEnumerationStart = value;
                 document.getElementById("file_counter").value = value;
-                LocalPreferences.set("multirename_fileEnumerationStart", value);
+                localPreferences.set("multirename_fileEnumerationStart", value);
                 fileRenamer.update();
             });
 
@@ -263,7 +261,7 @@
 
                 // Adjust file enumeration count by 1 when replacing single files to prevent naming conflicts
                 if (!fileRenamer.replaceAll) {
-                    fileRenamer.fileEnumerationStart++;
+                    ++fileRenamer.fileEnumerationStart;
                     document.getElementById("file_counter").value = fileRenamer.fileEnumerationStart;
                 }
                 setupTable(selectedRows);
@@ -281,7 +279,7 @@
                     fileRenamer.replaceAll = true;
                 else
                     fileRenamer.replaceAll = false;
-                LocalPreferences.set("multirename_replaceAll", fileRenamer.replaceAll);
+                localPreferences.set("multirename_replaceAll", fileRenamer.replaceAll);
                 document.getElementById("renameButton").value = replaceOperation;
             });
             document.getElementById("closeButton").addEventListener("click", (event) => {
@@ -310,16 +308,16 @@
             const addRowsToTable = (rows, selectedRows) => {
                 let rowId = 0;
                 const rootNode = new window.qBittorrent.FileTree.FolderNode();
-                rootNode.autoCheckFolders = false;
+                rootNode.autoCalculateCheckedState = false;
 
-                rows.forEach((row) => {
+                for (const row of rows) {
                     const pathItems = row.path.split(window.qBittorrent.Filesystem.PathSeparator);
 
                     pathItems.pop(); // remove last item (i.e. file name)
                     let parent = rootNode;
-                    pathItems.forEach((folderName) => {
+                    for (const folderName of pathItems) {
                         if (folderName === ".unwanted")
-                            return;
+                            continue;
 
                         let folderNode = null;
                         if (parent.children !== null) {
@@ -334,7 +332,7 @@
 
                         if (folderNode === null) {
                             folderNode = new window.qBittorrent.FileTree.FolderNode();
-                            folderNode.autoCheckFolders = false;
+                            folderNode.autoCalculateCheckedState = false;
                             folderNode.rowId = rowId;
                             folderNode.path = (parent.path === "")
                                 ? folderName
@@ -349,7 +347,7 @@
                         }
 
                         parent = folderNode;
-                    });
+                    }
 
                     const childNode = new window.qBittorrent.FileTree.FileNode();
                     childNode.rowId = rowId;
@@ -362,7 +360,7 @@
                     parent.addChild(childNode);
 
                     ++rowId;
-                });
+                }
 
                 bulkRenameFilesTable.populateTable(rootNode);
                 bulkRenameFilesTable.updateTable(false);
@@ -403,7 +401,7 @@
     <div style="padding: 0px 10px 0px 0px;">
         <div style="float: left; height: 100%; width: 228px;">
             <div class="formRow">
-                <input type="checkbox" id="multirename_rememberprefs_checkbox" onchange="LocalPreferences.set('multirename_rememberPreferences', this.checked);">
+                <input type="checkbox" id="multirename_rememberprefs_checkbox" onchange="localPreferences.set('multirename_rememberPreferences', this.checked);">
                 <label for="multirename_rememberprefs_checkbox">QBT_TR(Remember Multi-Rename settings)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
             <hr>

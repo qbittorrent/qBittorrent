@@ -29,6 +29,7 @@
     <script defer src="scripts/monkeypatch.js?v=${CACHEID}"></script>
     <script defer src="scripts/cache.js?v=${CACHEID}"></script>
     <script defer src="scripts/localpreferences.js?v=${CACHEID}"></script>
+    <script defer src="scripts/client-data.js?v=${CACHEID}"></script>
     <script defer src="scripts/color-scheme.js?v=${CACHEID}"></script>
     <script defer src="scripts/mocha-init.js?locale=${LANG}&v=${CACHEID}"></script>
     <script defer src="scripts/lib/clipboard-copy.js"></script>
@@ -39,6 +40,7 @@
     <script defer src="scripts/file-tree.js?v=${CACHEID}"></script>
     <script defer src="scripts/dynamicTable.js?locale=${LANG}&v=${CACHEID}"></script>
     <script defer src="scripts/rename-files.js?v=${CACHEID}"></script>
+    <script defer src="scripts/torrent-content.js?v=${CACHEID}"></script>
     <script defer src="scripts/client.js?locale=${LANG}&v=${CACHEID}"></script>
     <script defer src="scripts/contextmenu.js?locale=${LANG}&v=${CACHEID}"></script>
     <script defer src="scripts/pathAutofill.js?v=${CACHEID}"></script>
@@ -51,15 +53,20 @@
     </noscript>
     <div id="desktop">
         <div id="desktopHeader">
-            <!--<div id="desktopTitlebar">
-                <h1 class="applicationTitle">qBittorrent Web User Interface <span class="version">version 2.0.0</span></h1>
-            </div>-->
             <div id="desktopNavbar">
                 <ul>
                     <li>
                         <a class="returnFalse">QBT_TR(File)QBT_TR[CONTEXT=MainWindow]</a>
                         <ul>
-                            <li><a id="uploadLink"><img class="MyMenuIcon" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" width="16" height="16">QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]</a></li>
+                            <li>
+                                <div id="uploadLink" class="anchor">
+                                    <label id="uploadLinkLabel" for="fileselectLink" style="cursor: pointer;">
+                                        <img class="MyMenuIcon" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" width="16" height="16">
+                                        <span>QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]</span>
+                                    </label>
+                                    <input type="file" id="fileselectLink" class="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple style="display: none;">
+                                </div>
+                            </li>
                             <li><a id="downloadLink"><img class="MyMenuIcon" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/insert-link.svg" width="16" height="16">QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]</a></li>
                             <li class="divider"><a id="logoutLink"><img class="MyMenuIcon" alt="QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]" src="images/system-log-out.svg" width="16" height="16">QBT_TR(Logout)QBT_TR[CONTEXT=HttpServer]</a></li>
                             <li><a id="shutdownLink"><img class="MyMenuIcon" alt="QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]" src="images/application-exit.svg" width="16" height="16">QBT_TR(Exit qBittorrent)QBT_TR[CONTEXT=HttpServer]</a></li>
@@ -113,7 +120,12 @@
             </div>
             <div id="mochaToolbar">
                 &nbsp;&nbsp;
-                <a id="uploadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
+                <div id="uploadButton" style="display: inline-block;">
+                    <label for="fileselectButton" style="cursor: pointer;">
+                        <img class="mochaToolButton" title="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" src="images/list-add.svg" alt="QBT_TR(Add Torrent File...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24">
+                    </label>
+                    <input type="file" id="fileselectButton" class="fileselect" accept=".torrent, application/x-bittorrent" name="fileselect[]" multiple style="display: none;">
+                </div>
                 <a id="downloadButton"><img class="mochaToolButton" title="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" src="images/insert-link.svg" alt="QBT_TR(Add Torrent Link...)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
                 <a id="deleteButton"><img class="mochaToolButton" title="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
                 <a id="startButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" src="images/torrent-start.svg" alt="QBT_TR(Start)QBT_TR[CONTEXT=TransferListWidget]" width="24" height="24"></a>
@@ -124,6 +136,7 @@
                     <a id="decreasePrioButton"><img class="mochaToolButton" title="QBT_TR(Move down in the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-down.svg" alt="QBT_TR(Move Down Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
                     <a id="bottomPrioButton"><img class="mochaToolButton" title="QBT_TR(Move to the bottom of the queue)QBT_TR[CONTEXT=MainWindow]" src="images/go-bottom.svg" alt="QBT_TR(Bottom of Queue)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
                 </span>
+                <a id="torrentCreatorButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Torrent Creator)QBT_TR[CONTEXT=MainWindow]" src="images/torrent-creator.svg" alt="QBT_TR(Torrent Creator)QBT_TR[CONTEXT=MainWindow]" width="24" height="24"></a>
                 <a id="preferencesButton" class="divider"><img class="mochaToolButton" title="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" src="images/configure.svg" alt="QBT_TR(Options)QBT_TR[CONTEXT=OptionsDialog]" width="24" height="24"></a>
                 <div id="mainWindowTabs" class="toolbarTabs">
                     <menu id="mainWindowTabsList" class="tab-menu">
@@ -208,6 +221,7 @@
                 <li><a href="#" id="copyMagnetLink" class="copyToClipboard"><img src="images/torrent-magnet.svg" alt="QBT_TR(Magnet link)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Magnet link)QBT_TR[CONTEXT=TransferListWidget]</a></li>
                 <li><a href="#" id="copyID" class="copyToClipboard"><img src="images/help-about.svg" alt="QBT_TR(Torrent ID)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Torrent ID)QBT_TR[CONTEXT=TransferListWidget]</a></li>
                 <li><a href="#" id="copyComment" class="copyToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Comment)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Comment)QBT_TR[CONTEXT=TransferListWidget]</a></li>
+                <li><a href="#" id="copyContentPath" class="copyToClipboard"><img src="images/directory.svg" alt="QBT_TR(Content Path)QBT_TR[CONTEXT=TransferListWidget]"> QBT_TR(Content Path)QBT_TR[CONTEXT=TransferListWidget]</a></li>
             </ul>
         </li>
         <li>
@@ -245,11 +259,11 @@
     </ul>
     <ul id="torrentTrackersMenu" class="contextMenu">
         <li><a href="#AddTracker"><img src="images/list-add.svg" alt="QBT_TR(Add trackers...)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Add trackers...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
-        <li class="separator"><a href="#EditTracker"><img src="images/edit-rename.svg" alt="QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li><a href="#EditTracker"><img src="images/edit-rename.svg" alt="QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Edit tracker URL...)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
         <li><a href="#RemoveTracker"><img src="images/list-remove.svg" alt="QBT_TR(Remove tracker)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Remove tracker)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
         <li><a href="#CopyTrackerUrl" id="CopyTrackerUrl"><img src="images/edit-copy.svg" alt="QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
-        <li><a href="#ReannounceTrackers" id="ReannounceTrackers"><img src="images/view-refresh.svg" alt="QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Force reannounce to selected tracker(s))QBT_TR[CONTEXT=TrackerListWidget]</a></li>
-        <li class="separator"><a href="#ReannounceAllTrackers" id="ReannounceAllTrackers"><img src="images/view-refresh.svg" alt="QBT_TR(Copy tracker URL)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Force reannounce to all trackers)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li><a href="#ReannounceTrackers" id="ReannounceTrackers"><img src="images/reannounce.svg" alt="QBT_TR(Force reannounce to selected tracker(s))QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Force reannounce to selected tracker(s))QBT_TR[CONTEXT=TrackerListWidget]</a></li>
+        <li class="separator"><a href="#ReannounceAllTrackers" id="ReannounceAllTrackers"><img src="images/reannounce.svg" alt="QBT_TR(Force reannounce to all trackers)QBT_TR[CONTEXT=TrackerListWidget]"> QBT_TR(Force reannounce to all trackers)QBT_TR[CONTEXT=TrackerListWidget]</a></li>
     </ul>
     <ul id="torrentPeersMenu" class="contextMenu">
         <li><a href="#addPeer"><img src="images/peers-add.svg" alt="QBT_TR(Add peers...)QBT_TR[CONTEXT=PeerListWidget]"> QBT_TR(Add peers...)QBT_TR[CONTEXT=PeerListWidget]</a></li>

@@ -494,12 +494,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     const responseJSON = await response.json();
 
                     rssDownloaderRulesTable.clear();
-                    let rowCount = 0;
+                    let rowID = -1;
                     for (const rule in responseJSON) {
                         if (!Object.hasOwn(responseJSON, rule))
                             continue;
                         rssDownloaderRulesTable.updateRowData({
-                            rowId: rowCount++,
+                            rowId: ++rowID,
                             checked: responseJSON[rule].enabled,
                             name: rule
                         });
@@ -677,18 +677,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     const responseJSON = await response.json();
 
                     rssDownloaderArticlesTable.clear();
-                    let rowCount = 0;
+                    let rowID = -1;
                     for (const feed in responseJSON) {
                         if (!Object.hasOwn(responseJSON, feed))
                             continue;
                         rssDownloaderArticlesTable.updateRowData({
-                            rowId: rowCount++,
+                            rowId: ++rowID,
                             name: feed,
                             isFeed: true
                         });
                         responseJSON[feed].each((article) => {
                             rssDownloaderArticlesTable.updateRowData({
-                                rowId: rowCount++,
+                                rowId: ++rowID,
                                 name: article,
                                 isFeed: false
                             });
@@ -767,7 +767,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
                 // calculate days since last match
                 if (rulesList[ruleName].lastMatch !== "") {
-                    const timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
+                    const timeDiffInMs = Date.now() - new Date(rulesList[ruleName].lastMatch).getTime();
                     const daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
                     document.getElementById("lastMatchText").textContent = " QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]".replace("%1", daysAgo);
                 }
@@ -788,15 +788,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 setElementTitles();
 
                 rssDownloaderFeedSelectionTable.clear();
-                let rowCount = 0;
-                feedList.forEach((feed) => {
+                let rowID = -1;
+                for (const feed of feedList) {
                     rssDownloaderFeedSelectionTable.updateRowData({
-                        rowId: rowCount++,
+                        rowId: ++rowID,
                         checked: rulesList[ruleName].affectedFeeds.contains(feed.url),
                         name: feed.name,
                         url: feed.url
                     });
-                });
+                }
                 rssDownloaderFeedSelectionTable.updateTable(false);
                 updateMatchingArticles(ruleName);
             }

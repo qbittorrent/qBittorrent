@@ -50,7 +50,7 @@ namespace Http
             // when `status != ParseStatus::OK`, `request` & `frameSize` are undefined
             ParseStatus status = ParseStatus::BadRequest;
             Request request;
-            long frameSize = 0;  // http request frame size (bytes)
+            qsizetype frameSize = 0;  // http request frame size (bytes)
         };
 
         static ParseResult parse(const QByteArray &data);
@@ -61,8 +61,8 @@ namespace Http
         RequestParser() = default;
 
         ParseResult doParse(QByteArrayView data);
-        bool parseStartLines(QStringView data);
-        bool parseRequestLine(const QString &line);
+        bool parseStartLines(QByteArrayView data);
+        bool parseRequestLine(QByteArrayView line);
 
         bool parsePostMessage(QByteArrayView data);
         bool parseFormData(QByteArrayView data);

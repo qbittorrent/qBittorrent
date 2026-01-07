@@ -87,11 +87,17 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
     {
         ::SetSuspendState(TRUE, FALSE, FALSE);
     }
-    else
+    else if (action == ShutdownDialogAction::Shutdown)
     {
         std::wstring msg = QCoreApplication::translate("misc"
             , "qBittorrent will shutdown the computer now because all downloads are complete.").toStdWString();
         ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, FALSE);
+    }
+    else if (action == ShutdownDialogAction::Reboot)
+    {
+        std::wstring msg = QCoreApplication::translate("misc"
+            , "qBittorrent will reboot the computer now because all downloads are complete.").toStdWString();
+        ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, TRUE);
     }
 
     // Disable shutdown privilege.
@@ -99,10 +105,12 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
     ::AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, NULL, 0);
 
 #elif defined(Q_OS_MACOS)
-    AEEventID EventToSend;
-    if (action != ShutdownDialogAction::Shutdown)
+    AEEventID EventToSend {};
+    if (action == ShutdownDialogAction::Suspend)
         EventToSend = kAESleep;
-    else
+    else if (action == ShutdownDialogAction::Reboot)
+        EventToSend = kAERestart;
+    else if (action == ShutdownDialogAction::Shutdown)
         EventToSend = kAEShutDown;
     AEAddressDesc targetDesc;
     const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
@@ -133,7 +141,7 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
 
 #elif defined(QBT_USES_DBUS)
     // Use dbus to power off / suspend the system
-    if (action != ShutdownDialogAction::Shutdown)
+    if ((action == ShutdownDialogAction::Suspend) || (action == ShutdownDialogAction::Hibernate))
     {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
@@ -166,7 +174,7 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
         else
             halIface.call(u"Hibernate"_s);
     }
-    else
+    else if (action == ShutdownDialogAction::Shutdown)
     {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
@@ -190,74 +198,32 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
                                 QDBusConnection::systemBus());
         halIface.call(u"Shutdown"_s);
     }
+    else if (action == ShutdownDialogAction::Reboot)
+    {
+        // Some recent systems use systemd's logind
+        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
+                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
+        if (login1Iface.isValid())
+        {
+            login1Iface.call(u"Reboot"_s, false);
+            return;
+        }
+        // Else, other recent systems use ConsoleKit
+        QDBusInterface consolekitIface(u"org.freedesktop.ConsoleKit"_s, u"/org/freedesktop/ConsoleKit/Manager"_s,
+                                       u"org.freedesktop.ConsoleKit.Manager"_s, QDBusConnection::systemBus());
+        if (consolekitIface.isValid())
+        {
+            consolekitIface.call(u"Restart"_s);
+            return;
+        }
+        // HAL (older systems)
+        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
+                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
+                                QDBusConnection::systemBus());
+        halIface.call(u"Reboot"_s);
+    }
 #endif
 }
-
-#ifdef Q_OS_MACOS
-namespace
-{
-    const CFStringRef torrentExtension = CFSTR("torrent");
-    const CFStringRef magnetUrlScheme = CFSTR("magnet");
-}
-
-bool Utils::OS::isTorrentFileAssocSet()
-{
-    bool isSet = false;
-    const CFStringRef torrentId = ::UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
-    if (torrentId != NULL)
-    {
-        const CFStringRef defaultHandlerId = ::LSCopyDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer);
-        if (defaultHandlerId != NULL)
-        {
-            const CFStringRef myBundleId = ::CFBundleGetIdentifier(::CFBundleGetMainBundle());
-            if (myBundleId != NULL)
-                isSet = ::CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
-            ::CFRelease(defaultHandlerId);
-        }
-        ::CFRelease(torrentId);
-    }
-    return isSet;
-}
-
-void Utils::OS::setTorrentFileAssoc()
-{
-    if (isTorrentFileAssocSet())
-        return;
-
-    const CFStringRef torrentId = ::UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
-    if (torrentId != NULL)
-    {
-        const CFStringRef myBundleId = ::CFBundleGetIdentifier(::CFBundleGetMainBundle());
-        if (myBundleId != NULL)
-            ::LSSetDefaultRoleHandlerForContentType(torrentId, kLSRolesViewer, myBundleId);
-        ::CFRelease(torrentId);
-    }
-}
-
-bool Utils::OS::isMagnetLinkAssocSet()
-{
-    bool isSet = false;
-    const CFStringRef defaultHandlerId = ::LSCopyDefaultHandlerForURLScheme(magnetUrlScheme);
-    if (defaultHandlerId != NULL)
-    {
-        const CFStringRef myBundleId = ::CFBundleGetIdentifier(::CFBundleGetMainBundle());
-        if (myBundleId != NULL)
-            isSet = ::CFStringCompare(myBundleId, defaultHandlerId, 0) == kCFCompareEqualTo;
-        ::CFRelease(defaultHandlerId);
-    }
-    return isSet;
-}
-
-void Utils::OS::setMagnetLinkAssoc()
-{
-    if (isMagnetLinkAssocSet())
-        return;
-
-    const CFStringRef myBundleId = ::CFBundleGetIdentifier(::CFBundleGetMainBundle());
-    if (myBundleId != NULL)
-        ::LSSetDefaultHandlerForURLScheme(magnetUrlScheme, myBundleId);
-}
-#endif // Q_OS_MACOS
 
 #ifdef Q_OS_WIN
 Path Utils::OS::windowsSystemPath()
@@ -341,11 +307,11 @@ bool Utils::OS::applyMarkOfTheWeb(const Path &file, const QString &url)
     const QByteArray zoneID = QByteArrayLiteral("[ZoneTransfer]\r\nZoneId=3\r\n")
         + u"HostUrl=%1\r\n"_s.arg(hostURL).toUtf8();
 
-    if (LARGE_INTEGER streamSize = {0};
+    if (LARGE_INTEGER streamSize {};
         ::GetFileSizeEx(handle, &streamSize) && (streamSize.QuadPart > 0))
     {
         const DWORD expectedReadSize = std::min<LONGLONG>(streamSize.QuadPart, 1024);
-        QByteArray buf {expectedReadSize, '\0'};
+        QByteArray buf {static_cast<qsizetype>(expectedReadSize), '\0'};
 
         if (DWORD actualReadSize = 0;
             ::ReadFile(handle, buf.data(), expectedReadSize, &actualReadSize, nullptr) && (actualReadSize == expectedReadSize))
@@ -355,14 +321,14 @@ bool Utils::OS::applyMarkOfTheWeb(const Path &file, const QString &url)
         }
     }
 
-    if (!::SetFilePointerEx(handle, {0}, nullptr, FILE_BEGIN))
+    if (!::SetFilePointerEx(handle, {}, nullptr, FILE_BEGIN))
         return false;
     if (!::SetEndOfFile(handle))
         return false;
 
     DWORD written = 0;
     const BOOL writeResult = ::WriteFile(handle, zoneID.constData(), zoneID.size(), &written, nullptr);
-    return writeResult && (written == zoneID.size());
+    return writeResult && (static_cast<qsizetype>(written) == zoneID.size());
 #endif
 }
 #endif // Q_OS_MACOS || Q_OS_WIN

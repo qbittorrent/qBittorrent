@@ -108,8 +108,6 @@ window.qBittorrent.Dialog ??= (() => {
 })();
 Object.freeze(window.qBittorrent.Dialog);
 
-const LocalPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
-
 let saveWindowSize = () => {};
 let loadWindowWidth = () => {};
 let loadWindowHeight = () => {};
@@ -155,26 +153,30 @@ let copyInfohashFN = (policy) => {};
 let copyMagnetLinkFN = () => {};
 let copyIdFN = () => {};
 let copyCommentFN = () => {};
+let copyContentPathFN = () => {};
 let setQueuePositionFN = () => {};
 let exportTorrentFN = () => {};
 
 const initializeWindows = () => {
-    saveWindowSize = (windowId) => {
-        const size = document.getElementById(windowId).getSize();
-        LocalPreferences.set(`window_${windowId}_width`, size.x);
-        LocalPreferences.set(`window_${windowId}_height`, size.y);
+    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
+
+    saveWindowSize = (windowName, windowId = windowName) => {
+        const windowInstance = MochaUI.Windows.instances[windowId];
+        const size = windowInstance.contentWrapperEl.getSize();
+        localPreferences.set(`window_${windowName}_width`, size.x);
+        localPreferences.set(`window_${windowName}_height`, size.y);
     };
 
     loadWindowWidth = (windowId, defaultValue, limitToViewportWidth = true) => {
         if (limitToViewportWidth)
             defaultValue = window.qBittorrent.Dialog.limitWidthToViewport(defaultValue);
-        return LocalPreferences.get(`window_${windowId}_width`, defaultValue);
+        return localPreferences.get(`window_${windowId}_width`, defaultValue);
     };
 
     loadWindowHeight = (windowId, defaultValue, limitToViewportHeight = true) => {
         if (limitToViewportHeight)
             defaultValue = window.qBittorrent.Dialog.limitHeightToViewport(defaultValue);
-        return LocalPreferences.get(`window_${windowId}_height`, defaultValue);
+        return localPreferences.get(`window_${windowId}_height`, defaultValue);
     };
 
     const addClickEvent = (el, fn) => {
@@ -207,14 +209,13 @@ const initializeWindows = () => {
             title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
             loadMethod: "iframe",
             contentURL: contentURL.toString(),
-            addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
             scrollbars: true,
             maximizable: false,
             closable: true,
             paddingVertical: 0,
             paddingHorizontal: 0,
             width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 600),
+            height: loadWindowHeight(id, 300),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(id);
             })
@@ -297,30 +298,32 @@ const initializeWindows = () => {
         });
     });
 
-    addClickEvent("upload", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        const id = "uploadPage";
-        new MochaUI.Window({
-            id: id,
-            icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
-            loadMethod: "iframe",
-            contentURL: "upload.html?v=${CACHEID}",
-            addClass: "windowFrame", // fixes iframe scrolling on iOS Safari
-            scrollbars: true,
-            maximizable: false,
-            paddingVertical: 0,
-            paddingHorizontal: 0,
-            width: loadWindowWidth(id, 500),
-            height: loadWindowHeight(id, 460),
-            onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
-                saveWindowSize(id);
-            })
-        });
-        updateMainData();
+    document.querySelector("#uploadButton #fileselectButton").addEventListener("click", function(event) {
+        // clear the value so that reselecting the same file(s) still triggers the 'change' event
+        this.value = null;
     });
+
+    // make the entire anchor tag trigger the input, despite the input's label not spanning the entire anchor
+    document.getElementById("uploadLink").addEventListener("click", (e) => {
+        const fileSelector = document.getElementById("fileselectLink");
+        // clear the value so that reselecting the same file(s) still triggers the 'change' event
+        if (e.target === fileSelector) {
+            e.target.value = null;
+        }
+        else {
+            e.preventDefault();
+            fileSelector.click();
+        }
+    });
+
+    for (const element of document.querySelectorAll("#uploadButton #fileselectButton, #uploadLink #fileselectLink")) {
+        element.addEventListener("change", (event) => {
+            if (element.files.length === 0)
+                return;
+
+            window.qBittorrent.Client.uploadTorrentFiles(element.files);
+        });
+    }
 
     globalUploadLimitFN = () => {
         const contentURL = new URL("speedlimit.html", window.location);
@@ -381,8 +384,7 @@ const initializeWindows = () => {
         let torrentsHaveSameShareRatio = true;
 
         // check if all selected torrents have same share ratio
-        for (let i = 0; i < hashes.length; ++i) {
-            const hash = hashes[i];
+        for (const hash of hashes) {
             const row = torrentsTable.getRow(hash).full_data;
             const origValues = `${row.ratio_limit}|${row.seeding_time_limit}|${row.inactive_seeding_time_limit}|${row.max_ratio}`
                 + `|${row.max_seeding_time}|${row.max_inactive_seeding_time}|${row.share_limit_action}`;
@@ -1158,10 +1160,8 @@ const initializeWindows = () => {
         const names = [];
         if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
-            for (let i = 0; i < selectedRows.length; ++i) {
-                const hash = selectedRows[i];
+            for (const hash of selectedRows)
                 names.push(rows[hash].full_data.name);
-            }
         }
         return names.join("\n");
     };
@@ -1196,10 +1196,8 @@ const initializeWindows = () => {
         const magnets = [];
         if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
-            for (let i = 0; i < selectedRows.length; ++i) {
-                const hash = selectedRows[i];
+            for (const hash of selectedRows)
                 magnets.push(rows[hash].full_data.magnet_uri);
-            }
         }
         return magnets.join("\n");
     };
@@ -1213,14 +1211,27 @@ const initializeWindows = () => {
         const comments = [];
         if (selectedRows.length > 0) {
             const rows = torrentsTable.getFilteredAndSortedRows();
-            for (let i = 0; i < selectedRows.length; ++i) {
-                const hash = selectedRows[i];
+            for (const hash of selectedRows) {
                 const comment = rows[hash].full_data.comment;
                 if (comment && (comment !== ""))
                     comments.push(comment);
             }
         }
         return comments.join("\n---------\n");
+    };
+
+    copyContentPathFN = () => {
+        const selectedRows = torrentsTable.selectedRowsIds();
+        const contentPaths = [];
+        if (selectedRows.length > 0) {
+            const rows = torrentsTable.getFilteredAndSortedRows();
+            for (const hash of selectedRows) {
+                const contentPath = rows[hash].full_data.content_path;
+                if ((contentPath !== null) && (contentPath.length > 0))
+                    contentPaths.push(contentPath);
+            }
+        }
+        return contentPaths.join("\n");
     };
 
     exportTorrentFN = async () => {
@@ -1382,5 +1393,11 @@ const initializeWindows = () => {
             e.preventDefault();
             e.stopPropagation();
         });
+    }
+
+    const userAgent = (navigator.userAgentData?.platform ?? navigator.platform).toLowerCase();
+    if (userAgent.includes("ipad") || userAgent.includes("iphone") || (userAgent.includes("mac") && (navigator.maxTouchPoints > 1))) {
+        for (const element of document.getElementsByClassName("fileselect"))
+            element.accept = ".torrent";
     }
 };

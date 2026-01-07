@@ -106,20 +106,21 @@ private:
 
     void loadSettings();
     void saveSettings() const;
-    void updateFilter();
+    void updateNameFilter();
+    void updateSeedsFilter();
+    void updateSizeFilter();
     void filterSearchResults(const QString &name);
     void showFilterContextMenu();
     void contextMenuEvent(QContextMenuEvent *event) override;
     void onItemDoubleClicked(const QModelIndex &index);
     void searchFinished(bool cancelled);
-    void searchFailed();
+    void searchFailed(const QString &errorMessage);
     void appendSearchResults(const QList<SearchResult> &results);
     void updateResultsCount();
     void setStatus(Status value);
     void downloadTorrent(const QModelIndex &rowIndex, AddTorrentOption option = AddTorrentOption::Default);
     void addTorrentToSession(const QString &source, AddTorrentOption option = AddTorrentOption::Default);
     void fillFilterComboBoxes();
-    NameFilteringMode filteringMode() const;
     QHeaderView *header() const;
     int visibleColumnsCount() const;
     void setRowColor(int row, const QColor &color);

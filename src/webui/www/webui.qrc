@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/www">
         <file>private/addpeers.html</file>
+        <file>private/addtorrent.html</file>
         <file>private/addtrackers.html</file>
         <file>private/addwebseeds.html</file>
         <file>private/confirmfeeddeletion.html</file>
@@ -19,11 +20,9 @@
         <file>private/editfeedurl.html</file>
         <file>private/edittracker.html</file>
         <file>private/editwebseed.html</file>
-        <file>private/images/3-state-checkbox.gif</file>
         <file>private/images/application-exit.svg</file>
         <file>private/images/application-rss.svg</file>
         <file>private/images/application-url.svg</file>
-        <file>private/images/arrow-right.gif</file>
         <file>private/images/browser-cookies.svg</file>
         <file>private/images/checked-completed.svg</file>
         <file>private/images/collapse.svg</file>
@@ -321,18 +320,16 @@
         <file>private/images/go-down.svg</file>
         <file>private/images/go-top.svg</file>
         <file>private/images/go-up.svg</file>
-        <file>private/images/handle-icon-horizontal.gif</file>
-        <file>private/images/handle-icon.gif</file>
+        <file>private/images/handle-icon-horizontal.svg</file>
+        <file>private/images/handle-icon.svg</file>
         <file>private/images/hash.svg</file>
         <file>private/images/help-about.svg</file>
         <file>private/images/help-contents.svg</file>
         <file>private/images/insert-link.svg</file>
         <file>private/images/ip-blocked.svg</file>
-        <file>private/images/L.gif</file>
+        <file>private/images/L.svg</file>
         <file>private/images/list-add.svg</file>
         <file>private/images/list-remove.svg</file>
-        <file>private/images/logo.gif</file>
-        <file>private/images/logo2.gif</file>
         <file>private/images/mail-inbox.svg</file>
         <file>private/images/mascot.png</file>
         <file>private/images/name.svg</file>
@@ -356,9 +353,7 @@
         <file>private/images/set-location.svg</file>
         <file>private/images/slow.svg</file>
         <file>private/images/slow_off.svg</file>
-        <file>private/images/spacer.gif</file>
-        <file>private/images/spinner-placeholder.gif</file>
-        <file>private/images/spinner.gif</file>
+        <file>private/images/spinner.svg</file>
         <file>private/images/stalledDL.svg</file>
         <file>private/images/stalledUP.svg</file>
         <file>private/images/stopped.svg</file>
@@ -366,7 +361,7 @@
         <file>private/images/tags.svg</file>
         <file>private/images/task-complete.svg</file>
         <file>private/images/task-reject.svg</file>
-        <file>private/images/toolbox-divider.gif</file>
+        <file>private/images/toolbox-divider.svg</file>
         <file>private/images/torrent-creator.svg</file>
         <file>private/images/torrent-magnet.svg</file>
         <file>private/images/torrent-start-forced.svg</file>
@@ -392,11 +387,12 @@
         <file>private/rename_file.html</file>
         <file>private/rename_files.html</file>
         <file>private/rename_rule.html</file>
+        <file>private/scripts/addtorrent.js</file>
         <file>private/scripts/cache.js</file>
         <file>private/scripts/client.js</file>
+        <file>private/scripts/client-data.js</file>
         <file>private/scripts/color-scheme.js</file>
         <file>private/scripts/contextmenu.js</file>
-        <file>private/scripts/download.js</file>
         <file>private/scripts/dynamicTable.js</file>
         <file>private/scripts/file-tree.js</file>
         <file>private/scripts/filesystem.js</file>
@@ -420,15 +416,16 @@
         <file>private/scripts/rename-files.js</file>
         <file>private/scripts/search.js</file>
         <file>private/scripts/statistics.js</file>
+        <file>private/scripts/torrent-content.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/speedlimit.html</file>
-        <file>private/upload.html</file>
         <file>private/views/about.html</file>
         <file>private/views/aboutToolbar.html</file>
         <file>private/views/confirmAutoTMM.html</file>
         <file>private/views/confirmdeletion.html</file>
         <file>private/views/confirmRecheck.html</file>
+        <file>private/views/confirmAPIKey.html</file>
         <file>private/views/cookies.html</file>
         <file>private/views/createtorrent.html</file>
         <file>private/views/filters.html</file>

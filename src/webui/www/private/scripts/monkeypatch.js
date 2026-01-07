@@ -40,6 +40,7 @@ window.qBittorrent.MonkeyPatch ??= (() => {
     const patch = () => {
         patchMootoolsDocumentId();
         patchMochaGetAsset();
+        patchMochaWindowOptions();
     };
 
     const patchMootoolsDocumentId = () => {
@@ -82,7 +83,7 @@ window.qBittorrent.MonkeyPatch ??= (() => {
             else if (MUI.files[source] === "loading") {
                 let tries = 0;
                 const checker = (function() {
-                    tries++;
+                    ++tries;
                     if ((MUI.files[source] === "loading") && (tries < "100"))
                         return;
                     $clear(checker);
@@ -121,6 +122,17 @@ window.qBittorrent.MonkeyPatch ??= (() => {
                 alert(`The required file "${source}" could not be loaded`);
             }
         };
+    };
+
+    /**
+     * Disable canvas in MochaUI windows
+     */
+    const patchMochaWindowOptions = () => {
+        const options = MUI.Window.prototype.options;
+        options.shadowBlur = 0;
+        options.shadowOffset = { x: 0, y: 0 };
+        options.useCanvas = false;
+        options.useCanvasControls = false;
     };
 
     return exports();

@@ -35,11 +35,13 @@
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_item.h"
 #include "gui/uithememanager.h"
+#include "gui/utils.h"
 
 ArticleListWidget::ArticleListWidget(QWidget *parent)
     : QListWidget(parent)
 {
     setContextMenuPolicy(Qt::CustomContextMenu);
+    setIconSize(Utils::Gui::smallIconSize());
     setSelectionMode(QAbstractItemView::ExtendedSelection);
 
     checkInvariant();
@@ -62,7 +64,7 @@ QListWidgetItem *ArticleListWidget::mapRSSArticle(RSS::Article *rssArticle) cons
     return m_rssArticleToListItemMapping.value(rssArticle);
 }
 
-void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
+void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly, const QString &filter)
 {
     // Clear the list first
     clear();
@@ -80,7 +82,7 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
 
         for (auto *article : asConst(rssItem->articles()))
         {
-            if (!(m_unreadOnly && article->isRead()))
+            if (!(m_unreadOnly && article->isRead()) && (filter.isEmpty() || article->title().contains(filter, Qt::CaseInsensitive)))
             {
                 auto *item = createItem(article);
                 addItem(item);

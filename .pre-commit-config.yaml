@@ -19,7 +19,7 @@ repos:
           - ts
 
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
     - id: check-json
       name: Check JSON files
@@ -39,6 +39,7 @@ repos:
       args: ["--fix=lf"]
       exclude: |
         (?x)^(
+          src/base/3rdparty/expected.hpp |
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
           dist/windows/license.txt |
@@ -88,7 +89,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.32.0
+    rev: v1.35.3
     hooks:
     - id: typos
       name: Check spelling (typos)

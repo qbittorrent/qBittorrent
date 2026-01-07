@@ -1,5 +1,42 @@
 # WebAPI Changelog
 
+## 2.14.1
+* [#23212](https://github.com/qbittorrent/qBittorrent/pull/23212)
+  * Add `app/rotateAPIKey` endpoint for generating, and rotating, the WebAPI API key
+* [#23388](https://github.com/qbittorrent/qBittorrent/pull/23388)
+  * Add `app/deleteAPIKey` endpoint for deleting the existing WebAPI API key
+
+## 2.14.0
+* [#23202](https://github.com/qbittorrent/qBittorrent/pull/23202)
+  * WebAPI responds with the error message "Endpoint does not exist" when the endpoint does not exist, to better differentiate from unrelated Not Found (i.e. 404) responses
+  * `auth/login` endpoint responds to invalid credentials with a 401
+  * `torrents/add` endpoint responds with `success_count`, `pending_count`, `failure_count`, and `added_torrent_ids`
+    * When `pending_count` is non-zero, response code 202 is used
+    * When all torrents fail to be added, response code 409 is used
+
+## 2.13.1
+* [#23163](https://github.com/qbittorrent/qBittorrent/pull/23163)
+  * `torrents/add` endpoint now supports downloading from a search plugin via the `downloader` parameter
+  * `torrents/fetchMetadata` endpoint now supports fetching from a search plugin via the `downloader` parameter
+* [#23088](https://github.com/qbittorrent/qBittorrent/pull/23088)
+  * Add `clientdata/load` and `clientdata/store` endpoints for managing WebUI-specific client settings and other shared data
+
+## 2.13.0
+* [#23045](https://github.com/qbittorrent/qBittorrent/pull/23045)
+  * `torrents/trackers` returns three new fields: `next_announce`, `min_announce` and `endpoints`
+    * `endpoints` is an array of tracker endpoints, each with `name`, `updating`, `status`, `msg`, `bt_version`, `num_peers`, `num_peers`, `num_leeches`, `num_downloaded`, `next_announce` and `min_announce` fields
+  *  `torrents/trackers` now returns `5` and `6` in `status` field as possible values
+    * `5` for `Tracker error` and `6` for `Unreachable`
+* [#22963](https://github.com/qbittorrent/qBittorrent/pull/22963)
+  * `torrents/editTracker` endpoint now supports setting a tracker's tier via `tier` parameter
+  * `torrents/editTracker` endpoint always responds with a 204 when successful
+  * `torrents/editTracker` endpoint `origUrl` parameter renamed to `url`
+* [#23061](https://github.com/qbittorrent/qBittorrent/pull/23061)
+  * `sync/torrentPeers` returns one new field: `i2p_dest`, only when the peer is from I2P
+    * In this case, the fields `ip` and `port` are not returned
+* [#23085](https://github.com/qbittorrent/qBittorrent/pull/23085)
+  * `torrents/parseMetadata` now responds with an array of metadata in the same order as the files in the request. It previously responded with an object keyed off of the submitted file name.
+
 ## 2.12.1
 * [#23031](https://github.com/qbittorrent/qBittorrent/pull/23031)
   * Add `torrents/setComment` endpoint with parameters `hashes` and `comment` for setting a new torrent comment

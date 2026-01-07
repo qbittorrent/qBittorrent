@@ -129,7 +129,9 @@ add_library(qbt_gui STATIC
     transferlistfilters/tagfilterproxymodel.h
     transferlistfilters/tagfilterwidget.h
     transferlistfilters/trackersfilterwidget.h
+    transferlistfilters/trackerstatusfilterwidget.h
     transferlistfilterswidget.h
+    transferlistfilterswidgetitem.h
     transferlistmodel.h
     transferlistsortmodel.h
     transferlistwidget.h
@@ -230,7 +232,9 @@ add_library(qbt_gui STATIC
     transferlistfilters/tagfilterproxymodel.cpp
     transferlistfilters/tagfilterwidget.cpp
     transferlistfilters/trackersfilterwidget.cpp
+    transferlistfilters/trackerstatusfilterwidget.cpp
     transferlistfilterswidget.cpp
+    transferlistfilterswidgetitem.cpp
     transferlistmodel.cpp
     transferlistsortmodel.cpp
     transferlistwidget.cpp
@@ -287,14 +291,18 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         macosdockbadge/badger.mm
         macosdockbadge/badgeview.h
         macosdockbadge/badgeview.mm
-        macosshiftclickhandler.h
         macosshiftclickhandler.cpp
+        macosshiftclickhandler.h
+        macosstatusitem/itemview.h
+        macosstatusitem/itemview.mm
+        macosstatusitem/statusitem.h
+        macosstatusitem/statusitem.mm
         macutilities.h
         macutilities.mm
-        powermanagement/inhibitormacos.h
         powermanagement/inhibitormacos.cpp
-        programupdater.h
+        powermanagement/inhibitormacos.h
         programupdater.cpp
+        programupdater.h
     )
     target_link_libraries(qbt_gui PRIVATE
         objc
