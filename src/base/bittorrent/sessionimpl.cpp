@@ -118,7 +118,7 @@ using namespace std::chrono_literals;
 using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
-const Path ADDITIONAL_TRACKERS_FILE_NAME {u"additional_trackers.txt"_s};
+const Path ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME {u"additional_trackers_from_url.txt"_s};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
 const std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
 
@@ -678,7 +678,7 @@ SessionImpl::SessionImpl(QObject *parent)
     // start embedded tracker
     enableTracker(isTrackerEnabled());
 
-    // if AddTrackersFromURLEnabled is enabled, load trackers from "additional_trackers.txt"
+    // if AddTrackersFromURLEnabled is enabled, load trackers from "additional_trackers_from_url.txt"
     if (isAddTrackersFromURLEnabled())
     {
         updateTrackersFromFile();
@@ -4007,7 +4007,7 @@ void SessionImpl::setAddTrackersFromURLEnabled(const bool enabled)
         {
             m_updateTrackersFromURLTimer->stop();
             setAdditionalTrackersFromURL({});
-            const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FILE_NAME);
+            const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME);
             Utils::Fs::removeFile(path);
         }
     }
@@ -4051,7 +4051,7 @@ void SessionImpl::updateTrackersFromURL()
     }
     else
     {
-        const Path path = specialFolderLocation(SpecialFolder::Data) / ADDITIONAL_TRACKERS_FILE_NAME;
+        const Path path = specialFolderLocation(SpecialFolder::Data) / ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME;
         Net::DownloadManager::instance()->download(Net::DownloadRequest(url).saveToFile(true).destFileName(path)
                 , Preferences::instance()->useProxyForGeneralPurposes(), this, [this](const Net::DownloadResult &result)
         {
@@ -6640,7 +6640,7 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
 void SessionImpl::updateTrackersFromFile()
 {
     const int fileMaxSize = 1024 * 1024;
-    const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FILE_NAME);
+    const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME);
 
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);
     if (!readResult)
@@ -6650,7 +6650,7 @@ void SessionImpl::updateTrackersFromFile()
             return;
         }
 
-        LogMsg(tr("Failed to load additional_trackers.txt. %1").arg(readResult.error().message), Log::WARNING);
+        LogMsg(tr("Failed to load additional_trackers_from_url.txt. %1").arg(readResult.error().message), Log::WARNING);
         return;
     }
 
