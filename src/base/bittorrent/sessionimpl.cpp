@@ -678,11 +678,8 @@ SessionImpl::SessionImpl(QObject *parent)
     // start embedded tracker
     enableTracker(isTrackerEnabled());
 
-    // if AddTrackersFromURLEnabled is enabled, load trackers from "additional_trackers_from_url.txt"
     if (isAddTrackersFromURLEnabled())
-    {
         updateTrackersFromFile();
-    }
 
     prepareStartup();
 
@@ -690,7 +687,6 @@ SessionImpl::SessionImpl(QObject *parent)
     m_updateTrackersFromURLTimer->setInterval(24h);
     connect(m_updateTrackersFromURLTimer, &QTimer::timeout, this, &SessionImpl::updateTrackersFromURL);
 
-    // if AddTrackersFromURLEnabled is enabled, redownload the file
     if (isAddTrackersFromURLEnabled())
     {
         updateTrackersFromURL();
@@ -6650,7 +6646,7 @@ void SessionImpl::updateTrackersFromFile()
             return;
         }
 
-        LogMsg(tr("Failed to load additional_trackers_from_url.txt. %1").arg(readResult.error().message), Log::WARNING);
+        LogMsg(tr("Failed to load additional trackers from file. Reason: %1").arg(readResult.error().message), Log::WARNING);
         return;
     }
 
