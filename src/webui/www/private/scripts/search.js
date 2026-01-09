@@ -192,10 +192,23 @@ window.qBittorrent.Search ??= (() => {
         return Number(tab.id.substring(searchTabIdPrefix.length));
     };
 
+    const updateTabTitle = (searchId) => {
+        const state = searchState.get(searchId);
+        if (!state)
+            return;
+
+        const tab = document.getElementById(`${searchTabIdPrefix}${searchId}`);
+        if (!tab)
+            return;
+
+        const unreadCount = state.rows.length - state.lastSeenCount;
+        const tabTitle = tab.querySelector(".tabTitle");
+        tabTitle.textContent = state.searchPattern + ((unreadCount > 0) ? ` (+${unreadCount})` : "");
+    };
+
     const createSearchTab = (searchId, pattern) => {
         const newTabId = `${searchTabIdPrefix}${searchId}`;
         const tabElem = document.createElement("a");
-        tabElem.textContent = pattern;
 
         const closeTabElem = document.createElement("img");
         closeTabElem.alt = "QBT_TR(Close tab)QBT_TR[CONTEXT=SearchWidget]";
@@ -207,8 +220,13 @@ window.qBittorrent.Search ??= (() => {
             e.stopPropagation();
             closeSearchTab(this);
         });
+        tabElem.appendChild(closeTabElem);
 
-        tabElem.prepend(closeTabElem);
+        const tabTitleElem = document.createElement("span");
+        tabTitleElem.className = "tabTitle";
+        tabTitleElem.textContent = pattern;
+
+        tabElem.appendChild(tabTitleElem);
         tabElem.appendChild(getStatusIconElement("QBT_TR(Searching...)QBT_TR[CONTEXT=SearchJobWidget]", "images/queued.svg"));
 
         const listItem = document.createElement("li");
@@ -247,6 +265,7 @@ window.qBittorrent.Search ??= (() => {
             running: true,
             loadResultsTimer: -1,
             sort: { column: searchResultsTable.sortedColumn, reverse: searchResultsTable.reverseSort },
+            lastSeenCount: 0,
         });
         updateSearchResultsData(searchId);
     };
@@ -279,9 +298,11 @@ window.qBittorrent.Search ??= (() => {
         state.selectedRowIds = [];
         state.running = true;
         state.loadResultsTimer = -1;
+        state.lastSeenCount = 0;
         searchState.set(searchId, state);
         searchState.delete(oldSearchId);
 
+        updateTabTitle(searchId);
         searchResultsTable.clear();
         updateSearchResultsData(searchId);
     };
@@ -407,6 +428,10 @@ window.qBittorrent.Search ??= (() => {
             searchResultsTable.setSortedColumn(state.sort.column, state.sort.reverse);
 
             document.getElementById("searchInTorrentName").value = state.searchIn;
+
+            // mark all results as seen
+            state.lastSeenCount = state.rows.length;
+            updateTabTitle(searchId);
         }
 
         // must restore all filters before calling updateTable
@@ -916,6 +941,10 @@ window.qBittorrent.Search ??= (() => {
                         document.getElementById("numSearchResultsTotal").textContent = searchResultsTable.getRowSize();
 
                         searchResultsTable.updateTable();
+                    }
+                    else if (newRows.length > 0) {
+                        // update unread count for background tabs
+                        updateTabTitle(searchId);
                     }
 
                     if ((responseJSON.status === "Stopped") && (state.rowId >= responseJSON.total)) {
