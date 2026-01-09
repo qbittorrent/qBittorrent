@@ -278,8 +278,7 @@ window.qBittorrent.Search ??= (() => {
         const isTabSelected = tab.classList.contains("selected");
         const newTabToSelect = isTabSelected ? (tab.nextSibling || tab.previousSibling) : null;
 
-        const currentSearchId = getSelectedSearchId();
-        const state = searchState.get(currentSearchId);
+        const state = searchState.get(searchId);
         // don't bother sending a stop request if already stopped
         if (state && state.running)
             stopSearch(searchId);
