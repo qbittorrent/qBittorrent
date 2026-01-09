@@ -90,6 +90,10 @@ window.qBittorrent.Search ??= (() => {
         targets: ".searchTab",
         menu: "searchResultsTabsMenu",
         actions: {
+            stopSearch: (tab) => {
+                const searchId = getSearchIdFromTab(tab);
+                stopSearch(searchId);
+            },
             refreshTab: (tab) => { refreshSearch(tab); },
             closeTab: (tab) => { closeSearchTab(tab); },
             closeAllTabs: () => {
@@ -102,7 +106,15 @@ window.qBittorrent.Search ??= (() => {
             y: -60
         },
         onShow: function() {
-            setActiveTab(this.options.element);
+            const tab = this.options.element;
+            setActiveTab(tab);
+
+            const searchId = getSearchIdFromTab(tab);
+            const state = searchState.get(searchId);
+            if (state && state.running)
+                this.showItem("stopSearch");
+            else
+                this.hideItem("stopSearch");
         }
     });
 
