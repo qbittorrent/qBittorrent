@@ -95,6 +95,14 @@ window.qBittorrent.Search ??= (() => {
                 stopSearch(searchId);
             },
             refreshTab: (tab) => { refreshSearch(tab); },
+            useSearchText: (tab) => {
+                const searchId = getSearchIdFromTab(tab);
+                const state = searchState.get(searchId);
+                if (state) {
+                    document.getElementById("searchPattern").value = state.searchPattern;
+                    updateSearchButtonState();
+                }
+            },
             closeTab: (tab) => { closeSearchTab(tab); },
             closeAllTabs: () => {
                 for (const tab of document.querySelectorAll("#searchTabs .searchTab"))
