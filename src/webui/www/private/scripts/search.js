@@ -870,10 +870,15 @@ window.qBittorrent.Search ??= (() => {
 
     const loadSearchResultsData = (searchId) => {
         const state = searchState.get(searchId);
+        // search tab might have been closed
+        if (!state)
+            return;
+
+        const maxResults = 500;
         const url = new URL("api/v2/search/results", window.location);
         url.search = new URLSearchParams({
             id: searchId,
-            limit: 500,
+            limit: maxResults,
             offset: state.rowId
         });
         fetch(url, {
@@ -950,6 +955,13 @@ window.qBittorrent.Search ??= (() => {
                     if ((responseJSON.status === "Stopped") && (state.rowId >= responseJSON.total)) {
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, "QBT_TR(Search has finished)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-complete.svg");
+                        return;
+                    }
+
+                    // if we got max results, more are likely waiting - fetch immediately
+                    if (newRows.length >= maxResults) {
+                        clearTimeout(state.loadResultsTimer);
+                        state.loadResultsTimer = loadSearchResultsData.delay(0, this, searchId);
                         return;
                     }
                 }
