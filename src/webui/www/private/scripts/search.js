@@ -299,6 +299,8 @@ window.qBittorrent.Search ??= (() => {
             localPreferences.set("search_jobs", JSON.stringify(searchJobs));
         }
 
+        searchState.delete(searchId);
+
         if (numSearchTabs() === 0) {
             resetSearchState();
             resetFilters();
@@ -844,13 +846,15 @@ window.qBittorrent.Search ??= (() => {
                 cache: "no-store"
             })
             .then(async (response) => {
+                const state = searchState.get(searchId);
+
                 if (!response.ok) {
                     if ((response.status === 400) || (response.status === 404)) {
                         // bad params. search id is invalid
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, "QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
                     }
-                    else {
+                    else if (state) {
                         clearTimeout(state.loadResultsTimer);
                         state.loadResultsTimer = loadSearchResultsData.delay(3000, this, searchId);
                     }
@@ -859,17 +863,16 @@ window.qBittorrent.Search ??= (() => {
 
                 document.getElementById("error_div").textContent = "";
 
-                const state = searchState.get(searchId);
                 // check if user stopped the search prior to receiving the response
-                if (!state.running) {
-                    clearTimeout(state.loadResultsTimer);
+                if (!state || !state.running) {
+                    if (state)
+                        clearTimeout(state.loadResultsTimer);
                     updateStatusIconElement(searchId, "QBT_TR(Search aborted)QBT_TR[CONTEXT=SearchJobWidget]", "images/task-reject.svg");
                     return;
                 }
 
                 const responseJSON = await response.json();
                 if (responseJSON) {
-                    const state = searchState.get(searchId);
                     const newRows = [];
 
                     if (responseJSON.results) {
