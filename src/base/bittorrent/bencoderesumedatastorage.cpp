@@ -305,15 +305,15 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     if (!metadata.isEmpty())
     {
-        const lt::bdecode_node torentInfoRoot = lt::bdecode(metadata, ec
+        const lt::bdecode_node torrentInfoRoot = lt::bdecode(metadata, ec
                 , nullptr, pref->getBdecodeDepthLimit(), pref->getBdecodeTokenLimit());
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 
-        if (torentInfoRoot.type() != lt::bdecode_node::dict_t)
+        if (torrentInfoRoot.type() != lt::bdecode_node::dict_t)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: invalid format"));
 
-        const auto torrentInfo = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
+        const auto torrentInfo = std::make_shared<lt::torrent_info>(torrentInfoRoot, ec);
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 
