@@ -6633,7 +6633,7 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
 
 void SessionImpl::updateTrackersFromFile()
 {
-    const int fileMaxSize = 1024 * 1024;
+    const qint64 fileMaxSize = 1024 * 1024;
     const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME);
 
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);
@@ -6644,7 +6644,7 @@ void SessionImpl::updateTrackersFromFile()
             return;
         }
 
-        LogMsg(tr("Failed to load additional trackers from file. Reason: %1").arg(readResult.error().message), Log::WARNING);
+        LogMsg(tr("Failed to load additional trackers from file. Reason: \"%1\". Path: \"%2\".").arg(readResult.error().message, path.toString()), Log::WARNING);
         return;
     }
 
