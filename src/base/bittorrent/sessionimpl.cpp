@@ -678,9 +678,6 @@ SessionImpl::SessionImpl(QObject *parent)
     // start embedded tracker
     enableTracker(isTrackerEnabled());
 
-    if (isAddTrackersFromURLEnabled())
-        updateTrackersFromFile();
-
     prepareStartup();
 
     m_updateTrackersFromURLTimer = new QTimer(this);
@@ -689,6 +686,7 @@ SessionImpl::SessionImpl(QObject *parent)
 
     if (isAddTrackersFromURLEnabled())
     {
+        updateTrackersFromFile();
         updateTrackersFromURL();
         m_updateTrackersFromURLTimer->start();
     }
