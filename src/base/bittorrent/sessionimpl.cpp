@@ -6644,7 +6644,7 @@ void SessionImpl::updateTrackersFromFile()
             return;
         }
 
-        LogMsg(tr("Failed to load additional trackers from file. Reason: \"%1\". Path: \"%2\".").arg(readResult.error().message, path.toString()), Log::WARNING);
+        LogMsg(tr("Failed to load additional trackers from file. Reason: %1").arg(readResult.error().message), Log::WARNING);
         return;
     }
 
