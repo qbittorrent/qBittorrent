@@ -4299,11 +4299,6 @@ int SessionImpl::maxConnectionsPerDownloadingTorrent() const
     return m_maxConnectionsPerDownloadingTorrent;
 }
 
-int SessionImpl::maxConnectionsPerSeedingTorrent() const
-{
-    return m_maxConnectionsPerSeedingTorrent;
-}
-
 void SessionImpl::setMaxConnectionsPerDownloadingTorrent(int max)
 {
     max = (max > 0) ? max : -1;
@@ -4323,6 +4318,11 @@ void SessionImpl::setMaxConnectionsPerDownloadingTorrent(int max)
             catch (const std::exception &) {}
         }
     }
+}
+
+int SessionImpl::maxConnectionsPerSeedingTorrent() const
+{
+    return m_maxConnectionsPerSeedingTorrent;
 }
 
 void SessionImpl::setMaxConnectionsPerSeedingTorrent(int max)

@@ -2577,8 +2577,8 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
     const bool wasUploading = isUploading();
     updateState();
 
-    if (wasUploading != isUploading())
-        updateMaxConnections();
+    if (const bool nowUploading = isUploading(); nowUploading != wasUploading)
+        updateMaxConnections(nowUploading);
 
     m_payloadRateMonitor.addSample({nativeStatus.download_payload_rate
                               , nativeStatus.upload_payload_rate});
@@ -2635,9 +2635,9 @@ void TorrentImpl::updateProgress()
     }
 }
 
-void TorrentImpl::updateMaxConnections()
+void TorrentImpl::updateMaxConnections(const bool isUploading)
 {
-    if (isUploading())
+    if (isUploading)
         nativeHandle().set_max_connections(m_session->maxConnectionsPerSeedingTorrent());
     else
         nativeHandle().set_max_connections(m_session->maxConnectionsPerDownloadingTorrent());
