@@ -771,7 +771,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &m_checkBoxRecheckCompleted);
     // Customize application instance name
     m_lineEditAppInstanceName.setText(app()->instanceName());
-    m_lineEditAppInstanceName.setToolTip(tr("It appends the text to the window title to help distinguish qBittorent instances"));
+    m_lineEditAppInstanceName.setToolTip(tr("It appends the text to the window title to help distinguish qBittorrent instances"));
     addRow(APP_INSTANCE_NAME, tr("Customize application instance name"), &m_lineEditAppInstanceName);
     // Refresh interval
     m_spinBoxListRefresh.setMinimum(30);
