@@ -685,7 +685,6 @@ SessionImpl::SessionImpl(QObject *parent)
     connect(m_updateTrackersFromURLTimer, &QTimer::timeout, this, &SessionImpl::updateTrackersFromURL);
 
     if (isAddTrackersFromURLEnabled())
-    if (isAddTrackersFromURLEnabled())
     {
         updateTrackersFromFile();
         updateTrackersFromURL();
