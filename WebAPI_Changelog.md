@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.16.0
+* [#23065](https://github.com/qbittorrent/qBittorrent/pull/23065)
+  * Replace preferences key `max_connec_per_torrent` with keys `max_connec_per_downloading_torrent` and `max_connec_per_seeding_torrent`
+
 ## 2.14.1
 * [#23212](https://github.com/qbittorrent/qBittorrent/pull/23212)
   * Add `app/rotateAPIKey` endpoint for generating, and rotating, the WebAPI API key
