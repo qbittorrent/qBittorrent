@@ -29,6 +29,7 @@
 #include "synccontroller.h"
 
 #include <QFuture>
+#include <QHostAddress>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QMetaObject>
@@ -90,6 +91,10 @@ namespace
     const QString KEY_TRANSFER_FREESPACEONDISK = u"free_space_on_disk"_s;
     const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4 = u"last_external_address_v4"_s;
     const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6 = u"last_external_address_v6"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY_CODE = u"last_external_address_v4_country_code"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY_CODE = u"last_external_address_v6_country_code"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY = u"last_external_address_v4_country"_s;
+    const QString KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY = u"last_external_address_v6_country"_s;
     const QString KEY_TRANSFER_UPDATA = u"up_info_data"_s;
     const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_s;
     const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_s;
@@ -186,8 +191,42 @@ namespace
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
 
-        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = session->lastExternalIPv4Address();
-        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = session->lastExternalIPv6Address();
+        const QString lastExternalIPv4Address = session->lastExternalIPv4Address();
+        const QString lastExternalIPv6Address = session->lastExternalIPv6Address();
+        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = lastExternalIPv4Address;
+        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = lastExternalIPv6Address;
+
+        const bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
+        if (resolvePeerCountries && Net::GeoIPManager::instance())
+        {
+            if (!lastExternalIPv4Address.isEmpty())
+            {
+                const QHostAddress ipv4Address(lastExternalIPv4Address);
+                if (!ipv4Address.isNull())
+                {
+                    const QString countryCode = Net::GeoIPManager::instance()->lookup(ipv4Address);
+                    if (!countryCode.isEmpty())
+                    {
+                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY_CODE] = countryCode.toLower();
+                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY] = Net::GeoIPManager::CountryName(countryCode);
+                    }
+                }
+            }
+            if (!lastExternalIPv6Address.isEmpty())
+            {
+                const QHostAddress ipv6Address(lastExternalIPv6Address);
+                if (!ipv6Address.isNull())
+                {
+                    const QString countryCode = Net::GeoIPManager::instance()->lookup(ipv6Address);
+                    if (!countryCode.isEmpty())
+                    {
+                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY_CODE] = countryCode.toLower();
+                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY] = Net::GeoIPManager::CountryName(countryCode);
+                    }
+                }
+            }
+        }
+
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
