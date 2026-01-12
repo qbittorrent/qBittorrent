@@ -80,7 +80,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.hiddenTableHeader = this.dynamicTableDiv.querySelector("thead tr");
             this.table = this.dynamicTableDiv.querySelector("table");
             this.tableBody = this.dynamicTableDiv.querySelector("tbody");
-            this.rowHeight = 26;
+            this.rowHeight = (clientData.get("display_density") === "compact") ? 22 : 26;
             this.rows = new Map();
             this.cachedElements = [];
             this.selectedRows = [];
@@ -1100,7 +1100,7 @@ window.qBittorrent.DynamicTable ??= (() => {
     class TorrentsTable extends DynamicTable {
         setupVirtualList() {
             super.setupVirtualList();
-            this.rowHeight = 22;
+            this.rowHeight = (clientData.get("display_density") === "compact") ? 18 : 22;
         }
 
         initColumns() {
@@ -2425,11 +2425,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.collapseState.clear();
         }
 
-        setupVirtualList() {
-            super.setupVirtualList();
-            this.rowHeight = 29.5;
-        }
-
         expandFolder(id) {
             if (!this.supportCollapsing)
                 return;
@@ -2541,7 +2536,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (td.firstElementChild === null) {
                     const treeImg = document.createElement("img");
                     treeImg.src = "images/L.svg";
-                    treeImg.style.marginBottom = "-2px";
+                    treeImg.style.verticalAlign = "top";
                     td.append(treeImg);
                 }
 
@@ -2594,9 +2589,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (dirImg === undefined) {
                     dirImg = document.createElement("img");
                     dirImg.src = "images/directory.svg";
-                    dirImg.style.width = "20px";
-                    dirImg.style.paddingRight = "5px";
-                    dirImg.style.marginBottom = "-3px";
+                    dirImg.style.height = "18px";
+                    dirImg.style.width = "18px";
+                    dirImg.style.marginRight = "5px";
+                    dirImg.style.verticalAlign = "top";
                     td.append(dirImg);
                 }
                 dirImg.style.display = node.isFolder ? "inline" : "none";
@@ -2817,11 +2813,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         supportCollapsing = false;
         fileNameColumn = "original";
 
-        setupVirtualList() {
-            super.setupVirtualList();
-            this.rowHeight = 29;
-        }
-
         getSelectedRows() {
             const nodes = this.fileTree.toArray();
             return nodes.filter(x => x.checked === 0);
@@ -2909,7 +2900,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (td.firstElementChild === null) {
                     const treeImg = document.createElement("img");
                     treeImg.src = "images/L.svg";
-                    treeImg.style.marginBottom = "-2px";
+                    treeImg.style.verticalAlign = "top";
                     td.append(treeImg);
                 }
 
@@ -2974,9 +2965,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (dirImg === undefined) {
                     dirImg = document.createElement("img");
                     dirImg.src = "images/directory.svg";
-                    dirImg.style.width = "20px";
-                    dirImg.style.paddingRight = "5px";
-                    dirImg.style.marginBottom = "-3px";
+                    dirImg.style.height = "18px";
+                    dirImg.style.width = "18px";
+                    dirImg.style.marginRight = "5px";
+                    dirImg.style.verticalAlign = "top";
                     td.append(dirImg);
                 }
                 if (node.isFolder) {
