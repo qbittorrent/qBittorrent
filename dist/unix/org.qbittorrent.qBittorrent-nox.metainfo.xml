@@ -52,6 +52,6 @@
   <url type="contribute">https://github.com/qbittorrent/qBittorrent/blob/master/CONTRIBUTING.md</url>
   <content_rating type="oars-1.1"/>
   <releases>
-    <release version="5.2.0~alpha1" date="2025-02-11"/>
+    <release version="5.2.0~beta1" date="2025-12-31"/>
   </releases>
 </component>
