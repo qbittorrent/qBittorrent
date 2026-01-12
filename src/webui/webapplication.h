@@ -139,8 +139,8 @@ private:
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
-    bool validateCredentials(const QString &username, const QString &password) const override;
-    bool validateBasicAuth(const QString &credentials) const;
+    bool validateCredentials(QStringView username, QStringView password) const override;
+    bool validateBasicAuth(QStringView credentials) const;
     bool isBanned() const;
     int failedAttemptsCount() const;
     void increaseFailedAttempts() const;

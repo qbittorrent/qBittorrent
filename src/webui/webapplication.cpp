@@ -103,11 +103,15 @@ namespace
         return ret;
     }
 
-    QString parseAuthorizationHeader(const QString &authHeader, const QString &authType)
+    QStringView parseAuthorizationHeader(const QStringView authHeader, const QStringView authType)
     {
-        if (authHeader.startsWith(authType + u" ", Qt::CaseInsensitive))
-            return authHeader.sliced(authType.length() + 1).trimmed();
-
+        if (const qsizetype authTypeLength = authType.length();
+            (authHeader.length() > (authTypeLength + 1))
+            && authHeader.startsWith(authType, Qt::CaseInsensitive)
+            && (authHeader.at(authTypeLength) == u' '))
+        {
+            return authHeader.sliced(authTypeLength + 1).trimmed();
+        }
         return {};
     }
 
@@ -648,7 +652,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
     try
     {
-        const bool isUsingApiKey = !parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION), BEARER_AUTH).isEmpty();
+        const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+        const bool isUsingApiKey = !parseAuthorizationHeader(authHeader, BEARER_AUTH).isEmpty();
 
         // block suspicious requests
         if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
@@ -721,7 +726,8 @@ void WebApplication::sessionInitialize()
         return;
     }
 
-    const QString credentials = parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION), BASIC_AUTH);
+    const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+    const QStringView credentials = parseAuthorizationHeader(authHeader, BASIC_AUTH);
     if (!credentials.isEmpty())
     {
         if (!validateBasicAuth(credentials))
@@ -756,11 +762,13 @@ void WebApplication::apiKeySessionInitialize()
     if (m_apiKey.isEmpty())
         return;
 
+    const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+
     QString sessionId;
-    if (const QString submittedKey = parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION), BEARER_AUTH);
+    if (const QStringView submittedKey = parseAuthorizationHeader(authHeader, BEARER_AUTH);
         Utils::Password::slowEquals(submittedKey.toLatin1(), m_apiKey.toLatin1()))
     {
-        sessionId = submittedKey;
+        sessionId = submittedKey.toString();
     }
 
     if (!sessionId.isEmpty())
@@ -999,7 +1007,7 @@ QHostAddress WebApplication::resolveClientAddress() const
     return m_env.clientAddress;
 }
 
-bool WebApplication::validateCredentials(const QString &username, const QString &password) const
+bool WebApplication::validateCredentials(const QStringView username, const QStringView password) const
 {
     const QString clientAddr = clientId();
 
@@ -1031,13 +1039,14 @@ bool WebApplication::validateCredentials(const QString &username, const QString 
     return false;
 }
 
-bool WebApplication::validateBasicAuth(const QString &credentials) const
+bool WebApplication::validateBasicAuth(const QStringView credentials) const
 {
-    const QString usernamePassword = QString::fromUtf8(QByteArray::fromBase64(credentials.toLatin1()));
+    const QString decodedCredentials = QString::fromUtf8(QByteArray::fromBase64(credentials.toLatin1()));
+    const auto usernamePassword = QStringView(decodedCredentials);
     if (const qsizetype idx = usernamePassword.indexOf(u':'); idx > 0)
     {
-        const QString username = usernamePassword.first(idx);
-        const QString password = usernamePassword.sliced(idx + 1);
+        const QStringView username = usernamePassword.first(idx);
+        const QStringView password = usernamePassword.sliced(idx + 1);
         return validateCredentials(username, password);
     }
 
