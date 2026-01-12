@@ -224,7 +224,7 @@ window.qBittorrent.PropWebseeds ??= (() => {
         await clipboardCopy(text);
     });
 
-    torrentWebseedsTable.setup("torrentWebseedsTableDiv", "torrentWebseedsTableFixedHeaderDiv", torrentWebseedsContextMenu, true);
+    torrentWebseedsTable.setup("torrentWebseedsTableDiv", "torrentWebseedsTableFixedHeaderDiv", torrentWebseedsContextMenu);
 
     return exports();
 })();
