@@ -9,12 +9,21 @@
 
     <fieldset class="settings">
         <legend>QBT_TR(Interface)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="colorSchemeSelect">QBT_TR(Color scheme:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="colorSchemeSelect">
-            <option value="0">QBT_TR(Auto)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="1">QBT_TR(Light)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="2">QBT_TR(Dark)QBT_TR[CONTEXT=OptionsDialog]</option>
-        </select>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <label for="colorSchemeSelect">QBT_TR(Color scheme:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="colorSchemeSelect">
+                <option value="0">QBT_TR(Auto)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="1">QBT_TR(Light)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="2">QBT_TR(Dark)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
+        <div class="formRow">
+            <label for="displayDensitySelect">QBT_TR(Display density:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="displayDensitySelect">
+                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="compact">QBT_TR(Compact)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -2262,6 +2271,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 .then((pref) => {
                     const clientData = window.parent.qBittorrent.ClientData;
                     const colorScheme = clientData.get("color_scheme");
+                    const displayDensity = clientData.get("display_density") ?? "default";
                     const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
                     const useVirtualList = clientData.get("use_virtual_list");
                     const hideZeroStatusFilters = clientData.get("hide_zero_status_filters");
@@ -2274,6 +2284,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Language
                     updateWebuiLocaleSelect(pref.locale);
                     updateColoSchemeSelect(colorScheme);
+                    document.getElementById("displayDensitySelect").value = displayDensity;
 
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
@@ -2721,6 +2732,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 clientData.color_scheme = "light";
             else
                 clientData.color_scheme = "dark";
+            const displayDensity = document.getElementById("displayDensitySelect").value;
+            clientData.display_density = (displayDensity === "default") ? null : displayDensity;
             settings["status_bar_external_ip"] = document.getElementById("statusBarExternalIP").checked;
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
