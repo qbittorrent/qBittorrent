@@ -42,8 +42,14 @@ window.qBittorrent.PropGeneral ??= (() => {
     });
     document.getElementById("progress").appendChild(piecesBar);
 
+    const availabilityBar = new window.qBittorrent.PiecesBar.AvailabilityBar({
+        height: 18
+    });
+    document.getElementById("availability").appendChild(availabilityBar);
+
     const clearData = () => {
         document.getElementById("progressPercentage").textContent = "";
+        document.getElementById("averageAvailability").textContent = "";
         document.getElementById("time_elapsed").textContent = "";
         document.getElementById("eta").textContent = "";
         document.getElementById("nb_connections").textContent = "";
@@ -72,6 +78,8 @@ window.qBittorrent.PropGeneral ??= (() => {
         document.getElementById("comment").textContent = "";
         document.getElementById("private").textContent = "";
         piecesBar.clear();
+        availabilityBar.clear();
+        document.getElementById("propAvailabilityWrapper").style.display = "none";
     };
 
     let loadTorrentDataTimer = -1;
@@ -113,6 +121,9 @@ window.qBittorrent.PropGeneral ??= (() => {
                     // Update Torrent data
 
                     document.getElementById("progressPercentage").textContent = window.qBittorrent.Misc.friendlyPercentage(data.progress);
+
+                    const avgAvailability = (data.availability >= 0) ? window.qBittorrent.Misc.toFixedPointString(data.availability, 3) : "";
+                    document.getElementById("averageAvailability").textContent = avgAvailability;
 
                     const timeElapsed = (data.seeding_time > 0)
                         ? "QBT_TR(%1 (seeded for %2))QBT_TR[CONTEXT=PropertiesWidget]"
@@ -228,6 +239,17 @@ window.qBittorrent.PropGeneral ??= (() => {
                             ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
                             : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]")
                         : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]");
+
+                    const row = torrentsTable.getRow(current_id);
+                    const state = row?.full_data?.state || "";
+                    const shouldShowAvailability = data.has_metadata
+                        && (data.progress < 1)
+                        && !state.includes("stopped")
+                        && !state.includes("queued")
+                        && !state.includes("checking")
+                        && !state.includes("error")
+                        && !state.includes("missingFiles");
+                    document.getElementById("propAvailabilityWrapper").style.display = shouldShowAvailability ? "contents" : "none";
                 }
                 else {
                     clearData();
@@ -274,6 +296,25 @@ window.qBittorrent.PropGeneral ??= (() => {
                 document.getElementById("error_div").textContent = "QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]";
                 clearTimeout(loadTorrentDataTimer);
                 loadTorrentDataTimer = loadTorrentData.delay(10000);
+            });
+
+        const pieceAvailabilityURL = new URL("api/v2/torrents/pieceAvailability", window.location);
+        pieceAvailabilityURL.search = new URLSearchParams({
+            hash: current_id
+        });
+        fetch(pieceAvailabilityURL, {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const data = await response.json();
+                if (data)
+                    availabilityBar.setAvailability(data);
+            }, (error) => {
+                console.error(error);
             });
     };
 
