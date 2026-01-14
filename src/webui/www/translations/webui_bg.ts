@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Ограничение на процента на сваляне</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>КиБ/с</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

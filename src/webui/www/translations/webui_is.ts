@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>KiB/s</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

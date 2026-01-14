@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Endirmə nisbəti limiti</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>KB/san</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

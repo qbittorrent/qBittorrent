@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Limitează rata de descărcare</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>KiO/s</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

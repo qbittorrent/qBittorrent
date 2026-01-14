@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Абмежаванне хуткасці спампоўвання</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>КБ/с</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

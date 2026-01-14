@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Обмеження швидкості завантаження</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>КіБ/с</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

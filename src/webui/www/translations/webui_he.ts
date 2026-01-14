@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>הגבל קצב הורדה</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>ק״ב/ש</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

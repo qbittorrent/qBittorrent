@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Rajoita latausnopeutta</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>Kt/s</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

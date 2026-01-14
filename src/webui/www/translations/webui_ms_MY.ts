@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Had kadar muat turun</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>KiB/s</translation>
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
