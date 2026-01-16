@@ -1053,7 +1053,7 @@ void OptionsDialog::loadSpeedTabOptions()
 #ifdef Q_OS_MACOS
     m_ui->checkShowSpeedInDock->setChecked(pref->isSpeedInDockEnabled());
 #else
-    m_ui->dockDisplayBox->hide();
+    m_ui->checkShowSpeedInDock->hide();
 #endif
 
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);

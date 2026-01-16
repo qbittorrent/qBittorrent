@@ -1474,11 +1474,11 @@ void MainWindow::loadSessionStats()
 #ifdef Q_OS_MACOS
     if (Preferences::instance()->isSpeedInDockEnabled()) {
         m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
-        m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
     }
     else {
         m_badger->updateSpeed(0, 0);
     }
+    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS

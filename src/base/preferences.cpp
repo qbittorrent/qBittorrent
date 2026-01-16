@@ -1480,7 +1480,7 @@ void Preferences::setUpdateCheckEnabled(const bool enabled)
 #ifdef Q_OS_MACOS
 bool Preferences::isSpeedInDockEnabled() const
 {
-    return value(u"Preferences/Speed/ShowSpeedInDock"_s, true);
+    return value(u"Preferences/Desktop/ShowSpeedInDock"_s, true);
 }
 
 void Preferences::setSpeedInDockEnabled(const bool enabled)
@@ -1488,7 +1488,7 @@ void Preferences::setSpeedInDockEnabled(const bool enabled)
     if (enabled == isSpeedInDockEnabled())
         return;
 
-    setValue(u"Preferences/Speed/ShowSpeedInDock"_s, enabled);
+    setValue(u"Preferences/Desktop/ShowSpeedInDock"_s, enabled);
 }
 #endif
 
