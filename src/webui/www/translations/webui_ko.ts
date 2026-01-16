@@ -198,10 +198,6 @@
         <source>Limit download rate</source>
         <translation>다운로드 속도 제한</translation>
     </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>KiB/s</translation>
-    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

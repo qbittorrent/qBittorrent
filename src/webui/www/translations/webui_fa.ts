@@ -198,10 +198,6 @@
         <source>Limit download rate</source>
         <translation>نسبت محدودیت بارگیری</translation>
     </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>کیلوبایت/ثانیه</translation>
-    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

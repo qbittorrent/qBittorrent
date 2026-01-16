@@ -198,10 +198,6 @@
         <source>Limit download rate</source>
         <translation>डाउनलोड की दर सीमित करें</translation>
     </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>केबी/से०</translation>
-    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

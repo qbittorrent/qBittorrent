@@ -198,10 +198,6 @@
         <source>Limit download rate</source>
         <translation>Giới hạn tỷ lệ tải xuống</translation>
     </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>KiB/giây</translation>
-    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

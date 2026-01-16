@@ -198,10 +198,6 @@
         <source>Limit download rate</source>
         <translation type="unfinished" />
     </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>Կբիթ/վ</translation>
-    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>

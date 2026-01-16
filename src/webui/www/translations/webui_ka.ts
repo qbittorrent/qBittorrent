@@ -198,10 +198,6 @@
         <source>Limit download rate</source>
         <translation>ჩამოტვირთვის სიჩქარის ლიმიტი</translation>
     </message>
-    <message>
-        <source>KiB/s</source>
-        <translation>კბ/წ</translation>
-    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
