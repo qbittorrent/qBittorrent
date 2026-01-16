@@ -56,7 +56,8 @@ namespace Http
     private:
         static bool acceptsGzipEncoding(QString codings);
         void read();
-        void sendResponse(const Response &response) const;
+        void sendResponse(const Response &response);
+        void sendStreamingResponse(const Response &response);
 
         QTcpSocket *m_socket = nullptr;
         IRequestHandler *m_requestHandler = nullptr;

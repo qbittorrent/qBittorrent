@@ -28,16 +28,25 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QtContainerFwd>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 
 #include "base/applicationcomponent.h"
+#include "base/path.h"
 #include "apistatus.h"
 
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
+
+struct APIStreamingInfo
+{
+    Path filePath;
+    qint64 totalSize = 0;
+};
 
 struct APIResult
 {
@@ -45,6 +54,7 @@ struct APIResult
     QString mimeType;
     QString filename;
     APIStatus status = APIStatus::Ok;
+    std::optional<APIStreamingInfo> streaming;
 
     void clear();
 };
@@ -68,6 +78,7 @@ protected:
     void setResult(const QJsonArray &result);
     void setResult(const QJsonObject &result);
     void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
+    void setStreamingResult(const Path &filePath, qint64 fileSize, const QString &mimeType, const QString &filename);
 
     void setStatus(APIStatus status);
 

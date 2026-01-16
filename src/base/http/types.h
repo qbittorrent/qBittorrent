@@ -29,6 +29,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QByteArray>
 #include <QHash>
 #include <QHostAddress>
@@ -37,9 +39,20 @@
 #include <QString>
 
 #include "base/global.h"
+#include "base/path.h"
 
 namespace Http
 {
+    struct RangeRequest
+    {
+        bool isValid = false;       // Whether a valid range was parsed
+        qint64 start = 0;           // Start byte offset
+        qint64 end = -1;            // End byte offset (inclusive)
+        qint64 length = -1;         // Length to serve (end - start + 1)
+    };
+
+    RangeRequest parseRangeHeader(const QString &rangeHeader, qint64 fileSize);
+
     inline const QString METHOD_GET = u"GET"_s;
     inline const QString METHOD_POST = u"POST"_s;
 
@@ -65,6 +78,9 @@ namespace Http
     inline const QString HEADER_X_FORWARDED_PROTO = u"x-forwarded-proto"_s;
     inline const QString HEADER_X_FRAME_OPTIONS = u"x-frame-options"_s;
     inline const QString HEADER_X_XSS_PROTECTION = u"x-xss-protection"_s;
+    inline const QString HEADER_ACCEPT_RANGES = u"accept-ranges"_s;
+    inline const QString HEADER_CONTENT_RANGE = u"content-range"_s;
+    inline const QString HEADER_RANGE = u"range"_s;
 
     inline const QString HEADER_REQUEST_METHOD_GET = u"GET"_s;
     inline const QString HEADER_REQUEST_METHOD_HEAD = u"HEAD"_s;
@@ -124,11 +140,20 @@ namespace Http
         QString text;
     };
 
+    struct StreamingInfo
+    {
+        Path filePath;
+        qint64 offset = 0;
+        qint64 size = 0;
+        qint64 totalSize = 0;
+    };
+
     struct Response
     {
         ResponseStatus status;
         HeaderMap headers;
         QByteArray content;
+        std::optional<StreamingInfo> streaming;
 
         Response(uint code = 200, const QString &text = u"OK"_s)
             : status {code, text}

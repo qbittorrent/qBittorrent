@@ -34,16 +34,10 @@
 #include "base/http/types.h"
 #include "base/utils/gzip.h"
 
-QByteArray Http::toByteArray(Response response)
+QByteArray Http::generateResponseHeaders(const Response &response)
 {
-    compressContent(response);
-
-    response.headers[HEADER_DATE] = httpDate();
-    if (QString &value = response.headers[HEADER_CONTENT_LENGTH]; value.isEmpty())
-        value = QString::number(response.content.length());
-
     QByteArray buf;
-    buf.reserve(1024 + response.content.length());
+    buf.reserve(1024);
 
     // Status Line
     buf.append("HTTP/1.1 ")  // TODO: depends on request
@@ -61,8 +55,22 @@ QByteArray Http::toByteArray(Response response)
             .append(CRLF);
     }
 
-    // the first empty line
+    // Empty line (end of headers)
     buf += CRLF;
+
+    return buf;
+}
+
+QByteArray Http::toByteArray(Response response)
+{
+    compressContent(response);
+
+    response.headers[HEADER_DATE] = httpDate();
+    if (QString &value = response.headers[HEADER_CONTENT_LENGTH]; value.isEmpty())
+        value = QString::number(response.content.length());
+
+    QByteArray buf = generateResponseHeaders(response);
+    buf.reserve(buf.size() + response.content.length());
 
     // message body
     buf += response.content;
@@ -108,4 +116,72 @@ void Http::compressContent(Response &response)
 
     response.content = compressedData;
     response.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
+}
+
+Http::RangeRequest Http::parseRangeHeader(const QString &rangeHeader, const qint64 fileSize)
+{
+    RangeRequest result;
+
+    if (rangeHeader.isEmpty())
+        return result;
+
+    if (!rangeHeader.startsWith(u"bytes="))
+        return result;
+
+    // Parse "bytes=start-end" or "bytes=start-" or "bytes=-suffix"
+    const QStringView rangeSpec = QStringView(rangeHeader).mid(6);  // Skip "bytes="
+
+    const qsizetype dashPos = rangeSpec.indexOf(u'-');
+    if (dashPos < 0)
+        return result;
+
+    const QStringView startStr = rangeSpec.left(dashPos);
+    const QStringView endStr = rangeSpec.mid(dashPos + 1);
+
+    qint64 rangeStart = 0;
+    qint64 rangeEnd = fileSize - 1;
+
+    if (startStr.isEmpty())
+    {
+        // Suffix range: "bytes=-500" means last 500 bytes
+        if (endStr.isEmpty())
+            return result;  // "bytes=-" is invalid
+
+        bool ok = false;
+        const qint64 suffixLen = endStr.toLongLong(&ok);
+        if (!ok || (suffixLen <= 0))
+            return result;
+
+        rangeStart = qMax(Q_INT64_C(0), fileSize - suffixLen);
+        rangeEnd = fileSize - 1;
+    }
+    else
+    {
+        // Normal range: "bytes=start-end" or "bytes=start-"
+        bool startOk = false;
+        rangeStart = startStr.toLongLong(&startOk);
+        if (!startOk || (rangeStart < 0))
+            return result;
+
+        if (!endStr.isEmpty())
+        {
+            bool endOk = false;
+            rangeEnd = endStr.toLongLong(&endOk);
+            if (!endOk)
+                return result;
+        }
+    }
+
+    // Clamp end to file bounds
+    rangeEnd = qMin(rangeEnd, fileSize - 1);
+
+    if ((rangeStart > rangeEnd) || (rangeStart >= fileSize))
+        return result;
+
+    result.isValid = true;
+    result.start = rangeStart;
+    result.end = rangeEnd;
+    result.length = rangeEnd - rangeStart + 1;
+
+    return result;
 }

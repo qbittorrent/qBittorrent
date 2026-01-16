@@ -46,6 +46,9 @@ namespace Http
 
         Response response() const;
 
+    protected:
+        Response &responseRef();
+
     private:
         void print_impl(const QByteArray &data, const QString &type);
 

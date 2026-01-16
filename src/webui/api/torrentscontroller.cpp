@@ -38,6 +38,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
+#include <QMimeDatabase>
 #include <QRegularExpression>
 #include <QUrl>
 
@@ -2281,6 +2282,44 @@ void TorrentsController::saveMetadataAction()
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent metadata. Error: %1").arg(result.error()));
 
     setResult(result.value(), u"application/x-bittorrent"_s, (torrentID.toString() + u".torrent"));
+}
+
+void TorrentsController::downloadFileAction()
+{
+    requireParams({u"hash"_s, u"index"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound, tr("Torrent not found"));
+
+    if (!torrent->hasMetadata())
+        throw APIError(APIErrorType::Conflict, tr("Torrent metadata not available"));
+
+    bool ok = false;
+    const int fileIndex = params()[u"index"_s].toInt(&ok);
+    const int filesCount = torrent->filesCount();
+
+    if (!ok || (fileIndex < 0))
+        throw APIError(APIErrorType::Conflict, tr("\"%1\" is not a valid file index").arg(params()[u"index"_s]));
+
+    if (fileIndex >= filesCount)
+        throw APIError(APIErrorType::Conflict, tr("File index %1 is out of bounds").arg(fileIndex));
+
+    const QList<qreal> progress = torrent->filesProgress();
+    if (progress[fileIndex] < 1.0)
+        throw APIError(APIErrorType::Conflict, tr("File not fully downloaded"));
+
+    const Path filePath = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
+    if (!filePath.exists())
+        throw APIError(APIErrorType::Conflict, tr("File not found on disk"));
+
+    const qint64 fileSize = torrent->fileSize(fileIndex);
+    const QString filename = torrent->filePath(fileIndex).filename();
+
+    // send with proper MIME type
+    const QMimeType mimeType = QMimeDatabase().mimeTypeForFile(filePath.data());
+    setStreamingResult(filePath, fileSize, mimeType.name(), filename);
 }
 
 void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)

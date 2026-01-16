@@ -30,13 +30,92 @@
 
 #include "connection.h"
 
-#include <QTcpSocket>
+#include <atomic>
 
+#include <QFile>
+#include <QTcpSocket>
+#include <QThread>
+
+#include "base/path.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
 #include "responsegenerator.h"
 
 using namespace Http;
+
+namespace
+{
+    constexpr int MAX_CONCURRENT_STREAMS = 3;
+    std::atomic_int g_activeStreams {0};
+
+    void streamFileToSocket(QTcpSocket *socket, const Path &filePath, const qint64 offset, qint64 size)
+    {
+        const auto cleanup = [socket]()
+        {
+            socket->disconnectFromHost();
+            if (socket->state() != QAbstractSocket::UnconnectedState)
+                socket->waitForDisconnected(5000);
+            delete socket;
+            g_activeStreams.fetch_sub(1, std::memory_order_relaxed);
+        };
+
+        QFile file(filePath.data());
+        if (!file.open(QIODevice::ReadOnly))
+        {
+            qWarning("Streaming thread: Failed to open file: %s", qUtf8Printable(file.errorString()));
+            cleanup();
+            return;
+        }
+
+        if ((offset > 0) && !file.seek(offset))
+        {
+            qWarning("Streaming thread: Failed to seek: %s", qUtf8Printable(file.errorString()));
+            cleanup();
+            return;
+        }
+
+        constexpr qint64 CHUNK_SIZE = 256 * 1024;
+        constexpr qint64 MAX_BUFFER_SIZE = 512 * 1024;
+        constexpr int WRITE_TIMEOUT_MS = 30000;
+
+        while (size > 0)
+        {
+            while (socket->bytesToWrite() > MAX_BUFFER_SIZE)
+            {
+                if (!socket->waitForBytesWritten(WRITE_TIMEOUT_MS))
+                {
+                    cleanup();
+                    return;
+                }
+            }
+
+            const QByteArray chunk = file.read(qMin(CHUNK_SIZE, size));
+            if (chunk.isEmpty())
+            {
+                if (file.error() != QFileDevice::NoError)
+                    qWarning("Streaming thread: Read error: %s", qUtf8Printable(file.errorString()));
+                break;
+            }
+
+            if (socket->write(chunk) < 0)
+            {
+                qWarning("Streaming thread: Write error");
+                cleanup();
+                return;
+            }
+
+            size -= chunk.size();
+        }
+
+        while (socket->bytesToWrite() > 0)
+        {
+            if (!socket->waitForBytesWritten(WRITE_TIMEOUT_MS))
+                break;
+        }
+
+        cleanup();
+    }
+}
 
 Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent)
     : QObject(parent)
@@ -139,7 +218,16 @@ void Connection::read()
                     Response resp = m_requestHandler->processRequest(getRequest, env);
 
                     resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
-                    resp.headers[HEADER_CONTENT_LENGTH] = QString::number(resp.content.length());
+
+                    if (resp.streaming)
+                    {
+                        resp.headers[HEADER_CONTENT_LENGTH] = QString::number(resp.streaming->totalSize);
+                        resp.streaming.reset();
+                    }
+                    else
+                    {
+                        resp.headers[HEADER_CONTENT_LENGTH] = QString::number(resp.content.length());
+                    }
                     resp.content.clear();
 
                     sendResponse(resp);
@@ -148,8 +236,12 @@ void Connection::read()
                 {
                     Response resp = m_requestHandler->processRequest(result.request, env);
 
-                    if (acceptsGzipEncoding(result.request.headers.value(u"accept-encoding"_s)))
+                    // Streaming responses send raw file data, not gzip compressed
+                    if (!resp.streaming
+                        && acceptsGzipEncoding(result.request.headers.value(u"accept-encoding"_s)))
+                    {
                         resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_s;
+                    }
                     resp.headers[HEADER_CONNECTION] = u"keep-alive"_s;
 
                     sendResponse(resp);
@@ -170,9 +262,66 @@ void Connection::read()
     }
 }
 
-void Connection::sendResponse(const Response &response) const
+void Connection::sendResponse(const Response &response)
 {
-    m_socket->write(toByteArray(response));
+    if (response.streaming)
+    {
+        sendStreamingResponse(response);
+    }
+    else
+    {
+        m_socket->write(toByteArray(response));
+    }
+}
+
+void Connection::sendStreamingResponse(const Response &response)
+{
+    const int activeStreams = g_activeStreams.fetch_add(1, std::memory_order_relaxed);
+    if (activeStreams >= MAX_CONCURRENT_STREAMS)
+    {
+        g_activeStreams.fetch_sub(1, std::memory_order_relaxed);
+
+        Response errorResp(503, u"Service Unavailable"_s);
+        errorResp.headers[HEADER_CONNECTION] = u"close"_s;
+        errorResp.content = "Too many concurrent file downloads. Please try again later.";
+        m_socket->write(toByteArray(errorResp));
+        return;
+    }
+
+    Response headerResp = response;
+    headerResp.headers[HEADER_DATE] = httpDate();
+    headerResp.headers[HEADER_CONTENT_LENGTH] = QString::number(response.streaming->size);
+    headerResp.headers[HEADER_CONNECTION] = u"close"_s;
+    m_socket->write(generateResponseHeaders(headerResp));
+
+    // Wait for headers to be sent before handing off socket
+    if (!m_socket->waitForBytesWritten(5000))
+    {
+        qWarning("Failed to send headers for streaming response");
+        g_activeStreams.fetch_sub(1, std::memory_order_relaxed);
+        return;
+    }
+
+    // Detach socket from this Connection so we can move it to another thread
+    disconnect(m_socket, nullptr, this, nullptr);
+    m_socket->setParent(nullptr);
+
+    QTcpSocket *socket = m_socket;
+    m_socket = nullptr;
+
+    const Path filePath = response.streaming->filePath;
+    const qint64 offset = response.streaming->offset;
+    const qint64 size = response.streaming->size;
+
+    QThread *streamThread = QThread::create([socket, filePath, offset, size]()
+    {
+        streamFileToSocket(socket, filePath, offset, size);
+    });
+    socket->moveToThread(streamThread);
+    connect(streamThread, &QThread::finished, streamThread, &QObject::deleteLater);
+    streamThread->start();
+
+    emit closed();
 }
 
 bool Connection::hasExpired(const qint64 timeout) const
