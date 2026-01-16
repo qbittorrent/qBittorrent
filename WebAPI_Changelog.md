@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.15.1
+* [#23741](https://github.com/qbittorrent/qBittorrent/pull/23741)
+  * Add `torrents/pieceAvailability` endpoint for retrieving availability of each torrent piece
+
 ## 2.15.0
 * [#23585](https://github.com/qbittorrent/qBittorrent/pull/23585)
   * `sync/maindata` endpoint no longer includes the key `use_subcategories` as subcategories are now always enabled
