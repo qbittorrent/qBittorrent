@@ -1057,6 +1057,12 @@ void OptionsDialog::loadSpeedTabOptions()
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
     m_ui->checkLimitLocalPeerRate->setChecked(!session->ignoreLimitsOnLAN());
 
+#ifdef Q_OS_MACOS
+    m_ui->checkShowSpeedInDock->setChecked(pref->isSpeedInDockEnabled());
+#else
+    m_ui->checkShowSpeedInDock->hide();
+#endif
+
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
@@ -1071,6 +1077,10 @@ void OptionsDialog::loadSpeedTabOptions()
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitLocalPeerRate, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+
+#ifdef Q_OS_MACOS
+    connect(m_ui->checkShowSpeedInDock, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
 }
 
 void OptionsDialog::saveSpeedTabOptions() const
@@ -1092,6 +1102,10 @@ void OptionsDialog::saveSpeedTabOptions() const
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
+
+#ifdef Q_OS_MACOS
+    pref->setSpeedInDockEnabled(m_ui->checkShowSpeedInDock->isChecked());
+#endif
 }
 
 void OptionsDialog::loadBittorrentTabOptions()
