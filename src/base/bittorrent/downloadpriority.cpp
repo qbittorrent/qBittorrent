@@ -36,6 +36,10 @@ namespace BitTorrent
         {
         case DownloadPriority::Ignored:
         case DownloadPriority::Normal:
+        case DownloadPriority::Normal2:
+        case DownloadPriority::Normal3:
+        case DownloadPriority::Normal4:
+        case DownloadPriority::Normal5:
         case DownloadPriority::High:
         case DownloadPriority::Maximum:
         case DownloadPriority::Mixed:
