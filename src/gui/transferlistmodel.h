@@ -65,7 +65,6 @@ public:
         TR_POPULARITY,
         TR_CATEGORY,
         TR_TAGS,
-		TR_CREATE_DATE,
         TR_ADD_DATE,
         TR_SEED_DATE,
         TR_TRACKER,
@@ -88,6 +87,7 @@ public:
         TR_INFOHASH_V2,
         TR_REANNOUNCE,
         TR_PRIVATE,
+        TR_CREATE_DATE,
 
         NB_COLUMNS
     };
