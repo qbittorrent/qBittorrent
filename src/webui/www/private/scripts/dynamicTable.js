@@ -827,10 +827,11 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         getFilteredAndSortedRows() {
             const filteredRows = [];
+            const rowsById = new Map();
 
             for (const row of this.getRowValues()) {
                 filteredRows.push(row);
-                filteredRows[row.rowId] = row;
+                rowsById.set(row.rowId, row);
             }
 
             const column = this.columns[this.sortedColumn];
@@ -839,6 +840,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const result = column.compareRows(row1, row2);
                 return isReverseSort ? result : -result;
             });
+
+            filteredRows.rowsById = rowsById;
             return filteredRows;
         }
 
@@ -848,9 +851,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateTable(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
+            const rowsById = rows.rowsById ?? this.rows;
 
             for (const rowId of this.selectedRows) {
-                if (!(rowId in rows))
+                if (!rowsById.has(rowId))
                     this.selectedRows.delete(rowId);
             }
 
@@ -1740,6 +1744,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         getFilteredAndSortedRows() {
             const filteredRows = [];
+            const rowsById = new Map();
 
             const useRegex = document.getElementById("torrentsFilterRegexBox").checked;
             const filterText = document.getElementById("torrentsFilterInput").value.trim().toLowerCase();
@@ -1756,7 +1761,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (const row of this.rows.values()) {
                 if (this.applyFilter(row, selectedStatus, selectedCategory, selectedTag, selectedTracker, filterTerms)) {
                     filteredRows.push(row);
-                    filteredRows[row.rowId] = row;
+                    rowsById.set(row.rowId, row);
                 }
             }
 
@@ -1766,6 +1771,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const result = column.compareRows(row1, row2);
                 return isReverseSort ? result : -result;
             });
+
+            filteredRows.rowsById = rowsById;
             return filteredRows;
         }
 
