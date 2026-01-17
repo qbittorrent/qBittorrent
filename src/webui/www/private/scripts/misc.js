@@ -45,7 +45,9 @@ window.qBittorrent.Misc ??= (() => {
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
             sleep: sleep,
+            DateFormatOptions: DateFormatOptions,
             downloadFile: downloadFile,
+            formatDate: formatDate,
             // variables
             FILTER_INPUT_DELAY: 400,
             MAX_ETA: 8640000
@@ -301,6 +303,123 @@ window.qBittorrent.Misc ??= (() => {
             alert(errorMessage);
         }
     };
+
+    /**
+     * @param {Date} date
+     * @param {string} format
+     * @returns {string}
+     */
+    const formatDate = (date, format = window.parent.qBittorrent.ClientData.get("date_format")) => {
+        if ((format === "default") || !Object.hasOwn(DateFormatOptions, format))
+            return date.toLocaleString();
+
+        const { locale, options } = DateFormatOptions[format];
+        const formatter = new Intl.DateTimeFormat(locale, options);
+        const formatted = formatter.format(date).replace(" at ", ", ");
+        return format.includes(".") ? formatted.replaceAll("/", ".") : formatted;
+    };
+
+    /**
+     * @type Record<string, {locale: string, options: {}}>
+     */
+    const DateFormatOptions = Object.freeze({
+        "MM/dd/yyyy, h:mm:ss AM/PM": {
+            locale: "en-US",
+            options: {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "numeric",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true
+            }
+        },
+        "MM/dd/yyyy, HH:mm:ss": {
+            locale: "en-US",
+            options: {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }
+        },
+        "dd/MM/yyyy, HH:mm:ss": {
+            locale: "en-GB",
+            options: {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }
+        },
+        "yyyy-MM-dd HH:mm:ss": {
+            locale: "sv-SE",
+            options: {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }
+        },
+        "yyyy/MM/dd HH:mm:ss": {
+            locale: "ja-JP",
+            options: {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }
+        },
+        "dd.MM.yyyy, HH:mm:ss": {
+            locale: "en-GB",
+            options: {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }
+        },
+        "MMM dd, yyyy, h:mm:ss AM/PM": {
+            locale: "en-US",
+            options: {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+                hour: "numeric",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true
+            }
+        },
+        "dd MMM yyyy, HH:mm:ss": {
+            locale: "en-GB",
+            options: {
+                year: "numeric",
+                month: "short",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
+            }
+        },
+    });
 
     return exports();
 })();

@@ -500,7 +500,7 @@
                 torrentDate.append(torrentDateDesc);
 
                 const torrentDateData = document.createElement("span");
-                torrentDateData.textContent = new Date(articleDate).toLocaleString();
+                torrentDateData.textContent = window.qBittorrent.Misc.formatDate(new Date(articleDate));
                 torrentDate.append(torrentDateData);
 
                 detailsView.append(torrentDate);
