@@ -106,8 +106,8 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation>Telif hakkı %1 2006-2025 qBittorrent projesi</translation>
+        <source>Copyright %1 2006-2026 The qBittorrent project</source>
+        <translation>Telif hakkı %1 2006-2026 qBittorrent projesi</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -12092,7 +12092,7 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="139"/>
         <source>Tracker status</source>
-        <translation type="unfinished"></translation>
+        <translation>İzleyici durumu</translation>
     </message>
 </context>
 <context>
@@ -13193,7 +13193,7 @@ Lütfen farklı bir isim seçin ve tekrar deneyin.</translation>
     <message>
         <location filename="../base/utils/os.cpp" line="98"/>
         <source>qBittorrent will reboot the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent bilgisayarı şimdi yeniden başlatacak çünkü tüm indirmeler tamamlandı.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="237"/>
