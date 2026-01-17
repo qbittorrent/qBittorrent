@@ -132,6 +132,7 @@ window.qBittorrent.Search ??= (() => {
             targets: "#searchResultsTableDiv tbody tr",
             menu: "searchResultsTableMenu",
             actions: {
+                OpenDownloadWindow: openDownloadWindow,
                 Download: downloadSearchTorrent,
                 OpenDescriptionUrl: openSearchTorrentDescriptionUrl
             },
@@ -144,7 +145,7 @@ window.qBittorrent.Search ??= (() => {
         searchResultsTable.setup("searchResultsTableDiv", "searchResultsTableFixedHeaderDiv", searchResultsTableContextMenu);
         getPlugins();
 
-        searchResultsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { downloadSearchTorrent(); });
+        searchResultsTable.dynamicTableDiv.addEventListener("dblclick", (e) => { openDownloadWindow(); });
 
         // listen for changes to searchInNameFilter
         let searchInNameFilterTimer = -1;
@@ -605,11 +606,37 @@ window.qBittorrent.Search ??= (() => {
         return urls.join("\n");
     };
 
-    const downloadSearchTorrent = () => {
+    const openDownloadWindow = () => {
         for (const rowID of searchResultsTable.selectedRowsIds()) {
             const { engineName, fileName, fileUrl } = searchResultsTable.getRow(rowID).full_data;
             qBittorrent.Client.createAddTorrentWindow(fileName, fileUrl, undefined, engineName);
         }
+    };
+
+    const downloadSearchTorrent = () => {
+        const urls = [];
+        for (const rowID of searchResultsTable.selectedRowsIds()) {
+            const { fileUrl } = searchResultsTable.getRow(rowID).full_data;
+            urls.push(fileUrl);
+        }
+
+        if (urls.length === 0)
+            return;
+
+        fetch("api/v2/torrents/add", {
+                method: "POST",
+                body: new URLSearchParams({
+                    urls: urls.join("\n")
+                })
+            })
+            .then((response) => {
+                if (!response.ok)
+                    alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+            })
+            .catch((error) => {
+                console.error("Failed to add torrents:", error);
+                alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+            });
     };
 
     const manageSearchPlugins = () => {
