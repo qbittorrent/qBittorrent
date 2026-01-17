@@ -1056,18 +1056,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
             const selectedRowId = this.getSelectedRowId();
 
-            let selectedIndex = -1;
-            for (const [i, row] of visibleRows.entries()) {
-                if (row.getAttribute("data-row-id") === selectedRowId) {
-                    selectedIndex = i;
-                    break;
-                }
-            }
+            const selectedIndex = visibleRows.findIndex(row => (row.getAttribute("data-row-id") === selectedRowId));
 
             const isLastRowSelected = (selectedIndex >= (visibleRows.length - 1));
             if (!isLastRowSelected) {
                 this.deselectAll();
-
                 const newRow = visibleRows[selectedIndex + 1];
                 this.selectRow(newRow.getAttribute("data-row-id"));
             }
@@ -1077,18 +1070,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
             const selectedRowId = this.getSelectedRowId();
 
-            let selectedIndex = -1;
-            for (const [i, row] of visibleRows.entries()) {
-                if (row.getAttribute("data-row-id") === selectedRowId) {
-                    selectedIndex = i;
-                    break;
-                }
-            }
+            const selectedIndex = visibleRows.findIndex(row => (row.getAttribute("data-row-id") === selectedRowId));
 
             const isFirstRowSelected = selectedIndex <= 0;
             if (!isFirstRowSelected) {
                 this.deselectAll();
-
                 const newRow = visibleRows[selectedIndex - 1];
                 this.selectRow(newRow.getAttribute("data-row-id"));
             }
