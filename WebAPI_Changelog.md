@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.16.0
+* [#23065](https://github.com/qbittorrent/qBittorrent/pull/23065)
+  * Replace preferences key `max_connec_per_torrent` with keys `max_connec_per_downloading_torrent` and `max_connec_per_seeding_torrent`
+
 ## 2.15.0
 * [#23585](https://github.com/qbittorrent/qBittorrent/pull/23585)
   * `sync/maindata` endpoint no longer includes the key `use_subcategories` as subcategories are now always enabled
