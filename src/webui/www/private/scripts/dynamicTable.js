@@ -1835,6 +1835,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("files", "", "QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]", 100, true);
 
             this.columns["country"].dataProperties.push("country_code");
+            this.columns["ip"].dataProperties.push("host_name");
             this.columns["flags"].dataProperties.push("flags_desc");
             this.initColumnsFunctions();
         }
@@ -1858,6 +1859,13 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             // ip
+            this.columns["ip"].updateTd = function(td, row) {
+                const ip = this.getRowValue(row, 0);
+                const hostname = this.getRowValue(row, 1);
+                const displayValue = (hostname?.length > 0) ? hostname : ip;
+                td.textContent = displayValue;
+                td.title = displayValue;
+            };
             this.columns["ip"].compareRows = function(row1, row2) {
                 const ip1 = this.getRowValue(row1);
                 const ip2 = this.getRowValue(row2);
