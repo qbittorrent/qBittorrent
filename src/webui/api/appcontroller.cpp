@@ -398,6 +398,8 @@ void AppController::preferencesAction()
     data[u"app_instance_name"_s] = app()->instanceName();
     // Refresh interval
     data[u"refresh_interval"_s] = session->refreshInterval();
+    // Resolve peer host names
+    data[u"resolve_peer_host_names"_s] = pref->resolvePeerHostNames();
     // Resolve peer countries
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
@@ -1029,6 +1031,9 @@ void AppController::setPreferencesAction()
     // Refresh interval
     if (hasKey(u"refresh_interval"_s))
         session->setRefreshInterval(it.value().toInt());
+    // Resolve peer host names
+    if (hasKey(u"resolve_peer_host_names"_s))
+        pref->resolvePeerHostNames(it.value().toBool());
     // Resolve peer countries
     if (hasKey(u"resolve_peer_countries"_s))
         pref->resolvePeerCountries(it.value().toBool());

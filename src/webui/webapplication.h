@@ -57,11 +57,12 @@
 
 using namespace std::chrono_literals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 15, 0};
+inline const Utils::Version<3, 2> API_VERSION {2, 15, 1};
 
 class APIController;
 class AuthController;
 class ClientDataStorage;
+class PeerHostNameResolver;
 class WebApplication;
 
 namespace BitTorrent
@@ -283,6 +284,7 @@ private:
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
+    PeerHostNameResolver *m_peerHostNameResolver = nullptr;
 
     struct FailedLogin
     {
