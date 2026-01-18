@@ -99,11 +99,10 @@ window.qBittorrent.PropTrackers ??= (() => {
 
                 const trackers = await response.json();
                 if (trackers) {
-                    torrentTrackersTable.clear();
-
                     const notApplicable = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
+                    const rows = [];
                     trackers.each((tracker) => {
-                        const row = {
+                        rows.push({
                             rowId: tracker.url,
                             tier: (tracker.tier >= 0) ? tracker.tier : "",
                             btVersion: "",
@@ -119,13 +118,11 @@ window.qBittorrent.PropTrackers ??= (() => {
                             _isTracker: true,
                             _hasEndpoints: tracker.endpoints && (tracker.endpoints.length > 0),
                             _sortable: !tracker.url.startsWith("** [")
-                        };
-
-                        torrentTrackersTable.updateRowData(row);
+                        });
 
                         if (tracker.endpoints !== undefined) {
                             for (const endpoint of tracker.endpoints) {
-                                const row = {
+                                rows.push({
                                     rowId: `endpoint|${tracker.url}|${endpoint.name}|${endpoint.bt_version}`,
                                     tier: "",
                                     btVersion: `v${endpoint.bt_version}`,
@@ -141,12 +138,12 @@ window.qBittorrent.PropTrackers ??= (() => {
                                     _isTracker: false,
                                     _tracker: tracker.url,
                                     _sortable: true,
-                                };
-                                torrentTrackersTable.updateRowData(row);
+                                });
                             }
                         }
                     });
 
+                    torrentTrackersTable.setRows(rows);
                     torrentTrackersTable.updateTable(false);
 
                     if (selectedTrackers.length > 0)
