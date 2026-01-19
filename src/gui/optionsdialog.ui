@@ -716,6 +716,13 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkShowSpeedInDock">
+                 <property name="text">
+                  <string>Show speed in Dock</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
