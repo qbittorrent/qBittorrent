@@ -70,7 +70,6 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
-#include "peerhostnameresolver.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const QString SESSION_COOKIE_NAME_PREFIX = u"QBT_SID_"_s;
@@ -166,7 +165,6 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
-    , m_peerHostNameResolver {new PeerHostNameResolver(this)}
 {
     declarePublicAPI(u"auth/login"_s);
 
@@ -848,7 +846,7 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const bool useCo
     m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), m_currentSession));
 
     const auto *btSession = BitTorrent::Session::instance();
-    auto *syncController = new SyncController(m_peerHostNameResolver, app(), m_currentSession);
+    auto *syncController = new SyncController(app(), m_currentSession);
     syncController->updateFreeDiskSpace(btSession->freeDiskSpace());
     connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
