@@ -73,6 +73,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/reverseresolution.h"
 #include "base/net/smtp.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -908,6 +909,7 @@ int Application::exec()
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
 
         Net::GeoIPManager::initInstance();
+        Net::ReverseResolution::initInstance();
         TorrentFilesWatcher::initInstance();
 
         new RSS::Session; // create RSS::Session singleton
@@ -1397,6 +1399,7 @@ void Application::cleanup()
     TorrentFilesWatcher::freeInstance();
     delete m_addTorrentManager;
     BitTorrent::Session::freeInstance();
+    Net::ReverseResolution::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();
     Net::ProxyConfigurationManager::freeInstance();
