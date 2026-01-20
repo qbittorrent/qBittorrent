@@ -183,12 +183,15 @@ namespace Utils
                 {
                     mask6[i] = 0xFF;
                 }
-                if (bytes < 16)
+
+                int startIndex = bytes;
+                if ((bits > 0) && (bytes < 16))
                 {
-                    mask6[bytes] = (0xFF << (8 - bits)) & 0xFF;
+                    mask6[bytes] = static_cast<quint8>((0xFF << (8 - bits)) & 0xFF);
+                    startIndex = bytes + 1;
                 }
 
-                for (int i = bytes; i < 16; ++i)
+                for (int i = startIndex; i < 16; ++i)
                 {
                     ip6[i] &= mask6[i];
                 }
