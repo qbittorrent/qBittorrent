@@ -1790,7 +1790,7 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
         Q_ASSERT(!ec);
         if (ec) [[unlikely]]
             continue;
-        const lt::address lastAddr = lt::make_address(ipRange.value().second.toString().toLatin1().constData(), ec);
+        const lt::address lastAddr = lt::make_address(ipRange.value().second.toString().toStdString(), ec);
         Q_ASSERT(!ec);
         if (ec)
             continue;
@@ -2462,7 +2462,7 @@ void SessionImpl::banIP(const QString &ip)
         return;
 
     lt::error_code ec;
-    const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+    const lt::address addr = lt::make_address(ip.toStdString(), ec);
     Q_ASSERT(!ec);
     if (ec)
         return;
