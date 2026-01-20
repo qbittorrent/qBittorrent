@@ -54,12 +54,12 @@ namespace
         for (int i = 0; i < 4; ++i)
         {
             const int len = octets[i].length();
-            if (len == 0 || len > 3)
+            if ((len == 0) || (len > 3))
                 return false;
             for (int j = 0; j < len; ++j)
             {
                 const QChar ch = octets[i][j];
-                if (ch < u'0' || ch > u'9')
+                if ((ch < u'0') || (ch > u'9'))
                     return false;
             }
             if (len == 3)
@@ -179,7 +179,7 @@ namespace Utils
                 const int bytes = prefixLength / 8;
                 const int bits = prefixLength % 8;
 
-                for (int i = 0; i < bytes; i++)
+                for (int i = 0; i < bytes; ++i)
                 {
                     mask6[i] = 0xFF;
                 }
@@ -283,7 +283,7 @@ namespace Utils
                 first = addr;
                 last = addr;
             }
-            if (isStrictIPv4 && first.protocol() == QAbstractSocket::IPv4Protocol)
+            if (isStrictIPv4 && (first.protocol() == QAbstractSocket::IPv4Protocol))
             {
                 if (filterStr.contains(IP_RANGE_SEPARATOR))
                 {
