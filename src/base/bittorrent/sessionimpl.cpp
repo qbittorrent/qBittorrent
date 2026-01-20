@@ -1786,9 +1786,9 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
         const std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(ip);
         if (!ipRange)
             continue;
-        const lt::address firstAddr = lt::make_address(ipRange.value().first.toString().toLatin1().constData(), ec);
+        const lt::address firstAddr = lt::make_address(ipRange.value().first.toString().toStdString(), ec);
         Q_ASSERT(!ec);
-        if (ec)
+        if (ec) [[unlikely]]
             continue;
         const lt::address lastAddr = lt::make_address(ipRange.value().second.toString().toLatin1().constData(), ec);
         Q_ASSERT(!ec);
@@ -4172,7 +4172,7 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
     QStringList filteredList;
     for (const QString &entry : newList)
     {
-        std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(entry);
+        const std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(entry);
         if (ipRange)
         {
             // the same IPv6 addresses could be written in different forms;
@@ -4182,7 +4182,7 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
         }
         else
         {
-            LogMsg(tr("Rejected invalid IP address while applying the list of banned IP addresses. IP: \"%1\"")
+            LogMsg(tr("Rejected invalid IP address range while applying the list of banned IP addresses. IP Range: \"%1\"")
                    .arg(entry)
                 , Log::WARNING);
         }
