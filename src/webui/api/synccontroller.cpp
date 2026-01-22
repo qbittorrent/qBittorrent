@@ -49,6 +49,7 @@
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
+#include "webui/peerhostnameresolver.h"
 
 namespace
 {
@@ -70,6 +71,7 @@ namespace
     const QString KEY_PEER_FILES = u"files"_s;
     const QString KEY_PEER_FLAGS = u"flags"_s;
     const QString KEY_PEER_FLAGS_DESCRIPTION = u"flags_desc"_s;
+    const QString KEY_PEER_HOST_NAME = u"host_name"_s;
     const QString KEY_PEER_IP = u"ip"_s;
     const QString KEY_PEER_I2P_DEST = u"i2p_dest"_s;
     const QString KEY_PEER_PORT = u"port"_s;
@@ -441,8 +443,9 @@ namespace
     }
 }
 
-SyncController::SyncController(IApplication *app, QObject *parent)
+SyncController::SyncController(PeerHostNameResolver *peerHostNameResolver, IApplication *app, QObject *parent)
     : APIController(app, parent)
+    , m_peerHostNameResolver {peerHostNameResolver}
 {
 }
 
@@ -839,7 +842,9 @@ void SyncController::torrentPeersAction()
 
     const QList<BitTorrent::PeerInfo> peersList = torrent->fetchPeerInfo().takeResult();
 
-    bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
+    const auto *pref = Preferences::instance();
+    const bool resolvePeerHostNames = pref->resolvePeerHostNames();
+    const bool resolvePeerCountries = pref->resolvePeerCountries();
 
     data[KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS] = resolvePeerCountries;
 
@@ -871,6 +876,14 @@ void SyncController::torrentPeersAction()
             for (const Path &filePath : filePaths)
                 filesForPiece.append(filePath.toString());
             peer.insert(KEY_PEER_FILES, filesForPiece.join(u'\n'));
+        }
+
+        if (!useI2PSocket)
+        {
+            if (resolvePeerHostNames)
+                peer[KEY_PEER_HOST_NAME] = m_peerHostNameResolver->lookupHostName(pi.address().ip);
+            else
+                peer[KEY_PEER_HOST_NAME] = {};
         }
 
         if (resolvePeerCountries && !useI2PSocket)

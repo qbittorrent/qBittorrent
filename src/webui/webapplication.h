@@ -62,6 +62,7 @@ inline const Utils::Version<3, 2> API_VERSION {2, 16, 0};
 class APIController;
 class AuthController;
 class ClientDataStorage;
+class PeerHostNameResolver;
 class WebApplication;
 
 namespace BitTorrent
@@ -139,8 +140,8 @@ private:
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
-    bool validateCredentials(const QString &username, const QString &password) const override;
-    bool validateBasicAuth(const QString &credentials) const;
+    bool validateCredentials(QStringView username, QStringView password) const override;
+    bool validateBasicAuth(QStringView credentials) const;
     bool isBanned() const;
     int failedAttemptsCount() const;
     void increaseFailedAttempts() const;
@@ -283,6 +284,7 @@ private:
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
+    PeerHostNameResolver *m_peerHostNameResolver = nullptr;
 
     struct FailedLogin
     {

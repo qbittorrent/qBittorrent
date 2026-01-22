@@ -4,6 +4,10 @@
 * [#23065](https://github.com/qbittorrent/qBittorrent/pull/23065)
   * Replace preferences key `max_connec_per_torrent` with keys `max_connec_per_downloading_torrent` and `max_connec_per_seeding_torrent`
 
+## 2.15.1
+* [#23708](https://github.com/qbittorrent/qBittorrent/pull/23708)
+  * `sync/torrentPeers` endpoint now includes peer `host_name` when peer host name resolution is enabled
+
 ## 2.15.0
 * [#23585](https://github.com/qbittorrent/qBittorrent/pull/23585)
   * `sync/maindata` endpoint no longer includes the key `use_subcategories` as subcategories are now always enabled

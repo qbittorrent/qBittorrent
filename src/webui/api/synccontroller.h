@@ -35,6 +35,8 @@
 #include "base/tag.h"
 #include "apicontroller.h"
 
+class PeerHostNameResolver;
+
 namespace BitTorrent
 {
     class Torrent;
@@ -47,9 +49,7 @@ class SyncController : public APIController
     Q_DISABLE_COPY_MOVE(SyncController)
 
 public:
-    using APIController::APIController;
-
-    explicit SyncController(IApplication *app, QObject *parent = nullptr);
+    explicit SyncController(PeerHostNameResolver *peerHostNameResolver, IApplication *app, QObject *parent = nullptr);
 
 public slots:
     void updateFreeDiskSpace(qint64 freeDiskSpace);
@@ -83,6 +83,7 @@ private:
     void onTorrentTrackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
             , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
 
+    PeerHostNameResolver *m_peerHostNameResolver = nullptr;
     qint64 m_freeDiskSpace = 0;
 
     QVariantMap m_lastPeersResponse;
