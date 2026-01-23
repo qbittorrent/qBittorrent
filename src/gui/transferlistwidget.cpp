@@ -1563,7 +1563,7 @@ void TransferListWidget::currentChanged(const QModelIndex &current, const QModel
 
     BitTorrent::Torrent *torrent = resolveTorrent(current);
     if (current.isValid())
-        QMetaObject::invokeMethod(this, [this, current] { scrollTo(current); }, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, [this, current] { if (current.isValid()) scrollTo(current); }, Qt::QueuedConnection);
     emit currentTorrentChanged(torrent);
 }
 
