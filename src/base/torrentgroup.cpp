@@ -135,7 +135,7 @@ bool TorrentGroupManager::removeMembers(const QString &groupName, const QSet<Bit
     TorrentGroup &g = m_groups[groupName];
     bool changed = false;
     for (const BitTorrent::TorrentID &id : members)
-        changed |= g.members.remove(id) > 0;
+        changed |= g.members.remove(id);
     if (changed)
         emit groupMembershipChanged(groupName);
     return changed;
