@@ -63,6 +63,7 @@ window.qBittorrent.Client ??= (() => {
         clientDataPromise = window.qBittorrent.ClientData.fetch([
             "add_torrent_default_category",
             "color_scheme",
+            "date_format",
             "dblclick_complete",
             "dblclick_download",
             "dblclick_filter",

@@ -283,7 +283,7 @@ window.qBittorrent.AddTorrent ??= (() => {
         if (metadata.info?.length !== undefined)
             document.getElementById("size").textContent = window.qBittorrent.Misc.friendlyUnit(metadata.info.length, false);
         if ((metadata.creation_date !== undefined) && (metadata.creation_date > 1))
-            document.getElementById("createdDate").textContent = new Date(metadata.creation_date * 1000).toLocaleString();
+            document.getElementById("createdDate").textContent = window.qBittorrent.Misc.formatDate(new Date(metadata.creation_date * 1000));
         if (metadata.comment !== undefined)
             document.getElementById("comment").textContent = metadata.comment;
 
