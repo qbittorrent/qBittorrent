@@ -44,6 +44,7 @@ void APIResult::clear()
     mimeType.clear();
     filename.clear();
     status = APIStatus::Ok;
+    streaming.reset();
 }
 
 APIController::APIController(IApplication *app, QObject *parent)
@@ -107,6 +108,16 @@ void APIController::setResult(const QJsonObject &result)
 void APIController::setResult(const QByteArray &result, const QString &mimeType, const QString &filename)
 {
     m_result.data = result;
+    m_result.mimeType = mimeType;
+    m_result.filename = filename;
+}
+
+void APIController::setStreamingResult(const Path &filePath, const qint64 fileSize, const QString &mimeType, const QString &filename)
+{
+    m_result.streaming = APIStreamingInfo {
+        .filePath = filePath,
+        .totalSize = fileSize
+    };
     m_result.mimeType = mimeType;
     m_result.filename = filename;
 }

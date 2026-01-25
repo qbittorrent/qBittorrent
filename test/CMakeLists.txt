@@ -12,6 +12,7 @@ set(testFiles
     testconceptsexplicitlyconvertibleto.cpp
     testconceptsstringable.cpp
     testglobal.cpp
+    testhttprangeparser.cpp
     testorderedset.cpp
     testpath.cpp
     testutilsbytearray.cpp
