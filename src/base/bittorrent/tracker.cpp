@@ -458,7 +458,7 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
                 };
 
                 if (!announceReq.noPeerId)
-                    peerDict[ANNOUNCE_RESPONSE_PEERS_PEER_ID] = peer.peerId.constData();
+                    peerDict[ANNOUNCE_RESPONSE_PEERS_PEER_ID] = lt::entry::string_type(peer.peerId.constData(), peer.peerId.size());
 
                 peerList.emplace_back(peerDict);
             }

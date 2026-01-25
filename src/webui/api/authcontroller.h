@@ -28,11 +28,6 @@
 
 #pragma once
 
-#include <QByteArray>
-#include <QDeadlineTimer>
-#include <QHash>
-#include <QString>
-
 #include "apicontroller.h"
 
 class QString;
@@ -47,27 +42,10 @@ class AuthController : public APIController
 public:
     explicit AuthController(ISessionManager *sessionManager, IApplication *app, QObject *parent = nullptr);
 
-    void setUsername(const QString &username);
-    void setPasswordHash(const QByteArray &passwordHash);
-
 private slots:
     void loginAction();
     void logoutAction();
 
 private:
-    bool isBanned() const;
-    int failedAttemptsCount() const;
-    void increaseFailedAttempts();
-
     ISessionManager *m_sessionManager = nullptr;
-
-    QString m_username;
-    QByteArray m_passwordHash;
-
-    struct FailedLogin
-    {
-        int failedAttemptsCount = 0;
-        QDeadlineTimer banTimer {-1};
-    };
-    mutable QHash<QString, FailedLogin> m_clientFailedLogins;
 };

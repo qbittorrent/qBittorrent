@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,31 +28,30 @@
 
 #pragma once
 
-#include <optional>
+#include <QHash>
+#include <QHostAddress>
+#include <QObject>
 
-#include <QString>
-
-#include "base/path.h"
-#include "downloadpathoption.h"
-#include "sharelimits.h"
-
-class QJsonObject;
-
-namespace BitTorrent
+namespace Net
 {
-    struct CategoryOptions
-    {
-        Path savePath;
-        std::optional<DownloadPathOption> downloadPath;
-
-        qreal ratioLimit = DEFAULT_RATIO_LIMIT;
-        int seedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
-        int inactiveSeedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
-        ShareLimitAction shareLimitAction = ShareLimitAction::Default;
-
-        static CategoryOptions fromJSON(const QJsonObject &jsonObj);
-        QJsonObject toJSON() const;
-
-        friend bool operator==(const CategoryOptions &, const CategoryOptions &) = default;
-    };
+    class ReverseResolution;
 }
+
+class PeerHostNameResolver final : public QObject
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PeerHostNameResolver)
+
+public:
+    explicit PeerHostNameResolver(QObject *parent = nullptr);
+
+    QString lookupHostName(const QHostAddress &ip);
+
+private slots:
+    void onHostNameResolved(const QHostAddress &ip, const QString &hostname);
+    void updateState();
+
+private:
+    Net::ReverseResolution *m_resolver = nullptr;
+    QHash<QHostAddress, QString> m_resolvedHosts;
+};

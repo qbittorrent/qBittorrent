@@ -149,15 +149,17 @@ namespace BitTorrent
 
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
+        bool setCategoryOptions(const QString &categoryName, const CategoryOptions &options) override;
         Path categorySavePath(const QString &categoryName) const override;
         Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
         Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
+        qreal categoryRatioLimit(const QString &categoryName) const override;
+        int categorySeedingTimeLimit(const QString &categoryName) const override;
+        int categoryInactiveSeedingTimeLimit(const QString &categoryName) const override;
+        ShareLimitAction categoryShareLimitAction(const QString &categoryName) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
-        bool editCategory(const QString &name, const CategoryOptions &options) override;
         bool removeCategory(const QString &name) override;
-        bool isSubcategoriesEnabled() const override;
-        void setSubcategoriesEnabled(bool value) override;
         bool useCategoryPathsInManualMode() const override;
         void setUseCategoryPathsInManualMode(bool value) override;
 
@@ -359,8 +361,8 @@ namespace BitTorrent
         void setOutgoingPortsMax(int max) override;
         int UPnPLeaseDuration() const override;
         void setUPnPLeaseDuration(int duration) override;
-        int peerToS() const override;
-        void setPeerToS(int value) override;
+        int peerDSCP() const override;
+        void setPeerDSCP(int value) override;
         bool ignoreLimitsOnLAN() const override;
         void setIgnoreLimitsOnLAN(bool ignore) override;
         bool includeOverheadInLimits() const override;
@@ -648,6 +650,7 @@ namespace BitTorrent
 
         void setAdditionalTrackersFromURL(const QString &trackers);
         void updateTrackersFromURL();
+        void updateTrackersFromFile();
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;
@@ -690,7 +693,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<int> m_UPnPLeaseDuration;
-        CachedSettingValue<int> m_peerToS;
+        CachedSettingValue<int> m_peerDSCP;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
@@ -754,7 +757,6 @@ namespace BitTorrent
         CachedSettingValue<Path> m_savePath;
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
-        CachedSettingValue<bool> m_isSubcategoriesEnabled;
         CachedSettingValue<bool> m_useCategoryPathsInManualMode;
         CachedSettingValue<bool> m_isAutoTMMDisabledByDefault;
         CachedSettingValue<bool> m_isDisableAutoTMMWhenCategoryChanged;

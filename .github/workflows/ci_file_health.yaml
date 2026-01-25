@@ -11,12 +11,12 @@ concurrency:
 jobs:
   ci:
     name: Check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -31,12 +31,13 @@ jobs:
       - name: Check doc
         env:
           pandoc_path: "${{ github.workspace }}/../pandoc"
+          pandoc_version: "3.8.3"
         run: |
           # install pandoc
           curl \
             -L \
             -o "${{ runner.temp }}/pandoc.tar.gz" \
-            "https://github.com/jgm/pandoc/releases/download/3.7.0.2/pandoc-3.7.0.2-linux-amd64.tar.gz"
+            "https://github.com/jgm/pandoc/releases/download/${{ env.pandoc_version }}/pandoc-${{ env.pandoc_version }}-linux-amd64.tar.gz"
           tar -xf "${{ runner.temp }}/pandoc.tar.gz" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/pandoc-* "${{ env.pandoc_path }}"
           # run pandoc

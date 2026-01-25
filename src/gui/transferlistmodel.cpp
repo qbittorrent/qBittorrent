@@ -178,8 +178,8 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_UPLIMIT: return tr("Up Limit", "i.e: Upload limit");
             case TR_AMOUNT_DOWNLOADED: return tr("Downloaded", "Amount of data downloaded (e.g. in MB)");
             case TR_AMOUNT_UPLOADED: return tr("Uploaded", "Amount of data uploaded (e.g. in MB)");
-            case TR_AMOUNT_DOWNLOADED_SESSION: return tr("Session Download", "Amount of data downloaded since program open (e.g. in MB)");
-            case TR_AMOUNT_UPLOADED_SESSION: return tr("Session Upload", "Amount of data uploaded since program open (e.g. in MB)");
+            case TR_AMOUNT_DOWNLOADED_SESSION: return tr("Session Downloaded", "Amount of data downloaded since program open (e.g. in MB)");
+            case TR_AMOUNT_UPLOADED_SESSION: return tr("Session Uploaded", "Amount of data uploaded since program open (e.g. in MB)");
             case TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
             case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not stopped)");
             case TR_SAVE_PATH: return tr("Save Path", "Torrent save path");
@@ -392,7 +392,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_RATIO:
         return ratioString(torrent->realRatio());
     case TR_RATIO_LIMIT:
-        return ratioString(torrent->maxRatio());
+        return ratioString(torrent->effectiveRatioLimit());
     case TR_POPULARITY:
         return ratioString(torrent->popularity());
     case TR_CATEGORY:
@@ -509,7 +509,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
-        return torrent->maxRatio();
+        return torrent->effectiveRatioLimit();
     case TR_SEEN_COMPLETE_DATE:
         return torrent->lastSeenComplete();
     case TR_LAST_ACTIVITY:

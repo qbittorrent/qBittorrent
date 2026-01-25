@@ -159,6 +159,12 @@ body {
     text-align: left;
 }
 
+:root.compact body {
+    --icon-size: 13px;
+
+    line-height: 1.2;
+}
+
 /* targets dialog windows loaded via iframes */
 body:not(:has(#desktop)) {
     background-color: var(--color-background-popup);
@@ -690,14 +696,13 @@ td.noWrap {
 
 .filesTableCollapseIcon {
     cursor: pointer;
-    height: 15px;
-    margin-bottom: -3px;
-    padding-right: 5px;
-    width: 15px;
+    height: var(--icon-size, 15px);
+    margin-right: 5px;
+    vertical-align: top;
+    width: var(--icon-size, 15px);
 }
 
 .filesTableCollapseIcon.rotate {
-    margin-bottom: -1px;
     transform: rotate(270deg);
 }
 
@@ -710,20 +715,21 @@ td.noWrap {
     padding: 2px;
 }
 
-#propProgressWrapper {
+#propBarsWrapper {
     align-items: center;
-    display: flex;
+    display: grid;
+    gap: 4px 8px;
+    grid-template-columns: auto 1fr auto;
     height: auto;
     margin: 5px 2px;
+}
 
-    & > span:not(:first-child, :empty) {
-        margin-left: 6px;
-        min-width: 3.5em;
-    }
+#propAvailabilityWrapper {
+    display: contents;
+}
 
-    & #progress {
-        flex: 1;
-    }
+.propBarLabel {
+    text-align: right;
 }
 
 #watched_folders_tab {
@@ -777,7 +783,9 @@ td.noWrap {
 
 .combo_priority {
     font-size: 1em;
-    padding: 2px 6px;
+    height: 1.5em;
+    padding: 0 6px;
+    vertical-align: top;
 }
 
 td.statusBarSeparator {

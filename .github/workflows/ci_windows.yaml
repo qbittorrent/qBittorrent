@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   ci:
-    name: Build (${{ matrix.libt_version }}, ${{ matrix.config.arch }})
+    name: Build (${{ matrix.libtorrent.version }}, ${{ matrix.config.arch }})
     runs-on: ${{ matrix.config.os }}
     permissions:
       actions: write
@@ -18,7 +18,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.11", "1.2.20"]
+        libtorrent:
+          - version: "2.0.11"
+            boost_major_version: "1"
+            boost_minor_version: "90"
+            boost_patch_version: "0"
+          - version: "1.2.20"
+            boost_major_version: "1"
+            boost_minor_version: "86"
+            boost_patch_version: "0"
         config:
         - os: windows-latest
           arch: x64
@@ -31,7 +39,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -86,13 +94,9 @@ jobs:
             $packages
 
       - name: Install boost
-        env:
-          BOOST_MAJOR_VERSION: "1"
-          BOOST_MINOR_VERSION: "86"
-          BOOST_PATCH_VERSION: "0"
         run: |
-          $boost_url="https://archives.boost.io/release/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/source/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
-          $boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ env.BOOST_MAJOR_VERSION }}.${{ env.BOOST_MINOR_VERSION }}.${{ env.BOOST_PATCH_VERSION }}/boost_${{ env.BOOST_MAJOR_VERSION }}_${{ env.BOOST_MINOR_VERSION }}_${{ env.BOOST_PATCH_VERSION }}.tar.gz"
+          $boost_url="https://archives.boost.io/release/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/source/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
+          $boost_url2="https://sourceforge.net/projects/boost/files/boost/${{ matrix.libtorrent.boost_major_version }}.${{ matrix.libtorrent.boost_minor_version }}.${{ matrix.libtorrent.boost_patch_version }}/boost_${{ matrix.libtorrent.boost_major_version }}_${{ matrix.libtorrent.boost_minor_version }}_${{ matrix.libtorrent.boost_patch_version }}.tar.gz"
           curl -L -o "${{ runner.temp }}/boost.tar.gz" "$boost_url"
           tar -xf "${{ runner.temp }}/boost.tar.gz" -C "${{ github.workspace }}/.."
           if ($LastExitCode -ne 0)
@@ -115,12 +119,13 @@ jobs:
           version: "6.10.1"
           arch: ${{ matrix.config.qt_arch }}
           archives: qtbase qtsvg qttools
+          modules: qtimageformats
           cache: true
 
       - name: Install libtorrent
         run: |
           git clone `
-            --branch v${{ matrix.libt_version }} `
+            --branch v${{ matrix.libtorrent.version }} `
             --depth 1 `
             --recurse-submodules `
             https://github.com/arvidn/libtorrent.git `
@@ -182,8 +187,16 @@ jobs:
           mkdir upload/qBittorrent/plugins/iconengines
           copy "${{ env.Qt_ROOT_DIR }}/plugins/iconengines/qsvgicon.dll" upload/qBittorrent/plugins/iconengines
           mkdir upload/qBittorrent/plugins/imageformats
+          # include all imageformats dlls since CI (dev) build links dynamically
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qgif.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qicns.dll" upload/qBittorrent/plugins/imageformats
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qico.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qjpeg.dll" upload/qBittorrent/plugins/imageformats
           copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qsvg.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qtga.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qtiff.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qwbmp.dll" upload/qBittorrent/plugins/imageformats
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/imageformats/qwebp.dll" upload/qBittorrent/plugins/imageformats
           mkdir upload/qBittorrent/plugins/platforms
           copy "${{ env.Qt_ROOT_DIR }}/plugins/platforms/qwindows.dll" upload/qBittorrent/plugins/platforms
           mkdir upload/qBittorrent/plugins/sqldrivers
@@ -200,9 +213,9 @@ jobs:
           copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
-          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libt_version }}
+          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libtorrent.version }}
           path: upload
 
       - name: Install NSIS
@@ -216,7 +229,7 @@ jobs:
           makensis /DQBT_CPU_ARCH="${{ matrix.config.arch }}" /DQBT_DIST_DIR="../../upload/qBittorrent" /WX dist/windows/qbittorrent.nsi
 
       - name: Upload installer
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
-          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libt_version }}-setup
+          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libtorrent.version }}-setup
           path: dist/windows/qbittorrent_*_setup.exe

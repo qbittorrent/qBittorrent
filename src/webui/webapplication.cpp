@@ -70,6 +70,7 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "peerhostnameresolver.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const QString SESSION_COOKIE_NAME_PREFIX = u"QBT_SID_"_s;
@@ -78,6 +79,9 @@ const QString WWW_FOLDER = u":/www"_s;
 const QString PUBLIC_FOLDER = u"/public"_s;
 const QString PRIVATE_FOLDER = u"/private"_s;
 const QString INDEX_HTML = u"/index.html"_s;
+
+const QString BASIC_AUTH = u"Basic"_s;
+const QString BEARER_AUTH = u"Bearer"_s;
 
 namespace
 {
@@ -100,11 +104,15 @@ namespace
         return ret;
     }
 
-    QString parseAuthorizationHeader(const QString &authHeader)
+    QStringView parseAuthorizationHeader(const QStringView authHeader, const QStringView authType)
     {
-        if (authHeader.startsWith(u"Bearer ", Qt::CaseInsensitive))
-            return authHeader.sliced(7).trimmed();
-
+        if (const qsizetype authTypeLength = authType.length();
+            (authHeader.length() > (authTypeLength + 1))
+            && authHeader.startsWith(authType, Qt::CaseInsensitive)
+            && (authHeader.at(authTypeLength) == u' '))
+        {
+            return authHeader.sliced(authTypeLength + 1).trimmed();
+        }
         return {};
     }
 
@@ -158,6 +166,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
+    , m_peerHostNameResolver {new PeerHostNameResolver(this)}
 {
     declarePublicAPI(u"auth/login"_s);
 
@@ -293,12 +302,12 @@ const Http::Environment &WebApplication::env() const
 
 void WebApplication::setUsername(const QString &username)
 {
-    m_authController->setUsername(username);
+    m_username = username;
 }
 
 void WebApplication::setPasswordHash(const QByteArray &passwordHash)
 {
-    m_authController->setPasswordHash(passwordHash);
+    m_passwordHash = passwordHash;
 }
 
 void WebApplication::doProcessRequest(const bool isUsingApiKey)
@@ -645,7 +654,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
     try
     {
-        const bool isUsingApiKey = m_request.headers.contains(Http::HEADER_AUTHORIZATION);
+        const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+        const bool isUsingApiKey = !parseAuthorizationHeader(authHeader, BEARER_AUTH).isEmpty();
 
         // block suspicious requests
         if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
@@ -709,8 +719,23 @@ void WebApplication::sessionInitialize()
         }
     }
 
-    if (!m_currentSession && !isAuthNeeded())
+    if (m_currentSession)
+        return;
+
+    if (!isAuthNeeded())
+    {
         sessionStart();
+        return;
+    }
+
+    const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+    const QStringView credentials = parseAuthorizationHeader(authHeader, BASIC_AUTH);
+    if (!credentials.isEmpty())
+    {
+        if (!validateBasicAuth(credentials))
+            throw UnauthorizedHTTPError();
+        sessionStart();
+    }
 }
 
 void WebApplication::setSessionCookie()
@@ -739,11 +764,13 @@ void WebApplication::apiKeySessionInitialize()
     if (m_apiKey.isEmpty())
         return;
 
+    const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+
     QString sessionId;
-    if (const QString submittedKey = parseAuthorizationHeader(m_request.headers.value(Http::HEADER_AUTHORIZATION));
+    if (const QStringView submittedKey = parseAuthorizationHeader(authHeader, BEARER_AUTH);
         Utils::Password::slowEquals(submittedKey.toLatin1(), m_apiKey.toLatin1()))
     {
-        sessionId = submittedKey;
+        sessionId = submittedKey.toString();
     }
 
     if (!sessionId.isEmpty())
@@ -821,7 +848,7 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const bool useCo
     m_currentSession->registerAPIController(u"transfer"_s, new TransferController(app(), m_currentSession));
 
     const auto *btSession = BitTorrent::Session::instance();
-    auto *syncController = new SyncController(app(), m_currentSession);
+    auto *syncController = new SyncController(m_peerHostNameResolver, app(), m_currentSession);
     syncController->updateFreeDiskSpace(btSession->freeDiskSpace());
     connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
@@ -980,6 +1007,88 @@ QHostAddress WebApplication::resolveClientAddress() const
     }
 
     return m_env.clientAddress;
+}
+
+bool WebApplication::validateCredentials(const QStringView username, const QStringView password) const
+{
+    const QString clientAddr = clientId();
+
+    if (isBanned())
+    {
+        LogMsg(tr("WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2")
+                .arg(clientAddr, username)
+            , Log::WARNING);
+        throw ForbiddenHTTPError(tr("Your IP address has been banned after too many failed authentication attempts."));
+    }
+
+    const auto *pref = Preferences::instance();
+    const bool usernameEqual = Utils::Password::slowEquals(username.toUtf8(), pref->getWebUIUsername().toUtf8());
+    const bool passwordEqual = Utils::Password::PBKDF2::verify(pref->getWebUIPassword(), password);
+
+    if (usernameEqual && passwordEqual)
+    {
+        m_clientFailedLogins.remove(clientAddr);
+        LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
+        return true;
+    }
+
+    if (pref->getWebUIMaxAuthFailCount() > 0)
+        increaseFailedAttempts();
+
+    LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
+            .arg(QString::number(failedAttemptsCount()), clientAddr, username)
+        , Log::WARNING);
+    return false;
+}
+
+bool WebApplication::validateBasicAuth(const QStringView credentials) const
+{
+    const QString decodedCredentials = QString::fromUtf8(QByteArray::fromBase64(credentials.toLatin1()));
+    const auto usernamePassword = QStringView(decodedCredentials);
+    if (const qsizetype idx = usernamePassword.indexOf(u':'); idx > 0)
+    {
+        const QStringView username = usernamePassword.first(idx);
+        const QStringView password = usernamePassword.sliced(idx + 1);
+        return validateCredentials(username, password);
+    }
+
+    return false;
+}
+
+bool WebApplication::isBanned() const
+{
+    const auto failedLoginIter = m_clientFailedLogins.constFind(clientId());
+    if (failedLoginIter == m_clientFailedLogins.cend())
+        return false;
+
+    bool isBanned = (failedLoginIter->banTimer.remainingTime() >= 0);
+    if (isBanned && failedLoginIter->banTimer.hasExpired())
+    {
+        m_clientFailedLogins.erase(failedLoginIter);
+        isBanned = false;
+    }
+
+    return isBanned;
+}
+
+int WebApplication::failedAttemptsCount() const
+{
+    return m_clientFailedLogins.value(clientId()).failedAttemptsCount;
+}
+
+void WebApplication::increaseFailedAttempts() const
+{
+    Q_ASSERT(Preferences::instance()->getWebUIMaxAuthFailCount() > 0);
+
+    FailedLogin &failedLogin = m_clientFailedLogins[clientId()];
+    ++failedLogin.failedAttemptsCount;
+
+    if (failedLogin.failedAttemptsCount >= Preferences::instance()->getWebUIMaxAuthFailCount())
+    {
+        // Max number of failed attempts reached
+        // Start ban period
+        failedLogin.banTimer.setRemainingTime(Preferences::instance()->getWebUIBanDuration());
+    }
 }
 
 // WebSession

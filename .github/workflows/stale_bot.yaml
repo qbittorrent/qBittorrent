@@ -8,7 +8,7 @@ permissions: {}
 
 jobs:
   stale:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
     permissions:
       pull-requests: write
     steps:

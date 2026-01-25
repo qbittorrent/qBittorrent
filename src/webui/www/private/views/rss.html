@@ -500,7 +500,7 @@
                 torrentDate.append(torrentDateDesc);
 
                 const torrentDateData = document.createElement("span");
-                torrentDateData.textContent = new Date(articleDate).toLocaleString();
+                torrentDateData.textContent = window.qBittorrent.Misc.formatDate(new Date(articleDate));
                 torrentDate.append(torrentDateData);
 
                 detailsView.append(torrentDate);
@@ -637,8 +637,6 @@
                                 });
                             }
                         }
-                        if (statusDiffers)
-                            rssFeedTable.updateIcons();
 
                         // get currently opened feed
                         let openedFeedPath = undefined;
@@ -717,6 +715,8 @@
                                     }
                                 }
                             });
+                        if (statusDiffers)
+                            rssFeedTable.updateTable(true);
                         if (needsUpdate) {
                             rssFeedTable.updateTable(true);
                             rssArticleTable.updateTable(true);
@@ -788,7 +788,6 @@
                             ++rowCount;
                         }
                         rssFeedTable.updateTable(false);
-                        rssFeedTable.updateIcons();
                     }
                 });
         };
@@ -799,7 +798,7 @@
                 if (row.full_data.dataUid === feedUid)
                     row.full_data.status = "isLoading";
             }
-            rssFeedTable.updateIcons();
+            rssFeedTable.updateTable(true);
 
             fetch("api/v2/rss/refreshItem", {
                     method: "POST",

@@ -48,7 +48,7 @@
 #include <QTranslator>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/sharelimitaction.h"
+#include "base/bittorrent/sharelimits.h"
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
@@ -122,12 +122,17 @@ namespace
         }
     };
 
-    bool isValidWebUIUsername(const QString &username)
+    bool isValidWebUIUsernameLength(const QString &username)
     {
         return (username.length() >= WEBUI_MIN_USERNAME_LENGTH);
     }
 
-    bool isValidWebUIPassword(const QString &password)
+    bool isValidWebUIUsernameCharacterSet(const QString &username)
+    {
+        return !username.contains(u":");
+    }
+
+    bool isValidWebUIPasswordLength(const QString &password)
     {
         return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
     }
@@ -625,7 +630,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
 
-    m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
     m_ui->checkUseCategoryPaths->setChecked(session->useCategoryPathsInManualMode());
 
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
@@ -730,7 +734,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
-    connect(m_ui->checkUseSubcategories, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseCategoryPaths, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -802,7 +805,6 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
 
-    session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setUseCategoryPathsInManualMode(m_ui->checkUseCategoryPaths->isChecked());
 
     session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
@@ -1447,9 +1449,9 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
     // Authentication
-    if (const QString username = webUIUsername(); isValidWebUIUsername(username))
+    if (const QString username = webUIUsername(); isValidWebUIUsernameLength(username) && isValidWebUIUsernameCharacterSet(username))
         pref->setWebUIUsername(username);
-    if (const QString password = webUIPassword(); isValidWebUIPassword(password))
+    if (const QString password = webUIPassword(); isValidWebUIPasswordLength(password))
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(password));
     pref->setWebUILocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
     pref->setWebUIAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
@@ -2109,14 +2111,20 @@ QString OptionsDialog::webUIPassword() const
 
 bool OptionsDialog::webUIAuthenticationOk()
 {
-    if (!isValidWebUIUsername(webUIUsername()))
+    const QString username = webUIUsername();
+    if (!isValidWebUIUsernameLength(username))
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
         return false;
     }
+    if (!isValidWebUIUsernameCharacterSet(username))
+    {
+        QMessageBox::warning(this, tr("Character Error"), tr("The WebUI username must not contain a colon."));
+        return false;
+    }
 
     const bool dontChangePassword = webUIPassword().isEmpty() && !Preferences::instance()->getWebUIPassword().isEmpty();
-    if (!isValidWebUIPassword(webUIPassword()) && !dontChangePassword)
+    if (!isValidWebUIPasswordLength(webUIPassword()) && !dontChangePassword)
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
         return false;
