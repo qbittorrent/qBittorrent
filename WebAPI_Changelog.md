@@ -1,6 +1,8 @@
 # WebAPI Changelog
 
 ## 2.15.1
+* [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
+  * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)
 * [#23708](https://github.com/qbittorrent/qBittorrent/pull/23708)
   * `sync/torrentPeers` endpoint now includes peer `host_name` when peer host name resolution is enabled
 

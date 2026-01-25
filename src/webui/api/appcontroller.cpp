@@ -121,6 +121,15 @@ void AppController::buildInfoAction()
     setResult(versions);
 }
 
+void AppController::processInfoAction()
+{
+    const QJsonObject info =
+    {
+        {u"launch_time"_s, app()->launchTimeSecsSinceEpoch()}
+    };
+    setResult(info);
+}
+
 void AppController::shutdownAction()
 {
     // Special handling for shutdown, we
