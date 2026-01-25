@@ -9,12 +9,21 @@
 
     <fieldset class="settings">
         <legend>QBT_TR(Interface)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="colorSchemeSelect">QBT_TR(Color scheme:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="colorSchemeSelect">
-            <option value="0">QBT_TR(Auto)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="1">QBT_TR(Light)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="2">QBT_TR(Dark)QBT_TR[CONTEXT=OptionsDialog]</option>
-        </select>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <label for="colorSchemeSelect">QBT_TR(Color scheme:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="colorSchemeSelect">
+                <option value="0">QBT_TR(Auto)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="1">QBT_TR(Light)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="2">QBT_TR(Dark)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
+        <div class="formRow">
+            <label for="displayDensitySelect">QBT_TR(Display density:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="displayDensitySelect">
+                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="compact">QBT_TR(Compact)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -1265,7 +1274,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="appInstanceName">QBT_TR(Customize application instance name:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="appInstanceName" style="width: 15em;" title="QBT_TR(It appends the text to the window title to help distinguish qBittorent instances)QBT_TR[CONTEXT=OptionsDialog]">
+                        <input type="text" id="appInstanceName" style="width: 15em;" title="QBT_TR(It appends the text to the window title to help distinguish qBittorrent instances)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -1274,6 +1283,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </td>
                     <td>
                         <input type="text" id="refreshInterval" style="width: 15em;" title="QBT_TR(It controls the internal state update interval which in turn will affect UI updates)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(ms)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="resolvePeerHostNames">QBT_TR(Resolve peer host names:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="resolvePeerHostNames">
                     </td>
                 </tr>
                 <tr>
@@ -2262,6 +2279,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 .then((pref) => {
                     const clientData = window.parent.qBittorrent.ClientData;
                     const colorScheme = clientData.get("color_scheme");
+                    const displayDensity = clientData.get("display_density") ?? "default";
                     const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
                     const useVirtualList = clientData.get("use_virtual_list");
                     const hideZeroStatusFilters = clientData.get("hide_zero_status_filters");
@@ -2274,6 +2292,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Language
                     updateWebuiLocaleSelect(pref.locale);
                     updateColoSchemeSelect(colorScheme);
+                    document.getElementById("displayDensitySelect").value = displayDensity;
 
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
@@ -2641,6 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
                     document.getElementById("appInstanceName").value = pref.app_instance_name;
                     document.getElementById("refreshInterval").value = pref.refresh_interval;
+                    document.getElementById("resolvePeerHostNames").checked = pref.resolve_peer_host_names;
                     document.getElementById("resolvePeerCountries").checked = pref.resolve_peer_countries;
                     document.getElementById("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
                     document.getElementById("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
@@ -2721,6 +2741,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 clientData.color_scheme = "light";
             else
                 clientData.color_scheme = "dark";
+            const displayDensity = document.getElementById("displayDensitySelect").value;
+            clientData.display_density = (displayDensity === "default") ? null : displayDensity;
             settings["status_bar_external_ip"] = document.getElementById("statusBarExternalIP").checked;
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
@@ -3125,6 +3147,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["recheck_completed_torrents"] = document.getElementById("recheckTorrentsOnCompletion").checked;
             settings["app_instance_name"] = document.getElementById("appInstanceName").value;
             settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
+            settings["resolve_peer_host_names"] = document.getElementById("resolvePeerHostNames").checked;
             settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
             settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
             settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;

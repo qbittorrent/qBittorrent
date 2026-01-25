@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,22 +26,46 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "peerhostnameresolver.h"
 
-class QString;
-class QStringView;
+#include "base/net/reverseresolution.h"
+#include "base/preferences.h"
 
-struct ISession
+PeerHostNameResolver::PeerHostNameResolver(QObject *parent)
+    : QObject(parent)
 {
-    virtual ~ISession() = default;
-    virtual QString id() const = 0;
-};
+    connect(Preferences::instance(), &Preferences::changed, this, &PeerHostNameResolver::updateState);
+    updateState();
+}
 
-struct ISessionManager
+QString PeerHostNameResolver::lookupHostName(const QHostAddress &ip)
 {
-    virtual ~ISessionManager() = default;
-    virtual ISession *session() = 0;
-    virtual void sessionStart() = 0;
-    virtual void sessionEnd() = 0;
-    virtual bool validateCredentials(QStringView username, QStringView password) const = 0;
-};
+    const QString hostName = m_resolvedHosts.value(ip);
+    if (m_resolver && hostName.isEmpty())
+        m_resolver->resolve(ip);
+
+    return hostName;
+}
+
+void PeerHostNameResolver::onHostNameResolved(const QHostAddress &ip, const QString &hostname)
+{
+    m_resolvedHosts.insert(ip, hostname);
+}
+
+void PeerHostNameResolver::updateState()
+{
+    if (Preferences::instance()->resolvePeerHostNames())
+    {
+        if (!m_resolver)
+        {
+            m_resolver = new Net::ReverseResolution(this);
+            connect(m_resolver, &Net::ReverseResolution::ipResolved
+                    , this, &PeerHostNameResolver::onHostNameResolved);
+        }
+    }
+    else
+    {
+        delete m_resolver;
+        m_resolver = nullptr;
+    }
+}
