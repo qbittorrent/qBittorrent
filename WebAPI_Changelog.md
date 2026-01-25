@@ -5,6 +5,9 @@
   * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)
 * [#23708](https://github.com/qbittorrent/qBittorrent/pull/23708)
   * `sync/torrentPeers` endpoint now includes peer `host_name` when peer host name resolution is enabled
+* [#23741](https://github.com/qbittorrent/qBittorrent/pull/23741)
+  * Add `torrents/pieceAvailability` endpoint for retrieving availability of each torrent piece
+  * `torrents/properties` endpoint now includes the number of distributed copies of the torrent's selected files via `availability` field
 
 ## 2.15.0
 * [#23585](https://github.com/qbittorrent/qBittorrent/pull/23585)

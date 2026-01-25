@@ -719,6 +719,7 @@ void TorrentsController::infoAction()
 //   - "peers_total": Torrent total number of peers
 //   - "share_ratio": Torrent share ratio
 //   - "popularity": Torrent popularity
+//   - "availability": Torrent distributed copies
 //   - "reannounce": Torrent next reannounce time
 //   - "total_size": Torrent total size
 //   - "pieces_num": Torrent pieces count
@@ -785,6 +786,7 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PEERS_TOTAL, torrent->totalLeechersCount()},
         {KEY_PROP_RATIO, ((ratio >= BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio)},
         {KEY_PROP_POPULARITY, ((popularity >= BitTorrent::Torrent::MAX_RATIO) ? -1 : popularity)},
+        {KEY_TORRENT_AVAILABILITY, torrent->distributedCopies()},
         {KEY_PROP_REANNOUNCE, torrent->nextAnnounce()},
         {KEY_PROP_TOTAL_SIZE, torrent->totalSize()},
         {KEY_PROP_PIECES_NUM, torrent->piecesCount()},
@@ -1046,6 +1048,25 @@ void TorrentsController::pieceStatesAction()
     }
 
     setResult(pieceStates);
+}
+
+// Returns an array of availability counts for each piece of a torrent in JSON format.
+// Each value represents the number of peers that have that piece.
+void TorrentsController::pieceAvailabilityAction()
+{
+    requireParams({u"hash"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const QList<int> avail = torrent->fetchPieceAvailability().takeResult();
+    QJsonArray pieceAvailability;
+    for (const int count : avail)
+        pieceAvailability.append(count);
+
+    setResult(pieceAvailability);
 }
 
 void TorrentsController::addAction()
