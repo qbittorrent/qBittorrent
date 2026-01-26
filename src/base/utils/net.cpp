@@ -134,7 +134,10 @@ namespace Utils
             }
 
             return std::ranges::any_of(subnets, [&](const Subnet &subnet)
-                                       { return addr.isInSubnet(subnet) || (addrConversionOk && protocolEquivalentAddress.isInSubnet(subnet)); });
+            {
+                return addr.isInSubnet(subnet)
+                    || (addrConversionOk && protocolEquivalentAddress.isInSubnet(subnet));
+            });
         }
 
         QString subnetToString(const Subnet &subnet)
@@ -315,9 +318,11 @@ namespace Utils
 
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
         {
-            const QList<QSslCertificate> certs{QSslCertificate::fromData(data)};
+            const QList<QSslCertificate> certs {QSslCertificate::fromData(data)};
             const bool hasInvalidCerts = std::ranges::any_of(certs, [](const QSslCertificate &cert)
-                                                             { return cert.isNull(); });
+            {
+                return cert.isNull();
+            });
             return hasInvalidCerts ? QList<QSslCertificate>() : certs;
         }
 
