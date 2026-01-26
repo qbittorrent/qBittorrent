@@ -36,47 +36,43 @@
 
 #include "base/global.h"
 
-namespace
-{
-    constexpr QChar IPV4_SEPARATOR = u'.';
-    constexpr QChar IP_RANGE_SEPARATOR = u'-';
-    constexpr QChar CIDR_INDICATOR = u'/';
+constexpr QChar IPV4_SEPARATOR = u'.';
+constexpr QChar IP_RANGE_SEPARATOR = u'-';
+constexpr QChar CIDR_INDICATOR = u'/';
 
-    bool isValidIPv4(QStringView ip)
+bool isValidIPv4(QStringView ip)
+{
+    if (ip.contains(CIDR_INDICATOR))
+        ip = ip.first(ip.indexOf(CIDR_INDICATOR));
+    ip = ip.trimmed();
+    if (ip.count(IPV4_SEPARATOR) != 3)
+        return false;
+    const QList<QStringView> octets = ip.split(IPV4_SEPARATOR);
+    for (const QStringView octet : octets)
     {
-        if (ip.contains(CIDR_INDICATOR))
-            ip = ip.first(ip.indexOf(CIDR_INDICATOR));
-        ip = ip.trimmed();
-        if (ip.count(IPV4_SEPARATOR) != 3)
+        const int len = octet.length();
+        if ((len == 0) || (len > 3))
             return false;
-        const QList<QStringView> octets = ip.split(IPV4_SEPARATOR);
-        for (int i = 0; i < 4; ++i)
+        for (const QChar ch : octet)
         {
-            const int len = octets[i].length();
-            if ((len == 0) || (len > 3))
+            if ((ch < u'0') || (ch > u'9'))
                 return false;
-            for (int j = 0; j < len; ++j)
-            {
-                const QChar ch = octets[i][j];
-                if ((ch < u'0') || (ch > u'9'))
-                    return false;
-            }
-            if (len == 3)
-            {
-                if (octets[i][0] < u'2')
-                    continue;
-                if (octets[i][0] > u'2')
-                    return false;
-                if (octets[i][1] < u'5')
-                    continue;
-                if (octets[i][1] > u'5')
-                    return false;
-                if (octets[i][2] > u'5')
-                    return false;
-            }
         }
-        return true;
+        if (len == 3)
+        {
+            if (octet[0] < u'2')
+                continue;
+            if (octet[0] > u'2')
+                return false;
+            if (octet[1] < u'5')
+                continue;
+            if (octet[1] > u'5')
+                return false;
+            if (octet[2] > u'5')
+                return false;
+        }
     }
+    return true;
 }
 
 namespace Utils
@@ -180,10 +176,7 @@ namespace Utils
                 const int bytes = prefixLength / 8;
                 const int bits = prefixLength % 8;
 
-                for (int i = 0; i < bytes; ++i)
-                {
-                    mask6[i] = 0xFF;
-                }
+                memset(mask6, 0xFF, bytes);
 
                 int startIndex = bytes;
                 if ((bits > 0) && (bytes < 16))
@@ -199,7 +192,7 @@ namespace Utils
 
                 const QHostAddress start {ip6};
 
-                for (int i = 0; i < 16; ++i)
+                for (int i = bytes; i < 16; ++i)
                 {
                     ip6[i] |= ~mask6[i];
                 }
@@ -270,31 +263,23 @@ namespace Utils
                 // CIDR notation
                 // "127.0.0.0/8"
                 const std::optional<Subnet> subnet = parseSubnet(filterStr.toString());
-                if (subnet)
-                {
-                    const IPRange ipRange = subnetToIPRange(subnet.value());
-                    first = QHostAddress(ipRange.first.toString());
-                    last = QHostAddress(ipRange.second.toString());
-                }
-                else
-                {
+                if (!subnet)
                     return std::nullopt;
-                }
+
+                const IPRange ipRange = subnetToIPRange(subnet.value());
+                first = QHostAddress(ipRange.first.toString());
+                last = QHostAddress(ipRange.second.toString());
             }
             else
             {
-                const QHostAddress addr{filterStr.toString()};
+                const QHostAddress addr {filterStr.toString()};
                 first = addr;
                 last = addr;
             }
             if (isStrictIPv4 && (first.protocol() == QAbstractSocket::IPv4Protocol))
             {
-                if (filterStr.contains(IP_RANGE_SEPARATOR))
-                {
-                    if (!isValidIPv4(firstIPStr) || !isValidIPv4(lastIPStr))
-                        return std::nullopt;
-                }
-                else if (!isValidIPv4(filterStr))
+                if (!isValidIPv4(firstIPStr)
+                    || (!lastIPStr.isEmpty() && !isValidIPv4(lastIPStr)))
                 {
                     return std::nullopt;
                 }
