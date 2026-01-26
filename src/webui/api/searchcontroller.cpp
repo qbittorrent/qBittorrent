@@ -29,13 +29,12 @@
 
 #include "searchcontroller.h"
 
-#include <limits>
+#include <memory>
 
 #include <QHash>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
-#include <QSharedPointer>
 
 #include "base/addtorrentmanager.h"
 #include "base/global.h"
@@ -45,10 +44,10 @@
 #include "base/search/searchhandler.h"
 #include "base/utils/datetime.h"
 #include "base/utils/foreignapps.h"
-#include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "isessionmanager.h"
+#include "webui/searchjobmanager.h"
 
 namespace
 {
@@ -82,6 +81,12 @@ namespace
     }
 }
 
+SearchController::SearchController(SearchJobManager *searchJobManager, IApplication *app, QObject *parent)
+    : APIController(app, parent)
+    , m_searchJobManager {searchJobManager}
+{
+}
+
 void SearchController::startAction()
 {
     requireParams({u"pattern"_s, u"category"_s, u"plugins"_s});
@@ -109,17 +114,9 @@ void SearchController::startAction()
         pluginsToUse << plugins;
     }
 
-    if (m_activeSearches.size() >= MAX_CONCURRENT_SEARCHES)
-        throw APIError(APIErrorType::Conflict, tr("Unable to create more than %1 concurrent searches.").arg(MAX_CONCURRENT_SEARCHES));
-
-    const auto id = generateSearchId();
-    const std::shared_ptr<SearchHandler> searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
-    connect(searchHandler.get(), &SearchHandler::searchFinished, this, [this, id] { m_activeSearches.remove(id); });
-    connect(searchHandler.get(), &SearchHandler::searchFailed, this, [this, id]([[maybe_unused]] const QString &errorMessage) { m_activeSearches.remove(id); });
-
-    m_searchHandlers.insert(id, searchHandler);
-
-    m_activeSearches.insert(id);
+    const int id = m_searchJobManager->startSearch(pattern, category, pluginsToUse);
+    if (id < 0)
+        throw APIError(APIErrorType::Conflict, tr("Unable to create more than %1 concurrent searches.").arg(SearchJobManager::MAX_CONCURRENT_SEARCHES));
 
     const QJsonObject result = {{u"id"_s, id}};
     setResult(result);
@@ -131,17 +128,8 @@ void SearchController::stopAction()
 
     const int id = params()[u"id"_s].toInt();
 
-    const auto iter = m_searchHandlers.constFind(id);
-    if (iter == m_searchHandlers.cend())
+    if (!m_searchJobManager->stopSearch(id))
         throw APIError(APIErrorType::NotFound);
-
-    const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
-
-    if (searchHandler->isActive())
-    {
-        searchHandler->cancelSearch();
-        m_activeSearches.remove(id);
-    }
 
     setResult(QString());
 }
@@ -150,15 +138,18 @@ void SearchController::statusAction()
 {
     const int id = params()[u"id"_s].toInt();
 
-    if ((id != 0) && !m_searchHandlers.contains(id))
+    if ((id != 0) && !m_searchJobManager->getSearch(id))
         throw APIError(APIErrorType::NotFound);
 
     QJsonArray statusArray;
-    const QList<int> searchIds {(id == 0) ? m_searchHandlers.keys() : QList<int> {id}};
+    const QList<int> searchIds {(id == 0) ? m_searchJobManager->allSearchIds() : QList<int> {id}};
 
     for (const int searchId : searchIds)
     {
-        const std::shared_ptr<SearchHandler> &searchHandler = m_searchHandlers[searchId];
+        const std::shared_ptr<SearchHandler> searchHandler = m_searchJobManager->getSearch(searchId);
+        if (!searchHandler)
+            continue;
+
         statusArray << QJsonObject
         {
             {u"id"_s, searchId},
@@ -178,11 +169,10 @@ void SearchController::resultsAction()
     int limit = params()[u"limit"_s].toInt();
     int offset = params()[u"offset"_s].toInt();
 
-    const auto iter = m_searchHandlers.constFind(id);
-    if (iter == m_searchHandlers.cend())
+    const std::shared_ptr<SearchHandler> searchHandler = m_searchJobManager->getSearch(id);
+    if (!searchHandler)
         throw APIError(APIErrorType::NotFound);
 
-    const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
     const QList<SearchResult> searchResults = searchHandler->results();
     const qsizetype size = searchResults.size();
 
@@ -209,14 +199,8 @@ void SearchController::deleteAction()
 
     const int id = params()[u"id"_s].toInt();
 
-    const auto iter = m_searchHandlers.constFind(id);
-    if (iter == m_searchHandlers.cend())
+    if (!m_searchJobManager->deleteSearch(id))
         throw APIError(APIErrorType::NotFound);
-
-    const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
-    searchHandler->cancelSearch();
-    m_activeSearches.remove(id);
-    m_searchHandlers.erase(iter);
 
     setResult(QString());
 }
@@ -323,14 +307,26 @@ void SearchController::checkForUpdatesFailed(const QString &reason)
     LogMsg(tr("Failed to check for plugin updates: %1").arg(reason), Log::INFO);
 }
 
-int SearchController::generateSearchId() const
+void SearchController::jobsAction()
 {
-    while (true)
+    QJsonArray jobsArray;
+
+    for (const int searchId : m_searchJobManager->allSearchIds())
     {
-        const int id = Utils::Random::rand(1, std::numeric_limits<int>::max());
-        if (!m_searchHandlers.contains(id))
-            return id;
+        const std::shared_ptr<SearchHandler> searchHandler = m_searchJobManager->getSearch(searchId);
+        if (!searchHandler)
+            continue;
+
+        jobsArray << QJsonObject
+        {
+            {u"id"_s, searchId},
+            {u"status"_s, searchHandler->isActive() ? u"Running"_s : u"Stopped"_s},
+            {u"pattern"_s, searchHandler->pattern()},
+            {u"total"_s, searchHandler->results().size()}
+        };
     }
+
+    setResult(jobsArray);
 }
 
 /**

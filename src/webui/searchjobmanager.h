@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Thomas Piccirello <thomas@piccirello.com>
+ * Copyright (C) 2026  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,44 +28,36 @@
 
 #pragma once
 
-#include <QtContainerFwd>
+#include <memory>
 
-#include "base/search/searchpluginmanager.h"
-#include "apicontroller.h"
+#include <QHash>
+#include <QObject>
+#include <QSet>
 
-class QJsonArray;
-class QJsonObject;
-class SearchJobManager;
+class SearchHandler;
 
-struct SearchResult;
-
-class SearchController : public APIController
+class SearchJobManager final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SearchController)
+    Q_DISABLE_COPY_MOVE(SearchJobManager)
 
 public:
-    SearchController(SearchJobManager *searchJobManager, IApplication *app, QObject *parent = nullptr);
+    static constexpr int MAX_CONCURRENT_SEARCHES = 5;
 
-private slots:
-    void startAction();
-    void stopAction();
-    void statusAction();
-    void resultsAction();
-    void deleteAction();
-    void jobsAction();
-    void downloadTorrentAction();
-    void pluginsAction();
-    void installPluginAction();
-    void uninstallPluginAction();
-    void enablePluginAction();
-    void updatePluginsAction();
+    explicit SearchJobManager(QObject *parent = nullptr);
+
+    int startSearch(const QString &pattern, const QString &category, const QStringList &plugins);
+    bool stopSearch(int id);
+    bool deleteSearch(int id);
+
+    std::shared_ptr<SearchHandler> getSearch(int id) const;
+    QList<int> allSearchIds() const;
+    int activeSearchCount() const;
 
 private:
-    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
-    void checkForUpdatesFailed(const QString &reason);
-    QJsonObject getResults(const QList<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;
-    QJsonArray getPluginsInfo(const QStringList &plugins) const;
+    int generateSearchId() const;
 
-    SearchJobManager *m_searchJobManager = nullptr;
+    QHash<int, std::shared_ptr<SearchHandler>> m_searchHandlers;
+    QSet<int> m_activeSearches;
+    QList<int> m_searchOrder;  // Tracks insertion order (oldest first)
 };

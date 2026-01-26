@@ -63,6 +63,7 @@ class APIController;
 class AuthController;
 class ClientDataStorage;
 class PeerHostNameResolver;
+class SearchJobManager;
 class WebApplication;
 
 namespace BitTorrent
@@ -283,6 +284,7 @@ private:
     QList<Http::Header> m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+    SearchJobManager *m_searchJobManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
     PeerHostNameResolver *m_peerHostNameResolver = nullptr;
 
