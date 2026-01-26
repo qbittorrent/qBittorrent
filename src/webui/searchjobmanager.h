@@ -34,6 +34,8 @@
 #include <QObject>
 #include <QSet>
 
+class QTimer;
+
 #include "base/path.h"
 #include "base/search/searchhandler.h"
 
@@ -76,6 +78,7 @@ private:
     void loadSession();
     void saveSession() const;
     void saveSearchResults(int searchId) const;
+    void scheduleSaveResults(int searchId);
     void removeSearchResults(int searchId) const;
     void removeAllResultFiles() const;
     void removeAllData() const;
@@ -88,4 +91,5 @@ private:
     QSet<int> m_activeSearches;
     QHash<int, RestoredSearch> m_restoredSearches;
     QList<int> m_searchOrder;  // Tracks insertion order (oldest first)
+    QHash<int, QTimer*> m_resultSaveTimers;
 };

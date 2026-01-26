@@ -37,6 +37,7 @@
 #include <QJsonObject>
 #include <QString>
 #include <QStringList>
+#include <QTimer>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -75,14 +76,28 @@ int SearchJobManager::startSearch(const QString &pattern, const QString &categor
 
     connect(searchHandler.get(), &SearchHandler::searchFinished, this, [this, id]
     {
+        if (QTimer *timer = m_resultSaveTimers.take(id))
+        {
+            timer->stop();
+            timer->deleteLater();
+        }
         m_activeSearches.remove(id);
         saveSession();
         saveSearchResults(id);
     });
     connect(searchHandler.get(), &SearchHandler::searchFailed, this, [this, id]([[maybe_unused]] const QString &errorMessage)
     {
+        if (QTimer *timer = m_resultSaveTimers.take(id))
+        {
+            timer->stop();
+            timer->deleteLater();
+        }
         m_activeSearches.remove(id);
         saveSession();
+    });
+    connect(searchHandler.get(), &SearchHandler::newSearchResults, this, [this, id]
+    {
+        scheduleSaveResults(id);
     });
 
     m_searchHandlers.insert(id, searchHandler);
@@ -130,6 +145,12 @@ bool SearchJobManager::deleteSearch(const int id)
 
     if (!found)
         return false;
+
+    if (QTimer *timer = m_resultSaveTimers.take(id))
+    {
+        timer->stop();
+        timer->deleteLater();
+    }
 
     m_searchOrder.removeOne(id);
     removeSearchResults(id);
@@ -323,6 +344,27 @@ void SearchJobManager::saveSession() const
         LogMsg(tr("Failed to save WebUI search session. File: \"%1\". Error: \"%2\"")
                 .arg(sessionFilePath.toString(), saveResult.error()), Log::WARNING);
     }
+}
+
+void SearchJobManager::scheduleSaveResults(const int searchId)
+{
+    if (!m_storeOpenedTabsResults)
+        return;
+
+    if (m_resultSaveTimers.contains(searchId))
+        return;  // Timer already running, don't restart
+
+    auto *timer = new QTimer(this);
+    timer->setSingleShot(true);
+    timer->setInterval(30000);  // 30 seconds
+    connect(timer, &QTimer::timeout, this, [this, searchId, timer]
+    {
+        m_resultSaveTimers.remove(searchId);
+        timer->deleteLater();
+        saveSearchResults(searchId);
+    });
+    m_resultSaveTimers.insert(searchId, timer);
+    timer->start();
 }
 
 void SearchJobManager::saveSearchResults(const int searchId) const
