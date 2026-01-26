@@ -604,6 +604,20 @@ void SyncController::makeMaindataSnapshot()
         QJsonObject category = categoryOptions.toJSON();
         // adjust it to be compatible with existing WebAPI
         category[u"savePath"_s] = category.take(u"save_path"_s);
+        // As editCategory/createCategory use downloadPathEnabled and downlaodPath as parameter to set the value
+        // maindata should return the same keys in category section.
+        QJsonValue downloadPathVal = category.value(u"download_path"_s);
+        if (downloadPathVal.isString() && !downloadPathVal.toString().isEmpty())
+        {
+            category[u"downloadPathEnabled"_s] = true;
+            category[u"downloadPath"_s] = downloadPathVal.toString();
+        }
+        else
+        {
+            category[u"downloadPathEnabled"_s] = false;
+            category[u"downloadPath"_s] = QJsonValue::Null;
+        }
+
         category.insert(u"name"_s, categoryName);
         m_maindataSnapshot.categories[categoryName] = category.toVariantMap();
     }
@@ -657,6 +671,19 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
         // adjust it to be compatible with existing WebAPI
         category[u"savePath"_s] = category.take(u"save_path"_s);
         category.insert(u"name"_s, categoryName);
+        // As editCategory/createCategory use downloadPathEnabled and downlaodPath as parameter to set the value
+        // maindata should return the same keys in category section.
+        QVariant downloadPathVal = category.value(u"download_path"_s);
+        if ((downloadPathVal.typeId() == QMetaType::QString) && !downloadPathVal.toString().isEmpty())
+        {
+            category[u"downloadPathEnabled"_s] = true;
+            category[u"downloadPath"_s] = downloadPathVal.toString();
+        }
+        else
+        {
+            category[u"downloadPathEnabled"_s] = false;
+            category[u"downloadPath"_s] = QVariant();
+        }
 
         auto &categorySnapshot = m_maindataSnapshot.categories[categoryName];
         if (const QVariantMap syncData = processMap(categorySnapshot, category); !syncData.isEmpty())
