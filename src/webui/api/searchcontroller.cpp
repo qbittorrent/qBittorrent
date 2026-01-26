@@ -138,7 +138,7 @@ void SearchController::statusAction()
 {
     const int id = params()[u"id"_s].toInt();
 
-    if ((id != 0) && !m_searchJobManager->getSearch(id))
+    if ((id != 0) && !m_searchJobManager->hasSearch(id))
         throw APIError(APIErrorType::NotFound);
 
     QJsonArray statusArray;
@@ -146,15 +146,14 @@ void SearchController::statusAction()
 
     for (const int searchId : searchIds)
     {
-        const std::shared_ptr<SearchHandler> searchHandler = m_searchJobManager->getSearch(searchId);
-        if (!searchHandler)
+        if (!m_searchJobManager->hasSearch(searchId))
             continue;
 
         statusArray << QJsonObject
         {
             {u"id"_s, searchId},
-            {u"status"_s, searchHandler->isActive() ? u"Running"_s : u"Stopped"_s},
-            {u"total"_s, searchHandler->results().size()}
+            {u"status"_s, m_searchJobManager->isActive(searchId) ? u"Running"_s : u"Stopped"_s},
+            {u"total"_s, m_searchJobManager->getResultsCount(searchId)}
         };
     }
 
@@ -169,11 +168,10 @@ void SearchController::resultsAction()
     int limit = params()[u"limit"_s].toInt();
     int offset = params()[u"offset"_s].toInt();
 
-    const std::shared_ptr<SearchHandler> searchHandler = m_searchJobManager->getSearch(id);
-    if (!searchHandler)
+    if (!m_searchJobManager->hasSearch(id))
         throw APIError(APIErrorType::NotFound);
 
-    const QList<SearchResult> searchResults = searchHandler->results();
+    const QList<SearchResult> searchResults = m_searchJobManager->getResults(id);
     const qsizetype size = searchResults.size();
 
     if (offset > size)
@@ -187,10 +185,11 @@ void SearchController::resultsAction()
     if (limit <= 0)
         limit = -1;
 
+    const bool isSearchActive = m_searchJobManager->isActive(id);
     if ((limit > 0) || (offset > 0))
-        setResult(getResults(searchResults.mid(offset, limit), searchHandler->isActive(), size));
+        setResult(getResults(searchResults.mid(offset, limit), isSearchActive, size));
     else
-        setResult(getResults(searchResults, searchHandler->isActive(), size));
+        setResult(getResults(searchResults, isSearchActive, size));
 }
 
 void SearchController::deleteAction()
@@ -313,16 +312,15 @@ void SearchController::jobsAction()
 
     for (const int searchId : m_searchJobManager->allSearchIds())
     {
-        const std::shared_ptr<SearchHandler> searchHandler = m_searchJobManager->getSearch(searchId);
-        if (!searchHandler)
+        if (!m_searchJobManager->hasSearch(searchId))
             continue;
 
         jobsArray << QJsonObject
         {
             {u"id"_s, searchId},
-            {u"status"_s, searchHandler->isActive() ? u"Running"_s : u"Stopped"_s},
-            {u"pattern"_s, searchHandler->pattern()},
-            {u"total"_s, searchHandler->results().size()}
+            {u"status"_s, m_searchJobManager->isActive(searchId) ? u"Running"_s : u"Stopped"_s},
+            {u"pattern"_s, m_searchJobManager->getPattern(searchId)},
+            {u"total"_s, m_searchJobManager->getResultsCount(searchId)}
         };
     }
 

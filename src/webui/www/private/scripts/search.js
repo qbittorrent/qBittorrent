@@ -916,6 +916,11 @@ window.qBittorrent.Search ??= (() => {
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, "QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
                     }
+                    else if (response.status === 409) {
+                        // offset out of range, server lost results (e.g., due to restart)
+                        updateStatusIconElement(searchId, "QBT_TR(Search results lost due to server restart)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                        resetSearchState(searchId);
+                    }
                     else if (state) {
                         clearTimeout(state.loadResultsTimer);
                         state.loadResultsTimer = loadSearchResultsData.delay(3000, this, searchId);

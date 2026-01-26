@@ -34,7 +34,8 @@
 #include <QObject>
 #include <QSet>
 
-class SearchHandler;
+#include "base/path.h"
+#include "base/search/searchhandler.h"
 
 class SearchJobManager final : public QObject
 {
@@ -54,10 +55,37 @@ public:
     QList<int> allSearchIds() const;
     int activeSearchCount() const;
 
+    // Methods that work with both live and restored searches
+    bool hasSearch(int id) const;
+    QString getPattern(int id) const;
+    QList<SearchResult> getResults(int id) const;
+    qsizetype getResultsCount(int id) const;
+    bool isActive(int id) const;
+
+private slots:
+    void onPreferencesChanged();
+
 private:
+    struct RestoredSearch
+    {
+        QString pattern;
+        QList<SearchResult> results;
+    };
+
     int generateSearchId() const;
+    void loadSession();
+    void saveSession() const;
+    void saveSearchResults(int searchId) const;
+    void removeSearchResults(int searchId) const;
+    void removeAllResultFiles() const;
+    void removeAllData() const;
+    Path makeDataFilePath(const QString &fileName) const;
+
+    bool m_storeOpenedTabs = false;
+    bool m_storeOpenedTabsResults = false;
 
     QHash<int, std::shared_ptr<SearchHandler>> m_searchHandlers;
     QSet<int> m_activeSearches;
+    QHash<int, RestoredSearch> m_restoredSearches;
     QList<int> m_searchOrder;  // Tracks insertion order (oldest first)
 };
