@@ -602,8 +602,19 @@ void SyncController::makeMaindataSnapshot()
     {
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         QJsonObject category = categoryOptions.toJSON();
+        QJsonValue downloadPathVal = category.value(u"download_path"_s);
         // adjust it to be compatible with existing WebAPI
         category[u"savePath"_s] = category.take(u"save_path"_s);
+        if (downloadPathVal.isString() && !downloadPathVal.toString().isEmpty())
+        {
+            category[u"downloadPathEnabled"_s] = true;
+            category[u"downloadPath"_s] = downloadPathVal.toString();
+        }
+        else
+        {
+            category[u"downloadPathEnabled"_s] = false;
+        }
+
         category.insert(u"name"_s, categoryName);
         m_maindataSnapshot.categories[categoryName] = category.toVariantMap();
     }
@@ -654,9 +665,19 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     {
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         auto category = categoryOptions.toJSON().toVariantMap();
+        QVariant downloadPathVal = category.value(u"download_path"_s);
         // adjust it to be compatible with existing WebAPI
         category[u"savePath"_s] = category.take(u"save_path"_s);
         category.insert(u"name"_s, categoryName);
+        if ((downloadPathVal.typeId() == QMetaType::QString) && !downloadPathVal.toString().isEmpty())
+        {
+            category[u"downloadPathEnabled"_s] = true;
+            category[u"downloadPath"_s] = downloadPathVal.toString();
+        }
+        else
+        {
+            category[u"downloadPathEnabled"_s] = false;
+        }
 
         auto &categorySnapshot = m_maindataSnapshot.categories[categoryName];
         if (const QVariantMap syncData = processMap(categorySnapshot, category); !syncData.isEmpty())
