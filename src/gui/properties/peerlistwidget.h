@@ -47,10 +47,6 @@ namespace BitTorrent
     class PeerInfo;
 }
 
-namespace Net
-{
-    class ReverseResolution;
-}
 
 class PeerListWidget final : public QTreeView
 {
@@ -106,9 +102,9 @@ private:
     QStandardItemModel *m_listModel = nullptr;
     PeerListSortModel *m_proxyModel = nullptr;
     PropertiesWidget *m_properties = nullptr;
-    Net::ReverseResolution *m_resolver = nullptr;
     QHash<PeerEndpoint, QStandardItem *> m_peerItems;
     QList<QStandardItem *> m_I2PPeerItems;
     QHash<QHostAddress, QSet<QStandardItem *>> m_itemsByIP;  // must be kept in sync with `m_peerItems`
-    bool m_resolveCountries;
+    bool m_resolveCountries = false;
+    bool m_resolveHostNames = false;
 };
