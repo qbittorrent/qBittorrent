@@ -228,19 +228,19 @@ namespace Utils
             filterStr = filterStr.trimmed();
             QHostAddress first, last;
             QString firstIPStr, lastIPStr;
-            if (filterStr.contains(IP_RANGE_SEPARATOR))
+            QList<QStringView> parts = filterStr.split(IP_RANGE_SEPARATOR);
+            if (parts.size() > 2 || parts.isEmpty())
+            {
+                // invalid range
+                qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
+                return std::nullopt;
+            }
+            if (parts.size() == 2)
             {
                 // ip range format eg.
                 // "127.0.0.0 - 127.255.255.255"
-                if (filterStr.count(IP_RANGE_SEPARATOR) != 1)
-                {
-                    // invalid range
-                    qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
-                    return std::nullopt;
-                }
-                const int indexOfIPRangeSeparator = filterStr.indexOf(IP_RANGE_SEPARATOR);
-                firstIPStr = filterStr.first(indexOfIPRangeSeparator).trimmed().toString();
-                lastIPStr = filterStr.sliced(indexOfIPRangeSeparator + 1).trimmed().toString();
+                firstIPStr = parts.first().trimmed().toString();
+                lastIPStr = parts.last().trimmed().toString();
                 first = QHostAddress(firstIPStr);
                 last = QHostAddress(lastIPStr);
             }
