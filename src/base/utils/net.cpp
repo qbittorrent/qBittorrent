@@ -262,6 +262,7 @@ namespace Utils
             {
                 // CIDR notation
                 // "127.0.0.0/8"
+                firstIPStr = filterStr.toString();
                 const std::optional<Subnet> subnet = parseSubnet(filterStr.toString());
                 if (!subnet)
                     return std::nullopt;
@@ -272,6 +273,7 @@ namespace Utils
             }
             else
             {
+                firstIPStr = filterStr.toString();
                 const QHostAddress addr {filterStr.toString()};
                 first = addr;
                 last = addr;
