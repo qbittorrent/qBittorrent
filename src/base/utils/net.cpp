@@ -38,7 +38,6 @@
 
 namespace
 {
-
     constexpr QChar IPV4_SEPARATOR = u'.';
     constexpr QChar IP_RANGE_SEPARATOR = u'-';
     constexpr QChar CIDR_INDICATOR = u'/';
@@ -84,7 +83,6 @@ namespace Utils
 {
     namespace Net
     {
-
         bool isValidIP(const QString &ip)
         {
             return !QHostAddress(ip).isNull();
@@ -165,15 +163,15 @@ namespace Utils
                 const quint32 network = ip & mask;
                 const quint32 broadcast = network | (~mask & 0xFFFFFFFF);
 
-                const QHostAddress start{network};
-                const QHostAddress end{broadcast};
+                const QHostAddress start {network};
+                const QHostAddress end {broadcast};
 
                 return std::make_pair(start, end);
             }
             if (addressFamily == QAbstractSocket::IPv6Protocol)
             {
                 quint8 ip6[16];
-                quint8 mask6[16] = {0};
+                quint8 mask6[16] = {};
 
                 const Q_IPV6ADDR addressBytes = address.toIPv6Address();
 
@@ -199,14 +197,14 @@ namespace Utils
                     ip6[i] &= mask6[i];
                 }
 
-                const QHostAddress start{ip6};
+                const QHostAddress start {ip6};
 
                 for (int i = 0; i < 16; ++i)
                 {
                     ip6[i] |= ~mask6[i];
                 }
 
-                const QHostAddress end{ip6};
+                const QHostAddress end {ip6};
 
                 return std::make_pair(start, end);
             }

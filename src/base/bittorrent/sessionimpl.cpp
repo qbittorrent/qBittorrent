@@ -1792,7 +1792,7 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
             continue;
         const lt::address lastAddr = lt::make_address(ipRange.value().second.toString().toStdString(), ec);
         Q_ASSERT(!ec);
-        if (ec)
+        if (ec) [[unlikely]]
             continue;
         filter.add_rule(firstAddr, lastAddr, lt::ip_filter::blocked);
     }
