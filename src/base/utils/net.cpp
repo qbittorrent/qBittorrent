@@ -58,19 +58,10 @@ bool isValidIPv4(QStringView ip)
             if ((ch < u'0') || (ch > u'9'))
                 return false;
         }
-        if (len == 3)
-        {
-            if (octet[0] < u'2')
-                continue;
-            if (octet[0] > u'2')
-                return false;
-            if (octet[1] < u'5')
-                continue;
-            if (octet[1] > u'5')
-                return false;
-            if (octet[2] > u'5')
-                return false;
-        }
+        bool ok = false;
+        const int value = octet.toInt(&ok);
+        if (!ok || (value < 0) || (value > 255))
+            return false;
     }
     return true;
 }
