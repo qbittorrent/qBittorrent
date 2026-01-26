@@ -149,12 +149,7 @@ namespace Utils
             if (addressFamily == QAbstractSocket::IPv4Protocol)
             {
                 const quint32 ip = address.toIPv4Address();
-                quint32 mask = 0;
-
-                if ((prefixLength >= 0) && (prefixLength <= 32))
-                {
-                    mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
-                }
+                quint32 mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
 
                 const quint32 network = ip & mask;
                 const quint32 broadcast = network | (~mask & 0xFFFFFFFF);
