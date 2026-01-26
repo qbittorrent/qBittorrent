@@ -575,6 +575,31 @@ void SyncController::maindataAction()
     m_maindataLastSentID = id;
 }
 
+QVariantMap SyncController::serializeCategory(const QString &categoryName) const
+{
+    const auto *session = BitTorrent::Session::instance();
+    const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
+    QJsonObject category = categoryOptions.toJSON();
+    // adjust it to be compatible with existing WebAPI
+    category[u"savePath"_s] = category.take(u"save_path"_s);
+    // As editCategory/createCategory use downloadPathEnabled and downloadPath as parameter to set the value
+    // maindata should return the same keys in category section.
+    QJsonValue downloadPathVal = category.value(u"download_path"_s);
+    if (downloadPathVal.isString() && !downloadPathVal.toString().isEmpty())
+    {
+        category[u"downloadPathEnabled"_s] = true;
+        category[u"downloadPath"_s] = downloadPathVal.toString();
+    }
+    else
+    {
+        category[u"downloadPathEnabled"_s] = false;
+        category[u"downloadPath"_s] = QJsonValue::Null;
+    }
+
+    category.insert(u"name"_s, categoryName);
+    return category.toVariantMap();
+}
+
 void SyncController::makeMaindataSnapshot()
 {
     m_knownTrackers.clear();
@@ -599,14 +624,7 @@ void SyncController::makeMaindataSnapshot()
 
     const QStringList categoriesList = session->categories();
     for (const auto &categoryName : categoriesList)
-    {
-        const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
-        QJsonObject category = categoryOptions.toJSON();
-        // adjust it to be compatible with existing WebAPI
-        category[u"savePath"_s] = category.take(u"save_path"_s);
-        category.insert(u"name"_s, categoryName);
-        m_maindataSnapshot.categories[categoryName] = category.toVariantMap();
-    }
+        m_maindataSnapshot.categories[categoryName] = serializeCategory(categoryName);
 
     for (const Tag &tag : asConst(session->tags()))
         m_maindataSnapshot.tags.append(tag.toString());
@@ -652,11 +670,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
 
     for (const QString &categoryName : asConst(m_updatedCategories))
     {
-        const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
-        auto category = categoryOptions.toJSON().toVariantMap();
-        // adjust it to be compatible with existing WebAPI
-        category[u"savePath"_s] = category.take(u"save_path"_s);
-        category.insert(u"name"_s, categoryName);
+        const QVariantMap category = serializeCategory(categoryName);
 
         auto &categorySnapshot = m_maindataSnapshot.categories[categoryName];
         if (const QVariantMap syncData = processMap(categorySnapshot, category); !syncData.isEmpty())

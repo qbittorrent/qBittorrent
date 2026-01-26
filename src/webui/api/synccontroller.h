@@ -61,6 +61,7 @@ private slots:
 private:
     void makeMaindataSnapshot();
     QJsonObject generateMaindataSyncData(int id, bool fullUpdate);
+    QVariantMap serializeCategory(const QString &categoryName) const;
 
     void onCategoryAdded(const QString &categoryName);
     void onCategoryRemoved(const QString &categoryName);
