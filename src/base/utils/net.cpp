@@ -42,8 +42,6 @@ constexpr QChar CIDR_INDICATOR = u'/';
 
 bool isValidIPv4(QStringView ip)
 {
-    if (ip.contains(CIDR_INDICATOR))
-        ip = ip.first(ip.indexOf(CIDR_INDICATOR));
     ip = ip.trimmed();
     if (ip.count(IPV4_SEPARATOR) != 3)
         return false;
@@ -248,7 +246,7 @@ namespace Utils
             {
                 // CIDR notation
                 // "127.0.0.0/8"
-                firstIPStr = filterStr.toString();
+                firstIPStr = filterStr.first(filterStr.indexOf(CIDR_INDICATOR)).toString();
                 const std::optional<Subnet> subnet = parseSubnet(filterStr.toString());
                 if (!subnet)
                     return std::nullopt;
