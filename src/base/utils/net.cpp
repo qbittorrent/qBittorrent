@@ -36,32 +36,35 @@
 
 #include "base/global.h"
 
-constexpr QChar IPV4_SEPARATOR = u'.';
-constexpr QChar IP_RANGE_SEPARATOR = u'-';
-constexpr QChar CIDR_INDICATOR = u'/';
-
-bool isValidIPv4(QStringView ip)
+namespace
 {
-    ip = ip.trimmed();
-    if (ip.count(IPV4_SEPARATOR) != 3)
-        return false;
-    const QList<QStringView> octets = ip.split(IPV4_SEPARATOR);
-    for (const QStringView octet : octets)
+    constexpr QChar IPV4_SEPARATOR = u'.';
+    constexpr QChar IP_RANGE_SEPARATOR = u'-';
+    constexpr QChar CIDR_INDICATOR = u'/';
+
+    bool isValidIPv4(QStringView ip)
     {
-        const int len = octet.length();
-        if ((len == 0) || (len > 3))
+        ip = ip.trimmed();
+        if (ip.count(IPV4_SEPARATOR) != 3)
             return false;
-        for (const QChar ch : octet)
+        const QList<QStringView> octets = ip.split(IPV4_SEPARATOR);
+        for (const QStringView octet : octets)
         {
-            if ((ch < u'0') || (ch > u'9'))
+            const int len = octet.length();
+            if ((len == 0) || (len > 3))
+                return false;
+            for (const QChar ch : octet)
+            {
+                if ((ch < u'0') || (ch > u'9'))
+                    return false;
+            }
+            bool ok = false;
+            const int value = octet.toInt(&ok);
+            if (!ok || (value < 0) || (value > 255))
                 return false;
         }
-        bool ok = false;
-        const int value = octet.toInt(&ok);
-        if (!ok || (value < 0) || (value > 255))
-            return false;
+        return true;
     }
-    return true;
 }
 
 namespace Utils
