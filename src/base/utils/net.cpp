@@ -42,27 +42,31 @@ namespace
     constexpr QChar IP_RANGE_SEPARATOR = u'-';
     constexpr QChar CIDR_INDICATOR = u'/';
 
-    bool isValidIPv4(QStringView ip)
+    bool isValidIPv4(const QStringView ip)
     {
-        ip = ip.trimmed();
-        if (ip.count(IPV4_SEPARATOR) != 3)
-            return false;
         const QList<QStringView> octets = ip.split(IPV4_SEPARATOR);
+        if (octets.size() != 4)
+            return false;
+
         for (const QStringView octet : octets)
         {
             const int len = octet.length();
-            if ((len == 0) || (len > 3))
+            if ((len <= 0) ||  (len > 3))
                 return false;
+            if ((len > 1) && octet.startsWith(u'0'))
+                return false;
+
             for (const QChar ch : octet)
             {
-                if ((ch < u'0') || (ch > u'9'))
+                if (!ch.isDigit())
                     return false;
             }
-            bool ok = false;
-            const int value = octet.toInt(&ok);
-            if (!ok || (value < 0) || (value > 255))
+
+            const int value = octet.toInt();
+            if (value > 255)
                 return false;
         }
+
         return true;
     }
 }
