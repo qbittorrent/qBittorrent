@@ -878,20 +878,6 @@ void SyncController::torrentPeersAction()
             peer.insert(KEY_PEER_FILES, filesForPiece.join(u'\n'));
         }
 
-        if (!useI2PSocket)
-        {
-            if (resolvePeerHostNames)
-                peer[KEY_PEER_HOST_NAME] = m_peerHostNameResolver->lookupHostName(pi.address().ip);
-            else
-                peer[KEY_PEER_HOST_NAME] = {};
-        }
-
-        if (resolvePeerCountries && !useI2PSocket)
-        {
-            peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
-            peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
-        }
-
         if (useI2PSocket)
         {
             peer[KEY_PEER_I2P_DEST] = pi.I2PAddress();
@@ -901,6 +887,22 @@ void SyncController::torrentPeersAction()
         {
             peer[KEY_PEER_IP] = pi.address().ip.toString();
             peer[KEY_PEER_PORT] = pi.address().port;
+
+            peer[KEY_PEER_HOST_NAME] = resolvePeerHostNames
+                ? m_peerHostNameResolver->lookupHostName(pi.address().ip)
+                : QString();
+
+            if (resolvePeerCountries)
+            {
+                peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
+                peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
+            }
+            else
+            {
+                peer[KEY_PEER_COUNTRY_CODE] = {};
+                peer[KEY_PEER_COUNTRY] = {};
+            }
+
             peers[pi.address().toString()] = peer;
         }
     }
