@@ -80,7 +80,7 @@ namespace Utils
             return !QHostAddress(ip).isNull();
         }
 
-        bool isValidIPRange(const QHostAddress first, const QHostAddress last)
+        bool isValidIPRange(const QHostAddress &first, const QHostAddress &last)
         {
             if (first.isNull() || last.isNull())
                 return false;
@@ -157,44 +157,27 @@ namespace Utils
             }
             if (addressFamily == QAbstractSocket::IPv6Protocol)
             {
-                quint8 ip6[16];
-                quint8 mask6[16] = {};
-
                 const Q_IPV6ADDR addressBytes = address.toIPv6Address();
+                quint8 ip6[16] = {};
 
-                memcpy(ip6, addressBytes.c, 16);
-
-                const int bytes = prefixLength / 8;
+                const int headBytes = prefixLength / 8;
                 const int bits = prefixLength % 8;
+                const quint8 maskByte = static_cast<quint8>((bits == 0) ? 0 : ((0xFF << (8 - bits)) & 0xFF));
 
-                memset(mask6, 0xFF, bytes);
+                memcpy(ip6, addressBytes.c, headBytes);
 
-                int startIndex = bytes;
-                if ((bits > 0) && (bytes < 16))
-                {
-                    mask6[bytes] = static_cast<quint8>((0xFF << (8 - bits)) & 0xFF);
-                    startIndex = bytes + 1;
-                }
-
-                for (int i = startIndex; i < 16; ++i)
-                {
-                    ip6[i] &= mask6[i];
-                }
-
+                ip6[headBytes] = addressBytes.c[headBytes] & maskByte;
                 const QHostAddress start {ip6};
 
-                for (int i = bytes; i < 16; ++i)
-                {
-                    ip6[i] |= ~mask6[i];
-                }
-
+                ip6[headBytes] = addressBytes.c[headBytes] | ~maskByte;
+                memset(&ip6[headBytes + 1], 0xFF, (16 - (headBytes + 1)));
                 const QHostAddress end {ip6};
 
                 return std::make_pair(start, end);
             }
 
             // fallback
-            return std::make_pair(address, address);
+            return {};
         }
 
         QHostAddress canonicalIPv6Addr(const QHostAddress &addr)
