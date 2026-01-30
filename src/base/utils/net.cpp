@@ -217,7 +217,7 @@ namespace Utils
             QHostAddress first, last;
             QString firstIPStr, lastIPStr;
             QList<QStringView> parts = filterStr.split(IP_RANGE_SEPARATOR);
-            if (parts.size() > 2 || parts.isEmpty())
+            if ((parts.size() > 2) || parts.isEmpty())
             {
                 // invalid range
                 qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
