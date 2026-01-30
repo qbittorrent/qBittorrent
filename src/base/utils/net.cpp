@@ -242,8 +242,8 @@ namespace Utils
                     return std::nullopt;
 
                 const IPRange ipRange = subnetToIPRange(subnet.value());
-                first = QHostAddress(ipRange.first.toString());
-                last = QHostAddress(ipRange.second.toString());
+                first = ipRange.first;
+                last = ipRange.second;
             }
             else
             {
