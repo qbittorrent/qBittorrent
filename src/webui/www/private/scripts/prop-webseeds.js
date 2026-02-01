@@ -74,18 +74,10 @@ window.qBittorrent.PropWebseeds ??= (() => {
                     return;
 
                 const selectedWebseeds = torrentWebseedsTable.selectedRowsIds();
-                torrentWebseedsTable.clear();
 
                 const webseeds = await response.json();
-                if (webseeds) {
-                    // Update WebSeeds data
-                    webseeds.each((webseed) => {
-                        torrentWebseedsTable.updateRowData({
-                            rowId: webseed.url,
-                            url: webseed.url,
-                        });
-                    });
-                }
+                const rows = (webseeds instanceof Array) ? webseeds.map(ws => ({ rowId: ws.url, url: ws.url })) : [];
+                torrentWebseedsTable.setRows(rows);
 
                 torrentWebseedsTable.updateTable(false);
 
