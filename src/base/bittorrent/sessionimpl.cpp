@@ -4182,7 +4182,7 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
         }
         else
         {
-            LogMsg(tr("Rejected invalid IP address range while applying the list of banned IP addresses. IP Range: \"%1\"")
+            LogMsg(tr("Rejected invalid IP address range while applying the list of banned IP addresses. IP range: \"%1\"")
                    .arg(entry)
                 , Log::WARNING);
         }
