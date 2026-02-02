@@ -215,28 +215,27 @@ namespace Utils
         {
             filterStr = filterStr.trimmed();
             QHostAddress first, last;
-            QString firstIPStr, lastIPStr;
+            QStringView firstIPStr, lastIPStr;
             QList<QStringView> parts = filterStr.split(IP_RANGE_SEPARATOR);
-            if ((parts.size() > 2) || parts.isEmpty())
+            if (parts.isEmpty() || (parts.size() > 2))
             {
                 // invalid range
-                qWarning() << Q_FUNC_INFO << "invalid range:" << filterStr;
                 return std::nullopt;
             }
             if (parts.size() == 2)
             {
                 // ip range format eg.
                 // "127.0.0.0 - 127.255.255.255"
-                firstIPStr = parts.first().trimmed().toString();
-                lastIPStr = parts.last().trimmed().toString();
-                first = QHostAddress(firstIPStr);
-                last = QHostAddress(lastIPStr);
+                firstIPStr = parts.first().trimmed();
+                lastIPStr = parts.last().trimmed();
+                first = QHostAddress(firstIPStr.toString());
+                last = QHostAddress(lastIPStr.toString());
             }
             else if (filterStr.contains(CIDR_INDICATOR))
             {
                 // CIDR notation
                 // "127.0.0.0/8"
-                firstIPStr = filterStr.first(filterStr.indexOf(CIDR_INDICATOR)).toString();
+                firstIPStr = filterStr.first(filterStr.indexOf(CIDR_INDICATOR));
                 const std::optional<Subnet> subnet = parseSubnet(filterStr.toString());
                 if (!subnet)
                     return std::nullopt;
@@ -247,7 +246,7 @@ namespace Utils
             }
             else
             {
-                firstIPStr = filterStr.toString();
+                firstIPStr = filterStr;
                 const QHostAddress addr {filterStr.toString()};
                 first = addr;
                 last = addr;
