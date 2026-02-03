@@ -162,7 +162,7 @@ namespace Utils
 
                 const int headBytes = prefixLength / 8;
                 const int bits = prefixLength % 8;
-                const quint8 maskByte = static_cast<quint8>((bits == 0) ? 0 : ((0xFF << (8 - bits)) & 0xFF));
+                const auto maskByte = static_cast<quint8>((0xFF << (8 - bits)) & 0xFF);
 
                 memcpy(ip6, addressBytes.c, headBytes);
 
