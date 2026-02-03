@@ -43,6 +43,16 @@
 
 using namespace std::chrono_literals;
 
+namespace
+{
+    const auto SAVE_ON_EXIT_KEY = u"Application/SaveOnExit"_s;
+
+    bool isSaveOnExitEnabled(const QVariantHash &data)
+    {
+        return data.value(SAVE_ON_EXIT_KEY, true).toBool();
+    }
+}
+
 SettingsStorage *SettingsStorage::m_instance = nullptr;
 
 SettingsStorage::SettingsStorage()
@@ -79,10 +89,17 @@ SettingsStorage *SettingsStorage::instance()
 
 bool SettingsStorage::save()
 {
-    // return `true` only when settings is different AND is saved successfully
+    // return `true` only when settings is different AND is saved successfully,
+    // or when saving is disabled and changes are discarded.
 
     const QWriteLocker locker(&m_lock);  // guard for `m_dirty` too
     if (!m_dirty) return false;
+
+    if (!isSaveOnExitEnabled(m_data))
+    {
+        m_dirty = false;
+        return true;
+    }
 
     if (!writeNativeSettings())
     {
@@ -108,7 +125,8 @@ void SettingsStorage::storeValueImpl(const QString &key, const QVariant &value)
     {
         m_dirty = true;
         currentValue = value;
-        m_timer.start();
+        if (isSaveOnExitEnabled(m_data))
+            m_timer.start();
     }
 }
 
@@ -215,7 +233,8 @@ void SettingsStorage::removeValue(const QString &key)
     if (m_data.remove(key))
     {
         m_dirty = true;
-        m_timer.start();
+        if (isSaveOnExitEnabled(m_data))
+            m_timer.start();
     }
 }
 
