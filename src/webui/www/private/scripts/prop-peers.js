@@ -96,9 +96,8 @@ window.qBittorrent.PropPeers ??= (() => {
                         }
                     }
                     if (responseJSON["peers_removed"]) {
-                        responseJSON["peers_removed"].each((hash) => {
+                        for (const hash of responseJSON["peers_removed"])
                             torrentPeersTable.removeRow(hash);
-                        });
                     }
                     torrentPeersTable.updateTable(full_update);
 

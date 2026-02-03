@@ -262,9 +262,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                     resetElementBorderStyle(borderChangeElement, ((changeBorderSide === "right") ? "left" : "right"));
 
-                    borderChangeElement.getSiblings('[class=""]').each((el) => {
-                        resetElementBorderStyle(el);
-                    });
+                    for (const el of borderChangeElement.parentElement.children) {
+                        if ((el !== borderChangeElement) && (el.classList.length === 0))
+                            resetElementBorderStyle(el);
+                    }
                 }
                 this.lastHoverTh = e.target;
                 this.lastClientX = e.clientX;
@@ -324,9 +325,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 if (this.currentHeaderAction === "drag") {
                     resetElementBorderStyle(el);
-                    el.getSiblings('[class=""]').each((el) => {
-                        resetElementBorderStyle(el);
-                    });
+                    for (const e of el.parentElement.children) {
+                        if ((e !== el) && (e.classList.length === 0))
+                            resetElementBorderStyle(e);
+                    }
                 }
                 this.currentHeaderAction = "";
             }.bind(this);
