@@ -817,18 +817,21 @@ window.qBittorrent.DynamicTable ??= (() => {
          * Replaces all rows with the provided set.
          * More efficient than calling clear() + updateRowData() because existing <tr>
          * elements are reused.
-         * @param {Object[]} rows - Array of row objects, each with a rowId property
+         * @param {Map} rows - A Map with rowId as key
          */
         setRows(rows) {
-            const newRowIds = new Set();
-            for (const row of rows) {
-                this.updateRowData(row);
-                newRowIds.add(`${row.rowId}`);
+            for (const existingId of this.rows.keys()) {
+                const newVal = rows.get(existingId);
+                if (newVal !== undefined) {
+                    this.updateRowData(newVal);
+                    rows.delete(existingId);
+                }
+                else {
+                    this.rows.delete(existingId);
+                }
             }
-            for (const rowId of this.rows.keys()) {
-                if (!newRowIds.has(rowId))
-                    this.rows.delete(rowId);
-            }
+            for (const data of rows.values())
+                this.updateRowData(data);
         }
 
         getTrs() {

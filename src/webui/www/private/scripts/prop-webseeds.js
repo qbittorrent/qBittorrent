@@ -76,7 +76,14 @@ window.qBittorrent.PropWebseeds ??= (() => {
                 const selectedWebseeds = torrentWebseedsTable.selectedRowsIds();
 
                 const webseeds = await response.json();
-                const rows = (webseeds instanceof Array) ? webseeds.map(ws => ({ rowId: ws.url, url: ws.url })) : [];
+
+                const rows = new Map();
+                if (webseeds instanceof Array) {
+                    for (const seed of webseeds) {
+                        const rowId = seed.url;
+                        rows.set(rowId, { rowId: rowId, url: seed.url });
+                    }
+                }
                 torrentWebseedsTable.setRows(rows);
 
                 torrentWebseedsTable.updateTable(false);
