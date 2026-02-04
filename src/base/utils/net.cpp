@@ -51,7 +51,7 @@ namespace
         for (const QStringView octet : octets)
         {
             const int len = octet.length();
-            if ((len <= 0) ||  (len > 3))
+            if ((len <= 0) || (len > 3))
                 return false;
             if ((len > 1) && octet.startsWith(u'0'))
                 return false;
@@ -137,15 +137,15 @@ namespace Utils
 
         IPRange subnetToIPRange(const Subnet &subnet)
         {
-            const QHostAddress &address = subnet.first;
+            const QHostAddress address = subnet.first;
             const int prefixLength = subnet.second;
 
-            const auto addressFamily = address.protocol();
+            const QHostAddress::NetworkLayerProtocol addressFamily = address.protocol();
 
             if (addressFamily == QAbstractSocket::IPv4Protocol)
             {
                 const quint32 ip = address.toIPv4Address();
-                quint32 mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
+                const quint32 mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
 
                 const quint32 network = ip & mask;
                 const quint32 broadcast = network | (~mask & 0xFFFFFFFF);
@@ -157,19 +157,22 @@ namespace Utils
             }
             if (addressFamily == QAbstractSocket::IPv6Protocol)
             {
-                const Q_IPV6ADDR addressBytes = address.toIPv6Address();
+                const auto addressBytes = address.toIPv6Address();
                 quint8 ip6[16] = {};
 
                 const int headBytes = prefixLength / 8;
                 const int bits = prefixLength % 8;
                 const auto maskByte = static_cast<quint8>((0xFF << (8 - bits)) & 0xFF);
 
-                memcpy(ip6, addressBytes.c, headBytes);
+                for (int i = 0; i < 16; ++i)
+                {
+                    ip6[i] = addressBytes[i];
+                }
 
-                ip6[headBytes] = addressBytes.c[headBytes] & maskByte;
+                ip6[headBytes] = addressBytes[headBytes] & maskByte;
                 const QHostAddress start {ip6};
 
-                ip6[headBytes] = addressBytes.c[headBytes] | ~maskByte;
+                ip6[headBytes] = addressBytes[headBytes] | ~maskByte;
                 memset(&ip6[headBytes + 1], 0xFF, (16 - (headBytes + 1)));
                 const QHostAddress end {ip6};
 
