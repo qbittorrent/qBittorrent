@@ -178,7 +178,10 @@ namespace Utils
                 const QHostAddress start {ip6};
 
                 ip6[headBytes] = addressBytes[headBytes] | ~maskByte;
-                memset(&ip6[headBytes + 1], 0xFF, (16 - (headBytes + 1)));
+                for (int i = headBytes + 1; i < 16; ++i)
+                {
+                    ip6[i] = 0xFF;
+                }
                 const QHostAddress end {ip6};
 
                 return std::make_pair(start, end);
