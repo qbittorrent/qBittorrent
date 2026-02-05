@@ -65,8 +65,8 @@ namespace
         static QByteArray ret;
         if (ret.isEmpty())
         {
-            const std::chrono::time_point baseDate = std::chrono::sys_days(2024y / 04 / 16);
-            const int baseVersion = 125;
+            constexpr std::chrono::time_point baseDate = std::chrono::sys_days(2024y / 04 / 16);
+            constexpr int baseVersion = 125;
 
             const std::chrono::time_point nowDate = std::chrono::system_clock::now();
             const int nowVersion = baseVersion + std::chrono::duration_cast<std::chrono::months>(nowDate - baseDate).count();

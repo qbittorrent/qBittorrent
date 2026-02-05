@@ -331,7 +331,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     painter.drawLine(fullRect.left(), rect.top() + 0.75 * rect.height(), rect.right(), rect.top() + 0.75 * rect.height());
     painter.drawLine(fullRect.left(), rect.bottom(), rect.right(), rect.bottom());
 
-    const int TIME_AXIS_DIVISIONS = 6;
+    constexpr int TIME_AXIS_DIVISIONS = 6;
     for (int i = 0; i < TIME_AXIS_DIVISIONS; ++i)
     {
         const int x = rect.left() + (i * rect.width()) / TIME_AXIS_DIVISIONS;

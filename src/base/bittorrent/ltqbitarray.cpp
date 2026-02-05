@@ -56,7 +56,7 @@ namespace BitTorrent::LT
 {
     QBitArray toQBitArray(const lt::bitfield &bits)
     {
-        const int STACK_ALLOC_SIZE = 10 * 1024;
+        constexpr int STACK_ALLOC_SIZE = 10 * 1024;
 
         const char *bitsData = bits.data();
         const int dataLength = (bits.size() + 7) / 8;

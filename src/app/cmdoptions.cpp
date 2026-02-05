@@ -53,9 +53,9 @@
 
 namespace
 {
-    const int USAGE_INDENTATION = 4;
-    const int USAGE_TEXT_COLUMN = 31;
-    const int WRAP_AT_COLUMN = 80;
+    constexpr int USAGE_INDENTATION = 4;
+    constexpr int USAGE_TEXT_COLUMN = 31;
+    constexpr int WRAP_AT_COLUMN = 80;
 
     // Base option class. Encapsulates name operations.
     class Option

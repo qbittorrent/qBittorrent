@@ -100,7 +100,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->filesList, &TorrentContentWidget::stateChanged, this, &PropertiesWidget::saveSettings);
 
     // set bar height relative to screen dpi
-    const int barHeight = 18;
+    constexpr int barHeight = 18;
 
     // Downloaded pieces progress bar
     m_ui->tempProgressBarArea->setVisible(false);

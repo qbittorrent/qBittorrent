@@ -77,7 +77,7 @@ public:
     void reset();
 
 private:
-    static const int MAX_SAMPLES = 30;
+    static constexpr int MAX_SAMPLES = 30;
     boost::circular_buffer<SpeedSample> m_speedSamples;
     SpeedSample m_sum;
 };

@@ -61,7 +61,7 @@ using namespace boost::multi_index;
 
 namespace
 {
-    const std::chrono::milliseconds ANNOUNCE_TIME_REFRESH_INTERVAL = 4s;
+    constexpr std::chrono::milliseconds ANNOUNCE_TIME_REFRESH_INTERVAL = 4s;
 
     const char STR_WORKING[] = QT_TRANSLATE_NOOP("TrackerListModel", "Working");
     const char STR_DISABLED[] = QT_TRANSLATE_NOOP("TrackerListModel", "Disabled");

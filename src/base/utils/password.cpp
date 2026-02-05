@@ -49,7 +49,7 @@ namespace Utils
     {
         namespace PBKDF2
         {
-            const int hashIterations = 100000;
+            constexpr int hashIterations = 100000;
             const auto hashMethod = EVP_sha512();
         }
     }

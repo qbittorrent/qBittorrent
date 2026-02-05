@@ -105,8 +105,8 @@ namespace
         return !ec;
     }
 
-    const int BUFFER_SIZE = 2 * 1024 * 1024; // 2 MiB
-    const int MAX_LOGGED_ERRORS = 5;
+    constexpr int BUFFER_SIZE = 2 * 1024 * 1024; // 2 MiB
+    constexpr int MAX_LOGGED_ERRORS = 5;
 }
 
 FilterParserThread::FilterParserThread(QObject *parent)

@@ -757,9 +757,9 @@ void Preferences::setStoreOpenedSearchTabResults(const bool enabled)
 bool Preferences::isWebUIEnabled() const
 {
 #ifdef DISABLE_GUI
-    const bool defaultValue = true;
+    constexpr bool defaultValue = true;
 #else
-    const bool defaultValue = false;
+    constexpr bool defaultValue = false;
 #endif
     return value(u"Preferences/WebUI/Enabled"_s, defaultValue);
 }
@@ -2135,7 +2135,7 @@ void Preferences::setAddNewTorrentDialogTopLevel(const bool value)
 
 int Preferences::addNewTorrentDialogSavePathHistoryLength() const
 {
-    const int defaultHistoryLength = 8;
+    constexpr int defaultHistoryLength = 8;
 
     const int val = value(u"AddNewTorrentDialog/SavePathHistoryLength"_s, defaultHistoryLength);
     return std::clamp(val, 0, 99);

@@ -44,7 +44,7 @@ namespace BitTorrent
 
     // Torrent
 
-    const qreal Torrent::MAX_RATIO = std::numeric_limits<qreal>::infinity();
+    constexpr qreal Torrent::MAX_RATIO = std::numeric_limits<qreal>::infinity();
 
     TorrentID Torrent::id() const
     {

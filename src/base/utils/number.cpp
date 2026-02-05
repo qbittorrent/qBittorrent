@@ -36,8 +36,8 @@ int Utils::Number::clampingAdd(const int num1, const int num2)
 {
     static_assert(sizeof(int64_t) > sizeof(int));
 
-    const int64_t intMin = std::numeric_limits<int>::min();
-    const int64_t intMax = std::numeric_limits<int>::max();
+    constexpr int64_t intMin = std::numeric_limits<int>::min();
+    constexpr int64_t intMax = std::numeric_limits<int>::max();
     const int64_t sumResult = static_cast<int64_t>(num1) + num2;
     const int64_t clampedValue = std::clamp(sumResult, intMin, intMax);
     return static_cast<int>(clampedValue);

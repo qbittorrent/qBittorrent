@@ -37,7 +37,7 @@
 #include "base/global.h"
 #include "gui/uithememanager.h"
 
-const int MAX_VISIBLE_MESSAGES = 20000;
+constexpr int MAX_VISIBLE_MESSAGES = 20000;
 
 BaseLogModel::Message::Message(const QString &time, const QString &message, const Log::MsgType type)
     : m_time {time}

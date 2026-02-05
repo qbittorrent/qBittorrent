@@ -51,14 +51,14 @@
 
 namespace
 {
-    const short DEFAULT_PORT = 25;
+    constexpr short DEFAULT_PORT = 25;
 #ifndef QT_NO_OPENSSL
-    const short DEFAULT_PORT_SSL = 465;
+    constexpr short DEFAULT_PORT_SSL = 465;
 #endif
 
     QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
     {
-        const int blockSize = 64; // HMAC-MD5 block size
+        constexpr int blockSize = 64; // HMAC-MD5 block size
         if (key.length() > blockSize)   // if key is longer than block size (64), reduce key length with MD5 compression
             key = QCryptographicHash::hash(key, QCryptographicHash::Md5);
 

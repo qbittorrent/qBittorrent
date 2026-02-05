@@ -40,8 +40,8 @@
 
 namespace
 {
-    const qint32 MAX_FILE_SIZE = 67108864; // 64MB
-    const quint32 MAX_METADATA_SIZE = 131072; // 128KB
+    constexpr qint32 MAX_FILE_SIZE = 64 * 1024 * 1024; // 64MB
+    constexpr quint32 MAX_METADATA_SIZE = 128 * 1024; // 128KB
     const QByteArray METADATA_BEGIN_MARK = QByteArrayLiteral("\xab\xcd\xefMaxMind.com");
     const char DATA_SECTION_SEPARATOR[16] = {0};
 

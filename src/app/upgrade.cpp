@@ -46,7 +46,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 8;
+    constexpr int MIGRATION_VERSION = 8;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()

@@ -93,8 +93,8 @@
 
 #define SETTINGS_KEY(name) u"OptionsDialog/" name
 
-const int WEBUI_MIN_USERNAME_LENGTH = 3;
-const int WEBUI_MIN_PASSWORD_LENGTH = 6;
+constexpr int WEBUI_MIN_USERNAME_LENGTH = 3;
+constexpr int WEBUI_MIN_PASSWORD_LENGTH = 6;
 
 namespace
 {

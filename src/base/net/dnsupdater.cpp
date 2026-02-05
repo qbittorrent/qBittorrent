@@ -40,7 +40,7 @@
 using namespace std::chrono_literals;
 using namespace Net;
 
-const std::chrono::seconds IP_CHECK_INTERVAL = 30min;
+constexpr std::chrono::seconds IP_CHECK_INTERVAL = 30min;
 
 DNSUpdater::DNSUpdater(QObject *parent)
     : QObject(parent)

@@ -513,7 +513,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
 
 void AutoDownloader::load()
 {
-    const qint64 maxFileSize = 10 * 1024 * 1024;
+    constexpr qint64 maxFileSize = 10 * 1024 * 1024;
     const auto readResult = Utils::IO::readFile((m_fileStorage->storageDir() / Path(RULES_FILE_NAME)), maxFileSize);
     if (!readResult)
     {

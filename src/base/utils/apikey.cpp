@@ -35,7 +35,7 @@
 
 namespace
 {
-    const int keyLength = 28;
+    constexpr int keyLength = 28;
     const QString prefix = u"qbt_"_s;
 }
 

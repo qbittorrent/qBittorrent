@@ -60,7 +60,7 @@
 using namespace std::chrono_literals;
 
 const std::chrono::seconds WATCH_INTERVAL {10};
-const int MAX_FAILED_RETRIES = 5;
+constexpr int MAX_FAILED_RETRIES = 5;
 const QString CONF_FILE_NAME = u"watched_folders.json"_s;
 
 const QString OPTION_ADDTORRENTPARAMS = u"add_torrent_params"_s;
@@ -154,7 +154,7 @@ TorrentFilesWatcher::TorrentFilesWatcher(QObject *parent)
 
 void TorrentFilesWatcher::load()
 {
-    const int fileMaxSize = 10 * 1024 * 1024;
+    constexpr int fileMaxSize = 10 * 1024 * 1024;
     const Path path = specialFolderLocation(SpecialFolder::Config) / Path(CONF_FILE_NAME);
 
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);

@@ -67,7 +67,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_s;
 
-    const int DB_VERSION = 9;
+    constexpr int DB_VERSION = 9;
 
     const QString DB_TABLE_META = u"meta"_s;
     const QString DB_TABLE_TORRENTS = u"torrents"_s;

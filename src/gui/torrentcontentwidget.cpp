@@ -309,7 +309,7 @@ void TorrentContentWidget::applyPrioritiesByOrder()
 
     const QList<QPersistentModelIndex> selectedRows = toPersistentIndexes(selectionModel()->selectedRows(Priority));
 
-    const qsizetype priorityGroups = 3;
+    constexpr qsizetype priorityGroups = 3;
     const auto priorityGroupSize = std::max<qsizetype>((selectedRows.length() / priorityGroups), 1);
 
     for (qsizetype i = 0; i < selectedRows.length(); ++i)

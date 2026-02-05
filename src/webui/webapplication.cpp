@@ -72,7 +72,7 @@
 #include "clientdatastorage.h"
 #include "peerhostnameresolver.h"
 
-const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
+constexpr int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const QString SESSION_COOKIE_NAME_PREFIX = u"QBT_SID_"_s;
 
 const QString WWW_FOLDER = u":/www"_s;

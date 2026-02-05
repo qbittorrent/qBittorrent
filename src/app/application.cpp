@@ -113,16 +113,16 @@ namespace
 #define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY(u"GUI/Notifications/"_s) name)
 
     const QString LOG_FOLDER = u"logs"_s;
-    const QChar PARAMS_SEPARATOR = u'|';
+    constexpr QChar PARAMS_SEPARATOR = u'|';
 
     const Path DEFAULT_PORTABLE_MODE_PROFILE_DIR {u"profile"_s};
 
-    const int MIN_FILELOG_SIZE = 1024; // 1KiB
-    const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
-    const int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
+    constexpr int MIN_FILELOG_SIZE = 1024; // 1KiB
+    constexpr int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
+    constexpr int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
 
 #ifndef DISABLE_GUI
-    const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
+    constexpr int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
 #endif
 
     const QString PARAM_ADDSTOPPED = u"@addStopped"_s;
@@ -1215,7 +1215,7 @@ void Application::shutdownCleanup([[maybe_unused]] QSessionManager &manager)
 #if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_LINUX) && !defined(Q_OS_MACOS)
 void Application::applyMemoryWorkingSetLimit() const
 {
-    const size_t MiB = 1024 * 1024;
+    constexpr size_t MiB = 1024 * 1024;
     const QString logMessage = tr("Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: \"%2\"");
 
 #ifdef Q_OS_WIN

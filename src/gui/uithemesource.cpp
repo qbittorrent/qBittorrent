@@ -40,7 +40,7 @@
 
 namespace
 {
-    const qint64 FILE_MAX_SIZE = 1024 * 1024;
+    constexpr qint64 FILE_MAX_SIZE = 1024 * 1024;
 
     QJsonObject parseThemeConfig(const QByteArray &data)
     {

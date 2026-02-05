@@ -46,12 +46,12 @@
 namespace
 {
     // static limits
-    const int MAX_TORRENTS = 10000;
-    const int MAX_PEERS_PER_TORRENT = 200;
-    const int ANNOUNCE_INTERVAL = 1800;  // 30min
+    constexpr int MAX_TORRENTS = 10000;
+    constexpr int MAX_PEERS_PER_TORRENT = 200;
+    constexpr int ANNOUNCE_INTERVAL = 1800;  // 30min
 
     // constants
-    const int PEER_ID_SIZE = 20;
+    constexpr int PEER_ID_SIZE = 20;
 
     const QString ANNOUNCE_REQUEST_PATH = u"/announce"_s;
 

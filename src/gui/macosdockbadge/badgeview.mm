@@ -33,7 +33,7 @@
 
 #include "base/utils/misc.h"
 
-static const CGFloat kBetweenPadding = 2.0;
+static constexpr CGFloat kBetweenPadding = 2.0;
 static const NSColor *const kUploadBadgeColor = [NSColor colorWithRed:0.094 green:0.243 blue:0.835 alpha:0.9];    // #183ed5
 static const NSColor *const kDownloadBadgeColor = [NSColor colorWithRed:0.216 green:0.482 blue:0.173 alpha:0.9];  // #377b2c
 static const NSSize kBadgeSize = {128.0, 30.0};

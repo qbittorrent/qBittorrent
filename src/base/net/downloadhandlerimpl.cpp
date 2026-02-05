@@ -46,7 +46,7 @@
 #include "base/utils/os.h"
 #endif // Q_OS_MACOS || Q_OS_WIN
 
-const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
+constexpr int MAX_REDIRECTIONS = 20;  // the common value for web browsers
 
 Net::DownloadHandlerImpl::DownloadHandlerImpl(DownloadManager *manager
         , const DownloadRequest &downloadRequest, const bool useProxy)

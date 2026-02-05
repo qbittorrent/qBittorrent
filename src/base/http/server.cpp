@@ -53,9 +53,9 @@ using namespace std::chrono_literals;
 
 namespace
 {
-    const int KEEP_ALIVE_DURATION = std::chrono::milliseconds(7s).count();
-    const int CONNECTIONS_LIMIT = 500;
-    const std::chrono::seconds CONNECTIONS_SCAN_INTERVAL {2};
+    constexpr int KEEP_ALIVE_DURATION = std::chrono::milliseconds(7s).count();
+    constexpr int CONNECTIONS_LIMIT = 500;
+    constexpr std::chrono::seconds CONNECTIONS_SCAN_INTERVAL {2};
 
     QList<QSslCipher> safeCipherList()
     {

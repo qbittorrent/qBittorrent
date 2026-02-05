@@ -86,7 +86,7 @@ QByteArray Utils::Gzip::decompress(const QByteArray &data, bool *ok)
     if (data.isEmpty())
         return {};
 
-    const int BUFSIZE = 1024 * 1024;
+    constexpr int BUFSIZE = 1024 * 1024;
     std::vector<char> tmpBuf(BUFSIZE);
 
     z_stream strm {};

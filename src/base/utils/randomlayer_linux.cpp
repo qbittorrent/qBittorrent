@@ -88,7 +88,7 @@ namespace
     private:
         result_type getRandomViaAPI() const
         {
-            const int RETRY_MAX = 3;
+            constexpr int RETRY_MAX = 3;
 
             for (int i = 0; i < RETRY_MAX; ++i)
             {

@@ -119,8 +119,8 @@ using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_s};
 const Path ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME {u"additional_trackers_from_url.txt"_s};
-const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
-const std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
+constexpr int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
+constexpr std::chrono::seconds FREEDISKSPACE_CHECK_TIMEOUT = 30s;
 
 namespace
 {
@@ -5566,7 +5566,7 @@ void SessionImpl::loadCategories()
 //        return;
     }
 
-    const int fileMaxSize = 1024 * 1024;
+    constexpr int fileMaxSize = 1024 * 1024;
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);
     if (!readResult)
     {
@@ -6633,7 +6633,7 @@ void SessionImpl::handleRemovedTorrent(const TorrentID &torrentID, const QString
 
 void SessionImpl::updateTrackersFromFile()
 {
-    const qint64 fileMaxSize = 1024 * 1024;
+    constexpr qint64 fileMaxSize = 1024 * 1024;
     const Path path = specialFolderLocation(SpecialFolder::Data) / Path(ADDITIONAL_TRACKERS_FROM_URL_FILE_NAME);
 
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);

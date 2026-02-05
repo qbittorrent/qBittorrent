@@ -233,7 +233,7 @@ namespace
         }
 
         const int working = static_cast<int>(BitTorrent::TrackerEndpointState::Working);
-        const int disabled = 0;
+        constexpr int disabled = 0;
 
         const QString privateMsg {QCoreApplication::translate("TrackerListWidget", "This torrent is private")};
         const bool isTorrentPrivate = torrent->isPrivate();

@@ -466,7 +466,7 @@ void AutomatedRssDownloader::onImportBtnClicked()
                     this, tr("Import RSS rules"), QDir::homePath()
                     , u"%1;;%2"_s.arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter)};
 
-    const int fileMaxSize = 10 * 1024 * 1024;
+    constexpr int fileMaxSize = 10 * 1024 * 1024;
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);
     if (!readResult)
     {

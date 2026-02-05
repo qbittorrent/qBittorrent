@@ -73,9 +73,9 @@
 #include "searchjobwidget.h"
 #include "ui_searchwidget.h"
 
-const int HISTORY_FILE_MAX_SIZE = 10 * 1024 * 1024;
-const int SESSION_FILE_MAX_SIZE = 10 * 1024 * 1024;
-const int RESULTS_FILE_MAX_SIZE = 10 * 1024 * 1024;
+constexpr int HISTORY_FILE_MAX_SIZE = 10 * 1024 * 1024;
+constexpr int SESSION_FILE_MAX_SIZE = 10 * 1024 * 1024;
+constexpr int RESULTS_FILE_MAX_SIZE = 10 * 1024 * 1024;
 
 const QString DATA_FOLDER_NAME = u"SearchUI"_s;
 const QString HISTORY_FILE_NAME = u"History.txt"_s;

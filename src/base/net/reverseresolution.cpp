@@ -31,7 +31,7 @@
 #include <QHostInfo>
 #include <QString>
 
-const int CACHE_SIZE = 2048;
+constexpr int CACHE_SIZE = 2048;
 
 using namespace Net;
 

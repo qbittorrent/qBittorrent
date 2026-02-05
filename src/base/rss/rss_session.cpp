@@ -271,7 +271,7 @@ Item *Session::itemByPath(const QString &path) const
 
 void Session::load()
 {
-    const int fileMaxSize = 10 * 1024 * 1024;
+    constexpr int fileMaxSize = 10 * 1024 * 1024;
     const Path path = m_confFileStorage->storageDir() / Path(FEEDS_FILE_NAME);
 
     const auto readResult = Utils::IO::readFile(path, fileMaxSize);

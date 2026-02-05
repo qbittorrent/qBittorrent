@@ -177,7 +177,7 @@ void BitTorrent::BencodeResumeDataStorage::doLoadAll() const
 
 void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
 {
-    const int lineMaxLength = 48;
+    constexpr int lineMaxLength = 48;
 
     QFile queueFile {queueFilename.data()};
     if (!queueFile.exists())

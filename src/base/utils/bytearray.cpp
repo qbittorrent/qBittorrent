@@ -89,7 +89,7 @@ QByteArray Utils::ByteArray::asQByteArray(const QByteArrayView view)
 QByteArray Utils::ByteArray::toBase32(const QByteArray &in)
 {
     const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-    const char padchar = '=';
+    constexpr char padchar = '=';
 
     const qsizetype inSize = in.size();
 

@@ -36,8 +36,8 @@
 #include "base/global.h"
 #include "gui/uithememanager.h"
 
-const int ROW_ALL = 0;
-const int ROW_UNTAGGED = 1;
+constexpr int ROW_ALL = 0;
+constexpr int ROW_UNTAGGED = 1;
 
 class TagModelItem
 {
