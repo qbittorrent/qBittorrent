@@ -44,23 +44,20 @@ namespace
 
     bool isValidIPv4(const QStringView ip)
     {
-        const QList<QStringView> octets = ip.split(IPV4_SEPARATOR);
+        const QList<QStringView> octets = ip.split(IPV4_SEPARATOR, Qt::SkipEmptyParts);
         if (octets.size() != 4)
             return false;
 
         for (const QStringView octet : octets)
         {
-            const int len = octet.length();
-            if ((len <= 0) || (len > 3))
+            const qsizetype len = octet.length();
+            if (len > 3)
                 return false;
             if ((len > 1) && octet.startsWith(u'0'))
                 return false;
 
-            for (const QChar ch : octet)
-            {
-                if (!ch.isDigit())
-                    return false;
-            }
+            if (std::ranges::any_of(octet, [](QChar c){ return !c.isDigit(); }))
+                return false;
 
             const int value = octet.toInt();
             if (value > 255)
