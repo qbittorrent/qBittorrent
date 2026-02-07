@@ -38,9 +38,9 @@
 
 namespace
 {
-    constexpr QChar IPV4_SEPARATOR = u'.';
-    constexpr QChar IP_RANGE_SEPARATOR = u'-';
-    constexpr QChar CIDR_INDICATOR = u'/';
+    const QChar IPV4_SEPARATOR = u'.';
+    const QChar IP_RANGE_SEPARATOR = u'-';
+    const QChar CIDR_INDICATOR = u'/';
 
     bool isValidIPv4(const QStringView ip)
     {
