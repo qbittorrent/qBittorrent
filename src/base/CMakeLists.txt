@@ -247,6 +247,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${Carbon_LIBRARY}
         ${IOKit_LIBRARY}
     )
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    include(CheckSymbolExists)
+    check_symbol_exists(getrandom "sys/random.h" HAVE_GETRANDOM)
+
+    if (HAVE_GETRANDOM)
+        target_compile_definitions(qbt_base PUBLIC QBT_USES_GETRANDOM)
+    endif()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_link_libraries(qbt_base PRIVATE iphlpapi powrprof)
 endif()
