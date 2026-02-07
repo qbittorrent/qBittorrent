@@ -489,7 +489,7 @@ window.qBittorrent.TorrentContent ??= (() => {
                 Rename: (element, ref) => {
                     if (onFileRenameHandler !== undefined) {
                         const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
-                        onFileRenameHandler(torrentFilesTable.selectedRows, nodes);
+                        onFileRenameHandler([...torrentFilesTable.selectedRows], nodes);
                     }
                 },
 

@@ -403,10 +403,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     addRule: addRule,
                     deleteRule: removeSelectedRule,
                     renameRule: (el) => {
-                        renameRule(rssDownloaderRulesTable.getRow(rssDownloaderRulesTable.selectedRows[0]).full_data.name);
+                        renameRule(rssDownloaderRulesTable.getRow([...rssDownloaderRulesTable.selectedRows][0]).full_data.name);
                     },
                     clearDownloadedEpisodes: (el) => {
-                        clearDownloadedEpisodes(rssDownloaderRulesTable.selectedRows
+                        clearDownloadedEpisodes([...rssDownloaderRulesTable.selectedRows]
                             .map((sRow) => rssDownloaderRulesTable.getRow(sRow).full_data.name));
                     }
                 },
@@ -557,9 +557,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const removeSelectedRule = () => {
-            if (rssDownloaderRulesTable.selectedRows.length === 0)
+            if (rssDownloaderRulesTable.selectedRows.size === 0)
                 return;
-            removeRules(rssDownloaderRulesTable.selectedRows.map((sRow) =>
+            removeRules([...rssDownloaderRulesTable.selectedRows].map((sRow) =>
                 rssDownloaderRulesTable.getRow(sRow).full_data.name));
         };
 
@@ -596,7 +596,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const saveSettings = () => {
-            const lastSelectedRow = rssDownloaderRulesTable.selectedRows.at(-1);
+            const lastSelectedRow = [...rssDownloaderRulesTable.selectedRows].at(-1);
             const rule = rssDownloaderRulesTable.getRow(lastSelectedRow).full_data.name;
 
             rulesList[rule].useRegex = document.getElementById("useRegEx").checked;

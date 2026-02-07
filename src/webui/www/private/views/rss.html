@@ -263,14 +263,14 @@
                     },
                     markRead: markSelectedAsRead,
                     rename: (el) => {
-                        moveItem(rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data.dataPath);
+                        moveItem(rssFeedTable.getRow([...rssFeedTable.selectedRows][0]).full_data.dataPath);
                     },
                     edit: (el) => {
-                        const data = rssFeedTable.getRow(rssFeedTable.selectedRows[0]).full_data;
+                        const data = rssFeedTable.getRow([...rssFeedTable.selectedRows][0]).full_data;
                         editUrl(data.dataPath, data.dataUrl);
                     },
                     delete: (el) => {
-                        const selectedDatapaths = rssFeedTable.selectedRows
+                        const selectedDatapaths = [...rssFeedTable.selectedRows]
                             .filter((rowID) => rowID !== "0")
                             .map((rowID) => rssFeedTable.getRow(rowID).full_data.dataPath);
                         // filter children
@@ -303,7 +303,7 @@
                 }
             });
             document.getElementById("rssFilterInput").addEventListener("input", (event) => {
-                const rowId = rssFeedTable.selectedRows[0];
+                const rowId = [...rssFeedTable.selectedRows][0];
                 let path = "";
                 for (const row of rssFeedTable.getRowValues()) {
                     if (row.rowId === rowId) {
@@ -365,8 +365,8 @@
 
         const addRSSFeed = () => {
             let path = "";
-            if (rssFeedTable.selectedRows.length !== 0) {
-                const row = rssFeedTable.getRow(rssFeedTable.selectedRows[0]);
+            if (rssFeedTable.selectedRows.size !== 0) {
+                const row = rssFeedTable.getRow([...rssFeedTable.selectedRows][0]);
                 if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
@@ -393,8 +393,8 @@
 
         const addFolder = () => {
             let path = "";
-            if (rssFeedTable.selectedRows.length !== 0) {
-                const row = rssFeedTable.getRow(rssFeedTable.selectedRows[0]);
+            if (rssFeedTable.selectedRows.size !== 0) {
+                const row = rssFeedTable.getRow([...rssFeedTable.selectedRows][0]);
                 if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
@@ -640,8 +640,8 @@
 
                         // get currently opened feed
                         let openedFeedPath = undefined;
-                        if (rssFeedTable.selectedRows.length !== 0) {
-                            const lastSelectedRow = rssFeedTable.selectedRows.at(-1);
+                        if (rssFeedTable.selectedRows.size !== 0) {
+                            const lastSelectedRow = [...rssFeedTable.selectedRows].at(-1);
                             openedFeedPath = rssFeedTable.getRow(lastSelectedRow).full_data.dataPath;
                         }
 
@@ -972,7 +972,7 @@
         };
 
         const markSelectedAsRead = () => {
-            const selectedDatapaths = rssFeedTable.selectedRows
+            const selectedDatapaths = [...rssFeedTable.selectedRows]
                 .map((sRow) => rssFeedTable.getRow(sRow).full_data.dataPath);
             // filter children
             const reducedDatapaths = selectedDatapaths.filter((path) =>
