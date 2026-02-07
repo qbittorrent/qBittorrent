@@ -42,6 +42,7 @@ namespace
     const QChar IP_RANGE_SEPARATOR = u'-';
     const QChar CIDR_INDICATOR = u'/';
 
+    // avoid using Qt parsing, which allows non-standard notation.
     bool isValidIPv4(const QStringView ip)
     {
         const QList<QStringView> octets = ip.split(IPV4_SEPARATOR, Qt::SkipEmptyParts);
