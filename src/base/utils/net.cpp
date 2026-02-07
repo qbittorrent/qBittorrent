@@ -77,14 +77,7 @@ namespace
             return first.toIPv4Address() <= last.toIPv4Address();
         if (first.protocol() == QAbstractSocket::IPv6Protocol)
         {
-            const Q_IPV6ADDR firstIPv6 = first.toIPv6Address();
-            const Q_IPV6ADDR lastIPv6 = last.toIPv6Address();
-            QByteArray firstIPv6Bytes, lastIPv6Bytes;
-            for (const quint8 byte : firstIPv6.c)
-                firstIPv6Bytes.append(byte);
-            for (const quint8 byte : lastIPv6.c)
-                lastIPv6Bytes.append(byte);
-            return !std::ranges::lexicographical_compare(firstIPv6Bytes, lastIPv6Bytes, std::less<quint8>{});
+            return std::ranges::lexicographical_compare(first.toIPv6Address().c, last.toIPv6Address().c, std::less_equal());
         }
         return false;
     }
