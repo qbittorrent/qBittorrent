@@ -51,7 +51,7 @@ namespace Utils::Net
     IPRange subnetToIPRange(const Subnet &subnet);
     QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
 
-    std::optional<IPRange> parseIPRange(QStringView filterStr, const bool isStrictIPv4 = false);
+    std::optional<IPRange> parseIPRange(QStringView filterStr, bool isStrictIPv4 = false);
     QString ipRangeToString(const IPRange &ipRange);
 
     inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
