@@ -3,6 +3,7 @@
 ## 2.15.2
 * [#23784](https://github.com/qbittorrent/qBittorrent/pull/23784)
   * `search/status` endpoint now includes `pattern` field for each search job
+  * `app/preferences` endpoint now supports `store_search_jobs` and `store_search_job_results` preference keys
 
 ## 2.15.1
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
