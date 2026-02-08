@@ -17,6 +17,7 @@ add_library(qbt_webui STATIC
     api/serialize/serialize_torrent.h
     clientdatastorage.h
     peerhostnameresolver.h
+    searchjobmanager.h
     webapplication.h
     webui.h
 
@@ -36,6 +37,7 @@ add_library(qbt_webui STATIC
     api/serialize/serialize_torrent.cpp
     clientdatastorage.cpp
     peerhostnameresolver.cpp
+    searchjobmanager.cpp
     webapplication.cpp
     webui.cpp
 )

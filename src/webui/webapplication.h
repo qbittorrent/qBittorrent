@@ -57,12 +57,13 @@
 
 using namespace std::chrono_literals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 15, 1};
+inline const Utils::Version<3, 2> API_VERSION {2, 15, 2};
 
 class APIController;
 class AuthController;
 class ClientDataStorage;
 class PeerHostNameResolver;
+class SearchJobManager;
 class WebApplication;
 
 namespace BitTorrent
@@ -283,6 +284,7 @@ private:
     QList<Http::Header> m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
+    SearchJobManager *m_searchJobManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
     PeerHostNameResolver *m_peerHostNameResolver = nullptr;
 
