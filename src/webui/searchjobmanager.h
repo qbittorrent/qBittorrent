@@ -63,8 +63,21 @@ public:
     std::optional<JobInfo> getJobInfo(int id) const;
     QList<JobInfo> getAllJobInfos() const;
 
+private slots:
+    void onPreferencesChanged();
+
 private:
+    void onSearchStopped(int id);
     int generateSearchId() const;
+    void loadSession();
+    void saveSession() const;
+    void saveSearchResults(int searchId) const;
+    void removeSearchResults(int searchId) const;
+    void removeAllResultFiles() const;
+    void removeAllData() const;
+
+    bool m_storeSearchJobs = false;
+    bool m_storeSearchJobResults = false;
 
     QHash<int, std::shared_ptr<SearchHandler>> m_searchHandlers;
     // TODO: use Boost.MultiIndex to provide both lookup by ID and insertion order
