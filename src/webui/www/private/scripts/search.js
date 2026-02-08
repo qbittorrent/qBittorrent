@@ -584,25 +584,22 @@ window.qBittorrent.Search ??= (() => {
 
     const copySearchTorrentName = () => {
         const names = [];
-        searchResultsTable.selectedRowsIds().each((rowId) => {
+        for (const rowId of searchResultsTable.selectedRowsIds())
             names.push(searchResultsTable.getRow(rowId).full_data.fileName);
-        });
         return names.join("\n");
     };
 
     const copySearchTorrentDownloadLink = () => {
         const urls = [];
-        searchResultsTable.selectedRowsIds().each((rowId) => {
+        for (const rowId of searchResultsTable.selectedRowsIds())
             urls.push(searchResultsTable.getRow(rowId).full_data.fileUrl);
-        });
         return urls.join("\n");
     };
 
     const copySearchTorrentDescriptionUrl = () => {
         const urls = [];
-        searchResultsTable.selectedRowsIds().each((rowId) => {
+        for (const rowId of searchResultsTable.selectedRowsIds())
             urls.push(searchResultsTable.getRow(rowId).full_data.descrLink);
-        });
         return urls.join("\n");
     };
 
@@ -801,16 +798,16 @@ window.qBittorrent.Search ??= (() => {
                             document.getElementById("searchResultsNoSearches").classList.remove("invisible");
 
                         // sort plugins alphabetically
-                        const allPlugins = searchPlugins.sort((left, right) => {
+                        searchPlugins.sort((left, right) => {
                             const leftName = left.fullName;
                             const rightName = right.fullName;
                             return window.qBittorrent.Misc.naturalSortCollator.compare(leftName, rightName);
                         });
 
-                        allPlugins.each((plugin) => {
+                        for (const plugin of searchPlugins) {
                             if (plugin.enabled === true)
                                 pluginOptions.push(createOption(plugin.fullName, plugin.name));
-                        });
+                        }
 
                         if (pluginOptions.length > 2)
                             pluginOptions.splice(2, 0, createOption("──────────", undefined, true));
