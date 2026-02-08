@@ -440,8 +440,8 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     });
 
     m_historyLength = Preferences::instance()->searchHistoryLength();
-    m_storeOpenedTabs = Preferences::instance()->storeOpenedSearchTabs();
-    m_storeOpenedTabsResults = Preferences::instance()->storeOpenedSearchTabResults();
+    m_storeOpenedTabs = Preferences::instance()->storeSearchJobs();
+    m_storeOpenedTabsResults = Preferences::instance()->storeSearchJobResults();
     connect(Preferences::instance(), &Preferences::changed, this, &SearchWidget::onPreferencesChanged);
 
     m_dataStorage->moveToThread(m_ioThread.get());
@@ -488,7 +488,7 @@ void SearchWidget::onPreferencesChanged()
 {
     const auto *pref = Preferences::instance();
 
-    const bool storeOpenedTabs = pref->storeOpenedSearchTabs();
+    const bool storeOpenedTabs = pref->storeSearchJobs();
     const bool isStoreOpenedTabsChanged = storeOpenedTabs != m_storeOpenedTabs;
     if (isStoreOpenedTabsChanged)
     {
@@ -504,7 +504,7 @@ void SearchWidget::onPreferencesChanged()
     }
 
 
-    const bool storeOpenedTabsResults = pref->storeOpenedSearchTabResults();
+    const bool storeOpenedTabsResults = pref->storeSearchJobResults();
     const bool isStoreOpenedTabsResultsChanged = storeOpenedTabsResults != m_storeOpenedTabsResults;
     if (isStoreOpenedTabsResultsChanged)
         m_storeOpenedTabsResults = storeOpenedTabsResults;
