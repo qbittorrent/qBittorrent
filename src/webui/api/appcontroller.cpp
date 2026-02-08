@@ -156,6 +156,9 @@ void AppController::preferencesAction()
     data[u"status_bar_external_ip"_s] = pref->isStatusbarExternalIPDisplayed();
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
+    // Search
+    data[u"store_search_jobs"_s] = pref->storeSearchJobs();
+    data[u"store_search_job_results"_s] = pref->storeSearchJobResults();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -553,6 +556,11 @@ void AppController::setPreferencesAction()
     // Transfer List
     if (hasKey(u"confirm_torrent_deletion"_s))
         pref->setConfirmTorrentDeletion(it.value().toBool());
+    // Search
+    if (hasKey(u"store_search_jobs"_s))
+        pref->setStoreSearchJobs(it.value().toBool());
+    if (hasKey(u"store_search_job_results"_s))
+        pref->setStoreSearchJobResults(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());
