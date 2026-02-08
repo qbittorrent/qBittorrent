@@ -1320,12 +1320,12 @@ void OptionsDialog::loadSearchTabOptions()
 {
     const auto *pref = Preferences::instance();
 
-    m_ui->groupStoreOpenedTabs->setChecked(pref->storeOpenedSearchTabs());
-    m_ui->checkStoreTabsSearchResults->setChecked(pref->storeOpenedSearchTabResults());
+    m_ui->groupStoreSearchJobs->setChecked(pref->storeSearchJobs());
+    m_ui->checkStoreSearchJobResults->setChecked(pref->storeSearchJobResults());
     m_ui->searchHistoryLengthSpinBox->setValue(pref->searchHistoryLength());
 
-    connect(m_ui->groupStoreOpenedTabs, &QGroupBox::toggled, this, &OptionsDialog::enableApplyButton);
-    connect(m_ui->checkStoreTabsSearchResults, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->groupStoreSearchJobs, &QGroupBox::toggled, this, &OptionsDialog::enableApplyButton);
+    connect(m_ui->checkStoreSearchJobResults, &QCheckBox::toggled, this, &OptionsDialog::enableApplyButton);
     connect(m_ui->searchHistoryLengthSpinBox, qSpinBoxValueChanged, this, &OptionsDialog::enableApplyButton);
 }
 
@@ -1333,8 +1333,8 @@ void OptionsDialog::saveSearchTabOptions() const
 {
     auto *pref = Preferences::instance();
 
-    pref->setStoreOpenedSearchTabs(m_ui->groupStoreOpenedTabs->isChecked());
-    pref->setStoreOpenedSearchTabResults(m_ui->checkStoreTabsSearchResults->isChecked());
+    pref->setStoreSearchJobs(m_ui->groupStoreSearchJobs->isChecked());
+    pref->setStoreSearchJobResults(m_ui->checkStoreSearchJobResults->isChecked());
     pref->setSearchHistoryLength(m_ui->searchHistoryLengthSpinBox->value());
 }
 
