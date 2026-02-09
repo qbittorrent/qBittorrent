@@ -153,27 +153,21 @@ namespace Utils
             }
             if (addressFamily == QAbstractSocket::IPv6Protocol)
             {
-                const auto addressBytes = address.toIPv6Address();
-                quint8 ip6[16] = {};
+                Q_IPV6ADDR addressBytes = address.toIPv6Address();
 
                 const int headBytes = prefixLength / 8;
                 const int bits = prefixLength % 8;
                 const auto maskByte = static_cast<quint8>((0xFF << (8 - bits)) & 0xFF);
 
-                for (int i = 0; i < 16; ++i)
-                {
-                    ip6[i] = addressBytes[i];
-                }
+                addressBytes[headBytes] &= maskByte;
+                const QHostAddress start {addressBytes};
 
-                ip6[headBytes] = addressBytes[headBytes] & maskByte;
-                const QHostAddress start {ip6};
-
-                ip6[headBytes] = addressBytes[headBytes] | ~maskByte;
+                addressBytes[headBytes] |= ~maskByte;
                 for (int i = headBytes + 1; i < 16; ++i)
                 {
-                    ip6[i] = 0xFF;
+                    addressBytes[i] = 0xFF;
                 }
-                const QHostAddress end {ip6};
+                const QHostAddress end {addressBytes};
 
                 return std::make_pair(start, end);
             }
