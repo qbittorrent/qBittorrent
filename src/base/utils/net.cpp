@@ -57,7 +57,7 @@ namespace
             if ((len > 1) && octet.startsWith(u'0'))
                 return false;
 
-            if (std::ranges::any_of(octet, [](QChar c){ return !c.isDigit(); }))
+            if (std::ranges::any_of(octet, [](const QChar c) { return !c.isDigit(); }))
                 return false;
 
             const int value = octet.toInt();
@@ -216,9 +216,11 @@ namespace Utils
         std::optional<IPRange> parseIPRange(QStringView filterStr, const bool isStrictIPv4)
         {
             filterStr = filterStr.trimmed();
+
             QHostAddress first, last;
             QStringView firstIPStr, lastIPStr;
             QList<QStringView> parts = filterStr.split(IP_RANGE_SEPARATOR);
+
             if (parts.isEmpty() || (parts.size() > 2))
             {
                 // invalid range
