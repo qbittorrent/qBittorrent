@@ -197,34 +197,15 @@ namespace
         map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = lastExternalIPv6Address;
 
         const bool resolvePeerCountries = Preferences::instance()->resolvePeerCountries();
-        if (resolvePeerCountries && Net::GeoIPManager::instance())
+        if (resolvePeerCountries)
         {
-            if (!lastExternalIPv4Address.isEmpty())
-            {
-                const QHostAddress ipv4Address(lastExternalIPv4Address);
-                if (!ipv4Address.isNull())
-                {
-                    const QString countryCode = Net::GeoIPManager::instance()->lookup(ipv4Address);
-                    if (!countryCode.isEmpty())
-                    {
-                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY_CODE] = countryCode.toLower();
-                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY] = Net::GeoIPManager::CountryName(countryCode);
-                    }
-                }
-            }
-            if (!lastExternalIPv6Address.isEmpty())
-            {
-                const QHostAddress ipv6Address(lastExternalIPv6Address);
-                if (!ipv6Address.isNull())
-                {
-                    const QString countryCode = Net::GeoIPManager::instance()->lookup(ipv6Address);
-                    if (!countryCode.isEmpty())
-                    {
-                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY_CODE] = countryCode.toLower();
-                        map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY] = Net::GeoIPManager::CountryName(countryCode);
-                    }
-                }
-            }
+            const QString ip4CountryCode = Net::GeoIPManager::instance()->lookup(QHostAddress(lastExternalIPv4Address));
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY_CODE] = ip4CountryCode.toLower();
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4_COUNTRY] = Net::GeoIPManager::CountryName(ip4CountryCode);
+
+            const QString ip6CountryCode = Net::GeoIPManager::instance()->lookup(QHostAddress(lastExternalIPv6Address));
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY_CODE] = ip6CountryCode.toLower();
+            map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6_COUNTRY] = Net::GeoIPManager::CountryName(ip6CountryCode);
         }
 
         map[KEY_TRANSFER_DHT_NODES] = sessionStatus.dhtNodes;
