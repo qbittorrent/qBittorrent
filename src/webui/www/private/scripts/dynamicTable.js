@@ -1601,7 +1601,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     inactive = true;
                     // fallthrough
                 case "active": {
-                    const r = (upspeed > 0) || (dlspeed > 0);
+                    const r = (upspeed > 1) || (dlspeed > 1);
                     if (r === inactive)
                         return false;
                     break;

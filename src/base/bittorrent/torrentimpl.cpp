@@ -1188,7 +1188,7 @@ bool TorrentImpl::isCompleted() const
 
 bool TorrentImpl::isActive() const
 {
-    return ((uploadPayloadRate() > 0) || (downloadPayloadRate() > 0));
+    return ((uploadPayloadRate() > 1) || (downloadPayloadRate() > 1));
 }
 
 bool TorrentImpl::isInactive() const
