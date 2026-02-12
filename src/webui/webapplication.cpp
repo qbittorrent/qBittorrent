@@ -1021,9 +1021,8 @@ bool WebApplication::validateCredentials(const QStringView username, const QStri
         throw ForbiddenHTTPError(tr("Your IP address has been banned after too many failed authentication attempts."));
     }
 
-    const auto *pref = Preferences::instance();
-    const bool usernameEqual = Utils::Password::slowEquals(username.toUtf8(), pref->getWebUIUsername().toUtf8());
-    const bool passwordEqual = Utils::Password::PBKDF2::verify(pref->getWebUIPassword(), password);
+    const bool usernameEqual = Utils::Password::slowEquals(username.toUtf8(), m_username.toUtf8());
+    const bool passwordEqual = Utils::Password::PBKDF2::verify(m_passwordHash, password);
 
     if (usernameEqual && passwordEqual)
     {
@@ -1032,6 +1031,7 @@ bool WebApplication::validateCredentials(const QStringView username, const QStri
         return true;
     }
 
+    const auto *pref = Preferences::instance();
     if (pref->getWebUIMaxAuthFailCount() > 0)
         increaseFailedAttempts();
 
