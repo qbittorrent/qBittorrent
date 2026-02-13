@@ -53,14 +53,29 @@ void TorrentContentItemDelegate::setEditorData(QWidget *editor, const QModelInde
     case BitTorrent::DownloadPriority::Ignored:
         combobox->setCurrentIndex(0);
         break;
-    case BitTorrent::DownloadPriority::High:
+    case BitTorrent::DownloadPriority::Normal:
+        combobox->setCurrentIndex(1);
+        break;
+    case BitTorrent::DownloadPriority::Normal2:
         combobox->setCurrentIndex(2);
         break;
-    case BitTorrent::DownloadPriority::Maximum:
+    case BitTorrent::DownloadPriority::Normal3:
         combobox->setCurrentIndex(3);
         break;
-    case BitTorrent::DownloadPriority::Mixed:
+    case BitTorrent::DownloadPriority::Normal4:
         combobox->setCurrentIndex(4);
+        break;
+    case BitTorrent::DownloadPriority::Normal5:
+        combobox->setCurrentIndex(5);
+        break;
+    case BitTorrent::DownloadPriority::High:
+        combobox->setCurrentIndex(6);
+        break;
+    case BitTorrent::DownloadPriority::Maximum:
+        combobox->setCurrentIndex(7);
+        break;
+    case BitTorrent::DownloadPriority::Mixed:
+        combobox->setCurrentIndex(8);
         break;
     default:
         combobox->setCurrentIndex(1);
@@ -76,9 +91,13 @@ QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleO
     auto *editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
     editor->addItem(tr("Do not download", "Do not download (priority)"));
-    editor->addItem(tr("Normal", "Normal (priority)"));
-    editor->addItem(tr("High", "High (priority)"));
-    editor->addItem(tr("Maximum", "Maximum (priority)"));
+    editor->addItem(tr("Normal (1)", "Normal (1) (priority)"));
+    editor->addItem(tr("Normal (2)", "Normal (2) (priority)"));
+    editor->addItem(tr("Normal (3)", "Normal (3) (priority)"));
+    editor->addItem(tr("Normal (4)", "Normal (4) (priority)"));
+    editor->addItem(tr("Normal (5)", "Normal (5) (priority)"));
+    editor->addItem(tr("High (6)", "High (6) (priority)"));
+    editor->addItem(tr("Maximum (7)", "Maximum (7) (priority)"));
 
     // add Mixed priority item to the new combobox only for those items with Mixed priority
     const auto priority = static_cast<BitTorrent::DownloadPriority>(index.data(TorrentContentModel::UnderlyingDataRole).toInt());
@@ -105,13 +124,28 @@ void TorrentContentItemDelegate::setModelData(QWidget *editor, QAbstractItemMode
     case 0:
         prio = BitTorrent::DownloadPriority::Ignored; // IGNORED
         break;
+    case 1:
+        prio = BitTorrent::DownloadPriority::Normal; // NORMAL (1)
+        break;
     case 2:
-        prio = BitTorrent::DownloadPriority::High; // HIGH
+        prio = BitTorrent::DownloadPriority::Normal2; // NORMAL (2)
         break;
     case 3:
-        prio = BitTorrent::DownloadPriority::Maximum; // MAX
+        prio = BitTorrent::DownloadPriority::Normal3; // NORMAL (3)
         break;
     case 4:
+        prio = BitTorrent::DownloadPriority::Normal4; // NORMAL (4)
+        break;
+    case 5:
+        prio = BitTorrent::DownloadPriority::Normal5; // NORMAL (5)
+        break;
+    case 6:
+        prio = BitTorrent::DownloadPriority::High; // HIGH
+        break;
+    case 7:
+        prio = BitTorrent::DownloadPriority::Maximum; // MAX
+        break;
+    case 8:
         prio = BitTorrent::DownloadPriority::Mixed; // MIXED
         break;
     }

@@ -34,6 +34,10 @@ namespace BitTorrent
     {
         Ignored = 0,
         Normal = 1,
+        Normal2 = 2,
+        Normal3 = 3,
+        Normal4 = 4,
+        Normal5 = 5,
         High = 6,
         Maximum = 7,
 
