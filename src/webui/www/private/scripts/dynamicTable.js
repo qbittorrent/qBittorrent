@@ -83,7 +83,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.rowHeight = (clientData.get("display_density") === "compact") ? 22 : 26;
             this.rows = new Map();
             this.cachedElements = [];
-            this.selectedRows = new Set();
+            this.selectedRows = [];
             this.columns = [];
             this.contextMenu = contextMenu;
             this.sortedColumn = localPreferences.get(`sorted_column_${this.dynamicTableDivId}`, 0);
@@ -144,7 +144,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     else
                         this.selectRow(tr.rowId);
                 }
-                else if (e.shiftKey && (this.selectedRows.size === 1)) {
+                else if (e.shiftKey && (this.selectedRows.length === 1)) {
                     // Shift key was pressed
                     this.selectRows(this.getSelectedRowId(), tr.rowId);
                 }
@@ -719,13 +719,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         getSelectedRowId() {
-            if (this.selectedRows.size > 0)
-                return this.selectedRows.values().next().value;
+            if (this.selectedRows.length > 0)
+                return this.selectedRows[0];
             return "";
         }
 
         isRowSelected(rowId) {
-            return this.selectedRows.has(rowId);
+            return this.selectedRows.contains(rowId);
         }
 
         setupAltRow() {
@@ -737,22 +737,22 @@ window.qBittorrent.DynamicTable ??= (() => {
         selectAll() {
             this.deselectAll();
             for (const row of this.getFilteredAndSortedRows())
-                this.selectedRows.add(row.rowId);
+                this.selectedRows.push(row.rowId);
             this.setRowClass();
         }
 
         deselectAll() {
-            this.selectedRows.clear();
+            this.selectedRows.empty();
         }
 
         selectRow(rowId) {
-            this.selectedRows.add(rowId);
+            this.selectedRows.push(rowId);
             this.setRowClass();
             this.onSelectedRowChanged();
         }
 
         deselectRow(rowId) {
-            this.selectedRows.delete(rowId);
+            this.selectedRows.erase(rowId);
             this.setRowClass();
             this.onSelectedRowChanged();
         }
@@ -768,10 +768,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             for (const row of this.getFilteredAndSortedRows()) {
                 if ((row.rowId === rowId1) || (row.rowId === rowId2)) {
                     select = !select;
-                    this.selectedRows.add(row.rowId);
+                    this.selectedRows.push(row.rowId);
                 }
                 else if (select) {
-                    this.selectedRows.add(row.rowId);
+                    this.selectedRows.push(row.rowId);
                 }
             }
             this.setRowClass();
@@ -780,7 +780,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         reselectRows(rowIds) {
             this.deselectAll();
-            this.selectedRows = new Set(rowIds);
+            this.selectedRows = rowIds.slice();
             this.setRowClass();
         }
 
@@ -872,9 +872,11 @@ window.qBittorrent.DynamicTable ??= (() => {
         updateTable(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
 
-            for (const rowId of this.selectedRows) {
-                if (!(rowId in rows))
-                    this.selectedRows.delete(rowId);
+            for (let i = 0; i < this.selectedRows.length; ++i) {
+                if (!(this.selectedRows[i] in rows)) {
+                    this.selectedRows.splice(i, 1);
+                    --i;
+                }
             }
 
             if (this.useVirtualList) {
@@ -1032,7 +1034,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         removeRow(rowId) {
-            this.selectedRows.delete(rowId);
+            this.selectedRows.erase(rowId);
             this.rows.delete(rowId);
             if (this.useVirtualList) {
                 this.rerender();
@@ -1056,7 +1058,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         selectedRowsIds() {
-            return [...this.selectedRows];
+            return this.selectedRows.slice();
         }
 
         getRowIds() {
