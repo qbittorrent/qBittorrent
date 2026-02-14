@@ -155,6 +155,8 @@ public:
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
     void setMailNotificationSMTP(const QString &smtpServer);
+    bool getMailNotificationSMTPStartTLS() const;
+    void setMailNotificationSMTPStartTLS(bool use);
     bool getMailNotificationSMTPSSL() const;
     void setMailNotificationSMTPSSL(bool use);
     bool getMailNotificationSMTPAuth() const;
