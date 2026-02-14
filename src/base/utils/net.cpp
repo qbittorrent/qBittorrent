@@ -77,9 +77,7 @@ namespace
         if (first.protocol() == QAbstractSocket::IPv4Protocol)
             return first.toIPv4Address() <= last.toIPv4Address();
         if (first.protocol() == QAbstractSocket::IPv6Protocol)
-        {
             return std::ranges::lexicographical_compare(first.toIPv6Address().c, last.toIPv6Address().c, std::less_equal());
-        }
         return false;
     }
 }
@@ -164,11 +162,9 @@ namespace Utils
 
                 addressBytes[headBytes] |= ~maskByte;
                 for (int i = headBytes + 1; i < 16; ++i)
-                {
                     addressBytes[i] = 0xFF;
-                }
                 const QHostAddress end {addressBytes};
-
+                
                 return std::make_pair(start, end);
             }
 
