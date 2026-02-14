@@ -164,17 +164,11 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     const QString &serverAddress = serverEndpoint[0];
     const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
 
+    // Check if STARTTLS should be used
+    m_useStartTls = false;
 #ifndef QT_NO_OPENSSL
     if (pref->getMailNotificationSMTPStartTLS())
-    {
         m_useStartTls = true;
-    }
-    else
-    {
-#endif
-        m_useStartTls = false;
-#ifndef QT_NO_OPENSSL
-    }
 #endif
 
 #ifndef QT_NO_OPENSSL
