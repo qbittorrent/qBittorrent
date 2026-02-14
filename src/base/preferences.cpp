@@ -728,30 +728,30 @@ void Preferences::setSearchHistoryLength(const int length)
     setValue(u"Search/HistoryLength"_s, clampedLength);
 }
 
-bool Preferences::storeOpenedSearchTabs() const
+bool Preferences::storeSearchJobs() const
 {
-    return value(u"Search/StoreOpenedSearchTabs"_s, false);
+    return value(u"Search/StoreSearchJobs"_s, false);
 }
 
-void Preferences::setStoreOpenedSearchTabs(const bool enabled)
+void Preferences::setStoreSearchJobs(const bool enabled)
 {
-    if (enabled == storeOpenedSearchTabs())
+    if (enabled == storeSearchJobs())
         return;
 
-    setValue(u"Search/StoreOpenedSearchTabs"_s, enabled);
+    setValue(u"Search/StoreSearchJobs"_s, enabled);
 }
 
-bool Preferences::storeOpenedSearchTabResults() const
+bool Preferences::storeSearchJobResults() const
 {
-    return value(u"Search/StoreOpenedSearchTabResults"_s, false);
+    return value(u"Search/StoreSearchJobResults"_s, false);
 }
 
-void Preferences::setStoreOpenedSearchTabResults(const bool enabled)
+void Preferences::setStoreSearchJobResults(const bool enabled)
 {
-    if (enabled == storeOpenedSearchTabResults())
+    if (enabled == storeSearchJobResults())
         return;
 
-    setValue(u"Search/StoreOpenedSearchTabResults"_s, enabled);
+    setValue(u"Search/StoreSearchJobResults"_s, enabled);
 }
 
 bool Preferences::isWebUIEnabled() const
