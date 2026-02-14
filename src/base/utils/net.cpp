@@ -155,7 +155,7 @@ namespace Utils
 
                 const int headBytes = prefixLength / 8;
                 const int bits = prefixLength % 8;
-                const auto maskByte = static_cast<quint8>((0xFF << (8 - bits)) & 0xFF);
+                const auto maskByte = (static_cast<quint8>(0xFF) << (8 - bits));
 
                 addressBytes[headBytes] &= maskByte;
                 const QHostAddress start {addressBytes};
