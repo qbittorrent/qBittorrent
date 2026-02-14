@@ -164,7 +164,7 @@ namespace Utils
                 for (int i = headBytes + 1; i < 16; ++i)
                     addressBytes[i] = 0xFF;
                 const QHostAddress end {addressBytes};
-                
+
                 return std::make_pair(start, end);
             }
 
