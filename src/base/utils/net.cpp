@@ -139,10 +139,10 @@ namespace Utils
             if (addressFamily == QAbstractSocket::IPv4Protocol)
             {
                 const quint32 ip = address.toIPv4Address();
-                const quint32 mask = (0xFFFFFFFF << (32 - prefixLength)) & 0xFFFFFFFF;
+                const auto mask = static_cast<quint32>(0xFFFFFFFF) << (32 - prefixLength);
 
                 const quint32 network = ip & mask;
-                const quint32 broadcast = network | (~mask & 0xFFFFFFFF);
+                const quint32 broadcast = network | ~mask;
 
                 const QHostAddress start {network};
                 const QHostAddress end {broadcast};
