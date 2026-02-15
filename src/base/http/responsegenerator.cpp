@@ -31,7 +31,8 @@
 
 #include <QDateTime>
 
-#include "base/http/types.h"
+#include "base/http/constants.h"
+#include "base/http/response.h"
 #include "base/utils/gzip.h"
 
 QByteArray Http::toByteArray(Response response)

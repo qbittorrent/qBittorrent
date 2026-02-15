@@ -30,7 +30,7 @@
 
 #pragma once
 
-#include "types.h"
+#include "request.h"
 
 namespace Http
 {

@@ -59,13 +59,18 @@ add_library(qbt_base STATIC
     freediskspacechecker.h
     global.h
     http/connection.h
+    http/constants.h
+    http/environment.h
+    http/header.h
+    http/headermap.h
     http/httperror.h
     http/irequesthandler.h
+    http/request.h
+    http/response.h
     http/requestparser.h
     http/responsebuilder.h
     http/responsegenerator.h
     http/server.h
-    http/types.h
     indexrange.h
     interfaces/iapplication.h
     logger.h

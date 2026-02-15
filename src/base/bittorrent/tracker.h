@@ -30,8 +30,6 @@
 
 #pragma once
 
-#include <string>
-
 #include <libtorrent/entry.hpp>
 
 #include <QtTypes>
@@ -40,7 +38,9 @@
 #include <QSet>
 
 #include "base/bittorrent/infohash.h"
+#include "base/http/environment.h"
 #include "base/http/irequesthandler.h"
+#include "base/http/request.h"
 #include "base/http/responsebuilder.h"
 
 namespace Http
