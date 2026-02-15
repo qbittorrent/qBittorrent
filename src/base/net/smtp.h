@@ -112,6 +112,7 @@ namespace Net
         int m_state = Init;
         QHash<QString, QString> m_extensions;
         QByteArray m_buffer;
+        bool m_useStartTls = false;
         bool m_useSsl = false;
         AuthType m_authType = AuthPlain;
         QString m_username;
