@@ -293,7 +293,7 @@ QString GeoIPManager::CountryName(const QString &countryISOCode)
         {u"MF"_s, tr("Saint Martin (French part)")},
         {u"MG"_s, tr("Madagascar")},
         {u"MH"_s, tr("Marshall Islands")},
-        {u"MK"_s, tr("Macedonia, The Former Yugoslav Republic of")},
+        {u"MK"_s, tr("North Macedonia")},
         {u"ML"_s, tr("Mali")},
         {u"MM"_s, tr("Myanmar")},
         {u"MN"_s, tr("Mongolia")},
