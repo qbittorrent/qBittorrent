@@ -32,8 +32,11 @@
 
 #include <QTcpSocket>
 
+#include "constants.h"
+#include "environment.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
+#include "response.h"
 #include "responsegenerator.h"
 
 using namespace Http;
