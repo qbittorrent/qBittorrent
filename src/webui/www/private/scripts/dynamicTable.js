@@ -742,7 +742,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         deselectAll() {
-            this.selectedRows.empty();
+            this.selectedRows.length = 0;
         }
 
         selectRow(rowId) {
