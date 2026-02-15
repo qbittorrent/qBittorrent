@@ -254,9 +254,11 @@
                 document.getElementById("renameOptions").disabled = false;
 
                 // Recreate table
-                let selectedRows = bulkRenameFilesTable.getSelectedRows().map(row => row.rowId.toString());
-                for (const renamedRow of rows)
-                    selectedRows = selectedRows.filter(selectedRow => selectedRow !== renamedRow.rowId.toString());
+                const selectedRows = bulkRenameFilesTable.getSelectedRows().map(row => row.rowId.toString());
+                for (const renamedRow of rows) {
+                    const id = renamedRow.rowId.toString();
+                    window.qBittorrent.Misc.filterInPlace(selectedRows, (row => row !== id));
+                }
                 bulkRenameFilesTable.clear();
 
                 // Adjust file enumeration count by 1 when replacing single files to prevent naming conflicts

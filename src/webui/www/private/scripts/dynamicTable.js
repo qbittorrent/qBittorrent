@@ -871,13 +871,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateTable(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
-
-            for (let i = 0; i < this.selectedRows.length; ++i) {
-                if (!(this.selectedRows[i] in rows)) {
-                    this.selectedRows.splice(i, 1);
-                    --i;
-                }
-            }
+            window.qBittorrent.Misc.filterInPlace(this.selectedRows, (selectedRow => selectedRow in rows));
 
             if (this.useVirtualList) {
                 // rerender on table update
@@ -2832,7 +2826,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         getSelectedRows() {
             const nodes = this.fileTree.toArray();
-            return nodes.filter(x => x.checked === 0);
+            window.qBittorrent.Misc.filterInPlace(nodes, (node => node.checked === 0));
+            return nodes;
         }
 
         initColumns() {
