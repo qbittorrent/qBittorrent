@@ -39,6 +39,7 @@
 #include <QStringView>
 
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
+#include <QAbstractButton>
 #include <QMessageBox>
 #endif
 
@@ -560,6 +561,7 @@ void displayUsage(const QString &prgName)
 {
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     QMessageBox msgBox(QMessageBox::Information, QCoreApplication::translate("CMD Options", "Help"), makeUsage(prgName), QMessageBox::Ok);
+    msgBox.button(QMessageBox::Ok)->setText(QCoreApplication::translate("CMD Options", "OK"));
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();

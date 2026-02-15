@@ -36,6 +36,7 @@
 #include "base/preferences.h"
 #include "base/utils/net.h"
 #include "ui_ipsubnetwhitelistoptionsdialog.h"
+#include "raisedmessagebox.h"
 #include "utils.h"
 
 #define SETTINGS_KEY(name) u"IPSubnetWhitelistOptionsDialog/" name
@@ -95,7 +96,7 @@ void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
     const std::optional<Utils::Net::Subnet> subnet = Utils::Net::parseSubnet(m_ui->txtIPSubnet->text());
     if (!subnet)
     {
-        QMessageBox::critical(this, tr("Error"), tr("The entered subnet is invalid."));
+        RaisedMessageBox::critical(this, tr("Error"), tr("The entered subnet is invalid."));
         return;
     }
 

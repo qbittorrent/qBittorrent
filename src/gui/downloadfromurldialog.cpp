@@ -40,6 +40,7 @@
 
 #include "base/net/downloadmanager.h"
 #include "ui_downloadfromurldialog.h"
+#include "raisedmessagebox.h"
 #include "utils.h"
 
 #define SETTINGS_KEY(name) u"DownloadFromURLDialog/" name
@@ -133,7 +134,7 @@ void DownloadFromURLDialog::onSubmit()
 
     if (urlList.isEmpty())
     {
-        QMessageBox::warning(this, tr("No URL entered"), tr("Please type at least one URL."));
+        RaisedMessageBox::warning(this, tr("No URL entered"), tr("Please type at least one URL."));
         return;
     }
 

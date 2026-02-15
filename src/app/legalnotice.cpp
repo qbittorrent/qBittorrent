@@ -36,6 +36,7 @@
 #include <QString>
 
 #ifndef DISABLE_GUI
+#include <QAbstractButton>
 #include <QMessageBox>
 #endif // DISABLE_GUI
 
@@ -70,6 +71,7 @@ void showLegalNotice(const bool isInteractive)
 #else // DISABLE_GUI
     const QString messageBody = noticeBody + u"\n\n" + noticeEnd;
     QMessageBox msgBox {QMessageBox::NoIcon, noticeTitle, messageBody, QMessageBox::Ok};
+    msgBox.button(QMessageBox::Ok)->setText(QCoreApplication::translate("LegalNotice", "OK"));
     msgBox.show();  // Need to be shown first or moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();

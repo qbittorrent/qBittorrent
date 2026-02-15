@@ -52,6 +52,7 @@
 #ifndef DISABLE_GUI
 // GUI-only includes
 #include <QFont>
+#include <QAbstractButton>
 #include <QMessageBox>
 #include <QPainter>
 #include <QPen>
@@ -92,6 +93,7 @@ namespace
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
         QMessageBox msgBox(QMessageBox::Critical, QCoreApplication::translate("Main", "Bad command line"),
                            (message + u'\n' + help), QMessageBox::Ok);
+        msgBox.button(QMessageBox::Ok)->setText(QCoreApplication::translate("Main", "OK"));
         msgBox.show(); // Need to be shown or to moveToCenter does not work
         msgBox.move(Utils::Gui::screenCenter(&msgBox));
         msgBox.exec();
@@ -112,6 +114,8 @@ namespace
             msgBox.setIcon(QMessageBox::Critical);
             msgBox.setText(QCoreApplication::translate("Main", "An unrecoverable error occurred."));
             msgBox.setInformativeText(message);
+            msgBox.setStandardButtons(QMessageBox::Ok);
+            msgBox.button(QMessageBox::Ok)->setText(QCoreApplication::translate("Main", "OK"));
             msgBox.show(); // Need to be shown or to moveToCenter does not work
             msgBox.move(Utils::Gui::screenCenter(&msgBox));
             msgBox.exec();

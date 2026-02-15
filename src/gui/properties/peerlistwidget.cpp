@@ -58,6 +58,7 @@
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "gui/raisedmessagebox.h"
 #include "gui/uithememanager.h"
 #include "gui/utils/keysequence.h"
 #include "peerlistsortmodel.h"
@@ -300,9 +301,9 @@ void PeerListWidget::showPeerListMenu()
             return torrent->connectPeer(peer);
         });
         if (peerCount < peersList.length())
-            QMessageBox::information(this, tr("Adding peers"), tr("Some peers cannot be added. Check the Log for details."));
+            RaisedMessageBox::information(this, tr("Adding peers"), tr("Some peers cannot be added. Check the Log for details."));
         else if (peerCount > 0)
-            QMessageBox::information(this, tr("Adding peers"), tr("Peers are added to this torrent."));
+            RaisedMessageBox::information(this, tr("Adding peers"), tr("Peers are added to this torrent."));
     });
     QAction *copyPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy IP:port")
         , this, &PeerListWidget::copySelectedPeers);
@@ -350,7 +351,7 @@ void PeerListWidget::banSelectedPeers()
     }
 
     // Confirm before banning peer
-    const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Ban peer permanently")
+    const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Ban peer permanently")
         , tr("Are you sure you want to permanently ban the selected peers?"));
     if (btn != QMessageBox::Yes) return;
 

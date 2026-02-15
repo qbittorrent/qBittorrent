@@ -1081,8 +1081,11 @@ void Application::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torr
             , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), mainWindow());
     confirmBox->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
+    QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
+    QAbstractButton *noButton = confirmBox->button(QMessageBox::No);
     QAbstractButton *neverButton = confirmBox->button(QMessageBox::NoToAll);
+    yesButton->setText(tr("&Yes"));
+    noButton->setText(tr("&No"));
     neverButton->setText(tr("Never"));
 
     connect(confirmBox, &QMessageBox::buttonClicked, this

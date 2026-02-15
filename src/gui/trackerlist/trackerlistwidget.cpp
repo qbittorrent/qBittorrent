@@ -51,6 +51,7 @@
 #include "base/global.h"
 #include "base/preferences.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/raisedmessagebox.h"
 #include "gui/trackersadditiondialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils/keysequence.h"
@@ -278,7 +279,7 @@ void TrackerListWidget::editSelectedTracker()
 
     if (!newTrackerURL.isValid())
     {
-        QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL entered is invalid."));
+        RaisedMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL entered is invalid."));
         return;
     }
 
@@ -296,7 +297,7 @@ void TrackerListWidget::editSelectedTracker()
 
         if (newTrackerURL == url)
         {
-            QMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
+            RaisedMessageBox::warning(this, tr("Tracker editing failed"), tr("The tracker URL already exists."));
             return;
         }
 

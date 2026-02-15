@@ -68,6 +68,7 @@
 #include "base/utils/string.h"
 #include "filterpatternformatmenu.h"
 #include "lineedit.h"
+#include "raisedmessagebox.h"
 #include "torrenttagsdialog.h"
 
 #include "ui_addnewtorrentdialog.h"
@@ -698,7 +699,7 @@ void AddNewTorrentDialog::saveTorrentFile()
 
     if (const auto result = torrentDescr.saveToFile(path); !result)
     {
-        QMessageBox::critical(this, tr("I/O Error")
+        RaisedMessageBox::critical(this, tr("I/O Error")
                 , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path.toString(), result.error()));
     }
 }

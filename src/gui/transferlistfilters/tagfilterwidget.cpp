@@ -35,6 +35,7 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/raisedmessagebox.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "tagfiltermodel.h"
@@ -170,7 +171,7 @@ Tag TagFilterWidget::askTagName()
         {
             if (!tag.isValid())
             {
-                QMessageBox::warning(
+                RaisedMessageBox::warning(
                     this, tr("Invalid tag name")
                     , tr("Tag name '%1' is invalid").arg(tag.toString()));
                 invalid = true;
@@ -188,7 +189,7 @@ void TagFilterWidget::addTag()
         return;
 
     if (BitTorrent::Session::instance()->tags().contains(tag))
-        QMessageBox::warning(this, tr("Tag exists"), tr("Tag name already exists."));
+        RaisedMessageBox::warning(this, tr("Tag exists"), tr("Tag name already exists."));
     else
         BitTorrent::Session::instance()->addTag(tag);
 }

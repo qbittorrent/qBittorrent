@@ -33,6 +33,7 @@
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
+#include <QAbstractButton>
 #include <QMessageBox>
 #include <QUrl>
 
@@ -674,6 +675,8 @@ void TrackersFilterWidget::onRemoveTrackerTriggered()
     auto *confirmBox = new QMessageBox(QMessageBox::Question, tr("Removal confirmation")
         , tr("Are you sure you want to remove tracker \"%1\" from all torrents?").arg(tracker)
         , (QMessageBox::Yes | QMessageBox::No), this);
+    confirmBox->button(QMessageBox::Yes)->setText(tr("&Yes"));
+    confirmBox->button(QMessageBox::No)->setText(tr("&No"));
     confirmBox->setCheckBox(new QCheckBox(tr("Don't ask me again.")));
     confirmBox->setAttribute(Qt::WA_DeleteOnClose);
     connect(confirmBox, &QDialog::accepted, this, [this, confirmBox, tracker]

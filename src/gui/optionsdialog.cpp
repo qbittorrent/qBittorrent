@@ -74,6 +74,7 @@
 #include "banlistoptionsdialog.h"
 #include "interfaces/iguiapplication.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
+#include "raisedmessagebox.h"
 #include "rss/automatedrssdownloader.h"
 #include "ui_optionsdialog.h"
 #include "uithemedialog.h"
@@ -765,7 +766,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->sendTestEmail, &QPushButton::clicked, this, [this]
     {
         app()->sendTestEmail();
-        QMessageBox::information(this, tr("Test email"), tr("Attempted to send email. Check your inbox to confirm success"));
+        RaisedMessageBox::information(this, tr("Test email"), tr("Attempted to send email. Check your inbox to confirm success"));
     });
 
     connect(m_ui->groupBoxRunOnAdded, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -1507,7 +1508,7 @@ void OptionsDialog::onBtnWebUIAPIKeyRotateClicked()
         ? tr("Generate an API key? This key can be used to interact with qBittorrent's API.")
         : tr("Rotate this API key? The current key will immediately stop working and a new key will be generated.");
 
-    const QMessageBox::StandardButton button = QMessageBox::question(
+    const QMessageBox::StandardButton button = RaisedMessageBox::question(
         this, title, message, (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
 
     if (button == QMessageBox::Yes)
@@ -1525,7 +1526,7 @@ void OptionsDialog::onBtnWebUIAPIKeyDeleteClicked()
 {
     const QString title = tr("Delete API key");
     const QString message = tr("Delete this API key? The current key will immediately stop working.");
-    const QMessageBox::StandardButton button = QMessageBox::question(
+    const QMessageBox::StandardButton button = RaisedMessageBox::question(
         this, title, message, (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
 
     if (button == QMessageBox::Yes)
@@ -2028,7 +2029,7 @@ void OptionsDialog::on_addWatchedFolderButton_clicked()
         }
         catch (const RuntimeError &err)
         {
-            QMessageBox::critical(this, tr("Adding entry failed"), err.message());
+            RaisedMessageBox::critical(this, tr("Adding entry failed"), err.message());
         }
     });
 
@@ -2128,19 +2129,19 @@ bool OptionsDialog::webUIAuthenticationOk()
     const QString username = webUIUsername();
     if (!isValidWebUIUsernameLength(username))
     {
-        QMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
+        RaisedMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
         return false;
     }
     if (!isValidWebUIUsernameCharacterSet(username))
     {
-        QMessageBox::warning(this, tr("Character Error"), tr("The WebUI username must not contain a colon."));
+        RaisedMessageBox::warning(this, tr("Character Error"), tr("The WebUI username must not contain a colon."));
         return false;
     }
 
     const bool dontChangePassword = webUIPassword().isEmpty() && !Preferences::instance()->getWebUIPassword().isEmpty();
     if (!isValidWebUIPasswordLength(webUIPassword()) && !dontChangePassword)
     {
-        QMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
+        RaisedMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
         return false;
     }
     return true;
@@ -2150,7 +2151,7 @@ bool OptionsDialog::isAlternativeWebUIPathValid()
 {
     if (m_ui->groupAltWebUI->isChecked() && m_ui->textWebUIRootFolder->selectedPath().isEmpty())
     {
-        QMessageBox::warning(this, tr("Location Error"), tr("The alternative WebUI files location cannot be blank."));
+        RaisedMessageBox::warning(this, tr("Location Error"), tr("The alternative WebUI files location cannot be blank."));
         return false;
     }
     return true;
@@ -2187,9 +2188,9 @@ void OptionsDialog::handleIPFilterParsed(bool error, int ruleCount)
 {
     setCursor(QCursor(Qt::ArrowCursor));
     if (error)
-        QMessageBox::warning(this, tr("Parsing error"), tr("Failed to parse the provided IP filter"));
+        RaisedMessageBox::warning(this, tr("Parsing error"), tr("Failed to parse the provided IP filter"));
     else
-        QMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+        RaisedMessageBox::information(this, tr("Successfully refreshed"), tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
     m_refreshingIpFilter = false;
     disconnect(BitTorrent::Session::instance(), &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
 }
@@ -2198,7 +2199,7 @@ bool OptionsDialog::schedTimesOk()
 {
     if (m_ui->timeEditScheduleFrom->time() == m_ui->timeEditScheduleTo->time())
     {
-        QMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
+        RaisedMessageBox::warning(this, tr("Time Error"), tr("The start time and the end time can't be the same."));
         return false;
     }
     return true;

@@ -52,6 +52,7 @@
 #include "base/utils/string.h"
 #include "gui/addtorrentparamswidget.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/raisedmessagebox.h"
 #include "gui/torrentcategorydialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
@@ -386,7 +387,7 @@ void AutomatedRssDownloader::onAddRuleBtnClicked()
     // Check if this rule name already exists
     if (RSS::AutoDownloader::instance()->hasRule(ruleName))
     {
-        QMessageBox::warning(this, tr("Rule name conflict")
+        RaisedMessageBox::warning(this, tr("Rule name conflict")
                              , tr("A rule with this name already exists, please choose another name."));
         return;
     }
@@ -404,7 +405,7 @@ void AutomatedRssDownloader::onRemoveRuleBtnClicked()
                                  ? tr("Are you sure you want to remove the download rule named '%1'?")
                                    .arg(selection.first()->text())
                                  : tr("Are you sure you want to remove the selected download rules?"));
-    if (QMessageBox::question(this, tr("Rule deletion confirmation"), confirmText, QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)
+    if (RaisedMessageBox::question(this, tr("Rule deletion confirmation"), confirmText, QMessageBox::Yes, QMessageBox::No) != QMessageBox::Yes)
         return;
 
     for (const QListWidgetItem *item : selection)
@@ -420,7 +421,7 @@ void AutomatedRssDownloader::onExportBtnClicked()
 {
     if (RSS::AutoDownloader::instance()->rules().isEmpty())
     {
-        QMessageBox::warning(this, tr("Invalid action")
+        RaisedMessageBox::warning(this, tr("Invalid action")
                              , tr("The list is empty, there is nothing to export."));
         return;
     }
@@ -454,7 +455,7 @@ void AutomatedRssDownloader::onExportBtnClicked()
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, rules);
     if (!result)
     {
-        QMessageBox::critical(this, tr("I/O Error")
+        RaisedMessageBox::critical(this, tr("I/O Error")
             , tr("Failed to create the destination file. Reason: %1").arg(result.error()));
     }
 }
@@ -473,7 +474,7 @@ void AutomatedRssDownloader::onImportBtnClicked()
         if (readResult.error().status == Utils::IO::ReadError::NotExist)
             return;
 
-        QMessageBox::critical(this, tr("Import error")
+        RaisedMessageBox::critical(this, tr("Import error")
             , tr("Failed to read the file. %1").arg(readResult.error().message));
         return;
     }
@@ -491,7 +492,7 @@ void AutomatedRssDownloader::onImportBtnClicked()
     }
     catch (const RSS::ParsingError &error)
     {
-        QMessageBox::critical(this, tr("Import error")
+        RaisedMessageBox::critical(this, tr("Import error")
             , tr("Failed to import the selected rules file. Reason: %1").arg(error.message()));
     }
 }
@@ -546,7 +547,7 @@ void AutomatedRssDownloader::renameSelectedRule()
 
         if (RSS::AutoDownloader::instance()->hasRule(newName))
         {
-            QMessageBox::warning(this, tr("Rule name conflict")
+            RaisedMessageBox::warning(this, tr("Rule name conflict")
                                  , tr("A rule with this name already exists, please choose another name."));
         }
         else
@@ -565,7 +566,7 @@ void AutomatedRssDownloader::handleRuleCheckStateChange(QListWidgetItem *ruleIte
 
 void AutomatedRssDownloader::clearSelectedRuleDownloadedEpisodeList()
 {
-    const QMessageBox::StandardButton reply = QMessageBox::question(
+    const QMessageBox::StandardButton reply = RaisedMessageBox::question(
                 this,
                 tr("Clear downloaded episodes"),
                 tr("Are you sure you want to clear the list of downloaded episodes for the selected rule?"),

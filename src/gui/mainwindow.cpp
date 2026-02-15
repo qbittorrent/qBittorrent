@@ -88,6 +88,7 @@
 #include "properties/peerlistwidget.h"
 #include "properties/propertieswidget.h"
 #include "properties/proptabbar.h"
+#include "raisedmessagebox.h"
 #include "rss/rsswidget.h"
 #include "search/searchwidget.h"
 #include "speedlimitdialog.h"
@@ -668,7 +669,7 @@ bool MainWindow::defineUILockPassword()
 
     if (newPassword.size() < 3)
     {
-        QMessageBox::warning(this, tr("Invalid password"), tr("The password must be at least 3 characters long"));
+        RaisedMessageBox::warning(this, tr("Invalid password"), tr("The password must be at least 3 characters long"));
         return false;
     }
 
@@ -678,7 +679,7 @@ bool MainWindow::defineUILockPassword()
 
 void MainWindow::clearUILockPassword()
 {
-    const QMessageBox::StandardButton answer = QMessageBox::question(this, tr("Clear the password")
+    const QMessageBox::StandardButton answer = RaisedMessageBox::question(this, tr("Clear the password")
         , tr("Are you sure you want to clear the password?"), (QMessageBox::Yes | QMessageBox::No), QMessageBox::No);
     if (answer == QMessageBox::Yes)
         Preferences::instance()->setUILockPassword({});
@@ -1040,7 +1041,7 @@ bool MainWindow::unlockUI()
     const QByteArray secret = pref->getUILockPassword();
     if (!Utils::Password::PBKDF2::verify(secret, password))
     {
-        QMessageBox::warning(this, tr("Invalid password"), tr("The password is invalid"));
+        RaisedMessageBox::warning(this, tr("Invalid password"), tr("The password is invalid"));
         return false;
     }
 
@@ -1614,13 +1615,13 @@ void MainWindow::on_actionSearchWidget_triggered()
             Preferences::instance()->setSearchEnabled(false);
 
 #ifdef Q_OS_WIN
-            const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Missing Python Runtime")
+            const QMessageBox::StandardButton buttonPressed = RaisedMessageBox::question(this, tr("Missing Python Runtime")
                 , tr("Python is required to use the search engine but it does not seem to be installed.\nDo you want to install it now?")
                 , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
             if (buttonPressed == QMessageBox::Yes)
                 installPython();
 #else
-            QMessageBox::information(this, tr("Missing Python Runtime")
+            RaisedMessageBox::information(this, tr("Missing Python Runtime")
                 , tr("Python is required to use the search engine but it does not seem to be installed."));
 #endif
             return;
@@ -1633,14 +1634,14 @@ void MainWindow::on_actionSearchWidget_triggered()
             Preferences::instance()->setSearchEnabled(false);
 
 #ifdef Q_OS_WIN
-            const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Old Python Runtime")
+            const QMessageBox::StandardButton buttonPressed = RaisedMessageBox::question(this, tr("Old Python Runtime")
                 , tr("Your Python version (%1) is outdated. Minimum requirement: %2.\nDo you want to install a newer version now?")
                     .arg(pyInfo.version.toString(), Utils::ForeignApps::PythonInfo::MINIMUM_SUPPORTED_VERSION.toString())
                 , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
             if (buttonPressed == QMessageBox::Yes)
                 installPython();
 #else
-            QMessageBox::information(this, tr("Old Python Runtime")
+            RaisedMessageBox::information(this, tr("Old Python Runtime")
                 , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: %2.")
                 .arg(pyInfo.version.toString(), Utils::ForeignApps::PythonInfo::MINIMUM_SUPPORTED_VERSION.toString()));
 #endif
@@ -1689,6 +1690,8 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
             + u"<a href=\"https://www.qbittorrent.org/news\">%1</a>"_s.arg(tr("Open changelog..."))};
         auto *msgBox = new QMessageBox {QMessageBox::Question, tr("qBittorrent Update Available"), msg
             , (QMessageBox::Yes | QMessageBox::No), this};
+        msgBox->button(QMessageBox::Yes)->setText(tr("&Yes"));
+        msgBox->button(QMessageBox::No)->setText(tr("&No"));
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
         msgBox->setAttribute(Qt::WA_ShowWithoutActivating);
         msgBox->setDefaultButton(QMessageBox::Yes);
@@ -1710,6 +1713,8 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
             auto *msgBox = new QMessageBox {QMessageBox::Information, u"qBittorrent"_s
                 , tr("No updates available.\nYou are already using the latest version.")
                 , QMessageBox::Ok, this};
+            QAbstractButton *okButton = msgBox->button(QMessageBox::Ok);
+            okButton->setText(tr("OK"));
             msgBox->setAttribute(Qt::WA_DeleteOnClose);
             msgBox->setWindowModality(Qt::NonModal);
             connect(msgBox, &QDialog::finished, this, cleanup);

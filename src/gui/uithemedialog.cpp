@@ -45,6 +45,7 @@
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
+#include "raisedmessagebox.h"
 #include "uithemecommon.h"
 #include "utils.h"
 
@@ -266,7 +267,7 @@ void UIThemeDialog::accept()
 
     if (hasError)
     {
-        QMessageBox::critical(this, tr("UI Theme Configuration.")
+        RaisedMessageBox::critical(this, tr("UI Theme Configuration.")
                 , tr("The UI Theme changes could not be fully applied. The details can be found in the Log."));
     }
 }

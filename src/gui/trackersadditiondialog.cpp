@@ -42,6 +42,7 @@
 #include "base/preferences.h"
 #include "base/utils/number.h"
 #include "gui/uithememanager.h"
+#include "raisedmessagebox.h"
 #include "ui_trackersadditiondialog.h"
 
 #define SETTINGS_KEY(name) u"AddTrackersDialog/" name
@@ -91,7 +92,7 @@ void TrackersAdditionDialog::onDownloadButtonClicked()
     const QString url = m_ui->lineEditListURL->text();
     if (url.isEmpty())
     {
-        QMessageBox::warning(this, tr("Trackers list URL error"), tr("The trackers list URL cannot be empty"));
+        RaisedMessageBox::warning(this, tr("Trackers list URL error"), tr("The trackers list URL cannot be empty"));
         return;
     }
 
@@ -111,7 +112,7 @@ void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadRe
 
     if (result.status != Net::DownloadStatus::Success)
     {
-        QMessageBox::warning(this, tr("Download trackers list error")
+        RaisedMessageBox::warning(this, tr("Download trackers list error")
             , tr("Error occurred when downloading the trackers list. Reason: \"%1\"").arg(result.errorString));
         return;
     }

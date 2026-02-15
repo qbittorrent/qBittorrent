@@ -43,6 +43,7 @@
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "gui/autoexpandabledialog.h"
+#include "gui/raisedmessagebox.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "pluginsourcedialog.h"
@@ -213,9 +214,9 @@ void PluginSelectDialog::on_actionUninstall_triggered()
     }
 
     if (error)
-        QMessageBox::warning(this, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.\nThose plugins were disabled."));
+        RaisedMessageBox::warning(this, tr("Uninstall warning"), tr("Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.\nThose plugins were disabled."));
     else
-        QMessageBox::information(this, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
+        RaisedMessageBox::information(this, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
 }
 
 void PluginSelectDialog::enableSelection(bool enable)
@@ -338,7 +339,7 @@ void PluginSelectDialog::finishPluginUpdate()
     if ((m_pendingUpdates == 0) && !m_updatedPlugins.isEmpty())
     {
         m_updatedPlugins.sort(Qt::CaseInsensitive);
-        QMessageBox::information(this, tr("Search plugin update"), tr("Plugins installed or updated: %1").arg(m_updatedPlugins.join(u", ")));
+        RaisedMessageBox::information(this, tr("Search plugin update"), tr("Plugins installed or updated: %1").arg(m_updatedPlugins.join(u", ")));
         m_updatedPlugins.clear();
     }
 }
@@ -366,7 +367,7 @@ void PluginSelectDialog::askForPluginUrl()
 
     while (ok && !url.isEmpty() && !url.endsWith(u".py"))
     {
-        QMessageBox::warning(this, tr("Invalid link"), tr("The link doesn't seem to point to a search engine plugin."));
+        RaisedMessageBox::warning(this, tr("Invalid link"), tr("The link doesn't seem to point to a search engine plugin."));
         url = AutoExpandableDialog::getText(
                     this, tr("New search engine plugin URL"),
                     tr("URL:"), QLineEdit::Normal, url, &ok
@@ -445,7 +446,7 @@ void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVers
     finishAsyncOp();
     if (updateInfo.isEmpty())
     {
-        QMessageBox::information(this, tr("Search plugin update"), tr("All your plugins are already up to date."));
+        RaisedMessageBox::information(this, tr("Search plugin update"), tr("All your plugins are already up to date."));
         return;
     }
 
@@ -460,7 +461,7 @@ void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVers
 void PluginSelectDialog::checkForUpdatesFailed(const QString &reason)
 {
     finishAsyncOp();
-    QMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, couldn't check for plugin updates. %1").arg(reason));
+    RaisedMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, couldn't check for plugin updates. %1").arg(reason));
 }
 
 void PluginSelectDialog::pluginInstalled(const QString &name)
@@ -474,7 +475,7 @@ void PluginSelectDialog::pluginInstalled(const QString &name)
 void PluginSelectDialog::pluginInstallationFailed(const QString &name, const QString &reason)
 {
     finishAsyncOp();
-    QMessageBox::information(this, tr("Search plugin install")
+    RaisedMessageBox::information(this, tr("Search plugin install")
         , tr("Couldn't install \"%1\" search engine plugin. %2").arg(name, reason));
     finishPluginUpdate();
 }
@@ -492,7 +493,7 @@ void PluginSelectDialog::pluginUpdated(const QString &name)
 void PluginSelectDialog::pluginUpdateFailed(const QString &name, const QString &reason)
 {
     finishAsyncOp();
-    QMessageBox::information(this, tr("Search plugin update")
+    RaisedMessageBox::information(this, tr("Search plugin update")
         , tr("Couldn't update \"%1\" search engine plugin. %2").arg(name, reason));
     finishPluginUpdate();
 }

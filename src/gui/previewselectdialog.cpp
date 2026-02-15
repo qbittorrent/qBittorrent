@@ -43,6 +43,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "previewlistdelegate.h"
+#include "raisedmessagebox.h"
 #include "ui_previewselectdialog.h"
 #include "utils.h"
 
@@ -142,7 +143,7 @@ void PreviewSelectDialog::previewButtonClicked()
     {
         const bool isSingleFile = (m_ui->previewList->model()->rowCount() == 1);
         QWidget *parent = isSingleFile ? this->parentWidget() : this;
-        QMessageBox::critical(parent, tr("Preview impossible")
+        RaisedMessageBox::critical(parent, tr("Preview impossible")
             , tr("Sorry, we can't preview this file: \"%1\".").arg(path.toString()));
         if (isSingleFile)
             reject();

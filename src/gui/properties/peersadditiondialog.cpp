@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/peeraddress.h"
 #include "base/global.h"
+#include "gui/raisedmessagebox.h"
 #include "ui_peersadditiondialog.h"
 
 PeersAdditionDialog::PeersAdditionDialog(QWidget *parent)
@@ -61,7 +62,7 @@ void PeersAdditionDialog::validateInput()
 {
     if (m_ui->textEditPeers->toPlainText().trimmed().isEmpty())
     {
-        QMessageBox::warning(this, tr("No peer entered"),
+        RaisedMessageBox::warning(this, tr("No peer entered"),
                     tr("Please type at least one peer."),
                     QMessageBox::Ok);
         return;
@@ -75,7 +76,7 @@ void PeersAdditionDialog::validateInput()
         }
         else
         {
-            QMessageBox::warning(this, tr("Invalid peer"),
+            RaisedMessageBox::warning(this, tr("Invalid peer"),
                     tr("The peer '%1' is invalid.").arg(peer),
                     QMessageBox::Ok);
             m_peersList.clear();

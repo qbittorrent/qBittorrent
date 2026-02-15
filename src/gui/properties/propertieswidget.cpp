@@ -54,6 +54,7 @@
 #include "gui/autoexpandabledialog.h"
 #include "gui/filterpatternformatmenu.h"
 #include "gui/lineedit.h"
+#include "gui/raisedmessagebox.h"
 #include "gui/trackerlist/trackerlistwidget.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
@@ -624,7 +625,7 @@ void PropertiesWidget::askWebSeed()
     qDebug("Adding %s web seed", qUtf8Printable(urlSeed));
     if (!m_ui->listWebSeeds->findItems(urlSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, u"qBittorrent"_s, tr("This web seed is already in the list."), QMessageBox::Ok);
+        RaisedMessageBox::warning(this, u"qBittorrent"_s, tr("This web seed is already in the list."));
         return;
     }
     if (m_torrent)
@@ -676,7 +677,7 @@ void PropertiesWidget::editWebSeed()
 
     if (!m_ui->listWebSeeds->findItems(newSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, u"qBittorrent"_s,
+        RaisedMessageBox::warning(this, u"qBittorrent"_s,
                              tr("This web seed is already in the list."),
                              QMessageBox::Ok);
         return;

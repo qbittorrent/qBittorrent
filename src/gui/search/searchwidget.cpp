@@ -68,6 +68,7 @@
 #include "base/utils/io.h"
 #include "gui/desktopintegration.h"
 #include "gui/interfaces/iguiapplication.h"
+#include "gui/raisedmessagebox.h"
 #include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
 #include "searchjobwidget.h"
@@ -881,7 +882,7 @@ void SearchWidget::searchButtonClicked()
     // No search pattern entered
     if (pattern.isEmpty())
     {
-        QMessageBox::critical(this, tr("Empty search pattern"), tr("Please type a search pattern first"));
+        RaisedMessageBox::critical(this, tr("Empty search pattern"), tr("Please type a search pattern first"));
         return;
     }
 

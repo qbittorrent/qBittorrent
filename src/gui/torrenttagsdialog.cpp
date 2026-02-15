@@ -37,6 +37,7 @@
 #include "base/global.h"
 #include "autoexpandabledialog.h"
 #include "flowlayout.h"
+#include "raisedmessagebox.h"
 #include "utils.h"
 
 #include "ui_torrenttagsdialog.h"
@@ -104,11 +105,11 @@ void TorrentTagsDialog::addNewTag()
 
         if (!tag.isValid())
         {
-            QMessageBox::warning(this, tr("Invalid tag name"), tr("Tag name '%1' is invalid.").arg(tag.toString()));
+            RaisedMessageBox::warning(this, tr("Invalid tag name"), tr("Tag name '%1' is invalid.").arg(tag.toString()));
         }
         else if (BitTorrent::Session::instance()->tags().contains(tag))
         {
-            QMessageBox::warning(this, tr("Tag exists"), tr("Tag name already exists."));
+            RaisedMessageBox::warning(this, tr("Tag exists"), tr("Tag name already exists."));
         }
         else
         {

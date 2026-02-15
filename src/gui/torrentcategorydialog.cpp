@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "raisedmessagebox.h"
 #include "torrentsharelimitswidget.h"
 #include "ui_torrentcategorydialog.h"
 
@@ -90,7 +91,7 @@ QString TorrentCategoryDialog::createCategory(QWidget *parent, const QString &pa
 
         if (!Session::isValidCategoryName(newCategoryName))
         {
-            QMessageBox::critical(
+            RaisedMessageBox::critical(
                         parent, tr("Invalid category name")
                         , tr("Category name cannot contain '\\'.\n"
                              "Category name cannot start/end with '/'.\n"
@@ -98,7 +99,7 @@ QString TorrentCategoryDialog::createCategory(QWidget *parent, const QString &pa
         }
         else if (Session::instance()->categories().contains(newCategoryName))
         {
-            QMessageBox::critical(
+            RaisedMessageBox::critical(
                         parent, tr("Category creation error")
                         , tr("Category with the given name already exists.\n"
                              "Please choose a different name and try again."));

@@ -36,6 +36,7 @@
 #include "base/bittorrent/session.h"
 #include "base/utils/net.h"
 #include "ui_banlistoptionsdialog.h"
+#include "raisedmessagebox.h"
 #include "utils.h"
 
 #define SETTINGS_KEY(name) u"BanListOptionsDialog/" name
@@ -94,7 +95,7 @@ void BanListOptionsDialog::on_buttonBanIP_clicked()
     QString ip = m_ui->txtIP->text();
     if (!Utils::Net::parseIPRange(ip, true))
     {
-        QMessageBox::warning(this, tr("Warning"), tr("The entered IP address or range is invalid."));
+        RaisedMessageBox::warning(this, tr("Warning"), tr("The entered IP address or range is invalid."));
         return;
     }
     // the same IPv6 addresses could be written in different forms;
@@ -107,7 +108,7 @@ void BanListOptionsDialog::on_buttonBanIP_clicked()
         QModelIndex index = m_sortFilter->index(i, 0);
         if (ip == index.data().toString())
         {
-            QMessageBox::warning(this, tr("Warning"), tr("The entered IP is already banned."));
+            RaisedMessageBox::warning(this, tr("Warning"), tr("The entered IP is already banned."));
             return;
         }
     }

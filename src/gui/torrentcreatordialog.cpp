@@ -48,6 +48,7 @@
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "raisedmessagebox.h"
 #include "ui_torrentcreatordialog.h"
 #include "utils.h"
 
@@ -277,7 +278,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     // test if readable
     if (!Utils::Fs::isReadable(inputPath))
     {
-        QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Path to file/folder is not readable."));
+        RaisedMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Path to file/folder is not readable."));
         return;
     }
 
@@ -328,7 +329,7 @@ void TorrentCreatorDialog::handleCreationFailure(const QString &msg)
 {
     // Remove busy cursor
     setCursor(QCursor(Qt::ArrowCursor));
-    QMessageBox::information(this, tr("Torrent creation failed"), msg);
+    RaisedMessageBox::information(this, tr("Torrent creation failed"), msg);
     setInteractionEnabled(true);
 }
 
@@ -337,7 +338,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
     setCursor(QCursor(Qt::ArrowCursor));
     setInteractionEnabled(true);
 
-    QMessageBox::information(this, tr("Torrent creator")
+    RaisedMessageBox::information(this, tr("Torrent creator")
         , u"%1\n%2"_s.arg(tr("Torrent created:"), result.torrentFilePath.toString()));
 
     if (m_ui->checkStartSeeding->isChecked())
@@ -366,7 +367,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
         else
         {
             const QString message = tr("Add torrent to transfer list failed.") + u'\n' + tr("Reason: \"%1\"").arg(loadResult.error());
-            QMessageBox::critical(this, tr("Add torrent failed"), message);
+            RaisedMessageBox::critical(this, tr("Add torrent failed"), message);
         }
     }
 }

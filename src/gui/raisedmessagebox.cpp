@@ -25,8 +25,9 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  */
-
 #include "raisedmessagebox.h"
+
+#include <QAbstractButton>
 
 RaisedMessageBox::RaisedMessageBox(QMessageBox::Icon icon, const QString &title, const QString &text,
                                    QMessageBox::StandardButtons buttons, QWidget *parent, Qt::WindowFlags f)
@@ -34,10 +35,32 @@ RaisedMessageBox::RaisedMessageBox(QMessageBox::Icon icon, const QString &title,
 {
 }
 
+void RaisedMessageBox::translateButtons(QMessageBox &dialog)
+{
+   const QMessageBox::StandardButtons standardButtons = dialog.standardButtons();
+
+    if (standardButtons & QMessageBox::Ok)
+        if (QAbstractButton *button = dialog.button(QMessageBox::Ok))
+            button->setText(tr("OK"));
+
+    if (standardButtons & QMessageBox::Cancel)
+        if (QAbstractButton *button = dialog.button(QMessageBox::Cancel))
+            button->setText(tr("Cancel"));
+
+    if (standardButtons & QMessageBox::Yes)
+        if (QAbstractButton *button = dialog.button(QMessageBox::Yes))
+            button->setText(tr("&Yes"));
+
+    if (standardButtons & QMessageBox::No)
+        if (QAbstractButton *button = dialog.button(QMessageBox::No))
+            button->setText(tr("&No"));
+}
+
 QMessageBox::StandardButton RaisedMessageBox::impl(const QMessageBox::Icon &icon, QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons, QMessageBox::StandardButton defaultButton)
 {
     RaisedMessageBox dlg(icon, title, text, buttons, parent);
     dlg.setDefaultButton(defaultButton);
+    translateButtons(dlg);
     return static_cast<QMessageBox::StandardButton>(dlg.exec());
 }
 

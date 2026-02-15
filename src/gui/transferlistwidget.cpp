@@ -62,6 +62,7 @@
 #include "mainwindow.h"
 #include "optionsdialog.h"
 #include "previewselectdialog.h"
+#include "raisedmessagebox.h"
 #include "speedlimitdialog.h"
 #include "torrentcategorydialog.h"
 #include "torrentcreatordialog.h"
@@ -632,7 +633,7 @@ void TransferListWidget::previewSelectedTorrents()
         }
         else
         {
-            QMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent \"%1\" does not contain previewable files")
+            RaisedMessageBox::critical(this, tr("Unable to preview"), tr("The selected torrent \"%1\" does not contain previewable files")
                 .arg(torrent->name()));
         }
     }
@@ -652,7 +653,7 @@ void TransferListWidget::recheckSelectedTorrents()
 {
     if (Preferences::instance()->confirmTorrentRecheck())
     {
-        QMessageBox::StandardButton ret = QMessageBox::question(this, tr("Recheck confirmation"), tr("Are you sure you want to recheck the selected torrent(s)?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::StandardButton ret = RaisedMessageBox::question(this, tr("Recheck confirmation"), tr("Are you sure you want to recheck the selected torrent(s)?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         if (ret != QMessageBox::Yes) return;
     }
 
@@ -754,7 +755,7 @@ void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled)
 {
     if (enabled)
     {
-        const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Enable automatic torrent management")
+        const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Enable automatic torrent management")
                 , tr("Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.")
                 , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
         if (btn != QMessageBox::Yes) return;
@@ -858,7 +859,7 @@ void TransferListWidget::exportTorrent()
 
         if (hasError)
         {
-            QMessageBox::warning(this, tr("Export .torrent file error")
+            RaisedMessageBox::warning(this, tr("Export .torrent file error")
                 , tr("Errors occurred when exporting .torrent files. Check execution log for details."));
         }
     });
@@ -868,7 +869,7 @@ void TransferListWidget::exportTorrent()
 
 void TransferListWidget::confirmRemoveAllTagsForSelection()
 {
-    QMessageBox::StandardButton response = QMessageBox::question(
+    QMessageBox::StandardButton response = RaisedMessageBox::question(
         this, tr("Remove All Tags"), tr("Remove all tags from selected torrents?"),
         QMessageBox::Yes | QMessageBox::No);
     if (response == QMessageBox::Yes)
@@ -895,7 +896,7 @@ TagSet TransferListWidget::askTagsForSelection(const QString &dialogTitle)
             const Tag tag {tagStr};
             if (!tag.isValid())
             {
-                QMessageBox::warning(this, tr("Invalid tag"), tr("Tag name: '%1' is invalid").arg(tag.toString()));
+                RaisedMessageBox::warning(this, tr("Invalid tag"), tr("Tag name: '%1' is invalid").arg(tag.toString()));
                 invalid = true;
             }
 
