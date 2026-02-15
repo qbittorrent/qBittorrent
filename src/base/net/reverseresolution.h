@@ -37,16 +37,17 @@ class QString;
 
 namespace Net
 {
-    class ReverseResolution : public QObject
+    class ReverseResolution final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(ReverseResolution)
 
     public:
-        explicit ReverseResolution(QObject *parent = nullptr);
-        ~ReverseResolution();
+        static void initInstance();
+        static void freeInstance();
+        static ReverseResolution *instance();
 
-        void resolve(const QHostAddress &ip);
+        QString resolve(const QHostAddress &ip);
 
     signals:
         void ipResolved(const QHostAddress &ip, const QString &hostname);
@@ -55,6 +56,11 @@ namespace Net
         void hostResolved(const QHostInfo &host);
 
     private:
+        ReverseResolution();
+        ~ReverseResolution() override;
+
+        static ReverseResolution *m_instance;
+
         QHash<int, QHostAddress> m_lookups;  // <LookupID, IP>
         QCache<QHostAddress, QString> m_cache;  // <IP, HostName>
     };
