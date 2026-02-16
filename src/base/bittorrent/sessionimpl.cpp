@@ -4899,7 +4899,8 @@ QString SessionImpl::NATPMPGateway() const {
     return m_NATPMPGateway;
 }
 
-void SessionImpl::setNATPMPGateway(const QString& gateway) {
+void SessionImpl::setNATPMPGateway(const QString &gateway)
+{
     if (gateway != m_NATPMPGateway)
     {
         m_NATPMPGateway = gateway;
