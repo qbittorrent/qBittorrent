@@ -2078,8 +2078,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     // Outgoing ports
     settingsPack.set_int(lt::settings_pack::outgoing_port, outgoingPortsMin());
     settingsPack.set_int(lt::settings_pack::num_outgoing_ports, (outgoingPortsMax() - outgoingPortsMin()));
+#if LIBTORRENT_VERSION_NUM >= 20012
     // NAT-PMP gateway
-    settingsPack.set_str(lt::settings_pack::nat_pmp_gateway, NATPMPGateway().toStdString());
+    settingsPack.set_str(lt::settings_pack::natpmp_gateway, NATPMPGateway().toStdString());
+#endif
     // UPnP lease duration
     settingsPack.set_int(lt::settings_pack::upnp_lease_duration, UPnPLeaseDuration());
     // Type of service
