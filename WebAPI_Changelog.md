@@ -8,7 +8,9 @@
 * [#23741](https://github.com/qbittorrent/qBittorrent/pull/23741)
   * Add `torrents/pieceAvailability` endpoint for retrieving availability of each torrent piece
   * `torrents/properties` endpoint now includes the number of distributed copies of the torrent's selected files via `availability` field
-
+* [#23847](https://github.com/qbittorrent/qBittorrent/pull/23847)
+  * `torrents/editCategory` endpoint will not throw an error when editing category without changes
+  
 ## 2.15.0
 * [#23585](https://github.com/qbittorrent/qBittorrent/pull/23585)
   * `sync/maindata` endpoint no longer includes the key `use_subcategories` as subcategories are now always enabled
