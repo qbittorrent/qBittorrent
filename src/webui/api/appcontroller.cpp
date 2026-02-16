@@ -524,6 +524,30 @@ void AppController::setPreferencesAction()
         it = m.constFind(key);
         return (it != m.constEnd());
     };
+    const auto toInt = [](const QVariant &v, const QString &key) -> int
+    {
+        bool ok = false;
+        const int result = v.toInt(&ok);
+        if (!ok)
+            throw APIError(APIErrorType::BadParams, AppController::tr("'%1' is not a valid integer").arg(key));
+        return result;
+    };
+    const auto toLongLong = [](const QVariant &v, const QString &key) -> qlonglong
+    {
+        bool ok = false;
+        const qlonglong result = v.toLongLong(&ok);
+        if (!ok)
+            throw APIError(APIErrorType::BadParams, AppController::tr("'%1' is not a valid integer").arg(key));
+        return result;
+    };
+    const auto toUInt = [](const QVariant &v, const QString &key) -> uint
+    {
+        bool ok = false;
+        const uint result = v.toUInt(&ok);
+        if (!ok)
+            throw APIError(APIErrorType::BadParams, AppController::tr("'%1' is not a valid integer").arg(key));
+        return result;
+    };
 
     // Behavior
     // Language
@@ -561,13 +585,13 @@ void AppController::setPreferencesAction()
     if (hasKey(u"file_log_backup_enabled"_s))
         app()->setFileLoggerBackup(it.value().toBool());
     if (hasKey(u"file_log_max_size"_s))
-        app()->setFileLoggerMaxSize(it.value().toInt() * 1024);
+        app()->setFileLoggerMaxSize(toInt(it.value(), u"file_log_max_size"_s) * 1024);
     if (hasKey(u"file_log_delete_old"_s))
         app()->setFileLoggerDeleteOld(it.value().toBool());
     if (hasKey(u"file_log_age"_s))
-        app()->setFileLoggerAge(it.value().toInt());
+        app()->setFileLoggerAge(toInt(it.value(), u"file_log_age"_s));
     if (hasKey(u"file_log_age_type"_s))
-        app()->setFileLoggerAgeType(it.value().toInt());
+        app()->setFileLoggerAgeType(toInt(it.value(), u"file_log_age_type"_s));
     // Delete torrent content files on torrent removal
     if (hasKey(u"delete_torrent_content_files"_s))
         pref->setRemoveTorrentContent(it.value().toBool());
@@ -585,7 +609,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"merge_trackers"_s))
         session->setMergeTrackersEnabled(it.value().toBool());
     if (hasKey(u"auto_delete_mode"_s))
-        TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
+        TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(toInt(it.value(), u"auto_delete_mode"_s)));
 
     if (hasKey(u"preallocate_all"_s))
         session->setPreallocationEnabled(it.value().toBool());
@@ -708,24 +732,24 @@ void AppController::setPreferencesAction()
     }
     else if (hasKey(u"listen_port"_s))
     {
-        session->setPort(it.value().toInt());
+        session->setPort(toInt(it.value(), u"listen_port"_s));
     }
     // SSL Torrents
     if (hasKey(u"ssl_enabled"_s))
         session->setSSLEnabled(it.value().toBool());
     if (hasKey(u"ssl_listen_port"_s))
-        session->setSSLPort(it.value().toInt());
+        session->setSSLPort(toInt(it.value(), u"ssl_listen_port"_s));
     if (hasKey(u"upnp"_s))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
     // Connections Limits
     if (hasKey(u"max_connec"_s))
-        session->setMaxConnections(it.value().toInt());
+        session->setMaxConnections(toInt(it.value(), u"max_connec"_s));
     if (hasKey(u"max_connec_per_torrent"_s))
-        session->setMaxConnectionsPerTorrent(it.value().toInt());
+        session->setMaxConnectionsPerTorrent(toInt(it.value(), u"max_connec_per_torrent"_s));
     if (hasKey(u"max_uploads"_s))
-        session->setMaxUploads(it.value().toInt());
+        session->setMaxUploads(toInt(it.value(), u"max_uploads"_s));
     if (hasKey(u"max_uploads_per_torrent"_s))
-        session->setMaxUploadsPerTorrent(it.value().toInt());
+        session->setMaxUploadsPerTorrent(toInt(it.value(), u"max_uploads_per_torrent"_s));
 
     // I2P
     if (hasKey(u"i2p_enabled"_s))
@@ -733,17 +757,17 @@ void AppController::setPreferencesAction()
     if (hasKey(u"i2p_address"_s))
         session->setI2PAddress(it.value().toString());
     if (hasKey(u"i2p_port"_s))
-        session->setI2PPort(it.value().toInt());
+        session->setI2PPort(toInt(it.value(), u"i2p_port"_s));
     if (hasKey(u"i2p_mixed_mode"_s))
         session->setI2PMixedMode(it.value().toBool());
     if (hasKey(u"i2p_inbound_quantity"_s))
-        session->setI2PInboundQuantity(it.value().toInt());
+        session->setI2PInboundQuantity(toInt(it.value(), u"i2p_inbound_quantity"_s));
     if (hasKey(u"i2p_outbound_quantity"_s))
-        session->setI2POutboundQuantity(it.value().toInt());
+        session->setI2POutboundQuantity(toInt(it.value(), u"i2p_outbound_quantity"_s));
     if (hasKey(u"i2p_inbound_length"_s))
-        session->setI2PInboundLength(it.value().toInt());
+        session->setI2PInboundLength(toInt(it.value(), u"i2p_inbound_length"_s));
     if (hasKey(u"i2p_outbound_length"_s))
-        session->setI2POutboundLength(it.value().toInt());
+        session->setI2POutboundLength(toInt(it.value(), u"i2p_outbound_length"_s));
 
     // Proxy Server
     auto *proxyManager = Net::ProxyConfigurationManager::instance();
@@ -753,7 +777,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"proxy_ip"_s))
         proxyConf.ip = it.value().toString();
     if (hasKey(u"proxy_port"_s))
-        proxyConf.port = it.value().toUInt();
+        proxyConf.port = toUInt(it.value(), u"proxy_port"_s);
     if (hasKey(u"proxy_auth_enabled"_s))
         proxyConf.authEnabled = it.value().toBool();
     if (hasKey(u"proxy_username"_s))
@@ -786,15 +810,15 @@ void AppController::setPreferencesAction()
     // Speed
     // Global Rate Limits
     if (hasKey(u"dl_limit"_s))
-        session->setGlobalDownloadSpeedLimit(it.value().toInt());
+        session->setGlobalDownloadSpeedLimit(toInt(it.value(), u"dl_limit"_s));
     if (hasKey(u"up_limit"_s))
-        session->setGlobalUploadSpeedLimit(it.value().toInt());
+        session->setGlobalUploadSpeedLimit(toInt(it.value(), u"up_limit"_s));
     if (hasKey(u"alt_dl_limit"_s))
-        session->setAltGlobalDownloadSpeedLimit(it.value().toInt());
+        session->setAltGlobalDownloadSpeedLimit(toInt(it.value(), u"alt_dl_limit"_s));
     if (hasKey(u"alt_up_limit"_s))
-       session->setAltGlobalUploadSpeedLimit(it.value().toInt());
+       session->setAltGlobalUploadSpeedLimit(toInt(it.value(), u"alt_up_limit"_s));
     if (hasKey(u"bittorrent_protocol"_s))
-        session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(it.value().toInt()));
+        session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(toInt(it.value(), u"bittorrent_protocol"_s)));
     if (hasKey(u"limit_utp_rate"_s))
         session->setUTPRateLimited(it.value().toBool());
     if (hasKey(u"limit_tcp_overhead"_s))
@@ -806,12 +830,12 @@ void AppController::setPreferencesAction()
         session->setBandwidthSchedulerEnabled(it.value().toBool());
     if (const auto hourIter = m.constFind(u"schedule_from_hour"_s), minIter = m.constFind(u"schedule_from_min"_s)
         ; (hourIter != m.constEnd()) && (minIter != m.constEnd()))
-        pref->setSchedulerStartTime({hourIter.value().toInt(), minIter.value().toInt()});
+        pref->setSchedulerStartTime({toInt(hourIter.value(), u"schedule_from_hour"_s), toInt(minIter.value(), u"schedule_from_min"_s)});
     if (const auto hourIter = m.constFind(u"schedule_to_hour"_s), minIter = m.constFind(u"schedule_to_min"_s)
         ; (hourIter != m.constEnd()) && (minIter != m.constEnd()))
-        pref->setSchedulerEndTime({hourIter.value().toInt(), minIter.value().toInt()});
+        pref->setSchedulerEndTime({toInt(hourIter.value(), u"schedule_to_hour"_s), toInt(minIter.value(), u"schedule_to_min"_s)});
     if (hasKey(u"scheduler_days"_s))
-        pref->setSchedulerDays(static_cast<Scheduler::Days>(it.value().toInt()));
+        pref->setSchedulerDays(static_cast<Scheduler::Days>(toInt(it.value(), u"scheduler_days"_s)));
 
     // Bittorrent
     // Privacy
@@ -822,29 +846,29 @@ void AppController::setPreferencesAction()
     if (hasKey(u"lsd"_s))
         session->setLSDEnabled(it.value().toBool());
     if (hasKey(u"encryption"_s))
-        session->setEncryption(it.value().toInt());
+        session->setEncryption(toInt(it.value(), u"encryption"_s));
     if (hasKey(u"anonymous_mode"_s))
         session->setAnonymousModeEnabled(it.value().toBool());
     // Max active checking torrents
     if (hasKey(u"max_active_checking_torrents"_s))
-        session->setMaxActiveCheckingTorrents(it.value().toInt());
+        session->setMaxActiveCheckingTorrents(toInt(it.value(), u"max_active_checking_torrents"_s));
     // Torrent Queueing
     if (hasKey(u"queueing_enabled"_s))
         session->setQueueingSystemEnabled(it.value().toBool());
     if (hasKey(u"max_active_downloads"_s))
-        session->setMaxActiveDownloads(it.value().toInt());
+        session->setMaxActiveDownloads(toInt(it.value(), u"max_active_downloads"_s));
     if (hasKey(u"max_active_torrents"_s))
-        session->setMaxActiveTorrents(it.value().toInt());
+        session->setMaxActiveTorrents(toInt(it.value(), u"max_active_torrents"_s));
     if (hasKey(u"max_active_uploads"_s))
-        session->setMaxActiveUploads(it.value().toInt());
+        session->setMaxActiveUploads(toInt(it.value(), u"max_active_uploads"_s));
     if (hasKey(u"dont_count_slow_torrents"_s))
         session->setIgnoreSlowTorrentsForQueueing(it.value().toBool());
     if (hasKey(u"slow_torrent_dl_rate_threshold"_s))
-        session->setDownloadRateForSlowTorrents(it.value().toInt());
+        session->setDownloadRateForSlowTorrents(toInt(it.value(), u"slow_torrent_dl_rate_threshold"_s));
     if (hasKey(u"slow_torrent_ul_rate_threshold"_s))
-        session->setUploadRateForSlowTorrents(it.value().toInt());
+        session->setUploadRateForSlowTorrents(toInt(it.value(), u"slow_torrent_ul_rate_threshold"_s));
     if (hasKey(u"slow_torrent_inactive_timer"_s))
-        session->setSlowTorrentsInactivityTimer(it.value().toInt());
+        session->setSlowTorrentsInactivityTimer(toInt(it.value(), u"slow_torrent_inactive_timer"_s));
     // Share Ratio Limiting
     if (hasKey(u"max_ratio_enabled"_s) && !it.value().toBool())
         session->setGlobalMaxRatio(-1);
@@ -853,14 +877,14 @@ void AppController::setPreferencesAction()
     if (hasKey(u"max_seeding_time_enabled"_s) && !it.value().toBool())
         session->setGlobalMaxSeedingMinutes(-1);
     else if (hasKey(u"max_seeding_time"_s))
-        session->setGlobalMaxSeedingMinutes(it.value().toInt());
+        session->setGlobalMaxSeedingMinutes(toInt(it.value(), u"max_seeding_time"_s));
     if (hasKey(u"max_inactive_seeding_time_enabled"_s) && !it.value().toBool())
         session->setGlobalMaxInactiveSeedingMinutes(-1);
     else if (hasKey(u"max_inactive_seeding_time"_s))
-        session->setGlobalMaxInactiveSeedingMinutes(it.value().toInt());
+        session->setGlobalMaxInactiveSeedingMinutes(toInt(it.value(), u"max_inactive_seeding_time"_s));
     if (hasKey(u"max_ratio_act"_s))
     {
-        switch (it.value().toInt())
+        switch (toInt(it.value(), u"max_ratio_act"_s))
         {
         default:
         case 0:
@@ -930,11 +954,11 @@ void AppController::setPreferencesAction()
         pref->setWebUIAuthSubnetWhitelist(it.value().toString().split(QRegularExpression(u"\n|,"_s), Qt::SkipEmptyParts));
     }
     if (hasKey(u"web_ui_max_auth_fail_count"_s))
-        pref->setWebUIMaxAuthFailCount(it.value().toInt());
+        pref->setWebUIMaxAuthFailCount(toInt(it.value(), u"web_ui_max_auth_fail_count"_s));
     if (hasKey(u"web_ui_ban_duration"_s))
-        pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
+        pref->setWebUIBanDuration(std::chrono::seconds {toInt(it.value(), u"web_ui_ban_duration"_s)});
     if (hasKey(u"web_ui_session_timeout"_s))
-        pref->setWebUISessionTimeout(it.value().toInt());
+        pref->setWebUISessionTimeout(toInt(it.value(), u"web_ui_session_timeout"_s));
     // Use alternative WebUI
     if (hasKey(u"alternative_webui_enabled"_s))
         pref->setAltWebUIEnabled(it.value().toBool());
@@ -963,7 +987,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"dyndns_enabled"_s))
         pref->setDynDNSEnabled(it.value().toBool());
     if (hasKey(u"dyndns_service"_s))
-        pref->setDynDNSService(static_cast<DNS::Service>(it.value().toInt()));
+        pref->setDynDNSService(static_cast<DNS::Service>(toInt(it.value(), u"dyndns_service"_s)));
     if (hasKey(u"dyndns_username"_s))
         pref->setDynDNSUsername(it.value().toString());
     if (hasKey(u"dyndns_password"_s))
@@ -972,11 +996,11 @@ void AppController::setPreferencesAction()
         pref->setDynDomainName(it.value().toString());
 
     if (hasKey(u"rss_refresh_interval"_s))
-        RSS::Session::instance()->setRefreshInterval(it.value().toInt());
+        RSS::Session::instance()->setRefreshInterval(toInt(it.value(), u"rss_refresh_interval"_s));
     if (hasKey(u"rss_fetch_delay"_s))
-        RSS::Session::instance()->setFetchDelay(std::chrono::seconds(it.value().toLongLong()));
+        RSS::Session::instance()->setFetchDelay(std::chrono::seconds(toLongLong(it.value(), u"rss_fetch_delay"_s)));
     if (hasKey(u"rss_max_articles_per_feed"_s))
-        RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
+        RSS::Session::instance()->setMaxArticlesPerFeed(toInt(it.value(), u"rss_max_articles_per_feed"_s));
     if (hasKey(u"rss_processing_enabled"_s))
         RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
     if (hasKey(u"rss_auto_downloading_enabled"_s))
@@ -996,7 +1020,7 @@ void AppController::setPreferencesAction()
         session->setTorrentContentRemoveOption(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentRemoveOption::MoveToTrash));
     // Physical memory (RAM) usage limit
     if (hasKey(u"memory_working_set_limit"_s))
-        app()->setMemoryWorkingSetLimit(it.value().toInt());
+        app()->setMemoryWorkingSetLimit(toInt(it.value(), u"memory_working_set_limit"_s));
     // Current network interface
     if (hasKey(u"current_network_interface"_s))
     {
@@ -1021,13 +1045,13 @@ void AppController::setPreferencesAction()
     }
     // Save resume data interval
     if (hasKey(u"save_resume_data_interval"_s))
-        session->setSaveResumeDataInterval(it.value().toInt());
+        session->setSaveResumeDataInterval(toInt(it.value(), u"save_resume_data_interval"_s));
     // Save statistics interval
     if (hasKey(u"save_statistics_interval"_s))
-        session->setSaveStatisticsInterval(std::chrono::minutes(it.value().toInt()));
+        session->setSaveStatisticsInterval(std::chrono::minutes(toInt(it.value(), u"save_statistics_interval"_s)));
     // .torrent file size limit
     if (hasKey(u"torrent_file_size_limit"_s))
-        pref->setTorrentFileSizeLimit(it.value().toLongLong());
+        pref->setTorrentFileSizeLimit(toLongLong(it.value(), u"torrent_file_size_limit"_s));
     // Confirm torrent recheck
     if (hasKey(u"confirm_torrent_recheck"_s))
         pref->setConfirmTorrentRecheck(it.value().toBool());
@@ -1039,7 +1063,7 @@ void AppController::setPreferencesAction()
         app()->setInstanceName(it.value().toString());
     // Refresh interval
     if (hasKey(u"refresh_interval"_s))
-        session->setRefreshInterval(it.value().toInt());
+        session->setRefreshInterval(toInt(it.value(), u"refresh_interval"_s));
     // Resolve peer host names
     if (hasKey(u"resolve_peer_host_names"_s))
         pref->resolvePeerHostNames(it.value().toBool());
@@ -1051,7 +1075,7 @@ void AppController::setPreferencesAction()
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
     // Embedded tracker
     if (hasKey(u"embedded_tracker_port"_s))
-        pref->setTrackerPort(it.value().toInt());
+        pref->setTrackerPort(toInt(it.value(), u"embedded_tracker_port"_s));
     if (hasKey(u"embedded_tracker_port_forwarding"_s))
         pref->setTrackerPortForwardingEnabled(it.value().toBool());
     if (hasKey(u"enable_embedded_tracker"_s))
@@ -1069,39 +1093,39 @@ void AppController::setPreferencesAction()
     // libtorrent preferences
     // Bdecode depth limit
     if (hasKey(u"bdecode_depth_limit"_s))
-        pref->setBdecodeDepthLimit(it.value().toInt());
+        pref->setBdecodeDepthLimit(toInt(it.value(), u"bdecode_depth_limit"_s));
     // Bdecode token limit
     if (hasKey(u"bdecode_token_limit"_s))
-        pref->setBdecodeTokenLimit(it.value().toInt());
+        pref->setBdecodeTokenLimit(toInt(it.value(), u"bdecode_token_limit"_s));
     // Async IO threads
     if (hasKey(u"async_io_threads"_s))
-        session->setAsyncIOThreads(it.value().toInt());
+        session->setAsyncIOThreads(toInt(it.value(), u"async_io_threads"_s));
     // Hashing threads
     if (hasKey(u"hashing_threads"_s))
-        session->setHashingThreads(it.value().toInt());
+        session->setHashingThreads(toInt(it.value(), u"hashing_threads"_s));
     // File pool size
     if (hasKey(u"file_pool_size"_s))
-        session->setFilePoolSize(it.value().toInt());
+        session->setFilePoolSize(toInt(it.value(), u"file_pool_size"_s));
     // Checking Memory Usage
     if (hasKey(u"checking_memory_use"_s))
-        session->setCheckingMemUsage(it.value().toInt());
+        session->setCheckingMemUsage(toInt(it.value(), u"checking_memory_use"_s));
     // Disk write cache
     if (hasKey(u"disk_cache"_s))
-        session->setDiskCacheSize(it.value().toInt());
+        session->setDiskCacheSize(toInt(it.value(), u"disk_cache"_s));
     if (hasKey(u"disk_cache_ttl"_s))
-        session->setDiskCacheTTL(it.value().toInt());
+        session->setDiskCacheTTL(toInt(it.value(), u"disk_cache_ttl"_s));
     // Disk queue size
     if (hasKey(u"disk_queue_size"_s))
-        session->setDiskQueueSize(it.value().toLongLong());
+        session->setDiskQueueSize(toLongLong(it.value(), u"disk_queue_size"_s));
     // Disk IO Type
     if (hasKey(u"disk_io_type"_s))
-        session->setDiskIOType(static_cast<BitTorrent::DiskIOType>(it.value().toInt()));
+        session->setDiskIOType(static_cast<BitTorrent::DiskIOType>(toInt(it.value(), u"disk_io_type"_s)));
     // Disk IO read mode
     if (hasKey(u"disk_io_read_mode"_s))
-        session->setDiskIOReadMode(static_cast<BitTorrent::DiskIOReadMode>(it.value().toInt()));
+        session->setDiskIOReadMode(static_cast<BitTorrent::DiskIOReadMode>(toInt(it.value(), u"disk_io_read_mode"_s)));
     // Disk IO write mode
     if (hasKey(u"disk_io_write_mode"_s))
-        session->setDiskIOWriteMode(static_cast<BitTorrent::DiskIOWriteMode>(it.value().toInt()));
+        session->setDiskIOWriteMode(static_cast<BitTorrent::DiskIOWriteMode>(toInt(it.value(), u"disk_io_write_mode"_s)));
     // Coalesce reads & writes
     if (hasKey(u"enable_coalesce_read_write"_s))
         session->setCoalesceReadWriteEnabled(it.value().toBool());
@@ -1113,40 +1137,40 @@ void AppController::setPreferencesAction()
         session->setSuggestMode(it.value().toBool());
     // Send buffer watermark
     if (hasKey(u"send_buffer_watermark"_s))
-        session->setSendBufferWatermark(it.value().toInt());
+        session->setSendBufferWatermark(toInt(it.value(), u"send_buffer_watermark"_s));
     if (hasKey(u"send_buffer_low_watermark"_s))
-        session->setSendBufferLowWatermark(it.value().toInt());
+        session->setSendBufferLowWatermark(toInt(it.value(), u"send_buffer_low_watermark"_s));
     if (hasKey(u"send_buffer_watermark_factor"_s))
-        session->setSendBufferWatermarkFactor(it.value().toInt());
+        session->setSendBufferWatermarkFactor(toInt(it.value(), u"send_buffer_watermark_factor"_s));
     // Outgoing connections per second
     if (hasKey(u"connection_speed"_s))
-        session->setConnectionSpeed(it.value().toInt());
+        session->setConnectionSpeed(toInt(it.value(), u"connection_speed"_s));
     // Socket send buffer size
     if (hasKey(u"socket_send_buffer_size"_s))
-        session->setSocketSendBufferSize(it.value().toInt());
+        session->setSocketSendBufferSize(toInt(it.value(), u"socket_send_buffer_size"_s));
     // Socket receive buffer size
     if (hasKey(u"socket_receive_buffer_size"_s))
-        session->setSocketReceiveBufferSize(it.value().toInt());
+        session->setSocketReceiveBufferSize(toInt(it.value(), u"socket_receive_buffer_size"_s));
     // Socket listen backlog size
     if (hasKey(u"socket_backlog_size"_s))
-        session->setSocketBacklogSize(it.value().toInt());
+        session->setSocketBacklogSize(toInt(it.value(), u"socket_backlog_size"_s));
     // Outgoing ports
     if (hasKey(u"outgoing_ports_min"_s))
-        session->setOutgoingPortsMin(it.value().toInt());
+        session->setOutgoingPortsMin(toInt(it.value(), u"outgoing_ports_min"_s));
     if (hasKey(u"outgoing_ports_max"_s))
-        session->setOutgoingPortsMax(it.value().toInt());
+        session->setOutgoingPortsMax(toInt(it.value(), u"outgoing_ports_max"_s));
     // UPnP lease duration
     if (hasKey(u"upnp_lease_duration"_s))
-        session->setUPnPLeaseDuration(it.value().toInt());
+        session->setUPnPLeaseDuration(toInt(it.value(), u"upnp_lease_duration"_s));
     // Type of service
     if (hasKey(u"peer_tos"_s))
-        session->setPeerDSCP(it.value().toInt());
+        session->setPeerDSCP(toInt(it.value(), u"peer_tos"_s));
     // uTP-TCP mixed mode
     if (hasKey(u"utp_tcp_mixed_mode"_s))
-        session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
+        session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(toInt(it.value(), u"utp_tcp_mixed_mode"_s)));
     // Hostname resolver cache TTL
     if (hasKey(u"hostname_cache_ttl"_s))
-        session->setHostnameCacheTTL(it.value().toInt());
+        session->setHostnameCacheTTL(toInt(it.value(), u"hostname_cache_ttl"_s));
     // Support internationalized domain name (IDN)
     if (hasKey(u"idn_support_enabled"_s))
         session->setIDNSupportEnabled(it.value().toBool());
@@ -1164,10 +1188,10 @@ void AppController::setPreferencesAction()
         session->setBlockPeersOnPrivilegedPorts(it.value().toBool());
     // Choking algorithm
     if (hasKey(u"upload_slots_behavior"_s))
-        session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(it.value().toInt()));
+        session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(toInt(it.value(), u"upload_slots_behavior"_s)));
     // Seed choking algorithm
     if (hasKey(u"upload_choking_algorithm"_s))
-        session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(it.value().toInt()));
+        session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(toInt(it.value(), u"upload_choking_algorithm"_s)));
     // Announce
     if (hasKey(u"announce_to_all_trackers"_s))
         session->setAnnounceToAllTrackers(it.value().toBool());
@@ -1179,21 +1203,21 @@ void AppController::setPreferencesAction()
         session->setAnnounceIP(announceAddr.isNull() ? QString() : announceAddr.toString());
     }
     if (hasKey(u"announce_port"_s))
-        session->setAnnouncePort(it.value().toInt());
+        session->setAnnouncePort(toInt(it.value(), u"announce_port"_s));
     if (hasKey(u"max_concurrent_http_announces"_s))
-        session->setMaxConcurrentHTTPAnnounces(it.value().toInt());
+        session->setMaxConcurrentHTTPAnnounces(toInt(it.value(), u"max_concurrent_http_announces"_s));
     if (hasKey(u"stop_tracker_timeout"_s))
-        session->setStopTrackerTimeout(it.value().toInt());
+        session->setStopTrackerTimeout(toInt(it.value(), u"stop_tracker_timeout"_s));
     // Peer Turnover
     if (hasKey(u"peer_turnover"_s))
-        session->setPeerTurnover(it.value().toInt());
+        session->setPeerTurnover(toInt(it.value(), u"peer_turnover"_s));
     if (hasKey(u"peer_turnover_cutoff"_s))
-        session->setPeerTurnoverCutoff(it.value().toInt());
+        session->setPeerTurnoverCutoff(toInt(it.value(), u"peer_turnover_cutoff"_s));
     if (hasKey(u"peer_turnover_interval"_s))
-        session->setPeerTurnoverInterval(it.value().toInt());
+        session->setPeerTurnoverInterval(toInt(it.value(), u"peer_turnover_interval"_s));
     // Maximum outstanding requests to a single peer
     if (hasKey(u"request_queue_size"_s))
-        session->setRequestQueueSize(it.value().toInt());
+        session->setRequestQueueSize(toInt(it.value(), u"request_queue_size"_s));
     // DHT bootstrap nodes
     if (hasKey(u"dht_bootstrap_nodes"_s))
         session->setDHTBootstrapNodes(it.value().toString());
