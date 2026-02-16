@@ -1798,10 +1798,18 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     for (const QString &ip : asConst(m_bannedIPs.get()))
     {
         lt::error_code ec;
-        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+        const std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(ip);
+        if (!ipRange)
+            continue;
+        const lt::address firstAddr = lt::make_address(ipRange.value().first.toString().toLatin1().constData(), ec);
         Q_ASSERT(!ec);
-        if (!ec)
-            filter.add_rule(addr, addr, lt::ip_filter::blocked);
+        if (ec) [[unlikely]]
+            continue;
+        const lt::address lastAddr = lt::make_address(ipRange.value().second.toString().toLatin1().constData(), ec);
+        Q_ASSERT(!ec);
+        if (ec) [[unlikely]]
+            continue;
+        filter.add_rule(firstAddr, lastAddr, lt::ip_filter::blocked);
     }
 }
 
@@ -4175,19 +4183,20 @@ void SessionImpl::setBannedIPs(const QStringList &newList)
         return; // do nothing
     // here filter out incorrect IP
     QStringList filteredList;
-    for (const QString &ip : newList)
+    for (const QString &entry : newList)
     {
-        if (Utils::Net::isValidIP(ip))
+        const std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(entry);
+        if (ipRange)
         {
             // the same IPv6 addresses could be written in different forms;
             // QHostAddress::toString() result format follows RFC5952;
             // thus we avoid duplicate entries pointing to the same address
-            filteredList << QHostAddress(ip).toString();
+            filteredList << Utils::Net::ipRangeToString(ipRange.value());
         }
         else
         {
-            LogMsg(tr("Rejected invalid IP address while applying the list of banned IP addresses. IP: \"%1\"")
-                   .arg(ip)
+            LogMsg(tr("Rejected invalid IP address range while applying the list of banned IP addresses. IP range: \"%1\"")
+                   .arg(entry)
                 , Log::WARNING);
         }
     }

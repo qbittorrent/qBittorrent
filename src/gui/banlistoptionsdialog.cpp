@@ -92,15 +92,16 @@ void BanListOptionsDialog::on_buttonBox_accepted()
 void BanListOptionsDialog::on_buttonBanIP_clicked()
 {
     QString ip = m_ui->txtIP->text();
-    if (!Utils::Net::isValidIP(ip))
+    if (!Utils::Net::parseIPRange(ip, true))
     {
-        QMessageBox::warning(this, tr("Warning"), tr("The entered IP address is invalid."));
+        QMessageBox::warning(this, tr("Warning"), tr("The entered IP address or range is invalid."));
         return;
     }
     // the same IPv6 addresses could be written in different forms;
     // QHostAddress::toString() result format follows RFC5952;
     // thus we avoid duplicate entries pointing to the same address
-    ip = QHostAddress(ip).toString();
+    if (Utils::Net::isValidIP(ip))
+        ip = QHostAddress(ip).toString();
     for (int i = 0; i < m_sortFilter->rowCount(); ++i)
     {
         QModelIndex index = m_sortFilter->index(i, 0);
@@ -132,5 +133,5 @@ void BanListOptionsDialog::on_buttonDeleteIP_clicked()
 
 void BanListOptionsDialog::on_txtIP_textChanged(const QString &ip)
 {
-    m_ui->buttonBanIP->setEnabled(Utils::Net::isValidIP(ip));
+    m_ui->buttonBanIP->setEnabled(Utils::Net::parseIPRange(ip, true).has_value());
 }
