@@ -30,6 +30,19 @@ import { expect, test, vi } from "vitest";
 
 import "../../private/scripts/misc.js";
 
+test("Test filterInPlace()", () => {
+    const filterInPlace = (array, predicate) => {
+        window.qBittorrent.Misc.filterInPlace(array, predicate);
+        return array;
+    };
+
+    expect(filterInPlace([], (() => true))).toStrictEqual([]);
+    expect(filterInPlace([], (() => false))).toStrictEqual([]);
+    expect(filterInPlace([1, 2, 3, 4], (() => true))).toStrictEqual([1, 2, 3, 4]);
+    expect(filterInPlace([1, 2, 3, 4], (() => false))).toStrictEqual([]);
+    expect(filterInPlace([1, 2, 3, 4], (x => (x % 2) === 0))).toStrictEqual([2, 4]);
+});
+
 test("Test toFixedPointString()", () => {
     const toFixedPointString = window.qBittorrent.Misc.toFixedPointString;
 

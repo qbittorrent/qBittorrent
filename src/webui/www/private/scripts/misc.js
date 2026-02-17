@@ -34,6 +34,7 @@ window.qBittorrent.Misc ??= (() => {
         return {
             getHost: getHost,
             createDebounceHandler: createDebounceHandler,
+            filterInPlace: filterInPlace,
             friendlyUnit: friendlyUnit,
             friendlyDuration: friendlyDuration,
             friendlyPercentage: friendlyPercentage,
@@ -88,6 +89,18 @@ window.qBittorrent.Misc ??= (() => {
                 timer = -1;
             }, delay);
         };
+    };
+
+    const filterInPlace = (array, predicate) => {
+        let j = 0;
+        for (let i = 0; i < array.length; ++i) {
+            if (predicate(array[i])) {
+                if (i > j)
+                    array[j] = array[i];
+                ++j;
+            }
+        }
+        array.splice(j, (array.length - j));
     };
 
     /*
