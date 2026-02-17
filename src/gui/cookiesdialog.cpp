@@ -30,6 +30,8 @@
 
 #include <algorithm>
 
+#include <QPushButton>
+
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "cookiesmodel.h"
@@ -47,6 +49,9 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     , m_storeViewState("GUI/Qt6/" SETTINGS_KEY(u"ViewState"_s))
 {
     m_ui->setupUi(this);
+
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);

@@ -38,6 +38,9 @@ RSSFeedDialog::RSSFeedDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
+
     m_ui->spinRefreshInterval->setMaximum(std::numeric_limits<int>::max());
     m_ui->spinRefreshInterval->setStepType(QAbstractSpinBox::AdaptiveDecimalStepType);
     m_ui->spinRefreshInterval->setSuffix(tr(" sec"));

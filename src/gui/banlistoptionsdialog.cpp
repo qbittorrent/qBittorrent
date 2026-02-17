@@ -30,6 +30,7 @@
 
 #include <QHostAddress>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSortFilterProxyModel>
 #include <QStringListModel>
 
@@ -48,6 +49,9 @@ BanListOptionsDialog::BanListOptionsDialog(QWidget *parent)
     , m_model(new QStringListModel(BitTorrent::Session::instance()->bannedIPs(), this))
 {
     m_ui->setupUi(this);
+
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 

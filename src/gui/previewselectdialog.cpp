@@ -63,6 +63,9 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
 {
     m_ui->setupUi(this);
 
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
+
     m_ui->label->setText(tr("The following files from torrent \"%1\" support previewing, please select one of them:")
         .arg(m_torrent->name()));
 

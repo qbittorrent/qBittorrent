@@ -37,6 +37,7 @@
 #include <QLabel>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPushButton>
 
 #include "base/3rdparty/expected.hpp"
 #include "base/global.h"
@@ -234,6 +235,9 @@ UIThemeDialog::UIThemeDialog(QWidget *parent)
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
 {
     m_ui->setupUi(this);
+
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_ui->colorsWarningLabel->hide();

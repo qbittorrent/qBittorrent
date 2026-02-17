@@ -30,6 +30,8 @@
 
 #include <algorithm>
 
+#include <QPushButton>
+
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
@@ -48,6 +50,8 @@ StatsDialog::StatsDialog(QWidget *parent)
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
 {
     m_ui->setupUi(this);
+
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
 
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &StatsDialog::close);
 

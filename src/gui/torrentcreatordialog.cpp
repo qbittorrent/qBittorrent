@@ -37,6 +37,7 @@
 #include <QDropEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QMimeData>
 #include <QThread>
 #include <QUrl>
@@ -130,6 +131,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     }
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create Torrent"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
     m_ui->textInputPath->setMode(FileSystemPathEdit::Mode::ReadOnly);
 
     connect(m_ui->addFileButton, &QPushButton::clicked, this, &TorrentCreatorDialog::onAddFileButtonClicked);

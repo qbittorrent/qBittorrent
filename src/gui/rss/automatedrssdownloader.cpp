@@ -34,6 +34,7 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QRegularExpression>
 #include <QShortcut>
 #include <QSignalBlocker>
@@ -73,6 +74,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     , m_storeRuleDefSplitterState {u"GUI/Qt6/RSSFeedDownloader/RuleDefSplitterState"_s}
 {
     m_ui->setupUi(this);
+
+    m_ui->buttonBox->button(QDialogButtonBox::Close)->setText(tr("Close"));
 
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);

@@ -43,6 +43,9 @@ TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
+
     m_ui->comboSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->comboSavePath->setDialogCaption(tr("Choose save path"));
 

@@ -31,6 +31,7 @@
 
 #include <QList>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSize>
 #include <QStringView>
 
@@ -57,6 +58,7 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
     m_ui->setupUi(this);
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Add"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 

@@ -43,6 +43,7 @@
 #include <QEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QPushButton>
 #include <QStyleFactory>
 #include <QSystemTrayIcon>
 #include <QTranslator>
@@ -163,6 +164,10 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 {
     m_ui->setupUi(this);
     m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
+
+    m_applyButton->setText(tr("Apply"));
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
 #ifdef Q_OS_UNIX
     setWindowTitle(tr("Preferences"));

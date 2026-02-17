@@ -30,6 +30,7 @@
 
 #include <algorithm>
 
+#include <QPushButton>
 #include <QStyle>
 
 #include "base/bittorrent/session.h"
@@ -55,6 +56,9 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
 {
     m_ui->setupUi(this);
+
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("OK"));
+    m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setText(tr("Cancel"));
 
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);

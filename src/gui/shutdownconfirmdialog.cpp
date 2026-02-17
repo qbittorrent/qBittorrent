@@ -60,6 +60,7 @@ ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDial
 
     // Cancel Button
     QPushButton *cancelButton = m_ui->buttonBox->button(QDialogButtonBox::Cancel);
+    cancelButton->setText(tr("Cancel"));
     cancelButton->setFocus();
     cancelButton->setDefault(true);
 
