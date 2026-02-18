@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.15.2
+
+* [#23357](https://github.com/qbittorrent/qBittorrent/pull/23856)
+  * Add `app/getFreeSpaceAtPathAction` endpoint with `path` as parameter returning the free space at the given path
+
 ## 2.15.1
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
   * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)
