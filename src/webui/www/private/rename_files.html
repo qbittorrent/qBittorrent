@@ -23,9 +23,10 @@
                 menu: "multiRenameFilesMenu",
                 actions: {
                     ToggleSelection: (element, ref) => {
+                        const TriState = window.qBittorrent.FileTree.TriState;
                         const rowId = Number(element.getAttribute("data-row-id"));
                         const row = bulkRenameFilesTable.getNode(rowId);
-                        const checkState = (row.checked === 1) ? 0 : 1;
+                        const checkState = (row.checked === TriState.Checked) ? TriState.Unchecked : TriState.Checked;
                         bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
                         bulkRenameFilesTable.updateHeaderCheckbox();
                         bulkRenameFilesTable.onRowSelectionChange(bulkRenameFilesTable.getSelectedRows());
@@ -283,7 +284,7 @@
 
                     const row = {
                         fileId: index,
-                        checked: 1, // unchecked
+                        checked: window.qBittorrent.FileTree.TriState.Unchecked,
                         path: file.name,
                         original: window.qBittorrent.Filesystem.fileName(file.name),
                         renamed: "",
@@ -328,7 +329,7 @@
                             folderNode.path = (parent.path === "")
                                 ? folderName
                                 : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
-                            folderNode.checked = selectedRows.includes(rowId.toString()) ? 0 : 1;
+                            folderNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                             folderNode.original = folderName;
                             folderNode.renamed = "";
                             folderNode.root = parent;
@@ -343,7 +344,7 @@
                     const childNode = new window.qBittorrent.FileTree.FileNode();
                     childNode.rowId = rowId;
                     childNode.path = row.path;
-                    childNode.checked = selectedRows.includes(rowId.toString()) ? 0 : 1;
+                    childNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                     childNode.original = row.original;
                     childNode.renamed = "";
                     childNode.root = parent;
