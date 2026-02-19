@@ -32,7 +32,7 @@
 
 #include <QtSystemDetection>
 
-#if defined(Q_OS_LINUX)
+#if defined(Q_OS_LINUX) && defined(QBT_USES_GETRANDOM)
 #include "randomlayer_linux.cpp"
 #elif defined(Q_OS_WIN)
 #include "randomlayer_win.cpp"

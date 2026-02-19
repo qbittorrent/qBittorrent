@@ -5732,8 +5732,6 @@ void SessionImpl::fetchPendingAlerts(const lt::time_duration time)
 
 void SessionImpl::endAlertSequence(const int alertType, const qsizetype alertCount)
 {
-    qDebug() << "End alert sequence. Alert:" << lt::alert_name(alertType) << "Count:" << alertCount;
-
     if (alertType == lt::add_torrent_alert::alert_type)
     {
         emit addTorrentAlertsReceived(alertCount);
