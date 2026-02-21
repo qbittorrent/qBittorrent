@@ -1138,16 +1138,73 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         if (window.qBittorrent.Cache.preferences.get().status_bar_external_ip) {
             const lastExternalAddressV4 = serverState.last_external_address_v4;
             const lastExternalAddressV6 = serverState.last_external_address_v6;
+            const lastExternalAddressV4CountryCode = serverState.last_external_address_v4_country_code;
+            const lastExternalAddressV6CountryCode = serverState.last_external_address_v6_country_code;
+            const lastExternalAddressV4Country = serverState.last_external_address_v4_country;
+            const lastExternalAddressV6Country = serverState.last_external_address_v6_country;
             const hasIPv4Address = lastExternalAddressV4 !== "";
             const hasIPv6Address = lastExternalAddressV6 !== "";
-            let lastExternalAddressLabel = "QBT_TR(External IP: N/A)QBT_TR[CONTEXT=HttpServer]";
+
+            // Clear previous content
+            externalIPsElement.textContent = "";
+
+            let labelPrefix = "QBT_TR(External IP: N/A)QBT_TR[CONTEXT=HttpServer]";
             if (hasIPv4Address && hasIPv6Address)
-                lastExternalAddressLabel = "QBT_TR(External IPs: %1, %2)QBT_TR[CONTEXT=HttpServer]";
+                labelPrefix = "QBT_TR(External IPs: )QBT_TR[CONTEXT=HttpServer]";
             else if (hasIPv4Address || hasIPv6Address)
-                lastExternalAddressLabel = "QBT_TR(External IP: %1%2)QBT_TR[CONTEXT=HttpServer]";
-            // https://en.wikipedia.org/wiki/IPv6_address#Scoped_literal_IPv6_addresses_(with_zone_index)
-            lastExternalAddressLabel = lastExternalAddressLabel.replace("%1", lastExternalAddressV4).replace("%2", lastExternalAddressV6);
-            externalIPsElement.textContent = lastExternalAddressLabel;
+                labelPrefix = "QBT_TR(External IP: )QBT_TR[CONTEXT=HttpServer]";
+
+            if (hasIPv4Address || hasIPv6Address) {
+                // Add label prefix
+                const labelSpan = document.createElement("span");
+                labelSpan.textContent = labelPrefix;
+                externalIPsElement.appendChild(labelSpan);
+
+                // Add IPv4 with flag if available
+                if (hasIPv4Address) {
+                    if (lastExternalAddressV4CountryCode) {
+                        const flagSpan = document.createElement("span");
+                        flagSpan.classList.add("flags");
+                        flagSpan.style.backgroundImage = `url('images/flags/${lastExternalAddressV4CountryCode || "xx"}.svg')`;
+                        flagSpan.textContent = lastExternalAddressV4;
+                        flagSpan.title = lastExternalAddressV4Country || lastExternalAddressV4;
+                        externalIPsElement.appendChild(flagSpan);
+                    }
+                    else {
+                        const ipSpan = document.createElement("span");
+                        ipSpan.textContent = lastExternalAddressV4;
+                        externalIPsElement.appendChild(ipSpan);
+                    }
+
+                    // Add separator if both addresses exist
+                    if (hasIPv6Address) {
+                        const separatorSpan = document.createElement("span");
+                        separatorSpan.textContent = ", ";
+                        externalIPsElement.appendChild(separatorSpan);
+                    }
+                }
+
+                // Add IPv6 with flag if available
+                if (hasIPv6Address) {
+                    if (lastExternalAddressV6CountryCode) {
+                        const flagSpan = document.createElement("span");
+                        flagSpan.classList.add("flags");
+                        flagSpan.style.backgroundImage = `url('images/flags/${lastExternalAddressV6CountryCode || "xx"}.svg')`;
+                        flagSpan.textContent = lastExternalAddressV6;
+                        flagSpan.title = lastExternalAddressV6Country || lastExternalAddressV6;
+                        externalIPsElement.appendChild(flagSpan);
+                    }
+                    else {
+                        const ipSpan = document.createElement("span");
+                        ipSpan.textContent = lastExternalAddressV6;
+                        externalIPsElement.appendChild(ipSpan);
+                    }
+                }
+            }
+            else {
+                externalIPsElement.textContent = labelPrefix;
+            }
+
             externalIPsElement.classList.remove("invisible");
             externalIPsElement.previousElementSibling.classList.remove("invisible");
         }
