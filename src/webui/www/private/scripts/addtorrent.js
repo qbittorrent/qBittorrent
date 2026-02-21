@@ -146,6 +146,7 @@ window.qBittorrent.AddTorrent ??= (() => {
 
             if (isAutoTMMEnabled()) {
                 document.getElementById("savepath").value = defaultSavePath;
+                document.getElementById("size").textContent = window.qBittorrent.freespaceAutofill.showFreeSpace({ value: defaultSavePath });
 
                 const downloadPathEnabled = categoryDownloadPathEnabled(categoryName);
                 document.getElementById("useDownloadPath").checked = downloadPathEnabled;
@@ -158,7 +159,9 @@ window.qBittorrent.AddTorrent ??= (() => {
             item.nextElementSibling.value = text;
 
             if (isAutoTMMEnabled()) {
-                document.getElementById("savepath").value = categorySavePath(categoryName);
+                const tempCategoryPath = categorySavePath(categoryName);
+                document.getElementById("savepath").value = tempCategoryPath;
+                document.getElementById("size").textContent = window.qBittorrent.freespaceAutofill.showFreeSpace({ value: tempCategoryPath });
 
                 const downloadPathEnabled = categoryDownloadPathEnabled(categoryName);
                 document.getElementById("useDownloadPath").checked = downloadPathEnabled;
@@ -192,6 +195,7 @@ window.qBittorrent.AddTorrent ??= (() => {
             useDownloadPath.checked = defaultTempPathEnabled;
         }
 
+        document.getElementById("size").textContent = window.qBittorrent.freespaceAutofill.showFreeSpace({ value: savepath.value });
         savepath.disabled = autoTMMEnabled;
         useDownloadPath.disabled = autoTMMEnabled;
 
@@ -280,8 +284,11 @@ window.qBittorrent.AddTorrent ??= (() => {
         document.getElementById("infoHashV1").textContent = (metadata.infohash_v1 === undefined) ? notAvailable : (metadata.infohash_v1 || notApplicable);
         document.getElementById("infoHashV2").textContent = (metadata.infohash_v2 === undefined) ? notAvailable : (metadata.infohash_v2 || notApplicable);
 
-        if (metadata.info?.length !== undefined)
-            document.getElementById("size").textContent = window.qBittorrent.Misc.friendlyUnit(metadata.info.length, false);
+        if (metadata.info?.length !== undefined) {
+            const size = document.getElementById("size");
+            size.setAttribute("size", window.qBittorrent.Misc.friendlyUnit(metadata.info.length, false));
+            size.textContent = window.qBittorrent.freespaceAutofill.showFreeSpace({ value: document.getElementById("savepath").value });
+        }
         if ((metadata.creation_date !== undefined) && (metadata.creation_date > 1))
             document.getElementById("createdDate").textContent = window.qBittorrent.Misc.formatDate(new Date(metadata.creation_date * 1000));
         if (metadata.comment !== undefined)
