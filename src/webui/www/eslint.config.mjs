@@ -39,6 +39,7 @@ export default [
             "no-implicit-coercion": "error",
             "no-undef": "off",
             "no-unused-vars": "off",
+            "no-useless-assignment": "off",
             "no-var": "error",
             "object-shorthand": ["error", "consistent"],
             "operator-assignment": "error",
