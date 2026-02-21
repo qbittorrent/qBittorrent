@@ -317,8 +317,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                         ++pos;
                     val.splice(pos, 0, el.columnName);
                     localPreferences.set(`columns_order_${this.dynamicTableDivId}`, val.join(","));
+                    const oldIndexByName = new Map(this.columns.map((col, i) => [col.name, i]));
                     this.loadColumnsOrder();
                     this.updateTableHeaders();
+                    for (const tr of this.cachedElements) {
+                        if (!tr)
+                            continue;
+                        const tds = [...tr.children];
+                        tr.replaceChildren(...this.columns.map(col => tds[oldIndexByName.get(col.name)]));
+                    }
                     this.tableBody.replaceChildren();
                     this.updateTable(true);
                     this.reselectRows(this.selectedRowsIds());
