@@ -2334,6 +2334,57 @@ window.qBittorrent.DynamicTable ??= (() => {
         supportCollapsing = true;
         collapseState = new Map();
         fileNameColumn = "name";
+        headerCheckboxClickHandler = null;
+        headerCheckboxId = "tristateCb";
+
+        updateHeaderCheckbox() {
+            const checkbox = document.getElementById(this.headerCheckboxId);
+            if (checkbox === null)
+                return;
+
+            if (this.getRowSize() === 0)
+                return;
+
+            const TriState = window.qBittorrent.FileTree.TriState;
+            if (this.isAllCheckboxesChecked()) {
+                checkbox.state = TriState.Checked;
+                checkbox.indeterminate = false;
+                checkbox.checked = true;
+            }
+            else if (this.isAllCheckboxesUnchecked()) {
+                checkbox.state = TriState.Unchecked;
+                checkbox.indeterminate = false;
+                checkbox.checked = false;
+            }
+            else {
+                checkbox.state = TriState.Partial;
+                checkbox.indeterminate = true;
+            }
+        }
+
+        injectHeaderCheckbox() {
+            document.getElementById(this.headerCheckboxId)?.remove();
+
+            if (!this.headerCheckboxClickHandler)
+                return;
+
+            const checkboxTH = document.querySelector(`#${this.dynamicTableFixedHeaderDivId} .column_checked`);
+            if (checkboxTH === null)
+                return;
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = this.headerCheckboxId;
+            checkbox.addEventListener("click", this.headerCheckboxClickHandler);
+            checkboxTH.appendChild(checkbox);
+
+            this.updateHeaderCheckbox();
+        }
+
+        updateTableHeaders() {
+            super.updateTableHeaders();
+            this.injectHeaderCheckbox();
+        }
 
         isCollapsed(id) {
             if (!this.supportCollapsing)
@@ -2823,10 +2874,12 @@ window.qBittorrent.DynamicTable ??= (() => {
         prevCheckboxNum = null;
         supportCollapsing = false;
         fileNameColumn = "original";
+        headerCheckboxId = "rootMultiRename_cb";
 
         getSelectedRows() {
+            const TriState = window.qBittorrent.FileTree.TriState;
             const nodes = this.fileTree.toArray();
-            window.qBittorrent.Misc.filterInPlace(nodes, (node => node.checked === 0));
+            window.qBittorrent.Misc.filterInPlace(nodes, (node => node.checked === TriState.Checked));
             return nodes;
         }
 
@@ -2845,64 +2898,45 @@ window.qBittorrent.DynamicTable ??= (() => {
         /**
          * Toggles the global checkbox and all checkboxes underneath
          */
-        toggleGlobalCheckbox() {
-            const checkbox = document.getElementById("rootMultiRename_cb");
+        toggleHeaderCheckbox() {
+            const TriState = window.qBittorrent.FileTree.TriState;
+            const checkbox = document.getElementById(this.headerCheckboxId);
             const isChecked = checkbox.checked || checkbox.indeterminate;
 
             for (const cb of document.querySelectorAll("input.RenamingCB")) {
                 cb.indeterminate = false;
                 if (isChecked) {
                     cb.checked = true;
-                    cb.state = "checked";
+                    cb.state = TriState.Checked;
                 }
                 else {
                     cb.checked = false;
-                    cb.state = "unchecked";
+                    cb.state = TriState.Unchecked;
                 }
             }
 
             const nodes = this.fileTree.toArray();
             for (const node of nodes)
-                node.checked = isChecked ? 0 : 1;
+                node.checked = isChecked ? TriState.Checked : TriState.Unchecked;
 
-            this.updateGlobalCheckbox();
+            this.updateHeaderCheckbox();
         }
 
         toggleNodeTreeCheckbox(rowId, checkState) {
+            const TriState = window.qBittorrent.FileTree.TriState;
             const node = this.getNode(rowId);
             node.checked = checkState;
             const checkbox = document.getElementById(`cbRename${rowId}`);
-            checkbox.checked = node.checked === 0;
-            checkbox.state = checkbox.checked ? "checked" : "unchecked";
+            checkbox.checked = node.checked === TriState.Checked;
+            checkbox.state = checkbox.checked ? TriState.Checked : TriState.Unchecked;
 
             for (let i = 0; i < node.children.length; ++i)
                 this.toggleNodeTreeCheckbox(node.children[i].rowId, checkState);
         }
 
-        updateGlobalCheckbox() {
-            const checkbox = document.getElementById("rootMultiRename_cb");
-            const nodes = this.fileTree.toArray();
-            const isAllChecked = nodes.every((node) => node.checked === 0);
-            const isAllUnchecked = (() => nodes.every((node) => node.checked !== 0));
-            if (isAllChecked) {
-                checkbox.state = "checked";
-                checkbox.indeterminate = false;
-                checkbox.checked = true;
-            }
-            else if (isAllUnchecked()) {
-                checkbox.state = "unchecked";
-                checkbox.indeterminate = false;
-                checkbox.checked = false;
-            }
-            else {
-                checkbox.state = "partial";
-                checkbox.indeterminate = true;
-                checkbox.checked = false;
-            }
-        }
-
         initColumnsFunctions() {
             const that = this;
+            const TriState = window.qBittorrent.FileTree.TriState;
 
             // checked
             this.columns["checked"].updateTd = (td, row) => {
@@ -2951,9 +2985,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                         }
                         for (const id of ids) {
                             const node = that.getNode(id);
-                            node.checked = e.target.checked ? 0 : 1;
+                            node.checked = e.target.checked ? TriState.Checked : TriState.Unchecked;
                         }
-                        that.updateGlobalCheckbox();
+                        that.updateHeaderCheckbox();
                         that.onRowSelectionChange(that.getNode(targetId));
                         that.prevCheckboxNum = targetId;
                     });
@@ -2962,8 +2996,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 checkbox.id = `cbRename${id}`;
                 checkbox.dataset.id = id;
-                checkbox.checked = (node.checked === 0);
-                checkbox.state = checkbox.checked ? "checked" : "unchecked";
+                checkbox.checked = (node.checked === TriState.Checked);
+                checkbox.state = checkbox.checked ? TriState.Checked : TriState.Unchecked;
             };
             this.columns["checked"].staticWidth = 50;
 
@@ -3028,19 +3062,20 @@ window.qBittorrent.DynamicTable ??= (() => {
         selectRow() {}
 
         reselectRows(rowIds) {
+            const TriState = window.qBittorrent.FileTree.TriState;
             this.deselectAll();
             for (const tr of this.getTrs()) {
                 if (rowIds.includes(tr.rowId)) {
                     const node = this.getNode(tr.rowId);
-                    node.checked = 0;
+                    node.checked = TriState.Checked;
 
                     const checkbox = tr.querySelector(".RenamingCB");
-                    checkbox.state = "checked";
+                    checkbox.state = TriState.Checked;
                     checkbox.indeterminate = false;
                     checkbox.checked = true;
                 }
             }
-            this.updateGlobalCheckbox();
+            this.updateHeaderCheckbox();
         }
 
         generateRowsSignature() {
