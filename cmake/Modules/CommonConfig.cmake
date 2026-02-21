@@ -20,7 +20,7 @@ target_compile_features(qbt_common_cfg INTERFACE
 )
 
 target_compile_definitions(qbt_common_cfg INTERFACE
-    QT_DISABLE_DEPRECATED_UP_TO=0x060500
+    QT_DISABLE_DEPRECATED_UP_TO=0x060600
     QT_NO_CAST_FROM_ASCII
     QT_NO_CAST_TO_ASCII
     QT_NO_CAST_FROM_BYTEARRAY
