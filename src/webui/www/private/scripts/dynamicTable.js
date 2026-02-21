@@ -871,7 +871,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateTable(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
-            window.qBittorrent.Misc.filterInPlace(this.selectedRows, (selectedRow => selectedRow in rows));
+            const rowIds = new Set(rows.map(row => row.rowId));
+            window.qBittorrent.Misc.filterInPlace(this.selectedRows, (selectedRow => rowIds.has(selectedRow)));
 
             if (this.useVirtualList) {
                 // rerender on table update
