@@ -1,0 +1,88 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018, 2026  Thomas Piccirello <thomas@piccirello.com>
+ * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
+#pragma once
+
+#include <memory>
+#include <optional>
+
+#include <QHash>
+#include <QObject>
+
+#include "base/3rdparty/expected.hpp"
+#include "base/path.h"
+#include "base/search/searchhandler.h"
+
+class QTimer;
+
+class SearchJobManager final : public QObject
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(SearchJobManager)
+
+public:
+    struct JobInfo
+    {
+        int id = 0;
+        QString pattern;
+        bool active = false;
+        QList<SearchResult> results;
+    };
+
+    explicit SearchJobManager(QObject *parent = nullptr);
+
+    nonstd::expected<int, QString> startSearch(const QString &pattern, const QString &category, const QStringList &plugins);
+    bool stopSearch(int id);
+    bool deleteSearch(int id);
+
+    std::optional<JobInfo> getJobInfo(int id) const;
+    QList<JobInfo> getAllJobInfos() const;
+
+private slots:
+    void onPreferencesChanged();
+
+private:
+    int generateSearchId() const;
+    void loadSession();
+    void saveSession() const;
+    void saveSearchResults(int searchId) const;
+    void scheduleSaveResults(int searchId);
+    void removeSearchResults(int searchId) const;
+    void removeAllResultFiles() const;
+    void removeAllData() const;
+    Path makeDataFilePath(const QString &fileName) const;
+
+    bool m_storeSearchJobs = false;
+    bool m_storeSearchJobResults = false;
+
+    QHash<int, std::shared_ptr<SearchHandler>> m_searchHandlers;
+    QHash<int, JobInfo> m_jobs;
+    QList<int> m_searchOrder;  // Tracks insertion order (oldest first)
+    QHash<int, QTimer *> m_resultSaveTimers;
+};

@@ -183,10 +183,10 @@ public:
     // Search UI
     int searchHistoryLength() const;
     void setSearchHistoryLength(int length);
-    bool storeOpenedSearchTabs() const;
-    void setStoreOpenedSearchTabs(bool enabled);
-    bool storeOpenedSearchTabResults() const;
-    void setStoreOpenedSearchTabResults(bool enabled);
+    bool storeSearchJobs() const;
+    void setStoreSearchJobs(bool enabled);
+    bool storeSearchJobResults() const;
+    void setStoreSearchJobResults(bool enabled);
 
     // HTTP Server
     bool isWebUIEnabled() const;

@@ -93,6 +93,18 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Search)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="storeSearchJobs" onclick="qBittorrent.Preferences.updateStoreSearchJobsEnabled();">
+            <label for="storeSearchJobs">QBT_TR(Save search tabs)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-bottom: 3px; margin-left: 30px;">
+            <input type="checkbox" id="storeSearchJobResults">
+            <label for="storeSearchJobResults">QBT_TR(Also save search results)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();">
             <label for="filelog_checkbox">QBT_TR(Log Files)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -1821,6 +1833,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateFileLogEnabled: updateFileLogEnabled,
                 updateFileLogBackupEnabled: updateFileLogBackupEnabled,
                 updateFileLogDeleteEnabled: updateFileLogDeleteEnabled,
+                updateStoreSearchJobsEnabled: updateStoreSearchJobsEnabled,
                 updateTempDirEnabled: updateTempDirEnabled,
                 updateExportDirEnabled: updateExportDirEnabled,
                 updateExportDirFinEnabled: updateExportDirFinEnabled,
@@ -1894,6 +1907,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const pros = document.getElementById("filelog_delete_old_checkbox").getProperties("disabled", "checked");
             document.getElementById("filelog_age_input").disabled = pros.disabled || !pros.checked;
             document.getElementById("filelog_age_type_select").disabled = pros.disabled || !pros.checked;
+        };
+
+        const updateStoreSearchJobsEnabled = () => {
+            const enabled = document.getElementById("storeSearchJobs").checked;
+            document.getElementById("storeSearchJobResults").disabled = !enabled;
         };
 
         // Downloads tab
@@ -2331,6 +2349,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
                     document.getElementById("dblclickFiltersSelect").value = dblclickFilter;
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
+                    document.getElementById("storeSearchJobs").checked = pref.store_search_jobs;
+                    document.getElementById("storeSearchJobResults").checked = pref.store_search_job_results;
+                    qBittorrent.Preferences.updateStoreSearchJobsEnabled();
                     document.getElementById("useAltRowColorsInput").checked = useAltRowColors === true;
                     document.getElementById("filelog_checkbox").checked = pref.file_log_enabled;
                     document.getElementById("filelog_save_path_input").value = pref.file_log_path;
@@ -2781,6 +2802,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
             clientData.dblclick_filter = document.getElementById("dblclickFiltersSelect").value;
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
+            settings["store_search_jobs"] = document.getElementById("storeSearchJobs").checked;
+            settings["store_search_job_results"] = document.getElementById("storeSearchJobResults").checked;
             clientData.use_alt_row_colors = document.getElementById("useAltRowColorsInput").checked;
             settings["file_log_enabled"] = document.getElementById("filelog_checkbox").checked;
             settings["file_log_path"] = document.getElementById("filelog_save_path_input").value;

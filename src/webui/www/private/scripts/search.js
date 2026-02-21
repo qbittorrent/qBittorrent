@@ -42,11 +42,8 @@ window.qBittorrent.Search ??= (() => {
             searchSeedsFilterChanged: searchSeedsFilterChanged,
             searchSizeFilterChanged: searchSizeFilterChanged,
             searchSizeFilterPrefixChanged: searchSizeFilterPrefixChanged,
-            closeSearchTab: closeSearchTab,
         };
     };
-
-    const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
 
     const searchTabIdPrefix = "Search-";
     let loadSearchPluginsTimer = -1;
@@ -179,10 +176,25 @@ window.qBittorrent.Search ??= (() => {
             }
         });
 
-        // restore search tabs
-        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-        for (const { id, pattern } of searchJobs)
-            createSearchTab(id, pattern);
+        restoreSearchJobs();
+    };
+
+    const restoreSearchJobs = () => {
+        fetch("api/v2/search/status", {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                if (!response.ok)
+                    return;
+
+                const serverJobs = await response.json();
+
+                for (const job of serverJobs) {
+                    if (!document.getElementById(`${searchTabIdPrefix}${job.id}`))
+                        createSearchTab(job.id, job.pattern);
+                }
+            });
     };
 
     const numSearchTabs = () => {
@@ -268,6 +280,7 @@ window.qBittorrent.Search ??= (() => {
             sort: { column: searchResultsTable.sortedColumn, reverse: searchResultsTable.reverseSort },
             lastSeenCount: 0,
         });
+        searchText.pattern = pattern;
         updateSearchResultsData(searchId);
     };
 
@@ -278,13 +291,6 @@ window.qBittorrent.Search ??= (() => {
                 id: oldSearchId
             })
         });
-
-        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-        const jobIndex = searchJobs.findIndex((job) => job.id === oldSearchId);
-        if (jobIndex >= 0) {
-            searchJobs[jobIndex].id = searchId;
-            localPreferences.set("search_jobs", JSON.stringify(searchJobs));
-        }
 
         // update existing tab w/ new search id
         const tab = document.getElementById(`${searchTabIdPrefix}${oldSearchId}`);
@@ -330,13 +336,6 @@ window.qBittorrent.Search ??= (() => {
                 id: searchId
             })
         });
-
-        const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-        const jobIndex = searchJobs.findIndex((job) => job.id === searchId);
-        if (jobIndex >= 0) {
-            searchJobs.splice(jobIndex, 1);
-            localPreferences.set("search_jobs", JSON.stringify(searchJobs));
-        }
 
         searchState.delete(searchId);
 
@@ -485,10 +484,6 @@ window.qBittorrent.Search ??= (() => {
                 const responseJSON = await response.json();
                 const searchId = responseJSON.id;
                 createSearchTab(searchId, pattern);
-
-                const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-                searchJobs.push({ id: searchId, pattern: pattern });
-                localPreferences.set("search_jobs", JSON.stringify(searchJobs));
                 updateSearchButtonState();
             });
     };
@@ -917,6 +912,11 @@ window.qBittorrent.Search ??= (() => {
                         // bad params. search id is invalid
                         resetSearchState(searchId);
                         updateStatusIconElement(searchId, "QBT_TR(An error occurred during search...)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                    }
+                    else if (response.status === 409) {
+                        // offset out of range, server lost results (e.g., due to restart)
+                        updateStatusIconElement(searchId, "QBT_TR(Search results lost due to server restart)QBT_TR[CONTEXT=SearchJobWidget]", "images/error.svg");
+                        resetSearchState(searchId);
                     }
                     else if (state) {
                         clearTimeout(state.loadResultsTimer);
