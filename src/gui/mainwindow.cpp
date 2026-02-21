@@ -262,7 +262,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
         tr("Transfers"));
     // Filter types
-    const QList<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
+    const QList<TransferListModel::Column> filterTypes = {
+        TransferListModel::Column::TR_NAME
+        , TransferListModel::Column::TR_SAVE_PATH
+        , TransferListModel::Column::TR_INFOHASH_V1
+        , TransferListModel::Column::TR_INFOHASH_V2};
     for (const TransferListModel::Column type : filterTypes)
     {
         const QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
