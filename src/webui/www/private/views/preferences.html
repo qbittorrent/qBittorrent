@@ -1586,6 +1586,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="NATPMPGateway">QBT_TR(Optional NAT-PMP gateway:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#natmp-gateway" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="text" id="NATPMPGateway" style="width: 15em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="UPnPLeaseDuration">QBT_TR(UPnP lease duration [0: permanent lease]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration" target="_blank">(?)</a></label>
                     </td>
                     <td>
@@ -2722,6 +2730,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("socketBacklogSize").value = pref.socket_backlog_size;
                     document.getElementById("outgoingPortsMin").value = pref.outgoing_ports_min;
                     document.getElementById("outgoingPortsMax").value = pref.outgoing_ports_max;
+                    document.getElementById("NATPMPGateway").value = pref.natpmp_gateway;
                     document.getElementById("UPnPLeaseDuration").value = pref.upnp_lease_duration;
                     document.getElementById("peerDSCP").value = pref.peer_tos;
                     document.getElementById("utpTCPMixedModeAlgorithm").value = pref.utp_tcp_mixed_mode;
@@ -3218,6 +3227,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["socket_backlog_size"] = Number(document.getElementById("socketBacklogSize").value);
             settings["outgoing_ports_min"] = Number(document.getElementById("outgoingPortsMin").value);
             settings["outgoing_ports_max"] = Number(document.getElementById("outgoingPortsMax").value);
+            settings["natpmp_gateway"] = document.getElementById("NATPMPGateway").value;
             settings["upnp_lease_duration"] = Number(document.getElementById("UPnPLeaseDuration").value);
 
             const peerDSCP = Number(document.getElementById("peerDSCP").value);
