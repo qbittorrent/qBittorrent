@@ -4059,6 +4059,11 @@ void SessionImpl::updateTrackersFromURL()
         {
             if (result.status == Net::DownloadStatus::Success)
             {
+                if (!result.contentType.contains(u"text/plain"_s, Qt::CaseInsensitive))
+                {
+                    LogMsg(tr("Cannot add trackers from URL, expected Content-Type is \'text/plain\' received \"%1\"").arg(result.contentType), Log::WARNING);
+                    return;
+                }
                 setAdditionalTrackersFromURL(QString::fromUtf8(result.data));
                 LogMsg(tr("Tracker list updated"), Log::INFO);
                 return;
