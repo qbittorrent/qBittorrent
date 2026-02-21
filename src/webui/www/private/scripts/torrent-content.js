@@ -220,7 +220,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         const rowIds = [];
         const fileIds = [];
-        const checkbox = document.getElementById("tristate_cb");
+        const checkbox = document.getElementById("tristateCb");
         const priority = (checkbox.state === TriState.Checked) ? FilePriority.Ignored : FilePriority.Normal;
 
         if (checkbox.state === TriState.Checked) {

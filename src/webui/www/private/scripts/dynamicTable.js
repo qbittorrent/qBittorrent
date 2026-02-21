@@ -2335,7 +2335,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         collapseState = new Map();
         fileNameColumn = "name";
         headerCheckboxClickHandler = null;
-        headerCheckboxId = "tristate_cb";
+        headerCheckboxId = "tristateCb";
 
         updateHeaderCheckbox() {
             const checkbox = document.getElementById(this.headerCheckboxId);
