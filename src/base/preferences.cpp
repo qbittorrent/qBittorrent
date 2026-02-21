@@ -582,6 +582,19 @@ void Preferences::setMailNotificationSMTP(const QString &smtpServer)
     setValue(u"Preferences/MailNotification/smtp_server"_s, smtpServer);
 }
 
+bool Preferences::getMailNotificationSMTPStartTLS() const
+{
+    return value(u"Preferences/MailNotification/use_starttls"_s, false);
+}
+
+void Preferences::setMailNotificationSMTPStartTLS(const bool use)
+{
+    if (use == getMailNotificationSMTPStartTLS())
+        return;
+
+    setValue(u"Preferences/MailNotification/use_starttls"_s, use);
+}
+
 bool Preferences::getMailNotificationSMTPSSL() const
 {
     return value(u"Preferences/MailNotification/req_ssl"_s, false);
