@@ -834,10 +834,6 @@ td.statusBarSeparator {
     overflow: auto;
 }
 
-#searchResults .dynamicTable {
-    width: 100%;
-}
-
 #searchResults .numSearchResults {
     font-style: italic;
 }

@@ -77,8 +77,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
             this.useVirtualList = clientData.get("use_virtual_list") === true;
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
-            this.hiddenTableHeader = this.dynamicTableDiv.querySelector("thead tr");
             this.table = this.dynamicTableDiv.querySelector("table");
+            this.colgroup = document.createElement("colgroup");
+            this.table.prepend(this.colgroup);
             this.tableBody = this.dynamicTableDiv.querySelector("tbody");
             this.rowHeight = (clientData.get("display_density") === "compact") ? 22 : 26;
             this.rows = new Map();
@@ -402,7 +403,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         #calculateColumnBodyWidth(column) {
             const columnIndex = this.getColumnPos(column.name);
-            const bodyColumn = document.getElementById(this.dynamicTableDivId).querySelectorAll("tr>th")[columnIndex];
+            const bodyColumn = this.getRowCells(this.fixedTableHeader)[columnIndex];
             const canvas = document.createElement("canvas");
             const context = canvas.getContext("2d");
             context.font = window.getComputedStyle(bodyColumn, null).getPropertyValue("font");
@@ -430,8 +431,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const pos = this.getColumnPos(column.name);
             const style = `width: ${column.width}px; ${column.style}`;
-            this.getRowCells(this.hiddenTableHeader)[pos].style.cssText = style;
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
+            this.colgroup.children[pos].style.width = `${column.width}px`;
             // rerender on column resize
             if (this.useVirtualList)
                 this.rerender();
@@ -597,7 +598,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.append(document.createElement("th"));
+            const col = document.createElement("col");
+            col.style.width = `${column.width}px`;
+            this.colgroup.append(col);
             this.fixedTableHeader.append(document.createElement("th"));
         }
 
@@ -631,8 +634,12 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         updateTableHeaders() {
-            this.updateHeader(this.hiddenTableHeader);
             this.updateHeader(this.fixedTableHeader);
+            const cols = this.colgroup.children;
+            for (let i = 0; i < this.columns.length; ++i) {
+                cols[i].style.width = `${this.columns[i].width}px`;
+                cols[i].classList.toggle("invisible", !this.columns[i].isVisible());
+            }
             this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === "1"));
         }
 
@@ -661,11 +668,10 @@ window.qBittorrent.DynamicTable ??= (() => {
         updateColumn(columnName, updateCellData = false) {
             const column = this.columns[columnName];
             const pos = this.getColumnPos(columnName);
-            const ths = this.getRowCells(this.hiddenTableHeader);
             const fths = this.getRowCells(this.fixedTableHeader);
             const action = column.isVisible() ? "remove" : "add";
-            ths[pos].classList[action]("invisible");
             fths[pos].classList[action]("invisible");
+            this.colgroup.children[pos].classList[action]("invisible");
 
             for (const tr of this.getTrs()) {
                 const td = this.getRowCells(tr)[pos];
