@@ -38,7 +38,6 @@
 
 void BitTorrent::AbstractFileStorage::renameFile(const Path &oldPath, const Path &newPath)
 {
-
     if (!newPath.isValid())
         throw RuntimeError(tr("The new path is invalid: '%1'.").arg(newPath.toString()));
     if (newPath.isAbsolute())
