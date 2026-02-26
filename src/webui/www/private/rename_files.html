@@ -23,11 +23,12 @@
                 menu: "multiRenameFilesMenu",
                 actions: {
                     ToggleSelection: (element, ref) => {
+                        const TriState = window.qBittorrent.FileTree.TriState;
                         const rowId = Number(element.getAttribute("data-row-id"));
                         const row = bulkRenameFilesTable.getNode(rowId);
-                        const checkState = (row.checked === 1) ? 0 : 1;
+                        const checkState = (row.checked === TriState.Checked) ? TriState.Unchecked : TriState.Checked;
                         bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
-                        bulkRenameFilesTable.updateGlobalCheckbox();
+                        bulkRenameFilesTable.updateHeaderCheckbox();
                         bulkRenameFilesTable.onRowSelectionChange(bulkRenameFilesTable.getSelectedRows());
                     }
                 },
@@ -39,23 +40,12 @@
 
             // Setup the dynamic table for bulk renaming
             const bulkRenameFilesTable = new window.qBittorrent.DynamicTable.BulkRenameTorrentFilesTable();
+            bulkRenameFilesTable.headerCheckboxClickHandler = () => {
+                bulkRenameFilesTable.toggleHeaderCheckbox();
+                fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
+                fileRenamer.update();
+            };
             bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu, true);
-
-            // Inject checkbox into the first column of the table header
-            const tableHeaders = document.querySelectorAll("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
-            if (tableHeaders.length > 0) {
-                const checkboxHeader = document.createElement("input");
-                checkboxHeader.type = "checkbox";
-                checkboxHeader.id = "rootMultiRename_cb";
-                checkboxHeader.addEventListener("click", (e) => {
-                    bulkRenameFilesTable.toggleGlobalCheckbox();
-                    fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
-                    fileRenamer.update();
-                });
-
-                const checkboxTH = tableHeaders[0];
-                checkboxTH.append(checkboxHeader);
-            }
 
             // Register keyboard events to modal window
             // https://github.com/qbittorrent/qBittorrent/pull/18687#discussion_r1135045726
@@ -294,7 +284,7 @@
 
                     const row = {
                         fileId: index,
-                        checked: 1, // unchecked
+                        checked: window.qBittorrent.FileTree.TriState.Unchecked,
                         path: file.name,
                         original: window.qBittorrent.Filesystem.fileName(file.name),
                         renamed: "",
@@ -339,7 +329,7 @@
                             folderNode.path = (parent.path === "")
                                 ? folderName
                                 : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
-                            folderNode.checked = selectedRows.includes(rowId.toString()) ? 0 : 1;
+                            folderNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                             folderNode.original = folderName;
                             folderNode.renamed = "";
                             folderNode.root = parent;
@@ -354,7 +344,7 @@
                     const childNode = new window.qBittorrent.FileTree.FileNode();
                     childNode.rowId = rowId;
                     childNode.path = row.path;
-                    childNode.checked = selectedRows.includes(rowId.toString()) ? 0 : 1;
+                    childNode.checked = selectedRows.includes(rowId.toString()) ? window.qBittorrent.FileTree.TriState.Checked : window.qBittorrent.FileTree.TriState.Unchecked;
                     childNode.original = row.original;
                     childNode.renamed = "";
                     childNode.root = parent;
