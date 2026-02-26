@@ -2513,8 +2513,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return;
 
             const node = this.getNode(id);
-            if (node.isFolder)
+            if (node.isFolder) {
                 this.expandNode(node.rowId);
+                if (this.useVirtualList)
+                    this.rerender();
+            }
         }
 
         collapseFolder(id) {
@@ -2522,8 +2525,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return;
 
             const node = this.getNode(id);
-            if (node.isFolder)
+            if (node.isFolder) {
                 this.collapseNode(node.rowId);
+                if (this.useVirtualList)
+                    this.rerender();
+            }
         }
 
         isAllCheckboxesChecked() {
