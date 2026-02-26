@@ -11,6 +11,7 @@
     "test": "vitest run --dom"
   },
   "devDependencies": {
+    "@eslint/js": "*",
     "@stylistic/eslint-plugin": "*",
     "eslint": "*",
     "eslint-plugin-html": "*",
