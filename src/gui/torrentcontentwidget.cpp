@@ -323,8 +323,19 @@ void TorrentContentWidget::applyPrioritiesByOrder()
         case 1:
             priority = BitTorrent::DownloadPriority::High;
             break;
-        default:
         case 2:
+            priority = BitTorrent::DownloadPriority::Normal5;
+            break;
+        case 3:
+            priority = BitTorrent::DownloadPriority::Normal4;
+            break;
+        case 4:
+            priority = BitTorrent::DownloadPriority::Normal3;
+            break;
+        case 5:
+            priority = BitTorrent::DownloadPriority::Normal2;
+            break;
+        default:
             priority = BitTorrent::DownloadPriority::Normal;
             break;
         }
@@ -435,15 +446,31 @@ void TorrentContentWidget::displayContextMenu()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
-        subMenu->addAction(tr("Normal"), this, [this]
+        subMenu->addAction(tr("Normal (1)"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
         });
-        subMenu->addAction(tr("High"), this, [this]
+        subMenu->addAction(tr("Normal (2)"), this, [this]
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Normal2);
+        });
+        subMenu->addAction(tr("Normal (3)"), this, [this]
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Normal3);
+        });
+        subMenu->addAction(tr("Normal (4)"), this, [this]
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Normal4);
+        });
+        subMenu->addAction(tr("Normal (5)"), this, [this]
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Normal5);
+        });
+        subMenu->addAction(tr("High (6)"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::High);
         });
-        subMenu->addAction(tr("Maximum"), this, [this]
+        subMenu->addAction(tr("Maximum (7)"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Maximum);
         });

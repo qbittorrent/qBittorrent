@@ -113,13 +113,22 @@ QString TorrentContentModelItem::displayData(const int column) const
             return tr("Mixed", "Mixed (priorities");
         case BitTorrent::DownloadPriority::Ignored:
             return tr("Do not download", "Do not download (priority)");
+        case BitTorrent::DownloadPriority::Normal:
+            return tr("Normal (1)", "Normal (1) (priority)");
+        case BitTorrent::DownloadPriority::Normal2:
+            return tr("Normal (2)", "Normal (2) (priority)");
+        case BitTorrent::DownloadPriority::Normal3:
+            return tr("Normal (3)", "Normal (3) (priority)");
+        case BitTorrent::DownloadPriority::Normal4:
+            return tr("Normal (4)", "Normal (4) (priority)");
+        case BitTorrent::DownloadPriority::Normal5:
+            return tr("Normal (5)", "Normal (5) (priority)");
         case BitTorrent::DownloadPriority::High:
-            return tr("High", "High (priority)");
+            return tr("High (6)", "High (6) (priority)");
         case BitTorrent::DownloadPriority::Maximum:
-            return tr("Maximum", "Maximum (priority)");
-        default:
-            return tr("Normal", "Normal (priority)");
+            return tr("Maximum (7)", "Maximum (7) (priority)");
         }
+        return u""_s;
     case COL_PROGRESS:
         return (m_progress >= 1)
                ? u"100%"_s
