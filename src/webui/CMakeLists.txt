@@ -17,6 +17,7 @@ add_library(qbt_webui STATIC
     api/serialize/serialize_torrent.h
     clientdatastorage.h
     webapplication.h
+    websession.h
     webui.h
 
     # sources
@@ -35,6 +36,7 @@ add_library(qbt_webui STATIC
     api/serialize/serialize_torrent.cpp
     clientdatastorage.cpp
     webapplication.cpp
+    websession.cpp
     webui.cpp
 )
 
