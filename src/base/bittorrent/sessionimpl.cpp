@@ -484,6 +484,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_slowTorrentsInactivityTimer(BITTORRENT_SESSION_KEY(u"SlowTorrentsInactivityTimer"_s), 60)
     , m_outgoingPortsMin(BITTORRENT_SESSION_KEY(u"OutgoingPortsMin"_s), 0)
     , m_outgoingPortsMax(BITTORRENT_SESSION_KEY(u"OutgoingPortsMax"_s), 0)
+    , m_NATPMPGateway(BITTORRENT_SESSION_KEY(u"NATPMPGateway"_s))
     , m_UPnPLeaseDuration(BITTORRENT_SESSION_KEY(u"UPnPLeaseDuration"_s), 0)
     , m_peerDSCP(BITTORRENT_SESSION_KEY(u"PeerToS"_s), 0x01)
     , m_ignoreLimitsOnLAN(BITTORRENT_SESSION_KEY(u"IgnoreLimitsOnLAN"_s), false)
@@ -2077,6 +2078,10 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     // Outgoing ports
     settingsPack.set_int(lt::settings_pack::outgoing_port, outgoingPortsMin());
     settingsPack.set_int(lt::settings_pack::num_outgoing_ports, (outgoingPortsMax() - outgoingPortsMin()));
+#if LIBTORRENT_VERSION_NUM >= 20012
+    // NAT-PMP gateway
+    settingsPack.set_str(lt::settings_pack::natpmp_gateway, NATPMPGateway().toStdString());
+#endif
     // UPnP lease duration
     settingsPack.set_int(lt::settings_pack::upnp_lease_duration, UPnPLeaseDuration());
     // Type of service
@@ -4886,6 +4891,19 @@ void SessionImpl::setOutgoingPortsMax(const int max)
     if (max != m_outgoingPortsMax)
     {
         m_outgoingPortsMax = max;
+        configureDeferred();
+    }
+}
+
+QString SessionImpl::NATPMPGateway() const {
+    return m_NATPMPGateway;
+}
+
+void SessionImpl::setNATPMPGateway(const QString &gateway)
+{
+    if (gateway != m_NATPMPGateway)
+    {
+        m_NATPMPGateway = gateway;
         configureDeferred();
     }
 }

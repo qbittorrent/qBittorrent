@@ -148,6 +148,7 @@ namespace
         SOCKET_BACKLOG_SIZE,
         OUTGOING_PORT_MIN,
         OUTGOING_PORT_MAX,
+        NATPMP_GATEWAY,
         UPNP_LEASE_DURATION,
         PEER_DSCP,
         UTP_MIX_MODE,
@@ -273,6 +274,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Outgoing ports
     session->setOutgoingPortsMin(m_spinBoxOutgoingPortsMin.value());
     session->setOutgoingPortsMax(m_spinBoxOutgoingPortsMax.value());
+    // NAT-PMP gateway
+    session->setNATPMPGateway(m_lineEditNATPMPGateway.text());
     // UPnP lease duration
     session->setUPnPLeaseDuration(m_spinBoxUPnPLeaseDuration.value());
     // Type of service
@@ -714,6 +717,11 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(OUTGOING_PORT_MAX, (tr("Outgoing ports (Max) [0: disabled]")
         + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#outgoing_port", u"(?)"))
         , &m_spinBoxOutgoingPortsMax);
+    // NAT-PMP gateway
+    m_lineEditNATPMPGateway.setText(session->NATPMPGateway());
+    addRow(NATPMP_GATEWAY, (tr("Optional NAT-PMP gateway")
+        + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#natpmp-gateway", u"(?)"))
+        , &m_lineEditNATPMPGateway);
     // UPnP lease duration
     m_spinBoxUPnPLeaseDuration.setMinimum(0);
     m_spinBoxUPnPLeaseDuration.setMaximum(std::numeric_limits<int>::max());
