@@ -977,6 +977,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     element = this.cachedElements[position] = this.createRowElement(row, offset);
                 elements.push(element);
             }
+            const hadFocus = this.dynamicTableDiv.contains(document.activeElement);
             this.tableBody.replaceChildren(...elements);
 
             // update row classes
@@ -985,6 +986,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             // update visible rows
             for (const row of this.tableBody.children)
                 this.updateRow(row, true);
+
+            // restore focus so keyboard navigation continues working
+            if (hadFocus)
+                this.getTrByRowId(this.getSelectedRowId())?.focus({ preventScroll: true });
         }
 
         createRowElement(row, top = -1) {
@@ -1096,6 +1101,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.deselectAll();
                 const newRow = visibleRows[selectedIndex + 1];
                 this.selectRow(newRow.getAttribute("data-row-id"));
+                newRow.focus({ preventScroll: true });
             }
         }
 
@@ -1110,6 +1116,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.deselectAll();
                 const newRow = visibleRows[selectedIndex - 1];
                 this.selectRow(newRow.getAttribute("data-row-id"));
+                newRow.focus({ preventScroll: true });
             }
         }
     }
