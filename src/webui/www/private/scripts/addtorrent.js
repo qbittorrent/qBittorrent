@@ -38,6 +38,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     let table = null;
+    let torrentSize = "";
     let defaultSavePath = "";
     let defaultTempPath = "";
     let defaultTempPathEnabled = false;
@@ -146,6 +147,7 @@ window.qBittorrent.AddTorrent ??= (() => {
 
             if (isAutoTMMEnabled()) {
                 document.getElementById("savepath").value = defaultSavePath;
+                showFreeSpace(defaultSavePath);
 
                 const downloadPathEnabled = categoryDownloadPathEnabled(categoryName);
                 document.getElementById("useDownloadPath").checked = downloadPathEnabled;
@@ -158,7 +160,9 @@ window.qBittorrent.AddTorrent ??= (() => {
             item.nextElementSibling.value = text;
 
             if (isAutoTMMEnabled()) {
-                document.getElementById("savepath").value = categorySavePath(categoryName);
+                const tempCategoryPath = categorySavePath(categoryName);
+                document.getElementById("savepath").value = tempCategoryPath;
+                showFreeSpace(tempCategoryPath);
 
                 const downloadPathEnabled = categoryDownloadPathEnabled(categoryName);
                 document.getElementById("useDownloadPath").checked = downloadPathEnabled;
@@ -192,6 +196,7 @@ window.qBittorrent.AddTorrent ??= (() => {
             useDownloadPath.checked = defaultTempPathEnabled;
         }
 
+        showFreeSpace(savepath.value);
         savepath.disabled = autoTMMEnabled;
         useDownloadPath.disabled = autoTMMEnabled;
 
@@ -213,6 +218,28 @@ window.qBittorrent.AddTorrent ??= (() => {
             downloadPath.value = enabled ? defaultTempPath : "";
             downloadPath.disabled = !enabled;
         }
+    };
+
+    const showFreeSpace = (path) => {
+        if (path === "")
+            return;
+
+        const url = new URL("api/v2/app/getFreeSpaceAtPath", window.location);
+        url.search = new URLSearchParams({
+            path: path
+        });
+
+        fetch(url, {
+                method: "GET",
+                cache: "no-store"
+            })
+            .then(async (response) => {
+                const freeSpace = await response.text();
+                document.getElementById("size").textContent = "QBT_TR(%1 (Free space on disk: %2))QBT_TR[CONTEXT=AddNewTorrentDialog]"
+                    .replace("%1", torrentSize)
+                    .replace("%2", window.qBittorrent.Misc.friendlyUnit(freeSpace, false));
+            })
+            .catch(error => {});
     };
 
     let loadMetadataTimer = -1;
@@ -280,8 +307,10 @@ window.qBittorrent.AddTorrent ??= (() => {
         document.getElementById("infoHashV1").textContent = (metadata.infohash_v1 === undefined) ? notAvailable : (metadata.infohash_v1 || notApplicable);
         document.getElementById("infoHashV2").textContent = (metadata.infohash_v2 === undefined) ? notAvailable : (metadata.infohash_v2 || notApplicable);
 
-        if (metadata.info?.length !== undefined)
-            document.getElementById("size").textContent = window.qBittorrent.Misc.friendlyUnit(metadata.info.length, false);
+        if (metadata.info?.length !== undefined) {
+            torrentSize = window.qBittorrent.Misc.friendlyUnit(metadata.info.length, false);
+            showFreeSpace(document.getElementById("savepath").value);
+        }
         if ((metadata.creation_date !== undefined) && (metadata.creation_date > 1))
             document.getElementById("createdDate").textContent = window.qBittorrent.Misc.formatDate(new Date(metadata.creation_date * 1000));
         if (metadata.comment !== undefined)
@@ -343,6 +372,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     window.addEventListener("DOMContentLoaded", (event) => {
         document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target.checked));
         document.getElementById("tagsSelect").addEventListener("change", (e) => changeTagsSelect(e.target));
+        document.getElementById("savepath").addEventListener("input", (event) => { showFreeSpace(event.target.value); });
     });
 
     return exports();
