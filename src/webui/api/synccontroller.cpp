@@ -844,8 +844,11 @@ void SyncController::torrentPeersAction()
 
     for (const BitTorrent::PeerInfo &pi : peersList)
     {
+        const BitTorrent::PeerAddress address = pi.address();
         const bool useI2PSocket = pi.useI2PSocket();
-        if (pi.address().ip.isNull() && !useI2PSocket) continue;
+
+        if (address.ip.isNull() && !useI2PSocket)
+            continue;
 
         QVariantMap peer =
         {
@@ -874,22 +877,24 @@ void SyncController::torrentPeersAction()
 
         if (useI2PSocket)
         {
-            peer[KEY_PEER_I2P_DEST] = pi.I2PAddress();
-            peers[pi.I2PAddress()] = peer;
+            const QString i2pAddress = pi.I2PAddress();
+            peer[KEY_PEER_I2P_DEST] = i2pAddress;
+            peers[i2pAddress] = peer;
         }
         else
         {
-            peer[KEY_PEER_IP] = pi.address().ip.toString();
-            peer[KEY_PEER_PORT] = pi.address().port;
+            peer[KEY_PEER_IP] = address.ip.toString();
+            peer[KEY_PEER_PORT] = address.port;
 
             peer[KEY_PEER_HOST_NAME] = resolvePeerHostNames
-                ? Net::ReverseResolution::instance()->resolve(pi.address().ip)
+                ? Net::ReverseResolution::instance()->resolve(address.ip)
                 : QString();
 
             if (resolvePeerCountries)
             {
-                peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
-                peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
+                const QString country = pi.country();
+                peer[KEY_PEER_COUNTRY_CODE] = country.toLower();
+                peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(country);
             }
             else
             {
@@ -897,7 +902,7 @@ void SyncController::torrentPeersAction()
                 peer[KEY_PEER_COUNTRY] = {};
             }
 
-            peers[pi.address().toString()] = peer;
+            peers[address.toString()] = peer;
         }
     }
     data[u"peers"_s] = peers;
