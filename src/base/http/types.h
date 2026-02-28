@@ -99,12 +99,6 @@ namespace Http
         QByteArray data;
     };
 
-    struct Header
-    {
-        QString name;
-        QString value;
-    };
-
     using HeaderMap = QMap<QString, QString>;  // <Header name, Header value>
 
     struct Request
@@ -120,19 +114,14 @@ namespace Http
 
     struct ResponseStatus
     {
-        uint code;
-        QString text;
+        int code = 200;
+        QString text {};
     };
 
     struct Response
     {
-        ResponseStatus status;
-        HeaderMap headers;
-        QByteArray content;
-
-        Response(uint code = 200, const QString &text = u"OK"_s)
-            : status {code, text}
-        {
-        }
+        ResponseStatus status {};
+        HeaderMap headers {};
+        QByteArray content {};
     };
 }
