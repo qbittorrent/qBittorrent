@@ -796,6 +796,12 @@ td.statusBarSeparator {
     width: 24px;
 }
 
+span.flags {
+    background: left center / contain no-repeat;
+    margin-left: 2px;
+    padding-left: 25px;
+}
+
 /* Statistics window */
 #statisticsContent {
     & table {
