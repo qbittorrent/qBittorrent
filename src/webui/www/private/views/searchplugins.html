@@ -169,23 +169,16 @@
         };
 
         const updateTable = () => {
-            const oldPlugins = [...searchPluginsTable.getRowIds()];
             // remove old rows from the table
-            for (const oldPlugin of oldPlugins) {
-                let found = false;
-                for (let j = 0; j < window.qBittorrent.Search.searchPlugins.length; ++j) {
-                    if (window.qBittorrent.Search.searchPlugins[j].name === oldPlugin) {
-                        found = true;
-                        break;
-                    }
-                }
+            for (const oldPlugin of searchPluginsTable.getRowIds()) {
+                const found = window.qBittorrent.Search.searchPlugins.some(plugin => (plugin.name === oldPlugin));
                 if (!found)
                     searchPluginsTable.removeRow(oldPlugin);
             }
 
-            for (let i = 0; i < window.qBittorrent.Search.searchPlugins.length; ++i) {
-                window.qBittorrent.Search.searchPlugins[i].rowId = window.qBittorrent.Search.searchPlugins[i].name;
-                searchPluginsTable.updateRowData(window.qBittorrent.Search.searchPlugins[i]);
+            for (const plugin of window.qBittorrent.Search.searchPlugins) {
+                plugin.rowId = plugin.name;
+                searchPluginsTable.updateRowData(plugin);
             }
 
             searchPluginsTable.updateTable();

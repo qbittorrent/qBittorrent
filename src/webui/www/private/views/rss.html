@@ -265,8 +265,8 @@
                     },
                     delete: (el) => {
                         const selectedDatapaths = rssFeedTable.selectedRows
-                            .filter((rowID) => rowID !== "0")
-                            .map((rowID) => rssFeedTable.getRow(rowID).full_data.dataPath);
+                            .filter(rowID => (rowID !== "0"))
+                            .map(rowID => rssFeedTable.getRow(rowID).full_data.dataPath);
                         // filter children
                         const reducedDatapaths = selectedDatapaths.filter((path) =>
                             selectedDatapaths.filter(innerPath => path.startsWith(innerPath)).length === 1
@@ -656,8 +656,8 @@
 
                             if (articlesDiffer) {
                                 // update unread count
-                                const oldUnread = feedData[r.uid].map((art) => !art.isRead).filter(Boolean).length;
-                                const newUnread = r.articles.map((art) => !art.isRead).filter(Boolean).length;
+                                const oldUnread = feedData[r.uid].reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
+                                const newUnread = r.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
                                 const unreadDifference = newUnread - oldUnread;
 
                                 // find all parents (and self) and add unread difference
@@ -771,7 +771,7 @@
                                 });
 
                                 // calculate number of unread
-                                const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter(Boolean).length;
+                                const numberOfUnread = dataEntry.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
                                 // find all items that contain this rss feed and add unread count
                                 for (const row of rssFeedTable.getRowValues()) {
                                     if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)

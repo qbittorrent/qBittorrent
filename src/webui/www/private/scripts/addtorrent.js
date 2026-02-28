@@ -168,7 +168,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     const changeTagsSelect = (element) => {
-        const tags = [...element.options].filter(opt => opt.selected).map(opt => opt.value);
+        const tags = Array.prototype.filter.call(element.options, (opt => opt.selected)).map(opt => opt.value);
         document.getElementById("tags").value = tags.join(",");
     };
 

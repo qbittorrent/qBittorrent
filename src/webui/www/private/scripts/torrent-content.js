@@ -225,7 +225,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         if (checkbox.state === TriState.Checked) {
             setCheckboxUnchecked(checkbox);
-            for (const row of torrentFilesTable.rows.values()) {
+            for (const row of torrentFilesTable.getRowValues()) {
                 const rowId = row.rowId;
                 const node = torrentFilesTable.getNode(rowId);
                 const fileId = node.fileId;
@@ -238,7 +238,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         }
         else {
             setCheckboxChecked(checkbox);
-            for (const row of torrentFilesTable.rows.values()) {
+            for (const row of torrentFilesTable.getRowValues()) {
                 const rowId = row.rowId;
                 const node = torrentFilesTable.getNode(rowId);
                 const fileId = node.fileId;
