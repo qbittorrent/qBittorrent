@@ -1632,6 +1632,13 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 </layout>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkSmtpStartTls">
+                 <property name="text">
+                  <string>Use STARTTLS if available (opportunistic encryption)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkSmtpSSL">
                  <property name="text">
                   <string>This server requires a secure connection (SSL)</string>
