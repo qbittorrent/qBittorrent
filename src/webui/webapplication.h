@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  *
  * This program is free software; you can redistribute it and/or
@@ -45,17 +45,18 @@
 #include <QTranslator>
 
 #include "base/applicationcomponent.h"
-#include "base/global.h"
+#include "base/http/constants.h"
 #include "base/http/environment.h"
 #include "base/http/irequesthandler.h"
 #include "base/http/request.h"
-#include "base/http/responsebuilder.h"
+#include "base/http/response.h"
 #include "base/path.h"
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
 using namespace std::chrono_literals;
+using namespace Qt::Literals::StringLiterals;
 
 inline const Utils::Version<3, 2> API_VERSION {2, 15, 2};
 
@@ -93,7 +94,6 @@ private:
 
 class WebApplication final : public ApplicationComponent<QObject>
         , public Http::IRequestHandler, public ISessionManager
-        , private Http::ResponseBuilder
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(WebApplication)
@@ -156,6 +156,7 @@ private:
     Http::Request m_request;
     Http::Environment m_env;
     QHash<QString, QString> m_params;
+    Http::Response m_response;
     const QString m_cacheID;
 
     const QRegularExpression m_apiPathPattern {u"^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"_s};
@@ -279,7 +280,7 @@ private:
     QList<Utils::Net::Subnet> m_trustedReverseProxyList;
     QHostAddress m_clientAddress;
 
-    QList<Http::Header> m_prebuiltHeaders;
+    Http::HeaderMap m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;

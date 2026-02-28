@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  *
  * This program is free software; you can redistribute it and/or
@@ -369,39 +369,42 @@ void WebApplication::doProcessRequest(const bool isUsingApiKey)
         const APIResult result = controller->run(action, m_params, data);
         if (result.data.isNull())
         {
-            status(204);
+            m_response.status = {.code = 204};
         }
         else
         {
             switch (result.data.userType())
             {
             case QMetaType::QJsonDocument:
-                print(result.data.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
+                m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_JSON);
+                m_response.content = result.data.toJsonDocument().toJson(QJsonDocument::Compact);
                 break;
             case QMetaType::QByteArray:
                 {
                     const auto resultData = result.data.toByteArray();
-                    print(resultData, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
+                    m_response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
                     if (!result.filename.isEmpty())
                     {
-                        setHeader({u"Content-Disposition"_s, u"attachment; filename=\"%1\""_s.arg(result.filename)});
+                        m_response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
                     }
+                    m_response.content = resultData;
                 }
                 break;
             case QMetaType::QString:
             default:
-                print(result.data.toString(), Http::CONTENT_TYPE_TXT);
+                m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
+                m_response.content = result.data.toString().toUtf8();
                 break;
             }
 
             switch (result.status)
             {
             case APIStatus::Async:
-                status(202);
+                m_response.status = {.code = 202};
                 break;
             case APIStatus::Ok:
             default:
-                status(200);
+                m_response.status = {.code = 200};
                 break;
             }
         }
@@ -485,18 +488,18 @@ void WebApplication::configure()
     m_isHttpsEnabled = pref->isWebUIHttpsEnabled();
 
     m_prebuiltHeaders.clear();
-    m_prebuiltHeaders.push_back({Http::HEADER_X_XSS_PROTECTION, u"1; mode=block"_s});
-    m_prebuiltHeaders.push_back({Http::HEADER_X_CONTENT_TYPE_OPTIONS, u"nosniff"_s});
+    m_prebuiltHeaders.insert(Http::HEADER_X_XSS_PROTECTION, u"1; mode=block"_s);
+    m_prebuiltHeaders.insert(Http::HEADER_X_CONTENT_TYPE_OPTIONS, u"nosniff"_s);
 
     if (!m_isAltUIUsed)
     {
-        m_prebuiltHeaders.push_back({Http::HEADER_CROSS_ORIGIN_OPENER_POLICY, u"same-origin"_s});
-        m_prebuiltHeaders.push_back({Http::HEADER_REFERRER_POLICY, u"same-origin"_s});
+        m_prebuiltHeaders.insert(Http::HEADER_CROSS_ORIGIN_OPENER_POLICY, u"same-origin"_s);
+        m_prebuiltHeaders.insert(Http::HEADER_REFERRER_POLICY, u"same-origin"_s);
     }
 
     const bool isClickjackingProtectionEnabled = pref->isWebUIClickjackingProtectionEnabled();
     if (isClickjackingProtectionEnabled)
-        m_prebuiltHeaders.push_back({Http::HEADER_X_FRAME_OPTIONS, u"SAMEORIGIN"_s});
+        m_prebuiltHeaders.insert(Http::HEADER_X_FRAME_OPTIONS, u"SAMEORIGIN"_s);
 
     const QString contentSecurityPolicy =
         (m_isAltUIUsed
@@ -505,7 +508,7 @@ void WebApplication::configure()
         + (isClickjackingProtectionEnabled ? u" frame-ancestors 'self';"_s : QString())
         + (m_isHttpsEnabled ? u" upgrade-insecure-requests;"_s : QString());
     if (!contentSecurityPolicy.isEmpty())
-        m_prebuiltHeaders.push_back({Http::HEADER_CONTENT_SECURITY_POLICY, contentSecurityPolicy});
+        m_prebuiltHeaders.insert(Http::HEADER_CONTENT_SECURITY_POLICY, contentSecurityPolicy);
 
     if (pref->isWebUICustomHTTPHeadersEnabled())
     {
@@ -524,7 +527,7 @@ void WebApplication::configure()
 
             const QString header = line.first(idx).trimmed().toString();
             const QString value = line.sliced(idx + 1).trimmed().toString();
-            m_prebuiltHeaders.push_back({header, value});
+            m_prebuiltHeaders.insert(header, value);
         }
     }
 
@@ -577,8 +580,9 @@ void WebApplication::sendFile(const Path &path)
     if (const auto it = m_translatedFiles.constFind(path);
         (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
     {
-        print(it->data, it->mimeType);
-        setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
+        m_response.headers.insert(Http::HEADER_CONTENT_TYPE, it->mimeType);
+        m_response.headers.insert(Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType));
+        m_response.content = it->data;
         return;
     }
 
@@ -626,8 +630,9 @@ void WebApplication::sendFile(const Path &path)
         m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
     }
 
-    print(data, mimeType.name());
-    setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name())});
+    m_response.headers.insert(Http::HEADER_CONTENT_TYPE, mimeType.name());
+    m_response.headers.insert(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name()));
+    m_response.content = data;
 }
 
 Http::Response WebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
@@ -648,7 +653,8 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     }
 
     // clear response
-    clear();
+    m_response = {};
+    m_response.headers = m_prebuiltHeaders;
 
     try
     {
@@ -674,14 +680,12 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     }
     catch (const HTTPError &error)
     {
-        status(error.statusCode(), error.statusText());
-        print((!error.message().isEmpty() ? error.message() : error.statusText()), Http::CONTENT_TYPE_TXT);
+        m_response.status = {.code = error.statusCode(), .text = error.statusText()};
+        m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
+        m_response.content = (!error.message().isEmpty() ? error.message() : error.statusText()).toUtf8();
     }
 
-    for (const Http::Header &prebuiltHeader : asConst(m_prebuiltHeaders))
-        setHeader(prebuiltHeader);
-
-    return response();
+    return m_response;
 }
 
 QString WebApplication::clientId() const
@@ -751,7 +755,7 @@ void WebApplication::setSessionCookie()
     else if (cookie.isSecure())
         cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
 
-    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+    m_response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
     m_currentSession->setCookieRefreshTime(expireDuration);
 }
 
@@ -866,7 +870,7 @@ void WebApplication::sessionEnd()
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
 
-    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+    m_response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
 }
 
 bool WebApplication::isOriginTrustworthy() const
