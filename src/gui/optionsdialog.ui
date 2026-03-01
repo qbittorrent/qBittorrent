@@ -3315,7 +3315,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               </property>
               <layout class="QVBoxLayout" name="groupSearchUILayout">
                <item>
-                <widget class="QGroupBox" name="groupStoreOpenedTabs">
+                <widget class="QGroupBox" name="groupStoreSearchJobs">
                  <property name="title">
                   <string>Store opened tabs</string>
                  </property>
@@ -3325,9 +3325,9 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <property name="checked">
                   <bool>false</bool>
                  </property>
-                 <layout class="QVBoxLayout" name="groupStoreOpenedTabsLayout">
+                 <layout class="QVBoxLayout" name="groupStoreSearchJobsLayout">
                   <item>
-                   <widget class="QCheckBox" name="checkStoreTabsSearchResults">
+                   <widget class="QCheckBox" name="checkStoreSearchJobResults">
                     <property name="text">
                      <string>Also store search results</string>
                     </property>
