@@ -84,16 +84,20 @@
                     return;
 
                 const shareLimit = getSelectedRadioValue("shareLimit");
-                let ratioLimitValue = 0;
-                let seedingTimeLimitValue = 0;
-                let inactiveSeedingTimeLimitValue = 0;
+                let ratioLimitValue = 0; // eslint-disable-line no-useless-assignment -- ESLint trips over `else return;` case but we want to keep the variable initialized
+                let seedingTimeLimitValue = 0; // eslint-disable-line no-useless-assignment
+                let inactiveSeedingTimeLimitValue = 0; // eslint-disable-line no-useless-assignment
                 let shareLimitActionValue = "Default";
 
                 if (shareLimit === "default") {
-                    ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = UseGlobalLimit;
+                    ratioLimitValue = UseGlobalLimit;
+                    seedingTimeLimitValue = UseGlobalLimit;
+                    inactiveSeedingTimeLimitValue = UseGlobalLimit;
                 }
                 else if (shareLimit === "none") {
-                    ratioLimitValue = seedingTimeLimitValue = inactiveSeedingTimeLimitValue = NoLimit;
+                    ratioLimitValue = NoLimit;
+                    seedingTimeLimitValue = NoLimit;
+                    inactiveSeedingTimeLimitValue = NoLimit;
                 }
                 else if (shareLimit === "custom") {
                     ratioLimitValue = document.getElementById("setRatio").checked ? document.getElementById("ratio").value : -1;

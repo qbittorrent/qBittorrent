@@ -45,11 +45,11 @@
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
+#include "base/net/reverseresolution.h"
 #include "base/preferences.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "serialize/serialize_torrent.h"
-#include "webui/peerhostnameresolver.h"
 
 namespace
 {
@@ -441,12 +441,6 @@ namespace
         serializedTorrent[KEY_TORRENT_HAS_TRACKER_ERROR] = hasTrackerError;
         serializedTorrent[KEY_TORRENT_HAS_OTHER_ANNOUNCE_ERROR] = hasOtherAnnounceError;
     }
-}
-
-SyncController::SyncController(PeerHostNameResolver *peerHostNameResolver, IApplication *app, QObject *parent)
-    : APIController(app, parent)
-    , m_peerHostNameResolver {peerHostNameResolver}
-{
 }
 
 void SyncController::updateFreeDiskSpace(const qint64 freeDiskSpace)
@@ -878,20 +872,6 @@ void SyncController::torrentPeersAction()
             peer.insert(KEY_PEER_FILES, filesForPiece.join(u'\n'));
         }
 
-        if (!useI2PSocket)
-        {
-            if (resolvePeerHostNames)
-                peer[KEY_PEER_HOST_NAME] = m_peerHostNameResolver->lookupHostName(pi.address().ip);
-            else
-                peer[KEY_PEER_HOST_NAME] = {};
-        }
-
-        if (resolvePeerCountries && !useI2PSocket)
-        {
-            peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
-            peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
-        }
-
         if (useI2PSocket)
         {
             peer[KEY_PEER_I2P_DEST] = pi.I2PAddress();
@@ -901,6 +881,22 @@ void SyncController::torrentPeersAction()
         {
             peer[KEY_PEER_IP] = pi.address().ip.toString();
             peer[KEY_PEER_PORT] = pi.address().port;
+
+            peer[KEY_PEER_HOST_NAME] = resolvePeerHostNames
+                ? Net::ReverseResolution::instance()->resolve(pi.address().ip)
+                : QString();
+
+            if (resolvePeerCountries)
+            {
+                peer[KEY_PEER_COUNTRY_CODE] = pi.country().toLower();
+                peer[KEY_PEER_COUNTRY] = Net::GeoIPManager::CountryName(pi.country());
+            }
+            else
+            {
+                peer[KEY_PEER_COUNTRY_CODE] = {};
+                peer[KEY_PEER_COUNTRY] = {};
+            }
+
             peers[pi.address().toString()] = peer;
         }
     }
