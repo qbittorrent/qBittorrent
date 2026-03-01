@@ -1075,7 +1075,7 @@ bool SessionImpl::setCategoryOptions(const QString &categoryName, const Category
 
     CategoryOptions &currentOptions = it.value();
     if (options == currentOptions)
-        return false;
+        return true;
 
     if (isDisableAutoTMMWhenCategorySavePathChanged()
             && ((options.savePath != currentOptions.savePath) || (options.downloadPath != currentOptions.downloadPath)))

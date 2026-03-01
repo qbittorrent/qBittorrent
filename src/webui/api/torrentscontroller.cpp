@@ -1918,7 +1918,8 @@ void TorrentsController::editCategoryAction()
         categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
     }
 
-    BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions);
+    if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))
+        throw APIError(APIErrorType::Conflict, tr("Unable to edit category"));
 
     setResult(QString());
 }
