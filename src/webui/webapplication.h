@@ -30,7 +30,6 @@
 #pragma once
 
 #include <chrono>
-#include <type_traits>
 #include <utility>
 
 #include <QDateTime>
@@ -47,9 +46,10 @@
 
 #include "base/applicationcomponent.h"
 #include "base/global.h"
+#include "base/http/environment.h"
 #include "base/http/irequesthandler.h"
+#include "base/http/request.h"
 #include "base/http/responsebuilder.h"
-#include "base/http/types.h"
 #include "base/path.h"
 #include "base/utils/net.h"
 #include "base/utils/version.h"

@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Mike Tzou (Chocobo1)
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,14 +29,9 @@
 
 #pragma once
 
-#include <QByteArray>
-#include <QHash>
-#include <QHostAddress>
-#include <QList>
-#include <QMap>
 #include <QString>
 
-#include "base/global.h"
+using namespace Qt::Literals::StringLiterals;
 
 namespace Http
 {
@@ -82,57 +77,4 @@ namespace Http
 
     // portability: "\r\n" doesn't guarantee mapping to the correct symbol
     inline const QByteArray CRLF = QByteArrayLiteral("\x0D\x0A");
-
-    struct Environment
-    {
-        QHostAddress localAddress;
-        quint16 localPort = 0;
-
-        QHostAddress clientAddress;
-        quint16 clientPort = 0;
-    };
-
-    struct UploadedFile
-    {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
-
-    struct Header
-    {
-        QString name;
-        QString value;
-    };
-
-    using HeaderMap = QMap<QString, QString>;  // <Header name, Header value>
-
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-    };
-
-    struct ResponseStatus
-    {
-        uint code;
-        QString text;
-    };
-
-    struct Response
-    {
-        ResponseStatus status;
-        HeaderMap headers;
-        QByteArray content;
-
-        Response(uint code = 200, const QString &text = u"OK"_s)
-            : status {code, text}
-        {
-        }
-    };
 }
