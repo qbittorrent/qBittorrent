@@ -879,9 +879,9 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateTable(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
-
+            const rowIds = new Set(rows.map(row => row.rowId));
             for (let i = 0; i < this.selectedRows.length; ++i) {
-                if (!(this.selectedRows[i] in rows)) {
+                if (!rowIds.has(this.selectedRows[i])) {
                     this.selectedRows.splice(i, 1);
                     --i;
                 }
