@@ -46,7 +46,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 8;
+    const int MIGRATION_VERSION = 9;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -326,9 +326,96 @@ namespace
             {
                 const auto value = settingsStorage->loadValue<QVariant>(mapping.oldKey);
                 settingsStorage->storeValue(mapping.newKey, value);
-                // TODO: Remove oldKey after ~v4.4.3 and bump migration version
+                settingsStorage->removeValue(mapping.oldKey);
             }
         }
+    }
+
+    // users who ran the v2 migration before the removeValue fix still have
+    // the old keys around — clean them up now
+    void cleanupLegacySettingKeys()
+    {
+        const QStringList oldKeys =
+        {
+            u"AddNewTorrentDialog/Enabled"_s,
+            u"AddNewTorrentDialog/Expanded"_s,
+            u"AddNewTorrentDialog/Position"_s,
+            u"AddNewTorrentDialog/SavePathHistory"_s,
+            u"AddNewTorrentDialog/TopLevel"_s,
+            u"AddNewTorrentDialog/TreeHeaderState"_s,
+            u"AddNewTorrentDialog/Width"_s,
+            u"BitTorrent/Session/AddExtensionToIncompleteFiles"_s,
+            u"BitTorrent/Session/AdditionalTrackers"_s,
+            u"BitTorrent/Session/AddTorrentPaused"_s,
+            u"BitTorrent/Session/AddTrackersEnabled"_s,
+            u"BitTorrent/Session/AlternativeGlobalDLSpeedLimit"_s,
+            u"BitTorrent/Session/AlternativeGlobalUPSpeedLimit"_s,
+            u"BitTorrent/Session/AnnounceIP"_s,
+            u"BitTorrent/Session/AnnounceToAllTrackers"_s,
+            u"BitTorrent/Session/AnonymousModeEnabled"_s,
+            u"BitTorrent/Session/BandwidthSchedulerEnabled"_s,
+            u"BitTorrent/Session/DefaultSavePath"_s,
+            u"BitTorrent/Session/DHTEnabled"_s,
+            u"BitTorrent/Session/DiskCacheSize"_s,
+            u"BitTorrent/Session/DiskCacheTTL"_s,
+            u"BitTorrent/Session/Encryption"_s,
+            u"BitTorrent/Session/FinishedTorrentExportDirectory"_s,
+            u"BitTorrent/Session/ForceProxy"_s,
+            u"BitTorrent/Session/GlobalDLSpeedLimit"_s,
+            u"BitTorrent/Session/GlobalMaxRatio"_s,
+            u"BitTorrent/Session/GlobalUPSpeedLimit"_s,
+            u"BitTorrent/Session/IgnoreLimitsOnLAN"_s,
+            u"BitTorrent/Session/IgnoreSlowTorrentsForQueueing"_s,
+            u"BitTorrent/Session/IncludeOverheadInLimits"_s,
+            u"BitTorrent/Session/Interface"_s,
+            u"BitTorrent/Session/InterfaceAddress"_s,
+            u"BitTorrent/Session/InterfaceName"_s,
+            u"BitTorrent/Session/IPFilter"_s,
+            u"BitTorrent/Session/IPFilteringEnabled"_s,
+            u"BitTorrent/Session/LSDEnabled"_s,
+            u"BitTorrent/Session/MaxActiveDownloads"_s,
+            u"BitTorrent/Session/MaxActiveTorrents"_s,
+            u"BitTorrent/Session/MaxActiveUploads"_s,
+            u"BitTorrent/Session/MaxConnections"_s,
+            u"BitTorrent/Session/MaxConnectionsPerTorrent"_s,
+            u"BitTorrent/Session/MaxHalfOpenConnections"_s,
+            u"BitTorrent/Session/MaxRatioAction"_s,
+            u"BitTorrent/Session/MaxUploads"_s,
+            u"BitTorrent/Session/MaxUploadsPerTorrent"_s,
+            u"BitTorrent/Session/OutgoingPortsMax"_s,
+            u"BitTorrent/Session/OutgoingPortsMin"_s,
+            u"BitTorrent/Session/PeXEnabled"_s,
+            u"BitTorrent/Session/Port"_s,
+            u"BitTorrent/Session/Preallocation"_s,
+            u"BitTorrent/Session/ProxyPeerConnections"_s,
+            u"BitTorrent/Session/QueueingSystemEnabled"_s,
+            u"BitTorrent/Session/RefreshInterval"_s,
+            u"BitTorrent/Session/SaveResumeDataInterval"_s,
+            u"BitTorrent/Session/SuperSeedingEnabled"_s,
+            u"BitTorrent/Session/TempPath"_s,
+            u"BitTorrent/Session/TempPathEnabled"_s,
+            u"BitTorrent/Session/TorrentExportDirectory"_s,
+            u"BitTorrent/Session/TrackerFilteringEnabled"_s,
+            u"BitTorrent/Session/UseAlternativeGlobalSpeedLimit"_s,
+            u"BitTorrent/Session/UseOSCache"_s,
+            u"BitTorrent/Session/UseRandomPort"_s,
+            u"BitTorrent/Session/uTPEnabled"_s,
+            u"BitTorrent/Session/uTPRateLimited"_s,
+            u"BitTorrent/TrackerEnabled"_s,
+            u"Network/PortForwardingEnabled"_s,
+            u"Network/Proxy/Authentication"_s,
+            u"Network/Proxy/IP"_s,
+            u"Network/Proxy/OnlyForTorrents"_s,
+            u"Network/Proxy/Password"_s,
+            u"Network/Proxy/Port"_s,
+            u"Network/Proxy/Type"_s,
+            u"Network/Proxy/Username"_s,
+            u"State/BannedIPs"_s
+        };
+
+        auto *settingsStorage = SettingsStorage::instance();
+        for (const QString &key : oldKeys)
+            settingsStorage->removeValue(key);
     }
 
     void migrateProxySettingsEnum()
@@ -521,6 +608,9 @@ bool upgrade()
 
         if (version < 8)
             migrateAddPausedSetting();
+
+        if (version < 9)
+            cleanupLegacySettingKeys();
 
         version = MIGRATION_VERSION;
     }
