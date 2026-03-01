@@ -859,19 +859,32 @@ void OptionsDialog::loadConnectionTabOptions()
         m_ui->checkMaxConnections->setChecked(false);
         m_ui->spinMaxConnec->setEnabled(false);
     }
-    intValue = session->maxConnectionsPerTorrent();
+    intValue = session->maxConnectionsPerDownloadingTorrent();
     if (intValue > 0)
     {
         // enable
-        m_ui->checkMaxConnectionsPerTorrent->setChecked(true);
-        m_ui->spinMaxConnecPerTorrent->setEnabled(true);
-        m_ui->spinMaxConnecPerTorrent->setValue(intValue);
+        m_ui->checkMaxConnectionsPerDownloadingTorrent->setChecked(true);
+        m_ui->spinMaxConnecPerDownloadingTorrent->setEnabled(true);
+        m_ui->spinMaxConnecPerDownloadingTorrent->setValue(intValue);
     }
     else
     {
         // disable
-        m_ui->checkMaxConnectionsPerTorrent->setChecked(false);
-        m_ui->spinMaxConnecPerTorrent->setEnabled(false);
+        m_ui->checkMaxConnectionsPerDownloadingTorrent->setChecked(false);
+        m_ui->spinMaxConnecPerDownloadingTorrent->setEnabled(false);
+    }
+    intValue = session->maxConnectionsPerSeedingTorrent();
+    if (intValue > 0)
+    {
+        // enable
+        m_ui->checkMaxConnectionsPerSeedingTorrent->setChecked(true);
+        m_ui->spinMaxConnecPerSeedingTorrent->setValue(intValue);
+    }
+    else
+    {
+        // disable
+        m_ui->checkMaxConnectionsPerSeedingTorrent->setChecked(false);
+        m_ui->spinMaxConnecPerSeedingTorrent->setEnabled(false);
     }
     intValue = session->maxUploads();
     if (intValue > 0)
@@ -949,14 +962,17 @@ void OptionsDialog::loadConnectionTabOptions()
 
     connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, m_ui->spinMaxConnec, &QWidget::setEnabled);
     connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, m_ui->spinMaxConnecPerTorrent, &QWidget::setEnabled);
-    connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxConnectionsPerDownloadingTorrent, &QAbstractButton::toggled, m_ui->spinMaxConnecPerDownloadingTorrent, &QWidget::setEnabled);
+    connect(m_ui->checkMaxConnectionsPerDownloadingTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxConnectionsPerSeedingTorrent, &QAbstractButton::toggled, m_ui->spinMaxConnecPerSeedingTorrent, &QWidget::setEnabled);
+    connect(m_ui->checkMaxConnectionsPerSeedingTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxUploads, &QAbstractButton::toggled, m_ui->spinMaxUploads, &QWidget::setEnabled);
     connect(m_ui->checkMaxUploads, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxUploadsPerTorrent, &QAbstractButton::toggled, m_ui->spinMaxUploadsPerTorrent, &QWidget::setEnabled);
     connect(m_ui->checkMaxUploadsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxConnec, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->spinMaxConnecPerTorrent, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMaxConnecPerDownloadingTorrent, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMaxConnecPerSeedingTorrent, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxUploads, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxUploadsPerTorrent, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
@@ -999,7 +1015,8 @@ void OptionsDialog::saveConnectionTabOptions() const
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
 
     session->setMaxConnections(getMaxConnections());
-    session->setMaxConnectionsPerTorrent(getMaxConnectionsPerTorrent());
+    session->setMaxConnectionsPerDownloadingTorrent(getMaxConnectionsPerDownloadingTorrent());
+    session->setMaxConnectionsPerSeedingTorrent(getMaxConnectionsPerSeedingTorrent());
     session->setMaxUploads(getMaxUploads());
     session->setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
 
@@ -1713,12 +1730,20 @@ int OptionsDialog::getMaxConnections() const
     return m_ui->spinMaxConnec->value();
 }
 
-int OptionsDialog::getMaxConnectionsPerTorrent() const
+int OptionsDialog::getMaxConnectionsPerDownloadingTorrent() const
 {
-    if (!m_ui->checkMaxConnectionsPerTorrent->isChecked())
+    if (!m_ui->checkMaxConnectionsPerDownloadingTorrent->isChecked())
         return -1;
 
-    return m_ui->spinMaxConnecPerTorrent->value();
+    return m_ui->spinMaxConnecPerDownloadingTorrent->value();
+}
+
+int OptionsDialog::getMaxConnectionsPerSeedingTorrent() const
+{
+    if (!m_ui->checkMaxConnectionsPerSeedingTorrent->isChecked())
+        return -1;
+
+    return m_ui->spinMaxConnecPerSeedingTorrent->value();
 }
 
 int OptionsDialog::getMaxUploads() const

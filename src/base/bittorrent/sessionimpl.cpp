@@ -495,7 +495,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_stopTrackerTimeout(BITTORRENT_SESSION_KEY(u"StopTrackerTimeout"_s), 2)
     , m_maxConnections(BITTORRENT_SESSION_KEY(u"MaxConnections"_s), 500, lowerLimited(0, -1))
     , m_maxUploads(BITTORRENT_SESSION_KEY(u"MaxUploads"_s), 20, lowerLimited(0, -1))
-    , m_maxConnectionsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxConnectionsPerTorrent"_s), 100, lowerLimited(0, -1))
+    , m_maxConnectionsPerDownloadingTorrent(BITTORRENT_SESSION_KEY(u"MaxConnectionsPerDownloadingTorrent"_s), 100, lowerLimited(0, -1))
+    , m_maxConnectionsPerSeedingTorrent(BITTORRENT_SESSION_KEY(u"MaxConnectionsPerSeedingTorrent"_s), 40, lowerLimited(0, -1))
     , m_maxUploadsPerTorrent(BITTORRENT_SESSION_KEY(u"MaxUploadsPerTorrent"_s), 4, lowerLimited(0, -1))
     , m_btProtocol(BITTORRENT_SESSION_KEY(u"BTProtocol"_s), BTProtocol::Both
         , clampValue(BTProtocol::Both, BTProtocol::UTP))
@@ -2935,7 +2936,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     p.added_time = std::time(nullptr);
 
     // Limits
-    p.max_connections = maxConnectionsPerTorrent();
+    p.max_connections = maxConnectionsPerDownloadingTorrent();
     p.max_uploads = maxUploadsPerTorrent();
 
     p.userdata = LTClientData(new ExtensionData);
@@ -3133,7 +3134,7 @@ bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
         p.storage_mode = lt::storage_mode_sparse;
 
     // Limits
-    p.max_connections = maxConnectionsPerTorrent();
+    p.max_connections = maxConnectionsPerDownloadingTorrent();
     p.max_uploads = maxUploadsPerTorrent();
 
     const auto id = TorrentID::fromInfoHash(infoHash);
@@ -4308,23 +4309,52 @@ void SessionImpl::resume()
     }
 }
 
-int SessionImpl::maxConnectionsPerTorrent() const
+int SessionImpl::maxConnectionsPerDownloadingTorrent() const
 {
-    return m_maxConnectionsPerTorrent;
+    return m_maxConnectionsPerDownloadingTorrent;
 }
 
-void SessionImpl::setMaxConnectionsPerTorrent(int max)
+void SessionImpl::setMaxConnectionsPerDownloadingTorrent(int max)
 {
     max = (max > 0) ? max : -1;
-    if (max != maxConnectionsPerTorrent())
+    if (max != maxConnectionsPerDownloadingTorrent())
     {
-        m_maxConnectionsPerTorrent = max;
+        m_maxConnectionsPerDownloadingTorrent = max;
 
         for (const TorrentImpl *torrent : asConst(m_torrents))
         {
             try
             {
-                torrent->nativeHandle().set_max_connections(max);
+                if (!torrent->isUploading())
+                {
+                    torrent->nativeHandle().set_max_connections(max);
+                }
+            }
+            catch (const std::exception &) {}
+        }
+    }
+}
+
+int SessionImpl::maxConnectionsPerSeedingTorrent() const
+{
+    return m_maxConnectionsPerSeedingTorrent;
+}
+
+void SessionImpl::setMaxConnectionsPerSeedingTorrent(int max)
+{
+    max = (max > 0) ? max : -1;
+    if (max != maxConnectionsPerSeedingTorrent())
+    {
+        m_maxConnectionsPerSeedingTorrent = max;
+
+        for (const TorrentImpl *torrent : asConst(m_torrents))
+        {
+            try
+            {
+                if (torrent->isUploading())
+                {
+                    torrent->nativeHandle().set_max_connections(max);
+                }
             }
             catch (const std::exception &) {}
         }
