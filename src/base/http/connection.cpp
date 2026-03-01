@@ -92,9 +92,9 @@ void Connection::read()
                     qWarning("%s", qUtf8Printable(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(QString::number(bufferLimit), m_socket->peerAddress().toString())));
 
-                    Response resp(413, u"Payload Too Large"_s);
-                    resp.headers[HEADER_CONNECTION] = u"close"_s;
-
+                    const Response resp {
+                            .status = {.code = 413, .text = u"Payload Too Large"_s},
+                            .headers = {{HEADER_CONNECTION, u"close"_s}}};
                     sendResponse(resp);
                     m_socket->close();
                 }
@@ -106,9 +106,9 @@ void Connection::read()
                 qWarning("%s", qUtf8Printable(tr("Bad Http request method, closing socket. IP: %1. Method: \"%2\"")
                     .arg(m_socket->peerAddress().toString(), result.request.method)));
 
-                Response resp(501, u"Not Implemented"_s);
-                resp.headers[HEADER_CONNECTION] = u"close"_s;
-
+                const Response resp {
+                        .status = {.code = 501, .text = u"Not Implemented"_s},
+                        .headers = {{HEADER_CONNECTION, u"close"_s}}};
                 sendResponse(resp);
                 m_socket->close();
             }
@@ -119,9 +119,9 @@ void Connection::read()
                 qWarning("%s", qUtf8Printable(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString())));
 
-                Response resp(400, u"Bad Request"_s);
-                resp.headers[HEADER_CONNECTION] = u"close"_s;
-
+                const Response resp {
+                        .status = {.code = 400, .text = u"Bad Request"_s},
+                        .headers = {{HEADER_CONNECTION, u"close"_s}}};
                 sendResponse(resp);
                 m_socket->close();
             }

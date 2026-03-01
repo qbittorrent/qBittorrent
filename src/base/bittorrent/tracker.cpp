@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019  Mike Tzou (Chocobo1)
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -229,12 +229,9 @@ bool Tracker::start()
 
 Http::Response Tracker::processRequest(const Http::Request &request, const Http::Environment &env)
 {
-    clear();  // clear response
-
     m_request = request;
     m_env = env;
-
-    status(200);
+    m_response = {};  // clear response
 
     try
     {
@@ -249,14 +246,16 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
     }
     catch (const HTTPError &error)
     {
-        status(error.statusCode(), error.statusText());
+        m_response.status = {.code = error.statusCode(), .text = error.statusText()};
         if (!error.message().isEmpty())
-            print(error.message(), Http::CONTENT_TYPE_TXT);
+        {
+            m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
+            m_response.content = error.message().toUtf8();
+        }
     }
     catch (const TrackerError &error)
     {
-        clear();  // clear response
-        status(200);
+        m_response = {};  // clear response
 
         const lt::entry::dictionary_type bencodedEntry =
         {
@@ -264,10 +263,12 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
         };
         QByteArray reply;
         lt::bencode(std::back_inserter(reply), bencodedEntry);
-        print(reply, Http::CONTENT_TYPE_TXT);
+        m_response.status = {.code = 200};
+        m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
+        m_response.content = reply;
     }
 
-    return response();
+    return m_response;
 }
 
 void Tracker::processAnnounceRequest()
@@ -470,5 +471,7 @@ void Tracker::prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq)
     // bencode
     QByteArray reply;
     lt::bencode(std::back_inserter(reply), replyDict);
-    print(reply, Http::CONTENT_TYPE_TXT);
+    m_response.status = {.code = 200};
+    m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
+    m_response.content = reply;
 }

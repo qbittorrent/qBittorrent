@@ -62,7 +62,6 @@ add_library(qbt_base STATIC
     http/httperror.h
     http/irequesthandler.h
     http/requestparser.h
-    http/responsebuilder.h
     http/responsegenerator.h
     http/server.h
     http/types.h
@@ -167,7 +166,6 @@ add_library(qbt_base STATIC
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
-    http/responsebuilder.cpp
     http/responsegenerator.cpp
     http/server.cpp
     logger.cpp
