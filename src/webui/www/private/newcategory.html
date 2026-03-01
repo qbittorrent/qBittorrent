@@ -188,7 +188,34 @@
                             });
                         break;
 
-                    case "edit":
+                    case "edit": {
+                        // avoid a pointless 409 from the server when nothing actually changed
+                        let origDlPathMode = "default";
+                        let origDlPath = "";
+                        switch (categoryData.downloadPath) {
+                            case false:
+                                origDlPathMode = "no";
+                                break;
+                            case null:
+                                origDlPathMode = "default";
+                                break;
+                            default:
+                                origDlPathMode = "yes";
+                                origDlPath = categoryData.downloadPath;
+                                break;
+                        }
+
+                        const curDlPath = (useDownloadPath.value === "yes")
+                            ? document.getElementById("downloadPath").value.trim()
+                            : "";
+
+                        if ((savePath === categoryData.savePath)
+                                && (useDownloadPath.value === origDlPathMode)
+                                && (curDlPath === origDlPath)) {
+                            window.parent.qBittorrent.Client.closeFrameWindow(window);
+                            return;
+                        }
+
                         fetch("api/v2/torrents/editCategory", {
                                 method: "POST",
                                 body: new URLSearchParams({
@@ -207,6 +234,7 @@
                                 window.parent.qBittorrent.Client.closeFrameWindow(window);
                             });
                         break;
+                    }
                 }
             });
 
