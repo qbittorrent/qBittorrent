@@ -54,6 +54,7 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
+#include "api/pushcontroller.h"
 
 using namespace std::chrono_literals;
 
@@ -173,6 +174,11 @@ private:
         {{u"auth"_s, u"login"_s}, Http::METHOD_POST},
         {{u"auth"_s, u"logout"_s}, Http::METHOD_POST},
         {{u"clientdata"_s, u"store"_s}, Http::METHOD_POST},
+        {{u"push"_s, u"subscribe"_s}, Http::METHOD_POST},
+        {{u"push"_s, u"subscriptions"_s}, Http::METHOD_GET},
+        {{u"push"_s, u"test"_s}, Http::METHOD_GET},
+        {{u"push"_s, u"unsubscribe"_s}, Http::METHOD_POST},
+        {{u"push"_s, u"vapidPublicKey"_s}, Http::METHOD_GET},
         {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
@@ -290,4 +296,6 @@ private:
         QDeadlineTimer banTimer {-1};
     };
     mutable QHash<QString, FailedLogin> m_clientFailedLogins;
+
+    PushController *m_pushController = nullptr;
 };
