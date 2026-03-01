@@ -27,7 +27,7 @@
                         const row = bulkRenameFilesTable.getNode(rowId);
                         const checkState = (row.checked === 1) ? 0 : 1;
                         bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
-                        bulkRenameFilesTable.updateGlobalCheckbox();
+                        bulkRenameFilesTable.updateHeaderCheckbox();
                         bulkRenameFilesTable.onRowSelectionChange(bulkRenameFilesTable.getSelectedRows());
                     }
                 },
@@ -39,23 +39,12 @@
 
             // Setup the dynamic table for bulk renaming
             const bulkRenameFilesTable = new window.qBittorrent.DynamicTable.BulkRenameTorrentFilesTable();
+            bulkRenameFilesTable.headerCheckboxClickHandler = () => {
+                bulkRenameFilesTable.toggleHeaderCheckbox();
+                fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
+                fileRenamer.update();
+            };
             bulkRenameFilesTable.setup("bulkRenameFilesTableDiv", "bulkRenameFilesTableFixedHeaderDiv", bulkRenameFilesContextMenu, true);
-
-            // Inject checkbox into the first column of the table header
-            const tableHeaders = document.querySelectorAll("#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th");
-            if (tableHeaders.length > 0) {
-                const checkboxHeader = document.createElement("input");
-                checkboxHeader.type = "checkbox";
-                checkboxHeader.id = "rootMultiRename_cb";
-                checkboxHeader.addEventListener("click", (e) => {
-                    bulkRenameFilesTable.toggleGlobalCheckbox();
-                    fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
-                    fileRenamer.update();
-                });
-
-                const checkboxTH = tableHeaders[0];
-                checkboxTH.append(checkboxHeader);
-            }
 
             // Register keyboard events to modal window
             // https://github.com/qbittorrent/qBittorrent/pull/18687#discussion_r1135045726
