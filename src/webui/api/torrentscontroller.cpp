@@ -1919,7 +1919,7 @@ void TorrentsController::editCategoryAction()
     }
 
     if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))
-        throw APIError(APIErrorType::Conflict, tr("Unable to edit category"));
+        throw APIError(APIErrorType::NotFound, tr("Category does not exist"));
 
     setResult(QString());
 }
