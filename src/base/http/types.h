@@ -74,7 +74,7 @@ namespace Http
     inline const QString CONTENT_TYPE_CSS = u"text/css"_s;
     inline const QString CONTENT_TYPE_TXT = u"text/plain; charset=UTF-8"_s;
     inline const QString CONTENT_TYPE_JPEG = u"image/jpeg"_s;
-    inline const QString CONTENT_TYPE_JS = u"application/javascript"_s;
+    inline const QString CONTENT_TYPE_JS = u"text/javascript"_s;
     inline const QString CONTENT_TYPE_JSON = u"application/json"_s;
     inline const QString CONTENT_TYPE_GIF = u"image/gif"_s;
     inline const QString CONTENT_TYPE_PNG = u"image/png"_s;
