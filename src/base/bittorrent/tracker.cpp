@@ -39,7 +39,6 @@
 #include "base/global.h"
 #include "base/http/httperror.h"
 #include "base/http/server.h"
-#include "base/http/types.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 

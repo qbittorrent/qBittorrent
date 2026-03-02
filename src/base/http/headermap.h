@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,29 +29,10 @@
 
 #pragma once
 
+#include <QMap>
 #include <QString>
-
-#include "base/global.h"
-#include "constants.h"
-#include "header.h"
-#include "response.h"
 
 namespace Http
 {
-    class ResponseBuilder
-    {
-    public:
-        void status(uint code = 200, const QString &text = u"OK"_s);
-        void setHeader(const Header &header);
-        void print(const QString &text, const QString &type = CONTENT_TYPE_HTML);
-        void print(const QByteArray &data, const QString &type = CONTENT_TYPE_HTML);
-        void clear();
-
-        Response response() const;
-
-    private:
-        void print_impl(const QByteArray &data, const QString &type);
-
-        Response m_response;
-    };
+    using HeaderMap = QMap<QString, QString>;  // <Header name, Header value>
 }
