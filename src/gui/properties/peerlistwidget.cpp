@@ -533,9 +533,10 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
 
     if (!peer.useI2PSocket() && m_resolveHostNames)
     {
-        const QString hostName = Net::ReverseResolution::instance()->resolve(peer.address().ip);
+        const QHostAddress ipAddr = peer.address().ip;
+        const QString hostName = Net::ReverseResolution::instance()->resolve(ipAddr);
         if (!hostName.isEmpty())
-            setModelData(m_listModel, row, PeerListColumns::IP, hostName, hostName);
+            setModelData(m_listModel, row, PeerListColumns::IP, hostName, hostName, {}, ipAddr.toString());
     }
 
     if (m_resolveCountries)
