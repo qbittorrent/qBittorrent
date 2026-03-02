@@ -75,7 +75,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
-            this.useVirtualList = clientData.get("use_virtual_list") === true;
+            this.useVirtualList = clientData.get("use_virtual_list") ?? true;
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
             this.table = this.dynamicTableDiv.querySelector("table");
             this.colgroup = document.createElement("colgroup");

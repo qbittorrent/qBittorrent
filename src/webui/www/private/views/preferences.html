@@ -142,7 +142,7 @@
         </div>
         <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="useVirtualList">
-            <label for="useVirtualList">QBT_TR(Enable optimized table rendering (experimental))QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="useVirtualList">QBT_TR(Enable optimized table rendering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 </div>
@@ -2298,7 +2298,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const colorScheme = clientData.get("color_scheme");
                     const displayDensity = clientData.get("display_density") ?? "default";
                     const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
-                    const useVirtualList = clientData.get("use_virtual_list");
+                    const useVirtualList = clientData.get("use_virtual_list") ?? true;
                     const hideZeroStatusFilters = clientData.get("hide_zero_status_filters");
                     const dblclickDownload = clientData.get("dblclick_download") ?? "1";
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
