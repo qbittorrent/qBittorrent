@@ -93,7 +93,8 @@ void Http::compressContent(Response &response)
 
     // filter out known hard-to-compress types
     const QString contentType = response.headers[HEADER_CONTENT_TYPE];
-    if ((contentType == CONTENT_TYPE_GIF) || (contentType == CONTENT_TYPE_PNG))
+    if ((contentType == CONTENT_TYPE_GIF) || (contentType == CONTENT_TYPE_JPEG)
+        || (contentType == CONTENT_TYPE_PNG) || (contentType == CONTENT_TYPE_WEBP))
         return;
 
     // try compressing
