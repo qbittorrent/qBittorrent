@@ -653,8 +653,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     }
 
     // clear response
-    m_response = {};
-    m_response.headers = m_prebuiltHeaders;
+    m_response = {.headers = m_prebuiltHeaders};
 
     try
     {
