@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include <QPersistentModelIndex>
 #include <QStyledItemDelegate>
 
 #include "gui/progressbarpainter.h"
@@ -48,7 +47,6 @@ public:
 
     void setEditorData(QWidget *editor, const QModelIndex &index) const override;
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-    void destroyEditor(QWidget *editor, const QModelIndex &index) const override;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 public slots:
@@ -57,5 +55,4 @@ public slots:
 
 private:
     ProgressBarPainter m_progressBarPainter;
-    mutable QPersistentModelIndex m_editingIndex;
 };

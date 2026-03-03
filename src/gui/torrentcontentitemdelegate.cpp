@@ -92,14 +92,8 @@ QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleO
         emit const_cast<TorrentContentItemDelegate *>(this)->commitData(editor);
     });
 
-    m_editingIndex = index;
+    editor->setAutoFillBackground(true);
     return editor;
-}
-
-void TorrentContentItemDelegate::destroyEditor(QWidget *editor, const QModelIndex &index) const
-{
-    m_editingIndex = QModelIndex();
-    QStyledItemDelegate::destroyEditor(editor, index);
 }
 
 void TorrentContentItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
@@ -153,10 +147,6 @@ void TorrentContentItemDelegate::paint(QPainter *painter, const QStyleOptionView
             m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
         }
         break;
-    case TorrentContentModelItem::COL_PRIO:
-        if (index == m_editingIndex)
-            return;
-        [[fallthrough]];
     default:
         QStyledItemDelegate::paint(painter, option, index);
         break;
