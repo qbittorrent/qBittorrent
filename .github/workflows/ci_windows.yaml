@@ -172,7 +172,28 @@ jobs:
       - name: Prepare build artifacts
         run: |
           mkdir upload
+          # cmake additionals
+          mkdir upload/cmake
+          copy build/compile_commands.json upload/cmake
+          copy build/target_graph.dot upload/cmake
+          mkdir upload/cmake/libtorrent
+          copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libtorrent.version }}-artifacts
+          path: upload
+
+      - name: Install NSIS
+        uses: repolevedavaj/install-nsis@a55ed92772254d1e51d880f85ce9b5719f907801 # v1.1.0
+        with:
+          nsis-version: '3.11'
+
+      - name: Create installer
+        run: |
           mkdir upload/qBittorrent
+          # binaries
           copy build/qbittorrent.exe upload/qBittorrent
           copy build/qbittorrent.pdb upload/qBittorrent
           copy dist/windows/qt.conf upload/qBittorrent
@@ -205,31 +226,17 @@ jobs:
           copy "${{ env.Qt_ROOT_DIR }}/plugins/styles/qmodernwindowsstyle.dll" upload/qBittorrent/plugins/styles
           mkdir upload/qBittorrent/plugins/tls
           copy "${{ env.Qt_ROOT_DIR }}/plugins/tls/qschannelbackend.dll" upload/qBittorrent/plugins/tls
-          # cmake additionals
-          mkdir upload/cmake
-          copy build/compile_commands.json upload/cmake
-          copy build/target_graph.dot upload/cmake
-          mkdir upload/cmake/libtorrent
-          copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libtorrent.version }}
-          path: upload
-
-      - name: Install NSIS
-        uses: repolevedavaj/install-nsis@a55ed92772254d1e51d880f85ce9b5719f907801 # v1.1.0
-        with:
-          nsis-version: '3.11'
-
-      - name: Create installer
-        run: |
+          # NSIS
           7z x -o"dist/windows/" "dist/windows/NSISPlugins.zip"
-          makensis /DQBT_CPU_ARCH="${{ matrix.config.arch }}" /DQBT_DIST_DIR="../../upload/qBittorrent" /WX dist/windows/qbittorrent.nsi
+          makensis `
+            /DQBT_CPU_ARCH="${{ matrix.config.arch }}" `
+            /DQBT_DIST_DIR="../../upload/qBittorrent" `
+            /WX `
+            dist/windows/qbittorrent.nsi
+          move "dist/windows/qbittorrent_*_setup.exe" "qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libtorrent.version }}-setup.exe"
 
       - name: Upload installer
         uses: actions/upload-artifact@v7
         with:
-          name: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libtorrent.version }}-setup
-          path: dist/windows/qbittorrent_*_setup.exe
+          archive: false
+          path: qBittorrent-CI_Windows-${{ matrix.config.arch }}_libtorrent-${{ matrix.libtorrent.version }}-setup.exe
