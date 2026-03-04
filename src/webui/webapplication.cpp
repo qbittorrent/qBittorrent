@@ -651,12 +651,12 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     // clear response
     m_response = {.headers = m_prebuiltHeaders};
 
+    const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+    const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
+    const bool isUsingApiKey = (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
+
     try
     {
-        const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
-        const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
-        const bool isUsingApiKey = (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
-
         // block suspicious requests
         if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
             || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
@@ -697,6 +697,19 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         m_response.content = (!error.message().isEmpty() ? error.message() : errorStatus.text).toUtf8();
     }
 
+    if (!isUsingApiKey)
+    {
+        auto *currentSession = static_cast<CookieBasedWebSession *>(m_currentSession);
+        if (currentSession && currentSession->shouldRefreshCookie())
+        {
+            // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
+            const std::chrono::seconds cookieExpireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
+            const QNetworkCookie cookie = createSessionCookie(currentSession->id(), cookieExpireDuration);
+            m_response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
+            currentSession->setCookieRefreshTime(cookieExpireDuration);
+        }
+    }
+
     return m_response;
 }
 
@@ -705,16 +718,9 @@ QString WebApplication::clientId() const
     return m_clientAddress.toString();
 }
 
-void WebApplication::setSessionCookie()
+QNetworkCookie WebApplication::createSessionCookie(const QString &sessionID, const std::chrono::seconds expireDuration) const
 {
-    Q_ASSERT(m_currentSession->type() == WebSessionType::CookieBased);
-    if (m_currentSession->type() != WebSessionType::CookieBased) [[unlikely]]
-        return;
-
-    // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
-    const std::chrono::seconds expireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
-
-    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
+    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), sessionID.toLatin1()};
     cookie.setExpirationDate(QDateTime::currentDateTime().addDuration(expireDuration));
     cookie.setHttpOnly(true);
     cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
@@ -724,8 +730,7 @@ void WebApplication::setSessionCookie()
     else if (cookie.isSecure())
         cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
 
-    m_response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
-    static_cast<CookieBasedWebSession *>(m_currentSession)->setCookieRefreshTime(expireDuration);
+    return cookie;
 }
 
 void WebApplication::cookieSessionInitialize(const QString &authScheme, const QString &authData)
@@ -745,8 +750,6 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
             {
                 m_currentSession = session;
                 m_currentSession->updateTimestamp();
-                if (static_cast<CookieBasedWebSession *>(m_currentSession)->shouldRefreshCookie())
-                    setSessionCookie();
             }
             else
             {
@@ -864,9 +867,6 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
     syncController->updateFreeDiskSpace(btSession->freeDiskSpace());
     connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
-
-    if (sessionType == WebSessionType::CookieBased)
-        setSessionCookie();
 }
 
 void WebApplication::sessionEnd()

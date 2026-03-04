@@ -60,6 +60,8 @@ using namespace Qt::Literals::StringLiterals;
 
 inline const Utils::Version<3, 2> API_VERSION {2, 15, 2};
 
+class QNetworkCookie;
+
 class APIController;
 class AuthController;
 class ClientDataStorage;
@@ -109,7 +111,7 @@ private:
 
     // Session management
     QString generateSid() const;
-    void setSessionCookie();
+    QNetworkCookie createSessionCookie(const QString &sessionID, std::chrono::seconds expireDuration) const;
     void cookieSessionInitialize(const QString &authScheme, const QString &authData);
     void apiKeySessionInitialize(const QString &apiKey);
     bool isAuthNeeded();
