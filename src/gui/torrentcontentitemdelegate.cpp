@@ -75,6 +75,7 @@ QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleO
 
     auto *editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
+    editor->setAutoFillBackground(true);
     editor->addItem(tr("Do not download", "Do not download (priority)"));
     editor->addItem(tr("Normal", "Normal (priority)"));
     editor->addItem(tr("High", "High (priority)"));
@@ -92,7 +93,6 @@ QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleO
         emit const_cast<TorrentContentItemDelegate *>(this)->commitData(editor);
     });
 
-    editor->setAutoFillBackground(true);
     return editor;
 }
 
