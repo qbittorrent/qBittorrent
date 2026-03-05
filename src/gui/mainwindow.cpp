@@ -292,24 +292,14 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     {
         if (action->isSeparator())
         {
-            QWidget *spacer = new QWidget(this);
-            spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-            spacer->setMinimumWidth(16);
-            m_ui->toolBar->insertWidget(action, spacer);
+            auto *line = new QWidget(this);
+            line->setFixedSize(2, 16);
+            line->setStyleSheet(u"background-color: palette(mid);"_s);
+            QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
             m_ui->toolBar->removeAction(action);
+            if (action == m_queueSeparator)
+                m_queueSeparator = widgetAction;
         }
-    }
-    {
-        QWidget *spacer = new QWidget(this);
-        spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        spacer->setMinimumWidth(8);
-        m_ui->toolBar->insertWidget(m_ui->actionDownloadFromURL, spacer);
-    }
-    {
-        QWidget *spacer = new QWidget(this);
-        spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        spacer->setMinimumWidth(8);
-        m_ui->toolBar->addWidget(spacer);
     }
 #endif // Q_OS_MACOS
 
@@ -1423,9 +1413,7 @@ void MainWindow::loadPreferences()
             m_ui->actionIncreaseQueuePos->setVisible(true);
             m_ui->actionTopQueuePos->setVisible(true);
             m_ui->actionBottomQueuePos->setVisible(true);
-#ifndef Q_OS_MACOS
             m_queueSeparator->setVisible(true);
-#endif
             m_queueSeparatorMenu->setVisible(true);
         }
     }
@@ -1438,9 +1426,7 @@ void MainWindow::loadPreferences()
             m_ui->actionIncreaseQueuePos->setVisible(false);
             m_ui->actionTopQueuePos->setVisible(false);
             m_ui->actionBottomQueuePos->setVisible(false);
-#ifndef Q_OS_MACOS
             m_queueSeparator->setVisible(false);
-#endif
             m_queueSeparatorMenu->setVisible(false);
         }
     }
