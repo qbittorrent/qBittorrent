@@ -293,7 +293,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         if (action->isSeparator())
         {
             auto *line = new QWidget(this);
-            line->setFixedSize(2, 16);
+            line->setFixedWidth(1);
             line->setAutoFillBackground(true);
             QPalette pal = line->palette();
             pal.setColor(QPalette::Window, palette().color(QPalette::Mid));
