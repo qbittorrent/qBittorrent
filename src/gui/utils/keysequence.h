@@ -35,4 +35,5 @@ namespace Utils::KeySequence
     // QKeySequence variable cannot be initialized at compile time. It will crash at startup.
 
     QKeySequence deleteItem();
+    QKeySequence permanentlyDeleteItem();
 }
