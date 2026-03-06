@@ -8,6 +8,7 @@ add_library(qbt_webui STATIC
     api/clientdatacontroller.h
     api/isessionmanager.h
     api/logcontroller.h
+    api/pushcontroller.h
     api/rsscontroller.h
     api/searchcontroller.h
     api/synccontroller.h
@@ -15,6 +16,7 @@ add_library(qbt_webui STATIC
     api/torrentscontroller.h
     api/transfercontroller.h
     api/serialize/serialize_torrent.h
+    api/webpush/webpush_utils.h
     clientdatastorage.h
     webapplication.h
     webui.h
@@ -26,6 +28,7 @@ add_library(qbt_webui STATIC
     api/authcontroller.cpp
     api/clientdatacontroller.cpp
     api/logcontroller.cpp
+    api/pushcontroller.cpp
     api/rsscontroller.cpp
     api/searchcontroller.cpp
     api/synccontroller.cpp
@@ -33,6 +36,7 @@ add_library(qbt_webui STATIC
     api/torrentscontroller.cpp
     api/transfercontroller.cpp
     api/serialize/serialize_torrent.cpp
+    api/webpush/webpush_utils.cpp
     clientdatastorage.cpp
     webapplication.cpp
     webui.cpp
