@@ -293,11 +293,13 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         if (action->isSeparator())
         {
             auto *line = new QWidget(this);
-            line->setFixedWidth(1);
             line->setAutoFillBackground(true);
+            line->setFixedWidth(1);
+
             QPalette pal = line->palette();
             pal.setColor(QPalette::Window, palette().color(QPalette::Mid));
             line->setPalette(pal);
+
             QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
             m_ui->toolBar->removeAction(action);
             if (action == m_queueSeparator)
