@@ -62,12 +62,12 @@ ManifestDPIAwareness "PerMonitorV2,System"
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
 
-!include "MUI2.nsh"
-!include "UAC.nsh"
+!include "3rdparty\UAC.nsh"
+!include "3rdparty\VersionCompleteXXXX.nsi"
 !include "FileFunc.nsh"
+!include "MUI2.nsh"
 !include "WinVer.nsh"
 !include "x64.nsh"
-!include "3rdparty\VersionCompleteXXXX.nsi"
 
 ;For the file association
 !define SHCNE_ASSOCCHANGED 0x8000000
