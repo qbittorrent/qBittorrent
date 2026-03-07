@@ -5,13 +5,13 @@ Window.css for Mocha UI
 Theme: Default
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+    Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
 
 License:
-	MIT-style license.
+    MIT-style license.
 
 Required by:
-	Window.js and Modal.css
+    Window.js and Modal.css
 
 */
 
@@ -37,12 +37,12 @@ Required by:
 
 /*
 
-	We get a little creative here in order to define a gradient in the CSS using a query
-	string appended to a background image.
+    We get a little creative here in order to define a gradient in the CSS using a query
+    string appended to a background image.
 
-	"from" is the top color of the gradient. "to" is the bottom color of the gradient.
+    "from" is the top color of the gradient. "to" is the bottom color of the gradient.
 
-	Both must be hex values without the leading # sign.
+    Both must be hex values without the leading # sign.
 
 */
 
@@ -135,11 +135,11 @@ div.mochaToolbarWrapper.bottom {
 }
 
 /*
-	To use images for these buttons:
-	1. Set the useCanvasControls window option to false.
-	2. If you use a different button size you may need to reposition the controls.
-	   Modify the controlsOffset window option.
-	2. Replcac the background-color with a background-image for each button.
+    To use images for these buttons:
+    1. Set the useCanvasControls window option to false.
+    2. If you use a different button size you may need to reposition the controls.
+       Modify the controlsOffset window option.
+    2. Replcac the background-color with a background-image for each button.
 
 */
 .mochaMinimizeButton,

@@ -52,7 +52,7 @@ jobs:
         run: |
           if ((Get-Command "ninja.exe" -ErrorAction SilentlyContinue) -eq $null)
           {
-             choco install ninja
+            choco install ninja
           }
           where.exe ninja
           ninja --version
