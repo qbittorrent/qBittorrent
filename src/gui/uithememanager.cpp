@@ -112,11 +112,7 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
-    if (const QString styleName = Preferences::instance()->getStyle(); styleName.compare(u"system", Qt::CaseInsensitive) != 0)
-    {
-        if (!QApplication::setStyle(styleName))
-            LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
-    }
+    applyStyle();
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     applyColorScheme();
@@ -125,30 +121,7 @@ UIThemeManager::UIThemeManager()
     // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
     connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
 
-    if (m_useCustomTheme)
-    {
-        const Path themePath = Preferences::instance()->customUIThemePath();
-
-        if (themePath.hasExtension(u".qbtheme"_s))
-        {
-            if (QResource::registerResource(themePath.data(), u"/uitheme"_s))
-            {
-                m_themeSource = std::make_unique<QRCThemeSource>();
-                m_registeredResourcePath = themePath;
-            }
-            else
-            {
-                LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
-            }
-        }
-        else if (themePath.filename() == CONFIG_FILE_NAME)
-        {
-            m_themeSource = std::make_unique<FolderThemeSource>(themePath.parentPath());
-        }
-    }
-
-    if (!m_themeSource)
-        m_themeSource = std::make_unique<DefaultThemeSource>();
+    loadThemeSource();
 
     if (m_useCustomTheme)
     {
@@ -195,6 +168,57 @@ void UIThemeManager::applyColorScheme() const
 }
 #endif
 
+void UIThemeManager::loadThemeSource()
+{
+    m_themeSource.reset();
+
+    if (m_useCustomTheme)
+    {
+        const Path themePath = Preferences::instance()->customUIThemePath();
+
+        if (themePath.hasExtension(u".qbtheme"_s))
+        {
+            if (QResource::registerResource(themePath.data(), u"/uitheme"_s))
+            {
+                m_themeSource = std::make_unique<QRCThemeSource>();
+                m_registeredResourcePath = themePath;
+            }
+            else
+            {
+                LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
+            }
+        }
+        else if (themePath.filename() == CONFIG_FILE_NAME)
+        {
+            m_themeSource = std::make_unique<FolderThemeSource>(themePath.parentPath());
+        }
+    }
+
+    if (!m_themeSource)
+        m_themeSource = std::make_unique<DefaultThemeSource>();
+}
+
+void UIThemeManager::clearIconCaches()
+{
+    m_icons.clear();
+    m_darkModeIcons.clear();
+    QPixmapCache::clear();
+}
+
+void UIThemeManager::applyStyle() const
+{
+    const QString styleName = Preferences::instance()->getStyle();
+    if (styleName.compare(u"system"_s, Qt::CaseInsensitive) != 0)
+    {
+        if (!QApplication::setStyle(styleName))
+            LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
+    }
+    else
+    {
+        QApplication::setStyle(QApplication::style()->name());
+    }
+}
+
 void UIThemeManager::applyStyleSheet() const
 {
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
@@ -202,9 +226,7 @@ void UIThemeManager::applyStyleSheet() const
 
 void UIThemeManager::onColorSchemeChanged()
 {
-    m_icons.clear();
-    m_darkModeIcons.clear();
-    QPixmapCache::clear();
+    clearIconCaches();
 
     emit themeChanged();
 
@@ -298,32 +320,7 @@ void UIThemeManager::applyThemeSettings()
         m_registeredResourcePath = {};
     }
 
-    m_themeSource.reset();
-
-    if (m_useCustomTheme)
-    {
-        const Path themePath = pref->customUIThemePath();
-
-        if (themePath.hasExtension(u".qbtheme"_s))
-        {
-            if (QResource::registerResource(themePath.data(), u"/uitheme"_s))
-            {
-                m_themeSource = std::make_unique<QRCThemeSource>();
-                m_registeredResourcePath = themePath;
-            }
-            else
-            {
-                LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
-            }
-        }
-        else if (themePath.filename() == CONFIG_FILE_NAME)
-        {
-            m_themeSource = std::make_unique<FolderThemeSource>(themePath.parentPath());
-        }
-    }
-
-    if (!m_themeSource)
-        m_themeSource = std::make_unique<DefaultThemeSource>();
+    loadThemeSource();
 
     if (m_useCustomTheme)
     {
@@ -336,23 +333,11 @@ void UIThemeManager::applyThemeSettings()
         qApp->setStyleSheet({});
     }
 
-    m_icons.clear();
-    m_darkModeIcons.clear();
-    QPixmapCache::clear();
+    clearIconCaches();
 
     emit themeChanged();
 
-    // Apply style and force full repaint
-    const QString styleName = pref->getStyle();
-    if (styleName.compare(u"system"_s, Qt::CaseInsensitive) != 0)
-    {
-        if (!QApplication::setStyle(styleName))
-            LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
-    }
-    else
-    {
-        QApplication::setStyle(QApplication::style()->name());
-    }
+    applyStyle();
 }
 
 void UIThemeManager::applyPalette() const
