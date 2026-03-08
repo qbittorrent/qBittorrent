@@ -500,6 +500,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
 
+    UIThemeManager::instance()->applyThemeSettings();
+
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setUseTorrentStatesColors(m_ui->checkUseTorrentStatesColors->isChecked());

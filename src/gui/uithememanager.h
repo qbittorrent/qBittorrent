@@ -66,10 +66,13 @@ public:
 #endif
 
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
+    QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
     QPixmap getScaledPixmap(const QString &iconId, int height) const;
 
     QColor getColor(const QString &id) const;
+
+    void applyThemeSettings();
 
 signals:
     void themeChanged();
@@ -86,14 +89,15 @@ private:
 #endif
 
     static UIThemeManager *m_instance;
-    const bool m_useCustomTheme;
+    bool m_useCustomTheme;
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     SettingValue<ColorScheme> m_colorSchemeSetting;
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    const bool m_useSystemIcons;
+    bool m_useSystemIcons;
 #endif
     std::unique_ptr<UIThemeSource> m_themeSource;
+    Path m_registeredResourcePath;
     mutable QHash<QString, QIcon> m_icons;
     mutable QHash<QString, QIcon> m_darkModeIcons;
     mutable QHash<QString, QIcon> m_flags;
