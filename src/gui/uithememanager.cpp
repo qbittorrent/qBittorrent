@@ -79,6 +79,11 @@ public:
         return new UIThemeIconEngine(m_iconId, m_fallback);
     }
 
+    QString key() const override
+    {
+        return u"UIThemeIconEngine"_s;
+    }
+
 private:
     QIcon resolvedIcon() const
     {
@@ -104,7 +109,8 @@ void UIThemeManager::initInstance()
 }
 
 UIThemeManager::UIThemeManager()
-    : m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
+    : m_defaultStyleName {QApplication::style()->name()}
+    , m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     , m_colorSchemeSetting {u"Appearance/ColorScheme"_s}
 #endif
@@ -215,7 +221,7 @@ void UIThemeManager::applyStyle() const
     }
     else
     {
-        QApplication::setStyle(QApplication::style()->name());
+        QApplication::setStyle(m_defaultStyleName);
     }
 }
 
@@ -320,6 +326,8 @@ void UIThemeManager::applyThemeSettings()
         m_registeredResourcePath = {};
     }
 
+    applyStyle();
+
     loadThemeSource();
 
     if (m_useCustomTheme)
@@ -337,7 +345,8 @@ void UIThemeManager::applyThemeSettings()
 
     emit themeChanged();
 
-    applyStyle();
+    // workaround to refresh styled controls (same as onColorSchemeChanged)
+    QApplication::setStyle(QApplication::style()->name());
 }
 
 void UIThemeManager::applyPalette() const
