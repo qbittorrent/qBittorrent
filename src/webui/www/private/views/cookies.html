@@ -108,7 +108,7 @@
         };
 
         const save = () => {
-            const rows = [...document.querySelectorAll("#manageCookiesTable tbody tr")].filter(e => !e.classList.contains("invisible"));
+            const rows = Array.prototype.filter.call(document.querySelectorAll("#manageCookiesTable tbody tr"), (e => !e.classList.contains("invisible")));
             const cookies = rows.map(row => {
                 const expDateValue = row.querySelector("td.expDate input").valueAsNumber;
                 // remove ms from string

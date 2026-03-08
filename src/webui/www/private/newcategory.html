@@ -199,7 +199,9 @@
                             })
                             .then((response) => {
                                 if (!response.ok) {
-                                    alert("QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
+                                    alert((response.status === 404)
+                                        ? "QBT_TR(Category does not exist)QBT_TR[CONTEXT=Category]"
+                                        : "QBT_TR(Unable to edit category)QBT_TR[CONTEXT=Category]");
                                     return;
                                 }
 

@@ -54,6 +54,7 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &pluginName, const QS
     const QStringList params
     {
         Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
+        Utils::ForeignApps::PYTHON_UTF8_MODE_FLAG,
         (SearchPluginManager::engineLocation() / Path(u"nova2dl.py"_s)).toString(),
         pluginName,
         url

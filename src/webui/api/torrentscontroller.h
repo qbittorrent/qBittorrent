@@ -68,6 +68,7 @@ private slots:
     void filesAction();
     void pieceHashesAction();
     void pieceStatesAction();
+    void pieceAvailabilityAction();
     void startAction();
     void stopAction();
     void recheckAction();

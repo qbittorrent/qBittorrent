@@ -106,6 +106,7 @@
 #ifdef Q_OS_MACOS
 #include "macosdockbadge/badger.h"
 #include "macosstatusitem/statusitem.h"
+#include "macutilities.h"
 #endif
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 #include "programupdater.h"
@@ -121,9 +122,9 @@ namespace
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 
 #ifdef Q_OS_WIN
-    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe"_s;
-    const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("f5e5d48ba86586d4bef67bcb3790d339");
-    const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("28ed23b82451efa5ec87e5dd18d7dacb9bc4d0a3643047091e5a687439f7e03a1c6e60ec64ee1210a0acaf2e5012504ff342ff27e5db108db05407e62aeff2f1");
+    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.exe"_s;
+    const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("c887e19e66e66e6961c444283dafaa33");
+    const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("b5d83ec914dcb0c3892a521d0cbd96bf9bcb267bdee36ea4ee48a54c53fabd0aea98531eda81d1c1db31be8830f7b94430e0c838f5c2f2f8999a273f2833e450");
 #endif
 }
 
@@ -261,7 +262,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
         tr("Transfers"));
     // Filter types
-    const QList<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
+    const QList<TransferListModel::Column> filterTypes = {
+        TransferListModel::Column::TR_NAME
+        , TransferListModel::Column::TR_SAVE_PATH
+        , TransferListModel::Column::TR_INFOHASH_V1
+        , TransferListModel::Column::TR_INFOHASH_V2};
     for (const TransferListModel::Column type : filterTypes)
     {
         const QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
@@ -338,6 +343,13 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionCheckForUpdates->setMenuRole(QAction::ApplicationSpecificRole);
     m_ui->actionOptions->setMenuRole(QAction::PreferencesRole);
 
+#ifdef Q_OS_MACOS
+    // Set up native macOS Window menu
+    auto *windowMenu = new QMenu(tr("&Window"), this);
+    m_ui->menubar->insertMenu(m_ui->menuHelp->menuAction(), windowMenu);
+    MacUtils::setupWindowMenu(windowMenu);
+#endif
+
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
 
     // Initialise system sleep inhibition timer
@@ -388,10 +400,16 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     autoShutdownGroup->addAction(m_ui->actionAutoShutdown);
     autoShutdownGroup->addAction(m_ui->actionAutoSuspend);
     autoShutdownGroup->addAction(m_ui->actionAutoHibernate);
+    autoShutdownGroup->addAction(m_ui->actionAutoReboot);
 #if (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS)) || defined(QBT_USES_DBUS)
     m_ui->actionAutoShutdown->setChecked(pref->shutdownWhenDownloadsComplete());
+    m_ui->actionAutoReboot->setChecked(pref->rebootWhenDownloadsComplete());
     m_ui->actionAutoSuspend->setChecked(pref->suspendWhenDownloadsComplete());
     m_ui->actionAutoHibernate->setChecked(pref->hibernateWhenDownloadsComplete());
+#ifdef Q_OS_MACOS
+    // macOS doesn't support Hibernate via Apple Events API
+    m_ui->actionAutoHibernate->setDisabled(true);
+#endif
 #else
     m_ui->actionAutoShutdown->setDisabled(true);
     m_ui->actionAutoSuspend->setDisabled(true);
@@ -486,7 +504,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         m_transferListWidget->applyStatusFilter(pref->getTransSelFilter());
         m_transferListWidget->applyCategoryFilter(QString());
         m_transferListWidget->applyTagFilter(std::nullopt);
-        m_transferListWidget->applyTrackerFilterAll();
+        m_transferListWidget->applyTrackerFilter({});
     }
 
     // Start watching the executable for updates
@@ -1355,11 +1373,6 @@ void MainWindow::showFiltersSidebar(const bool show)
     if (show && !m_transferListFiltersWidget)
     {
         m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget, isDownloadTrackerFavicon());
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::refreshTrackers);
-        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerEntryStatusesUpdated, m_transferListFiltersWidget, &TransferListFiltersWidget::trackerEntryStatusesUpdated);
-
         m_splitter->insertWidget(0, m_transferListFiltersWidget);
         m_splitter->setCollapsible(0, true);
         // From https://doc.qt.io/qt-5/qsplitter.html#setSizes:
@@ -1454,6 +1467,12 @@ void MainWindow::loadPreferences()
     }
 #endif
 
+#ifdef Q_OS_MACOS
+    // Clear dock badge immediately if speed display is disabled
+    if (!pref->isSpeedInDockEnabled())
+        m_badger->updateSpeed(0, 0);
+#endif
+
     qDebug("GUI settings loaded");
 }
 
@@ -1466,7 +1485,8 @@ void MainWindow::loadSessionStats()
 
     // update global information
 #ifdef Q_OS_MACOS
-    m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    if (Preferences::instance()->isSpeedInDockEnabled())
+        m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
     m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
@@ -1790,28 +1810,29 @@ void MainWindow::on_actionCriticalMessages_triggered(const bool checked)
     setExecutionLogMsgTypes(flags);
 }
 
-void MainWindow::on_actionAutoExit_toggled(bool enabled)
+void MainWindow::on_actionAutoExit_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownqBTWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoSuspend_toggled(bool enabled)
+void MainWindow::on_actionAutoSuspend_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setSuspendWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoHibernate_toggled(bool enabled)
+void MainWindow::on_actionAutoHibernate_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setHibernateWhenDownloadsComplete(enabled);
 }
 
-void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
+void MainWindow::on_actionAutoShutdown_toggled(const bool enabled)
 {
-    qDebug() << Q_FUNC_INFO << enabled;
     Preferences::instance()->setShutdownWhenDownloadsComplete(enabled);
+}
+
+void MainWindow::on_actionAutoReboot_toggled(const bool enabled)
+{
+    Preferences::instance()->setRebootWhenDownloadsComplete(enabled);
 }
 
 void MainWindow::updatePowerManagementState() const

@@ -71,20 +71,132 @@
         <translation>Добавить в начало очереди</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>Одна на строку (принимаются ссылки HTTP, магнит-ссылки и инфо-хеши)</translation>
+        <source>Download in sequential order</source>
+        <translation>Загрузить последовательно</translation>
     </message>
     <message>
-        <source>Add torrent links</source>
-        <translation>Добавьте ссылки на торренты</translation>
+        <source>Size:</source>
+        <translation>Размер:</translation>
     </message>
     <message>
-        <source>Select .torrent files</source>
-        <translation>Выбрать торрент-файлы</translation>
+        <source>Save at</source>
+        <translation>Путь сохранения</translation>
     </message>
     <message>
-        <source>Torrent options</source>
-        <translation>Параметры торрента</translation>
+        <source>Torrent information</source>
+        <translation>Сведения о торренте</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation>Путь сохранения:</translation>
+    </message>
+    <message>
+        <source>Info hash v1:</source>
+        <translation>Инфо-хеш v1:</translation>
+    </message>
+    <message>
+        <source>Rename torrent</source>
+        <translation>Переименовать торрент</translation>
+    </message>
+    <message>
+        <source>Add torrent</source>
+        <translation>Добавить торрент</translation>
+    </message>
+    <message>
+        <source>Not available</source>
+        <translation>Недоступно</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation>Приоритет</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>Высокий</translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation>Настройки торрента</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>Обычный</translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation>Путь сохранения по умолчанию:</translation>
+    </message>
+    <message>
+        <source>Set as default category</source>
+        <translation>Выбирать эту категорию по умолчанию</translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation>Ограничение скорости отдачи</translation>
+    </message>
+    <message>
+        <source>Filter files...</source>
+        <translation>Фильтр файлов…</translation>
+    </message>
+    <message>
+        <source>Add Torrent</source>
+        <translation>Добавить торрент</translation>
+    </message>
+    <message>
+        <source>Use another path for incomplete torrent</source>
+        <translation>Отдельный путь для неполного торрента</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation>Дата:</translation>
+    </message>
+    <message>
+        <source>Save as .torrent file</source>
+        <translation>Сохранить в .torrent-файл</translation>
+    </message>
+    <message>
+        <source>All</source>
+        <translation>Все</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>Н/Д</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation>Максимальный</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation>Не загружать</translation>
+    </message>
+    <message>
+        <source>Download first and last pieces first</source>
+        <translation>Загрузить сперва крайние части</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>Комментарий:</translation>
+    </message>
+    <message>
+        <source>Unable to download torrent file</source>
+        <translation>Не удалось загрузить торрент-файл</translation>
+    </message>
+    <message>
+        <source>Info hash v2:</source>
+        <translation>Инфо-хеш v2:</translation>
+    </message>
+    <message>
+        <source>Tags:</source>
+        <translation>Метки:</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>Файлы</translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation>Ограничение скорости загрузки</translation>
     </message>
 </context>
 <context>
@@ -192,29 +304,12 @@
         <translation>Неизвестно</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>Рейтинг должен быть в диапазоне от 0 до 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Ограничение времени раздачи должно быть в диапазоне от 0 до 525600 минут.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>Добавить</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>Отдавать торренты</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation>Путь сохранения по умолчанию:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -227,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>Переместить</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation>Ограничение скорости отдачи</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation>Ограничение скорости загрузки</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation>Переименовать торрент</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -278,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>Выйти</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation>Загрузить локальный торрент</translation>
     </message>
     <message>
         <source>Save</source>
@@ -443,6 +522,54 @@
         <source>Add web seeds</source>
         <translation>Добавить веб-сидов</translation>
     </message>
+    <message>
+        <source>Unable to delete API key.</source>
+        <translation>Не удалось удалить ключ API.</translation>
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation>Ограничение времени раздачи не может быть отрицательным.</translation>
+    </message>
+    <message>
+        <source>Peer ToS must be between 0 and 255.</source>
+        <translation type="vanished">Тип обслуживания (ToS) пира должен быть от 0 до 255.</translation>
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation>Ограничение рейтинга не может быть отрицательным.</translation>
+    </message>
+    <message>
+        <source>Peer turnover interval must be greater than or equal to 0.</source>
+        <translation>Период смены пиров должен быть больше или равен 0.</translation>
+    </message>
+    <message>
+        <source>Unable to parse response.</source>
+        <translation>Не удалось разобрать ответ.</translation>
+    </message>
+    <message>
+        <source>Unable to rotate API key.</source>
+        <translation>Не удалось сменить ключ API.</translation>
+    </message>
+    <message>
+        <source>Peer turnover must be between 0 and 100.</source>
+        <translation>Смена пиров должна быть от 0 до 100.</translation>
+    </message>
+    <message>
+        <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
+        <translation>Накладная память при проверке торрентов должна быть больше 0 и меньше 1024.</translation>
+    </message>
+    <message>
+        <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
+        <translation>Не удалось загрузить настройки программы, возможно, qBittorrent недоступен.</translation>
+    </message>
+    <message>
+        <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation>Срез смены пиров должен быть от 0 до 100.</translation>
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -584,7 +711,7 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>Для использования этой функции Веб-интерфейс должен быть доступен по протоколу HTTPS.</translation>
+        <translation>Для использования этой функции Веб-интерфейс должен быть доступен по протоколу HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -698,6 +825,10 @@
         <source>Torrent Creator</source>
         <translation>Создание торрента</translation>
     </message>
+    <message>
+        <source>Filter feed items...</source>
+        <translation>Фильтровать объекты ленты…</translation>
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -783,7 +914,7 @@
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation>Предвыделять место на диске для всех файлов</translation>
+        <translation>Предварительно выделять место на диске для всех файлов</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
@@ -795,7 +926,7 @@
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation>SMTP-сервер:</translation>
+        <translation>Сервер SMTP:</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
@@ -1449,7 +1580,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Тип обслуживания (ToS) соединений к пирам</translation>
+        <translation type="vanished">Тип обслуживания (ToS) соединений к пирам</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1485,7 +1616,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>IP для сообщения трекерам (требует перезапуск):</translation>
+        <translation>Сообщаемый трекерам IP-адрес (нужен перезапуск):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1513,7 +1644,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation>Файлы, отображаемые в памяти</translation>
+        <translation>Отображение файлов в память</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1521,11 +1652,7 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation>Совместимый с POSIX</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation>Этот параметр менее эффективен в Linux</translation>
+        <translation>Совместимый со стандартом POSIX</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1697,7 +1824,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>Использовать подкатегории</translation>
+        <translation type="vanished">Использовать подкатегории</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1857,7 +1984,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Customize application instance name:</source>
-        <translation>Дополнить название экземпляра приложения:</translation>
+        <translation>Дополнять название экземпляра приложения:</translation>
     </message>
     <message>
         <source>Color scheme:</source>
@@ -1865,7 +1992,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Show external IP in status bar</source>
-        <translation>Показать внешний IP в строке состояния</translation>
+        <translation>Показывать внешний адрес IP в строке состояния</translation>
     </message>
     <message>
         <source>Fetched trackers</source>
@@ -1940,16 +2067,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Включить защиту куки (требует HTTPS или соединения с локальным хостом)</translation>
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation>При добавлении повторяющегося торрента</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>Действие по двойному щелчку</translation>
     </message>
     <message>
         <source>Save statistics interval:</source>
-        <translation>Период сохранения статистики:</translation>
+        <translation>Период записи статистики:</translation>
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
@@ -1965,7 +2088,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
-        <translation>Автоматически добавлять трекеры из URL-адреса к новым загрузкам:</translation>
+        <translation>Автоматически добавлять трекеры из адреса к новым загрузкам:</translation>
     </message>
     <message>
         <source>Torrent content removing mode:</source>
@@ -1993,7 +2116,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation>Порт для сообщения трекерам (требует перезапуск) [0: порт прослушивания]:</translation>
+        <translation>Сообщать порт трекерам (нужен перезапуск) [0: прослушиваемый]</translation>
     </message>
     <message>
         <source>User interface language:</source>
@@ -2001,7 +2124,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Merge trackers to existing torrent</source>
-        <translation>Объединить трекеры в существующий торрент</translation>
+        <translation>Объединять трекеры в существующий торрент</translation>
     </message>
     <message>
         <source>Confirm torrent recheck:</source>
@@ -2017,7 +2140,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Simple pread/pwrite</source>
-        <translation>Простой ввод-вывод</translation>
+        <translation>Простые чтение и запись (pread/pwrite)</translation>
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
@@ -2055,13 +2178,57 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>sec</source>
         <translation>с</translation>
     </message>
+    <message>
+        <source>Rotate API key</source>
+        <translation>Сменить ключ API</translation>
+    </message>
+    <message>
+        <source>Generate a key</source>
+        <translation>Создать ключ</translation>
+    </message>
+    <message>
+        <source>When adding a duplicate torrent</source>
+        <translation>При добавлении повторяющегося торрента</translation>
+    </message>
+    <message>
+        <source>Delete API key</source>
+        <translation>Удалить ключ API</translation>
+    </message>
+    <message>
+        <source>%M: Comment</source>
+        <translation>%M: Комментарий</translation>
+    </message>
+    <message>
+        <source>Generate API key</source>
+        <translation>Создать ключ API</translation>
+    </message>
+    <message>
+        <source>Copied</source>
+        <translation>Скопировано</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Пользователь</translation>
+    </message>
+    <message>
+        <source>Reset filter selection</source>
+        <translation>Сбросить выбор фильтра</translation>
+    </message>
+    <message>
+        <source>API Key</source>
+        <translation>Ключ API</translation>
+    </message>
+    <message>
+        <source>Copy API key</source>
+        <translation>Копировать ключ API</translation>
+    </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation>IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>Порт</translation>
@@ -2138,6 +2305,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Peer ID Client</source>
         <translation>ИД клиента</translation>
     </message>
+    <message>
+        <source>IP/Address</source>
+        <translation>IP/адрес</translation>
+    </message>
 </context>
 <context>
     <name>PropListDelegate</name>
@@ -2205,7 +2376,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>ETA:</source>
-        <translation>Расчётное время:</translation>
+        <translation>Осталось времени:</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -2320,14 +2491,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 (сред. %2)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation>Порог загрузки:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation>Порог отдачи:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>Приоритет</translation>
     </message>
@@ -2377,7 +2540,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation>Ошибка переименования: файл или папка уже существует</translation>
+        <translation>Ошибка переименования: файл или папка уже существуют</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
@@ -2429,7 +2592,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Edit web seed URL...</source>
-        <translation>Изменить адрес веб-сида</translation>
+        <translation>Править адрес веб-сида…</translation>
     </message>
     <message>
         <source>Web seed URL:</source>
@@ -2501,11 +2664,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation>КБ/с</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2756,7 +2915,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Расч. время</translation>
+        <translation>Ост. время</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2890,10 +3049,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation>Адрес</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>Состояние</translation>
     </message>
@@ -3000,6 +3155,42 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Original</source>
         <translation>Исходный</translation>
+    </message>
+    <message>
+        <source>URL/Announce Endpoint</source>
+        <translation>Получатель ссылки/анонса</translation>
+    </message>
+    <message>
+        <source>BT Protocol</source>
+        <translation>Протокол БТ</translation>
+    </message>
+    <message>
+        <source>Next Announce</source>
+        <translation>След. анонс</translation>
+    </message>
+    <message>
+        <source>Tier:</source>
+        <translation>Уровень:</translation>
+    </message>
+    <message>
+        <source>Tracker error</source>
+        <translation>Ошибка трекера</translation>
+    </message>
+    <message>
+        <source>Unreachable</source>
+        <translation>Нет доступа</translation>
+    </message>
+    <message>
+        <source>Force reannounce to selected tracker(s)</source>
+        <translation>Повторить анонс для выбранных трекеров</translation>
+    </message>
+    <message>
+        <source>Min Announce</source>
+        <translation>Минимум анонса</translation>
+    </message>
+    <message>
+        <source>Force reannounce to all trackers</source>
+        <translation>Повторить анонс на все трекеры</translation>
     </message>
 </context>
 <context>
@@ -3293,10 +3484,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Запустить принудительно</translation>
     </message>
     <message>
-        <source>Save path:</source>
-        <translation>Путь:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation>Расположение:</translation>
     </message>
@@ -3321,8 +3508,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Добавить метки</translation>
     </message>
     <message>
-        <source>Category:</source>
-        <translation>Категория:</translation>
+        <source>Content Path</source>
+        <translation>Путь содержимого</translation>
     </message>
 </context>
 <context>
@@ -3355,6 +3542,30 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>inactive minutes</source>
         <translation>минут бездействия</translation>
     </message>
+    <message>
+        <source>Default</source>
+        <translation>Стандартно</translation>
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation>Удалить торрент</translation>
+    </message>
+    <message>
+        <source>Remove torrent and its content</source>
+        <translation>Удалить торрент и его содержимое</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Остановить торрент</translation>
+    </message>
+    <message>
+        <source>Enable super seeding for torrent</source>
+        <translation>Включить режим суперсида для торрента</translation>
+    </message>
+    <message>
+        <source>Action when the limit is reached</source>
+        <translation>Действие по достижении ограничения</translation>
+    </message>
 </context>
 <context>
     <name>about</name>
@@ -3379,14 +3590,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download from URLs</source>
         <translation>Загрузить торренты по ссылкам</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation>Загрузить</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation>Добавить ссылки на торренты</translation>
     </message>
 </context>
 <context>
@@ -3653,7 +3856,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Published On</source>
-        <translation>Дата публикакции</translation>
+        <translation>Дата публикации</translation>
     </message>
     <message>
         <source>Engine URL</source>
@@ -3832,7 +4035,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Бесплатная база данных IP to Country Lite от DB-IP используется для разрешения стран пиров. База данных лицензирована по международной лицензии Creative Commons Attribution 4.0</translation>
+        <translation>Для разрешения стран пиров используется бесплатная база данных IP to Country Lite от DB-IP. База лицензирована в соответствии со всемирной лицензией Creative Commons Attribution 4.0</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -3915,6 +4118,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Close all tabs</source>
         <translation>Закрыть все вкладки</translation>
+    </message>
+    <message>
+        <source>Refresh tab</source>
+        <translation>Обновить вкладку</translation>
     </message>
 </context>
 <context>
@@ -4036,7 +4243,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL is unchanged</source>
-        <translation>URL-адрес не изменился</translation>
+        <translation>Адрес не изменился</translation>
     </message>
     <message>
         <source>URL cannot be empty</source>
@@ -4334,6 +4541,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Stop torrents</source>
         <translation>Остановить торренты</translation>
     </message>
+    <message>
+        <source>Tracker error</source>
+        <translation>Ошибка трекера</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>Предупреждение</translation>
+    </message>
+    <message>
+        <source>Other error</source>
+        <translation>Иная ошибка</translation>
+    </message>
 </context>
 <context>
     <name>FeedListWidget</name>
@@ -4505,6 +4724,42 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Unable to set category</source>
         <translation>Не удалось установить категорию</translation>
+    </message>
+    <message>
+        <source>Save path for incomplete torrents:</source>
+        <translation>Путь сохранения для неполных торрентов:</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Стандартно</translation>
+    </message>
+    <message>
+        <source>New Category</source>
+        <translation>Новая категория</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation>Путь сохранения:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>Да</translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation>Категория:</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>Нет</translation>
+    </message>
+    <message>
+        <source>Path:</source>
+        <translation>Путь:</translation>
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation>Отдельный путь для неполных торрентов:</translation>
     </message>
 </context>
 <context>
@@ -4801,6 +5056,82 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Export Torrent</source>
         <translation>Экспорт торрента</translation>
+    </message>
+</context>
+<context>
+    <name>DownloadFromURLDialog</name>
+    <message>
+        <source>Download</source>
+        <translation>Загрузить</translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation>Магнит-ссылку</translation>
+    </message>
+    <message>
+        <source>Add torrent links</source>
+        <translation>Добавьте ссылки на торренты</translation>
+    </message>
+    <message>
+        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
+        <translation>Одна на строку (принимаются ссылки HTTP, магнит-ссылки и инфо-хеши)</translation>
+    </message>
+    <message>
+        <source>URLs</source>
+        <translation>Адреса</translation>
+    </message>
+    <message>
+        <source>Add Torrent Links</source>
+        <translation>Добавить ссылки на торренты</translation>
+    </message>
+</context>
+<context>
+    <name>SpeedLimit</name>
+    <message>
+        <source>Limit:</source>
+        <translation>Ограничение:</translation>
+    </message>
+    <message>
+        <source>Speed limit</source>
+        <translation>Ограничение скорости</translation>
+    </message>
+    <message>
+        <source>Upload limit:</source>
+        <translation>Порог отдачи:</translation>
+    </message>
+    <message>
+        <source>Download limit:</source>
+        <translation>Порог загрузки:</translation>
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>КБ/с</translation>
+    </message>
+</context>
+<context>
+    <name>ListWidget</name>
+    <message>
+        <source>Resize All</source>
+        <translation>Изменить размер всех</translation>
+    </message>
+    <message>
+        <source>Resize</source>
+        <translation>Изменить размер</translation>
+    </message>
+</context>
+<context>
+    <name>confirmRotateAPIKeyDialog</name>
+    <message>
+        <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
+        <translation>Создать ключ API? Этот ключ можно использовать для взаимодействия с API qBittorrent.</translation>
+    </message>
+    <message>
+        <source>Delete this API key? The current key will immediately stop working.</source>
+        <translation>Удалить этот ключ API? Текущий ключ сразу перестанет работать.</translation>
+    </message>
+    <message>
+        <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
+        <translation>Сменить этот ключ API? Текущий ключ сразу перестанет работать, и будет создан новый ключ.</translation>
     </message>
 </context>
 </TS>

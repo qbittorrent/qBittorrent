@@ -405,12 +405,16 @@ void Session::loadLegacy()
         const QString feedUrl = Item::relativeName(legacyPath);
 
         for (const QString &folderPath : asConst(Item::expandPath(parentFolderPath)))
-            addFolder(folderPath);
+        {
+            if (const auto result = addFolder(folderPath); !result)
+                LogMsg(tr("Failed to add RSS folder item. Reason: \"%1\"").arg(result.error()), Log::WARNING);
+        }
 
         const QString feedPath = feedAliases[i].isEmpty()
                 ? legacyPath
                 : Item::joinPath(parentFolderPath, feedAliases[i]);
-        addFeed(feedUrl, feedPath);
+        if (const auto result = addFeed(feedUrl, feedPath); !result)
+            LogMsg(tr("Failed to add RSS feed item. Reason: \"%1\"").arg(result.error()), Log::WARNING);
         ++i;
     }
 }

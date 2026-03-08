@@ -36,7 +36,7 @@
 
 #include "base/path.h"
 #include "base/tagset.h"
-#include "sharelimitaction.h"
+#include "sharelimits.h"
 #include "sslparameters.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
@@ -68,9 +68,9 @@ namespace BitTorrent
         std::optional<bool> useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-        int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
+        int seedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
+        int inactiveSeedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
+        qreal ratioLimit = DEFAULT_RATIO_LIMIT;
         ShareLimitAction shareLimitAction = ShareLimitAction::Default;
         SSLParameters sslParameters;
 

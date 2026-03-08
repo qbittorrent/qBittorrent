@@ -700,6 +700,7 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
     if (!removedTrackers.isEmpty())
     {
         m_nativeHandle.replace_trackers(nativeTrackers);
+        m_announceStatus.reset();
 
         deferredRequestResumeData();
         m_session->handleTorrentTrackersRemoved(this, removedTrackers);
@@ -718,15 +719,16 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
 
     std::vector<lt::announce_entry> nativeTrackers;
     nativeTrackers.reserve(trackers.size());
-    m_trackerEntryStatuses.clear();
+    const auto oldEntries = std::exchange(m_trackerEntryStatuses, {});
 
-    for (const TrackerEntry &tracker : trackers)
+    for (const TrackerEntry &tracker : asConst(trackers))
     {
         nativeTrackers.emplace_back(makeNativeAnnounceEntry(tracker.url, tracker.tier));
         m_trackerEntryStatuses.append({tracker.url, tracker.tier});
     }
 
     m_nativeHandle.replace_trackers(nativeTrackers);
+    m_announceStatus.reset();
 
     // Clear the peer list if it's a private torrent since
     // we do not want to keep connecting with peers from old tracker.
@@ -734,7 +736,7 @@ void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
         clearPeers();
 
     deferredRequestResumeData();
-    m_session->handleTorrentTrackersChanged(this);
+    m_session->handleTorrentTrackersReset(this, oldEntries, trackers);
 }
 
 QList<QUrl> TorrentImpl::urlSeeds() const
@@ -934,7 +936,7 @@ bool TorrentImpl::belongsToCategory(const QString &category) const
     if (m_category == category)
         return true;
 
-    return (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + u'/'));
+    return m_category.startsWith(category + u'/');
 }
 
 TagSet TorrentImpl::tags() const
@@ -1186,25 +1188,7 @@ bool TorrentImpl::isCompleted() const
 
 bool TorrentImpl::isActive() const
 {
-    switch (m_state)
-    {
-    case TorrentState::StalledDownloading:
-        return (uploadPayloadRate() > 0);
-
-    case TorrentState::DownloadingMetadata:
-    case TorrentState::ForcedDownloadingMetadata:
-    case TorrentState::Downloading:
-    case TorrentState::ForcedDownloading:
-    case TorrentState::Uploading:
-    case TorrentState::ForcedUploading:
-    case TorrentState::Moving:
-        return true;
-
-    default:
-        break;
-    };
-
-    return false;
+    return ((uploadPayloadRate() > 0) || (downloadPayloadRate() > 0));
 }
 
 bool TorrentImpl::isInactive() const
@@ -1356,16 +1340,16 @@ qlonglong TorrentImpl::eta() const
 
     if (isFinished())
     {
-        const qreal maxRatioValue = maxRatio();
-        const int maxSeedingTimeValue = maxSeedingTime();
-        const int maxInactiveSeedingTimeValue = maxInactiveSeedingTime();
-        if ((maxRatioValue < 0) && (maxSeedingTimeValue < 0) && (maxInactiveSeedingTimeValue < 0)) return MAX_ETA;
+        const qreal maxRatioValue = effectiveRatioLimit();
+        const int maxSeedingTimeValue = effectiveSeedingTimeLimit();
+        const int maxInactiveSeedingTimeValue = effectiveInactiveSeedingTimeLimit();
+        if ((maxRatioValue < 0) && (maxSeedingTimeValue < 0) && (maxInactiveSeedingTimeValue < 0))
+            return MAX_ETA;
 
         qlonglong ratioEta = MAX_ETA;
 
         if ((speedAverage.upload > 0) && (maxRatioValue >= 0))
         {
-
             qlonglong realDL = totalDownload();
             if (realDL <= 0)
                 realDL = wantedSize();
@@ -1497,28 +1481,36 @@ qreal TorrentImpl::distributedCopies() const
     return m_nativeStatus.distributed_copies;
 }
 
-qreal TorrentImpl::maxRatio() const
+qreal TorrentImpl::effectiveRatioLimit() const
 {
-    if (m_ratioLimit == USE_GLOBAL_RATIO)
-        return m_session->globalMaxRatio();
+    if (m_ratioLimit == DEFAULT_RATIO_LIMIT)
+        return m_session->categoryRatioLimit(category());
 
     return m_ratioLimit;
 }
 
-int TorrentImpl::maxSeedingTime() const
+int TorrentImpl::effectiveSeedingTimeLimit() const
 {
-    if (m_seedingTimeLimit == USE_GLOBAL_SEEDING_TIME)
-        return m_session->globalMaxSeedingMinutes();
+    if (m_seedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+        return m_session->categorySeedingTimeLimit(category());
 
     return m_seedingTimeLimit;
 }
 
-int TorrentImpl::maxInactiveSeedingTime() const
+int TorrentImpl::effectiveInactiveSeedingTimeLimit() const
 {
-    if (m_inactiveSeedingTimeLimit == USE_GLOBAL_INACTIVE_SEEDING_TIME)
-        return m_session->globalMaxInactiveSeedingMinutes();
+    if (m_inactiveSeedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+        return m_session->categoryInactiveSeedingTimeLimit(category());
 
     return m_inactiveSeedingTimeLimit;
+}
+
+ShareLimitAction TorrentImpl::effectiveShareLimitAction() const
+{
+    if (m_shareLimitAction == ShareLimitAction::Default)
+        return m_session->categoryShareLimitAction(category());
+
+    return m_shareLimitAction;
 }
 
 qreal TorrentImpl::realRatio() const
@@ -1573,6 +1565,46 @@ int TorrentImpl::connectionsLimit() const
 qlonglong TorrentImpl::nextAnnounce() const
 {
     return lt::total_seconds(m_nativeStatus.next_announce);
+}
+
+TorrentAnnounceStatus TorrentImpl::announceStatus() const
+{
+    if (m_announceStatus)
+        return *m_announceStatus;
+
+    TorrentAnnounceStatus announceStatus = TorrentAnnounceStatusFlag::HasNoProblem;
+    for (const TrackerEntryStatus &trackerEntryStatus : asConst(m_trackerEntryStatuses))
+    {
+        switch (trackerEntryStatus.state)
+        {
+        case BitTorrent::TrackerEndpointState::Working:
+            if (!announceStatus.testFlag(TorrentAnnounceStatusFlag::HasWarning))
+            {
+                const bool hasWarningMessage = std::ranges::any_of(trackerEntryStatus.endpoints
+                        , [](const TrackerEndpointStatus &endpointEntry)
+                {
+                    return !endpointEntry.message.isEmpty() && (endpointEntry.state == BitTorrent::TrackerEndpointState::Working);
+                });
+                announceStatus.setFlag(TorrentAnnounceStatusFlag::HasWarning, hasWarningMessage);
+            }
+            break;
+
+        case BitTorrent::TrackerEndpointState::NotWorking:
+        case BitTorrent::TrackerEndpointState::Unreachable:
+            announceStatus.setFlag(TorrentAnnounceStatusFlag::HasOtherError);
+            break;
+
+        case BitTorrent::TrackerEndpointState::TrackerError:
+            announceStatus.setFlag(TorrentAnnounceStatusFlag::HasTrackerError);
+            break;
+
+        case BitTorrent::TrackerEndpointState::NotContacted:
+            break;
+        };
+    }
+
+    m_announceStatus = announceStatus;
+    return *m_announceStatus;
 }
 
 qreal TorrentImpl::popularity() const
@@ -1761,6 +1793,7 @@ TrackerEntryStatus TorrentImpl::updateTrackerEntryStatus(const lt::announce_entr
 #endif
 
     ::updateTrackerEntryStatus(*it, announceEntry, btProtocols, updateInfo);
+    m_announceStatus.reset();
 
     return *it;
 }
@@ -1776,6 +1809,8 @@ void TorrentImpl::resetTrackerEntryStatuses()
         status.url = tempUrl;
         status.tier = tempTier;
     }
+
+    m_announceStatus = TorrentAnnounceStatusFlag::HasNoProblem;
 }
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
@@ -2598,7 +2633,7 @@ void TorrentImpl::updateProgress()
 
 void TorrentImpl::setRatioLimit(qreal limit)
 {
-    if (limit < USE_GLOBAL_RATIO)
+    if (limit < DEFAULT_RATIO_LIMIT)
         limit = NO_RATIO_LIMIT;
 
     if (m_ratioLimit != limit)
@@ -2611,7 +2646,7 @@ void TorrentImpl::setRatioLimit(qreal limit)
 
 void TorrentImpl::setSeedingTimeLimit(int limit)
 {
-    if (limit < USE_GLOBAL_SEEDING_TIME)
+    if (limit < DEFAULT_SEEDING_TIME_LIMIT)
         limit = NO_SEEDING_TIME_LIMIT;
 
     if (m_seedingTimeLimit != limit)
@@ -2624,8 +2659,8 @@ void TorrentImpl::setSeedingTimeLimit(int limit)
 
 void TorrentImpl::setInactiveSeedingTimeLimit(int limit)
 {
-    if (limit < USE_GLOBAL_INACTIVE_SEEDING_TIME)
-        limit = NO_INACTIVE_SEEDING_TIME_LIMIT;
+    if (limit < DEFAULT_SEEDING_TIME_LIMIT)
+        limit = NO_SEEDING_TIME_LIMIT;
 
     if (m_inactiveSeedingTimeLimit != limit)
     {

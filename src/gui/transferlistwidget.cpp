@@ -104,20 +104,6 @@ namespace
         return false;
     }
 
-    void openDestinationFolder(const BitTorrent::Torrent *const torrent)
-    {
-        const Path contentPath = torrent->contentPath();
-        const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
-#ifdef Q_OS_MACOS
-        MacUtils::openFiles({openedPath});
-#else
-        if (torrent->filesCount() == 1)
-            Utils::Gui::openFolderSelect(openedPath);
-        else
-            Utils::Gui::openPath(openedPath);
-#endif
-    }
-
     void removeTorrents(const QList<BitTorrent::Torrent *> &torrents, const bool isDeleteFileSelected)
     {
         auto *session = BitTorrent::Session::instance();
@@ -169,6 +155,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     // Default hidden columns
     if (!columnLoaded)
     {
+        setColumnHidden(TransferListModel::TR_CREATE_DATE, true);
         setColumnHidden(TransferListModel::TR_ADD_DATE, true);
         setColumnHidden(TransferListModel::TR_SEED_DATE, true);
         setColumnHidden(TransferListModel::TR_UPLIMIT, true);
@@ -592,7 +579,7 @@ void TransferListWidget::hideQueuePosColumn(bool hide)
         resizeColumnToContents(TransferListModel::TR_QUEUE_POSITION);
 }
 
-void TransferListWidget::openSelectedTorrentsFolder() const
+void TransferListWidget::openSelectedTorrentsFolder()
 {
     QSet<Path> paths;
 #ifdef Q_OS_MACOS
@@ -612,13 +599,27 @@ void TransferListWidget::openSelectedTorrentsFolder() const
         if (!paths.contains(openedPath))
         {
             if (torrent->filesCount() == 1)
-                Utils::Gui::openFolderSelect(openedPath);
+                Utils::Gui::openFolderSelect(openedPath, this);
             else
                 Utils::Gui::openPath(openedPath);
         }
         paths.insert(openedPath);
     }
 #endif // Q_OS_MACOS
+}
+
+void TransferListWidget::openDestinationFolder(const BitTorrent::Torrent *const torrent)
+{
+    const Path contentPath = torrent->contentPath();
+    const Path openedPath = (!contentPath.isEmpty() ? contentPath : torrent->savePath());
+#ifdef Q_OS_MACOS
+    MacUtils::openFiles({openedPath});
+#else
+    if (torrent->filesCount() == 1)
+        Utils::Gui::openFolderSelect(openedPath, this);
+    else
+        Utils::Gui::openPath(openedPath);
+#endif
 }
 
 void TransferListWidget::previewSelectedTorrents()
@@ -1306,9 +1307,16 @@ void TransferListWidget::displayListMenu()
     listMenu->popup(QCursor::pos());
 }
 
-void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex&)
+void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
     qDebug("CURRENT CHANGED");
+
+    // Call base class to ensure Qt's accessibility system is notified of focus changes.
+    // This is critical for screen readers to announce the currently selected torrent.
+    // Without this call, users relying on assistive technologies cannot effectively
+    // navigate the torrent list with keyboard arrow keys.
+    QTreeView::currentChanged(current, previous);
+
     BitTorrent::Torrent *torrent = nullptr;
     if (current.isValid())
     {
@@ -1335,14 +1343,14 @@ void TransferListWidget::applyTagFilter(const std::optional<Tag> &tag)
         m_sortFilterModel->setTagFilter(*tag);
 }
 
-void TransferListWidget::applyTrackerFilterAll()
+void TransferListWidget::applyTrackerFilter(const std::optional<QString> &trackerHost)
 {
-    m_sortFilterModel->disableTrackerFilter();
+    m_sortFilterModel->setTrackerFilter(trackerHost);
 }
 
-void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs)
+void TransferListWidget::applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus)
 {
-    m_sortFilterModel->setTrackerFilter(torrentIDs);
+    m_sortFilterModel->setAnnounceStatusFilter(announceStatus);
 }
 
 void TransferListWidget::applyFilter(const QString &name, const TransferListModel::Column &type)
@@ -1355,7 +1363,7 @@ void TransferListWidget::applyFilter(const QString &name, const TransferListMode
 
 void TransferListWidget::applyStatusFilter(const int filterIndex)
 {
-    const auto filterType = static_cast<TorrentFilter::Type>(filterIndex);
+    const auto filterType = static_cast<TorrentFilter::Status>(filterIndex);
     m_sortFilterModel->setStatusFilter(((filterType >= TorrentFilter::All) && (filterType < TorrentFilter::_Count)) ? filterType : TorrentFilter::All);
     // Select first item if nothing is selected
     if (selectionModel()->selectedRows(0).empty() && (m_sortFilterModel->rowCount() > 0))

@@ -41,7 +41,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const onFilePriorityChanged = (fileIds, priority) => {
         // ignore folders
-        fileIds = fileIds.map(Number).filter(id => !window.qBittorrent.TorrentContent.isFolder(id));
+        fileIds = fileIds.filter(id => !window.qBittorrent.TorrentContent.isFolder(id));
 
         clearTimeout(loadTorrentFilesDataTimer);
         loadTorrentFilesDataTimer = -1;
@@ -74,6 +74,7 @@ window.qBittorrent.PropFiles ??= (() => {
         const new_hash = torrentsTable.getCurrentTorrentID();
         if (new_hash === "") {
             torrentFilesTable.clear();
+            current_hash = "";
             clearTimeout(loadTorrentFilesDataTimer);
             return;
         }
@@ -176,6 +177,7 @@ window.qBittorrent.PropFiles ??= (() => {
 
     const clear = () => {
         torrentFilesTable.clear();
+        current_hash = "";
     };
 
     return exports();

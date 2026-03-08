@@ -38,19 +38,28 @@
 HidableTabWidget::HidableTabWidget(QWidget *parent)
     : QTabWidget(parent)
 {
+    // Skip single tab in keyboard navigation (no point navigating to it)
+    tabBar()->setFocusPolicy(Qt::NoFocus);
 }
 
 void HidableTabWidget::tabInserted(const int index)
 {
     QTabWidget::tabInserted(index);
-    tabBar()->setVisible(count() != 1);
+    tabsCountChanged();
 }
 
 void HidableTabWidget::tabRemoved(const int index)
 {
-    //QTabWidget::tabInserted(index);
     QTabWidget::tabRemoved(index);
-    tabBar()->setVisible(count() != 1);
+    tabsCountChanged();
+}
+
+void HidableTabWidget::tabsCountChanged()
+{
+    const qsizetype tabsCount = count();
+    tabBar()->setVisible(tabsCount != 1);
+    // Skip single tab in keyboard navigation (no point navigating to it)
+    tabBar()->setFocusPolicy((tabsCount > 1) ? Qt::StrongFocus : Qt::NoFocus);
 }
 
 #ifdef Q_OS_MACOS

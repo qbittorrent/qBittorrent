@@ -180,10 +180,10 @@ const initializeWindows = () => {
     };
 
     const addClickEvent = (el, fn) => {
-        ["Link", "Button"].each((item) => {
+        for (const item of ["Link", "Button"]) {
             if (document.getElementById(el + item))
                 document.getElementById(el + item).addEventListener("click", fn);
-        });
+        }
     };
 
     addClickEvent("download", (e) => {
@@ -1285,33 +1285,33 @@ const initializeWindows = () => {
         }
     });
 
-    ["stop", "start", "recheck"].each((item) => {
+    for (const item of ["stop", "start", "recheck"]) {
         addClickEvent(item, (e) => {
             e.preventDefault();
             e.stopPropagation();
 
             const hashes = torrentsTable.selectedRowsIds();
-            if (hashes.length) {
-                hashes.each((hash, index) => {
+            if (hashes.length > 0) {
+                for (const hash of hashes) {
                     fetch(`api/v2/torrents/${item}`, {
                         method: "POST",
                         body: new URLSearchParams({
                             hashes: hash
                         })
                     });
-                });
+                }
                 updateMainData();
             }
         });
-    });
+    }
 
-    ["decreasePrio", "increasePrio", "topPrio", "bottomPrio"].each((item) => {
+    for (const item of ["decreasePrio", "increasePrio", "topPrio", "bottomPrio"]) {
         addClickEvent(item, (e) => {
             e.preventDefault();
             e.stopPropagation();
             setQueuePositionFN(item);
         });
-    });
+    }
 
     setQueuePositionFN = (cmd) => {
         const hashes = torrentsTable.selectedRowsIds();

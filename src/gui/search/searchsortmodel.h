@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2013  sledgehammer999 <hammered999@gmail.com>
  *
  * This program is free software; you can redistribute it and/or

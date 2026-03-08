@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -72,9 +72,6 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
 #ifdef Q_OS_MACOS
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
-    m_defaultIndentation = indentation();
-    if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
-        setIndentation(0);
     setContextMenuPolicy(Qt::CustomContextMenu);
     sortByColumn(0, Qt::AscendingOrder);
     setCurrentIndex(model()->index(0, 0));
@@ -84,7 +81,18 @@ CategoryFilterWidget::CategoryFilterWidget(QWidget *parent)
     connect(this, &QWidget::customContextMenuRequested, this, &CategoryFilterWidget::showMenu);
     connect(selectionModel(), &QItemSelectionModel::currentRowChanged
             , this, &CategoryFilterWidget::onCurrentRowChanged);
-    connect(model(), &QAbstractItemModel::modelReset, this, &CategoryFilterWidget::callUpdateGeometry);
+    connect(model(), &QAbstractItemModel::rowsRemoved, this, [this]
+    {
+        adjustIndentation();
+        updateGeometry();
+    });
+    connect(model(), &QAbstractItemModel::modelReset, this, [this]
+    {
+        adjustIndentation();
+        updateGeometry();
+    });
+
+    adjustIndentation();
 }
 
 QString CategoryFilterWidget::currentCategory() const
@@ -113,12 +121,8 @@ void CategoryFilterWidget::showMenu()
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !CategoryFilterModel::isSpecialItem(selectedRows.first()))
     {
-        if (BitTorrent::Session::instance()->isSubcategoriesEnabled())
-        {
-            menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add subcategory...")
-                , this, &CategoryFilterWidget::addSubcategory);
-        }
-
+        menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_s), tr("Add subcategory...")
+            , this, &CategoryFilterWidget::addSubcategory);
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s, u"document-edit"_s), tr("Edit category...")
             , this, &CategoryFilterWidget::editCategory);
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s), tr("Remove category")
@@ -140,11 +144,6 @@ void CategoryFilterWidget::showMenu()
 
 void CategoryFilterWidget::callUpdateGeometry()
 {
-    if (!BitTorrent::Session::instance()->isSubcategoriesEnabled())
-        setIndentation(0);
-    else
-        setIndentation(m_defaultIndentation);
-
     updateGeometry();
 }
 
@@ -168,9 +167,12 @@ QSize CategoryFilterWidget::minimumSizeHint() const
     return size;
 }
 
-void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, int start, int end)
+void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, const int start, const int end)
 {
     QTreeView::rowsInserted(parent, start, end);
+
+    if (parent.isValid())
+        adjustIndentation();
 
     // Expand all parents if the parent(s) of the node are not expanded.
     QModelIndex p = parent;
@@ -182,6 +184,26 @@ void CategoryFilterWidget::rowsInserted(const QModelIndex &parent, int start, in
     }
 
     updateGeometry();
+}
+
+bool CategoryFilterWidget::hasAnySubcategory() const
+{
+    const int rowCount = model()->rowCount();
+    for (int row = 0; row < rowCount; ++row)
+    {
+        if (model()->hasChildren(model()->index(row, 0)))
+            return true;
+    }
+
+    return false;
+}
+
+void CategoryFilterWidget::adjustIndentation()
+{
+    if (hasAnySubcategory())
+        resetIndentation();
+    else
+        setIndentation(0);
 }
 
 void CategoryFilterWidget::addCategory()

@@ -76,13 +76,11 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
-#ifdef Q_OS_WIN
     if (const QString styleName = Preferences::instance()->getStyle(); styleName.compare(u"system", Qt::CaseInsensitive) != 0)
     {
-        if (!QApplication::setStyle(styleName.isEmpty() ? u"Fusion"_s : styleName))
+        if (!QApplication::setStyle(styleName))
             LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
     }
-#endif
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     applyColorScheme();

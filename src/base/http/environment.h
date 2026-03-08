@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,29 +29,16 @@
 
 #pragma once
 
-#include <QMetaEnum>
+#include <QHostAddress>
 
-namespace BitTorrent
+namespace Http
 {
-    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
-    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
-    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
-    inline namespace ShareLimitActionNS
+    struct Environment
     {
-        Q_NAMESPACE
+        QHostAddress localAddress;
+        quint16 localPort = 0;
 
-        // These values should remain unchanged when adding new items
-        // so as not to break the existing user settings.
-        enum class ShareLimitAction
-        {
-            Default = -1, // special value
-
-            Stop = 0,
-            Remove = 1,
-            RemoveWithContent = 3,
-            EnableSuperSeeding = 2
-        };
-
-        Q_ENUM_NS(ShareLimitAction)
-    }
+        QHostAddress clientAddress;
+        quint16 clientPort = 0;
+    };
 }

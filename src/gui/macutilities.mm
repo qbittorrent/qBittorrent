@@ -35,6 +35,7 @@
 #include <objc/message.h>
 
 #include <QCoreApplication>
+#include <QMenu>
 #include <QPixmap>
 #include <QSize>
 #include <QString>
@@ -191,5 +192,65 @@ namespace MacUtils
     void setBadgeLabelText(const QString &text)
     {
         NSApp.dockTile.badgeLabel = text.toNSString();
+    }
+
+    void setupWindowMenu(QMenu *windowMenu)
+    {
+        Q_ASSERT(windowMenu);
+        if (!windowMenu) [[unlikely]]
+            return;
+
+        @autoreleasepool
+        {
+            NSMenu *nsWindowMenu = windowMenu->toNSMenu();
+
+            if (!nsWindowMenu)
+            {
+                qWarning("Failed to get NSMenu from QMenu for Window menu setup");
+                return;
+            }
+
+            [nsWindowMenu setTitle:NSLocalizedStringFromTableInBundle(
+                              @"Window",
+                              @"MenuCommands",
+                              [NSBundle bundleForClass:[NSApplication class]],
+                              @"")];
+
+            NSMenuItem *minimizeItem = [[[NSMenuItem alloc]
+                initWithTitle:NSLocalizedStringFromTableInBundle(
+                    @"Minimize",
+                    @"MenuCommands",
+                    [NSBundle bundleForClass:[NSApplication class]],
+                    @"")
+                action:@selector(performMiniaturize:)
+                keyEquivalent:@"m"] autorelease];
+            [nsWindowMenu addItem:minimizeItem];
+
+            NSMenuItem *zoomItem = [[[NSMenuItem alloc]
+                initWithTitle:NSLocalizedStringFromTableInBundle(
+                    @"Zoom",
+                    @"MenuCommands",
+                    [NSBundle bundleForClass:[NSApplication class]],
+                    @"")
+                action:@selector(performZoom:)
+                keyEquivalent:@""] autorelease];
+            [nsWindowMenu addItem:zoomItem];
+
+            [nsWindowMenu addItem:[NSMenuItem separatorItem]];
+
+            NSMenuItem *bringAllToFrontItem = [[[NSMenuItem alloc]
+                initWithTitle:NSLocalizedStringFromTableInBundle(
+                    @"Bring All to Front",
+                    @"MenuCommands",
+                    [NSBundle bundleForClass:[NSApplication class]],
+                    @"")
+                action:@selector(arrangeInFront:)
+                keyEquivalent:@""] autorelease];
+            [nsWindowMenu addItem:bringAllToFrontItem];
+
+            // Set it as the Window menu for the application
+            // macOS will automatically populate it with the remaining standard window operations
+            [NSApp setWindowsMenu:nsWindowMenu];
+        }
     }
 }

@@ -94,7 +94,7 @@ Translations authors:
 * files: src/lang/*.ts
 * file: src/icons/qBittorrent.desktop
   copyright:
-  - Arabic: SDERAWI (abz8868@msn.com), sn51234 (nesseyan@gmail.com) and  Ibrahim Saed ibraheem_alex(Transifex)
+  - Arabic: SDERAWI (abz8868@msn.com), sn51234 (nesseyan@gmail.com) and Ibrahim Saed ibraheem_alex(Transifex)
   - Armenian: Hrant Ohanyan (hrantohanyan@mail.am)
   - Basque: Xabier Aramendi (azpidatziak@gmail.com)
   - Belarusian: Mihas Varantsou (meequz@gmail.com)
@@ -104,31 +104,31 @@ Translations authors:
   - Chinese (Traditional): Yi-Shun Wang (dnextstep@gmail.com) and 冥王歐西里斯 s8321414(Transifex)
   - Croatian: Oliver Mucafir (oliver.untwist@gmail.com)
   - Czech: Jirka Vilim (web@tets.cz) and Petr Cernobila abr(Transifex)
-  - Danish: Mathias Nielsen (comoneo@gmail.com)
+  - Danish: Mathias Nielsen (comoneo@gmail.com), scootergrisen, Nicolaj (fuskern@gmail.com) and Joe Hansen (joedalton2@yahoo.dk)
   - Dutch: Pieter Heyvaert (pieter_heyvaert@hotmail.com)
-  - English: Christophe Dumez (chris@qbittorrent.org)
   - English(Australia): Robert Readman readmanr(Transifex)
   - English(United Kingdom): Robert Readman readmanr(Transifex)
+  - English: Christophe Dumez (chris@qbittorrent.org)
   - Finnish: Niklas Laxström (nikerabbit@users.sourceforge.net), Pekka Niemi (pekka.niemi@iki.fi) and Jiri Grönroos artnay(Transifex)
   - French: Christophe Dumez (chris@qbittorrent.org)
   - Galician: Marcos Lans (marcoslansgarza@gmail.com) and antiparvos(Transifex)
   - Georgian: Beqa Arabuli (arabulibeqa@yahoo.com)
-  - German: Niels Hoffmann (zentralmaschine@users.sourceforge.net)
-  - Greek: Tsvetan Bankov (emerge_life@users.sourceforge.net), Stephanos Antaris (santaris@csd.auth.gr), sledgehammer999(hammered999@gmail.com) and Γιάννης Ανθυμίδης Evropi(Transifex)
+  - German: Niels Hoffmann (zentralmaschine@users.sourceforge.net), schnurlos (schnurlos@gmail.com)
+  - Greek: Tsvetan Bankov (emerge_life@users.sourceforge.net), Stephanos Antaris (santaris@csd.auth.gr), sledgehammer999(hammered999@gmail.com), Γιάννης Ανθυμίδης Evropi(Transifex) and Panagiotis Tabakis(tabakisp@gmail.com)
   - Hebrew: David Deutsch (d.deffo@gmail.com)
   - Hungarian: Majoros Péter
   - Italian: bovirus (bovirus@live.it) and Matteo Sechi (bu17714@gmail.com)
   - Japanese: Masato Hashimoto (cabezon.hashimoto@gmail.com)
   - Korean: Jin Woo Sin (jin828sin@users.sourceforge.net)
   - Lithuanian: Naglis Jonaitis (njonaitis@gmail.com)
-  - Norwegian: Tomaso
+  - Norwegian: Tomaso, Imre Kristoffer Eilertsen (imreeil42@gmail.com) and Kingu (Transifex)
   - Polish: Mariusz Fik (fisiu@opensuse.org)
-  - Portuguese: Sérgio Marques smarquespt(Transifex)
   - Portuguese(Brazil): Nick Marinho (nickmarinho@gmail.com)
+  - Portuguese: Sérgio Marques smarquespt(Transifex), L.Sousa(Transifex), Hugo Carvalho (hugok Transifex)
   - Romanian: Obada Denis (obadadenis@users.sourceforge.net), Adrian Gabor Adriannho(Transifex) and Mihai Coman z0id(Transifex)
   - Russian: Nick Khazov (m2k3d0n at users.sourceforge.net), Alexey Morsov (samurai@ricom.ru), Nick Tiskov Dayman(daymansmail (at) gmail (dot) com), Dmitry DmitryKX(Transifex) and kraleksandr kraleksandr(Transifex)
-  - Serbian: Anaximandar Milet (anaximandar at operamail.com)
-  - Slovak:  helix84
+  - Serbian: Anaximandar Milet (anaximandar@operamail.com)
+  - Slovak: helix84
   - Spanish: Francisco Luque Contreras (frannoe@ya.com), Alfredo Monclus alfrix(Transifex) and José Antonio Moray moray33(Transifex)
   - Swedish: Daniel Nylander (po@danielnylander.se) and Emil Hammarberg Ooglogput(Transifex)
   - Turkish: Hasan Yilmaz (iletisim@hedefturkce.com)

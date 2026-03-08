@@ -34,8 +34,10 @@
 #include <openssl/evp.h>
 
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QList>
 #include <QString>
+#include <QStringView>
 
 #include "base/global.h"
 #include "bytearray.h"
@@ -55,22 +57,23 @@ namespace Utils
 
 // Implements constant-time comparison to protect against timing attacks
 // Taken from https://crackstation.net/hashing-security.htm
-bool Utils::Password::slowEquals(const QByteArray &a, const QByteArray &b)
+bool Utils::Password::slowEquals(const QByteArrayView left, const QByteArrayView right)
 {
-    const qsizetype lengthA = a.length();
-    const qsizetype lengthB = b.length();
+    const qsizetype lengthLeft = left.length();
+    const qsizetype lengthRight = right.length();
 
-    qsizetype diff = lengthA ^ lengthB;
-    for (qsizetype i = 0; (i < lengthA) && (i < lengthB); ++i)
-        diff |= a[i] ^ b[i];
+    qsizetype diff = lengthLeft ^ lengthRight;
+    for (qsizetype i = 0; (i < lengthLeft) && (i < lengthRight); ++i)
+        diff |= left[i] ^ right[i];
 
     return (diff == 0);
 }
 
-QString Utils::Password::generate()
+QString Utils::Password::generate(const int passwordLength)
 {
+    Q_ASSERT(passwordLength > 0);
+
     const QString alphanum = u"23456789ABCDEFGHIJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz"_s;
-    const int passwordLength = 9;
     QString pass;
     pass.reserve(passwordLength);
     while (pass.length() < passwordLength)
@@ -108,7 +111,7 @@ QByteArray Utils::Password::PBKDF2::generate(const QByteArray &password)
     return (saltView.toBase64() + ':' + outBufView.toBase64());
 }
 
-bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QString &password)
+bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QStringView password)
 {
     return verify(secret, password.toUtf8());
 }
