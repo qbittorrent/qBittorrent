@@ -80,6 +80,9 @@ signals:
 private:
     UIThemeManager(); // singleton class
 
+    void loadThemeSource();
+    void clearIconCaches();
+    void applyStyle() const;
     void applyPalette() const;
     void applyStyleSheet() const;
     void onColorSchemeChanged();
