@@ -101,6 +101,7 @@ repos:
           .*\.qrc |
           \.pre-commit-config\.yaml |
           Changelog |
+          dist/windows/3rdparty/.* |
           dist/windows/installer-translations/.* |
           src/base/3rdparty/.* |
           src/searchengine/nova3/socks.py |
