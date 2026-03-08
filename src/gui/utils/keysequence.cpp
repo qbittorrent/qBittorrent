@@ -34,8 +34,17 @@
 QKeySequence Utils::KeySequence::deleteItem()
 {
 #ifdef Q_OS_MACOS
-    return Qt::CTRL | Qt::Key_Backspace;
+    return Qt::Key_Backspace;
 #else
     return QKeySequence::Delete;
+#endif
+}
+
+QKeySequence Utils::KeySequence::permanentlyDeleteItem()
+{
+#ifdef Q_OS_MACOS
+    return Qt::CTRL | Qt::Key_Backspace;
+#else
+    return Qt::SHIFT | Qt::Key_Delete;
 #endif
 }
