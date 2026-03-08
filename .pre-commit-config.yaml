@@ -70,7 +70,7 @@ repos:
         - ts
 
   - repo: https://github.com/codespell-project/codespell.git
-    rev: v2.4.1
+    rev: v2.4.2
     hooks:
     - id: codespell
       name: Check spelling (codespell)
@@ -89,7 +89,7 @@ repos:
         - ts
 
   - repo: https://github.com/crate-ci/typos.git
-    rev: v1.35.3
+    rev: v1.44.0
     hooks:
     - id: typos
       name: Check spelling (typos)
