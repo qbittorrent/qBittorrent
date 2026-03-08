@@ -34,6 +34,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QProxyStyle>
 #include <QStyle>
 
 #include "base/bittorrent/session.h"
@@ -46,6 +47,20 @@
 
 namespace
 {
+    class StatusBarStyle final : public QProxyStyle
+    {
+    public:
+        using QProxyStyle::QProxyStyle;
+
+        void drawPrimitive(PrimitiveElement element, const QStyleOption *option,
+                           QPainter *painter, const QWidget *widget = nullptr) const override
+        {
+            if (element == PE_FrameStatusBarItem)
+                return;
+            QProxyStyle::drawPrimitive(element, option, painter, widget);
+        }
+    };
+
     QWidget *createSeparator(QWidget *parent)
     {
         QFrame *separator = new QFrame(parent);
@@ -61,9 +76,7 @@ StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
 #ifndef Q_OS_MACOS
-    // Redefining global stylesheet breaks certain elements on mac like tabs.
-    // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
-    setStyleSheet(u"QStatusBar::item { border-width: 0; }"_s);
+    setStyle(new StatusBarStyle(style()));
 #endif
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
