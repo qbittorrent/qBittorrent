@@ -33,8 +33,8 @@
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QPushButton>
 #include <QProxyStyle>
+#include <QPushButton>
 #include <QStyle>
 
 #include "base/bittorrent/session.h"
