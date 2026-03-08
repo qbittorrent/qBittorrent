@@ -178,7 +178,9 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
 
     m_ui->labelWarn->setTextFormat(Qt::RichText);
     m_ui->labelWarn->setText(tr("Fetching of RSS feeds is disabled now! You can enable it in %1.")
-        .arg(u"<a href=\"#\">%1</a>"_s.arg(tr("application settings"))));
+        .arg(u"<a href=\"#\" style=\"color: red; text-decoration: underline;\">%1</a>"_s
+            .arg(tr("application settings"))));
+    m_ui->labelWarn->setCursor(Qt::PointingHandCursor);
     connect(m_ui->labelWarn, &QLabel::linkActivated, this, &RSSWidget::openRSSSettings);
     if (RSS::Session::instance()->isProcessingEnabled())
         m_ui->labelWarn->hide();
