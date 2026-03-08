@@ -50,6 +50,8 @@
 #include "colorscheme.h"
 #endif
 
+class UIThemeIconEngine;
+
 class UIThemeManager final : public QObject
 {
     Q_OBJECT
@@ -66,7 +68,6 @@ public:
 #endif
 
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
-    QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
     QPixmap getScaledPixmap(const QString &iconId, int height) const;
 
@@ -78,8 +79,11 @@ signals:
     void themeChanged();
 
 private:
+    friend class UIThemeIconEngine;
+
     UIThemeManager(); // singleton class
 
+    QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
     void loadThemeSource();
     void clearIconCaches();
     void applyStyle() const;
@@ -92,6 +96,7 @@ private:
 #endif
 
     static UIThemeManager *m_instance;
+    const QString m_defaultStyleName;
     bool m_useCustomTheme;
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     SettingValue<ColorScheme> m_colorSchemeSetting;
