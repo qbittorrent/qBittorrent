@@ -19,6 +19,9 @@
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <widget class="QLabel" name="labelWarn">
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
      <property name="font">
       <font>
        <italic>true</italic>
@@ -29,6 +32,9 @@
      </property>
      <property name="text">
       <string>Fetching of RSS feeds is disabled now! You can enable it in application settings.</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::TextFormat::RichText</enum>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
