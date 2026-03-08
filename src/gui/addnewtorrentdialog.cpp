@@ -304,7 +304,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::TorrentDescriptor &to
 {
     m_ui->setupUi(this);
 
-    m_ui->scrollArea->setStyleSheet(u"background: transparent;"_s);
+    m_ui->scrollArea->viewport()->setAutoFillBackground(false);
+    m_ui->scrollAreaWidgetContents->setAutoFillBackground(false);
 
     m_ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->savePath->setDialogCaption(tr("Choose save path"));
