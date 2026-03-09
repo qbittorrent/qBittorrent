@@ -1361,6 +1361,40 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["category"].compareRows = this.columns["name"].compareRows;
             this.columns["tags"].compareRows = this.columns["name"].compareRows;
 
+            const getProgressColor = (state) => {
+                switch (state) {
+                    case "downloading":
+                    case "forcedDL":
+                    case "metaDL":
+                    case "forcedMetaDL":
+                        return "var(--color-progress-downloading)";
+                    case "uploading":
+                    case "forcedUP":
+                    case "stalledUP":
+                        return "var(--color-progress-seeding)";
+                    case "stalledDL":
+                        return "var(--color-progress-stalled)";
+                    case "stoppedDL":
+                    case "stoppedUP":
+                        return "var(--color-progress-stopped)";
+                    case "queuedDL":
+                    case "queuedUP":
+                        return "var(--color-progress-queued)";
+                    case "checkingDL":
+                    case "checkingUP":
+                    case "queuedForChecking":
+                    case "checkingResumeData":
+                    case "moving":
+                        return "var(--color-progress-checking)";
+                    case "error":
+                    case "unknown":
+                    case "missingFiles":
+                        return "var(--color-progress-error)";
+                    default:
+                        return "var(--color-progress-downloading)";
+                }
+            };
+
             // size, total_size
             this.columns["size"].updateTd = function(td, row) {
                 const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
@@ -1374,14 +1408,17 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const progress = this.getRowValue(row);
                 const progressFormatted = window.qBittorrent.Misc.toFixedPointString((progress * 100), 1);
 
-                const div = td.firstElementChild;
-                if (div !== null) {
-                    if (div.getValue() !== progressFormatted)
-                        div.setValue(progressFormatted);
+                let progressBar = td.firstElementChild;
+                if (progressBar !== null) {
+                    if (progressBar.getValue() !== progressFormatted)
+                        progressBar.setValue(progressFormatted);
                 }
                 else {
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted));
+                    progressBar = new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted);
+                    td.append(progressBar);
                 }
+
+                progressBar.setColor(getProgressColor(row.full_data.state));
             };
             this.columns["progress"].staticWidth = 100;
 

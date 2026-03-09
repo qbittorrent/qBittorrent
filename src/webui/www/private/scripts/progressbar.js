@@ -96,6 +96,10 @@ window.qBittorrent.ProgressBar ??= (() => {
             return this.#value;
         }
 
+        setColor(color) {
+            this.#dark.style.background = color;
+        }
+
         setValue(value) {
             value = Number(value);
             if (Number.isNaN(value))
