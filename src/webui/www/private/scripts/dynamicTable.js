@@ -1172,6 +1172,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["progress"].dataProperties.push("state");
 
             this.initColumnsFunctions();
         }
@@ -1418,7 +1419,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.append(progressBar);
                 }
 
-                progressBar.setColor(getProgressColor(row.full_data.state));
+                const progressColor = getProgressColor(row.full_data.state);
+                if (progressBar.getColor() !== progressColor)
+                    progressBar.setColor(progressColor);
             };
             this.columns["progress"].staticWidth = 100;
 

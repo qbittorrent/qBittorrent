@@ -47,6 +47,7 @@ window.qBittorrent.ProgressBar ??= (() => {
         };
 
         #value = 0;
+        #color = ProgressBar.#styles.darkbg;
 
         #id = ++ProgressBar.#progressBarUniqueId;
 
@@ -96,7 +97,14 @@ window.qBittorrent.ProgressBar ??= (() => {
             return this.#value;
         }
 
+        getColor() {
+            return this.#color;
+        }
+
         setColor(color) {
+            if (this.#color === color)
+                return;
+            this.#color = color;
             this.#dark.style.background = color;
         }
 
