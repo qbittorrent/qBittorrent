@@ -503,6 +503,14 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     if (!speedInTitle)
         document.getElementById("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "0";
 
+    let compactMode = clientData.get("display_density") === "compact";
+    if (!compactMode)
+        document.getElementById("compactModeLink").firstElementChild.style.opacity = "0";
+
+    let useAltRowColors = (clientData.get("use_alt_row_colors") ?? true) === true;
+    if (!useAltRowColors)
+        document.getElementById("altRowColorsLink").firstElementChild.style.opacity = "0";
+
     // After showing/hiding the toolbar + status bar
     window.qBittorrent.Client.showSearchEngine((clientData.get("show_search_engine") ?? true) === true);
     window.qBittorrent.Client.showRssReader((clientData.get("show_rss_reader") ?? true) === true);
@@ -1329,6 +1337,20 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         else
             document.getElementById("speedInBrowserTitleBarLink").firstElementChild.style.opacity = "0";
         processServerState();
+    });
+
+    document.getElementById("compactModeLink").addEventListener("click", (e) => {
+        compactMode = !compactMode;
+        clientData.set({ display_density: compactMode ? "compact" : null }).then(() => {
+            window.location.reload();
+        }).catch(console.error);
+    });
+
+    document.getElementById("altRowColorsLink").addEventListener("click", (e) => {
+        useAltRowColors = !useAltRowColors;
+        clientData.set({ use_alt_row_colors: useAltRowColors }).then(() => {
+            window.location.reload();
+        }).catch(console.error);
     });
 
     document.getElementById("showSearchEngineLink").addEventListener("click", (e) => {
