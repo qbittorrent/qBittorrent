@@ -720,7 +720,7 @@ void MainWindow::displayRSSTab(bool enable)
         {
             m_rssWidget = new RSSWidget(app(), m_tabs);
             connect(m_rssWidget.data(), &RSSWidget::unreadCountUpdated, this, &MainWindow::handleRSSUnreadCountUpdated);
-            connect(m_rssWidget.data(), &RSSWidget::openRSSSettings, this, &MainWindow::showRSSSettings);
+            connect(m_rssWidget.data(), &RSSWidget::openRSSSettingsLinkActivated, this, &MainWindow::showRSSSettings);
 #ifdef Q_OS_MACOS
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
 #else

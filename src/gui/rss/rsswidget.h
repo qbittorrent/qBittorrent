@@ -62,7 +62,7 @@ public slots:
     void updateRefreshInterval(int val) const;
 
 signals:
-    void openRSSSettings();
+    void openRSSSettingsLinkActivated();
     void unreadCountUpdated(int count);
 
 private slots:
