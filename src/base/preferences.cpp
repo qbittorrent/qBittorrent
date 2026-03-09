@@ -544,8 +544,7 @@ void Preferences::setMailNotificationEnabled(const bool enabled)
 
 QString Preferences::getMailNotificationSender() const
 {
-    return value<QString>(u"Preferences/MailNotification/sender"_s
-        , u"qBittorrent_notification@example.com"_s);
+    return value<QString>(u"Preferences/MailNotification/sender"_s);
 }
 
 void Preferences::setMailNotificationSender(const QString &mail)
@@ -571,7 +570,7 @@ void Preferences::setMailNotificationEmail(const QString &mail)
 
 QString Preferences::getMailNotificationSMTP() const
 {
-    return value<QString>(u"Preferences/MailNotification/smtp_server"_s, u"smtp.changeme.com"_s);
+    return value<QString>(u"Preferences/MailNotification/smtp_server"_s);
 }
 
 void Preferences::setMailNotificationSMTP(const QString &smtpServer)
