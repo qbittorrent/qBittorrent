@@ -164,6 +164,13 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     const QString &serverAddress = serverEndpoint[0];
     const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
 
+    // Check if STARTTLS should be used
+    m_useStartTls = false;
+#ifndef QT_NO_OPENSSL
+    if (pref->getMailNotificationSMTPStartTLS())
+        m_useStartTls = true;
+#endif
+
 #ifndef QT_NO_OPENSSL
     if (pref->getMailNotificationSMTPSSL())
     {
@@ -427,7 +434,7 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     if (m_state != EhloDone) return;
 
-    if (m_extensions.contains(u"STARTTLS"_s) && m_useSsl)
+    if (m_extensions.contains(u"STARTTLS"_s) && m_useStartTls)
     {
         qDebug() << "STARTTLS";
         startTLS();

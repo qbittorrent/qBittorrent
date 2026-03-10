@@ -672,6 +672,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
     m_ui->lineEditSmtpServer->setText(pref->getMailNotificationSMTP());
+    m_ui->checkSmtpStartTls->setChecked(pref->getMailNotificationSMTPStartTLS());
     m_ui->checkSmtpSSL->setChecked(pref->getMailNotificationSMTPSSL());
     m_ui->groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
     m_ui->mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
@@ -758,6 +759,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->senderEmailTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditDestEmail, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditSmtpServer, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkSmtpStartTls, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkSmtpSSL, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotifAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -823,6 +825,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
     pref->setMailNotificationEmail(m_ui->lineEditDestEmail->text());
     pref->setMailNotificationSMTP(m_ui->lineEditSmtpServer->text());
+    pref->setMailNotificationSMTPStartTLS(m_ui->checkSmtpStartTls->isChecked());
     pref->setMailNotificationSMTPSSL(m_ui->checkSmtpSSL->isChecked());
     pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
