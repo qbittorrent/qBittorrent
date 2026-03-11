@@ -44,6 +44,23 @@ public:
     TestBittorrentTrackerEntry() = default;
 
 private slots:
+    void testIsValidTrackerUrl() const
+    {
+        // Valid tracker URLs
+        QVERIFY(BitTorrent::isValidTrackerUrl(u"http://tracker.example.com/announce"));
+        QVERIFY(BitTorrent::isValidTrackerUrl(u"https://tracker.example.com:8080/announce"));
+        QVERIFY(BitTorrent::isValidTrackerUrl(u"udp://tracker.opentrackr.org:1337/announce"));
+        QVERIFY(BitTorrent::isValidTrackerUrl(u"wss://tracker.webtorrent.io"));
+
+        // Invalid tracker URLs
+        QVERIFY(!BitTorrent::isValidTrackerUrl(u""));
+        QVERIFY(!BitTorrent::isValidTrackerUrl(u"ftp://tracker.example.com/announce"));
+        QVERIFY(!BitTorrent::isValidTrackerUrl(u"magnet:?xt=urn:btih:abc123"));
+        QVERIFY(!BitTorrent::isValidTrackerUrl(u"http://"));  // no host
+        QVERIFY(!BitTorrent::isValidTrackerUrl(u"<!DOCTYPE html><html>"));
+        QVERIFY(!BitTorrent::isValidTrackerUrl(u"just plain text"));
+    }
+
     void testParseTrackerEntries() const
     {
         using Entries = QList<BitTorrent::TrackerEntry>;

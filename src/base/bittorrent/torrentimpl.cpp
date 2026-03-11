@@ -659,7 +659,10 @@ QList<TrackerEntryStatus> TorrentImpl::trackers() const
 
 void TorrentImpl::addTrackers(QList<TrackerEntry> trackers)
 {
-    trackers.removeIf([](const TrackerEntry &trackerEntry) { return trackerEntry.url.isEmpty(); });
+    trackers.removeIf([](const TrackerEntry &trackerEntry)
+    {
+        return trackerEntry.url.isEmpty() || !isValidTrackerUrl(trackerEntry.url);
+    });
 
     QSet<TrackerEntry> currentTrackerSet;
     currentTrackerSet.reserve(m_trackerEntryStatuses.size());
@@ -709,7 +712,10 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
 
 void TorrentImpl::replaceTrackers(QList<TrackerEntry> trackers)
 {
-    trackers.removeIf([](const TrackerEntry &trackerEntry) { return trackerEntry.url.isEmpty(); });
+    trackers.removeIf([](const TrackerEntry &trackerEntry)
+    {
+        return trackerEntry.url.isEmpty() || !isValidTrackerUrl(trackerEntry.url);
+    });
 
     // Filter out duplicate trackers
     const auto uniqueTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend());
