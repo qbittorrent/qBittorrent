@@ -78,4 +78,6 @@ private:
     QWidget *m_DHTSeparator = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
     QPushButton *m_altSpeedsBtn = nullptr;
+    QLabel *m_restartIconLbl = nullptr;
+    QLabel *m_restartLbl = nullptr;
 };

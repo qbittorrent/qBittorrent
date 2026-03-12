@@ -73,6 +73,19 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    const auto applyUITheme = [this]
+    {
+        m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
+        m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
+        m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+        updateMustLineValidity();
+        updateMustNotLineValidity();
+        if (m_episodeRegex)
+            updateEpisodeFilterValidity();
+    };
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
@@ -86,11 +99,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->exportBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onExportBtnClicked);
     connect(m_ui->importBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onImportBtnClicked);
     connect(m_ui->renameRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onRenameRuleBtnClicked);
-
-    // Icons
-    m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-    m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
-    m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
 
     // Ui Settings
     m_ui->ruleList->setSortingEnabled(true);

@@ -36,6 +36,7 @@
 #include <QPalette>
 #include <QPixmapCache>
 #include <QResource>
+#include <QSignalBlocker>
 #include <QStyle>
 #include <QStyleHints>
 
@@ -136,6 +137,11 @@ UIThemeManager::UIThemeManager()
     }
 }
 
+UIThemeManager::~UIThemeManager()
+{
+    unregisterThemeResource();
+}
+
 UIThemeManager *UIThemeManager::instance()
 {
     return m_instance;
@@ -147,13 +153,14 @@ ColorScheme UIThemeManager::colorScheme() const
     return m_colorSchemeSetting.get(ColorScheme::System);
 }
 
-void UIThemeManager::setColorScheme(const ColorScheme value)
+void UIThemeManager::setColorScheme(const ColorScheme value, const bool apply)
 {
     if (value == colorScheme())
         return;
 
     m_colorSchemeSetting = value;
-    applyColorScheme();
+    if (apply)
+        applyColorScheme();
 }
 
 void UIThemeManager::applyColorScheme() const
@@ -211,6 +218,23 @@ void UIThemeManager::clearIconCaches()
     QPixmapCache::clear();
 }
 
+void UIThemeManager::notifyThemeChanged()
+{
+    emit themeChanged();
+
+    // Work around styled widgets that need their style reapplied after theme changes.
+    QApplication::setStyle(QApplication::style()->name());
+}
+
+void UIThemeManager::unregisterThemeResource()
+{
+    if (!m_registeredResourcePath.isEmpty())
+    {
+        QResource::unregisterResource(m_registeredResourcePath.data(), u"/uitheme"_s);
+        m_registeredResourcePath = {};
+    }
+}
+
 void UIThemeManager::applyStyle() const
 {
     const QString styleName = Preferences::instance()->getStyle();
@@ -233,11 +257,7 @@ void UIThemeManager::applyStyleSheet() const
 void UIThemeManager::onColorSchemeChanged()
 {
     clearIconCaches();
-
-    emit themeChanged();
-
-    // workaround to refresh styled controls once color scheme is changed
-    QApplication::setStyle(QApplication::style()->name());
+    notifyThemeChanged();
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
@@ -319,14 +339,14 @@ void UIThemeManager::applyThemeSettings()
     m_useSystemIcons = pref->useSystemIcons();
 #endif
 
-    // Unregister previously registered .qbtheme resource
-    if (!m_registeredResourcePath.isEmpty())
-    {
-        QResource::unregisterResource(m_registeredResourcePath.data(), u"/uitheme"_s);
-        m_registeredResourcePath = {};
-    }
+    unregisterThemeResource();
 
     applyStyle();
+
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    const QSignalBlocker signalBlocker {qApp->styleHints()};
+    applyColorScheme();
+#endif
 
     loadThemeSource();
 
@@ -342,11 +362,7 @@ void UIThemeManager::applyThemeSettings()
     }
 
     clearIconCaches();
-
-    emit themeChanged();
-
-    // workaround to refresh styled controls (same as onColorSchemeChanged)
-    QApplication::setStyle(QApplication::style()->name());
+    notifyThemeChanged();
 }
 
 void UIThemeManager::applyPalette() const

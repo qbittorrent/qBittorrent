@@ -53,6 +53,11 @@ namespace
         return separator;
     }
 
+    QPixmap restartRequiredPixmap(const QWidget *widget)
+    {
+        return widget->style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(Utils::Gui::smallIconSize());
+    }
+
     QPushButton *createSpeedButton(const QIcon &icon, QWidget *parent)
     {
         auto *button = new QPushButton(icon, {}, parent);
@@ -149,6 +154,16 @@ StatusBar::StatusBar(QWidget *parent)
     connect(session, &BitTorrent::Session::freeDiskSpaceChecked, this, &StatusBar::updateFreeDiskSpaceLabel);
 
     connect(Preferences::instance(), &Preferences::changed, this, &StatusBar::optionsSaved);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this, session]
+    {
+        m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
+        m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
+        updateConnectionStatus();
+        updateAltSpeedsBtn(session->isAltGlobalSpeedLimitEnabled());
+
+        if (m_restartIconLbl)
+            m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
+    });
 }
 
 void StatusBar::showRestartRequired()
@@ -156,15 +171,20 @@ void StatusBar::showRestartRequired()
     // Restart required notification
     const QString restartText = tr("qBittorrent needs to be restarted!");
 
-    const QPixmap pixmap = style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(Utils::Gui::smallIconSize());
-    auto *restartIconLbl = new QLabel(this);
-    restartIconLbl->setPixmap(pixmap);
-    restartIconLbl->setToolTip(restartText);
-    insertWidget(0, restartIconLbl);
+    if (!m_restartIconLbl)
+    {
+        m_restartIconLbl = new QLabel(this);
+        insertWidget(0, m_restartIconLbl);
+    }
+    m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
+    m_restartIconLbl->setToolTip(restartText);
 
-    auto *restartLbl = new QLabel(this);
-    restartLbl->setText(restartText);
-    insertWidget(1, restartLbl);
+    if (!m_restartLbl)
+    {
+        m_restartLbl = new QLabel(this);
+        insertWidget(1, m_restartLbl);
+    }
+    m_restartLbl->setText(restartText);
 }
 
 void StatusBar::updateConnectionStatus()
@@ -301,4 +321,10 @@ void StatusBar::optionsSaved()
 {
     updateFreeDiskSpaceVisibility();
     updateExternalAddressesVisibility();
+
+    if (m_restartIconLbl)
+    {
+        m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
+        m_restartIconLbl->setToolTip(tr("qBittorrent needs to be restarted!"));
+    }
 }

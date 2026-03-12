@@ -64,7 +64,7 @@ public:
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     ColorScheme colorScheme() const;
-    void setColorScheme(ColorScheme value);
+    void setColorScheme(ColorScheme value, bool apply = true);
 #endif
 
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
@@ -82,10 +82,13 @@ private:
     friend class UIThemeIconEngine;
 
     UIThemeManager(); // singleton class
+    ~UIThemeManager() override;
 
     QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
     void loadThemeSource();
     void clearIconCaches();
+    void notifyThemeChanged();
+    void unregisterThemeResource();
     void applyStyle() const;
     void applyPalette() const;
     void applyStyleSheet() const;
