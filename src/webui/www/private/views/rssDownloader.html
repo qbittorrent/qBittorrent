@@ -548,7 +548,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const removeSelectedRule = () => {
-            if (rssDownloaderRulesTable.selectedRows.size === 0)
+            if (rssDownloaderRulesTable.getSelectedRowId() === "")
                 return;
             removeRules(rssDownloaderRulesTable.selectedRowsIds().map((sRow) =>
                 rssDownloaderRulesTable.getRow(sRow).full_data.name));

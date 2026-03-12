@@ -277,7 +277,7 @@
                 window.qBittorrent.Client.closeWindow(windowEl);
             });
 
-            const handleTorrentFiles = (files, selectedRows) => {
+            const handleTorrentFiles = (files, selectedRows = new Set()) => {
                 const rows = files.map((file, index) => {
 
                     const row = {
@@ -295,7 +295,7 @@
                 addRowsToTable(rows, selectedRows);
             };
 
-            const addRowsToTable = (rows, selectedRows) => {
+            const addRowsToTable = (rows, selectedRows = new Set()) => {
                 let rowId = 0;
                 const rootNode = new window.qBittorrent.FileTree.FolderNode();
                 rootNode.autoCalculateCheckedState = false;
@@ -355,14 +355,13 @@
                 bulkRenameFilesTable.populateTable(rootNode);
                 bulkRenameFilesTable.updateTable(false);
 
-                if (selectedRows !== undefined)
-                    bulkRenameFilesTable.reselectRows(selectedRows);
+                bulkRenameFilesTable.reselectRows(selectedRows);
 
                 fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
                 fileRenamer.update();
             };
 
-            const setupTable = (selectedRows) => {
+            const setupTable = (selectedRows = new Set()) => {
                 const url = new URL("api/v2/torrents/files", window.location);
                 url.search = new URLSearchParams({
                     hash: data.hash
@@ -382,7 +381,7 @@
                             handleTorrentFiles(files, selectedRows);
                     });
             };
-            setupTable(new Set(data.selectedRows));
+            setupTable(new Set(data.selectedRows ?? []));
         })();
     </script>
 </head>

@@ -716,7 +716,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
             localPreferences.set(`sorted_column_${this.dynamicTableDivId}`, column);
             localPreferences.set(`reverse_sort_${this.dynamicTableDivId}`, this.reverseSort);
-            this._cachedFilteredRows = null;
+            this.invalidateFilterCache();
             this.updateTable(false);
         }
 
@@ -838,7 +838,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 row["full_data"][x] = data[x];
             }
 
-            this._cachedFilteredRows = null;
+            this.invalidateFilterCache();
         }
 
         /**
@@ -848,6 +848,7 @@ window.qBittorrent.DynamicTable ??= (() => {
          * @param {Map} rows - A Map with rowId as key
          */
         setRows(rows) {
+            this.invalidateFilterCache();
             for (const existingId of this.rows.keys()) {
                 const newVal = rows.get(existingId);
                 if (newVal !== undefined) {
@@ -1069,7 +1070,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         removeRow(rowId) {
             this.selectedRows.delete(rowId);
             this.rows.delete(rowId);
-            this._cachedFilteredRows = null;
+            this.invalidateFilterCache();
             if (!this.useVirtualList) {
                 const tr = this.getTrByRowId(rowId);
                 tr?.remove();
@@ -1079,7 +1080,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         clear() {
             this.deselectAll();
             this.rows.clear();
-            this._cachedFilteredRows = null;
+            this.invalidateFilterCache();
             if (this.useVirtualList) {
                 this.rerender();
             }
@@ -2046,18 +2047,23 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             let filteredRows = [];
-            const searchTerms = window.qBittorrent.Search.searchText.pattern.toLowerCase().split(" ");
-            const filterTerms = window.qBittorrent.Search.searchText.filterPattern.toLowerCase().split(" ");
+            const searchTerms = window.qBittorrent.Search.searchText.pattern.toLowerCase().split(" ").filter(term => (term !== ""));
+            const filterTerms = window.qBittorrent.Search.searchText.filterPattern.toLowerCase().split(" ").filter(term => (term !== ""));
             const sizeFilters = getSizeFilters();
             const seedsFilters = getSeedsFilters();
             const searchInTorrentName = document.getElementById("searchInTorrentName").value === "names";
+            const hasNameFilter = searchInTorrentName && (searchTerms.length > 0);
+            const hasTextFilter = (filterTerms.length > 0);
+            const hasSizeFilter = (window.qBittorrent.Search.searchSizeFilter.min > 0)
+                || (window.qBittorrent.Search.searchSizeFilter.max > 0);
+            const hasSeedsFilter = (window.qBittorrent.Search.searchSeedsFilter.min > 0)
+                || (window.qBittorrent.Search.searchSeedsFilter.max > 0);
 
-            if (searchInTorrentName || (filterTerms.length > 0) || (window.qBittorrent.Search.searchSizeFilter.min > 0) || (window.qBittorrent.Search.searchSizeFilter.max > 0)) {
+            if (hasNameFilter || hasTextFilter || hasSizeFilter || hasSeedsFilter) {
                 for (const row of this.getRowValues()) {
-
-                    if (searchInTorrentName && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, searchTerms))
+                    if (hasNameFilter && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, searchTerms))
                         continue;
-                    if ((filterTerms.length > 0) && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, filterTerms))
+                    if (hasTextFilter && !window.qBittorrent.Misc.containsAllTerms(row.full_data.fileName, filterTerms))
                         continue;
                     if ((sizeFilters.min > 0) && (row.full_data.fileSize < sizeFilters.min))
                         continue;

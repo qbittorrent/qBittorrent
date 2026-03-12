@@ -245,7 +245,7 @@
                 actions: {
                     update: (el) => {
                         const feedsToUpdate = new Set();
-                        for (const rowId of rssFeedTable.selectedRows) {
+                        for (const rowId of rssFeedTable.selectedRowsIds()) {
                             const selectedPath = rssFeedTable.getRow(rowId).full_data.dataPath;
                             for (const row of rssFeedTable.getRowValues()) {
                                 if ((row.full_data.dataPath.slice(0, selectedPath.length) === selectedPath) && (row.full_data.dataUid !== ""))
@@ -310,7 +310,7 @@
 
             document.getElementById("CopyFeedURL").addEventListener("click", async (event) => {
                 let joined = "";
-                for (const rowID of rssFeedTable.selectedRows) {
+                for (const rowID of rssFeedTable.selectedRowsIds()) {
                     const row = rssFeedTable.getRow(rowID);
                     if (row.full_data.dataUid !== "")
                         joined += `${row.full_data.dataUrl}\n`;
@@ -325,13 +325,13 @@
                 menu: "rssArticleMenu",
                 actions: {
                     Download: (el) => {
-                        for (const rowID of rssArticleTable.selectedRows) {
+                        for (const rowID of rssArticleTable.selectedRowsIds()) {
                             const { name, torrentURL } = rssArticleTable.getRow(rowID).full_data;
                             window.qBittorrent.Client.createAddTorrentWindow(name, torrentURL);
                         }
                     },
                     OpenNews: (el) => {
-                        for (const rowID of rssArticleTable.selectedRows)
+                        for (const rowID of rssArticleTable.selectedRowsIds())
                             window.open(rssArticleTable.getRow(rowID).full_data.link);
                     }
                 },
@@ -359,8 +359,9 @@
 
         const addRSSFeed = () => {
             let path = "";
-            if (rssFeedTable.selectedRows.size !== 0) {
-                const row = rssFeedTable.getRow(rssFeedTable.getSelectedRowId());
+            const selectedRowId = rssFeedTable.getSelectedRowId();
+            if (selectedRowId !== "") {
+                const row = rssFeedTable.getRow(selectedRowId);
                 if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
@@ -387,8 +388,9 @@
 
         const addFolder = () => {
             let path = "";
-            if (rssFeedTable.selectedRows.size !== 0) {
-                const row = rssFeedTable.getRow(rssFeedTable.getSelectedRowId());
+            const selectedRowId = rssFeedTable.getSelectedRowId();
+            if (selectedRowId !== "") {
+                const row = rssFeedTable.getRow(selectedRowId);
                 if (row.full_data.dataUid === "") {
                     path = row.full_data.dataPath;
                 }
@@ -634,8 +636,9 @@
 
                         // get currently opened feed
                         let openedFeedPath = undefined;
-                        if (rssFeedTable.selectedRows.size !== 0) {
-                            const lastSelectedRow = rssFeedTable.selectedRowsIds().at(-1);
+                        const selectedRowIds = rssFeedTable.selectedRowsIds();
+                        if (selectedRowIds.length !== 0) {
+                            const lastSelectedRow = selectedRowIds.at(-1);
                             openedFeedPath = rssFeedTable.getRow(lastSelectedRow).full_data.dataPath;
                         }
 
