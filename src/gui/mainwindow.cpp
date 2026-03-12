@@ -151,6 +151,10 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     // Setting icons
 #ifndef Q_OS_MACOS
     setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
+    {
+        setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
+    });
 #endif // Q_OS_MACOS
 
     setTitleSuffix(titleSuffix);

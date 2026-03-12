@@ -43,6 +43,7 @@
 #include <QEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QStyle>
 #include <QStyleFactory>
 #include <QSystemTrayIcon>
 #include <QTranslator>
@@ -163,6 +164,32 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->setupUi(this);
     m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
 
+    const auto applyUITheme = [this]
+    {
+        m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
+        m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
+        m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
+        m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_s, u"folder-download"_s));
+        m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s, u"chronometer"_s));
+        m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
+        m_ui->tabSelection->item(TAB_SEARCH)->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
+#ifndef DISABLE_WEBUI
+        m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_s, u"network-server"_s));
+#endif
+        m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
+
+        m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
+        m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
+        m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
+
+#ifndef DISABLE_WEBUI
+        webUIHttpsCertChanged(m_ui->textWebUIHttpsCert->selectedPath());
+        webUIHttpsKeyChanged(m_ui->textWebUIHttpsKey->selectedPath());
+#endif
+    };
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+
 #ifdef Q_OS_UNIX
     setWindowTitle(tr("Preferences"));
 #endif
@@ -171,19 +198,9 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->hsplitter->setCollapsible(1, false);
 
     // Main icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_s, u"folder-download"_s));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s, u"chronometer"_s));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
-    m_ui->tabSelection->item(TAB_SEARCH)->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
 #ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
-#else
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_s, u"network-server"_s));
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -488,19 +505,34 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
-    pref->setStyle(m_ui->comboStyle->currentData().toString());
+    const QString styleName = m_ui->comboStyle->currentData().toString();
+    const bool isStyleChanged = (pref->getStyle() != styleName);
+    pref->setStyle(styleName);
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
-    UIThemeManager::instance()->setColorScheme(m_ui->comboColorScheme->currentData().value<ColorScheme>());
+    const ColorScheme colorScheme = m_ui->comboColorScheme->currentData().value<ColorScheme>();
+    const bool isColorSchemeChanged = (UIThemeManager::instance()->colorScheme() != colorScheme);
+    UIThemeManager::instance()->setColorScheme(colorScheme, false);
+#else
+    constexpr bool isColorSchemeChanged = false;
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    pref->useSystemIcons(m_ui->checkUseSystemIcon->isChecked());
+    const bool useSystemIcons = m_ui->checkUseSystemIcon->isChecked();
+    const bool isSystemIconsChanged = (pref->useSystemIcons() != useSystemIcons);
+    pref->useSystemIcons(useSystemIcons);
+#else
+    constexpr bool isSystemIconsChanged = false;
 #endif
-    pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
-    pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
+    const bool useCustomTheme = m_ui->checkUseCustomTheme->isChecked();
+    const Path customThemePath = m_ui->customThemeFilePath->selectedPath();
+    const bool isCustomThemeChanged = (pref->useCustomUITheme() != useCustomTheme)
+        || (useCustomTheme && (pref->customUIThemePath() != customThemePath));
+    pref->setUseCustomUITheme(useCustomTheme);
+    pref->setCustomUIThemePath(customThemePath);
 
-    UIThemeManager::instance()->applyThemeSettings();
+    if (isStyleChanged || isColorSchemeChanged || isSystemIconsChanged || isCustomThemeChanged)
+        UIThemeManager::instance()->applyThemeSettings();
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
