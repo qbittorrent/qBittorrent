@@ -43,17 +43,21 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
 {
     m_ui->setupUi(this);
 
+    const auto applyUITheme = [this]
+    {
+        const QSize iconSize = Utils::Gui::largeIconSize();
+        m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s).pixmap(iconSize));
+        m_ui->labelWarning->setFixedWidth(iconSize.width());
+        m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
+        m_ui->rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
+    };
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+
     if (size == 1)
         m_ui->label->setText(tr("Are you sure you want to remove '%1' from the transfer list?", "Are you sure you want to remove 'ubuntu-linux-iso' from the transfer list?").arg(name.toHtmlEscaped()));
     else
         m_ui->label->setText(tr("Are you sure you want to remove these %1 torrents from the transfer list?", "Are you sure you want to remove these 5 torrents from the transfer list?").arg(QString::number(size)));
-
-    // Icons
-    const QSize iconSize = Utils::Gui::largeIconSize();
-    m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s).pixmap(iconSize));
-    m_ui->labelWarning->setFixedWidth(iconSize.width());
-    m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_s));
-    m_ui->rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
 
     m_ui->checkRemoveContent->setChecked(defaultDeleteFiles || Preferences::instance()->removeTorrentContent());
     connect(m_ui->checkRemoveContent, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);

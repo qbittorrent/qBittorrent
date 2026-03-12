@@ -50,6 +50,8 @@
 #include "colorscheme.h"
 #endif
 
+class UIThemeIconEngine;
+
 class UIThemeManager final : public QObject
 {
     Q_OBJECT
@@ -62,7 +64,7 @@ public:
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     ColorScheme colorScheme() const;
-    void setColorScheme(ColorScheme value);
+    void setColorScheme(ColorScheme value, bool apply = true);
 #endif
 
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
@@ -71,12 +73,23 @@ public:
 
     QColor getColor(const QString &id) const;
 
+    void applyThemeSettings();
+
 signals:
     void themeChanged();
 
 private:
-    UIThemeManager(); // singleton class
+    friend class UIThemeIconEngine;
 
+    UIThemeManager(); // singleton class
+    ~UIThemeManager() override;
+
+    QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
+    void loadThemeSource();
+    void clearIconCaches();
+    void notifyThemeChanged();
+    void unregisterThemeResource();
+    void applyStyle() const;
     void applyPalette() const;
     void applyStyleSheet() const;
     void onColorSchemeChanged();
@@ -86,14 +99,16 @@ private:
 #endif
 
     static UIThemeManager *m_instance;
-    const bool m_useCustomTheme;
+    const QString m_defaultStyleName;
+    bool m_useCustomTheme;
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     SettingValue<ColorScheme> m_colorSchemeSetting;
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    const bool m_useSystemIcons;
+    bool m_useSystemIcons;
 #endif
     std::unique_ptr<UIThemeSource> m_themeSource;
+    Path m_registeredResourcePath;
     mutable QHash<QString, QIcon> m_icons;
     mutable QHash<QString, QIcon> m_darkModeIcons;
     mutable QHash<QString, QIcon> m_flags;

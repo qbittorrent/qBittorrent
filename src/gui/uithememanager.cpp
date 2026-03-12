@@ -31,9 +31,12 @@
 #include "uithememanager.h"
 
 #include <QApplication>
+#include <QIconEngine>
+#include <QPainter>
 #include <QPalette>
 #include <QPixmapCache>
 #include <QResource>
+#include <QSignalBlocker>
 #include <QStyle>
 #include <QStyleHints>
 
@@ -53,6 +56,45 @@ namespace
     }
 }
 
+class UIThemeIconEngine final : public QIconEngine
+{
+public:
+    explicit UIThemeIconEngine(QString iconId, QString fallback)
+        : m_iconId {std::move(iconId)}
+        , m_fallback {std::move(fallback)}
+    {
+    }
+
+    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
+    {
+        resolvedIcon().paint(painter, rect, Qt::AlignCenter, mode, state);
+    }
+
+    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override
+    {
+        return resolvedIcon().pixmap(size, mode, state);
+    }
+
+    QIconEngine *clone() const override
+    {
+        return new UIThemeIconEngine(m_iconId, m_fallback);
+    }
+
+    QString key() const override
+    {
+        return u"UIThemeIconEngine"_s;
+    }
+
+private:
+    QIcon resolvedIcon() const
+    {
+        return UIThemeManager::instance()->loadIcon(m_iconId, m_fallback);
+    }
+
+    QString m_iconId;
+    QString m_fallback;
+};
+
 UIThemeManager *UIThemeManager::m_instance = nullptr;
 
 void UIThemeManager::freeInstance()
@@ -68,7 +110,8 @@ void UIThemeManager::initInstance()
 }
 
 UIThemeManager::UIThemeManager()
-    : m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
+    : m_defaultStyleName {QApplication::style()->name()}
+    , m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     , m_colorSchemeSetting {u"Appearance/ColorScheme"_s}
 #endif
@@ -76,11 +119,7 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
-    if (const QString styleName = Preferences::instance()->getStyle(); styleName.compare(u"system", Qt::CaseInsensitive) != 0)
-    {
-        if (!QApplication::setStyle(styleName))
-            LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
-    }
+    applyStyle();
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     applyColorScheme();
@@ -89,31 +128,18 @@ UIThemeManager::UIThemeManager()
     // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
     connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
 
-    if (m_useCustomTheme)
-    {
-        const Path themePath = Preferences::instance()->customUIThemePath();
-
-        if (themePath.hasExtension(u".qbtheme"_s))
-        {
-            if (QResource::registerResource(themePath.data(), u"/uitheme"_s))
-                m_themeSource = std::make_unique<QRCThemeSource>();
-            else
-                LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
-        }
-        else if (themePath.filename() == CONFIG_FILE_NAME)
-        {
-            m_themeSource = std::make_unique<FolderThemeSource>(themePath.parentPath());
-        }
-    }
-
-    if (!m_themeSource)
-        m_themeSource = std::make_unique<DefaultThemeSource>();
+    loadThemeSource();
 
     if (m_useCustomTheme)
     {
         applyPalette();
         applyStyleSheet();
     }
+}
+
+UIThemeManager::~UIThemeManager()
+{
+    unregisterThemeResource();
 }
 
 UIThemeManager *UIThemeManager::instance()
@@ -127,12 +153,14 @@ ColorScheme UIThemeManager::colorScheme() const
     return m_colorSchemeSetting.get(ColorScheme::System);
 }
 
-void UIThemeManager::setColorScheme(const ColorScheme value)
+void UIThemeManager::setColorScheme(const ColorScheme value, const bool apply)
 {
     if (value == colorScheme())
         return;
 
     m_colorSchemeSetting = value;
+    if (apply)
+        applyColorScheme();
 }
 
 void UIThemeManager::applyColorScheme() const
@@ -153,6 +181,74 @@ void UIThemeManager::applyColorScheme() const
 }
 #endif
 
+void UIThemeManager::loadThemeSource()
+{
+    m_themeSource.reset();
+
+    if (m_useCustomTheme)
+    {
+        const Path themePath = Preferences::instance()->customUIThemePath();
+
+        if (themePath.hasExtension(u".qbtheme"_s))
+        {
+            if (QResource::registerResource(themePath.data(), u"/uitheme"_s))
+            {
+                m_themeSource = std::make_unique<QRCThemeSource>();
+                m_registeredResourcePath = themePath;
+            }
+            else
+            {
+                LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
+            }
+        }
+        else if (themePath.filename() == CONFIG_FILE_NAME)
+        {
+            m_themeSource = std::make_unique<FolderThemeSource>(themePath.parentPath());
+        }
+    }
+
+    if (!m_themeSource)
+        m_themeSource = std::make_unique<DefaultThemeSource>();
+}
+
+void UIThemeManager::clearIconCaches()
+{
+    m_icons.clear();
+    m_darkModeIcons.clear();
+    QPixmapCache::clear();
+}
+
+void UIThemeManager::notifyThemeChanged()
+{
+    emit themeChanged();
+
+    // Work around styled widgets that need their style reapplied after theme changes.
+    QApplication::setStyle(QApplication::style()->name());
+}
+
+void UIThemeManager::unregisterThemeResource()
+{
+    if (!m_registeredResourcePath.isEmpty())
+    {
+        QResource::unregisterResource(m_registeredResourcePath.data(), u"/uitheme"_s);
+        m_registeredResourcePath = {};
+    }
+}
+
+void UIThemeManager::applyStyle() const
+{
+    const QString styleName = Preferences::instance()->getStyle();
+    if (styleName.compare(u"system"_s, Qt::CaseInsensitive) != 0)
+    {
+        if (!QApplication::setStyle(styleName))
+            LogMsg(tr("Set app style failed. Unknown style: \"%1\"").arg(styleName), Log::WARNING);
+    }
+    else
+    {
+        QApplication::setStyle(m_defaultStyleName);
+    }
+}
+
 void UIThemeManager::applyStyleSheet() const
 {
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
@@ -160,13 +256,16 @@ void UIThemeManager::applyStyleSheet() const
 
 void UIThemeManager::onColorSchemeChanged()
 {
-    emit themeChanged();
-
-    // workaround to refresh styled controls once color scheme is changed
-    QApplication::setStyle(QApplication::style()->name());
+    clearIconCaches();
+    notifyThemeChanged();
 }
 
-QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
+QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
+{
+    return QIcon(new UIThemeIconEngine(iconId, fallback));
+}
+
+QIcon UIThemeManager::loadIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
 {
     const auto colorMode = isDarkTheme() ? ColorMode::Dark : ColorMode::Light;
     auto &icons = (colorMode == ColorMode::Dark) ? m_darkModeIcons : m_icons;
@@ -229,6 +328,41 @@ QColor UIThemeManager::getColor(const QString &id) const
 {
     const QColor color = m_themeSource->getColor(id, (isDarkTheme() ? ColorMode::Dark : ColorMode::Light));
     return color;
+}
+
+void UIThemeManager::applyThemeSettings()
+{
+    const auto *pref = Preferences::instance();
+    m_useCustomTheme = pref->useCustomUITheme();
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    m_useSystemIcons = pref->useSystemIcons();
+#endif
+
+    unregisterThemeResource();
+
+    applyStyle();
+
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    const QSignalBlocker signalBlocker {qApp->styleHints()};
+    applyColorScheme();
+#endif
+
+    loadThemeSource();
+
+    if (m_useCustomTheme)
+    {
+        applyPalette();
+        applyStyleSheet();
+    }
+    else
+    {
+        qApp->setPalette(QApplication::style()->standardPalette());
+        qApp->setStyleSheet({});
+    }
+
+    clearIconCaches();
+    notifyThemeChanged();
 }
 
 void UIThemeManager::applyPalette() const
