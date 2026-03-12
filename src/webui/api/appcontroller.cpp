@@ -469,6 +469,8 @@ void AppController::preferencesAction()
     // Outgoing ports
     data[u"outgoing_ports_min"_s] = session->outgoingPortsMin();
     data[u"outgoing_ports_max"_s] = session->outgoingPortsMax();
+    // NAT-PMP gateway
+    data[u"natpmp_gateway"_s] = session->NATPMPGateway();
     // UPnP lease duration
     data[u"upnp_lease_duration"_s] = session->UPnPLeaseDuration();
     // Type of service
@@ -1135,6 +1137,12 @@ void AppController::setPreferencesAction()
         session->setOutgoingPortsMin(it.value().toInt());
     if (hasKey(u"outgoing_ports_max"_s))
         session->setOutgoingPortsMax(it.value().toInt());
+    // NAT-PMP gateway
+    if (hasKey(u"natpmp_gateway"_s))
+    {
+        const QHostAddress gatewayAddr {it.value().toString().trimmed()};
+        session->setNATPMPGateway(gatewayAddr.isNull() ? QString() : gatewayAddr.toString());
+    }
     // UPnP lease duration
     if (hasKey(u"upnp_lease_duration"_s))
         session->setUPnPLeaseDuration(it.value().toInt());
