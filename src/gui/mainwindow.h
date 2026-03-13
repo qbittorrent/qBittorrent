@@ -120,6 +120,7 @@ private slots:
     bool unlockUI();
     void notifyOfUpdate(const QString &);
     void showConnectionSettings();
+    void showRSSSettings();
     void minimizeWindow();
     // Keyboard shortcuts
     void createKeyboardShortcuts();

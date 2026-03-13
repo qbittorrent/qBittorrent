@@ -176,6 +176,8 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     connect(m_ui->splitterMain, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
     connect(m_ui->splitterSide, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
 
+    connect(m_ui->labelWarn, &QLabel::linkActivated, this, &RSSWidget::openRSSSettingsLinkActivated);
+
     if (RSS::Session::instance()->isProcessingEnabled())
         m_ui->labelWarn->hide();
     connect(RSS::Session::instance(), &RSS::Session::processingStateChanged
