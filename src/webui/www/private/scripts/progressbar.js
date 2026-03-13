@@ -47,6 +47,8 @@ window.qBittorrent.ProgressBar ??= (() => {
         };
 
         #value = 0;
+        #darkBackgroundColor = ProgressBar.#styles.darkbg;
+        #lightBackgroundColor = ProgressBar.#styles.lightbg;
 
         #id = ++ProgressBar.#progressBarUniqueId;
 
@@ -58,7 +60,7 @@ window.qBittorrent.ProgressBar ??= (() => {
 
             this.#dark.style.width = "100%";
             this.#dark.style.height = `${ProgressBar.#styles.height}px`;
-            this.#dark.style.background = ProgressBar.#styles.darkbg;
+            this.#dark.style.backgroundColor = ProgressBar.#styles.darkbg;
             this.#dark.style.boxSizing = "content-box";
             this.#dark.style.color = ProgressBar.#styles.darkfg;
             this.#dark.style.position = "absolute";
@@ -69,7 +71,7 @@ window.qBittorrent.ProgressBar ??= (() => {
 
             this.#light.style.width = "100%";
             this.#light.style.height = `${ProgressBar.#styles.height}px`;
-            this.#light.style.background = ProgressBar.#styles.lightbg;
+            this.#light.style.backgroundColor = ProgressBar.#styles.lightbg;
             this.#light.style.boxSizing = "content-box";
             this.#light.style.color = ProgressBar.#styles.lightfg;
             this.#light.style.position = "absolute";
@@ -94,6 +96,28 @@ window.qBittorrent.ProgressBar ??= (() => {
 
         getValue() {
             return this.#value;
+        }
+
+        getDarkBackgroundColor() {
+            return this.#darkBackgroundColor;
+        }
+
+        getLightBackgroundColor() {
+            return this.#lightBackgroundColor;
+        }
+
+        setDarkBackgroundColor(color) {
+            if (this.#darkBackgroundColor === color)
+                return;
+            this.#darkBackgroundColor = color;
+            this.#dark.style.backgroundColor = color;
+        }
+
+        setLightBackgroundColor(color) {
+            if (this.#lightBackgroundColor === color)
+                return;
+            this.#lightBackgroundColor = color;
+            this.#light.style.backgroundColor = color;
         }
 
         setValue(value) {
