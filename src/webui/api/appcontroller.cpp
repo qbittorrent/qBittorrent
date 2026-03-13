@@ -296,6 +296,7 @@ void AppController::preferencesAction()
 
     // Bittorrent
     // Privacy
+    data[u"good_samaritan_min_seeders"_s] = session->goodSamaritanMinSeeders();
     data[u"dht"_s] = session->isDHTEnabled();
     data[u"pex"_s] = session->isPeXEnabled();
     data[u"lsd"_s] = session->isLSDEnabled();
@@ -815,6 +816,8 @@ void AppController::setPreferencesAction()
 
     // Bittorrent
     // Privacy
+    if (hasKey(u"good_samaritan_min_seeders"_s))
+        session->setGoodSamaritanMinSeeders(it.value().toInt());
     if (hasKey(u"dht"_s))
         session->setDHTEnabled(it.value().toBool());
     if (hasKey(u"pex"_s))

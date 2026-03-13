@@ -172,6 +172,7 @@ namespace
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
         DHT_BOOTSTRAP_NODES,
+        GOOD_SAMARITAN_MIN_SEEDERS,
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
         I2P_INBOUND_QUANTITY,
         I2P_OUTBOUND_QUANTITY,
@@ -372,6 +373,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setRequestQueueSize(m_spinBoxRequestQueueSize.value());
     // DHT bootstrap nodes
     session->setDHTBootstrapNodes(m_lineEditDHTBootstrapNodes.text());
+    // Good Samaritan
+    session->setGoodSamaritanMinSeeders(m_spinBoxGoodSamaritanMinSeeders.value());
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     // I2P session options
     session->setI2PInboundQuantity(m_spinBoxI2PInboundQuantity.value());
@@ -978,6 +981,12 @@ void AdvancedSettings::loadAdvancedSettings()
     m_lineEditDHTBootstrapNodes.setText(session->getDHTBootstrapNodes());
     addRow(DHT_BOOTSTRAP_NODES, (tr("DHT bootstrap nodes") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#dht_bootstrap_nodes", u"(?)"))
         , &m_lineEditDHTBootstrapNodes);
+    // Good Samaritan
+    m_spinBoxGoodSamaritanMinSeeders.setMinimum(0);
+    m_spinBoxGoodSamaritanMinSeeders.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxGoodSamaritanMinSeeders.setSpecialValueText(tr("Disabled"));
+    m_spinBoxGoodSamaritanMinSeeders.setValue(session->goodSamaritanMinSeeders());
+    addRow(GOOD_SAMARITAN_MIN_SEEDERS, tr("Good Samaritan minimum seeders (0 = disabled)"), &m_spinBoxGoodSamaritanMinSeeders);
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
     // I2P session options
     m_spinBoxI2PInboundQuantity.setMinimum(1);
