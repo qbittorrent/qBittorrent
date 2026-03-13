@@ -61,6 +61,7 @@
 #include "api/authcontroller.h"
 #include "api/clientdatacontroller.h"
 #include "api/logcontroller.h"
+#include "api/pushcontroller.h"
 #include "api/rsscontroller.h"
 #include "api/searchcontroller.h"
 #include "api/synccontroller.h"
@@ -172,6 +173,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_authController {new AuthController(this, app, this)}
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
+    , m_pushController{new PushController(app, this)}
 {
     declarePublicAPI(u"auth/login"_s);
 
@@ -849,6 +851,8 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
 
     m_currentSession = WebSession::create(sessionType, sessionId);
     m_sessions[m_currentSession->id()] = m_currentSession;
+
+    m_currentSession->registerAPIController(u"push"_s, m_pushController);
 
     m_currentSession->registerAPIController(u"app"_s, new AppController(app(), m_currentSession));
     m_currentSession->registerAPIController(u"clientdata"_s, new ClientDataController(m_clientDataStorage, app(), m_currentSession));
