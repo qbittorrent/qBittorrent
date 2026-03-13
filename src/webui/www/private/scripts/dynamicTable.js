@@ -1171,7 +1171,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["name"].dataProperties.push("state");
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
-            this.columns["progress"].dataProperties.push("state");
             this.columns["time_active"].dataProperties.push("seeding_time");
 
             this.initColumnsFunctions();
@@ -1362,7 +1361,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["category"].compareRows = this.columns["name"].compareRows;
             this.columns["tags"].compareRows = this.columns["name"].compareRows;
 
-            const getProgressBarFilledBackgroundColor = (state) => {
+            const getProgressColor = (state) => {
                 // Keep in sync with torrentStateToString() in serialize_torrent.cpp.
                 switch (state) {
                     case "downloading":
@@ -1406,22 +1405,19 @@ window.qBittorrent.DynamicTable ??= (() => {
             // progress
             this.columns["progress"].updateTd = function(td, row) {
                 const progress = this.getRowValue(row);
-                const state = this.getRowValue(row, 1);
-                const progressPercentage = Number(window.qBittorrent.Misc.toFixedPointString((progress * 100), 1));
+                const progressFormatted = window.qBittorrent.Misc.toFixedPointString((progress * 100), 1);
+                const state = row.full_data.state;
 
                 let progressBar = td.firstElementChild;
                 if (progressBar !== null) {
-                    if (progressBar.getValue() !== progressPercentage)
-                        progressBar.setValue(progressPercentage);
+                    progressBar.setValue(progressFormatted);
                 }
                 else {
-                    progressBar = new window.qBittorrent.ProgressBar.ProgressBar(progressPercentage);
+                    progressBar = new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted);
                     td.append(progressBar);
                 }
 
-                const filledBackgroundColor = getProgressBarFilledBackgroundColor(state);
-                if (progressBar.getFilledBackgroundColor() !== filledBackgroundColor)
-                    progressBar.setFilledBackgroundColor(filledBackgroundColor);
+                progressBar.setDarkBackgroundColor(getProgressColor(state));
             };
             this.columns["progress"].staticWidth = 100;
 
