@@ -32,6 +32,7 @@
 
 class QLabel;
 class QPushButton;
+class QStyle;
 
 namespace BitTorrent
 {
@@ -61,6 +62,7 @@ private slots:
     void optionsSaved();
 
 private:
+    void applyStatusBarStyle();
     void updateConnectionStatus();
     void updateDHTNodesNumber();
     void updateFreeDiskSpaceLabel(qint64 value);
@@ -69,6 +71,7 @@ private:
     void updateExternalAddressesVisibility();
     void updateSpeedLabels();
 
+    QStyle *m_statusBarStyle = nullptr;
     QPushButton *m_dlSpeedLbl = nullptr;
     QPushButton *m_upSpeedLbl = nullptr;
     QLabel *m_freeDiskSpaceLbl = nullptr;

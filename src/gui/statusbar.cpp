@@ -33,6 +33,7 @@
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QProxyStyle>
 #include <QPushButton>
 #include <QStyle>
 
@@ -46,6 +47,21 @@
 
 namespace
 {
+    class StatusBarStyle final : public QProxyStyle
+    {
+    public:
+        using QProxyStyle::QProxyStyle;
+
+        void drawPrimitive(PrimitiveElement element, const QStyleOption *option,
+                           QPainter *painter, const QWidget *widget = nullptr) const override
+        {
+            // Suppress the frame around individual status bar items without using a stylesheet.
+            if (element == PE_FrameStatusBarItem)
+                return;
+            QProxyStyle::drawPrimitive(element, option, painter, widget);
+        }
+    };
+
     QWidget *createSeparator(QWidget *parent)
     {
         QFrame *separator = new QFrame(parent);
@@ -57,13 +73,29 @@ namespace
     }
 }
 
+void StatusBar::applyStatusBarStyle()
+{
+#ifndef Q_OS_MACOS
+    if (m_statusBarStyle)
+    {
+        setStyle(QApplication::style());
+        delete m_statusBarStyle;
+        m_statusBarStyle = nullptr;
+    }
+
+    m_statusBarStyle = new StatusBarStyle(QApplication::style()->name());
+    m_statusBarStyle->setParent(this);
+    setStyle(m_statusBarStyle);
+#endif
+}
+
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
 #ifndef Q_OS_MACOS
-    // Redefining global stylesheet breaks certain elements on mac like tabs.
-    // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
-    setStyleSheet(u"QStatusBar::item { border-width: 0; }"_s);
+    applyStatusBarStyle();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged
+        , this, &StatusBar::applyStatusBarStyle, Qt::QueuedConnection);
 #endif
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
@@ -153,7 +185,7 @@ StatusBar::StatusBar(QWidget *parent)
     layout->addWidget(m_upSpeedLbl);
 
     addPermanentWidget(container);
-    setStyleSheet(u"QWidget {margin: 0;}"_s);
+    container->setStyleSheet(u"QWidget {margin: 0;}"_s);
     container->adjustSize();
     adjustSize();
     updateFreeDiskSpaceVisibility();
@@ -184,11 +216,13 @@ void StatusBar::showRestartRequired()
     const QPixmap pixmap = style()->standardIcon(QStyle::SP_MessageBoxWarning).pixmap(Utils::Gui::smallIconSize());
     auto *restartIconLbl = new QLabel(this);
     restartIconLbl->setPixmap(pixmap);
+    restartIconLbl->setStyleSheet(u"margin: 0;"_s);
     restartIconLbl->setToolTip(restartText);
     insertWidget(0, restartIconLbl);
 
     auto *restartLbl = new QLabel(this);
     restartLbl->setText(restartText);
+    restartLbl->setStyleSheet(u"margin: 0;"_s);
     insertWidget(1, restartLbl);
 }
 
