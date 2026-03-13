@@ -26,18 +26,13 @@
  * exception statement from your version.
  */
 
-import { afterEach, expect, test } from "vitest";
+import { expect, test } from "vitest";
 
 import "../../private/scripts/misc.js";
 import "../../private/scripts/progressbar.js";
 
-afterEach(() => {
-    document.body.replaceChildren();
-});
-
 test("Test ProgressBar numeric value handling", () => {
     const progressBar = new window.qBittorrent.ProgressBar.ProgressBar("12.5");
-    document.body.append(progressBar);
 
     expect(progressBar.getValue()).toBe(12.5);
     expect(progressBar.shadowRoot.firstElementChild.textContent).toBe("12.5%");
@@ -52,18 +47,17 @@ test("Test ProgressBar numeric value handling", () => {
     expect(progressBar.shadowRoot.firstElementChild.textContent).toBe("100.0%");
 });
 
-test("Test ProgressBar filled background color setter", () => {
+test("Test ProgressBar dark background color setter", () => {
     const progressBar = new window.qBittorrent.ProgressBar.ProgressBar(50);
-    document.body.append(progressBar);
 
-    expect(progressBar.getFilledBackgroundColor()).toBe("var(--color-background-blue)");
+    expect(progressBar.getDarkBackgroundColor()).toBe("var(--color-background-blue)");
     expect(progressBar.shadowRoot.firstElementChild.style.backgroundColor).toBe("var(--color-background-blue)");
     expect(progressBar.shadowRoot.lastElementChild.style.backgroundColor).toBe("var(--color-background-default)");
 
-    progressBar.setFilledBackgroundColor("rgb(255, 0, 0)");
-    progressBar.setFilledBackgroundColor("rgb(255, 0, 0)");
+    progressBar.setDarkBackgroundColor("rgb(255, 0, 0)");
+    progressBar.setDarkBackgroundColor("rgb(255, 0, 0)");
 
-    expect(progressBar.getFilledBackgroundColor()).toBe("rgb(255, 0, 0)");
+    expect(progressBar.getDarkBackgroundColor()).toBe("rgb(255, 0, 0)");
     expect(progressBar.shadowRoot.firstElementChild.style.backgroundColor).toBe("rgb(255, 0, 0)");
     expect(progressBar.shadowRoot.lastElementChild.style.backgroundColor).toBe("var(--color-background-default)");
 });
