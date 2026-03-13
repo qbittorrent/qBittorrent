@@ -34,16 +34,20 @@
 #include <QDialog>
 #include <QHash>
 #include <QSet>
+#include <QList>
 
 #include "base/rss/rss_autodownloadrule.h"
 #include "base/settingvalue.h"
 
 class QListWidgetItem;
+class QTreeWidgetItem;
 class QRegularExpression;
 
 namespace RSS
 {
     class Feed;
+    class Folder;
+    class Item;
 }
 
 namespace Ui
@@ -69,7 +73,7 @@ private slots:
     void onImportBtnClicked();
     void onRenameRuleBtnClicked();
     void handleRuleCheckStateChange(QListWidgetItem *ruleItem);
-    void handleFeedCheckStateChange(QListWidgetItem *feedItem);
+    void handleFeedCheckStateChange(QTreeWidgetItem *feedItem, int column);
     void displayRulesListMenu();
     void renameSelectedRule();
     void updateRuleDefinitionBox();
@@ -95,6 +99,10 @@ private:
     void updateMatchingArticles();
     void saveEditedRule();
     void loadFeedList();
+    QTreeWidgetItem *createFeedTreeItem(const RSS::Item *rssItem, QTreeWidgetItem *parentItem);
+    QList<QTreeWidgetItem *>getAllFeedTreeItems(QTreeWidgetItem *parent = nullptr) const;
+    void loadFeedTree(QTreeWidgetItem *parent, const RSS::Folder *rssParent);
+    void sortTreeRecursively(QTreeWidgetItem *item);
     void updateFeedList();
     void addFeedArticlesToTree(RSS::Feed *feed, const QStringList &articles);
 
