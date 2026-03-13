@@ -692,9 +692,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     }
     catch (const HTTPError &error)
     {
-        m_response.status = {.code = error.statusCode(), .text = error.statusText()};
+        const Http::ResponseStatus &errorStatus = error.status();
+        m_response.status = errorStatus;
         m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
-        m_response.content = (!error.message().isEmpty() ? error.message() : error.statusText()).toUtf8();
+        m_response.content = (!error.message().isEmpty() ? error.message() : errorStatus.text).toUtf8();
     }
 
     return m_response;
