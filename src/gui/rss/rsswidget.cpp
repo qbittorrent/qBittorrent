@@ -176,9 +176,6 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     connect(m_ui->splitterMain, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
     connect(m_ui->splitterSide, &QSplitter::splitterMoved, this, &RSSWidget::saveSlidersPosition);
 
-    m_ui->labelWarn->setText(tr("Fetching of RSS feeds is disabled now! You can enable it in %1.")
-        .arg(u"<a href=\"#\" style=\"color: red; text-decoration: underline;\">%1</a>"_s
-            .arg(tr("application settings"))));
     connect(m_ui->labelWarn, &QLabel::linkActivated, this, &RSSWidget::openRSSSettingsLinkActivated);
 
     if (RSS::Session::instance()->isProcessingEnabled())
