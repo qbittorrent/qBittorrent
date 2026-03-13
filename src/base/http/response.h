@@ -40,7 +40,7 @@ namespace Http
 {
     struct ResponseStatus
     {
-        int code = 200;
+        int code = 0;
         QString text {};
     };
 
