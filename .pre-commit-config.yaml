@@ -27,30 +27,10 @@ repos:
     - id: check-yaml
       name: Check YAML files
 
-    - id: fix-byte-order-marker
-      name: Check file encoding (UTF-8 without BOM)
-      exclude: |
-        (?x)^(
-          src/base/unicodestrings.h
-        )$
-
-    - id: mixed-line-ending
-      name: Check line ending character (LF)
-      args: ["--fix=lf"]
-      exclude: |
-        (?x)^(
-          src/base/3rdparty/expected.hpp |
-          src/webui/www/private/css/lib/.* |
-          src/webui/www/private/scripts/lib/.* |
-          dist/windows/license.txt |
-          test/testdata/crlf.txt
-        )$
-
     - id: end-of-file-fixer
       name: Check trailing newlines
       exclude: |
         (?x)^(
-          configure |
           src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.* |
           test/testdata/crlf.txt
@@ -59,15 +39,11 @@ repos:
         - svg
         - ts
 
-    - id: trailing-whitespace
-      name: Check trailing whitespaces
-      exclude: |
-        (?x)^(
-          src/webui/www/private/css/lib/.* |
-          src/webui/www/private/scripts/lib/.*
-        )$
-      exclude_types:
-        - ts
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python.git
+    rev: 3.6.1
+    hooks:
+    - id: editorconfig-checker
+      name: Check code formatting (EditorConfig)
 
   - repo: https://github.com/codespell-project/codespell.git
     rev: v2.4.2
