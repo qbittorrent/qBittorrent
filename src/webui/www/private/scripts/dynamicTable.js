@@ -1171,8 +1171,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["name"].dataProperties.push("state");
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
-            this.columns["time_active"].dataProperties.push("seeding_time");
             this.columns["progress"].dataProperties.push("state");
+            this.columns["time_active"].dataProperties.push("seeding_time");
 
             this.initColumnsFunctions();
         }
@@ -1362,17 +1362,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["category"].compareRows = this.columns["name"].compareRows;
             this.columns["tags"].compareRows = this.columns["name"].compareRows;
 
-            const getProgressColor = (state) => {
+            const getProgressBarFilledBackgroundColor = (state) => {
+                // Keep in sync with torrentStateToString() in serialize_torrent.cpp.
                 switch (state) {
                     case "downloading":
                     case "forcedDL":
                     case "metaDL":
                     case "forcedMetaDL":
                         return "var(--color-progress-downloading)";
-                    case "uploading":
-                    case "forcedUP":
-                    case "stalledUP":
-                        return "var(--color-progress-seeding)";
                     case "stalledDL":
                         return "var(--color-progress-stalled)";
                     case "stoppedDL":
@@ -1387,12 +1384,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                     case "checkingResumeData":
                     case "moving":
                         return "var(--color-progress-checking)";
+                    case "uploading":
+                    case "forcedUP":
+                    case "stalledUP":
+                        return "var(--color-progress-seeding)";
                     case "error":
                     case "unknown":
                     case "missingFiles":
                         return "var(--color-progress-error)";
-                    default:
-                        return "var(--color-progress-downloading)";
                 }
             };
 
@@ -1407,21 +1406,22 @@ window.qBittorrent.DynamicTable ??= (() => {
             // progress
             this.columns["progress"].updateTd = function(td, row) {
                 const progress = this.getRowValue(row);
-                const progressFormatted = window.qBittorrent.Misc.toFixedPointString((progress * 100), 1);
+                const state = this.getRowValue(row, 1);
+                const progressPercentage = Number(window.qBittorrent.Misc.toFixedPointString((progress * 100), 1));
 
                 let progressBar = td.firstElementChild;
                 if (progressBar !== null) {
-                    if (progressBar.getValue() !== progressFormatted)
-                        progressBar.setValue(progressFormatted);
+                    if (progressBar.getValue() !== progressPercentage)
+                        progressBar.setValue(progressPercentage);
                 }
                 else {
-                    progressBar = new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted);
+                    progressBar = new window.qBittorrent.ProgressBar.ProgressBar(progressPercentage);
                     td.append(progressBar);
                 }
 
-                const progressColor = getProgressColor(row.full_data.state);
-                if (progressBar.getColor() !== progressColor)
-                    progressBar.setColor(progressColor);
+                const filledBackgroundColor = getProgressBarFilledBackgroundColor(state);
+                if (progressBar.getFilledBackgroundColor() !== filledBackgroundColor)
+                    progressBar.setFilledBackgroundColor(filledBackgroundColor);
             };
             this.columns["progress"].staticWidth = 100;
 

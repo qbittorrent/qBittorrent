@@ -47,7 +47,7 @@ window.qBittorrent.ProgressBar ??= (() => {
         };
 
         #value = 0;
-        #color = ProgressBar.#styles.darkbg;
+        #filledBackgroundColor = ProgressBar.#styles.darkbg;
 
         #id = ++ProgressBar.#progressBarUniqueId;
 
@@ -59,7 +59,7 @@ window.qBittorrent.ProgressBar ??= (() => {
 
             this.#dark.style.width = "100%";
             this.#dark.style.height = `${ProgressBar.#styles.height}px`;
-            this.#dark.style.background = ProgressBar.#styles.darkbg;
+            this.#dark.style.backgroundColor = ProgressBar.#styles.darkbg;
             this.#dark.style.boxSizing = "content-box";
             this.#dark.style.color = ProgressBar.#styles.darkfg;
             this.#dark.style.position = "absolute";
@@ -70,7 +70,7 @@ window.qBittorrent.ProgressBar ??= (() => {
 
             this.#light.style.width = "100%";
             this.#light.style.height = `${ProgressBar.#styles.height}px`;
-            this.#light.style.background = ProgressBar.#styles.lightbg;
+            this.#light.style.backgroundColor = ProgressBar.#styles.lightbg;
             this.#light.style.boxSizing = "content-box";
             this.#light.style.color = ProgressBar.#styles.lightfg;
             this.#light.style.position = "absolute";
@@ -97,15 +97,15 @@ window.qBittorrent.ProgressBar ??= (() => {
             return this.#value;
         }
 
-        getColor() {
-            return this.#color;
+        getFilledBackgroundColor() {
+            return this.#filledBackgroundColor;
         }
 
-        setColor(color) {
-            if (this.#color === color)
+        setFilledBackgroundColor(color) {
+            if (this.#filledBackgroundColor === color)
                 return;
-            this.#color = color;
-            this.#dark.style.background = color;
+            this.#filledBackgroundColor = color;
+            this.#dark.style.backgroundColor = color;
         }
 
         setValue(value) {
