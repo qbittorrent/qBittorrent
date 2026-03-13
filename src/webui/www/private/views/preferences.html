@@ -1373,6 +1373,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="text" id="pythonExecutablePath" class="pathFile" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label for="goodSamaritanMinSeeders">QBT_TR(Good Samaritan minimum seeders (0 = disabled):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="number" id="goodSamaritanMinSeeders" min="0" style="width: 6em;">
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -2688,6 +2696,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("appInstanceName").value = pref.app_instance_name;
                     document.getElementById("refreshInterval").value = pref.refresh_interval;
                     document.getElementById("resolvePeerHostNames").checked = pref.resolve_peer_host_names;
+                    document.getElementById("goodSamaritanMinSeeders").value = pref.good_samaritan_min_seeders;
                     document.getElementById("resolvePeerCountries").checked = pref.resolve_peer_countries;
                     document.getElementById("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
                     document.getElementById("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
@@ -3176,6 +3185,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["app_instance_name"] = document.getElementById("appInstanceName").value;
             settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
             settings["resolve_peer_host_names"] = document.getElementById("resolvePeerHostNames").checked;
+            settings["good_samaritan_min_seeders"] = Number(document.getElementById("goodSamaritanMinSeeders").value);
             settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
             settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
             settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;

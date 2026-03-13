@@ -191,6 +191,8 @@ namespace BitTorrent
 
         QString getDHTBootstrapNodes() const override;
         void setDHTBootstrapNodes(const QString &nodes) override;
+        int goodSamaritanMinSeeders() const override;
+        void setGoodSamaritanMinSeeders(int minSeeders) override;
         bool isDHTEnabled() const override;
         void setDHTEnabled(bool enabled) override;
         bool isLSDEnabled() const override;
@@ -653,6 +655,7 @@ namespace BitTorrent
         void updateTrackersFromFile();
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
+        CachedSettingValue<int> m_goodSamaritanMinSeeders;
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
         CachedSettingValue<bool> m_isPeXEnabled;
