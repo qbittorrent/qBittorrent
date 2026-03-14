@@ -42,6 +42,8 @@
 #include "trackerentry.h"
 #include "trackerentrystatus.h"
 
+#include <libtorrent/version.hpp>
+
 class QString;
 
 namespace BitTorrent
@@ -94,7 +96,10 @@ namespace BitTorrent
             Default = 0,
             MMap = 1,
             Posix = 2,
-            SimplePreadPwrite = 3
+            SimplePreadPwrite = 3,
+#if LIBTORRENT_VERSION_NUM >= 20100
+            Pread = 4
+#endif
         };
         Q_ENUM_NS(DiskIOType)
 

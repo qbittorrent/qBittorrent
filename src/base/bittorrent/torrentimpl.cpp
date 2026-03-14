@@ -330,10 +330,17 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
 {
     if (m_ltAddTorrentParams.ti)
     {
+#if LIBTORRENT_VERSION_NUM >= 20100
+        if (m_ltAddTorrentParams.creation_date > 0)
+            m_creationDate = QDateTime::fromSecsSinceEpoch(m_ltAddTorrentParams.creation_date);
+        m_creator = QString::fromStdString(m_ltAddTorrentParams.created_by);
+        m_comment = QString::fromStdString(m_ltAddTorrentParams.comment);
+#else
         if (const std::time_t creationDate = m_ltAddTorrentParams.ti->creation_date(); creationDate > 0)
             m_creationDate = QDateTime::fromSecsSinceEpoch(creationDate);
         m_creator = QString::fromStdString(m_ltAddTorrentParams.ti->creator());
         m_comment = QString::fromStdString(m_ltAddTorrentParams.ti->comment());
+#endif
 
         // Initialize it only if torrent is added with metadata.
         // Otherwise it should be initialized in "Metadata received" handler.
@@ -861,7 +868,16 @@ bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
 
 bool TorrentImpl::needSaveResumeData() const
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    // notably, if just counters have changed, no need to save resume data
+    return bool(m_nativeStatus.need_save_resume_data & (lt::torrent_handle::if_download_progress
+            | lt::torrent_handle::if_config_changed
+            | lt::torrent_handle::if_state_changed
+            | lt::torrent_handle::if_metadata_changed
+            ));
+#else
     return m_nativeStatus.need_save_resume;
+#endif
 }
 
 void TorrentImpl::requestResumeData(const lt::resume_data_flags_t flags)
@@ -2105,7 +2121,7 @@ void TorrentImpl::handleTorrentChecked()
             }
         }
 
-        if (m_nativeStatus.need_save_resume)
+        if (needSaveResumeData())
             deferredRequestResumeData();
 
         m_session->handleTorrentChecked(this);
