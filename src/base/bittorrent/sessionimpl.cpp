@@ -1761,7 +1761,7 @@ void SessionImpl::initializeNativeSession()
         sessionParams.disk_io_constructor = customMMapDiskIOConstructor;
         break;
 #if LIBTORRENT_VERSION_NUM >= 20100
-    case DiskIOType::Pread:
+    case DiskIOType::PreadPwrite:
         sessionParams.disk_io_constructor = customPreadDiskIOConstructor;
         break;
 #endif

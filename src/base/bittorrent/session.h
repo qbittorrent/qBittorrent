@@ -98,7 +98,7 @@ namespace BitTorrent
             Posix = 2,
             SimplePreadPwrite = 3,
 #if LIBTORRENT_VERSION_NUM >= 20100
-            Pread = 4
+            PreadPwrite = 4
 #endif
         };
         Q_ENUM_NS(DiskIOType)

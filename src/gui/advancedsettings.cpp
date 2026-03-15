@@ -602,7 +602,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxDiskIOType.addItem(tr("POSIX-compliant"), QVariant::fromValue(BitTorrent::DiskIOType::Posix));
     m_comboBoxDiskIOType.addItem(tr("Simple pread/pwrite"), QVariant::fromValue(BitTorrent::DiskIOType::SimplePreadPwrite));
 #if LIBTORRENT_VERSION_NUM >= 20100
-    m_comboBoxDiskIOType.addItem(tr("Pread/pwrite"), QVariant::fromValue(BitTorrent::DiskIOType::Pread));
+    m_comboBoxDiskIOType.addItem(tr("Pread/pwrite"), QVariant::fromValue(BitTorrent::DiskIOType::PreadPwrite));
 #endif
     m_comboBoxDiskIOType.setCurrentIndex(m_comboBoxDiskIOType.findData(QVariant::fromValue(session->diskIOType())));
     addRow(DISK_IO_TYPE, tr("Disk IO type (requires restart)") + u' ' + makeLink(u"https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor", u"(?)")
