@@ -1179,54 +1179,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumnsFunctions() {
             const getStateIconClasses = (state) => {
-                let stateClass = "stateUnknown";
-                // normalize states
-                switch (state) {
-                    case "forcedDL":
-                    case "metaDL":
-                    case "forcedMetaDL":
-                    case "downloading":
-                        stateClass = "stateDownloading";
-                        break;
-                    case "forcedUP":
-                    case "uploading":
-                        stateClass = "stateUploading";
-                        break;
-                    case "stalledUP":
-                        stateClass = "stateStalledUP";
-                        break;
-                    case "stalledDL":
-                        stateClass = "stateStalledDL";
-                        break;
-                    case "stoppedDL":
-                        stateClass = "stateStoppedDL";
-                        break;
-                    case "stoppedUP":
-                        stateClass = "stateStoppedUP";
-                        break;
-                    case "queuedDL":
-                    case "queuedUP":
-                        stateClass = "stateQueued";
-                        break;
-                    case "checkingDL":
-                    case "checkingUP":
-                    case "queuedForChecking":
-                    case "checkingResumeData":
-                        stateClass = "stateChecking";
-                        break;
-                    case "moving":
-                        stateClass = "stateMoving";
-                        break;
-                    case "error":
-                    case "unknown":
-                    case "missingFiles":
-                        stateClass = "stateError";
-                        break;
-                    default:
-                        break; // do nothing
-                }
-
-                return `stateIcon ${stateClass}`;
+                return `stateIcon ${window.qBittorrent.Misc.getTorrentStateInfo(state).stateIconClass}`;
             };
 
             // state_icon
@@ -1270,63 +1223,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 if (!state)
                     return;
 
-                let status;
-                switch (state) {
-                    case "downloading":
-                        status = "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "stalledDL":
-                        status = "QBT_TR(Stalled)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "metaDL":
-                        status = "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "forcedMetaDL":
-                        status = "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "forcedDL":
-                        status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "uploading":
-                    case "stalledUP":
-                        status = "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "forcedUP":
-                        status = "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "queuedDL":
-                    case "queuedUP":
-                        status = "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "checkingDL":
-                    case "checkingUP":
-                        status = "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "queuedForChecking":
-                        status = "QBT_TR(Queued for checking)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "checkingResumeData":
-                        status = "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "stoppedDL":
-                        status = "QBT_TR(Stopped)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "stoppedUP":
-                        status = "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "moving":
-                        status = "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "missingFiles":
-                        status = "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    case "error":
-                        status = "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]";
-                        break;
-                    default:
-                        status = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]";
-                }
-
+                const status = window.qBittorrent.Misc.getTorrentStateInfo(state).statusText;
                 td.textContent = status;
                 td.title = status;
             };
@@ -1362,39 +1259,6 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["category"].compareRows = this.columns["name"].compareRows;
             this.columns["tags"].compareRows = this.columns["name"].compareRows;
 
-            const getProgressColor = (state) => {
-                // Keep in sync with torrentStateToString() in serialize_torrent.cpp.
-                switch (state) {
-                    case "downloading":
-                    case "forcedDL":
-                    case "metaDL":
-                    case "forcedMetaDL":
-                        return "var(--color-progress-downloading)";
-                    case "stalledDL":
-                        return "var(--color-progress-stalled)";
-                    case "stoppedDL":
-                    case "stoppedUP":
-                        return "var(--color-progress-stopped)";
-                    case "queuedDL":
-                    case "queuedUP":
-                        return "var(--color-progress-queued)";
-                    case "checkingDL":
-                    case "checkingUP":
-                    case "queuedForChecking":
-                    case "checkingResumeData":
-                    case "moving":
-                        return "var(--color-progress-checking)";
-                    case "uploading":
-                    case "forcedUP":
-                    case "stalledUP":
-                        return "var(--color-progress-seeding)";
-                    case "error":
-                    case "unknown":
-                    case "missingFiles":
-                        return "var(--color-progress-error)";
-                }
-            };
-
             // size, total_size
             this.columns["size"].updateTd = function(td, row) {
                 const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
@@ -1415,7 +1279,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const progressBar = td.firstElementChild;
                 const state = row.full_data.state;
-                progressBar.setBarColor(getProgressColor(state));
+                progressBar.setBarColor(window.qBittorrent.Misc.getTorrentStateInfo(state).progressColor);
             };
             this.columns["progress"].staticWidth = 100;
 
@@ -1613,39 +1477,40 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         applyFilter(row, filterName, category, tag, trackerHost, filterTerms) {
             const { state, upspeed, dlspeed } = row["full_data"];
+            const stateInfo = window.qBittorrent.Misc.getTorrentStateInfo(state);
             let inactive = false;
 
             switch (filterName) {
                 case "downloading":
-                    if ((state !== "downloading") && !state.includes("DL"))
+                    if (!stateInfo.matchesDownloadFilter)
                         return false;
                     break;
                 case "seeding":
-                    if ((state !== "uploading") && (state !== "forcedUP") && (state !== "stalledUP") && (state !== "queuedUP") && (state !== "checkingUP"))
+                    if (!stateInfo.matchesSeedingFilter)
                         return false;
                     break;
                 case "completed":
-                    if ((state !== "uploading") && !state.includes("UP"))
+                    if (!stateInfo.matchesCompletedFilter)
                         return false;
                     break;
                 case "stopped":
-                    if (!state.includes("stopped"))
+                    if (!stateInfo.isStopped)
                         return false;
                     break;
                 case "running":
-                    if (state.includes("stopped"))
+                    if (stateInfo.isStopped)
                         return false;
                     break;
                 case "stalled":
-                    if ((state !== "stalledUP") && (state !== "stalledDL"))
+                    if (!stateInfo.isStalled)
                         return false;
                     break;
                 case "stalled_uploading":
-                    if (state !== "stalledUP")
+                    if (!stateInfo.isStalledUploading)
                         return false;
                     break;
                 case "stalled_downloading":
-                    if (state !== "stalledDL")
+                    if (!stateInfo.isStalledDownloading)
                         return false;
                     break;
                 case "inactive":
@@ -1658,15 +1523,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                     break;
                 }
                 case "checking":
-                    if ((state !== "checkingUP") && (state !== "checkingDL") && (state !== "checkingResumeData"))
+                    if (!stateInfo.isChecking)
                         return false;
                     break;
                 case "moving":
-                    if (state !== "moving")
+                    if (!stateInfo.isMoving)
                         return false;
                     break;
                 case "errored":
-                    if ((state !== "error") && (state !== "unknown") && (state !== "missingFiles"))
+                    if (!stateInfo.isErrored)
                         return false;
                     break;
             }
@@ -1840,21 +1705,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.selectRow(tr.rowId);
                 const row = this.getRow(tr.rowId);
                 const state = row["full_data"].state;
+                const stateInfo = window.qBittorrent.Misc.getTorrentStateInfo(state);
 
-                const prefKey =
-                    (state !== "uploading")
-                    && (state !== "stoppedUP")
-                    && (state !== "forcedUP")
-                    && (state !== "stalledUP")
-                    && (state !== "queuedUP")
-                    && (state !== "checkingUP")
-                    ? "dblclick_download"
-                    : "dblclick_complete";
+                const prefKey = stateInfo.matchesCompletedFilter ? "dblclick_complete" : "dblclick_download";
 
                 if (clientData.get(prefKey) !== "1")
                     return true;
 
-                if (state.includes("stopped"))
+                if (stateInfo.isStopped)
                     startFN();
                 else
                     stopFN();
@@ -1871,7 +1729,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         isStopped(hash) {
             const row = this.getRow(hash);
-            return (row === undefined) ? true : row.full_data.state.includes("stopped");
+            return (row === undefined) ? true : window.qBittorrent.Misc.getTorrentStateInfo(row.full_data.state).isStopped;
         }
     }
 

@@ -43,6 +43,63 @@ test("Test filterInPlace()", () => {
     expect(filterInPlace([1, 2, 3, 4], (x => (x % 2) === 0))).toStrictEqual([2, 4]);
 });
 
+test("Test getTorrentStateInfo()", () => {
+    const getTorrentStateInfo = window.qBittorrent.Misc.getTorrentStateInfo;
+
+    expect(getTorrentStateInfo("downloading")).toMatchObject({
+        sortOrder: 1,
+        stateIconClass: "stateDownloading",
+        progressColor: "var(--color-progress-downloading)",
+        statusText: "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]",
+        matchesDownloadFilter: true
+    });
+
+    expect(getTorrentStateInfo("checkingUP")).toMatchObject({
+        sortOrder: 11,
+        progressColor: "var(--color-progress-checking)",
+        matchesSeedingFilter: true,
+        matchesCompletedFilter: true,
+        isChecking: true
+    });
+
+    expect(getTorrentStateInfo("queuedForChecking")).toMatchObject({
+        sortOrder: 10,
+        stateIconClass: "stateChecking",
+        progressColor: "var(--color-progress-checking)",
+        statusText: "QBT_TR(Queued for checking)QBT_TR[CONTEXT=TransferListDelegate]",
+        isQueued: true,
+        isChecking: false
+    });
+
+    expect(getTorrentStateInfo("stoppedUP")).toMatchObject({
+        sortOrder: 14,
+        stateIconClass: "stateStoppedUP",
+        progressColor: "var(--color-progress-stopped)",
+        matchesCompletedFilter: true,
+        isStopped: true
+    });
+
+    expect(getTorrentStateInfo("metaDL")).toMatchObject({
+        stateIconClass: "stateDownloading",
+        isMetadataDownloading: true
+    });
+
+    expect(getTorrentStateInfo("unknown")).toMatchObject({
+        sortOrder: -1,
+        stateIconClass: "stateError",
+        progressColor: "var(--color-progress-error)",
+        statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]",
+        isErrored: true
+    });
+
+    expect(getTorrentStateInfo("notARealState")).toMatchObject({
+        sortOrder: -1,
+        stateIconClass: "stateUnknown",
+        progressColor: undefined,
+        isStopped: false
+    });
+});
+
 test("Test toFixedPointString()", () => {
     const toFixedPointString = window.qBittorrent.Misc.toFixedPointString;
 
