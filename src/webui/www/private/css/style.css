@@ -14,6 +14,7 @@
     --color-background-blue: hsl(210deg 65% 55%);
     --color-background-popup: hsl(0deg 0% 100%);
     --color-background-default: hsl(0deg 0% 94%);
+    --color-background-disabled: hsl(0deg 0% 60%);
     --color-background-hover: hsl(26deg 80% 60%);
     --color-border-blue: hsl(210deg 42% 48%);
     --color-border-default: hsl(0deg 0% 85%);
@@ -50,6 +51,7 @@
         --color-background-blue: hsl(210deg 45% 38%);
         --color-background-popup: hsl(220deg 10% 14%);
         --color-background-default: hsl(220deg 10% 18%);
+        --color-background-disabled: hsl(220deg 5% 48%);
         --color-background-hover: hsl(26deg 35% 38%);
         --color-border-default: hsl(220deg 8% 22%);
         --color-progress-downloading: hsl(210deg 45% 38%);
