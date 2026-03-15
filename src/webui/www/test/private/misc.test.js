@@ -118,6 +118,37 @@ test("Test compareVersions()", () => {
 
 test("Test getTorrentStateInfo()", () => {
     const getTorrentStateInfo = window.qBittorrent.Misc.getTorrentStateInfo;
+    const fallbackStateInfo = getTorrentStateInfo("notARealState");
+
+    const apiStates = [
+        "error",
+        "missingFiles",
+        "uploading",
+        "stoppedUP",
+        "queuedUP",
+        "stalledUP",
+        "checkingUP",
+        "forcedUP",
+        "downloading",
+        "metaDL",
+        "forcedMetaDL",
+        "stoppedDL",
+        "queuedDL",
+        "stalledDL",
+        "checkingDL",
+        "forcedDL",
+        "checkingResumeData",
+        "moving",
+        "unknown"
+    ];
+
+    for (const state of apiStates) {
+        const stateInfo = getTorrentStateInfo(state);
+
+        expect(stateInfo).not.toBe(fallbackStateInfo);
+        expect(stateInfo.stateIconClass).not.toBe("stateUnknown");
+        expect(stateInfo.statusText).toBeTypeOf("string");
+    }
 
     expect(getTorrentStateInfo("downloading")).toMatchObject({
         sortOrder: 1,
@@ -165,7 +196,7 @@ test("Test getTorrentStateInfo()", () => {
         isErrored: true
     });
 
-    expect(getTorrentStateInfo("notARealState")).toMatchObject({
+    expect(fallbackStateInfo).toMatchObject({
         sortOrder: -1,
         stateIconClass: "stateUnknown",
         progressColor: undefined,
