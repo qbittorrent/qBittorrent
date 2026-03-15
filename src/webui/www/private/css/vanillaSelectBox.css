@@ -55,13 +55,13 @@ li[data-parent].open:not(.hidden-search) {
 }
 
 li.disabled {
-    background-color: var(--color-text-disabled);
+    background-color: var(--color-background-disabled);
     cursor: not-allowed;
     opacity: 0.3;
 }
 
 li.overflow {
-    background-color: var(--color-text-disabled);
+    background-color: var(--color-background-disabled);
     cursor: not-allowed;
     opacity: 0.3;
 }
