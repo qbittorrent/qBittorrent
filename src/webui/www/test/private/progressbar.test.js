@@ -47,11 +47,10 @@ test("Test ProgressBar numeric value handling", () => {
     expect(progressBar.shadowRoot.firstElementChild.textContent).toBe("100.0%");
 });
 
-test("Test ProgressBar background color setters", () => {
+test("Test ProgressBar bar color setter", () => {
     const progressBar = new window.qBittorrent.ProgressBar.ProgressBar(50);
 
     expect(progressBar.getBarColor()).toBe("var(--color-background-blue)");
-    expect(progressBar.getBackgroundColor()).toBe("var(--color-background-default)");
     expect(progressBar.shadowRoot.firstElementChild.style.backgroundColor).toBe("var(--color-background-blue)");
     expect(progressBar.shadowRoot.lastElementChild.style.backgroundColor).toBe("var(--color-background-default)");
 
@@ -59,15 +58,6 @@ test("Test ProgressBar background color setters", () => {
     progressBar.setBarColor("rgb(255, 0, 0)");
 
     expect(progressBar.getBarColor()).toBe("rgb(255, 0, 0)");
-    expect(progressBar.getBackgroundColor()).toBe("var(--color-background-default)");
     expect(progressBar.shadowRoot.firstElementChild.style.backgroundColor).toBe("rgb(255, 0, 0)");
     expect(progressBar.shadowRoot.lastElementChild.style.backgroundColor).toBe("var(--color-background-default)");
-
-    progressBar.setBackgroundColor("rgb(0, 0, 255)");
-    progressBar.setBackgroundColor("rgb(0, 0, 255)");
-
-    expect(progressBar.getBarColor()).toBe("rgb(255, 0, 0)");
-    expect(progressBar.getBackgroundColor()).toBe("rgb(0, 0, 255)");
-    expect(progressBar.shadowRoot.firstElementChild.style.backgroundColor).toBe("rgb(255, 0, 0)");
-    expect(progressBar.shadowRoot.lastElementChild.style.backgroundColor).toBe("rgb(0, 0, 255)");
 });
