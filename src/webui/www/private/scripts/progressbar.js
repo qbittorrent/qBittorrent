@@ -47,8 +47,8 @@ window.qBittorrent.ProgressBar ??= (() => {
         };
 
         #value = 0;
-        #darkBackgroundColor = ProgressBar.#styles.darkbg;
-        #lightBackgroundColor = ProgressBar.#styles.lightbg;
+        #barColor = ProgressBar.#styles.darkbg;
+        #backgroundColor = ProgressBar.#styles.lightbg;
 
         #id = ++ProgressBar.#progressBarUniqueId;
 
@@ -98,25 +98,25 @@ window.qBittorrent.ProgressBar ??= (() => {
             return this.#value;
         }
 
-        getDarkBackgroundColor() {
-            return this.#darkBackgroundColor;
+        getBarColor() {
+            return this.#barColor;
         }
 
-        getLightBackgroundColor() {
-            return this.#lightBackgroundColor;
+        getBackgroundColor() {
+            return this.#backgroundColor;
         }
 
-        setDarkBackgroundColor(color) {
-            if (this.#darkBackgroundColor === color)
+        setBarColor(color) {
+            if (this.#barColor === color)
                 return;
-            this.#darkBackgroundColor = color;
+            this.#barColor = color;
             this.#dark.style.backgroundColor = color;
         }
 
-        setLightBackgroundColor(color) {
-            if (this.#lightBackgroundColor === color)
+        setBackgroundColor(color) {
+            if (this.#backgroundColor === color)
                 return;
-            this.#lightBackgroundColor = color;
+            this.#backgroundColor = color;
             this.#light.style.backgroundColor = color;
         }
 

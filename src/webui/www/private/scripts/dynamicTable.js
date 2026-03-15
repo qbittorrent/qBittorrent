@@ -290,7 +290,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 else {
                     this.currentHeaderAction = "drag";
-                    el.style.backgroundColor = "#C1D5E7";
+                    el.style.backgroundColor = "var(--color-background-blue)";
                 }
             }.bind(this);
 
@@ -1172,6 +1172,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["progress"].dataProperties.push("state");
 
             this.initColumnsFunctions();
         }
@@ -1414,7 +1415,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                 const progressBar = td.firstElementChild;
                 const state = row.full_data.state;
-                progressBar.setDarkBackgroundColor(getProgressColor(state));
+                progressBar.setBarColor(getProgressColor(state));
             };
             this.columns["progress"].staticWidth = 100;
 
