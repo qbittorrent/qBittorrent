@@ -4,17 +4,17 @@ PY_FILES := `find . -maxdepth 1 -type f -name '*.py' ! -name 'socks.py' -printf 
 default:
     just --list
 
-# Run type check
-check files=PY_FILES: fetch_aux
-    mypy \
-        {{ files }}
-    pyright \
-        {{ files }}
-
 # Byte-compile files
 build files=PY_FILES:
     python \
         -m compileall \
+        {{ files }}
+
+# Run checks on typings
+check files=PY_FILES: fetch_aux
+    mypy \
+        {{ files }}
+    pyright \
         {{ files }}
 
 # Fetch auxiliary files
@@ -45,6 +45,8 @@ lint files=PY_FILES:
         {{ files }}
     bandit \
         --skip B110,B310,B314,B405 \
+        {{ files }}
+    pydoclint \
         {{ files }}
 
 # Run tests
