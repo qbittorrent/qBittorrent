@@ -120,15 +120,63 @@ test("Test getTorrentStateInfo()", () => {
         stateIconClass: "stateError",
         progressColor: "var(--color-progress-error)",
         statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]",
-        isErrored: true
+        isErrored: true,
+        hidesAvailability: false
     });
 
     expect(fallbackStateInfo).toMatchObject({
         sortOrder: -1,
         stateIconClass: "stateUnknown",
         progressColor: undefined,
+        hidesAvailability: false,
         isStopped: false
     });
+});
+
+test("Test shouldShowAvailability()", () => {
+    const shouldShowAvailability = window.qBittorrent.Misc.shouldShowAvailability;
+
+    expect(shouldShowAvailability({
+        hasMetadata: true,
+        progress: 0.4,
+        state: "downloading"
+    })).toBe(true);
+
+    expect(shouldShowAvailability({
+        hasMetadata: true,
+        progress: 0.4,
+        state: "unknown"
+    })).toBe(true);
+
+    expect(shouldShowAvailability({
+        hasMetadata: true,
+        progress: 0.4,
+        state: "error"
+    })).toBe(false);
+
+    expect(shouldShowAvailability({
+        hasMetadata: true,
+        progress: 0.4,
+        state: "missingFiles"
+    })).toBe(false);
+
+    expect(shouldShowAvailability({
+        hasMetadata: true,
+        progress: 0.4,
+        state: "queuedDL"
+    })).toBe(false);
+
+    expect(shouldShowAvailability({
+        hasMetadata: false,
+        progress: 0.4,
+        state: "downloading"
+    })).toBe(false);
+
+    expect(shouldShowAvailability({
+        hasMetadata: true,
+        progress: 1,
+        state: "downloading"
+    })).toBe(false);
 });
 
 test("Test toFixedPointString()", () => {

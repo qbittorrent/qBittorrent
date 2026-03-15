@@ -242,14 +242,11 @@ window.qBittorrent.PropGeneral ??= (() => {
 
                     const row = torrentsTable.getRow(current_id);
                     const state = row?.full_data?.state || "";
-                    const stateInfo = window.qBittorrent.Misc.getTorrentStateInfo(state);
-                    const hidesAvailability = (state === "error") || (state === "missingFiles");
-                    const shouldShowAvailability = data.has_metadata
-                        && (data.progress < 1)
-                        && !stateInfo.isStopped
-                        && !stateInfo.isQueued
-                        && !stateInfo.isChecking
-                        && !hidesAvailability;
+                    const shouldShowAvailability = window.qBittorrent.Misc.shouldShowAvailability({
+                        hasMetadata: data.has_metadata,
+                        progress: data.progress,
+                        state: state
+                    });
                     document.getElementById("propAvailabilityWrapper").style.display = shouldShowAvailability ? "contents" : "none";
                 }
                 else {

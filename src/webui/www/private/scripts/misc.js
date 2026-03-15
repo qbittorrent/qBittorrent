@@ -34,6 +34,7 @@ window.qBittorrent.Misc ??= (() => {
         return {
             getHost: getHost,
             getTorrentStateInfo: getTorrentStateInfo,
+            shouldShowAvailability: shouldShowAvailability,
             createDebounceHandler: createDebounceHandler,
             filterInPlace: filterInPlace,
             friendlyUnit: friendlyUnit,
@@ -109,6 +110,7 @@ window.qBittorrent.Misc ??= (() => {
         isStalledUploading = false,
         isStalledDownloading = false,
         isMoving = false,
+        hidesAvailability = false,
     } = {}) => {
         return Object.freeze({
             sortOrder,
@@ -126,7 +128,8 @@ window.qBittorrent.Misc ??= (() => {
             isStalled,
             isStalledUploading,
             isStalledDownloading,
-            isMoving
+            isMoving,
+            hidesAvailability
         });
     };
 
@@ -274,14 +277,16 @@ window.qBittorrent.Misc ??= (() => {
             stateIconClass: "stateError",
             progressColor: "var(--color-progress-error)",
             statusText: "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]",
-            isErrored: true
+            isErrored: true,
+            hidesAvailability: true
         }),
         error: createTorrentStateInfo({
             sortOrder: 17,
             stateIconClass: "stateError",
             progressColor: "var(--color-progress-error)",
             statusText: "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]",
-            isErrored: true
+            isErrored: true,
+            hidesAvailability: true
         }),
         queuedForChecking: createTorrentStateInfo({
             sortOrder: 10,
@@ -294,6 +299,16 @@ window.qBittorrent.Misc ??= (() => {
 
     const getTorrentStateInfo = (state) => {
         return torrentStateInfo[state] ?? defaultTorrentStateInfo;
+    };
+
+    const shouldShowAvailability = ({ hasMetadata, progress, state }) => {
+        const stateInfo = getTorrentStateInfo(state);
+        return hasMetadata
+            && (progress < 1)
+            && !stateInfo.isStopped
+            && !stateInfo.isQueued
+            && !stateInfo.isChecking
+            && !stateInfo.hidesAvailability;
     };
 
     const filterInPlace = (array, predicate) => {
