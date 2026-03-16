@@ -38,9 +38,9 @@
 
 void BitTorrent::AbstractFileStorage::renameFile(const Path &oldPath, const Path &newPath)
 {
-    if (!oldPath.isValid())
+    if (!Utils::Fs::isValidPath(oldPath))
         throw RuntimeError(tr("The old path is invalid: '%1'.").arg(oldPath.toString()));
-    if (!newPath.isValid())
+    if (!Utils::Fs::isValidPath(newPath))
         throw RuntimeError(tr("The new path is invalid: '%1'.").arg(newPath.toString()));
     if (newPath.isAbsolute())
         throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newPath.toString()));
@@ -64,9 +64,9 @@ void BitTorrent::AbstractFileStorage::renameFile(const Path &oldPath, const Path
 
 void BitTorrent::AbstractFileStorage::renameFolder(const Path &oldFolderPath, const Path &newFolderPath)
 {
-    if (!oldFolderPath.isValid())
+    if (!Utils::Fs::isValidPath(oldFolderPath))
         throw RuntimeError(tr("The old path is invalid: '%1'.").arg(oldFolderPath.toString()));
-    if (!newFolderPath.isValid())
+    if (!Utils::Fs::isValidPath(newFolderPath))
         throw RuntimeError(tr("The new path is invalid: '%1'.").arg(newFolderPath.toString()));
     if (newFolderPath.isAbsolute())
         throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newFolderPath.toString()));

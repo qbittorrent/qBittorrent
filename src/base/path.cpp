@@ -76,11 +76,6 @@ Path::Path(const std::string &pathStr)
 {
 }
 
-bool Path::isValid() const
-{
-    return Utils::Fs::isValidPath(*this);
-}
-
 bool Path::isEmpty() const
 {
     return m_pathStr.isEmpty();
