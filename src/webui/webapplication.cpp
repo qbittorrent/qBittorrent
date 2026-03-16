@@ -378,6 +378,16 @@ void WebApplication::processAPIRequest(const QString &endpoint)
         }
         else
         {
+            switch (result.status)
+            {
+            case APIStatus::Async:
+                m_response.status = {.code = 202};
+                break;
+            case APIStatus::Ok:
+                m_response.status = {.code = 200};
+                break;
+            }
+
             switch (result.data.userType())
             {
             case QMetaType::QJsonDocument:
@@ -389,9 +399,7 @@ void WebApplication::processAPIRequest(const QString &endpoint)
                     const auto resultData = result.data.toByteArray();
                     m_response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
                     if (!result.filename.isEmpty())
-                    {
                         m_response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
-                    }
                     m_response.content = resultData;
                 }
                 break;
@@ -399,17 +407,6 @@ void WebApplication::processAPIRequest(const QString &endpoint)
             default:
                 m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
                 m_response.content = result.data.toString().toUtf8();
-                break;
-            }
-
-            switch (result.status)
-            {
-            case APIStatus::Async:
-                m_response.status = {.code = 202};
-                break;
-            case APIStatus::Ok:
-            default:
-                m_response.status = {.code = 200};
                 break;
             }
         }
@@ -588,6 +585,7 @@ void WebApplication::sendFile(const Path &path)
     if (const auto it = m_translatedFiles.constFind(path);
         (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
     {
+        m_response.status = {.code = 200};
         m_response.headers.insert(Http::HEADER_CONTENT_TYPE, it->mimeType);
         m_response.headers.insert(Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType));
         m_response.content = it->data;
@@ -638,6 +636,7 @@ void WebApplication::sendFile(const Path &path)
         m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
     }
 
+    m_response.status = {.code = 200};
     m_response.headers.insert(Http::HEADER_CONTENT_TYPE, mimeType.name());
     m_response.headers.insert(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name()));
     m_response.content = data;
