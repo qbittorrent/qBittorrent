@@ -73,8 +73,11 @@ private:
     QPushButton *m_upSpeedLbl = nullptr;
     QLabel *m_freeDiskSpaceLbl = nullptr;
     QWidget *m_freeDiskSpaceSeparator = nullptr;
-    QLabel *m_lastExternalIPsLbl = nullptr;
+    QWidget *m_externalIPsContainer = nullptr;
     QWidget *m_lastExternalIPsSeparator = nullptr;
+    QString m_cachedExternalIPv4;
+    QString m_cachedExternalIPv6;
+    bool m_cachedResolveCountries = false;
     QLabel *m_DHTLbl = nullptr;
     QWidget *m_DHTSeparator = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
