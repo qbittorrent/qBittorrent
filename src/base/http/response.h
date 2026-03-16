@@ -34,8 +34,6 @@
 
 #include "headermap.h"
 
-using namespace Qt::Literals::StringLiterals;
-
 namespace Http
 {
     struct ResponseStatus
