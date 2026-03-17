@@ -46,6 +46,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrentcreationmanager.h"
 #include "base/http/httperror.h"
+#include "base/http/responsewriter.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/types.h"
@@ -642,7 +643,7 @@ void WebApplication::sendFile(const Path &path)
     m_response.content = data;
 }
 
-Http::Response WebApplication::processRequest(const Http::Request &request, const Http::Environment &env)
+void WebApplication::processRequest(const Http::Request &request, const Http::Environment &env, Http::ResponseWriter *responseWriter)
 {
     m_currentSession = nullptr;
     m_request = request;
@@ -710,7 +711,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         }
     }
 
-    return m_response;
+    responseWriter->setResponse(m_response);
 }
 
 QString WebApplication::clientId() const
