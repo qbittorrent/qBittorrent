@@ -41,6 +41,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/categoryoptions.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
@@ -441,6 +442,39 @@ namespace
         serializedTorrent[KEY_TORRENT_HAS_TRACKER_ERROR] = hasTrackerError;
         serializedTorrent[KEY_TORRENT_HAS_OTHER_ANNOUNCE_ERROR] = hasOtherAnnounceError;
     }
+
+    // Serialize a category's options into a QVariantMap suitable for the WebAPI sync/maindata response.
+    // This is intentionally separate from CategoryOptions::toJSON() so that WebAPI output format
+    // remains explicit and independent of the internal serialization format.
+    QVariantMap serializeCategoryForWebAPI(const QString &categoryName, const BitTorrent::CategoryOptions &categoryOptions)
+    {
+        QVariantMap category;
+        category[u"name"_s] = categoryName;
+        category[u"savePath"_s] = categoryOptions.savePath.data();
+
+        const bool downloadPathEnabled = categoryOptions.downloadPath.has_value()
+            && categoryOptions.downloadPath->enabled;
+
+        if (downloadPathEnabled)
+        {
+            const QString path = categoryOptions.downloadPath->path.data();
+            // Backward-compat: keep the old ambiguous key (string when enabled)
+            category[u"download_path"_s] = path;
+            // New explicit keys
+            category[u"downloadPathEnabled"_s] = true;
+            category[u"downloadPath"_s] = path;
+        }
+        else
+        {
+            // Backward-compat: keep the old ambiguous key (false when disabled)
+            category[u"download_path"_s] = false;
+            // New explicit keys -- always present so every category dict has the same key set
+            category[u"downloadPathEnabled"_s] = false;
+            category[u"downloadPath"_s] = u""_s;
+        }
+
+        return category;
+    }
 }
 
 SyncController::SyncController(PeerHostNameResolver *peerHostNameResolver, IApplication *app, QObject *parent)
@@ -599,14 +633,7 @@ void SyncController::makeMaindataSnapshot()
 
     const QStringList categoriesList = session->categories();
     for (const auto &categoryName : categoriesList)
-    {
-        const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
-        QJsonObject category = categoryOptions.toJSON();
-        // adjust it to be compatible with existing WebAPI
-        category[u"savePath"_s] = category.take(u"save_path"_s);
-        category.insert(u"name"_s, categoryName);
-        m_maindataSnapshot.categories[categoryName] = category.toVariantMap();
-    }
+        m_maindataSnapshot.categories[categoryName] = serializeCategoryForWebAPI(categoryName, session->categoryOptions(categoryName));
 
     for (const Tag &tag : asConst(session->tags()))
         m_maindataSnapshot.tags.append(tag.toString());
@@ -652,11 +679,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
 
     for (const QString &categoryName : asConst(m_updatedCategories))
     {
-        const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
-        auto category = categoryOptions.toJSON().toVariantMap();
-        // adjust it to be compatible with existing WebAPI
-        category[u"savePath"_s] = category.take(u"save_path"_s);
-        category.insert(u"name"_s, categoryName);
+        const QVariantMap category = serializeCategoryForWebAPI(categoryName, session->categoryOptions(categoryName));
 
         auto &categorySnapshot = m_maindataSnapshot.categories[categoryName];
         if (const QVariantMap syncData = processMap(categorySnapshot, category); !syncData.isEmpty())
