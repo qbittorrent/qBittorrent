@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,17 +26,41 @@
  * exception statement from your version.
  */
 
-
 #pragma once
 
-class QByteArray;
-class QString;
+#include <QObject>
+
+#include "request.h"
+#include "response.h"
+
+class QAbstractSocket;
 
 namespace Http
 {
-    struct Response;
+    class ResponseWriter final : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(ResponseWriter)
 
-    QByteArray toByteArray(Response response);
-    QString httpDate();
-    void compressContent(Response &response);
+    public:
+        ResponseWriter(QAbstractSocket *socket, Request request, QObject *parent = nullptr);
+
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        void setResponse(const Response &response);
+
+        bool isFinished() const;
+
+    signals:
+        void finished(QPrivateSignal);
+
+    private:
+        bool needCompressContent(const Response &response) const;
+        void finish();
+
+        QAbstractSocket *m_socket;
+        Request m_request;
+
+        bool m_isFinished = false;
+    };
 }

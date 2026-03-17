@@ -84,7 +84,7 @@ public:
     explicit WebApplication(IApplication *app, QObject *parent = nullptr);
     ~WebApplication() override;
 
-    Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
+    void processRequest(const Http::Request &request, const Http::Environment &env, Http::ResponseWriter *responseWriter) override;
 
     const Http::Request &request() const;
     const Http::Environment &env() const;

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,14 +30,14 @@
 
 namespace Http
 {
+    class ResponseWriter;
     struct Environment;
     struct Request;
-    struct Response;
 
     class IRequestHandler
     {
     public:
         virtual ~IRequestHandler() = default;
-        virtual Response processRequest(const Request &request, const Environment &env) = 0;
+        virtual void processRequest(const Request &request, const Environment &env, ResponseWriter *responseWriter) = 0;
     };
 }
