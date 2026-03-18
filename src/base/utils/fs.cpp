@@ -85,9 +85,11 @@ namespace
         if ((unicode < 32) || (unicode == 127) || (c == u'/'))
             return true;
 #ifdef Q_OS_WIN
-        if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') ||
-            (c == u'|') || (c == u'?') || (c == u'*'))
+        if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"')
+            || (c == u'|') || (c == u'?') || (c == u'*'))
+        {
             return true;
+        }
         return false;
 #elif defined(Q_OS_MACOS)
         return (c == u':');
