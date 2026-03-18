@@ -1082,7 +1082,11 @@ Path TorrentImpl::actualFilePath(const int index) const
     if ((index < 0) || (index >= nativeIndexes.size()))
         return {};
 
+#if LIBTORRENT_VERSION_NUM >= 20100
+    return makeActualPath(index, filePath(index));
+#else
     return Path(nativeTorrentInfo()->files().file_path(nativeIndexes[index]));
+#endif
 }
 
 qlonglong TorrentImpl::fileSize(const int index) const
@@ -1103,9 +1107,14 @@ PathList TorrentImpl::actualFilePaths() const
     PathList paths;
     paths.reserve(filesCount());
 
+#if LIBTORRENT_VERSION_NUM >= 20100
+    for (int i = 0; i < filesCount(); ++i)
+        paths.emplaceBack(makeActualPath(i, filePath(i)));
+#else
     const lt::file_storage files = nativeTorrentInfo()->files();
     for (const lt::file_index_t &nativeIndex : asConst(m_torrentInfo.nativeIndexes()))
         paths.emplaceBack(files.file_path(nativeIndex));
+#endif
 
     return paths;
 }
@@ -2381,9 +2390,11 @@ void TorrentImpl::handleFileCompleted(const lt::file_index_t nativeFileIndex)
     const int fileIndex = fileIndexFromNative(nativeFileIndex);
     Q_ASSERT(fileIndex >= 0);
 
-    m_completedFiles.setBit(fileIndex);
-
+    // actualFilePath() must be called before setBit() so that makeActualPath()
+    // still sees the file as incomplete and returns the QB_EXT path.
     const Path actualPath = actualFilePath(fileIndex);
+
+    m_completedFiles.setBit(fileIndex);
 
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
     // only apply Mark-of-the-Web to new download files
