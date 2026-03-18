@@ -225,6 +225,12 @@ add_library(qbt_base STATIC
     utils/version.cpp
 )
 
+if (ENABLE_PCH)
+    target_precompile_headers(qbt_base PRIVATE
+        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
+    )
+endif()
+
 target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
