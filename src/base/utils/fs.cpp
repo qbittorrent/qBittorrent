@@ -308,19 +308,19 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
     bool inReservedSequence = false;
     for (const QChar c : asConst(validName))
     {
-            if (isReservedCharacter(c))
+        if (isReservedCharacter(c))
+        {
+            if (!inReservedSequence)
             {
-                if (!inReservedSequence)
-                {
-                    newName += pad;
-                    inReservedSequence = true;
-                }
+                newName += pad;
+                inReservedSequence = true;
             }
-            else
-            {
-                newName += c;
-                inReservedSequence = false;
-            }
+        }
+        else
+        {
+            newName += c;
+            inReservedSequence = false;
+        }
     };
     validName = newName;
 
