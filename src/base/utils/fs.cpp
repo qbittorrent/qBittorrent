@@ -299,30 +299,26 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return pad;
 
-    // Trim leading/trailing whitespace from name
-    QString validName = name.trimmed();
-
     // Replace one or more reserved characters with pad
-    QString newName;
-    newName.reserve(validName.size());
+    QString validName;
+    validName.reserve(name.size());
     bool inReservedSequence = false;
-    for (const QChar c : asConst(validName))
+    for (const QChar c : QStringView(name).trimmed())
     {
         if (isReservedCharacter(c))
         {
             if (!inReservedSequence)
             {
-                newName += pad;
+                validName += pad;
                 inReservedSequence = true;
             }
         }
         else
         {
-            newName += c;
+            validName += c;
             inReservedSequence = false;
         }
     };
-    validName = newName;
 
 #ifdef Q_OS_WIN
     // Handle Windows-specific trailing dots
