@@ -226,7 +226,7 @@ bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 // Check if a filename is valid without sanitizing
 bool Utils::Fs::isValidFileName(const QString &name)
 {
-    // Reject empty names or special directory names
+    // Reject empty names or relative alias directory names
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return false;
 
@@ -260,7 +260,7 @@ bool Utils::Fs::isValidPath(const Path &path)
 {
     QString pathStr = path.data();
 
-    // Reject empty names or special directory names
+    // Reject empty names or relative alias directory names
     if (pathStr.isEmpty() || (pathStr == u"."_s) || (pathStr == u".."_s))
         return false;
 
@@ -295,7 +295,7 @@ bool Utils::Fs::isDriveLetterPath([[maybe_unused]] const Path &path)
 // Sanitize filename using pad
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
-    // Handle empty names or special directory names
+    // Handle empty names or relative alias directory names
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return pad;
 
@@ -343,7 +343,7 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 // Sanitize path components using pad
 Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
 {
-    // Handle empty names or special directory names
+    // Handle empty names or relative alias directory names
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return Path();
 
