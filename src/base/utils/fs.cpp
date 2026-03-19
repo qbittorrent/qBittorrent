@@ -360,14 +360,11 @@ Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
 #endif
 
     // Split into components and validate each one
-    const QStringList components = pathStr.split(u'/');
+    const QStringList components = pathStr.split(u'/', Qt::SkipEmptyParts);
     QStringList validComponents;
+    validComponents.reserve(components.size());
     for (const QString &component : components)
-    {
-        if (component.isEmpty())
-            continue;
         validComponents << toValidFileName(component, pad);
-    }
 
     // Reconstruct path
     QString validPathStr = validComponents.join(u'/');
