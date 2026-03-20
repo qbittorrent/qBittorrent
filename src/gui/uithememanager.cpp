@@ -403,7 +403,7 @@ void UIThemeManager::applyPalette() const
         {u"Palette.ButtonTextDisabled"_s, QPalette::ButtonText, QPalette::Disabled}
     };
 
-    QPalette palette = qApp->palette();
+    QPalette palette = QApplication::style()->standardPalette();
     for (const ColorDescriptor &colorDescriptor : paletteColorDescriptors)
     {
         // For backward compatibility, the palette color overrides are read from the section of the "light mode" colors

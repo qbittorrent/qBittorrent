@@ -321,10 +321,4 @@ void StatusBar::optionsSaved()
 {
     updateFreeDiskSpaceVisibility();
     updateExternalAddressesVisibility();
-
-    if (m_restartIconLbl)
-    {
-        m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
-        m_restartIconLbl->setToolTip(tr("qBittorrent needs to be restarted!"));
-    }
 }

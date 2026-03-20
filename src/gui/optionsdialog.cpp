@@ -183,8 +183,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
         m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
 
 #ifndef DISABLE_WEBUI
-        webUIHttpsCertChanged(m_ui->textWebUIHttpsCert->selectedPath());
-        webUIHttpsKeyChanged(m_ui->textWebUIHttpsKey->selectedPath());
+        updateWebUIHttpsStatusIcons();
 #endif
     };
     applyUITheme();
@@ -505,34 +504,41 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
+    auto *themeManager = UIThemeManager::instance();
     const QString styleName = m_ui->comboStyle->currentData().toString();
-    const bool isStyleChanged = (pref->getStyle() != styleName);
-    pref->setStyle(styleName);
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     const ColorScheme colorScheme = m_ui->comboColorScheme->currentData().value<ColorScheme>();
-    const bool isColorSchemeChanged = (UIThemeManager::instance()->colorScheme() != colorScheme);
-    UIThemeManager::instance()->setColorScheme(colorScheme, false);
-#else
-    constexpr bool isColorSchemeChanged = false;
 #endif
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     const bool useSystemIcons = m_ui->checkUseSystemIcon->isChecked();
-    const bool isSystemIconsChanged = (pref->useSystemIcons() != useSystemIcons);
-    pref->useSystemIcons(useSystemIcons);
-#else
-    constexpr bool isSystemIconsChanged = false;
 #endif
     const bool useCustomTheme = m_ui->checkUseCustomTheme->isChecked();
     const Path customThemePath = m_ui->customThemeFilePath->selectedPath();
-    const bool isCustomThemeChanged = (pref->useCustomUITheme() != useCustomTheme)
+
+    const bool shouldApplyTheme = (pref->getStyle() != styleName)
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+        || (themeManager->colorScheme() != colorScheme)
+#endif
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+        || (pref->useSystemIcons() != useSystemIcons)
+#endif
+        || (pref->useCustomUITheme() != useCustomTheme)
         || (useCustomTheme && (pref->customUIThemePath() != customThemePath));
+
+    pref->setStyle(styleName);
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    themeManager->setColorScheme(colorScheme, false);
+#endif
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    pref->useSystemIcons(useSystemIcons);
+#endif
     pref->setUseCustomUITheme(useCustomTheme);
     pref->setCustomUIThemePath(customThemePath);
 
-    if (isStyleChanged || isColorSchemeChanged || isSystemIconsChanged || isCustomThemeChanged)
-        UIThemeManager::instance()->applyThemeSettings();
+    if (shouldApplyTheme)
+        themeManager->applyThemeSettings();
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
@@ -638,7 +644,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
-    m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
     m_ui->deleteTorrentWarningLabel->hide();
     m_ui->deleteTorrentWarningLabel->setToolTip(u"<html><body><p>" +
@@ -2122,24 +2127,30 @@ Path OptionsDialog::getFilter() const
 }
 
 #ifndef DISABLE_WEBUI
+void OptionsDialog::updateWebUIHttpsStatusIcons()
+{
+    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (m_isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
+    m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (m_isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
+}
+
 void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
+    m_isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isCertValid ? u"security-high"_s : u"security-low"_s), 24));
+    updateWebUIHttpsStatusIcons();
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
+    m_isWebUIHttpsKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
 
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isKeyValid ? u"security-high"_s : u"security-low"_s), 24));
+    updateWebUIHttpsStatusIcons();
 }
 
 bool OptionsDialog::isWebUIEnabled() const
