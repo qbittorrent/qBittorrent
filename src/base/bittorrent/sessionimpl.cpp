@@ -1075,7 +1075,7 @@ bool SessionImpl::setCategoryOptions(const QString &categoryName, const Category
 
     CategoryOptions &currentOptions = it.value();
     if (options == currentOptions)
-        return false;
+        return true;
 
     if (isDisableAutoTMMWhenCategorySavePathChanged()
             && ((options.savePath != currentOptions.savePath) || (options.downloadPath != currentOptions.downloadPath)))
@@ -5732,8 +5732,6 @@ void SessionImpl::fetchPendingAlerts(const lt::time_duration time)
 
 void SessionImpl::endAlertSequence(const int alertType, const qsizetype alertCount)
 {
-    qDebug() << "End alert sequence. Alert:" << lt::alert_name(alertType) << "Count:" << alertCount;
-
     if (alertType == lt::add_torrent_alert::alert_type)
     {
         emit addTorrentAlertsReceived(alertCount);
