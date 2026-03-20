@@ -40,12 +40,12 @@ add_library(qbt_webui STATIC
     webui.cpp
 )
 
+target_sources(qbt_webui INTERFACE www/webui.qrc)
+
+target_link_libraries(qbt_webui PRIVATE qbt_base)
+
 if (ENABLE_PCH)
     target_precompile_headers(qbt_webui PRIVATE
         "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
     )
 endif()
-
-target_sources(qbt_webui INTERFACE www/webui.qrc)
-
-target_link_libraries(qbt_webui PRIVATE qbt_base)

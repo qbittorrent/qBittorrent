@@ -252,12 +252,6 @@ add_library(qbt_gui STATIC
     ${UI_HEADERS}
 )
 
-if (ENABLE_PCH)
-    target_precompile_headers(qbt_gui PRIVATE
-        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
-    )
-endif()
-
 target_sources(qbt_gui INTERFACE about.qrc)
 
 # UI headers will be generated in ${CMAKE_CURRENT_BINARY_DIR}
@@ -269,6 +263,12 @@ target_link_libraries(qbt_gui
     PUBLIC
         Qt::Gui Qt::Widgets
 )
+
+if (ENABLE_PCH)
+    target_precompile_headers(qbt_gui PRIVATE
+        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
+    )
+endif()
 
 if (DBUS)
     target_sources(qbt_gui PRIVATE
