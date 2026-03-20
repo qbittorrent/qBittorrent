@@ -46,7 +46,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 9;
+    const int MIGRATION_VERSION = 10;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -290,7 +290,7 @@ namespace
             {u"BitTorrent/Session/MaxActiveTorrents"_s, u"Preferences/Queueing/MaxActiveTorrents"_s},
             {u"BitTorrent/Session/MaxActiveUploads"_s, u"Preferences/Queueing/MaxActiveUploads"_s},
             {u"BitTorrent/Session/MaxConnections"_s, u"Preferences/Bittorrent/MaxConnecs"_s},
-            {u"BitTorrent/Session/MaxConnectionsPerTorrent"_s, u"Preferences/Bittorrent/MaxConnecsPerTorrent"_s},
+            {u"BitTorrent/Session/MaxConnectionsPerDownloadingTorrent"_s, u"Preferences/Bittorrent/MaxConnecsPerTorrent"_s},
             {u"BitTorrent/Session/MaxHalfOpenConnections"_s, u"Preferences/Connection/MaxHalfOpenConnec"_s},
             {u"BitTorrent/Session/MaxRatioAction"_s, u"Preferences/Bittorrent/MaxRatioAction"_s},
             {u"BitTorrent/Session/MaxUploads"_s, u"Preferences/Bittorrent/MaxUploads"_s},
@@ -547,6 +547,9 @@ bool upgrade()
 
         if (version < 9)
             handleSettingKeys<MigrateOption::RemoveOldKeys>();
+
+        if (version < 10)
+            migrateMaxConnectionSettings();
 
         version = MIGRATION_VERSION;
     }
