@@ -121,6 +121,15 @@ void AppController::buildInfoAction()
     setResult(versions);
 }
 
+void AppController::processInfoAction()
+{
+    const QJsonObject info =
+    {
+        {u"launch_time"_s, app()->launchTimeSecsSinceEpoch()}
+    };
+    setResult(info);
+}
+
 void AppController::shutdownAction()
 {
     // Special handling for shutdown, we
@@ -1271,6 +1280,23 @@ void AppController::getDirectoryContentAction()
         }
     }
     setResult(ret);
+}
+
+void AppController::getFreeSpaceAtPathAction()
+{
+    requireParams({u"path"_s});
+    Path current {params().value(u"path"_s)};
+    const Path root = current.rootItem();
+    qint64 freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+
+    // for non-existent directories (which will be created on demand) `Utils::Fs::freeDiskSpaceOnPath`
+    // will return invalid value so instead query its parent/ancestor paths
+    while ((freeSpace < 0) && (current != root))
+    {
+        current = current.parentPath();
+        freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+    }
+    setResult(QString::number(freeSpace));
 }
 
 void AppController::cookiesAction()

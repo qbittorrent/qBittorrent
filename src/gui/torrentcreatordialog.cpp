@@ -33,7 +33,8 @@
 
 #include <functional>
 
-#include <QCloseEvent>
+#include <QDragEnterEvent>
+#include <QDropEvent>
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QMimeData>
@@ -41,6 +42,7 @@
 #include <QUrl>
 
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentcreator.h"
 #include "base/bittorrent/torrentdescriptor.h"
 #include "base/global.h"
@@ -343,15 +345,21 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
         if (const auto loadResult = BitTorrent::TorrentDescriptor::loadFromFile(result.torrentFilePath))
         {
             BitTorrent::AddTorrentParams params;
+            // don't use global defaults and set a value for each one, otherwise 'start seeding' operation might fail unexpectedly when user changed the global default value
+            params.addStopped = false;
+            params.contentLayout = BitTorrent::TorrentContentLayout::Original;
             params.savePath = result.savePath;
             params.skipChecking = true;
+            params.stopCondition = BitTorrent::Torrent::StopCondition::None;
+            params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
+            params.useDownloadPath = false;
+
             if (m_ui->checkIgnoreShareLimits->isChecked())
             {
                 params.ratioLimit = BitTorrent::NO_RATIO_LIMIT;
                 params.seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
                 params.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
             }
-            params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
             BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
         }

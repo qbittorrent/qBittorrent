@@ -44,6 +44,7 @@
 #include "base/global.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/string.h"
+#include "constants.h"
 
 using namespace Http;
 using namespace Utils::ByteArray;

@@ -431,6 +431,14 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     const auto *focusSearchHotkeyAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), this);
     connect(focusSearchHotkeyAlternative, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 
+    const auto *closeTabHotkey = new QShortcut(QKeySequence::Close, this);
+    connect(closeTabHotkey, &QShortcut::activated, this, [this]()
+    {
+        const int currentIndex = m_ui->tabWidget->currentIndex();
+        if (currentIndex >= 0)
+            closeTab(currentIndex);
+    });
+
     m_historyLength = Preferences::instance()->searchHistoryLength();
     m_storeOpenedTabs = Preferences::instance()->storeOpenedSearchTabs();
     m_storeOpenedTabsResults = Preferences::instance()->storeOpenedSearchTabResults();

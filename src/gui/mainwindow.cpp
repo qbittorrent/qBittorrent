@@ -122,9 +122,9 @@ namespace
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 
 #ifdef Q_OS_WIN
-    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe"_s;
-    const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("f5e5d48ba86586d4bef67bcb3790d339");
-    const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("28ed23b82451efa5ec87e5dd18d7dacb9bc4d0a3643047091e5a687439f7e03a1c6e60ec64ee1210a0acaf2e5012504ff342ff27e5db108db05407e62aeff2f1");
+    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.exe"_s;
+    const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("c887e19e66e66e6961c444283dafaa33");
+    const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("b5d83ec914dcb0c3892a521d0cbd96bf9bcb267bdee36ea4ee48a54c53fabd0aea98531eda81d1c1db31be8830f7b94430e0c838f5c2f2f8999a273f2833e450");
 #endif
 }
 
@@ -262,7 +262,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
         tr("Transfers"));
     // Filter types
-    const QList<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
+    const QList<TransferListModel::Column> filterTypes = {
+        TransferListModel::Column::TR_NAME
+        , TransferListModel::Column::TR_SAVE_PATH
+        , TransferListModel::Column::TR_INFOHASH_V1
+        , TransferListModel::Column::TR_INFOHASH_V2};
     for (const TransferListModel::Column type : filterTypes)
     {
         const QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
@@ -288,24 +292,19 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     {
         if (action->isSeparator())
         {
-            QWidget *spacer = new QWidget(this);
-            spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-            spacer->setMinimumWidth(16);
-            m_ui->toolBar->insertWidget(action, spacer);
+            auto *line = new QWidget(this);
+            line->setAutoFillBackground(true);
+            line->setFixedWidth(1);
+
+            QPalette pal = line->palette();
+            pal.setColor(QPalette::Window, palette().color(QPalette::Mid));
+            line->setPalette(pal);
+
+            QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
             m_ui->toolBar->removeAction(action);
+            if (action == m_queueSeparator)
+                m_queueSeparator = widgetAction;
         }
-    }
-    {
-        QWidget *spacer = new QWidget(this);
-        spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        spacer->setMinimumWidth(8);
-        m_ui->toolBar->insertWidget(m_ui->actionDownloadFromURL, spacer);
-    }
-    {
-        QWidget *spacer = new QWidget(this);
-        spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        spacer->setMinimumWidth(8);
-        m_ui->toolBar->addWidget(spacer);
     }
 #endif // Q_OS_MACOS
 
@@ -1419,9 +1418,7 @@ void MainWindow::loadPreferences()
             m_ui->actionIncreaseQueuePos->setVisible(true);
             m_ui->actionTopQueuePos->setVisible(true);
             m_ui->actionBottomQueuePos->setVisible(true);
-#ifndef Q_OS_MACOS
             m_queueSeparator->setVisible(true);
-#endif
             m_queueSeparatorMenu->setVisible(true);
         }
     }
@@ -1434,9 +1431,7 @@ void MainWindow::loadPreferences()
             m_ui->actionIncreaseQueuePos->setVisible(false);
             m_ui->actionTopQueuePos->setVisible(false);
             m_ui->actionBottomQueuePos->setVisible(false);
-#ifndef Q_OS_MACOS
             m_queueSeparator->setVisible(false);
-#endif
             m_queueSeparatorMenu->setVisible(false);
         }
     }
@@ -1463,6 +1458,12 @@ void MainWindow::loadPreferences()
     }
 #endif
 
+#ifdef Q_OS_MACOS
+    // Clear dock badge immediately if speed display is disabled
+    if (!pref->isSpeedInDockEnabled())
+        m_badger->updateSpeed(0, 0);
+#endif
+
     qDebug("GUI settings loaded");
 }
 
@@ -1475,7 +1476,8 @@ void MainWindow::loadSessionStats()
 
     // update global information
 #ifdef Q_OS_MACOS
-    m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    if (Preferences::instance()->isSpeedInDockEnabled())
+        m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
     m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();

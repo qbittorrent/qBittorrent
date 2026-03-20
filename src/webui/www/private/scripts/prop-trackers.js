@@ -99,12 +99,12 @@ window.qBittorrent.PropTrackers ??= (() => {
 
                 const trackers = await response.json();
                 if (trackers) {
-                    torrentTrackersTable.clear();
-
                     const notApplicable = "QBT_TR(N/A)QBT_TR[CONTEXT=TrackerListWidget]";
-                    trackers.each((tracker) => {
-                        const row = {
-                            rowId: tracker.url,
+                    const rows = new Map();
+                    for (const tracker of trackers) {
+                        const rowId = tracker.url;
+                        rows.set(rowId, {
+                            rowId: rowId,
                             tier: (tracker.tier >= 0) ? tracker.tier : "",
                             btVersion: "",
                             url: tracker.url,
@@ -119,14 +119,13 @@ window.qBittorrent.PropTrackers ??= (() => {
                             _isTracker: true,
                             _hasEndpoints: tracker.endpoints && (tracker.endpoints.length > 0),
                             _sortable: !tracker.url.startsWith("** [")
-                        };
-
-                        torrentTrackersTable.updateRowData(row);
+                        });
 
                         if (tracker.endpoints !== undefined) {
                             for (const endpoint of tracker.endpoints) {
-                                const row = {
-                                    rowId: `endpoint|${tracker.url}|${endpoint.name}|${endpoint.bt_version}`,
+                                const rowId = `endpoint|${tracker.url}|${endpoint.name}|${endpoint.bt_version}`;
+                                rows.set(rowId, {
+                                    rowId: rowId,
                                     tier: "",
                                     btVersion: `v${endpoint.bt_version}`,
                                     url: endpoint.name,
@@ -141,12 +140,12 @@ window.qBittorrent.PropTrackers ??= (() => {
                                     _isTracker: false,
                                     _tracker: tracker.url,
                                     _sortable: true,
-                                };
-                                torrentTrackersTable.updateRowData(row);
+                                });
                             }
                         }
-                    });
+                    }
 
+                    torrentTrackersTable.setRows(rows);
                     torrentTrackersTable.updateTable(false);
 
                     if (selectedTrackers.length > 0)

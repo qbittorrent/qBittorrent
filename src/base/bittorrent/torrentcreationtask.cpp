@@ -63,9 +63,14 @@ BitTorrent::TorrentCreationTask::TorrentCreationTask(IApplication *app, const QS
             return;
 
         BitTorrent::AddTorrentParams params;
+        // don't use global defaults and set a value for each one, otherwise 'start seeding' operation might fail unexpectedly when user changed the global default value
+        params.addStopped = false;
+        params.contentLayout = BitTorrent::TorrentContentLayout::Original;
         params.savePath = result.savePath;
         params.skipChecking = true;
+        params.stopCondition = BitTorrent::Torrent::StopCondition::None;
         params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
+        params.useDownloadPath = false;
 
         if (!app->addTorrentManager()->addTorrent(result.torrentFilePath.data(), params))
             m_errorMsg = tr("Failed to start seeding.");

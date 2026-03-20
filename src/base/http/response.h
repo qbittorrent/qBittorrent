@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2026  Thomas Piccirello <thomas@piccirello.com>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,46 +27,25 @@
  * exception statement from your version.
  */
 
-#include "peerhostnameresolver.h"
+#pragma once
 
-#include "base/net/reverseresolution.h"
-#include "base/preferences.h"
+#include <QByteArray>
+#include <QString>
 
-PeerHostNameResolver::PeerHostNameResolver(QObject *parent)
-    : QObject(parent)
+#include "headermap.h"
+
+namespace Http
 {
-    connect(Preferences::instance(), &Preferences::changed, this, &PeerHostNameResolver::updateState);
-    updateState();
-}
-
-QString PeerHostNameResolver::lookupHostName(const QHostAddress &ip)
-{
-    const QString hostName = m_resolvedHosts.value(ip);
-    if (m_resolver && hostName.isEmpty())
-        m_resolver->resolve(ip);
-
-    return hostName;
-}
-
-void PeerHostNameResolver::onHostNameResolved(const QHostAddress &ip, const QString &hostname)
-{
-    m_resolvedHosts.insert(ip, hostname);
-}
-
-void PeerHostNameResolver::updateState()
-{
-    if (Preferences::instance()->resolvePeerHostNames())
+    struct ResponseStatus
     {
-        if (!m_resolver)
-        {
-            m_resolver = new Net::ReverseResolution(this);
-            connect(m_resolver, &Net::ReverseResolution::ipResolved
-                    , this, &PeerHostNameResolver::onHostNameResolved);
-        }
-    }
-    else
+        int code = 0;
+        QString text {};
+    };
+
+    struct Response
     {
-        delete m_resolver;
-        m_resolver = nullptr;
-    }
+        ResponseStatus status {};
+        HeaderMap headers {};
+        QByteArray content {};
+    };
 }

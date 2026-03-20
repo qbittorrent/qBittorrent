@@ -689,7 +689,7 @@ td.noWrap {
     white-space: nowrap;
 }
 
-#tristate_cb {
+#tristateCb {
     margin-bottom: 0;
     margin-top: 0;
 }
@@ -715,20 +715,21 @@ td.noWrap {
     padding: 2px;
 }
 
-#propProgressWrapper {
+#propBarsWrapper {
     align-items: center;
-    display: flex;
+    display: grid;
+    gap: 4px 8px;
+    grid-template-columns: auto 1fr auto;
     height: auto;
     margin: 5px 2px;
+}
 
-    & > span:not(:first-child, :empty) {
-        margin-left: 6px;
-        min-width: 3.5em;
-    }
+#propAvailabilityWrapper {
+    display: contents;
+}
 
-    & #progress {
-        flex: 1;
-    }
+.propBarLabel {
+    text-align: right;
 }
 
 #watched_folders_tab {
@@ -831,10 +832,6 @@ td.statusBarSeparator {
 #searchResultsTableContainer {
     height: calc(100% - 177px);
     overflow: auto;
-}
-
-#searchResults .dynamicTable {
-    width: 100%;
 }
 
 #searchResults .numSearchResults {

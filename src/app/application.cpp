@@ -44,6 +44,7 @@
 #endif
 
 #include <QByteArray>
+#include <QDateTime>
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QMetaObject>
@@ -73,6 +74,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/geoipmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/reverseresolution.h"
 #include "base/net/smtp.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -277,6 +279,8 @@ Application::Application(int &argc, char **argv)
     setQuitLockEnabled(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
+
+    m_launchTimeSecsSinceEpoch = QDateTime::currentSecsSinceEpoch();
 
     Logger::initInstance();
 
@@ -908,6 +912,7 @@ int Application::exec()
         m_addTorrentManager = new AddTorrentManagerImpl(this, BitTorrent::Session::instance(), this);
 
         Net::GeoIPManager::initInstance();
+        Net::ReverseResolution::initInstance();
         TorrentFilesWatcher::initInstance();
 
         new RSS::Session; // create RSS::Session singleton
@@ -1345,6 +1350,11 @@ void Application::adjustThreadPriority() const
 }
 #endif
 
+qint64 Application::launchTimeSecsSinceEpoch() const
+{
+    return m_launchTimeSecsSinceEpoch;
+}
+
 void Application::cleanup()
 {
     // cleanup() can be called multiple times during shutdown. We only need it once.
@@ -1397,6 +1407,7 @@ void Application::cleanup()
     TorrentFilesWatcher::freeInstance();
     delete m_addTorrentManager;
     BitTorrent::Session::freeInstance();
+    Net::ReverseResolution::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();
     Net::ProxyConfigurationManager::freeInstance();

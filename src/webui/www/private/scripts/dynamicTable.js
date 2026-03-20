@@ -75,10 +75,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.dynamicTableDivId = dynamicTableDivId;
             this.dynamicTableFixedHeaderDivId = dynamicTableFixedHeaderDivId;
             this.dynamicTableDiv = document.getElementById(dynamicTableDivId);
-            this.useVirtualList = clientData.get("use_virtual_list") === true;
+            this.useVirtualList = clientData.get("use_virtual_list") ?? true;
             this.fixedTableHeader = document.querySelector(`#${dynamicTableFixedHeaderDivId} thead tr`);
-            this.hiddenTableHeader = this.dynamicTableDiv.querySelector("thead tr");
             this.table = this.dynamicTableDiv.querySelector("table");
+            this.colgroup = document.createElement("colgroup");
+            this.table.prepend(this.colgroup);
             this.tableBody = this.dynamicTableDiv.querySelector("tbody");
             this.rowHeight = (clientData.get("display_density") === "compact") ? 22 : 26;
             this.rows = new Map();
@@ -262,9 +263,10 @@ window.qBittorrent.DynamicTable ??= (() => {
 
                     resetElementBorderStyle(borderChangeElement, ((changeBorderSide === "right") ? "left" : "right"));
 
-                    borderChangeElement.getSiblings('[class=""]').each((el) => {
-                        resetElementBorderStyle(el);
-                    });
+                    for (const el of borderChangeElement.parentElement.children) {
+                        if ((el !== borderChangeElement) && (el.classList.length === 0))
+                            resetElementBorderStyle(el);
+                    }
                 }
                 this.lastHoverTh = e.target;
                 this.lastClientX = e.clientX;
@@ -316,17 +318,25 @@ window.qBittorrent.DynamicTable ??= (() => {
                         ++pos;
                     val.splice(pos, 0, el.columnName);
                     localPreferences.set(`columns_order_${this.dynamicTableDivId}`, val.join(","));
+                    const oldIndexByName = new Map(this.columns.map((col, i) => [col.name, i]));
                     this.loadColumnsOrder();
                     this.updateTableHeaders();
+                    for (const tr of this.cachedElements) {
+                        if (!tr)
+                            continue;
+                        const tds = [...tr.children];
+                        tr.replaceChildren(...this.columns.map(col => tds[oldIndexByName.get(col.name)]));
+                    }
                     this.tableBody.replaceChildren();
                     this.updateTable(true);
                     this.reselectRows(this.selectedRowsIds());
                 }
                 if (this.currentHeaderAction === "drag") {
                     resetElementBorderStyle(el);
-                    el.getSiblings('[class=""]').each((el) => {
-                        resetElementBorderStyle(el);
-                    });
+                    for (const e of el.parentElement.children) {
+                        if ((e !== el) && (e.classList.length === 0))
+                            resetElementBorderStyle(e);
+                    }
                 }
                 this.currentHeaderAction = "";
             }.bind(this);
@@ -400,7 +410,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         #calculateColumnBodyWidth(column) {
             const columnIndex = this.getColumnPos(column.name);
-            const bodyColumn = document.getElementById(this.dynamicTableDivId).querySelectorAll("tr>th")[columnIndex];
+            const bodyColumn = this.getRowCells(this.fixedTableHeader)[columnIndex];
             const canvas = document.createElement("canvas");
             const context = canvas.getContext("2d");
             context.font = window.getComputedStyle(bodyColumn, null).getPropertyValue("font");
@@ -428,8 +438,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             const pos = this.getColumnPos(column.name);
             const style = `width: ${column.width}px; ${column.style}`;
-            this.getRowCells(this.hiddenTableHeader)[pos].style.cssText = style;
             this.getRowCells(this.fixedTableHeader)[pos].style.cssText = style;
+            this.colgroup.children[pos].style.width = `${column.width}px`;
             // rerender on column resize
             if (this.useVirtualList)
                 this.rerender();
@@ -595,7 +605,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns.push(column);
             this.columns[name] = column;
 
-            this.hiddenTableHeader.append(document.createElement("th"));
+            const col = document.createElement("col");
+            col.style.width = `${column.width}px`;
+            this.colgroup.append(col);
             this.fixedTableHeader.append(document.createElement("th"));
         }
 
@@ -629,8 +641,12 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         updateTableHeaders() {
-            this.updateHeader(this.hiddenTableHeader);
             this.updateHeader(this.fixedTableHeader);
+            const cols = this.colgroup.children;
+            for (let i = 0; i < this.columns.length; ++i) {
+                cols[i].style.width = `${this.columns[i].width}px`;
+                cols[i].classList.toggle("invisible", !this.columns[i].isVisible());
+            }
             this.setSortedColumnIcon(this.sortedColumn, null, (this.reverseSort === "1"));
         }
 
@@ -659,11 +675,10 @@ window.qBittorrent.DynamicTable ??= (() => {
         updateColumn(columnName, updateCellData = false) {
             const column = this.columns[columnName];
             const pos = this.getColumnPos(columnName);
-            const ths = this.getRowCells(this.hiddenTableHeader);
             const fths = this.getRowCells(this.fixedTableHeader);
             const action = column.isVisible() ? "remove" : "add";
-            ths[pos].classList[action]("invisible");
             fths[pos].classList[action]("invisible");
+            this.colgroup.children[pos].classList[action]("invisible");
 
             for (const tr of this.getTrs()) {
                 const td = this.getRowCells(tr)[pos];
@@ -740,7 +755,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         deselectAll() {
-            this.selectedRows.empty();
+            this.selectedRows.length = 0;
         }
 
         selectRow(rowId) {
@@ -813,6 +828,27 @@ window.qBittorrent.DynamicTable ??= (() => {
             }
         }
 
+        /**
+         * Replaces all rows with the provided set.
+         * More efficient than calling clear() + updateRowData() because existing <tr>
+         * elements are reused.
+         * @param {Map} rows - A Map with rowId as key
+         */
+        setRows(rows) {
+            for (const existingId of this.rows.keys()) {
+                const newVal = rows.get(existingId);
+                if (newVal !== undefined) {
+                    this.updateRowData(newVal);
+                    rows.delete(existingId);
+                }
+                else {
+                    this.rows.delete(existingId);
+                }
+            }
+            for (const data of rows.values())
+                this.updateRowData(data);
+        }
+
         getTrs() {
             return this.tableBody.querySelectorAll("tr");
         }
@@ -848,13 +884,8 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         updateTable(fullUpdate = false) {
             const rows = this.getFilteredAndSortedRows();
-
-            for (let i = 0; i < this.selectedRows.length; ++i) {
-                if (!(this.selectedRows[i] in rows)) {
-                    this.selectedRows.splice(i, 1);
-                    --i;
-                }
-            }
+            const rowIds = new Set(rows.map(row => row.rowId));
+            window.qBittorrent.Misc.filterInPlace(this.selectedRows, (selectedRow => rowIds.has(selectedRow)));
 
             if (this.useVirtualList) {
                 // rerender on table update
@@ -946,6 +977,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     element = this.cachedElements[position] = this.createRowElement(row, offset);
                 elements.push(element);
             }
+            const hadFocus = this.dynamicTableDiv.contains(document.activeElement);
             this.tableBody.replaceChildren(...elements);
 
             // update row classes
@@ -954,6 +986,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             // update visible rows
             for (const row of this.tableBody.children)
                 this.updateRow(row, true);
+
+            // restore focus so keyboard navigation continues working
+            if (hadFocus)
+                this.getTrByRowId(this.getSelectedRowId())?.focus({ preventScroll: true });
         }
 
         createRowElement(row, top = -1) {
@@ -1058,20 +1094,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
             const selectedRowId = this.getSelectedRowId();
 
-            let selectedIndex = -1;
-            for (const [i, row] of visibleRows.entries()) {
-                if (row.getAttribute("data-row-id") === selectedRowId) {
-                    selectedIndex = i;
-                    break;
-                }
-            }
+            const selectedIndex = visibleRows.findIndex(row => (row.getAttribute("data-row-id") === selectedRowId));
 
             const isLastRowSelected = (selectedIndex >= (visibleRows.length - 1));
             if (!isLastRowSelected) {
                 this.deselectAll();
-
                 const newRow = visibleRows[selectedIndex + 1];
                 this.selectRow(newRow.getAttribute("data-row-id"));
+                newRow.focus({ preventScroll: true });
             }
         }
 
@@ -1079,20 +1109,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             const visibleRows = Array.prototype.filter.call(this.getTrs(), (tr => !tr.classList.contains("invisible") && (tr.style.display !== "none")));
             const selectedRowId = this.getSelectedRowId();
 
-            let selectedIndex = -1;
-            for (const [i, row] of visibleRows.entries()) {
-                if (row.getAttribute("data-row-id") === selectedRowId) {
-                    selectedIndex = i;
-                    break;
-                }
-            }
+            const selectedIndex = visibleRows.findIndex(row => (row.getAttribute("data-row-id") === selectedRowId));
 
             const isFirstRowSelected = selectedIndex <= 0;
             if (!isFirstRowSelected) {
                 this.deselectAll();
-
                 const newRow = visibleRows[selectedIndex - 1];
                 this.selectRow(newRow.getAttribute("data-row-id"));
+                newRow.focus({ preventScroll: true });
             }
         }
     }
@@ -1423,7 +1447,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
             // added on
             this.columns["added_on"].updateTd = function(td, row) {
-                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                 td.textContent = date;
                 td.title = date;
             };
@@ -1436,7 +1460,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = "";
                 }
                 else {
-                    const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                    const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                     td.textContent = date;
                     td.title = date;
                 }
@@ -1951,7 +1975,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
             const displayDate = function(td, row) {
                 const value = this.getRowValue(row) * 1000;
-                const formattedValue = (Number.isNaN(value) || (value <= 0)) ? "" : (new Date(value).toLocaleString());
+                const formattedValue = (Number.isNaN(value) || (value <= 0)) ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
                 td.textContent = formattedValue;
                 td.title = formattedValue;
             };
@@ -2331,6 +2355,57 @@ window.qBittorrent.DynamicTable ??= (() => {
         supportCollapsing = true;
         collapseState = new Map();
         fileNameColumn = "name";
+        headerCheckboxClickHandler = null;
+        headerCheckboxId = "tristateCb";
+
+        updateHeaderCheckbox() {
+            const checkbox = document.getElementById(this.headerCheckboxId);
+            if (checkbox === null)
+                return;
+
+            if (this.getRowSize() === 0)
+                return;
+
+            const TriState = window.qBittorrent.FileTree.TriState;
+            if (this.isAllCheckboxesChecked()) {
+                checkbox.state = TriState.Checked;
+                checkbox.indeterminate = false;
+                checkbox.checked = true;
+            }
+            else if (this.isAllCheckboxesUnchecked()) {
+                checkbox.state = TriState.Unchecked;
+                checkbox.indeterminate = false;
+                checkbox.checked = false;
+            }
+            else {
+                checkbox.state = TriState.Partial;
+                checkbox.indeterminate = true;
+            }
+        }
+
+        injectHeaderCheckbox() {
+            document.getElementById(this.headerCheckboxId)?.remove();
+
+            if (!this.headerCheckboxClickHandler)
+                return;
+
+            const checkboxTH = document.querySelector(`#${this.dynamicTableFixedHeaderDivId} .column_checked`);
+            if (checkboxTH === null)
+                return;
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = this.headerCheckboxId;
+            checkbox.addEventListener("click", this.headerCheckboxClickHandler);
+            checkboxTH.appendChild(checkbox);
+
+            this.updateHeaderCheckbox();
+        }
+
+        updateTableHeaders() {
+            super.updateTableHeaders();
+            this.injectHeaderCheckbox();
+        }
 
         isCollapsed(id) {
             if (!this.supportCollapsing)
@@ -2438,8 +2513,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return;
 
             const node = this.getNode(id);
-            if (node.isFolder)
+            if (node.isFolder) {
                 this.expandNode(node.rowId);
+                if (this.useVirtualList)
+                    this.rerender();
+            }
         }
 
         collapseFolder(id) {
@@ -2447,8 +2525,22 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return;
 
             const node = this.getNode(id);
-            if (node.isFolder)
+            if (node.isFolder && !this.isCollapsed(node.rowId)) {
                 this.collapseNode(node.rowId);
+                if (this.useVirtualList)
+                    this.rerender();
+                return;
+            }
+
+            // when node is already collapsed or is a file, select parent
+            const parent = node.root;
+            if ((parent === null) || (parent.rowId === null))
+                return;
+
+            const parentRowId = parent.rowId.toString();
+            this.deselectAll();
+            this.selectRow(parentRowId);
+            this.getTrByRowId(parentRowId)?.focus({ preventScroll: true });
         }
 
         isAllCheckboxesChecked() {
@@ -2820,10 +2912,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         prevCheckboxNum = null;
         supportCollapsing = false;
         fileNameColumn = "original";
+        headerCheckboxId = "rootMultiRename_cb";
 
         getSelectedRows() {
+            const TriState = window.qBittorrent.FileTree.TriState;
             const nodes = this.fileTree.toArray();
-            return nodes.filter(x => x.checked === 0);
+            window.qBittorrent.Misc.filterInPlace(nodes, (node => node.checked === TriState.Checked));
+            return nodes;
         }
 
         initColumns() {
@@ -2841,64 +2936,45 @@ window.qBittorrent.DynamicTable ??= (() => {
         /**
          * Toggles the global checkbox and all checkboxes underneath
          */
-        toggleGlobalCheckbox() {
-            const checkbox = document.getElementById("rootMultiRename_cb");
+        toggleHeaderCheckbox() {
+            const TriState = window.qBittorrent.FileTree.TriState;
+            const checkbox = document.getElementById(this.headerCheckboxId);
             const isChecked = checkbox.checked || checkbox.indeterminate;
 
             for (const cb of document.querySelectorAll("input.RenamingCB")) {
                 cb.indeterminate = false;
                 if (isChecked) {
                     cb.checked = true;
-                    cb.state = "checked";
+                    cb.state = TriState.Checked;
                 }
                 else {
                     cb.checked = false;
-                    cb.state = "unchecked";
+                    cb.state = TriState.Unchecked;
                 }
             }
 
             const nodes = this.fileTree.toArray();
             for (const node of nodes)
-                node.checked = isChecked ? 0 : 1;
+                node.checked = isChecked ? TriState.Checked : TriState.Unchecked;
 
-            this.updateGlobalCheckbox();
+            this.updateHeaderCheckbox();
         }
 
         toggleNodeTreeCheckbox(rowId, checkState) {
+            const TriState = window.qBittorrent.FileTree.TriState;
             const node = this.getNode(rowId);
             node.checked = checkState;
             const checkbox = document.getElementById(`cbRename${rowId}`);
-            checkbox.checked = node.checked === 0;
-            checkbox.state = checkbox.checked ? "checked" : "unchecked";
+            checkbox.checked = node.checked === TriState.Checked;
+            checkbox.state = checkbox.checked ? TriState.Checked : TriState.Unchecked;
 
             for (let i = 0; i < node.children.length; ++i)
                 this.toggleNodeTreeCheckbox(node.children[i].rowId, checkState);
         }
 
-        updateGlobalCheckbox() {
-            const checkbox = document.getElementById("rootMultiRename_cb");
-            const nodes = this.fileTree.toArray();
-            const isAllChecked = nodes.every((node) => node.checked === 0);
-            const isAllUnchecked = (() => nodes.every((node) => node.checked !== 0));
-            if (isAllChecked) {
-                checkbox.state = "checked";
-                checkbox.indeterminate = false;
-                checkbox.checked = true;
-            }
-            else if (isAllUnchecked()) {
-                checkbox.state = "unchecked";
-                checkbox.indeterminate = false;
-                checkbox.checked = false;
-            }
-            else {
-                checkbox.state = "partial";
-                checkbox.indeterminate = true;
-                checkbox.checked = false;
-            }
-        }
-
         initColumnsFunctions() {
             const that = this;
+            const TriState = window.qBittorrent.FileTree.TriState;
 
             // checked
             this.columns["checked"].updateTd = (td, row) => {
@@ -2947,9 +3023,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                         }
                         for (const id of ids) {
                             const node = that.getNode(id);
-                            node.checked = e.target.checked ? 0 : 1;
+                            node.checked = e.target.checked ? TriState.Checked : TriState.Unchecked;
                         }
-                        that.updateGlobalCheckbox();
+                        that.updateHeaderCheckbox();
                         that.onRowSelectionChange(that.getNode(targetId));
                         that.prevCheckboxNum = targetId;
                     });
@@ -2958,8 +3034,8 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 checkbox.id = `cbRename${id}`;
                 checkbox.dataset.id = id;
-                checkbox.checked = (node.checked === 0);
-                checkbox.state = checkbox.checked ? "checked" : "unchecked";
+                checkbox.checked = (node.checked === TriState.Checked);
+                checkbox.state = checkbox.checked ? TriState.Checked : TriState.Unchecked;
             };
             this.columns["checked"].staticWidth = 50;
 
@@ -3024,19 +3100,20 @@ window.qBittorrent.DynamicTable ??= (() => {
         selectRow() {}
 
         reselectRows(rowIds) {
+            const TriState = window.qBittorrent.FileTree.TriState;
             this.deselectAll();
             for (const tr of this.getTrs()) {
                 if (rowIds.includes(tr.rowId)) {
                     const node = this.getNode(tr.rowId);
-                    node.checked = 0;
+                    node.checked = TriState.Checked;
 
                     const checkbox = tr.querySelector(".RenamingCB");
-                    checkbox.state = "checked";
+                    checkbox.state = TriState.Checked;
                     checkbox.indeterminate = false;
                     checkbox.checked = true;
                 }
             }
-            this.updateGlobalCheckbox();
+            this.updateHeaderCheckbox();
         }
 
         generateRowsSignature() {
@@ -3338,7 +3415,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumnsFunctions() {
             this.columns["timestamp"].updateTd = function(td, row) {
-                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3416,7 +3493,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("reason", "", "QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
 
             this.columns["timestamp"].updateTd = function(td, row) {
-                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3640,7 +3717,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = "";
                 }
                 else {
-                    const date = new Date(val).toLocaleString();
+                    const date = window.qBittorrent.Misc.formatDate(new Date(val));
                     td.textContent = date;
                     td.title = date;
                 }

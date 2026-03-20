@@ -4,9 +4,21 @@
 * [#23065](https://github.com/qbittorrent/qBittorrent/pull/23065)
   * Replace preferences key `max_connec_per_torrent` with keys `max_connec_per_downloading_torrent` and `max_connec_per_seeding_torrent`
 
+## 2.15.2
+* [#23357](https://github.com/qbittorrent/qBittorrent/pull/23856)
+  * Add `app/getFreeSpaceAtPathAction` endpoint with `path` as parameter returning the free space at the given path
+
 ## 2.15.1
+* [#23357](https://github.com/qbittorrent/qBittorrent/pull/23357)
+  * Add `app/processInfo` endpoint returning `launch_time` (process launch time as UTC epoch seconds)
 * [#23708](https://github.com/qbittorrent/qBittorrent/pull/23708)
   * `sync/torrentPeers` endpoint now includes peer `host_name` when peer host name resolution is enabled
+* [#23741](https://github.com/qbittorrent/qBittorrent/pull/23741)
+  * Add `torrents/pieceAvailability` endpoint for retrieving availability of each torrent piece
+  * `torrents/properties` endpoint now includes the number of distributed copies of the torrent's selected files via `availability` field
+* [#23847](https://github.com/qbittorrent/qBittorrent/pull/23847)
+  * `torrents/editCategory` endpoint will not throw an error when editing category without changes
+  * `torrents/editCategory` endpoint will throw a "Not Found" (404) error when editing category that does not exist
 
 ## 2.15.0
 * [#23585](https://github.com/qbittorrent/qBittorrent/pull/23585)

@@ -1,10 +1,26 @@
 <div id="BehaviorTab" class="PrefTab">
     <fieldset class="settings">
-        <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="locale_select">
-            ${LANGUAGE_OPTIONS}
-        </select>
+        <legend>QBT_TR(Localization)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="locale_select">
+                            ${LANGUAGE_OPTIONS}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dateFormatSelect">QBT_TR(Date format:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="dateFormatSelect">
+                            <option value="default" selected>QBT_TR(Browser default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </fieldset>
 
     <fieldset class="settings">
@@ -126,7 +142,7 @@
         </div>
         <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="useVirtualList">
-            <label for="useVirtualList">QBT_TR(Enable optimized table rendering (experimental))QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="useVirtualList">QBT_TR(Enable optimized table rendering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 </div>
@@ -316,7 +332,7 @@
                         <label for="src_email_txt">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="src_email_txt">
+                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com">
                     </td>
                 </tr>
                 <tr>
@@ -332,7 +348,7 @@
                         <label for="smtp_server_txt">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="smtp_server_txt">
+                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465">
                     </td>
                 </tr>
             </tbody>
@@ -360,7 +376,7 @@
                             <label for="mail_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="password" id="mail_password_text">
+                            <input type="password" id="mail_password_text" autocomplete="new-password">
                         </td>
                     </tr>
                 </tbody>
@@ -557,7 +573,7 @@
                             <label for="peer_proxy_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="password" id="peer_proxy_password_text">
+                            <input type="password" id="peer_proxy_password_text" autocomplete="new-password">
                         </td>
                     </tr>
                 </tbody>
@@ -1175,7 +1191,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="dyndns_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="password" id="dyndns_password_text">
+                        <input type="password" id="dyndns_password_text" autocomplete="new-password">
                     </td>
                 </tr>
             </tbody>
@@ -2291,10 +2307,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             window.parent.qBittorrent.Cache.preferences.init()
                 .then((pref) => {
                     const clientData = window.parent.qBittorrent.ClientData;
+                    const dateFormat = clientData.get("date_format");
                     const colorScheme = clientData.get("color_scheme");
                     const displayDensity = clientData.get("display_density") ?? "default";
                     const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
-                    const useVirtualList = clientData.get("use_virtual_list");
+                    const useVirtualList = clientData.get("use_virtual_list") ?? true;
                     const hideZeroStatusFilters = clientData.get("hide_zero_status_filters");
                     const dblclickDownload = clientData.get("dblclick_download") ?? "1";
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
@@ -2302,8 +2319,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const useAltRowColors = clientData.get("use_alt_row_colors");
 
                     // Behavior tab
-                    // Language
+                    // Localization
                     updateWebuiLocaleSelect(pref.locale);
+                    const now = new Date();
+                    const dateFormatSelect = document.getElementById("dateFormatSelect");
+                    for (const format of Object.keys(window.qBittorrent.Misc.DateFormatOptions)) {
+                        const option = document.createElement("option");
+                        option.value = format;
+                        option.textContent = window.qBittorrent.Misc.formatDate(now, format);
+                        option.selected = format === dateFormat;
+                        dateFormatSelect.appendChild(option);
+                    }
+
+                    // Interface
                     updateColoSchemeSelect(colorScheme);
                     document.getElementById("displayDensitySelect").value = displayDensity;
 
@@ -2575,7 +2603,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     let maxRatioAct = 0;
                     switch (Number(pref.max_ratio_act)) {
                         case 0: // Stop
-                        default:
                             maxRatioAct = 0;
                             break;
                         case 1: // Remove
@@ -2758,6 +2785,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Behavior tab
             // Language
             settings["locale"] = document.getElementById("locale_select").value;
+            clientData.date_format = document.getElementById("dateFormatSelect").getSelected()[0].value;
             const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
             if (colorScheme === 0)
                 clientData.color_scheme = null;

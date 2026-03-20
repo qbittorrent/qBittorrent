@@ -26,9 +26,22 @@
  * exception statement from your version.
  */
 
-import { expect, test } from "vitest";
+import { expect, test, vi } from "vitest";
 
 import "../../private/scripts/misc.js";
+
+test("Test filterInPlace()", () => {
+    const filterInPlace = (array, predicate) => {
+        window.qBittorrent.Misc.filterInPlace(array, predicate);
+        return array;
+    };
+
+    expect(filterInPlace([], (() => true))).toStrictEqual([]);
+    expect(filterInPlace([], (() => false))).toStrictEqual([]);
+    expect(filterInPlace([1, 2, 3, 4], (() => true))).toStrictEqual([1, 2, 3, 4]);
+    expect(filterInPlace([1, 2, 3, 4], (() => false))).toStrictEqual([]);
+    expect(filterInPlace([1, 2, 3, 4], (x => (x % 2) === 0))).toStrictEqual([2, 4]);
+});
 
 test("Test toFixedPointString()", () => {
     const toFixedPointString = window.qBittorrent.Misc.toFixedPointString;
@@ -76,4 +89,58 @@ test("Test toFixedPointString()", () => {
     expect(toFixedPointString(-100, 0)).toBe("-100");
     expect(toFixedPointString(-100, 1)).toBe("-100.0");
     expect(toFixedPointString(-100, 2)).toBe("-100.00");
+});
+
+test("Test formatDate() - Format Coverage", () => {
+    const formatDate = window.qBittorrent.Misc.formatDate;
+    const testDate = new Date(2025, 7, 23, 22, 32, 46); // Aug 23, 2025 10:32:46 PM
+
+    expect(formatDate(testDate, "MM/dd/yyyy, h:mm:ss AM/PM")).toBe("08/23/2025, 10:32:46 PM");
+    expect(formatDate(testDate, "MM/dd/yyyy, HH:mm:ss")).toBe("08/23/2025, 22:32:46");
+    expect(formatDate(testDate, "dd/MM/yyyy, HH:mm:ss")).toBe("23/08/2025, 22:32:46");
+    expect(formatDate(testDate, "yyyy-MM-dd HH:mm:ss")).toBe("2025-08-23 22:32:46");
+    expect(formatDate(testDate, "yyyy/MM/dd HH:mm:ss")).toBe("2025/08/23 22:32:46");
+    expect(formatDate(testDate, "dd.MM.yyyy, HH:mm:ss")).toBe("23.08.2025, 22:32:46");
+    expect(formatDate(testDate, "MMM dd, yyyy, h:mm:ss AM/PM")).toBe("Aug 23, 2025, 10:32:46 PM");
+    expect(formatDate(testDate, "dd MMM yyyy, HH:mm:ss")).toBe("23 Aug 2025, 22:32:46");
+});
+
+test("Test formatDate() - Fallback Behavior", () => {
+    // Mock ClientData.get
+    const mockGet = vi.fn().mockReturnValue("default");
+    const originalParent = window.parent;
+
+    window.parent = {
+        qBittorrent: {
+            ClientData: {
+                get: mockGet
+            }
+        }
+    };
+
+    const formatDate = window.qBittorrent.Misc.formatDate;
+    const testDate = new Date(2025, 7, 23, 22, 32, 46); // Aug 23, 2025 10:32:46 PM
+    const expectedDefault = testDate.toLocaleString();
+
+    // Test that "default" format uses toLocaleString()
+    expect(formatDate(testDate, "default")).toBe(expectedDefault);
+
+    // Test default behavior when no format argument is provided
+    expect(mockGet).toHaveBeenCalledTimes(0);
+    expect(formatDate(testDate)).toBe(expectedDefault);
+    expect(mockGet).toHaveBeenCalledWith("date_format");
+    expect(mockGet).toHaveBeenCalledTimes(1);
+
+    // Test with unknown/invalid format strings
+    expect(formatDate(testDate, "invalid-format")).toBe(expectedDefault);
+    expect(formatDate(testDate, "")).toBe(expectedDefault);
+    expect(formatDate(testDate, null)).toBe(expectedDefault);
+
+    expect(mockGet).toHaveBeenCalledTimes(1);
+    expect(formatDate(testDate, undefined)).toBe(expectedDefault);
+    expect(mockGet).toHaveBeenCalledWith("date_format");
+    expect(mockGet).toHaveBeenCalledTimes(2);
+
+    // Restore original window.parent
+    window.parent = originalParent;
 });

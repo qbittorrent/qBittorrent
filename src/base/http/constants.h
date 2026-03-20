@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Mike Tzou (Chocobo1)
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,14 +29,9 @@
 
 #pragma once
 
-#include <QByteArray>
-#include <QHash>
-#include <QHostAddress>
-#include <QList>
-#include <QMap>
 #include <QString>
 
-#include "base/global.h"
+using namespace Qt::Literals::StringLiterals;
 
 namespace Http
 {
@@ -73,66 +68,15 @@ namespace Http
     inline const QString CONTENT_TYPE_HTML = u"text/html"_s;
     inline const QString CONTENT_TYPE_CSS = u"text/css"_s;
     inline const QString CONTENT_TYPE_TXT = u"text/plain; charset=UTF-8"_s;
-    inline const QString CONTENT_TYPE_JS = u"application/javascript"_s;
+    inline const QString CONTENT_TYPE_JPEG = u"image/jpeg"_s;
+    inline const QString CONTENT_TYPE_JS = u"text/javascript"_s;
     inline const QString CONTENT_TYPE_JSON = u"application/json"_s;
     inline const QString CONTENT_TYPE_GIF = u"image/gif"_s;
     inline const QString CONTENT_TYPE_PNG = u"image/png"_s;
+    inline const QString CONTENT_TYPE_WEBP = u"image/webp"_s;
     inline const QString CONTENT_TYPE_FORM_ENCODED = u"application/x-www-form-urlencoded"_s;
     inline const QString CONTENT_TYPE_FORM_DATA = u"multipart/form-data"_s;
 
     // portability: "\r\n" doesn't guarantee mapping to the correct symbol
     inline const QByteArray CRLF = QByteArrayLiteral("\x0D\x0A");
-
-    struct Environment
-    {
-        QHostAddress localAddress;
-        quint16 localPort = 0;
-
-        QHostAddress clientAddress;
-        quint16 clientPort = 0;
-    };
-
-    struct UploadedFile
-    {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
-
-    struct Header
-    {
-        QString name;
-        QString value;
-    };
-
-    using HeaderMap = QMap<QString, QString>;  // <Header name, Header value>
-
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-    };
-
-    struct ResponseStatus
-    {
-        uint code;
-        QString text;
-    };
-
-    struct Response
-    {
-        ResponseStatus status;
-        HeaderMap headers;
-        QByteArray content;
-
-        Response(uint code = 200, const QString &text = u"OK"_s)
-            : status {code, text}
-        {
-        }
-    };
 }

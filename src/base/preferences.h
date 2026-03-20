@@ -323,6 +323,10 @@ public:
     bool isUpdateCheckEnabled() const;
     void setUpdateCheckEnabled(bool enabled);
 #endif
+#ifdef Q_OS_MACOS
+    bool isSpeedInDockEnabled() const;
+    void setSpeedInDockEnabled(bool enabled);
+#endif
     bool confirmTorrentDeletion() const;
     void setConfirmTorrentDeletion(bool enabled);
     bool confirmTorrentRecheck() const;

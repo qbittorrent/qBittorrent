@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2026  Thomas Piccirello <thomas@piccirello.com>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,30 +29,30 @@
 
 #pragma once
 
+#include <QByteArray>
 #include <QHash>
-#include <QHostAddress>
-#include <QObject>
+#include <QList>
+#include <QString>
 
-namespace Net
+#include "headermap.h"
+
+namespace Http
 {
-    class ReverseResolution;
+    struct UploadedFile
+    {
+        QString filename;
+        QString type;  // MIME type
+        QByteArray data;
+    };
+
+    struct Request
+    {
+        QString version;
+        QString method;
+        QString path;
+        HeaderMap headers;
+        QHash<QString, QByteArray> query;
+        QHash<QString, QString> posts;
+        QList<UploadedFile> files;
+    };
 }
-
-class PeerHostNameResolver final : public QObject
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PeerHostNameResolver)
-
-public:
-    explicit PeerHostNameResolver(QObject *parent = nullptr);
-
-    QString lookupHostName(const QHostAddress &ip);
-
-private slots:
-    void onHostNameResolved(const QHostAddress &ip, const QString &hostname);
-    void updateState();
-
-private:
-    Net::ReverseResolution *m_resolver = nullptr;
-    QHash<QHostAddress, QString> m_resolvedHosts;
-};
