@@ -1,5 +1,55 @@
 #pragma once
 
+// std
+#include <algorithm>
+#include <array>
+#include <atomic>
+#include <cassert>
+#include <cctype>
+#include <chrono>
+#include <cmath>
+#include <concepts>
+#include <cstddef>
+#include <cstdint>
+#include <ctime>
+#include <exception>
+#include <expected>
+#include <filesystem>
+#include <functional>
+#include <initializer_list>
+#include <iterator>
+#include <limits>
+#include <memory>
+#include <new>
+#include <numeric>
+#include <optional>
+#include <queue>
+#include <random>
+#include <ranges>
+#include <set>
+#include <string>
+#include <string_view>
+#include <system_error>
+#include <type_traits>
+#include <utility>
+#include <vector>
+
+// Windows
+#ifdef Q_OS_WIN
+#include <windows.h>
+#include <wincrypt.h>
+#include <iphlpapi.h>
+#endif
+
+// boost
+#include <boost/asio.hpp>
+#include <boost/circular_buffer.hpp>
+
+// libtorrent
+#include <libtorrent/fwd.hpp>
+#include <libtorrent/extensions.hpp>
+#include <libtorrent/session.hpp>
+
 // Qt
 #include <QBasicTimer>
 #include <QBitArray>
@@ -71,56 +121,6 @@
 #include <QtLogging>
 #include <QtSystemDetection>
 #include <QtTypes>
-
-// libtorrent
-#include <libtorrent/fwd.hpp>
-#include <libtorrent/extensions.hpp>
-#include <libtorrent/session.hpp>
-
-// std
-#include <algorithm>
-#include <array>
-#include <atomic>
-#include <cassert>
-#include <cctype>
-#include <chrono>
-#include <cmath>
-#include <concepts>
-#include <cstddef>
-#include <cstdint>
-#include <ctime>
-#include <exception>
-#include <expected>
-#include <filesystem>
-#include <functional>
-#include <initializer_list>
-#include <iterator>
-#include <limits>
-#include <memory>
-#include <new>
-#include <numeric>
-#include <optional>
-#include <queue>
-#include <random>
-#include <ranges>
-#include <set>
-#include <string>
-#include <string_view>
-#include <system_error>
-#include <type_traits>
-#include <utility>
-#include <vector>
-
-// boost
-#include <boost/asio.hpp>
-#include <boost/circular_buffer.hpp>
-
-// Windows
-#ifdef Q_OS_WIN
-#include <windows.h>
-#include <wincrypt.h>
-#include <iphlpapi.h>
-#endif
 
 // Self
 #include "bittorrent/addtorrentparams.h"

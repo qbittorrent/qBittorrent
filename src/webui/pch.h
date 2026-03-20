@@ -1,5 +1,14 @@
 #pragma once
 
+// std
+#include <algorithm>
+#include <chrono>
+#include <concepts>
+#include <limits>
+#include <memory>
+#include <type_traits>
+#include <utility>
+
 // Qt
 #include <QCoreApplication>
 #include <QDateTime>
@@ -29,22 +38,8 @@
 #include <QTranslator>
 #include <QUrl>
 #include <QVariant>
-#include <QtContainerFwd>
 
-// std
-#include <algorithm>
-#include <chrono>
-#include <concepts>
-#include <limits>
-#include <memory>
-#include <type_traits>
-#include <utility>
-
-// qbt_base
-#include "base/bittorrent/addtorrentparams.h"
-#include "base/bittorrent/infohash.h"
-#include "base/bittorrent/session.h"
-#include "base/bittorrent/torrentdescriptor.h"
-#include "base/logger.h"
-#include "base/net/downloadmanager.h"
-#include "base/search/searchpluginmanager.h"
+// libtorrent
+#include "libtorrent/torrent_info.hpp"
+#include "libtorrent/info_hash.hpp"
+#include "libtorrent/add_torrent_params.hpp"

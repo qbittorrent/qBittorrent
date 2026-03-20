@@ -1,5 +1,22 @@
 #pragma once
 
+// std
+#include <algorithm>
+#include <atomic>
+#include <chrono>
+#include <csignal>
+#include <cstdio>
+#include <cstdlib>
+#include <io.h>
+#include <memory>
+#include <optional>
+#include <string>
+
+// Windows
+#ifdef Q_OS_WIN
+#include <windows.h>
+#endif
+
 // Qt
 #include <QByteArray>
 #include <QCoreApplication>
@@ -19,25 +36,6 @@
 #include <QTimer>
 #include <QtSystemDetection>
 
-// std
-#include <algorithm>
-#include <atomic>
-#include <chrono>
-#include <csignal>
-#include <cstdio>
-#include <cstdlib>
-#include <io.h>
-#include <memory>
-#include <optional>
-#include <string>
-
-// qbt_base
-#include "base/bittorrent/addtorrentparams.h"
-#include "base/bittorrent/infohash.h"
-#include "base/logger.h"
-#include "base/settingvalue.h"
-
-// Windows
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
+// libtorrent
+#include "libtorrent/add_torrent_params.hpp"
+#include "libtorrent/info_hash.hpp"
