@@ -46,7 +46,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 8;
+    const int MIGRATION_VERSION = 9;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -233,7 +233,14 @@ namespace
         }
     }
 
-    void migrateSettingKeys()
+    enum class MigrateOption
+    {
+        AddNewKeys,
+        RemoveOldKeys
+    };
+
+    template <MigrateOption migrateOption>
+    void handleSettingKeys()
     {
         struct KeyMapping
         {
@@ -322,11 +329,17 @@ namespace
         auto *settingsStorage = SettingsStorage::instance();
         for (const KeyMapping &mapping : mappings)
         {
-            if (settingsStorage->hasKey(mapping.oldKey))
+            if constexpr (migrateOption == MigrateOption::AddNewKeys)
             {
-                const auto value = settingsStorage->loadValue<QVariant>(mapping.oldKey);
-                settingsStorage->storeValue(mapping.newKey, value);
-                // TODO: Remove oldKey after ~v4.4.3 and bump migration version
+                if (settingsStorage->hasKey(mapping.oldKey))
+                {
+                    const auto value = settingsStorage->loadValue<QVariant>(mapping.oldKey);
+                    settingsStorage->storeValue(mapping.newKey, value);
+                }
+            }
+            else if constexpr (migrateOption == MigrateOption::RemoveOldKeys)
+            {
+                settingsStorage->removeValue(mapping.oldKey);
             }
         }
     }
@@ -497,7 +510,7 @@ bool upgrade()
         }
 
         if (version < 2)
-            migrateSettingKeys();
+            handleSettingKeys<MigrateOption::AddNewKeys>();
 
         if (version < 3)
             migrateProxySettingsEnum();
@@ -521,6 +534,9 @@ bool upgrade()
 
         if (version < 8)
             migrateAddPausedSetting();
+
+        if (version < 9)
+            handleSettingKeys<MigrateOption::RemoveOldKeys>();
 
         version = MIGRATION_VERSION;
     }
