@@ -65,7 +65,7 @@
 namespace
 {
 #ifdef Q_OS_WIN
-    // Shared set of reserved device names for Windows
+    // Set of reserved device names for Windows
     const QSet<QString> reservedDeviceNames
     {
         u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
@@ -76,9 +76,24 @@ namespace
         u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
         u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
     };
+
+    // Check if name is a Windows reserved device name,
+    // including when immediately followed by an extension (e.g. CON.txt)
+    static bool isReservedDeviceName(QStringView name)
+    {
+        const qsizetype lastDotIndex = name.lastIndexOf(u'.');
+        const QStringView baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
+        for (const QString &reserved : reservedDeviceNames)
+        {
+            if (baseName.compare(reserved, Qt::CaseInsensitive) == 0)
+                return true;
+        }
+
+        return false;
+    }
 #endif
 
-    // Shared check if a character is reserved (Control, DEL, '/', or Windows-specific)
+    // Check if a character is reserved (Control, DEL, '/', or Windows/macOS specific)
     bool isReservedCharacter(const QChar c)
     {
         const ushort unicode = c.unicode();
@@ -224,7 +239,7 @@ bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 }
 
 // Check if a filename is valid without sanitizing
-bool Utils::Fs::isValidFileName(const QString &name)
+bool Utils::Fs::isValidFileName(const QStringView &name)
 {
     // Reject empty names or relative alias directory names
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
@@ -246,9 +261,7 @@ bool Utils::Fs::isValidFileName(const QString &name)
 
 #ifdef Q_OS_WIN
     // Check for Windows reserved device names
-    const qsizetype lastDotIndex = name.lastIndexOf(u'.');
-    const QString baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
-    if (reservedDeviceNames.contains(baseName.toUpper()))
+    if (isReservedDeviceName(name))
         return false;
 #endif
 
@@ -258,7 +271,7 @@ bool Utils::Fs::isValidFileName(const QString &name)
 // Validates if the path contains only valid filename components (allows '/' separator)
 bool Utils::Fs::isValidPath(const Path &path)
 {
-    QString pathStr = path.data();
+    QStringView pathStr = path.data();
 
     // Reject empty names or relative alias directory names
     if (pathStr.isEmpty() || (pathStr == u"."_s) || (pathStr == u".."_s))
@@ -271,8 +284,8 @@ bool Utils::Fs::isValidPath(const Path &path)
 #endif
 
     // Split path into components and validate each NON-EMPTY one
-    const QStringList components = pathStr.split(u'/');
-    for (const QString &component : components)
+    const auto components = pathStr.split(u'/');
+    for (QStringView component : components)
     {
         if (!component.isEmpty() && !isValidFileName(component))
             return false;
@@ -324,15 +337,14 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
     // Handle Windows-specific trailing dots
     while (validName.endsWith(u'.'))
         validName.chop(1);
-#endif
 
-#ifdef Q_OS_WIN
     // Handle Windows reserved device names
-    const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
-    const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
-    if (reservedDeviceNames.contains(baseName.toUpper()))
+    if (isReservedDeviceName(validName))
     {
+        const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
+        const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
         const QString suffix = (lastDotIndex == -1) ? QString() : validName.mid(lastDotIndex);
+
         validName = baseName + pad + u"1"_s + suffix;
     }
 #endif

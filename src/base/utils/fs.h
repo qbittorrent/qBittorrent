@@ -46,7 +46,7 @@ namespace Utils::Fs
     qint64 computePathSize(const Path &path);
     qint64 freeDiskSpaceOnPath(const Path &path);
 
-    bool isValidFileName(const QString &name);
+    bool isValidFileName(const QStringView &name);
     bool isValidPath(const Path &path);
     bool isDriveLetterPath(const Path &path);
     bool isRegularFile(const Path &path);
