@@ -484,13 +484,13 @@ window.qBittorrent.TorrentContent ??= (() => {
                 },
 
                 CopyFilePath: async (element, ref) => {
-                    const selectedNodes = torrentFilesTable.selectedRowsIds()
-                        .map(row => torrentFilesTable.getNode(row));
-                    const currentHash = torrentsTable.getCurrentTorrentID();
-                    const rows = torrentsTable.getFilteredAndSortedRows();
-                    const savePath = rows[currentHash]?.full_data.save_path ?? "";
-                    const paths = selectedNodes
-                        .map(node => `${savePath}/${node.path}`)
+                    const torrentID = torrentsTable.getCurrentTorrentID();
+                    const torrentRow = torrentsTable.getRow(torrentID);
+                    const savePath = torrentRow
+                        ? (torrentsTable.getRowData(torrentRow, true).save_path ?? "")
+                        : "";
+                    const paths = torrentFilesTable.selectedRowsIds()
+                        .map(rowID => `${savePath}/${torrentFilesTable.getNode(rowID).path}`)
                         .join("\n");
                     await clipboardCopy(paths);
                 },
