@@ -489,9 +489,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const currentHash = torrentsTable.getCurrentTorrentID();
                     const rows = torrentsTable.getFilteredAndSortedRows();
                     const savePath = rows[currentHash]?.full_data.save_path ?? "";
-                    const separator = (savePath.endsWith("/") || savePath.endsWith("\\")) ? "" : "/";
                     const paths = selectedNodes
-                        .map(node => savePath + separator + node.path)
+                        .map(node => savePath + "/" + node.path)
                         .join("\n");
                     await clipboardCopy(paths);
                 },
