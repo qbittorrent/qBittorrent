@@ -32,12 +32,6 @@ endif()
 # -----------------------------------------------------------------------------
 add_executable(qbt_app)
 
-if (ENABLE_PCH)
-    target_precompile_headers(qbt_app PRIVATE
-        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
-    )
-endif()
-
 target_sources(qbt_app PRIVATE
     # headers
     application.h
@@ -76,6 +70,12 @@ if (GUI)
     set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent)
 else()
     set_target_properties(qbt_app PROPERTIES OUTPUT_NAME qbittorrent-nox)
+endif()
+
+if (ENABLE_PCH)
+    target_precompile_headers(qbt_app PRIVATE
+        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
+    )
 endif()
 
 # Additional platform specific configuration
