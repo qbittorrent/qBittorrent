@@ -29,6 +29,8 @@
 
 #pragma once
 
+#include <libtorrent/version.hpp>
+
 #include <QtContainerFwd>
 #include <QObject>
 
@@ -41,8 +43,6 @@
 #include "torrentcontentremoveoption.h"
 #include "trackerentry.h"
 #include "trackerentrystatus.h"
-
-#include <libtorrent/version.hpp>
 
 class QString;
 

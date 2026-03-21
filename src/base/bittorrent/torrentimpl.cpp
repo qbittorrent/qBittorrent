@@ -41,6 +41,7 @@
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
 #include <libtorrent/write_resume_data.hpp>
+#include <libtorrent/version.hpp>
 
 #ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/info_hash.hpp>
@@ -869,11 +870,12 @@ bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
 bool TorrentImpl::needSaveResumeData() const
 {
 #if LIBTORRENT_VERSION_NUM >= 20100
-    // notably, if just counters have changed, no need to save resume data
-    return bool(m_nativeStatus.need_save_resume_data & (lt::torrent_handle::if_download_progress
+    return static_cast<bool>(m_nativeStatus.need_save_resume_data & (lt::torrent_handle::if_download_progress
             | lt::torrent_handle::if_config_changed
             | lt::torrent_handle::if_state_changed
             | lt::torrent_handle::if_metadata_changed
+            // TODO: if_counters_changed can probably safely be removed
+            | lt::torrent_handle::if_counters_changed
             ));
 #else
     return m_nativeStatus.need_save_resume;
