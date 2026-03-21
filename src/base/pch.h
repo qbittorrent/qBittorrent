@@ -117,7 +117,6 @@
 #include <QVariantHash>
 #include <Qt>
 #include <QtAssert>
-#include <QtContainerFwd>
 #include <QtLogging>
 #include <QtSystemDetection>
 #include <QtTypes>

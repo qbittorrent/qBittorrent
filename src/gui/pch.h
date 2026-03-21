@@ -109,7 +109,6 @@
 #include <QStyleOptionViewItem>
 #include <QSystemTrayIcon>
 #include <QTabWidget>
-#include <QtContainerFwd>
 #include <QTextBrowser>
 #include <QTextEdit>
 #include <QThread>
