@@ -49,6 +49,7 @@ window.qBittorrent.TorrentContent ??= (() => {
     const TriState = window.qBittorrent.FileTree.TriState;
     let torrentFilesFilterInputTimer = -1;
     let onFilePriorityChanged = null;
+    let actualFilePaths = [];
 
     const normalizePriority = (priority) => {
         priority = Number(priority);
@@ -293,6 +294,8 @@ window.qBittorrent.TorrentContent ??= (() => {
     };
 
     const updateData = (files) => {
+        actualFilePaths = files.map(file => file.actual_path ?? "");
+
         const rows = files.map((file, index) => {
             const ignore = (file.priority === FilePriority.Ignored);
             const row = {
@@ -466,6 +469,32 @@ window.qBittorrent.TorrentContent ??= (() => {
         }
     };
 
+    const getPathRelativeToRootFolder = (path) => {
+        const separatorIndex = path.indexOf(window.qBittorrent.Filesystem.PathSeparator);
+        return (separatorIndex < 0) ? "" : path.substring(separatorIndex + 1);
+    };
+
+    const joinAbsolutePath = (basePath, relativePath) => {
+        if (relativePath === "")
+            return basePath;
+
+        const separator = basePath.includes(window.qBittorrent.Filesystem.PathSeparator)
+            ? window.qBittorrent.Filesystem.PathSeparator
+            : "\\";
+        const normalizedRelativePath = relativePath.replaceAll(window.qBittorrent.Filesystem.PathSeparator, separator);
+        return `${basePath}${basePath.endsWith(separator) ? "" : separator}${normalizedRelativePath}`;
+    };
+
+    const getNodeAbsolutePath = (node, rootPath, contentPath) => {
+        if (!node.isFolder)
+            return (actualFilePaths[node.fileId] ?? "");
+
+        if (rootPath !== "")
+            return joinAbsolutePath(rootPath, getPathRelativeToRootFolder(node.path));
+
+        return (contentPath === "") ? "" : joinAbsolutePath(contentPath, node.path);
+    };
+
     const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) => {
         if (onFilePriorityChangedHandler !== undefined)
             onFilePriorityChanged = onFilePriorityChangedHandler;
@@ -486,11 +515,15 @@ window.qBittorrent.TorrentContent ??= (() => {
                 CopyFilePath: async (element, ref) => {
                     const torrentID = torrentsTable.getCurrentTorrentID();
                     const torrentRow = torrentsTable.getRow(torrentID);
-                    const savePath = torrentRow
-                        ? (torrentsTable.getRowData(torrentRow, true).save_path ?? "")
-                        : "";
+                    if (!torrentRow)
+                        return;
+
+                    const torrentData = torrentsTable.getRowData(torrentRow, true);
+                    const rootPath = torrentData.root_path ?? "";
+                    const contentPath = torrentData.content_path ?? "";
                     const paths = torrentFilesTable.selectedRowsIds()
-                        .map(rowID => `${savePath}/${torrentFilesTable.getNode(rowID).path}`)
+                        .map(rowID => getNodeAbsolutePath(torrentFilesTable.getNode(rowID), rootPath, contentPath))
+                        .filter(path => path !== "")
                         .join("\n");
                     await clipboardCopy(paths);
                 },
