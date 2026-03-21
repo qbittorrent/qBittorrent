@@ -28,9 +28,8 @@
 
 #pragma once
 
-#include <QVariant>
-
 class QString;
+class QStringView;
 
 struct ISession
 {
@@ -41,8 +40,8 @@ struct ISession
 struct ISessionManager
 {
     virtual ~ISessionManager() = default;
-    virtual QString clientId() const = 0;
     virtual ISession *session() = 0;
     virtual void sessionStart() = 0;
     virtual void sessionEnd() = 0;
+    virtual bool validateCredentials(QStringView username, QStringView password) const = 0;
 };

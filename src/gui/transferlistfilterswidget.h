@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,11 +32,6 @@
 #include <QtContainerFwd>
 #include <QWidget>
 
-#include "base/bittorrent/trackerentry.h"
-
-class CategoryFilterWidget;
-class StatusFilterWidget;
-class TagFilterWidget;
 class TrackersFilterWidget;
 class TransferListWidget;
 
@@ -55,23 +50,8 @@ public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     void setDownloadTrackerFavicon(bool value);
 
-public slots:
-    void addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void refreshTrackers(const BitTorrent::Torrent *torrent);
-    void trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
-            , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers);
-
-private slots:
-    void onCategoryFilterStateChanged(bool enabled);
-    void onTagFilterStateChanged(bool enabled);
-
 private:
-    void toggleCategoryFilter(bool enabled);
-    void toggleTagFilter(bool enabled);
-
     TransferListWidget *m_transferList = nullptr;
     TrackersFilterWidget *m_trackersFilterWidget = nullptr;
-    CategoryFilterWidget *m_categoryFilterWidget = nullptr;
-    TagFilterWidget *m_tagFilterWidget = nullptr;
+    bool m_useSeparateTrackerStatusFilter = false;
 };

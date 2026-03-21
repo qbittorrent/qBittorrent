@@ -456,6 +456,16 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxUseSeparateTrackerStatusFilter">
+                 <property name="toolTip">
+                  <string>Use separate &quot;Tracker status&quot; filter. Otherwise it gets merged with &quot;Trackers&quot; filter.</string>
+                 </property>
+                 <property name="text">
+                  <string>Use separate &quot;Tracker status&quot; filter</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -703,6 +713,13 @@
                 <widget class="QCheckBox" name="checkProgramUpdates">
                  <property name="text">
                   <string>Check for program updates</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkShowSpeedInDock">
+                 <property name="text">
+                  <string>Show speed in Dock</string>
                  </property>
                 </widget>
                </item>
@@ -1372,13 +1389,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkUseSubcategories">
-                 <property name="text">
-                  <string>Use Subcategories</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <widget class="QCheckBox" name="checkUseCategoryPaths">
                  <property name="toolTip">
                   <string>Resolve relative Save Path against appropriate Category path instead of Default one</string>
@@ -1594,7 +1604,11 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QLineEdit" name="senderEmailTxt"/>
+                  <widget class="QLineEdit" name="senderEmailTxt">
+                   <property name="placeholderText">
+                    <string notr="true">qBittorrent_notification@example.com</string>
+                   </property>
+                  </widget>
                  </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_2">
@@ -1617,7 +1631,11 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEditSmtpServer"/>
+                  <widget class="QLineEdit" name="lineEditSmtpServer">
+                   <property name="placeholderText">
+                    <string notr="true">smtp.example.com:465</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>

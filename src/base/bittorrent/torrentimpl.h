@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -156,6 +156,10 @@ namespace BitTorrent
         void setInactiveSeedingTimeLimit(int limit) override;
         ShareLimitAction shareLimitAction() const override;
         void setShareLimitAction(ShareLimitAction action) override;
+        qreal effectiveRatioLimit() const override;
+        int effectiveSeedingTimeLimit() const override;
+        int effectiveInactiveSeedingTimeLimit() const override;
+        ShareLimitAction effectiveShareLimitAction() const override;
 
         Path filePath(int index) const override;
         Path actualFilePath(int index) const override;
@@ -205,9 +209,6 @@ namespace BitTorrent
         bool isLSDDisabled() const override;
         QBitArray pieces() const override;
         qreal distributedCopies() const override;
-        qreal maxRatio() const override;
-        int maxSeedingTime() const override;
-        int maxInactiveSeedingTime() const override;
         qreal realRatio() const override;
         qreal popularity() const override;
         int uploadPayloadRate() const override;
@@ -217,6 +218,7 @@ namespace BitTorrent
         int connectionsCount() const override;
         int connectionsLimit() const override;
         qlonglong nextAnnounce() const override;
+        TorrentAnnounceStatus announceStatus() const override;
 
         void setName(const QString &name) override;
         void setSequentialDownload(bool enable) override;
@@ -349,6 +351,7 @@ namespace BitTorrent
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
         QList<TrackerEntryStatus> m_trackerEntryStatuses;
+        mutable std::optional<TorrentAnnounceStatus> m_announceStatus;
         QList<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;
 

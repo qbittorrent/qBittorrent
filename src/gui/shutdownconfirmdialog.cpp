@@ -134,6 +134,11 @@ void ShutdownConfirmDialog::initText()
         okButton->setText(tr("&Hibernate Now"));
         setWindowTitle(tr("Hibernate confirmation"));
         break;
+    case ShutdownDialogAction::Reboot:
+        m_msg = tr("The computer is going to reboot.");
+        okButton->setText(tr("&Reboot Now"));
+        setWindowTitle(tr("Reboot confirmation"));
+        break;
     }
 
     m_msg += u'\n';

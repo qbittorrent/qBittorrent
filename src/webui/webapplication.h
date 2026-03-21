@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,7 +30,6 @@
 #pragma once
 
 #include <chrono>
-#include <type_traits>
 #include <utility>
 
 #include <QDateTime>
@@ -46,54 +45,37 @@
 #include <QTranslator>
 
 #include "base/applicationcomponent.h"
-#include "base/global.h"
+#include "base/http/constants.h"
+#include "base/http/environment.h"
 #include "base/http/irequesthandler.h"
-#include "base/http/responsebuilder.h"
-#include "base/http/types.h"
+#include "base/http/request.h"
+#include "base/http/response.h"
 #include "base/path.h"
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
 using namespace std::chrono_literals;
+using namespace Qt::Literals::StringLiterals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 14, 1};
+inline const Utils::Version<3, 2> API_VERSION {2, 15, 2};
+
+class QNetworkCookie;
 
 class APIController;
 class AuthController;
 class ClientDataStorage;
-class WebApplication;
+class WebSession;
+
+enum class WebSessionType : qint8;
 
 namespace BitTorrent
 {
     class TorrentCreationManager;
 }
 
-class WebSession final : public ApplicationComponent<QObject>, public ISession
-{
-public:
-    explicit WebSession(const QString &sid, IApplication *app);
-
-    QString id() const override;
-
-    bool hasExpired(std::chrono::milliseconds duration) const;
-    void updateTimestamp();
-    bool shouldRefreshCookie() const;
-    void setCookieRefreshTime(std::chrono::seconds timeout);
-
-    void registerAPIController(const QString &scope, APIController *controller);
-    APIController *getAPIController(const QString &scope) const;
-
-private:
-    const QString m_sid;
-    QElapsedTimer m_timestamp;
-    QDeadlineTimer m_cookieRefreshTimer;
-    QMap<QString, APIController *> m_apiControllers;
-};
-
 class WebApplication final : public ApplicationComponent<QObject>
         , public Http::IRequestHandler, public ISessionManager
-        , private Http::ResponseBuilder
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(WebApplication)
@@ -111,13 +93,13 @@ public:
     void setPasswordHash(const QByteArray &passwordHash);
 
 private:
-    QString clientId() const override;
-    WebSession *session() override;
+    QString clientId() const;
+    ISession *session() override;
     void sessionStart() override;
-    void sessionStartImpl(const QString &sessionId, bool useCookie);
+    void sessionStartImpl(const QString &sessionId, WebSessionType sessionType);
     void sessionEnd() override;
 
-    void doProcessRequest(bool isUsingApiKey);
+    void processAPIRequest(const QString &endpoint);
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
@@ -129,15 +111,21 @@ private:
 
     // Session management
     QString generateSid() const;
-    void sessionInitialize();
-    void setSessionCookie();
-    void apiKeySessionInitialize();
+    QNetworkCookie createSessionCookie(const QString &sessionID, std::chrono::seconds expireDuration) const;
+    void cookieSessionInitialize(const QString &authScheme, const QString &authData);
+    void apiKeySessionInitialize(const QString &apiKey);
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
     bool isOriginTrustworthy() const;
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
+
+    bool validateCredentials(QStringView username, QStringView password) const override;
+    bool validateBasicAuth(QStringView credentials) const;
+    bool isBanned() const;
+    int failedAttemptsCount() const;
+    void increaseFailedAttempts() const;
 
     // reverse proxy
     QHostAddress resolveClientAddress() const;
@@ -149,10 +137,8 @@ private:
     WebSession *m_currentSession = nullptr;
     Http::Request m_request;
     Http::Environment m_env;
-    QHash<QString, QString> m_params;
+    Http::Response m_response;
     const QString m_cacheID;
-
-    const QRegularExpression m_apiPathPattern {u"^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"_s};
 
     QSet<QString> m_publicAPIs;
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
@@ -258,6 +244,8 @@ private:
     std::chrono::seconds m_sessionTimeout = 0s;
     QString m_sessionCookieName;
     QString m_apiKey;
+    QString m_username;
+    QByteArray m_passwordHash;
 
     // security related
     QStringList m_domainList;
@@ -271,8 +259,15 @@ private:
     QList<Utils::Net::Subnet> m_trustedReverseProxyList;
     QHostAddress m_clientAddress;
 
-    QList<Http::Header> m_prebuiltHeaders;
+    Http::HeaderMap m_prebuiltHeaders;
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
+
+    struct FailedLogin
+    {
+        int failedAttemptsCount = 0;
+        QDeadlineTimer banTimer {-1};
+    };
+    mutable QHash<QString, FailedLogin> m_clientFailedLogins;
 };

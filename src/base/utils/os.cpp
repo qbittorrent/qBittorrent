@@ -87,11 +87,17 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
     {
         ::SetSuspendState(TRUE, FALSE, FALSE);
     }
-    else
+    else if (action == ShutdownDialogAction::Shutdown)
     {
         std::wstring msg = QCoreApplication::translate("misc"
             , "qBittorrent will shutdown the computer now because all downloads are complete.").toStdWString();
         ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, FALSE);
+    }
+    else if (action == ShutdownDialogAction::Reboot)
+    {
+        std::wstring msg = QCoreApplication::translate("misc"
+            , "qBittorrent will reboot the computer now because all downloads are complete.").toStdWString();
+        ::InitiateSystemShutdownW(nullptr, msg.data(), 10, TRUE, TRUE);
     }
 
     // Disable shutdown privilege.
@@ -99,10 +105,12 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
     ::AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, NULL, 0);
 
 #elif defined(Q_OS_MACOS)
-    AEEventID EventToSend;
-    if (action != ShutdownDialogAction::Shutdown)
+    AEEventID EventToSend {};
+    if (action == ShutdownDialogAction::Suspend)
         EventToSend = kAESleep;
-    else
+    else if (action == ShutdownDialogAction::Reboot)
+        EventToSend = kAERestart;
+    else if (action == ShutdownDialogAction::Shutdown)
         EventToSend = kAEShutDown;
     AEAddressDesc targetDesc;
     const ProcessSerialNumber kPSNOfSystemProcess = {0, kSystemProcess};
@@ -133,7 +141,7 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
 
 #elif defined(QBT_USES_DBUS)
     // Use dbus to power off / suspend the system
-    if (action != ShutdownDialogAction::Shutdown)
+    if ((action == ShutdownDialogAction::Suspend) || (action == ShutdownDialogAction::Hibernate))
     {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
@@ -166,7 +174,7 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
         else
             halIface.call(u"Hibernate"_s);
     }
-    else
+    else if (action == ShutdownDialogAction::Shutdown)
     {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
@@ -189,6 +197,30 @@ void Utils::OS::shutdownComputer([[maybe_unused]] const ShutdownDialogAction &ac
                                 u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
                                 QDBusConnection::systemBus());
         halIface.call(u"Shutdown"_s);
+    }
+    else if (action == ShutdownDialogAction::Reboot)
+    {
+        // Some recent systems use systemd's logind
+        QDBusInterface login1Iface(u"org.freedesktop.login1"_s, u"/org/freedesktop/login1"_s,
+                                   u"org.freedesktop.login1.Manager"_s, QDBusConnection::systemBus());
+        if (login1Iface.isValid())
+        {
+            login1Iface.call(u"Reboot"_s, false);
+            return;
+        }
+        // Else, other recent systems use ConsoleKit
+        QDBusInterface consolekitIface(u"org.freedesktop.ConsoleKit"_s, u"/org/freedesktop/ConsoleKit/Manager"_s,
+                                       u"org.freedesktop.ConsoleKit.Manager"_s, QDBusConnection::systemBus());
+        if (consolekitIface.isValid())
+        {
+            consolekitIface.call(u"Restart"_s);
+            return;
+        }
+        // HAL (older systems)
+        QDBusInterface halIface(u"org.freedesktop.Hal"_s, u"/org/freedesktop/Hal/devices/computer"_s,
+                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_s,
+                                QDBusConnection::systemBus());
+        halIface.call(u"Reboot"_s);
     }
 #endif
 }

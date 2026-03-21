@@ -71,40 +71,32 @@
         <translation>რიგის თავში დამატება</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">ერთი ბმული ერთ ხაზზე (დაშვებულია HTTP ბმულები, მაგნიტური ბმულები და ინფო-ჰეშები)</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">ტორენტ ბმულების დამატება</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>თანმიმდევრული წესით გადმოწერა</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>ზომა:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>შენახვა აქ</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის ინფორმაცია</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>შენახვის მისამართი:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>ჰეშის ინფორმაცია v1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის სახელის შეცვლა</translation>
     </message>
     <message>
         <source>Add torrent</source>
@@ -112,39 +104,39 @@
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>მიუწვდომელი</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>პრიორიტეტი</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>მაღალი</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის პარამეტრები</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>ჩვეულებრივი</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>ფაილების მითითებულ ლოკაციაში შენახვა:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>ნაგულისხმევ კატეგორიად დაყენება</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>ატვირთვის სიჩქარის ლიმიტი</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>ფაილების ფილტრი...</translation>
     </message>
     <message>
         <source>Add Torrent</source>
@@ -152,11 +144,11 @@
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>დაუსრულებელი ტორენტისთვის სხვა მისამართის გამოყენება</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>თარიღი:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
@@ -164,27 +156,27 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>ყველა</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>მაქსიმალური</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>არ ჩამოიტვირთოს</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>პირველ რიგში ჩამოიტვირთოს პირველი და ბოლო ნაწილი</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>კომენტარი:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
@@ -192,7 +184,7 @@
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>ჰეშის ინფორმაცია v2:</translation>
     </message>
     <message>
         <source>Tags:</source>
@@ -200,11 +192,11 @@
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>ფაილები</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთვის სიჩქარის ლიმიტი</translation>
     </message>
 </context>
 <context>
@@ -312,25 +304,12 @@
         <translation>უცნობია</translation>
     </message>
     <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">სიდირების დროის ლიმიტი უნდა იყოს 0-დან 525600-მდე წუთი.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>გამოყენება</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>დამატება</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">ტორენტების ატვირთვა</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">ფაილების მითითებულ ლოკაციაში შენახვა:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -343,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>ლოკაციის დაყენება</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">ატვირთვის სიჩქარის ლიმიტი</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">ჩამოტვირთვის სიჩქარის ლიმიტი</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">ტორენტის სახელის შეცვლა</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -394,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>გასვლა</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">ლოკალური ტორენტის ატვირთვა</translation>
     </message>
     <message>
         <source>Save</source>
@@ -568,10 +531,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
@@ -601,6 +560,10 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1612,10 +1575,6 @@
         <translation>არ შეიქმნას სუბდირექტორია</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>გამავალი კავშირები წამში:</translation>
     </message>
@@ -1853,7 +1812,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>სუბკატეგორიების გამოყენება</translation>
+        <translation type="vanished">სუბკატეგორიების გამოყენება</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2251,13 +2210,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Copy API key</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>პორტი</translation>
@@ -2520,14 +2479,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">ჩამოტვირთვის ლიმიტი:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">ატვირთვის ლიმიტი:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>პრიორიტეტი</translation>
     </message>
@@ -2701,11 +2652,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">კბ/წ</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3089,10 +3036,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TrackerListWidget</name>
-    <message>
-        <source>URL</source>
-        <translation type="vanished">ბმული</translation>
-    </message>
     <message>
         <source>Status</source>
         <translation>სტატუსი</translation>
@@ -3529,10 +3472,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">შენახვის მისამართი:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation type="unfinished" />
     </message>
@@ -3555,10 +3494,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tags</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="vanished">კატეგორია:</translation>
     </message>
     <message>
         <source>Content Path</source>
@@ -3601,7 +3536,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის წაშლა</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
@@ -3643,14 +3578,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download from URLs</source>
         <translation>URL-დან ჩამოტვირთვა</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">ჩამოტვირთვა</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">ტორენტის ბმულის დამატება</translation>
     </message>
 </context>
 <context>
@@ -4795,27 +4722,27 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>ახალი კატეგორია</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>შენახვის მისამართი:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>კი</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>კატეგორია:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>არა</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>მისამართი:</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
@@ -5117,19 +5044,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთვა</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>მაგნიტური ბმული</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>ტორენტ ბმულების დამატება</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>ერთი ბმული ერთ ხაზზე (დაშვებულია HTTP ბმულები, მაგნიტური ბმულები და ინფო-ჰეშები)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5137,7 +5064,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>ტორენტის ბმულის დამატება</translation>
     </message>
 </context>
 <context>
@@ -5152,15 +5079,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>ატვირთვის ლიმიტი:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთვის ლიმიტი:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>კბ/წ</translation>
     </message>
 </context>
 <context>

@@ -108,6 +108,8 @@ public:
     QString instanceName() const override;
     void setInstanceName(const QString &name) override;
 
+    qint64 launchTimeSecsSinceEpoch() const override;
+
     // FileLogger properties
     bool isFileLoggerEnabled() const override;
     void setFileLoggerEnabled(bool value) override;
@@ -190,6 +192,7 @@ private:
     bool m_isProcessingParamsAllowed = false;
     ShutdownDialogAction m_shutdownAct = ShutdownDialogAction::Exit;
     QBtCommandLineParameters m_commandLineArgs;
+    qint64 m_launchTimeSecsSinceEpoch = -1;
 
     // FileLog
     QPointer<FileLogger> m_fileLogger;

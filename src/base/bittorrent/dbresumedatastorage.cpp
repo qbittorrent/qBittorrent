@@ -680,12 +680,12 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
     if (const QByteArray bencodedMetadata = query.value(DB_COLUMN_METADATA.name).toByteArray()
             ; !bencodedMetadata.isEmpty())
     {
-        const lt::bdecode_node torentInfoRoot = lt::bdecode(bencodedMetadata, ec
+        const lt::bdecode_node torrentInfoRoot = lt::bdecode(bencodedMetadata, ec
                 , nullptr, bdecodeDepthLimit, bdecodeTokenLimit);
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 
-        p.ti = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
+        p.ti = std::make_shared<lt::torrent_info>(torrentInfoRoot, ec);
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
     }

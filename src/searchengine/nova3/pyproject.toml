@@ -11,6 +11,7 @@ dev = [
     "isort",
     "mypy",
     "pycodestyle",
+    "pydoclint",
     "pyflakes",
     "pyright",
     "pytest",
@@ -20,6 +21,14 @@ dev = [
 [tool.mypy]
 explicit_package_bases = true
 strict = true
+
+[tool.pydoclint]
+style = "sphinx"
+arg-type-hints-in-docstring = false
+check-return-types = false
+
+[tool.pyright]
+typeCheckingMode = "strict"
 
 [tool.setuptools.packages.find]
 where = ["./"]
