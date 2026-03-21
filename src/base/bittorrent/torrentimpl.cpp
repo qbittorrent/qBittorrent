@@ -1085,10 +1085,12 @@ Path TorrentImpl::actualFilePath(const int index) const
         return {};
 
 #if LIBTORRENT_VERSION_NUM >= 20100
-    return makeActualPath(index, filePath(index));
+    const lt::file_storage& fs = nativeTorrentInfo()->files();
+    const lt::filenames files(fs, m_nativeStatus.renamed_files);
 #else
-    return Path(nativeTorrentInfo()->files().file_path(nativeIndexes[index]));
+    const lt::file_storage& files = nativeTorrentInfo()->files();
 #endif
+    return Path(files.file_path(nativeIndexes[index]));
 }
 
 qlonglong TorrentImpl::fileSize(const int index) const
@@ -1110,13 +1112,13 @@ PathList TorrentImpl::actualFilePaths() const
     paths.reserve(filesCount());
 
 #if LIBTORRENT_VERSION_NUM >= 20100
-    for (int i = 0; i < filesCount(); ++i)
-        paths.emplaceBack(makeActualPath(i, filePath(i)));
+    const lt::file_storage& fs = nativeTorrentInfo()->files();
+    const lt::filenames files(fs, m_nativeStatus.renamed_files);
 #else
-    const lt::file_storage files = nativeTorrentInfo()->files();
+    const lt::file_storage& files = nativeTorrentInfo()->files();
+#endif
     for (const lt::file_index_t &nativeIndex : asConst(m_torrentInfo.nativeIndexes()))
         paths.emplaceBack(files.file_path(nativeIndex));
-#endif
 
     return paths;
 }
