@@ -689,7 +689,7 @@ td.noWrap {
     white-space: nowrap;
 }
 
-#tristate_cb {
+#tristateCb {
     margin-bottom: 0;
     margin-top: 0;
 }
@@ -832,10 +832,6 @@ td.statusBarSeparator {
 #searchResultsTableContainer {
     height: calc(100% - 177px);
     overflow: auto;
-}
-
-#searchResults .dynamicTable {
-    width: 100%;
 }
 
 #searchResults .numSearchResults {

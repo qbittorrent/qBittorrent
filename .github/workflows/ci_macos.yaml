@@ -43,8 +43,8 @@ jobs:
       - name: Install dependencies
         uses: Wandalen/wretry.action@v3
         env:
-           HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
-           HOMEBREW_NO_INSTALL_CLEANUP: 1
+          HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
+          HOMEBREW_NO_INSTALL_CLEANUP: 1
         with:
           attempt_delay: 20000
           attempt_limit: 6
@@ -166,7 +166,7 @@ jobs:
           cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libtorrent.version }}_Qt-${{ matrix.qt_version }}
           path: upload

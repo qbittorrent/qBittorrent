@@ -1,6 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016  Alexandr Milovantsev <dzmat@yandex.ru>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,33 +29,13 @@
 
 #pragma once
 
-#include <optional>
-#include <utility>
+#include <QString>
 
-#include <QtContainerFwd>
-#include <QHostAddress>
-
-class QSslCertificate;
-class QSslKey;
-class QString;
-
-namespace Utils::Net
+namespace Http
 {
-    // alias for `QHostAddress::parseSubnet()` return type
-    using Subnet = std::pair<QHostAddress, int>;
-    using IPRange = std::pair<QHostAddress, QHostAddress>;
-
-    bool isValidIP(const QString &ip);
-    std::optional<Subnet> parseSubnet(const QString &subnetStr);
-    bool isIPInSubnets(const QHostAddress &addr, const QList<Subnet> &subnets);
-    QString subnetToString(const Subnet &subnet);
-    IPRange subnetToIPRange(const Subnet &subnet);
-    QHostAddress canonicalIPv6Addr(const QHostAddress &addr);
-
-    std::optional<IPRange> parseIPRange(QStringView filterStr, bool isStrictIPv4 = false);
-    QString ipRangeToString(const IPRange &ipRange);
-
-    inline const int MAX_SSL_FILE_SIZE = 1024 * 1024;
-    QList<QSslCertificate> loadSSLCertificate(const QByteArray &data);
-    bool isSSLCertificatesValid(const QByteArray &data);
+    struct Header
+    {
+        QString name;
+        QString value;
+    };
 }

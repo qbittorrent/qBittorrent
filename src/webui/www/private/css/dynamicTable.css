@@ -171,13 +171,6 @@ div:has(> div.dynamicTableFixedHeaderDiv):not(.invisible) {
     overflow: auto;
 }
 
-.dynamicTableDiv thead th {
-    height: 0 !important;
-    line-height: 0 !important;
-    padding-bottom: 0 !important;
-    padding-top: 0 !important;
-}
-
 /* Trackers table */
 #torrentTrackersTableDiv tr:not(.selected, :hover) {
     & .trackerDisabled {

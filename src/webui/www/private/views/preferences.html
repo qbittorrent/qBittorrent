@@ -142,7 +142,7 @@
         </div>
         <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="useVirtualList">
-            <label for="useVirtualList">QBT_TR(Enable optimized table rendering (experimental))QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="useVirtualList">QBT_TR(Enable optimized table rendering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 </div>
@@ -332,7 +332,7 @@
                         <label for="src_email_txt">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="src_email_txt">
+                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com">
                     </td>
                 </tr>
                 <tr>
@@ -348,7 +348,7 @@
                         <label for="smtp_server_txt">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="smtp_server_txt">
+                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465">
                     </td>
                 </tr>
             </tbody>
@@ -379,7 +379,7 @@
                             <label for="mail_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="password" id="mail_password_text">
+                            <input type="password" id="mail_password_text" autocomplete="new-password">
                         </td>
                     </tr>
                 </tbody>
@@ -569,7 +569,7 @@
                             <label for="peer_proxy_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="password" id="peer_proxy_password_text">
+                            <input type="password" id="peer_proxy_password_text" autocomplete="new-password">
                         </td>
                     </tr>
                 </tbody>
@@ -1187,7 +1187,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="dyndns_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="password" id="dyndns_password_text">
+                        <input type="password" id="dyndns_password_text" autocomplete="new-password">
                     </td>
                 </tr>
             </tbody>
@@ -2301,7 +2301,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const colorScheme = clientData.get("color_scheme");
                     const displayDensity = clientData.get("display_density") ?? "default";
                     const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
-                    const useVirtualList = clientData.get("use_virtual_list");
+                    const useVirtualList = clientData.get("use_virtual_list") ?? true;
                     const hideZeroStatusFilters = clientData.get("hide_zero_status_filters");
                     const dblclickDownload = clientData.get("dblclick_download") ?? "1";
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
@@ -2582,7 +2582,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     let maxRatioAct = 0;
                     switch (Number(pref.max_ratio_act)) {
                         case 0: // Stop
-                        default:
                             maxRatioAct = 0;
                             break;
                         case 1: // Remove

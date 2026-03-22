@@ -161,9 +161,6 @@
             </div>
             <div id="rssFeedTableDiv" class="dynamicTableDiv">
                 <table class="dynamicTable unselectable">
-                    <thead>
-                        <tr class="dynamicTableHeader"></tr>
-                    </thead>
                     <tbody></tbody>
                 </table>
             </div>
@@ -178,9 +175,6 @@
             </div>
             <div id="rssArticleTableDiv" class="dynamicTableDiv">
                 <table class="dynamicTable unselectable">
-                    <thead>
-                        <tr class="dynamicTableHeader"></tr>
-                    </thead>
                     <tbody></tbody>
                 </table>
             </div>
@@ -271,11 +265,11 @@
                     },
                     delete: (el) => {
                         const selectedDatapaths = rssFeedTable.selectedRows
-                            .filter((rowID) => rowID !== "0")
-                            .map((rowID) => rssFeedTable.getRow(rowID).full_data.dataPath);
+                            .filter(rowID => (rowID !== "0"))
+                            .map(rowID => rssFeedTable.getRow(rowID).full_data.dataPath);
                         // filter children
                         const reducedDatapaths = selectedDatapaths.filter((path) =>
-                            selectedDatapaths.filter((innerPath) => path.slice(0, innerPath.length) === innerPath).length === 1
+                            selectedDatapaths.filter(innerPath => path.startsWith(innerPath)).length === 1
                         );
                         removeItem(reducedDatapaths);
                     },
@@ -428,7 +422,7 @@
                     childFeeds.add(row.full_data.dataUid);
             }
 
-            let visibleArticles = [];
+            const visibleArticles = [];
             for (const feedEntry in feedData) {
                 if (childFeeds.has(feedEntry)) {
                     visibleArticles.append(feedData[feedEntry]
@@ -440,12 +434,12 @@
             }
             // filter read articles if "Unread" feed is selected
             if (path === "")
-                visibleArticles = visibleArticles.filter((a) => !a.isRead);
+                window.qBittorrent.Misc.filterInPlace(visibleArticles, (article => !article.isRead));
 
             const rssFilterInput = document.getElementById("rssFilterInput");
             if (rssFilterInput.value.length > 0) {
                 const lowerFilter = rssFilterInput.value.toLowerCase();
-                visibleArticles = visibleArticles.filter((a) => a.title.toLowerCase().includes(lowerFilter));
+                window.qBittorrent.Misc.filterInPlace(visibleArticles, (article => article.title.toLowerCase().includes(lowerFilter)));
             }
 
             let rowID = -1;
@@ -662,8 +656,8 @@
 
                             if (articlesDiffer) {
                                 // update unread count
-                                const oldUnread = feedData[r.uid].map((art) => !art.isRead).filter(Boolean).length;
-                                const newUnread = r.articles.map((art) => !art.isRead).filter(Boolean).length;
+                                const oldUnread = feedData[r.uid].reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
+                                const newUnread = r.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
                                 const unreadDifference = newUnread - oldUnread;
 
                                 // find all parents (and self) and add unread difference
@@ -777,7 +771,7 @@
                                 });
 
                                 // calculate number of unread
-                                const numberOfUnread = dataEntry.articles.map((art) => !art.isRead).filter(Boolean).length;
+                                const numberOfUnread = dataEntry.articles.reduce(((count, article) => !article.isRead ? (count + 1) : count), 0);
                                 // find all items that contain this rss feed and add unread count
                                 for (const row of rssFeedTable.getRowValues()) {
                                     if (dataEntry.fullName.slice(0, row.full_data.dataPath.length) === row.full_data.dataPath)
@@ -980,7 +974,7 @@
                 .map((sRow) => rssFeedTable.getRow(sRow).full_data.dataPath);
             // filter children
             const reducedDatapaths = selectedDatapaths.filter((path) =>
-                selectedDatapaths.filter(path.startsWith).length === 1
+                selectedDatapaths.filter(innerPath => path.startsWith(innerPath)).length === 1
             );
             for (const path of reducedDatapaths)
                 markItemAsRead(path);
