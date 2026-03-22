@@ -49,7 +49,6 @@ window.qBittorrent.TorrentContent ??= (() => {
     const TriState = window.qBittorrent.FileTree.TriState;
     let torrentFilesFilterInputTimer = -1;
     let onFilePriorityChanged = null;
-    let actualFilePaths = [];
 
     const normalizePriority = (priority) => {
         priority = Number(priority);
@@ -294,8 +293,6 @@ window.qBittorrent.TorrentContent ??= (() => {
     };
 
     const updateData = (files) => {
-        actualFilePaths = files.map(file => file.actual_path ?? "");
-
         const rows = files.map((file, index) => {
             const ignore = (file.priority === FilePriority.Ignored);
             const row = {
@@ -485,14 +482,14 @@ window.qBittorrent.TorrentContent ??= (() => {
         return `${basePath}${basePath.endsWith(separator) ? "" : separator}${normalizedRelativePath}`;
     };
 
-    const getNodeAbsolutePath = (node, rootPath, contentPath) => {
-        if (!node.isFolder)
-            return (actualFilePaths[node.fileId] ?? "");
-
+    const getNodeAbsolutePath = (node, rootPath, contentPath, singleFileTorrent) => {
         if (rootPath !== "")
             return joinAbsolutePath(rootPath, getPathRelativeToRootFolder(node.path));
 
-        return (contentPath === "") ? "" : joinAbsolutePath(contentPath, node.path);
+        if (!node.isFolder && singleFileTorrent)
+            return contentPath;
+
+        return joinAbsolutePath(contentPath, node.path);
     };
 
     const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) => {
@@ -521,9 +518,15 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const torrentData = torrentsTable.getRowData(torrentRow, true);
                     const rootPath = torrentData.root_path ?? "";
                     const contentPath = torrentData.content_path ?? "";
+                    if ((rootPath === "") && (contentPath === ""))
+                        return;
+
+                    const rootNode = torrentFilesTable.getRoot();
+                    const singleFileTorrent = (rootNode !== null)
+                        && (rootNode.children.length === 1)
+                        && !rootNode.children[0].isFolder;
                     const paths = torrentFilesTable.selectedRowsIds()
-                        .map(rowID => getNodeAbsolutePath(torrentFilesTable.getNode(rowID), rootPath, contentPath))
-                        .filter(path => path !== "")
+                        .map(rowID => getNodeAbsolutePath(torrentFilesTable.getNode(rowID), rootPath, contentPath, singleFileTorrent))
                         .join("\n");
                     await clipboardCopy(paths);
                 },

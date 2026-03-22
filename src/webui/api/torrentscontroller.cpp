@@ -145,7 +145,6 @@ const QString KEY_FILE_PRIORITY = u"priority"_s;
 const QString KEY_FILE_IS_SEED = u"is_seed"_s;
 const QString KEY_FILE_PIECE_RANGE = u"piece_range"_s;
 const QString KEY_FILE_AVAILABILITY = u"availability"_s;
-const QString KEY_FILE_ACTUAL_PATH = u"actual_path"_s;
 
 // Torrent info
 const QString KEY_TORRENTINFO_FILE_LENGTH = u"length"_s;
@@ -364,7 +363,6 @@ namespace
                 {KEY_FILE_AVAILABILITY, fileAvailability[index]},
                 // need to provide paths using a platform-independent separator format
                 {KEY_FILE_NAME, torrent->filePath(index).data()},
-                {KEY_FILE_ACTUAL_PATH, (torrent->actualStorageLocation() / torrent->actualFilePath(index)).toString()},
                 {KEY_FILE_PIECE_RANGE, QJsonArray {idx.first(), idx.last()}}
             };
 
@@ -954,7 +952,6 @@ void TorrentsController::removeWebSeedsAction()
 // The dictionary keys are:
 //   - "index": File index
 //   - "name": File name
-//   - "actual_path": Absolute file path using native filesystem separators
 //   - "size": File size
 //   - "progress": File progress
 //   - "priority": File priority
