@@ -266,7 +266,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
         TransferListModel::Column::TR_NAME
         , TransferListModel::Column::TR_SAVE_PATH
         , TransferListModel::Column::TR_INFOHASH_V1
-        , TransferListModel::Column::TR_INFOHASH_V2};
+        , TransferListModel::Column::TR_INFOHASH_V2
+        , TransferListModel::Column::TR_COMMENT};
     for (const TransferListModel::Column type : filterTypes)
     {
         const QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
