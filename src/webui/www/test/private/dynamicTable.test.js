@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2026  Muhammad Hassan Raza <m.hassanraza100@gmail.com>
+ * Copyright (C) 2026  Muhammad Hassan Raza <raihassanraza10@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
