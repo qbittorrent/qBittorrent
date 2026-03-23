@@ -466,6 +466,18 @@ window.qBittorrent.TorrentContent ??= (() => {
         }
     };
 
+    const getContentBasePath = () => {
+        let baseUrl = clientData.get("content_base_path")?.trim();
+
+        if ((baseUrl === undefined) || (baseUrl === null) || (baseUrl === ""))
+            baseUrl = window.location.href;
+
+        if (!baseUrl.endsWith("/"))
+            baseUrl += "/";
+
+        return baseUrl;
+    }
+
     const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) => {
         if (onFilePriorityChangedHandler !== undefined)
             onFilePriorityChanged = onFilePriorityChangedHandler;
@@ -485,13 +497,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
                 OpenURL: (element, ref) => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
-                    let baseUrl = clientData.get("copy_url_base_path")?.trim();
-
-                    if ((baseUrl === null) || (baseUrl === ""))
-                        baseUrl = window.location.href;
-
-                    if (!baseUrl.endsWith("/"))
-                        baseUrl += "/";
+                    const baseUrl = getContentBasePath();
 
                     const urls = nodes.map(node => baseUrl + encodeURI(node.path));
 
@@ -501,13 +507,7 @@ window.qBittorrent.TorrentContent ??= (() => {
 
                 CopyURL: (element, ref) => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
-                    let baseUrl = clientData.get("copy_url_base_path")?.trim();
-
-                    if ((baseUrl === null) || (baseUrl === ""))
-                        baseUrl = window.location.href;
-
-                    if (!baseUrl.endsWith("/"))
-                        baseUrl += "/";
+                    const baseUrl = getContentBasePath();
 
                     const urls = nodes.map(node => baseUrl + encodeURI(node.path));
 

@@ -82,7 +82,7 @@ window.qBittorrent.Client ??= (() => {
             "torrent_creator",
             "use_alt_row_colors",
             "use_virtual_list",
-            "copy_url_base_path",
+            "content_base_path",
         ]);
 
         cacheAllSettled = Promise.allSettled([
