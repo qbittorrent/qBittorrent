@@ -2395,7 +2395,7 @@ void TorrentImpl::handleFileCompleted(const lt::file_index_t nativeFileIndex)
     Q_ASSERT(fileIndex >= 0);
 
     m_completedFiles.setBit(fileIndex);
-    
+
     const Path actualPath = actualFilePath(fileIndex);
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
     // only apply Mark-of-the-Web to new download files
@@ -2460,15 +2460,11 @@ void TorrentImpl::handleUnwantedFolderToggled()
 
 void TorrentImpl::manageActualFilePaths()
 {
-    const std::shared_ptr<const lt::torrent_info> nativeInfo = nativeTorrentInfo();
-    const lt::file_storage &nativeFiles = nativeInfo->files();
-
     for (int i = 0; i < filesCount(); ++i)
     {
         const Path path = filePath(i);
 
-        const auto nativeIndex = m_torrentInfo.nativeIndexes().at(i);
-        const Path actualPath {nativeFiles.file_path(nativeIndex)};
+        const Path actualPath = actualFilePath(i);
         const Path targetActualPath = makeActualPath(i, path);
         if (actualPath != targetActualPath)
         {
