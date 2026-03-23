@@ -426,7 +426,7 @@ void TorrentContentWidget::displayContextMenu()
                             , this, [this, index]() { openItem(index); });
             menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Open containing folder")
                             , this, [this, index]() { openParentFolder(index); });
-            menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Copy content path")
+            menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy content path")
                             , this, [this, index]() { copyContentPath(index); });
         }
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename...")
