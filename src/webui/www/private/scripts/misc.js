@@ -34,7 +34,6 @@ window.qBittorrent.Misc ??= (() => {
         return {
             getHost: getHost,
             getTorrentStateInfo: getTorrentStateInfo,
-            shouldShowAvailability: shouldShowAvailability,
             createDebounceHandler: createDebounceHandler,
             filterInPlace: filterInPlace,
             friendlyUnit: friendlyUnit,
@@ -93,223 +92,46 @@ window.qBittorrent.Misc ??= (() => {
         };
     };
 
-    const createTorrentStateInfo = ({
-        sortOrder = -1,
-        stateIconClass = "stateUnknown",
-        progressColor = undefined,
-        statusText = "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]",
-        matchesDownloadFilter = false,
-        matchesSeedingFilter = false,
-        matchesCompletedFilter = false,
-        isStopped = false,
-        isQueued = false,
-        isChecking = false,
-        isErrored = false,
-        isMetadataDownloading = false,
-        isStalled = false,
-        isStalledUploading = false,
-        isStalledDownloading = false,
-        isMoving = false,
-        hidesAvailability = false,
-    } = {}) => {
-        return Object.freeze({
-            sortOrder,
-            stateIconClass,
-            progressColor,
-            statusText,
-            matchesDownloadFilter,
-            matchesSeedingFilter,
-            matchesCompletedFilter,
-            isStopped,
-            isQueued,
-            isChecking,
-            isErrored,
-            isMetadataDownloading,
-            isStalled,
-            isStalledUploading,
-            isStalledDownloading,
-            isMoving,
-            hidesAvailability
-        });
-    };
+    const defaultProgressColor = "var(--color-background-blue)";
 
-    // Frontend-only normalization for the raw state strings exposed by the WebUI API.
-    // Keep this in sync with torrentStateToString() in serialize_torrent.cpp.
-    const defaultTorrentStateInfo = createTorrentStateInfo();
-    const torrentStateInfo = Object.freeze({
-        unknown: createTorrentStateInfo({
-            stateIconClass: "stateError",
-            progressColor: "var(--color-progress-error)",
-            statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]",
-            isErrored: true
-        }),
-        forcedDL: createTorrentStateInfo({
-            sortOrder: 0,
-            stateIconClass: "stateDownloading",
-            progressColor: "var(--color-progress-downloading)",
-            statusText: "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true
-        }),
-        downloading: createTorrentStateInfo({
-            sortOrder: 1,
-            stateIconClass: "stateDownloading",
-            progressColor: "var(--color-progress-downloading)",
-            statusText: "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true
-        }),
-        forcedMetaDL: createTorrentStateInfo({
-            sortOrder: 2,
-            stateIconClass: "stateDownloading",
-            progressColor: "var(--color-progress-downloading)",
-            statusText: "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true,
-            isMetadataDownloading: true
-        }),
-        metaDL: createTorrentStateInfo({
-            sortOrder: 3,
-            stateIconClass: "stateDownloading",
-            progressColor: "var(--color-progress-downloading)",
-            statusText: "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true,
-            isMetadataDownloading: true
-        }),
-        stalledDL: createTorrentStateInfo({
-            sortOrder: 4,
-            stateIconClass: "stateStalledDL",
-            progressColor: "var(--color-progress-stalled)",
-            statusText: "QBT_TR(Stalled)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true,
-            isStalled: true,
-            isStalledDownloading: true
-        }),
-        forcedUP: createTorrentStateInfo({
-            sortOrder: 5,
-            stateIconClass: "stateUploading",
-            progressColor: "var(--color-progress-seeding)",
-            statusText: "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesSeedingFilter: true,
-            matchesCompletedFilter: true
-        }),
-        uploading: createTorrentStateInfo({
-            sortOrder: 6,
-            stateIconClass: "stateUploading",
-            progressColor: "var(--color-progress-seeding)",
-            statusText: "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesSeedingFilter: true,
-            matchesCompletedFilter: true
-        }),
-        stalledUP: createTorrentStateInfo({
-            sortOrder: 7,
-            stateIconClass: "stateStalledUP",
-            progressColor: "var(--color-progress-seeding)",
-            statusText: "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesSeedingFilter: true,
-            matchesCompletedFilter: true,
-            isStalled: true,
-            isStalledUploading: true
-        }),
-        checkingResumeData: createTorrentStateInfo({
-            sortOrder: 8,
-            stateIconClass: "stateChecking",
-            progressColor: "var(--color-progress-checking)",
-            statusText: "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]",
-            isChecking: true
-        }),
-        queuedDL: createTorrentStateInfo({
-            sortOrder: 9,
-            stateIconClass: "stateQueued",
-            progressColor: "var(--color-progress-queued)",
-            statusText: "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true,
-            isQueued: true
-        }),
-        queuedUP: createTorrentStateInfo({
-            sortOrder: 10,
-            stateIconClass: "stateQueued",
-            progressColor: "var(--color-progress-queued)",
-            statusText: "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesSeedingFilter: true,
-            matchesCompletedFilter: true,
-            isQueued: true
-        }),
-        checkingUP: createTorrentStateInfo({
-            sortOrder: 11,
-            stateIconClass: "stateChecking",
-            progressColor: "var(--color-progress-checking)",
-            statusText: "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesSeedingFilter: true,
-            matchesCompletedFilter: true,
-            isChecking: true
-        }),
-        checkingDL: createTorrentStateInfo({
-            sortOrder: 12,
-            stateIconClass: "stateChecking",
-            progressColor: "var(--color-progress-checking)",
-            statusText: "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true,
-            isChecking: true
-        }),
-        stoppedDL: createTorrentStateInfo({
-            sortOrder: 13,
-            stateIconClass: "stateStoppedDL",
-            progressColor: "var(--color-progress-stopped)",
-            statusText: "QBT_TR(Stopped)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesDownloadFilter: true,
-            isStopped: true
-        }),
-        stoppedUP: createTorrentStateInfo({
-            sortOrder: 14,
-            stateIconClass: "stateStoppedUP",
-            progressColor: "var(--color-progress-stopped)",
-            statusText: "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]",
-            matchesCompletedFilter: true,
-            isStopped: true
-        }),
-        moving: createTorrentStateInfo({
-            sortOrder: 15,
-            stateIconClass: "stateMoving",
-            progressColor: "var(--color-progress-checking)",
-            statusText: "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]",
-            isMoving: true
-        }),
-        missingFiles: createTorrentStateInfo({
-            sortOrder: 16,
-            stateIconClass: "stateError",
-            progressColor: "var(--color-progress-error)",
-            statusText: "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]",
-            isErrored: true,
-            hidesAvailability: true
-        }),
-        error: createTorrentStateInfo({
-            sortOrder: 17,
-            stateIconClass: "stateError",
-            progressColor: "var(--color-progress-error)",
-            statusText: "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]",
-            isErrored: true,
-            hidesAvailability: true
-        }),
-        queuedForChecking: createTorrentStateInfo({
-            sortOrder: 10,
-            stateIconClass: "stateChecking",
-            progressColor: "var(--color-progress-checking)",
-            statusText: "QBT_TR(Queued for checking)QBT_TR[CONTEXT=TransferListDelegate]",
-            isQueued: true
-        })
+    const createTorrentStateInfo = (sortOrder, stateIconClass, progressColor, statusText) => ({
+        sortOrder,
+        stateIconClass,
+        progressColor,
+        statusText
     });
 
-    const getTorrentStateInfo = (state) => {
-        return torrentStateInfo[state] ?? defaultTorrentStateInfo;
+    // Frontend normalization for raw torrent states used by the WebUI.
+    // API states should stay in sync with torrentStateToString() in serialize_torrent.cpp.
+    const defaultTorrentStateInfo = createTorrentStateInfo(
+        -1,
+        "stateUnknown",
+        defaultProgressColor,
+        "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
+    );
+    const torrentStateInfo = {
+        unknown: createTorrentStateInfo(-1, "stateError", "var(--color-progress-error)", "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"),
+        forcedDL: createTorrentStateInfo(0, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]"),
+        downloading: createTorrentStateInfo(1, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]"),
+        forcedMetaDL: createTorrentStateInfo(2, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]"),
+        metaDL: createTorrentStateInfo(3, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stalledDL: createTorrentStateInfo(4, "stateStalledDL", "var(--color-progress-stalled)", "QBT_TR(Stalled)QBT_TR[CONTEXT=TransferListDelegate]"),
+        forcedUP: createTorrentStateInfo(5, "stateUploading", "var(--color-progress-seeding)", "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]"),
+        uploading: createTorrentStateInfo(6, "stateUploading", "var(--color-progress-seeding)", "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stalledUP: createTorrentStateInfo(7, "stateStalledUP", "var(--color-progress-seeding)", "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]"),
+        checkingResumeData: createTorrentStateInfo(8, "stateChecking", "var(--color-progress-checking)", "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]"),
+        queuedDL: createTorrentStateInfo(9, "stateQueued", "var(--color-progress-queued)", "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]"),
+        queuedUP: createTorrentStateInfo(10, "stateQueued", "var(--color-progress-queued)", "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]"),
+        checkingUP: createTorrentStateInfo(11, "stateChecking", "var(--color-progress-checking)", "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]"),
+        checkingDL: createTorrentStateInfo(12, "stateChecking", "var(--color-progress-checking)", "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stoppedDL: createTorrentStateInfo(13, "stateStoppedDL", "var(--color-progress-stopped)", "QBT_TR(Stopped)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stoppedUP: createTorrentStateInfo(14, "stateStoppedUP", "var(--color-progress-stopped)", "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]"),
+        moving: createTorrentStateInfo(15, "stateMoving", "var(--color-progress-checking)", "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]"),
+        missingFiles: createTorrentStateInfo(16, "stateError", "var(--color-progress-error)", "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]"),
+        error: createTorrentStateInfo(17, "stateError", "var(--color-progress-error)", "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]")
     };
 
-    const shouldShowAvailability = ({ hasMetadata, progress, state }) => {
-        const stateInfo = getTorrentStateInfo(state);
-        return hasMetadata
-            && (progress < 1)
-            && !stateInfo.isStopped
-            && !stateInfo.isQueued
-            && !stateInfo.isChecking
-            && !stateInfo.hidesAvailability;
-    };
+    const getTorrentStateInfo = (state) => torrentStateInfo[state] ?? defaultTorrentStateInfo;
 
     const filterInPlace = (array, predicate) => {
         let j = 0;

@@ -45,138 +45,33 @@ test("Test filterInPlace()", () => {
 
 test("Test getTorrentStateInfo()", () => {
     const getTorrentStateInfo = window.qBittorrent.Misc.getTorrentStateInfo;
-    const fallbackStateInfo = getTorrentStateInfo("notARealState");
-
-    const apiStates = [
-        "error",
-        "missingFiles",
-        "uploading",
-        "stoppedUP",
-        "queuedUP",
-        "stalledUP",
-        "checkingUP",
-        "forcedUP",
-        "downloading",
-        "metaDL",
-        "forcedMetaDL",
-        "stoppedDL",
-        "queuedDL",
-        "stalledDL",
-        "checkingDL",
-        "forcedDL",
-        "checkingResumeData",
-        "moving",
-        "unknown"
-    ];
-
-    for (const state of apiStates) {
-        const stateInfo = getTorrentStateInfo(state);
-
-        expect(stateInfo).not.toBe(fallbackStateInfo);
-        expect(stateInfo.stateIconClass).not.toBe("stateUnknown");
-        expect(stateInfo.statusText).toBeTypeOf("string");
-    }
-
-    expect(getTorrentStateInfo("downloading")).toMatchObject({
+    expect(getTorrentStateInfo("downloading")).toStrictEqual({
         sortOrder: 1,
         stateIconClass: "stateDownloading",
         progressColor: "var(--color-progress-downloading)",
-        statusText: "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]",
-        matchesDownloadFilter: true
+        statusText: "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]"
     });
 
-    expect(getTorrentStateInfo("checkingUP")).toMatchObject({
-        sortOrder: 11,
-        progressColor: "var(--color-progress-checking)",
-        matchesSeedingFilter: true,
-        matchesCompletedFilter: true,
-        isChecking: true
-    });
-
-    expect(getTorrentStateInfo("queuedForChecking")).toMatchObject({
-        sortOrder: 10,
-        stateIconClass: "stateChecking",
-        progressColor: "var(--color-progress-checking)",
-        statusText: "QBT_TR(Queued for checking)QBT_TR[CONTEXT=TransferListDelegate]",
-        isQueued: true,
-        isChecking: false
-    });
-
-    expect(getTorrentStateInfo("stoppedUP")).toMatchObject({
+    expect(getTorrentStateInfo("stoppedUP")).toStrictEqual({
         sortOrder: 14,
         stateIconClass: "stateStoppedUP",
         progressColor: "var(--color-progress-stopped)",
-        matchesCompletedFilter: true,
-        isStopped: true
+        statusText: "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]"
     });
 
-    expect(getTorrentStateInfo("metaDL")).toMatchObject({
-        stateIconClass: "stateDownloading",
-        isMetadataDownloading: true
-    });
-
-    expect(getTorrentStateInfo("unknown")).toMatchObject({
+    expect(getTorrentStateInfo("unknown")).toStrictEqual({
         sortOrder: -1,
         stateIconClass: "stateError",
         progressColor: "var(--color-progress-error)",
-        statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]",
-        isErrored: true,
-        hidesAvailability: false
+        statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
     });
 
-    expect(fallbackStateInfo).toMatchObject({
+    expect(getTorrentStateInfo("notARealState")).toStrictEqual({
         sortOrder: -1,
         stateIconClass: "stateUnknown",
-        progressColor: undefined,
-        hidesAvailability: false,
-        isStopped: false
+        progressColor: "var(--color-background-blue)",
+        statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
     });
-});
-
-test("Test shouldShowAvailability()", () => {
-    const shouldShowAvailability = window.qBittorrent.Misc.shouldShowAvailability;
-
-    expect(shouldShowAvailability({
-        hasMetadata: true,
-        progress: 0.4,
-        state: "downloading"
-    })).toBe(true);
-
-    expect(shouldShowAvailability({
-        hasMetadata: true,
-        progress: 0.4,
-        state: "unknown"
-    })).toBe(true);
-
-    expect(shouldShowAvailability({
-        hasMetadata: true,
-        progress: 0.4,
-        state: "error"
-    })).toBe(false);
-
-    expect(shouldShowAvailability({
-        hasMetadata: true,
-        progress: 0.4,
-        state: "missingFiles"
-    })).toBe(false);
-
-    expect(shouldShowAvailability({
-        hasMetadata: true,
-        progress: 0.4,
-        state: "queuedDL"
-    })).toBe(false);
-
-    expect(shouldShowAvailability({
-        hasMetadata: false,
-        progress: 0.4,
-        state: "downloading"
-    })).toBe(false);
-
-    expect(shouldShowAvailability({
-        hasMetadata: true,
-        progress: 1,
-        state: "downloading"
-    })).toBe(false);
 });
 
 test("Test toFixedPointString()", () => {

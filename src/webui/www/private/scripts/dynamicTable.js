@@ -1477,40 +1477,39 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         applyFilter(row, filterName, category, tag, trackerHost, filterTerms) {
             const { state, upspeed, dlspeed } = row["full_data"];
-            const stateInfo = window.qBittorrent.Misc.getTorrentStateInfo(state);
             let inactive = false;
 
             switch (filterName) {
                 case "downloading":
-                    if (!stateInfo.matchesDownloadFilter)
+                    if ((state !== "downloading") && !state.includes("DL"))
                         return false;
                     break;
                 case "seeding":
-                    if (!stateInfo.matchesSeedingFilter)
+                    if ((state !== "uploading") && (state !== "forcedUP") && (state !== "stalledUP") && (state !== "queuedUP") && (state !== "checkingUP"))
                         return false;
                     break;
                 case "completed":
-                    if (!stateInfo.matchesCompletedFilter)
+                    if ((state !== "uploading") && !state.includes("UP"))
                         return false;
                     break;
                 case "stopped":
-                    if (!stateInfo.isStopped)
+                    if (!state.includes("stopped"))
                         return false;
                     break;
                 case "running":
-                    if (stateInfo.isStopped)
+                    if (state.includes("stopped"))
                         return false;
                     break;
                 case "stalled":
-                    if (!stateInfo.isStalled)
+                    if ((state !== "stalledUP") && (state !== "stalledDL"))
                         return false;
                     break;
                 case "stalled_uploading":
-                    if (!stateInfo.isStalledUploading)
+                    if (state !== "stalledUP")
                         return false;
                     break;
                 case "stalled_downloading":
-                    if (!stateInfo.isStalledDownloading)
+                    if (state !== "stalledDL")
                         return false;
                     break;
                 case "inactive":
@@ -1523,15 +1522,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                     break;
                 }
                 case "checking":
-                    if (!stateInfo.isChecking)
+                    if ((state !== "checkingUP") && (state !== "checkingDL") && (state !== "checkingResumeData"))
                         return false;
                     break;
                 case "moving":
-                    if (!stateInfo.isMoving)
+                    if (state !== "moving")
                         return false;
                     break;
                 case "errored":
-                    if (!stateInfo.isErrored)
+                    if ((state !== "error") && (state !== "unknown") && (state !== "missingFiles"))
                         return false;
                     break;
             }
@@ -1705,14 +1704,20 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.selectRow(tr.rowId);
                 const row = this.getRow(tr.rowId);
                 const state = row["full_data"].state;
-                const stateInfo = window.qBittorrent.Misc.getTorrentStateInfo(state);
-
-                const prefKey = stateInfo.matchesCompletedFilter ? "dblclick_complete" : "dblclick_download";
+                const prefKey =
+                    (state !== "uploading")
+                    && (state !== "stoppedUP")
+                    && (state !== "forcedUP")
+                    && (state !== "stalledUP")
+                    && (state !== "queuedUP")
+                    && (state !== "checkingUP")
+                    ? "dblclick_download"
+                    : "dblclick_complete";
 
                 if (clientData.get(prefKey) !== "1")
                     return true;
 
-                if (stateInfo.isStopped)
+                if (state.includes("stopped"))
                     startFN();
                 else
                     stopFN();
@@ -1729,7 +1734,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         isStopped(hash) {
             const row = this.getRow(hash);
-            return (row === undefined) ? true : window.qBittorrent.Misc.getTorrentStateInfo(row.full_data.state).isStopped;
+            return (row === undefined) ? true : row.full_data.state.includes("stopped");
         }
     }
 

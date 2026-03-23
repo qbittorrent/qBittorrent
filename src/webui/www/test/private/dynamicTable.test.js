@@ -82,9 +82,10 @@ test("Test progress column recolors when only state changes", () => {
 
     const progressCell = tr.children[table.getColumnPos("progress")];
     const progressBar = progressCell.firstElementChild;
+    const barElement = progressBar.shadowRoot.firstElementChild;
 
     expect(progressBar.getValue()).toBe(50);
-    expect(progressBar.getBarColor()).toBe("var(--color-progress-downloading)");
+    expect(barElement.style.backgroundColor).toBe("var(--color-progress-downloading)");
 
     table.updateRowData({
         rowId: "torrent-1",
@@ -94,5 +95,13 @@ test("Test progress column recolors when only state changes", () => {
 
     expect(progressCell.firstElementChild).toBe(progressBar);
     expect(progressBar.getValue()).toBe(50);
-    expect(progressBar.getBarColor()).toBe("var(--color-progress-stalled)");
+    expect(barElement.style.backgroundColor).toBe("var(--color-progress-stalled)");
+
+    table.updateRowData({
+        rowId: "torrent-1",
+        state: "notARealState"
+    });
+    table.updateRow(tr, false);
+
+    expect(barElement.style.backgroundColor).toBe("var(--color-background-blue)");
 });
