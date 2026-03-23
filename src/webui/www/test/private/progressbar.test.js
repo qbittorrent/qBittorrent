@@ -49,15 +49,14 @@ test("Test ProgressBar numeric value handling", () => {
 
 test("Test ProgressBar bar color setter", () => {
     const progressBar = new window.qBittorrent.ProgressBar.ProgressBar(50);
+    const barElement = progressBar.shadowRoot.firstElementChild;
+    const trackElement = progressBar.shadowRoot.lastElementChild;
 
-    expect(progressBar.getBarColor()).toBe("var(--color-background-blue)");
-    expect(progressBar.shadowRoot.firstElementChild.style.backgroundColor).toBe("var(--color-background-blue)");
-    expect(progressBar.shadowRoot.lastElementChild.style.backgroundColor).toBe("var(--color-background-default)");
+    expect(barElement.style.backgroundColor).toBe("var(--color-background-blue)");
+    expect(trackElement.style.backgroundColor).toBe("var(--color-background-default)");
 
     progressBar.setBarColor("rgb(255, 0, 0)");
-    progressBar.setBarColor("rgb(255, 0, 0)");
 
-    expect(progressBar.getBarColor()).toBe("rgb(255, 0, 0)");
-    expect(progressBar.shadowRoot.firstElementChild.style.backgroundColor).toBe("rgb(255, 0, 0)");
-    expect(progressBar.shadowRoot.lastElementChild.style.backgroundColor).toBe("var(--color-background-default)");
+    expect(barElement.style.backgroundColor).toBe("rgb(255, 0, 0)");
+    expect(trackElement.style.backgroundColor).toBe("var(--color-background-default)");
 });

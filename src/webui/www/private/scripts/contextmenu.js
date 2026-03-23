@@ -342,7 +342,7 @@ window.qBittorrent.ContextMenu ??= (() => {
             const selectedRows = torrentsTable.selectedRowsIds();
             for (const item of selectedRows) {
                 const data = torrentsTable.getRow(item).full_data;
-                const stateInfo = window.qBittorrent.Misc.getTorrentStateInfo(data["state"]);
+                const state = data["state"];
 
                 if (data["seq_dl"] !== true)
                     all_are_seq_dl = false;
@@ -359,7 +359,7 @@ window.qBittorrent.ContextMenu ??= (() => {
                 else if (data["super_seeding"] !== true)
                     all_are_super_seeding = false;
 
-                if (!stateInfo.isStopped)
+                if ((state !== "stoppedUP") && (state !== "stoppedDL"))
                     all_are_stopped = false;
                 else
                     there_are_stopped = true;
@@ -392,8 +392,10 @@ window.qBittorrent.ContextMenu ??= (() => {
             // hide renameFiles when more than 1 torrent is selected
             if (selectedRows.length === 1) {
                 const data = torrentsTable.getRow(selectedRows[0]).full_data;
-                const stateInfo = window.qBittorrent.Misc.getTorrentStateInfo(data["state"]);
-                const metadata_downloaded = !stateInfo.isMetadataDownloading && (data["total_size"] !== -1);
+                const state = data["state"];
+                const metadata_downloaded = (state !== "metaDL")
+                    && (state !== "forcedMetaDL")
+                    && (data["total_size"] !== -1);
 
                 this.showItem("rename");
                 // hide renameFiles when metadata hasn't been downloaded yet
