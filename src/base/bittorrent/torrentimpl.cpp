@@ -40,8 +40,8 @@
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
-#include <libtorrent/write_resume_data.hpp>
 #include <libtorrent/version.hpp>
+#include <libtorrent/write_resume_data.hpp>
 
 #ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/info_hash.hpp>
@@ -870,13 +870,13 @@ bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
 bool TorrentImpl::needSaveResumeData() const
 {
 #if LIBTORRENT_VERSION_NUM >= 20100
-    return static_cast<bool>(m_nativeStatus.need_save_resume_data & (lt::torrent_handle::if_download_progress
+    return static_cast<bool>(m_nativeStatus.need_save_resume_data
+        & (lt::torrent_handle::if_download_progress
             | lt::torrent_handle::if_config_changed
             | lt::torrent_handle::if_state_changed
             | lt::torrent_handle::if_metadata_changed
             // TODO: if_counters_changed can probably safely be removed
-            | lt::torrent_handle::if_counters_changed
-            ));
+            | lt::torrent_handle::if_counters_changed));
 #else
     return m_nativeStatus.need_save_resume;
 #endif
@@ -1085,10 +1085,10 @@ Path TorrentImpl::actualFilePath(const int index) const
         return {};
 
 #if LIBTORRENT_VERSION_NUM >= 20100
-    const lt::file_storage& fs = nativeTorrentInfo()->files();
-    const lt::filenames files(fs, m_nativeStatus.renamed_files);
+    const lt::file_storage &fs = nativeTorrentInfo()->files();
+    const lt::filenames files {fs, m_nativeStatus.renamed_files};
 #else
-    const lt::file_storage& files = nativeTorrentInfo()->files();
+    const lt::file_storage &files = nativeTorrentInfo()->files();
 #endif
     return Path(files.file_path(nativeIndexes[index]));
 }
@@ -1112,10 +1112,10 @@ PathList TorrentImpl::actualFilePaths() const
     paths.reserve(filesCount());
 
 #if LIBTORRENT_VERSION_NUM >= 20100
-    const lt::file_storage& fs = nativeTorrentInfo()->files();
-    const lt::filenames files(fs, m_nativeStatus.renamed_files);
+    const lt::file_storage &fs = nativeTorrentInfo()->files();
+    const lt::filenames files {fs, m_nativeStatus.renamed_files};
 #else
-    const lt::file_storage& files = nativeTorrentInfo()->files();
+    const lt::file_storage &files = nativeTorrentInfo()->files();
 #endif
     for (const lt::file_index_t &nativeIndex : asConst(m_torrentInfo.nativeIndexes()))
         paths.emplaceBack(files.file_path(nativeIndex));
@@ -2394,12 +2394,9 @@ void TorrentImpl::handleFileCompleted(const lt::file_index_t nativeFileIndex)
     const int fileIndex = fileIndexFromNative(nativeFileIndex);
     Q_ASSERT(fileIndex >= 0);
 
-    // actualFilePath() must be called before setBit() so that makeActualPath()
-    // still sees the file as incomplete and returns the QB_EXT path.
-    const Path actualPath = actualFilePath(fileIndex);
-
     m_completedFiles.setBit(fileIndex);
-
+    
+    const Path actualPath = actualFilePath(fileIndex);
 #if defined(Q_OS_MACOS) || defined(Q_OS_WIN)
     // only apply Mark-of-the-Web to new download files
     if (Preferences::instance()->isMarkOfTheWebEnabled()
