@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Limite da taxa de download</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Incapaz de salvar as preferências do programa, o qBittorrent provavelmente é inalcançável.</translation>
+        <translation type="vanished">Incapaz de salvar as preferências do programa, o qBittorrent provavelmente é inalcançável.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -531,10 +535,6 @@
         <translation>O limite da proporção de semeadura não deve ter um valor negativo.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">O ToS do peer deve ser entre 0 e 255.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>O limite da proporção de compartilhamento não deve ter um valor negativo.</translation>
     </message>
@@ -568,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>O DSCP do peer deve estar entre 0 e 255.</translation>
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -854,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation type="vanished">Idioma</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1579,10 +1591,6 @@
         <translation>Não criar sub-pasta</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Tipo de serviço (ToS) para as conexões com os peers</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Conexões de saída por segundo:</translation>
     </message>
@@ -1823,10 +1831,6 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <translation>Tamanho do buffer do socket de recebimento [0: padrão do sistema]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Usar sub-categorias</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Adicionar ao início da fila</translation>
     </message>
@@ -1972,7 +1976,7 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Ele anexa o texto ao título da janela para ajudar a distinguir as instâncias do qBittorent</translation>
+        <translation type="vanished">Ele anexa o texto ao título da janela para ajudar a distinguir as instâncias do qBittorent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2224,6 +2228,38 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Ponto de código de serviços diferenciados (DSCP) para conexões com peers</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2634,6 +2670,10 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <source>Private:</source>
         <translation>Privado:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2962,12 +3002,12 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Download da sessão</translation>
+        <translation type="vanished">Download da sessão</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Upload da sessão</translation>
+        <translation type="vanished">Upload da sessão</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3044,6 +3084,14 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Status Icon</source>
         <translation>Ícone de status</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4123,6 +4171,18 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
         <source>Refresh tab</source>
         <translation>Atualizar aba</translation>
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4760,6 +4820,10 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Usar outro caminho pros torrents incompletos:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Endirmə nisbəti limiti</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Proqram tərcihlərini saxlamaq olmadı. qBittorrent ola bilsin ki, əlçatmazdır.</translation>
+        <translation type="vanished">Proqram tərcihlərini saxlamaq olmadı. qBittorrent ola bilsin ki, əlçatmazdır.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -564,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Dil:</translation>
+        <translation type="vanished">Dil:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1575,10 +1591,6 @@
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Iştirakçılarla bağlantı üçün xidmət növü (ToS)</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Hər saniyədə sərf olunan bağlantı:</translation>
     </message>
@@ -1819,10 +1831,6 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <translation>Soket qəbul etmə bufer ölçüsü [0: sistemdəki standart]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Alt kateqoriyaları istifadə etmək</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Növbənin ən üst sırasına əlavə et</translation>
     </message>
@@ -1968,7 +1976,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>O, qBittorent nümunələrini fərqləndirmək üçün pəncərə başlığına mətn əlavə edir.</translation>
+        <translation type="vanished">O, qBittorent nümunələrini fərqləndirmək üçün pəncərə başlığına mətn əlavə edir.</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2220,6 +2228,38 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Peer bağlantıları üçün Fərqləndirilmiş Xidmətlər Kod Nöqtəsi (DSCP)</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2630,6 +2670,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <source>Private:</source>
         <translation>Gizli:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2958,12 +3002,12 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Sesiyada yüklənən</translation>
+        <translation type="vanished">Sesiyada yüklənən</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Sesiyada göndərilən</translation>
+        <translation type="vanished">Sesiyada göndərilən</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3040,6 +3084,14 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Status Icon</source>
         <translation>Vəziyyət nişanı</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4119,6 +4171,18 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <source>Refresh tab</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4756,6 +4820,10 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Tamamlanmamış torrentlər üçün başqa yoldan istifadə edin:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Letöltési sebesség korlátozása</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Nem sikerült menteni a beállításokat. A qBittorrent valószínűleg nem elérhető.</translation>
+        <translation type="vanished">Nem sikerült menteni a beállításokat. A qBittorrent valószínűleg nem elérhető.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -531,10 +535,6 @@
         <translation>A seedelési időkorlát nem lehet negatív érték.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">Peer ToS-nek 0 és 255 közé kell esnie.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>A megosztási arány nem lehet negatív érték.</translation>
     </message>
@@ -568,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>Peer DSCP-nek 0 és 255 közé kell esnie.</translation>
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -854,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Nyelv</translation>
+        <translation type="vanished">Nyelv</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1579,10 +1591,6 @@
         <translation>Ne hozzon létre almappát</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Szolgáltatástípus (ToS) a peerkapcsolatokhoz</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Másodpercenkénti kimenő kapcsolatok:</translation>
     </message>
@@ -1823,10 +1831,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <translation>Socket fogadó puffer mérete [0: rendszer alapértelmezett]</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Alkategóriák használata</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Hozzáadás a várólista elejére</translation>
     </message>
@@ -1972,7 +1976,7 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>A qBittorent példányok megkülönböztetésének megkönnyítése érdekében a szöveget az ablak címéhez csatolja.</translation>
+        <translation type="vanished">A qBittorent példányok megkülönböztetésének megkönnyítése érdekében a szöveget az ablak címéhez csatolja.</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2224,6 +2228,38 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Differentiated Services Code Point (DSCP) a peerekhez való kapcsolatokhoz</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2634,6 +2670,10 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Private:</source>
         <translation>Privát</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2962,12 +3002,12 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Munkamenet alatt letöltve</translation>
+        <translation type="vanished">Munkamenet alatt letöltve</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Munkamenet alatt feltöltve</translation>
+        <translation type="vanished">Munkamenet alatt feltöltve</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3044,6 +3084,14 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Status Icon</source>
         <translation>Állapot ikon</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4123,6 +4171,18 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Refresh tab</source>
         <translation>Fül frissítése</translation>
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4760,6 +4820,10 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Használjon másik elérési utat a befejezetlen torrentekhez:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Περιορισμός ρυθμού λήψης</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Δεν είναι δυνατή η αποθήκευση των προτιμήσεων του προγράμματος, το qBittorrent είναι πιθανώς μη διαθέσιμο.</translation>
+        <translation type="vanished">Δεν είναι δυνατή η αποθήκευση των προτιμήσεων του προγράμματος, το qBittorrent είναι πιθανώς μη διαθέσιμο.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -564,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="vanished">Γλώσσα</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1575,10 +1591,6 @@
         <translation>Να μη δημιουργηθεί υποφάκελος</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Τύπος υπηρεσίας (ToS) για συνδέσεις με peers</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Εξερχόμενες συνδέσεις ανά δευτερόλεπτο:</translation>
     </message>
@@ -1819,10 +1831,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Μέγεθος buffer λήψης υποδοχής [0: προεπιλογή συστήματος]</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Χρήση Υποκατηγοριών</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Προσθήκη στην αρχή της ουράς</translation>
     </message>
@@ -1968,7 +1976,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Προσαρτά το κείμενο στον τίτλο του παραθύρου ώστε να μπορείτε να ξεχωρίσετε τις υποστάσεις του qBittorent</translation>
+        <translation type="vanished">Προσαρτά το κείμενο στον τίτλο του παραθύρου ώστε να μπορείτε να ξεχωρίσετε τις υποστάσεις του qBittorent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2220,6 +2228,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2630,6 +2670,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Private:</source>
         <translation>Ιδιωτικά:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2958,12 +3002,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Ληφθέντα Συνεδρίας</translation>
+        <translation type="vanished">Ληφθέντα Συνεδρίας</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Απεσταλμένα Συνεδρίας</translation>
+        <translation type="vanished">Απεσταλμένα Συνεδρίας</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3039,6 +3083,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Status Icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3574,7 +3626,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Also remove the content files</source>
-        <translation>Αφαίρεση επίσης και τα αρχεία περιεχομένου</translation>
+        <translation>Διαγραφή και των αρχείων περιεχομένου</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -4117,6 +4169,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Refresh tab</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4756,6 +4820,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Χρήση άλλης διαδρομής για ημιτελή torrents:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

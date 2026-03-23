@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Limita velocità download</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Impossibile salvare le preferenze, qBittorrent potrebbe essere irraggiungibile.</translation>
+        <translation type="vanished">Impossibile salvare le preferenze, qBittorrent potrebbe essere irraggiungibile.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -532,10 +536,6 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
         <translation>Il limite di tempo di seeding non deve avere un valore negativo.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">Peer ToS deve essere tra 0 e 255.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>Il limite del rapporto di condivisione non deve avere un valore negativo.</translation>
     </message>
@@ -569,6 +569,18 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>DSCP peer deve essere compreso tra 0 e 255.</translation>
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -855,7 +867,7 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Lingua</translation>
+        <translation type="vanished">Lingua</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1580,10 +1592,6 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
         <translation>Non creare sottocartella</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Tipo di servizio (ToS) per le connessioni ai peer</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Connessioni in uscita per secondo:</translation>
     </message>
@@ -1826,10 +1834,6 @@ Usa ';' per dividere più voci.</translation>
         <translation>Dimensione buffer ricezione socket [0: predefinita sistema]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Usa sottocategorie</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Aggiungi in cima alla coda</translation>
     </message>
@@ -1976,7 +1980,7 @@ Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Aggiunge il testo al titolo della finestra per aiutare a distinguere le istanze di qBittorent</translation>
+        <translation type="vanished">Aggiunge il testo al titolo della finestra per aiutare a distinguere le istanze di qBittorent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2229,6 +2233,38 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>DSCP (Differentiated Services Code Point) per connessioni ai peer</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2639,6 +2675,10 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
         <source>Private:</source>
         <translation>Privato:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2967,12 +3007,12 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Scaricamento sessione</translation>
+        <translation type="vanished">Scaricamento sessione</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Invio sessione</translation>
+        <translation type="vanished">Invio sessione</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3049,6 +3089,14 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
     <message>
         <source>Status Icon</source>
         <translation>Icona di stato</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4129,6 +4177,18 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
         <source>Refresh tab</source>
         <translation>Scheda Aggiorna</translation>
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4767,6 +4827,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Per i torrent incompleti usa un altro percorso:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

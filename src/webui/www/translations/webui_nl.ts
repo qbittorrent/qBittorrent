@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Downloadsnelheid begrenzen</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Kan programmavoorkeuren niet opslaan, qBittorrent is waarschijnlijk onbereikbaar.</translation>
+        <translation type="vanished">Kan programmavoorkeuren niet opslaan, qBittorrent is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -531,10 +535,6 @@
         <translation>Begrenzing voor seed-tijd mag niet negatief zijn.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">Peer ToS moet tussen 0 en 255 liggen.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>Begrenzing voor deelverhouding mag niet negatief zijn.</translation>
     </message>
@@ -568,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>Peer DSCP moet tussen 0 en 255 liggen.</translation>
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -854,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Taal</translation>
+        <translation type="vanished">Taal</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1579,10 +1591,6 @@
         <translation>Geen submap aanmaken</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Type dienst (ToS) voor verbindingen naar peers</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Uitgaande verbindingen per seconde:</translation>
     </message>
@@ -1823,10 +1831,6 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <translation>Socket-ontvangstbuffergrootte [0: systeemstandaard]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Subcategorieën gebruiken</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Bovenaan wachtrij toevoegen</translation>
     </message>
@@ -1972,7 +1976,7 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Het voegt de tekst toe aan de venstertitel om qBittorrent-instanties te helpen onderscheiden</translation>
+        <translation type="vanished">Het voegt de tekst toe aan de venstertitel om qBittorrent-instanties te helpen onderscheiden</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2224,6 +2228,38 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Differentiated Services Code Point (DSCP) voor verbindingen met peers</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2634,6 +2670,10 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <source>Private:</source>
         <translation>Privé:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2962,12 +3002,12 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Sessie-download</translation>
+        <translation type="vanished">Sessie-download</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Sessie-upload</translation>
+        <translation type="vanished">Sessie-upload</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3044,6 +3084,14 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>Status Icon</source>
         <translation>Statuspictogram</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4123,6 +4171,18 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
         <source>Refresh tab</source>
         <translation>Tab vernieuwen</translation>
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4760,6 +4820,10 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Ander pad gebruiken voor onvolledige torrents:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

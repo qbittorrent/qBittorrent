@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Impossible de salvar las preferéncias, qBittorrent es probablament inaccessible.</translation>
+        <translation type="vanished">Impossible de salvar las preferéncias, qBittorrent es probablament inaccessible.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -564,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Lenga</translation>
+        <translation type="vanished">Lenga</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1955,10 +1971,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation type="unfinished" />
     </message>
@@ -2208,6 +2220,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2618,6 +2662,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Private:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2946,12 +2994,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Telecargament de la session</translation>
+        <translation type="vanished">Telecargament de la session</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Emission de la session</translation>
+        <translation type="vanished">Emission de la session</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3027,6 +3075,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Status Icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4107,6 +4163,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Refresh tab</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4742,6 +4810,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Category does not exist</source>
         <translation type="unfinished" />
     </message>
 </context>

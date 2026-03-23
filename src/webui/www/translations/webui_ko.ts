@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>다운로드 속도 제한</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>프로그램 환경설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
+        <translation type="vanished">프로그램 환경설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -531,10 +535,6 @@
         <translation>배포 시간 제한은 음수 값을 가질 수 없습니다.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">ToS 간격은 0에서 255 사이여야 합니다.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>공유 비율 제한은 음수 값이 없어야 합니다.</translation>
     </message>
@@ -568,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -854,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>언어</translation>
+        <translation type="vanished">언어</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1579,10 +1591,6 @@
         <translation>하위폴더 만들지 않기</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">피어 연결에 대한 서비스 유형 (ToS)</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>초당 나가는 연결 수:</translation>
     </message>
@@ -1823,10 +1831,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>소켓 수신 버퍼 크기 [0: 시스템 기본값]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">하위 범주 사용</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>대기열 맨 위에 추가</translation>
     </message>
@@ -1972,7 +1976,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>qBittorent 인스턴스를 구별할 수 있도록 창 제목에 텍스트를 추가</translation>
+        <translation type="vanished">qBittorent 인스턴스를 구별할 수 있도록 창 제목에 텍스트를 추가</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2226,6 +2230,38 @@ DNS 재결합 공격을 방어하기 위해
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2269,7 +2305,7 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation>올려줌</translation>
+        <translation>업로드됨</translation>
     </message>
     <message>
         <source>Relevance</source>
@@ -2380,7 +2416,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Uploaded:</source>
-        <translation>올려줌:</translation>
+        <translation>업로드됨:</translation>
     </message>
     <message>
         <source>Seeds:</source>
@@ -2633,6 +2669,10 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Private:</source>
         <translation>비공개:</translation>
+    </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2957,17 +2997,17 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation>올려줌</translation>
+        <translation>업로드됨</translation>
     </message>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>세션 다운로드</translation>
+        <translation type="vanished">세션 다운로드</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>세션 업로드</translation>
+        <translation type="vanished">세션 업로드</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3044,6 +3084,14 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Status Icon</source>
         <translation>상태 아이콘</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4123,6 +4171,18 @@ DNS 재결합 공격을 방어하기 위해
         <source>Refresh tab</source>
         <translation>탭 새로 고침</translation>
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4760,6 +4820,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>불완전한 토렌트에 다른 경로 사용:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

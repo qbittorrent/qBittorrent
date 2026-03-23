@@ -100,7 +100,7 @@
     </message>
     <message>
         <source>Add torrent</source>
-        <translation type="unfinished" />
+        <translation>Додати торрент</translation>
     </message>
     <message>
         <source>Not available</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation type="unfinished" />
+        <translation>Додати торрент</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -152,7 +152,7 @@
     </message>
     <message>
         <source>Save as .torrent file</source>
-        <translation type="unfinished" />
+        <translation>Зберегти як файл .torrent</translation>
     </message>
     <message>
         <source>All</source>
@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation type="unfinished" />
+        <translation>Неможливо завантажити торрент-файл</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
@@ -197,6 +197,10 @@
     <message>
         <source>Limit download rate</source>
         <translation>Обмеження швидкості завантаження</translation>
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Не вдалося зберегти налаштування програми, можливо qBittorrent недоступний.</translation>
+        <translation type="vanished">Не вдалося зберегти налаштування програми, можливо qBittorrent недоступний.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -524,7 +528,7 @@
     </message>
     <message>
         <source>Unable to delete API key.</source>
-        <translation type="unfinished" />
+        <translation>Неможливо видалити ключ API.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
@@ -536,34 +540,46 @@
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
-        <translation type="unfinished" />
+        <translation>Період зміни пірів має бути більшим або рівним 0.</translation>
     </message>
     <message>
         <source>Unable to parse response.</source>
-        <translation type="unfinished" />
+        <translation>Неможливо проаналізувати відповідь.</translation>
     </message>
     <message>
         <source>Unable to rotate API key.</source>
-        <translation type="unfinished" />
+        <translation>Неможливо змінити ключ API.</translation>
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
-        <translation type="unfinished" />
+        <translation>Зміна пірів має бути від 0 до 100.</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
-        <translation type="unfinished" />
+        <translation>Виділена пам'ять при перевірці торрентів повинна бути більшою за 0 і меншою за 1024.</translation>
     </message>
     <message>
         <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Неможливо завантажити налаштування програми, ймовірно, qBittorrent недоступний.</translation>
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
-        <translation type="unfinished" />
+        <translation>Поріг зміни пірів має бути від 0 до 100.</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>DSCP має бути від 0 до 255.</translation>
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Мова</translation>
+        <translation type="vanished">Мова</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1575,10 +1591,6 @@
         <translation>Не створювати підтеку</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Тип обслуговування (ToS) при приєднанні до пірів</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Вихідні з'єднання за секунду:</translation>
     </message>
@@ -1819,10 +1831,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Розмір буфера отримання сокета [0: системне замовчування]</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Використовувати підкатегорії</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Додати в початок черги</translation>
     </message>
@@ -1968,7 +1976,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Він додає текст до заголовка вікна, щоб допомогти розрізнити екземпляри qBittorent</translation>
+        <translation type="vanished">Він додає текст до заголовка вікна, щоб допомогти розрізнити екземпляри qBittorent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2200,7 +2208,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copied</source>
-        <translation type="unfinished" />
+        <translation>Скопійовано</translation>
     </message>
     <message>
         <source>User</source>
@@ -2208,7 +2216,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Reset filter selection</source>
-        <translation type="unfinished" />
+        <translation>Скинути вибір фільтра</translation>
     </message>
     <message>
         <source>API Key</source>
@@ -2220,6 +2228,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Поле DSCP для з'єднань з пірами</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2630,6 +2670,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Private:</source>
         <translation>Приватний:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2958,12 +3002,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Завантажено за сеанс</translation>
+        <translation type="vanished">Завантажено за сеанс</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Відвантажено за сеанс</translation>
+        <translation type="vanished">Відвантажено за сеанс</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3040,6 +3084,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Status Icon</source>
         <translation>Значок статусу</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3166,7 +3218,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tier:</source>
-        <translation type="unfinished" />
+        <translation>Рівень:</translation>
     </message>
     <message>
         <source>Tracker error</source>
@@ -3178,7 +3230,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation type="unfinished" />
+        <translation>Повторно анонсувати вибрані трекери</translation>
     </message>
     <message>
         <source>Min Announce</source>
@@ -3505,7 +3557,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Content Path</source>
-        <translation type="unfinished" />
+        <translation>Шлях до вмісту</translation>
     </message>
 </context>
 <context>
@@ -3560,7 +3612,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Action when the limit is reached</source>
-        <translation type="unfinished" />
+        <translation>Дії при досягненні обмеження</translation>
     </message>
 </context>
 <context>
@@ -4117,6 +4169,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Refresh tab</source>
+        <translation>Оновити вкладку</translation>
+    </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4547,7 +4611,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Other error</source>
-        <translation type="unfinished" />
+        <translation>Інша помилка</translation>
     </message>
 </context>
 <context>
@@ -4756,6 +4820,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Використовувати інший шлях для незавершених торрентів:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5074,7 +5142,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>URLs</source>
-        <translation type="unfinished" />
+        <translation>Адреси</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
@@ -5085,11 +5153,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>SpeedLimit</name>
     <message>
         <source>Limit:</source>
-        <translation type="unfinished" />
+        <translation>Обмеження:</translation>
     </message>
     <message>
         <source>Speed limit</source>
-        <translation type="unfinished" />
+        <translation>Обмеження швидкості</translation>
     </message>
     <message>
         <source>Upload limit:</source>
@@ -5108,11 +5176,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ListWidget</name>
     <message>
         <source>Resize All</source>
-        <translation type="unfinished" />
+        <translation>Змінити розмір всіх</translation>
     </message>
     <message>
         <source>Resize</source>
-        <translation type="unfinished" />
+        <translation>Змінити розмір</translation>
     </message>
 </context>
 <context>

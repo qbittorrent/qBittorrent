@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Apriboti atsiuntimo greitį</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Nepavyko išsaugoti programos nuostatų, qBittorrent tikriausiai yra nepasiekiama.</translation>
+        <translation type="vanished">Nepavyko išsaugoti programos nuostatų, qBittorrent tikriausiai yra nepasiekiama.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -564,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Kalba</translation>
+        <translation type="vanished">Kalba</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1575,10 +1591,6 @@
         <translation>Nesukurti poaplankio</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Paslaugos tipas (ToS), skirtas ryšiams su partneriais</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation type="unfinished" />
     </message>
@@ -1821,10 +1833,6 @@ pakaitos simbolį "*".</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Naudoti subkategorijas</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Pridėti į eilės viršų</translation>
     </message>
@@ -1966,10 +1974,6 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>I2P inbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2182,7 +2186,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Generate a key</source>
-        <translation type="unfinished" />
+        <translation>Generuoti raktą</translation>
     </message>
     <message>
         <source>When adding a duplicate torrent</source>
@@ -2190,7 +2194,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Delete API key</source>
-        <translation type="unfinished" />
+        <translation>Ištrinti API raktą</translation>
     </message>
     <message>
         <source>%M: Comment</source>
@@ -2198,7 +2202,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Generate API key</source>
-        <translation type="unfinished" />
+        <translation>Generuoti API raktą</translation>
     </message>
     <message>
         <source>Copied</source>
@@ -2214,14 +2218,46 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>API Key</source>
-        <translation type="unfinished" />
+        <translation>API raktas</translation>
     </message>
     <message>
         <source>Copy API key</source>
-        <translation type="unfinished" />
+        <translation>Kopijuoti API raktą</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2632,6 +2668,10 @@ pakaitos simbolį "*".</translation>
         <source>Private:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2960,12 +3000,12 @@ pakaitos simbolį "*".</translation>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Atsiųsta per seansą</translation>
+        <translation type="vanished">Atsiųsta per seansą</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Išsiųsta per seansą</translation>
+        <translation type="vanished">Išsiųsta per seansą</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3041,6 +3081,14 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Status Icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4121,6 +4169,18 @@ pakaitos simbolį "*".</translation>
         <source>Refresh tab</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4249,7 +4309,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Open link</source>
-        <translation type="unfinished" />
+        <translation>Atverti nuorodą</translation>
     </message>
     <message>
         <source>Author: </source>
@@ -4758,6 +4818,10 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Naudokite kitą kelią neužbaigtiems torentams:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

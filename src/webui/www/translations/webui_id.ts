@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Batasi laju unduh</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Tidak bisa menyimpan preferensi program, qBittorrent mungkin tidak terjangkau.</translation>
+        <translation type="vanished">Tidak bisa menyimpan preferensi program, qBittorrent mungkin tidak terjangkau.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -564,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Bahasa</translation>
+        <translation type="vanished">Bahasa</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1815,10 +1831,6 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Gunakan Subkategori</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Tambahkan ke antrian teratas</translation>
     </message>
@@ -1960,10 +1972,6 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>I2P inbound length:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2216,6 +2224,38 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2626,6 +2666,10 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <source>Private:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2954,12 +2998,12 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Sesi Unduh</translation>
+        <translation type="vanished">Sesi Unduh</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Sesi Unggah</translation>
+        <translation type="vanished">Sesi Unggah</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3035,6 +3079,14 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Status Icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4115,6 +4167,18 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <source>Refresh tab</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4751,6 +4815,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Gunakan jalur lain untuk torrent yang belum selesai:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

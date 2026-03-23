@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>ダウンロード速度制限</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>プログラム設定の保存ができません。qBittorrentはおそらく通信可能状態にありません。</translation>
+        <translation type="vanished">プログラム設定の保存ができません。qBittorrentはおそらく通信可能状態にありません。</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -564,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -850,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>言語</translation>
+        <translation type="vanished">言語</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1575,10 +1591,6 @@
         <translation>サブフォルダーを作成しない</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">ピアに接続するサービスの種類(ToS)</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>1秒あたりの外部接続数</translation>
     </message>
@@ -1819,10 +1831,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">サブカテゴリーを使用する</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>キューの先頭に追加する</translation>
     </message>
@@ -1968,7 +1976,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>qBittorentインスタンスを区別するために、ウィンドウタイトルにテキストを付加します。</translation>
+        <translation type="vanished">qBittorentインスタンスを区別するために、ウィンドウタイトルにテキストを付加します。</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2220,6 +2228,38 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2630,6 +2670,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Private:</source>
         <translation>プライベート:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2958,12 +3002,12 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>セッション内ダウンロード量</translation>
+        <translation type="vanished">セッション内ダウンロード量</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>セッション内アップロード量</translation>
+        <translation type="vanished">セッション内アップロード量</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3039,6 +3083,14 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Status Icon</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4119,6 +4171,18 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Refresh tab</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4756,6 +4820,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>未完了Torrentは別のパスを使用する:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Downloadrate begrenzen</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Programmeinstellungen konnten nicht gespeichert werden – qBittorrent ist vermutlich nicht erreichbar.</translation>
+        <translation type="vanished">Programmeinstellungen konnten nicht gespeichert werden – qBittorrent ist vermutlich nicht erreichbar.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -531,10 +535,6 @@
         <translation>Die Grenze für die Seedzeit darf kein negativer Wert sein.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">Der Peer-ToS muss zwischen 0 und 255 liegen.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>Das Shareverhältnis-Limit darf kein negativer Wert sein.</translation>
     </message>
@@ -568,6 +568,18 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>Der Peer-DSCP muss zwischen 0 und 255 liegen.</translation>
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -854,7 +866,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Sprache</translation>
+        <translation type="vanished">Sprache</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1048,7 +1060,7 @@
     <message>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation>Bis:</translation>
+        <translation>An:</translation>
     </message>
     <message>
         <source>When:</source>
@@ -1579,10 +1591,6 @@
         <translation>Keinen Unterordner erstellen</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Servicetyp (ToS) für die Verbindung zu Peers</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Ausgehende Verbindungen pro Sekunde:</translation>
     </message>
@@ -1825,10 +1833,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Socket-Empfangspuffergröße [0: Systemvorgabe]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Unterkategorien verwenden</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>In der Warteschlange an erster Stelle hinzufügen</translation>
     </message>
@@ -1974,7 +1978,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Der Text wird an den Fenstertitel angehängt, um qBittorent-Instanzen zu unterscheiden</translation>
+        <translation type="vanished">Der Text wird an den Fenstertitel angehängt, um qBittorent-Instanzen zu unterscheiden</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2226,6 +2230,38 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Differentiated Services Code Point (DSCP) für Verbindungen zu Peers</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2636,6 +2672,10 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>Private:</source>
         <translation>Privat:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2964,12 +3004,12 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>DL in dieser Sitzung</translation>
+        <translation type="vanished">DL in dieser Sitzung</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>UL in dieser Sitzung</translation>
+        <translation type="vanished">UL in dieser Sitzung</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3046,6 +3086,14 @@ Platzhalter '*' kann verwendet werden.</translation>
     <message>
         <source>Status Icon</source>
         <translation>Statussymbol</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4125,6 +4173,18 @@ Platzhalter '*' kann verwendet werden.</translation>
         <source>Refresh tab</source>
         <translation>Tab aktualisieren</translation>
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4762,6 +4822,10 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Einen anderen Pfad für unvollständige Torrents verwenden:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

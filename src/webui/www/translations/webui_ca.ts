@@ -198,6 +198,10 @@
         <source>Limit download rate</source>
         <translation>Limita la velocitat de baixada</translation>
     </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +301,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>No es poden desar les preferències del programa, probablement el qBittorrent no és accessible.</translation>
+        <translation type="vanished">No es poden desar les preferències del programa, probablement el qBittorrent no és accessible.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -532,10 +536,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>El límit del temps de sembra no pot tenir un valor negatiu.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">Els clients han de ser entre 0 i 255.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>El límit de la ràtio de compartició no pot tenir un valor negatiu.</translation>
     </message>
@@ -569,6 +569,18 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>El DSCP del client ha de ser entre 0 i 255.</translation>
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -855,7 +867,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Llengua</translation>
+        <translation type="vanished">Llengua</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1580,10 +1592,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>No creïs una subcarpeta</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Tipus de servei (ToS) per a connexions amb clients</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Connexions de sortida per segon:</translation>
     </message>
@@ -1824,10 +1832,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Mida del buffer del sòcol de recepció [0: per defecte del sistema]:</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Usa subcategories</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>Afegeix al capdamunt de la cua</translation>
     </message>
@@ -1973,7 +1977,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Afegeix el text al títol de la finestra per ajudar a distingir les instàncies del qBittorent.</translation>
+        <translation type="vanished">Afegeix el text al títol de la finestra per ajudar a distingir les instàncies del qBittorent.</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2225,6 +2229,38 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Punt de codi de serveis diferenciats (DSCP) per a connexions amb clients</translation>
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2635,6 +2671,10 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <source>Private:</source>
         <translation>Privat:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2963,12 +3003,12 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Baixades durant la sessió</translation>
+        <translation type="vanished">Baixades durant la sessió</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Pujades durant la sessió</translation>
+        <translation type="vanished">Pujades durant la sessió</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3045,6 +3085,14 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Status Icon</source>
         <translation>Icona d'estat</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4124,6 +4172,18 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <source>Refresh tab</source>
         <translation>Refresca la pestanya</translation>
     </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4761,6 +4821,10 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Usa un altre camí per als torrents incomplets:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
