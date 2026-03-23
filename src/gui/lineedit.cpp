@@ -32,9 +32,13 @@
 #include <chrono>
 
 #include <QAction>
+#include <QApplication>
+#include <QEvent>
+#include <QFocusEvent>
 #include <QKeyEvent>
 #include <QPalette>
 #include <QTimer>
+#include <QWidget>
 
 #include "base/global.h"
 #include "uithememanager.h"
@@ -71,6 +75,32 @@ LineEdit::LineEdit(QWidget *parent)
     {
         m_delayedTextChangedTimer->start(FILTER_INPUT_DELAY);
     });
+}
+
+bool LineEdit::eventFilter(QObject *watched, QEvent *event)
+{
+    if (event->type() != QEvent::MouseButtonPress)
+        return false;
+
+    if (const auto *watchedWidget = qobject_cast<QWidget *>(watched))
+    {
+        if ((watchedWidget != this) && !isAncestorOf(watchedWidget))
+            clearFocus();
+    }
+
+    return false;
+}
+
+void LineEdit::focusInEvent(QFocusEvent *event)
+{
+    QLineEdit::focusInEvent(event);
+    qApp->installEventFilter(this);
+}
+
+void LineEdit::focusOutEvent(QFocusEvent *event)
+{
+    qApp->removeEventFilter(this);
+    QLineEdit::focusOutEvent(event);
 }
 
 void LineEdit::keyPressEvent(QKeyEvent *event)

@@ -31,7 +31,10 @@
 
 #include <QLineEdit>
 
+class QEvent;
+class QFocusEvent;
 class QKeyEvent;
+class QObject;
 class QTimer;
 
 class LineEdit final : public QLineEdit
@@ -46,6 +49,9 @@ signals:
     void textChanged(const QString &text);
 
 private:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+    void focusInEvent(QFocusEvent *event) override;
+    void focusOutEvent(QFocusEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
 
     QTimer *m_delayedTextChangedTimer = nullptr;
