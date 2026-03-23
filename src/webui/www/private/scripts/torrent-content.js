@@ -476,7 +476,7 @@ window.qBittorrent.TorrentContent ??= (() => {
             baseUrl += "/";
 
         return baseUrl;
-    }
+    };
 
     const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) => {
         if (onFilePriorityChangedHandler !== undefined)
