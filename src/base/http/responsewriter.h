@@ -29,11 +29,15 @@
 #pragma once
 
 #include <QObject>
+#include <QPointer>
 
+#include "base/pathfwd.h"
+#include "headermap.h"
 #include "request.h"
 #include "response.h"
 
 class QAbstractSocket;
+class QThread;
 
 namespace Http
 {
@@ -44,10 +48,15 @@ namespace Http
 
     public:
         ResponseWriter(QAbstractSocket *socket, Request request, QObject *parent = nullptr);
+        ~ResponseWriter() override;
 
         // Send entire response at once.
         // Allow response content to be gzip encoded.
         void setResponse(const Response &response);
+
+        // Allow to stream file using separate IO thread for reading.
+        // Support Range requests.
+        void streamFile(const Path &filePath, const HeaderMap &headers);
 
         bool isFinished() const;
 
@@ -55,12 +64,20 @@ namespace Http
         void finished(QPrivateSignal);
 
     private:
-        bool needCompressContent(const Response &response) const;
+        void writeCurrentData();
         void finish();
 
-        QAbstractSocket *m_socket;
+        QPointer<QAbstractSocket> m_socket;
         Request m_request;
 
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+        QThread *m_workerThread = nullptr;
+        bool m_isAsyncWorkerFinished = false;
+
+        QByteArray m_dataToWrite;
+
+        bool m_isWritingContent = false;
         bool m_isFinished = false;
     };
 }
