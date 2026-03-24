@@ -2331,7 +2331,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
                     document.getElementById("useVirtualList").checked = useVirtualList === true;
-                    document.getElementById("contentBasePath").value = contentBasePath;
+                    document.getElementById("contentBasePath").value = contentBasePath.trim();
                     document.getElementById("hideZeroFiltersCheckbox").checked = hideZeroStatusFilters === true;
                     document.getElementById("dblclickDownloadSelect").value = dblclickDownload;
                     document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
@@ -2781,7 +2781,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
             clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
-            clientData.content_base_path = document.getElementById("contentBasePath").value;
+            clientData.content_base_path = document.getElementById("contentBasePath").value.trim();
             clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
             clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
