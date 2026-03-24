@@ -532,9 +532,9 @@ window.qBittorrent.TorrentContent ??= (() => {
                 y: 2
             },
             onShow: function() {
-                let baseUrl = clientData.get("content_base_path")?.trim();
+                const baseUrl = clientData.get("content_base_path")?.trim();
 
-                let hasBaseUrl = (baseUrl !== undefined) && (baseUrl !== null) && (baseUrl !== "");
+                const hasBaseUrl = (baseUrl !== undefined) && (baseUrl !== null) && (baseUrl !== "");
 
                 if (!hasBaseUrl) {
                     this.hideItem("OpenURL");
