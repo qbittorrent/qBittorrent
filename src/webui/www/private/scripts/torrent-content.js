@@ -531,6 +531,19 @@ window.qBittorrent.TorrentContent ??= (() => {
                 x: 0,
                 y: 2
             },
+            onShow: function() {
+                let baseUrl = clientData.get("content_base_path")?.trim();
+
+                let hasBaseUrl = (baseUrl !== undefined) && (baseUrl !== null) && (baseUrl !== "");
+
+                if (!hasBaseUrl) {
+                    this.hideItem("OpenURL");
+                    this.hideItem("CopyURL");
+                } else {
+                    this.showItem("OpenURL");
+                    this.showItem("CopyURL");
+                }
+            },
         });
 
         torrentFilesTable.setup(tableId, "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu);
