@@ -159,11 +159,7 @@ jobs:
           popd
           # prepare upload folder
           mkdir upload
-          cp "build/$appName.dmg" upload
-          mkdir upload/cmake
-          cp build/compile_commands.json upload/cmake
-          mkdir upload/cmake/libtorrent
-          cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
+          cp "build/$appName.dmg" upload          
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7

@@ -144,10 +144,6 @@ jobs:
       - name: Prepare build artifacts
         run: |
           mkdir upload
-          mkdir upload/cmake
-          cp build/compile_commands.json upload/cmake
-          mkdir upload/cmake/libtorrent
-          cp ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Install AppImage
         run: |

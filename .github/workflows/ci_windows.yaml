@@ -175,7 +175,6 @@ jobs:
           mkdir upload/qBittorrent
           # binaries
           copy build/qbittorrent.exe upload/qBittorrent
-          copy build/qbittorrent.pdb upload/qBittorrent
           copy dist/windows/qt.conf upload/qBittorrent
           # runtimes
           copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Core.dll" upload/qBittorrent
@@ -205,13 +204,7 @@ jobs:
           mkdir upload/qBittorrent/plugins/styles
           copy "${{ env.Qt_ROOT_DIR }}/plugins/styles/qmodernwindowsstyle.dll" upload/qBittorrent/plugins/styles
           mkdir upload/qBittorrent/plugins/tls
-          copy "${{ env.Qt_ROOT_DIR }}/plugins/tls/qschannelbackend.dll" upload/qBittorrent/plugins/tls
-          # cmake additionals
-          mkdir upload/cmake
-          copy build/compile_commands.json upload/cmake
-          copy build/target_graph.dot upload/cmake
-          mkdir upload/cmake/libtorrent
-          copy ${{ env.libtorrent_path }}/build/compile_commands.json upload/cmake/libtorrent
+          copy "${{ env.Qt_ROOT_DIR }}/plugins/tls/qschannelbackend.dll" upload/qBittorrent/plugins/tls          
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7
