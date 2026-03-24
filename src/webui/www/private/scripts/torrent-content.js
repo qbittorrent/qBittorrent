@@ -495,25 +495,37 @@ window.qBittorrent.TorrentContent ??= (() => {
                     }
                 },
 
-                OpenURL: (element, ref) => {
+                OpenURL: () => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
 
                     if (baseUrl === null) return;
 
-                    const urls = nodes.map(node => baseUrl + node.path);
+                    const lowerCaseBaseUrl = baseUrl.toLowerCase();
+                    const isHttp = lowerCaseBaseUrl.startsWith("http://") || lowerCaseBaseUrl.startsWith("https://");
+
+                    const urls = nodes.map(node => {
+                        const nodePath = isHttp ? encodeURI(node.path) : node.path;
+                        return baseUrl + nodePath;
+                    });
 
                     for (const url of urls)
                         window.open(url, "_blank");
                 },
 
-                CopyURL: (element, ref) => {
+                CopyURL: () => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
 
                     if (baseUrl === null) return;
 
-                    const urls = nodes.map(node => baseUrl + node.path);
+                    const lowerCaseBaseUrl = baseUrl.toLowerCase();
+                    const isHttp = lowerCaseBaseUrl.startsWith("http://") || lowerCaseBaseUrl.startsWith("https://");
+
+                    const urls = nodes.map(node => {
+                        const nodePath = isHttp ? encodeURI(node.path) : node.path;
+                        return baseUrl + nodePath;
+                    });
 
                     clipboardCopy(urls.join("\n"));
                 },
