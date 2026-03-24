@@ -723,6 +723,13 @@
                  </property>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkShowStatusBar">
+                 <property name="text">
+                  <string>Show qBittorrent in menu bar</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

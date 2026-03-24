@@ -1521,6 +1521,19 @@ void Preferences::setSpeedInDockEnabled(const bool enabled)
 
     setValue(u"Preferences/Desktop/ShowSpeedInDock"_s, enabled);
 }
+
+bool Preferences::isStatusBarEnabled() const
+{
+    return value(u"Preferences/Desktop/ShowStatusBar"_s, true);
+}
+
+void Preferences::setStatusBarEnabled(const bool enabled)
+{
+    if (enabled == isStatusBarEnabled())
+        return;
+
+    setValue(u"Preferences/Desktop/ShowStatusBar"_s, enabled);
+}
 #endif
 
 bool Preferences::confirmTorrentDeletion() const

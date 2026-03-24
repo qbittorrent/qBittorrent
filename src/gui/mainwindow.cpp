@@ -142,12 +142,16 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     , m_badger {std::make_unique<MacUtils::Badger>()}
     , m_statusItem {std::make_unique<MacUtils::StatusItem>()}
 #endif // Q_OS_MACOS
+
 {
     m_ui->setupUi(this);
 
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
     m_displaySpeedInTitle = pref->speedInTitleBar();
+#ifdef Q_OS_MACOS
+    m_statusItem->setVisible(pref->isStatusBarEnabled());
+#endif
     // Setting icons
 #ifndef Q_OS_MACOS
     setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
@@ -1462,6 +1466,7 @@ void MainWindow::loadPreferences()
     // Clear dock badge immediately if speed display is disabled
     if (!pref->isSpeedInDockEnabled())
         m_badger->updateSpeed(0, 0);
+    m_statusItem->setVisible(pref->isStatusBarEnabled());
 #endif
 
     qDebug("GUI settings loaded");
@@ -1478,7 +1483,8 @@ void MainWindow::loadSessionStats()
 #ifdef Q_OS_MACOS
     if (Preferences::instance()->isSpeedInDockEnabled())
         m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
-    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    if (Preferences::instance()->isStatusBarEnabled())
+        m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS
