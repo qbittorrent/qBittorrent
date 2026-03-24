@@ -470,7 +470,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         let baseUrl = clientData.get("content_base_path")?.trim();
 
         if ((baseUrl === undefined) || (baseUrl === null) || (baseUrl === ""))
-            baseUrl = window.location.href;
+            return null;
 
         if (!baseUrl.endsWith("/"))
             baseUrl += "/";
@@ -499,6 +499,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
 
+                    if (baseUrl === null) return;
+
                     const urls = nodes.map(node => baseUrl + node.path);
 
                     for (const url of urls)
@@ -508,6 +510,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                 CopyURL: (element, ref) => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
+
+                    if (baseUrl === null) return;
 
                     const urls = nodes.map(node => baseUrl + node.path);
 
@@ -539,11 +543,18 @@ window.qBittorrent.TorrentContent ??= (() => {
                 if (!hasBaseUrl) {
                     this.hideItem("OpenURL");
                     this.hideItem("CopyURL");
+                    return;
                 }
-                else {
+
+                const lowerCaseBaseUrl = baseUrl.toLowerCase();
+                const isHttp = lowerCaseBaseUrl.startsWith("http://") || lowerCaseBaseUrl.startsWith("https://");
+
+                if (isHttp)
                     this.showItem("OpenURL");
-                    this.showItem("CopyURL");
-                }
+                else
+                    this.hideItem("OpenURL");
+
+                this.showItem("CopyURL");
             },
         });
 
