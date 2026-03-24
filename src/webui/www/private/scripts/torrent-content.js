@@ -499,7 +499,7 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
 
-                    const urls = nodes.map(node => baseUrl + encodeURI(node.path));
+                    const urls = nodes.map(node => baseUrl + node.path);
 
                     for (const url of urls)
                         window.open(url, "_blank");
@@ -509,7 +509,7 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
 
-                    const urls = nodes.map(node => baseUrl + encodeURI(node.path));
+                    const urls = nodes.map(node => baseUrl + node.path);
 
                     clipboardCopy(urls.join("\n"));
                 },
@@ -539,7 +539,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                 if (!hasBaseUrl) {
                     this.hideItem("OpenURL");
                     this.hideItem("CopyURL");
-                } else {
+                }
+                else {
                     this.showItem("OpenURL");
                     this.showItem("CopyURL");
                 }
