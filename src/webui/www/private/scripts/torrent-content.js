@@ -499,7 +499,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
 
-                    if (baseUrl === null) return;
+                    if (baseUrl === null)
+                        return;
 
                     const lowerCaseBaseUrl = baseUrl.toLowerCase();
                     const isHttp = lowerCaseBaseUrl.startsWith("http://") || lowerCaseBaseUrl.startsWith("https://");
@@ -517,7 +518,8 @@ window.qBittorrent.TorrentContent ??= (() => {
                     const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                     const baseUrl = getContentBasePath();
 
-                    if (baseUrl === null) return;
+                    if (baseUrl === null)
+                        return;
 
                     const lowerCaseBaseUrl = baseUrl.toLowerCase();
                     const isHttp = lowerCaseBaseUrl.startsWith("http://") || lowerCaseBaseUrl.startsWith("https://");
