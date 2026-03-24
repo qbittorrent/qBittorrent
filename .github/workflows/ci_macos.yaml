@@ -159,7 +159,7 @@ jobs:
           popd
           # prepare upload folder
           mkdir upload
-          cp "build/$appName.dmg" upload          
+          cp "build/$appName.dmg" upload
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v7
