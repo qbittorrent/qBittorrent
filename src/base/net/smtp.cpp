@@ -54,6 +54,7 @@ namespace
     const short DEFAULT_PORT = 25;
 #ifndef QT_NO_OPENSSL
     const short DEFAULT_PORT_SSL = 465;
+    const short DEFAULT_PORT_STARTTLS = 587;
 #endif
 
     QByteArray hmacMD5(QByteArray key, const QByteArray &msg)
@@ -163,32 +164,42 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     const QStringList serverEndpoint = pref->getMailNotificationSMTP().split(u':');
     const QString &serverAddress = serverEndpoint[0];
     const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
+    m_usingStartTls = false;
 
-    // Check if STARTTLS should be used
-    m_useStartTls = false;
-#ifndef QT_NO_OPENSSL
-    if (pref->getMailNotificationSMTPStartTLS())
-        m_useStartTls = true;
-#endif
-
-#ifndef QT_NO_OPENSSL
-    if (pref->getMailNotificationSMTPSSL())
+    // Decide connection method based on requested SMTP encryption type
+    switch (pref->getMailNotificationSmtpEncryptionType())
     {
+#ifdef QT_NO_OPENSSL
+    case SmtpEncryptionType::SMTPS:
+        logError(tr("SMTPS [SMTP over SSL] is required but OpenSSL is not available. Unable to send the email encrypted."));
+        break;
+
+    case SmtpEncryptionType::STARTTLS:
+        logError(tr("STARTTLS is required but OpenSSL is not available. Unable to send the email encrypted."));
+        break;
+#else
+    case SmtpEncryptionType::SMTPS:
+        qDebug() << "Connecting to server" << serverAddress << "using SMTPS [SMTP over SSL] on Port" << serverPort.value_or(DEFAULT_PORT_SSL);
         m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(DEFAULT_PORT_SSL));
-        m_useSsl = true;
-    }
-    else
-    {
+        break;
+
+    case SmtpEncryptionType::STARTTLS:
+        qDebug() << "Connecting to server" << serverAddress << "using SMTP on Port" << serverPort.value_or(DEFAULT_PORT_STARTTLS);
+        m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT_STARTTLS));
+        break;
 #endif
-    m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT));
-    m_useSsl = false;
-#ifndef QT_NO_OPENSSL
+
+    case SmtpEncryptionType::None:
+    default:
+        qDebug() << "Connecting to server" << serverAddress << "using SMTP on Port" << serverPort.value_or(DEFAULT_PORT);
+        m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT));
+        break;
     }
-#endif
 }
 
 void Smtp::readyRead()
 {
+    const Preferences *const pref = Preferences::instance();
     qDebug() << Q_FUNC_INFO;
     // SMTP is line-oriented
     m_buffer += m_socket->readAll();
@@ -233,13 +244,21 @@ void Smtp::readyRead()
         case StartTLSSent:
             if (code == "220")
             {
+                qDebug() << "STARTTLS negotiation successful, now we can start TLS encryption";
                 m_socket->startClientEncryption();
+                // After STARTTLS negotiation, the client should discard all information about the
+                // server's capabilities obtained from the EHLO command and repeat the EHLO command
+                // to obtain the new capabilities of the server in the TLS session. (RFC 3207, section 4)
+                m_extensions.clear();
                 ehlo();
             }
-            else
+            else if (pref->getMailNotificationSmtpEncryptionType() == SmtpEncryptionType::STARTTLS)
             {
-                authenticate();
+                logError(tr("STARTTLS is required but was not enabled by the server. Unable to send the email."));
+                m_state = Quit;
             }
+            else
+                authenticate();
             break;
 #endif
         case AuthRequestSent:
@@ -267,6 +286,7 @@ void Smtp::readyRead()
         case Rcpt:
             if (code[0] == '2')
             {
+                qDebug() << "Sending <rcpt to>...";
                 m_socket->write("rcpt to:<" + m_rcpt.toLatin1() + ">\r\n");
                 m_socket->flush();
                 m_state = Data;
@@ -280,6 +300,7 @@ void Smtp::readyRead()
         case Data:
             if (code[0] == '2')
             {
+                qDebug() << "Sending <data>...";
                 m_socket->write("data\r\n");
                 m_socket->flush();
                 m_state = Body;
@@ -293,6 +314,7 @@ void Smtp::readyRead()
         case Body:
             if (code[0] == '3')
             {
+                qDebug() << "Sending email body...";
                 m_socket->write(m_message + "\r\n.\r\n");
                 m_socket->flush();
                 m_state = Quit;
@@ -306,6 +328,7 @@ void Smtp::readyRead()
         case Quit:
             if (code[0] == '2')
             {
+                qDebug() << "Sending QUIT...";
                 m_socket->write("QUIT\r\n");
                 m_socket->flush();
                 // here, we just close.
@@ -317,6 +340,7 @@ void Smtp::readyRead()
                 m_state = Close;
             }
             break;
+        case Close:
         default:
             qDebug() << "Disconnecting from host";
             m_socket->disconnectFromHost();
@@ -388,6 +412,7 @@ void Smtp::helo()
 
 void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const QString &line)
 {
+    const Preferences *const pref = Preferences::instance();
     if (code != "250")
     {
         // Error
@@ -434,15 +459,22 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     if (m_state != EhloDone) return;
 
-    if (m_extensions.contains(u"STARTTLS"_s) && m_useStartTls)
+#ifndef QT_NO_OPENSSL
+    // Check if STARTTLS is available and should be used
+    if (m_extensions.contains(u"STARTTLS"_s) && (pref->getMailNotificationSmtpEncryptionType() == SmtpEncryptionType::STARTTLS))
     {
-        qDebug() << "STARTTLS";
+        // Try to use STARTTLS
+        qDebug() << "Sending STARTTLS...";
         startTLS();
     }
-    else
+    else if ((!m_usingStartTls) && (pref->getMailNotificationSmtpEncryptionType() == SmtpEncryptionType::STARTTLS))
     {
-        authenticate();
+        logError(tr("STARTTLS is required but was not offered by the server. Unable to send the email."));
+        m_state = Quit;
     }
+    else
+#endif
+        authenticate();
 }
 
 void Smtp::authenticate()
@@ -500,6 +532,7 @@ void Smtp::startTLS()
     m_socket->write("starttls\r\n");
     m_socket->flush();
     m_state = StartTLSSent;
+    m_usingStartTls = true;
 #else
     authenticate();
 #endif
@@ -584,8 +617,13 @@ QString Smtp::getCurrentDateTime() const
 
 void Smtp::error(QAbstractSocket::SocketError socketError)
 {
+    const Preferences *const pref = Preferences::instance();
     // Getting a remote host closed error is apparently normal, even when successfully sending
     // an email
     if (socketError != QAbstractSocket::RemoteHostClosedError)
+    {
         logError(m_socket->errorString());
+        if ((socketError == QAbstractSocket::SslHandshakeFailedError) && (pref->getMailNotificationSmtpEncryptionType() == SmtpEncryptionType::SMTPS))
+            logError(tr("Check the email server supports SMTPS [SMTP over SSL] and you are using the correct port"));
+    }
 }

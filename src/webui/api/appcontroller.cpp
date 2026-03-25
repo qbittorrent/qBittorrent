@@ -218,8 +218,7 @@ void AppController::preferencesAction()
     data[u"mail_notification_sender"_s] = pref->getMailNotificationSender();
     data[u"mail_notification_email"_s] = pref->getMailNotificationEmail();
     data[u"mail_notification_smtp"_s] = pref->getMailNotificationSMTP();
-    data[u"mail_notification_starttls_enabled"_s] = pref->getMailNotificationSMTPStartTLS();
-    data[u"mail_notification_ssl_enabled"_s] = pref->getMailNotificationSMTPSSL();
+    data[u"mail_notification_encryption_type"_s] = Utils::String::fromEnum(pref->getMailNotificationSmtpEncryptionType());
     data[u"mail_notification_auth_enabled"_s] = pref->getMailNotificationSMTPAuth();
     data[u"mail_notification_username"_s] = pref->getMailNotificationSMTPUsername();
     data[u"mail_notification_password"_s] = pref->getMailNotificationSMTPPassword();
@@ -684,10 +683,8 @@ void AppController::setPreferencesAction()
         pref->setMailNotificationEmail(it.value().toString());
     if (hasKey(u"mail_notification_smtp"_s))
         pref->setMailNotificationSMTP(it.value().toString());
-    if (hasKey(u"mail_notification_starttls_enabled"_s))
-        pref->setMailNotificationSMTPStartTLS(it.value().toBool());
-    if (hasKey(u"mail_notification_ssl_enabled"_s))
-        pref->setMailNotificationSMTPSSL(it.value().toBool());
+    if (hasKey(u"mail_notification_encryption_type"_s))
+        pref->setMailNotificationSmtpEncryptionType(Utils::String::toEnum(it.value().toString(), Net::SmtpEncryptionType::None));
     if (hasKey(u"mail_notification_auth_enabled"_s))
         pref->setMailNotificationSMTPAuth(it.value().toBool());
     if (hasKey(u"mail_notification_username"_s))
