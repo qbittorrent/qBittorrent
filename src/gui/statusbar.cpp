@@ -47,7 +47,7 @@ namespace
     void applySeparatorPalette(QWidget *separator, const QWidget *parent)
     {
         QPalette palette = separator->palette();
-        palette.setColor(QPalette::Window, parent->palette().color(QPalette::Mid));
+        palette.setColor(QPalette::Window, parent->window()->palette().color(QPalette::Mid));
         separator->setPalette(palette);
     }
 #endif
