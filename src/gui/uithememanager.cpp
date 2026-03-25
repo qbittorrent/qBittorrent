@@ -217,10 +217,11 @@ void UIThemeManager::applyCurrentTheme()
     }
 
     clearIconCaches();
-    emit themeChanged();
 
     // Work around styled widgets that need their style reapplied after theme changes.
     QApplication::setStyle(QApplication::style()->name());
+
+    emit themeChanged();
 }
 
 void UIThemeManager::onColorSchemeChanged()

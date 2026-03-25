@@ -162,7 +162,8 @@ void StatusBar::loadUIThemeResources()
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
     updateConnectionStatus();
-    updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
+    m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(
+        BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled() ? u"slow"_s : u"slow_off"_s));
 
     if (m_restartIconLbl)
         m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
