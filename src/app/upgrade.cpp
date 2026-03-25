@@ -43,10 +43,11 @@
 #include "base/settingvalue.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
+#include "base/net/smtp.h"
 
 namespace
 {
-    const int MIGRATION_VERSION = 9;
+    const int MIGRATION_VERSION = 10;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -491,6 +492,22 @@ namespace
         settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
         settingsStorage->removeValue(oldKey);
     }
+
+    void migrateSmtpEncryptionSetting()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto oldKey = u"Preferences/MailNotification/req_ssl"_s;
+        const auto newKey = u"Preferences/MailNotification/EncryptionType"_s;
+
+        if (settingsStorage->hasKey(oldKey))
+        {
+            if (settingsStorage->loadValue<bool>(oldKey))
+                settingsStorage->storeValue(newKey, Net::SmtpEncryptionType::SMTPS);
+            else
+                settingsStorage->storeValue(newKey, Net::SmtpEncryptionType::None);
+            settingsStorage->removeValue(oldKey);
+        }
+    }
 }
 
 bool upgrade()
@@ -537,6 +554,9 @@ bool upgrade()
 
         if (version < 9)
             handleSettingKeys<MigrateOption::RemoveOldKeys>();
+
+        if (version < 10)
+            migrateSmtpEncryptionSetting();
 
         version = MIGRATION_VERSION;
     }

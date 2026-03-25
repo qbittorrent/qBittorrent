@@ -46,6 +46,17 @@ class QTcpSocket;
 
 namespace Net
 {
+    inline namespace SmtpEncryption {
+        Q_NAMESPACE
+        enum class SmtpEncryptionType
+        {
+            None = 0,
+            STARTTLS = 1,
+            SMTPS = 2
+        };
+        Q_ENUM_NS(SmtpEncryptionType)
+    }
+
     class Smtp : public QObject
     {
         Q_OBJECT
@@ -112,8 +123,7 @@ namespace Net
         int m_state = Init;
         QHash<QString, QString> m_extensions;
         QByteArray m_buffer;
-        bool m_useStartTls = false;
-        bool m_useSsl = false;
+        bool m_usingStartTls = false;
         AuthType m_authType = AuthPlain;
         QString m_username;
         QString m_password;
