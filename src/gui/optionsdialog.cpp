@@ -262,8 +262,7 @@ void OptionsDialog::loadUIThemeResources()
     loadConnectionTabUITheme();
     loadSpeedTabUITheme();
 #ifndef DISABLE_WEBUI
-    updateWebUIHttpsCertStatus(m_ui->textWebUIHttpsCert->selectedPath());
-    updateWebUIHttpsKeyStatus(m_ui->textWebUIHttpsKey->selectedPath());
+    loadWebUIHttpsStatusIcons();
 #endif
 }
 
@@ -1395,6 +1394,14 @@ void OptionsDialog::saveSearchTabOptions() const
 }
 
 #ifndef DISABLE_WEBUI
+void OptionsDialog::loadWebUIHttpsStatusIcons()
+{
+    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (m_isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
+    m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (m_isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
+}
+
 void OptionsDialog::loadWebUITabOptions()
 {
     const auto *pref = Preferences::instance();
@@ -2149,17 +2156,15 @@ Path OptionsDialog::getFilter() const
 void OptionsDialog::updateWebUIHttpsCertStatus(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
-    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isValid ? u"security-high"_s : u"security-low"_s), 24));
+    m_isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
+    loadWebUIHttpsStatusIcons();
 }
 
 void OptionsDialog::updateWebUIHttpsKeyStatus(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
-    m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isValid ? u"security-high"_s : u"security-low"_s), 24));
+    m_isWebUIHttpsKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
+    loadWebUIHttpsStatusIcons();
 }
 
 bool OptionsDialog::isWebUIEnabled() const

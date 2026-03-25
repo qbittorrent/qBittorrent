@@ -78,22 +78,10 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
-    applyStyle();
-
-#ifdef QBT_HAS_COLORSCHEME_OPTION
-    applyColorScheme();
-#endif
+    applyThemeSettings(false);
 
     // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
     connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
-
-    loadThemeSource();
-
-    if (m_useCustomTheme)
-    {
-        applyPalette();
-        applyStyleSheet();
-    }
 }
 
 UIThemeManager::~UIThemeManager()
@@ -292,6 +280,11 @@ QColor UIThemeManager::getColor(const QString &id) const
 
 void UIThemeManager::applyThemeSettings()
 {
+    applyThemeSettings(true);
+}
+
+void UIThemeManager::applyThemeSettings(const bool notify)
+{
     const auto *pref = Preferences::instance();
     m_useCustomTheme = pref->useCustomUITheme();
 
@@ -310,7 +303,9 @@ void UIThemeManager::applyThemeSettings()
 
     loadThemeSource();
     applyCurrentTheme();
-    emit themeChanged();
+
+    if (notify)
+        emit themeChanged();
 }
 
 void UIThemeManager::applyPalette() const

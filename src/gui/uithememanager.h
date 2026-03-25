@@ -80,6 +80,7 @@ private:
     UIThemeManager(); // singleton class
     ~UIThemeManager() override;
 
+    void applyThemeSettings(const bool notify);
     void loadThemeSource();
     void clearIconCaches();
     void unregisterThemeResource();
