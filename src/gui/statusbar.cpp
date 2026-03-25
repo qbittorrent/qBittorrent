@@ -168,6 +168,14 @@ void StatusBar::loadUIThemeResources()
     setStyleSheet({});
     setStyleSheet(statusBarStyleSheet());
 
+    for (auto *separator : findChildren<QFrame *>())
+    {
+        separator->setFrameShape(QFrame::VLine);
+#ifndef Q_OS_MACOS
+        separator->setFrameShadow(QFrame::Raised);
+#endif
+    }
+
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
     updateConnectionStatus();
