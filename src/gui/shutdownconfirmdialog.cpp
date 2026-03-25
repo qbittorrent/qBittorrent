@@ -50,7 +50,7 @@ ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDial
     m_ui->setupUi(this);
 
     initText();
-    const QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
+    QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
     m_ui->warningLabel->setPixmap(warningIcon.pixmap(32));
 
     if (m_action == ShutdownDialogAction::Exit)

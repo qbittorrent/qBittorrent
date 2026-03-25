@@ -146,10 +146,8 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
 {
     auto *allTrackersItem = new QListWidgetItem(this);
     allTrackersItem->setData(Qt::DisplayRole, formatItemText(ALL_ROW, 0));
-    allTrackersItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
     auto *trackerlessItem = new QListWidgetItem(this);
     trackerlessItem->setData(Qt::DisplayRole, formatItemText(TRACKERLESS_ROW, 0));
-    trackerlessItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s));
 
     m_trackers[NULL_HOST] = {0, trackerlessItem};
 
@@ -166,8 +164,10 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
             updateGeometry();
             if (m_handleTrackerStatuses)
                 applyFilter(currentRow());
-        }
+            }
     });
+
+    loadUIThemeResources();
 
     const auto *btSession = BitTorrent::Session::instance();
     handleTorrentsLoaded(btSession->torrents());
@@ -176,9 +176,8 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
     connect(btSession, &BitTorrent::Session::trackersRemoved, this, &TrackersFilterWidget::handleTorrentTrackersRemoved);
     connect(btSession, &BitTorrent::Session::trackersReset, this, &TrackersFilterWidget::handleTorrentTrackersReset);
     connect(btSession, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &TrackersFilterWidget::handleTorrentTrackerStatusesUpdated);
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &TrackersFilterWidget::loadUIThemeResources);
-
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &TrackersFilterWidget::loadUIThemeResources);
 }
 
 TrackersFilterWidget::~TrackersFilterWidget()
@@ -425,17 +424,14 @@ void TrackersFilterWidget::enableTrackerStatusItems(const bool value)
     {
         auto *trackerErrorItem = new QListWidgetItem;
         trackerErrorItem->setData(Qt::DisplayRole, formatItemText(TRACKERERROR_ROW, 0));
-        trackerErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
         insertItem(TRACKERERROR_ROW, trackerErrorItem);
 
         auto *otherErrorItem = new QListWidgetItem;
         otherErrorItem->setData(Qt::DisplayRole, formatItemText(OTHERERROR_ROW, 0));
-        otherErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
         insertItem(OTHERERROR_ROW, otherErrorItem);
 
         auto *warningItem = new QListWidgetItem;
         warningItem->setData(Qt::DisplayRole, formatItemText(WARNING_ROW, 0));
-        warningItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
         insertItem(WARNING_ROW, warningItem);
 
         const QList<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
@@ -456,6 +452,7 @@ void TrackersFilterWidget::enableTrackerStatusItems(const bool value)
         warningItem->setText(formatItemText(WARNING_ROW, m_warnings.size()));
         trackerErrorItem->setText(formatItemText(TRACKERERROR_ROW, m_trackerErrors.size()));
         otherErrorItem->setText(formatItemText(OTHERERROR_ROW, m_errors.size()));
+        loadUIThemeResources();
     }
     else
     {

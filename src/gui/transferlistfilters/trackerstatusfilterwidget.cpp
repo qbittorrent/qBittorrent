@@ -79,16 +79,12 @@ TrackerStatusFilterWidget::TrackerStatusFilterWidget(QWidget *parent, TransferLi
     : BaseFilterWidget(parent, transferList)
 {
     auto *anyStatusItem = new QListWidgetItem(this);
-    anyStatusItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
 
     auto *warningItem = new QListWidgetItem(this);
-    warningItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
 
     auto *trackerErrorItem = new QListWidgetItem(this);
-    trackerErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
 
     auto *otherErrorItem = new QListWidgetItem(this);
-    otherErrorItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
 
     const auto *btSession = BitTorrent::Session::instance();
 
@@ -108,6 +104,8 @@ TrackerStatusFilterWidget::TrackerStatusFilterWidget(QWidget *parent, TransferLi
         if (announceStatus.testFlag(BitTorrent::TorrentAnnounceStatusFlag::HasOtherError))
             m_errors.insert(torrent);
     }
+
+    loadUIThemeResources();
 
     connect(btSession, &BitTorrent::Session::trackersRemoved, this, &TrackerStatusFilterWidget::handleTorrentTrackersRemoved);
     connect(btSession, &BitTorrent::Session::trackersReset, this, &TrackerStatusFilterWidget::handleTorrentTrackersReset);

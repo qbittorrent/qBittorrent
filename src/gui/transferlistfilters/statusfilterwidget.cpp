@@ -45,46 +45,34 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     // Add status filters
     auto *all = new QListWidgetItem(this);
     all->setData(Qt::DisplayRole, tr("All (0)", "this is for the status filter"));
-    all->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-all"_s, u"filterall"_s));
     auto *downloading = new QListWidgetItem(this);
     downloading->setData(Qt::DisplayRole, tr("Downloading (0)"));
-    downloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"downloading"_s));
     auto *seeding = new QListWidgetItem(this);
     seeding->setData(Qt::DisplayRole, tr("Seeding (0)"));
-    seeding->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"upload"_s, u"uploading"_s));
     auto *completed = new QListWidgetItem(this);
     completed->setData(Qt::DisplayRole, tr("Completed (0)"));
-    completed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"checked-completed"_s, u"completed"_s));
     auto *running = new QListWidgetItem(this);
     running->setData(Qt::DisplayRole, tr("Running (0)"));
-    running->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
     auto *stopped = new QListWidgetItem(this);
     stopped->setData(Qt::DisplayRole, tr("Stopped (0)"));
-    stopped->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stopped"_s, u"media-playback-pause"_s));
     auto *active = new QListWidgetItem(this);
     active->setData(Qt::DisplayRole, tr("Active (0)"));
-    active->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-active"_s, u"filteractive"_s));
     auto *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, tr("Inactive (0)"));
-    inactive->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-inactive"_s, u"filterinactive"_s));
     auto *stalled = new QListWidgetItem(this);
     stalled->setData(Qt::DisplayRole, tr("Stalled (0)"));
-    stalled->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-stalled"_s, u"filterstalled"_s));
     auto *stalledUploading = new QListWidgetItem(this);
     stalledUploading->setData(Qt::DisplayRole, tr("Stalled Uploading (0)"));
-    stalledUploading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledUP"_s));
     auto *stalledDownloading = new QListWidgetItem(this);
     stalledDownloading->setData(Qt::DisplayRole, tr("Stalled Downloading (0)"));
-    stalledDownloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledDL"_s));
     auto *checking = new QListWidgetItem(this);
     checking->setData(Qt::DisplayRole, tr("Checking (0)"));
-    checking->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"force-recheck"_s, u"checking"_s));
     auto *moving = new QListWidgetItem(this);
     moving->setData(Qt::DisplayRole, tr("Moving (0)"));
-    moving->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"set-location"_s));
     auto *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
-    errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_s));
+
+    loadUIThemeResources();
 
     const QList<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
     update(torrents);
