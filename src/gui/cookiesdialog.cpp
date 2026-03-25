@@ -51,8 +51,8 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    loadUIThemeResources();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &CookiesDialog::loadUIThemeResources);
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &CookiesDialog::applyUITheme);
 
     connect(m_ui->buttonAdd, &QToolButton::clicked, this, &CookiesDialog::onButtonAddClicked);
 
@@ -77,7 +77,7 @@ CookiesDialog::~CookiesDialog()
     delete m_ui;
 }
 
-void CookiesDialog::loadUIThemeResources()
+void CookiesDialog::applyUITheme()
 {
     setWindowIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s));
     m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));

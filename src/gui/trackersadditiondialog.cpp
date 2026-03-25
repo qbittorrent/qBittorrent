@@ -59,8 +59,8 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    loadUIThemeResources();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &TrackersAdditionDialog::loadUIThemeResources);
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &TrackersAdditionDialog::applyUITheme);
     connect(m_ui->downloadButton, &QAbstractButton::clicked, this, &TrackersAdditionDialog::onDownloadButtonClicked);
 
     connect(this, &QDialog::accepted, this, &TrackersAdditionDialog::onAccepted);
@@ -75,7 +75,7 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
     delete m_ui;
 }
 
-void TrackersAdditionDialog::loadUIThemeResources()
+void TrackersAdditionDialog::applyUITheme()
 {
     m_ui->downloadButton->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
 }

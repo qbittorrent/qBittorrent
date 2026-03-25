@@ -28,7 +28,6 @@
 
 #pragma once
 
-#include <QList>
 #include <QStatusBar>
 
 class QLabel;
@@ -79,10 +78,13 @@ private:
     QLabel *m_DHTLbl = nullptr;
     QWidget *m_DHTSeparator = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
+    QWidget *m_connectionStatusSeparator = nullptr;
     QPushButton *m_altSpeedsBtn = nullptr;
+    QWidget *m_downloadSpeedSeparator = nullptr;
     QLabel *m_restartIconLbl = nullptr;
     QLabel *m_restartLbl = nullptr;
+    QWidget *m_uploadSpeedSeparator = nullptr;
 #ifdef Q_OS_MACOS
-    QList<QWidget *> m_separators;
+    QWidget *m_statusWidget = nullptr;
 #endif
 };

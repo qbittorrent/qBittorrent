@@ -129,11 +129,21 @@ namespace
 #endif
 
 #ifdef Q_OS_MACOS
-    void applySeparatorPalette(QWidget *separator, const QWidget *parent)
+    void applySeparatorPalette(QWidget *separator, const QWidget *surface)
     {
         QPalette palette = separator->palette();
-        palette.setColor(QPalette::Window, parent->window()->palette().color(QPalette::Mid));
+        palette.setColor(QPalette::Window, surface->palette().color(QPalette::Mid));
         separator->setPalette(palette);
+    }
+
+    QWidget *createToolBarSeparator(QWidget *toolBar)
+    {
+        auto *separator = new QWidget(toolBar);
+        separator->setAutoFillBackground(true);
+        separator->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        separator->setFixedWidth(1);
+        applySeparatorPalette(separator, toolBar);
+        return separator;
     }
 #endif
 }
@@ -275,10 +285,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     {
         if (action->isSeparator())
         {
-            auto *line = new QWidget(this);
-            line->setAutoFillBackground(true);
-            line->setFixedWidth(1);
-            applySeparatorPalette(line, m_ui->toolBar);
+            auto *line = createToolBarSeparator(m_ui->toolBar);
             m_toolBarSeparators << line;
 
             QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
@@ -548,7 +555,10 @@ void MainWindow::loadUIThemeResources()
     }
 #else
     for (auto *separator : m_toolBarSeparators)
+    {
         applySeparatorPalette(separator, m_ui->toolBar);
+        separator->update();
+    }
 #endif
 }
 

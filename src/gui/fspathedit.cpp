@@ -64,16 +64,6 @@ namespace
         QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a file", "Caption for file open/save dialog");
     constexpr TrStringWithComment defaultDialogCaptionForDirectory =
         QT_TRANSLATE_NOOP3("FileSystemPathEdit", "Choose a folder", "Caption for directory open dialog");
-
-    Private::FileLineEdit *fileLineEdit(QWidget *widget)
-    {
-        if (auto *lineEdit = qobject_cast<Private::FileLineEdit *>(widget))
-            return lineEdit;
-
-        auto *comboEdit = qobject_cast<Private::FileComboEdit *>(widget);
-        Q_ASSERT(comboEdit);
-        return static_cast<Private::FileLineEdit *>(comboEdit->lineEdit());
-    }
 }
 
 class FileSystemPathEdit::FileSystemPathEditPrivate
@@ -339,7 +329,7 @@ void FileSystemPathEdit::applyUITheme()
     Q_D(FileSystemPathEdit);
 
     d->m_browseAction->setIcon(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon));
-    fileLineEdit(d->m_editor->widget())->applyUITheme();
+    d->m_editor->applyUITheme();
 }
 
 // ------------------------- FileSystemPathLineEdit ----------------------

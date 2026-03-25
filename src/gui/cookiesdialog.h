@@ -56,7 +56,7 @@ private slots:
     void onButtonDeleteClicked();
 
 private:
-    void loadUIThemeResources();
+    void applyUITheme();
     Ui::CookiesDialog *m_ui = nullptr;
     CookiesModel *m_cookiesModel = nullptr;
 
