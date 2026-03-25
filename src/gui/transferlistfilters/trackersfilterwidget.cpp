@@ -164,7 +164,7 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
             updateGeometry();
             if (m_handleTrackerStatuses)
                 applyFilter(currentRow());
-            }
+        }
     });
 
     loadUIThemeResources();
