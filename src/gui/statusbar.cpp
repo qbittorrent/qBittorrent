@@ -194,6 +194,7 @@ StatusBar::StatusBar(QWidget *parent)
     connect(session, &BitTorrent::Session::freeDiskSpaceChecked, this, &StatusBar::updateFreeDiskSpaceLabel);
 
     connect(Preferences::instance(), &Preferences::changed, this, &StatusBar::optionsSaved);
+    loadUIThemeResources();
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &StatusBar::loadUIThemeResources);
 }
 
