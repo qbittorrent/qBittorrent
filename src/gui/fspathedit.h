@@ -107,6 +107,8 @@ protected slots:
 private:
     Q_DECLARE_PRIVATE(FileSystemPathEdit)
 
+    void applyUITheme();
+
     virtual QString editWidgetText() const = 0;
     virtual void setEditWidgetText(const QString &text) = 0;
 

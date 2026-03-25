@@ -201,6 +201,25 @@ void Private::FileLineEdit::setValidator(QValidator *validator)
     QLineEdit::setValidator(validator);
 }
 
+void Private::FileLineEdit::applyUITheme()
+{
+    if (!m_warningAction)
+        return;
+
+    const auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
+    Q_ASSERT(validator);
+    if (!validator) [[unlikely]]
+        return;
+
+    const QValidator::State lastState = validator->lastValidationState();
+    if (lastState == QValidator::Invalid)
+        m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
+    else if (lastState == QValidator::Intermediate)
+        m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+
+    m_warningAction->setToolTip(warningText(validator->lastTestResult()));
+}
+
 Path Private::FileLineEdit::placeholder() const
 {
     return Path(placeholderText());
@@ -270,8 +289,6 @@ void Private::FileLineEdit::validateText()
         return;
 
     const FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
-    const QValidator::State lastState = validator->lastValidationState();
-
     if (lastTestResult == FileSystemPathValidator::TestResult::OK)
     {
         delete m_warningAction;
@@ -288,11 +305,7 @@ void Private::FileLineEdit::validateText()
 
     if (m_warningAction)
     {
-        if (lastState == QValidator::Invalid)
-            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
-        else if (lastState == QValidator::Intermediate)
-            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
-        m_warningAction->setToolTip(warningText(lastTestResult));
+        applyUITheme();
     }
 }
 
@@ -337,6 +350,11 @@ void Private::FileComboEdit::setBrowseAction(QAction *action)
 void Private::FileComboEdit::setValidator(QValidator *validator)
 {
     lineEdit()->setValidator(validator);
+}
+
+void Private::FileComboEdit::applyUITheme()
+{
+    static_cast<FileLineEdit *>(lineEdit())->applyUITheme();
 }
 
 Path Private::FileComboEdit::placeholder() const
