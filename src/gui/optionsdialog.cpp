@@ -77,6 +77,7 @@
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "ui_optionsdialog.h"
+#include "uithemebinding.h"
 #include "uithemedialog.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -164,15 +165,6 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->setupUi(this);
     m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
 
-    loadUIThemeResources();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadUIThemeResources);
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadDownloadsTabUITheme);
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadConnectionTabUITheme);
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadSpeedTabUITheme);
-#ifndef DISABLE_WEBUI
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
-#endif
-
 #ifdef Q_OS_UNIX
     setWindowTitle(tr("Preferences"));
 #endif
@@ -213,6 +205,11 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_advancedSettings = new AdvancedSettings(app, m_ui->tabAdvancedPage);
     m_ui->advPageLayout->addWidget(m_advancedSettings);
     connect(m_advancedSettings, &AdvancedSettings::settingsChanged, this, &ThisType::enableApplyButton);
+
+    UIThemeBinding::bind(this, [this]
+    {
+        loadUIThemeResources();
+    });
 
     // setup apply button
     m_applyButton->setEnabled(false);
@@ -263,6 +260,13 @@ void OptionsDialog::loadUIThemeResources()
     m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_s, u"network-server"_s));
 #endif
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
+
+    loadDownloadsTabUITheme();
+    loadConnectionTabUITheme();
+    loadSpeedTabUITheme();
+#ifndef DISABLE_WEBUI
+    refreshWebUIHttpsStatusPixmaps();
+#endif
 }
 
 void OptionsDialog::loadDownloadsTabUITheme()
@@ -1418,7 +1422,8 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->checkWebUIHttps->setChecked(pref->isWebUIHttpsEnabled());
     m_ui->textWebUIHttpsCert->setSelectedPath(pref->getWebUIHttpsCertificatePath());
     m_ui->textWebUIHttpsKey->setSelectedPath(pref->getWebUIHttpsKeyPath());
-    updateWebUIHttpsStatusIcons();
+    updateWebUIHttpsCertStatus(m_ui->textWebUIHttpsCert->selectedPath());
+    updateWebUIHttpsKeyStatus(m_ui->textWebUIHttpsKey->selectedPath());
     m_ui->textWebUIUsername->setText(pref->getWebUIUsername());
 
     // API Key
@@ -1462,9 +1467,9 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
+    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsCertStatus);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
+    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsKeyStatus);
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -2143,18 +2148,26 @@ Path OptionsDialog::getFilter() const
 }
 
 #ifndef DISABLE_WEBUI
-void OptionsDialog::updateWebUIHttpsStatusIcons()
+void OptionsDialog::updateWebUIHttpsCertStatus(const Path &path)
 {
-    const auto certReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsCert->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(certReadResult.value_or(QByteArray()));
+    const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
+    m_isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
+    refreshWebUIHttpsStatusPixmaps();
+}
 
-    const auto keyReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsKey->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
-    const bool isWebUIHttpsKeyValid = !Utils::SSLKey::load(keyReadResult.value_or(QByteArray())).isNull();
+void OptionsDialog::updateWebUIHttpsKeyStatus(const Path &path)
+{
+    const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
+    m_isWebUIHttpsKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
+    refreshWebUIHttpsStatusPixmaps();
+}
 
+void OptionsDialog::refreshWebUIHttpsStatusPixmaps()
+{
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
+        (m_isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
     m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
+        (m_isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
 bool OptionsDialog::isWebUIEnabled() const

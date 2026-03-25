@@ -131,7 +131,7 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
     connect(m_ui->feedListWidget, &QTreeWidget::currentItemChanged, this, &RSSWidget::handleCurrentFeedItemChanged);
     connect(m_ui->feedListWidget, &QWidget::customContextMenuRequested, this, &RSSWidget::displayRSSListMenu);
     loadFoldersOpenState();
-    m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->stickyItemUnreadArticles());
+    m_ui->feedListWidget->setCurrentItem(m_ui->feedListWidget->unreadArticlesStickyItem());
 
     const auto *editHotkey = new QShortcut(Qt::Key_F2, m_ui->feedListWidget, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &RSSWidget::renameSelectedRSSItem);
@@ -560,8 +560,8 @@ void RSSWidget::refreshSelectedItems()
 {
     for (QTreeWidgetItem *item : asConst(m_ui->feedListWidget->selectedItems()))
     {
-        if ((item == m_ui->feedListWidget->stickyItemAllArticles())
-            || (item == m_ui->feedListWidget->stickyItemUnreadArticles()))
+        if ((item == m_ui->feedListWidget->allArticlesStickyItem())
+            || (item == m_ui->feedListWidget->unreadArticlesStickyItem()))
         {
             refreshAllFeeds();
             return;
@@ -585,7 +585,7 @@ void RSSWidget::copySelectedFeedsURL()
 void RSSWidget::handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem)
 {
     m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
-        , (currentItem == m_ui->feedListWidget->stickyItemUnreadArticles())
+        , (currentItem == m_ui->feedListWidget->unreadArticlesStickyItem())
         , m_rssFilter->text());
 }
 
@@ -594,8 +594,8 @@ void RSSWidget::on_markReadButton_clicked()
     for (QTreeWidgetItem *item : asConst(m_ui->feedListWidget->selectedItems()))
     {
         m_ui->feedListWidget->getRSSItem(item)->markAsRead();
-        if ((item == m_ui->feedListWidget->stickyItemAllArticles())
-            || (item == m_ui->feedListWidget->stickyItemUnreadArticles()))
+        if ((item == m_ui->feedListWidget->allArticlesStickyItem())
+            || (item == m_ui->feedListWidget->unreadArticlesStickyItem()))
         {
             break; // all items was read
         }
@@ -666,7 +666,7 @@ void RSSWidget::handleRSSFilterTextChanged(const QString &newFilter)
 {
     QTreeWidgetItem *currentItem = m_ui->feedListWidget->currentItem();
     m_ui->articleListWidget->setRSSItem(m_ui->feedListWidget->getRSSItem(currentItem)
-        , (currentItem == m_ui->feedListWidget->stickyItemUnreadArticles())
+        , (currentItem == m_ui->feedListWidget->unreadArticlesStickyItem())
         , newFilter);
 }
 

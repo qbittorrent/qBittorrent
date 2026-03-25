@@ -48,8 +48,8 @@ class FeedListWidget final : public QTreeWidget
 public:
     explicit FeedListWidget(QWidget *parent);
 
-    QTreeWidgetItem *stickyItemAllArticles() const;
-    QTreeWidgetItem *stickyItemUnreadArticles() const;
+    QTreeWidgetItem *allArticlesStickyItem() const;
+    QTreeWidgetItem *unreadArticlesStickyItem() const;
     bool isStickyItem(QTreeWidgetItem *item) const;
     QList<QTreeWidgetItem *> getAllOpenedFolders(QTreeWidgetItem *parent = nullptr) const;
     RSS::Item *getRSSItem(QTreeWidgetItem *item) const;
@@ -75,6 +75,6 @@ private:
     void fill(QTreeWidgetItem *parent, RSS::Folder *rssParent);
 
     QHash<RSS::Item *, QTreeWidgetItem *> m_rssToTreeItemMapping;
-    QTreeWidgetItem *m_stickyItemAllArticles = nullptr;
-    QTreeWidgetItem *m_stickyItemUnreadArticles = nullptr;
+    QTreeWidgetItem *m_allArticlesStickyItem = nullptr;
+    QTreeWidgetItem *m_unreadArticlesStickyItem = nullptr;
 };

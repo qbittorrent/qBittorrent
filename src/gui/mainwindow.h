@@ -59,6 +59,7 @@ class RSSWidget;
 class SearchWidget;
 class StatsDialog;
 class StatusBar;
+class ThemedSeparator;
 class TorrentCreatorDialog;
 class TransferListFiltersWidget;
 class TransferListWidget;
@@ -189,8 +190,13 @@ private slots:
 #endif
 
 private:
+    void loadActionIcons();
+    void loadTabIcons();
     void loadUIThemeResources();
     void populateDesktopIntegrationMenu();
+#ifdef Q_OS_MACOS
+    void replaceToolBarSeparators();
+#endif
 
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
@@ -266,6 +272,5 @@ private:
 #ifdef Q_OS_MACOS
     std::unique_ptr<MacUtils::Badger> m_badger;
     std::unique_ptr<MacUtils::StatusItem> m_statusItem;
-    QList<QWidget *> m_toolBarSeparators;
 #endif
 };

@@ -101,6 +101,7 @@ add_library(qbt_gui STATIC
     speedlimitdialog.h
     statsdialog.h
     statusbar.h
+    themedseparator.h
     torrentcategorydialog.h
     torrentcontentfiltermodel.h
     torrentcontentitemdelegate.h
@@ -139,6 +140,7 @@ add_library(qbt_gui STATIC
     tristatewidget.h
     uithemecommon.h
     uithemedialog.h
+    uithemebinding.h
     uithememanager.h
     uithemesource.h
     utils.h
@@ -204,6 +206,7 @@ add_library(qbt_gui STATIC
     speedlimitdialog.cpp
     statsdialog.cpp
     statusbar.cpp
+    themedseparator.cpp
     torrentcategorydialog.cpp
     torrentcontentfiltermodel.cpp
     torrentcontentitemdelegate.cpp

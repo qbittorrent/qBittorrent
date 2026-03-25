@@ -119,19 +119,19 @@ FeedListWidget::FeedListWidget(QWidget *parent)
 
     m_rssToTreeItemMapping[RSS::Session::instance()->rootFolder()] = invisibleRootItem();
 
-    m_stickyItemAllArticles = new FeedListItem(this);
-    m_stickyItemAllArticles->setData(0, Qt::UserRole, QVariant::fromValue(
+    m_allArticlesStickyItem = new FeedListItem(this);
+    m_allArticlesStickyItem->setData(0, Qt::UserRole, QVariant::fromValue(
             reinterpret_cast<intptr_t>(RSS::Session::instance()->rootFolder())));
-    m_stickyItemAllArticles->setText(0, tr("All"));
-    m_stickyItemAllArticles->setData(0, ItemTagRole, QVariant::fromValue(ItemTag::AllArticlesItem));
-    applyUITheme(m_stickyItemAllArticles);
+    m_allArticlesStickyItem->setText(0, tr("All"));
+    m_allArticlesStickyItem->setData(0, ItemTagRole, QVariant::fromValue(ItemTag::AllArticlesItem));
+    applyUITheme(m_allArticlesStickyItem);
 
-    m_stickyItemUnreadArticles = new FeedListItem(this);
-    m_stickyItemUnreadArticles->setData(0, Qt::UserRole, QVariant::fromValue(
+    m_unreadArticlesStickyItem = new FeedListItem(this);
+    m_unreadArticlesStickyItem->setData(0, Qt::UserRole, QVariant::fromValue(
             reinterpret_cast<intptr_t>(RSS::Session::instance()->rootFolder())));
-    m_stickyItemUnreadArticles->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-    m_stickyItemUnreadArticles->setData(0, ItemTagRole, QVariant::fromValue(ItemTag::UnreadArticlesItem));
-    applyUITheme(m_stickyItemUnreadArticles);
+    m_unreadArticlesStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
+    m_unreadArticlesStickyItem->setData(0, ItemTagRole, QVariant::fromValue(ItemTag::UnreadArticlesItem));
+    applyUITheme(m_unreadArticlesStickyItem);
 
     connect(RSS::Session::instance()->rootFolder(), &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
 
@@ -142,14 +142,14 @@ FeedListWidget::FeedListWidget(QWidget *parent)
 //    setCurrentItem(m_unreadStickyItem);
 }
 
-QTreeWidgetItem *FeedListWidget::stickyItemAllArticles() const
+QTreeWidgetItem *FeedListWidget::allArticlesStickyItem() const
 {
-    return m_stickyItemAllArticles;
+    return m_allArticlesStickyItem;
 }
 
-QTreeWidgetItem *FeedListWidget::stickyItemUnreadArticles() const
+QTreeWidgetItem *FeedListWidget::unreadArticlesStickyItem() const
 {
-    return m_stickyItemUnreadArticles;
+    return m_unreadArticlesStickyItem;
 }
 
 bool FeedListWidget::isStickyItem(QTreeWidgetItem *item) const
@@ -159,8 +159,8 @@ bool FeedListWidget::isStickyItem(QTreeWidgetItem *item) const
 
 void FeedListWidget::loadUIThemeResources()
 {
-    applyUITheme(m_stickyItemAllArticles);
-    applyUITheme(m_stickyItemUnreadArticles);
+    applyUITheme(m_allArticlesStickyItem);
+    applyUITheme(m_unreadArticlesStickyItem);
 
     for (auto it = m_rssToTreeItemMapping.cbegin(); it != m_rssToTreeItemMapping.cend(); ++it)
     {
@@ -174,7 +174,7 @@ void FeedListWidget::applyUITheme(QTreeWidgetItem *item)
 {
     Q_ASSERT(item);
 
-    if ((item == m_stickyItemAllArticles) || (item == m_stickyItemUnreadArticles))
+    if ((item == m_allArticlesStickyItem) || (item == m_unreadArticlesStickyItem))
     {
         item->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-inbox"_s));
         return;
@@ -216,7 +216,7 @@ void FeedListWidget::handleItemUnreadCountChanged(RSS::Item *rssItem)
 {
     if (rssItem == RSS::Session::instance()->rootFolder())
     {
-        m_stickyItemUnreadArticles->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
+        m_unreadArticlesStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
     }
     else
     {
@@ -303,10 +303,10 @@ void FeedListWidget::dragMoveEvent(QDragMoveEvent *event)
     QTreeWidget::dragMoveEvent(event);
 
     QTreeWidgetItem *item = itemAt(event->position().toPoint());
-    if ((item == m_stickyItemAllArticles)  // Prohibit dropping onto global counter
-        || (item == m_stickyItemUnreadArticles)  // Prohibit dropping onto global unread counter
-        || selectedItems().contains(m_stickyItemAllArticles)  // Prohibit dragging of global counter
-        || selectedItems().contains(m_stickyItemUnreadArticles)  // Prohibit dragging of global unread counter
+    if ((item == m_allArticlesStickyItem)  // Prohibit dropping onto global counter
+        || (item == m_unreadArticlesStickyItem)  // Prohibit dropping onto global unread counter
+        || selectedItems().contains(m_allArticlesStickyItem)  // Prohibit dragging of global counter
+        || selectedItems().contains(m_unreadArticlesStickyItem)  // Prohibit dragging of global unread counter
         || (item && isFeed(item)))  // Prohibit dropping onto feeds
     {
         event->ignore();
@@ -343,7 +343,7 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
 
     connect(rssItem, &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
 
-    if (!parentItem || (parentItem == m_stickyItemAllArticles) || (parentItem == m_stickyItemUnreadArticles))
+    if (!parentItem || (parentItem == m_allArticlesStickyItem) || (parentItem == m_unreadArticlesStickyItem))
         addTopLevelItem(item);
     else
         parentItem->addChild(item);

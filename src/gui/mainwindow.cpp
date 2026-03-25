@@ -48,7 +48,6 @@
 #include <QMessageBox>
 #include <QMetaObject>
 #include <QMimeData>
-#include <QPalette>
 #include <QProcess>
 #include <QPushButton>
 #include <QShortcut>
@@ -94,12 +93,14 @@
 #include "speedlimitdialog.h"
 #include "statsdialog.h"
 #include "statusbar.h"
+#include "themedseparator.h"
 #include "torrentcreatordialog.h"
 #include "trackerlist/trackerlistwidget.h"
 #include "transferlistfilterswidget.h"
 #include "transferlistmodel.h"
 #include "transferlistwidget.h"
 #include "ui_mainwindow.h"
+#include "uithemebinding.h"
 #include "uithememanager.h"
 #include "utils.h"
 #include "utils/keysequence.h"
@@ -127,25 +128,6 @@ namespace
     const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("c887e19e66e66e6961c444283dafaa33");
     const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("b5d83ec914dcb0c3892a521d0cbd96bf9bcb267bdee36ea4ee48a54c53fabd0aea98531eda81d1c1db31be8830f7b94430e0c838f5c2f2f8999a273f2833e450");
 #endif
-
-#ifdef Q_OS_MACOS
-    void applySeparatorPalette(QWidget *separator, const QWidget *surface)
-    {
-        QPalette palette = separator->palette();
-        palette.setColor(QPalette::Window, surface->palette().color(QPalette::Mid));
-        separator->setPalette(palette);
-    }
-
-    QWidget *createToolBarSeparator(QWidget *toolBar)
-    {
-        auto *separator = new QWidget(toolBar);
-        separator->setAutoFillBackground(true);
-        separator->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
-        separator->setFixedWidth(1);
-        applySeparatorPalette(separator, toolBar);
-        return separator;
-    }
-#endif
 }
 
 MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, const QString &titleSuffix)
@@ -168,8 +150,6 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
     m_displaySpeedInTitle = pref->speedInTitleBar();
-    loadUIThemeResources();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &MainWindow::loadUIThemeResources);
 
     setTitleSuffix(titleSuffix);
 
@@ -281,19 +261,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_queueSeparatorMenu = m_ui->menuEdit->insertSeparator(m_ui->actionTopQueuePos);
 
 #ifdef Q_OS_MACOS
-    for (QAction *action : asConst(m_ui->toolBar->actions()))
-    {
-        if (action->isSeparator())
-        {
-            auto *line = createToolBarSeparator(m_ui->toolBar);
-            m_toolBarSeparators << line;
-
-            QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
-            m_ui->toolBar->removeAction(action);
-            if (action == m_queueSeparator)
-                m_queueSeparator = widgetAction;
-        }
-    }
+    replaceToolBarSeparators();
 #endif // Q_OS_MACOS
 
     // Transfer list slots
@@ -425,6 +393,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
     });
 
+    UIThemeBinding::bind(this, [this]
+    {
+        loadUIThemeResources();
+    });
+
 #ifdef Q_OS_MACOS
     if (initialState == WindowState::Normal)
     {
@@ -512,7 +485,7 @@ MainWindow::~MainWindow()
     delete m_ui;
 }
 
-void MainWindow::loadUIThemeResources()
+void MainWindow::loadActionIcons()
 {
 #ifndef Q_OS_MACOS
     setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
@@ -542,24 +515,29 @@ void MainWindow::loadUIThemeResources()
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s, u"preferences-web-browser-cookies"_s));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+}
 
+void MainWindow::loadTabIcons()
+{
 #ifndef Q_OS_MACOS
-    if (m_tabs)
-    {
-        if (m_searchWidget)
-            m_tabs->setTabIcon(m_tabs->indexOf(m_searchWidget), UIThemeManager::instance()->getIcon(u"edit-find"_s));
-        if (m_rssWidget)
-            m_tabs->setTabIcon(m_tabs->indexOf(m_rssWidget), UIThemeManager::instance()->getIcon(u"application-rss"_s));
-        if (m_executionLog)
-            m_tabs->setTabIcon(m_tabs->indexOf(m_executionLog), UIThemeManager::instance()->getIcon(u"help-contents"_s));
-    }
-#else
-    for (auto *separator : m_toolBarSeparators)
-    {
-        applySeparatorPalette(separator, m_ui->toolBar);
-        separator->update();
-    }
+    Q_ASSERT(m_tabs);
+
+    if (const int transfersTabIndex = m_tabs->indexOf(m_splitter); transfersTabIndex >= 0)
+        m_tabs->setTabIcon(transfersTabIndex, UIThemeManager::instance()->getIcon(u"folder-remote"_s));
+
+    if (m_searchWidget)
+        m_tabs->setTabIcon(m_tabs->indexOf(m_searchWidget), UIThemeManager::instance()->getIcon(u"edit-find"_s));
+    if (m_rssWidget)
+        m_tabs->setTabIcon(m_tabs->indexOf(m_rssWidget), UIThemeManager::instance()->getIcon(u"application-rss"_s));
+    if (m_executionLog)
+        m_tabs->setTabIcon(m_tabs->indexOf(m_executionLog), UIThemeManager::instance()->getIcon(u"help-contents"_s));
 #endif
+}
+
+void MainWindow::loadUIThemeResources()
+{
+    loadActionIcons();
+    loadTabIcons();
 }
 
 bool MainWindow::isExecutionLogEnabled() const
@@ -756,9 +734,9 @@ void MainWindow::displayRSSTab(bool enable)
 #ifdef Q_OS_MACOS
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
 #else
-            const int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"application-rss"_s));
+            m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
 #endif
+            loadTabIcons();
         }
     }
     else
@@ -808,6 +786,7 @@ void MainWindow::displaySearchTab(bool enable)
                 UIThemeManager::instance()->getIcon(u"edit-find"_s),
 #endif
                 tr("Search"));
+            loadTabIcons();
         }
     }
     else
@@ -1787,9 +1766,9 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
 #ifdef Q_OS_MACOS
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else
-        const int indexTab = m_tabs->addTab(m_executionLog, tr("Execution Log"));
-        m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"help-contents"_s));
+        m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #endif
+        loadTabIcons();
     }
     else
     {
@@ -1802,6 +1781,23 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
     m_ui->actionCriticalMessages->setEnabled(checked);
     setExecutionLogEnabled(checked);
 }
+
+#ifdef Q_OS_MACOS
+void MainWindow::replaceToolBarSeparators()
+{
+    for (QAction *action : asConst(m_ui->toolBar->actions()))
+    {
+        if (!action->isSeparator())
+            continue;
+
+        auto *separator = new ThemedSeparator(m_ui->toolBar);
+        QAction *const widgetAction = m_ui->toolBar->insertWidget(action, separator);
+        m_ui->toolBar->removeAction(action);
+        if (action == m_queueSeparator)
+            m_queueSeparator = widgetAction;
+    }
+}
+#endif
 
 void MainWindow::on_actionNormalMessages_triggered(const bool checked)
 {

@@ -28,7 +28,6 @@
 
 #include "statusbar.h"
 
-#include <QFrame>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -39,6 +38,8 @@
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "speedlimitdialog.h"
+#include "themedseparator.h"
+#include "uithemebinding.h"
 #include "uithememanager.h"
 #include "utils.h"
 
@@ -53,14 +54,9 @@ namespace
         return styleSheet;
     }
 
-    QWidget *createSeparator(QWidget *parent)
+    ThemedSeparator *createSeparator(QWidget *parent)
     {
-        auto *separator = new QFrame(parent);
-        separator->setFrameShape(QFrame::VLine);
-#ifndef Q_OS_MACOS
-        separator->setFrameShadow(QFrame::Raised);
-#endif
-        return separator;
+        return new ThemedSeparator(parent);
     }
 
     QPixmap restartRequiredPixmap(const QWidget *widget)
@@ -152,14 +148,11 @@ StatusBar::StatusBar(QWidget *parent)
     statusLayout->addWidget(m_DHTLbl);
     statusLayout->addWidget(m_DHTSeparator);
     statusLayout->addWidget(m_connecStatusLblIcon);
-    m_connectionStatusSeparator = createSeparator(widgetParent);
-    statusLayout->addWidget(m_connectionStatusSeparator);
+    statusLayout->addWidget(createSeparator(widgetParent));
     statusLayout->addWidget(m_altSpeedsBtn);
-    m_downloadSpeedSeparator = createSeparator(widgetParent);
-    statusLayout->addWidget(m_downloadSpeedSeparator);
+    statusLayout->addWidget(createSeparator(widgetParent));
     statusLayout->addWidget(m_dlSpeedLbl);
-    m_uploadSpeedSeparator = createSeparator(widgetParent);
-    statusLayout->addWidget(m_uploadSpeedSeparator);
+    statusLayout->addWidget(createSeparator(widgetParent));
     statusLayout->addWidget(m_upSpeedLbl);
     addPermanentWidget(m_statusWidget);
 #else
@@ -170,14 +163,11 @@ StatusBar::StatusBar(QWidget *parent)
     addPermanentWidget(m_DHTLbl);
     addPermanentWidget(m_DHTSeparator);
     addPermanentWidget(m_connecStatusLblIcon);
-    m_connectionStatusSeparator = createSeparator(widgetParent);
-    addPermanentWidget(m_connectionStatusSeparator);
+    addPermanentWidget(createSeparator(widgetParent));
     addPermanentWidget(m_altSpeedsBtn);
-    m_downloadSpeedSeparator = createSeparator(widgetParent);
-    addPermanentWidget(m_downloadSpeedSeparator);
+    addPermanentWidget(createSeparator(widgetParent));
     addPermanentWidget(m_dlSpeedLbl);
-    m_uploadSpeedSeparator = createSeparator(widgetParent);
-    addPermanentWidget(m_uploadSpeedSeparator);
+    addPermanentWidget(createSeparator(widgetParent));
     addPermanentWidget(m_upSpeedLbl);
 #endif
 
@@ -191,45 +181,17 @@ StatusBar::StatusBar(QWidget *parent)
     connect(session, &BitTorrent::Session::freeDiskSpaceChecked, this, &StatusBar::updateFreeDiskSpaceLabel);
 
     connect(Preferences::instance(), &Preferences::changed, this, &StatusBar::optionsSaved);
-    loadUIThemeResources();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &StatusBar::loadUIThemeResources);
+    UIThemeBinding::bind(this, [this]
+    {
+        loadUIThemeResources();
+    });
 }
 
 void StatusBar::loadUIThemeResources()
 {
-    // Reapply the local stylesheet so it picks up the current theme palette.
-    setStyleSheet({});
-    setStyleSheet(statusBarStyleSheet());
-
-    QWidget *const separators[] =
-    {
-        m_freeDiskSpaceSeparator,
-        m_lastExternalIPsSeparator,
-        m_DHTSeparator,
-        m_connectionStatusSeparator,
-        m_downloadSpeedSeparator,
-        m_uploadSpeedSeparator
-    };
-
-    for (auto *separator : separators)
-    {
-        auto *frame = static_cast<QFrame *>(separator);
-        frame->setFrameShape(QFrame::VLine);
-#ifndef Q_OS_MACOS
-        frame->setFrameShadow(QFrame::Raised);
-#endif
-    }
-
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
-    updateConnectionStatus();
-    m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(
-        BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled() ? u"slow"_s : u"slow_off"_s));
-
-#ifdef Q_OS_MACOS
-    if (m_statusWidget)
-        m_statusWidget->update();
-#endif
+    updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
     if (m_restartIconLbl)
         m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
