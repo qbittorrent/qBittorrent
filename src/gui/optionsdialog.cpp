@@ -77,7 +77,6 @@
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "ui_optionsdialog.h"
-#include "uithemebinding.h"
 #include "uithemedialog.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -206,10 +205,8 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->advPageLayout->addWidget(m_advancedSettings);
     connect(m_advancedSettings, &AdvancedSettings::settingsChanged, this, &ThisType::enableApplyButton);
 
-    UIThemeBinding::bind(this, [this]
-    {
-        loadUIThemeResources();
-    });
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadUIThemeResources);
 
     // setup apply button
     m_applyButton->setEnabled(false);
@@ -265,7 +262,8 @@ void OptionsDialog::loadUIThemeResources()
     loadConnectionTabUITheme();
     loadSpeedTabUITheme();
 #ifndef DISABLE_WEBUI
-    refreshWebUIHttpsStatusPixmaps();
+    updateWebUIHttpsCertStatus(m_ui->textWebUIHttpsCert->selectedPath());
+    updateWebUIHttpsKeyStatus(m_ui->textWebUIHttpsKey->selectedPath());
 #endif
 }
 
@@ -2151,23 +2149,17 @@ Path OptionsDialog::getFilter() const
 void OptionsDialog::updateWebUIHttpsCertStatus(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    m_isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
-    refreshWebUIHttpsStatusPixmaps();
+    const bool isValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
+    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (isValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
 void OptionsDialog::updateWebUIHttpsKeyStatus(const Path &path)
 {
     const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    m_isWebUIHttpsKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
-    refreshWebUIHttpsStatusPixmaps();
-}
-
-void OptionsDialog::refreshWebUIHttpsStatusPixmaps()
-{
-    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (m_isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
+    const bool isValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
     m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (m_isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
+        (isValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
 bool OptionsDialog::isWebUIEnabled() const

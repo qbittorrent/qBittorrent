@@ -59,7 +59,6 @@ class RSSWidget;
 class SearchWidget;
 class StatsDialog;
 class StatusBar;
-class ThemedSeparator;
 class TorrentCreatorDialog;
 class TransferListFiltersWidget;
 class TransferListWidget;

@@ -53,7 +53,6 @@
 #include "gui/addtorrentparamswidget.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/torrentcategorydialog.h"
-#include "gui/uithemebinding.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "gui/utils/keysequence.h"
@@ -168,10 +167,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::processingStateChanged
             , this, &AutomatedRssDownloader::handleProcessingStateChanged);
 
-    UIThemeBinding::bind(this, [this]
-    {
-        loadUIThemeResources();
-    });
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &AutomatedRssDownloader::loadUIThemeResources);
 }
 
 AutomatedRssDownloader::~AutomatedRssDownloader()
@@ -193,55 +190,9 @@ void AutomatedRssDownloader::loadUIThemeResources()
     for (int i = 0; i < m_ui->matchingArticlesTree->topLevelItemCount(); ++i)
         m_ui->matchingArticlesTree->topLevelItem(i)->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"directory"_s));
 
-    refreshMustLineValidity();
-    refreshMustNotLineValidity();
-    refreshEpisodeFilterValidity();
-}
-
-void AutomatedRssDownloader::refreshMustLineValidity()
-{
-    if (m_isMustLineValid)
-    {
-        m_ui->lineContains->setStyleSheet({});
-        m_ui->labelMustStat->setPixmap({});
-        m_ui->labelMustStat->setToolTip({});
-    }
-    else
-    {
-        m_ui->lineContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
-        m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
-        m_ui->labelMustStat->setToolTip(m_mustLineError);
-    }
-}
-
-void AutomatedRssDownloader::refreshMustNotLineValidity()
-{
-    if (m_isMustNotLineValid)
-    {
-        m_ui->lineNotContains->setStyleSheet({});
-        m_ui->labelMustNotStat->setPixmap({});
-        m_ui->labelMustNotStat->setToolTip({});
-    }
-    else
-    {
-        m_ui->lineNotContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
-        m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
-        m_ui->labelMustNotStat->setToolTip(m_mustNotLineError);
-    }
-}
-
-void AutomatedRssDownloader::refreshEpisodeFilterValidity()
-{
-    if (m_isEpisodeFilterValid)
-    {
-        m_ui->lineEFilter->setStyleSheet({});
-        m_ui->labelEpFilterStat->setPixmap({});
-    }
-    else
-    {
-        m_ui->lineEFilter->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
-        m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
-    }
+    updateMustLineValidity();
+    updateMustNotLineValidity();
+    updateEpisodeFilterValidity();
 }
 
 void AutomatedRssDownloader::loadSettings()
@@ -800,9 +751,18 @@ void AutomatedRssDownloader::updateMustLineValidity()
         }
     }
 
-    m_isMustLineValid = valid;
-    m_mustLineError = error;
-    refreshMustLineValidity();
+    if (valid)
+    {
+        m_ui->lineContains->setStyleSheet({});
+        m_ui->labelMustStat->setPixmap({});
+        m_ui->labelMustStat->setToolTip({});
+    }
+    else
+    {
+        m_ui->lineContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
+        m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
+        m_ui->labelMustStat->setToolTip(error);
+    }
 }
 
 void AutomatedRssDownloader::updateMustNotLineValidity()
@@ -838,16 +798,35 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
         }
     }
 
-    m_isMustNotLineValid = valid;
-    m_mustNotLineError = error;
-    refreshMustNotLineValidity();
+    if (valid)
+    {
+        m_ui->lineNotContains->setStyleSheet({});
+        m_ui->labelMustNotStat->setPixmap({});
+        m_ui->labelMustNotStat->setToolTip({});
+    }
+    else
+    {
+        m_ui->lineNotContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
+        m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
+        m_ui->labelMustNotStat->setToolTip(error);
+    }
 }
 
 void AutomatedRssDownloader::updateEpisodeFilterValidity()
 {
     const QString text = m_ui->lineEFilter->text();
-    m_isEpisodeFilterValid = text.isEmpty() || m_episodeRegex->match(text).hasMatch();
-    refreshEpisodeFilterValidity();
+    const bool isValid = text.isEmpty() || m_episodeRegex->match(text).hasMatch();
+
+    if (isValid)
+    {
+        m_ui->lineEFilter->setStyleSheet({});
+        m_ui->labelEpFilterStat->setPixmap({});
+    }
+    else
+    {
+        m_ui->lineEFilter->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
+        m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
+    }
 }
 
 void AutomatedRssDownloader::handleRuleDefinitionChanged()

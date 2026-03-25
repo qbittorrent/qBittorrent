@@ -41,7 +41,7 @@
 
 #include "base/utils/fs.h"
 #include "fspathedit_p.h"
-#include "uithemebinding.h"
+#include "uithememanager.h"
 
 namespace
 {
@@ -195,10 +195,8 @@ FileSystemPathEdit::FileSystemPathEdit(Private::IFileEditorWithCompletion *edito
     layout->addWidget(d->m_browseBtn);
 
     connect(d->m_browseAction, &QAction::triggered, this, [this]() { this->d_func()->browseActionTriggered(); });
-    UIThemeBinding::bind(this, [this]
-    {
-        loadUIThemeResources();
-    });
+    updateBrowseActionIcon();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &FileSystemPathEdit::updateBrowseActionIcon);
 }
 
 FileSystemPathEdit::~FileSystemPathEdit()
@@ -325,7 +323,7 @@ QWidget *FileSystemPathEdit::editWidgetImpl() const
     return d->m_editor->widget();
 }
 
-void FileSystemPathEdit::loadUIThemeResources()
+void FileSystemPathEdit::updateBrowseActionIcon()
 {
     Q_D(FileSystemPathEdit);
 

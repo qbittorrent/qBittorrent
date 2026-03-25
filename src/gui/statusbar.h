@@ -32,7 +32,6 @@
 
 class QLabel;
 class QPushButton;
-class ThemedSeparator;
 
 namespace BitTorrent
 {
@@ -73,11 +72,11 @@ private:
     QPushButton *m_dlSpeedLbl = nullptr;
     QPushButton *m_upSpeedLbl = nullptr;
     QLabel *m_freeDiskSpaceLbl = nullptr;
-    ThemedSeparator *m_freeDiskSpaceSeparator = nullptr;
+    QWidget *m_freeDiskSpaceSeparator = nullptr;
     QLabel *m_lastExternalIPsLbl = nullptr;
-    ThemedSeparator *m_lastExternalIPsSeparator = nullptr;
+    QWidget *m_lastExternalIPsSeparator = nullptr;
     QLabel *m_DHTLbl = nullptr;
-    ThemedSeparator *m_DHTSeparator = nullptr;
+    QWidget *m_DHTSeparator = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
     QPushButton *m_altSpeedsBtn = nullptr;
     QLabel *m_restartIconLbl = nullptr;

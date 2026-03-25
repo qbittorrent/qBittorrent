@@ -186,15 +186,14 @@ TrackersFilterWidget::~TrackersFilterWidget()
         Utils::Fs::removeFile(iconPath);
 }
 
-QIcon TrackersFilterWidget::trackerItemIcon(const QString &trackerHost) const
+QIcon TrackersFilterWidget::trackerItemIcon(const QString &trackerHost, const Path &iconPath) const
 {
     if (trackerHost == NULL_HOST)
         return UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s);
 
-    if (const auto trackerIt = m_trackers.constFind(trackerHost)
-        ; (trackerIt != m_trackers.cend()) && !trackerIt->iconPath.isEmpty())
+    if (!iconPath.isEmpty())
     {
-        const QIcon icon {trackerIt->iconPath.data()};
+        const QIcon icon {iconPath.data()};
         if (!icon.isNull())
             return icon;
     }
@@ -202,21 +201,17 @@ QIcon TrackersFilterWidget::trackerItemIcon(const QString &trackerHost) const
     return UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s);
 }
 
-void TrackersFilterWidget::updateTrackerItemIcon(const QString &trackerHost)
+void TrackersFilterWidget::updateTrackerItemIcon(const QString &trackerHost, const TrackerData &trackerData)
 {
-    const auto trackerIt = m_trackers.find(trackerHost);
-    Q_ASSERT(trackerIt != m_trackers.end());
-    if (trackerIt == m_trackers.end()) [[unlikely]]
-        return;
-
-    trackerIt->item->setData(Qt::DecorationRole, trackerItemIcon(trackerHost));
+    Q_ASSERT(trackerData.item);
+    trackerData.item->setData(Qt::DecorationRole, trackerItemIcon(trackerHost, trackerData.iconPath));
 }
 
 void TrackersFilterWidget::loadUIThemeResources()
 {
     item(ALL_ROW)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
     for (auto it = m_trackers.cbegin(); it != m_trackers.cend(); ++it)
-        updateTrackerItemIcon(it.key());
+        updateTrackerItemIcon(it.key(), it.value());
 
     if (m_handleTrackerStatuses)
     {
@@ -296,7 +291,7 @@ void TrackersFilterWidget::increaseTorrentsCount(const QString &trackerHost, con
         trackerItem = new QListWidgetItem();
         const TrackerData trackerData {0, trackerItem, {}};
         trackersIt = m_trackers.insert(trackerHost, trackerData);
-        updateTrackerItemIcon(trackerHost);
+        updateTrackerItemIcon(trackerHost, trackersIt.value());
 
         const QString scheme = getScheme(trackerHost);
         downloadFavicon(trackerHost, u"%1://%2/favicon.ico"_s.arg((scheme.startsWith(u"http") ? scheme : u"http"_s), getFaviconHost(trackerHost)));
@@ -534,7 +529,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
             const QString faviconURL = QStringView(result.url).chopped(4) + u".png";
             for (const auto &trackerHost : trackerHosts)
             {
-                if (m_trackers.contains(trackerHost))
+                if (m_trackers.find(trackerHost) != m_trackers.end())
                     downloadFavicon(trackerHost, faviconURL);
             }
         }
@@ -545,18 +540,14 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
     bool matchedTrackerFound = false;
     for (const auto &trackerHost : trackerHosts)
     {
-        if (!m_trackers.contains(trackerHost))
+        const auto trackerIt = m_trackers.find(trackerHost);
+        if (trackerIt == m_trackers.end())
             continue;
 
         matchedTrackerFound = true;
-
-        QListWidgetItem *trackerItem = item(rowFromTracker(trackerHost));
-        Q_ASSERT(trackerItem);
-        if (!trackerItem) [[unlikely]]
-            continue;
-
-        m_trackers[trackerHost].iconPath = result.filePath;
-        updateTrackerItemIcon(trackerHost);
+        TrackerData &trackerData = trackerIt.value();
+        trackerData.iconPath = result.filePath;
+        updateTrackerItemIcon(trackerHost, trackerData);
     }
 
     if (matchedTrackerFound)

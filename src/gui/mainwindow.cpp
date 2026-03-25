@@ -43,6 +43,7 @@
 #include <QDesktopServices>
 #include <QFileDialog>
 #include <QFileSystemWatcher>
+#include <QFrame>
 #include <QLabel>
 #include <QMenu>
 #include <QMessageBox>
@@ -93,14 +94,12 @@
 #include "speedlimitdialog.h"
 #include "statsdialog.h"
 #include "statusbar.h"
-#include "themedseparator.h"
 #include "torrentcreatordialog.h"
 #include "trackerlist/trackerlistwidget.h"
 #include "transferlistfilterswidget.h"
 #include "transferlistmodel.h"
 #include "transferlistwidget.h"
 #include "ui_mainwindow.h"
-#include "uithemebinding.h"
 #include "uithememanager.h"
 #include "utils.h"
 #include "utils/keysequence.h"
@@ -127,6 +126,16 @@ namespace
     const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.exe"_s;
     const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("c887e19e66e66e6961c444283dafaa33");
     const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("b5d83ec914dcb0c3892a521d0cbd96bf9bcb267bdee36ea4ee48a54c53fabd0aea98531eda81d1c1db31be8830f7b94430e0c838f5c2f2f8999a273f2833e450");
+#endif
+
+#ifdef Q_OS_MACOS
+    QWidget *createToolBarSeparator(QWidget *parent)
+    {
+        auto *separator = new QFrame(parent);
+        separator->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+        separator->setFrameStyle(QFrame::VLine);
+        return separator;
+    }
 #endif
 }
 
@@ -393,10 +402,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #endif
     });
 
-    UIThemeBinding::bind(this, [this]
-    {
-        loadUIThemeResources();
-    });
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &MainWindow::loadUIThemeResources);
 
 #ifdef Q_OS_MACOS
     if (initialState == WindowState::Normal)
@@ -1790,7 +1797,7 @@ void MainWindow::replaceToolBarSeparators()
         if (!action->isSeparator())
             continue;
 
-        auto *separator = new ThemedSeparator(m_ui->toolBar);
+        auto *separator = createToolBarSeparator(m_ui->toolBar);
         QAction *const widgetAction = m_ui->toolBar->insertWidget(action, separator);
         m_ui->toolBar->removeAction(action);
         if (action == m_queueSeparator)

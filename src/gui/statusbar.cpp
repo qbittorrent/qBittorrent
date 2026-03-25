@@ -28,6 +28,7 @@
 
 #include "statusbar.h"
 
+#include <QFrame>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -38,8 +39,6 @@
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "speedlimitdialog.h"
-#include "themedseparator.h"
-#include "uithemebinding.h"
 #include "uithememanager.h"
 #include "utils.h"
 
@@ -54,9 +53,14 @@ namespace
         return styleSheet;
     }
 
-    ThemedSeparator *createSeparator(QWidget *parent)
+    QWidget *createSeparator(QWidget *parent)
     {
-        return new ThemedSeparator(parent);
+        auto *separator = new QFrame(parent);
+        separator->setFrameStyle(QFrame::VLine);
+#ifndef Q_OS_MACOS
+        separator->setFrameShadow(QFrame::Raised);
+#endif
+        return separator;
     }
 
     QPixmap restartRequiredPixmap(const QWidget *widget)
@@ -181,10 +185,8 @@ StatusBar::StatusBar(QWidget *parent)
     connect(session, &BitTorrent::Session::freeDiskSpaceChecked, this, &StatusBar::updateFreeDiskSpaceLabel);
 
     connect(Preferences::instance(), &Preferences::changed, this, &StatusBar::optionsSaved);
-    UIThemeBinding::bind(this, [this]
-    {
-        loadUIThemeResources();
-    });
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &StatusBar::loadUIThemeResources);
 }
 
 void StatusBar::loadUIThemeResources()

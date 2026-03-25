@@ -88,9 +88,6 @@ private slots:
 
 private:
     void loadUIThemeResources();
-    void refreshMustLineValidity();
-    void refreshMustNotLineValidity();
-    void refreshEpisodeFilterValidity();
     void loadSettings();
     void saveSettings();
     void createRuleItem(const RSS::AutoDownloadRule &rule);
@@ -112,11 +109,6 @@ private:
     RSS::AutoDownloadRule m_currentRule;
     QHash<QString, QListWidgetItem *> m_itemsByRuleName;
     QRegularExpression *m_episodeRegex = nullptr;
-    bool m_isMustLineValid = true;
-    QString m_mustLineError;
-    bool m_isMustNotLineValid = true;
-    QString m_mustNotLineError;
-    bool m_isEpisodeFilterValid = true;
 
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QByteArray> m_storeMainSplitterState;

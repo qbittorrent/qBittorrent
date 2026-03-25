@@ -63,6 +63,13 @@ private slots:
     void handleFavicoDownloadFinished(const Net::DownloadResult &result);
 
 private:
+    struct TrackerData
+    {
+        qsizetype torrentsCount = 0;
+        QListWidgetItem *item = nullptr;
+        Path iconPath;
+    };
+
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
     void showMenu() override;
@@ -79,8 +86,8 @@ private:
 
     void onRemoveTrackerTriggered();
 
-    QIcon trackerItemIcon(const QString &trackerHost) const;
-    void updateTrackerItemIcon(const QString &trackerHost);
+    QIcon trackerItemIcon(const QString &trackerHost, const Path &iconPath) const;
+    void updateTrackerItemIcon(const QString &trackerHost, const TrackerData &trackerData);
     void increaseTorrentsCount(const QString &trackerHost, qsizetype torrentsCount);
     void decreaseTorrentsCount(const QString &trackerHost);
     void loadUIThemeResources();
@@ -93,13 +100,6 @@ private:
     void enableTrackerStatusItems(bool value);
 
     qsizetype numSpecialRows() const;
-
-    struct TrackerData
-    {
-        qsizetype torrentsCount = 0;
-        QListWidgetItem *item = nullptr;
-        Path iconPath;
-    };
 
     QHash<QString, TrackerData> m_trackers;   // <tracker host, tracker data>
     QSet<const BitTorrent::Torrent *> m_errors;
