@@ -28,7 +28,6 @@
 
 #include "statusbar.h"
 
-#include <QApplication>
 #include <QFrame>
 #include <QLabel>
 #include <QPushButton>
@@ -45,10 +44,10 @@
 namespace
 {
 #ifdef Q_OS_MACOS
-    void applySeparatorPalette(QWidget *separator)
+    void applySeparatorPalette(QWidget *separator, const QWidget *parent)
     {
         QPalette palette = separator->palette();
-        palette.setColor(QPalette::Window, QApplication::palette().color(QPalette::Mid));
+        palette.setColor(QPalette::Window, parent->palette().color(QPalette::Mid));
         separator->setPalette(palette);
     }
 #endif
@@ -70,7 +69,7 @@ namespace
         auto *separator = new QWidget(parent);
         separator->setAutoFillBackground(true);
         separator->setFixedWidth(1);
-        applySeparatorPalette(separator);
+        applySeparatorPalette(separator, parent);
 #else
         auto *separator = new QFrame(parent);
         separator->setFrameShape(QFrame::VLine);
@@ -206,7 +205,7 @@ void StatusBar::loadUIThemeResources()
 
 #ifdef Q_OS_MACOS
     for (auto *separator : m_separators)
-        applySeparatorPalette(separator);
+        applySeparatorPalette(separator, this);
 #else
     for (auto *separator : findChildren<QFrame *>())
     {

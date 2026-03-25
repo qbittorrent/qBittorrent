@@ -314,6 +314,10 @@ void UIThemeManager::applyThemeSettings()
 
     loadThemeSource();
     applyCurrentTheme();
+
+    // Work around styled widgets that need their style reapplied after theme changes.
+    QApplication::setStyle(QApplication::style()->name());
+
     emit themeChanged();
 }
 
