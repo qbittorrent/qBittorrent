@@ -73,7 +73,7 @@ namespace
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
-    QString styleSheet = u"QWidget { margin: 0; }"_s;
+    QString styleSheet = u"QStatusBar > QWidget { margin: 0; }"_s;
 #ifndef Q_OS_MACOS
     // Redefining global stylesheet breaks certain elements on mac like tabs.
     // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
