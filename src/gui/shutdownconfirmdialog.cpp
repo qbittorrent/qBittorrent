@@ -38,7 +38,6 @@
 
 #include "base/preferences.h"
 #include "ui_shutdownconfirmdialog.h"
-#include "uithememanager.h"
 #include "utils.h"
 
 using namespace std::chrono_literals;
@@ -51,13 +50,8 @@ ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDial
     m_ui->setupUi(this);
 
     initText();
-    const auto applyUITheme = [this]
-    {
-        const QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
-        m_ui->warningLabel->setPixmap(warningIcon.pixmap(32));
-    };
-    applyUITheme();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+    const QIcon warningIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
+    m_ui->warningLabel->setPixmap(warningIcon.pixmap(32));
 
     if (m_action == ShutdownDialogAction::Exit)
         m_ui->neverShowAgainCheckbox->setVisible(true);
