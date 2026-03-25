@@ -298,7 +298,8 @@ namespace
         friend bool operator==(const TriStateBoolOption &option, const QStringView arg)
         {
             const QString param = option.fullParameter();
-            return (arg.size() > param.size()) && arg.startsWith(param) && (arg.at(param.size()) == u'=');
+            return (arg == param)
+                   || ((arg.size() > param.size()) && arg.startsWith(param) && (arg.at(param.size()) == u'='));
         }
 
     private:

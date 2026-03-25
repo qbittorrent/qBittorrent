@@ -41,6 +41,7 @@
 #include <QStyle>
 
 #include "base/path.h"
+#include "gui/uithememanager.h"
 
 // -------------------- FileSystemPathValidator ----------------------------------------
 Private::FileSystemPathValidator::FileSystemPathValidator(QObject *parent)
@@ -165,6 +166,7 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
 {
     setCompleter(new QCompleter(this));
     connect(this, &QLineEdit::textChanged, this, &FileLineEdit::validateText);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &FileLineEdit::updateWarningAction);
 }
 
 Private::FileLineEdit::~FileLineEdit()
@@ -201,7 +203,7 @@ void Private::FileLineEdit::setValidator(QValidator *validator)
     QLineEdit::setValidator(validator);
 }
 
-void Private::FileLineEdit::applyUITheme()
+void Private::FileLineEdit::updateWarningAction()
 {
     if (!m_warningAction)
         return;
@@ -302,9 +304,7 @@ void Private::FileLineEdit::validateText()
     }
 
     if (m_warningAction)
-    {
-        applyUITheme();
-    }
+        updateWarningAction();
 }
 
 QString Private::FileLineEdit::warningText(const FileSystemPathValidator::TestResult result)
@@ -348,11 +348,6 @@ void Private::FileComboEdit::setBrowseAction(QAction *action)
 void Private::FileComboEdit::setValidator(QValidator *validator)
 {
     lineEdit()->setValidator(validator);
-}
-
-void Private::FileComboEdit::applyUITheme()
-{
-    static_cast<FileLineEdit *>(lineEdit())->applyUITheme();
 }
 
 Path Private::FileComboEdit::placeholder() const

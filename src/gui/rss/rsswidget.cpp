@@ -200,6 +200,12 @@ void RSSWidget::loadUIThemeResources()
     m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
     m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
 #endif
+
+    if (QListWidgetItem *currentItem = m_ui->articleListWidget->currentItem())
+    {
+        if (const RSS::Article *article = m_ui->articleListWidget->getRSSArticle(currentItem))
+            renderArticle(article);
+    }
 }
 
 // display a right-click menu

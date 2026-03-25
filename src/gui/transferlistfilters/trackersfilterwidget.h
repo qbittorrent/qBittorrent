@@ -79,6 +79,8 @@ private:
 
     void onRemoveTrackerTriggered();
 
+    QIcon trackerItemIcon(const QString &trackerHost) const;
+    void updateTrackerItemIcon(const QString &trackerHost);
     void increaseTorrentsCount(const QString &trackerHost, qsizetype torrentsCount);
     void decreaseTorrentsCount(const QString &trackerHost);
     void loadUIThemeResources();
@@ -96,7 +98,7 @@ private:
     {
         qsizetype torrentsCount = 0;
         QListWidgetItem *item = nullptr;
-        bool hasCustomIcon = false;
+        Path iconPath;
     };
 
     QHash<QString, TrackerData> m_trackers;   // <tracker host, tracker data>

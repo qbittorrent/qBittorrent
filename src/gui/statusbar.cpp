@@ -189,6 +189,7 @@ StatusBar::StatusBar(QWidget *parent)
 
 void StatusBar::loadUIThemeResources()
 {
+    updateConnectionStatus();
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
@@ -196,6 +197,7 @@ void StatusBar::loadUIThemeResources()
     if (m_restartIconLbl)
         m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
 }
+
 void StatusBar::showRestartRequired()
 {
     // Restart required notification
