@@ -62,6 +62,7 @@ private slots:
 
 private:
     void loadUIThemeResources();
+    void updateAltSpeedsButtonAppearance(bool alternative);
     void updateConnectionStatus();
     void updateDHTNodesNumber();
     void updateFreeDiskSpaceLabel(qint64 value);

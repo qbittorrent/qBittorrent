@@ -31,6 +31,7 @@
 
 #include <QtContainerFwd>
 #include <QHash>
+#include <QIcon>
 
 #include "base/path.h"
 #include "basefilterwidget.h"
@@ -67,6 +68,7 @@ private:
     {
         qsizetype torrentsCount = 0;
         QListWidgetItem *item = nullptr;
+        QIcon icon;
         Path iconPath;
     };
 
@@ -86,7 +88,7 @@ private:
 
     void onRemoveTrackerTriggered();
 
-    QIcon trackerItemIcon(const QString &trackerHost, const Path &iconPath) const;
+    QIcon trackerItemIcon(const QString &trackerHost, const TrackerData &trackerData) const;
     void updateTrackerItemIcon(const QString &trackerHost, const TrackerData &trackerData);
     void increaseTorrentsCount(const QString &trackerHost, qsizetype torrentsCount);
     void decreaseTorrentsCount(const QString &trackerHost);

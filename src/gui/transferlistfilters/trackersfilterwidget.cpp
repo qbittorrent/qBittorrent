@@ -149,7 +149,7 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
     auto *trackerlessItem = new QListWidgetItem(this);
     trackerlessItem->setData(Qt::DisplayRole, formatItemText(TRACKERLESS_ROW, 0));
 
-    m_trackers[NULL_HOST] = {0, trackerlessItem, {}};
+    m_trackers[NULL_HOST] = {0, trackerlessItem, {}, {}};
 
     const auto *pref = Preferences::instance();
     const bool useSeparateTrackerStatusFilter = pref->useSeparateTrackerStatusFilter();
@@ -186,17 +186,13 @@ TrackersFilterWidget::~TrackersFilterWidget()
         Utils::Fs::removeFile(iconPath);
 }
 
-QIcon TrackersFilterWidget::trackerItemIcon(const QString &trackerHost, const Path &iconPath) const
+QIcon TrackersFilterWidget::trackerItemIcon(const QString &trackerHost, const TrackerData &trackerData) const
 {
     if (trackerHost == NULL_HOST)
         return UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s);
 
-    if (!iconPath.isEmpty())
-    {
-        const QIcon icon {iconPath.data()};
-        if (!icon.isNull())
-            return icon;
-    }
+    if (!trackerData.icon.isNull())
+        return trackerData.icon;
 
     return UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s);
 }
@@ -204,7 +200,7 @@ QIcon TrackersFilterWidget::trackerItemIcon(const QString &trackerHost, const Pa
 void TrackersFilterWidget::updateTrackerItemIcon(const QString &trackerHost, const TrackerData &trackerData)
 {
     Q_ASSERT(trackerData.item);
-    trackerData.item->setData(Qt::DecorationRole, trackerItemIcon(trackerHost, trackerData.iconPath));
+    trackerData.item->setData(Qt::DecorationRole, trackerItemIcon(trackerHost, trackerData));
 }
 
 void TrackersFilterWidget::loadUIThemeResources()
@@ -289,7 +285,7 @@ void TrackersFilterWidget::increaseTorrentsCount(const QString &trackerHost, con
     else
     {
         trackerItem = new QListWidgetItem();
-        const TrackerData trackerData {0, trackerItem, {}};
+        const TrackerData trackerData {0, trackerItem, {}, {}};
         trackersIt = m_trackers.insert(trackerHost, trackerData);
         updateTrackerItemIcon(trackerHost, trackersIt.value());
 
@@ -546,6 +542,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
 
         matchedTrackerFound = true;
         TrackerData &trackerData = trackerIt.value();
+        trackerData.icon = icon;
         trackerData.iconPath = result.filePath;
         updateTrackerItemIcon(trackerHost, trackerData);
     }

@@ -131,7 +131,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_altSpeedsBtn->setCursor(Qt::PointingHandCursor);
     m_altSpeedsBtn->setFlat(true);
     m_altSpeedsBtn->setFocusPolicy(Qt::NoFocus);
-    updateAltSpeedsBtn(session->isAltGlobalSpeedLimitEnabled());
+    updateAltSpeedsButtonAppearance(session->isAltGlobalSpeedLimitEnabled());
     connect(m_altSpeedsBtn, &QAbstractButton::clicked, this, &StatusBar::alternativeSpeedsButtonClicked);
 
     // Because on some platforms the default icon size is bigger
@@ -194,10 +194,26 @@ void StatusBar::loadUIThemeResources()
     updateConnectionStatus();
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
-    updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
+    updateAltSpeedsButtonAppearance(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
 
     if (m_restartIconLbl)
         m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
+}
+
+void StatusBar::updateAltSpeedsButtonAppearance(const bool alternative)
+{
+    if (alternative)
+    {
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow"_s));
+        m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
+        m_altSpeedsBtn->setDown(true);
+    }
+    else
+    {
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow_off"_s));
+        m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
+        m_altSpeedsBtn->setDown(false);
+    }
 }
 
 void StatusBar::showRestartRequired()
@@ -341,19 +357,8 @@ void StatusBar::refresh()
 
 void StatusBar::updateAltSpeedsBtn(const bool alternative)
 {
-    if (alternative)
-    {
-        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow"_s));
-        m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
-        m_altSpeedsBtn->setDown(true);
-    }
-    else
-    {
-        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow_off"_s));
-        m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
-        m_altSpeedsBtn->setDown(false);
-    }
-    refresh();
+    updateAltSpeedsButtonAppearance(alternative);
+    updateSpeedLabels();
 }
 
 void StatusBar::capSpeed()
