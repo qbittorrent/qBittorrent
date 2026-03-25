@@ -75,6 +75,7 @@ signals:
 private:
     void onPreferencesChanged();
 #ifndef Q_OS_MACOS
+    void updateSystrayIcon();
     void createTrayIcon();
     QIcon getSystrayIcon() const;
 #endif // Q_OS_MACOS

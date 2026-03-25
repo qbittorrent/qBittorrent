@@ -188,6 +188,7 @@ private slots:
 #endif
 
 private:
+    void loadUIThemeResources();
     void populateDesktopIntegrationMenu();
 
     void closeEvent(QCloseEvent *) override;

@@ -89,6 +89,7 @@ private:
 
     QMimeData *mimeData(const QModelIndexList &indexes) const override;
     QStringList mimeTypes() const override;
+    void onUIThemeChanged();
     void populate();
     void updateFilesProgress();
     void updateFilesPriorities();

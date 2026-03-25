@@ -81,6 +81,7 @@ private:
 
     void increaseTorrentsCount(const QString &trackerHost, qsizetype torrentsCount);
     void decreaseTorrentsCount(const QString &trackerHost);
+    void loadUIThemeResources();
     void refreshStatusItems(const BitTorrent::Torrent *torrent);
     QString trackerFromRow(int row) const;
     int rowFromTracker(const QString &tracker) const;
@@ -95,6 +96,7 @@ private:
     {
         qsizetype torrentsCount = 0;
         QListWidgetItem *item = nullptr;
+        bool hasCustomIcon = false;
     };
 
     QHash<QString, TrackerData> m_trackers;   // <tracker host, tracker data>

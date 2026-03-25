@@ -57,6 +57,7 @@ private:
     void torrentAboutToBeDeleted(BitTorrent::Torrent *) override;
 
     void configure();
+    void loadUIThemeResources();
 
     void update(const QList<BitTorrent::Torrent *> &torrents);
     void updateTorrentStatus(const BitTorrent::Torrent *torrent);

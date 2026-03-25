@@ -164,30 +164,14 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->setupUi(this);
     m_applyButton = m_ui->buttonBox->button(QDialogButtonBox::Apply);
 
-    const auto applyUITheme = [this]
-    {
-        m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
-        m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
-        m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
-        m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_s, u"folder-download"_s));
-        m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s, u"chronometer"_s));
-        m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
-        m_ui->tabSelection->item(TAB_SEARCH)->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadUIThemeResources);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadDownloadsTabUITheme);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadConnectionTabUITheme);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::loadSpeedTabUITheme);
 #ifndef DISABLE_WEBUI
-        m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_s, u"network-server"_s));
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
 #endif
-        m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
-
-        m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
-        m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
-        m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
-
-#ifndef DISABLE_WEBUI
-        updateWebUIHttpsStatusIcons();
-#endif
-    };
-    applyUITheme();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
 
 #ifdef Q_OS_UNIX
     setWindowTitle(tr("Preferences"));
@@ -264,6 +248,37 @@ OptionsDialog::~OptionsDialog()
     m_storeLastViewedPage = m_ui->tabSelection->currentRow();
 
     delete m_ui;
+}
+
+void OptionsDialog::loadUIThemeResources()
+{
+    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_s, u"folder-download"_s));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_s, u"chronometer"_s));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_s, u"application-rss+xml"_s));
+    m_ui->tabSelection->item(TAB_SEARCH)->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
+#ifndef DISABLE_WEBUI
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_s, u"network-server"_s));
+#endif
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
+}
+
+void OptionsDialog::loadDownloadsTabUITheme()
+{
+    m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
+}
+
+void OptionsDialog::loadConnectionTabUITheme()
+{
+    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+}
+
+void OptionsDialog::loadSpeedTabUITheme()
+{
+    m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
 }
 
 void OptionsDialog::loadBehaviorTabOptions()
@@ -529,7 +544,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
     pref->setStyle(styleName);
 #ifdef QBT_HAS_COLORSCHEME_OPTION
-    themeManager->setColorScheme(colorScheme, false);
+    themeManager->setColorScheme(colorScheme);
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     pref->useSystemIcons(useSystemIcons);
@@ -658,6 +673,7 @@ void OptionsDialog::loadDownloadsTabOptions()
         ".torrent file <strong>will be deleted</strong> even if you press &ldquo;<strong>Cancel</strong>&rdquo; in "
         "the &ldquo;Add torrent&rdquo; dialog") +
         u"</p></body></html>");
+    loadDownloadsTabUITheme();
 
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
@@ -978,7 +994,7 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->textFilterPath->setFileNameFilter(tr("All supported filters") + u" (*.dat *.p2p *.p2b);;.dat (*.dat);;.p2p (*.p2p);;.p2b (*.p2b)");
     m_ui->textFilterPath->setSelectedPath(session->IPFilterFile());
 
-    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    loadConnectionTabUITheme();
     m_ui->IpFilterRefreshBtn->setEnabled(m_ui->checkIPFilter->isChecked());
     m_ui->checkIpFilterTrackers->setChecked(session->isTrackerFilteringEnabled());
 
@@ -1077,11 +1093,10 @@ void OptionsDialog::loadSpeedTabOptions()
     const auto *pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
 
-    m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
+    loadSpeedTabUITheme();
     m_ui->spinUploadLimit->setValue(session->globalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimit->setValue(session->globalDownloadSpeedLimit() / 1024);
 
-    m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
     m_ui->spinUploadLimitAlt->setValue(session->altGlobalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimitAlt->setValue(session->altGlobalDownloadSpeedLimit() / 1024);
 
@@ -1401,8 +1416,9 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->spinWebUIPort->setValue(pref->getWebUIPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
     m_ui->checkWebUIHttps->setChecked(pref->isWebUIHttpsEnabled());
-    webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath());
-    webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath());
+    m_ui->textWebUIHttpsCert->setSelectedPath(pref->getWebUIHttpsCertificatePath());
+    m_ui->textWebUIHttpsKey->setSelectedPath(pref->getWebUIHttpsKeyPath());
+    updateWebUIHttpsStatusIcons();
     m_ui->textWebUIUsername->setText(pref->getWebUIUsername());
 
     // API Key
@@ -1446,9 +1462,9 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsCertChanged);
+    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsKeyChanged);
+    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -2129,28 +2145,15 @@ Path OptionsDialog::getFilter() const
 #ifndef DISABLE_WEBUI
 void OptionsDialog::updateWebUIHttpsStatusIcons()
 {
+    const auto certReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsCert->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
+    const bool isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(certReadResult.value_or(QByteArray()));
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (m_isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
+        (isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
+
+    const auto keyReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsKey->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
+    const bool isWebUIHttpsKeyValid = !Utils::SSLKey::load(keyReadResult.value_or(QByteArray())).isNull();
     m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (m_isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
-}
-
-void OptionsDialog::webUIHttpsCertChanged(const Path &path)
-{
-    const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    m_isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
-
-    m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    updateWebUIHttpsStatusIcons();
-}
-
-void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
-{
-    const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
-    m_isWebUIHttpsKeyValid = !Utils::SSLKey::load(readResult.value_or(QByteArray())).isNull();
-
-    m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    updateWebUIHttpsStatusIcons();
+        (isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
 bool OptionsDialog::isWebUIEnabled() const

@@ -83,6 +83,7 @@ private:
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
     void adjustSearchButton();
+    void loadUIThemeResources();
 
     void fillCatCombobox();
     void fillPluginComboBox();

@@ -85,6 +85,7 @@ private slots:
     void pluginUpdateFailed(const QString &name, const QString &reason);
 
 private:
+    void loadUIThemeResources();
     void loadSupportedSearchPlugins();
     void addNewPlugin(const QString &pluginName);
     void startAsyncOp();

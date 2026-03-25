@@ -176,6 +176,7 @@ TrackersFilterWidget::TrackersFilterWidget(QWidget *parent, TransferListWidget *
     connect(btSession, &BitTorrent::Session::trackersRemoved, this, &TrackersFilterWidget::handleTorrentTrackersRemoved);
     connect(btSession, &BitTorrent::Session::trackersReset, this, &TrackersFilterWidget::handleTorrentTrackersReset);
     connect(btSession, &BitTorrent::Session::trackerEntryStatusesUpdated, this, &TrackersFilterWidget::handleTorrentTrackerStatusesUpdated);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &TrackersFilterWidget::loadUIThemeResources);
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
 }
@@ -184,6 +185,25 @@ TrackersFilterWidget::~TrackersFilterWidget()
 {
     for (const Path &iconPath : asConst(m_iconPaths))
         Utils::Fs::removeFile(iconPath);
+}
+
+void TrackersFilterWidget::loadUIThemeResources()
+{
+    item(ALL_ROW)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
+    m_trackers[NULL_HOST].item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackerless"_s, u"network-server"_s));
+
+    if (m_handleTrackerStatuses)
+    {
+        item(TRACKERERROR_ROW)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
+        item(OTHERERROR_ROW)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-error"_s, u"dialog-error"_s));
+        item(WARNING_ROW)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"tracker-warning"_s, u"dialog-warning"_s));
+    }
+
+    for (auto it = m_trackers.begin(); it != m_trackers.end(); ++it)
+    {
+        if (!it->hasCustomIcon && (it.key() != NULL_HOST))
+            it->item->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
+    }
 }
 
 void TrackersFilterWidget::handleTorrentTrackersAdded(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers)
@@ -256,7 +276,7 @@ void TrackersFilterWidget::increaseTorrentsCount(const QString &trackerHost, con
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
 
-        const TrackerData trackerData {0, trackerItem};
+        const TrackerData trackerData {0, trackerItem, false};
         trackersIt = m_trackers.insert(trackerHost, trackerData);
 
         const QString scheme = getScheme(trackerHost);
@@ -519,6 +539,7 @@ void TrackersFilterWidget::handleFavicoDownloadFinished(const Net::DownloadResul
             continue;
 
         trackerItem->setData(Qt::DecorationRole, icon);
+        m_trackers[trackerHost].hasCustomIcon = true;
     }
 
     if (matchedTrackerFound)

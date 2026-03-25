@@ -98,11 +98,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 
     connect(Preferences::instance(), &Preferences::changed, this, &DesktopIntegration::onPreferencesChanged);
 #ifndef Q_OS_MACOS
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
-    {
-        if (m_systrayIcon)
-            m_systrayIcon->setIcon(getSystrayIcon());
-    });
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &DesktopIntegration::updateSystrayIcon);
 #endif
 }
 
@@ -207,14 +203,9 @@ void DesktopIntegration::onPreferencesChanged()
     if (Preferences::instance()->systemTrayEnabled())
     {
         if (m_systrayIcon)
-        {
-            // Reload systray icon
-            m_systrayIcon->setIcon(getSystrayIcon());
-        }
+            updateSystrayIcon();
         else
-        {
             createTrayIcon();
-        }
     }
     else
     {
@@ -226,6 +217,12 @@ void DesktopIntegration::onPreferencesChanged()
 }
 
 #ifndef Q_OS_MACOS
+void DesktopIntegration::updateSystrayIcon()
+{
+    if (m_systrayIcon)
+        m_systrayIcon->setIcon(getSystrayIcon());
+}
+
 void DesktopIntegration::createTrayIcon()
 {
     Q_ASSERT(!m_systrayIcon);

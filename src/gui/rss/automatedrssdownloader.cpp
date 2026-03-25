@@ -73,18 +73,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    const auto applyUITheme = [this]
-    {
-        m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-        m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
-        m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-        updateMustLineValidity();
-        updateMustNotLineValidity();
-        if (m_episodeRegex)
-            updateEpisodeFilterValidity();
-    };
-    applyUITheme();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &AutomatedRssDownloader::loadUIThemeResources);
 
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -189,6 +179,21 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 
     delete m_ui;
     delete m_episodeRegex;
+}
+
+void AutomatedRssDownloader::loadUIThemeResources()
+{
+    m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
+    m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
+    m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+
+    for (int i = 0; i < m_ui->matchingArticlesTree->topLevelItemCount(); ++i)
+        m_ui->matchingArticlesTree->topLevelItem(i)->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"directory"_s));
+
+    updateMustLineValidity();
+    updateMustNotLineValidity();
+    if (m_episodeRegex)
+        updateEpisodeFilterValidity();
 }
 
 void AutomatedRssDownloader::loadSettings()

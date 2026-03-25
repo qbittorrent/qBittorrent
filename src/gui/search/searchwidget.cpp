@@ -371,9 +371,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     m_ui->lineEditSearchPattern->setToolTip(searchPatternHint);
 
 #ifndef Q_OS_MACOS
-    // Icons
-    m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
-    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon(u"plugins"_s, u"preferences-system-network"_s));
+    loadUIThemeResources();
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();
@@ -384,6 +382,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::currentTabChanged);
     connect(m_ui->tabWidget, &QTabWidget::currentChanged, this, &SearchWidget::saveSession);
     connect(m_ui->tabWidget->tabBar(), &QTabBar::tabMoved, this, &SearchWidget::saveSession);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &SearchWidget::loadUIThemeResources);
 
     connect(m_ui->tabWidget, &QTabWidget::tabBarDoubleClicked, this, [this](const int tabIndex)
     {
@@ -911,6 +910,21 @@ void SearchWidget::searchButtonClicked()
 void SearchWidget::stopButtonClicked()
 {
     m_currentSearchTab->cancelSearch();
+}
+
+void SearchWidget::loadUIThemeResources()
+{
+#ifndef Q_OS_MACOS
+    m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
+    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon(u"plugins"_s, u"preferences-system-network"_s));
+#endif
+
+    for (auto it = m_tabWidgets.cbegin(); it != m_tabWidgets.cend(); ++it)
+    {
+        auto *tab = it.value();
+        m_ui->tabWidget->setTabIcon(m_ui->tabWidget->indexOf(tab)
+                , UIThemeManager::instance()->getIcon(statusIconName(tab->status())));
+    }
 }
 
 void SearchWidget::tabStatusChanged(SearchJobWidget *tab)

@@ -154,18 +154,19 @@ StatusBar::StatusBar(QWidget *parent)
     connect(session, &BitTorrent::Session::freeDiskSpaceChecked, this, &StatusBar::updateFreeDiskSpaceLabel);
 
     connect(Preferences::instance(), &Preferences::changed, this, &StatusBar::optionsSaved);
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this, session]
-    {
-        m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
-        m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
-        updateConnectionStatus();
-        updateAltSpeedsBtn(session->isAltGlobalSpeedLimitEnabled());
-
-        if (m_restartIconLbl)
-            m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
-    });
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &StatusBar::loadUIThemeResources);
 }
 
+void StatusBar::loadUIThemeResources()
+{
+    m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
+    m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
+    updateConnectionStatus();
+    updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
+
+    if (m_restartIconLbl)
+        m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
+}
 void StatusBar::showRestartRequired()
 {
     // Restart required notification

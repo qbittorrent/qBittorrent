@@ -63,6 +63,7 @@ private slots:
     void onTorrentListDownloadFinished(const Net::DownloadResult &result);
 
 private:
+    void loadUIThemeResources();
     void saveSettings();
     void loadSettings();
 

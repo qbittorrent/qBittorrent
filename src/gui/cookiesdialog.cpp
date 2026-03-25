@@ -51,16 +51,8 @@ CookiesDialog::CookiesDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    const auto applyUITheme = [this]
-    {
-        setWindowIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s));
-        m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-        m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
-        m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
-        m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
-    };
-    applyUITheme();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &CookiesDialog::loadUIThemeResources);
 
     connect(m_ui->buttonAdd, &QToolButton::clicked, this, &CookiesDialog::onButtonAddClicked);
 
@@ -83,6 +75,15 @@ CookiesDialog::~CookiesDialog()
     m_storeDialogSize = size();
     m_storeViewState = m_ui->treeView->header()->saveState();
     delete m_ui;
+}
+
+void CookiesDialog::loadUIThemeResources()
+{
+    setWindowIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s));
+    m_ui->buttonAdd->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+    m_ui->buttonAdd->setIconSize(Utils::Gui::mediumIconSize());
+    m_ui->buttonDelete->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
+    m_ui->buttonDelete->setIconSize(Utils::Gui::mediumIconSize());
 }
 
 void CookiesDialog::accept()

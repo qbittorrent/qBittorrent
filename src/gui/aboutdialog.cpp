@@ -49,12 +49,8 @@ AboutDialog::AboutDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    const auto applyUITheme = [this]
-    {
-        m_ui->logo->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"qbittorrent-tray"_s, 32));
-    };
     applyUITheme();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &AboutDialog::applyUITheme);
 
     // Title
     m_ui->labelName->setText(QStringLiteral("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
@@ -124,6 +120,11 @@ AboutDialog::~AboutDialog()
 {
     m_storeDialogSize = size();
     delete m_ui;
+}
+
+void AboutDialog::applyUITheme()
+{
+    m_ui->logo->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"qbittorrent-tray"_s, 32));
 }
 
 void AboutDialog::copyVersionsToClipboard() const

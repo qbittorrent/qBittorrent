@@ -113,24 +113,8 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    // Icons
-    m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
-    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s));
-    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
-    m_ui->actionEditFeed->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
-    m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_s));
-    m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon(u"application-url"_s));
-    m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-    m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
-    m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
-#ifndef Q_OS_MACOS
-    m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
-    m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
-    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
-#endif
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &RSSWidget::loadUIThemeResources);
 
     m_rssFilter->setMaximumWidth(200);
     m_rssFilter->setPlaceholderText(tr("Filter feed items..."));
@@ -195,6 +179,27 @@ RSSWidget::~RSSWidget()
     saveFoldersOpenState();
 
     delete m_ui;
+}
+
+void RSSWidget::loadUIThemeResources()
+{
+    m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
+    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s));
+    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
+    m_ui->actionEditFeed->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
+    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
+    m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_s));
+    m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon(u"application-url"_s));
+    m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
+    m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+#ifndef Q_OS_MACOS
+    m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_s, u"mail-mark-read"_s));
+    m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"download"_s));
+#endif
 }
 
 // display a right-click menu

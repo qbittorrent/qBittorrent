@@ -115,6 +115,7 @@ FeedListWidget::FeedListWidget(QWidget *parent)
     connect(RSS::Session::instance(), &RSS::Session::feedIconLoaded, this, &FeedListWidget::handleFeedIconLoaded);
     connect(RSS::Session::instance(), &RSS::Session::itemPathChanged, this, &FeedListWidget::handleItemPathChanged);
     connect(RSS::Session::instance(), &RSS::Session::itemAboutToBeRemoved, this, &FeedListWidget::handleItemAboutToBeRemoved);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &FeedListWidget::loadUIThemeResources);
 
     m_rssToTreeItemMapping[RSS::Session::instance()->rootFolder()] = invisibleRootItem();
 
@@ -122,15 +123,15 @@ FeedListWidget::FeedListWidget(QWidget *parent)
     m_stickyItemAllArticles->setData(0, Qt::UserRole, QVariant::fromValue(
             reinterpret_cast<intptr_t>(RSS::Session::instance()->rootFolder())));
     m_stickyItemAllArticles->setText(0, tr("All"));
-    m_stickyItemAllArticles->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-inbox"_s));
     m_stickyItemAllArticles->setData(0, ItemTagRole, QVariant::fromValue(ItemTag::AllArticlesItem));
+    applyUITheme(m_stickyItemAllArticles);
 
     m_stickyItemUnreadArticles = new FeedListItem(this);
     m_stickyItemUnreadArticles->setData(0, Qt::UserRole, QVariant::fromValue(
             reinterpret_cast<intptr_t>(RSS::Session::instance()->rootFolder())));
     m_stickyItemUnreadArticles->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-    m_stickyItemUnreadArticles->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-inbox"_s));
     m_stickyItemUnreadArticles->setData(0, ItemTagRole, QVariant::fromValue(ItemTag::UnreadArticlesItem));
+    applyUITheme(m_stickyItemUnreadArticles);
 
     connect(RSS::Session::instance()->rootFolder(), &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
 
@@ -154,6 +155,35 @@ QTreeWidgetItem *FeedListWidget::stickyItemUnreadArticles() const
 bool FeedListWidget::isStickyItem(QTreeWidgetItem *item) const
 {
     return item && (item->data(0, ItemTagRole).value<ItemTag>() != ItemTag::RegularItem);
+}
+
+void FeedListWidget::loadUIThemeResources()
+{
+    applyUITheme(m_stickyItemAllArticles);
+    applyUITheme(m_stickyItemUnreadArticles);
+
+    for (auto it = m_rssToTreeItemMapping.cbegin(); it != m_rssToTreeItemMapping.cend(); ++it)
+    {
+        QTreeWidgetItem *item = it.value();
+        if (item != invisibleRootItem())
+            applyUITheme(item);
+    }
+}
+
+void FeedListWidget::applyUITheme(QTreeWidgetItem *item)
+{
+    Q_ASSERT(item);
+
+    if ((item == m_stickyItemAllArticles) || (item == m_stickyItemUnreadArticles))
+    {
+        item->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-inbox"_s));
+        return;
+    }
+
+    if (auto *feed = qobject_cast<RSS::Feed *>(getRSSItem(item)))
+        item->setData(0, Qt::DecorationRole, rssFeedIcon(feed));
+    else
+        item->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"directory"_s));
 }
 
 void FeedListWidget::handleItemAdded(RSS::Item *rssItem)
@@ -309,12 +339,7 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
     item->setData(0, Qt::UserRole, QVariant::fromValue(reinterpret_cast<intptr_t>(rssItem)));
     m_rssToTreeItemMapping[rssItem] = item;
 
-    QIcon icon;
-    if (auto *feed = qobject_cast<RSS::Feed *>(rssItem))
-        icon = rssFeedIcon(feed);
-    else
-        icon = UIThemeManager::instance()->getIcon(u"directory"_s);
-    item->setData(0, Qt::DecorationRole, icon);
+    applyUITheme(item);
 
     connect(rssItem, &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
 

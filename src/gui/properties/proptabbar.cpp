@@ -101,6 +101,8 @@ PropTabBar::PropTabBar(QWidget *parent)
     // SIGNAL/SLOT
     connect(m_btnGroup, &QButtonGroup::idClicked
             , this, &PropTabBar::setCurrentIndex);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &PropTabBar::loadUIThemeResources);
+    loadUIThemeResources();
 }
 
 int PropTabBar::currentIndex() const
@@ -138,4 +140,16 @@ void PropTabBar::setCurrentIndex(int index)
     m_currentIndex = index;
     // Emit the signal
     emit tabChanged(index);
+}
+
+void PropTabBar::loadUIThemeResources()
+{
+#ifndef Q_OS_MACOS
+    m_btnGroup->button(MainTab)->setIcon(UIThemeManager::instance()->getIcon(u"help-about"_s, u"document-properties"_s));
+    m_btnGroup->button(TrackersTab)->setIcon(UIThemeManager::instance()->getIcon(u"trackers"_s, u"network-server"_s));
+    m_btnGroup->button(PeersTab)->setIcon(UIThemeManager::instance()->getIcon(u"peers"_s));
+    m_btnGroup->button(URLSeedsTab)->setIcon(UIThemeManager::instance()->getIcon(u"network-server"_s));
+    m_btnGroup->button(FilesTab)->setIcon(UIThemeManager::instance()->getIcon(u"directory"_s));
+    m_btnGroup->button(SpeedTab)->setIcon(UIThemeManager::instance()->getIcon(u"chart-line"_s));
+#endif
 }

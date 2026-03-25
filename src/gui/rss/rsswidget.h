@@ -90,6 +90,7 @@ private slots:
 
 private:
     bool eventFilter(QObject *obj, QEvent *event) override;
+    void loadUIThemeResources();
     void renderArticle(const RSS::Article *article) const;
 
     Ui::RSSWidget *m_ui = nullptr;

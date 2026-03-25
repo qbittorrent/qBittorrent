@@ -31,8 +31,6 @@
 #include "uithememanager.h"
 
 #include <QApplication>
-#include <QIconEngine>
-#include <QPainter>
 #include <QPalette>
 #include <QPixmapCache>
 #include <QResource>
@@ -55,45 +53,6 @@ namespace
         return (color.lightness() < 127);
     }
 }
-
-class UIThemeIconEngine final : public QIconEngine
-{
-public:
-    explicit UIThemeIconEngine(QString iconId, QString fallback)
-        : m_iconId {std::move(iconId)}
-        , m_fallback {std::move(fallback)}
-    {
-    }
-
-    void paint(QPainter *painter, const QRect &rect, QIcon::Mode mode, QIcon::State state) override
-    {
-        resolvedIcon().paint(painter, rect, Qt::AlignCenter, mode, state);
-    }
-
-    QPixmap pixmap(const QSize &size, QIcon::Mode mode, QIcon::State state) override
-    {
-        return resolvedIcon().pixmap(size, mode, state);
-    }
-
-    QIconEngine *clone() const override
-    {
-        return new UIThemeIconEngine(m_iconId, m_fallback);
-    }
-
-    QString key() const override
-    {
-        return u"UIThemeIconEngine"_s;
-    }
-
-private:
-    QIcon resolvedIcon() const
-    {
-        return UIThemeManager::instance()->loadIcon(m_iconId, m_fallback);
-    }
-
-    QString m_iconId;
-    QString m_fallback;
-};
 
 UIThemeManager *UIThemeManager::m_instance = nullptr;
 
@@ -153,14 +112,12 @@ ColorScheme UIThemeManager::colorScheme() const
     return m_colorSchemeSetting.get(ColorScheme::System);
 }
 
-void UIThemeManager::setColorScheme(const ColorScheme value, const bool apply)
+void UIThemeManager::setColorScheme(const ColorScheme value)
 {
     if (value == colorScheme())
         return;
 
     m_colorSchemeSetting = value;
-    if (apply)
-        applyColorScheme();
 }
 
 void UIThemeManager::applyColorScheme() const
@@ -218,14 +175,6 @@ void UIThemeManager::clearIconCaches()
     QPixmapCache::clear();
 }
 
-void UIThemeManager::notifyThemeChanged()
-{
-    emit themeChanged();
-
-    // Work around styled widgets that need their style reapplied after theme changes.
-    QApplication::setStyle(QApplication::style()->name());
-}
-
 void UIThemeManager::unregisterThemeResource()
 {
     if (!m_registeredResourcePath.isEmpty())
@@ -256,16 +205,25 @@ void UIThemeManager::applyStyleSheet() const
 
 void UIThemeManager::onColorSchemeChanged()
 {
+    if (m_useCustomTheme)
+    {
+        applyPalette();
+        applyStyleSheet();
+    }
+    else
+    {
+        qApp->setPalette(QApplication::style()->standardPalette());
+        qApp->setStyleSheet({});
+    }
+
     clearIconCaches();
-    notifyThemeChanged();
+    emit themeChanged();
+
+    // Work around styled widgets that need their style reapplied after theme changes.
+    QApplication::setStyle(QApplication::style()->name());
 }
 
-QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
-{
-    return QIcon(new UIThemeIconEngine(iconId, fallback));
-}
-
-QIcon UIThemeManager::loadIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
+QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
 {
     const auto colorMode = isDarkTheme() ? ColorMode::Dark : ColorMode::Light;
     auto &icons = (colorMode == ColorMode::Dark) ? m_darkModeIcons : m_icons;
@@ -362,7 +320,10 @@ void UIThemeManager::applyThemeSettings()
     }
 
     clearIconCaches();
-    notifyThemeChanged();
+    emit themeChanged();
+
+    // Work around styled widgets that need their style reapplied after theme changes.
+    QApplication::setStyle(QApplication::style()->name());
 }
 
 void UIThemeManager::applyPalette() const

@@ -67,6 +67,8 @@ private slots:
     void handleItemAboutToBeRemoved(RSS::Item *rssItem);
 
 private:
+    void loadUIThemeResources();
+    void applyUITheme(QTreeWidgetItem *item);
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     QTreeWidgetItem *createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem = nullptr);

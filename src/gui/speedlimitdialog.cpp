@@ -59,15 +59,8 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
-    const auto applyUITheme = [this]
-    {
-        m_ui->labelGlobalSpeedIcon->setPixmap(
-                UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
-        m_ui->labelAltGlobalSpeedIcon->setPixmap(
-                UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
-    };
     applyUITheme();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, applyUITheme);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &SpeedLimitDialog::applyUITheme);
 
     const auto initSlider = [](QSlider *slider, const int value, const int maximum)
     {
@@ -124,6 +117,14 @@ SpeedLimitDialog::~SpeedLimitDialog()
 {
     m_storeDialogSize = size();
     delete m_ui;
+}
+
+void SpeedLimitDialog::applyUITheme()
+{
+    m_ui->labelGlobalSpeedIcon->setPixmap(
+            UIThemeManager::instance()->getScaledPixmap(u"slow_off"_s, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelAltGlobalSpeedIcon->setPixmap(
+            UIThemeManager::instance()->getScaledPixmap(u"slow"_s, Utils::Gui::mediumIconSize(this).height()));
 }
 
 void SpeedLimitDialog::accept()

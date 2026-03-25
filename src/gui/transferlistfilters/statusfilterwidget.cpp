@@ -90,6 +90,7 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     update(torrents);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
             , this, &StatusFilterWidget::update);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &StatusFilterWidget::loadUIThemeResources);
 
     const Preferences *const pref = Preferences::instance();
     connect(pref, &Preferences::changed, this, &StatusFilterWidget::configure);
@@ -120,6 +121,24 @@ QSize StatusFilterWidget::sizeHint() const
         sizeHintForColumn(0),
         // Height should be exactly the height of the content
         static_cast<int>((sizeHintForRow(0) + 2 * spacing()) * (numVisibleItems + 0.5))};
+}
+
+void StatusFilterWidget::loadUIThemeResources()
+{
+    item(TorrentFilter::All)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-all"_s, u"filterall"_s));
+    item(TorrentFilter::Downloading)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"downloading"_s));
+    item(TorrentFilter::Seeding)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"upload"_s, u"uploading"_s));
+    item(TorrentFilter::Completed)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"checked-completed"_s, u"completed"_s));
+    item(TorrentFilter::Running)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s));
+    item(TorrentFilter::Stopped)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stopped"_s, u"media-playback-pause"_s));
+    item(TorrentFilter::Active)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-active"_s, u"filteractive"_s));
+    item(TorrentFilter::Inactive)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-inactive"_s, u"filterinactive"_s));
+    item(TorrentFilter::Stalled)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-stalled"_s, u"filterstalled"_s));
+    item(TorrentFilter::StalledUploading)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledUP"_s));
+    item(TorrentFilter::StalledDownloading)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledDL"_s));
+    item(TorrentFilter::Checking)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"force-recheck"_s, u"checking"_s));
+    item(TorrentFilter::Moving)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"set-location"_s));
+    item(TorrentFilter::Errored)->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_s));
 }
 
 void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)

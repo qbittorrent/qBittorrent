@@ -60,6 +60,7 @@ private slots:
     void optionsSaved();
 
 private:
+    void loadUIThemeResources();
     void updateConnectionStatus();
     void updateDHTNodesNumber();
     void updateFreeDiskSpaceLabel(qint64 value);
