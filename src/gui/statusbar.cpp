@@ -43,15 +43,6 @@
 
 namespace
 {
-#ifdef Q_OS_MACOS
-    void applySeparatorPalette(QWidget *separator, const QWidget *parent)
-    {
-        QPalette palette = separator->palette();
-        palette.setColor(QPalette::Window, parent->palette().color(QPalette::Mid));
-        separator->setPalette(palette);
-    }
-#endif
-
     QString statusBarStyleSheet()
     {
         QString styleSheet = u"QStatusBar > QWidget { margin: 0; }"_s;
@@ -65,14 +56,9 @@ namespace
 
     QWidget *createSeparator(QWidget *parent)
     {
-#ifdef Q_OS_MACOS
-        auto *separator = new QWidget(parent);
-        separator->setAutoFillBackground(true);
-        separator->setFixedWidth(1);
-        applySeparatorPalette(separator, parent);
-#else
         auto *separator = new QFrame(parent);
-        separator->setFrameStyle(QFrame::VLine);
+        separator->setFrameShape(QFrame::VLine);
+#ifndef Q_OS_MACOS
         separator->setFrameShadow(QFrame::Raised);
 #endif
         return separator;
@@ -120,25 +106,16 @@ StatusBar::StatusBar(QWidget *parent)
     m_freeDiskSpaceLbl = new QLabel(tr("Free space: N/A"));
     m_freeDiskSpaceLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_freeDiskSpaceSeparator = createSeparator(this);
-#ifdef Q_OS_MACOS
-    m_separators << m_freeDiskSpaceSeparator;
-#endif
 
     m_lastExternalIPsLbl = new QLabel(tr("External IP: N/A"));
     m_lastExternalIPsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_lastExternalIPsSeparator = createSeparator(this);
-#ifdef Q_OS_MACOS
-    m_separators << m_lastExternalIPsSeparator;
-#endif
 
     const bool isDHTVisible = session->isDHTEnabled();
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_DHTLbl->setVisible(isDHTVisible);
     m_DHTSeparator = createSeparator(this);
-#ifdef Q_OS_MACOS
-    m_separators << m_DHTSeparator;
-#endif
     m_DHTSeparator->setVisible(isDHTVisible);
 
     m_altSpeedsBtn = new QPushButton(this);
@@ -166,21 +143,12 @@ StatusBar::StatusBar(QWidget *parent)
     addPermanentWidget(m_DHTSeparator);
     addPermanentWidget(m_connecStatusLblIcon);
     auto *separator = createSeparator(this);
-#ifdef Q_OS_MACOS
-    m_separators << separator;
-#endif
     addPermanentWidget(separator);
     addPermanentWidget(m_altSpeedsBtn);
     separator = createSeparator(this);
-#ifdef Q_OS_MACOS
-    m_separators << separator;
-#endif
     addPermanentWidget(separator);
     addPermanentWidget(m_dlSpeedLbl);
     separator = createSeparator(this);
-#ifdef Q_OS_MACOS
-    m_separators << separator;
-#endif
     addPermanentWidget(separator);
     addPermanentWidget(m_upSpeedLbl);
 
@@ -203,16 +171,13 @@ void StatusBar::loadUIThemeResources()
     setStyleSheet({});
     setStyleSheet(statusBarStyleSheet());
 
-#ifdef Q_OS_MACOS
-    for (auto *separator : m_separators)
-        applySeparatorPalette(separator, this);
-#else
     for (auto *separator : findChildren<QFrame *>())
     {
         separator->setFrameShape(QFrame::VLine);
+#ifndef Q_OS_MACOS
         separator->setFrameShadow(QFrame::Raised);
-    }
 #endif
+    }
 
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
