@@ -43,6 +43,15 @@
 
 namespace
 {
+#ifdef Q_OS_MACOS
+    void applySeparatorPalette(QWidget *separator, const QWidget *parent)
+    {
+        QPalette palette = separator->palette();
+        palette.setColor(QPalette::Window, parent->palette().color(QPalette::Mid));
+        separator->setPalette(palette);
+    }
+#endif
+
     QString statusBarStyleSheet()
     {
         QString styleSheet = u"QStatusBar > QWidget { margin: 0; }"_s;
@@ -56,9 +65,15 @@ namespace
 
     QWidget *createSeparator(QWidget *parent)
     {
+#ifdef Q_OS_MACOS
+        auto *separator = new QWidget(parent);
+        separator->setProperty("statusBarSeparator", true);
+        separator->setAutoFillBackground(true);
+        separator->setFixedWidth(1);
+        applySeparatorPalette(separator, parent);
+#else
         auto *separator = new QFrame(parent);
         separator->setFrameStyle(QFrame::VLine);
-#ifndef Q_OS_MACOS
         separator->setFrameShadow(QFrame::Raised);
 #endif
         return separator;
@@ -168,13 +183,19 @@ void StatusBar::loadUIThemeResources()
     setStyleSheet({});
     setStyleSheet(statusBarStyleSheet());
 
+#ifdef Q_OS_MACOS
+    for (auto *separator : findChildren<QWidget *>(QString(), Qt::FindDirectChildrenOnly))
+    {
+        if (separator->property("statusBarSeparator").toBool())
+            applySeparatorPalette(separator, this);
+    }
+#else
     for (auto *separator : findChildren<QFrame *>())
     {
         separator->setFrameShape(QFrame::VLine);
-#ifndef Q_OS_MACOS
         separator->setFrameShadow(QFrame::Raised);
-#endif
     }
+#endif
 
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));

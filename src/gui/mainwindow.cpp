@@ -48,6 +48,7 @@
 #include <QMessageBox>
 #include <QMetaObject>
 #include <QMimeData>
+#include <QPalette>
 #include <QProcess>
 #include <QPushButton>
 #include <QShortcut>
@@ -125,6 +126,15 @@ namespace
     const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.exe"_s;
     const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("c887e19e66e66e6961c444283dafaa33");
     const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("b5d83ec914dcb0c3892a521d0cbd96bf9bcb267bdee36ea4ee48a54c53fabd0aea98531eda81d1c1db31be8830f7b94430e0c838f5c2f2f8999a273f2833e450");
+#endif
+
+#ifdef Q_OS_MACOS
+    void applySeparatorPalette(QWidget *separator, const QWidget *parent)
+    {
+        QPalette palette = separator->palette();
+        palette.setColor(QPalette::Window, parent->palette().color(QPalette::Mid));
+        separator->setPalette(palette);
+    }
 #endif
 }
 
@@ -268,10 +278,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
             auto *line = new QWidget(this);
             line->setAutoFillBackground(true);
             line->setFixedWidth(1);
-
-            QPalette pal = line->palette();
-            pal.setColor(QPalette::Window, palette().color(QPalette::Mid));
-            line->setPalette(pal);
+            line->setProperty("toolbarSeparator", true);
+            applySeparatorPalette(line, m_ui->toolBar);
 
             QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
             m_ui->toolBar->removeAction(action);
@@ -537,6 +545,13 @@ void MainWindow::loadUIThemeResources()
             m_tabs->setTabIcon(m_tabs->indexOf(m_rssWidget), UIThemeManager::instance()->getIcon(u"application-rss"_s));
         if (m_executionLog)
             m_tabs->setTabIcon(m_tabs->indexOf(m_executionLog), UIThemeManager::instance()->getIcon(u"help-contents"_s));
+    }
+#else
+    for (QAction *action : asConst(m_ui->toolBar->actions()))
+    {
+        QWidget *widget = m_ui->toolBar->widgetForAction(action);
+        if (widget && widget->property("toolbarSeparator").toBool())
+            applySeparatorPalette(widget, m_ui->toolBar);
     }
 #endif
 }
