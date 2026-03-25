@@ -83,6 +83,7 @@ private:
     void loadThemeSource();
     void clearIconCaches();
     void unregisterThemeResource();
+    void applyCurrentTheme();
     void applyStyle() const;
     void applyPalette() const;
     void applyStyleSheet() const;

@@ -203,7 +203,7 @@ void UIThemeManager::applyStyleSheet() const
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
 }
 
-void UIThemeManager::onColorSchemeChanged()
+void UIThemeManager::applyCurrentTheme()
 {
     if (m_useCustomTheme)
     {
@@ -221,6 +221,11 @@ void UIThemeManager::onColorSchemeChanged()
 
     // Work around styled widgets that need their style reapplied after theme changes.
     QApplication::setStyle(QApplication::style()->name());
+}
+
+void UIThemeManager::onColorSchemeChanged()
+{
+    applyCurrentTheme();
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
@@ -307,23 +312,7 @@ void UIThemeManager::applyThemeSettings()
 #endif
 
     loadThemeSource();
-
-    if (m_useCustomTheme)
-    {
-        applyPalette();
-        applyStyleSheet();
-    }
-    else
-    {
-        qApp->setPalette(QApplication::style()->standardPalette());
-        qApp->setStyleSheet({});
-    }
-
-    clearIconCaches();
-    emit themeChanged();
-
-    // Work around styled widgets that need their style reapplied after theme changes.
-    QApplication::setStyle(QApplication::style()->name());
+    applyCurrentTheme();
 }
 
 void UIThemeManager::applyPalette() const
