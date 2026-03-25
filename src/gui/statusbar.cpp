@@ -55,11 +55,7 @@ namespace
     QString statusBarStyleSheet()
     {
         QString styleSheet = u"QStatusBar > QWidget { margin: 0; }"_s;
-#ifndef Q_OS_MACOS
-        // Redefining global stylesheet breaks certain elements on mac like tabs.
-        // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
         styleSheet += u"QStatusBar::item { border-width: 0; }";
-#endif
         return styleSheet;
     }
 
