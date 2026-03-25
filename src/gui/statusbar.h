@@ -28,6 +28,7 @@
 
 #pragma once
 
+#include <QList>
 #include <QStatusBar>
 
 class QLabel;
@@ -81,4 +82,7 @@ private:
     QPushButton *m_altSpeedsBtn = nullptr;
     QLabel *m_restartIconLbl = nullptr;
     QLabel *m_restartLbl = nullptr;
+#ifdef Q_OS_MACOS
+    QList<QWidget *> m_separators;
+#endif
 };

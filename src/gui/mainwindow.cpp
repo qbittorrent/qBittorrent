@@ -278,8 +278,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
             auto *line = new QWidget(this);
             line->setAutoFillBackground(true);
             line->setFixedWidth(1);
-            line->setProperty("toolbarSeparator", true);
             applySeparatorPalette(line, m_ui->toolBar);
+            m_toolBarSeparators << line;
 
             QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
             m_ui->toolBar->removeAction(action);
@@ -547,12 +547,8 @@ void MainWindow::loadUIThemeResources()
             m_tabs->setTabIcon(m_tabs->indexOf(m_executionLog), UIThemeManager::instance()->getIcon(u"help-contents"_s));
     }
 #else
-    for (QAction *action : asConst(m_ui->toolBar->actions()))
-    {
-        QWidget *widget = m_ui->toolBar->widgetForAction(action);
-        if (widget && widget->property("toolbarSeparator").toBool())
-            applySeparatorPalette(widget, m_ui->toolBar);
-    }
+    for (auto *separator : m_toolBarSeparators)
+        applySeparatorPalette(separator, m_ui->toolBar);
 #endif
 }
 

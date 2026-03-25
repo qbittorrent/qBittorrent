@@ -67,7 +67,6 @@ namespace
     {
 #ifdef Q_OS_MACOS
         auto *separator = new QWidget(parent);
-        separator->setProperty("statusBarSeparator", true);
         separator->setAutoFillBackground(true);
         separator->setFixedWidth(1);
         applySeparatorPalette(separator, parent);
@@ -121,16 +120,25 @@ StatusBar::StatusBar(QWidget *parent)
     m_freeDiskSpaceLbl = new QLabel(tr("Free space: N/A"));
     m_freeDiskSpaceLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_freeDiskSpaceSeparator = createSeparator(this);
+#ifdef Q_OS_MACOS
+    m_separators << m_freeDiskSpaceSeparator;
+#endif
 
     m_lastExternalIPsLbl = new QLabel(tr("External IP: N/A"));
     m_lastExternalIPsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_lastExternalIPsSeparator = createSeparator(this);
+#ifdef Q_OS_MACOS
+    m_separators << m_lastExternalIPsSeparator;
+#endif
 
     const bool isDHTVisible = session->isDHTEnabled();
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
     m_DHTLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_DHTLbl->setVisible(isDHTVisible);
     m_DHTSeparator = createSeparator(this);
+#ifdef Q_OS_MACOS
+    m_separators << m_DHTSeparator;
+#endif
     m_DHTSeparator->setVisible(isDHTVisible);
 
     m_altSpeedsBtn = new QPushButton(this);
@@ -157,11 +165,23 @@ StatusBar::StatusBar(QWidget *parent)
     addPermanentWidget(m_DHTLbl);
     addPermanentWidget(m_DHTSeparator);
     addPermanentWidget(m_connecStatusLblIcon);
-    addPermanentWidget(createSeparator(this));
+    auto *separator = createSeparator(this);
+#ifdef Q_OS_MACOS
+    m_separators << separator;
+#endif
+    addPermanentWidget(separator);
     addPermanentWidget(m_altSpeedsBtn);
-    addPermanentWidget(createSeparator(this));
+    separator = createSeparator(this);
+#ifdef Q_OS_MACOS
+    m_separators << separator;
+#endif
+    addPermanentWidget(separator);
     addPermanentWidget(m_dlSpeedLbl);
-    addPermanentWidget(createSeparator(this));
+    separator = createSeparator(this);
+#ifdef Q_OS_MACOS
+    m_separators << separator;
+#endif
+    addPermanentWidget(separator);
     addPermanentWidget(m_upSpeedLbl);
 
     updateExternalAddressesVisibility();
@@ -184,11 +204,8 @@ void StatusBar::loadUIThemeResources()
     setStyleSheet(statusBarStyleSheet());
 
 #ifdef Q_OS_MACOS
-    for (auto *separator : findChildren<QWidget *>(QString(), Qt::FindDirectChildrenOnly))
-    {
-        if (separator->property("statusBarSeparator").toBool())
-            applySeparatorPalette(separator, this);
-    }
+    for (auto *separator : m_separators)
+        applySeparatorPalette(separator, this);
 #else
     for (auto *separator : findChildren<QFrame *>())
     {

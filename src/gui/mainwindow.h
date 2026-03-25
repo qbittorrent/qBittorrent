@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QList>
 #include <QMainWindow>
 #include <QPointer>
 
@@ -265,5 +266,6 @@ private:
 #ifdef Q_OS_MACOS
     std::unique_ptr<MacUtils::Badger> m_badger;
     std::unique_ptr<MacUtils::StatusItem> m_statusItem;
+    QList<QWidget *> m_toolBarSeparators;
 #endif
 };
