@@ -43,6 +43,17 @@
 
 namespace
 {
+    QString statusBarStyleSheet()
+    {
+        QString styleSheet = u"QStatusBar > QWidget { margin: 0; }"_s;
+#ifndef Q_OS_MACOS
+        // Redefining global stylesheet breaks certain elements on mac like tabs.
+        // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
+        styleSheet += u"QStatusBar::item { border-width: 0; }";
+#endif
+        return styleSheet;
+    }
+
     QWidget *createSeparator(QWidget *parent)
     {
         auto *separator = new QFrame(parent);
@@ -73,13 +84,7 @@ namespace
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
-    QString styleSheet = u"QStatusBar > QWidget { margin: 0; }"_s;
-#ifndef Q_OS_MACOS
-    // Redefining global stylesheet breaks certain elements on mac like tabs.
-    // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
-    styleSheet += u"QStatusBar::item { border-width: 0; }";
-#endif
-    setStyleSheet(styleSheet);
+    setStyleSheet(statusBarStyleSheet());
 
     const auto *session = BitTorrent::Session::instance();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
@@ -159,6 +164,10 @@ StatusBar::StatusBar(QWidget *parent)
 
 void StatusBar::loadUIThemeResources()
 {
+    // Reapply the local stylesheet so it picks up the current theme palette.
+    setStyleSheet({});
+    setStyleSheet(statusBarStyleSheet());
+
     m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_s, u"downloading_small"_s));
     m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_s, u"seeding"_s));
     updateConnectionStatus();
