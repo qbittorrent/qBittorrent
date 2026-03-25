@@ -350,11 +350,6 @@ void Private::FileComboEdit::setValidator(QValidator *validator)
     lineEdit()->setValidator(validator);
 }
 
-void Private::FileComboEdit::applyUITheme()
-{
-    static_cast<FileLineEdit *>(lineEdit())->applyUITheme();
-}
-
 Path Private::FileComboEdit::placeholder() const
 {
     return Path(lineEdit()->placeholderText());
