@@ -145,7 +145,6 @@ private:
 #ifndef DISABLE_WEBUI
     void loadWebUITabOptions();
     void saveWebUITabOptions() const;
-    void updateWebUIHttpsStatus();
     void updateWebUIHttpsStatusIcons();
 #endif // DISABLE_WEBUI
     void loadUIThemeResources();
@@ -221,7 +220,5 @@ private:
 
 #ifndef DISABLE_WEBUI
     QString m_currentAPIKey;
-    bool m_webUIHttpsCertValid = false;
-    bool m_webUIHttpsKeyValid = false;
 #endif
 };

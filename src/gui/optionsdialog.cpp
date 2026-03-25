@@ -1418,7 +1418,7 @@ void OptionsDialog::loadWebUITabOptions()
     m_ui->checkWebUIHttps->setChecked(pref->isWebUIHttpsEnabled());
     m_ui->textWebUIHttpsCert->setSelectedPath(pref->getWebUIHttpsCertificatePath());
     m_ui->textWebUIHttpsKey->setSelectedPath(pref->getWebUIHttpsKeyPath());
-    updateWebUIHttpsStatus();
+    updateWebUIHttpsStatusIcons();
     m_ui->textWebUIUsername->setText(pref->getWebUIUsername());
 
     // API Key
@@ -1462,9 +1462,9 @@ void OptionsDialog::loadWebUITabOptions()
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUIHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatus);
+    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatus);
+    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::updateWebUIHttpsStatusIcons);
 
     connect(m_ui->textWebUIUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -2143,22 +2143,18 @@ Path OptionsDialog::getFilter() const
 }
 
 #ifndef DISABLE_WEBUI
-void OptionsDialog::updateWebUIHttpsStatus()
-{
-    const auto certReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsCert->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
-    m_webUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(certReadResult.value_or(QByteArray()));
-
-    const auto keyReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsKey->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
-    m_webUIHttpsKeyValid = !Utils::SSLKey::load(keyReadResult.value_or(QByteArray())).isNull();
-    updateWebUIHttpsStatusIcons();
-}
-
 void OptionsDialog::updateWebUIHttpsStatusIcons()
 {
+    const auto certReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsCert->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
+    const bool isWebUIHttpsCertValid = Utils::Net::isSSLCertificatesValid(certReadResult.value_or(QByteArray()));
+
+    const auto keyReadResult = Utils::IO::readFile(m_ui->textWebUIHttpsKey->selectedPath(), Utils::Net::MAX_SSL_FILE_SIZE);
+    const bool isWebUIHttpsKeyValid = !Utils::SSLKey::load(keyReadResult.value_or(QByteArray())).isNull();
+
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (m_webUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
+        (isWebUIHttpsCertValid ? u"security-high"_s : u"security-low"_s), 24));
     m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (m_webUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
+        (isWebUIHttpsKeyValid ? u"security-high"_s : u"security-low"_s), 24));
 }
 
 bool OptionsDialog::isWebUIEnabled() const
