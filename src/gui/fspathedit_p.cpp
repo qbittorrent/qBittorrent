@@ -208,8 +208,6 @@ void Private::FileLineEdit::applyUITheme()
 
     const auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
     Q_ASSERT(validator);
-    if (!validator) [[unlikely]]
-        return;
 
     const QValidator::State lastState = validator->lastValidationState();
     if (lastState == QValidator::Invalid)

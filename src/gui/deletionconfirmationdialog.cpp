@@ -48,6 +48,7 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
     else
         m_ui->label->setText(tr("Are you sure you want to remove these %1 torrents from the transfer list?", "Are you sure you want to remove these 5 torrents from the transfer list?").arg(QString::number(size)));
 
+    // Icons
     const QSize iconSize = Utils::Gui::largeIconSize();
     m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s).pixmap(iconSize));
     m_ui->labelWarning->setFixedWidth(iconSize.width());
