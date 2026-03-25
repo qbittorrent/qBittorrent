@@ -175,6 +175,7 @@ jobs:
           mkdir upload/qBittorrent
           # binaries
           copy build/qbittorrent.exe upload/qBittorrent
+          copy build/qbittorrent.pdb upload/qBittorrent
           copy dist/windows/qt.conf upload/qBittorrent
           # runtimes
           copy "${{ env.Qt_ROOT_DIR }}/bin/Qt6Core.dll" upload/qBittorrent
