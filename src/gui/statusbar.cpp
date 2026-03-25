@@ -90,9 +90,9 @@ StatusBar::StatusBar(QWidget *parent)
 
 #ifdef Q_OS_MACOS
     m_statusWidget = new QWidget(this);
-    auto *statusLayout = new QHBoxLayout(m_statusWidget);
-    statusLayout->setContentsMargins(0, 0, 0, 0);
-    statusLayout->setSpacing(0);
+    m_statusLayout = new QHBoxLayout(m_statusWidget);
+    m_statusLayout->setContentsMargins(0, 0, 0, 0);
+    m_statusLayout->setSpacing(0);
     QWidget *const widgetParent = m_statusWidget;
 #else
     QWidget *const widgetParent = this;
@@ -145,19 +145,19 @@ StatusBar::StatusBar(QWidget *parent)
     m_altSpeedsBtn->setIconSize({midIconSize.width(), smallIconSize.height()});
 
 #ifdef Q_OS_MACOS
-    statusLayout->addWidget(m_freeDiskSpaceLbl);
-    statusLayout->addWidget(m_freeDiskSpaceSeparator);
-    statusLayout->addWidget(m_lastExternalIPsLbl);
-    statusLayout->addWidget(m_lastExternalIPsSeparator);
-    statusLayout->addWidget(m_DHTLbl);
-    statusLayout->addWidget(m_DHTSeparator);
-    statusLayout->addWidget(m_connecStatusLblIcon);
-    statusLayout->addWidget(createSeparator(widgetParent));
-    statusLayout->addWidget(m_altSpeedsBtn);
-    statusLayout->addWidget(createSeparator(widgetParent));
-    statusLayout->addWidget(m_dlSpeedLbl);
-    statusLayout->addWidget(createSeparator(widgetParent));
-    statusLayout->addWidget(m_upSpeedLbl);
+    m_statusLayout->addWidget(m_freeDiskSpaceLbl);
+    m_statusLayout->addWidget(m_freeDiskSpaceSeparator);
+    m_statusLayout->addWidget(m_lastExternalIPsLbl);
+    m_statusLayout->addWidget(m_lastExternalIPsSeparator);
+    m_statusLayout->addWidget(m_DHTLbl);
+    m_statusLayout->addWidget(m_DHTSeparator);
+    m_statusLayout->addWidget(m_connecStatusLblIcon);
+    m_statusLayout->addWidget(createSeparator(widgetParent));
+    m_statusLayout->addWidget(m_altSpeedsBtn);
+    m_statusLayout->addWidget(createSeparator(widgetParent));
+    m_statusLayout->addWidget(m_dlSpeedLbl);
+    m_statusLayout->addWidget(createSeparator(widgetParent));
+    m_statusLayout->addWidget(m_upSpeedLbl);
     addPermanentWidget(m_statusWidget);
 #else
     addPermanentWidget(m_freeDiskSpaceLbl);
@@ -207,16 +207,28 @@ void StatusBar::showRestartRequired()
 
     if (!m_restartIconLbl)
     {
+#ifdef Q_OS_MACOS
+        Q_ASSERT(m_statusLayout);
+        m_restartIconLbl = new QLabel(m_statusWidget);
+        m_statusLayout->insertWidget(0, m_restartIconLbl);
+#else
         m_restartIconLbl = new QLabel(this);
         insertWidget(0, m_restartIconLbl);
+#endif
     }
     m_restartIconLbl->setPixmap(restartRequiredPixmap(this));
     m_restartIconLbl->setToolTip(restartText);
 
     if (!m_restartLbl)
     {
+#ifdef Q_OS_MACOS
+        Q_ASSERT(m_statusLayout);
+        m_restartLbl = new QLabel(m_statusWidget);
+        m_statusLayout->insertWidget(1, m_restartLbl);
+#else
         m_restartLbl = new QLabel(this);
         insertWidget(1, m_restartLbl);
+#endif
     }
     m_restartLbl->setText(restartText);
 }

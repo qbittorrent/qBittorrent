@@ -30,6 +30,7 @@
 
 #include <QStatusBar>
 
+class QHBoxLayout;
 class QLabel;
 class QPushButton;
 
@@ -82,6 +83,7 @@ private:
     QLabel *m_restartIconLbl = nullptr;
     QLabel *m_restartLbl = nullptr;
 #ifdef Q_OS_MACOS
+    QHBoxLayout *m_statusLayout = nullptr;
     QWidget *m_statusWidget = nullptr;
 #endif
 };
