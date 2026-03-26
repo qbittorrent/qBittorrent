@@ -39,6 +39,7 @@ target_sources(qbt_app PRIVATE
     cmdoptions.h
     filelogger.h
     legalnotice.h
+    pch.h
     qtlocalpeer/qtlocalpeer.h
     signalhandler.h
     upgrade.h

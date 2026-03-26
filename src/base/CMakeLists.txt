@@ -85,6 +85,7 @@ add_library(qbt_base STATIC
     orderedset.h
     path.h
     pathfwd.h
+    pch.h
     preferences.h
     profile.h
     profile_p.h

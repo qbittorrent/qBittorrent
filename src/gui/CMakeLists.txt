@@ -70,6 +70,7 @@ add_library(qbt_gui STATIC
     log/logmodel.h
     mainwindow.h
     optionsdialog.h
+    pch.h
     powermanagement/inhibitor.h
     powermanagement/powermanagement.h
     previewlistdelegate.h
