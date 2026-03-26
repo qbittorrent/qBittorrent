@@ -273,12 +273,12 @@ QString PeerInfo::connectionType() const
 
 qreal PeerInfo::calcRelevance(const QBitArray &allPieces) const
 {
-    const int localMissing = allPieces.count(false);
+    const qsizetype localMissing = allPieces.count(false);
     if (localMissing <= 0)
         return 0;
 
     const QBitArray peerPieces = pieces();
-    const int remoteHaves = (peerPieces & (~allPieces)).count(true);
+    const qsizetype remoteHaves = (peerPieces & (~allPieces)).count(true);
     return static_cast<qreal>(remoteHaves) / localMissing;
 }
 

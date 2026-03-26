@@ -28,6 +28,8 @@
 
 #include "logfiltermodel.h"
 
+#include <QtVersionChecks>
+
 #include "logmodel.h"
 
 LogFilterModel::LogFilterModel(const Log::MsgTypes types, QObject *parent)
@@ -38,8 +40,14 @@ LogFilterModel::LogFilterModel(const Log::MsgTypes types, QObject *parent)
 
 void LogFilterModel::setMessageTypes(const Log::MsgTypes types)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_types = types;
+    endFilterChange(Direction::Rows);
+#else
     m_types = types;
     invalidateRowsFilter();
+#endif
 }
 
 bool LogFilterModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const

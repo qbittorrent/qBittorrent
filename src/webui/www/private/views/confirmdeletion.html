@@ -58,13 +58,10 @@
         // Set current "Delete files" choice as the default
         rememberButton.addEventListener("click", (e) => {
             window.qBittorrent.Cache.preferences.set({
-                data: {
-                    delete_torrent_content_files: deleteCB.checked
-                },
-                onSuccess: () => {
-                    prefDeleteContentFiles = deleteCB.checked;
-                    setRememberBtnEnabled(false);
-                }
+                delete_torrent_content_files: deleteCB.checked
+            }).then(() => {
+                prefDeleteContentFiles = deleteCB.checked;
+                setRememberBtnEnabled(false);
             });
         });
 

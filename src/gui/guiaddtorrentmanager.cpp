@@ -176,7 +176,7 @@ void GUIAddTorrentManager::onMetadataDownloaded(const BitTorrent::TorrentInfo &m
     if (!metadata.isValid()) [[unlikely]]
         return;
 
-    for (const auto &[infoHash, dialog] : m_dialogs.asKeyValueRange())
+    for (const auto &[infoHash, dialog] : asConst(m_dialogs).asKeyValueRange())
     {
         if (metadata.matchesInfoHash(infoHash))
             dialog->updateMetadata(metadata);

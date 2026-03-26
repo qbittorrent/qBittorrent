@@ -5,13 +5,13 @@ Tabs.css for Mocha UI
 Theme: Default
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+    Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
 
 License:
-	MIT-style license.
+    MIT-style license.
 
 Required by:
-	Tabs.js
+    Tabs.js
 
 */
 
@@ -23,13 +23,16 @@ Required by:
 }
 
 .tab-menu {
+    display: flex;
     font-size: 11px;
     list-style-type: none;
+    overflow-x: auto;
     padding: 0;
 }
 
 .tab-menu li {
     cursor: pointer;
+    flex: 0 0 auto;
     float: left;
 }
 

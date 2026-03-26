@@ -43,8 +43,26 @@ namespace
     }
 }
 
-ReverseResolution::ReverseResolution(QObject *parent)
-    : QObject(parent)
+ReverseResolution *ReverseResolution::m_instance = nullptr;
+
+void ReverseResolution::initInstance()
+{
+    if (!m_instance)
+        m_instance = new ReverseResolution;
+}
+
+void ReverseResolution::freeInstance()
+{
+    delete m_instance;
+    m_instance = nullptr;
+}
+
+ReverseResolution *ReverseResolution::instance()
+{
+    return m_instance;
+}
+
+ReverseResolution::ReverseResolution()
 {
     m_cache.setMaxCost(CACHE_SIZE);
 }
@@ -56,18 +74,16 @@ ReverseResolution::~ReverseResolution()
         QHostInfo::abortHostLookup(iter.key());
 }
 
-void ReverseResolution::resolve(const QHostAddress &ip)
+QString ReverseResolution::resolve(const QHostAddress &ip)
 {
     const QString *hostname = m_cache.object(ip);
     if (hostname)
-    {
-        emit ipResolved(ip, *hostname);
-        return;
-    }
+        return *hostname;
 
     // do reverse lookup: IP -> hostname
     const int lookupId = QHostInfo::lookupHost(ip.toString(), this, &ReverseResolution::hostResolved);
     m_lookups.insert(lookupId, ip);
+    return {};
 }
 
 void ReverseResolution::hostResolved(const QHostInfo &host)

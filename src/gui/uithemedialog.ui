@@ -73,6 +73,21 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
+            <widget class="QLabel" name="colorsWarningLabel">
+             <property name="text">
+              <string>Note that some custom colors may not be applied in some desktop environments.</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+             <property name="font">
+              <font>
+               <italic>true</italic>
+              </font>
+             </property>
+            </widget>
+           </item>
+           <item>
             <layout class="QGridLayout" name="colorsLayout" columnstretch="1,0,0,0,0" columnminimumwidth="0,15,0,15,0">
              <item row="0" column="0">
               <widget class="QLabel" name="colorIDLabel">

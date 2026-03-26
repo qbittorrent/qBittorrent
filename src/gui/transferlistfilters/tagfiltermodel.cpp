@@ -294,14 +294,14 @@ void TagFilterModel::populate()
     // All torrents
     addToModel(Tag(), torrents.count());
 
-    const int untaggedCount = std::count_if(torrents.cbegin(), torrents.cend()
-            , [](Torrent *torrent) { return torrent->tags().isEmpty(); });
+    const int untaggedCount = std::ranges::count_if(torrents
+            , [](const Torrent *torrent) { return torrent->tags().isEmpty(); });
     addToModel(Tag(), untaggedCount);
 
     for (const Tag &tag : asConst(session->tags()))
     {
-        const int count = std::count_if(torrents.cbegin(), torrents.cend()
-                , [tag](Torrent *torrent) { return torrent->hasTag(tag); });
+        const int count = std::ranges::count_if(torrents
+                , [&tag](const Torrent *torrent) { return torrent->hasTag(tag); });
         addToModel(tag, count);
     }
 }
@@ -322,7 +322,7 @@ int TagFilterModel::findRow(const Tag &tag) const
     if (!tag.isValid())
         return -1;
 
-    for (int i = 0; i < m_tagItems.size(); ++i)
+    for (qsizetype i = 0; i < m_tagItems.size(); ++i)
     {
         if (m_tagItems[i].tag() == tag)
             return i;

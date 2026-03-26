@@ -5,13 +5,13 @@ Window.css for Mocha UI
 Theme: Default
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+    Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
 
 License:
-	MIT-style license.
+    MIT-style license.
 
 Required by:
-	Window.js and Modal.css
+    Window.js and Modal.css
 
 */
 
@@ -20,6 +20,8 @@ Required by:
 
 .mocha {
     background-color: var(--color-background-default);
+    border-radius: 5px;
+    box-shadow: rgb(51 51 51) 0 1px 5px;
     display: none;
     overflow: hidden;
 }
@@ -35,12 +37,12 @@ Required by:
 
 /*
 
-	We get a little creative here in order to define a gradient in the CSS using a query
-	string appended to a background image.
+    We get a little creative here in order to define a gradient in the CSS using a query
+    string appended to a background image.
 
-	"from" is the top color of the gradient. "to" is the bottom color of the gradient.
+    "from" is the top color of the gradient. "to" is the bottom color of the gradient.
 
-	Both must be hex values without the leading # sign.
+    Both must be hex values without the leading # sign.
 
 */
 
@@ -123,51 +125,62 @@ div.mochaToolbarWrapper.bottom {
     width: 20px;
 }
 
-.mochaCanvasHeader {
-    left: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    visibility: hidden;
-    z-index: -1;
-}
-
 .mochaControls {
     height: 14px;
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: 6px;
+    top: 6px;
     width: 52px;
     z-index: 4;
 }
 
-.mochaCanvasControls {
-    position: absolute;
-    right: 8px;
-    top: 8px;
-    z-index: 3;
-}
-
 /*
-	To use images for these buttons:
-	1. Set the useCanvasControls window option to false.
-	2. If you use a different button size you may need to reposition the controls.
-	   Modify the controlsOffset window option.
-	2. Replcac the background-color with a background-image for each button.
+    To use images for these buttons:
+    1. Set the useCanvasControls window option to false.
+    2. If you use a different button size you may need to reposition the controls.
+       Modify the controlsOffset window option.
+    2. Replcac the background-color with a background-image for each button.
 
 */
 .mochaMinimizeButton,
 .mochaMaximizeButton,
 .mochaCloseButton {
-    background-color: var(--color-background-default);
-    color: var(--color-text-default);
     cursor: pointer;
     float: right;
-    font-size: 1px;
     height: 14px;
     margin-left: 5px;
+    position: relative;
     width: 14px;
     z-index: 4;
+}
+
+.mochaMaximizeButton::before,
+.mochaMaximizeButton::after,
+.mochaMinimizeButton::before,
+.mochaCloseButton::before,
+.mochaCloseButton::after {
+    background-color: var(--color-text-default);
+    border-radius: 1px;
+    content: "";
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 9px;
+}
+
+.mochaMaximizeButton::after {
+    height: 9px;
+    width: 2px;
+}
+
+.mochaCloseButton::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.mochaCloseButton::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .mochaMinimizeButton {
@@ -175,9 +188,19 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaSpinner {
-    background: url("../images/spinner.gif") no-repeat;
+    background: url("../images/spinner.svg") no-repeat;
     bottom: 7px;
     display: none;
+    height: 16px;
+    left: 6px;
+    position: absolute;
+    width: 16px;
+}
+
+.mochaErrorIcon {
+    background: url("../images/error.svg") no-repeat;
+    background-size: 16px;
+    bottom: 7px;
     height: 16px;
     left: 6px;
     position: absolute;
@@ -240,16 +263,6 @@ div.mochaToolbarWrapper.bottom {
     position: absolute;
 }
 
-/* The replaced class is used internally when converting CSS values to Canvas. These classes should not be removed. */
-
-.mocha.replaced,
-.mochaTitlebar.replaced,
-.mochaMinimizeButton.replaced,
-.mochaMaximizeButton.replaced,
-.mochaCloseButton.replaced {
-    background-color: transparent !important;
-}
-
 .windowClosed {
     display: none;
     left: -20000px;
@@ -263,8 +276,7 @@ div.mochaToolbarWrapper.bottom {
 .windowClosed .mochaContentBorder,
 .windowClosed .mochaToolbarWrapper,
 .windowClosed .mochaTitlebar,
-.windowClosed .mochaControls,
-.windowClosed .mochaCanvasControls {
+.windowClosed .mochaControls {
     display: none;
     left: 0;
     position: absolute;
@@ -322,32 +334,6 @@ div.mochaToolbarWrapper.bottom {
     text-align: center;
 }
 
-/* Example Window Themes */
-
-#about_contentWrapper {
-    background: #e5e5e5 url("../images/logo2.gif") 3px 3px no-repeat;
-}
-
-#builder_contentWrapper {
-    background: #f5f5f7;
-}
-
-#json01 .mochaTitlebar {
-    background: #6dd2db;
-}
-
-#json02 .mochaTitlebar {
-    background: #6db6db;
-}
-
-#json03 .mochaTitlebar {
-    background: #6d92db;
-}
-
-.jsonExample .mochaTitlebar h3 {
-    color: #dddddd;
-}
-
 /* This does not work in IE6. */
 .isFocused.jsonExample .mochaTitlebar h3 {
     color: #ffffff;
@@ -359,14 +345,6 @@ div.mochaToolbarWrapper.bottom {
 
 #clock {
     background: #ffffff;
-}
-
-/* Workaround to make invisible buttons clickable */
-
-.mochaMinimizeButton.replaced,
-.mochaMaximizeButton.replaced,
-.mochaCloseButton.replaced {
-    background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") !important;
 }
 
 /* iOS iframe scrolling */

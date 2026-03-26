@@ -267,7 +267,7 @@ TrackerListModel::TrackerListModel(BitTorrent::Session *btSession, QObject *pare
         if (torrent == m_torrent)
             onTrackersRemoved(deletedTrackers);
     });
-    connect(m_btSession, &BitTorrent::Session::trackersChanged, this
+    connect(m_btSession, &BitTorrent::Session::trackersReset, this
             , [this](BitTorrent::Torrent *torrent)
     {
         if (torrent == m_torrent)
@@ -741,7 +741,7 @@ void TrackerListModel::onTrackersChanged()
         trackerItemIDs.insert(m_items->at(i)->name);
 
     QList<std::shared_ptr<Item>> newTrackerItems;
-    for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : m_torrent->trackers())
+    for (const BitTorrent::TrackerEntryStatus &trackerEntryStatus : asConst(m_torrent->trackers()))
     {
         trackerItemIDs.insert(trackerEntryStatus.url);
 

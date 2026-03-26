@@ -12,6 +12,17 @@
     padding: 2px;
 }
 
+:root.compact .dynamicTable td {
+    padding-bottom: 4px;
+    padding-top: 4px;
+}
+
+:root.compact #torrentFilesTableDiv .dynamicTable td,
+:root.compact #bulkRenameFilesTableDiv .dynamicTable td {
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
 .dynamicTableDiv table.dynamicTable tbody tr.selected {
     background-color: var(--color-background-blue);
     color: var(--color-text-white);
@@ -158,13 +169,6 @@ div:has(> div.dynamicTableFixedHeaderDiv):not(.invisible) {
 .dynamicTableDiv {
     flex-grow: 1;
     overflow: auto;
-}
-
-.dynamicTableDiv thead th {
-    height: 0 !important;
-    line-height: 0 !important;
-    padding-bottom: 0 !important;
-    padding-top: 0 !important;
 }
 
 /* Trackers table */

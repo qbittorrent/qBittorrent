@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
+ * Copyright (C) 2018  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -114,8 +114,8 @@ void SearchController::startAction()
 
     const auto id = generateSearchId();
     const std::shared_ptr<SearchHandler> searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
-    QObject::connect(searchHandler.get(), &SearchHandler::searchFinished, this, [id, this]() { m_activeSearches.remove(id); });
-    QObject::connect(searchHandler.get(), &SearchHandler::searchFailed, this, [id, this]() { m_activeSearches.remove(id); });
+    connect(searchHandler.get(), &SearchHandler::searchFinished, this, [this, id] { m_activeSearches.remove(id); });
+    connect(searchHandler.get(), &SearchHandler::searchFailed, this, [this, id]([[maybe_unused]] const QString &errorMessage) { m_activeSearches.remove(id); });
 
     m_searchHandlers.insert(id, searchHandler);
 
@@ -184,7 +184,7 @@ void SearchController::resultsAction()
 
     const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
     const QList<SearchResult> searchResults = searchHandler->results();
-    const int size = searchResults.size();
+    const qsizetype size = searchResults.size();
 
     if (offset > size)
         throw APIError(APIErrorType::Conflict, tr("Offset is out of range"));
@@ -235,8 +235,8 @@ void SearchController::downloadTorrentAction()
     else
     {
         SearchDownloadHandler *downloadHandler = SearchPluginManager::instance()->downloadTorrent(pluginName, torrentUrl);
-        connect(downloadHandler, &SearchDownloadHandler::downloadFinished
-                , this, [this, downloadHandler](const QString &source)
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this
+            , [this, downloadHandler](const QString &source, [[maybe_unused]] const QString &errorMessage)
         {
             app()->addTorrentManager()->addTorrent(source);
             downloadHandler->deleteLater();

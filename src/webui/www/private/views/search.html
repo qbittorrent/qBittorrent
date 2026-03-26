@@ -1,6 +1,6 @@
 <style>
     #searchPattern {
-        width: 300px;
+        width: 180px;
         background-image: url("images/edit-find.svg");
         background-repeat: no-repeat;
         background-size: 1.5em;
@@ -70,6 +70,25 @@
         margin: 0 5px -3px 0;
     }
 
+    #searchResultsHeader {
+        height: 60px;
+        overflow: hidden;
+    }
+
+    #searchResultsHeaderContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-top: 4px;
+        height: 24px;
+    }
+
+    @media (min-width: 760px) {
+        #searchPattern {
+            width: 300px;
+        }
+    }
+
     @media (min-width: 1060px) {
         #searchResultsGranularFilters {
             display: inline-block;
@@ -82,13 +101,17 @@
         #searchPattern {
             width: 500px;
         }
+
+        #searchResultsHeaderContainer {
+            margin: 20px 0 10px 0;
+        }
     }
 
 </style>
 
 <div id="searchResults">
-    <div style="overflow: hidden; height: 60px;">
-        <div style="display: flex; flex-wrap: wrap; gap: 5px; margin: 20px 0 10px 0; height: 24px;">
+    <div id="searchResultsHeader">
+        <div id="searchResultsHeaderContainer">
             <input type="search" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" aria-label="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" oninput="qBittorrent.Search.onSearchPatternChanged()">
             <select id="categorySelect" class="searchInputField" aria-label="QBT_TR(Select category)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.categorySelected()"></select>
             <select id="pluginsSelect" class="searchInputField" aria-label="QBT_TR(Select plugins)QBT_TR[CONTEXT=SearchEngineWidget]" onchange="qBittorrent.Search.pluginSelected()"></select>
@@ -187,9 +210,6 @@
         </div>
         <div id="searchResultsTableDiv" class="dynamicTableDiv">
             <table class="dynamicTable unselectable">
-                <thead>
-                    <tr class="dynamicTableHeader"></tr>
-                </thead>
                 <tbody></tbody>
             </table>
         </div>
@@ -203,6 +223,7 @@
 </div>
 
 <ul id="searchResultsTableMenu" class="contextMenu">
+    <li><a href="#OpenDownloadWindow"><img src="images/download.svg" alt="QBT_TR(Open download window)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Open download window)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
     <li><a href="#Download"><img src="images/downloading.svg" alt="QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Download)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
     <li class="separator"><a href="#OpenDescriptionUrl"><img src="images/application-url.svg" alt="QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]"> QBT_TR(Open description page)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
     <li>
@@ -215,6 +236,9 @@
     </li>
 </ul>
 <ul id="searchResultsTabsMenu" class="contextMenu">
-    <li><a href="#closeTab">QBT_TR(Close tab)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
-    <li><a href="#closeAllTabs">QBT_TR(Close all tabs)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li><a href="#stopSearch"><img src="images/torrent-stop.svg" alt="QBT_TR(Stop search)QBT_TR[CONTEXT=SearchJobWidget]">QBT_TR(Stop search)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li><a href="#refreshTab"><img src="images/view-refresh.svg" alt="QBT_TR(Refresh tab)QBT_TR[CONTEXT=SearchJobWidget]">QBT_TR(Refresh tab)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li><a href="#useSearchText"><img src="images/edit-copy.svg" alt="QBT_TR(Use as search text)QBT_TR[CONTEXT=SearchJobWidget]">QBT_TR(Use as search text)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li class="separator"><a href="#closeTab"><img src="images/list-remove.svg" alt="QBT_TR(Close tab)QBT_TR[CONTEXT=SearchJobWidget]">QBT_TR(Close tab)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
+    <li><a href="#closeAllTabs"><img src="images/list-remove.svg" alt="QBT_TR(Close all tabs)QBT_TR[CONTEXT=SearchJobWidget]">QBT_TR(Close all tabs)QBT_TR[CONTEXT=SearchJobWidget]</a></li>
 </ul>

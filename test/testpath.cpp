@@ -287,6 +287,60 @@ private slots:
 #endif
     }
 
+    // Path &operator/=(const Path &other);
+    void testOperatorPathAppendAssign() const
+    {
+        QCOMPARE((Path() /= Path()), Path());
+        QCOMPARE((Path(u"a"_s) /= Path()), Path(u"a"_s));
+        QCOMPARE((Path() /= Path(u"b"_s)), Path(u"b"_s));
+        QCOMPARE((Path(u"a"_s) /= Path(u"b"_s)), Path(u"a/b"_s));
+
+#ifdef Q_OS_WIN
+        QCOMPARE((Path(u"c:/"_s) /= Path(u"/"_s)), Path(u"c:/"_s));
+        QCOMPARE((Path(u"c:/"_s) /= Path(u"a/"_s)), Path(u"c:/a"_s));
+#else
+        QCOMPARE((Path(u"/"_s) /= Path(u"/"_s)), Path(u"/"_s));
+        QCOMPARE((Path(u"/"_s) /= Path(u"a/"_s)), Path(u"/a"_s));
+#endif
+    }
+
+    // Path &operator+=(QStringView str);
+    void testOperatorAppendAssign() const
+    {
+        QCOMPARE((Path() += QString()), Path());
+        QCOMPARE((Path(u"a"_s) += QString()), Path(u"a"_s));
+        QCOMPARE((Path() += u"b"), Path(u"b"_s));
+        QCOMPARE((Path(u"a"_s) += u"b"), Path(u"ab"_s));
+        QCOMPARE((Path(u"a"_s) += u"/b/"), Path(u"a/b"_s));
+    }
+
+    // Path operator/(const Path &lhs, const Path &rhs)
+    void testOperatorPathConcat() const
+    {
+        QCOMPARE((Path() / Path()), Path());
+        QCOMPARE((Path(u"a"_s) / Path()), Path(u"a"_s));
+        QCOMPARE((Path() / Path(u"b"_s)), Path(u"b"_s));
+        QCOMPARE((Path(u"a"_s) / Path(u"b"_s)), Path(u"a/b"_s));
+
+#ifdef Q_OS_WIN
+        QCOMPARE((Path(u"c:/"_s) / Path(u"/"_s)), Path(u"c:/"_s));
+        QCOMPARE((Path(u"c:/"_s) / Path(u"a/"_s)), Path(u"c:/a"_s));
+#else
+        QCOMPARE((Path(u"/"_s) / Path(u"/"_s)), Path(u"/"_s));
+        QCOMPARE((Path(u"/"_s) / Path(u"a/"_s)), Path(u"/a"_s));
+#endif
+    }
+
+    // Path operator+(const Path &lhs, QStringView rhs);
+    void testOperatorAppend() const
+    {
+        QCOMPARE((Path() + QString()), Path());
+        QCOMPARE((Path(u"a"_s) + QString()), Path(u"a"_s));
+        QCOMPARE((Path() + u"b"), Path(u"b"_s));
+        QCOMPARE((Path(u"a"_s) + u"b"), Path(u"ab"_s));
+        QCOMPARE((Path(u"a"_s) + u"/b/"), Path(u"a/b"_s));
+    }
+
     // TODO: add tests for remaining methods
 };
 

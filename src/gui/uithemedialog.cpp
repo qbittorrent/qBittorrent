@@ -28,6 +28,7 @@
 
 #include "uithemedialog.h"
 
+#include <QtSystemDetection>
 #include <QColor>
 #include <QColorDialog>
 #include <QFileDialog>
@@ -233,6 +234,10 @@ UIThemeDialog::UIThemeDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+#if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
+    m_ui->colorsWarningLabel->hide();
+#endif
+
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
@@ -273,8 +278,6 @@ void UIThemeDialog::loadColors()
     int row = 2;
     for (const QString &id : colorIDs)
     {
-        if (id == u"Log.Normal")
-            qDebug() << "!!!!!!!";
         m_ui->colorsLayout->addWidget(new QLabel(id), row, 0);
 
         const UIThemeColor &defaultColor = defaultColors.value(id);

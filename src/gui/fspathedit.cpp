@@ -230,8 +230,8 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
     // QFileSystemModel applies name filters to directories too.
     // To use the filters we have to subclass QFileSystemModel and skip directories while filtering
     // extract file masks
-    const int openBracePos = val.indexOf(u'(');
-    const int closeBracePos = val.indexOf(u')', (openBracePos + 1));
+    const qsizetype openBracePos = val.indexOf(u'(');
+    const qsizetype closeBracePos = val.indexOf(u')', (openBracePos + 1));
     if ((openBracePos > 0) && (closeBracePos > 0) && (closeBracePos > openBracePos + 2))
     {
         const QString filterString = val.sliced((openBracePos + 1), (closeBracePos - openBracePos - 1));

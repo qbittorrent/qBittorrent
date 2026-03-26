@@ -82,7 +82,7 @@ namespace
             // User reports: `python --version` -> "Python 3.6.6+"
             // So trim off unrelated characters
             const auto versionStr = QString::fromLocal8Bit(outputSplit[1]);
-            const int idx = versionStr.indexOf(QRegularExpression(u"[^\\.\\d]"_s));
+            const qsizetype idx = versionStr.indexOf(QRegularExpression(u"[^\\.\\d]"_s));
             const auto version = PythonInfo::Version::fromString(versionStr.left(idx));
             if (!version.isValid())
                 return false;
@@ -167,7 +167,7 @@ namespace
             PathList versions = getRegSubkeys(hkPythonCore);
             // ordinary sort won't suffice, it needs to sort ["3.9", "3.10"] correctly
             const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> comparator;
-            std::sort(versions.begin(), versions.end(), [&comparator](const Path &left, const Path &right)
+            std::ranges::sort(versions, [&comparator](const Path &left, const Path &right)
             {
                 return comparator(left.data(), right.data());
             });

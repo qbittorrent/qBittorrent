@@ -29,18 +29,17 @@
 #pragma once
 
 #include "base/exceptions.h"
+#include "response.h"
 
 class HTTPError : public RuntimeError
 {
 public:
-    HTTPError(int statusCode, const QString &statusText, const QString &message = {});
+    HTTPError(Http::ResponseStatus responseStatus, const QString &message = {});
 
-    int statusCode() const;
-    QString statusText() const;
+    const Http::ResponseStatus &status() const;
 
 private:
-    int m_statusCode;
-    QString m_statusText;
+    Http::ResponseStatus m_responseStatus;
 };
 
 class BadRequestHTTPError : public HTTPError

@@ -48,13 +48,6 @@ namespace Utils::OS
 {
     void shutdownComputer(const ShutdownDialogAction &action);
 
-#ifdef Q_OS_MACOS
-    bool isTorrentFileAssocSet();
-    void setTorrentFileAssoc();
-    bool isMagnetLinkAssocSet();
-    void setMagnetLinkAssoc();
-#endif // Q_OS_MACOS
-
 #ifdef Q_OS_WIN
     Path windowsSystemPath();
 

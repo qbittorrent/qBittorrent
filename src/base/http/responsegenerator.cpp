@@ -31,7 +31,8 @@
 
 #include <QDateTime>
 
-#include "base/http/types.h"
+#include "base/http/constants.h"
+#include "base/http/response.h"
 #include "base/utils/gzip.h"
 
 QByteArray Http::toByteArray(Response response)
@@ -87,13 +88,14 @@ void Http::compressContent(Response &response)
     response.headers.remove(HEADER_CONTENT_ENCODING);
 
     // for very small files, compressing them only wastes cpu cycles
-    const int contentSize = response.content.size();
+    const qsizetype contentSize = response.content.size();
     if (contentSize <= 1024)  // 1 kb
         return;
 
     // filter out known hard-to-compress types
     const QString contentType = response.headers[HEADER_CONTENT_TYPE];
-    if ((contentType == CONTENT_TYPE_GIF) || (contentType == CONTENT_TYPE_PNG))
+    if ((contentType == CONTENT_TYPE_GIF) || (contentType == CONTENT_TYPE_JPEG)
+        || (contentType == CONTENT_TYPE_PNG) || (contentType == CONTENT_TYPE_WEBP))
         return;
 
     // try compressing

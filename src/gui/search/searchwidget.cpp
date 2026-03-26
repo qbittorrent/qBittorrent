@@ -138,6 +138,7 @@ namespace
         case SearchJobWidget::Status::Aborted:
             return u"task-reject"_s;
         case SearchJobWidget::Status::Error:
+            return u"error"_s;
         case SearchJobWidget::Status::NoResults:
             return u"dialog-warning"_s;
         default:
@@ -430,6 +431,14 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     const auto *focusSearchHotkeyAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), this);
     connect(focusSearchHotkeyAlternative, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 
+    const auto *closeTabHotkey = new QShortcut(QKeySequence::Close, this);
+    connect(closeTabHotkey, &QShortcut::activated, this, [this]()
+    {
+        const int currentIndex = m_ui->tabWidget->currentIndex();
+        if (currentIndex >= 0)
+            closeTab(currentIndex);
+    });
+
     m_historyLength = Preferences::instance()->searchHistoryLength();
     m_storeOpenedTabs = Preferences::instance()->storeOpenedSearchTabs();
     m_storeOpenedTabsResults = Preferences::instance()->storeOpenedSearchTabResults();
@@ -564,7 +573,7 @@ void SearchWidget::fillCatCombobox()
     const auto selectedPlugin = m_ui->selectPlugin->itemData(m_ui->selectPlugin->currentIndex()).toString();
     for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin)))
         tmpList << std::make_pair(SearchPluginManager::categoryFullName(cat), cat);
-    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
+    std::ranges::sort(tmpList, [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     for (const QStrPair &p : asConst(tmpList))
     {
@@ -587,7 +596,7 @@ void SearchWidget::fillPluginComboBox()
     QList<QStrPair> tmpList;
     for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
         tmpList << std::make_pair(SearchPluginManager::instance()->pluginFullName(name), name);
-    std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
+    std::ranges::sort(tmpList, [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     for (const QStrPair &p : asConst(tmpList))
         m_ui->selectPlugin->addItem(p.first, p.second);
@@ -827,11 +836,11 @@ void SearchWidget::showTabMenu(const int index)
     if (auto *searchJobWidget = static_cast<SearchJobWidget *>(m_ui->tabWidget->widget(index));
             searchJobWidget->status() != SearchJobWidget::Status::Ongoing)
     {
-        menu->addAction(tr("Refresh"), this, [this, searchJobWidget] { refreshTab(searchJobWidget); });
+        menu->addAction(tr("Refresh tab"), this, [this, searchJobWidget] { refreshTab(searchJobWidget); });
     }
     else
     {
-        menu->addAction(tr("Stop"), this, [searchJobWidget] { searchJobWidget->cancelSearch(); });
+        menu->addAction(tr("Stop search"), this, [searchJobWidget] { searchJobWidget->cancelSearch(); });
     }
 
     menu->addSeparator();

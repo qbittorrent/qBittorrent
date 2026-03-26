@@ -85,10 +85,12 @@ public slots:
     void bottomQueuePosSelectedTorrents();
     void copySelectedMagnetURIs() const;
     void copySelectedNames() const;
+    void copyContentPaths() const;
     void copySelectedInfohashes(CopyInfohashPolicy policy) const;
     void copySelectedIDs() const;
     void copySelectedComments() const;
-    void openSelectedTorrentsFolder() const;
+    void openSelectedTorrentsFolder();
+    void openDestinationFolder(const BitTorrent::Torrent *torrent);
     void recheckSelectedTorrents();
     void reannounceSelectedTorrents();
     void setTorrentOptions();
@@ -98,8 +100,8 @@ public slots:
     void applyStatusFilter(int filterIndex);
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const std::optional<Tag> &tag);
-    void applyTrackerFilterAll();
-    void applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
+    void applyTrackerFilter(const std::optional<QString> &trackerHost);
+    void applyAnnounceStatusFilter(const std::optional<BitTorrent::TorrentAnnounceStatus> &announceStatus);
     void previewFile(const Path &filePath);
     void renameSelectedTorrent();
 
@@ -110,7 +112,7 @@ private slots:
     void torrentDoubleClicked();
     void displayListMenu();
     void displayColumnHeaderMenu();
-    void currentChanged(const QModelIndex &current, const QModelIndex&) override;
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
     void setSelectedTorrentsSequentialDownload(bool enabled) const;
     void setSelectedFirstLastPiecePrio(bool enabled) const;

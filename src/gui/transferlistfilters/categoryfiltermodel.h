@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2016-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2016-2025  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -72,6 +72,5 @@ private:
     QModelIndex index(CategoryModelItem *item) const;
     CategoryModelItem *findItem(const QString &fullName) const;
 
-    bool m_isSubcategoriesEnabled = false;
     CategoryModelItem *m_rootItem = nullptr;
 };

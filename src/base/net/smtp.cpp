@@ -67,7 +67,7 @@ namespace
         // ascii characters 0x36 ("6") and 0x5c ("\") are selected because they have large
         // Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)
 
-        for (int i = 0; i < key.length(); ++i)
+        for (qsizetype i = 0; i < key.length(); ++i)
         {
             innerPadding[i] = innerPadding[i] ^ key.at(i); // XOR operation between every byte in key and innerpadding, of key length
             outerPadding[i] = outerPadding[i] ^ key.at(i); // XOR operation between every byte in key and outerpadding, of key length
@@ -92,7 +92,7 @@ namespace
 
     bool canEncodeAsLatin1(const QStringView string)
     {
-        return std::none_of(string.cbegin(), string.cend(), [](const QChar &ch)
+        return std::ranges::none_of(string, [](const QChar &ch)
         {
             return ch > QChar(0xff);
         });
@@ -148,7 +148,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     // Encode the body in base64
     QString crlfBody = body;
     const QByteArray b = crlfBody.replace(u"\n"_s, u"\r\n"_s).toUtf8().toBase64();
-    for (int i = 0, end = b.length(); i < end; i += 78)
+    for (qsizetype i = 0, end = b.length(); i < end; i += 78)
         m_message += b.mid(i, 78);
     m_from = from;
     m_rcpt = to;
@@ -187,7 +187,7 @@ void Smtp::readyRead()
     m_buffer += m_socket->readAll();
     while (true)
     {
-        const int pos = m_buffer.indexOf("\r\n");
+        const qsizetype pos = m_buffer.indexOf("\r\n");
         if (pos < 0) return; // Loop exit condition
         const QByteArray line = m_buffer.first(pos);
 #if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
@@ -347,7 +347,7 @@ QByteArray Smtp::encodeMimeHeader(const QString &key, const QString &value, cons
         const QByteArray utf8 = value.toUtf8();
         // Use base64 encoding
         const QByteArray base64 = utf8.toBase64();
-        const int ct = base64.length();
+        const qsizetype ct = base64.length();
         line += "=?utf-8?b?";
         for (int i = 0; i < ct; i += 4)
         {

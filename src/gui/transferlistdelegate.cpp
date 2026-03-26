@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,17 +31,12 @@
 
 #include <QModelIndex>
 
+#include "base/preferences.h"
 #include "transferlistmodel.h"
 
 TransferListDelegate::TransferListDelegate(QObject *parent)
-    : QStyledItemDelegate {parent}
+    : QStyledItemDelegate(parent)
 {
-}
-
-QWidget *TransferListDelegate::createEditor(QWidget *, const QStyleOptionViewItem &, const QModelIndex &) const
-{
-    // No editor here
-    return nullptr;
 }
 
 QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -90,7 +86,9 @@ void TransferListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &
             QStyleOptionViewItem customOption {option};
             customOption.state.setFlag(QStyle::State_Enabled, isEnableState(torrentState));
 
-            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress);
+            const QColor color = Preferences::instance()->getProgressBarFollowsTextColor() ? index.data(Qt::ForegroundRole).value<QColor>() : QColor();
+
+            m_progressBarPainter.paint(painter, customOption, index.data().toString(), progress, color);
         }
         break;
     default:

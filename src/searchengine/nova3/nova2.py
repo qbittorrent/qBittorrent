@@ -1,4 +1,4 @@
-# VERSION: 1.49
+# VERSION: 1.52
 
 # Author:
 #  Fabien Devaux <fab AT gnux DOT info>
@@ -6,8 +6,6 @@
 #  Christophe Dumez <chris@qbittorrent.org> (qbittorrent integration)
 #  Thanks to gab #gcu @ irc.freenode.net (multipage support on PirateBay)
 #  Thanks to Elias <gekko04@users.sourceforge.net> (torrentreactor and isohunt search engines)
-#
-# Licence: BSD
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -39,6 +37,7 @@ import sys
 import traceback
 import urllib.parse
 import xml.etree.ElementTree as ET
+from abc import ABC, abstractmethod
 from collections.abc import Iterable
 from enum import Enum
 from glob import glob
@@ -60,36 +59,48 @@ THREADED: bool = True
 try:
     MAX_THREADS: int = cpu_count()
 except NotImplementedError:
-    MAX_THREADS = 1
+    MAX_THREADS = 1  # pyright: ignore[reportConstantRedefinition]
 
 Category = Enum('Category', ['all', 'anime', 'books', 'games', 'movies', 'music', 'pictures', 'software', 'tv'])
-
-
-################################################################################
-# Every engine should have a "search" method taking
-# a space-free string as parameter (ex. "family+guy")
-# it should call prettyPrinter() with a dict as parameter.
-# The keys in the dict must be: link,name,size,seeds,leech,engine_url
-# As a convention, try to list results by decreasing number of seeds or similar
-################################################################################
-
 
 EngineModuleName = str  # the filename of the engine plugin
 
 
-class Engine:
-    url: str
+class Engine(ABC):
+    """
+    The base class for a search engine
+
+    An engine must implement a ``search()`` method taking a **space-free** string
+    as argument (for example ``family+guy``)
+
+    If the site requires special handling for downloading .torrent files, then a
+    customized ``download_torrent()`` method must be implemented. For example:
+    .. code-block:: python
+
+        def download_torrent(self, url: str) -> None:
+            print(helpers.download_file(url))
+
+    """
+
     name: str
+    url: str
     supported_categories: dict[str, str]
 
-    def __init__(self) -> None:
-        pass
+    @abstractmethod
+    def search(self, query: str, category: str = Category.all.name) -> None:
+        """
+        Run the search query
 
-    def search(self, what: str, cat: str = Category.all.name) -> None:
-        pass
+        Usually it would call ``novaprinter.prettyPrinter()`` with a ``dict`` as an argument
+        (or actually ``novaprinter.SearchResults``).
+        Refer to ``novaprinter.SearchResults`` for the keys.
 
-    def download_torrent(self, info: str) -> None:
-        pass
+        When printing the search results, it is recommended to list the results by decreasing
+        number of seeds, or some other criteria that is sensible to the end user.
+        """
+
+        #novaprinter.prettyPrinter()
+        raise NotImplementedError
 
 
 # global state
@@ -97,13 +108,15 @@ engine_dict: dict[EngineModuleName, Optional[type[Engine]]] = {}
 
 
 def list_engines() -> list[EngineModuleName]:
-    """ List all engines,
-        including broken engines that would fail on import
+    """
+    List all engines
 
-        Return list of all engines' module name
+    Including broken engines that might fail on import.
+
+    :return: A list of all engines' module name
     """
 
-    names = []
+    names: list[EngineModuleName] = []
 
     for engine_path in glob(path.join(path.dirname(__file__), 'engines', '*.py')):
         engine_module_name = path.basename(engine_path).split('.')[0].strip()
@@ -134,13 +147,18 @@ def import_engine(engine_module_name: EngineModuleName) -> Optional[type[Engine]
 def get_capabilities(engines: Iterable[EngineModuleName]) -> str:
     """
     Return capabilities in XML format
-    <capabilities>
-      <engine_module_name>
-        <name>long name</name>
-        <url>http://example.com</url>
-        <categories>movies music games</categories>
-      </engine_module_name>
-    </capabilities>
+
+    For example:
+    .. code-block:: xml
+
+        <capabilities>
+          <engine_module_name>
+            <name>long name</name>
+            <url>http://example.com</url>
+            <categories>movies music games</categories>
+          </engine_module_name>
+        </capabilities>
+
     """
 
     capabilities_element = ET.Element('capabilities')
@@ -167,12 +185,11 @@ def get_capabilities(engines: Iterable[EngineModuleName]) -> str:
 
 
 def run_search(search_params: tuple[type[Engine], str, Category]) -> bool:
-    """ Run search in engine
+    """
+    Run search in engine
 
-        @param search_params Tuple with engine, query and category
-
-        @retval False if any exceptions occurred
-        @retval True  otherwise
+    :param search_params: A tuple with engine, query and category.
+    :return: ``False`` if any exceptions occurred. ``True`` otherwise.
     """
 
     engine_class, what, cat = search_params

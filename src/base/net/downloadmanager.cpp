@@ -254,7 +254,7 @@ bool Net::DownloadManager::deleteCookie(const QNetworkCookie &cookie)
 bool Net::DownloadManager::hasSupportedScheme(const QString &url)
 {
     const QStringList schemes = QNetworkAccessManager().supportedSchemes();
-    return std::any_of(schemes.cbegin(), schemes.cend(), [&url](const QString &scheme)
+    return std::ranges::any_of(schemes, [&url](const QString &scheme)
     {
         return url.startsWith((scheme + u':'), Qt::CaseInsensitive);
     });

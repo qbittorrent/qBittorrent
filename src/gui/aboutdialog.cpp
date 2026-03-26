@@ -67,7 +67,7 @@ AboutDialog::AboutDialog(QWidget *parent)
         u"</p>"_s
         .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
                 .replace(u"C++"_s, u"C\u2060+\u2060+"_s) // make C++ non-breaking
-            , tr("Copyright %1 2006-2025 The qBittorrent project").arg(C_COPYRIGHT)
+            , tr("Copyright %1 2006-2026 The qBittorrent project").arg(C_COPYRIGHT)
             , tr("Home Page:")
             , tr("Forum:")
             , tr("Bug Tracker:"));
@@ -111,6 +111,8 @@ AboutDialog::AboutDialog(QWidget *parent)
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
+    else
+        adjustSize();
 }
 
 AboutDialog::~AboutDialog()

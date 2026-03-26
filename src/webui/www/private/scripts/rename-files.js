@@ -89,7 +89,7 @@ window.qBittorrent.MultiRename ??= (() => {
                         // Don't replace escape chars when they don't precede the current search being performed
                         if (input.substring(i + escape.length, i + escape.length + search.length) !== search) {
                             result += input[i];
-                            i++;
+                            ++i;
                             continue;
                         }
                         // Replace escape chars when they precede the current search being performed, unless explicitly told not to
@@ -110,7 +110,7 @@ window.qBittorrent.MultiRename ??= (() => {
                     }
                     else {
                         result += input[i];
-                        i++;
+                        ++i;
                     }
                 }
                 return result;
@@ -187,8 +187,7 @@ window.qBittorrent.MultiRename ??= (() => {
                     const match = matches[i];
                     let replacement = this.#inner_replacement;
                     // Replace numerical groups
-                    for (let g = 0; g < match.length; ++g) {
-                        const group = match[g];
+                    for (const [g, group] of match.entries()) {
                         if (!group)
                             continue;
                         replacement = replaceGroup(replacement, `$${g}`, group, "\\", false);

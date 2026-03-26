@@ -76,6 +76,7 @@
      <addaction name="actionAutoExit"/>
      <addaction name="actionAutoSuspend"/>
      <addaction name="actionAutoHibernate"/>
+     <addaction name="actionAutoReboot"/>
      <addaction name="actionAutoShutdown"/>
     </widget>
     <addaction name="actionCreateTorrent"/>
@@ -159,6 +160,8 @@
    <addaction name="actionIncreaseQueuePos"/>
    <addaction name="actionDecreaseQueuePos"/>
    <addaction name="actionBottomQueuePos"/>
+   <addaction name="separator"/>
+   <addaction name="actionCreateTorrent"/>
    <addaction name="separator"/>
    <addaction name="actionOptions"/>
    <addaction name="actionLock"/>
@@ -393,6 +396,14 @@
    </property>
    <property name="text">
     <string>Sh&amp;utdown System</string>
+   </property>
+  </action>
+  <action name="actionAutoReboot">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Reboot System</string>
    </property>
   </action>
   <action name="actionAutoShutdownDisabled">

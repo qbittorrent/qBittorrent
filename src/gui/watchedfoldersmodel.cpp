@@ -172,7 +172,7 @@ void WatchedFoldersModel::onFolderSet(const Path &path, const TorrentFilesWatche
 
 void WatchedFoldersModel::onFolderRemoved(const Path &path)
 {
-    const int row = m_watchedFolders.indexOf(path);
+    const qsizetype row = m_watchedFolders.indexOf(path);
     if (row >= 0)
         removeRows(row, 1);
 

@@ -19,10 +19,6 @@
         height: calc(100% - 135px);
     }
 
-    #searchPluginsTable .dynamicTable {
-        width: 100%;
-    }
-
     #searchPluginsTableDiv {
         height: calc(100% - 26px);
     }
@@ -50,9 +46,6 @@
         </div>
         <div id="searchPluginsTableDiv" class="dynamicTableDiv">
             <table class="dynamicTable unselectable">
-                <thead>
-                    <tr class="dynamicTableHeader"></tr>
-                </thead>
                 <tbody></tbody>
             </table>
         </div>
@@ -118,13 +111,13 @@
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Install plugin)QBT_TR[CONTEXT=PluginSourceDlg]",
                 loadMethod: "xhr",
-                contentURL: "views/installsearchplugin.html",
+                contentURL: "views/installsearchplugin.html?v=${CACHEID}",
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
-                width: 500,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(500),
                 height: 120
             });
         };
@@ -176,23 +169,16 @@
         };
 
         const updateTable = () => {
-            const oldPlugins = [...searchPluginsTable.getRowIds()];
             // remove old rows from the table
-            for (let i = 0; i < oldPlugins.length; ++i) {
-                let found = false;
-                for (let j = 0; j < window.qBittorrent.Search.searchPlugins.length; ++j) {
-                    if (window.qBittorrent.Search.searchPlugins[j].name === oldPlugins[i]) {
-                        found = true;
-                        break;
-                    }
-                }
+            for (const oldPlugin of searchPluginsTable.getRowIds()) {
+                const found = window.qBittorrent.Search.searchPlugins.some(plugin => (plugin.name === oldPlugin));
                 if (!found)
-                    searchPluginsTable.removeRow(oldPlugins[i]);
+                    searchPluginsTable.removeRow(oldPlugin);
             }
 
-            for (let i = 0; i < window.qBittorrent.Search.searchPlugins.length; ++i) {
-                window.qBittorrent.Search.searchPlugins[i].rowId = window.qBittorrent.Search.searchPlugins[i].name;
-                searchPluginsTable.updateRowData(window.qBittorrent.Search.searchPlugins[i]);
+            for (const plugin of window.qBittorrent.Search.searchPlugins) {
+                plugin.rowId = plugin.name;
+                searchPluginsTable.updateRowData(plugin);
             }
 
             searchPluginsTable.updateTable();

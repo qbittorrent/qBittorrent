@@ -110,6 +110,10 @@ private slots:
     void webUIHttpsCertChanged(const Path &path);
     void webUIHttpsKeyChanged(const Path &path);
     void on_registerDNSBtn_clicked();
+    void onBtnWebUIAPIKeyCopyClicked();
+    void onBtnWebUIAPIKeyRotateClicked();
+    void onBtnWebUIAPIKeyDeleteClicked();
+    void setupWebUIAPIKey();
 #endif
 
 private:
@@ -210,4 +214,8 @@ private:
     AdvancedSettings *m_advancedSettings = nullptr;
 
     bool m_refreshingIpFilter = false;
+
+#ifndef DISABLE_WEBUI
+    QString m_currentAPIKey;
+#endif
 };

@@ -100,12 +100,10 @@ void CookiesDialog::onButtonDeleteClicked()
     QModelIndexList idxs = m_ui->treeView->selectionModel()->selectedRows();
 
     // sort in descending order
-    std::sort(idxs.begin(), idxs.end(),
-        [](const QModelIndex &l, const QModelIndex &r)
-        {
-            return (l.row() > r.row());
-        }
-    );
+    std::ranges::sort(idxs, [](const QModelIndex &l, const QModelIndex &r)
+    {
+        return (l.row() > r.row());
+    });
 
     for (const QModelIndex &idx : asConst(idxs))
         m_cookiesModel->removeRow(idx.row());

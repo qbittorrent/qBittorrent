@@ -1,20 +1,45 @@
 <div id="BehaviorTab" class="PrefTab">
     <fieldset class="settings">
-        <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="locale_select">
-            ${LANGUAGE_OPTIONS}
-        </select>
+        <legend>QBT_TR(Localization)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="locale_select">QBT_TR(User interface language:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="locale_select">
+                            ${LANGUAGE_OPTIONS}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="dateFormatSelect">QBT_TR(Date format:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                    <td>
+                        <select id="dateFormatSelect">
+                            <option value="default" selected>QBT_TR(Browser default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </fieldset>
 
     <fieldset class="settings">
         <legend>QBT_TR(Interface)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="colorSchemeSelect">QBT_TR(Color scheme:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="colorSchemeSelect">
-            <option value="0">QBT_TR(Auto)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="1">QBT_TR(Light)QBT_TR[CONTEXT=OptionsDialog]</option>
-            <option value="2">QBT_TR(Dark)QBT_TR[CONTEXT=OptionsDialog]</option>
-        </select>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <label for="colorSchemeSelect">QBT_TR(Color scheme:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="colorSchemeSelect">
+                <option value="0">QBT_TR(Auto)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="1">QBT_TR(Light)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="2">QBT_TR(Dark)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
+        <div class="formRow">
+            <label for="displayDensitySelect">QBT_TR(Display density:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="displayDensitySelect">
+                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="compact">QBT_TR(Compact)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -45,6 +70,15 @@
                         <td>
                             <select id="dblclickCompleteSelect">
                                 <option value="1" selected>QBT_TR(Start / stop torrent)QBT_TR[CONTEXT=OptionsDialog]</option>
+                                <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="dblclickFiltersSelect">QBT_TR(Filters:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                        <td>
+                            <select id="dblclickFiltersSelect">
+                                <option value="1" selected>QBT_TR(Reset filter selection)QBT_TR[CONTEXT=OptionsDialog]</option>
                                 <option value="0">QBT_TR(No action)QBT_TR[CONTEXT=OptionsDialog]</option>
                             </select>
                         </td>
@@ -108,7 +142,7 @@
         </div>
         <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="useVirtualList">
-            <label for="useVirtualList">QBT_TR(Enable optimized table rendering (experimental))QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="useVirtualList">QBT_TR(Enable optimized table rendering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 </div>
@@ -221,10 +255,6 @@
             </tbody>
         </table>
         <div class="formRow">
-            <input type="checkbox" id="use_subcategories_checkbox">
-            <label for="use_subcategories_checkbox">QBT_TR(Use Subcategories)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
             <input type="checkbox" id="categoryPathsManualModeCheckbox" title="QBT_TR(Resolve relative Save Path against appropriate Category path instead of Default one)QBT_TR[CONTEXT=OptionsDialog]">
             <label for="categoryPathsManualModeCheckbox">QBT_TR(Use Category paths in Manual Mode)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -302,7 +332,7 @@
                         <label for="src_email_txt">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="src_email_txt">
+                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com">
                     </td>
                 </tr>
                 <tr>
@@ -318,7 +348,7 @@
                         <label for="smtp_server_txt">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="smtp_server_txt">
+                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465">
                     </td>
                 </tr>
             </tbody>
@@ -346,7 +376,7 @@
                             <label for="mail_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="password" id="mail_password_text">
+                            <input type="password" id="mail_password_text" autocomplete="new-password">
                         </td>
                     </tr>
                 </tbody>
@@ -536,7 +566,7 @@
                             <label for="peer_proxy_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <input type="password" id="peer_proxy_password_text">
+                            <input type="password" id="peer_proxy_password_text" autocomplete="new-password">
                         </td>
                     </tr>
                 </tbody>
@@ -958,26 +988,60 @@
 
         <fieldset class="settings">
             <legend>QBT_TR(Authentication)QBT_TR[CONTEXT=OptionsDialog]</legend>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <label for="webui_username_text">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                        </td>
-                        <td>
-                            <input type="text" id="webui_username_text">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="webui_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                        </td>
-                        <td>
-                            <input type="password" id="webui_password_text" placeholder="QBT_TR(Change current password)QBT_TR[CONTEXT=OptionsDialog]" autocomplete="new-password">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <fieldset class="settings">
+                <legend>QBT_TR(User)QBT_TR[CONTEXT=OptionsDialog]</legend>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="webui_username_text">QBT_TR(Username:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                            </td>
+                            <td>
+                                <input type="text" id="webui_username_text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="webui_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                            </td>
+                            <td>
+                                <input type="password" id="webui_password_text" placeholder="QBT_TR(Change current password)QBT_TR[CONTEXT=OptionsDialog]" autocomplete="new-password">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+            <fieldset class="settings">
+                <legend>QBT_TR(API Key)QBT_TR[CONTEXT=OptionsDialog]</legend>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label for="WebUIAPIKeyText">QBT_TR(Key:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                            </td>
+                            <td>
+                                <input type="text" disabled id="WebUIAPIKeyText" placeholder="QBT_TR(Generate a key)QBT_TR[CONTEXT=OptionsDialog]" style="width: 200px;">
+                            </td>
+                            <td>
+                                <button type="button" disabled id="webUIAPIKeyCopyButton" style="padding: 0;" aria-label="QBT_TR(Copy API key)QBT_TR[CONTEXT=OptionsDialog]">
+                                    <img class="copyImg" src="images/edit-copy.svg" alt="QBT_TR(Copy API key)QBT_TR[CONTEXT=OptionsDialog]" title="QBT_TR(Copy API key)QBT_TR[CONTEXT=OptionsDialog]" width="16" height="16" style="margin: 4px; top: 2px; position: relative;">
+                                    <img class="checkImg" src="images/checked-completed.svg" alt="QBT_TR(Copied)QBT_TR[CONTEXT=OptionsDialog]" title="QBT_TR(Copied)QBT_TR[CONTEXT=OptionsDialog]" width="16" height="16" style="margin: 4px; top: 2px; position: relative; display: none;">
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" id="webUIAPIKeyRotateButton" style="padding: 0;" data-has-key="false" aria-label="QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]">
+                                    <img src="images/force-recheck.svg" alt="QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]" title="QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]" width="16" height="16" style="margin: 4px; top: 2px; position: relative;">
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" disabled id="webUIAPIKeyDeleteButton" style="padding: 0;" data-has-key="false" aria-label="QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]">
+                                    <img src="images/list-remove.svg" alt="QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]" title="QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]" width="16" height="16" style="margin: 4px; top: 2px; position: relative;">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
             <div class="formRow">
                 <input type="checkbox" id="bypass_local_auth_checkbox">
                 <label for="bypass_local_auth_checkbox">QBT_TR(Bypass authentication for clients on localhost)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -1120,7 +1184,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="dyndns_password_text">QBT_TR(Password:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="password" id="dyndns_password_text">
+                        <input type="password" id="dyndns_password_text" autocomplete="new-password">
                     </td>
                 </tr>
             </tbody>
@@ -1226,7 +1290,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <label for="appInstanceName">QBT_TR(Customize application instance name:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="appInstanceName" style="width: 15em;" title="QBT_TR(It appends the text to the window title to help distinguish qBittorent instances)QBT_TR[CONTEXT=OptionsDialog]">
+                        <input type="text" id="appInstanceName" style="width: 15em;" title="QBT_TR(It appends the text to the window title to help distinguish qBittorrent instances)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -1235,6 +1299,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     </td>
                     <td>
                         <input type="text" id="refreshInterval" style="width: 15em;" title="QBT_TR(It controls the internal state update interval which in turn will affect UI updates)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(ms)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="resolvePeerHostNames">QBT_TR(Resolve peer host names:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="resolvePeerHostNames">
                     </td>
                 </tr>
                 <tr>
@@ -1522,10 +1594,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
-                        <label for="peerToS">QBT_TR(Type of service (ToS) for connections to peers)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_tos" target="_blank">(?)</a></label>
+                        <label for="peerDSCP">QBT_TR(Differentiated Services Code Point (DSCP) for connections to peers)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#peer_dscp" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="peerToS" style="width: 15em;">
+                        <input type="text" id="peerDSCP" style="width: 15em;">
                     </td>
                 </tr>
                 <tr>
@@ -1784,6 +1856,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateDynDnsSettings: updateDynDnsSettings,
                 updateWebuiLocaleSelect: updateWebuiLocaleSelect,
                 registerDynDns: registerDynDns,
+                rotateAPIKey: rotateAPIKey,
+                deleteAPIKey: deleteAPIKey,
                 applyPreferences: applyPreferences
             };
         };
@@ -1847,15 +1921,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             const pos = document.getElementById("watched_folders_tab").getChildren("tbody")[0].getChildren("tr").length;
             const myinput = `<input id='text_watch_${pos}' type='text' value='${folder}'>`;
             const disableInput = (sel !== "other");
-            const mycb = `<div class='select-watched-folder-editable'>`
+            const mycb = "<div class='select-watched-folder-editable'>"
                 + `<select id ='cb_watch_${pos}' onchange='qBittorrent.Preferences.changeWatchFolderSelect(this);'>`
-                + `<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>`
-                + `<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>`
-                + `<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]</option>`
-                + `</select>`
+                + "<option value='watch_folder'>QBT_TR(Monitored folder)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
+                + "<option value='default_folder'>QBT_TR(Default save location)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
+                + "<option value='other'>QBT_TR(Other...)QBT_TR[CONTEXT=ScanFoldersModel]</option>"
+                + "</select>"
                 + `<input id='cb_watch_txt_${pos}' type='text' ${disableInput ? "hidden " : ""}/>`
                 + `<img src='images/list-add.svg' id='addFolderImg_${pos}' alt='Add' style='padding-left:170px;width:16px;cursor:pointer;' onclick='qBittorrent.Preferences.addWatchFolder();'>`
-                + `</div>`;
+                + "</div>";
 
             watchedFoldersTable.push([myinput, mycb]);
             document.getElementById(`cb_watch_${pos}`).value = sel;
@@ -2118,9 +2192,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const generateRandomPort = () => {
-            const min = 1024;
-            const max = 65535;
-            const port = Math.floor(Math.random() * (max - min + 1) + min);
+            // don't use modulo operations to avoid 'modulo bias'
+            const buffer = new Uint16Array(1);
+            let port = crypto.getRandomValues(buffer)[0];
+            while (port < 1024)
+                port = crypto.getRandomValues(buffer)[0];
             document.getElementById("portValue").value = port;
         };
 
@@ -2133,7 +2209,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         // Advanced Tab
         const updateNetworkInterfaces = (default_iface, default_iface_name) => {
-            [...document.getElementById("networkInterface").children].forEach((el) => { el.remove(); });
+            for (const el of [...document.getElementById("networkInterface").children])
+                el.remove();
 
             fetch("api/v2/app/networkInterfaceList", {
                     method: "GET",
@@ -2154,15 +2231,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         ifaces.push({ name: default_iface_name || default_iface, value: default_iface });
 
                     document.getElementById("networkInterface").options.add(new Option("QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]", ""));
-                    ifaces.forEach((item, index) => {
+                    for (const item of ifaces)
                         document.getElementById("networkInterface").options.add(new Option(item.name, item.value));
-                    });
                     document.getElementById("networkInterface").value = default_iface;
                 });
         };
 
         const updateInterfaceAddresses = (iface, default_addr) => {
-            [...document.getElementById("optionalIPAddressToBind").children].forEach((el) => { el.remove(); });
+            for (const el of [...document.getElementById("optionalIPAddressToBind").children])
+                el.remove();
 
             const url = new URL("api/v2/app/networkInterfaceAddressList", window.location);
             url.search = new URLSearchParams({
@@ -2185,16 +2262,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]", ""));
                     document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]", "0.0.0.0"));
                     document.getElementById("optionalIPAddressToBind").options.add(new Option("QBT_TR(All IPv6 addresses)QBT_TR[CONTEXT=OptionDialog]", "::"));
-                    addresses.forEach((item, index) => {
+                    for (const item of addresses)
                         document.getElementById("optionalIPAddressToBind").options.add(new Option(item, item));
-                    });
                     document.getElementById("optionalIPAddressToBind").value = default_addr;
                 });
         };
 
         const updateWebuiLocaleSelect = (selected) => {
             const languages = [];
-            for (let i = 0; i < document.getElementById("locale_select").options.length; i++)
+            for (let i = 0; i < document.getElementById("locale_select").options.length; ++i)
                 languages.push(document.getElementById("locale_select").options[i].value);
 
             if (!languages.includes(selected)) {
@@ -2204,10 +2280,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("locale_select").value = selected;
         };
 
-        const updateColoSchemeSelect = () => {
+        const updateColoSchemeSelect = (colorScheme) => {
             const combobox = document.getElementById("colorSchemeSelect");
-            const colorScheme = LocalPreferences.get("color_scheme");
-
             if (colorScheme === "light")
                 combobox.options[1].selected = true;
             else if (colorScheme === "dark")
@@ -2217,21 +2291,47 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const loadPreferences = () => {
-            window.parent.qBittorrent.Cache.preferences.init({
-                onSuccess: (pref) => {
+            window.parent.qBittorrent.Cache.preferences.init()
+                .then((pref) => {
+                    const clientData = window.parent.qBittorrent.ClientData;
+                    const dateFormat = clientData.get("date_format");
+                    const colorScheme = clientData.get("color_scheme");
+                    const displayDensity = clientData.get("display_density") ?? "default";
+                    const fullUrlTrackerColumn = clientData.get("full_url_tracker_column");
+                    const useVirtualList = clientData.get("use_virtual_list") ?? true;
+                    const hideZeroStatusFilters = clientData.get("hide_zero_status_filters");
+                    const dblclickDownload = clientData.get("dblclick_download") ?? "1";
+                    const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
+                    const dblclickFilter = clientData.get("dblclick_filter") ?? "1";
+                    const useAltRowColors = clientData.get("use_alt_row_colors");
+
                     // Behavior tab
-                    // Language
+                    // Localization
                     updateWebuiLocaleSelect(pref.locale);
-                    updateColoSchemeSelect();
+                    const now = new Date();
+                    const dateFormatSelect = document.getElementById("dateFormatSelect");
+                    for (const format of Object.keys(window.qBittorrent.Misc.DateFormatOptions)) {
+                        const option = document.createElement("option");
+                        option.value = format;
+                        option.textContent = window.qBittorrent.Misc.formatDate(now, format);
+                        option.selected = format === dateFormat;
+                        dateFormatSelect.appendChild(option);
+                    }
+
+                    // Interface
+                    updateColoSchemeSelect(colorScheme);
+                    document.getElementById("displayDensitySelect").value = displayDensity;
+
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
-                    document.getElementById("displayFullURLTrackerColumn").checked = (LocalPreferences.get("full_url_tracker_column", "false") === "true");
-                    document.getElementById("useVirtualList").checked = (LocalPreferences.get("use_virtual_list", "false") === "true");
-                    document.getElementById("hideZeroFiltersCheckbox").checked = (LocalPreferences.get("hide_zero_status_filters", "false") === "true");
-                    document.getElementById("dblclickDownloadSelect").value = LocalPreferences.get("dblclick_download", "1");
-                    document.getElementById("dblclickCompleteSelect").value = LocalPreferences.get("dblclick_complete", "1");
+                    document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
+                    document.getElementById("useVirtualList").checked = useVirtualList === true;
+                    document.getElementById("hideZeroFiltersCheckbox").checked = hideZeroStatusFilters === true;
+                    document.getElementById("dblclickDownloadSelect").value = dblclickDownload;
+                    document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
+                    document.getElementById("dblclickFiltersSelect").value = dblclickFilter;
                     document.getElementById("confirmTorrentDeletion").checked = pref.confirm_torrent_deletion;
-                    document.getElementById("useAltRowColorsInput").checked = (LocalPreferences.get("use_alt_row_colors", "true") === "true");
+                    document.getElementById("useAltRowColorsInput").checked = useAltRowColors === true;
                     document.getElementById("filelog_checkbox").checked = pref.file_log_enabled;
                     document.getElementById("filelog_save_path_input").value = pref.file_log_path;
                     document.getElementById("filelog_backup_checkbox").checked = pref.file_log_backup_enabled;
@@ -2282,7 +2382,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("torrent_changed_tmm_combobox").value = pref.torrent_changed_tmm_enabled;
                     document.getElementById("save_path_changed_tmm_combobox").value = pref.save_path_changed_tmm_enabled;
                     document.getElementById("category_changed_tmm_combobox").value = pref.category_changed_tmm_enabled;
-                    document.getElementById("use_subcategories_checkbox").checked = pref.use_subcategories;
                     document.getElementById("categoryPathsManualModeCheckbox").checked = pref.use_category_paths_in_manual_mode;
                     document.getElementById("savepath_text").value = pref.save_path;
                     document.getElementById("temppath_checkbox").checked = pref.temp_path_enabled;
@@ -2480,7 +2579,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     let maxRatioAct = 0;
                     switch (Number(pref.max_ratio_act)) {
                         case 0: // Stop
-                        default:
                             maxRatioAct = 0;
                             break;
                         case 1: // Remove
@@ -2535,6 +2633,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("webUIBanDurationInput").value = Number(pref.web_ui_ban_duration);
                     document.getElementById("webUISessionTimeoutInput").value = Number(pref.web_ui_session_timeout);
 
+                    // API key
+                    if (pref.web_ui_api_key.length > 0) {
+                        document.getElementById("WebUIAPIKeyText").value = maskAPIKey(pref.web_ui_api_key);
+                        document.getElementById("WebUIAPIKeyText").dataset.apiKey = pref.web_ui_api_key;
+                        document.getElementById("webUIAPIKeyCopyButton").disabled = false;
+                        document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "true";
+                        document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                        document.getElementById("webUIAPIKeyDeleteButton").disabled = false;
+                    }
+
                     // Use alternative WebUI
                     document.getElementById("use_alt_webui_checkbox").checked = pref.alternative_webui_enabled;
                     document.getElementById("webui_files_location_textarea").value = pref.alternative_webui_path;
@@ -2579,6 +2687,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("recheckTorrentsOnCompletion").checked = pref.recheck_completed_torrents;
                     document.getElementById("appInstanceName").value = pref.app_instance_name;
                     document.getElementById("refreshInterval").value = pref.refresh_interval;
+                    document.getElementById("resolvePeerHostNames").checked = pref.resolve_peer_host_names;
                     document.getElementById("resolvePeerCountries").checked = pref.resolve_peer_countries;
                     document.getElementById("reannounceWhenAddressChanged").checked = pref.reannounce_when_address_changed;
                     document.getElementById("enableEmbeddedTracker").checked = pref.enable_embedded_tracker;
@@ -2613,7 +2722,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("outgoingPortsMin").value = pref.outgoing_ports_min;
                     document.getElementById("outgoingPortsMax").value = pref.outgoing_ports_max;
                     document.getElementById("UPnPLeaseDuration").value = pref.upnp_lease_duration;
-                    document.getElementById("peerToS").value = pref.peer_tos;
+                    document.getElementById("peerDSCP").value = pref.peer_tos;
                     document.getElementById("utpTCPMixedModeAlgorithm").value = pref.utp_tcp_mixed_mode;
                     document.getElementById("hostnameCacheTTL").value = pref.hostname_cache_ttl;
                     document.getElementById("IDNSupportCheckbox").checked = pref.idn_support_enabled;
@@ -2638,33 +2747,40 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
                     document.getElementById("i2pInboundLength").value = pref.i2p_inbound_length;
                     document.getElementById("i2pOutboundLength").value = pref.i2p_outbound_length;
-                }
-            });
+                }).catch((error) => {
+                    console.error(error);
+                    alert("QBT_TR(Unable to load program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
+                });
         };
 
         const applyPreferences = () => {
             const settings = {};
+            const clientData = {};
             // Validate form data
 
             // Behavior tab
             // Language
             settings["locale"] = document.getElementById("locale_select").value;
+            clientData.date_format = document.getElementById("dateFormatSelect").getSelected()[0].value;
             const colorScheme = Number(document.getElementById("colorSchemeSelect").value);
             if (colorScheme === 0)
-                LocalPreferences.remove("color_scheme");
+                clientData.color_scheme = null;
             else if (colorScheme === 1)
-                LocalPreferences.set("color_scheme", "light");
+                clientData.color_scheme = "light";
             else
-                LocalPreferences.set("color_scheme", "dark");
+                clientData.color_scheme = "dark";
+            const displayDensity = document.getElementById("displayDensitySelect").value;
+            clientData.display_density = (displayDensity === "default") ? null : displayDensity;
             settings["status_bar_external_ip"] = document.getElementById("statusBarExternalIP").checked;
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
-            LocalPreferences.set("full_url_tracker_column", document.getElementById("displayFullURLTrackerColumn").checked.toString());
-            LocalPreferences.set("use_virtual_list", document.getElementById("useVirtualList").checked.toString());
-            LocalPreferences.set("hide_zero_status_filters", document.getElementById("hideZeroFiltersCheckbox").checked.toString());
-            LocalPreferences.set("dblclick_download", document.getElementById("dblclickDownloadSelect").value);
-            LocalPreferences.set("dblclick_complete", document.getElementById("dblclickCompleteSelect").value);
+            clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
+            clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
+            clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
+            clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
+            clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
+            clientData.dblclick_filter = document.getElementById("dblclickFiltersSelect").value;
             settings["confirm_torrent_deletion"] = document.getElementById("confirmTorrentDeletion").checked;
-            LocalPreferences.set("use_alt_row_colors", document.getElementById("useAltRowColorsInput").checked.toString());
+            clientData.use_alt_row_colors = document.getElementById("useAltRowColorsInput").checked;
             settings["file_log_enabled"] = document.getElementById("filelog_checkbox").checked;
             settings["file_log_path"] = document.getElementById("filelog_save_path_input").value;
             settings["file_log_backup_enabled"] = document.getElementById("filelog_backup_checkbox").checked;
@@ -2691,7 +2807,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["torrent_changed_tmm_enabled"] = (document.getElementById("torrent_changed_tmm_combobox").value === "true");
             settings["save_path_changed_tmm_enabled"] = (document.getElementById("save_path_changed_tmm_combobox").value === "true");
             settings["category_changed_tmm_enabled"] = (document.getElementById("category_changed_tmm_combobox").value === "true");
-            settings["use_subcategories"] = document.getElementById("use_subcategories_checkbox").checked;
             settings["use_category_paths_in_manual_mode"] = document.getElementById("categoryPathsManualModeCheckbox").checked;
             settings["save_path"] = document.getElementById("savepath_text").value;
             settings["temp_path_enabled"] = document.getElementById("temppath_checkbox").checked;
@@ -2913,7 +3028,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             let maxRatio = -1;
             if (document.getElementById("maxRatioCheckbox").checked) {
                 maxRatio = Number(document.getElementById("maxRatioValue").value);
-                if (isNaN(maxRatio) || (maxRatio < 0)) {
+                if (Number.isNaN(maxRatio) || (maxRatio < 0)) {
                     alert("QBT_TR(Share ratio limit must not have a negative value.)QBT_TR[CONTEXT=HttpServer]");
                     return;
                 }
@@ -2995,6 +3110,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 alert("QBT_TR(The WebUI username must be at least 3 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
                 return;
             }
+            if (web_ui_username.includes(":")) {
+                alert("QBT_TR(The WebUI username must not contain a colon.)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
             const web_ui_password = document.getElementById("webui_password_text").value;
             if ((0 < web_ui_password.length) && (web_ui_password.length < 6)) {
                 alert("QBT_TR(The WebUI password must be at least 6 characters long.)QBT_TR[CONTEXT=OptionsDialog]");
@@ -3056,6 +3175,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["recheck_completed_torrents"] = document.getElementById("recheckTorrentsOnCompletion").checked;
             settings["app_instance_name"] = document.getElementById("appInstanceName").value;
             settings["refresh_interval"] = Number(document.getElementById("refreshInterval").value);
+            settings["resolve_peer_host_names"] = document.getElementById("resolvePeerHostNames").checked;
             settings["resolve_peer_countries"] = document.getElementById("resolvePeerCountries").checked;
             settings["reannounce_when_address_changed"] = document.getElementById("reannounceWhenAddressChanged").checked;
             settings["enable_embedded_tracker"] = document.getElementById("enableEmbeddedTracker").checked;
@@ -3071,7 +3191,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["async_io_threads"] = Number(document.getElementById("asyncIOThreads").value);
             settings["hashing_threads"] = Number(document.getElementById("hashingThreads").value);
             settings["file_pool_size"] = Number(document.getElementById("filePoolSize").value);
-            settings["checking_memory_use"] = Number(document.getElementById("outstandMemoryWhenCheckingTorrents").value);
+
+            const outstandMemory = Number(document.getElementById("outstandMemoryWhenCheckingTorrents").value);
+            if (Number.isNaN(outstandMemory) || (outstandMemory < 0) || (outstandMemory > 1024)) {
+                alert("QBT_TR(Outstanding memory when checking torrents must be greater than 0 and less than 1024.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["checking_memory_use"] = outstandMemory;
+
             settings["disk_cache"] = Number(document.getElementById("diskCache").value);
             settings["disk_cache_ttl"] = Number(document.getElementById("diskCacheExpiryInterval").value);
             settings["disk_queue_size"] = (Number(document.getElementById("diskQueueSize").value) * 1024);
@@ -3091,7 +3218,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["outgoing_ports_min"] = Number(document.getElementById("outgoingPortsMin").value);
             settings["outgoing_ports_max"] = Number(document.getElementById("outgoingPortsMax").value);
             settings["upnp_lease_duration"] = Number(document.getElementById("UPnPLeaseDuration").value);
-            settings["peer_tos"] = Number(document.getElementById("peerToS").value);
+
+            const peerDSCP = Number(document.getElementById("peerDSCP").value);
+            if (Number.isNaN(peerDSCP) || (peerDSCP < 0) || (peerDSCP > 255)) {
+                alert("QBT_TR(Peer DSCP must be between 0 and 255.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_tos"] = peerDSCP;
+
             settings["utp_tcp_mixed_mode"] = Number(document.getElementById("utpTCPMixedModeAlgorithm").value);
             settings["hostname_cache_ttl"] = Number(document.getElementById("hostnameCacheTTL").value);
             settings["idn_support_enabled"] = document.getElementById("IDNSupportCheckbox").checked;
@@ -3112,9 +3246,28 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["announce_port"] = announcePort;
             settings["max_concurrent_http_announces"] = Number(document.getElementById("maxConcurrentHTTPAnnounces").value);
             settings["stop_tracker_timeout"] = Number(document.getElementById("stopTrackerTimeout").value);
-            settings["peer_turnover"] = Number(document.getElementById("peerTurnover").value);
-            settings["peer_turnover_cutoff"] = Number(document.getElementById("peerTurnoverCutoff").value);
-            settings["peer_turnover_interval"] = Number(document.getElementById("peerTurnoverInterval").value);
+
+            const peerTurnover = Number(document.getElementById("peerTurnover").value);
+            if (Number.isNaN(peerTurnover) || (peerTurnover < 0) || (peerTurnover > 100)) {
+                alert("QBT_TR(Peer turnover must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_turnover"] = peerTurnover;
+
+            const peerTurnoverCutoff = Number(document.getElementById("peerTurnoverCutoff").value);
+            if (Number.isNaN(peerTurnoverCutoff) || (peerTurnoverCutoff < 0) || (peerTurnoverCutoff > 100)) {
+                alert("QBT_TR(Peer turnover cutoff must be between 0 and 100.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_turnover_cutoff"] = peerTurnoverCutoff;
+
+            const peerTurnoverInterval = Number(document.getElementById("peerTurnoverInterval").value);
+            if (Number.isNaN(peerTurnoverInterval) || (peerTurnoverInterval < 0) || (peerTurnoverInterval > 3600)) {
+                alert("QBT_TR(Peer turnover interval must be greater than or equal to 0.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+            settings["peer_turnover_interval"] = peerTurnoverInterval;
+
             settings["request_queue_size"] = Number(document.getElementById("requestQueueSize").value);
             settings["dht_bootstrap_nodes"] = document.getElementById("dhtBootstrapNodes").value;
             settings["i2p_inbound_quantity"] = Number(document.getElementById("i2pInboundQuantity").value);
@@ -3122,17 +3275,21 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["i2p_inbound_length"] = Number(document.getElementById("i2pInboundLength").value);
             settings["i2p_outbound_length"] = Number(document.getElementById("i2pOutboundLength").value);
 
-            // Send it to qBT
-            window.parent.qBittorrent.Cache.preferences.set({
-                data: settings,
-                onFailure: () => {
-                    alert("QBT_TR(Unable to save program preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
-                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
-                },
-                onSuccess: () => {
-                    // Close window
+            // Send data to qBT
+            Promise.allSettled([
+                window.parent.qBittorrent.ClientData.set(clientData),
+                window.parent.qBittorrent.Cache.preferences.set(settings)
+            ]).then((results) => {
+                if (results.every((result) => result.status === "fulfilled")) {
                     window.parent.location.reload();
                     window.parent.qBittorrent.Client.closeWindow(document.getElementById("preferencesPage"));
+                }
+                else {
+                    // keep window open so user can reattempt saving
+                    if (error.name === "ServerError")
+                        alert(`QBT_TR(Error:)QBT_TR[CONTEXT=HttpServer] ${error.message}`);
+                    else
+                        alert("QBT_TR(Unable to save preferences, qBittorrent is probably unreachable.)QBT_TR[CONTEXT=HttpServer]");
                 }
             });
         };
@@ -3179,6 +3336,110 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             window.qBittorrent.pathAutofill.attachPathAutofill();
         };
+
+        // show static prefix plus 6 sensitive characters
+        const maskAPIKey = (key) => (key.slice(0, 4) + "•".repeat(key.length - 10) + key.slice(key.length - 6));
+
+        const rotateAPIKey = () => {
+            fetch("api/v2/app/rotateAPIKey", {
+                    method: "POST",
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        alert(await response.text());
+                        return;
+                    }
+
+                    const { apiKey } = await response.json();
+                    const apiKeyTextElem = document.getElementById("WebUIAPIKeyText");
+                    apiKeyTextElem.value = maskAPIKey(apiKey);
+                    apiKeyTextElem.dataset.apiKey = apiKey;
+
+                    document.getElementById("webUIAPIKeyCopyButton").disabled = false;
+                    document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "true";
+                    document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                    document.getElementById("webUIAPIKeyDeleteButton").disabled = false;
+                })
+                .catch((error) => {
+                    alert(`QBT_TR(Unable to rotate API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                });
+        };
+
+        const deleteAPIKey = () => {
+            fetch("api/v2/app/deleteAPIKey", {
+                    method: "POST",
+                })
+                .then(async (response) => {
+                    if (!response.ok) {
+                        alert(await response.text());
+                        return;
+                    }
+
+                    const apiKeyTextElem = document.getElementById("WebUIAPIKeyText");
+                    apiKeyTextElem.value = "";
+                    apiKeyTextElem.dataset.apiKey = "";
+
+                    document.getElementById("webUIAPIKeyCopyButton").disabled = true;
+                    document.getElementById("webUIAPIKeyRotateButton").dataset.hasKey = "false";
+                    document.querySelector("#webUIAPIKeyRotateButton img").title = "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
+                    document.getElementById("webUIAPIKeyDeleteButton").disabled = true;
+                })
+                .catch((error) => {
+                    alert(`QBT_TR(Unable to delete API key.)QBT_TR[CONTEXT=HttpServer] ${error.toString()}`);
+                });
+        };
+
+        document.getElementById("webUIAPIKeyCopyButton").addEventListener("click", async (e) => {
+            const apiKey = document.getElementById("WebUIAPIKeyText").dataset.apiKey;
+            await clipboardCopy(apiKey);
+
+            const copyImg = document.querySelector("#webUIAPIKeyCopyButton img.copyImg");
+            const checkImg = document.querySelector("#webUIAPIKeyCopyButton img.checkImg");
+
+            copyImg.style.display = "none";
+            checkImg.style.display = "inline";
+
+            setTimeout(() => {
+                copyImg.style.display = "inline";
+                checkImg.style.display = "none";
+            }, 2000);
+        });
+
+        document.getElementById("webUIAPIKeyRotateButton").addEventListener("click", (e) => {
+            const hasKey = e.target.parentElement.dataset.hasKey === "true";
+            const title = hasKey
+                ? "QBT_TR(Rotate API key)QBT_TR[CONTEXT=OptionsDialog]"
+                : "QBT_TR(Generate API key)QBT_TR[CONTEXT=OptionsDialog]";
+            const message = hasKey
+                ? "QBT_TR(Rotate this API key? The current key will immediately stop working and a new key will be generated.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]"
+                : "QBT_TR(Generate an API key? This key can be used to interact with qBittorrent's API.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+
+            new MochaUI.Modal({
+                ...window.qBittorrent.Dialog.baseModalOptions,
+                title: title,
+                id: "confirmAPIKeyDialog",
+                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
+                data: {
+                    action: "rotate",
+                    message: message,
+                },
+            });
+        });
+
+        document.getElementById("webUIAPIKeyDeleteButton").addEventListener("click", (e) => {
+            const title = "QBT_TR(Delete API key)QBT_TR[CONTEXT=OptionsDialog]";
+            const message = "QBT_TR(Delete this API key? The current key will immediately stop working.)QBT_TR[CONTEXT=confirmRotateAPIKeyDialog]";
+            new MochaUI.Modal({
+                ...window.qBittorrent.Dialog.baseModalOptions,
+                title: title,
+                id: "confirmAPIKeyDialog",
+                contentURL: "views/confirmAPIKey.html?v=${CACHEID}",
+                data: {
+                    action: "delete",
+                    message: message,
+                },
+            });
+        });
 
         return exports();
     })();

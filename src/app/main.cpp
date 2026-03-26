@@ -127,10 +127,12 @@ namespace
 #endif
     }
 
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
     void displayVersion()
     {
         printf("%s %s\n", qUtf8Printable(qApp->applicationName()), QBT_VERSION);
     }
+#endif
 
 #ifndef DISABLE_GUI
     void showSplashScreen()
@@ -182,9 +184,6 @@ int main(int argc, char *argv[])
     adjustFileDescriptorLimit();
 #endif
 
-    // We must save it here because QApplication constructor may change it
-    const bool isOneArg = (argc == 2);
-
     // `app` must be declared out of try block to allow display message box in case of exception
     std::unique_ptr<Application> app;
     try
@@ -204,33 +203,26 @@ int main(int argc, char *argv[])
 #endif
 
         const QBtCommandLineParameters params = app->commandLineArgs();
+
+        // "show help/version" takes priority over other flags
+        if (params.showHelp)
+        {
+            displayUsage(QString::fromLocal8Bit(argv[0]));
+            return EXIT_SUCCESS;
+        }
+#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
+        if (params.showVersion)
+        {
+            displayVersion();
+            return EXIT_SUCCESS;
+        }
+#endif
+
         if (!params.unknownParameter.isEmpty())
         {
             throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 is an unknown command line parameter.",
                                                         "--random-parameter is an unknown command line parameter.")
                                                         .arg(params.unknownParameter));
-        }
-#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
-        if (params.showVersion)
-        {
-            if (isOneArg)
-            {
-                displayVersion();
-                return EXIT_SUCCESS;
-            }
-            throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 must be the single command line parameter.")
-                                     .arg(u"-v (or --version)"_s));
-        }
-#endif
-        if (params.showHelp)
-        {
-            if (isOneArg)
-            {
-                displayUsage(QString::fromLocal8Bit(argv[0]));
-                return EXIT_SUCCESS;
-            }
-            throw CommandLineParameterError(QCoreApplication::translate("Main", "%1 must be the single command line parameter.")
-                                 .arg(u"-h (or --help)"_s));
         }
 
         // Check if qBittorrent is already running

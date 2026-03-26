@@ -148,7 +148,7 @@ void SettingsStorage::readNativeSettings()
                .arg(newPath.toString()), Log::WARNING);
 
         QString finalPathStr = newPath.data();
-        const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
+        const qsizetype index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
         finalPathStr.remove(index, 4);
 
         const Path finalPath {finalPathStr};
@@ -163,7 +163,16 @@ void SettingsStorage::readNativeSettings()
 
 bool SettingsStorage::writeNativeSettings() const
 {
-    std::unique_ptr<QSettings> nativeSettings = Profile::instance()->applicationSettings(m_nativeSettingsName + u"_new");
+    const auto *profile = Profile::instance();
+
+    // No-op when it has no write permission
+    if (const auto confPath = Path(profile->applicationSettings(m_nativeSettingsName)->fileName());
+        confPath.exists() && !Utils::Fs::isWritable(confPath))
+    {
+        return true;  // no need to retry saving
+    }
+
+    std::unique_ptr<QSettings> nativeSettings = profile->applicationSettings(m_nativeSettingsName + u"_new");
 
     // QSettings deletes the file before writing it out. This can result in problems
     // if the disk is full or a power outage occurs. Those events might occur
@@ -201,7 +210,7 @@ bool SettingsStorage::writeNativeSettings() const
     }
 
     QString finalPathStr = newPath.data();
-    const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
+    const qsizetype index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
     finalPathStr.remove(index, 4);
 
     const Path finalPath {finalPathStr};

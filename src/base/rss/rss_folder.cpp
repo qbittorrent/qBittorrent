@@ -60,7 +60,7 @@ QList<Article *> Folder::articles() const
 
     for (Item *item : asConst(items()))
     {
-        int n = news.size();
+        qsizetype n = news.size();
         news << item->articles();
         std::inplace_merge(news.begin(), news.begin() + n, news.end()
                            , [](Article *a1, Article *a2)

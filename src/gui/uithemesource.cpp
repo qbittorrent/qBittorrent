@@ -105,6 +105,8 @@ DefaultThemeSource::DefaultThemeSource()
     , m_colors {defaultUIThemeColors()}
 {
     loadColors();
+    // Palette isn't customizable in default theme
+    m_colors.insert(defaultPaletteColors());
 }
 
 QByteArray DefaultThemeSource::readStyleSheet()

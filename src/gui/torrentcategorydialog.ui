@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>493</width>
-    <height>208</height>
+    <height>268</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -141,6 +141,18 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="torrentShareLimitsBox">
+     <property name="title">
+      <string>Torrent share limits</string>
+     </property>
+     <layout class="QVBoxLayout" name="torrentShareLimitsBoxLayout">
+      <item>
+       <widget class="TorrentShareLimitsWidget" name="torrentShareLimitsWidget" native="true"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer_2">
      <property name="orientation">
       <enum>Qt::Orientation::Vertical</enum>
@@ -170,6 +182,12 @@
    <class>FileSystemPathComboEdit</class>
    <extends>QWidget</extends>
    <header>gui/fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TorrentShareLimitsWidget</class>
+   <extends>QWidget</extends>
+   <header>gui/torrentsharelimitswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

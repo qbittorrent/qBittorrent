@@ -159,6 +159,12 @@ body {
     text-align: left;
 }
 
+:root.compact body {
+    --icon-size: 13px;
+
+    line-height: 1.2;
+}
+
 /* targets dialog windows loaded via iframes */
 body:not(:has(#desktop)) {
     background-color: var(--color-background-popup);
@@ -323,7 +329,17 @@ a.propButton img {
     background-color: var(--color-background-default);
     border: 1px solid var(--color-border-default);
     display: none;
+    opacity: 0;
     padding: 0;
+    transition:
+        opacity 0.2s ease-in-out,
+        visibility 0.2s ease-in-out;
+    visibility: hidden;
+}
+
+.contextMenu.visible {
+    opacity: 1;
+    visibility: visible;
 }
 
 .contextMenu .separator {
@@ -355,6 +371,7 @@ a.propButton img {
     display: flex;
     gap: 2px;
     padding: 5px 20px 5px 5px;
+    position: relative;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -383,10 +400,16 @@ a.propButton img {
     position: relative;
 }
 
-.contextMenu li:not(.disabled) .arrow-right {
-    background-image: url("../images/arrow-right.gif");
-    background-position: right center;
-    background-repeat: no-repeat;
+.contextMenu li:not(.disabled) .arrow-right::after {
+    border: solid currentcolor;
+    border-width: 0 2px 2px 0;
+    content: "";
+    display: inline-block;
+    padding: 2px;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: rotate(-45deg) translateY(-50%);
 }
 
 .contextMenu li:not(.disabled):hover > ul {
@@ -442,7 +465,7 @@ a.propButton img {
 }
 
 #mochaToolbar .divider {
-    background-image: url("../images/toolbox-divider.gif");
+    background-image: url("../images/toolbox-divider.svg");
     background-position: left center;
     background-repeat: no-repeat;
     padding-left: 14px;
@@ -461,6 +484,10 @@ a.propButton img {
 #torrentsFilterToolbar {
     display: inline-block;
     vertical-align: top;
+}
+
+#torrentsFilterToolbar.invisible {
+    display: none;
 }
 
 #torrentsFilterInput {
@@ -526,27 +553,6 @@ a.propButton img {
     padding-left: 2em;
     padding-top: 1px;
     width: 190px;
-}
-
-/* Tri-state checkbox */
-
-label.tristate {
-    background: url("../images/3-state-checkbox.gif") 0 0 no-repeat;
-    display: block;
-    float: left;
-    height: 13px;
-    margin: 0.15em 8px 5px 0;
-    overflow: hidden;
-    text-indent: -999em;
-    width: 13px;
-}
-
-label.checked {
-    background-position: 0 -13px;
-}
-
-label.partial {
-    background-position: 0 -26px;
 }
 
 fieldset.settings {
@@ -672,21 +678,31 @@ td.generalLabel {
     width: 1px;
 }
 
-#tristate_cb {
+td.fullWidth {
+    box-sizing: border-box;
+    max-width: none;
+    width: 100%;
+    word-break: break-all;
+}
+
+td.noWrap {
+    white-space: nowrap;
+}
+
+#tristateCb {
     margin-bottom: 0;
     margin-top: 0;
 }
 
 .filesTableCollapseIcon {
     cursor: pointer;
-    height: 15px;
-    margin-bottom: -3px;
-    padding-right: 5px;
-    width: 15px;
+    height: var(--icon-size, 15px);
+    margin-right: 5px;
+    vertical-align: top;
+    width: var(--icon-size, 15px);
 }
 
 .filesTableCollapseIcon.rotate {
-    margin-bottom: -1px;
     transform: rotate(270deg);
 }
 
@@ -699,20 +715,21 @@ td.generalLabel {
     padding: 2px;
 }
 
-#propProgressWrapper {
+#propBarsWrapper {
     align-items: center;
-    display: flex;
+    display: grid;
+    gap: 4px 8px;
+    grid-template-columns: auto 1fr auto;
     height: auto;
     margin: 5px 2px;
+}
 
-    & > span:not(:first-child, :empty) {
-        margin-left: 6px;
-        min-width: 3.5em;
-    }
+#propAvailabilityWrapper {
+    display: contents;
+}
 
-    & #progress {
-        flex: 1;
-    }
+.propBarLabel {
+    text-align: right;
 }
 
 #watched_folders_tab {
@@ -766,11 +783,13 @@ td.generalLabel {
 
 .combo_priority {
     font-size: 1em;
-    padding: 2px 6px;
+    height: 1.5em;
+    padding: 0 6px;
+    vertical-align: top;
 }
 
 td.statusBarSeparator {
-    background-image: url("../images/toolbox-divider.gif");
+    background-image: url("../images/toolbox-divider.svg");
     background-position: center 1px;
     background-repeat: no-repeat;
     background-size: 2px 18px;
@@ -815,14 +834,6 @@ td.statusBarSeparator {
     overflow: auto;
 }
 
-#searchResultsTableDiv {
-    height: calc(100% - 26px) !important;
-}
-
-#searchResults .dynamicTable {
-    width: 100%;
-}
-
 #searchResults .numSearchResults {
     font-style: italic;
 }
@@ -835,7 +846,8 @@ td.statusBarSeparator {
     color: var(--color-text-green);
 }
 
-#torrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
+#torrentFilesTableDiv .dynamicTable tr.nonAlt:hover,
+#addTorrentFilesTableDiv .dynamicTable tr.nonAlt:hover {
     background-color: var(--color-background-hover);
     color: var(--color-text-white);
 }

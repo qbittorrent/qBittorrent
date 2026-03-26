@@ -27,7 +27,7 @@ Section "un.$(remove_registry)" ;"un.Remove registry keys"
   ; Remove ProgIDs
   DeleteRegKey HKLM "Software\Classes\qBittorrent.File.Torrent"
   DeleteRegKey HKLM "Software\Classes\qBittorrent.Url.Magnet"
-  System::Call 'Shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, p 0, p 0)'
+  System::Call 'shell32::SHChangeNotify(i ${SHCNE_ASSOCCHANGED}, i ${SHCNF_IDLIST}, p 0, p 0)'
 SectionEnd
 
 Section "un.$(remove_firewall)" ;
@@ -45,8 +45,9 @@ SectionEnd
 
 Function un.remove_conf_user
 
-  System::Call 'shell32::SHGetSpecialFolderPath(i $HWNDPARENT, t .r1, i ${CSIDL_APPDATA}, i0)i.r0'
+  System::Call 'shell32::SHGetKnownFolderPath(g "${FOLDERID_RoamingAppData}", i 0, p 0, *w . r1) i . r0'
   RMDir /r "$1\qBittorrent"
+  System::Call 'ole32::CoTaskMemFree(p r1)'
 
 FunctionEnd
 
@@ -58,8 +59,9 @@ SectionEnd
 
 Function un.remove_cache_user
 
-  System::Call 'shell32::SHGetSpecialFolderPath(i $HWNDPARENT, t .r1, i ${CSIDL_LOCALAPPDATA}, i0)i.r0'
-  RMDir /r "$1\qBittorrent\"
+  System::Call 'shell32::SHGetKnownFolderPath(g "${FOLDERID_LocalAppData}", i 0, p 0, *w . r1) i . r0'
+  RMDir /r "$1\qBittorrent"
+  System::Call 'ole32::CoTaskMemFree(p r1)'
 
 FunctionEnd
 

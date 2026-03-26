@@ -85,6 +85,7 @@ inline const QString KEY_TORRENT_MAX_INACTIVE_SEEDING_TIME = u"max_inactive_seed
 inline const QString KEY_TORRENT_RATIO_LIMIT = u"ratio_limit"_s;
 inline const QString KEY_TORRENT_SEEDING_TIME_LIMIT = u"seeding_time_limit"_s;
 inline const QString KEY_TORRENT_INACTIVE_SEEDING_TIME_LIMIT = u"inactive_seeding_time_limit"_s;
+inline const QString KEY_TORRENT_SHARE_LIMIT_ACTION = u"share_limit_action"_s;
 inline const QString KEY_TORRENT_LAST_SEEN_COMPLETE_TIME = u"seen_complete"_s;
 inline const QString KEY_TORRENT_LAST_ACTIVITY_TIME = u"last_activity"_s;
 inline const QString KEY_TORRENT_TOTAL_SIZE = u"total_size"_s;

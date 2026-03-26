@@ -71,20 +71,132 @@
         <translation>キューの先頭に追加する</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>1行に1リンク(HTTPリンク、マグネットリンク、infoハッシュに対応)</translation>
+        <source>Download in sequential order</source>
+        <translation>ピースを先頭から順番にダウンロードする</translation>
     </message>
     <message>
-        <source>Add torrent links</source>
-        <translation>Torrentリンクを追加する</translation>
+        <source>Size:</source>
+        <translation>サイズ:</translation>
     </message>
     <message>
-        <source>Select .torrent files</source>
+        <source>Save at</source>
+        <translation>保存先</translation>
+    </message>
+    <message>
+        <source>Torrent information</source>
+        <translation>Torrentの情報</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation>保存パス:</translation>
+    </message>
+    <message>
+        <source>Info hash v1:</source>
+        <translation>Infoハッシュ v1:</translation>
+    </message>
+    <message>
+        <source>Rename torrent</source>
+        <translation>Torrent名の変更</translation>
+    </message>
+    <message>
+        <source>Add torrent</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Torrent options</source>
-        <translation>Torrentのオプション</translation>
+        <source>Not available</source>
+        <translation>取得できません</translation>
+    </message>
+    <message>
+        <source>Priority</source>
+        <translation>優先度</translation>
+    </message>
+    <message>
+        <source>High</source>
+        <translation>高</translation>
+    </message>
+    <message>
+        <source>Torrent settings</source>
+        <translation>Torrentの設定</translation>
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation>通常</translation>
+    </message>
+    <message>
+        <source>Save files to location:</source>
+        <translation>ファイルの保存場所:</translation>
+    </message>
+    <message>
+        <source>Set as default category</source>
+        <translation>デフォルトのカテゴリーにする</translation>
+    </message>
+    <message>
+        <source>Limit upload rate</source>
+        <translation>アップロード速度制限</translation>
+    </message>
+    <message>
+        <source>Filter files...</source>
+        <translation>ファイルを絞り込む...</translation>
+    </message>
+    <message>
+        <source>Add Torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use another path for incomplete torrent</source>
+        <translation>未完了のTorrentは別のパスを使用する</translation>
+    </message>
+    <message>
+        <source>Date:</source>
+        <translation>日付:</translation>
+    </message>
+    <message>
+        <source>Save as .torrent file</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All</source>
+        <translation>すべて</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>N/A</translation>
+    </message>
+    <message>
+        <source>Maximum</source>
+        <translation>最高</translation>
+    </message>
+    <message>
+        <source>Do not download</source>
+        <translation>ダウンロードしない</translation>
+    </message>
+    <message>
+        <source>Download first and last pieces first</source>
+        <translation>最初と最後のピースを先にダウンロードする</translation>
+    </message>
+    <message>
+        <source>Comment:</source>
+        <translation>コメント:</translation>
+    </message>
+    <message>
+        <source>Unable to download torrent file</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info hash v2:</source>
+        <translation>Infoハッシュ v2:</translation>
+    </message>
+    <message>
+        <source>Tags:</source>
+        <translation>タグ:</translation>
+    </message>
+    <message>
+        <source>Files</source>
+        <translation>ファイル</translation>
+    </message>
+    <message>
+        <source>Limit download rate</source>
+        <translation>ダウンロード速度制限</translation>
     </message>
 </context>
 <context>
@@ -192,29 +304,12 @@
         <translation>不明</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>共有比は0から9998の間でなければなりません。</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>シード時間制限は0から525600分の間でなければなりません。</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>適用</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>追加</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>Torrentのアップロード</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation>ファイルの保存場所:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -227,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>場所の設定</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation>アップロード速度制限</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation>ダウンロード速度制限</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation>Torrent名の変更</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -278,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>ログアウト</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation>ローカルのTorrentをアップロード</translation>
     </message>
     <message>
         <source>Save</source>
@@ -441,6 +520,50 @@
     </message>
     <message>
         <source>Add web seeds</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to delete API key.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Seeding time limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Share ratio limit must not have a negative value.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer turnover interval must be greater than or equal to 0.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to parse response.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to rotate API key.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer turnover must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -697,6 +820,10 @@
     <message>
         <source>Torrent Creator</source>
         <translation>Torrentクリエーター</translation>
+    </message>
+    <message>
+        <source>Filter feed items...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1449,7 +1576,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>ピアに接続するサービスの種類(ToS)</translation>
+        <translation type="vanished">ピアに接続するサービスの種類(ToS)</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1522,10 +1649,6 @@
     <message>
         <source>POSIX-compliant</source>
         <translation>POSIX準拠</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation>このオプションは、Linuxではあまり効果がありません</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1697,7 +1820,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>サブカテゴリーを使用する</translation>
+        <translation type="vanished">サブカテゴリーを使用する</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1940,10 +2063,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>クッキーのSecure属性を有効にする(HTTPSまたはローカルホスト接続が必要)</translation>
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation>重複したTorrentの追加時</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>ダブルクリック時の動作</translation>
     </message>
@@ -2045,23 +2164,67 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>注意: パスワードは暗号化せずに保存されます</translation>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>内部ホスト名リゾルバキャッシュの有効期限間隔</translation>
     </message>
     <message>
         <source>sec</source>
         <translation>秒</translation>
     </message>
+    <message>
+        <source>Rotate API key</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Generate a key</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>When adding a duplicate torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete API key</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>%M: Comment</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Generate API key</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copied</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reset filter selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>API Key</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy API key</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation>IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>ポート</translation>
@@ -2137,6 +2300,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Peer ID Client</source>
         <translation>クライアントのピアID</translation>
+    </message>
+    <message>
+        <source>IP/Address</source>
+        <translation>IP/アドレス</translation>
     </message>
 </context>
 <context>
@@ -2320,14 +2487,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>%1 (平均%2)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation>ダウンロード制限:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation>アップロード制限:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>優先度</translation>
     </message>
@@ -2501,11 +2660,7 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation>KiB/s</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -2890,10 +3045,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation>URL</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>状態</translation>
     </message>
@@ -3000,6 +3151,42 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Original</source>
         <translation>変更前</translation>
+    </message>
+    <message>
+        <source>URL/Announce Endpoint</source>
+        <translation>URL/アナウンスエンドポイント</translation>
+    </message>
+    <message>
+        <source>BT Protocol</source>
+        <translation>BTプロトコル</translation>
+    </message>
+    <message>
+        <source>Next Announce</source>
+        <translation>次のアナウンス</translation>
+    </message>
+    <message>
+        <source>Tier:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Tracker error</source>
+        <translation>トラッカーエラー</translation>
+    </message>
+    <message>
+        <source>Unreachable</source>
+        <translation>到達できません</translation>
+    </message>
+    <message>
+        <source>Force reannounce to selected tracker(s)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Min Announce</source>
+        <translation>最低アナウンス</translation>
+    </message>
+    <message>
+        <source>Force reannounce to all trackers</source>
+        <translation>全トラッカーに強制再アナウンス</translation>
     </message>
 </context>
 <context>
@@ -3293,10 +3480,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Save path:</source>
-        <translation>保存パス:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation type="unfinished" />
     </message>
@@ -3321,8 +3504,8 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <translation>タグの追加</translation>
     </message>
     <message>
-        <source>Category:</source>
-        <translation>カテゴリ:</translation>
+        <source>Content Path</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3355,6 +3538,30 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>inactive minutes</source>
         <translation>非稼働(分)</translation>
     </message>
+    <message>
+        <source>Default</source>
+        <translation>デフォルト</translation>
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation>Torrentを削除</translation>
+    </message>
+    <message>
+        <source>Remove torrent and its content</source>
+        <translation>Torrentとそのコンテンツを削除する</translation>
+    </message>
+    <message>
+        <source>Stop torrent</source>
+        <translation>Torrentを停止する</translation>
+    </message>
+    <message>
+        <source>Enable super seeding for torrent</source>
+        <translation>Torrentをスーパーシードにする</translation>
+    </message>
+    <message>
+        <source>Action when the limit is reached</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>about</name>
@@ -3379,14 +3586,6 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
     <message>
         <source>Download from URLs</source>
         <translation>URLからダウンロード</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation>ダウンロード</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation>Torrentリンクの追加</translation>
     </message>
 </context>
 <context>
@@ -3916,6 +4115,10 @@ DNSリバインディング攻撃を防ぐために、WebUIサーバーが使用
         <source>Close all tabs</source>
         <translation>すべてのタブを閉じる</translation>
     </message>
+    <message>
+        <source>Refresh tab</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4334,6 +4537,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Stop torrents</source>
         <translation>Torrentを停止する</translation>
     </message>
+    <message>
+        <source>Tracker error</source>
+        <translation>トラッカーエラー</translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <source>Other error</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>FeedListWidget</name>
@@ -4505,6 +4720,42 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Unable to set category</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Save path for incomplete torrents:</source>
+        <translation>未完了Torrentの保存パス:</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>デフォルト</translation>
+    </message>
+    <message>
+        <source>New Category</source>
+        <translation>新規カテゴリ</translation>
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation>保存パス:</translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation>はい</translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation>カテゴリ:</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation>いいえ</translation>
+    </message>
+    <message>
+        <source>Path:</source>
+        <translation>パス:</translation>
+    </message>
+    <message>
+        <source>Use another path for incomplete torrents:</source>
+        <translation>未完了Torrentは別のパスを使用する:</translation>
     </message>
 </context>
 <context>
@@ -4795,6 +5046,82 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Export Torrent</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>DownloadFromURLDialog</name>
+    <message>
+        <source>Download</source>
+        <translation>ダウンロード</translation>
+    </message>
+    <message>
+        <source>Magnet link</source>
+        <translation>マグネットリンク</translation>
+    </message>
+    <message>
+        <source>Add torrent links</source>
+        <translation>Torrentリンクを追加する</translation>
+    </message>
+    <message>
+        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
+        <translation>1行に1リンク(HTTPリンク、マグネットリンク、infoハッシュに対応)</translation>
+    </message>
+    <message>
+        <source>URLs</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add Torrent Links</source>
+        <translation>Torrentリンクの追加</translation>
+    </message>
+</context>
+<context>
+    <name>SpeedLimit</name>
+    <message>
+        <source>Limit:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Speed limit</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Upload limit:</source>
+        <translation>アップロード制限:</translation>
+    </message>
+    <message>
+        <source>Download limit:</source>
+        <translation>ダウンロード制限:</translation>
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation>KiB/s</translation>
+    </message>
+</context>
+<context>
+    <name>ListWidget</name>
+    <message>
+        <source>Resize All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resize</source>
+        <translation type="unfinished" />
+    </message>
+</context>
+<context>
+    <name>confirmRotateAPIKeyDialog</name>
+    <message>
+        <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete this API key? The current key will immediately stop working.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
         <translation type="unfinished" />
     </message>
 </context>

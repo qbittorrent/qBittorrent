@@ -48,7 +48,7 @@ public:
     RSS::Article *getRSSArticle(QListWidgetItem *item) const;
     QListWidgetItem *mapRSSArticle(RSS::Article *rssArticle) const;
 
-    void setRSSItem(RSS::Item *rssItem, bool unreadOnly = false);
+    void setRSSItem(RSS::Item *rssItem, bool unreadOnly, const QString &filter);
 
 private slots:
     void handleArticleAdded(RSS::Article *rssArticle);

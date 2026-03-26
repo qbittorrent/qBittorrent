@@ -71,8 +71,9 @@ namespace
 TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     : QTreeView(parent)
 {
-    setDragEnabled(true);
     setDragDropMode(QAbstractItemView::DragOnly);
+    setDragEnabled(false);
+    setSelectionMode(QAbstractItemView::MultiSelection);
     setExpandsOnDoubleClick(false);
     setSortingEnabled(true);
     setUniformRowHeights(true);
@@ -222,6 +223,27 @@ void TorrentContentWidget::checkNone()
 {
     for (int i = 0; i < model()->rowCount(); ++i)
         model()->setData(model()->index(i, TorrentContentModelItem::COL_NAME), Qt::Unchecked, Qt::CheckStateRole);
+}
+
+void TorrentContentWidget::setContentDragAllowed(const bool allowed)
+{
+    m_contentDragAllowed = allowed;
+}
+
+void TorrentContentWidget::setContentDragEnabled(const bool enabled)
+{
+    m_contentDragEnabled = enabled;
+}
+
+void TorrentContentWidget::mousePressEvent(QMouseEvent *event)
+{
+    if (m_contentDragAllowed)
+    {
+        const bool hasAlt = event->modifiers().testFlag(Qt::AltModifier);
+        setDragEnabled(hasAlt ? !m_contentDragEnabled : m_contentDragEnabled);
+    }
+
+    QTreeView::mousePressEvent(event);
 }
 
 void TorrentContentWidget::keyPressEvent(QKeyEvent *event)
@@ -470,14 +492,14 @@ void TorrentContentWidget::openItem(const QModelIndex &index) const
     Utils::Gui::openPath(getFullPath(index));
 }
 
-void TorrentContentWidget::openParentFolder(const QModelIndex &index) const
+void TorrentContentWidget::openParentFolder(const QModelIndex &index)
 {
     const Path path = getFullPath(index);
     m_model->contentHandler()->flushCache();  // Flush data
 #ifdef Q_OS_MACOS
     MacUtils::openFiles({path});
 #else
-    Utils::Gui::openFolderSelect(path);
+    Utils::Gui::openFolderSelect(path, this);
 #endif
 }
 

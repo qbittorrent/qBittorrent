@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2019  Thomas Piccirello <thomas.piccirello@gmail.com>
+ * Copyright (C) 2019  Thomas Piccirello <thomas@piccirello.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -114,6 +114,7 @@ window.qBittorrent.FileTree ??= (() => {
         name = "";
         path = "";
         rowId = null;
+        fileId = null;
         size = 0;
         checked = TriState.Unchecked;
         remaining = 0;
@@ -122,19 +123,42 @@ window.qBittorrent.FileTree ??= (() => {
         availability = 0;
         depth = 0;
         root = null;
-        data = null;
         isFolder = false;
         children = [];
+
+        isIgnored() {
+            return this.priority === FilePriority.Ignored;
+        }
+
+        calculateRemaining() {
+            this.remaining = this.isIgnored() ? 0 : (this.size * (1 - (this.progress / 100)));
+        }
+
+        serialize() {
+            return {
+                name: this.name,
+                path: this.path,
+                fileId: this.fileId,
+                size: this.size,
+                checked: this.checked,
+                remaining: this.remaining,
+                progress: this.progress,
+                priority: this.priority,
+                availability: this.availability
+            };
+        }
     }
 
     class FolderNode extends FileNode {
         /**
-         * Will automatically tick the checkbox for a folder if all subfolders and files are also ticked
+         * When true, the folder's `checked` state will be calculately automatically based on its children
          */
-        autoCheckFolders = true;
+        autoCalculateCheckedState = true;
         isFolder = true;
+        fileId = -1;
 
         addChild(node) {
+            node.calculateRemaining();
             this.children.push(node);
         }
 
@@ -181,21 +205,31 @@ window.qBittorrent.FileTree ??= (() => {
                                 root.checked = TriState.Partial;
                         }
 
-                        const isIgnored = (child.priority === FilePriority.Ignored);
-                        if (!isIgnored) {
+                        if (!child.isIgnored()) {
                             root.remaining += child.remaining;
                             root.progress += (child.progress * child.size);
                             root.availability += (child.availability * child.size);
                         }
                     }
 
-                    root.checked = root.autoCheckFolders ? root.checked : TriState.Checked;
-                    root.progress /= root.size;
-                    root.availability /= root.size;
+                    root.checked = root.autoCalculateCheckedState ? root.checked : TriState.Checked;
+                    root.progress = (root.size > 0) ? (root.progress / root.size) : 0;
+                    root.availability = (root.size > 0) ? (root.availability / root.size) : 0;
                 }
 
                 stack.pop();
             }
+        }
+
+        /**
+         * Recursively recalculate the amount of data remaining to be downloaded.
+         * This is useful for updating a folder's "remaining" size as files are unchecked/ignored.
+         */
+        calculateRemaining() {
+            this.remaining = this.children.reduce((sum, node) => {
+                node.calculateRemaining();
+                return sum + node.remaining;
+            }, 0);
         }
     }
 

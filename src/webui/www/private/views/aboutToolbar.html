@@ -16,34 +16,28 @@
     (() => {
         MochaUI.initializeTabs("aboutTabs");
 
+        const showContent = (element) => {
+            for (const content of document.querySelectorAll(".aboutTabContent"))
+                content.classList.toggle("invisible", (content !== element));
+        };
+
         document.getElementById("aboutAboutLink").addEventListener("click", (event) => {
-            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            document.getElementById("aboutAboutContent").classList.remove("invisible");
+            showContent(document.getElementById("aboutAboutContent"));
         });
-
         document.getElementById("aboutAuthorLink").addEventListener("click", (event) => {
-            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            document.getElementById("aboutAuthorContent").classList.remove("invisible");
+            showContent(document.getElementById("aboutAuthorContent"));
         });
-
         document.getElementById("aboutSpecialThanksLink").addEventListener("click", (event) => {
-            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            document.getElementById("aboutSpecialThanksContent").classList.remove("invisible");
+            showContent(document.getElementById("aboutSpecialThanksContent"));
         });
-
         document.getElementById("aboutTranslatorsLink").addEventListener("click", (event) => {
-            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            document.getElementById("aboutTranslatorsContent").classList.remove("invisible");
+            showContent(document.getElementById("aboutTranslatorsContent"));
         });
-
         document.getElementById("aboutLicenseLink").addEventListener("click", (event) => {
-            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            document.getElementById("aboutLicenseContent").classList.remove("invisible");
+            showContent(document.getElementById("aboutLicenseContent"));
         });
-
         document.getElementById("aboutSoftwareUsedLink").addEventListener("click", (event) => {
-            Array.prototype.forEach.call(document.querySelectorAll(".aboutTabContent"), (tab => tab.classList.add("invisible")));
-            document.getElementById("aboutSoftwareUsedContent").classList.remove("invisible");
+            showContent(document.getElementById("aboutSoftwareUsedContent"));
         });
     })();
 </script>

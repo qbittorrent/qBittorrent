@@ -66,6 +66,7 @@ class TransferListWidget;
 namespace MacUtils
 {
     class Badger;
+    class StatusItem;
 }
 #endif
 
@@ -157,6 +158,7 @@ private slots:
     void on_actionAutoSuspend_toggled(bool);
     void on_actionAutoHibernate_toggled(bool);
     void on_actionAutoShutdown_toggled(bool);
+    void on_actionAutoReboot_toggled(bool);
     void on_actionAbout_triggered();
     void on_actionStatistics_triggered();
     void on_actionCreateTorrent_triggered();
@@ -261,5 +263,6 @@ private:
 #endif
 #ifdef Q_OS_MACOS
     std::unique_ptr<MacUtils::Badger> m_badger;
+    std::unique_ptr<MacUtils::StatusItem> m_statusItem;
 #endif
 };
