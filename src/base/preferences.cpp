@@ -1522,17 +1522,17 @@ void Preferences::setSpeedInDockEnabled(const bool enabled)
     setValue(u"Preferences/Desktop/ShowSpeedInDock"_s, enabled);
 }
 
-bool Preferences::isStatusBarEnabled() const
+bool Preferences::isMacOSMenuBarIconEnabled() const
 {
-    return value(u"Preferences/Desktop/ShowStatusBar"_s, true);
+    return value(u"Preferences/Desktop/ShowMacOSMenuBarIcon"_s, true);
 }
 
-void Preferences::setStatusBarEnabled(const bool enabled)
+void Preferences::setMacOSMenuBarIconEnabled(const bool enabled)
 {
-    if (enabled == isStatusBarEnabled())
+    if (enabled == isMacOSMenuBarIconEnabled())
         return;
 
-    setValue(u"Preferences/Desktop/ShowStatusBar"_s, enabled);
+    setValue(u"Preferences/Desktop/ShowMacOSMenuBarIcon"_s, enabled);
 }
 #endif
 

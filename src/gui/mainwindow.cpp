@@ -142,7 +142,6 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     , m_badger {std::make_unique<MacUtils::Badger>()}
     , m_statusItem {std::make_unique<MacUtils::StatusItem>()}
 #endif // Q_OS_MACOS
-
 {
     m_ui->setupUi(this);
 
@@ -150,7 +149,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_uiLocked = pref->isUILocked();
     m_displaySpeedInTitle = pref->speedInTitleBar();
 #ifdef Q_OS_MACOS
-    m_statusItem->setVisible(pref->isStatusBarEnabled());
+    m_statusItem->setVisible(pref->isMacOSMenuBarIconEnabled());
 #endif
     // Setting icons
 #ifndef Q_OS_MACOS
@@ -1466,7 +1465,7 @@ void MainWindow::loadPreferences()
     // Clear dock badge immediately if speed display is disabled
     if (!pref->isSpeedInDockEnabled())
         m_badger->updateSpeed(0, 0);
-    m_statusItem->setVisible(pref->isStatusBarEnabled());
+    m_statusItem->setVisible(pref->isMacOSMenuBarIconEnabled());
 #endif
 
     qDebug("GUI settings loaded");
@@ -1483,7 +1482,7 @@ void MainWindow::loadSessionStats()
 #ifdef Q_OS_MACOS
     if (Preferences::instance()->isSpeedInDockEnabled())
         m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
-    if (Preferences::instance()->isStatusBarEnabled())
+    if (Preferences::instance()->isMacOSMenuBarIconEnabled())
         m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
