@@ -1856,6 +1856,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("downloaded", "", "QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]", 50, true);
             this.newColumn("uploaded", "", "QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]", 50, true);
             this.newColumn("relevance", "", "QBT_TR(Relevance)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
+            this.newColumn("contribution", "", "QBT_TR(Contribution)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
             this.newColumn("files", "", "QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]", 100, true);
 
             this.columns["country"].dataProperties.push("country_code");
@@ -1937,6 +1938,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             // relevance
             this.columns["relevance"].updateTd = this.columns["progress"].updateTd;
             this.columns["relevance"].staticWidth = 100;
+
+            // contribution
+            this.columns["contribution"].updateTd = this.columns["progress"].updateTd;
+            this.columns["contribution"].staticWidth = 100;
 
             // files
             this.columns["files"].updateTd = function(td, row) {
