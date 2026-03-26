@@ -40,6 +40,7 @@ target_sources(qbt_app PRIVATE
     filelogger.h
     legalnotice.h
     localpeer.h
+    pch.h
     signalhandler.h
     upgrade.h
 

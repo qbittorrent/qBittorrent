@@ -16,6 +16,7 @@ add_library(qbt_webui STATIC
     api/transfercontroller.h
     api/serialize/serialize_torrent.h
     clientdatastorage.h
+    pch.h
     webapplication.h
     websession.h
     webui.h
