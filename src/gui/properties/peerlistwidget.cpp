@@ -408,8 +408,7 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
     if (!torrent)
         return;
 
-    using TorrentPtr = QPointer<const BitTorrent::Torrent>;
-    torrent->fetchPeerInfo().then(this, [this, torrent = TorrentPtr(torrent)](const QList<BitTorrent::PeerInfo> &peers)
+    torrent->fetchPeerInfo().then(this, [this, torrent = QPointer(torrent)](const QList<BitTorrent::PeerInfo> &peers)
     {
         if (const BitTorrent::Torrent *currentTorrent = m_properties->getCurrentTorrent();
             !currentTorrent || (currentTorrent != torrent))
