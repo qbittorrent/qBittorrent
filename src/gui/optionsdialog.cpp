@@ -1059,8 +1059,10 @@ void OptionsDialog::loadSpeedTabOptions()
 
 #ifdef Q_OS_MACOS
     m_ui->checkShowSpeedInDock->setChecked(pref->isSpeedInDockEnabled());
+    m_ui->checkShowMenuBarIcon->setChecked(pref->isMacOSMenuBarIconEnabled());
 #else
     m_ui->checkShowSpeedInDock->hide();
+    m_ui->checkShowMenuBarIcon->hide();
 #endif
 
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
@@ -1080,6 +1082,7 @@ void OptionsDialog::loadSpeedTabOptions()
 
 #ifdef Q_OS_MACOS
     connect(m_ui->checkShowSpeedInDock, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkShowMenuBarIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
 }
 
@@ -1105,6 +1108,7 @@ void OptionsDialog::saveSpeedTabOptions() const
 
 #ifdef Q_OS_MACOS
     pref->setSpeedInDockEnabled(m_ui->checkShowSpeedInDock->isChecked());
+    pref->setMacOSMenuBarIconEnabled(m_ui->checkShowMenuBarIcon->isChecked());
 #endif
 }
 
