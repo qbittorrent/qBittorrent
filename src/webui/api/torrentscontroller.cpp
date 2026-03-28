@@ -2055,7 +2055,7 @@ void TorrentsController::renameFileAction()
     requireParams({u"hash"_s, u"oldPath"_s, u"newPath"_s});
 
     const QString newFileName = QFileInfo(params()[u"newPath"_s]).fileName();
-    if (!Utils::Fs::isValidName(newFileName))
+    if (!Utils::Fs::isValidFileName(QStringView(newFileName)))
         throw APIError(APIErrorType::Conflict, tr("File name has invalid characters"));
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
@@ -2083,7 +2083,7 @@ void TorrentsController::renameFolderAction()
     requireParams({u"hash"_s, u"oldPath"_s, u"newPath"_s});
 
     const QString newFolderName = QFileInfo(params()[u"newPath"_s]).fileName();
-    if (!Utils::Fs::isValidName(newFolderName))
+    if (!Utils::Fs::isValidFileName(QStringView(newFolderName)))
         throw APIError(APIErrorType::Conflict, tr("Folder name has invalid characters"));
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);

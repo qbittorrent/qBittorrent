@@ -46,7 +46,6 @@ public:
     explicit Path(const QString &pathStr);
     explicit Path(const std::string &pathStr);
 
-    bool isValid() const;
     bool isEmpty() const;
     bool isAbsolute() const;
     bool isRelative() const;
