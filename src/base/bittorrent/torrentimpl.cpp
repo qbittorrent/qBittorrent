@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -1085,7 +1085,7 @@ Path TorrentImpl::actualFilePath(const int index) const
         return {};
 
 #if LIBTORRENT_VERSION_NUM >= 20100
-    const lt::file_storage &fs = nativeTorrentInfo()->files();
+    const lt::file_storage &fs = nativeTorrentInfo()->layout();
     const lt::filenames files {fs, m_nativeStatus.renamed_files};
 #else
     const lt::file_storage &files = nativeTorrentInfo()->files();
@@ -1112,7 +1112,7 @@ PathList TorrentImpl::actualFilePaths() const
     paths.reserve(filesCount());
 
 #if LIBTORRENT_VERSION_NUM >= 20100
-    const lt::file_storage &fs = nativeTorrentInfo()->files();
+    const lt::file_storage &fs = nativeTorrentInfo()->layout();
     const lt::filenames files {fs, m_nativeStatus.renamed_files};
 #else
     const lt::file_storage &files = nativeTorrentInfo()->files();
@@ -1865,7 +1865,8 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     m_torrentInfo = TorrentInfo(*metadata);
     m_filePriorities.reserve(filesCount());
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
-    p.file_priorities = resized(p.file_priorities, metadata->files().num_files()
+
+    p.file_priorities = resized(p.file_priorities, nativeTorrentInfo()->num_files()
             , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
 
     m_completedFiles.fill(static_cast<bool>(p.flags & lt::torrent_flags::seed_mode), filesCount());
@@ -1921,9 +1922,11 @@ void TorrentImpl::reload()
     try
     {
         lt::add_torrent_params p = m_ltAddTorrentParams;
-        p.flags |= lt::torrent_flags::update_subscribe
-                | lt::torrent_flags::override_trackers
+        p.flags |= lt::torrent_flags::update_subscribe;
+#if LIBTORRENT_VERSION_NUM < 20100
+        p.flags |= lt::torrent_flags::override_trackers
                 | lt::torrent_flags::override_web_seeds;
+#endif
 
         if (m_isStopped)
         {
@@ -3001,7 +3004,7 @@ void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
         }
     }
 
-    const int internalFilesCount = m_torrentInfo.nativeInfo()->files().num_files(); // including .pad files
+    const int internalFilesCount = m_torrentInfo.nativeInfo()->num_files(); // including .pad files
     auto nativePriorities = std::vector<lt::download_priority_t>(internalFilesCount, LT::toNative(DownloadPriority::Normal));
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     for (qsizetype i = 0; i < priorities.size(); ++i)
