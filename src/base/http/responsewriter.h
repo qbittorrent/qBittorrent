@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,41 +26,60 @@
  * exception statement from your version.
  */
 
-
 #pragma once
 
-#include <QElapsedTimer>
 #include <QObject>
 
-class QTcpSocket;
+#include "headermap.h"
+#include "request.h"
+#include "response.h"
+
+class QAbstractSocket;
 
 namespace Http
 {
-    class IRequestHandler;
-    struct ResponseStatus;
-
-    class Connection : public QObject
+    class ResponseWriter final : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY_MOVE(Connection)
+        Q_DISABLE_COPY_MOVE(ResponseWriter)
 
     public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
+        ResponseWriter(QAbstractSocket &socket, Request request, QObject *parent = nullptr);
 
-        bool hasExpired(qint64 timeout) const;
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        void setResponse(const Response &response);
+
+        // Allow to send response content part by part.
+        // Response content can still be gzip encoded if entire content
+        // is provided within the single call to `addResponseContent()`.
+        void beginResponse(const ResponseStatus &status, const HeaderMap &headers, qsizetype contentSize);
+        void addResponseContent(const QByteArray &data);
 
     signals:
-        void closed();
+        void finished(QPrivateSignal);
 
     private:
-        void abort(const ResponseStatus &responseStatus);
-        bool processRequest();
-        void read();
+        enum State
+        {
+            NoResponse,
+            WritingContent,
+            Finished
+        };
 
-        QTcpSocket *m_socket = nullptr;
-        IRequestHandler *m_requestHandler = nullptr;
-        QByteArray m_receivedData;
-        QElapsedTimer m_idleTimer;
-        bool m_isProcessingRequest = false;
+        bool needCompressContent() const;
+        void sendResponseHead(qsizetype contentSize);
+        void endResponse(const QByteArray &content);
+
+        QAbstractSocket &m_socket;
+        Request m_request;
+
+        ResponseStatus m_responseStatus;
+        HeaderMap m_responseHeaders;
+        qsizetype m_responseContentSize = 0;
+        qsizetype m_responseContentSentSize = 0;
+        bool m_isHeadRequest = false;
+
+        State m_state = NoResponse;
     };
 }
