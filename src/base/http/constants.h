@@ -35,9 +35,6 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace Http
 {
-    inline const QString METHOD_GET = u"GET"_s;
-    inline const QString METHOD_POST = u"POST"_s;
-
     inline const QString HEADER_AUTHORIZATION = u"authorization"_s;
     inline const QString HEADER_CACHE_CONTROL = u"cache-control"_s;
     inline const QString HEADER_CONNECTION = u"connection"_s;

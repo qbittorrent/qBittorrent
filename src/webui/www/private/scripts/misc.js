@@ -48,6 +48,7 @@ window.qBittorrent.Misc ??= (() => {
             sleep: sleep,
             DateFormatOptions: DateFormatOptions,
             downloadFile: downloadFile,
+            downloadFileStream: downloadFileStream,
             formatDate: formatDate,
             // variables
             FILTER_INPUT_DELAY: 400,
@@ -311,6 +312,26 @@ window.qBittorrent.Misc ??= (() => {
             link.download = fileName;
             link.click();
             link.remove();
+        }
+        catch (error) {
+            alert(errorMessage);
+        }
+    };
+
+    const downloadFileStream = async (url, errorMessage = "QBT_TR(Unable to download file)QBT_TR[CONTEXT=HttpServer]") => {
+        try {
+            // Pre-flight HEAD request to check for errors before triggering download
+            // This avoids navigating to an error page on failure
+            const response = await fetch(url, { method: "HEAD" });
+            if (!response.ok) {
+                alert(errorMessage);
+                return;
+            }
+
+            // Trigger native browser download
+            const link = document.createElement("a");
+            link.href = url;
+            link.click();
         }
         catch (error) {
             alert(errorMessage);
