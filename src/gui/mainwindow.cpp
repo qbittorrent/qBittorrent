@@ -150,9 +150,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_displaySpeedInTitle = pref->speedInTitleBar();
 #ifdef Q_OS_MACOS
     m_statusItem->setVisible(pref->isMacOSMenuBarIconEnabled());
-#endif
+#else
     // Setting icons
-#ifndef Q_OS_MACOS
     setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
 #endif // Q_OS_MACOS
 
