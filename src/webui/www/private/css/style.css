@@ -14,11 +14,19 @@
     --color-background-blue: hsl(210deg 65% 55%);
     --color-background-popup: hsl(0deg 0% 100%);
     --color-background-default: hsl(0deg 0% 94%);
+    --color-background-disabled: hsl(0deg 0% 60%);
     --color-background-hover: hsl(26deg 80% 60%);
     --color-border-blue: hsl(210deg 42% 48%);
     --color-border-default: hsl(0deg 0% 85%);
     --color-icon-hover: brightness(0) invert(100%) sepia(100%) saturate(0%)
         hue-rotate(108deg) brightness(104%) contrast(104%);
+    --color-progress-downloading: hsl(210deg 65% 55%);
+    --color-progress-seeding: hsl(110deg 50% 45%);
+    --color-progress-stopped: hsl(0deg 0% 60%);
+    --color-progress-error: hsl(0deg 65% 55%);
+    --color-progress-checking: hsl(40deg 70% 50%);
+    --color-progress-queued: hsl(210deg 20% 60%);
+    --color-progress-stalled: hsl(210deg 30% 60%);
 
     & #torrentTrackersTableDiv tr {
         --color-tracker-disabled: hsl(240deg 4% 46%);
@@ -33,23 +41,33 @@
     }
 
     &.dark {
-        --color-accent-blue: hsl(210deg 42% 48%);
-        --color-text-blue: hsl(210deg 88.1% 73.5%);
-        --color-text-orange: hsl(26deg 65% 70%);
-        --color-text-default: hsl(0deg 0% 90%);
-        --color-background-primary: hsl(0deg 0% 7%);
-        --color-background-blue: hsl(210deg 42% 48%);
-        --color-background-popup: hsl(0deg 0% 20%);
-        --color-background-default: hsl(0deg 0% 25%);
-        --color-background-hover: hsl(26deg 50% 55%);
-        --color-border-default: hsl(0deg 0% 33%);
+        --color-accent-blue: hsl(210deg 45% 45%);
+        --color-text-blue: hsl(210deg 70% 68%);
+        --color-text-orange: hsl(26deg 50% 65%);
+        --color-text-white: hsl(220deg 5% 95%);
+        --color-text-disabled: hsl(220deg 5% 48%);
+        --color-text-default: hsl(220deg 9% 82%);
+        --color-background-primary: hsl(220deg 13% 10%);
+        --color-background-blue: hsl(210deg 45% 38%);
+        --color-background-popup: hsl(220deg 10% 14%);
+        --color-background-default: hsl(220deg 10% 18%);
+        --color-background-disabled: hsl(220deg 5% 48%);
+        --color-background-hover: hsl(26deg 35% 38%);
+        --color-border-default: hsl(220deg 8% 22%);
+        --color-progress-downloading: hsl(210deg 45% 38%);
+        --color-progress-seeding: hsl(142deg 40% 38%);
+        --color-progress-stopped: hsl(220deg 8% 35%);
+        --color-progress-error: hsl(0deg 45% 42%);
+        --color-progress-checking: hsl(40deg 40% 38%);
+        --color-progress-queued: hsl(220deg 12% 35%);
+        --color-progress-stalled: hsl(210deg 18% 38%);
 
         & #torrentTrackersTableDiv tr {
-            --color-tracker-disabled: hsl(240deg 6% 83%);
-            --color-tracker-not-contacted: hsl(39deg 100% 72%);
-            --color-tracker-working: hsl(142deg 69% 58%);
-            --color-tracker-updating: hsl(210deg 88.1% 73.5%);
-            --color-tracker-not-working: hsl(0deg 100% 71%);
+            --color-tracker-disabled: hsl(220deg 8% 78%);
+            --color-tracker-not-contacted: hsl(39deg 85% 68%);
+            --color-tracker-working: hsl(142deg 55% 55%);
+            --color-tracker-updating: hsl(210deg 70% 68%);
+            --color-tracker-not-working: hsl(0deg 80% 68%);
         }
 
         color-scheme: dark;
@@ -301,7 +319,7 @@ hr {
 }
 
 a.propButton {
-    border: 1px solid rgb(85 81 91);
+    border: 1px solid var(--color-border-default);
     margin-left: 3px;
     margin-right: 3px;
     padding: 2px;
@@ -436,6 +454,10 @@ a.propButton img {
 
 #contextCategoryList img.highlightedCategoryIcon {
     background-color: hsl(213deg 94% 86%);
+}
+
+:root.dark #contextCategoryList img.highlightedCategoryIcon {
+    background-color: hsl(213deg 30% 30%);
 }
 
 /* Sliders */
