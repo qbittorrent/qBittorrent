@@ -1,7 +1,10 @@
 # WebAPI Changelog
 
-## 2.15.2
+## 2.16.0
+* [#23065](https://github.com/qbittorrent/qBittorrent/pull/23065)
+  * Replace preferences key `max_connec_per_torrent` with keys `max_connec_per_downloading_torrent` and `max_connec_per_seeding_torrent`
 
+## 2.15.2
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23856)
   * Add `app/getFreeSpaceAtPathAction` endpoint with `path` as parameter returning the free space at the given path
 
