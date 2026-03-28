@@ -446,6 +446,7 @@ QStringList Session::expandCategory(const QString &category)
 SessionImpl::SessionImpl(QObject *parent)
     : Session(parent)
     , m_DHTBootstrapNodes(BITTORRENT_SESSION_KEY(u"DHTBootstrapNodes"_s), DEFAULT_DHT_BOOTSTRAP_NODES)
+    , m_goodSamaritanMinSeeders(BITTORRENT_SESSION_KEY(u"GoodSamaritanMinSeeders"_s), 15)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_s), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_s), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_s), true)
@@ -764,6 +765,24 @@ void SessionImpl::setDHTBootstrapNodes(const QString &nodes)
 
     m_DHTBootstrapNodes = nodes;
     configureDeferred();
+}
+
+int SessionImpl::goodSamaritanMinSeeders() const
+{
+    return m_goodSamaritanMinSeeders;
+}
+
+void SessionImpl::setGoodSamaritanMinSeeders(int minSeeders)
+{
+    if (minSeeders != m_goodSamaritanMinSeeders)
+    {
+        m_goodSamaritanMinSeeders = minSeeders;
+        if (minSeeders <= 0)
+            LogMsg(tr("[GoodSamaritan] Disabled."), Log::INFO);
+        else
+            LogMsg(tr("[GoodSamaritan] Threshold set to %1 seeder(s).").arg(minSeeders), Log::INFO);
+        updateSeedingLimitTimer();
+    }
 }
 
 bool SessionImpl::isDHTEnabled() const
@@ -2389,6 +2408,31 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     if (!torrent->isFinished() || torrent->isForced())
         return;
 
+    // GoodSamaritan: for stopped finished torrents, scrape the tracker so
+    // num_complete stays fresh, then resume if the swarm is below the threshold.
+    // Active torrents get fresh data via normal announces so only stopped ones need scraping.
+    const int gsThreshold = goodSamaritanMinSeeders();
+    if (gsThreshold > 0 && torrent->isStopped())
+    {
+        const int totalSeeders = torrent->totalSeedsCount();
+        // Fire a scrape; the reply will update num_complete for the next evaluation.
+        torrent->nativeHandle().scrape_tracker();
+
+        if (totalSeeders < 0)
+        {
+            // No scrape reply yet — will have data next tick.
+            return;
+        }
+        if (totalSeeders < gsThreshold)
+        {
+            LogMsg(tr("[GoodSamaritan] Resuming \"%1\" — swarm has only %2 seeder(s), below the minimum threshold of %3. (ratio: %4)")
+                .arg(torrent->name()).arg(totalSeeders).arg(gsThreshold)
+                .arg(QString::number(torrent->realRatio(), 'f', 2)));
+            torrent->start();
+        }
+        return;
+    }
+
     const qreal ratioLimit = torrent->effectiveRatioLimit();
     const int seedingTimeLimit = torrent->effectiveSeedingTimeLimit();
     const int inactiveSeedingTimeLimit = torrent->effectiveInactiveSeedingTimeLimit();
@@ -2417,6 +2461,19 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
 
     if (reached)
     {
+        // GoodSamaritan: keep contributing past share limits if the swarm still
+        // needs seeders. Only log when we actually override the action.
+        if (gsThreshold > 0)
+        {
+            const int totalSeeders = torrent->totalSeedsCount();
+            if (totalSeeders >= 0 && totalSeeders < gsThreshold)
+            {
+                LogMsg(tr("[GoodSamaritan] Overriding share limit for \"%1\": swarm has only %2 seeder(s) (threshold: %3).")
+                    .arg(torrent->name()).arg(totalSeeders).arg(gsThreshold));
+                return;
+            }
+        }
+
         const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
         const ShareLimitAction shareLimitAction = torrent->effectiveShareLimitAction();
 
@@ -5252,7 +5309,8 @@ void SessionImpl::updateSeedingLimitTimer()
 {
     if ((globalMaxRatio() == NO_RATIO_LIMIT) && !hasPerTorrentRatioLimit()
         && (globalMaxSeedingMinutes() == NO_SEEDING_TIME_LIMIT) && !hasPerTorrentSeedingTimeLimit()
-        && (globalMaxInactiveSeedingMinutes() == NO_SEEDING_TIME_LIMIT) && !hasPerTorrentInactiveSeedingTimeLimit())
+        && (globalMaxInactiveSeedingMinutes() == NO_SEEDING_TIME_LIMIT) && !hasPerTorrentInactiveSeedingTimeLimit()
+        && (goodSamaritanMinSeeders() <= 0))
     {
         if (m_seedingLimitTimer->isActive())
             m_seedingLimitTimer->stop();
