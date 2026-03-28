@@ -800,9 +800,9 @@ window.qBittorrent.DynamicTable ??= (() => {
         selectInverse() {
             for (const row of this.getFilteredAndSortedRows()) {
                 if (this.isRowSelected(row.rowId))
-                    this.selectedRows.delete(row.rowId);
+                    this.selectedRows.erase(row.rowId);
                 else
-                    this.selectedRows.add(row.rowId);
+                    this.selectedRows.push(row.rowId);
             }
             this.setRowClass();
         }
