@@ -54,6 +54,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtp.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
@@ -672,7 +673,25 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
     m_ui->lineEditSmtpServer->setText(pref->getMailNotificationSMTP());
-    m_ui->checkSmtpSSL->setChecked(pref->getMailNotificationSMTPSSL());
+    m_ui->comboSmtpEncryption->setToolTip(
+        u"<html><body><p>" + tr("Select the encryption type used when sending SMTP emails") + u"</p><p><b>" +
+        tr("None") + u"</b> : " +
+        tr("no encryption used when sending emails") +
+        u" <br><b>" + tr("(not recommended)") + u"</b>" +
+        u" <em>" + tr("[Default port : 25]") + u"</em></p><p><b>" +
+        tr("STARTTLS") + u"</b> : " +
+        tr("use STARTTLS encryption when sending emails") +
+        u" <br><b>" + tr("(recommended)") + u"</b>" +
+        u" <em>" + tr("[Default port : 587]") + u"</em></p><p><b>" +
+        tr("SMTPS") + u"</b> : " +
+        tr("use SMTPS encryption when sending emails") +
+        u" <br><b>" + tr("(check server supports this)") + u"</b>" +
+        u" <em>" + tr("[Default port : 465]") + u"</em></p></body></html>");
+    m_ui->comboSmtpEncryption->addItem(tr("None"), QVariant::fromValue(Net::SmtpEncryptionType::None));
+    m_ui->comboSmtpEncryption->addItem(tr("STARTTLS"), QVariant::fromValue(Net::SmtpEncryptionType::STARTTLS));
+    m_ui->comboSmtpEncryption->addItem(tr("SMTPS"), QVariant::fromValue(Net::SmtpEncryptionType::SMTPS));
+    m_ui->comboSmtpEncryption->setCurrentIndex(m_ui->comboSmtpEncryption->findData(QVariant::fromValue(pref->getMailNotificationSmtpEncryptionType())));
+    changeSmtpEncryptionPortInfoLabel();
     m_ui->groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
     m_ui->mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
     m_ui->mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
@@ -758,14 +777,15 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->senderEmailTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditDestEmail, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditSmtpServer, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkSmtpSSL, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboSmtpEncryption, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->comboSmtpEncryption, qComboBoxCurrentIndexChanged, this, &ThisType::changeSmtpEncryptionPortInfoLabel);
     connect(m_ui->groupMailNotifAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->sendTestEmail, &QPushButton::clicked, this, [this]
     {
         app()->sendTestEmail();
-        QMessageBox::information(this, tr("Test email"), tr("Attempted to send email. Check your inbox to confirm success"));
+        QMessageBox::information(this, tr("Test email"), tr("Attempted to send test email\nCheck your inbox to confirm success\nCheck the Execution Log for errors"));
     });
 
     connect(m_ui->groupBoxRunOnAdded, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -823,7 +843,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
     pref->setMailNotificationEmail(m_ui->lineEditDestEmail->text());
     pref->setMailNotificationSMTP(m_ui->lineEditSmtpServer->text());
-    pref->setMailNotificationSMTPSSL(m_ui->checkSmtpSSL->isChecked());
+    pref->setMailNotificationSmtpEncryptionType(m_ui->comboSmtpEncryption->currentData().value<Net::SmtpEncryptionType>());
     pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
@@ -1846,6 +1866,17 @@ void OptionsDialog::adjustProxyOptions()
             m_ui->checkProxyMisc->setEnabled(true);
         }
     }
+}
+
+void OptionsDialog::changeSmtpEncryptionPortInfoLabel()
+{
+    const Net::SmtpEncryptionType encryptionType = m_ui->comboSmtpEncryption->currentData().value<Net::SmtpEncryptionType>();
+    if (encryptionType == Net::SmtpEncryptionType::None) // None
+        m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 25"));
+    else if (encryptionType == Net::SmtpEncryptionType::STARTTLS) // STARTTLS
+        m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 587"));
+    else if (encryptionType == Net::SmtpEncryptionType::SMTPS) // SSL
+        m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 465"));
 }
 
 bool OptionsDialog::isSplashScreenDisabled() const
