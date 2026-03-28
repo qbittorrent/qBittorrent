@@ -466,6 +466,32 @@ window.qBittorrent.TorrentContent ??= (() => {
         }
     };
 
+    const getPathRelativeToRootFolder = (path) => {
+        const separatorIndex = path.indexOf(window.qBittorrent.Filesystem.PathSeparator);
+        return (separatorIndex < 0) ? "" : path.substring(separatorIndex + 1);
+    };
+
+    const joinAbsolutePath = (basePath, relativePath) => {
+        if (relativePath === "")
+            return basePath;
+
+        const separator = basePath.includes(window.qBittorrent.Filesystem.PathSeparator)
+            ? window.qBittorrent.Filesystem.PathSeparator
+            : "\\";
+        const normalizedRelativePath = relativePath.replaceAll(window.qBittorrent.Filesystem.PathSeparator, separator);
+        return `${basePath}${basePath.endsWith(separator) ? "" : separator}${normalizedRelativePath}`;
+    };
+
+    const getNodeAbsolutePath = (node, rootPath, contentPath, singleFileTorrent) => {
+        if (rootPath !== "")
+            return joinAbsolutePath(rootPath, getPathRelativeToRootFolder(node.path));
+
+        if (!node.isFolder && singleFileTorrent)
+            return contentPath;
+
+        return joinAbsolutePath(contentPath, node.path);
+    };
+
     const init = (tableId, tableClass, onFilePriorityChangedHandler = undefined, onFileRenameHandler = undefined) => {
         if (onFilePriorityChangedHandler !== undefined)
             onFilePriorityChanged = onFilePriorityChangedHandler;
@@ -481,6 +507,28 @@ window.qBittorrent.TorrentContent ??= (() => {
                         const nodes = torrentFilesTable.selectedRowsIds().map(row => torrentFilesTable.getNode(row));
                         onFileRenameHandler(torrentFilesTable.selectedRows, nodes);
                     }
+                },
+
+                CopyFilePath: async (element, ref) => {
+                    const torrentID = torrentsTable.getCurrentTorrentID();
+                    const torrentRow = torrentsTable.getRow(torrentID);
+                    if (!torrentRow)
+                        return;
+
+                    const torrentData = torrentsTable.getRowData(torrentRow, true);
+                    const rootPath = torrentData.root_path ?? "";
+                    const contentPath = torrentData.content_path ?? "";
+                    if ((rootPath === "") && (contentPath === ""))
+                        return;
+
+                    const rootNode = torrentFilesTable.getRoot();
+                    const singleFileTorrent = (rootNode !== null)
+                        && (rootNode.children.length === 1)
+                        && !rootNode.children[0].isFolder;
+                    const paths = torrentFilesTable.selectedRowsIds()
+                        .map(rowID => getNodeAbsolutePath(torrentFilesTable.getNode(rowID), rootPath, contentPath, singleFileTorrent))
+                        .join("\n");
+                    await clipboardCopy(paths);
                 },
 
                 FilePrioIgnore: (element, ref) => {
