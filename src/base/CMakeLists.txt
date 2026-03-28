@@ -85,6 +85,7 @@ add_library(qbt_base STATIC
     orderedset.h
     path.h
     pathfwd.h
+    pch.h
     preferences.h
     profile.h
     profile_p.h
@@ -239,6 +240,12 @@ target_link_libraries(qbt_base
         Qt::Xml
         qbt_common_cfg
 )
+
+if (ENABLE_PCH)
+    target_precompile_headers(qbt_base PRIVATE
+        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
+    )
+endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     find_library(AppKit_LIBRARY AppKit)
