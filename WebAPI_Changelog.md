@@ -18,6 +18,9 @@
 * [#24134](https://github.com/qbittorrent/qBittorrent/pull/24134)
   * `transfer/getSpeedLimits` endpoint was added to retrieve global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
   * `transfer/setSpeedLimits` endpoint was added to set global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
+* [#24135](https://github.com/qbittorrent/qBittorrent/pull/24135)
+  * Add `torrents/downloadFile` endpoint with `hash` and `file` as parameters allowing to download a completed file from torrent content
+    * `file` accepts either file index or path relative to content root
 
 ## 2.15.4
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
