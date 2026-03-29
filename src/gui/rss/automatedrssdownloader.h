@@ -64,6 +64,7 @@ public:
 
 private slots:
     void onAddRuleBtnClicked();
+    void onCloneRuleBtnClicked();
     void onRemoveRuleBtnClicked();
     void onExportBtnClicked();
     void onImportBtnClicked();
@@ -71,6 +72,7 @@ private slots:
     void handleRuleCheckStateChange(QListWidgetItem *ruleItem);
     void handleFeedCheckStateChange(QListWidgetItem *feedItem);
     void displayRulesListMenu();
+    void cloneSelectedRule();
     void renameSelectedRule();
     void updateRuleDefinitionBox();
     void clearSelectedRuleDownloadedEpisodeList();

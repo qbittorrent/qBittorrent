@@ -86,11 +86,16 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->exportBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onExportBtnClicked);
     connect(m_ui->importBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onImportBtnClicked);
     connect(m_ui->renameRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onRenameRuleBtnClicked);
+    connect(m_ui->cloneRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onCloneRuleBtnClicked);
 
     // Icons
+    m_ui->cloneRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
     m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
     m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
     m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+
+    m_ui->cloneRuleBtn->setToolTip(tr("Clone selected rule to a new rule.") + u"\n"
+        + tr("The cloned rule will be set as disabled and the downloaded episodes history will be cleared."));
 
     // Ui Settings
     m_ui->ruleList->setSortingEnabled(true);
@@ -273,11 +278,17 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
     const QList<QListWidgetItem *> selection = m_ui->ruleList->selectedItems();
     QListWidgetItem *currentRuleItem = ((selection.count() == 1) ? selection.first() : nullptr);
 
-    // Enable the edit rule button but only if we have 1 rule selected
+    // Enable the clone rule & rename rule buttons but only if we have 1 rule selected
     if (selection.count() == 1)
+    {
+        m_ui->cloneRuleBtn->setEnabled(true);
         m_ui->renameRuleBtn->setEnabled(true);
+    }
     else
+    {
+        m_ui->cloneRuleBtn->setEnabled(false);
         m_ui->renameRuleBtn->setEnabled(false);
+    }
 
     if (m_currentRuleItem != currentRuleItem)
     {
@@ -392,6 +403,11 @@ void AutomatedRssDownloader::onAddRuleBtnClicked()
     }
 
     RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule(ruleName));
+}
+
+void AutomatedRssDownloader::onCloneRuleBtnClicked()
+{
+    cloneSelectedRule();
 }
 
 void AutomatedRssDownloader::onRemoveRuleBtnClicked()
@@ -515,6 +531,9 @@ void AutomatedRssDownloader::displayRulesListMenu()
             menu->addSeparator();
             menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename rule...")
                 , this, &AutomatedRssDownloader::renameSelectedRule);
+            menu->addSeparator();
+            menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Clone rule...")
+                , this, &AutomatedRssDownloader::cloneSelectedRule);
         }
         else
         {
@@ -528,6 +547,39 @@ void AutomatedRssDownloader::displayRulesListMenu()
     }
 
     menu->popup(QCursor::pos());
+}
+
+void AutomatedRssDownloader::cloneSelectedRule()
+{
+    const QList<QListWidgetItem *> selection = m_ui->ruleList->selectedItems();
+    if (selection.isEmpty())
+        return;
+
+    QListWidgetItem *item = selection.first();
+    forever
+    {
+        QString cloneName = AutoExpandableDialog::getText(
+            this, tr("Rule cloning"), tr("Please type the name for the clone of the download rule.")
+            , QLineEdit::Normal, item->text());
+        cloneName = cloneName.trimmed();
+        if (cloneName.isEmpty())
+            return;
+
+        if (RSS::AutoDownloader::instance()->hasRule(cloneName))
+        {
+            QMessageBox::warning(this, tr("Rule name conflict")
+                , tr("A rule with this name already exists, please choose another name."));
+        }
+        else
+        {
+            // Clear the current selection, so that only the newly cloned rule
+            // will be selected after cloning and not the original one as well
+            m_ui->ruleList->clearSelection();
+            // Clone the rule
+            RSS::AutoDownloader::instance()->cloneRule(item->text(), cloneName);
+            return;
+        }
+    }
 }
 
 void AutomatedRssDownloader::renameSelectedRule()
