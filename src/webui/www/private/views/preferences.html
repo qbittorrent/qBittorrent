@@ -144,6 +144,10 @@
             <input type="checkbox" id="useVirtualList">
             <label for="useVirtualList">QBT_TR(Enable optimized table rendering)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <label for="contentBasePath">QBT_TR(Content Base Path:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="contentBasePath" style="width: 40em;" placeholder="http://localhost/downloads">
+        </div>
     </fieldset>
 </div>
 
@@ -2304,6 +2308,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
                     const dblclickFilter = clientData.get("dblclick_filter") ?? "1";
                     const useAltRowColors = clientData.get("use_alt_row_colors");
+                    const contentBasePath = clientData.get("content_base_path") ?? "";
 
                     // Behavior tab
                     // Localization
@@ -2326,6 +2331,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
                     document.getElementById("useVirtualList").checked = useVirtualList === true;
+                    document.getElementById("contentBasePath").value = contentBasePath.trim();
                     document.getElementById("hideZeroFiltersCheckbox").checked = hideZeroStatusFilters === true;
                     document.getElementById("dblclickDownloadSelect").value = dblclickDownload;
                     document.getElementById("dblclickCompleteSelect").value = dblclickComplete;
@@ -2775,6 +2781,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
             clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
+            clientData.content_base_path = document.getElementById("contentBasePath").value.trim();
             clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
             clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
