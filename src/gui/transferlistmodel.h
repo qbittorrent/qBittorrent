@@ -87,6 +87,7 @@ public:
         TR_INFOHASH_V2,
         TR_REANNOUNCE,
         TR_PRIVATE,
+        TR_GROUP, // Virtual torrent group (experimental)
         TR_CREATE_DATE,
 
         NB_COLUMNS
@@ -108,6 +109,7 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     BitTorrent::Torrent *torrentHandle(const QModelIndex &index) const;
+    QModelIndex indexForTorrent(const BitTorrent::Torrent *torrent) const; // helper for grouping proxy
 
 private slots:
     void addTorrents(const QList<BitTorrent::Torrent *> &torrents);

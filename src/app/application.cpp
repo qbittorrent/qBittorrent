@@ -83,6 +83,7 @@
 #include "base/search/searchpluginmanager.h"
 #include "base/settingsstorage.h"
 #include "base/torrentfileswatcher.h"
+#include "base/torrentgroup.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/os.h"
@@ -309,6 +310,9 @@ Application::Application(int &argc, char **argv)
     }
 
     initializeTranslation();
+
+    // Load persisted torrent groups
+    TorrentGroupManager::instance()->load();
 
     connect(this, &QCoreApplication::aboutToQuit, this, &Application::cleanup);
     connect(m_instanceManager, &ApplicationInstanceManager::messageReceived, this, &Application::processMessage);
@@ -1362,6 +1366,10 @@ void Application::cleanup()
         return;
 
     LogMsg(tr("qBittorrent termination initiated"));
+
+    // Persist torrent groups before tearing down preferences
+    if (TorrentGroupManager::instance())
+        TorrentGroupManager::instance()->save();
 
 #ifndef DISABLE_GUI
     if (m_desktopIntegration)
