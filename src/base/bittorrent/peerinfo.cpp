@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,6 +27,8 @@
  */
 
 #include "peerinfo.h"
+
+#include <libtorrent/version.hpp>
 
 #include <QBitArray>
 
@@ -172,8 +174,13 @@ PeerAddress PeerInfo::address() const
     if (useI2PSocket())
         return {};
 
+#if LIBTORRENT_VERSION_NUM >= 20100
+    const lt::tcp::endpoint ip = m_nativeInfo.remote_endpoint();
+#else
+    const lt::tcp::endpoint &ip = m_nativeInfo.ip;
+#endif
     // fast path for platforms which boost.asio internal struct maps to `sockaddr`
-    return {QHostAddress(m_nativeInfo.ip.data()), m_nativeInfo.ip.port()};
+    return {QHostAddress(ip.data()), ip.port()};
     // slow path for the others
     //return {QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string()))
     //    , m_nativeInfo.ip.port()};
