@@ -114,6 +114,7 @@ private:
     void displayContextMenu();
     void openItem(const QModelIndex &index) const;
     void openParentFolder(const QModelIndex &index);
+    void copyFullPath(const QModelIndex &index);
     void openSelectedFile();
     void renameSelectedFile();
     void applyPriorities(BitTorrent::DownloadPriority priority);
