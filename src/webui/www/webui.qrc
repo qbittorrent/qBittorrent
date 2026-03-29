@@ -4,6 +4,7 @@
         <file>private/addtorrent.html</file>
         <file>private/addtrackers.html</file>
         <file>private/addwebseeds.html</file>
+        <file>private/clone_rule.html</file>
         <file>private/confirmfeeddeletion.html</file>
         <file>private/confirmruleclear.html</file>
         <file>private/confirmruledeletion.html</file>

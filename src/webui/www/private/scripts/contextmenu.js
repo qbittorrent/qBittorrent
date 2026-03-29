@@ -727,10 +727,10 @@ window.qBittorrent.ContextMenu ??= (() => {
             // position the menu
             let xPosMenu = e.pageX + this.options.offsets.x - document.getElementById("rssdownloaderpage").offsetLeft;
             let yPosMenu = e.pageY + this.options.offsets.y - document.getElementById("rssdownloaderpage").offsetTop;
-            if ((xPosMenu + this.menu.offsetWidth) > document.documentElement.clientWidth)
+            if ((xPosMenu + this.menu.offsetWidth) > document.getElementById("rssdownloaderpage").clientWidth)
                 xPosMenu -= this.menu.offsetWidth;
-            if ((yPosMenu + this.menu.offsetHeight) > document.documentElement.clientHeight)
-                yPosMenu = document.documentElement.clientHeight - this.menu.offsetHeight;
+            if ((yPosMenu + this.menu.offsetHeight) > document.getElementById("rssdownloaderpage").clientHeight)
+                yPosMenu = document.getElementById("rssdownloaderpage").clientHeight - this.menu.offsetHeight;
             xPosMenu = Math.max(xPosMenu, 0);
             yPosMenu = Math.max(yPosMenu, 0);
 
@@ -747,18 +747,21 @@ window.qBittorrent.ContextMenu ??= (() => {
                     // menu when nothing selected
                     this.hideItem("deleteRule");
                     this.hideItem("renameRule");
+                    this.hideItem("cloneRule");
                     this.hideItem("clearDownloadedEpisodes");
                     break;
                 case 1:
                     // menu when single item selected
                     this.showItem("deleteRule");
                     this.showItem("renameRule");
+                    this.showItem("cloneRule");
                     this.showItem("clearDownloadedEpisodes");
                     break;
                 default:
                     // menu when multiple items selected
                     this.showItem("deleteRule");
                     this.hideItem("renameRule");
+                    this.hideItem("cloneRule");
                     this.showItem("clearDownloadedEpisodes");
                     break;
             }

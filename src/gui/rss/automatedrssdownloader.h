@@ -64,6 +64,7 @@ public:
 
 private slots:
     void onAddRuleBtnClicked();
+    void onCloneRuleBtnClicked();
     void onRemoveRuleBtnClicked();
     void onExportBtnClicked();
     void onImportBtnClicked();
