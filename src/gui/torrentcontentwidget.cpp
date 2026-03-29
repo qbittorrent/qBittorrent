@@ -510,7 +510,6 @@ void TorrentContentWidget::openParentFolder(const QModelIndex &index)
 void TorrentContentWidget::copyContentPath(const QModelIndex &index)
 {
     const Path path = getFullPath(index);
-    m_model->contentHandler()->flushCache();  // Flush data
     QApplication::clipboard()->setText(path.toString());
 }
 
