@@ -427,7 +427,7 @@ void TorrentContentWidget::displayContextMenu()
             menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Open containing folder")
                             , this, [this, index]() { openParentFolder(index); });
             menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy path")
-                            , this, [this, index]() { copyContentPath(index); });
+                            , this, [this, index]() { copyFullPath(index); });
         }
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename...")
                         , this, &TorrentContentWidget::renameSelectedFile);
@@ -507,7 +507,7 @@ void TorrentContentWidget::openParentFolder(const QModelIndex &index)
 #endif
 }
 
-void TorrentContentWidget::copyContentPath(const QModelIndex &index)
+void TorrentContentWidget::copyFullPath(const QModelIndex &index)
 {
     const Path path = getFullPath(index);
     QApplication::clipboard()->setText(path.toString());
