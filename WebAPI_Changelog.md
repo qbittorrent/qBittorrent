@@ -1,5 +1,9 @@
 # WebAPI Changelog
 
+## 2.15.4
+* [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
+  * Add `rss/cloneRule` endpoint with `sourceName` and `cloneName` as parameters for cloning an existing RSS auto-download rule
+
 ## 2.15.3
 * [#24043](https://github.com/qbittorrent/qBittorrent/pull/24043)
   * `sync/maindata` endpoint includes `share_limits_mode` for torrents
