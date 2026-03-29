@@ -111,7 +111,7 @@ private:
 
     // Session management
     QString generateSid() const;
-    QNetworkCookie createSessionCookie(const QString &sessionID, std::chrono::seconds expireDuration) const;
+    QNetworkCookie createSessionCookie(const QString &sessionId, std::chrono::seconds expireDuration) const;
     void cookieSessionInitialize(const QString &authScheme, const QString &authData);
     void apiKeySessionInitialize(const QString &apiKey);
     bool isAuthNeeded();

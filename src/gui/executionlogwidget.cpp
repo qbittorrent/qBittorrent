@@ -69,8 +69,8 @@ ExecutionLogWidget::ExecutionLogWidget(const Log::MsgTypes types, QWidget *paren
     m_ui->tabBan->layout()->addWidget(peerView);
 
 #ifndef Q_OS_MACOS
-    m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon(u"help-contents"_s, u"view-calendar-journal"_s));
-    m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon(u"ip-blocked"_s, u"view-filter"_s));
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &ExecutionLogWidget::loadUIThemeResources);
 #endif
 }
 
@@ -82,6 +82,12 @@ ExecutionLogWidget::~ExecutionLogWidget()
 void ExecutionLogWidget::setMessageTypes(const Log::MsgTypes types)
 {
     m_messageFilterModel->setMessageTypes(types);
+}
+
+void ExecutionLogWidget::loadUIThemeResources()
+{
+    m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon(u"help-contents"_s, u"view-calendar-journal"_s));
+    m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon(u"ip-blocked"_s, u"view-filter"_s));
 }
 
 void ExecutionLogWidget::displayContextMenu(const LogListView *view, const BaseLogModel *model) const

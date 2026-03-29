@@ -86,6 +86,7 @@ TagFilterModel::TagFilterModel(QObject *parent)
     connect(session, &Session::torrentTagRemoved, this, &TagFilterModel::torrentTagRemoved);
     connect(session, &Session::torrentsLoaded, this, &TagFilterModel::torrentsLoaded);
     connect(session, &Session::torrentAboutToBeRemoved, this, &TagFilterModel::torrentAboutToBeRemoved);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &TagFilterModel::onUIThemeChanged);
     populate();
 }
 
@@ -282,6 +283,12 @@ void TagFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
             emit dataChanged(i, i);
         }
     }
+}
+
+void TagFilterModel::onUIThemeChanged()
+{
+    if (rowCount() > 0)
+        emit dataChanged(index(0, 0), index((rowCount() - 1), 0), {Qt::DecorationRole});
 }
 
 void TagFilterModel::populate()

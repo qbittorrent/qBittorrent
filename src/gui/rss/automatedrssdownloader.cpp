@@ -87,11 +87,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->importBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onImportBtnClicked);
     connect(m_ui->renameRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onRenameRuleBtnClicked);
 
-    // Icons
-    m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
-    m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
-    m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
-
     // Ui Settings
     m_ui->ruleList->setSortingEnabled(true);
     m_ui->ruleList->setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -171,6 +166,9 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 
     connect(RSS::AutoDownloader::instance(), &RSS::AutoDownloader::processingStateChanged
             , this, &AutomatedRssDownloader::handleProcessingStateChanged);
+
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &AutomatedRssDownloader::loadUIThemeResources);
 }
 
 AutomatedRssDownloader::~AutomatedRssDownloader()
@@ -181,6 +179,20 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 
     delete m_ui;
     delete m_episodeRegex;
+}
+
+void AutomatedRssDownloader::loadUIThemeResources()
+{
+    m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_s));
+    m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
+    m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
+
+    for (int i = 0; i < m_ui->matchingArticlesTree->topLevelItemCount(); ++i)
+        m_ui->matchingArticlesTree->topLevelItem(i)->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"directory"_s));
+
+    updateMustLineValidity();
+    updateMustNotLineValidity();
+    updateEpisodeFilterValidity();
 }
 
 void AutomatedRssDownloader::loadSettings()
@@ -742,7 +754,7 @@ void AutomatedRssDownloader::updateMustLineValidity()
     if (valid)
     {
         m_ui->lineContains->setStyleSheet({});
-        m_ui->labelMustStat->setPixmap(QPixmap());
+        m_ui->labelMustStat->setPixmap({});
         m_ui->labelMustStat->setToolTip({});
     }
     else
@@ -789,7 +801,7 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
     if (valid)
     {
         m_ui->lineNotContains->setStyleSheet({});
-        m_ui->labelMustNotStat->setPixmap(QPixmap());
+        m_ui->labelMustNotStat->setPixmap({});
         m_ui->labelMustNotStat->setToolTip({});
     }
     else
@@ -803,9 +815,9 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
 void AutomatedRssDownloader::updateEpisodeFilterValidity()
 {
     const QString text = m_ui->lineEFilter->text();
-    bool valid = text.isEmpty() || m_episodeRegex->match(text).hasMatch();
+    const bool isValid = text.isEmpty() || m_episodeRegex->match(text).hasMatch();
 
-    if (valid)
+    if (isValid)
     {
         m_ui->lineEFilter->setStyleSheet({});
         m_ui->labelEpFilterStat->setPixmap({});

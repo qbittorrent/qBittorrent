@@ -73,7 +73,8 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     m_ui->pluginsTree->header()->setFirstSectionMovable(true);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
-    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &PluginSelectDialog::loadUIThemeResources);
 
     connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
     connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);
@@ -96,6 +97,11 @@ PluginSelectDialog::~PluginSelectDialog()
 {
     m_storeDialogSize = size();
     delete m_ui;
+}
+
+void PluginSelectDialog::loadUIThemeResources()
+{
+    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
 }
 
 void PluginSelectDialog::dropEvent(QDropEvent *event)

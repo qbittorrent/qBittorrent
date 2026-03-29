@@ -50,8 +50,10 @@ LineEdit::LineEdit(QWidget *parent)
     : QLineEdit(parent)
     , m_delayedTextChangedTimer {new QTimer(this)}
 {
-    auto *action = new QAction(UIThemeManager::instance()->getIcon(u"edit-find"_s), QString(), this);
-    addAction(action, QLineEdit::LeadingPosition);
+    m_searchAction = new QAction(QString(), this);
+    addAction(m_searchAction, QLineEdit::LeadingPosition);
+    applyUITheme();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &LineEdit::applyUITheme);
 
     setClearButtonEnabled(true);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -71,6 +73,11 @@ LineEdit::LineEdit(QWidget *parent)
     {
         m_delayedTextChangedTimer->start(FILTER_INPUT_DELAY);
     });
+}
+
+void LineEdit::applyUITheme()
+{
+    m_searchAction->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_s));
 }
 
 void LineEdit::keyPressEvent(QKeyEvent *event)

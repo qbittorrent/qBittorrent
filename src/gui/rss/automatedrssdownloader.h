@@ -87,6 +87,7 @@ private slots:
     void handleProcessingStateChanged(bool enabled);
 
 private:
+    void loadUIThemeResources();
     void loadSettings();
     void saveSettings();
     void createRuleItem(const RSS::AutoDownloadRule &rule);

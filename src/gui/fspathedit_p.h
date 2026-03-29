@@ -136,6 +136,7 @@ namespace Private
     private:
         void showCompletionPopup();
         void validateText();
+        void updateWarningAction();
 
         static QString warningText(FileSystemPathValidator::TestResult result);
 

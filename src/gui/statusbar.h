@@ -30,6 +30,7 @@
 
 #include <QStatusBar>
 
+class QHBoxLayout;
 class QLabel;
 class QPushButton;
 
@@ -60,6 +61,8 @@ private slots:
     void optionsSaved();
 
 private:
+    void loadUIThemeResources();
+    void updateAltSpeedsButtonAppearance(bool alternative);
     void updateConnectionStatus();
     void updateDHTNodesNumber();
     void updateFreeDiskSpaceLabel(qint64 value);
@@ -78,4 +81,10 @@ private:
     QWidget *m_DHTSeparator = nullptr;
     QPushButton *m_connecStatusLblIcon = nullptr;
     QPushButton *m_altSpeedsBtn = nullptr;
+    QLabel *m_restartIconLbl = nullptr;
+    QLabel *m_restartLbl = nullptr;
+#ifdef Q_OS_MACOS
+    QHBoxLayout *m_statusLayout = nullptr;
+    QWidget *m_statusWidget = nullptr;
+#endif
 };

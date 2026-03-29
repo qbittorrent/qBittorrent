@@ -718,9 +718,9 @@ QString WebApplication::clientId() const
     return m_clientAddress.toString();
 }
 
-QNetworkCookie WebApplication::createSessionCookie(const QString &sessionID, const std::chrono::seconds expireDuration) const
+QNetworkCookie WebApplication::createSessionCookie(const QString &sessionId, const std::chrono::seconds expireDuration) const
 {
-    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), sessionID.toLatin1()};
+    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), sessionId.toLatin1()};
     cookie.setExpirationDate(QDateTime::currentDateTime().addDuration(expireDuration));
     cookie.setHttpOnly(true);
     cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute

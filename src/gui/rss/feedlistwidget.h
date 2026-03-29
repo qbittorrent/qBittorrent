@@ -48,9 +48,9 @@ class FeedListWidget final : public QTreeWidget
 public:
     explicit FeedListWidget(QWidget *parent);
 
-    QTreeWidgetItem *stickyItemAllArticles() const;
-    QTreeWidgetItem *stickyItemUnreadArticles() const;
-    bool isStickyItem(QTreeWidgetItem *item) const;
+    QTreeWidgetItem *allArticlesItem() const;
+    QTreeWidgetItem *unreadArticlesItem() const;
+    bool isSpecialItem(QTreeWidgetItem *item) const;
     QList<QTreeWidgetItem *> getAllOpenedFolders(QTreeWidgetItem *parent = nullptr) const;
     RSS::Item *getRSSItem(QTreeWidgetItem *item) const;
     QTreeWidgetItem *mapRSSItem(RSS::Item *rssItem) const;
@@ -67,12 +67,14 @@ private slots:
     void handleItemAboutToBeRemoved(RSS::Item *rssItem);
 
 private:
+    void loadUIThemeResources();
+    void applyUITheme(QTreeWidgetItem *item);
     void dragMoveEvent(QDragMoveEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     QTreeWidgetItem *createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem = nullptr);
     void fill(QTreeWidgetItem *parent, RSS::Folder *rssParent);
 
     QHash<RSS::Item *, QTreeWidgetItem *> m_rssToTreeItemMapping;
-    QTreeWidgetItem *m_stickyItemAllArticles = nullptr;
-    QTreeWidgetItem *m_stickyItemUnreadArticles = nullptr;
+    QTreeWidgetItem *m_allArticlesItem = nullptr;
+    QTreeWidgetItem *m_unreadArticlesItem = nullptr;
 };

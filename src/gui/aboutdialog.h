@@ -47,6 +47,7 @@ public:
     ~AboutDialog() override;
 
 private:
+    void applyUITheme();
     void copyVersionsToClipboard() const;
 
     Ui::AboutDialog *m_ui = nullptr;

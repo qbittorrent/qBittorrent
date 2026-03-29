@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QList>
 #include <QMainWindow>
 #include <QPointer>
 
@@ -188,7 +189,13 @@ private slots:
 #endif
 
 private:
+    void loadActionIcons();
+    void loadTabIcons();
+    void loadUIThemeResources();
     void populateDesktopIntegrationMenu();
+#ifdef Q_OS_MACOS
+    void replaceToolBarSeparators();
+#endif
 
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;

@@ -41,6 +41,7 @@
 #include <QStyle>
 
 #include "base/path.h"
+#include "gui/uithememanager.h"
 
 // -------------------- FileSystemPathValidator ----------------------------------------
 Private::FileSystemPathValidator::FileSystemPathValidator(QObject *parent)
@@ -165,6 +166,7 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
 {
     setCompleter(new QCompleter(this));
     connect(this, &QLineEdit::textChanged, this, &FileLineEdit::validateText);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &FileLineEdit::updateWarningAction);
 }
 
 Private::FileLineEdit::~FileLineEdit()
@@ -199,6 +201,23 @@ void Private::FileLineEdit::setBrowseAction(QAction *action)
 void Private::FileLineEdit::setValidator(QValidator *validator)
 {
     QLineEdit::setValidator(validator);
+}
+
+void Private::FileLineEdit::updateWarningAction()
+{
+    if (!m_warningAction)
+        return;
+
+    const auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
+    Q_ASSERT(validator);
+
+    const QValidator::State lastState = validator->lastValidationState();
+    if (lastState == QValidator::Invalid)
+        m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
+    else if (lastState == QValidator::Intermediate)
+        m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+
+    m_warningAction->setToolTip(warningText(validator->lastTestResult()));
 }
 
 Path Private::FileLineEdit::placeholder() const
@@ -270,8 +289,6 @@ void Private::FileLineEdit::validateText()
         return;
 
     const FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
-    const QValidator::State lastState = validator->lastValidationState();
-
     if (lastTestResult == FileSystemPathValidator::TestResult::OK)
     {
         delete m_warningAction;
@@ -287,13 +304,7 @@ void Private::FileLineEdit::validateText()
     }
 
     if (m_warningAction)
-    {
-        if (lastState == QValidator::Invalid)
-            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
-        else if (lastState == QValidator::Intermediate)
-            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
-        m_warningAction->setToolTip(warningText(lastTestResult));
-    }
+        updateWarningAction();
 }
 
 QString Private::FileLineEdit::warningText(const FileSystemPathValidator::TestResult result)

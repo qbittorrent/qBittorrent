@@ -41,6 +41,7 @@
 
 #include "base/utils/fs.h"
 #include "fspathedit_p.h"
+#include "uithememanager.h"
 
 namespace
 {
@@ -92,7 +93,7 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
                         FileSystemPathEdit *q, Private::IFileEditorWithCompletion *editor)
     : q_ptr {q}
     , m_editor {editor}
-    , m_browseAction {new QAction(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon), browseButtonFullText.tr(), q)}
+    , m_browseAction {new QAction(browseButtonFullText.tr(), q)}
     , m_browseBtn {new QToolButton(q)}
     , m_fileNameFilter {tr("Any file") + u" (*)"}
     , m_validator {new Private::FileSystemPathValidator(q)}
@@ -194,6 +195,8 @@ FileSystemPathEdit::FileSystemPathEdit(Private::IFileEditorWithCompletion *edito
     layout->addWidget(d->m_browseBtn);
 
     connect(d->m_browseAction, &QAction::triggered, this, [this]() { this->d_func()->browseActionTriggered(); });
+    updateBrowseActionIcon();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &FileSystemPathEdit::updateBrowseActionIcon);
 }
 
 FileSystemPathEdit::~FileSystemPathEdit()
@@ -318,6 +321,13 @@ QWidget *FileSystemPathEdit::editWidgetImpl() const
 {
     Q_D(const FileSystemPathEdit);
     return d->m_editor->widget();
+}
+
+void FileSystemPathEdit::updateBrowseActionIcon()
+{
+    Q_D(FileSystemPathEdit);
+
+    d->m_browseAction->setIcon(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon));
 }
 
 // ------------------------- FileSystemPathLineEdit ----------------------
