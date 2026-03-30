@@ -17,6 +17,7 @@ The free [IP to Country Lite database](https://db-ip.com/db/download/ip-to-count
 ### Installation:
 
 Refer to the [INSTALL](INSTALL) file.
+For a locally verified macOS contributor workflow, see [docs/build-macos.md](docs/build-macos.md).
 
 ### Public key:
 Starting from v3.3.4 all source tarballs and binaries are signed.<br />

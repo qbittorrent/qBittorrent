@@ -46,6 +46,7 @@ Please ensure you are building with an officially supported configuration when r
 
 DOCUMENTATION:
 Please note that there is a "Compilation" section at https://wiki.qbittorrent.org.
+For local GUI builds on macOS using Homebrew, refer to docs/build-macos.md in this repository.
 
 ------------------------------------------
 sledgehammer999 <sledgehammer999@qbittorrent.org>
