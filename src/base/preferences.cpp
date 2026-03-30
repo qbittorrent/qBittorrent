@@ -1521,6 +1521,19 @@ void Preferences::setSpeedInDockEnabled(const bool enabled)
 
     setValue(u"Preferences/Desktop/ShowSpeedInDock"_s, enabled);
 }
+
+bool Preferences::isMacOSMenuBarIconEnabled() const
+{
+    return value(u"Preferences/Desktop/ShowMacOSMenuBarIcon"_s, true);
+}
+
+void Preferences::setMacOSMenuBarIconEnabled(const bool enabled)
+{
+    if (enabled == isMacOSMenuBarIconEnabled())
+        return;
+
+    setValue(u"Preferences/Desktop/ShowMacOSMenuBarIcon"_s, enabled);
+}
 #endif
 
 bool Preferences::confirmTorrentDeletion() const
