@@ -55,7 +55,7 @@ namespace Http
 
     private:
         void abort(const ResponseStatus &responseStatus);
-        bool processRequest();
+        void processRequest();
         void read();
 
         QTcpSocket *m_socket = nullptr;
@@ -63,5 +63,6 @@ namespace Http
         QByteArray m_receivedData;
         QElapsedTimer m_idleTimer;
         bool m_isProcessingRequest = false;
+        bool m_isReadyRead = false;
     };
 }

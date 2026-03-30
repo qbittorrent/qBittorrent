@@ -59,6 +59,7 @@ Http::Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler
     connect(m_socket, &QIODevice::readyRead, this, [this]
     {
         m_idleTimer.start();
+        m_isReadyRead = true;
         read();
     });
     connect(m_socket, &QIODevice::bytesWritten, this, [this]
@@ -71,6 +72,8 @@ void Http::Connection::read()
 {
     if (m_isProcessingRequest)
         return;
+
+    m_isReadyRead = false;
 
     const qint64 bytesAvailable = m_socket->bytesAvailable();
     if (bytesAvailable > 0)
@@ -90,17 +93,14 @@ void Http::Connection::read()
     }
 
     if (!m_receivedData.isEmpty())
-    {
-        if (!processRequest())
-            return;
-    }
+        processRequest();
 }
 
-bool Http::Connection::processRequest()
+void Http::Connection::processRequest()
 {
     Q_ASSERT(!m_isProcessingRequest);
     if (m_isProcessingRequest) [[unlikely]]
-        return false;
+        return;
 
     const RequestParser::ParseResult result = RequestParser::parse(m_receivedData);
     switch (result.status)
@@ -120,29 +120,32 @@ bool Http::Connection::processRequest()
             {
                 responseWriter->deleteLater();
                 m_isProcessingRequest = false;
-                read(); // try to fetch next request
+                if (!m_receivedData.isEmpty())
+                    processRequest(); // try to fetch next request
+                else if (m_isReadyRead)
+                    read();
             }, Qt::QueuedConnection); // need to use `Qt::QueuedConnection` to avoid possible recursion
 
             m_isProcessingRequest = true;
             m_requestHandler->processRequest(result.request, env, responseWriter);
         }
-        return true;
+        break;
 
     case RequestParser::ParseStatus::Incomplete:
         if (m_receivedData.size() > (RequestParser::MAX_CONTENT_SIZE * 1.1))  // some margin for headers
             abort({413, u"Payload Too Large"_s});
-        return false;
+        if (m_isReadyRead)
+            read();
+        break;
 
     case RequestParser::ParseStatus::BadMethod:
         abort({501, u"Not Implemented"_s});
-        return false;
+        break;
 
     case RequestParser::ParseStatus::BadRequest:
         abort({400, u"Bad Request"_s});
-        return false;
+        break;
     }
-
-    Q_UNREACHABLE_RETURN(false);
 }
 
 void Http::Connection::abort(const ResponseStatus &responseStatus)
