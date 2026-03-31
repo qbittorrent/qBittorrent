@@ -706,7 +706,7 @@ SessionImpl::~SessionImpl()
 
     if (m_torrentsQueueChanged)
     {
-        m_nativeSession->post_torrent_updates({});
+        m_nativeSession->post_torrent_updates();
         m_torrentsQueueChanged = false;
         m_needSaveTorrentsQueue = true;
     }
