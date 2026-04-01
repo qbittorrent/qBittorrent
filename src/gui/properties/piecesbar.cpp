@@ -119,7 +119,7 @@ PiecesBar::PiecesBar(QWidget *parent)
     : QWidget(parent)
 {
     setMouseTracking(true);
-    refreshTheme();
+    updateColorsImpl();
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &PiecesBar::refreshTheme);
 }
 
