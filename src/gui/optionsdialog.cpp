@@ -237,32 +237,34 @@ OptionsDialog::~OptionsDialog()
 
 void OptionsDialog::updateSidebarMetrics()
 {
+    const QSize iconSize = Utils::Gui::largeIconSize(this);
     const QFontMetrics fontMetrics {m_ui->tabSelection->font()};
-    const int horizontalPadding = (fontMetrics.averageCharWidth() * 4);
+    const int horizontalPadding = std::max(
+        style()->pixelMetric(QStyle::PM_FocusFrameHMargin, nullptr, m_ui->tabSelection),
+        fontMetrics.averageCharWidth());
+    const int verticalPadding = std::max(
+        style()->pixelMetric(QStyle::PM_FocusFrameVMargin, nullptr, m_ui->tabSelection),
+        std::max(1, (fontMetrics.averageCharWidth() / 2)));
     const int frameWidth = (m_ui->tabSelection->frameWidth() * 2);
     const int scrollBarWidth = style()->pixelMetric(QStyle::PM_ScrollBarExtent, nullptr, m_ui->tabSelection);
 
     int maxTextWidth = 0;
-    int maxItemWidth = 0;
-    int maxHeight = -1;
     for (int i = 0; i < m_ui->tabSelection->count(); ++i)
-    {
-        QListWidgetItem *const item = m_ui->tabSelection->item(i);
-        const QRect itemRect = m_ui->tabSelection->visualItemRect(item);
-        maxTextWidth = std::max(maxTextWidth, fontMetrics.horizontalAdvance(item->text()));
-        maxItemWidth = std::max(maxItemWidth, itemRect.width());
-        maxHeight = std::max(maxHeight, itemRect.height());
-    }
+        maxTextWidth = std::max(maxTextWidth, fontMetrics.horizontalAdvance(m_ui->tabSelection->item(i)->text()));
 
-    if (maxHeight <= 0)
-        maxHeight = (fontMetrics.lineSpacing() * 3);
+    const int itemWidth = std::max(iconSize.width(), maxTextWidth) + (horizontalPadding * 4);
+    const int itemHeight = iconSize.height() + fontMetrics.lineSpacing() + (verticalPadding * 6);
+    const QSize itemSize {itemWidth, itemHeight};
 
-    const int itemHeight = static_cast<int>(maxHeight * 1.2);
-
-    m_ui->tabSelection->setMinimumWidth(std::max(maxItemWidth, (maxTextWidth + horizontalPadding)) + frameWidth + scrollBarWidth);
+    m_ui->tabSelection->setIconSize(iconSize);
+    m_ui->tabSelection->setGridSize(itemSize);
+    m_ui->tabSelection->setSpacing(verticalPadding);
+    m_ui->tabSelection->setWordWrap(true);
+    m_ui->tabSelection->setTextElideMode(Qt::ElideNone);
+    m_ui->tabSelection->setMinimumWidth(itemWidth + frameWidth + scrollBarWidth);
 
     for (int i = 0; i < m_ui->tabSelection->count(); ++i)
-        m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), itemHeight));
+        m_ui->tabSelection->item(i)->setSizeHint(itemSize);
 }
 
 void OptionsDialog::loadUIThemeResources()
@@ -1669,7 +1671,7 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 
 void OptionsDialog::loadSplitterState()
 {
-    const int width = std::max(m_ui->tabSelection->minimumWidth(), (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
+    const int width = std::max(m_ui->tabSelection->minimumWidth(), m_ui->tabSelection->gridSize().width());
     const QStringList defaultSizes = {QString::number(width), QString::number(m_ui->hsplitter->width() - width)};
 
     QList<int> splitterSizes;
