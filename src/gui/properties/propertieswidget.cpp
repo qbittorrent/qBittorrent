@@ -33,6 +33,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QFuture>
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QListWidgetItem>
 #include <QMenu>
@@ -41,7 +42,9 @@
 #include <QSplitter>
 #include <QShortcut>
 #include <QStackedWidget>
+#include <QStyle>
 #include <QUrl>
+#include <QVBoxLayout>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -603,14 +606,33 @@ void PropertiesWidget::configure()
 
             const QColor displayTextColor = palette().color(QPalette::WindowText);
             const QColor warningTextColor = UIThemeManager::instance()->getColor(u"Log.Warning"_s);
-            const auto displayText = u"<html><head/><body><p align=\"center\">"
-                u"<span style=\"text-decoration: none; color: %1;\">&#9888; <b>%2</b></span><br/>"
-                u"<a href=\"#\"><span style=\"text-decoration: underline; color: %3;\">%4</span></a>"
-                u"</p></body></html>"_s
-                .arg(warningTextColor.name(), tr("Speed graphs are disabled"), displayTextColor.name(), tr("Open Advanced Options to enable them"));
-            auto *label = new QLabel(displayText, this);
+            auto *container = new QWidget(this);
+            container->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+
+            auto *containerLayout = new QVBoxLayout(container);
+            containerLayout->setContentsMargins(0, 0, 0, 0);
+            containerLayout->setSpacing(0);
+            containerLayout->setAlignment(Qt::AlignCenter);
+
+            auto *warningWidget = new QWidget(container);
+            auto *warningLayout = new QHBoxLayout(warningWidget);
+            warningLayout->setContentsMargins(0, 0, 0, 0);
+            warningLayout->setSpacing(style()->pixelMetric(QStyle::PM_LayoutHorizontalSpacing));
+            warningLayout->setAlignment(Qt::AlignCenter);
+
+            auto *warningIconLabel = new QLabel(warningWidget);
+            warningIconLabel->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s).pixmap(Utils::Gui::smallIconSize(this)));
+            warningLayout->addWidget(warningIconLabel);
+
+            auto *warningLabel = new QLabel(tr("Speed graphs are disabled"), warningWidget);
+            warningLabel->setStyleSheet(u"color: %1; font-weight: bold;"_s.arg(warningTextColor.name()));
+            warningLayout->addWidget(warningLabel);
+            containerLayout->addWidget(warningWidget, 0, Qt::AlignCenter);
+
+            const auto actionText = u"<a href=\"#\"><span style=\"text-decoration: underline; color: %1;\">%2</span></a>"_s
+                .arg(displayTextColor.name(), tr("Open Advanced Options to enable them").toHtmlEscaped());
+            auto *label = new QLabel(actionText, container);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-            label->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
             label->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
             label->setToolTip(tr("Open Advanced Options"));
             connect(label, &QLabel::linkHovered, label, [label](const QString &link)
@@ -621,7 +643,8 @@ void PropertiesWidget::configure()
                     label->setCursor(Qt::PointingHandCursor);
             });
             connect(label, &QLabel::linkActivated, this, &PropertiesWidget::openAdvancedSettingsLinkActivated);
-            m_speedWidget = label;
+            containerLayout->addWidget(label, 0, Qt::AlignCenter);
+            m_speedWidget = container;
             m_ui->speedLayout->addWidget(m_speedWidget, 0, Qt::AlignCenter);
         }
     }
