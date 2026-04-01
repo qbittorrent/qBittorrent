@@ -48,6 +48,7 @@ public:
     explicit AdvancedSettings(IGUIApplication *app, QWidget *parent = nullptr);
 
 public slots:
+    void showSpeedWidgetSetting();
     void saveAdvancedSettings() const;
 
 signals:
@@ -66,6 +67,7 @@ private slots:
 
 private:
     void loadAdvancedSettings();
+    void showSetting(int row, QWidget &widget);
     template <typename T> void addRow(int row, const QString &text, T *widget);
 
     QSpinBox m_spinBoxSaveResumeDataInterval, m_spinBoxSaveStatisticsInterval, m_spinBoxTorrentFileSizeLimit, m_spinBoxBdecodeDepthLimit, m_spinBoxBdecodeTokenLimit,

@@ -35,6 +35,7 @@
 #include <QHostAddress>
 #include <QLabel>
 #include <QNetworkInterface>
+#include <QTimer>
 
 #include <libtorrent/version.hpp>
 
@@ -203,6 +204,11 @@ AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
     loadAdvancedSettings();
     resizeColumnToContents(0);
     horizontalHeader()->setStretchLastSection(true);
+}
+
+void AdvancedSettings::showSpeedWidgetSetting()
+{
+    showSetting(ENABLE_SPEED_WIDGET, m_checkBoxSpeedWidgetEnabled);
 }
 
 void AdvancedSettings::saveAdvancedSettings() const
@@ -1032,4 +1038,25 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
         connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
+}
+
+void AdvancedSettings::showSetting(const int row, QWidget &widget)
+{
+    const auto selectionMode = this->selectionMode();
+    const auto selectionBehavior = this->selectionBehavior();
+
+    clearSelection();
+    setSelectionMode(QAbstractItemView::SingleSelection);
+    setSelectionBehavior(QAbstractItemView::SelectRows);
+    setCurrentCell(row, VALUE);
+    selectRow(row);
+    scrollTo(model()->index(row, PROPERTY), QAbstractItemView::PositionAtCenter);
+    widget.setFocus(Qt::OtherFocusReason);
+
+    QTimer::singleShot(3000, this, [this, selectionMode, selectionBehavior]
+    {
+        clearSelection();
+        setSelectionBehavior(selectionBehavior);
+        setSelectionMode(selectionMode);
+    });
 }

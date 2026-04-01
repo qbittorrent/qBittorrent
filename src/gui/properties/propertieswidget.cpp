@@ -33,6 +33,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QFuture>
+#include <QLabel>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QMessageBox>
@@ -601,16 +602,21 @@ void PropertiesWidget::configure()
             }
 
             const QColor displayTextColor = palette().color(QPalette::WindowText);
-            const auto displayText = u"<html><head/><body><p align=\"center\"><a href=\"#\"><span style=\"text-decoration: none; color: %1;\">"
-                u"<b>%2</b><br/>%3</span></a></p></body></html>"_s
-                .arg(displayTextColor.name(), tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
+            const QColor warningTextColor = UIThemeManager::instance()->getColor(u"Log.Warning"_s);
+            const auto displayText = u"<html><head/><body><p align=\"center\"><a href=\"#\">"
+                u"<span style=\"text-decoration: none; color: %1;\">&#9888; <b>%2</b></span><br/>"
+                u"<span style=\"text-decoration: underline; color: %3;\">%4</span>"
+                u"</a></p></body></html>"_s
+                .arg(warningTextColor.name(), tr("Speed graphs are disabled"), displayTextColor.name(), tr("Open Advanced Options to enable them"));
             auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
             label->setCursor(Qt::PointingHandCursor);
+            label->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
             label->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+            label->setToolTip(tr("Open Advanced Options"));
             connect(label, &QLabel::linkActivated, this, &PropertiesWidget::openAdvancedSettingsLinkActivated);
             m_speedWidget = label;
-            m_ui->speedLayout->addWidget(m_speedWidget);
+            m_ui->speedLayout->addWidget(m_speedWidget, 0, Qt::AlignCenter);
         }
     }
 }
