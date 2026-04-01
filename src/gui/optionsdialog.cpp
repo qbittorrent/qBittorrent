@@ -237,26 +237,29 @@ OptionsDialog::~OptionsDialog()
 
 void OptionsDialog::updateSidebarMetrics()
 {
-    const QSize iconSize = Utils::Gui::largeIconSize(this);
     const QFontMetrics fontMetrics {m_ui->tabSelection->font()};
     const int horizontalPadding = (fontMetrics.averageCharWidth() * 4);
+    const int frameWidth = (m_ui->tabSelection->frameWidth() * 2);
+    const int scrollBarWidth = style()->pixelMetric(QStyle::PM_ScrollBarExtent, nullptr, m_ui->tabSelection);
 
     int maxTextWidth = 0;
+    int maxItemWidth = 0;
     int maxHeight = -1;
     for (int i = 0; i < m_ui->tabSelection->count(); ++i)
     {
         QListWidgetItem *const item = m_ui->tabSelection->item(i);
+        const QRect itemRect = m_ui->tabSelection->visualItemRect(item);
         maxTextWidth = std::max(maxTextWidth, fontMetrics.horizontalAdvance(item->text()));
-        maxHeight = std::max(maxHeight, m_ui->tabSelection->visualItemRect(item).height());
+        maxItemWidth = std::max(maxItemWidth, itemRect.width());
+        maxHeight = std::max(maxHeight, itemRect.height());
     }
 
     if (maxHeight <= 0)
-        maxHeight = iconSize.height() + (fontMetrics.lineSpacing() * 2);
+        maxHeight = (fontMetrics.lineSpacing() * 3);
 
     const int itemHeight = static_cast<int>(maxHeight * 1.2);
 
-    m_ui->tabSelection->setIconSize(iconSize);
-    m_ui->tabSelection->setMinimumWidth(std::max((itemHeight * 2), (maxTextWidth + horizontalPadding)));
+    m_ui->tabSelection->setMinimumWidth(std::max(maxItemWidth, (maxTextWidth + horizontalPadding)) + frameWidth + scrollBarWidth);
 
     for (int i = 0; i < m_ui->tabSelection->count(); ++i)
         m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), itemHeight));
