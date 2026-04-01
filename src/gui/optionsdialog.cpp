@@ -239,31 +239,31 @@ void OptionsDialog::updateSidebarMetrics()
 {
     const QSize iconSize = Utils::Gui::largeIconSize(this);
     const QFontMetrics fontMetrics {m_ui->tabSelection->font()};
-    const int horizontalPadding = (fontMetrics.averageCharWidth() * 2);
-    const int verticalPadding = fontMetrics.averageCharWidth();
+    const int horizontalPadding = (fontMetrics.averageCharWidth() * 4);
 
     int maxTextWidth = 0;
+    int maxHeight = -1;
     for (int i = 0; i < m_ui->tabSelection->count(); ++i)
-        maxTextWidth = std::max(maxTextWidth, fontMetrics.horizontalAdvance(m_ui->tabSelection->item(i)->text()));
+    {
+        QListWidgetItem *const item = m_ui->tabSelection->item(i);
+        maxTextWidth = std::max(maxTextWidth, fontMetrics.horizontalAdvance(item->text()));
+        maxHeight = std::max(maxHeight, m_ui->tabSelection->visualItemRect(item).height());
+    }
 
-    const int itemWidth = std::max(iconSize.width(), maxTextWidth) + horizontalPadding;
-    const int itemHeight = iconSize.height() + (fontMetrics.lineSpacing() * 2) + verticalPadding;
-    const QSize itemSize {itemWidth, itemHeight};
+    if (maxHeight <= 0)
+        maxHeight = iconSize.height() + (fontMetrics.lineSpacing() * 2);
+
+    const int itemHeight = static_cast<int>(maxHeight * 1.2);
 
     m_ui->tabSelection->setIconSize(iconSize);
-    m_ui->tabSelection->setGridSize(itemSize);
-    m_ui->tabSelection->setMinimumWidth(itemWidth + horizontalPadding);
-    m_ui->tabSelection->setSpacing(verticalPadding / 2);
-    m_ui->tabSelection->setWordWrap(true);
-    m_ui->tabSelection->setTextElideMode(Qt::ElideNone);
+    m_ui->tabSelection->setMinimumWidth(std::max((itemHeight * 2), (maxTextWidth + horizontalPadding)));
 
     for (int i = 0; i < m_ui->tabSelection->count(); ++i)
-        m_ui->tabSelection->item(i)->setSizeHint(itemSize);
+        m_ui->tabSelection->item(i)->setSizeHint(QSize(std::numeric_limits<int>::max(), itemHeight));
 }
 
 void OptionsDialog::loadUIThemeResources()
 {
-    updateSidebarMetrics();
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
@@ -275,6 +275,7 @@ void OptionsDialog::loadUIThemeResources()
     m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_s, u"network-server"_s));
 #endif
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
+    updateSidebarMetrics();
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
@@ -1665,7 +1666,7 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 
 void OptionsDialog::loadSplitterState()
 {
-    const int width = std::max(m_ui->tabSelection->minimumWidth(), m_ui->tabSelection->gridSize().width());
+    const int width = std::max(m_ui->tabSelection->minimumWidth(), (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
     const QStringList defaultSizes = {QString::number(width), QString::number(m_ui->hsplitter->width() - width)};
 
     QList<int> splitterSizes;

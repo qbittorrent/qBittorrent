@@ -33,9 +33,11 @@
 #include <QtSystemDetection>
 #include <QtVersionChecks>
 #include <QColor>
+#include <QEvent>
 #include <QHash>
 #include <QIcon>
 #include <QObject>
+#include <QPalette>
 #include <QPixmap>
 #include <QString>
 
@@ -84,13 +86,19 @@ private:
     UIThemeManager(); // singleton class
     ~UIThemeManager() override;
 
+    bool eventFilter(QObject *object, QEvent *event) override;
+
+    void syncThemeSettings();
     void applyThemeSettingsInternal();
+    void scheduleSystemAppearanceRefresh();
+    void refreshSystemAppearance();
+    void refreshNativeAppearance(bool useConfiguredStyle);
     QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
     void loadThemeSource();
     void clearIconCaches();
     void unregisterThemeResource();
-    void applyCurrentTheme();
-    void applyStyle() const;
+    void applyThemeOverlay();
+    void applyStyle(bool useConfiguredStyle) const;
     void applyPalette() const;
     void applyStyleSheet() const;
     void onColorSchemeChanged();
@@ -102,12 +110,15 @@ private:
     static UIThemeManager *m_instance;
     const QString m_defaultStyleName;
     bool m_useCustomTheme;
+    bool m_isRefreshingAppearance = false;
+    bool m_isAppearanceRefreshPending = false;
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     SettingValue<ColorScheme> m_colorSchemeSetting;
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     bool m_useSystemIcons;
 #endif
+    QPalette m_nativePalette;
     std::unique_ptr<UIThemeSource> m_themeSource;
     Path m_registeredResourcePath;
     mutable QHash<QString, QIcon> m_icons;

@@ -33,6 +33,7 @@
 #include <utility>
 
 #include <QApplication>
+#include <QEvent>
 #include <QIconEngine>
 #include <QPalette>
 #include <QPainter>
@@ -41,6 +42,7 @@
 #include <QSignalBlocker>
 #include <QStyle>
 #include <QStyleHints>
+#include <QTimer>
 #include <QWidget>
 
 #include "base/global.h"
@@ -86,6 +88,24 @@ namespace
 
     private:
         QWidgetList m_widgets;
+    };
+
+    class AppearanceRefreshGuard
+    {
+    public:
+        explicit AppearanceRefreshGuard(bool &flag)
+            : m_flag {flag}
+        {
+            m_flag = true;
+        }
+
+        ~AppearanceRefreshGuard()
+        {
+            m_flag = false;
+        }
+
+    private:
+        bool &m_flag;
     };
 }
 
@@ -152,6 +172,7 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
+    qApp->installEventFilter(this);
     applyThemeSettingsInternal();
 
     // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
@@ -160,6 +181,7 @@ UIThemeManager::UIThemeManager()
 
 UIThemeManager::~UIThemeManager()
 {
+    qApp->removeEventFilter(this);
     unregisterThemeResource();
 }
 
@@ -199,6 +221,24 @@ void UIThemeManager::applyColorScheme() const
     }
 }
 #endif
+
+bool UIThemeManager::eventFilter(QObject *object, QEvent *event)
+{
+    if ((object == qApp) && (event->type() == QEvent::ApplicationPaletteChange))
+        scheduleSystemAppearanceRefresh();
+
+    return QObject::eventFilter(object, event);
+}
+
+void UIThemeManager::syncThemeSettings()
+{
+    const auto *pref = Preferences::instance();
+    m_useCustomTheme = pref->useCustomUITheme();
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    m_useSystemIcons = pref->useSystemIcons();
+#endif
+}
 
 void UIThemeManager::loadThemeSource()
 {
@@ -246,8 +286,14 @@ void UIThemeManager::unregisterThemeResource()
     }
 }
 
-void UIThemeManager::applyStyle() const
+void UIThemeManager::applyStyle(const bool useConfiguredStyle) const
 {
+    if (!useConfiguredStyle)
+    {
+        QApplication::setStyle(QApplication::style()->name());
+        return;
+    }
+
     const QString styleName = Preferences::instance()->getStyle();
     if (styleName.compare(u"system"_s, Qt::CaseInsensitive) != 0)
     {
@@ -265,7 +311,52 @@ void UIThemeManager::applyStyleSheet() const
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
 }
 
-void UIThemeManager::applyCurrentTheme()
+void UIThemeManager::scheduleSystemAppearanceRefresh()
+{
+    if (m_isRefreshingAppearance || m_isAppearanceRefreshPending)
+        return;
+
+    m_isAppearanceRefreshPending = true;
+    QTimer::singleShot(0, this, [this]
+    {
+        m_isAppearanceRefreshPending = false;
+        refreshSystemAppearance();
+    });
+}
+
+void UIThemeManager::onColorSchemeChanged()
+{
+    scheduleSystemAppearanceRefresh();
+}
+
+void UIThemeManager::refreshSystemAppearance()
+{
+    if (m_isRefreshingAppearance)
+        return;
+
+    const TopLevelWidgetUpdateBlocker updateBlocker;
+    const AppearanceRefreshGuard refreshGuard {m_isRefreshingAppearance};
+    syncThemeSettings();
+    refreshNativeAppearance(false);
+    applyThemeOverlay();
+    emit themeChanged();
+}
+
+void UIThemeManager::refreshNativeAppearance(const bool useConfiguredStyle)
+{
+    qApp->setStyleSheet({});
+
+    applyStyle(useConfiguredStyle);
+
+#ifdef QBT_HAS_COLORSCHEME_OPTION
+    const QSignalBlocker signalBlocker {qApp->styleHints()};
+    applyColorScheme();
+#endif
+
+    m_nativePalette = qApp->palette();
+}
+
+void UIThemeManager::applyThemeOverlay()
 {
     if (m_useCustomTheme)
     {
@@ -274,19 +365,11 @@ void UIThemeManager::applyCurrentTheme()
     }
     else
     {
-        qApp->setPalette(QApplication::style()->standardPalette());
+        qApp->setPalette(m_nativePalette);
         qApp->setStyleSheet({});
     }
 
     clearIconCaches();
-}
-
-void UIThemeManager::onColorSchemeChanged()
-{
-    const TopLevelWidgetUpdateBlocker updateBlocker;
-    applyStyle();
-    applyCurrentTheme();
-    emit themeChanged();
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
@@ -368,23 +451,13 @@ void UIThemeManager::applyThemeSettings()
 
 void UIThemeManager::applyThemeSettingsInternal()
 {
-    const auto *pref = Preferences::instance();
-    m_useCustomTheme = pref->useCustomUITheme();
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    m_useSystemIcons = pref->useSystemIcons();
-#endif
+    const AppearanceRefreshGuard refreshGuard {m_isRefreshingAppearance};
+    syncThemeSettings();
 
     unregisterThemeResource();
-
-#ifdef QBT_HAS_COLORSCHEME_OPTION
-    const QSignalBlocker signalBlocker {qApp->styleHints()};
-    applyColorScheme();
-#endif
-
-    applyStyle();
     loadThemeSource();
-    applyCurrentTheme();
+    refreshNativeAppearance(true);
+    applyThemeOverlay();
 }
 
 void UIThemeManager::applyPalette() const
