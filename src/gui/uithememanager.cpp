@@ -32,13 +32,16 @@
 
 #include <utility>
 
+#include <QAbstractItemView>
 #include <QApplication>
 #include <QEvent>
+#include <QHeaderView>
 #include <QIconEngine>
 #include <QPalette>
 #include <QPainter>
 #include <QPixmapCache>
 #include <QResource>
+#include <QSet>
 #include <QSignalBlocker>
 #include <QStyle>
 #include <QStyleHints>
@@ -107,6 +110,55 @@ namespace
     private:
         bool &m_flag;
     };
+
+    void appendWidget(QWidget *widget, QSet<QWidget *> &visitedWidgets, QWidgetList &widgets)
+    {
+        if (widget && !visitedWidgets.contains(widget))
+        {
+            visitedWidgets.insert(widget);
+            widgets.append(widget);
+        }
+    }
+
+    QWidgetList widgetsForRepolish()
+    {
+        QWidgetList widgets;
+        QSet<QWidget *> visitedWidgets;
+
+        const QWidgetList topLevelWidgets = QApplication::topLevelWidgets();
+        for (QWidget *topLevelWidget : topLevelWidgets)
+        {
+            appendWidget(topLevelWidget, visitedWidgets, widgets);
+            for (QWidget *childWidget : topLevelWidget->findChildren<QWidget *>())
+                appendWidget(childWidget, visitedWidgets, widgets);
+        }
+
+        const QWidgetList currentWidgets = widgets;
+        for (QWidget *widget : currentWidgets)
+        {
+            if (const auto *itemView = qobject_cast<QAbstractItemView *>(widget))
+                appendWidget(itemView->viewport(), visitedWidgets, widgets);
+
+            if (const auto *headerView = qobject_cast<QHeaderView *>(widget))
+                appendWidget(headerView->viewport(), visitedWidgets, widgets);
+        }
+
+        return widgets;
+    }
+
+    void repolishWidgets()
+    {
+        const QWidgetList widgets = widgetsForRepolish();
+        for (QWidget *widget : widgets)
+            widget->style()->unpolish(widget);
+
+        for (QWidget *widget : widgets)
+        {
+            widget->style()->polish(widget);
+            widget->updateGeometry();
+            widget->update();
+        }
+    }
 }
 
 class UIThemeIconEngine final : public QIconEngine
@@ -306,9 +358,9 @@ void UIThemeManager::applyStyle(const bool useConfiguredStyle) const
     }
 }
 
-void UIThemeManager::applyStyleSheet() const
+void UIThemeManager::applyStyleSheet(const QByteArray &styleSheet) const
 {
-    qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
+    qApp->setStyleSheet(QString::fromUtf8(styleSheet));
 }
 
 void UIThemeManager::scheduleSystemAppearanceRefresh()
@@ -338,13 +390,13 @@ void UIThemeManager::refreshSystemAppearance()
     const AppearanceRefreshGuard refreshGuard {m_isRefreshingAppearance};
     syncThemeSettings();
     refreshNativeAppearance(false);
-    applyThemeOverlay();
-    emit themeChanged();
+    refreshThemeResources(applyThemeOverlay());
 }
 
 void UIThemeManager::refreshNativeAppearance(const bool useConfiguredStyle)
 {
     qApp->setStyleSheet({});
+    qApp->setPalette(QPalette {});
 
     applyStyle(useConfiguredStyle);
 
@@ -356,20 +408,31 @@ void UIThemeManager::refreshNativeAppearance(const bool useConfiguredStyle)
     m_nativePalette = qApp->palette();
 }
 
-void UIThemeManager::applyThemeOverlay()
+void UIThemeManager::refreshThemeResources(const bool shouldRepolishWidgets)
 {
+    if (shouldRepolishWidgets)
+        repolishWidgets();
+
+    clearIconCaches();
+    emit themeChanged();
+}
+
+bool UIThemeManager::applyThemeOverlay()
+{
+    const QByteArray styleSheet = m_useCustomTheme ? m_themeSource->readStyleSheet() : QByteArray {};
+    const bool shouldRepolishWidgets = ((styleSheet != m_appliedStyleSheet)
+            || (m_useCustomTheme != m_hadCustomThemeOverlay));
+
     if (m_useCustomTheme)
     {
         applyPalette();
-        applyStyleSheet();
-    }
-    else
-    {
-        qApp->setPalette(m_nativePalette);
-        qApp->setStyleSheet({});
+        if (!styleSheet.isEmpty())
+            applyStyleSheet(styleSheet);
     }
 
-    clearIconCaches();
+    m_hadCustomThemeOverlay = m_useCustomTheme;
+    m_appliedStyleSheet = styleSheet;
+    return shouldRepolishWidgets;
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
@@ -446,7 +509,6 @@ void UIThemeManager::applyThemeSettings()
 {
     const TopLevelWidgetUpdateBlocker updateBlocker;
     applyThemeSettingsInternal();
-    emit themeChanged();
 }
 
 void UIThemeManager::applyThemeSettingsInternal()
@@ -454,10 +516,10 @@ void UIThemeManager::applyThemeSettingsInternal()
     const AppearanceRefreshGuard refreshGuard {m_isRefreshingAppearance};
     syncThemeSettings();
 
+    refreshNativeAppearance(true);
     unregisterThemeResource();
     loadThemeSource();
-    refreshNativeAppearance(true);
-    applyThemeOverlay();
+    refreshThemeResources(applyThemeOverlay());
 }
 
 void UIThemeManager::applyPalette() const
@@ -498,7 +560,7 @@ void UIThemeManager::applyPalette() const
         {u"Palette.ButtonTextDisabled"_s, QPalette::ButtonText, QPalette::Disabled}
     };
 
-    QPalette palette = QApplication::style()->standardPalette();
+    QPalette palette = m_nativePalette;
     for (const ColorDescriptor &colorDescriptor : paletteColorDescriptors)
     {
         // For backward compatibility, the palette color overrides are read from the section of the "light mode" colors

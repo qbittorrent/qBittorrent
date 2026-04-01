@@ -32,6 +32,7 @@
 
 #include <QtSystemDetection>
 #include <QtVersionChecks>
+#include <QByteArray>
 #include <QColor>
 #include <QEvent>
 #include <QHash>
@@ -93,14 +94,15 @@ private:
     void scheduleSystemAppearanceRefresh();
     void refreshSystemAppearance();
     void refreshNativeAppearance(bool useConfiguredStyle);
+    void refreshThemeResources(bool shouldRepolishWidgets);
     QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
     void loadThemeSource();
     void clearIconCaches();
     void unregisterThemeResource();
-    void applyThemeOverlay();
+    bool applyThemeOverlay();
     void applyStyle(bool useConfiguredStyle) const;
     void applyPalette() const;
-    void applyStyleSheet() const;
+    void applyStyleSheet(const QByteArray &styleSheet) const;
     void onColorSchemeChanged();
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
@@ -121,6 +123,8 @@ private:
     QPalette m_nativePalette;
     std::unique_ptr<UIThemeSource> m_themeSource;
     Path m_registeredResourcePath;
+    bool m_hadCustomThemeOverlay = false;
+    QByteArray m_appliedStyleSheet;
     mutable QHash<QString, QIcon> m_icons;
     mutable QHash<QString, QIcon> m_darkModeIcons;
     mutable QHash<QString, QIcon> m_flags;
