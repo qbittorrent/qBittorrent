@@ -162,26 +162,55 @@ namespace
         }
     };
 #endif // Q_OS_WIN
+
+    QFileIconProvider *createFileIconProvider()
+    {
+#if defined(Q_OS_WIN)
+        return new QFileIconProvider;
+#elif defined(Q_OS_MACOS)
+        return new MacFileIconProvider;
+#else
+        return doesQFileIconProviderWork() ? static_cast<QFileIconProvider *>(new QFileIconProvider)
+                                           : static_cast<QFileIconProvider *>(new MimeFileIconProvider);
+#endif
+    }
 }
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new TorrentContentModelFolder(QList<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
-#if defined(Q_OS_WIN)
-    , m_fileIconProvider {new QFileIconProvider}
-#elif defined(Q_OS_MACOS)
-    , m_fileIconProvider {new MacFileIconProvider}
-#else
-    , m_fileIconProvider {doesQFileIconProviderWork() ? new QFileIconProvider : new MimeFileIconProvider}
-#endif
+    , m_fileIconProvider {createFileIconProvider()}
 {
     m_fileIconProvider->setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &TorrentContentModel::onUIThemeChanged);
 }
 
 TorrentContentModel::~TorrentContentModel()
 {
     delete m_fileIconProvider;
     delete m_rootItem;
+}
+
+void TorrentContentModel::onUIThemeChanged()
+{
+    delete m_fileIconProvider;
+    m_fileIconProvider = createFileIconProvider();
+    m_fileIconProvider->setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
+
+    const auto notify = [this](auto &&self, const QModelIndex &parent) -> void
+    {
+        const int rows = rowCount(parent);
+        if (rows <= 0)
+            return;
+
+        emit dataChanged(index(0, TorrentContentModelItem::COL_NAME, parent)
+                , index((rows - 1), TorrentContentModelItem::COL_NAME, parent), {Qt::DecorationRole});
+
+        for (int row = 0; row < rows; ++row)
+            self(self, index(row, 0, parent));
+    };
+
+    notify(notify, {});
 }
 
 void TorrentContentModel::updateFilesProgress()

@@ -103,6 +103,7 @@ private slots:
 
 private:
     QPushButton *getButtonFromIndex(int index);
+    void loadUIThemeResources();
     void showContentFilterContextMenu();
     void setContentFilterPattern();
 

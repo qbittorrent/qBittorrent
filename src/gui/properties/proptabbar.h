@@ -60,6 +60,7 @@ public slots:
     void setCurrentIndex(int index);
 
 private:
+    void loadUIThemeResources();
     QButtonGroup *m_btnGroup = nullptr;
     int m_currentIndex = -1;
 };
