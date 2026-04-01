@@ -600,10 +600,15 @@ void PropertiesWidget::configure()
                 delete m_speedWidget;
             }
 
-            const auto displayText = u"<center><b>%1</b><p>%2</p></center>"_s
-                .arg(tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
+            const QColor displayTextColor = palette().color(QPalette::WindowText);
+            const auto displayText = u"<html><head/><body><p align=\"center\"><a href=\"#\"><span style=\"text-decoration: none; color: %1;\">"
+                u"<b>%2</b><br/>%3</span></a></p></body></html>"_s
+                .arg(displayTextColor.name(), tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
             auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+            label->setCursor(Qt::PointingHandCursor);
+            label->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+            connect(label, &QLabel::linkActivated, this, &PropertiesWidget::openAdvancedSettingsLinkActivated);
             m_speedWidget = label;
             m_ui->speedLayout->addWidget(m_speedWidget);
         }

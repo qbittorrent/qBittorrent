@@ -2166,6 +2166,11 @@ void OptionsDialog::showConnectionTab()
     m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
 }
 
+void OptionsDialog::showAdvancedTab()
+{
+    m_ui->tabSelection->setCurrentRow(TAB_ADVANCED);
+}
+
 #ifndef DISABLE_WEBUI
 void OptionsDialog::on_registerDNSBtn_clicked()
 {

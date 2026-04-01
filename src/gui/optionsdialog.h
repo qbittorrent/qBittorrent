@@ -85,6 +85,7 @@ public:
 
 public slots:
     void showConnectionTab();
+    void showAdvancedTab();
 
 private slots:
     void adjustProxyOptions();
