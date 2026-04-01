@@ -198,6 +198,7 @@ AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
     verticalHeader()->setVisible(false);
     // etc.
     setAlternatingRowColors(true);
+    setSelectionBehavior(QAbstractItemView::SelectItems);
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     // Load settings
@@ -1042,9 +1043,6 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
 
 void AdvancedSettings::showSetting(const int row, QWidget &widget)
 {
-    const auto selectionMode = this->selectionMode();
-    const auto selectionBehavior = this->selectionBehavior();
-
     clearSelection();
     setSelectionMode(QAbstractItemView::SingleSelection);
     setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -1053,10 +1051,10 @@ void AdvancedSettings::showSetting(const int row, QWidget &widget)
     scrollTo(model()->index(row, PROPERTY), QAbstractItemView::PositionAtCenter);
     widget.setFocus(Qt::OtherFocusReason);
 
-    QTimer::singleShot(3000, this, [this, selectionMode, selectionBehavior]
+    QTimer::singleShot(3000, this, [this]
     {
         clearSelection();
-        setSelectionBehavior(selectionBehavior);
-        setSelectionMode(selectionMode);
+        setSelectionBehavior(QAbstractItemView::SelectItems);
+        setSelectionMode(QAbstractItemView::NoSelection);
     });
 }
