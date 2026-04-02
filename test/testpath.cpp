@@ -74,6 +74,9 @@ private slots:
         QCOMPARE(Path(u"/"_s).isValid(), true);
         QCOMPARE(Path(uR"(\)"_s).isValid(), true);
 
+        QCOMPARE(Path(u"."_s).isValid(), false);
+        QCOMPARE(Path(u".."_s).isValid(), false);
+
         QCOMPARE(Path(u"a"_s).isValid(), true);
         QCOMPARE(Path(u"/a"_s).isValid(), true);
         QCOMPARE(Path(uR"(\a)"_s).isValid(), true);

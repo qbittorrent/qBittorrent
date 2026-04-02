@@ -108,6 +108,9 @@ bool Path::isRelative() const
 // Validates if the path contains only valid filename components
 bool Path::isValid() const
 {
+    if (m_pathStr.isEmpty())
+        return false;
+
     QStringView pathStrView = m_pathStr;
 
 #ifdef Q_OS_WIN
@@ -117,7 +120,7 @@ bool Path::isValid() const
 #endif
 
     // Split path into components and validate each one
-    for (QStringView component : pathStrView.split(u'/'))
+    for (QStringView component : pathStrView.split(u'/', Qt::SkipEmptyParts))
     {
         if (!Utils::Fs::isValidFileName(component))
             return false;
