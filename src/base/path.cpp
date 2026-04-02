@@ -61,6 +61,14 @@ namespace
         });
         return hasSeparator ? QDir::cleanPath(path) : path;
     }
+
+#ifdef Q_OS_WIN
+    bool hasDriveLetter(const QStringView path)
+    {
+        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
+        return driveLetterRegex.matchView(path).hasMatch();
+    }
+#endif
 }
 
 // `Path` should satisfy `Stringable` concept in order to be stored in settings as string
@@ -97,6 +105,32 @@ bool Path::isRelative() const
     return QDir::isRelativePath(m_pathStr);
 }
 
+// Validates if the path contains only valid filename components
+bool Path::isValid() const
+{
+    // Reject empty names or relative alias directory names
+    if (m_pathStr.isEmpty() || (m_pathStr == u"."_s) || (m_pathStr == u".."_s))
+        return false;
+
+    QStringView pathStrView = m_pathStr;
+
+#ifdef Q_OS_WIN
+    // Remove Windows drive letter prefix (e.g., "C:/") if present
+    if (hasDriveLetter(pathStrView))
+        pathStrView = pathStrView.mid(3);
+#endif
+
+    // Split path into components and validate each NON-EMPTY one
+    const auto components = pathStrView.split(u'/');
+    for (QStringView component : components)
+    {
+        if (!component.isEmpty() && !Utils::Fs::isValidFileName(component))
+            return false;
+    }
+
+    return true;
+}
+
 bool Path::exists() const
 {
     return !isEmpty() && QFileInfo::exists(m_pathStr);
@@ -115,7 +149,7 @@ Path Path::rootItem() const
 
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
-    if ((slashIndex == 2) && Utils::Fs::isDriveLetterPath(*this))
+    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
         return createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
     return createUnchecked(m_pathStr.first(slashIndex));
@@ -135,7 +169,7 @@ Path Path::parentPath() const
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
     // Windows "drive letter" is limited to one alphabet
-    if ((slashIndex == 2) && Utils::Fs::isDriveLetterPath(*this))
+    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
         return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.first(slashIndex + 1));
 #endif
     return createUnchecked(m_pathStr.first(slashIndex));
@@ -263,6 +297,44 @@ Path Path::commonPath(const Path &left, const Path &right)
         commonPathSize += (commonItemsCount - 1); // size of intermediate separators
 
     return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
+}
+
+/**
+ * Returns a valid path by sanitizing each component of the given path string.
+ * Useful when constructing paths from untrusted/user-provided names.
+ */
+Path Path::makeValidPath(const QString &name, const QString &pad)
+{
+    // Handle empty names or relative alias directory names
+    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
+        return Path();
+
+    QStringView pathStrView = name;
+
+#ifdef Q_OS_WIN
+    // Remove Windows drive letter prefix (e.g., "C:/") if present
+    if (hasDriveLetter(pathStrView))
+        pathStrView = pathStrView.mid(3);
+#endif
+
+    // Split into components and sanitize each one
+    const QList<QStringView> components = pathStrView.split(u'/', Qt::SkipEmptyParts);
+    QStringList validComponents;
+    validComponents.reserve(components.size());
+
+    for (const QStringView &comp : components)
+        validComponents << Utils::Fs::toValidFileName(comp.toString(), pad);
+
+    // Reconstruct path
+    QString validPathStr = validComponents.join(u'/');
+
+#ifdef Q_OS_WIN
+    // Re-add drive letter prefix if present
+    if (hasDriveLetter(name))
+        validPathStr = name.left(3) + validPathStr;
+#endif
+
+    return Path(validPathStr);
 }
 
 Path Path::findRootFolder(const PathList &filePaths)

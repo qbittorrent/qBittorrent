@@ -32,7 +32,6 @@
 
 #include "base/global.h"
 #include "base/path.h"
-#include "base/utils/fs.h"
 
 class TestPath final : public QObject
 {
@@ -69,49 +68,49 @@ private slots:
 
     void testIsValid() const
     {
-        QCOMPARE(Utils::Fs::isValidPath(Path()), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u""_s)), false);
+        QCOMPARE(Path().isValid(), false);
+        QCOMPARE(Path(u""_s).isValid(), false);
 
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"/"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(\)"_s)), true);
+        QCOMPARE(Path(u"/"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\)"_s).isValid(), true);
 
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"a"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"/a"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(\a)"_s)), true);
+        QCOMPARE(Path(u"a"_s).isValid(), true);
+        QCOMPARE(Path(u"/a"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\a)"_s).isValid(), true);
 
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"a/b"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(a\b)"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"/a/b"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(/a\b)"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(\a/b)"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(\a\b)"_s)), true);
+        QCOMPARE(Path(u"a/b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\b)"_s).isValid(), true);
+        QCOMPARE(Path(u"/a/b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(/a\b)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\a/b)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\a\b)"_s).isValid(), true);
 
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"//"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(\\)"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"//a"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(\\a)"_s)), true);
+        QCOMPARE(Path(u"//"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\\)"_s).isValid(), true);
+        QCOMPARE(Path(u"//a"_s).isValid(), true);
+        QCOMPARE(Path(uR"(\\a)"_s).isValid(), true);
 
 #if defined Q_OS_MACOS
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"\0"_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u":"_s)), false);
+        QCOMPARE(Path(u"\0"_s).isValid(), false);
+        QCOMPARE(Path(u":"_s).isValid(), false);
 #elif defined Q_OS_WIN
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"c:"_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"c:/"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(c:\)"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(c:\a)"_s)), true);
-        QCOMPARE(Utils::Fs::isValidPath(Path(uR"(c:\a\b)"_s)), true);
+        QCOMPARE(Path(u"c:"_s).isValid(), false);
+        QCOMPARE(Path(u"c:/"_s).isValid(), true);
+        QCOMPARE(Path(uR"(c:\)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(c:\a)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(c:\a\b)"_s).isValid(), true);
 
         for (int i = 0; i <= 31; ++i)
-            QCOMPARE(Utils::Fs::isValidPath(Path(QChar(i))), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u":"_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"?"_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"\""_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"*"_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"<"_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u">"_s)), false);
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"|"_s)), false);
+            QCOMPARE(Path(QChar(i)).isValid(), false);
+        QCOMPARE(Path(u":"_s).isValid(), false);
+        QCOMPARE(Path(u"?"_s).isValid(), false);
+        QCOMPARE(Path(u"\""_s).isValid(), false);
+        QCOMPARE(Path(u"*"_s).isValid(), false);
+        QCOMPARE(Path(u"<"_s).isValid(), false);
+        QCOMPARE(Path(u">"_s).isValid(), false);
+        QCOMPARE(Path(u"|"_s).isValid(), false);
 #else
-        QCOMPARE(Utils::Fs::isValidPath(Path(u"\0"_s)), false);
+        QCOMPARE(Path(u"\0"_s).isValid(), false);
 #endif
     }
 

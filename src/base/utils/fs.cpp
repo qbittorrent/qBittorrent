@@ -268,43 +268,6 @@ bool Utils::Fs::isValidFileName(const QStringView &name)
     return true;
 }
 
-// Validates if the path contains only valid filename components (allows '/' separator)
-bool Utils::Fs::isValidPath(const Path &path)
-{
-    QStringView pathStr = path.data();
-
-    // Reject empty names or relative alias directory names
-    if (pathStr.isEmpty() || (pathStr == u"."_s) || (pathStr == u".."_s))
-        return false;
-
-#ifdef Q_OS_WIN
-    // Remove Windows drive letter prefix (e.g., "C:/") if present
-    if (isDriveLetterPath(path))
-        pathStr = pathStr.mid(3);
-#endif
-
-    // Split path into components and validate each NON-EMPTY one
-    const auto components = pathStr.split(u'/');
-    for (QStringView component : components)
-    {
-        if (!component.isEmpty() && !isValidFileName(component))
-            return false;
-    }
-
-    return true;
-}
-
-// Detects Windows drive letter on path (e.g., "C:/").
-bool Utils::Fs::isDriveLetterPath([[maybe_unused]] const Path &path)
-{
-#ifdef Q_OS_WIN
-    const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_s};
-    return driveLetterRegex.match(path.data()).hasMatch();
-#else
-    return false;
-#endif
-}
-
 // Sanitize filename using pad
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
@@ -350,40 +313,6 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 #endif
 
     return validName;
-}
-
-// Sanitize path components using pad
-Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
-{
-    // Handle empty names or relative alias directory names
-    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
-        return Path();
-
-    QString pathStr = name;
-
-#ifdef Q_OS_WIN
-    // Remove Windows drive letter prefix (e.g., "C:/") if present
-    if (isDriveLetterPath(Path(name)))
-        pathStr = pathStr.mid(3);
-#endif
-
-    // Split into components and validate each one
-    const QStringList components = pathStr.split(u'/', Qt::SkipEmptyParts);
-    QStringList validComponents;
-    validComponents.reserve(components.size());
-    for (const QString &component : components)
-        validComponents << toValidFileName(component, pad);
-
-    // Reconstruct path
-    QString validPathStr = validComponents.join(u'/');
-
-#ifdef Q_OS_WIN
-    // Re-add drive letter prefix if present
-    if (isDriveLetterPath(Path(name)))
-        validPathStr = name.left(3) + validPathStr;
-#endif
-
-    return Path(validPathStr);
 }
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)

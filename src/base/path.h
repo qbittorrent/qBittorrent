@@ -49,6 +49,7 @@ public:
     bool isEmpty() const;
     bool isAbsolute() const;
     bool isRelative() const;
+    bool isValid() const;
 
     bool exists() const;
 
@@ -75,6 +76,8 @@ public:
     Path &operator+=(QStringView str);
 
     static Path commonPath(const Path &left, const Path &right);
+
+    static Path makeValidPath(const QString &name, const QString &pad = QStringLiteral("_"));
 
     static Path findRootFolder(const PathList &filePaths);
     static void stripRootFolder(PathList &filePaths);

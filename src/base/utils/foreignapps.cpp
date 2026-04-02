@@ -47,7 +47,6 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/bytearray.h"
-#include "base/utils/fs.h"
 
 #if defined(Q_OS_WIN)
 #include "base/utils/compare.h"
@@ -225,7 +224,7 @@ namespace
 
 bool Utils::ForeignApps::PythonInfo::isValid() const
 {
-    return (Utils::Fs::isValidPath(executablePath) && version.isValid());
+    return (executablePath.isValid() && version.isValid());
 }
 
 bool Utils::ForeignApps::PythonInfo::isSupportedVersion() const

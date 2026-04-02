@@ -240,7 +240,7 @@ void TorrentCreator::run()
             const Path finalTorrentFilePath = parentPath / Path(validFileName);
 
             // Fall back to saving a temporary file if the path is invalid
-            if (!Utils::Fs::isValidPath(finalTorrentFilePath))
+            if (!finalTorrentFilePath.isValid())
                 return Utils::IO::saveToTempFile(entry);
 
             const nonstd::expected<void, QString> result = Utils::IO::saveToFile(finalTorrentFilePath, entry);
