@@ -105,12 +105,11 @@ namespace
         {
             return true;
         }
-        return false;
 #elif defined(Q_OS_MACOS)
         return (c == u':');
-#else
-        return false;
 #endif
+
+        return false;
     }
 }
 
