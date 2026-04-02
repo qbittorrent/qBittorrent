@@ -108,10 +108,6 @@ bool Path::isRelative() const
 // Validates if the path contains only valid filename components
 bool Path::isValid() const
 {
-    // Reject empty names or relative alias directory names
-    if (m_pathStr.isEmpty() || (m_pathStr == u"."_s) || (m_pathStr == u".."_s))
-        return false;
-
     QStringView pathStrView = m_pathStr;
 
 #ifdef Q_OS_WIN
@@ -120,11 +116,10 @@ bool Path::isValid() const
         pathStrView = pathStrView.mid(3);
 #endif
 
-    // Split path into components and validate each NON-EMPTY one
-    const auto components = pathStrView.split(u'/');
-    for (QStringView component : components)
+    // Split path into components and validate each one
+    for (QStringView component : pathStrView.split(u'/'))
     {
-        if (!component.isEmpty() && !Utils::Fs::isValidFileName(component))
+        if (!Utils::Fs::isValidFileName(component))
             return false;
     }
 
@@ -305,10 +300,6 @@ Path Path::commonPath(const Path &left, const Path &right)
  */
 Path Path::makeValidPath(const QString &name, const QString &pad)
 {
-    // Handle empty names or relative alias directory names
-    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
-        return Path();
-
     QStringView pathStrView = name;
 
 #ifdef Q_OS_WIN
@@ -319,6 +310,7 @@ Path Path::makeValidPath(const QString &name, const QString &pad)
 
     // Split into components and sanitize each one
     const QList<QStringView> components = pathStrView.split(u'/', Qt::SkipEmptyParts);
+
     QStringList validComponents;
     validComponents.reserve(components.size());
 
