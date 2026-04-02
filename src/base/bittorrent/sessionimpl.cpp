@@ -1774,8 +1774,8 @@ void SessionImpl::initializeNativeSession()
 #if LIBTORRENT_VERSION_NUM < 20100
     m_nativeSession = new lt::session(sessionParams, lt::session::paused);
 #else
+    sessionParams.flags |= lt::session::paused;
     m_nativeSession = new lt::session(sessionParams);
-    m_nativeSession->pause();
 #endif
 
     LogMsg(tr("Peer ID: \"%1\"").arg(QString::fromStdString(peerId)), Log::INFO);
