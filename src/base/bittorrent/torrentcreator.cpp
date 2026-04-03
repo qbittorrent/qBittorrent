@@ -44,7 +44,6 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/compare.h"
-#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/version.h"
 #include "lttypecast.h"
