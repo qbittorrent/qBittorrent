@@ -313,10 +313,8 @@ Path Path::makeValidPath(QStringView name, const QString &pad)
 
     // Split into components and sanitize each one
     const QList<QStringView> components = pathStrView.split(u'/', Qt::SkipEmptyParts);
-
     QStringList validComponents;
     validComponents.reserve(components.size());
-
     for (const QStringView &comp : components)
         validComponents << Utils::Fs::toValidFileName(comp, pad);
 
