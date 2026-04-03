@@ -45,6 +45,8 @@ window.qBittorrent.Statistics ??= (() => {
         queuedIOJobs: 0,
         averageTimeInQueue: 0,
         totalQueuedSize: 0,
+        // Tracker statistics
+        queuedTrackerAnnounces: 0
     };
 
     const save = (serverState) => {
@@ -60,6 +62,8 @@ window.qBittorrent.Statistics ??= (() => {
         statistics.queuedIOJobs = serverState.queued_io_jobs;
         statistics.averageTimeInQueue = serverState.average_time_queue;
         statistics.totalQueuedSize = serverState.total_queued_size;
+        // Tracker statistics
+        statistics.queuedTrackerAnnounces = serverState.queued_tracker_announces;
     };
 
     const render = () => {
@@ -78,6 +82,8 @@ window.qBittorrent.Statistics ??= (() => {
         document.getElementById("QueuedIOJobs").textContent = statistics.queuedIOJobs;
         document.getElementById("AverageTimeInQueue").textContent = `${statistics.averageTimeInQueue} ms`;
         document.getElementById("TotalQueuedSize").textContent = window.qBittorrent.Misc.friendlyUnit(statistics.totalQueuedSize, false);
+        // Tracker statistics
+        document.getElementById("queuedTrackerAnnounces").textContent = statistics.queuedTrackerAnnounces;
     };
 
     return exports();

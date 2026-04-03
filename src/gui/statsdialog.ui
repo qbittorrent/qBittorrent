@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>286</width>
-    <height>401</height>
+    <width>288</width>
+    <height>489</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -203,6 +203,29 @@
        <widget class="QLabel" name="labelQueuedBytes">
         <property name="text">
          <string notr="true">TextLabel</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupTracker">
+     <property name="title">
+      <string>Tracker statistics</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="labelQueuedTrackerAnnouncesText_2">
+        <property name="text">
+         <string>Queued tracker announces:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+       <widget class="QLabel" name="labelQueuedTrackerAnnounces">
+        <property name="text">
+         <string>TextLabel</string>
         </property>
        </widget>
       </item>

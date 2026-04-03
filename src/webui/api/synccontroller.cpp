@@ -107,6 +107,7 @@ namespace
     const QString KEY_TRANSFER_TOTAL_QUEUED_SIZE = u"total_queued_size"_s;
     const QString KEY_TRANSFER_TOTAL_WASTE_SESSION = u"total_wasted_session"_s;
     const QString KEY_TRANSFER_WRITE_CACHE_OVERLOAD = u"write_cache_overload"_s;
+    const QString KEY_TRANSFER_QUEUED_TRACKER_ANNOUNCES = u"queued_tracker_announces"_s;
 
     const QString KEY_SUFFIX_REMOVED = u"_removed"_s;
 
@@ -192,6 +193,9 @@ namespace
         map[KEY_TRANSFER_CONNECTION_STATUS] = session->isListening()
             ? (sessionStatus.hasIncomingConnections ? u"connected"_s : u"firewalled"_s)
             : u"disconnected"_s;
+
+        // Tracker statistics
+        map[KEY_TRANSFER_QUEUED_TRACKER_ANNOUNCES] = sessionStatus.queuedTrackerAnnounces;
 
         return map;
     }

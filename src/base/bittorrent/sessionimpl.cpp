@@ -1827,6 +1827,10 @@ void SessionImpl::initMetrics()
             .hashJobs = findMetricIndex("disk.num_blocks_hashed"),
             .queuedDiskJobs = findMetricIndex("disk.queued_disk_jobs"),
             .diskJobTime = findMetricIndex("disk.disk_job_time")
+        },
+        .tracker =
+        {
+            .numQueuedTrackerAnnounces = findMetricIndex("tracker.num_queued_tracker_announces")
         }
     };
 }
@@ -6229,6 +6233,8 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
     m_status.diskReadQueue = stats[m_metricIndices.peer.numPeersUpDisk];
     m_status.diskWriteQueue = stats[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
+
+    m_status.queuedTrackerAnnounces = stats[m_metricIndices.tracker.numQueuedTrackerAnnounces];
 
     if (totalDownload > m_status.totalDownload)
     {
