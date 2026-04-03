@@ -218,7 +218,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     connect(editHotkey, &QShortcut::activated, this, &TransferListWidget::renameSelectedTorrent);
     const auto *deleteHotkey = new QShortcut(Utils::KeySequence::deleteItem(), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteHotkey, &QShortcut::activated, this, &TransferListWidget::softDeleteSelectedTorrents);
-    const auto *permDeleteHotkey = new QShortcut((Qt::SHIFT | Qt::Key_Delete), this, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *permDeleteHotkey = new QShortcut(Utils::KeySequence::permanentlyDeleteItem(), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(permDeleteHotkey, &QShortcut::activated, this, &TransferListWidget::permDeleteSelectedTorrents);
     const auto *doubleClickHotkeyReturn = new QShortcut(Qt::Key_Return, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(doubleClickHotkeyReturn, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);

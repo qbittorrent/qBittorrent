@@ -6,7 +6,20 @@ updates:
     commit-message:
       prefix: "GHA CI"
     groups:
-      github-actions:
+      GHA_CI-dependency-update:
+        patterns:
+          - "*"
+    labels:
+      - "CI"
+    schedule:
+      interval: "monthly"
+
+  - package-ecosystem: "pre-commit"
+    directory: "/"
+    commit-message:
+      prefix: "GHA CI"
+    groups:
+      GHA_CI-dependency-update:
         patterns:
           - "*"
     labels:

@@ -148,8 +148,10 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
     m_displaySpeedInTitle = pref->speedInTitleBar();
+#ifdef Q_OS_MACOS
+    m_statusItem->setVisible(pref->isMacOSMenuBarIconEnabled());
+#else
     // Setting icons
-#ifndef Q_OS_MACOS
     setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
 #endif // Q_OS_MACOS
 
@@ -292,24 +294,19 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     {
         if (action->isSeparator())
         {
-            QWidget *spacer = new QWidget(this);
-            spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-            spacer->setMinimumWidth(16);
-            m_ui->toolBar->insertWidget(action, spacer);
+            auto *line = new QWidget(this);
+            line->setAutoFillBackground(true);
+            line->setFixedWidth(1);
+
+            QPalette pal = line->palette();
+            pal.setColor(QPalette::Window, palette().color(QPalette::Mid));
+            line->setPalette(pal);
+
+            QAction *widgetAction = m_ui->toolBar->insertWidget(action, line);
             m_ui->toolBar->removeAction(action);
+            if (action == m_queueSeparator)
+                m_queueSeparator = widgetAction;
         }
-    }
-    {
-        QWidget *spacer = new QWidget(this);
-        spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        spacer->setMinimumWidth(8);
-        m_ui->toolBar->insertWidget(m_ui->actionDownloadFromURL, spacer);
-    }
-    {
-        QWidget *spacer = new QWidget(this);
-        spacer->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        spacer->setMinimumWidth(8);
-        m_ui->toolBar->addWidget(spacer);
     }
 #endif // Q_OS_MACOS
 
@@ -1423,9 +1420,7 @@ void MainWindow::loadPreferences()
             m_ui->actionIncreaseQueuePos->setVisible(true);
             m_ui->actionTopQueuePos->setVisible(true);
             m_ui->actionBottomQueuePos->setVisible(true);
-#ifndef Q_OS_MACOS
             m_queueSeparator->setVisible(true);
-#endif
             m_queueSeparatorMenu->setVisible(true);
         }
     }
@@ -1438,9 +1433,7 @@ void MainWindow::loadPreferences()
             m_ui->actionIncreaseQueuePos->setVisible(false);
             m_ui->actionTopQueuePos->setVisible(false);
             m_ui->actionBottomQueuePos->setVisible(false);
-#ifndef Q_OS_MACOS
             m_queueSeparator->setVisible(false);
-#endif
             m_queueSeparatorMenu->setVisible(false);
         }
     }
@@ -1471,6 +1464,7 @@ void MainWindow::loadPreferences()
     // Clear dock badge immediately if speed display is disabled
     if (!pref->isSpeedInDockEnabled())
         m_badger->updateSpeed(0, 0);
+    m_statusItem->setVisible(pref->isMacOSMenuBarIconEnabled());
 #endif
 
     qDebug("GUI settings loaded");
@@ -1487,7 +1481,8 @@ void MainWindow::loadSessionStats()
 #ifdef Q_OS_MACOS
     if (Preferences::instance()->isSpeedInDockEnabled())
         m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
-    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    if (Preferences::instance()->isMacOSMenuBarIconEnabled())
+        m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS

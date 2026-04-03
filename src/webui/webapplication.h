@@ -60,37 +60,19 @@ using namespace Qt::Literals::StringLiterals;
 
 inline const Utils::Version<3, 2> API_VERSION {2, 15, 2};
 
+class QNetworkCookie;
+
 class APIController;
 class AuthController;
 class ClientDataStorage;
-class WebApplication;
+class WebSession;
+
+enum class WebSessionType : qint8;
 
 namespace BitTorrent
 {
     class TorrentCreationManager;
 }
-
-class WebSession final : public ApplicationComponent<QObject>, public ISession
-{
-public:
-    explicit WebSession(const QString &sid, IApplication *app);
-
-    QString id() const override;
-
-    bool hasExpired(std::chrono::milliseconds duration) const;
-    void updateTimestamp();
-    bool shouldRefreshCookie() const;
-    void setCookieRefreshTime(std::chrono::seconds timeout);
-
-    void registerAPIController(const QString &scope, APIController *controller);
-    APIController *getAPIController(const QString &scope) const;
-
-private:
-    const QString m_sid;
-    QElapsedTimer m_timestamp;
-    QDeadlineTimer m_cookieRefreshTimer;
-    QMap<QString, APIController *> m_apiControllers;
-};
 
 class WebApplication final : public ApplicationComponent<QObject>
         , public Http::IRequestHandler, public ISessionManager
@@ -112,12 +94,12 @@ public:
 
 private:
     QString clientId() const;
-    WebSession *session() override;
+    ISession *session() override;
     void sessionStart() override;
-    void sessionStartImpl(const QString &sessionId, bool useCookie);
+    void sessionStartImpl(const QString &sessionId, WebSessionType sessionType);
     void sessionEnd() override;
 
-    void doProcessRequest(bool isUsingApiKey);
+    void processAPIRequest(const QString &endpoint);
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
@@ -129,9 +111,9 @@ private:
 
     // Session management
     QString generateSid() const;
-    void sessionInitialize();
-    void setSessionCookie();
-    void apiKeySessionInitialize();
+    QNetworkCookie createSessionCookie(const QString &sessionID, std::chrono::seconds expireDuration) const;
+    void cookieSessionInitialize(const QString &authScheme, const QString &authData);
+    void apiKeySessionInitialize(const QString &apiKey);
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
 
@@ -155,11 +137,8 @@ private:
     WebSession *m_currentSession = nullptr;
     Http::Request m_request;
     Http::Environment m_env;
-    QHash<QString, QString> m_params;
     Http::Response m_response;
     const QString m_cacheID;
-
-    const QRegularExpression m_apiPathPattern {u"^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"_s};
 
     QSet<QString> m_publicAPIs;
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =

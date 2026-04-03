@@ -14,7 +14,7 @@
 ; 4.5.1.3 -> good
 ; 4.5.1.3.2 -> bad
 ; 4.5.0beta -> bad
-!define /ifndef QBT_VERSION "5.2.0"
+!define /ifndef QBT_VERSION "5.3.0"
 
 ; Option that controls the installer's window name
 ; If set, its value will be used like this:
@@ -62,12 +62,12 @@ ManifestDPIAwareness "PerMonitorV2,System"
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
 
-!include "MUI2.nsh"
-!include "UAC.nsh"
+!include "3rdparty\UAC.nsh"
+!include "3rdparty\VersionCompleteXXXX.nsi"
 !include "FileFunc.nsh"
+!include "MUI2.nsh"
 !include "WinVer.nsh"
 !include "x64.nsh"
-!include "3rdparty\VersionCompleteXXXX.nsi"
 
 ;For the file association
 !define SHCNE_ASSOCCHANGED 0x8000000
@@ -153,25 +153,25 @@ uac_tryagain:
 !insertmacro UAC_RunElevated
 ${Switch} $0
 ${Case} 0
-	${IfThen} $1 = 1 ${|} Quit ${|} ;we are the outer process, the inner process has done its work, we are done
-	${IfThen} $3 <> 0 ${|} ${Break} ${|} ;we are admin, let the show go on
-	${If} $1 = 3 ;RunAs completed successfully, but with a non-admin user
-		MessageBox mb_YesNo|mb_IconExclamation|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, try again" /SD IDNO IDYES uac_tryagain IDNO 0
-		SetErrorLevel 1314 # WinError.h: `ERROR_PRIVILEGE_NOT_HELD`
-	${EndIf}
-	;fall-through and die
+  ${IfThen} $1 = 1 ${|} Quit ${|} ;we are the outer process, the inner process has done its work, we are done
+  ${IfThen} $3 <> 0 ${|} ${Break} ${|} ;we are admin, let the show go on
+  ${If} $1 = 3 ;RunAs completed successfully, but with a non-admin user
+    MessageBox mb_YesNo|mb_IconExclamation|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, try again" /SD IDNO IDYES uac_tryagain IDNO 0
+    SetErrorLevel 1314 # WinError.h: `ERROR_PRIVILEGE_NOT_HELD`
+  ${EndIf}
+  ;fall-through and die
 ${Case} 1223
-	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, aborting!"
-	SetErrorLevel 1223 # WinError.h: `ERROR_CANCELLED`
-	Quit
+  MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "This ${thing} requires admin privileges, aborting!"
+  SetErrorLevel 1223 # WinError.h: `ERROR_CANCELLED`
+  Quit
 ${Case} 1062
-	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Logon service not running, aborting!"
-	SetErrorLevel 1062 # WinError.h: `ERROR_SERVICE_NOT_ACTIVE`
-	Quit
+  MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Logon service not running, aborting!"
+  SetErrorLevel 1062 # WinError.h: `ERROR_SERVICE_NOT_ACTIVE`
+  Quit
 ${Default}
-	MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Unable to elevate , error $0"
-	SetErrorLevel 1603 # WinError.h: `ERROR_INSTALL_FAILURE`
-	Quit
+  MessageBox mb_IconStop|mb_TopMost|mb_SetForeground "Unable to elevate , error $0"
+  SetErrorLevel 1603 # WinError.h: `ERROR_INSTALL_FAILURE`
+  Quit
 ${EndSwitch}
 
 SetShellVarContext all

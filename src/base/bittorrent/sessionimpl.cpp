@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -57,6 +57,7 @@
 #include <libtorrent/session_stats.hpp>
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QDateTime>
 #include <QDeadlineTimer>
@@ -224,6 +225,10 @@ namespace
 #endif
         case lt::socket_type_t::utp_ssl:
             return u"UTP_SSL"_s;
+#if LIBTORRENT_VERSION_NUM >= 20100
+        case lt::socket_type_t::rtc:
+            return u"WebRTC"_s;
+#endif
         }
         return u"INVALID"_s;
     }
@@ -701,7 +706,7 @@ SessionImpl::~SessionImpl()
 
     if (m_torrentsQueueChanged)
     {
-        m_nativeSession->post_torrent_updates({});
+        m_nativeSession->post_torrent_updates();
         m_torrentsQueueChanged = false;
         m_needSaveTorrentsQueue = true;
     }
@@ -1529,7 +1534,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
             if (nonstd::expected<LoadTorrentParams, QString> loadPreferredResumeDataResult = context->startupStorage->load(torrentID))
             {
-                std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
+                auto ti = resumeData.ltAddTorrentParams.ti;
                 resumeData = std::move(*loadPreferredResumeDataResult);
                 if (!resumeData.ltAddTorrentParams.ti)
                     resumeData.ltAddTorrentParams.ti = std::move(ti);
@@ -1755,6 +1760,11 @@ void SessionImpl::initializeNativeSession()
     case DiskIOType::SimplePreadPwrite:
         sessionParams.disk_io_constructor = customMMapDiskIOConstructor;
         break;
+#if LIBTORRENT_VERSION_NUM >= 20100
+    case DiskIOType::PreadPwrite:
+        sessionParams.disk_io_constructor = customPreadDiskIOConstructor;
+        break;
+#endif
     default:
         sessionParams.disk_io_constructor = customDiskIOConstructor;
         break;
@@ -1764,8 +1774,8 @@ void SessionImpl::initializeNativeSession()
 #if LIBTORRENT_VERSION_NUM < 20100
     m_nativeSession = new lt::session(sessionParams, lt::session::paused);
 #else
+    sessionParams.flags |= lt::session::paused;
     m_nativeSession = new lt::session(sessionParams);
-    m_nativeSession->pause();
 #endif
 
     LogMsg(tr("Peer ID: \"%1\"").arg(QString::fromStdString(peerId)), Log::INFO);
@@ -2855,7 +2865,12 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         if (!loadTorrentParams.hasFinishedStatus)
             needFindIncompleteFiles = true;
 
-        const int internalFilesCount = torrentInfo.nativeInfo()->files().num_files(); // including .pad files
+#if LIBTORRENT_VERSION_NUM >= 20100
+        const lt::file_storage internalFiles = torrentInfo.nativeInfo()->layout();
+#else
+        const lt::file_storage internalFiles = torrentInfo.nativeInfo()->files();
+#endif
+        const int internalFilesCount = internalFiles.num_files(); // including .pad files
         // Use qBittorrent default priority rather than libtorrent's (4)
         p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
 
@@ -6085,6 +6100,15 @@ void SessionImpl::handlePortmapAlert(const lt::portmap_alert *alert)
 
 void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *alert)
 {
+#if LIBTORRENT_VERSION_NUM >= 20100
+    using TCPEndpoint = lt::aux::noexcept_movable<lt::tcp::endpoint>;
+    const lt::tcp::endpoint ipEndpoint = (std::holds_alternative<TCPEndpoint>(alert->ep))
+            ? std::get<TCPEndpoint>(alert->ep)
+            : TCPEndpoint();
+#else
+    const lt::tcp::endpoint &ipEndpoint = alert->endpoint;
+#endif
+
     QString reason;
     switch (alert->reason)
     {
@@ -6092,13 +6116,13 @@ void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *alert)
         reason = tr("IP filter", "this peer was blocked. Reason: IP filter.");
         break;
     case lt::peer_blocked_alert::port_filter:
-        reason = tr("filtered port (%1)", "this peer was blocked. Reason: filtered port (8899).").arg(QString::number(alert->endpoint.port()));
+        reason = tr("filtered port (%1)", "this peer was blocked. Reason: filtered port (8899).").arg(QString::number(ipEndpoint.port()));
         break;
     case lt::peer_blocked_alert::i2p_mixed:
         reason = tr("%1 mixed mode restrictions", "this peer was blocked. Reason: I2P mixed mode restrictions.").arg(u"I2P"_s); // don't translate I2P
         break;
     case lt::peer_blocked_alert::privileged_ports:
-        reason = tr("privileged port (%1)", "this peer was blocked. Reason: privileged port (80).").arg(QString::number(alert->endpoint.port()));
+        reason = tr("privileged port (%1)", "this peer was blocked. Reason: privileged port (80).").arg(QString::number(ipEndpoint.port()));
         break;
     case lt::peer_blocked_alert::utp_disabled:
         reason = tr("%1 is disabled", "this peer was blocked. Reason: uTP is disabled.").arg(C_UTP); // don't translate μTP
@@ -6108,14 +6132,23 @@ void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *alert)
         break;
     }
 
-    const QString ip {toString(alert->endpoint.address())};
+    const QString ip {toString(ipEndpoint.address())};
     if (!ip.isEmpty())
         Logger::instance()->addPeer(ip, true, reason);
 }
 
 void SessionImpl::handlePeerBanAlert(const lt::peer_ban_alert *alert)
 {
-    const QString ip {toString(alert->endpoint.address())};
+#if LIBTORRENT_VERSION_NUM >= 20100
+    using TCPEndpoint = lt::aux::noexcept_movable<lt::tcp::endpoint>;
+    const lt::tcp::endpoint ipEndpoint = (std::holds_alternative<TCPEndpoint>(alert->ep))
+            ? std::get<TCPEndpoint>(alert->ep)
+            : TCPEndpoint();
+#else
+    const lt::tcp::endpoint &ipEndpoint = alert->endpoint;
+#endif
+
+    const QString ip {toString(ipEndpoint.address())};
     if (!ip.isEmpty())
         Logger::instance()->addPeer(ip, false);
 }

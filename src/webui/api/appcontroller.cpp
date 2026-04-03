@@ -1281,9 +1281,9 @@ void AppController::getDirectoryContentAction()
 
 void AppController::getFreeSpaceAtPathAction()
 {
-	requireParams({u"path"_s});
-	Path current {params().value(u"path"_s)};
-	const Path root = current.rootItem();
+    requireParams({u"path"_s});
+    Path current {params().value(u"path"_s)};
+    const Path root = current.rootItem();
     qint64 freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
 
     // for non-existent directories (which will be created on demand) `Utils::Fs::freeDiskSpaceOnPath`

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,7 +32,11 @@
 #include <libtorrent/entry.hpp>
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/torrent_info.hpp>
+#include <libtorrent/version.hpp>
 #include <libtorrent/write_resume_data.hpp>
+#if LIBTORRENT_VERSION_NUM >= 20100
+#include <libtorrent/load_torrent.hpp>
+#endif
 
 #include <QByteArray>
 #include <QDebug>
@@ -313,11 +317,26 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         if (torrentInfoRoot.type() != lt::bdecode_node::dict_t)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: invalid format"));
 
+#if LIBTORRENT_VERSION_NUM >= 20100
+        const lt::load_torrent_limits limits {
+            .max_buffer_size = static_cast<int>(pref->getTorrentFileSizeLimit()),
+            .max_decode_depth = pref->getBdecodeDepthLimit(),
+            .max_decode_tokens = pref->getBdecodeTokenLimit()};
+        const lt::add_torrent_params atp = lt::load_torrent_parsed(torrentInfoRoot, ec, limits);
+        if (ec)
+            return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
+
+        p.ti = atp.ti;
+        p.creation_date = atp.creation_date;
+        p.created_by = atp.created_by;
+        p.comment = atp.comment;
+#else
         const auto torrentInfo = std::make_shared<lt::torrent_info>(torrentInfoRoot, ec);
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 
         p.ti = torrentInfo;
+#endif
 
 #ifdef QBT_USES_LIBTORRENT2
         if (((p.info_hashes.has_v1() && (p.info_hashes.v1 != p.ti->info_hashes().v1))

@@ -219,9 +219,8 @@ void TorrentContentModel::updateFilesAvailability()
 {
     Q_ASSERT(m_contentHandler && m_contentHandler->hasMetadata());
 
-    using HandlerPtr = QPointer<BitTorrent::TorrentContentHandler>;
     m_contentHandler->fetchAvailableFileFractions().then(this
-            , [this, handler = HandlerPtr(m_contentHandler)](const QList<qreal> &availableFileFractions)
+            , [this, handler = QPointer(m_contentHandler)](const QList<qreal> &availableFileFractions)
     {
         if (!m_contentHandler || (m_contentHandler != handler))
             return;

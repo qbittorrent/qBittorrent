@@ -246,7 +246,7 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
     }
     catch (const HTTPError &error)
     {
-        m_response.status = {.code = error.statusCode(), .text = error.statusText()};
+        m_response.status = error.status();
         if (!error.message().isEmpty())
         {
             m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);

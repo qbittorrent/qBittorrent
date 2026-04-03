@@ -326,6 +326,8 @@ public:
 #ifdef Q_OS_MACOS
     bool isSpeedInDockEnabled() const;
     void setSpeedInDockEnabled(bool enabled);
+    bool isMacOSMenuBarIconEnabled() const;
+    void setMacOSMenuBarIconEnabled(bool enabled);
 #endif
     bool confirmTorrentDeletion() const;
     void setConfirmTorrentDeletion(bool enabled);

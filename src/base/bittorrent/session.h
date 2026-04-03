@@ -29,6 +29,8 @@
 
 #pragma once
 
+#include <libtorrent/version.hpp>
+
 #include <QtContainerFwd>
 #include <QObject>
 
@@ -94,7 +96,10 @@ namespace BitTorrent
             Default = 0,
             MMap = 1,
             Posix = 2,
-            SimplePreadPwrite = 3
+            SimplePreadPwrite = 3,
+#if LIBTORRENT_VERSION_NUM >= 20100
+            PreadPwrite = 4
+#endif
         };
         Q_ENUM_NS(DiskIOType)
 
