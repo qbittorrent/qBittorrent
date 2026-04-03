@@ -46,7 +46,7 @@ namespace Utils::Fs
     qint64 computePathSize(const Path &path);
     qint64 freeDiskSpaceOnPath(const Path &path);
 
-    bool isValidFileName(const QStringView &name);
+    bool isValidFileName(QStringView name);
     bool isRegularFile(const Path &path);
     bool isDir(const Path &path);
     bool isReadable(const Path &path);
@@ -55,7 +55,7 @@ namespace Utils::Fs
     QDateTime lastModified(const Path &path);
     bool isSameFile(const Path &path1, const Path &path2);
 
-    QString toValidFileName(const QString &name, const QString &pad = u"_"_s);
+    QString toValidFileName(QStringView name, const QString &pad = u"_"_s);
     Path toAbsolutePath(const Path &path);
     Path toCanonicalPath(const Path &path);
 

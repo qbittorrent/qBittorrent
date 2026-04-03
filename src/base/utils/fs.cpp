@@ -238,7 +238,7 @@ bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 }
 
 // Check if a filename is valid without sanitizing
-bool Utils::Fs::isValidFileName(const QStringView &name)
+bool Utils::Fs::isValidFileName(QStringView name)
 {
     // Reject empty names or relative alias directory names
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
@@ -268,17 +268,19 @@ bool Utils::Fs::isValidFileName(const QStringView &name)
 }
 
 // Sanitize filename using pad
-QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
+QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
 {
+    const QStringView trimmedName = name.trimmed();
+
     // Handle empty names or relative alias directory names
-    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
+    if (trimmedName.isEmpty() || (trimmedName == u"."_s) || (trimmedName == u".."_s))
         return pad;
 
     // Replace one or more reserved characters with pad
     QString validName;
-    validName.reserve(name.size());
+    validName.reserve(trimmedName.size());
     bool inReservedSequence = false;
-    for (const QChar c : QStringView(name).trimmed())
+    for (const QChar c : trimmedName)
     {
         if (isReservedCharacter(c))
         {

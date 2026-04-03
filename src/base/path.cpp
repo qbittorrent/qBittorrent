@@ -120,7 +120,7 @@ bool Path::isValid() const
 #endif
 
     // Split path into components and validate each one
-    for (QStringView component : pathStrView.split(u'/', Qt::SkipEmptyParts))
+    for (const QStringView component : pathStrView.split(u'/', Qt::SkipEmptyParts))
     {
         if (!Utils::Fs::isValidFileName(component))
             return false;
@@ -301,7 +301,7 @@ Path Path::commonPath(const Path &left, const Path &right)
  * Returns a valid path by sanitizing each component of the given path string.
  * Useful when constructing paths from untrusted/user-provided names.
  */
-Path Path::makeValidPath(const QString &name, const QString &pad)
+Path Path::makeValidPath(QStringView name, const QString &pad)
 {
     QStringView pathStrView = name;
 
@@ -318,7 +318,7 @@ Path Path::makeValidPath(const QString &name, const QString &pad)
     validComponents.reserve(components.size());
 
     for (const QStringView &comp : components)
-        validComponents << Utils::Fs::toValidFileName(comp.toString(), pad);
+        validComponents << Utils::Fs::toValidFileName(comp, pad);
 
     // Reconstruct path
     QString validPathStr = validComponents.join(u'/');
