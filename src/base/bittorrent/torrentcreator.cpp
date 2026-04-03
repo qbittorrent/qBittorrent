@@ -235,11 +235,8 @@ void TorrentCreator::run()
 
         const auto result = std::invoke([torrentFilePath = m_params.torrentFilePath, entry]() -> nonstd::expected<Path, QString>
         {
-            const Path parentPath = torrentFilePath.parentPath();
-            const QString validFileName = Utils::Fs::toValidFileName(torrentFilePath.filename());
-            const Path finalTorrentFilePath = parentPath / Path(validFileName);
+            const Path finalTorrentFilePath = Path::makeValidPath(torrentFilePath.data());
 
-            // Fall back to saving a temporary file if the path is invalid
             if (!finalTorrentFilePath.isValid())
                 return Utils::IO::saveToTempFile(entry);
 
