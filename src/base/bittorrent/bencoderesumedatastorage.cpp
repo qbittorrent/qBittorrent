@@ -57,6 +57,8 @@
 #include "infohash.h"
 #include "loadtorrentparams.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace BitTorrent
 {
     class BencodeResumeDataStorage::Worker final : public QObject
@@ -243,10 +245,17 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     torrentParams.comment = fromLTString(resumeDataRoot.dict_find_string_value("qBt-comment"));
     torrentParams.hasFinishedStatus = resumeDataRoot.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = resumeDataRoot.dict_find_int_value("qBt-firstLastPiecePriority");
-    torrentParams.seedingTimeLimit = resumeDataRoot.dict_find_int_value("qBt-seedingTimeLimit", DEFAULT_SEEDING_TIME_LIMIT);
-    torrentParams.inactiveSeedingTimeLimit = resumeDataRoot.dict_find_int_value("qBt-inactiveSeedingTimeLimit", DEFAULT_SEEDING_TIME_LIMIT);
-    torrentParams.shareLimitAction = Utils::String::toEnum(
-            fromLTString(resumeDataRoot.dict_find_string_value("qBt-shareLimitAction")), ShareLimitAction::Default);
+
+    const lt::string_view ratioLimitString = resumeDataRoot.dict_find_string_value("qBt-ratioLimit");
+    torrentParams.shareLimits = {
+        .ratioLimit = ratioLimitString.empty()
+            ? resumeDataRoot.dict_find_int_value("qBt-ratioLimit", DEFAULT_RATIO_LIMIT * 1000) / 1000.0
+            : fromLTString(ratioLimitString).toDouble(),
+        .seedingTimeLimit = static_cast<int>(resumeDataRoot.dict_find_int_value("qBt-seedingTimeLimit", DEFAULT_SEEDING_TIME_LIMIT)),
+        .inactiveSeedingTimeLimit = static_cast<int>(resumeDataRoot.dict_find_int_value("qBt-inactiveSeedingTimeLimit", DEFAULT_SEEDING_TIME_LIMIT)),
+        .action = Utils::String::toEnum(
+            fromLTString(resumeDataRoot.dict_find_string_value("qBt-shareLimitAction")), ShareLimitAction::Default)
+    };
 
     torrentParams.savePath = Profile::instance()->fromPortablePath(
             Path(fromLTString(resumeDataRoot.dict_find_string_value("qBt-savePath"))));
@@ -284,12 +293,6 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         .privateKey = Utils::SSLKey::load(toByteArray(resumeDataRoot.dict_find_string_value(KEY_SSL_PRIVATE_KEY))),
         .dhParams = toByteArray(resumeDataRoot.dict_find_string_value(KEY_SSL_DH_PARAMS))
     };
-
-    const lt::string_view ratioLimitString = resumeDataRoot.dict_find_string_value("qBt-ratioLimit");
-    if (ratioLimitString.empty())
-        torrentParams.ratioLimit = resumeDataRoot.dict_find_int_value("qBt-ratioLimit", DEFAULT_RATIO_LIMIT * 1000) / 1000.0;
-    else
-        torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
 
     const lt::bdecode_node tagsNode = resumeDataRoot.dict_find("qBt-tags");
     if (tagsNode.type() == lt::bdecode_node::list_t)
@@ -449,10 +452,10 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
         }
     }
 
-    data["qBt-ratioLimit"] = static_cast<int>(resumeData.ratioLimit * 1000);
-    data["qBt-seedingTimeLimit"] = resumeData.seedingTimeLimit;
-    data["qBt-inactiveSeedingTimeLimit"] = resumeData.inactiveSeedingTimeLimit;
-    data["qBt-shareLimitAction"] = Utils::String::fromEnum(resumeData.shareLimitAction).toStdString();
+    data["qBt-ratioLimit"] = static_cast<int>(resumeData.shareLimits.ratioLimit * 1000);
+    data["qBt-seedingTimeLimit"] = resumeData.shareLimits.seedingTimeLimit;
+    data["qBt-inactiveSeedingTimeLimit"] = resumeData.shareLimits.inactiveSeedingTimeLimit;
+    data["qBt-shareLimitAction"] = Utils::String::fromEnum(resumeData.shareLimits.action).toStdString();
 
     data["qBt-category"] = resumeData.category.toStdString();
     data["qBt-tags"] = setToEntryList(resumeData.tags);

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  * Copyright (C) 2017  Mike Tzou (Chocobo1)
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
@@ -356,9 +356,11 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
 
             if (m_ui->checkIgnoreShareLimits->isChecked())
             {
-                params.ratioLimit = BitTorrent::NO_RATIO_LIMIT;
-                params.seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
-                params.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
+                params.shareLimits = {
+                    .ratioLimit = BitTorrent::NO_RATIO_LIMIT,
+                    .seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT,
+                    .inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT
+                };
             }
 
             BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);

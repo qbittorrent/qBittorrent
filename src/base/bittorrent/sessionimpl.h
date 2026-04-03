@@ -154,10 +154,7 @@ namespace BitTorrent
         Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
         Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
-        qreal categoryRatioLimit(const QString &categoryName) const override;
-        int categorySeedingTimeLimit(const QString &categoryName) const override;
-        int categoryInactiveSeedingTimeLimit(const QString &categoryName) const override;
-        ShareLimitAction categoryShareLimitAction(const QString &categoryName) const override;
+        ShareLimits categoryShareLimits(const QString &categoryName) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
         bool removeCategory(const QString &name) override;
         bool useCategoryPathsInManualMode() const override;
@@ -180,14 +177,8 @@ namespace BitTorrent
         bool isDisableAutoTMMWhenCategorySavePathChanged() const override;
         void setDisableAutoTMMWhenCategorySavePathChanged(bool value) override;
 
-        qreal globalMaxRatio() const override;
-        void setGlobalMaxRatio(qreal ratio) override;
-        int globalMaxSeedingMinutes() const override;
-        void setGlobalMaxSeedingMinutes(int minutes) override;
-        int globalMaxInactiveSeedingMinutes() const override;
-        void setGlobalMaxInactiveSeedingMinutes(int minutes) override;
-        ShareLimitAction shareLimitAction() const override;
-        void setShareLimitAction(ShareLimitAction act) override;
+        ShareLimits shareLimits() const override;
+        void setShareLimits(ShareLimits shareLimits) override;
 
         QString getDHTBootstrapNodes() const override;
         void setDHTBootstrapNodes(const QString &nodes) override;
@@ -546,10 +537,6 @@ namespace BitTorrent
         explicit SessionImpl(QObject *parent = nullptr);
         ~SessionImpl();
 
-        bool hasPerTorrentRatioLimit() const;
-        bool hasPerTorrentSeedingTimeLimit() const;
-        bool hasPerTorrentInactiveSeedingTimeLimit() const;
-
         // Session configuration
         Q_INVOKABLE void configure();
         void configureComponents();
@@ -577,7 +564,7 @@ namespace BitTorrent
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
 
-        void updateSeedingLimitTimer();
+        void updateShareLimitsTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
         void handleAlert(lt::alert *alert);

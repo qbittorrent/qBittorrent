@@ -125,10 +125,13 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM),
         .uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1),
         .downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1),
-        .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
-        .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
-        .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(DEFAULT_RATIO_LIMIT),
-        .shareLimitAction = getEnum<ShareLimitAction>(jsonObj, PARAM_SHARELIMITACTION, ShareLimitAction::Default),
+        .shareLimits =
+        {
+            .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(DEFAULT_RATIO_LIMIT),
+            .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
+            .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
+            .action = getEnum<ShareLimitAction>(jsonObj, PARAM_SHARELIMITACTION, ShareLimitAction::Default)
+        },
         .sslParameters =
         {
             .certificate = QSslCertificate(jsonObj.value(PARAM_SSL_CERTIFICATE).toString().toLatin1()),
@@ -152,10 +155,10 @@ QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params
         {PARAM_SKIPCHECKING, params.skipChecking},
         {PARAM_UPLOADLIMIT, params.uploadLimit},
         {PARAM_DOWNLOADLIMIT, params.downloadLimit},
-        {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},
-        {PARAM_INACTIVESEEDINGTIMELIMIT, params.inactiveSeedingTimeLimit},
-        {PARAM_SHARELIMITACTION, Utils::String::fromEnum(params.shareLimitAction)},
-        {PARAM_RATIOLIMIT, params.ratioLimit},
+        {PARAM_SEEDINGTIMELIMIT, params.shareLimits.seedingTimeLimit},
+        {PARAM_INACTIVESEEDINGTIMELIMIT, params.shareLimits.inactiveSeedingTimeLimit},
+        {PARAM_SHARELIMITACTION, Utils::String::fromEnum(params.shareLimits.action)},
+        {PARAM_RATIOLIMIT, params.shareLimits.ratioLimit},
         {PARAM_SSL_CERTIFICATE, QString::fromLatin1(params.sslParameters.certificate.toPem())},
         {PARAM_SSL_PRIVATEKEY, QString::fromLatin1(params.sslParameters.privateKey.toPem())},
         {PARAM_SSL_DHPARAMS, QString::fromLatin1(params.sslParameters.dhParams)}

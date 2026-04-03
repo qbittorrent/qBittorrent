@@ -218,11 +218,9 @@ void TorrentShareLimitsWidget::setShareLimitAction(const BitTorrent::ShareLimitA
     }
 }
 
-void TorrentShareLimitsWidget::setDefaults(UsedDefaults usedDefaults
-        , const qreal ratioLimit, const int seedingTimeLimit
-        , const int inactiveSeedingTimeLimit, const BitTorrent::ShareLimitAction action)
+void TorrentShareLimitsWidget::setDefaults(UsedDefaults usedDefaults, const BitTorrent::ShareLimits &shareLimits)
 {
-    m_defaultRatioLimit = ratioLimit;
+    m_defaultRatioLimit = shareLimits.ratioLimit;
     if (m_ui->comboBoxRatioMode->currentIndex() == DefaultModeIndex)
     {
         if (m_defaultRatioLimit >= 0)
@@ -235,7 +233,7 @@ void TorrentShareLimitsWidget::setDefaults(UsedDefaults usedDefaults
         }
     }
 
-    m_defaultSeedingTimeLimit = seedingTimeLimit;
+    m_defaultSeedingTimeLimit = shareLimits.seedingTimeLimit;
     if (m_ui->comboBoxSeedingTimeMode->currentIndex() == DefaultModeIndex)
     {
         if (m_defaultSeedingTimeLimit >= 0)
@@ -250,7 +248,7 @@ void TorrentShareLimitsWidget::setDefaults(UsedDefaults usedDefaults
         }
     }
 
-    m_defaultInactiveSeedingTimeLimit = inactiveSeedingTimeLimit;
+    m_defaultInactiveSeedingTimeLimit = shareLimits.inactiveSeedingTimeLimit;
     if (m_ui->comboBoxInactiveSeedingTimeMode->currentIndex() == DefaultModeIndex)
     {
         if (m_defaultInactiveSeedingTimeLimit >= 0)
@@ -265,7 +263,7 @@ void TorrentShareLimitsWidget::setDefaults(UsedDefaults usedDefaults
         }
     }
 
-    m_defaultShareLimitAction = action;
+    m_defaultShareLimitAction = shareLimits.action;
     m_usedDefaults = usedDefaults;
     resetDefaultItemsText();
 }

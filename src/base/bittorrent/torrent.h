@@ -219,18 +219,9 @@ namespace BitTorrent
         virtual qlonglong timeSinceActivity() const = 0;
 
         // Share limits
-        virtual qreal ratioLimit() const = 0;
-        virtual void setRatioLimit(qreal limit) = 0;
-        virtual int seedingTimeLimit() const = 0;
-        virtual void setSeedingTimeLimit(int limit) = 0;
-        virtual int inactiveSeedingTimeLimit() const = 0;
-        virtual void setInactiveSeedingTimeLimit(int limit) = 0;
-        virtual ShareLimitAction shareLimitAction() const = 0;
-        virtual void setShareLimitAction(ShareLimitAction action) = 0;
-        virtual qreal effectiveRatioLimit() const = 0;
-        virtual int effectiveSeedingTimeLimit() const = 0;
-        virtual int effectiveInactiveSeedingTimeLimit() const = 0;
-        virtual ShareLimitAction effectiveShareLimitAction() const = 0;
+        virtual ShareLimits shareLimits() const = 0;
+        virtual void setShareLimits(ShareLimits shareLimits) = 0;
+        virtual ShareLimits effectiveShareLimits() const = 0;
 
         virtual PathList filePaths() const = 0;
         virtual PathList actualFilePaths() const = 0;

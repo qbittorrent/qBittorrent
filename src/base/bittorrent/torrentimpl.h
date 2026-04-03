@@ -148,18 +148,9 @@ namespace BitTorrent
         qlonglong timeSinceDownload() const override;
         qlonglong timeSinceActivity() const override;
 
-        qreal ratioLimit() const override;
-        void setRatioLimit(qreal limit) override;
-        int seedingTimeLimit() const override;
-        void setSeedingTimeLimit(int limit) override;
-        int inactiveSeedingTimeLimit() const override;
-        void setInactiveSeedingTimeLimit(int limit) override;
-        ShareLimitAction shareLimitAction() const override;
-        void setShareLimitAction(ShareLimitAction action) override;
-        qreal effectiveRatioLimit() const override;
-        int effectiveSeedingTimeLimit() const override;
-        int effectiveInactiveSeedingTimeLimit() const override;
-        ShareLimitAction effectiveShareLimitAction() const override;
+        ShareLimits shareLimits() const override;
+        void setShareLimits(ShareLimits shareLimits) override;
+        ShareLimits effectiveShareLimits() const override;
 
         Path filePath(int index) const override;
         Path actualFilePath(int index) const override;
@@ -361,10 +352,7 @@ namespace BitTorrent
         Path m_downloadPath;
         QString m_category;
         TagSet m_tags;
-        qreal m_ratioLimit = 0;
-        int m_seedingTimeLimit = 0;
-        int m_inactiveSeedingTimeLimit = 0;
-        ShareLimitAction m_shareLimitAction = ShareLimitAction::Default;
+        ShareLimits m_shareLimits;
         TorrentOperatingMode m_operatingMode = TorrentOperatingMode::AutoManaged;
         TorrentContentLayout m_contentLayout = TorrentContentLayout::Original;
         bool m_hasFinishedStatus = false;

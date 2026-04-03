@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -168,10 +168,7 @@ namespace BitTorrent
         virtual Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName) const = 0;
         virtual Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const = 0;
-        virtual qreal categoryRatioLimit(const QString &categoryName) const = 0;
-        virtual int categorySeedingTimeLimit(const QString &categoryName) const = 0;
-        virtual int categoryInactiveSeedingTimeLimit(const QString &categoryName) const = 0;
-        virtual ShareLimitAction categoryShareLimitAction(const QString &categoryName) const = 0;
+        virtual ShareLimits categoryShareLimits(const QString &categoryName) const = 0;
         virtual bool addCategory(const QString &name, const CategoryOptions &options = {}) = 0;
         virtual bool removeCategory(const QString &name) = 0;
         virtual bool useCategoryPathsInManualMode() const = 0;
@@ -205,14 +202,8 @@ namespace BitTorrent
         virtual bool isDisableAutoTMMWhenCategorySavePathChanged() const = 0;
         virtual void setDisableAutoTMMWhenCategorySavePathChanged(bool value) = 0;
 
-        virtual qreal globalMaxRatio() const = 0;
-        virtual void setGlobalMaxRatio(qreal ratio) = 0;
-        virtual int globalMaxSeedingMinutes() const = 0;
-        virtual void setGlobalMaxSeedingMinutes(int minutes) = 0;
-        virtual int globalMaxInactiveSeedingMinutes() const = 0;
-        virtual void setGlobalMaxInactiveSeedingMinutes(int minutes) = 0;
-        virtual ShareLimitAction shareLimitAction() const = 0;
-        virtual void setShareLimitAction(ShareLimitAction act) = 0;
+        virtual ShareLimits shareLimits() const = 0;
+        virtual void setShareLimits(ShareLimits shareLimits) = 0;
 
         virtual QString getDHTBootstrapNodes() const = 0;
         virtual void setDHTBootstrapNodes(const QString &nodes) = 0;

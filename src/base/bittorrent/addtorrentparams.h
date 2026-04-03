@@ -68,10 +68,7 @@ namespace BitTorrent
         std::optional<bool> useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
-        int seedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
-        int inactiveSeedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
-        qreal ratioLimit = DEFAULT_RATIO_LIMIT;
-        ShareLimitAction shareLimitAction = ShareLimitAction::Default;
+        ShareLimits shareLimits;
         SSLParameters sslParameters;
 
         friend bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs) = default;

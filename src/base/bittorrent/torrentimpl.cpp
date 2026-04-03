@@ -302,32 +302,29 @@ namespace
 
 TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeHandle, LoadTorrentParams params)
     : Torrent(session)
-    , m_session(session)
-    , m_nativeHandle(nativeHandle)
+    , m_session {session}
+    , m_nativeHandle {nativeHandle}
 #ifdef QBT_USES_LIBTORRENT2
-    , m_infoHash(m_nativeHandle.info_hashes())
+    , m_infoHash {m_nativeHandle.info_hashes()}
 #else
-    , m_infoHash(m_nativeHandle.info_hash())
+    , m_infoHash {m_nativeHandle.info_hash()}
 #endif
-    , m_name(params.name)
-    , m_savePath(params.savePath)
-    , m_downloadPath(params.downloadPath)
-    , m_category(params.category)
-    , m_tags(params.tags)
-    , m_ratioLimit(params.ratioLimit)
-    , m_seedingTimeLimit(params.seedingTimeLimit)
-    , m_inactiveSeedingTimeLimit(params.inactiveSeedingTimeLimit)
-    , m_shareLimitAction(params.shareLimitAction)
-    , m_operatingMode(params.operatingMode)
-    , m_contentLayout(params.contentLayout)
-    , m_hasFinishedStatus(params.hasFinishedStatus)
-    , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
-    , m_useAutoTMM(params.useAutoTMM)
-    , m_isStopped(params.stopped)
-    , m_sslParams(params.sslParameters)
-    , m_ltAddTorrentParams(std::move(params.ltAddTorrentParams))
-    , m_downloadLimit(cleanLimitValue(m_ltAddTorrentParams.download_limit))
-    , m_uploadLimit(cleanLimitValue(m_ltAddTorrentParams.upload_limit))
+    , m_name {params.name}
+    , m_savePath {params.savePath}
+    , m_downloadPath {params.downloadPath}
+    , m_category {params.category}
+    , m_tags {params.tags}
+    , m_shareLimits {params.shareLimits}
+    , m_operatingMode {params.operatingMode}
+    , m_contentLayout {params.contentLayout}
+    , m_hasFinishedStatus {params.hasFinishedStatus}
+    , m_hasFirstLastPiecePriority {params.firstLastPiecePriority}
+    , m_useAutoTMM {params.useAutoTMM}
+    , m_isStopped {params.stopped}
+    , m_sslParams {params.sslParameters}
+    , m_ltAddTorrentParams {std::move(params.ltAddTorrentParams)}
+    , m_downloadLimit {cleanLimitValue(m_ltAddTorrentParams.download_limit)}
+    , m_uploadLimit {cleanLimitValue(m_ltAddTorrentParams.upload_limit)}
 {
     if (m_ltAddTorrentParams.ti)
     {
@@ -1052,19 +1049,41 @@ qlonglong TorrentImpl::timeSinceActivity() const
                : std::min(upTime, downTime);
 }
 
-qreal TorrentImpl::ratioLimit() const
+ShareLimits TorrentImpl::shareLimits() const
 {
-    return m_ratioLimit;
+    return m_shareLimits;
 }
 
-int TorrentImpl::seedingTimeLimit() const
+void TorrentImpl::setShareLimits(ShareLimits shareLimits)
 {
-    return m_seedingTimeLimit;
+    if (shareLimits.ratioLimit < DEFAULT_RATIO_LIMIT)
+        shareLimits.ratioLimit = NO_RATIO_LIMIT;
+    if (shareLimits.seedingTimeLimit < DEFAULT_SEEDING_TIME_LIMIT)
+        shareLimits.seedingTimeLimit = NO_SEEDING_TIME_LIMIT;
+    if (shareLimits.inactiveSeedingTimeLimit < DEFAULT_SEEDING_TIME_LIMIT)
+        shareLimits.inactiveSeedingTimeLimit = NO_SEEDING_TIME_LIMIT;
+
+    if (m_shareLimits != shareLimits)
+    {
+        m_shareLimits = shareLimits;
+        deferredRequestResumeData();
+        m_session->handleTorrentShareLimitChanged(this);
+    }
 }
 
-int TorrentImpl::inactiveSeedingTimeLimit() const
+ShareLimits TorrentImpl::effectiveShareLimits() const
 {
-    return m_inactiveSeedingTimeLimit;
+    const ShareLimits categoryShareLimits = m_session->categoryShareLimits(category());
+    return {
+        .ratioLimit = (m_shareLimits.ratioLimit == DEFAULT_RATIO_LIMIT)
+            ? categoryShareLimits.ratioLimit : m_shareLimits.ratioLimit,
+        .seedingTimeLimit = (m_shareLimits.seedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+            ? categoryShareLimits.seedingTimeLimit : m_shareLimits.seedingTimeLimit,
+        .inactiveSeedingTimeLimit = (m_shareLimits.inactiveSeedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+            ? categoryShareLimits.inactiveSeedingTimeLimit : m_shareLimits.inactiveSeedingTimeLimit,
+        .action = (m_shareLimits.action == ShareLimitAction::Default)
+            ? categoryShareLimits.action : m_shareLimits.action
+    };
 }
 
 Path TorrentImpl::filePath(const int index) const
@@ -1369,37 +1388,35 @@ qlonglong TorrentImpl::eta() const
 
     if (isFinished())
     {
-        const qreal maxRatioValue = effectiveRatioLimit();
-        const int maxSeedingTimeValue = effectiveSeedingTimeLimit();
-        const int maxInactiveSeedingTimeValue = effectiveInactiveSeedingTimeLimit();
-        if ((maxRatioValue < 0) && (maxSeedingTimeValue < 0) && (maxInactiveSeedingTimeValue < 0))
+        const ShareLimits shareLimits = effectiveShareLimits();
+        if ((shareLimits.ratioLimit < 0) && (shareLimits.seedingTimeLimit < 0) && (shareLimits.inactiveSeedingTimeLimit < 0))
             return MAX_ETA;
 
         qlonglong ratioEta = MAX_ETA;
 
-        if ((speedAverage.upload > 0) && (maxRatioValue >= 0))
+        if ((speedAverage.upload > 0) && (shareLimits.ratioLimit >= 0))
         {
             qlonglong realDL = totalDownload();
             if (realDL <= 0)
                 realDL = wantedSize();
 
-            ratioEta = ((realDL * maxRatioValue) - totalUpload()) / speedAverage.upload;
+            ratioEta = ((realDL * shareLimits.ratioLimit) - totalUpload()) / speedAverage.upload;
         }
 
         qlonglong seedingTimeEta = MAX_ETA;
 
-        if (maxSeedingTimeValue >= 0)
+        if (shareLimits.seedingTimeLimit >= 0)
         {
-            seedingTimeEta = (maxSeedingTimeValue * 60) - finishedTime();
+            seedingTimeEta = (shareLimits.seedingTimeLimit * 60) - finishedTime();
             if (seedingTimeEta < 0)
                 seedingTimeEta = 0;
         }
 
         qlonglong inactiveSeedingTimeEta = MAX_ETA;
 
-        if (maxInactiveSeedingTimeValue >= 0)
+        if (shareLimits.inactiveSeedingTimeLimit >= 0)
         {
-            inactiveSeedingTimeEta = (maxInactiveSeedingTimeValue * 60) - timeSinceActivity();
+            inactiveSeedingTimeEta = (shareLimits.inactiveSeedingTimeLimit * 60) - timeSinceActivity();
             inactiveSeedingTimeEta = std::max<qlonglong>(inactiveSeedingTimeEta, 0);
         }
 
@@ -1508,38 +1525,6 @@ QBitArray TorrentImpl::pieces() const
 qreal TorrentImpl::distributedCopies() const
 {
     return m_nativeStatus.distributed_copies;
-}
-
-qreal TorrentImpl::effectiveRatioLimit() const
-{
-    if (m_ratioLimit == DEFAULT_RATIO_LIMIT)
-        return m_session->categoryRatioLimit(category());
-
-    return m_ratioLimit;
-}
-
-int TorrentImpl::effectiveSeedingTimeLimit() const
-{
-    if (m_seedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
-        return m_session->categorySeedingTimeLimit(category());
-
-    return m_seedingTimeLimit;
-}
-
-int TorrentImpl::effectiveInactiveSeedingTimeLimit() const
-{
-    if (m_inactiveSeedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
-        return m_session->categoryInactiveSeedingTimeLimit(category());
-
-    return m_inactiveSeedingTimeLimit;
-}
-
-ShareLimitAction TorrentImpl::effectiveShareLimitAction() const
-{
-    if (m_shareLimitAction == ShareLimitAction::Default)
-        return m_session->categoryShareLimitAction(category());
-
-    return m_shareLimitAction;
 }
 
 qreal TorrentImpl::realRatio() const
@@ -2298,10 +2283,7 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         .stopped = m_isStopped,
         .stopCondition = m_stopCondition,
         .addToQueueTop = false,
-        .ratioLimit = m_ratioLimit,
-        .seedingTimeLimit = m_seedingTimeLimit,
-        .inactiveSeedingTimeLimit = m_inactiveSeedingTimeLimit,
-        .shareLimitAction = m_shareLimitAction,
+        .shareLimits = m_shareLimits,
         .sslParameters = m_sslParams
     };
 
@@ -2655,60 +2637,6 @@ void TorrentImpl::updateProgress()
 
             pieceOffset += add;
         }
-    }
-}
-
-void TorrentImpl::setRatioLimit(qreal limit)
-{
-    if (limit < DEFAULT_RATIO_LIMIT)
-        limit = NO_RATIO_LIMIT;
-
-    if (m_ratioLimit != limit)
-    {
-        m_ratioLimit = limit;
-        deferredRequestResumeData();
-        m_session->handleTorrentShareLimitChanged(this);
-    }
-}
-
-void TorrentImpl::setSeedingTimeLimit(int limit)
-{
-    if (limit < DEFAULT_SEEDING_TIME_LIMIT)
-        limit = NO_SEEDING_TIME_LIMIT;
-
-    if (m_seedingTimeLimit != limit)
-    {
-        m_seedingTimeLimit = limit;
-        deferredRequestResumeData();
-        m_session->handleTorrentShareLimitChanged(this);
-    }
-}
-
-void TorrentImpl::setInactiveSeedingTimeLimit(int limit)
-{
-    if (limit < DEFAULT_SEEDING_TIME_LIMIT)
-        limit = NO_SEEDING_TIME_LIMIT;
-
-    if (m_inactiveSeedingTimeLimit != limit)
-    {
-        m_inactiveSeedingTimeLimit = limit;
-        deferredRequestResumeData();
-        m_session->handleTorrentShareLimitChanged(this);
-    }
-}
-
-ShareLimitAction TorrentImpl::shareLimitAction() const
-{
-    return m_shareLimitAction;
-}
-
-void TorrentImpl::setShareLimitAction(const ShareLimitAction action)
-{
-    if (m_shareLimitAction != action)
-    {
-        m_shareLimitAction = action;
-        deferredRequestResumeData();
-        m_session->handleTorrentShareLimitChanged(this);
     }
 }
 

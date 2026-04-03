@@ -56,16 +56,16 @@
 #include <QWaitCondition>
 
 #include "base/exceptions.h"
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/profile.h"
-#include "base/utils/fs.h"
 #include "base/utils/sslkey.h"
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -637,11 +637,13 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
     }
     resumeData.hasFinishedStatus = query.value(DB_COLUMN_HAS_SEED_STATUS.name).toBool();
     resumeData.firstLastPiecePriority = query.value(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.name).toBool();
-    resumeData.ratioLimit = query.value(DB_COLUMN_RATIO_LIMIT.name).toInt() / 1000.0;
-    resumeData.seedingTimeLimit = query.value(DB_COLUMN_SEEDING_TIME_LIMIT.name).toInt();
-    resumeData.inactiveSeedingTimeLimit = query.value(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.name).toInt();
-    resumeData.shareLimitAction = Utils::String::toEnum<ShareLimitAction>(
-        query.value(DB_COLUMN_SHARE_LIMIT_ACTION.name).toString(), ShareLimitAction::Default);
+    resumeData.shareLimits = {
+        .ratioLimit = query.value(DB_COLUMN_RATIO_LIMIT.name).toInt() / 1000.0,
+        .seedingTimeLimit = query.value(DB_COLUMN_SEEDING_TIME_LIMIT.name).toInt(),
+        .inactiveSeedingTimeLimit = query.value(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.name).toInt(),
+        .action = Utils::String::toEnum<ShareLimitAction>(
+            query.value(DB_COLUMN_SHARE_LIMIT_ACTION.name).toString(), ShareLimitAction::Default)
+    };
     resumeData.contentLayout = Utils::String::toEnum<TorrentContentLayout>(
         query.value(DB_COLUMN_CONTENT_LAYOUT.name).toString(), TorrentContentLayout::Original);
     resumeData.operatingMode = Utils::String::toEnum<TorrentOperatingMode>(
@@ -649,12 +651,11 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
     resumeData.stopped = query.value(DB_COLUMN_STOPPED.name).toBool();
     resumeData.stopCondition = Utils::String::toEnum(
         query.value(DB_COLUMN_STOP_CONDITION.name).toString(), Torrent::StopCondition::None);
-    resumeData.sslParameters =
-        {
-            .certificate = QSslCertificate(query.value(DB_COLUMN_SSL_CERTIFICATE.name).toByteArray()),
-            .privateKey = Utils::SSLKey::load(query.value(DB_COLUMN_SSL_PRIVATE_KEY.name).toByteArray()),
-            .dhParams = query.value(DB_COLUMN_SSL_DH_PARAMS.name).toByteArray()
-        };
+    resumeData.sslParameters = {
+        .certificate = QSslCertificate(query.value(DB_COLUMN_SSL_CERTIFICATE.name).toByteArray()),
+        .privateKey = Utils::SSLKey::load(query.value(DB_COLUMN_SSL_PRIVATE_KEY.name).toByteArray()),
+        .dhParams = query.value(DB_COLUMN_SSL_DH_PARAMS.name).toByteArray()
+    };
 
     resumeData.savePath = Profile::instance()->fromPortablePath(
         Path(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
@@ -927,10 +928,10 @@ StoreJob::StoreJob(const TorrentID &torrentID, LoadTorrentParams resumeData)
                     ? QString() : Utils::String::joinIntoString(m_resumeData.tags, u","_s)));
             query.bindValue(DB_COLUMN_COMMENT.placeholder, m_resumeData.comment);
             query.bindValue(DB_COLUMN_CONTENT_LAYOUT.placeholder, Utils::String::fromEnum(m_resumeData.contentLayout));
-            query.bindValue(DB_COLUMN_RATIO_LIMIT.placeholder, static_cast<int>(m_resumeData.ratioLimit * 1000));
-            query.bindValue(DB_COLUMN_SEEDING_TIME_LIMIT.placeholder, m_resumeData.seedingTimeLimit);
-            query.bindValue(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.placeholder, m_resumeData.inactiveSeedingTimeLimit);
-            query.bindValue(DB_COLUMN_SHARE_LIMIT_ACTION.placeholder, Utils::String::fromEnum(m_resumeData.shareLimitAction));
+            query.bindValue(DB_COLUMN_RATIO_LIMIT.placeholder, static_cast<int>(m_resumeData.shareLimits.ratioLimit * 1000));
+            query.bindValue(DB_COLUMN_SEEDING_TIME_LIMIT.placeholder, m_resumeData.shareLimits.seedingTimeLimit);
+            query.bindValue(DB_COLUMN_INACTIVE_SEEDING_TIME_LIMIT.placeholder, m_resumeData.shareLimits.inactiveSeedingTimeLimit);
+            query.bindValue(DB_COLUMN_SHARE_LIMIT_ACTION.placeholder, Utils::String::fromEnum(m_resumeData.shareLimits.action));
             query.bindValue(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.placeholder, m_resumeData.firstLastPiecePriority);
             query.bindValue(DB_COLUMN_HAS_SEED_STATUS.placeholder, m_resumeData.hasFinishedStatus);
             query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(m_resumeData.operatingMode));

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -36,7 +36,6 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/global.h"
 #include "base/preferences.h"
 #include "base/types.h"
 #include "base/unicodestrings.h"
@@ -44,6 +43,8 @@
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "uithememanager.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -393,7 +394,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_RATIO:
         return ratioString(torrent->realRatio());
     case TR_RATIO_LIMIT:
-        return ratioString(torrent->effectiveRatioLimit());
+        return ratioString(torrent->effectiveShareLimits().ratioLimit);
     case TR_POPULARITY:
         return ratioString(torrent->popularity());
     case TR_CATEGORY:
@@ -514,7 +515,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
-        return torrent->effectiveRatioLimit();
+        return torrent->effectiveShareLimits().ratioLimit;
     case TR_SEEN_COMPLETE_DATE:
         return torrent->lastSeenComplete();
     case TR_LAST_ACTIVITY:

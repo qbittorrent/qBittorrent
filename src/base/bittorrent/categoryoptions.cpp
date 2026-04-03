@@ -53,10 +53,10 @@ BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObj
     else if (downloadPathValue.isString())
         options.downloadPath = {true, Path(downloadPathValue.toString())};
 
-    options.ratioLimit = jsonObj.value(OPTION_RATIOLIMIT).toDouble(DEFAULT_RATIO_LIMIT);
-    options.seedingTimeLimit = jsonObj.value(OPTION_SEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT);
-    options.inactiveSeedingTimeLimit = jsonObj.value(OPTION_INACTIVESEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT);
-    options.shareLimitAction = Utils::String::toEnum<ShareLimitAction>(jsonObj.value(OPTION_SHARELIMITACTION).toString(), ShareLimitAction::Default);
+    options.shareLimits.ratioLimit = jsonObj.value(OPTION_RATIOLIMIT).toDouble(DEFAULT_RATIO_LIMIT);
+    options.shareLimits.seedingTimeLimit = jsonObj.value(OPTION_SEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT);
+    options.shareLimits.inactiveSeedingTimeLimit = jsonObj.value(OPTION_INACTIVESEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT);
+    options.shareLimits.action = Utils::String::toEnum<ShareLimitAction>(jsonObj.value(OPTION_SHARELIMITACTION).toString(), ShareLimitAction::Default);
 
     return options;
 }
@@ -75,9 +75,9 @@ QJsonObject BitTorrent::CategoryOptions::toJSON() const
     return {
         {OPTION_SAVEPATH, savePath.data()},
         {OPTION_DOWNLOADPATH, downloadPathValue},
-        {OPTION_RATIOLIMIT, ratioLimit},
-        {OPTION_SEEDINGTIMELIMIT, seedingTimeLimit},
-        {OPTION_INACTIVESEEDINGTIMELIMIT, inactiveSeedingTimeLimit},
-        {OPTION_SHARELIMITACTION, Utils::String::fromEnum(shareLimitAction)}
+        {OPTION_RATIOLIMIT, shareLimits.ratioLimit},
+        {OPTION_SEEDINGTIMELIMIT, shareLimits.seedingTimeLimit},
+        {OPTION_INACTIVESEEDINGTIMELIMIT, shareLimits.inactiveSeedingTimeLimit},
+        {OPTION_SHARELIMITACTION, Utils::String::fromEnum(shareLimits.action)}
     };
 }
