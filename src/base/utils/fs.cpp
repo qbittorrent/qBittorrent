@@ -249,17 +249,17 @@ bool Utils::Fs::isValidFileName(const QStringView &name)
         return false;
 
 #ifdef Q_OS_WIN
-    // Check platform-specific length limit and trailing dot in Windows
+    // Windows restricts file names to 255 characters and prohibits trailing dots
     if ((name.length() > 255) || name.endsWith(u'.'))
         return false;
 #else
-    // Check *.nix length limit
+    // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
     if (name.toUtf8().length() > 255)
         return false;
 #endif
 
 #ifdef Q_OS_WIN
-    // Check for Windows reserved device names
+    // Windows reserves certain names for devices, which cannot be used as file names
     if (isReservedDeviceName(name))
         return false;
 #endif
