@@ -54,6 +54,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtp.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
@@ -684,7 +685,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"mail_notification_smtp"_s))
         pref->setMailNotificationSMTP(it.value().toString());
     if (hasKey(u"mail_notification_encryption_type"_s))
-        pref->setMailNotificationSmtpEncryptionType(Utils::String::toEnum(it.value().toString(), Net::SmtpEncryptionType::None));
+        pref->setMailNotificationSmtpEncryptionType(Utils::String::toEnum(it.value().toString(), Net::SMTPEncryption::SMTPS));
     if (hasKey(u"mail_notification_auth_enabled"_s))
         pref->setMailNotificationSMTPAuth(it.value().toBool());
     if (hasKey(u"mail_notification_username"_s))

@@ -669,23 +669,16 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
     m_ui->lineEditSmtpServer->setText(pref->getMailNotificationSMTP());
-    m_ui->comboSmtpEncryption->setToolTip(
-        u"<html><body><p>" + tr("Select the encryption type used when sending SMTP emails") + u"</p><p><b>" +
-        tr("None") + u"</b> : " +
-        tr("no encryption used when sending emails") +
-        u" <br><b>" + tr("(not recommended)") + u"</b>" +
-        u" <em>" + tr("[Default port : 25]") + u"</em></p><p><b>" +
-        tr("STARTTLS") + u"</b> : " +
-        tr("use STARTTLS encryption when sending emails") +
-        u" <br><b>" + tr("(recommended)") + u"</b>" +
-        u" <em>" + tr("[Default port : 587]") + u"</em></p><p><b>" +
-        tr("SMTPS") + u"</b> : " +
-        tr("use SMTPS encryption when sending emails") +
-        u" <br><b>" + tr("(check server supports this)") + u"</b>" +
-        u" <em>" + tr("[Default port : 465]") + u"</em></p></body></html>");
-    m_ui->comboSmtpEncryption->addItem(tr("None"), QVariant::fromValue(Net::SmtpEncryptionType::None));
-    m_ui->comboSmtpEncryption->addItem(tr("STARTTLS"), QVariant::fromValue(Net::SmtpEncryptionType::STARTTLS));
-    m_ui->comboSmtpEncryption->addItem(tr("SMTPS"), QVariant::fromValue(Net::SmtpEncryptionType::SMTPS));
+    m_ui->comboSmtpEncryption->setToolTip(u"<html><body><p>" + tr("Select the encryption type used when sending SMTP emails") + u"</p><p><b>"
+        + tr("None") + u"</b> : " + tr("no encryption used when sending emails") + u" <br><b>"
+        + tr("(not recommended)") + u"</b> <em>" + tr("[Default port : 25]") + u"</em></p><p><b>"
+        + tr("STARTTLS") + u"</b> : " + tr("use STARTTLS encryption when sending emails") + u" <br><b>"
+        + tr("(recommended)") + u"</b> <em>" + tr("[Default port : 587]") + u"</em></p><p><b>"
+        + tr("SMTPS") + u"</b> : " + tr("use SMTPS encryption when sending emails") + u" <br><b>"
+        + tr("(check server supports this)") + u"</b> <em>" + tr("[Default port : 465]") + u"</em></p></body></html>");
+    m_ui->comboSmtpEncryption->addItem(tr("None"), QVariant::fromValue(Net::SMTPEncryption::None));
+    m_ui->comboSmtpEncryption->addItem(tr("STARTTLS"), QVariant::fromValue(Net::SMTPEncryption::STARTTLS));
+    m_ui->comboSmtpEncryption->addItem(tr("SMTPS"), QVariant::fromValue(Net::SMTPEncryption::SMTPS));
     m_ui->comboSmtpEncryption->setCurrentIndex(m_ui->comboSmtpEncryption->findData(QVariant::fromValue(pref->getMailNotificationSmtpEncryptionType())));
     changeSmtpEncryptionPortInfoLabel();
     m_ui->groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
@@ -839,7 +832,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
     pref->setMailNotificationEmail(m_ui->lineEditDestEmail->text());
     pref->setMailNotificationSMTP(m_ui->lineEditSmtpServer->text());
-    pref->setMailNotificationSmtpEncryptionType(m_ui->comboSmtpEncryption->currentData().value<Net::SmtpEncryptionType>());
+    pref->setMailNotificationSmtpEncryptionType(m_ui->comboSmtpEncryption->currentData().value<Net::SMTPEncryption>());
     pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
@@ -1879,12 +1872,12 @@ void OptionsDialog::adjustProxyOptions()
 
 void OptionsDialog::changeSmtpEncryptionPortInfoLabel()
 {
-    const Net::SmtpEncryptionType encryptionType = m_ui->comboSmtpEncryption->currentData().value<Net::SmtpEncryptionType>();
-    if (encryptionType == Net::SmtpEncryptionType::None) // None
+    const Net::SMTPEncryption encryptionType = m_ui->comboSmtpEncryption->currentData().value<Net::SMTPEncryption>();
+    if (encryptionType == Net::SMTPEncryption::None) // None
         m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 25"));
-    else if (encryptionType == Net::SmtpEncryptionType::STARTTLS) // STARTTLS
+    else if (encryptionType == Net::SMTPEncryption::STARTTLS) // STARTTLS
         m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 587"));
-    else if (encryptionType == Net::SmtpEncryptionType::SMTPS) // SSL
+    else if (encryptionType == Net::SMTPEncryption::SMTPS) // SSL
         m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 465"));
 }
 

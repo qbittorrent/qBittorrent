@@ -46,15 +46,16 @@ class QTcpSocket;
 
 namespace Net
 {
-    inline namespace SmtpEncryption {
+    inline namespace SMTPEncryptionNS
+    {
         Q_NAMESPACE
-        enum class SmtpEncryptionType
+        enum class SMTPEncryption
         {
             None = 0,
             STARTTLS = 1,
             SMTPS = 2
         };
-        Q_ENUM_NS(SmtpEncryptionType)
+        Q_ENUM_NS(SMTPEncryption)
     }
 
     class Smtp : public QObject
