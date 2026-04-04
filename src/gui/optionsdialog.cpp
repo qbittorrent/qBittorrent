@@ -264,7 +264,11 @@ void OptionsDialog::updateSidebarMetrics()
     m_ui->tabSelection->setMinimumWidth(itemWidth + frameWidth + scrollBarWidth);
 
     for (int i = 0; i < m_ui->tabSelection->count(); ++i)
-        m_ui->tabSelection->item(i)->setSizeHint(itemSize);
+    {
+        QListWidgetItem *const item = m_ui->tabSelection->item(i);
+        item->setSizeHint(itemSize);
+        item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    }
 }
 
 void OptionsDialog::loadUIThemeResources()

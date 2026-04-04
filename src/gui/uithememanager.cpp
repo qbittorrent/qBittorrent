@@ -390,7 +390,8 @@ void UIThemeManager::refreshSystemAppearance()
     const AppearanceRefreshGuard refreshGuard {m_isRefreshingAppearance};
     syncThemeSettings();
     refreshNativeAppearance(false);
-    refreshThemeResources(applyThemeOverlay());
+    applyThemeOverlay();
+    refreshThemeResources(true);
 }
 
 void UIThemeManager::refreshNativeAppearance(const bool useConfiguredStyle)
