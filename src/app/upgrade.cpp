@@ -37,13 +37,13 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtp.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
 #include "base/settingvalue.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
-#include "base/net/smtp.h"
 
 namespace
 {
@@ -493,19 +493,18 @@ namespace
         settingsStorage->removeValue(oldKey);
     }
 
-    void migrateSmtpEncryptionSetting()
+    void migrateSMTPEncryptionSetting()
     {
         auto *settingsStorage = SettingsStorage::instance();
-        const auto oldKey = u"Preferences/MailNotification/req_ssl"_s;
-        const auto newKey = u"Preferences/MailNotification/EncryptionType"_s;
+        const QString oldKey = u"Preferences/MailNotification/req_ssl"_s;
+        const QString newKey = u"Preferences/MailNotification/EncryptionType"_s;
 
         if (settingsStorage->hasKey(oldKey))
         {
-            if (settingsStorage->loadValue<bool>(oldKey))
-                settingsStorage->storeValue(newKey, Net::SmtpEncryptionType::SMTPS);
-            else
-                settingsStorage->storeValue(newKey, Net::SmtpEncryptionType::None);
-            settingsStorage->removeValue(oldKey);
+            const Net::SMTPEncryption setting = settingsStorage->loadValue<bool>(oldKey)
+                ? Net::SMTPEncryption::SMTPS
+                : Net::SMTPEncryption::None;
+            settingsStorage->storeValue(newKey, setting);
         }
     }
 }
@@ -556,7 +555,7 @@ bool upgrade()
             handleSettingKeys<MigrateOption::RemoveOldKeys>();
 
         if (version < 10)
-            migrateSmtpEncryptionSetting();
+            migrateSMTPEncryptionSetting();
 
         version = MIGRATION_VERSION;
     }

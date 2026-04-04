@@ -35,7 +35,6 @@
 
 #include "base/pathfwd.h"
 #include "base/utils/net.h"
-#include "net/smtp.h"
 
 class QDateTime;
 class QNetworkCookie;
@@ -85,6 +84,13 @@ namespace TrayIcon
         MonoLight = 2
     };
     Q_ENUM_NS(Style)
+}
+
+namespace Net
+{
+    inline namespace SMTPEncryptionNS {
+        enum class SMTPEncryption;
+    }
 }
 
 class Preferences final : public QObject
@@ -156,8 +162,8 @@ public:
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
     void setMailNotificationSMTP(const QString &smtpServer);
-    Net::SmtpEncryptionType getMailNotificationSmtpEncryptionType() const;
-    void setMailNotificationSmtpEncryptionType(Net::SmtpEncryptionType mailEncryptionType);
+    Net::SMTPEncryption getMailNotificationSmtpEncryptionType() const;
+    void setMailNotificationSmtpEncryptionType(Net::SMTPEncryption mailEncryptionType);
     bool getMailNotificationSMTPAuth() const;
     void setMailNotificationSMTPAuth(bool use);
     QString getMailNotificationSMTPUsername() const;

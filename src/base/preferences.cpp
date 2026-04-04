@@ -46,6 +46,7 @@
 #include "path.h"
 #include "profile.h"
 #include "settingsstorage.h"
+#include "net/smtp.h"
 #include "utils/fs.h"
 
 namespace
@@ -581,12 +582,12 @@ void Preferences::setMailNotificationSMTP(const QString &smtpServer)
     setValue(u"Preferences/MailNotification/smtp_server"_s, smtpServer);
 }
 
-Net::SmtpEncryptionType Preferences::getMailNotificationSmtpEncryptionType() const
+Net::SMTPEncryption Preferences::getMailNotificationSmtpEncryptionType() const
 {
-    return value(u"Preferences/MailNotification/EncryptionType"_s, Net::SmtpEncryptionType::None);
+    return value(u"Preferences/MailNotification/EncryptionType"_s, Net::SMTPEncryption::None);
 }
 
-void Preferences::setMailNotificationSmtpEncryptionType(const Net::SmtpEncryptionType mailEncryptionType)
+void Preferences::setMailNotificationSmtpEncryptionType(const Net::SMTPEncryption mailEncryptionType)
 {
     if (mailEncryptionType == getMailNotificationSmtpEncryptionType())
         return;

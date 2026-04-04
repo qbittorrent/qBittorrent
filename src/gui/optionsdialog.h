@@ -54,9 +54,6 @@ namespace Net
     inline namespace Proxy {
         enum class ProxyType;
     }
-    inline namespace SmtpEncryption {
-        enum class SmtpEncryptionType;
-    }
 }
 
 namespace Ui

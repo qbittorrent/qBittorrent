@@ -39,7 +39,7 @@ namespace Net
     {
         Q_NAMESPACE
 
-            enum class ProxyType
+        enum class ProxyType
         {
             None = 0,
             HTTP = 1,
@@ -47,20 +47,19 @@ namespace Net
             SOCKS4 = 5
         };
         Q_ENUM_NS(ProxyType)
-
-        struct ProxyConfiguration
-        {
-            ProxyType type = ProxyType::None;
-            QString ip;
-            ushort port = 8080;
-            bool authEnabled = false;
-            QString username;
-            QString password;
-            bool hostnameLookupEnabled = true;
-        };
-        bool operator==(const ProxyConfiguration &left, const ProxyConfiguration &right);
     }
 
+    struct ProxyConfiguration
+    {
+        ProxyType type = ProxyType::None;
+        QString ip;
+        ushort port = 8080;
+        bool authEnabled = false;
+        QString username;
+        QString password;
+        bool hostnameLookupEnabled = true;
+    };
+    bool operator==(const ProxyConfiguration &left, const ProxyConfiguration &right);
 
     class ProxyConfigurationManager final : public QObject
     {
