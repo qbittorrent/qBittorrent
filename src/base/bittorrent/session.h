@@ -216,6 +216,8 @@ namespace BitTorrent
 
         virtual QString getDHTBootstrapNodes() const = 0;
         virtual void setDHTBootstrapNodes(const QString &nodes) = 0;
+        virtual int goodSamaritanMinSeeders() const = 0;
+        virtual void setGoodSamaritanMinSeeders(int minSeeders) = 0;
         virtual bool isDHTEnabled() const = 0;
         virtual void setDHTEnabled(bool enabled) = 0;
         virtual bool isLSDEnabled() const = 0;
