@@ -313,7 +313,7 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     }
 #endif
 
-    return validName;
+    return validName.trimmed();
 }
 
 qint64 Utils::Fs::freeDiskSpaceOnPath(const Path &path)
