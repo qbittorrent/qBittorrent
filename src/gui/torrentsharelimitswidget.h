@@ -59,8 +59,7 @@ public:
     void setInactiveSeedingTimeLimit(int inactiveSeedingTimeLimit);
     void setShareLimitAction(BitTorrent::ShareLimitAction action);
 
-    void setDefaults(UsedDefaults usedDefaults, qreal ratioLimit, int seedingTimeLimit
-            , int inactiveSeedingTimeLimit, BitTorrent::ShareLimitAction action);
+    void setDefaults(UsedDefaults usedDefaults, const BitTorrent::ShareLimits &shareLimits);
 
     std::optional<qreal> ratioLimit() const;
     std::optional<int> seedingTimeLimit() const;

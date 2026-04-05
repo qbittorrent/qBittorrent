@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -156,10 +156,12 @@ BitTorrent::CategoryOptions TorrentCategoryDialog::categoryOptions() const
     else if (m_ui->comboUseDownloadPath->currentIndex() == 2)
         categoryOptions.downloadPath = {false, {}};
 
-    categoryOptions.ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit().value_or(BitTorrent::DEFAULT_RATIO_LIMIT);
-    categoryOptions.seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
-    categoryOptions.inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
-    categoryOptions.shareLimitAction = m_ui->torrentShareLimitsWidget->shareLimitAction().value_or(BitTorrent::ShareLimitAction::Default);
+    categoryOptions.shareLimits = {
+        .ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit().value_or(BitTorrent::DEFAULT_RATIO_LIMIT),
+        .seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT),
+        .inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT),
+        .action = m_ui->torrentShareLimitsWidget->shareLimitAction().value_or(BitTorrent::ShareLimitAction::Default)
+    };
 
     return categoryOptions;
 }
@@ -178,10 +180,10 @@ void TorrentCategoryDialog::setCategoryOptions(const BitTorrent::CategoryOptions
         m_ui->comboDownloadPath->setSelectedPath({});
     }
 
-    m_ui->torrentShareLimitsWidget->setRatioLimit(categoryOptions.ratioLimit);
-    m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(categoryOptions.seedingTimeLimit);
-    m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(categoryOptions.inactiveSeedingTimeLimit);
-    m_ui->torrentShareLimitsWidget->setShareLimitAction(categoryOptions.shareLimitAction);
+    m_ui->torrentShareLimitsWidget->setRatioLimit(categoryOptions.shareLimits.ratioLimit);
+    m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(categoryOptions.shareLimits.seedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(categoryOptions.shareLimits.inactiveSeedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setShareLimitAction(categoryOptions.shareLimits.action);
 }
 
 void TorrentCategoryDialog::categoryNameChanged(const QString &categoryName)
@@ -224,6 +226,5 @@ void TorrentCategoryDialog::resetShareLimitsWidgetDefaults()
 {
     const auto *btSession = BitTorrent::Session::instance();
     m_ui->torrentShareLimitsWidget->setDefaults((m_parentCategoryName.isEmpty() ? TorrentShareLimitsWidget::UsedDefaults::Global : TorrentShareLimitsWidget::UsedDefaults::Category)
-            , btSession->categoryRatioLimit(m_parentCategoryName), btSession->categorySeedingTimeLimit(m_parentCategoryName)
-            , btSession->categoryInactiveSeedingTimeLimit(m_parentCategoryName), btSession->categoryShareLimitAction(m_parentCategoryName));
+            , btSession->categoryShareLimits(m_parentCategoryName));
 }

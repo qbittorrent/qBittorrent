@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2020  thalieht
  * Copyright (C) 2011  Christian Kandeler
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
@@ -42,7 +42,6 @@
 #include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/unicodestrings.h"
-#include "base/utils/fs.h"
 #include "ui_torrentoptionsdialog.h"
 #include "utils.h"
 
@@ -101,10 +100,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     const int firstTorrentUpLimit = std::max(0, torrents[0]->uploadLimit());
     const int firstTorrentDownLimit = std::max(0, torrents[0]->downloadLimit());
 
-    const qreal firstTorrentRatio = torrents[0]->ratioLimit();
-    const int firstTorrentSeedingTime = torrents[0]->seedingTimeLimit();
-    const int firstTorrentInactiveSeedingTime = torrents[0]->inactiveSeedingTimeLimit();
-    const BitTorrent::ShareLimitAction firstTorrentShareLimitAction = torrents[0]->shareLimitAction();
+    const BitTorrent::ShareLimits firstTorrentShareLimits = torrents[0]->shareLimits();
 
     const bool isFirstTorrentDHTDisabled = torrents[0]->isDHTDisabled();
     const bool isFirstTorrentPEXDisabled = torrents[0]->isPEXDisabled();
@@ -147,24 +143,26 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
             if (std::max(0, torrent->downloadLimit()) != firstTorrentDownLimit)
                 allSameDownLimit = false;
         }
+
+        const BitTorrent::ShareLimits shareLimits = torrent->shareLimits();
         if (allSameRatio)
         {
-            if (torrent->ratioLimit() != firstTorrentRatio)
+            if (shareLimits.ratioLimit != firstTorrentShareLimits.ratioLimit)
                 allSameRatio = false;
         }
         if (allSameSeedingTime)
         {
-            if (torrent->seedingTimeLimit() != firstTorrentSeedingTime)
+            if (shareLimits.seedingTimeLimit != firstTorrentShareLimits.seedingTimeLimit)
                 allSameSeedingTime = false;
         }
         if (allSameInactiveSeedingTime)
         {
-            if (torrent->inactiveSeedingTimeLimit() != firstTorrentInactiveSeedingTime)
+            if (shareLimits.inactiveSeedingTimeLimit != firstTorrentShareLimits.inactiveSeedingTimeLimit)
                 allSameInactiveSeedingTime = false;
         }
         if (allSameShareLimitAction)
         {
-            if (torrent->shareLimitAction() != firstTorrentShareLimitAction)
+            if (shareLimits.action != firstTorrentShareLimits.action)
                 allSameShareLimitAction = false;
         }
         if (allTorrentsArePrivate)
@@ -292,17 +290,16 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QList<BitTorre
     if (m_allSameCategory)
     {
         m_ui->torrentShareLimitsWidget->setDefaults((firstTorrentCategory.isEmpty() ? TorrentShareLimitsWidget::UsedDefaults::Global : TorrentShareLimitsWidget::UsedDefaults::Category)
-                , session->categoryRatioLimit(firstTorrentCategory), session->categorySeedingTimeLimit(firstTorrentCategory)
-                , session->categoryInactiveSeedingTimeLimit(firstTorrentCategory), session->categoryShareLimitAction(firstTorrentCategory));
+                , session->categoryShareLimits(firstTorrentCategory));
     }
     if (allSameRatio)
-        m_ui->torrentShareLimitsWidget->setRatioLimit(firstTorrentRatio);
+        m_ui->torrentShareLimitsWidget->setRatioLimit(firstTorrentShareLimits.ratioLimit);
     if (allSameSeedingTime)
-        m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(firstTorrentSeedingTime);
+        m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(firstTorrentShareLimits.seedingTimeLimit);
     if (allSameInactiveSeedingTime)
-        m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(firstTorrentInactiveSeedingTime);
+        m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(firstTorrentShareLimits.inactiveSeedingTimeLimit);
     if (allSameShareLimitAction)
-        m_ui->torrentShareLimitsWidget->setShareLimitAction(firstTorrentShareLimitAction);
+        m_ui->torrentShareLimitsWidget->setShareLimitAction(firstTorrentShareLimits.action);
 
     if (!allTorrentsArePrivate)
     {
@@ -437,29 +434,33 @@ void TorrentOptionsDialog::accept()
         if (m_initialValues.downSpeedLimit != m_ui->spinDownloadLimit->value())
             torrent->setDownloadLimit(m_ui->spinDownloadLimit->value() * 1024);
 
+        BitTorrent::ShareLimits shareLimits = torrent->shareLimits();
+
         if (const std::optional<qreal> ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit();
                 m_initialValues.ratio != ratioLimit)
         {
-            torrent->setRatioLimit(ratioLimit.value());
+            shareLimits.ratioLimit = ratioLimit.value();
         }
 
         if (const std::optional<int> seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit();
                 m_initialValues.seedingTime != seedingTimeLimit)
         {
-            torrent->setSeedingTimeLimit(seedingTimeLimit.value());
+            shareLimits.seedingTimeLimit = seedingTimeLimit.value();
         }
 
         if (const std::optional<int> inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit();
                 m_initialValues.inactiveSeedingTime != inactiveSeedingTimeLimit)
         {
-            torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit.value());
+            shareLimits.inactiveSeedingTimeLimit = inactiveSeedingTimeLimit.value();
         }
 
         if (const std::optional<BitTorrent::ShareLimitAction> shareLimitAction = m_ui->torrentShareLimitsWidget->shareLimitAction();
                 m_initialValues.shareLimitAction != shareLimitAction)
         {
-            torrent->setShareLimitAction(shareLimitAction.value());
+            shareLimits.action = shareLimitAction.value();
         }
+
+        torrent->setShareLimits(shareLimits);
 
         if (!torrent->isPrivate())
         {
@@ -492,9 +493,13 @@ void TorrentOptionsDialog::handleCategoryChanged([[maybe_unused]] const int inde
         m_ui->comboCategory->clearEditText();
         m_ui->comboCategory->lineEdit()->setPlaceholderText(m_currentCategoriesString);
 
-        m_ui->torrentShareLimitsWidget->setDefaults(TorrentShareLimitsWidget::UsedDefaults::Global
-                , BitTorrent::DEFAULT_RATIO_LIMIT, BitTorrent::DEFAULT_SEEDING_TIME_LIMIT
-                , BitTorrent::DEFAULT_SEEDING_TIME_LIMIT, BitTorrent::ShareLimitAction::Default);
+        const BitTorrent::ShareLimits defaultShareLimits {
+            .ratioLimit = BitTorrent::DEFAULT_RATIO_LIMIT,
+            .seedingTimeLimit = BitTorrent::DEFAULT_SEEDING_TIME_LIMIT,
+            .inactiveSeedingTimeLimit = BitTorrent::DEFAULT_SEEDING_TIME_LIMIT,
+            .action = BitTorrent::ShareLimitAction::Default
+        };
+        m_ui->torrentShareLimitsWidget->setDefaults(TorrentShareLimitsWidget::UsedDefaults::Global, defaultShareLimits);
     }
     else
     {
@@ -511,8 +516,7 @@ void TorrentOptionsDialog::handleCategoryChanged([[maybe_unused]] const int inde
 
         m_ui->comboCategory->lineEdit()->setPlaceholderText(QString());
         m_ui->torrentShareLimitsWidget->setDefaults((categoryName.isEmpty() ? TorrentShareLimitsWidget::UsedDefaults::Global : TorrentShareLimitsWidget::UsedDefaults::Category)
-                , btSession->categoryRatioLimit(categoryName), btSession->categorySeedingTimeLimit(categoryName)
-                , btSession->categoryInactiveSeedingTimeLimit(categoryName), btSession->categoryShareLimitAction(categoryName));
+                , btSession->categoryShareLimits(categoryName));
     }
 }
 

@@ -1149,10 +1149,13 @@ void TorrentsController::addAction()
         .useAutoTMM = autoTMM,
         .uploadLimit = upLimit,
         .downloadLimit = dlLimit,
-        .seedingTimeLimit = seedingTimeLimit,
-        .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
-        .ratioLimit = ratioLimit,
-        .shareLimitAction = shareLimitAction,
+        .shareLimits =
+        {
+            .ratioLimit = ratioLimit,
+            .seedingTimeLimit = seedingTimeLimit,
+            .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
+            .action = shareLimitAction
+        },
         .sslParameters =
         {
             .certificate = QSslCertificate(params()[KEY_PROP_SSL_CERTIFICATE].toLatin1()),
@@ -1556,19 +1559,18 @@ void TorrentsController::setShareLimitsAction()
 {
     requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s, u"shareLimitAction"_s});
 
-    const qreal ratioLimit = params()[u"ratioLimit"_s].toDouble();
-    const qlonglong seedingTimeLimit = params()[u"seedingTimeLimit"_s].toLongLong();
-    const qlonglong inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toLongLong();
-    const BitTorrent::ShareLimitAction shareLimitAction = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
+    const BitTorrent::ShareLimits shareLimits {
+        .ratioLimit = params()[u"ratioLimit"_s].toDouble(),
+        .seedingTimeLimit = params()[u"seedingTimeLimit"_s].toInt(),
+        .inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toInt(),
+        .action = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default)
+    };
 
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
 
-    applyToTorrents(hashes, [ratioLimit, seedingTimeLimit, inactiveSeedingTimeLimit, shareLimitAction](BitTorrent::Torrent *const torrent)
+    applyToTorrents(hashes, [shareLimits](BitTorrent::Torrent *const torrent)
     {
-        torrent->setRatioLimit(ratioLimit);
-        torrent->setSeedingTimeLimit(seedingTimeLimit);
-        torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit);
-        torrent->setShareLimitAction(shareLimitAction);
+        torrent->setShareLimits(shareLimits);
     });
 
     setResult(QString());

@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
  *
@@ -313,13 +313,14 @@ void AppController::preferencesAction()
     data[u"slow_torrent_ul_rate_threshold"_s] = session->uploadRateForSlowTorrents();
     data[u"slow_torrent_inactive_timer"_s] = session->slowTorrentsInactivityTimer();
     // Share Ratio Limiting
-    data[u"max_ratio_enabled"_s] = (session->globalMaxRatio() >= 0.);
-    data[u"max_ratio"_s] = session->globalMaxRatio();
-    data[u"max_seeding_time_enabled"_s] = (session->globalMaxSeedingMinutes() >= 0.);
-    data[u"max_seeding_time"_s] = session->globalMaxSeedingMinutes();
-    data[u"max_inactive_seeding_time_enabled"_s] = (session->globalMaxInactiveSeedingMinutes() >= 0.);
-    data[u"max_inactive_seeding_time"_s] = session->globalMaxInactiveSeedingMinutes();
-    data[u"max_ratio_act"_s] = static_cast<int>(session->shareLimitAction());
+    const BitTorrent::ShareLimits shareLimits = session->shareLimits();
+    data[u"max_ratio_enabled"_s] = (shareLimits.ratioLimit >= 0.);
+    data[u"max_ratio"_s] = shareLimits.ratioLimit;
+    data[u"max_seeding_time_enabled"_s] = (shareLimits.seedingTimeLimit >= 0);
+    data[u"max_seeding_time"_s] = shareLimits.seedingTimeLimit;
+    data[u"max_inactive_seeding_time_enabled"_s] = (shareLimits.inactiveSeedingTimeLimit >= 0);
+    data[u"max_inactive_seeding_time"_s] = shareLimits.inactiveSeedingTimeLimit;
+    data[u"max_ratio_act"_s] = static_cast<int>(shareLimits.action);
     // Add trackers
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
     data[u"add_trackers"_s] = session->additionalTrackers();
@@ -846,37 +847,39 @@ void AppController::setPreferencesAction()
     if (hasKey(u"slow_torrent_inactive_timer"_s))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
+    BitTorrent::ShareLimits shareLimits = session->shareLimits();
     if (hasKey(u"max_ratio_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxRatio(-1);
+        shareLimits.ratioLimit = BitTorrent::NO_RATIO_LIMIT;
     else if (hasKey(u"max_ratio"_s))
-        session->setGlobalMaxRatio(it.value().toReal());
+        shareLimits.ratioLimit = it.value().toReal();
     if (hasKey(u"max_seeding_time_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxSeedingMinutes(-1);
+        shareLimits.seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_seeding_time"_s))
-        session->setGlobalMaxSeedingMinutes(it.value().toInt());
+        shareLimits.seedingTimeLimit = it.value().toInt();
     if (hasKey(u"max_inactive_seeding_time_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxInactiveSeedingMinutes(-1);
+        shareLimits.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_inactive_seeding_time"_s))
-        session->setGlobalMaxInactiveSeedingMinutes(it.value().toInt());
+        shareLimits.inactiveSeedingTimeLimit = it.value().toInt();
     if (hasKey(u"max_ratio_act"_s))
     {
         switch (it.value().toInt())
         {
         default:
         case 0:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::Stop);
+            shareLimits.action = BitTorrent::ShareLimitAction::Stop;
             break;
         case 1:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::Remove);
+            shareLimits.action = BitTorrent::ShareLimitAction::Remove;
             break;
         case 2:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::EnableSuperSeeding);
+            shareLimits.action = BitTorrent::ShareLimitAction::EnableSuperSeeding;
             break;
         case 3:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::RemoveWithContent);
+            shareLimits.action = BitTorrent::ShareLimitAction::RemoveWithContent;
             break;
         }
     }
+    session->setShareLimits(shareLimits);
     // Add trackers
     if (hasKey(u"add_trackers_enabled"_s))
         session->setAddTrackersEnabled(it.value().toBool());
