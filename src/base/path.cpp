@@ -305,11 +305,15 @@ Path Path::commonPath(const Path &left, const Path &right)
 Path Path::makeValidPath(QStringView name, const QString &pad)
 {
     QStringView pathStrView = name;
+    bool hasDriveLetterPrefix = false;
 
 #ifdef Q_OS_WIN
     // Remove Windows drive letter prefix (e.g., "C:/") if present
     if (hasDriveLetter(pathStrView))
+    {
+        hasDriveLetterPrefix = true;
         pathStrView = pathStrView.mid(3);
+    }
 #endif
 
     // Split into components and sanitize each one
@@ -324,7 +328,7 @@ Path Path::makeValidPath(QStringView name, const QString &pad)
 
 #ifdef Q_OS_WIN
     // Re-add drive letter prefix if present
-    if (hasDriveLetter(name))
+    if (hasDriveLetterPrefix)
         validPathStr = name.left(3) + validPathStr;
 #endif
 
