@@ -1,5 +1,11 @@
 # WebAPI Changelog
 
+## 2.15.3
+* [#24043](https://github.com/qbittorrent/qBittorrent/pull/24043)
+  * `sync/maindata` endpoint includes `share_limits_mode` for torrents
+  * `app/preferences` endpoint includes `share_limits_mode` option
+  * `app/setPreferences` endpoint allows to set `share_limits_mode` option
+
 ## 2.15.2
 
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23856)

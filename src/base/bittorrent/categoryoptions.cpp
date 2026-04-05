@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,8 +31,9 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
-#include "base/global.h"
 #include "base/utils/string.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 const QString OPTION_SAVEPATH = u"save_path"_s;
 const QString OPTION_DOWNLOADPATH = u"download_path"_s;
@@ -41,6 +42,7 @@ const QString OPTION_RATIOLIMIT = u"ratio_limit"_s;
 const QString OPTION_SEEDINGTIMELIMIT = u"seeding_time_limit"_s;
 const QString OPTION_INACTIVESEEDINGTIMELIMIT = u"inactive_seeding_time_limit"_s;
 const QString OPTION_SHARELIMITACTION = u"share_limit_action"_s;
+const QString OPTION_SHARELIMITSMODE = u"share_limits_mode"_s;
 
 BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObject &jsonObj)
 {
@@ -57,6 +59,7 @@ BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObj
     options.shareLimits.seedingTimeLimit = jsonObj.value(OPTION_SEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT);
     options.shareLimits.inactiveSeedingTimeLimit = jsonObj.value(OPTION_INACTIVESEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT);
     options.shareLimits.action = Utils::String::toEnum<ShareLimitAction>(jsonObj.value(OPTION_SHARELIMITACTION).toString(), ShareLimitAction::Default);
+    options.shareLimits.mode = Utils::String::toEnum<ShareLimitsMode>(jsonObj.value(OPTION_SHARELIMITSMODE).toString(), ShareLimitsMode::Default);
 
     return options;
 }
@@ -78,6 +81,7 @@ QJsonObject BitTorrent::CategoryOptions::toJSON() const
         {OPTION_RATIOLIMIT, shareLimits.ratioLimit},
         {OPTION_SEEDINGTIMELIMIT, shareLimits.seedingTimeLimit},
         {OPTION_INACTIVESEEDINGTIMELIMIT, shareLimits.inactiveSeedingTimeLimit},
-        {OPTION_SHARELIMITACTION, Utils::String::fromEnum(shareLimits.action)}
+        {OPTION_SHARELIMITACTION, Utils::String::fromEnum(shareLimits.action)},
+        {OPTION_SHARELIMITSMODE, Utils::String::fromEnum(shareLimits.mode)}
     };
 }

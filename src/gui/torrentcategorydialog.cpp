@@ -160,6 +160,7 @@ BitTorrent::CategoryOptions TorrentCategoryDialog::categoryOptions() const
         .ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit().value_or(BitTorrent::DEFAULT_RATIO_LIMIT),
         .seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT),
         .inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT),
+        .mode = m_ui->torrentShareLimitsWidget->shareLimitsMode().value_or(BitTorrent::ShareLimitsMode::Default),
         .action = m_ui->torrentShareLimitsWidget->shareLimitAction().value_or(BitTorrent::ShareLimitAction::Default)
     };
 
@@ -183,6 +184,7 @@ void TorrentCategoryDialog::setCategoryOptions(const BitTorrent::CategoryOptions
     m_ui->torrentShareLimitsWidget->setRatioLimit(categoryOptions.shareLimits.ratioLimit);
     m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(categoryOptions.shareLimits.seedingTimeLimit);
     m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(categoryOptions.shareLimits.inactiveSeedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setShareLimitsMode(categoryOptions.shareLimits.mode);
     m_ui->torrentShareLimitsWidget->setShareLimitAction(categoryOptions.shareLimits.action);
 }
 

@@ -313,13 +313,14 @@ void AppController::preferencesAction()
     data[u"slow_torrent_ul_rate_threshold"_s] = session->uploadRateForSlowTorrents();
     data[u"slow_torrent_inactive_timer"_s] = session->slowTorrentsInactivityTimer();
     // Share Ratio Limiting
-    const BitTorrent::ShareLimits shareLimits = session->shareLimits();
+    const BitTorrent::ShareLimits &shareLimits = session->shareLimits();
     data[u"max_ratio_enabled"_s] = (shareLimits.ratioLimit >= 0.);
     data[u"max_ratio"_s] = shareLimits.ratioLimit;
     data[u"max_seeding_time_enabled"_s] = (shareLimits.seedingTimeLimit >= 0);
     data[u"max_seeding_time"_s] = shareLimits.seedingTimeLimit;
     data[u"max_inactive_seeding_time_enabled"_s] = (shareLimits.inactiveSeedingTimeLimit >= 0);
     data[u"max_inactive_seeding_time"_s] = shareLimits.inactiveSeedingTimeLimit;
+    data[u"share_limits_mode"_s] = Utils::String::fromEnum(shareLimits.mode);
     data[u"max_ratio_act"_s] = static_cast<int>(shareLimits.action);
     // Add trackers
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
@@ -860,6 +861,8 @@ void AppController::setPreferencesAction()
         shareLimits.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_inactive_seeding_time"_s))
         shareLimits.inactiveSeedingTimeLimit = it.value().toInt();
+    if (hasKey(u"share_limits_mode"_s))
+        shareLimits.mode = Utils::String::toEnum(it.value().toString(), BitTorrent::ShareLimitsMode::MatchAny);
     if (hasKey(u"max_ratio_act"_s))
     {
         switch (it.value().toInt())
@@ -879,7 +882,7 @@ void AppController::setPreferencesAction()
             break;
         }
     }
-    session->setShareLimits(shareLimits);
+    session->setShareLimits(std::move(shareLimits));
     // Add trackers
     if (hasKey(u"add_trackers_enabled"_s))
         session->setAddTrackersEnabled(it.value().toBool());

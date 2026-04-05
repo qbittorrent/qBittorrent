@@ -219,7 +219,7 @@ namespace BitTorrent
         virtual qlonglong timeSinceActivity() const = 0;
 
         // Share limits
-        virtual ShareLimits shareLimits() const = 0;
+        virtual const ShareLimits &shareLimits() const = 0;
         virtual void setShareLimits(ShareLimits shareLimits) = 0;
         virtual ShareLimits effectiveShareLimits() const = 0;
 

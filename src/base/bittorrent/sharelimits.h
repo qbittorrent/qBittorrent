@@ -59,6 +59,16 @@ namespace BitTorrent
         };
 
         Q_ENUM_NS(ShareLimitAction)
+
+        enum class ShareLimitsMode
+        {
+            Default = -1, // special value
+
+            MatchAny = 0,
+            MatchAll = 1
+        };
+
+        Q_ENUM_NS(ShareLimitsMode)
     }
 
     struct ShareLimits
@@ -67,7 +77,10 @@ namespace BitTorrent
         int seedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
         int inactiveSeedingTimeLimit = DEFAULT_SEEDING_TIME_LIMIT;
 
+        ShareLimitsMode mode = ShareLimitsMode::Default;
+
         ShareLimitAction action = ShareLimitAction::Default;
+
 
         friend bool operator==(const ShareLimits &lhs, const ShareLimits &rhs) = default;
     };

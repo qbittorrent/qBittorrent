@@ -1049,7 +1049,7 @@ qlonglong TorrentImpl::timeSinceActivity() const
                : std::min(upTime, downTime);
 }
 
-ShareLimits TorrentImpl::shareLimits() const
+const ShareLimits &TorrentImpl::shareLimits() const
 {
     return m_shareLimits;
 }
@@ -1081,6 +1081,8 @@ ShareLimits TorrentImpl::effectiveShareLimits() const
             ? categoryShareLimits.seedingTimeLimit : m_shareLimits.seedingTimeLimit,
         .inactiveSeedingTimeLimit = (m_shareLimits.inactiveSeedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
             ? categoryShareLimits.inactiveSeedingTimeLimit : m_shareLimits.inactiveSeedingTimeLimit,
+        .mode = (m_shareLimits.mode == ShareLimitsMode::Default)
+            ? categoryShareLimits.mode : m_shareLimits.mode,
         .action = (m_shareLimits.action == ShareLimitAction::Default)
             ? categoryShareLimits.action : m_shareLimits.action
     };
