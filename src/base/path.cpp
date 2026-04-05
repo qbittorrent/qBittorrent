@@ -108,11 +108,11 @@ bool Path::isRelative() const
 // Returns true if the path is non-empty and all its components are valid filenames
 bool Path::isValid() const
 {
-    QStringView pathStrView = m_pathStr;
-
     // Reject empty paths
     if (m_pathStr.isEmpty())
         return false;
+
+    QStringView pathStrView = m_pathStr;
 
 #ifdef Q_OS_WIN
     // Remove Windows drive letter prefix (e.g., "C:/") if present
