@@ -79,7 +79,7 @@ namespace
 
     // Check if name is a Windows reserved device name,
     // including when immediately followed by an extension (e.g. CON.txt)
-    static bool isReservedDeviceName(QStringView name)
+    bool isReservedDeviceName(const QStringView name)
     {
         const qsizetype lastDotIndex = name.lastIndexOf(u'.');
         const QStringView baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
