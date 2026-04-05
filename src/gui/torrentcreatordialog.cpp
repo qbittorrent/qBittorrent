@@ -286,6 +286,11 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     Path destPath {QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), lastSavePath.data(), tr("Torrent Files (*.torrent)"))};
     if (destPath.isEmpty())
         return;
+    if (!destPath.isValid())
+    {
+        QMessageBox::warning(this, tr("Invalid file name"), tr("The name is invalid: \"%1\"").arg(destPath.filename()));
+        return;
+    }
     if (!destPath.hasExtension(TORRENT_FILE_EXTENSION))
         destPath += TORRENT_FILE_EXTENSION;
     m_storeLastSavePath = destPath.parentPath();

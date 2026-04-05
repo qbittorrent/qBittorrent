@@ -249,16 +249,14 @@ void TorrentCreator::run()
 
         const auto result = std::invoke([torrentFilePath = m_params.torrentFilePath, entry]() -> nonstd::expected<Path, QString>
         {
-            const Path finalTorrentFilePath = Path::makeValidPath(torrentFilePath.data());
-
-            if (!finalTorrentFilePath.isValid())
+            if (!torrentFilePath.isValid())
                 return Utils::IO::saveToTempFile(entry);
 
-            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(finalTorrentFilePath, entry);
+            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(torrentFilePath, entry);
             if (!result)
                 return nonstd::make_unexpected(result.error());
 
-            return finalTorrentFilePath;
+            return torrentFilePath;
         });
         if (!result)
             throw RuntimeError(result.error());
