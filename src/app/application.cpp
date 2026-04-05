@@ -60,6 +60,7 @@
 #include <QSessionManager>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MACOS
+#include <QAccessible>
 #include <QFileOpenEvent>
 #endif // Q_OS_MACOS
 #endif
@@ -1371,6 +1372,12 @@ void Application::cleanup()
         if (m_desktopIntegration->menu())
             m_desktopIntegration->menu()->setEnabled(false);
     }
+
+#ifdef Q_OS_MACOS
+    // Disable Qt accessibility bridge before destroying widgets to prevent
+    // deadlocks with macOS accessibility API during shutdown (issue #23695)
+    QAccessible::cleanup();
+#endif
 
     if (m_window)
     {
