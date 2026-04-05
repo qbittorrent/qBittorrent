@@ -302,7 +302,7 @@ Path Path::commonPath(const Path &left, const Path &right)
  * Returns a valid path by sanitizing each component of the given path string.
  * Useful when constructing paths from untrusted/user-provided names.
  */
-Path Path::makeValidPath(QStringView name, const QString &pad)
+Path Path::makeValidPath(const QStringView name, const QString &pad)
 {
     QStringView pathStrView = name;
     bool hasDriveLetterPrefix = false;
