@@ -99,7 +99,7 @@ namespace
         const ushort unicode = c.unicode();
         if ((unicode < 32) || (unicode == 127) || (c == u'/'))
             return true;
-#ifdef Q_OS_WIN
+#ifdef defined(Q_OS_WIN)
         if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"')
             || (c == u'|') || (c == u'?') || (c == u'*'))
         {
