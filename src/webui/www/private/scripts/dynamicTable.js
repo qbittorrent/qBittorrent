@@ -3273,8 +3273,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("name", "", "", -1, true);
 
             this.columns["checked"].updateTd = (td, row) => {
-                let checkbox = row.firstElementChild;
-                if (checkbox === undefined) {
+                let checkbox = td.firstElementChild;
+                if (checkbox === null) {
                     checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
                     checkbox.dataset.id = row.rowId;
@@ -3331,8 +3331,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("name", "", "", -1, true);
 
             this.columns["checked"].updateTd = (td, row) => {
-                let checkbox = row.firstElementChild;
-                if (checkbox === undefined) {
+                let checkbox = td.firstElementChild;
+                if (checkbox === null) {
                     checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
                     checkbox.dataset.id = row.rowId;
