@@ -77,8 +77,6 @@ public:
 
     static Path commonPath(const Path &left, const Path &right);
 
-    static Path makeValidPath(QStringView name, const QString &pad = QStringLiteral("_"));
-
     static Path findRootFolder(const PathList &filePaths);
     static void stripRootFolder(PathList &filePaths);
     static void addRootFolder(PathList &filePaths, const Path &rootFolder);

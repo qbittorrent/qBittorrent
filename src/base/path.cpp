@@ -298,43 +298,6 @@ Path Path::commonPath(const Path &left, const Path &right)
     return Path::createUnchecked(left.m_pathStr.first(commonPathSize));
 }
 
-/**
- * Returns a valid path by sanitizing each component of the given path string.
- * Useful when constructing paths from untrusted/user-provided names.
- */
-Path Path::makeValidPath(const QStringView name, const QString &pad)
-{
-    QStringView pathStrView = name;
-    bool hasDriveLetterPrefix = false;
-
-#ifdef Q_OS_WIN
-    // Remove Windows drive letter prefix (e.g., "C:/") if present
-    if (hasDriveLetter(pathStrView))
-    {
-        hasDriveLetterPrefix = true;
-        pathStrView = pathStrView.mid(3);
-    }
-#endif
-
-    // Split into components and sanitize each one
-    const QList<QStringView> components = pathStrView.split(u'/', Qt::SkipEmptyParts);
-    QStringList validComponents;
-    validComponents.reserve(components.size());
-    for (const QStringView &comp : components)
-        validComponents << Utils::Fs::toValidFileName(comp, pad);
-
-    // Reconstruct path
-    QString validPathStr = validComponents.join(u'/');
-
-#ifdef Q_OS_WIN
-    // Re-add drive letter prefix if present
-    if (hasDriveLetterPrefix)
-        validPathStr = name.left(3) + validPathStr;
-#endif
-
-    return Path(validPathStr);
-}
-
 Path Path::findRootFolder(const PathList &filePaths)
 {
     Path rootFolder;
