@@ -78,8 +78,8 @@ Path::Path(const QString &pathStr)
 {
 }
 
-Path::Path(const std::string &pathStr)
-    : Path(QString::fromStdString(pathStr))
+Path::Path(const std::string_view pathStr)
+    : Path(QString::fromUtf8(pathStr.data(), pathStr.size()))
 {
 }
 
