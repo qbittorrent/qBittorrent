@@ -798,13 +798,13 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         selectInverse() {
-            for (const row of this.getFilteredAndSortedRows()) {
-                if (this.isRowSelected(row.rowId))
-                    this.selectedRows.erase(row.rowId);
-                else
-                    this.selectedRows.push(row.rowId);
-            }
-            this.setRowClass();
+            const currentSelectedRows = new Set(this.selectedRows);
+
+            const newSelectedRows = this.getFilteredAndSortedRows()
+                .filter(row => !currentSelectedRows.has(row.rowId))
+                .map(row => row.rowId);
+
+            this.reselectRows(newSelectedRows);
         }
 
         setRowClass() {
