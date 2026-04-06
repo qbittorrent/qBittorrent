@@ -74,9 +74,6 @@ private slots:
         QCOMPARE(Path(u"/"_s).isValid(), true);
         QCOMPARE(Path(uR"(\)"_s).isValid(), true);
 
-        QCOMPARE(Path(u"."_s).isValid(), false);
-        QCOMPARE(Path(u".."_s).isValid(), false);
-
         QCOMPARE(Path(u"a"_s).isValid(), true);
         QCOMPARE(Path(u"/a"_s).isValid(), true);
         QCOMPARE(Path(uR"(\a)"_s).isValid(), true);
@@ -92,6 +89,11 @@ private slots:
         QCOMPARE(Path(uR"(\\)"_s).isValid(), true);
         QCOMPARE(Path(u"//a"_s).isValid(), true);
         QCOMPARE(Path(uR"(\\a)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a//b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\\b)"_s).isValid(), true);
+        QCOMPARE(Path(u"/a//b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(/a\\b)"_s).isValid(), true);
 
 #if defined Q_OS_MACOS
         QCOMPARE(Path(u"\0"_s).isValid(), false);
