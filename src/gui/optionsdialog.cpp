@@ -666,8 +666,18 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
+    m_ui->senderEmailTxt->setToolTip(tr("Provide the sending email address."));
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
+    m_ui->lineEditDestEmail->setToolTip(u"<html><body><p style='white-space:nowrap'>"
+        + tr("Provide the recipient email address.") + u"</p><p style='white-space:nowrap'><b>"
+        + tr("Note: ") + u"</b>" + tr("only a single recipient email address can be specified.") + u"</p></body></html>");
     m_ui->lineEditSmtpServer->setText(pref->getMailNotificationSMTP());
+    m_ui->lineEditSmtpServer->setToolTip(u"<html><body><p style='white-space:nowrap'>"
+        + tr("Provide the SMTP server address for sending email notifications.") + u"</p><p style='white-space:nowrap'>"
+        + tr("The server address can either be entered as a DNS name ") + u"<b>" + tr("(recommended)") + u"</b>" + tr(" or IP address.") + u" <br>"
+        + tr("To manually specify the server port, add a colon and then the port number to the end of the server address.") + u"<br><b>"
+        + tr("Example:") + u"</b><br>"
+        + tr("smtp.example.com:465 - connect to server ") + u"<b>" + tr("smtp.example.com") + u"</b>" + tr(" on port ") + u"<b>" + tr("465.") + u"</b></p></body></html>");
     m_ui->checkSmtpSSL->setChecked(pref->getMailNotificationSMTPSSL());
     m_ui->groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
     m_ui->mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());

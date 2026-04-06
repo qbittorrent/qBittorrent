@@ -332,7 +332,7 @@
                         <label for="src_email_txt">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com">
+                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com" title="QBT_TR(Provide the sending email address.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -340,7 +340,8 @@
                         <label for="dest_email_txt">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="dest_email_txt">
+                        <input type="text" id="dest_email_txt" title="QBT_TR(Provide the recipient email address.
+Note: only a single recipient email address can be specified.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -348,7 +349,11 @@
                         <label for="smtp_server_txt">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465">
+                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465" title="QBT_TR(Provide the SMTP server address for sending email notifications.
+The server address can either be entered as a DNS name (recommended) or IP address.
+To manually specify the server port, add a colon and then the port number to the end of the server address.
+Example:
+smtp.example.com:465 - connect to server smtp.example.com on port 465.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
             </tbody>
