@@ -55,13 +55,13 @@ li[data-parent].open:not(.hidden-search) {
 }
 
 li.disabled {
-    background-color: #999999;
+    background-color: var(--color-background-disabled);
     cursor: not-allowed;
     opacity: 0.3;
 }
 
 li.overflow {
-    background-color: #999999;
+    background-color: var(--color-background-disabled);
     cursor: not-allowed;
     opacity: 0.3;
 }
@@ -178,7 +178,7 @@ li.short {
 }
 
 .vsb-menu .multi li.grouped-option:hover {
-    color: rgb(52 31 112);
+    color: var(--color-text-blue);
     font-weight: bold;
     text-decoration: underline;
 }
