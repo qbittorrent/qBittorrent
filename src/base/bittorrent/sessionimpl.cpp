@@ -2031,6 +2031,9 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::num_outgoing_ports, (outgoingPortsMax() - outgoingPortsMin()));
     // UPnP lease duration
     settingsPack.set_int(lt::settings_pack::upnp_lease_duration, UPnPLeaseDuration());
+#if LIBTORRENT_VERSION_NUM >= 20013
+    settingsPack.set_int(lt::settings_pack::natpmp_lease_duration, UPnPLeaseDuration());
+#endif
     // Type of service
     settingsPack.set_int(lt::settings_pack::peer_dscp, peerDSCP());
     // Include overhead in transfer limits
