@@ -383,8 +383,7 @@ window.qBittorrent.Search ??= (() => {
             reverse: searchResultsTable.reverseSort,
         };
 
-        // we must copy the array to avoid taking a reference to it
-        state.selectedRowIds = [...searchResultsTable.selectedRows];
+        state.selectedRowIds = searchResultsTable.selectedRowsIds();
     };
 
     const setActiveTab = (tab) => {
@@ -888,6 +887,7 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const searchFilterChanged = () => {
+        searchResultsTable.invalidateFilterCache();
         searchResultsTable.updateTable();
         document.getElementById("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
     };
