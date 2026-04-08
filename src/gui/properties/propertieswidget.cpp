@@ -611,7 +611,8 @@ void PropertiesWidget::configure()
             auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
             label->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
-            label->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+            label->setFocusPolicy(Qt::StrongFocus);
+            label->setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
             label->setToolTip(tr("Open Advanced Options"));
             connect(label, &QLabel::linkHovered, label, [label](const QString &link)
             {

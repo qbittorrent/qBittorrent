@@ -201,6 +201,13 @@ AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
     setSelectionBehavior(QAbstractItemView::SelectItems);
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_showSettingResetTimer.setSingleShot(true);
+    connect(&m_showSettingResetTimer, &QTimer::timeout, this, [this]
+    {
+        clearSelection();
+        setSelectionBehavior(m_previousSelectionBehavior);
+        setSelectionMode(m_previousSelectionMode);
+    });
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
@@ -1043,6 +1050,13 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
 
 void AdvancedSettings::showSetting(const int row, QWidget &widget)
 {
+    if (!m_showSettingResetTimer.isActive())
+    {
+        m_previousSelectionBehavior = selectionBehavior();
+        m_previousSelectionMode = selectionMode();
+    }
+
+    m_showSettingResetTimer.stop();
     clearSelection();
     setSelectionMode(QAbstractItemView::SingleSelection);
     setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -1050,11 +1064,5 @@ void AdvancedSettings::showSetting(const int row, QWidget &widget)
     selectRow(row);
     scrollTo(model()->index(row, PROPERTY), QAbstractItemView::PositionAtCenter);
     widget.setFocus(Qt::OtherFocusReason);
-
-    QTimer::singleShot(3000, this, [this]
-    {
-        clearSelection();
-        setSelectionBehavior(QAbstractItemView::SelectItems);
-        setSelectionMode(QAbstractItemView::NoSelection);
-    });
+    m_showSettingResetTimer.start(3000);
 }

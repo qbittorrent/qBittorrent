@@ -2167,14 +2167,9 @@ void OptionsDialog::showConnectionTab()
     m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
 }
 
-void OptionsDialog::showAdvancedTab()
-{
-    m_ui->tabSelection->setCurrentRow(TAB_ADVANCED);
-}
-
 void OptionsDialog::showSpeedWidgetSetting()
 {
-    showAdvancedTab();
+    m_ui->tabSelection->setCurrentRow(TAB_ADVANCED);
     QTimer::singleShot(0, m_advancedSettings, &AdvancedSettings::showSpeedWidgetSetting);
 }
 
