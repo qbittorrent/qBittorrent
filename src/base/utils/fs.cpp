@@ -111,6 +111,40 @@ namespace
 
         return false;
     }
+
+    // Check if an individual filename or path component is valid.
+    bool isValidComponent(const QStringView name, bool isFileName)
+    {
+        if (name.isEmpty())
+            return false;
+
+        // "." and ".." are only allowed for path components, not for filenames
+        if (isFileName && (name == u"."_s || name == u".."_s))
+            return false;
+
+        if (std::ranges::any_of(name, isReservedCharacter))
+            return false;
+
+#ifdef Q_OS_WIN
+        // Windows restricts file names to 255 characters
+        if (name.length() > 255)
+            return false;
+
+        // Windows prohibits trailing dots for file names
+        if (isFileName && name.endsWith(u'.'))
+            return false;
+
+        // Reserved device names (CON, PRN, AUX, etc.) cannot be used as file or directory names in Windows
+        if (isReservedDeviceName(name))
+            return false;
+#else
+        // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
+        if (name.toUtf8().length() > 255)
+            return false;
+#endif
+
+        return true;
+    }
 }
 
 /**
@@ -240,31 +274,14 @@ bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 // Check if a filename is valid without sanitizing
 bool Utils::Fs::isValidFileName(QStringView name)
 {
-    // Reject empty names or relative alias directory names
-    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
-        return false;
+    return isValidComponent(name, true);
+}
 
-    // Check for reserved characters
-    if (std::ranges::any_of(name, isReservedCharacter))
-        return false;
-
-#ifdef Q_OS_WIN
-    // Windows restricts file names to 255 characters and prohibits trailing dots
-    if ((name.length() > 255) || name.endsWith(u'.'))
-        return false;
-#else
-    // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
-    if (name.toUtf8().length() > 255)
-        return false;
-#endif
-
-#ifdef Q_OS_WIN
-    // Windows reserves certain names for devices, which cannot be used as file names
-    if (isReservedDeviceName(name))
-        return false;
-#endif
-
-    return true;
+// Check if a path component is valid without sanitizing
+// Allows "." and ".." which are valid in directory parts of a path.
+bool Utils::Fs::isValidPathComponent(QStringView component)
+{
+    return isValidComponent(component, false);
 }
 
 // Sanitize filename using pad
