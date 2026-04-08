@@ -134,6 +134,17 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
 
     m_rssFilter->setMaximumWidth(200);
     m_rssFilter->setPlaceholderText(tr("Filter feed items..."));
+    const auto warningText = u"<html><head/><body><p><a href=\"#\"><span style=\"text-decoration: none;\">%1</span></a></p></body></html>"_s
+        .arg(tr("Fetching of RSS feeds is disabled now! You can enable it in application settings.").toHtmlEscaped());
+    m_ui->labelWarn->setCursor(Qt::PointingHandCursor);
+    m_ui->labelWarn->setFocusPolicy(Qt::StrongFocus);
+    m_ui->labelWarn->setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
+    m_ui->labelWarn->setToolTip(tr("Open RSS settings"));
+    QPalette warningPalette = m_ui->labelWarn->palette();
+    warningPalette.setColor(QPalette::WindowText, Qt::red);
+    warningPalette.setColor(QPalette::Link, Qt::red);
+    m_ui->labelWarn->setPalette(warningPalette);
+    m_ui->labelWarn->setText(warningText);
 
     const int spacerIndex = m_ui->horizontalLayout->indexOf(m_ui->spacer1);
     m_ui->horizontalLayout->insertWidget((spacerIndex + 1), m_rssFilter);
