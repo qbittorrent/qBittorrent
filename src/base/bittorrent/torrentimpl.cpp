@@ -2102,6 +2102,11 @@ void TorrentImpl::handleTorrentChecked()
     {
         qDebug("\"%s\" have just finished checking.", qUtf8Printable(name()));
 
+        // Re-apply file priorities so that libtorrent recalculates
+        // total_wanted / total_wanted_done correctly (workaround for
+        // libtorrent not resetting these after force_recheck()).
+        prioritizeFiles(m_filePriorities);
+
         if (!m_hasMissingFiles)
         {
             if ((progress() < 1.0) && (wantedSize() > 0))
