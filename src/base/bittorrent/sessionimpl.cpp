@@ -593,6 +593,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_recentErroredTorrentsTimer {new QTimer(this)}
     , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker(savePath())}
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
+    , m_minFreeDiskSpace {BITTORRENT_SESSION_KEY(u"MinFreeDiskSpace"_s), 0LL}
 {
     // It is required to perform async access to libtorrent sequentially
     m_asyncWorker->setMaxThreadCount(1);
@@ -658,6 +659,43 @@ SessionImpl::SessionImpl(QObject *parent)
         m_freeDiskSpace = value;
         m_freeDiskSpaceCheckingTimer->start();
         emit freeDiskSpaceChecked(m_freeDiskSpace);
+
+        const qint64 minFree = m_minFreeDiskSpace;
+        if (minFree <= 0)
+            return;
+
+        if ((m_freeDiskSpace >= 0) && (m_freeDiskSpace < minFree))
+        {
+            bool stoppedAny = false;
+            for (TorrentImpl *torrent : asConst(m_torrents))
+            {
+                if (!torrent->isStopped() && !torrent->isForced() && torrent->isDownloading()
+                    && !m_stoppedDueToDiskSpace.contains(torrent->id()))
+                {
+                    m_stoppedDueToDiskSpace.insert(torrent->id());
+                    torrent->setStoppedDueLowDiskSpace(true);
+                    torrent->stop();
+                    stoppedAny = true;
+                }
+            }
+            if (stoppedAny)
+            {
+                LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). Downloads have been paused.")
+                    .arg(minFree / (1024 * 1024)), Log::WARNING);
+            }
+        }
+        else if (!m_stoppedDueToDiskSpace.isEmpty())
+        {
+            const QSet<TorrentID> toResume = m_stoppedDueToDiskSpace;
+            m_stoppedDueToDiskSpace.clear();
+            for (const TorrentID &id : toResume)
+            {
+                if (TorrentImpl *torrent = m_torrents.value(id))
+                    torrent->start();
+            }
+            LogMsg(tr("Free disk space is above the minimum threshold (%1 MiB). Downloads have been resumed.")
+                .arg(minFree / (1024 * 1024)), Log::INFO);
+        }
     });
 
     m_fileSearcher = new FileSearcher;
@@ -5162,6 +5200,56 @@ qint64 SessionImpl::freeDiskSpace() const
     return m_freeDiskSpace;
 }
 
+qint64 SessionImpl::minFreeDiskSpace() const
+{
+    return m_minFreeDiskSpace;
+}
+
+void SessionImpl::setMinFreeDiskSpace(const qint64 minFree)
+{
+    m_minFreeDiskSpace = std::max<qint64>(minFree, 0);
+
+    if ((m_minFreeDiskSpace > 0) && (m_freeDiskSpace >= 0) && (m_freeDiskSpace < m_minFreeDiskSpace))
+    {
+        bool stoppedAny = false;
+        for (TorrentImpl *torrent : asConst(m_torrents))
+        {
+            if (!torrent->isStopped() && !torrent->isForced() && torrent->isDownloading()
+                && !m_stoppedDueToDiskSpace.contains(torrent->id()))
+            {
+                m_stoppedDueToDiskSpace.insert(torrent->id());
+                torrent->setStoppedDueLowDiskSpace(true);
+                torrent->stop();
+                stoppedAny = true;
+            }
+        }
+        if (stoppedAny)
+        {
+            LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). Downloads have been paused.")
+                .arg(m_minFreeDiskSpace / (1024 * 1024)), Log::WARNING);
+        }
+    }
+    else if (!m_stoppedDueToDiskSpace.isEmpty())
+    {
+        const QSet<TorrentID> toResume = m_stoppedDueToDiskSpace;
+        m_stoppedDueToDiskSpace.clear();
+        for (const TorrentID &id : toResume)
+        {
+            if (TorrentImpl *torrent = m_torrents.value(id))
+                torrent->start();
+        }
+        if (m_minFreeDiskSpace <= 0)
+        {
+            LogMsg(tr("Minimum free disk space check disabled. Downloads have been resumed."), Log::INFO);
+        }
+        else
+        {
+            LogMsg(tr("Free disk space is above the minimum threshold (%1 MiB). Downloads have been resumed.")
+                .arg(m_minFreeDiskSpace / (1024 * 1024)), Log::INFO);
+        }
+    }
+}
+
 bool SessionImpl::isListening() const
 {
     return m_nativeSessionExtension->isSessionListening();
@@ -5298,6 +5386,23 @@ void SessionImpl::handleTorrentStarted(TorrentImpl *const torrent)
 {
     LogMsg(tr("Torrent resumed. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentStarted(torrent);
+
+    if ((m_minFreeDiskSpace > 0) && (m_freeDiskSpace >= 0) && (m_freeDiskSpace < m_minFreeDiskSpace)
+        && !torrent->isForced() && torrent->isDownloading())
+    {
+        const TorrentID id = torrent->id();
+        m_stoppedDueToDiskSpace.insert(id);
+        LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). \"%2\" was not started.")
+            .arg(static_cast<qint64>(m_minFreeDiskSpace) / (1024 * 1024)).arg(torrent->name()), Log::WARNING);
+        invoke([this, id]
+        {
+            if (TorrentImpl *t = m_torrents.value(id))
+            {
+                t->setStoppedDueLowDiskSpace(true);
+                t->stop();
+            }
+        });
+    }
 }
 
 void SessionImpl::handleTorrentChecked(TorrentImpl *const torrent)
@@ -5880,6 +5985,24 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
     // Torrent could have error just after adding to libtorrent
     if (torrent->hasError())
         LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: \"%2\"").arg(torrent->name(), torrent->error()), Log::WARNING);
+
+    if ((m_minFreeDiskSpace > 0) && (m_freeDiskSpace >= 0) && (m_freeDiskSpace < m_minFreeDiskSpace)
+        && !torrent->isStopped() && !torrent->isForced() && !torrent->isFinished()
+        && !m_stoppedDueToDiskSpace.contains(torrent->id()))
+    {
+        const TorrentID id = torrent->id();
+        m_stoppedDueToDiskSpace.insert(id);
+        LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). \"%2\" was not started.")
+            .arg(static_cast<qint64>(m_minFreeDiskSpace) / (1024 * 1024)).arg(torrent->name()), Log::WARNING);
+        invoke([this, id]
+        {
+            if (TorrentImpl *t = m_torrents.value(id))
+            {
+                t->setStoppedDueLowDiskSpace(true);
+                t->stop();
+            }
+        });
+    }
 
     return torrent;
 }

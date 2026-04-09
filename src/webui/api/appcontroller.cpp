@@ -178,6 +178,7 @@ void AppController::preferencesAction()
     data[u"preallocate_all"_s] = session->isPreallocationEnabled();
     data[u"incomplete_files_ext"_s] = session->isAppendExtensionEnabled();
     data[u"use_unwanted_folder"_s] = session->isUnwantedFolderEnabled();
+    data[u"min_free_disk_space"_s] = session->minFreeDiskSpace();
     // Saving Management
     data[u"auto_tmm_enabled"_s] = !session->isAutoTMMDisabledByDefault();
     data[u"torrent_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategoryChanged();
@@ -594,6 +595,8 @@ void AppController::setPreferencesAction()
         session->setAppendExtensionEnabled(it.value().toBool());
     if (hasKey(u"use_unwanted_folder"_s))
         session->setUnwantedFolderEnabled(it.value().toBool());
+    if (hasKey(u"min_free_disk_space"_s))
+        session->setMinFreeDiskSpace(it.value().toLongLong());
 
     // Saving Management
     if (hasKey(u"auto_tmm_enabled"_s))

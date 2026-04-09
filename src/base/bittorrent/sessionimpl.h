@@ -450,6 +450,8 @@ namespace BitTorrent
         QString lastExternalIPv6Address() const override;
 
         qint64 freeDiskSpace() const override;
+        qint64 minFreeDiskSpace() const override;
+        void setMinFreeDiskSpace(qint64 minFree) override;
 
         // Torrent interface
         void handleTorrentResumeDataRequested(const TorrentImpl *torrent);
@@ -867,6 +869,8 @@ namespace BitTorrent
         FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
+        CachedSettingValue<qint64> m_minFreeDiskSpace;
+        QSet<TorrentID> m_stoppedDueToDiskSpace;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();
