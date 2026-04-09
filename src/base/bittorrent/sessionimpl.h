@@ -610,6 +610,10 @@ namespace BitTorrent
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         TorrentImpl *getTorrent(const lt::torrent_handle &nativeHandle) const;
+
+        Path torrentStoragePath(const TorrentImpl *torrent) const;
+        bool isBelowMinFreeDiskSpace(const Path &path) const;
+        void enforceDiskSpaceThreshold();
         QList<TorrentImpl *> getQueuedTorrentsByID(const QList<TorrentID> &torrentIDs) const;
 
         void saveResumeData();

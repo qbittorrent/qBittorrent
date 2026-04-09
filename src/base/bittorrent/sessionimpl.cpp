@@ -660,42 +660,7 @@ SessionImpl::SessionImpl(QObject *parent)
         m_freeDiskSpaceCheckingTimer->start();
         emit freeDiskSpaceChecked(m_freeDiskSpace);
 
-        const qint64 minFree = m_minFreeDiskSpace;
-        if (minFree <= 0)
-            return;
-
-        if ((m_freeDiskSpace >= 0) && (m_freeDiskSpace < minFree))
-        {
-            bool stoppedAny = false;
-            for (TorrentImpl *torrent : asConst(m_torrents))
-            {
-                if (!torrent->isStopped() && !torrent->isForced() && torrent->isDownloading()
-                    && !m_stoppedDueToDiskSpace.contains(torrent->id()))
-                {
-                    m_stoppedDueToDiskSpace.insert(torrent->id());
-                    torrent->setStoppedDueLowDiskSpace(true);
-                    torrent->stop();
-                    stoppedAny = true;
-                }
-            }
-            if (stoppedAny)
-            {
-                LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). Downloads have been paused.")
-                    .arg(minFree / (1024 * 1024)), Log::WARNING);
-            }
-        }
-        else if (!m_stoppedDueToDiskSpace.isEmpty())
-        {
-            const QSet<TorrentID> toResume = m_stoppedDueToDiskSpace;
-            m_stoppedDueToDiskSpace.clear();
-            for (const TorrentID &id : toResume)
-            {
-                if (TorrentImpl *torrent = m_torrents.value(id))
-                    torrent->start();
-            }
-            LogMsg(tr("Free disk space is above the minimum threshold (%1 MiB). Downloads have been resumed.")
-                .arg(minFree / (1024 * 1024)), Log::INFO);
-        }
+        enforceDiskSpaceThreshold();
     });
 
     m_fileSearcher = new FileSearcher;
@@ -5200,19 +5165,45 @@ qint64 SessionImpl::freeDiskSpace() const
     return m_freeDiskSpace;
 }
 
-qint64 SessionImpl::minFreeDiskSpace() const
+Path SessionImpl::torrentStoragePath(const TorrentImpl *torrent) const
 {
-    return m_minFreeDiskSpace;
+    const Path dlPath = torrent->downloadPath();
+    return dlPath.isEmpty() ? torrent->savePath() : dlPath;
 }
 
-void SessionImpl::setMinFreeDiskSpace(const qint64 minFree)
+bool SessionImpl::isBelowMinFreeDiskSpace(const Path &path) const
 {
-    m_minFreeDiskSpace = std::max<qint64>(minFree, 0);
+    if (m_minFreeDiskSpace <= 0)
+        return false;
+    const qint64 free = Utils::Fs::freeDiskSpaceOnPath(path);
+    return (free >= 0) && (free < m_minFreeDiskSpace);
+}
 
-    if ((m_minFreeDiskSpace > 0) && (m_freeDiskSpace >= 0) && (m_freeDiskSpace < m_minFreeDiskSpace))
+void SessionImpl::enforceDiskSpaceThreshold()
+{
+    if (m_minFreeDiskSpace <= 0)
     {
-        bool stoppedAny = false;
-        for (TorrentImpl *torrent : asConst(m_torrents))
+        if (!m_stoppedDueToDiskSpace.isEmpty())
+        {
+            const QSet<TorrentID> toResume = m_stoppedDueToDiskSpace;
+            m_stoppedDueToDiskSpace.clear();
+            for (const TorrentID &id : toResume)
+            {
+                if (TorrentImpl *torrent = m_torrents.value(id))
+                    torrent->start();
+            }
+        }
+        return;
+    }
+
+    bool stoppedAny = false;
+    bool resumedAny = false;
+
+    for (TorrentImpl *torrent : asConst(m_torrents))
+    {
+        const bool belowThreshold = isBelowMinFreeDiskSpace(torrentStoragePath(torrent));
+
+        if (belowThreshold)
         {
             if (!torrent->isStopped() && !torrent->isForced() && torrent->isDownloading()
                 && !m_stoppedDueToDiskSpace.contains(torrent->id()))
@@ -5223,31 +5214,31 @@ void SessionImpl::setMinFreeDiskSpace(const qint64 minFree)
                 stoppedAny = true;
             }
         }
-        if (stoppedAny)
+        else if (m_stoppedDueToDiskSpace.contains(torrent->id()))
         {
-            LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). Downloads have been paused.")
-                .arg(m_minFreeDiskSpace / (1024 * 1024)), Log::WARNING);
+            m_stoppedDueToDiskSpace.remove(torrent->id());
+            torrent->start();
+            resumedAny = true;
         }
     }
-    else if (!m_stoppedDueToDiskSpace.isEmpty())
-    {
-        const QSet<TorrentID> toResume = m_stoppedDueToDiskSpace;
-        m_stoppedDueToDiskSpace.clear();
-        for (const TorrentID &id : toResume)
-        {
-            if (TorrentImpl *torrent = m_torrents.value(id))
-                torrent->start();
-        }
-        if (m_minFreeDiskSpace <= 0)
-        {
-            LogMsg(tr("Minimum free disk space check disabled. Downloads have been resumed."), Log::INFO);
-        }
-        else
-        {
-            LogMsg(tr("Free disk space is above the minimum threshold (%1 MiB). Downloads have been resumed.")
-                .arg(m_minFreeDiskSpace / (1024 * 1024)), Log::INFO);
-        }
-    }
+
+    if (stoppedAny)
+        LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). Downloads have been paused.")
+            .arg(m_minFreeDiskSpace / (1024 * 1024)), Log::WARNING);
+    if (resumedAny)
+        LogMsg(tr("Free disk space is above the minimum threshold (%1 MiB). Downloads have been resumed.")
+            .arg(m_minFreeDiskSpace / (1024 * 1024)), Log::INFO);
+}
+
+qint64 SessionImpl::minFreeDiskSpace() const
+{
+    return m_minFreeDiskSpace;
+}
+
+void SessionImpl::setMinFreeDiskSpace(const qint64 minFree)
+{
+    m_minFreeDiskSpace = std::max<qint64>(minFree, 0);
+    enforceDiskSpaceThreshold();
 }
 
 bool SessionImpl::isListening() const
@@ -5387,13 +5378,13 @@ void SessionImpl::handleTorrentStarted(TorrentImpl *const torrent)
     LogMsg(tr("Torrent resumed. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentStarted(torrent);
 
-    if ((m_minFreeDiskSpace > 0) && (m_freeDiskSpace >= 0) && (m_freeDiskSpace < m_minFreeDiskSpace)
-        && !torrent->isForced() && torrent->isDownloading())
+    if (!torrent->isForced() && torrent->isDownloading()
+        && isBelowMinFreeDiskSpace(torrentStoragePath(torrent)))
     {
         const TorrentID id = torrent->id();
         m_stoppedDueToDiskSpace.insert(id);
         LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). \"%2\" was not started.")
-            .arg(static_cast<qint64>(m_minFreeDiskSpace) / (1024 * 1024)).arg(torrent->name()), Log::WARNING);
+            .arg(m_minFreeDiskSpace / (1024 * 1024)).arg(torrent->name()), Log::WARNING);
         invoke([this, id]
         {
             if (TorrentImpl *t = m_torrents.value(id))
@@ -5986,14 +5977,14 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
     if (torrent->hasError())
         LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: \"%2\"").arg(torrent->name(), torrent->error()), Log::WARNING);
 
-    if ((m_minFreeDiskSpace > 0) && (m_freeDiskSpace >= 0) && (m_freeDiskSpace < m_minFreeDiskSpace)
-        && !torrent->isStopped() && !torrent->isForced() && !torrent->isFinished()
-        && !m_stoppedDueToDiskSpace.contains(torrent->id()))
+    if (!torrent->isStopped() && !torrent->isForced() && !torrent->isFinished()
+        && !m_stoppedDueToDiskSpace.contains(torrent->id())
+        && isBelowMinFreeDiskSpace(torrentStoragePath(torrent)))
     {
         const TorrentID id = torrent->id();
         m_stoppedDueToDiskSpace.insert(id);
         LogMsg(tr("Free disk space is below the minimum threshold (%1 MiB). \"%2\" was not started.")
-            .arg(static_cast<qint64>(m_minFreeDiskSpace) / (1024 * 1024)).arg(torrent->name()), Log::WARNING);
+            .arg(m_minFreeDiskSpace / (1024 * 1024)).arg(torrent->name()), Log::WARNING);
         invoke([this, id]
         {
             if (TorrentImpl *t = m_torrents.value(id))
