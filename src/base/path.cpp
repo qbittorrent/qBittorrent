@@ -117,7 +117,7 @@ bool Path::isValid() const
 #ifdef Q_OS_WIN
     // Remove Windows drive letter prefix (e.g., "C:/") if present
     if (hasDriveLetter(pathStrView))
-        pathStrView = pathStrView.mid(3);
+        pathStrView = pathStrView.sliced(3);
 #endif
 
     // Split path into components and validate each one
