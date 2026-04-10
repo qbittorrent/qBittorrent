@@ -296,23 +296,18 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     // Replace one or more reserved characters with pad
     QString validName;
     validName.reserve(name.size());
-    bool inReservedSequence = false;
     for (const QChar c : name)
     {
         if (isReservedCharacter(c))
         {
-            if (!inReservedSequence)
-            {
+            if (!validName.endsWith(pad))
                 validName += pad;
-                inReservedSequence = true;
-            }
         }
         else
         {
             validName += c;
-            inReservedSequence = false;
         }
-    };
+    }
 
 #ifdef Q_OS_WIN
     // Handle Windows-specific trailing dots
