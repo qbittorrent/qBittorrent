@@ -65,7 +65,7 @@
 namespace
 {
 #ifdef Q_OS_WIN
-    // Set of reserved device names for Windows
+    // Set of Windows reserved device names
     const QSet<QString> reservedDeviceNames
     {
         u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
@@ -289,11 +289,11 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
 {
     name = name.trimmed();
 
-    // Handle empty names or relative alias directory names
+    // Empty, '.' and '..' are not considered valid filenames
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return pad;
 
-    // Replace one or more reserved characters with pad
+    // Replace one or more reserved characters with a single pad
     QString validName;
     validName.reserve(name.size());
     for (const QChar c : name)
@@ -310,16 +310,16 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     }
 
 #ifdef Q_OS_WIN
-    // Handle Windows-specific trailing dots
+    // Remove trailing dots (Windows forbids filenames ending with '.')
     while (validName.endsWith(u'.'))
         validName.chop(1);
 
-    // Handle Windows reserved device names
+    // Append pad+"1" to Windows reserved device names (e.g. "con.txt" → "con_1.txt")
     if (isReservedDeviceName(validName))
     {
         const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
         const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
-        const QString suffix = (lastDotIndex == -1) ? QString() : validName.mid(lastDotIndex);
+        const QString suffix   = (lastDotIndex == -1) ? QString() : validName.sliced(lastDotIndex);
 
         validName = baseName + pad + u"1"_s + suffix;
     }
