@@ -250,6 +250,7 @@ namespace BitTorrent
         virtual QString error() const = 0;
         virtual qlonglong totalDownload() const = 0;
         virtual qlonglong totalUpload() const = 0;
+        virtual qlonglong averageMonthlyUpload() const = 0;
         virtual qlonglong eta() const = 0;
         virtual int seedsCount() const = 0;
         virtual int peersCount() const = 0;
