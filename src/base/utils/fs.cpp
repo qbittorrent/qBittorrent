@@ -99,12 +99,10 @@ namespace
         const ushort unicode = c.unicode();
         if ((unicode < 32) || (unicode == 127) || (c == u'/'))
             return true;
+
 #if defined(Q_OS_WIN)
-        if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"')
-            || (c == u'|') || (c == u'?') || (c == u'*'))
-        {
+        if ((c == u'\\') || (c == u'<') || (c == u'>') || (c == u':') || (c == u'"') || (c == u'|') || (c == u'?') || (c == u'*'))
             return true;
-        }
 #elif defined(Q_OS_MACOS)
         return (c == u':');
 #endif
@@ -293,9 +291,10 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return pad;
 
-    // Replace one or more reserved characters with a single pad
     QString validName;
     validName.reserve(name.size());
+
+    // Replace one or more reserved characters with a single pad
     for (const QChar c : name)
     {
         if (isReservedCharacter(c))
