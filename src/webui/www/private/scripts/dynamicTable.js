@@ -65,6 +65,28 @@ window.qBittorrent.DynamicTable ??= (() => {
         return 0;
     };
 
+    const formatTimeSinceAdded = (seconds) => {
+        const minute = 60;
+        const hour = 60 * minute;
+        const day = 24 * hour;
+        const month = 30 * day;
+        const year = 12 * month;
+
+        if (seconds < hour)
+            return `${Math.max(1, Math.floor(seconds / minute))} m`;
+
+        if (seconds <= (72 * hour))
+            return `${Math.floor(seconds / hour)} h`;
+
+        if (seconds <= (90 * day))
+            return `${Math.floor(seconds / day)} d`;
+
+        if (seconds <= (24 * month))
+            return `${Math.floor(seconds / month)} mo`;
+
+        return `${Math.floor(seconds / year)} y`;
+    };
+
     const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
     const clientData = window.qBittorrent.ClientData ?? window.parent.qBittorrent.ClientData;
 
@@ -1145,6 +1167,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("category", "", "QBT_TR(Category)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("tags", "", "QBT_TR(Tags)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]", 100, true);
+            this.newColumn("time_since_added", "", "QBT_TR(Time Since Added)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("completion_on", "", "QBT_TR(Completed On)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("tracker", "", "QBT_TR(Tracker)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("dl_limit", "", "QBT_TR(Down Limit)QBT_TR[CONTEXT=TransferListModel]", 100, false);
@@ -1172,6 +1195,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["time_since_added"].dataProperties[0] = "added_on";
 
             this.initColumnsFunctions();
         }
@@ -1450,6 +1474,18 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                 td.textContent = date;
                 td.title = date;
+            };
+
+            // time_since_added
+            this.columns["time_since_added"].updateTd = function(td, row) {
+                const addedOn = this.getRowValue(row);
+                const duration = formatTimeSinceAdded(Math.max((Date.now() / 1000) - addedOn, 0));
+                const date = window.qBittorrent.Misc.formatDate(new Date(addedOn * 1000));
+                td.textContent = duration;
+                td.title = date;
+            };
+            this.columns["time_since_added"].compareRows = function(row1, row2) {
+                return compareNumbers(this.getRowValue(row2), this.getRowValue(row1));
             };
 
             // completion_on

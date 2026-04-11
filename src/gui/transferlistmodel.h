@@ -42,6 +42,8 @@ namespace BitTorrent
     class InfoHash;
 }
 
+class QTimer;
+
 class TransferListModel final : public QAbstractListModel
 {
     Q_OBJECT
@@ -66,6 +68,7 @@ public:
         TR_CATEGORY,
         TR_TAGS,
         TR_ADD_DATE,
+        TR_TIME_SINCE_ADDED,
         TR_SEED_DATE,
         TR_TRACKER,
         TR_DLLIMIT,
@@ -114,6 +117,7 @@ private slots:
     void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
     void handleTorrentStatusUpdated(BitTorrent::Torrent *torrent);
     void handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents);
+    void refreshAddedAgeColumn();
 
 private:
     void configure();
@@ -149,6 +153,7 @@ private:
     QIcon m_stalledDLIcon;
     QIcon m_stalledUPIcon;
     QIcon m_uploadingIcon;
+    QTimer *m_addedAgeRefreshTimer = nullptr;
 };
 
 Q_DECLARE_METATYPE(TransferListModel::Column)
