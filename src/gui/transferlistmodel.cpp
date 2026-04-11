@@ -169,6 +169,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_UPSPEED: return tr("Up Speed", "i.e: Upload speed");
             case TR_RATIO: return tr("Ratio", "Share ratio");
             case TR_POPULARITY: return tr("Popularity");
+            case TR_AVERAGE_MONTHLY_UPLOAD: return tr("Average Monthly Upload", "Amount of data uploaded per month on average (e.g. in MB)");
             case TR_ETA: return tr("ETA", "i.e: Estimated Time of Arrival / Time left");
             case TR_CATEGORY: return tr("Category");
             case TR_TAGS: return tr("Tags");
@@ -229,6 +230,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_RATIO_LIMIT:
             case TR_RATIO:
             case TR_POPULARITY:
+            case TR_AVERAGE_MONTHLY_UPLOAD:
             case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
@@ -397,6 +399,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return ratioString(torrent->effectiveShareLimits().ratioLimit);
     case TR_POPULARITY:
         return ratioString(torrent->popularity());
+    case TR_AVERAGE_MONTHLY_UPLOAD:
+        return unitString(torrent->averageMonthlyUpload());
     case TR_CATEGORY:
         return torrent->category();
     case TR_TAGS:
@@ -504,6 +508,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->totalPayloadDownload();
     case TR_AMOUNT_UPLOADED_SESSION:
         return torrent->totalPayloadUpload();
+    case TR_AVERAGE_MONTHLY_UPLOAD:
+        return torrent->averageMonthlyUpload();
     case TR_AMOUNT_LEFT:
         return torrent->remainingSize();
     case TR_TIME_ELAPSED:
