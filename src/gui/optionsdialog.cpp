@@ -669,13 +669,21 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
     m_ui->lineEditSmtpServer->setText(pref->getMailNotificationSMTP());
-    m_ui->comboSmtpEncryption->setToolTip(u"<html><body><p>" + tr("Select the encryption type used when sending SMTP emails") + u"</p><p><b>"
-        + tr("None") + u"</b> : " + tr("no encryption used when sending emails") + u" <br><b>"
-        + tr("(not recommended)") + u"</b> <em>" + tr("[Default port : 25]") + u"</em></p><p><b>"
-        + tr("STARTTLS") + u"</b> : " + tr("use STARTTLS encryption when sending emails") + u" <br><b>"
-        + tr("(recommended)") + u"</b> <em>" + tr("[Default port : 587]") + u"</em></p><p><b>"
-        + tr("SMTPS") + u"</b> : " + tr("use SMTPS encryption when sending emails") + u" <br><b>"
-        + tr("(check server supports this)") + u"</b> <em>" + tr("[Default port : 465]") + u"</em></p></body></html>");
+    m_ui->comboSmtpEncryption->setToolTip(u"<html><body>"
+        + u"<p>%1</p>"_s.arg(tr("Select the encryption type used when sending SMTP emails"))
+        + u"<p>"
+        + u"<b>%1</b>: %2<br>"_s.arg(tr("None"), tr("no encryption used when sending emails"))
+        + u"<b>%1</b> <em>[%2] : [%3]</em>"_s.arg(tr("(last choice if no other option)"), tr("Default port"), QString::number(Net::DEFAULT_PORT))
+        + u"</p>"
+        + u"<p>"
+        + u"<b>%1</b>: %2<br>"_s.arg(tr("STARTTLS"), tr("use STARTTLS encryption when sending emails"))
+        + u"<b>%1</b> <em>[%2] : [%3]</em>"_s.arg(tr("(alternative choice if supported)"), tr("Default port"), QString::number(Net::DEFAULT_PORT_STARTTLS))
+        + u"</p>"
+        + u"<p>"
+        + u"<b>%1</b>: %2<br>"_s.arg(tr("SMTPS"), tr("use SMTPS encryption when sending emails"))
+        + u"<b>%1</b> <em>[%2] : [%3]</em>"_s.arg(tr("(best choice if supported)"), tr("Default port"), QString::number(Net::DEFAULT_PORT_SSL))
+        + u"</p>"
+        + u"</body></html>");
     m_ui->comboSmtpEncryption->addItem(tr("None"), QVariant::fromValue(Net::SMTPEncryption::None));
     m_ui->comboSmtpEncryption->addItem(tr("STARTTLS"), QVariant::fromValue(Net::SMTPEncryption::STARTTLS));
     m_ui->comboSmtpEncryption->addItem(tr("SMTPS"), QVariant::fromValue(Net::SMTPEncryption::SMTPS));
@@ -1873,12 +1881,20 @@ void OptionsDialog::adjustProxyOptions()
 void OptionsDialog::changeSmtpEncryptionPortInfoLabel()
 {
     const Net::SMTPEncryption encryptionType = m_ui->comboSmtpEncryption->currentData().value<Net::SMTPEncryption>();
-    if (encryptionType == Net::SMTPEncryption::None) // None
-        m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 25"));
-    else if (encryptionType == Net::SMTPEncryption::STARTTLS) // STARTTLS
-        m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 587"));
-    else if (encryptionType == Net::SMTPEncryption::SMTPS) // SSL
-        m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: 465"));
+    int port = 0;
+    switch (encryptionType)
+    {
+    case Net::SMTPEncryption::None:
+        port = Net::DEFAULT_PORT;
+        break;
+    case Net::SMTPEncryption::STARTTLS:
+        port = Net::DEFAULT_PORT_STARTTLS;
+        break;
+    case Net::SMTPEncryption::SMTPS:
+        port = Net::DEFAULT_PORT_SSL;
+        break;
+    }
+    m_ui->labelSmtpEncryptionPortInfo->setText(tr("Default port: %1").arg(QString::number(port)));
 }
 
 bool OptionsDialog::isSplashScreenDisabled() const
