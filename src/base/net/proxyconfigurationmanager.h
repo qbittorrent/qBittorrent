@@ -35,7 +35,7 @@
 
 namespace Net
 {
-    inline namespace Proxy
+    inline namespace ProxyNS
     {
         Q_NAMESPACE
 

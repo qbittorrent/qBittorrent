@@ -51,7 +51,8 @@ enum DoubleClickAction
 
 namespace Net
 {
-    inline namespace Proxy {
+    inline namespace ProxyNS
+    {
         enum class ProxyType;
     }
 }

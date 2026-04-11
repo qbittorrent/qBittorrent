@@ -356,7 +356,16 @@
                         <label for="mailNotificationEncryptionCombobox">QBT_TR(SMTP encryption:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <select id="mailNotificationEncryptionCombobox">
+                        <select id="mailNotificationEncryptionCombobox" title="QBT_TR(Select the encryption type used when sending SMTP emails)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(no encryption used when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((last choice if no other option))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 25
+
+QBT_TR(STARTTLS)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(use STARTTLS encryption when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((alternative choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 587
+
+QBT_TR(SMTPS)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(use SMTPS encryption when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 465">
                             <option value="None">QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="STARTTLS">QBT_TR(STARTTLS)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="SMTPS">QBT_TR(SMTPS)QBT_TR[CONTEXT=OptionsDialog]</option>

@@ -88,7 +88,8 @@ namespace TrayIcon
 
 namespace Net
 {
-    inline namespace SMTPEncryptionNS {
+    inline namespace SMTPEncryptionNS
+    {
         enum class SMTPEncryption;
     }
 }
