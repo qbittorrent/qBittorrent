@@ -113,7 +113,7 @@ namespace
     }
 
     // Check if an individual filename or path component is valid.
-    bool isValidComponent(const QStringView name, bool isFileName)
+    bool isValidFsComponent(const QStringView name, bool isFileName)
     {
         if (name.isEmpty())
             return false;
@@ -274,14 +274,14 @@ bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 // Check if a filename is valid without sanitizing
 bool Utils::Fs::isValidFileName(QStringView name)
 {
-    return isValidComponent(name, true);
+    return isValidFsComponent(name, true);
 }
 
 // Check if a path component is valid without sanitizing
 // Allows "." and ".." which are valid in directory parts of a path.
 bool Utils::Fs::isValidPathComponent(QStringView component)
 {
-    return isValidComponent(component, false);
+    return isValidFsComponent(component, false);
 }
 
 // Sanitize filename using pad

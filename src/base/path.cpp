@@ -84,27 +84,6 @@ Path::Path(const std::string &pathStr)
 {
 }
 
-bool Path::isEmpty() const
-{
-    return m_pathStr.isEmpty();
-}
-
-bool Path::isAbsolute() const
-{
-    // `QDir::isAbsolutePath` treats `:` as a path to QResource, so handle it manually
-    if (m_pathStr.startsWith(u':'))
-        return false;
-    return QDir::isAbsolutePath(m_pathStr);
-}
-
-bool Path::isRelative() const
-{
-    // `QDir::isRelativePath` treats `:` as a path to QResource, so handle it manually
-    if (m_pathStr.startsWith(u':'))
-        return true;
-    return QDir::isRelativePath(m_pathStr);
-}
-
 // Returns true if the path is non-empty and all its components are valid
 bool Path::isValid() const
 {
@@ -128,6 +107,27 @@ bool Path::isValid() const
     }
 
     return true;
+}
+
+bool Path::isEmpty() const
+{
+    return m_pathStr.isEmpty();
+}
+
+bool Path::isAbsolute() const
+{
+    // `QDir::isAbsolutePath` treats `:` as a path to QResource, so handle it manually
+    if (m_pathStr.startsWith(u':'))
+        return false;
+    return QDir::isAbsolutePath(m_pathStr);
+}
+
+bool Path::isRelative() const
+{
+    // `QDir::isRelativePath` treats `:` as a path to QResource, so handle it manually
+    if (m_pathStr.startsWith(u':'))
+        return true;
+    return QDir::isRelativePath(m_pathStr);
 }
 
 bool Path::exists() const
