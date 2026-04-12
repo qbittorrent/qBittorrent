@@ -925,7 +925,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                         let updateTags = false;
                         let updateTrackers = false;
                         let updateTorrents = false;
-                        const fullUpdate = (responseJSON["fullUpdate"] === true);
+                        const fullUpdate = (responseJSON["full_update"] === true);
                         if (fullUpdate) {
                             torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
                             updateStatuses = true;
