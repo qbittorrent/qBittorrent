@@ -68,6 +68,7 @@ private slots:
     void torrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
 
 private:
+    void onUIThemeChanged();
     void populate();
     void addToModel(const Tag &tag, int count);
     void removeFromModel(int row);

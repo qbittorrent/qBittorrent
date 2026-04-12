@@ -118,10 +118,10 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
     // Tracker list
     m_trackerList = new TrackerListWidget(this);
-    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon(u"go-up"_s));
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
-    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon(u"go-down"_s));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
+    loadUIThemeResources();
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &PropertiesWidget::loadUIThemeResources);
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::decreaseSelectedTrackerTiers);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::increaseSelectedTrackerTiers);
     m_ui->hBoxLayoutTrackers->insertWidget(0, m_trackerList);
@@ -273,6 +273,14 @@ PropTabBar *PropertiesWidget::tabBar() const
 LineEdit *PropertiesWidget::contentFilterLine() const
 {
     return m_contentFilterLine;
+}
+
+void PropertiesWidget::loadUIThemeResources()
+{
+    m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
+    m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
+    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon(u"go-up"_s));
+    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon(u"go-down"_s));
 }
 
 void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)

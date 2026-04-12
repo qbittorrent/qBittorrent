@@ -57,6 +57,7 @@ public:
 
 protected:
     bool event(QEvent *e) override;
+    void changeEvent(QEvent *e) override;
     void enterEvent(QEnterEvent *e) override;
     void leaveEvent(QEvent *e) override;
     void mouseMoveEvent(QMouseEvent *e) override;
@@ -79,6 +80,7 @@ protected:
     static constexpr int borderWidth = 1;
 
 private:
+    void refreshTheme();
     void showToolTip(const QHelpEvent*);
     void highlightFile(int imagePos);
 
