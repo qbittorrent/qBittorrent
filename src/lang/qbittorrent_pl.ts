@@ -12268,6 +12268,11 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <translation>Dodano</translation>
     </message>
     <message>
+        <source>Time Since Added</source>
+        <comment>Time elapsed since torrent was added to transfer list</comment>
+        <translation>Czas od dodania</translation>
+    </message>
+    <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>

@@ -2931,6 +2931,11 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Dodano</translation>
     </message>
     <message>
+        <source>Time Since Added</source>
+        <comment>Time elapsed since torrent was added to transfer list</comment>
+        <translation>Czas od dodania</translation>
+    </message>
+    <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
         <translation>Ukończono</translation>

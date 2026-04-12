@@ -29,9 +29,12 @@
 
 #include "transferlistmodel.h"
 
+#include <algorithm>
+
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QTimer>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -48,6 +51,44 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
+    constexpr int ADDED_AGE_REFRESH_INTERVAL = 15 * 1000;
+    constexpr qint64 MINUTE = 60;
+    constexpr qint64 HOUR = 60 * MINUTE;
+    constexpr qint64 DAY = 24 * HOUR;
+    constexpr qint64 MONTH = 30 * DAY;
+    constexpr qint64 YEAR = 12 * MONTH;
+
+    qint64 elapsedSecondsSince(const QDateTime &dateTime, const QDateTime &currentDateTime)
+    {
+        if (!dateTime.isValid())
+            return -1;
+
+        return std::max<qint64>(0, dateTime.secsTo(currentDateTime));
+    }
+
+    QString singleUnitAddedAgeString(const qint64 seconds)
+    {
+        if (seconds < 0)
+            return {};
+
+        if (seconds < HOUR)
+        {
+            const qint64 minutes = std::max<qint64>(1, (seconds / MINUTE));
+            return u"%1 m"_s.arg(QString::number(minutes));
+        }
+
+        if (seconds <= (72 * HOUR))
+            return u"%1 h"_s.arg(QString::number(seconds / HOUR));
+
+        if (seconds <= (90 * DAY))
+            return u"%1 d"_s.arg(QString::number(seconds / DAY));
+
+        if (seconds <= (24 * MONTH))
+            return u"%1 mo"_s.arg(QString::number(seconds / MONTH));
+
+        return u"%1 y"_s.arg(QString::number(seconds / YEAR));
+    }
+
     QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
     {
         struct TorrentStateColorDescriptor
@@ -115,6 +156,11 @@ TransferListModel::TransferListModel(QObject *parent)
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
 
+    m_addedAgeRefreshTimer = new QTimer(this);
+    m_addedAgeRefreshTimer->setInterval(ADDED_AGE_REFRESH_INTERVAL);
+    connect(m_addedAgeRefreshTimer, &QTimer::timeout, this, &TransferListModel::refreshAddedAgeColumn);
+    m_addedAgeRefreshTimer->start();
+
     loadUIThemeResources();
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
     {
@@ -174,6 +220,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_TAGS: return tr("Tags");
             case TR_CREATE_DATE: return tr("Created On", "Torrent was initially created on 01/01/2010 08:00");
             case TR_ADD_DATE: return tr("Added On", "Torrent was added to transfer list on 01/01/2010 08:00");
+            case TR_TIME_SINCE_ADDED: return tr("Time Since Added", "Time elapsed since torrent was added to transfer list");
             case TR_SEED_DATE: return tr("Completed On", "Torrent was completed on 01/01/2010 08:00");
             case TR_TRACKER: return tr("Tracker");
             case TR_DLLIMIT: return tr("Down Limit", "i.e: Download limit");
@@ -232,6 +279,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_QUEUE_POSITION:
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
+            case TR_TIME_SINCE_ADDED:
             case TR_REANNOUNCE:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
@@ -245,6 +293,8 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
 
 QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, const int column) const
 {
+    const QDateTime currentDateTime = QDateTime::currentDateTimeUtc();
+
     bool hideValues = false;
     if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
         hideValues = true;
@@ -369,6 +419,14 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return tr("N/A");
     };
 
+    const auto addedAgeString = [&currentDateTime](const QDateTime &addedTime) -> QString
+    {
+        if (const qint64 elapsedTime = elapsedSecondsSince(addedTime, currentDateTime); elapsedTime >= 0)
+            return singleUnitAddedAgeString(elapsedTime);
+
+        return {};
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -405,6 +463,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return QLocale().toString(torrent->creationDate().toLocalTime(), QLocale::ShortFormat);
     case TR_ADD_DATE:
         return QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat);
+    case TR_TIME_SINCE_ADDED:
+        return addedAgeString(torrent->addedTime());
     case TR_SEED_DATE:
         return QLocale().toString(torrent->completedTime().toLocalTime(), QLocale::ShortFormat);
     case TR_TRACKER:
@@ -454,6 +514,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
 QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, const int column, const bool alt) const
 {
+    const QDateTime currentDateTime = QDateTime::currentDateTimeUtc();
+
     switch (column)
     {
     case TR_NAME:
@@ -488,6 +550,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->creationDate();
     case TR_ADD_DATE:
         return torrent->addedTime();
+    case TR_TIME_SINCE_ADDED:
+        return elapsedSecondsSince(torrent->addedTime(), currentDateTime);
     case TR_SEED_DATE:
         return torrent->completedTime();
     case TR_TRACKER:
@@ -570,11 +634,14 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_CATEGORY:
         case TR_TAGS:
         case TR_TRACKER:
+        case TR_TIME_SINCE_ADDED:
         case TR_SAVE_PATH:
         case TR_DOWNLOAD_PATH:
         case TR_INFOHASH_V1:
         case TR_INFOHASH_V2:
-            return displayValue(torrent, index.column());
+            return (index.column() == TR_TIME_SINCE_ADDED)
+                ? displayValue(torrent, TR_ADD_DATE)
+                : displayValue(torrent, index.column());
         }
         break;
     case Qt::TextAlignmentRole:
@@ -601,6 +668,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_QUEUE_POSITION:
         case TR_LAST_ACTIVITY:
         case TR_AVAILABILITY:
+        case TR_TIME_SINCE_ADDED:
         case TR_REANNOUNCE:
             return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         }
@@ -714,6 +782,14 @@ void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *>
         // save the overhead when more than half of the torrent list needs update
         emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
     }
+}
+
+void TransferListModel::refreshAddedAgeColumn()
+{
+    if (rowCount() <= 0)
+        return;
+
+    emit dataChanged(index(0, TR_TIME_SINCE_ADDED), index((rowCount() - 1), TR_TIME_SINCE_ADDED), {Qt::DisplayRole});
 }
 
 void TransferListModel::configure()
