@@ -1644,14 +1644,41 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    </property>
                   </widget>
                  </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="labelSmtpEncryption">
+                   <property name="text">
+                    <string>SMTP encryption:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <layout class="QHBoxLayout" name="layoutSmtpEncryption">
+                   <item>
+                    <widget class="QComboBox" name="comboSmtpEncryption"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelSmtpEncryptionPortInfo">
+                     <property name="text">
+                      <string>Default port: </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSmtpEncryptionSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkSmtpSSL">
-                 <property name="text">
-                  <string>This server requires a secure connection (SSL)</string>
-                 </property>
-                </widget>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupMailNotifAuth">

@@ -35,16 +35,19 @@
 
 namespace Net
 {
-    Q_NAMESPACE
-
-    enum class ProxyType
+    inline namespace ProxyNS
     {
-        None = 0,
-        HTTP = 1,
-        SOCKS5 = 2,
-        SOCKS4 = 5
-    };
-    Q_ENUM_NS(ProxyType)
+        Q_NAMESPACE
+
+        enum class ProxyType
+        {
+            None = 0,
+            HTTP = 1,
+            SOCKS5 = 2,
+            SOCKS4 = 5
+        };
+        Q_ENUM_NS(ProxyType)
+    }
 
     struct ProxyConfiguration
     {

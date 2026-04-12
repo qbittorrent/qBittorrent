@@ -51,7 +51,10 @@ enum DoubleClickAction
 
 namespace Net
 {
-    enum class ProxyType;
+    inline namespace ProxyNS
+    {
+        enum class ProxyType;
+    }
 }
 
 namespace Ui
@@ -87,6 +90,7 @@ public slots:
     void showConnectionTab();
 
 private slots:
+    void changeSmtpEncryptionPortInfoLabel();
     void adjustProxyOptions();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
