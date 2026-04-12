@@ -177,7 +177,7 @@ namespace BitTorrent
         bool isDisableAutoTMMWhenCategorySavePathChanged() const override;
         void setDisableAutoTMMWhenCategorySavePathChanged(bool value) override;
 
-        ShareLimits shareLimits() const override;
+        const ShareLimits &shareLimits() const override;
         void setShareLimits(ShareLimits shareLimits) override;
 
         QString getDHTBootstrapNodes() const override;
@@ -741,6 +741,7 @@ namespace BitTorrent
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<ShareLimitAction> m_shareLimitAction;
+        CachedSettingValue<ShareLimitsMode> m_shareLimitsMode;
         CachedSettingValue<Path> m_savePath;
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
@@ -867,6 +868,8 @@ namespace BitTorrent
         FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
+
+        ShareLimits m_shareLimits;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

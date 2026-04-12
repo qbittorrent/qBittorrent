@@ -1138,13 +1138,12 @@ void OptionsDialog::loadBittorrentTabOptions()
 
     m_ui->spinMaxRatio->setMaximum(std::numeric_limits<int>::max());
 
-    const BitTorrent::ShareLimits shareLimits = session->shareLimits();
+    const BitTorrent::ShareLimits &shareLimits = session->shareLimits();
     if (shareLimits.ratioLimit >= 0.)
     {
         // Enable
         m_ui->checkMaxRatio->setChecked(true);
         m_ui->spinMaxRatio->setEnabled(true);
-        m_ui->comboRatioLimitAct->setEnabled(true);
         m_ui->spinMaxRatio->setValue(shareLimits.ratioLimit);
     }
     else
@@ -1190,6 +1189,11 @@ void OptionsDialog::loadBittorrentTabOptions()
     };
     m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(shareLimits.action));
 
+    if (shareLimits.mode == BitTorrent::ShareLimitsMode::MatchAll)
+        m_ui->radioButtonShareLimitsModeAll->setChecked(true);
+    else
+        m_ui->radioButtonShareLimitsModeAny->setChecked(true);
+
     m_ui->checkEnableAddTrackers->setChecked(session->isAddTrackersEnabled());
     m_ui->textTrackers->setPlainText(session->additionalTrackers());
 
@@ -1218,7 +1222,8 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxRatio, qOverload<double>(&QDoubleSpinBox::valueChanged),this, &ThisType::enableApplyButton);
-    connect(m_ui->comboRatioLimitAct, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->radioButtonShareLimitsModeAny, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, m_ui->spinMaxSeedingMinutes, &QWidget::setEnabled);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1267,6 +1272,7 @@ void OptionsDialog::saveBittorrentTabOptions() const
         .ratioLimit = getMaxRatio(),
         .seedingTimeLimit = getMaxSeedingMinutes(),
         .inactiveSeedingTimeLimit = getMaxInactiveSeedingMinutes(),
+        .mode = (m_ui->radioButtonShareLimitsModeAll->isChecked() ? BitTorrent::ShareLimitsMode::MatchAll : BitTorrent::ShareLimitsMode::MatchAny),
         .action = actIndex.value(m_ui->comboRatioLimitAct->currentIndex())
     });
 
