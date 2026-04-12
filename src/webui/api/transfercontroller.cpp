@@ -156,6 +156,8 @@ void TransferController::banPeersAction()
         const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());
         if (!addr.ip.isNull())
             BitTorrent::Session::instance()->banIP(addr.ip.toString());
+        else
+            BitTorrent::Session::instance()->banIP(peer.trimmed());
     }
 
     setResult(QString());
