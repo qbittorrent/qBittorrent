@@ -584,7 +584,7 @@ void Preferences::setMailNotificationSMTP(const QString &smtpServer)
 
 Net::SMTPEncryption Preferences::getMailNotificationSmtpEncryptionType() const
 {
-    return value(u"Preferences/MailNotification/EncryptionType"_s, Net::SMTPEncryption::None);
+    return value(u"Preferences/MailNotification/EncryptionType"_s, Net::SMTPEncryption::SMTPS);
 }
 
 void Preferences::setMailNotificationSmtpEncryptionType(const Net::SMTPEncryption mailEncryptionType)

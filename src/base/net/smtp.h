@@ -42,9 +42,9 @@ class QSslSocket;
 
 namespace Net
 {
-    const short DEFAULT_PORT = 25;
-    const short DEFAULT_PORT_SSL = 465;
-    const short DEFAULT_PORT_STARTTLS = 587;
+    const short SMTP_DEFAULT_PORT = 25;
+    const short SMTP_DEFAULT_PORT_SSL = 465;
+    const short SMTP_DEFAULT_PORT_STARTTLS = 587;
 
     inline namespace SMTPEncryptionNS
     {

@@ -155,15 +155,15 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     switch (pref->getMailNotificationSmtpEncryptionType())
     {
     case SMTPEncryption::SMTPS:
-        m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(DEFAULT_PORT_SSL));
+        m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT_SSL));
         break;
 
     case SMTPEncryption::STARTTLS:
-        m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT_STARTTLS));
+        m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT_STARTTLS));
         break;
 
-    case SMTPEncryption::None:
-        m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT));
+    case SMTPEncryption::None:  
+        m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT));
         break;
     }
 }
@@ -228,7 +228,9 @@ void Smtp::readyRead()
                 m_state = Quit;
             }
             else
+            {
                 authenticate();
+            }
             break;
         case AuthRequestSent:
         case AuthUsernameSent:
@@ -425,14 +427,18 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
 
     // Check if STARTTLS is available and should be used
     if (m_extensions.contains(u"STARTTLS"_s) && (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryption::STARTTLS))
+    {
         startTLS();
+    }
     else if ((!m_usingStartTls) && (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryption::STARTTLS))
     {
         logError(tr("STARTTLS is required but was not offered by the server. Unable to send the email."));
         m_state = Quit;
     }
     else
+    {
         authenticate();
+    }
 }
 
 void Smtp::authenticate()
