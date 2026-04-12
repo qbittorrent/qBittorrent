@@ -70,6 +70,7 @@ add_library(qbt_gui STATIC
     log/logmodel.h
     mainwindow.h
     optionsdialog.h
+    pch.h
     powermanagement/inhibitor.h
     powermanagement/powermanagement.h
     previewlistdelegate.h
@@ -263,6 +264,12 @@ target_link_libraries(qbt_gui
     PUBLIC
         Qt::Gui Qt::Widgets
 )
+
+if (ENABLE_PCH)
+    target_precompile_headers(qbt_gui PRIVATE
+        "$<$<COMPILE_LANGUAGE:CXX>:${CMAKE_CURRENT_SOURCE_DIR}/pch.h>"
+    )
+endif()
 
 if (DBUS)
     target_sources(qbt_gui PRIVATE
