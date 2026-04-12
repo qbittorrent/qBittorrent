@@ -212,6 +212,30 @@ void AutoDownloader::setRule(const AutoDownloadRule &rule)
     }
 }
 
+bool AutoDownloader::cloneRule(const QString &sourceName, const QString &cloneName)
+{
+    if (!hasRule(sourceName) || hasRule(cloneName))
+        return false;
+
+    const auto index = m_rulesByName.value(sourceName);
+    // Copy the existing rule and change its name to the new one
+    AutoDownloadRule clonedRule = m_rules[index];
+    clonedRule.setName(cloneName);
+    // Disable the cloned rule by default to prevent accidental downloads
+    clonedRule.setEnabled(false);
+    // Clear previously matched episodes to allow matching all episodes for the new rule
+    clonedRule.setPreviouslyMatchedEpisodes(QStringList());
+    // Clear last match time to allow matching old articles for the new rule
+    clonedRule.setLastMatch(QDateTime());
+    setRule_impl(clonedRule);
+    sortRules();
+    m_dirty = true;
+    store();
+    emit ruleAdded(cloneName);
+    resetProcessingQueue();
+    return true;
+}
+
 bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleName)
 {
     if (!hasRule(ruleName) || hasRule(newRuleName))
