@@ -73,6 +73,14 @@ namespace DNS
     Q_ENUM_NS(Service)
 }
 
+namespace Net
+{
+    inline namespace SMTPEncryptionNS
+    {
+        enum class SMTPEncryption;
+    }
+}
+
 namespace TrayIcon
 {
     Q_NAMESPACE
@@ -84,14 +92,6 @@ namespace TrayIcon
         MonoLight = 2
     };
     Q_ENUM_NS(Style)
-}
-
-namespace Net
-{
-    inline namespace SMTPEncryptionNS
-    {
-        enum class SMTPEncryption;
-    }
 }
 
 class Preferences final : public QObject
