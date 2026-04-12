@@ -1221,6 +1221,49 @@
              </widget>
             </item>
             <item>
+             <layout class="QHBoxLayout" name="horizontalLayoutMinFreeSpace">
+              <item>
+               <widget class="QCheckBox" name="checkMinFreeSpaceEnabled">
+                <property name="text">
+                 <string>Do not start downloads when free disk space falls below:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinMinFreeSpace">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="suffix">
+                 <string> MiB</string>
+                </property>
+                <property name="minimum">
+                 <number>1</number>
+                </property>
+                <property name="maximum">
+                 <number>2097151</number>
+                </property>
+                <property name="value">
+                 <number>100</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacerMinFreeSpace">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item>
              <widget class="QGroupBox" name="groupSavingManagement">
               <property name="title">
                <string>Saving Management</string>

@@ -1299,7 +1299,7 @@ void TorrentImpl::updateState()
     else if (!hasMetadata())
     {
         if (isStopped())
-            m_state = TorrentState::StoppedDownloading;
+            m_state = m_stoppedDueLowDiskSpace ? TorrentState::InsufficientDiskSpace : TorrentState::StoppedDownloading;
         else if (isQueued())
             m_state = TorrentState::QueuedDownloading;
         else
@@ -1326,7 +1326,7 @@ void TorrentImpl::updateState()
     else
     {
         if (isStopped())
-            m_state = TorrentState::StoppedDownloading;
+            m_state = m_stoppedDueLowDiskSpace ? TorrentState::InsufficientDiskSpace : TorrentState::StoppedDownloading;
         else if (isQueued())
             m_state = TorrentState::QueuedDownloading;
         else if (isForced())
@@ -1953,6 +1953,11 @@ void TorrentImpl::reload()
     }
 }
 
+void TorrentImpl::setStoppedDueLowDiskSpace(const bool value)
+{
+    m_stoppedDueLowDiskSpace = value;
+}
+
 void TorrentImpl::stop()
 {
     if (!m_isStopped)
@@ -1994,6 +1999,7 @@ void TorrentImpl::start(const TorrentOperatingMode mode)
     if (m_isStopped)
     {
         m_isStopped = false;
+        m_stoppedDueLowDiskSpace = false;
         deferredRequestResumeData();
         m_session->handleTorrentStarted(this);
     }

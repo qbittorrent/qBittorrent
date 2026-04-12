@@ -481,6 +481,8 @@ namespace BitTorrent
         virtual QString lastExternalIPv6Address() const = 0;
 
         virtual qint64 freeDiskSpace() const = 0;
+        virtual qint64 minFreeDiskSpace() const = 0;
+        virtual void setMinFreeDiskSpace(qint64 minFree) = 0;
 
     signals:
         void startupProgressUpdated(int progress);
