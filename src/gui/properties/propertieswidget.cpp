@@ -33,6 +33,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QFuture>
+#include <QLabel>
 #include <QListWidgetItem>
 #include <QMenu>
 #include <QMessageBox>
@@ -600,12 +601,29 @@ void PropertiesWidget::configure()
                 delete m_speedWidget;
             }
 
-            const auto displayText = u"<center><b>%1</b><p>%2</p></center>"_s
-                .arg(tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
+            const QColor displayTextColor = palette().color(QPalette::WindowText);
+            const auto displayText = u"<html><head/><body><p align=\"center\">"
+                u"<b>%1</b><br/>"
+                u"<a href=\"#\"><span style=\"text-decoration: underline; color: %2;\">%3</span></a>"
+                u"</p></body></html>"_s
+                .arg(tr("Speed graphs are disabled").toHtmlEscaped(), displayTextColor.name(),
+                    tr("Open Advanced Options to enable them").toHtmlEscaped());
             auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+            label->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+            label->setFocusPolicy(Qt::StrongFocus);
+            label->setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::LinksAccessibleByKeyboard);
+            label->setToolTip(tr("Open Advanced Options"));
+            connect(label, &QLabel::linkHovered, label, [label](const QString &link)
+            {
+                if (link.isEmpty())
+                    label->unsetCursor();
+                else
+                    label->setCursor(Qt::PointingHandCursor);
+            });
+            connect(label, &QLabel::linkActivated, this, &PropertiesWidget::openAdvancedSettingsLinkActivated);
             m_speedWidget = label;
-            m_ui->speedLayout->addWidget(m_speedWidget);
+            m_ui->speedLayout->addWidget(m_speedWidget, 0, Qt::AlignCenter);
         }
     }
 }
