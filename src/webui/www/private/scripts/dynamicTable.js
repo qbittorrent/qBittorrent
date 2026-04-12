@@ -797,6 +797,16 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.setRowClass();
         }
 
+        selectInverse() {
+            const currentSelectedRows = new Set(this.selectedRows);
+
+            const newSelectedRows = this.getFilteredAndSortedRows()
+                .filter(row => !currentSelectedRows.has(row.rowId))
+                .map(row => row.rowId);
+
+            this.reselectRows(newSelectedRows);
+        }
+
         setRowClass() {
             for (const tr of this.getTrs())
                 tr.classList.toggle("selected", this.isRowSelected(tr.rowId));
