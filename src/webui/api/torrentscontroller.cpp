@@ -112,6 +112,7 @@ const QString KEY_PROP_PEERS = u"peers"_s;
 const QString KEY_PROP_PEERS_TOTAL = u"peers_total"_s;
 const QString KEY_PROP_RATIO = u"share_ratio"_s;
 const QString KEY_PROP_POPULARITY = u"popularity"_s;
+const QString KEY_PROP_AVERAGE_MONTHLY_UPLOAD = u"average_monthly_upload"_s;
 const QString KEY_PROP_REANNOUNCE = u"reannounce"_s;
 const QString KEY_PROP_TOTAL_SIZE = u"total_size"_s;
 const QString KEY_PROP_PIECES_NUM = u"pieces_num"_s;
@@ -719,6 +720,7 @@ void TorrentsController::infoAction()
 //   - "peers_total": Torrent total number of peers
 //   - "share_ratio": Torrent share ratio
 //   - "popularity": Torrent popularity
+//   - "average_monthly_upload": Torrent average data uploaded per month
 //   - "availability": Torrent distributed copies
 //   - "reannounce": Torrent next reannounce time
 //   - "total_size": Torrent total size
@@ -786,6 +788,7 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PEERS_TOTAL, torrent->totalLeechersCount()},
         {KEY_PROP_RATIO, ((ratio >= BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio)},
         {KEY_PROP_POPULARITY, ((popularity >= BitTorrent::Torrent::MAX_RATIO) ? -1 : popularity)},
+        {KEY_PROP_AVERAGE_MONTHLY_UPLOAD, torrent->averageMonthlyUpload()},
         {KEY_TORRENT_AVAILABILITY, torrent->distributedCopies()},
         {KEY_PROP_REANNOUNCE, torrent->nextAnnounce()},
         {KEY_PROP_TOTAL_SIZE, torrent->totalSize()},
