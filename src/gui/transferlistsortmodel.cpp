@@ -36,7 +36,6 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
 #include "transferlistmodel.h"
-#include "transferlistgroupmodel.h"
 
 namespace
 {
@@ -321,31 +320,23 @@ bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIn
 
 bool TransferListSortModel::matchFilter(const int sourceRow, const QModelIndex &sourceParent) const
 {
-    // Support either direct list model or grouped model
-    if (auto *model = qobject_cast<TransferListModel *>(sourceModel()))
-    {
-        const BitTorrent::Torrent *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
-        if (!torrent) return false;
+    auto *model = qobject_cast<TransferListModel *>(sourceModel());
+    if (!model)
+        return false;
+
+    const QModelIndex index = model->index(sourceRow, 0, sourceParent);
+    if (!index.isValid())
+        return false;
+
+    if (const BitTorrent::Torrent *const torrent = model->torrentHandle(index))
         return m_filter.match(torrent);
-    }
-    if (auto *groupModel = qobject_cast<TransferListGroupModel *>(sourceModel()))
+
+    const int childCount = model->rowCount(index);
+    for (int childRow = 0; childRow < childCount; ++childRow)
     {
-        const QModelIndex idx = groupModel->index(sourceRow, 0, sourceParent);
-        const BitTorrent::Torrent *torrent = groupModel->torrentHandle(idx);
-        if (!torrent)
-        {
-            // group parent: accept if any child matches (iterate children)
-            const int childCount = groupModel->rowCount(idx);
-            for (int i = 0; i < childCount; ++i)
-            {
-                const QModelIndex child = groupModel->index(i, 0, idx);
-                const BitTorrent::Torrent *childTorrent = groupModel->torrentHandle(child);
-                if (childTorrent && m_filter.match(childTorrent))
-                    return true;
-            }
-            return false;
-        }
-        return m_filter.match(torrent);
+        if (matchFilter(childRow, index))
+            return true;
     }
+
     return false;
 }

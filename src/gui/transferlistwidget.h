@@ -146,10 +146,9 @@ private:
     BitTorrent::Torrent *resolveTorrent(const QModelIndex &proxyIndex) const;
     QList<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
-    void updateGroupModel();
+    void updateGroupingState();
 
     TransferListModel *m_listModel = nullptr;
-    class TransferListGroupModel *m_groupModel = nullptr; // optional hierarchical model
     TransferListSortModel *m_sortFilterModel = nullptr;
     QString m_contextGroupName; // group name from last context menu invocation (group parent)
 };

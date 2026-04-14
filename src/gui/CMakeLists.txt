@@ -133,7 +133,6 @@ add_library(qbt_gui STATIC
     transferlistfilterswidget.h
     transferlistfilterswidgetitem.h
     transferlistmodel.h
-    transferlistgroupmodel.h
     transferlistsortmodel.h
     transferlistwidget.h
     tristateaction.h
@@ -237,7 +236,6 @@ add_library(qbt_gui STATIC
     transferlistfilterswidget.cpp
     transferlistfilterswidgetitem.cpp
     transferlistmodel.cpp
-    transferlistgroupmodel.cpp
     transferlistsortmodel.cpp
     transferlistwidget.cpp
     tristateaction.cpp

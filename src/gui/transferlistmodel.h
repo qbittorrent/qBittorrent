@@ -29,20 +29,19 @@
 
 #pragma once
 
-#include <QAbstractListModel>
+#include <QAbstractItemModel>
 #include <QColor>
 #include <QHash>
 #include <QIcon>
 #include <QList>
+#include <QSet>
+#include <QStringList>
+#include <QVector>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
 
-namespace BitTorrent
-{
-    class InfoHash;
-}
-
-class TransferListModel final : public QAbstractListModel
+class TransferListModel final : public QAbstractItemModel
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TransferListModel)
@@ -101,6 +100,8 @@ public:
 
     explicit TransferListModel(QObject *parent = nullptr);
 
+    QModelIndex index(int row, int column, const QModelIndex &parent = {}) const override;
+    QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = {}) const override;
     int columnCount(const QModelIndex &parent = {}) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -109,7 +110,21 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     BitTorrent::Torrent *torrentHandle(const QModelIndex &index) const;
-    QModelIndex indexForTorrent(const BitTorrent::Torrent *torrent) const; // helper for grouping proxy
+    QModelIndex indexForTorrent(const BitTorrent::Torrent *torrent, int column = 0) const;
+    QString groupName(const QModelIndex &index) const;
+    QStringList groupNames() const;
+    QString groupOf(const BitTorrent::TorrentID &id) const;
+    QStringList expandedGroups() const;
+    bool hasGroups() const;
+    bool createGroup(const QString &name, const QSet<BitTorrent::TorrentID> &initialMembers = {});
+    bool renameGroup(const QString &oldName, const QString &newName);
+    bool deleteGroup(const QString &name);
+    bool addMembers(const QString &groupName, const QSet<BitTorrent::TorrentID> &members);
+    bool removeMembers(const QSet<BitTorrent::TorrentID> &members);
+    void setGroupExpanded(const QString &name, bool expanded);
+
+signals:
+    void groupsChanged();
 
 private slots:
     void addTorrents(const QList<BitTorrent::Torrent *> &torrents);
@@ -120,12 +135,42 @@ private slots:
 private:
     void configure();
     void loadUIThemeResources();
+    void loadGroups();
+    void saveGroups() const;
+    void rebuildGroupingLayout();
+    void rebuildGroupNameIndex();
+    bool isGroupIndex(const QModelIndex &index) const;
+    QModelIndex makeGroupIndex(int row, int column) const;
+    QModelIndex makeTorrentIndex(const BitTorrent::Torrent *torrent, int column) const;
+    int groupRow(const QString &name) const;
+    bool moveMemberToGroup(const BitTorrent::TorrentID &id, const QString &groupName);
+    void removeMemberFromGroup(const BitTorrent::TorrentID &id);
     QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
     QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
     QIcon getIconByState(BitTorrent::TorrentState state) const;
 
+    struct GroupData
+    {
+        QString name;
+        QSet<BitTorrent::TorrentID> members;
+    };
+
+    struct TorrentPosition
+    {
+        int topLevelRow = -1;
+        int groupRow = -1;
+        int childRow = -1;
+    };
+
     QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
     QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
+    QList<GroupData> m_groups;
+    QHash<QString, int> m_groupIndexByName;
+    QHash<BitTorrent::TorrentID, QString> m_groupByMember;
+    QStringList m_expandedGroups;
+    QVector<QList<BitTorrent::Torrent *>> m_groupedTorrents;
+    QList<BitTorrent::Torrent *> m_ungroupedTorrents;
+    QHash<BitTorrent::Torrent *, TorrentPosition> m_torrentPositions;
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
     QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;
