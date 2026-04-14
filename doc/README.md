@@ -1,4 +1,4 @@
-qBittorent man pages
+qBittorrent man pages
 ===
 
 Our man pages are written in Markdown format (.md) and we use [Pandoc](https://pandoc.org/) to

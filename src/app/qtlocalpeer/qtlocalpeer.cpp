@@ -80,37 +80,16 @@
 #include <QLocalServer>
 #include <QLocalSocket>
 
-namespace QtLP_Private
-{
-#include "qtlockedfile.cpp"
-
-#if defined(Q_OS_WIN)
-#include "qtlockedfile_win.cpp"
-#else
-#include "qtlockedfile_unix.cpp"
-#endif
-}
-
 const QByteArray ACK = QByteArrayLiteral("ack");
 
 QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
     , m_socketName(path + u"/ipc-socket")
     , m_server(new QLocalServer(this))
+    , m_lockFile(path + u"/lockfile")
 {
     m_server->setSocketOptions(QLocalServer::UserAccessOption);
-
-    m_lockFile.setFileName(path + u"/lockfile");
-    m_lockFile.open(QIODevice::ReadWrite);
-}
-
-QtLocalPeer::~QtLocalPeer()
-{
-    if (!isClient())
-    {
-        m_lockFile.unlock();
-        m_lockFile.remove();
-    }
+    m_lockFile.setStaleLockTime(0);
 }
 
 bool QtLocalPeer::isClient()
@@ -118,7 +97,7 @@ bool QtLocalPeer::isClient()
     if (m_lockFile.isLocked())
         return false;
 
-    if (!m_lockFile.lock(QtLP_Private::QtLockedFile::WriteLock, false))
+    if (!m_lockFile.tryLock())
         return true;
 
     bool res = m_server->listen(m_socketName);

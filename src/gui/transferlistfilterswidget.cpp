@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,60 +29,25 @@
 
 #include "transferlistfilterswidget.h"
 
-#include <QCheckBox>
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
-#include <QPainter>
 #include <QScrollArea>
-#include <QStyleOptionButton>
 #include <QUrl>
 #include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
-#include "base/logger.h"
-#include "base/net/downloadmanager.h"
 #include "base/preferences.h"
-#include "base/torrentfilter.h"
 #include "base/utils/compare.h"
-#include "base/utils/fs.h"
 #include "transferlistfilters/categoryfilterwidget.h"
 #include "transferlistfilters/statusfilterwidget.h"
 #include "transferlistfilters/tagfilterwidget.h"
 #include "transferlistfilters/trackersfilterwidget.h"
+#include "transferlistfilters/trackerstatusfilterwidget.h"
+#include "transferlistfilterswidgetitem.h"
 #include "transferlistwidget.h"
-#include "uithememanager.h"
 #include "utils.h"
-
-namespace
-{
-    class ArrowCheckBox final : public QCheckBox
-    {
-    public:
-        using QCheckBox::QCheckBox;
-
-    private:
-        void paintEvent(QPaintEvent *) override
-        {
-            QPainter painter(this);
-
-            QStyleOptionViewItem indicatorOption;
-            indicatorOption.initFrom(this);
-            indicatorOption.rect = style()->subElementRect(QStyle::SE_CheckBoxIndicator, &indicatorOption, this);
-            indicatorOption.state |= (QStyle::State_Children
-                                      | (isChecked() ? QStyle::State_Open : QStyle::State_None));
-            style()->drawPrimitive(QStyle::PE_IndicatorBranch, &indicatorOption, &painter, this);
-
-            QStyleOptionButton labelOption;
-            initStyleOption(&labelOption);
-            labelOption.rect = style()->subElementRect(QStyle::SE_CheckBoxContents, &labelOption, this);
-            style()->drawControl(QStyle::CE_CheckBoxLabel, &labelOption, &painter, this);
-        }
-    };
-}
 
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
     : QWidget(parent)
@@ -99,66 +64,65 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     mainWidgetLayout->setSpacing(2);
     mainWidgetLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
-    QFont font;
-    font.setBold(true);
-    font.setCapitalization(QFont::AllUppercase);
+    {
+        auto *item = new TransferListFiltersWidgetItem(tr("Status"), new StatusFilterWidget(this, transferList), this);
+        item->setChecked(pref->getStatusFilterState());
+        connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setStatusFilterState);
+        mainWidgetLayout->addWidget(item);
+    }
 
-    QCheckBox *statusLabel = new ArrowCheckBox(tr("Status"), this);
-    statusLabel->setChecked(pref->getStatusFilterState());
-    statusLabel->setFont(font);
-    connect(statusLabel, &QCheckBox::toggled, pref, &Preferences::setStatusFilterState);
-    mainWidgetLayout->addWidget(statusLabel);
+    {
+        auto *categoryFilterWidget = new CategoryFilterWidget(this);
+        connect(categoryFilterWidget, &CategoryFilterWidget::actionDeleteTorrentsTriggered
+                , transferList, &TransferListWidget::deleteVisibleTorrents);
+        connect(categoryFilterWidget, &CategoryFilterWidget::actionStopTorrentsTriggered
+                , transferList, &TransferListWidget::stopVisibleTorrents);
+        connect(categoryFilterWidget, &CategoryFilterWidget::actionStartTorrentsTriggered
+                , transferList, &TransferListWidget::startVisibleTorrents);
+        connect(categoryFilterWidget, &CategoryFilterWidget::categoryChanged
+                , transferList, &TransferListWidget::applyCategoryFilter);
 
-    auto *statusFilters = new StatusFilterWidget(this, transferList);
-    connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFilterWidget::toggleFilter);
-    mainWidgetLayout->addWidget(statusFilters);
+        auto *item = new TransferListFiltersWidgetItem(tr("Categories"), categoryFilterWidget, this);
+        item->setChecked(pref->getCategoryFilterState());
+        connect(item, &TransferListFiltersWidgetItem::toggled, this, [this, categoryFilterWidget](const bool enabled)
+        {
+            m_transferList->applyCategoryFilter(enabled ? categoryFilterWidget->currentCategory() : QString());
+        });
+        connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setCategoryFilterState);
+        mainWidgetLayout->addWidget(item);
+    }
 
-    QCheckBox *categoryLabel = new ArrowCheckBox(tr("Categories"), this);
-    categoryLabel->setChecked(pref->getCategoryFilterState());
-    categoryLabel->setFont(font);
-    connect(categoryLabel, &QCheckBox::toggled, this
-            , &TransferListFiltersWidget::onCategoryFilterStateChanged);
-    mainWidgetLayout->addWidget(categoryLabel);
+    {
+        auto *tagFilterWidget = new TagFilterWidget(this);
+        connect(tagFilterWidget, &TagFilterWidget::actionDeleteTorrentsTriggered
+                , transferList, &TransferListWidget::deleteVisibleTorrents);
+        connect(tagFilterWidget, &TagFilterWidget::actionStopTorrentsTriggered
+                , transferList, &TransferListWidget::stopVisibleTorrents);
+        connect(tagFilterWidget, &TagFilterWidget::actionStartTorrentsTriggered
+                , transferList, &TransferListWidget::startVisibleTorrents);
+        connect(tagFilterWidget, &TagFilterWidget::tagChanged
+                , transferList, &TransferListWidget::applyTagFilter);
 
-    m_categoryFilterWidget = new CategoryFilterWidget(this);
-    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionDeleteTorrentsTriggered
-            , transferList, &TransferListWidget::deleteVisibleTorrents);
-    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionStopTorrentsTriggered
-            , transferList, &TransferListWidget::stopVisibleTorrents);
-    connect(m_categoryFilterWidget, &CategoryFilterWidget::actionStartTorrentsTriggered
-            , transferList, &TransferListWidget::startVisibleTorrents);
-    connect(m_categoryFilterWidget, &CategoryFilterWidget::categoryChanged
-            , transferList, &TransferListWidget::applyCategoryFilter);
-    toggleCategoryFilter(pref->getCategoryFilterState());
-    mainWidgetLayout->addWidget(m_categoryFilterWidget);
+        auto *item = new TransferListFiltersWidgetItem(tr("Tags"), tagFilterWidget, this);
+        item->setChecked(pref->getTagFilterState());
+        connect(item, &TransferListFiltersWidgetItem::toggled, this, [this, tagFilterWidget](const bool enabled)
+        {
+            m_transferList->applyTagFilter(enabled ? tagFilterWidget->currentTag() : std::nullopt);
+        });
+        connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTagFilterState);
+        mainWidgetLayout->addWidget(item);
+    }
 
-    QCheckBox *tagsLabel = new ArrowCheckBox(tr("Tags"), this);
-    tagsLabel->setChecked(pref->getTagFilterState());
-    tagsLabel->setFont(font);
-    connect(tagsLabel, &QCheckBox::toggled, this, &TransferListFiltersWidget::onTagFilterStateChanged);
-    mainWidgetLayout->addWidget(tagsLabel);
+    const int trackerStatusItemPos = mainWidgetLayout->count();
 
-    m_tagFilterWidget = new TagFilterWidget(this);
-    connect(m_tagFilterWidget, &TagFilterWidget::actionDeleteTorrentsTriggered
-            , transferList, &TransferListWidget::deleteVisibleTorrents);
-    connect(m_tagFilterWidget, &TagFilterWidget::actionStopTorrentsTriggered
-            , transferList, &TransferListWidget::stopVisibleTorrents);
-    connect(m_tagFilterWidget, &TagFilterWidget::actionStartTorrentsTriggered
-            , transferList, &TransferListWidget::startVisibleTorrents);
-    connect(m_tagFilterWidget, &TagFilterWidget::tagChanged
-            , transferList, &TransferListWidget::applyTagFilter);
-    toggleTagFilter(pref->getTagFilterState());
-    mainWidgetLayout->addWidget(m_tagFilterWidget);
+    {
+        m_trackersFilterWidget = new TrackersFilterWidget(this, transferList, downloadFavicon);
 
-    QCheckBox *trackerLabel = new ArrowCheckBox(tr("Trackers"), this);
-    trackerLabel->setChecked(pref->getTrackerFilterState());
-    trackerLabel->setFont(font);
-    connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
-    mainWidgetLayout->addWidget(trackerLabel);
-
-    m_trackersFilterWidget = new TrackersFilterWidget(this, transferList, downloadFavicon);
-    connect(trackerLabel, &QCheckBox::toggled, m_trackersFilterWidget, &TrackersFilterWidget::toggleFilter);
-    mainWidgetLayout->addWidget(m_trackersFilterWidget);
+        auto *item = new TransferListFiltersWidgetItem(tr("Trackers"), m_trackersFilterWidget, this);
+        item->setChecked(pref->getTrackerFilterState());
+        connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerFilterState);
+        mainWidgetLayout->addWidget(item);
+    }
 
     auto *scroll = new QScrollArea(this);
     scroll->setWidgetResizable(true);
@@ -169,54 +133,40 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     auto *vLayout = new QVBoxLayout(this);
     vLayout->setContentsMargins(0, 0, 0, 0);
     vLayout->addWidget(scroll);
+
+    const auto createTrackerStatusItem = [this, mainWidgetLayout, trackerStatusItemPos, pref]
+    {
+        auto *item = new TransferListFiltersWidgetItem(tr("Tracker status"), new TrackerStatusFilterWidget(this, m_transferList), this);
+        item->setChecked(pref->getTrackerStatusFilterState());
+        connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerStatusFilterState);
+        mainWidgetLayout->insertWidget(trackerStatusItemPos, item);
+    };
+
+    const auto removeTrackerStatusItem = [mainWidgetLayout, trackerStatusItemPos]
+    {
+        QLayoutItem *layoutItem = mainWidgetLayout->takeAt(trackerStatusItemPos);
+        delete layoutItem->widget();
+        delete layoutItem;
+    };
+
+    m_useSeparateTrackerStatusFilter = pref->useSeparateTrackerStatusFilter();
+    if (m_useSeparateTrackerStatusFilter)
+        createTrackerStatusItem();
+
+    connect(pref, &Preferences::changed, this, [this, pref, createTrackerStatusItem, removeTrackerStatusItem]
+    {
+        if (m_useSeparateTrackerStatusFilter == pref->useSeparateTrackerStatusFilter())
+            return;
+
+        m_useSeparateTrackerStatusFilter = !m_useSeparateTrackerStatusFilter;
+        if (m_useSeparateTrackerStatusFilter)
+            createTrackerStatusItem();
+        else
+            removeTrackerStatusItem();
+    });
 }
 
 void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
 {
     m_trackersFilterWidget->setDownloadTrackerFavicon(value);
-}
-
-void TransferListFiltersWidget::addTrackers(const BitTorrent::Torrent *torrent, const QList<BitTorrent::TrackerEntry> &trackers)
-{
-    m_trackersFilterWidget->addTrackers(torrent, trackers);
-}
-
-void TransferListFiltersWidget::removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers)
-{
-    m_trackersFilterWidget->removeTrackers(torrent, trackers);
-}
-
-void TransferListFiltersWidget::refreshTrackers(const BitTorrent::Torrent *torrent)
-{
-    m_trackersFilterWidget->refreshTrackers(torrent);
-}
-
-void TransferListFiltersWidget::trackerEntryStatusesUpdated(const BitTorrent::Torrent *torrent
-        , const QHash<QString, BitTorrent::TrackerEntryStatus> &updatedTrackers)
-{
-    m_trackersFilterWidget->handleTrackerStatusesUpdated(torrent, updatedTrackers);
-}
-
-void TransferListFiltersWidget::onCategoryFilterStateChanged(bool enabled)
-{
-    toggleCategoryFilter(enabled);
-    Preferences::instance()->setCategoryFilterState(enabled);
-}
-
-void TransferListFiltersWidget::toggleCategoryFilter(bool enabled)
-{
-    m_categoryFilterWidget->setVisible(enabled);
-    m_transferList->applyCategoryFilter(enabled ? m_categoryFilterWidget->currentCategory() : QString());
-}
-
-void TransferListFiltersWidget::onTagFilterStateChanged(bool enabled)
-{
-    toggleTagFilter(enabled);
-    Preferences::instance()->setTagFilterState(enabled);
-}
-
-void TransferListFiltersWidget::toggleTagFilter(bool enabled)
-{
-    m_tagFilterWidget->setVisible(enabled);
-    m_transferList->applyTagFilter(enabled ? m_tagFilterWidget->currentTag() : std::nullopt);
 }

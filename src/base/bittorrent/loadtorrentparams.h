@@ -34,7 +34,7 @@
 
 #include "base/path.h"
 #include "base/tagset.h"
-#include "sharelimitaction.h"
+#include "sharelimits.h"
 #include "sslparameters.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
@@ -61,10 +61,7 @@ namespace BitTorrent
 
         bool addToQueueTop = false; // only for new torrents
 
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-        int inactiveSeedingTimeLimit = Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
-        ShareLimitAction shareLimitAction = ShareLimitAction::Default;
+        ShareLimits shareLimits;
 
         SSLParameters sslParameters;
     };

@@ -34,10 +34,11 @@ add_library(qbt_base STATIC
     bittorrent/session.h
     bittorrent/sessionimpl.h
     bittorrent/sessionstatus.h
-    bittorrent/sharelimitaction.h
+    bittorrent/sharelimits.h
     bittorrent/speedmonitor.h
     bittorrent/sslparameters.h
     bittorrent/torrent.h
+    bittorrent/torrentannouncestatus.h
     bittorrent/torrentcontenthandler.h
     bittorrent/torrentcontentlayout.h
     bittorrent/torrentcontentremoveoption.h
@@ -58,13 +59,17 @@ add_library(qbt_base STATIC
     freediskspacechecker.h
     global.h
     http/connection.h
+    http/constants.h
+    http/environment.h
+    http/header.h
+    http/headermap.h
     http/httperror.h
     http/irequesthandler.h
+    http/request.h
+    http/response.h
     http/requestparser.h
-    http/responsebuilder.h
     http/responsegenerator.h
     http/server.h
-    http/types.h
     indexrange.h
     interfaces/iapplication.h
     logger.h
@@ -167,7 +172,6 @@ add_library(qbt_base STATIC
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
-    http/responsebuilder.cpp
     http/responsegenerator.cpp
     http/server.cpp
     logger.cpp
@@ -248,6 +252,13 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
         ${Carbon_LIBRARY}
         ${IOKit_LIBRARY}
     )
+elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    include(CheckSymbolExists)
+    check_symbol_exists(getrandom "sys/random.h" HAVE_GETRANDOM)
+
+    if (HAVE_GETRANDOM)
+        target_compile_definitions(qbt_base PUBLIC QBT_USES_GETRANDOM)
+    endif()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_link_libraries(qbt_base PRIVATE iphlpapi powrprof)
 endif()

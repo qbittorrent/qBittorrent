@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,17 +28,18 @@
 
 #include "torrentsharelimitswidget.h"
 
-#include "base/bittorrent/torrent.h"
+#include <limits>
+
 #include "ui_torrentsharelimitswidget.h"
 
 namespace
 {
-    enum ShareLimitModeIndex
+    enum ShareLimitComboModeIndex
     {
-        UninitializedModeIndex = -1,
-        DefaultModeIndex,
-        UnlimitedModeIndex,
-        AssignedModeIndex
+        UninitializedComboModeIndex = -1,
+        DefaultComboModeIndex,
+        UnlimitedComboModeIndex,
+        AssignedComboModeIndex
     };
 
     enum ShareLimitActionIndex
@@ -50,6 +51,54 @@ namespace
         RemoveWithContentActionIndex,
         SuperSeedingActionIndex
     };
+
+    enum ShareLimitsModeIndex
+    {
+        UninitializedModeIndex = -1,
+        DefaultModeIndex,
+        MatchAnyModeIndex,
+        MatchAllModeIndex
+    };
+
+    QString shareLimitActionName(const BitTorrent::ShareLimitAction shareLimitAction)
+    {
+        switch (shareLimitAction)
+        {
+        case BitTorrent::ShareLimitAction::Stop:
+            return TorrentShareLimitsWidget::tr("Stop torrent");
+
+        case BitTorrent::ShareLimitAction::Remove:
+            return TorrentShareLimitsWidget::tr("Remove torrent");
+
+        case BitTorrent::ShareLimitAction::RemoveWithContent:
+            return TorrentShareLimitsWidget::tr("Remove torrent and its content");
+
+        case BitTorrent::ShareLimitAction::EnableSuperSeeding:
+            return TorrentShareLimitsWidget::tr("Enable super seeding for torrent");
+
+        case BitTorrent::ShareLimitAction::Default:
+            return TorrentShareLimitsWidget::tr("Default");
+        }
+
+        return {};
+    }
+
+    QString shareLimitsModeName(const BitTorrent::ShareLimitsMode shareLimitsMode)
+    {
+        switch (shareLimitsMode)
+        {
+        case BitTorrent::ShareLimitsMode::MatchAny:
+            return TorrentShareLimitsWidget::tr("Match any limit");
+
+        case BitTorrent::ShareLimitsMode::MatchAll:
+            return TorrentShareLimitsWidget::tr("Match all the limits");
+
+        case BitTorrent::ShareLimitsMode::Default:
+            return TorrentShareLimitsWidget::tr("Default");
+        }
+
+        return {};
+    }
 }
 
 TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent)
@@ -58,7 +107,37 @@ TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    m_ui->comboBoxRatioMode->addItem({});
+    m_ui->comboBoxRatioMode->addItem(tr("Unlimited"));
+    m_ui->comboBoxRatioMode->addItem(tr("Set to"));
+    m_ui->comboBoxRatioMode->setCurrentIndex(UninitializedComboModeIndex);
+
+    m_ui->comboBoxSeedingTimeMode->addItem({});
+    m_ui->comboBoxSeedingTimeMode->addItem(tr("Unlimited"));
+    m_ui->comboBoxSeedingTimeMode->addItem(tr("Set to"));
+    m_ui->comboBoxSeedingTimeMode->setCurrentIndex(UninitializedComboModeIndex);
+
+    m_ui->comboBoxInactiveSeedingTimeMode->addItem({});
+    m_ui->comboBoxInactiveSeedingTimeMode->addItem(tr("Unlimited"));
+    m_ui->comboBoxInactiveSeedingTimeMode->addItem(tr("Set to"));
+    m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(UninitializedComboModeIndex);
+
+    m_ui->comboBoxAction->addItem({});
+    m_ui->comboBoxAction->addItem(shareLimitActionName(BitTorrent::ShareLimitAction::Stop));
+    m_ui->comboBoxAction->addItem(shareLimitActionName(BitTorrent::ShareLimitAction::Remove));
+    m_ui->comboBoxAction->addItem(shareLimitActionName(BitTorrent::ShareLimitAction::RemoveWithContent));
+    m_ui->comboBoxAction->addItem(shareLimitActionName(BitTorrent::ShareLimitAction::EnableSuperSeeding));
+    m_ui->comboBoxAction->setCurrentIndex(UninitializedActionIndex);
+
+    m_ui->comboBoxMode->addItem({});
+    m_ui->comboBoxMode->addItem(shareLimitsModeName(BitTorrent::ShareLimitsMode::MatchAny));
+    m_ui->comboBoxMode->addItem(shareLimitsModeName(BitTorrent::ShareLimitsMode::MatchAll));
+    m_ui->comboBoxMode->setCurrentIndex(UninitializedModeIndex);
+
+    resetDefaultItemsText();
+
     m_ui->spinBoxRatioValue->setEnabled(false);
+    m_ui->spinBoxRatioValue->setMaximum(std::numeric_limits<int>::max());
     m_ui->spinBoxRatioValue->setSuffix({});
     m_ui->spinBoxRatioValue->clear();
     m_ui->spinBoxSeedingTimeValue->setEnabled(false);
@@ -68,9 +147,25 @@ TorrentShareLimitsWidget::TorrentShareLimitsWidget(QWidget *parent)
     m_ui->spinBoxInactiveSeedingTimeValue->setSuffix({});
     m_ui->spinBoxInactiveSeedingTimeValue->clear();
 
-    connect(m_ui->comboBoxRatioMode, &QComboBox::currentIndexChanged, this, &TorrentShareLimitsWidget::refreshRatioLimitControls);
-    connect(m_ui->comboBoxSeedingTimeMode, &QComboBox::currentIndexChanged, this, &TorrentShareLimitsWidget::refreshSeedingTimeLimitControls);
-    connect(m_ui->comboBoxInactiveSeedingTimeMode, &QComboBox::currentIndexChanged, this, &TorrentShareLimitsWidget::refreshInactiveSeedingTimeLimitControls);
+    int prevIndex = UninitializedComboModeIndex;
+    connect(m_ui->comboBoxRatioMode, &QComboBox::currentIndexChanged, this
+            , [this, prevIndex](const int currentIndex) mutable
+    {
+        onRatioLimitModeChanged(currentIndex, prevIndex);
+        prevIndex = currentIndex;
+    });
+    connect(m_ui->comboBoxSeedingTimeMode, &QComboBox::currentIndexChanged, this
+            , [this, prevIndex](const int currentIndex) mutable
+    {
+        onSeedingTimeLimitModeChanged(currentIndex, prevIndex);
+        prevIndex = currentIndex;
+    });
+    connect(m_ui->comboBoxInactiveSeedingTimeMode, &QComboBox::currentIndexChanged, this
+            , [this, prevIndex](const int currentIndex) mutable
+    {
+        onInactiveSeedingTimeLimitModeChanged(currentIndex, prevIndex);
+        prevIndex = currentIndex;
+    });
 }
 
 TorrentShareLimitsWidget::~TorrentShareLimitsWidget()
@@ -80,51 +175,51 @@ TorrentShareLimitsWidget::~TorrentShareLimitsWidget()
 
 void TorrentShareLimitsWidget::setRatioLimit(const qreal ratioLimit)
 {
-    if (ratioLimit == BitTorrent::Torrent::USE_GLOBAL_RATIO)
+    if (ratioLimit == BitTorrent::DEFAULT_RATIO_LIMIT)
     {
-        m_ui->comboBoxRatioMode->setCurrentIndex(DefaultModeIndex);
+        m_ui->comboBoxRatioMode->setCurrentIndex(DefaultComboModeIndex);
     }
-    else if (ratioLimit == BitTorrent::Torrent::NO_RATIO_LIMIT)
+    else if (ratioLimit == BitTorrent::NO_RATIO_LIMIT)
     {
-        m_ui->comboBoxRatioMode->setCurrentIndex(UnlimitedModeIndex);
+        m_ui->comboBoxRatioMode->setCurrentIndex(UnlimitedComboModeIndex);
     }
     else
     {
-        m_ui->comboBoxRatioMode->setCurrentIndex(AssignedModeIndex);
+        m_ui->comboBoxRatioMode->setCurrentIndex(AssignedComboModeIndex);
         m_ui->spinBoxRatioValue->setValue(ratioLimit);
     }
 }
 
 void TorrentShareLimitsWidget::setSeedingTimeLimit(const int seedingTimeLimit)
 {
-    if (seedingTimeLimit == BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME)
+    if (seedingTimeLimit == BitTorrent::DEFAULT_SEEDING_TIME_LIMIT)
     {
-        m_ui->comboBoxSeedingTimeMode->setCurrentIndex(DefaultModeIndex);
+        m_ui->comboBoxSeedingTimeMode->setCurrentIndex(DefaultComboModeIndex);
     }
-    else if (seedingTimeLimit == BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT)
+    else if (seedingTimeLimit == BitTorrent::NO_SEEDING_TIME_LIMIT)
     {
-        m_ui->comboBoxSeedingTimeMode->setCurrentIndex(UnlimitedModeIndex);
+        m_ui->comboBoxSeedingTimeMode->setCurrentIndex(UnlimitedComboModeIndex);
     }
     else
     {
-        m_ui->comboBoxSeedingTimeMode->setCurrentIndex(AssignedModeIndex);
+        m_ui->comboBoxSeedingTimeMode->setCurrentIndex(AssignedComboModeIndex);
         m_ui->spinBoxSeedingTimeValue->setValue(seedingTimeLimit);
     }
 }
 
 void TorrentShareLimitsWidget::setInactiveSeedingTimeLimit(const int inactiveSeedingTimeLimit)
 {
-    if (inactiveSeedingTimeLimit == BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME)
+    if (inactiveSeedingTimeLimit == BitTorrent::DEFAULT_SEEDING_TIME_LIMIT)
     {
-        m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(DefaultModeIndex);
+        m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(DefaultComboModeIndex);
     }
-    else if (inactiveSeedingTimeLimit == BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT)
+    else if (inactiveSeedingTimeLimit == BitTorrent::NO_SEEDING_TIME_LIMIT)
     {
-        m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(UnlimitedModeIndex);
+        m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(UnlimitedComboModeIndex);
     }
     else
     {
-        m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(AssignedModeIndex);
+        m_ui->comboBoxInactiveSeedingTimeMode->setCurrentIndex(AssignedComboModeIndex);
         m_ui->spinBoxInactiveSeedingTimeValue->setValue(inactiveSeedingTimeLimit);
     }
 }
@@ -152,36 +247,83 @@ void TorrentShareLimitsWidget::setShareLimitAction(const BitTorrent::ShareLimitA
     }
 }
 
-void TorrentShareLimitsWidget::setDefaultLimits(const qreal ratioLimit, const int seedingTimeLimit, const int inactiveSeedingTimeLimit)
+void TorrentShareLimitsWidget::setShareLimitsMode(const BitTorrent::ShareLimitsMode mode)
 {
-    if (m_defaultRatioLimit != ratioLimit)
+    switch (mode)
     {
-        m_defaultRatioLimit = ratioLimit;
-        refreshRatioLimitControls();
+    case BitTorrent::ShareLimitsMode::Default:
+    default:
+        m_ui->comboBoxMode->setCurrentIndex(DefaultModeIndex);
+        break;
+    case BitTorrent::ShareLimitsMode::MatchAny:
+        m_ui->comboBoxMode->setCurrentIndex(MatchAnyModeIndex);
+        break;
+    case BitTorrent::ShareLimitsMode::MatchAll:
+        m_ui->comboBoxMode->setCurrentIndex(MatchAllModeIndex);
+        break;
+    }
+}
+
+void TorrentShareLimitsWidget::setDefaults(UsedDefaults usedDefaults, const BitTorrent::ShareLimits &shareLimits)
+{
+    m_defaultRatioLimit = shareLimits.ratioLimit;
+    if (m_ui->comboBoxRatioMode->currentIndex() == DefaultComboModeIndex)
+    {
+        if (m_defaultRatioLimit >= 0)
+        {
+            m_ui->spinBoxRatioValue->setValue(m_defaultRatioLimit);
+        }
+        else
+        {
+            m_ui->spinBoxRatioValue->clear();
+        }
     }
 
-    if (m_defaultSeedingTimeLimit != seedingTimeLimit)
+    m_defaultSeedingTimeLimit = shareLimits.seedingTimeLimit;
+    if (m_ui->comboBoxSeedingTimeMode->currentIndex() == DefaultComboModeIndex)
     {
-        m_defaultSeedingTimeLimit = seedingTimeLimit;
-        refreshSeedingTimeLimitControls();
+        if (m_defaultSeedingTimeLimit >= 0)
+        {
+            m_ui->spinBoxSeedingTimeValue->setValue(m_defaultSeedingTimeLimit);
+            m_ui->spinBoxSeedingTimeValue->setSuffix(tr(" min"));
+        }
+        else
+        {
+            m_ui->spinBoxSeedingTimeValue->setSuffix({});
+            m_ui->spinBoxSeedingTimeValue->clear();
+        }
     }
 
-    if (m_defaultInactiveSeedingTimeLimit != inactiveSeedingTimeLimit)
+    m_defaultInactiveSeedingTimeLimit = shareLimits.inactiveSeedingTimeLimit;
+    if (m_ui->comboBoxInactiveSeedingTimeMode->currentIndex() == DefaultComboModeIndex)
     {
-        m_defaultInactiveSeedingTimeLimit = inactiveSeedingTimeLimit;
-        refreshInactiveSeedingTimeLimitControls();
+        if (m_defaultInactiveSeedingTimeLimit >= 0)
+        {
+            m_ui->spinBoxInactiveSeedingTimeValue->setValue(m_defaultInactiveSeedingTimeLimit);
+            m_ui->spinBoxInactiveSeedingTimeValue->setSuffix(tr(" min"));
+        }
+        else
+        {
+            m_ui->spinBoxInactiveSeedingTimeValue->setSuffix({});
+            m_ui->spinBoxInactiveSeedingTimeValue->clear();
+        }
     }
+
+    m_defaultShareLimitAction = shareLimits.action;
+    m_defaultShareLimitsMode = shareLimits.mode;
+    m_usedDefaults = usedDefaults;
+    resetDefaultItemsText();
 }
 
 std::optional<qreal> TorrentShareLimitsWidget::ratioLimit() const
 {
     switch (m_ui->comboBoxRatioMode->currentIndex())
     {
-    case DefaultModeIndex:
-        return BitTorrent::Torrent::USE_GLOBAL_RATIO;
-    case UnlimitedModeIndex:
-        return BitTorrent::Torrent::NO_RATIO_LIMIT;
-    case AssignedModeIndex:
+    case DefaultComboModeIndex:
+        return BitTorrent::DEFAULT_RATIO_LIMIT;
+    case UnlimitedComboModeIndex:
+        return BitTorrent::NO_RATIO_LIMIT;
+    case AssignedComboModeIndex:
         return m_ui->spinBoxRatioValue->value();
     default:
         return std::nullopt;
@@ -192,11 +334,11 @@ std::optional<int> TorrentShareLimitsWidget::seedingTimeLimit() const
 {
     switch (m_ui->comboBoxSeedingTimeMode->currentIndex())
     {
-    case DefaultModeIndex:
-        return BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME;
-    case UnlimitedModeIndex:
-        return BitTorrent::Torrent::NO_SEEDING_TIME_LIMIT;
-    case AssignedModeIndex:
+    case DefaultComboModeIndex:
+        return BitTorrent::DEFAULT_SEEDING_TIME_LIMIT;
+    case UnlimitedComboModeIndex:
+        return BitTorrent::NO_SEEDING_TIME_LIMIT;
+    case AssignedComboModeIndex:
         return m_ui->spinBoxSeedingTimeValue->value();
     default:
         return std::nullopt;
@@ -207,12 +349,27 @@ std::optional<int> TorrentShareLimitsWidget::inactiveSeedingTimeLimit() const
 {
     switch (m_ui->comboBoxInactiveSeedingTimeMode->currentIndex())
     {
-    case DefaultModeIndex:
-        return BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME;
-    case UnlimitedModeIndex:
-        return BitTorrent::Torrent::NO_INACTIVE_SEEDING_TIME_LIMIT;
-    case AssignedModeIndex:
+    case DefaultComboModeIndex:
+        return BitTorrent::DEFAULT_SEEDING_TIME_LIMIT;
+    case UnlimitedComboModeIndex:
+        return BitTorrent::NO_SEEDING_TIME_LIMIT;
+    case AssignedComboModeIndex:
         return m_ui->spinBoxInactiveSeedingTimeValue->value();
+    default:
+        return std::nullopt;
+    }
+}
+
+std::optional<BitTorrent::ShareLimitsMode> TorrentShareLimitsWidget::shareLimitsMode() const
+{
+    switch (m_ui->comboBoxMode->currentIndex())
+    {
+    case DefaultModeIndex:
+        return BitTorrent::ShareLimitsMode::Default;
+    case MatchAnyModeIndex:
+        return BitTorrent::ShareLimitsMode::MatchAny;
+    case MatchAllModeIndex:
+        return BitTorrent::ShareLimitsMode::MatchAll;
     default:
         return std::nullopt;
     }
@@ -237,68 +394,107 @@ std::optional<BitTorrent::ShareLimitAction> TorrentShareLimitsWidget::shareLimit
     }
 }
 
-void TorrentShareLimitsWidget::refreshRatioLimitControls()
+void TorrentShareLimitsWidget::onRatioLimitModeChanged(const int currentIndex, const int previousIndex)
 {
-    const auto index = m_ui->comboBoxRatioMode->currentIndex();
+    m_ui->spinBoxRatioValue->setEnabled(currentIndex == AssignedComboModeIndex);
 
-    m_ui->spinBoxRatioValue->setEnabled(index == AssignedModeIndex);
-    if (index == AssignedModeIndex)
+    if (previousIndex == AssignedComboModeIndex)
+        m_ratioLimit = m_ui->spinBoxRatioValue->value();
+
+    if (currentIndex == AssignedComboModeIndex)
     {
         m_ui->spinBoxRatioValue->setValue(m_ratioLimit);
     }
-    else if ((index == DefaultModeIndex) && (m_defaultRatioLimit >= 0))
+    else if ((currentIndex == DefaultComboModeIndex) && (m_defaultRatioLimit >= 0))
     {
         m_ui->spinBoxRatioValue->setValue(m_defaultRatioLimit);
     }
     else
     {
-        m_ratioLimit = m_ui->spinBoxRatioValue->value();
         m_ui->spinBoxRatioValue->clear();
     }
 }
 
-void TorrentShareLimitsWidget::refreshSeedingTimeLimitControls()
+void TorrentShareLimitsWidget::onSeedingTimeLimitModeChanged(const int currentIndex, const int previousIndex)
 {
-    const auto index = m_ui->comboBoxSeedingTimeMode->currentIndex();
+    m_ui->spinBoxSeedingTimeValue->setEnabled(currentIndex == AssignedComboModeIndex);
 
-    m_ui->spinBoxSeedingTimeValue->setEnabled(index == AssignedModeIndex);
-    if (index == AssignedModeIndex)
+    if (previousIndex == AssignedComboModeIndex)
+        m_seedingTimeLimit = m_ui->spinBoxSeedingTimeValue->value();
+
+    if (currentIndex == AssignedComboModeIndex)
     {
         m_ui->spinBoxSeedingTimeValue->setValue(m_seedingTimeLimit);
         m_ui->spinBoxSeedingTimeValue->setSuffix(tr(" min"));
     }
-    else if ((index == DefaultModeIndex) && (m_defaultSeedingTimeLimit >= 0))
+    else if ((currentIndex == DefaultComboModeIndex) && (m_defaultSeedingTimeLimit >= 0))
     {
         m_ui->spinBoxSeedingTimeValue->setValue(m_defaultSeedingTimeLimit);
         m_ui->spinBoxSeedingTimeValue->setSuffix(tr(" min"));
     }
     else
     {
-        m_seedingTimeLimit = m_ui->spinBoxSeedingTimeValue->value();
         m_ui->spinBoxSeedingTimeValue->setSuffix({});
         m_ui->spinBoxSeedingTimeValue->clear();
     }
 }
 
-void TorrentShareLimitsWidget::refreshInactiveSeedingTimeLimitControls()
+void TorrentShareLimitsWidget::onInactiveSeedingTimeLimitModeChanged(const int currentIndex, const int previousIndex)
 {
-    const auto index = m_ui->comboBoxInactiveSeedingTimeMode->currentIndex();
+    m_ui->spinBoxInactiveSeedingTimeValue->setEnabled(currentIndex == AssignedComboModeIndex);
 
-    m_ui->spinBoxInactiveSeedingTimeValue->setEnabled(index == AssignedModeIndex);
-    if (index == AssignedModeIndex)
+    if (previousIndex == AssignedComboModeIndex)
+        m_inactiveSeedingTimeLimit = m_ui->spinBoxInactiveSeedingTimeValue->value();
+
+    if (currentIndex == AssignedComboModeIndex)
     {
         m_ui->spinBoxInactiveSeedingTimeValue->setValue(m_inactiveSeedingTimeLimit);
         m_ui->spinBoxInactiveSeedingTimeValue->setSuffix(tr(" min"));
     }
-    else if ((index == DefaultModeIndex) && (m_defaultInactiveSeedingTimeLimit >= 0))
+    else if ((currentIndex == DefaultComboModeIndex) && (m_defaultInactiveSeedingTimeLimit >= 0))
     {
         m_ui->spinBoxInactiveSeedingTimeValue->setValue(m_defaultInactiveSeedingTimeLimit);
         m_ui->spinBoxInactiveSeedingTimeValue->setSuffix(tr(" min"));
     }
     else
     {
-        m_inactiveSeedingTimeLimit = m_ui->spinBoxInactiveSeedingTimeValue->value();
         m_ui->spinBoxInactiveSeedingTimeValue->setSuffix({});
         m_ui->spinBoxInactiveSeedingTimeValue->clear();
+    }
+}
+
+void TorrentShareLimitsWidget::resetDefaultItemsText()
+{
+    if (m_usedDefaults == UsedDefaults::Global)
+    {
+        m_ui->comboBoxRatioMode->setItemText(DefaultComboModeIndex, tr("Default"));
+        m_ui->comboBoxSeedingTimeMode->setItemText(DefaultComboModeIndex, tr("Default"));
+        m_ui->comboBoxInactiveSeedingTimeMode->setItemText(DefaultComboModeIndex, tr("Default"));
+
+        m_ui->comboBoxAction->setItemText(DefaultActionIndex
+                , (m_defaultShareLimitAction == BitTorrent::ShareLimitAction::Default)
+                        ? tr("Default")
+                        : tr("Default (%1)", "Default (share limit action)").arg(shareLimitActionName(m_defaultShareLimitAction)));
+
+        m_ui->comboBoxMode->setItemText(DefaultModeIndex
+                , (m_defaultShareLimitsMode == BitTorrent::ShareLimitsMode::Default)
+                        ? tr("Default")
+                        : tr("Default (%1)", "Default (share limits mode)").arg(shareLimitsModeName(m_defaultShareLimitsMode)));
+    }
+    else // TorrentOptions
+    {
+        m_ui->comboBoxRatioMode->setItemText(DefaultComboModeIndex, tr("From category"));
+        m_ui->comboBoxSeedingTimeMode->setItemText(DefaultComboModeIndex, tr("From category"));
+        m_ui->comboBoxInactiveSeedingTimeMode->setItemText(DefaultComboModeIndex, tr("From category"));
+
+        m_ui->comboBoxAction->setItemText(DefaultActionIndex
+                , (m_defaultShareLimitAction == BitTorrent::ShareLimitAction::Default)
+                        ? tr("From category")
+                        : tr("From category (%1)", "From category (share limit action)").arg(shareLimitActionName(m_defaultShareLimitAction)));
+
+        m_ui->comboBoxMode->setItemText(DefaultModeIndex
+                , (m_defaultShareLimitsMode == BitTorrent::ShareLimitsMode::Default)
+                        ? tr("From category")
+                        : tr("From category (%1)", "From category (share limits mode)").arg(shareLimitsModeName(m_defaultShareLimitsMode)));
     }
 }

@@ -79,7 +79,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.2.0</string>
+	<string>5.3.0</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -91,7 +91,7 @@
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2006-2025 The qBittorrent project</string>
+	<string>Copyright © 2006-2026 The qBittorrent project</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

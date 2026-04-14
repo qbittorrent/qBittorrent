@@ -32,7 +32,7 @@
 
 #include <QWidget>
 
-#include "base/bittorrent/sharelimitaction.h"
+#include "base/bittorrent/sharelimits.h"
 
 namespace Ui
 {
@@ -45,25 +45,34 @@ class TorrentShareLimitsWidget final : public QWidget
     Q_DISABLE_COPY_MOVE(TorrentShareLimitsWidget)
 
 public:
+    enum class UsedDefaults
+    {
+        Global,
+        Category
+    };
+
     explicit TorrentShareLimitsWidget(QWidget *parent = nullptr);
     ~TorrentShareLimitsWidget() override;
 
     void setRatioLimit(qreal ratioLimit);
     void setSeedingTimeLimit(int seedingTimeLimit);
     void setInactiveSeedingTimeLimit(int inactiveSeedingTimeLimit);
+    void setShareLimitsMode(BitTorrent::ShareLimitsMode mode);
     void setShareLimitAction(BitTorrent::ShareLimitAction action);
 
-    void setDefaultLimits(qreal ratioLimit, int seedingTimeLimit, int inactiveSeedingTimeLimit);
+    void setDefaults(UsedDefaults usedDefaults, const BitTorrent::ShareLimits &shareLimits);
 
     std::optional<qreal> ratioLimit() const;
     std::optional<int> seedingTimeLimit() const;
     std::optional<int> inactiveSeedingTimeLimit() const;
+    std::optional<BitTorrent::ShareLimitsMode> shareLimitsMode() const;
     std::optional<BitTorrent::ShareLimitAction> shareLimitAction() const;
 
 private:
-    void refreshRatioLimitControls();
-    void refreshSeedingTimeLimitControls();
-    void refreshInactiveSeedingTimeLimitControls();
+    void onRatioLimitModeChanged(int currentIndex, int previousIndex);
+    void onSeedingTimeLimitModeChanged(int currentIndex, int previousIndex);
+    void onInactiveSeedingTimeLimitModeChanged(int currentIndex, int previousIndex);
+    void resetDefaultItemsText();
 
     Ui::TorrentShareLimitsWidget *m_ui = nullptr;
 
@@ -74,4 +83,8 @@ private:
     int m_defaultSeedingTimeLimit = -1;
     int m_defaultInactiveSeedingTimeLimit = -1;
     qreal m_defaultRatioLimit = -1;
+    BitTorrent::ShareLimitsMode m_defaultShareLimitsMode = BitTorrent::ShareLimitsMode::Default;
+    BitTorrent::ShareLimitAction m_defaultShareLimitAction = BitTorrent::ShareLimitAction::Default;
+
+    UsedDefaults m_usedDefaults = UsedDefaults::Global;
 };

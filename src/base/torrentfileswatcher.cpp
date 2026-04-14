@@ -434,9 +434,9 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
             }
             else
             {
-                if (!m_failedTorrents.value(path).contains(filePath))
+                if (!m_failedTorrents.value(watchedFolderPath).contains(filePath))
                 {
-                    m_failedTorrents[path][filePath] = 0;
+                    m_failedTorrents[watchedFolderPath][filePath] = 0;
                 }
             }
         }
@@ -471,7 +471,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                 BitTorrent::AddTorrentParams addTorrentParams = options.addTorrentParams;
                 if (torrentPath != watchedFolderPath)
                 {
-                    const Path subdirPath = watchedFolderPath.relativePathOf(torrentPath);
+                    const Path subdirPath = watchedFolderPath.relativePathOf(torrentPath).parentPath();
                     const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!BitTorrent::Session::instance()->isAutoTMMDisabledByDefault());
                     if (useAutoTMM)
                     {

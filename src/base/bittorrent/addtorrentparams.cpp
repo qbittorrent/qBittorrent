@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -49,10 +49,11 @@ const QString PARAM_CONTENTLAYOUT = u"content_layout"_s;
 const QString PARAM_AUTOTMM = u"use_auto_tmm"_s;
 const QString PARAM_UPLOADLIMIT = u"upload_limit"_s;
 const QString PARAM_DOWNLOADLIMIT = u"download_limit"_s;
+const QString PARAM_RATIOLIMIT = u"ratio_limit"_s;
 const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_s;
 const QString PARAM_INACTIVESEEDINGTIMELIMIT = u"inactive_seeding_time_limit"_s;
 const QString PARAM_SHARELIMITACTION = u"share_limit_action"_s;
-const QString PARAM_RATIOLIMIT = u"ratio_limit"_s;
+const QString PARAM_SHARELIMITSMODE = u"share_limits_mode"_s;
 const QString PARAM_SSL_CERTIFICATE = u"ssl_certificate"_s;
 const QString PARAM_SSL_PRIVATEKEY = u"ssl_private_key"_s;
 const QString PARAM_SSL_DHPARAMS = u"ssl_dh_params"_s;
@@ -125,10 +126,14 @@ BitTorrent::AddTorrentParams BitTorrent::parseAddTorrentParams(const QJsonObject
         .useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM),
         .uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1),
         .downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1),
-        .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_SEEDING_TIME),
-        .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME),
-        .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(Torrent::USE_GLOBAL_RATIO),
-        .shareLimitAction = getEnum<ShareLimitAction>(jsonObj, PARAM_SHARELIMITACTION, ShareLimitAction::Default),
+        .shareLimits =
+        {
+            .ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(DEFAULT_RATIO_LIMIT),
+            .seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
+            .inactiveSeedingTimeLimit = jsonObj.value(PARAM_INACTIVESEEDINGTIMELIMIT).toInt(DEFAULT_SEEDING_TIME_LIMIT),
+            .mode = getEnum<ShareLimitsMode>(jsonObj, PARAM_SHARELIMITSMODE, ShareLimitsMode::Default),
+            .action = getEnum<ShareLimitAction>(jsonObj, PARAM_SHARELIMITACTION, ShareLimitAction::Default)
+        },
         .sslParameters =
         {
             .certificate = QSslCertificate(jsonObj.value(PARAM_SSL_CERTIFICATE).toString().toLatin1()),
@@ -152,10 +157,11 @@ QJsonObject BitTorrent::serializeAddTorrentParams(const AddTorrentParams &params
         {PARAM_SKIPCHECKING, params.skipChecking},
         {PARAM_UPLOADLIMIT, params.uploadLimit},
         {PARAM_DOWNLOADLIMIT, params.downloadLimit},
-        {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},
-        {PARAM_INACTIVESEEDINGTIMELIMIT, params.inactiveSeedingTimeLimit},
-        {PARAM_SHARELIMITACTION, Utils::String::fromEnum(params.shareLimitAction)},
-        {PARAM_RATIOLIMIT, params.ratioLimit},
+        {PARAM_RATIOLIMIT, params.shareLimits.ratioLimit},
+        {PARAM_SEEDINGTIMELIMIT, params.shareLimits.seedingTimeLimit},
+        {PARAM_INACTIVESEEDINGTIMELIMIT, params.shareLimits.inactiveSeedingTimeLimit},
+        {PARAM_SHARELIMITACTION, Utils::String::fromEnum(params.shareLimits.action)},
+        {PARAM_SHARELIMITSMODE, Utils::String::fromEnum(params.shareLimits.mode)},
         {PARAM_SSL_CERTIFICATE, QString::fromLatin1(params.sslParameters.certificate.toPem())},
         {PARAM_SSL_PRIVATEKEY, QString::fromLatin1(params.sslParameters.privateKey.toPem())},
         {PARAM_SSL_DHPARAMS, QString::fromLatin1(params.sslParameters.dhParams)}

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -32,7 +32,6 @@
 
 #include <algorithm>
 #include <chrono>
-#include <cstdlib>
 #include <limits>
 
 #include <QApplication>
@@ -48,10 +47,9 @@
 #include <QTranslator>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/sharelimitaction.h"
+#include "base/bittorrent/sharelimits.h"
 #include "base/exceptions.h"
 #include "base/global.h"
-#include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"
@@ -65,11 +63,9 @@
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
-#include "base/utils/os.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "base/utils/sslkey.h"
-#include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "banlistoptionsdialog.h"
 #include "interfaces/iguiapplication.h"
@@ -122,12 +118,17 @@ namespace
         }
     };
 
-    bool isValidWebUIUsername(const QString &username)
+    bool isValidWebUIUsernameLength(const QString &username)
     {
         return (username.length() >= WEBUI_MIN_USERNAME_LENGTH);
     }
 
-    bool isValidWebUIPassword(const QString &password)
+    bool isValidWebUIUsernameCharacterSet(const QString &username)
+    {
+        return !username.contains(u":");
+    }
+
+    bool isValidWebUIPasswordLength(const QString &password)
     {
         return (password.length() >= WEBUI_MIN_PASSWORD_LENGTH);
     }
@@ -297,6 +298,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
 
     m_ui->checkBoxHideZeroStatusFilters->setChecked(pref->getHideZeroStatusFilters());
+    m_ui->checkBoxUseSeparateTrackerStatusFilter->setChecked(pref->useSeparateTrackerStatusFilter());
 
     m_ui->checkTorrentContentDrag->setChecked(pref->isTorrentContentDragEnabled());
 
@@ -407,6 +409,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->actionTorrentDlOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBoxHideZeroStatusFilters, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxUseSeparateTrackerStatusFilter, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkTorrentContentDrag, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
@@ -504,6 +507,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
 
     pref->setHideZeroStatusFilters(m_ui->checkBoxHideZeroStatusFilters->isChecked());
+    pref->setUseSeparateTrackerStatusFilter(m_ui->checkBoxUseSeparateTrackerStatusFilter->isChecked());
 
     pref->setTorrentContentDragEnabled(m_ui->checkTorrentContentDrag->isChecked());
 
@@ -622,7 +626,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
 
-    m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
     m_ui->checkUseCategoryPaths->setChecked(session->useCategoryPathsInManualMode());
 
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
@@ -727,7 +730,6 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
-    connect(m_ui->checkUseSubcategories, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseCategoryPaths, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->textSavePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
@@ -799,7 +801,6 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
 
-    session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setUseCategoryPathsInManualMode(m_ui->checkUseCategoryPaths->isChecked());
 
     session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
@@ -1052,6 +1053,14 @@ void OptionsDialog::loadSpeedTabOptions()
     m_ui->checkLimitTransportOverhead->setChecked(session->includeOverheadInLimits());
     m_ui->checkLimitLocalPeerRate->setChecked(!session->ignoreLimitsOnLAN());
 
+#ifdef Q_OS_MACOS
+    m_ui->checkShowSpeedInDock->setChecked(pref->isSpeedInDockEnabled());
+    m_ui->checkShowMenuBarIcon->setChecked(pref->isMacOSMenuBarIconEnabled());
+#else
+    m_ui->checkShowSpeedInDock->hide();
+    m_ui->checkShowMenuBarIcon->hide();
+#endif
+
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
@@ -1066,6 +1075,11 @@ void OptionsDialog::loadSpeedTabOptions()
     connect(m_ui->checkLimituTPConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitLocalPeerRate, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+
+#ifdef Q_OS_MACOS
+    connect(m_ui->checkShowSpeedInDock, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkShowMenuBarIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
 }
 
 void OptionsDialog::saveSpeedTabOptions() const
@@ -1087,6 +1101,11 @@ void OptionsDialog::saveSpeedTabOptions() const
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
+
+#ifdef Q_OS_MACOS
+    pref->setSpeedInDockEnabled(m_ui->checkShowSpeedInDock->isChecked());
+    pref->setMacOSMenuBarIconEnabled(m_ui->checkShowMenuBarIcon->isChecked());
+#endif
 }
 
 void OptionsDialog::loadBittorrentTabOptions()
@@ -1117,13 +1136,15 @@ void OptionsDialog::loadBittorrentTabOptions()
     m_ui->spinUploadRateForSlowTorrents->setValue(session->uploadRateForSlowTorrents());
     m_ui->spinSlowTorrentsInactivityTimer->setValue(session->slowTorrentsInactivityTimer());
 
-    if (session->globalMaxRatio() >= 0.)
+    m_ui->spinMaxRatio->setMaximum(std::numeric_limits<int>::max());
+
+    const BitTorrent::ShareLimits &shareLimits = session->shareLimits();
+    if (shareLimits.ratioLimit >= 0.)
     {
         // Enable
         m_ui->checkMaxRatio->setChecked(true);
         m_ui->spinMaxRatio->setEnabled(true);
-        m_ui->comboRatioLimitAct->setEnabled(true);
-        m_ui->spinMaxRatio->setValue(session->globalMaxRatio());
+        m_ui->spinMaxRatio->setValue(shareLimits.ratioLimit);
     }
     else
     {
@@ -1131,12 +1152,12 @@ void OptionsDialog::loadBittorrentTabOptions()
         m_ui->checkMaxRatio->setChecked(false);
         m_ui->spinMaxRatio->setEnabled(false);
     }
-    if (session->globalMaxSeedingMinutes() >= 0)
+    if (shareLimits.seedingTimeLimit >= 0)
     {
         // Enable
         m_ui->checkMaxSeedingMinutes->setChecked(true);
         m_ui->spinMaxSeedingMinutes->setEnabled(true);
-        m_ui->spinMaxSeedingMinutes->setValue(session->globalMaxSeedingMinutes());
+        m_ui->spinMaxSeedingMinutes->setValue(shareLimits.seedingTimeLimit);
     }
     else
     {
@@ -1144,12 +1165,12 @@ void OptionsDialog::loadBittorrentTabOptions()
         m_ui->checkMaxSeedingMinutes->setChecked(false);
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
-    if (session->globalMaxInactiveSeedingMinutes() >= 0)
+    if (shareLimits.inactiveSeedingTimeLimit >= 0)
     {
         // Enable
         m_ui->checkMaxInactiveSeedingMinutes->setChecked(true);
         m_ui->spinMaxInactiveSeedingMinutes->setEnabled(true);
-        m_ui->spinMaxInactiveSeedingMinutes->setValue(session->globalMaxInactiveSeedingMinutes());
+        m_ui->spinMaxInactiveSeedingMinutes->setValue(shareLimits.inactiveSeedingTimeLimit);
     }
     else
     {
@@ -1157,16 +1178,21 @@ void OptionsDialog::loadBittorrentTabOptions()
         m_ui->checkMaxInactiveSeedingMinutes->setChecked(false);
         m_ui->spinMaxInactiveSeedingMinutes->setEnabled(false);
     }
-    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.) || (session->globalMaxInactiveSeedingMinutes() >= 0));
+    m_ui->comboRatioLimitAct->setEnabled((shareLimits.ratioLimit >= 0.) || (shareLimits.seedingTimeLimit >= 0) || (shareLimits.inactiveSeedingTimeLimit >= 0));
 
     const QHash<BitTorrent::ShareLimitAction, int> actIndex =
     {
-                                                               {BitTorrent::ShareLimitAction::Stop, 0},
+        {BitTorrent::ShareLimitAction::Stop, 0},
         {BitTorrent::ShareLimitAction::Remove, 1},
         {BitTorrent::ShareLimitAction::RemoveWithContent, 2},
         {BitTorrent::ShareLimitAction::EnableSuperSeeding, 3}
     };
-    m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(session->shareLimitAction()));
+    m_ui->comboRatioLimitAct->setCurrentIndex(actIndex.value(shareLimits.action));
+
+    if (shareLimits.mode == BitTorrent::ShareLimitsMode::MatchAll)
+        m_ui->radioButtonShareLimitsModeAll->setChecked(true);
+    else
+        m_ui->radioButtonShareLimitsModeAny->setChecked(true);
 
     m_ui->checkEnableAddTrackers->setChecked(session->isAddTrackersEnabled());
     m_ui->textTrackers->setPlainText(session->additionalTrackers());
@@ -1196,7 +1222,8 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxRatio, qOverload<double>(&QDoubleSpinBox::valueChanged),this, &ThisType::enableApplyButton);
-    connect(m_ui->comboRatioLimitAct, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->radioButtonShareLimitsModeAny, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, m_ui->spinMaxSeedingMinutes, &QWidget::setEnabled);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1234,9 +1261,6 @@ void OptionsDialog::saveBittorrentTabOptions() const
     session->setUploadRateForSlowTorrents(m_ui->spinUploadRateForSlowTorrents->value());
     session->setSlowTorrentsInactivityTimer(m_ui->spinSlowTorrentsInactivityTimer->value());
 
-    session->setGlobalMaxRatio(getMaxRatio());
-    session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
-    session->setGlobalMaxInactiveSeedingMinutes(getMaxInactiveSeedingMinutes());
     const QList<BitTorrent::ShareLimitAction> actIndex =
     {
         BitTorrent::ShareLimitAction::Stop,
@@ -1244,7 +1268,13 @@ void OptionsDialog::saveBittorrentTabOptions() const
         BitTorrent::ShareLimitAction::RemoveWithContent,
         BitTorrent::ShareLimitAction::EnableSuperSeeding
     };
-    session->setShareLimitAction(actIndex.value(m_ui->comboRatioLimitAct->currentIndex()));
+    session->setShareLimits({
+        .ratioLimit = getMaxRatio(),
+        .seedingTimeLimit = getMaxSeedingMinutes(),
+        .inactiveSeedingTimeLimit = getMaxInactiveSeedingMinutes(),
+        .mode = (m_ui->radioButtonShareLimitsModeAll->isChecked() ? BitTorrent::ShareLimitsMode::MatchAll : BitTorrent::ShareLimitsMode::MatchAny),
+        .action = actIndex.value(m_ui->comboRatioLimitAct->currentIndex())
+    });
 
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
@@ -1442,9 +1472,9 @@ void OptionsDialog::saveWebUITabOptions() const
     pref->setWebUIBanDuration(std::chrono::seconds {m_ui->spinBanDuration->value()});
     pref->setWebUISessionTimeout(m_ui->spinSessionTimeout->value());
     // Authentication
-    if (const QString username = webUIUsername(); isValidWebUIUsername(username))
+    if (const QString username = webUIUsername(); isValidWebUIUsernameLength(username) && isValidWebUIUsernameCharacterSet(username))
         pref->setWebUIUsername(username);
-    if (const QString password = webUIPassword(); isValidWebUIPassword(password))
+    if (const QString password = webUIPassword(); isValidWebUIPasswordLength(password))
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(password));
     pref->setWebUILocalAuthEnabled(!m_ui->checkBypassLocalAuth->isChecked());
     pref->setWebUIAuthSubnetWhitelistEnabled(m_ui->checkBypassAuthSubnetWhitelist->isChecked());
@@ -2104,14 +2134,20 @@ QString OptionsDialog::webUIPassword() const
 
 bool OptionsDialog::webUIAuthenticationOk()
 {
-    if (!isValidWebUIUsername(webUIUsername()))
+    const QString username = webUIUsername();
+    if (!isValidWebUIUsernameLength(username))
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI username must be at least 3 characters long."));
         return false;
     }
+    if (!isValidWebUIUsernameCharacterSet(username))
+    {
+        QMessageBox::warning(this, tr("Character Error"), tr("The WebUI username must not contain a colon."));
+        return false;
+    }
 
     const bool dontChangePassword = webUIPassword().isEmpty() && !Preferences::instance()->getWebUIPassword().isEmpty();
-    if (!isValidWebUIPassword(webUIPassword()) && !dontChangePassword)
+    if (!isValidWebUIPasswordLength(webUIPassword()) && !dontChangePassword)
     {
         QMessageBox::warning(this, tr("Length Error"), tr("The WebUI password must be at least 6 characters long."));
         return false;

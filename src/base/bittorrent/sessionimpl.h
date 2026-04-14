@@ -149,15 +149,14 @@ namespace BitTorrent
 
         QStringList categories() const override;
         CategoryOptions categoryOptions(const QString &categoryName) const override;
+        bool setCategoryOptions(const QString &categoryName, const CategoryOptions &options) override;
         Path categorySavePath(const QString &categoryName) const override;
         Path categorySavePath(const QString &categoryName, const CategoryOptions &options) const override;
         Path categoryDownloadPath(const QString &categoryName) const override;
         Path categoryDownloadPath(const QString &categoryName, const CategoryOptions &options) const override;
+        ShareLimits categoryShareLimits(const QString &categoryName) const override;
         bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
-        bool editCategory(const QString &name, const CategoryOptions &options) override;
         bool removeCategory(const QString &name) override;
-        bool isSubcategoriesEnabled() const override;
-        void setSubcategoriesEnabled(bool value) override;
         bool useCategoryPathsInManualMode() const override;
         void setUseCategoryPathsInManualMode(bool value) override;
 
@@ -178,14 +177,8 @@ namespace BitTorrent
         bool isDisableAutoTMMWhenCategorySavePathChanged() const override;
         void setDisableAutoTMMWhenCategorySavePathChanged(bool value) override;
 
-        qreal globalMaxRatio() const override;
-        void setGlobalMaxRatio(qreal ratio) override;
-        int globalMaxSeedingMinutes() const override;
-        void setGlobalMaxSeedingMinutes(int minutes) override;
-        int globalMaxInactiveSeedingMinutes() const override;
-        void setGlobalMaxInactiveSeedingMinutes(int minutes) override;
-        ShareLimitAction shareLimitAction() const override;
-        void setShareLimitAction(ShareLimitAction act) override;
+        const ShareLimits &shareLimits() const override;
+        void setShareLimits(ShareLimits shareLimits) override;
 
         QString getDHTBootstrapNodes() const override;
         void setDHTBootstrapNodes(const QString &nodes) override;
@@ -359,8 +352,8 @@ namespace BitTorrent
         void setOutgoingPortsMax(int max) override;
         int UPnPLeaseDuration() const override;
         void setUPnPLeaseDuration(int duration) override;
-        int peerToS() const override;
-        void setPeerToS(int value) override;
+        int peerDSCP() const override;
+        void setPeerDSCP(int value) override;
         bool ignoreLimitsOnLAN() const override;
         void setIgnoreLimitsOnLAN(bool ignore) override;
         bool includeOverheadInLimits() const override;
@@ -474,7 +467,7 @@ namespace BitTorrent
         void handleTorrentFinished(TorrentImpl *torrent);
         void handleTorrentTrackersAdded(TorrentImpl *torrent, const QList<TrackerEntry> &newTrackers);
         void handleTorrentTrackersRemoved(TorrentImpl *torrent, const QStringList &deletedTrackers);
-        void handleTorrentTrackersChanged(TorrentImpl *torrent);
+        void handleTorrentTrackersReset(TorrentImpl *torrent, const QList<TrackerEntryStatus> &oldEntries, const QList<TrackerEntry> &newEntries);
         void handleTorrentUrlSeedsAdded(TorrentImpl *torrent, const QList<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QList<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *torrent, LoadTorrentParams data);
@@ -544,10 +537,6 @@ namespace BitTorrent
         explicit SessionImpl(QObject *parent = nullptr);
         ~SessionImpl();
 
-        bool hasPerTorrentRatioLimit() const;
-        bool hasPerTorrentSeedingTimeLimit() const;
-        bool hasPerTorrentInactiveSeedingTimeLimit() const;
-
         // Session configuration
         Q_INVOKABLE void configure();
         void configureComponents();
@@ -575,7 +564,7 @@ namespace BitTorrent
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
 
-        void updateSeedingLimitTimer();
+        void updateShareLimitsTimer();
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
         void handleAlert(lt::alert *alert);
@@ -648,6 +637,7 @@ namespace BitTorrent
 
         void setAdditionalTrackersFromURL(const QString &trackers);
         void updateTrackersFromURL();
+        void updateTrackersFromFile();
 
         CachedSettingValue<QString> m_DHTBootstrapNodes;
         CachedSettingValue<bool> m_isDHTEnabled;
@@ -690,7 +680,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_outgoingPortsMin;
         CachedSettingValue<int> m_outgoingPortsMax;
         CachedSettingValue<int> m_UPnPLeaseDuration;
-        CachedSettingValue<int> m_peerToS;
+        CachedSettingValue<int> m_peerDSCP;
         CachedSettingValue<bool> m_ignoreLimitsOnLAN;
         CachedSettingValue<bool> m_includeOverheadInLimits;
         CachedSettingValue<QString> m_announceIP;
@@ -751,10 +741,10 @@ namespace BitTorrent
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<ShareLimitAction> m_shareLimitAction;
+        CachedSettingValue<ShareLimitsMode> m_shareLimitsMode;
         CachedSettingValue<Path> m_savePath;
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
-        CachedSettingValue<bool> m_isSubcategoriesEnabled;
         CachedSettingValue<bool> m_useCategoryPathsInManualMode;
         CachedSettingValue<bool> m_isAutoTMMDisabledByDefault;
         CachedSettingValue<bool> m_isDisableAutoTMMWhenCategoryChanged;
@@ -878,6 +868,8 @@ namespace BitTorrent
         FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
+
+        ShareLimits m_shareLimits;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

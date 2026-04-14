@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -148,14 +148,9 @@ namespace BitTorrent
         qlonglong timeSinceDownload() const override;
         qlonglong timeSinceActivity() const override;
 
-        qreal ratioLimit() const override;
-        void setRatioLimit(qreal limit) override;
-        int seedingTimeLimit() const override;
-        void setSeedingTimeLimit(int limit) override;
-        int inactiveSeedingTimeLimit() const override;
-        void setInactiveSeedingTimeLimit(int limit) override;
-        ShareLimitAction shareLimitAction() const override;
-        void setShareLimitAction(ShareLimitAction action) override;
+        const ShareLimits &shareLimits() const override;
+        void setShareLimits(ShareLimits shareLimits) override;
+        ShareLimits effectiveShareLimits() const override;
 
         Path filePath(int index) const override;
         Path actualFilePath(int index) const override;
@@ -205,9 +200,6 @@ namespace BitTorrent
         bool isLSDDisabled() const override;
         QBitArray pieces() const override;
         qreal distributedCopies() const override;
-        qreal maxRatio() const override;
-        int maxSeedingTime() const override;
-        int maxInactiveSeedingTime() const override;
         qreal realRatio() const override;
         qreal popularity() const override;
         int uploadPayloadRate() const override;
@@ -217,6 +209,7 @@ namespace BitTorrent
         int connectionsCount() const override;
         int connectionsLimit() const override;
         qlonglong nextAnnounce() const override;
+        TorrentAnnounceStatus announceStatus() const override;
 
         void setName(const QString &name) override;
         void setSequentialDownload(bool enable) override;
@@ -349,6 +342,7 @@ namespace BitTorrent
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
         QList<TrackerEntryStatus> m_trackerEntryStatuses;
+        mutable std::optional<TorrentAnnounceStatus> m_announceStatus;
         QList<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;
 
@@ -358,10 +352,7 @@ namespace BitTorrent
         Path m_downloadPath;
         QString m_category;
         TagSet m_tags;
-        qreal m_ratioLimit = 0;
-        int m_seedingTimeLimit = 0;
-        int m_inactiveSeedingTimeLimit = 0;
-        ShareLimitAction m_shareLimitAction = ShareLimitAction::Default;
+        ShareLimits m_shareLimits;
         TorrentOperatingMode m_operatingMode = TorrentOperatingMode::AutoManaged;
         TorrentContentLayout m_contentLayout = TorrentContentLayout::Original;
         bool m_hasFinishedStatus = false;

@@ -244,19 +244,21 @@ void PeerListWidget::displayColumnHeaderMenu()
 
 void PeerListWidget::updatePeerHostNameResolutionState()
 {
-    if (Preferences::instance()->resolvePeerHostNames())
+    const bool resolveHostNames = Preferences::instance()->resolvePeerHostNames();
+    if (resolveHostNames == m_resolveHostNames)
+        return;
+
+    m_resolveHostNames = resolveHostNames;
+    if (m_resolveHostNames)
     {
-        if (!m_resolver)
-        {
-            m_resolver = new Net::ReverseResolution(this);
-            connect(m_resolver, &Net::ReverseResolution::ipResolved, this, &PeerListWidget::handleResolved);
-            loadPeers(m_properties->getCurrentTorrent());
-        }
+        connect(Net::ReverseResolution::instance(), &Net::ReverseResolution::ipResolved
+                , this, &PeerListWidget::handleResolved);
+        loadPeers(m_properties->getCurrentTorrent());
     }
     else
     {
-        delete m_resolver;
-        m_resolver = nullptr;
+        disconnect(Net::ReverseResolution::instance(), &Net::ReverseResolution::ipResolved
+                , this, &PeerListWidget::handleResolved);
     }
 }
 
@@ -406,8 +408,7 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
     if (!torrent)
         return;
 
-    using TorrentPtr = QPointer<const BitTorrent::Torrent>;
-    torrent->fetchPeerInfo().then(this, [this, torrent = TorrentPtr(torrent)](const QList<BitTorrent::PeerInfo> &peers)
+    torrent->fetchPeerInfo().then(this, [this, torrent = QPointer(torrent)](const QList<BitTorrent::PeerInfo> &peers)
     {
         if (const BitTorrent::Torrent *currentTorrent = m_properties->getCurrentTorrent();
             !currentTorrent || (currentTorrent != torrent))
@@ -529,8 +530,13 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
     setModelData(m_listModel, row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue
             , downloadingFilesDisplayValue, {}, downloadingFiles.join(u'\n'));
 
-    if (!peer.useI2PSocket() && m_resolver)
-        m_resolver->resolve(peer.address().ip);
+    if (!peer.useI2PSocket() && m_resolveHostNames)
+    {
+        const QHostAddress ipAddr = peer.address().ip;
+        const QString hostName = Net::ReverseResolution::instance()->resolve(ipAddr);
+        if (!hostName.isEmpty())
+            setModelData(m_listModel, row, PeerListColumns::IP, hostName, hostName, {}, ipAddr.toString());
+    }
 
     if (m_resolveCountries)
     {

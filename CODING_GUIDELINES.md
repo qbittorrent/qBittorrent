@@ -92,7 +92,7 @@ if (condition)
     // code
 }
 
-for (int a = 0; a < b; ++b)
+for (int a = 0; a < b; ++a)
 {
     // code
 }

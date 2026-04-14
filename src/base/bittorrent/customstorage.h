@@ -39,6 +39,7 @@
 #include <libtorrent/disk_interface.hpp>
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/io_context.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QHash>
 #else
@@ -52,6 +53,10 @@ std::unique_ptr<lt::disk_interface> customPosixDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
 std::unique_ptr<lt::disk_interface> customMMapDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
+#if LIBTORRENT_VERSION_NUM >= 20100
+std::unique_ptr<lt::disk_interface> customPreadDiskIOConstructor(
+        lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
+#endif
 
 class CustomDiskIOThread final : public lt::disk_interface
 {
@@ -98,6 +103,9 @@ private:
     {
         Path savePath;
         lt::file_storage files;
+#if LIBTORRENT_VERSION_NUM >= 20100
+        lt::renamed_files renamedFiles;
+#endif
         lt::aux::vector<lt::download_priority_t, lt::file_index_t> filePriorities;
     };
     QHash<lt::storage_index_t, StorageData> m_storageData;

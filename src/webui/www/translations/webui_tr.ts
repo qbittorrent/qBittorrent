@@ -71,148 +71,132 @@
         <translation>Kuyruğun en üstüne ekle</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">Her satıra bir bağlantı (HTTP bağlantıları, Magnet bağlantıları ve bilgi adreslemeleri desteklenir)</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">Torrent bağlantılarını ekleyin</translation>
-    </message>
-    <message>
-        <source>Select .torrent files</source>
-        <translation type="vanished">.torrent dosyalarını seçin</translation>
-    </message>
-    <message>
-        <source>Torrent options</source>
-        <translation type="vanished">Torrent seçenekleri</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>Sıralı düzende indir</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Boyut:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>Kaydetme yeri</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>Torrent bilgisi</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Kaydetme yolu:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Bilgi adreslemesi v1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent'i yeniden adlandır</translation>
     </message>
     <message>
         <source>Add torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent ekle</translation>
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>Mevcut değil</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Öncelik</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>Yüksek</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>Torrent ayarları</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normal</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>Dosyaların kaydedildiği yer:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>Varsayılan kategori olarak ayarla</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>Gönderme oranını sınırla</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Dosyaları süzün...</translation>
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent Ekle</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>Tamamlanmamış torrent için başka bir yol kullan</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>Tarih:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
-        <translation type="unfinished" />
+        <translation>.torrent dosyası olarak kaydet</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Tümü</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Yok</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>En yüksek</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>İndirme yapma</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>Önce ilk ve son parçaları indir</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>Açıklama:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation type="unfinished" />
+        <translation>Torrent dosyası indirilemiyor</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Bilgi adreslemesi v2:</translation>
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>Etiketler:</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>Dosyalar</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>İndirme oranını sınırla</translation>
     </message>
 </context>
 <context>
@@ -320,29 +304,12 @@
         <translation>Bilinmiyor</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Paylaşma oranı sınırı 0 ve 9998 arasında olmak zorundadır.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Gönderim süresi sınırı 0 ve 525600 dakika arasında olmak zorundadır.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Uygula</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>Ekle</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">Torrent'leri Gönder</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">Dosyaların kaydedildiği yer:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -355,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>Yeri ayarla</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">Gönderme oranını sınırla</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">İndirme oranını sınırla</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">Torrent'i yeniden adlandır</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -406,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>Oturumu Kapat</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">Yerel torrent'i gönder</translation>
     </message>
     <message>
         <source>Save</source>
@@ -573,46 +524,50 @@
     </message>
     <message>
         <source>Unable to delete API key.</source>
-        <translation type="unfinished" />
+        <translation>API anahtarı silinemiyor.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Gönderim süresi sınırı negatif bir değer olmamak zorundadır.</translation>
     </message>
     <message>
         <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Kişi ToS'u 0 ile 255 arasında olmak zorundadır.</translation>
     </message>
     <message>
         <source>Share ratio limit must not have a negative value.</source>
-        <translation type="unfinished" />
+        <translation>Paylaşım oranı sınırı negatif bir değer olmamak zorundadır.</translation>
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
-        <translation type="unfinished" />
+        <translation>Kişi devir aralığı 0'dan büyük veya ona eşit olmak zorundadır.</translation>
     </message>
     <message>
         <source>Unable to parse response.</source>
-        <translation type="unfinished" />
+        <translation>Yanıt ayrıştırılamıyor.</translation>
     </message>
     <message>
         <source>Unable to rotate API key.</source>
-        <translation type="unfinished" />
+        <translation>API anahtarı döndürülemiyor.</translation>
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
-        <translation type="unfinished" />
+        <translation>Kişi devri 0 ile 100 arasında olmak zorundadır.</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
-        <translation type="unfinished" />
+        <translation>Torrent'leri denetlerken bekleyen bellek 0'dan büyük ve 1024'ten küçük olmak zorundadır.</translation>
     </message>
     <message>
         <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Program tercihleri ​​yüklenemiyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation>Kişi devri kesintisi 0 ile 100 arasında olmak zorundadır.</translation>
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -872,7 +827,7 @@
     </message>
     <message>
         <source>Filter feed items...</source>
-        <translation type="unfinished" />
+        <translation>Bildirim öğelerini süzün...</translation>
     </message>
 </context>
 <context>
@@ -1533,7 +1488,7 @@
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation>RSS bildirimlerini almayı etkinleştir</translation>
+        <translation>RSS bildirimlerini getirmeyi etkinleştir</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1625,7 +1580,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Kişilere bağlantılar için hizmet türü (ToS)</translation>
+        <translation type="vanished">Kişilere bağlantılar için hizmet türü (ToS):</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1700,10 +1655,6 @@
         <translation>POSIX uyumlu</translation>
     </message>
     <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="vanished">Bu seçenek Linux'ta daha az etkilidir</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Arayüz güncellemelerini etkileyecek olan dahili durum güncelleme aralığını denetler.</translation>
     </message>
@@ -1721,7 +1672,7 @@
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation>Parça kapsam benzeşimi kullan</translation>
+        <translation>Parça kapsamı benzeşimini kullan:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
@@ -1873,7 +1824,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>Alt kategorileri kullan</translation>
+        <translation type="vanished">Alt kategorileri kullan</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2116,10 +2067,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Tanımlama bilgisi Güvenli işaretini etkinleştir (HTTPS veya localhost bağlantısı gerektirir)</translation>
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation type="vanished">Kopya torrent eklendiğinde</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>Çift tıklama eylemi</translation>
     </message>
@@ -2233,55 +2180,55 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Rotate API key</source>
-        <translation type="unfinished" />
+        <translation>API anahtarını döndür</translation>
     </message>
     <message>
         <source>Generate a key</source>
-        <translation type="unfinished" />
+        <translation>Bir anahtar oluştur</translation>
     </message>
     <message>
         <source>When adding a duplicate torrent</source>
-        <translation type="unfinished" />
+        <translation>Bir kopya torrent eklerken</translation>
     </message>
     <message>
         <source>Delete API key</source>
-        <translation type="unfinished" />
+        <translation>API anahtarını sil</translation>
     </message>
     <message>
         <source>%M: Comment</source>
-        <translation type="unfinished" />
+        <translation>%M: Açıklama</translation>
     </message>
     <message>
         <source>Generate API key</source>
-        <translation type="unfinished" />
+        <translation>API anahtarı oluştur</translation>
     </message>
     <message>
         <source>Copied</source>
-        <translation type="unfinished" />
+        <translation>Kopyalandı</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished" />
+        <translation>Kullanıcı</translation>
     </message>
     <message>
         <source>Reset filter selection</source>
-        <translation type="unfinished" />
+        <translation>Süzgeç seçimini sıfırla</translation>
     </message>
     <message>
         <source>API Key</source>
-        <translation type="unfinished" />
+        <translation>API Anahtarı</translation>
     </message>
     <message>
         <source>Copy API key</source>
+        <translation>API anahtarını kopyala</translation>
+    </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
         <translation type="unfinished" />
     </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>B.Noktası</translation>
@@ -2360,7 +2307,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>IP/Address</source>
-        <translation type="unfinished" />
+        <translation>IP/Adres</translation>
     </message>
 </context>
 <context>
@@ -2544,14 +2491,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>%1 (ort. %2)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">İndirme sınırı:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">Gönderme sınırı:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>Öncelik</translation>
     </message>
@@ -2725,11 +2664,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">KiB/s</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3114,10 +3049,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>Durum</translation>
     </message>
@@ -3227,39 +3158,39 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>URL/Announce Endpoint</source>
-        <translation type="unfinished" />
+        <translation>URL/Duyurma Uç Noktası</translation>
     </message>
     <message>
         <source>BT Protocol</source>
-        <translation type="unfinished" />
+        <translation>BT Protokolü</translation>
     </message>
     <message>
         <source>Next Announce</source>
-        <translation type="unfinished" />
+        <translation>Sonraki Duyurma</translation>
     </message>
     <message>
         <source>Tier:</source>
-        <translation type="unfinished" />
+        <translation>Katman:</translation>
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>İzleyici hatası</translation>
     </message>
     <message>
         <source>Unreachable</source>
-        <translation type="unfinished" />
+        <translation>Ulaşılamıyor</translation>
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation type="unfinished" />
+        <translation>Seçilen izleyici(lere)ye yeniden duyurmayı zorla</translation>
     </message>
     <message>
         <source>Min Announce</source>
-        <translation type="unfinished" />
+        <translation>En Az Duyurma</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished" />
+        <translation>Tüm izleyicilere yeniden duyurmayı zorla</translation>
     </message>
 </context>
 <context>
@@ -3553,10 +3484,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Başlatmaya Zorla</translation>
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">Kaydetme yolu:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation>Konum:</translation>
     </message>
@@ -3581,12 +3508,8 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Etiketleri ekle</translation>
     </message>
     <message>
-        <source>Category:</source>
-        <translation type="vanished">Kategori:</translation>
-    </message>
-    <message>
         <source>Content Path</source>
-        <translation type="unfinished" />
+        <translation>İçerik Yolu</translation>
     </message>
 </context>
 <context>
@@ -3621,27 +3544,27 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent'i kaldır</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Torrent'i ve içeriğini kaldır</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent'i durdur</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Torrent için süper gönderimi etkinleştir</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
-        <translation type="unfinished" />
+        <translation>Sınıra ulaşıldığında yapılacak eylem</translation>
     </message>
 </context>
 <context>
@@ -3667,14 +3590,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Download from URLs</source>
         <translation>URL'lerden indir</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">İndir</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">Torrent Bağlantıları Ekle</translation>
     </message>
 </context>
 <context>
@@ -4206,7 +4121,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Refresh tab</source>
-        <translation type="unfinished" />
+        <translation>Sekmeyi yenile</translation>
     </message>
 </context>
 <context>
@@ -4300,7 +4215,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>RSS bildirimlerinin alınması şimdi etkisizleştirildi! Uygulama ayarlarından etkinleştirebilirsiniz.</translation>
+        <translation>RSS bildirimlerinin getirilmesi şimdi etkisizleştirildi! Uygulama ayarlarından etkinleştirebilirsiniz.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -4628,15 +4543,15 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>İzleyici hatası</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Uyarı</translation>
     </message>
     <message>
         <source>Other error</source>
-        <translation type="unfinished" />
+        <translation>Diğer hata</translation>
     </message>
 </context>
 <context>
@@ -4812,39 +4727,39 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Tamamlanmamış torrent'ler için kaydetme yolu:</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Yeni Kategori</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Kaydetme yolu:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Evet</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategori:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Hayır</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Yol:</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Tamamlanmamış torrent'ler için başka bir yol kullan:</translation>
     </message>
 </context>
 <context>
@@ -5147,76 +5062,76 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>İndir</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magnet bağlantısı</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Torrent bağlantılarını ekleyin</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Her satıra bir bağlantı (HTTP bağlantıları, Magnet bağlantıları ve bilgi adreslemeleri desteklenir)</translation>
     </message>
     <message>
         <source>URLs</source>
-        <translation type="unfinished" />
+        <translation>URL'ler</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Torrent Bağlantıları Ekle</translation>
     </message>
 </context>
 <context>
     <name>SpeedLimit</name>
     <message>
         <source>Limit:</source>
-        <translation type="unfinished" />
+        <translation>Sınır:</translation>
     </message>
     <message>
         <source>Speed limit</source>
-        <translation type="unfinished" />
+        <translation>Hız sınırı</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Gönderme sınırı:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>İndirme sınırı:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
     <name>ListWidget</name>
     <message>
         <source>Resize All</source>
-        <translation type="unfinished" />
+        <translation>Tümünü Yeniden Boyutlandır</translation>
     </message>
     <message>
         <source>Resize</source>
-        <translation type="unfinished" />
+        <translation>Yeniden Boyutlandır</translation>
     </message>
 </context>
 <context>
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation type="unfinished" />
+        <translation>API anahtarı oluşturulsun mu? Bu anahtar, qBittorrent'in API'si ile etkileşimde bulunmak için kullanılabilir.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished" />
+        <translation>Bu API anahtarı silinsin mi? Şu anki anahtar hemen çalışmayı durduracak.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished" />
+        <translation>Bu API anahtarı döndürülsün mü? Şu anki anahtar hemen çalışmayı durduracak ve yeni bir anahtar oluşturulacaktır.</translation>
     </message>
 </context>
 </TS>

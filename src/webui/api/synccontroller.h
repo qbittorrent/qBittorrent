@@ -46,10 +46,7 @@ class SyncController : public APIController
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SyncController)
 
-public:
     using APIController::APIController;
-
-    explicit SyncController(IApplication *app, QObject *parent = nullptr);
 
 public slots:
     void updateFreeDiskSpace(qint64 freeDiskSpace);

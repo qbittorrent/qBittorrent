@@ -71,44 +71,32 @@
         <translation>Προσθήκη στην αρχή της ουράς</translation>
     </message>
     <message>
-        <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="vanished">Ένας σύνδεσμος ανά γραμμή (υποστηρίζονται σύνδεσμοι HTTP, σύνδεσμοι Magnet και info-hashes)</translation>
-    </message>
-    <message>
-        <source>Add torrent links</source>
-        <translation type="vanished">Προσθήκη συνδέσμων torrent</translation>
-    </message>
-    <message>
-        <source>Torrent options</source>
-        <translation type="vanished">Επιλογές Torrent</translation>
-    </message>
-    <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>Λήψη σε διαδοχική σειρά</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Μέγεθος:</translation>
     </message>
     <message>
         <source>Save at</source>
-        <translation type="unfinished" />
+        <translation>Αποθήκευση σε</translation>
     </message>
     <message>
         <source>Torrent information</source>
-        <translation type="unfinished" />
+        <translation>Πληροφορίες torrent</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Διαδρομή αποθήκευσης:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Info hash v1:</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>Μετονομασία του torrent</translation>
     </message>
     <message>
         <source>Add torrent</source>
@@ -116,39 +104,39 @@
     </message>
     <message>
         <source>Not available</source>
-        <translation type="unfinished" />
+        <translation>Μη διαθέσιμο</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Προτεραιότητα</translation>
     </message>
     <message>
         <source>High</source>
-        <translation type="unfinished" />
+        <translation>Υψηλή</translation>
     </message>
     <message>
         <source>Torrent settings</source>
-        <translation type="unfinished" />
+        <translation>Ρυθμίσεις torrent</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Κανονική</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>Αποθήκευση αρχείων στην τοποθεσία:</translation>
     </message>
     <message>
         <source>Set as default category</source>
-        <translation type="unfinished" />
+        <translation>Ορισμός ως προεπιλεγμένη κατηγορία</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>Περιορισμός ρυθμού αποστολής</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Φίλτρο αρχείων...</translation>
     </message>
     <message>
         <source>Add Torrent</source>
@@ -156,11 +144,11 @@
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished" />
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrents</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished" />
+        <translation>Ημερομηνία:</translation>
     </message>
     <message>
         <source>Save as .torrent file</source>
@@ -168,27 +156,27 @@
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Όλα</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Δ/Υ</translation>
     </message>
     <message>
         <source>Maximum</source>
-        <translation type="unfinished" />
+        <translation>Μέγιστη</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Να μην γίνει λήψη</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>Λήψη των πρώτων και των τελευταίων κομματιών πρώτα</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>Σχόλιο:</translation>
     </message>
     <message>
         <source>Unable to download torrent file</source>
@@ -196,19 +184,19 @@
     </message>
     <message>
         <source>Info hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2:</translation>
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>Ετικέτες:</translation>
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>Αρχεία</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>Περιορισμός ρυθμού λήψης</translation>
     </message>
 </context>
 <context>
@@ -316,29 +304,12 @@
         <translation>Άγνωστο</translation>
     </message>
     <message>
-        <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation type="vanished">Το όριο αναλογίας διαμοιρασμού πρέπει να είναι μεταξύ 0 και 9998.</translation>
-    </message>
-    <message>
-        <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation type="vanished">Το χρονικό όριο seeding πρέπει να είναι μεταξύ 0 και 525600 λεπτών.</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Εφαρμογή</translation>
     </message>
     <message>
         <source>Add</source>
         <translation>Προσθήκη</translation>
-    </message>
-    <message>
-        <source>Upload Torrents</source>
-        <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="vanished">Μεταφόρτωση Torrents</translation>
-    </message>
-    <message>
-        <source>Save files to location:</source>
-        <translation type="vanished">Αποθήκευση αρχείων στην τοποθεσία:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -351,18 +322,6 @@
     <message>
         <source>Set location</source>
         <translation>Ορισμός τοποθεσίας</translation>
-    </message>
-    <message>
-        <source>Limit upload rate</source>
-        <translation type="vanished">Περιορισμός ρυθμού αποστολής</translation>
-    </message>
-    <message>
-        <source>Limit download rate</source>
-        <translation type="vanished">Περιορισμός ρυθμού λήψης</translation>
-    </message>
-    <message>
-        <source>Rename torrent</source>
-        <translation type="vanished">Μετονομασία του torrent</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -402,10 +361,6 @@
     <message>
         <source>Logout</source>
         <translation>Αποσύνδεση</translation>
-    </message>
-    <message>
-        <source>Upload local torrent</source>
-        <translation type="vanished">Μεταφόρτωση τοπικού torrent</translation>
     </message>
     <message>
         <source>Save</source>
@@ -576,10 +531,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation type="unfinished" />
     </message>
@@ -609,6 +560,10 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer DSCP must be between 0 and 255.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1621,7 +1576,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Τύπος υπηρεσίας (ToS) για συνδέσεις με peers</translation>
+        <translation type="vanished">Τύπος υπηρεσίας (ToS) για συνδέσεις με peers</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1694,10 +1649,6 @@
     <message>
         <source>POSIX-compliant</source>
         <translation>Συμβατό με το POSIX</translation>
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="vanished">Αυτή η επιλογή είναι λιγότερο αποτελεσματική στο Linux</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1869,7 +1820,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation>Χρήση Υποκατηγοριών</translation>
+        <translation type="vanished">Χρήση Υποκατηγοριών</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -2112,10 +2063,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>When duplicate torrent is being added</source>
-        <translation type="vanished">Όταν προστίθεται διπλό torrent</translation>
-    </message>
-    <message>
         <source>Action on double-click</source>
         <translation>Ενέργεια στο διπλό κλικ</translation>
     </message>
@@ -2271,13 +2218,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Copy API key</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
     <message>
         <source>Port</source>
         <translation>Θύρα</translation>
@@ -2356,7 +2303,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>IP/Address</source>
-        <translation type="unfinished" />
+        <translation>IP/Διεύθυνση</translation>
     </message>
 </context>
 <context>
@@ -2540,14 +2487,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>%1 (%2 μ.ο.)</translation>
     </message>
     <message>
-        <source>Download limit:</source>
-        <translation type="vanished">Όριο λήψης:</translation>
-    </message>
-    <message>
-        <source>Upload limit:</source>
-        <translation type="vanished">Όριο αποστολής:</translation>
-    </message>
-    <message>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
     </message>
@@ -2721,11 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>SpeedLimitDialog</name>
-    <message>
-        <source>KiB/s</source>
-        <translation type="vanished">KiB/δ</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>StatsDialog</name>
     <message>
@@ -3110,10 +3045,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <source>URL</source>
-        <translation type="vanished">URL</translation>
-    </message>
-    <message>
         <source>Status</source>
         <translation>Κατάσταση</translation>
     </message>
@@ -3223,15 +3154,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>URL/Announce Endpoint</source>
-        <translation type="unfinished" />
+        <translation>URL/Ανακοίνωση Endpoint</translation>
     </message>
     <message>
         <source>BT Protocol</source>
-        <translation type="unfinished" />
+        <translation>Πρωτόκολλο BT</translation>
     </message>
     <message>
         <source>Next Announce</source>
-        <translation type="unfinished" />
+        <translation>Επόμενη Ανακοίνωση</translation>
     </message>
     <message>
         <source>Tier:</source>
@@ -3239,11 +3170,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>Σφάλμα tracker</translation>
     </message>
     <message>
         <source>Unreachable</source>
-        <translation type="unfinished" />
+        <translation>Απρόσιτος</translation>
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
@@ -3251,11 +3182,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Min Announce</source>
-        <translation type="unfinished" />
+        <translation>Λεπτά Ανακοίνωσης</translation>
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation type="unfinished" />
+        <translation>Εξαναγκασμός reannounce σε όλους τους trackers</translation>
     </message>
 </context>
 <context>
@@ -3549,10 +3480,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Εξαναγκαστική Εκκίνηση</translation>
     </message>
     <message>
-        <source>Save path:</source>
-        <translation type="vanished">Διαδρομή αποθήκευσης:</translation>
-    </message>
-    <message>
         <source>Location:</source>
         <translation type="unfinished" />
     </message>
@@ -3575,10 +3502,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tags</source>
         <translation>Προσθήκη ετικετών</translation>
-    </message>
-    <message>
-        <source>Category:</source>
-        <translation type="vanished">Κατηγορία:</translation>
     </message>
     <message>
         <source>Content Path</source>
@@ -3617,23 +3540,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Προεπιλογή</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
-        <translation type="unfinished" />
+        <translation>Αφαίρεση torrent και του περιεχομένου του</translation>
     </message>
     <message>
         <source>Stop torrent</source>
-        <translation type="unfinished" />
+        <translation>Διακοπή torrent</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Ενεργοποίηση super seeding για το torrent</translation>
     </message>
     <message>
         <source>Action when the limit is reached</source>
@@ -3663,14 +3586,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download from URLs</source>
         <translation>Λήψη από URLs</translation>
-    </message>
-    <message>
-        <source>Download</source>
-        <translation type="vanished">Λήψη</translation>
-    </message>
-    <message>
-        <source>Add Torrent Links</source>
-        <translation type="vanished">Προσθήκη Συνδέσμων Torrent…</translation>
     </message>
 </context>
 <context>
@@ -4624,11 +4539,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Tracker error</source>
-        <translation type="unfinished" />
+        <translation>Σφάλμα tracker</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Προειδοποίηση</translation>
     </message>
     <message>
         <source>Other error</source>
@@ -4808,39 +4723,39 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Διαδρομή αποθήκευσης για ημιτελή torrents:</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Προεπιλογή</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Νέα Κατηγορία</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Διαδρομή αποθήκευσης:</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ναι</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Κατηγορία:</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Όχι</translation>
     </message>
     <message>
         <source>Path:</source>
-        <translation type="unfinished" />
+        <translation>Διαδρομή:</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished" />
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrents:</translation>
     </message>
 </context>
 <context>
@@ -5139,19 +5054,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>DownloadFromURLDialog</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Λήψη</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Σύνδεσμος Magnet</translation>
     </message>
     <message>
         <source>Add torrent links</source>
-        <translation type="unfinished" />
+        <translation>Προσθήκη συνδέσμων torrent</translation>
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation type="unfinished" />
+        <translation>Ένας σύνδεσμος ανά γραμμή (υποστηρίζονται σύνδεσμοι HTTP, σύνδεσμοι Magnet και info-hashes)</translation>
     </message>
     <message>
         <source>URLs</source>
@@ -5159,7 +5074,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Προσθήκη Συνδέσμων Torrent…</translation>
     </message>
 </context>
 <context>
@@ -5174,15 +5089,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Όριο αποστολής:</translation>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Όριο λήψης:</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/δ</translation>
     </message>
 </context>
 <context>

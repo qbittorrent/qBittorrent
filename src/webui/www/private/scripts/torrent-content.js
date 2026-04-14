@@ -220,12 +220,12 @@ window.qBittorrent.TorrentContent ??= (() => {
 
         const rowIds = [];
         const fileIds = [];
-        const checkbox = document.getElementById("tristate_cb");
+        const checkbox = document.getElementById("tristateCb");
         const priority = (checkbox.state === TriState.Checked) ? FilePriority.Ignored : FilePriority.Normal;
 
         if (checkbox.state === TriState.Checked) {
             setCheckboxUnchecked(checkbox);
-            for (const row of torrentFilesTable.rows) {
+            for (const row of torrentFilesTable.getRowValues()) {
                 const rowId = row.rowId;
                 const node = torrentFilesTable.getNode(rowId);
                 const fileId = node.fileId;
@@ -238,7 +238,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         }
         else {
             setCheckboxChecked(checkbox);
-            for (const row of torrentFilesTable.rows) {
+            for (const row of torrentFilesTable.getRowValues()) {
                 const rowId = row.rowId;
                 const node = torrentFilesTable.getNode(rowId);
                 const fileId = node.fileId;
@@ -255,16 +255,6 @@ window.qBittorrent.TorrentContent ??= (() => {
             for (const id of rowIds)
                 updateParentFolder(id);
         }
-    };
-
-    const updateGlobalCheckbox = () => {
-        const checkbox = document.getElementById("tristate_cb");
-        if (torrentFilesTable.isAllCheckboxesChecked())
-            setCheckboxChecked(checkbox);
-        else if (torrentFilesTable.isAllCheckboxesUnchecked())
-            setCheckboxUnchecked(checkbox);
-        else
-            setCheckboxPartial(checkbox);
     };
 
     const setCheckboxChecked = (checkbox) => {
@@ -320,7 +310,7 @@ window.qBittorrent.TorrentContent ??= (() => {
         });
 
         addRowsToTable(rows);
-        updateGlobalCheckbox();
+        torrentFilesTable.updateHeaderCheckbox();
     };
 
     const addRowsToTable = (rows) => {
@@ -419,7 +409,7 @@ window.qBittorrent.TorrentContent ??= (() => {
     const updateParentFolder = (id) => {
         const updateComplete = () => {
             // we've finished recursing
-            updateGlobalCheckbox();
+            torrentFilesTable.updateHeaderCheckbox();
             torrentFilesTable.calculateRemaining();
             torrentFilesTable.updateTable(true);
         };
@@ -512,18 +502,9 @@ window.qBittorrent.TorrentContent ??= (() => {
             },
         });
 
-        torrentFilesTable.setup(tableId, "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu, true);
-        // inject checkbox into table header
-        const tableHeaders = document.querySelectorAll("#torrentFilesTableFixedHeaderDiv .dynamicTableHeader th");
-        if (tableHeaders.length > 0) {
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.id = "tristate_cb";
-            checkbox.addEventListener("click", switchGlobalCheckboxState);
-
-            const checkboxTH = tableHeaders[0];
-            checkboxTH.appendChild(checkbox);
-        }
+        torrentFilesTable.setup(tableId, "torrentFilesTableFixedHeaderDiv", torrentFilesContextMenu);
+        torrentFilesTable.headerCheckboxClickHandler = switchGlobalCheckboxState;
+        torrentFilesTable.injectHeaderCheckbox();
 
         // default sort by name column
         if (torrentFilesTable.getSortedColumn() === null)

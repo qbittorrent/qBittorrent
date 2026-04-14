@@ -37,7 +37,8 @@
 #include "base/3rdparty/expected.hpp"
 #include "base/pathfwd.h"
 #include "base/tagset.h"
-#include "sharelimitaction.h"
+#include "sharelimits.h"
+#include "torrentannouncestatus.h"
 #include "torrentcontenthandler.h"
 
 class QBitArray;
@@ -123,15 +124,6 @@ namespace BitTorrent
             FilesChecked = 2
         };
         Q_ENUM(StopCondition)
-
-        static const qreal USE_GLOBAL_RATIO;
-        static const qreal NO_RATIO_LIMIT;
-
-        static const int USE_GLOBAL_SEEDING_TIME;
-        static const int NO_SEEDING_TIME_LIMIT;
-
-        static const int USE_GLOBAL_INACTIVE_SEEDING_TIME;
-        static const int NO_INACTIVE_SEEDING_TIME_LIMIT;
 
         static const qreal MAX_RATIO;
 
@@ -227,14 +219,9 @@ namespace BitTorrent
         virtual qlonglong timeSinceActivity() const = 0;
 
         // Share limits
-        virtual qreal ratioLimit() const = 0;
-        virtual void setRatioLimit(qreal limit) = 0;
-        virtual int seedingTimeLimit() const = 0;
-        virtual void setSeedingTimeLimit(int limit) = 0;
-        virtual int inactiveSeedingTimeLimit() const = 0;
-        virtual void setInactiveSeedingTimeLimit(int limit) = 0;
-        virtual ShareLimitAction shareLimitAction() const = 0;
-        virtual void setShareLimitAction(ShareLimitAction action) = 0;
+        virtual const ShareLimits &shareLimits() const = 0;
+        virtual void setShareLimits(ShareLimits shareLimits) = 0;
+        virtual ShareLimits effectiveShareLimits() const = 0;
 
         virtual PathList filePaths() const = 0;
         virtual PathList actualFilePaths() const = 0;
@@ -278,9 +265,6 @@ namespace BitTorrent
         virtual bool isLSDDisabled() const = 0;
         virtual QBitArray pieces() const = 0;
         virtual qreal distributedCopies() const = 0;
-        virtual qreal maxRatio() const = 0;
-        virtual int maxSeedingTime() const = 0;
-        virtual int maxInactiveSeedingTime() const = 0;
         virtual qreal realRatio() const = 0;
         virtual qreal popularity() const = 0;
         virtual int uploadPayloadRate() const = 0;
@@ -290,6 +274,7 @@ namespace BitTorrent
         virtual int connectionsCount() const = 0;
         virtual int connectionsLimit() const = 0;
         virtual qlonglong nextAnnounce() const = 0;
+        virtual TorrentAnnounceStatus announceStatus() const = 0;
 
         virtual void setName(const QString &name) = 0;
         virtual void setSequentialDownload(bool enable) = 0;

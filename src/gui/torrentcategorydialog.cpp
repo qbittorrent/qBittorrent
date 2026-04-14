@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017, 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -32,11 +32,12 @@
 #include <QPushButton>
 
 #include "base/bittorrent/session.h"
-#include "base/utils/fs.h"
+#include "base/bittorrent/torrent.h"
+#include "torrentsharelimitswidget.h"
 #include "ui_torrentcategorydialog.h"
 
 TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
-    : QDialog {parent}
+    : QDialog(parent)
     , m_ui {new Ui::TorrentCategoryDialog}
 {
     m_ui->setupUi(this);
@@ -56,6 +57,15 @@ TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
 
     connect(m_ui->textCategoryName, &QLineEdit::textChanged, this, &TorrentCategoryDialog::categoryNameChanged);
     connect(m_ui->comboUseDownloadPath, &QComboBox::currentIndexChanged, this, &TorrentCategoryDialog::useDownloadPathChanged);
+
+    resetShareLimitsWidgetDefaults();
+}
+
+TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent, const QString &categoryName, const BitTorrent::CategoryOptions &categoryOptions)
+    : TorrentCategoryDialog(parent)
+{
+    setCategoryName(categoryName);
+    setCategoryOptions(categoryOptions);
 }
 
 TorrentCategoryDialog::~TorrentCategoryDialog()
@@ -73,8 +83,7 @@ QString TorrentCategoryDialog::createCategory(QWidget *parent, const QString &pa
         newCategoryName += u'/';
     newCategoryName += tr("New Category");
 
-    TorrentCategoryDialog dialog {parent};
-    dialog.setCategoryName(newCategoryName);
+    TorrentCategoryDialog dialog {parent, newCategoryName, {}};
     while (dialog.exec() == TorrentCategoryDialog::Accepted)
     {
         newCategoryName = dialog.categoryName();
@@ -110,14 +119,12 @@ void TorrentCategoryDialog::editCategory(QWidget *parent, const QString &categor
 
     Q_ASSERT(Session::instance()->categories().contains(categoryName));
 
-    auto *dialog = new TorrentCategoryDialog(parent);
+    auto *dialog = new TorrentCategoryDialog(parent, categoryName, Session::instance()->categoryOptions(categoryName));
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setCategoryNameEditable(false);
-    dialog->setCategoryName(categoryName);
-    dialog->setCategoryOptions(Session::instance()->categoryOptions(categoryName));
     connect(dialog, &TorrentCategoryDialog::accepted, parent, [dialog, categoryName]()
     {
-        Session::instance()->editCategory(categoryName, dialog->categoryOptions());
+        Session::instance()->setCategoryOptions(categoryName, dialog->categoryOptions());
     });
     dialog->open();
 }
@@ -149,6 +156,14 @@ BitTorrent::CategoryOptions TorrentCategoryDialog::categoryOptions() const
     else if (m_ui->comboUseDownloadPath->currentIndex() == 2)
         categoryOptions.downloadPath = {false, {}};
 
+    categoryOptions.shareLimits = {
+        .ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit().value_or(BitTorrent::DEFAULT_RATIO_LIMIT),
+        .seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT),
+        .inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit().value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT),
+        .mode = m_ui->torrentShareLimitsWidget->shareLimitsMode().value_or(BitTorrent::ShareLimitsMode::Default),
+        .action = m_ui->torrentShareLimitsWidget->shareLimitAction().value_or(BitTorrent::ShareLimitAction::Default)
+    };
+
     return categoryOptions;
 }
 
@@ -165,6 +180,12 @@ void TorrentCategoryDialog::setCategoryOptions(const BitTorrent::CategoryOptions
         m_ui->comboUseDownloadPath->setCurrentIndex(0);
         m_ui->comboDownloadPath->setSelectedPath({});
     }
+
+    m_ui->torrentShareLimitsWidget->setRatioLimit(categoryOptions.shareLimits.ratioLimit);
+    m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(categoryOptions.shareLimits.seedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(categoryOptions.shareLimits.inactiveSeedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setShareLimitsMode(categoryOptions.shareLimits.mode);
+    m_ui->torrentShareLimitsWidget->setShareLimitAction(categoryOptions.shareLimits.action);
 }
 
 void TorrentCategoryDialog::categoryNameChanged(const QString &categoryName)
@@ -176,6 +197,13 @@ void TorrentCategoryDialog::categoryNameChanged(const QString &categoryName)
     const bool useDownloadPath = (index == 1) || ((index == 0) && btSession->isDownloadPathEnabled());
     if (useDownloadPath)
         m_ui->comboDownloadPath->setPlaceholder(btSession->categoryDownloadPath(categoryName, categoryOptions()));
+
+    const QString parentCategoryName = BitTorrent::Session::parentCategoryName(categoryName);
+    if (m_parentCategoryName != parentCategoryName)
+    {
+        m_parentCategoryName = parentCategoryName;
+        resetShareLimitsWidgetDefaults();
+    }
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!categoryName.isEmpty());
 }
@@ -194,4 +222,11 @@ void TorrentCategoryDialog::useDownloadPathChanged(const int index)
     const bool useDownloadPath = (index == 1) || ((index == 0) && btSession->isDownloadPathEnabled());
     const Path categoryPath = btSession->categoryDownloadPath(categoryName, categoryOptions());
     m_ui->comboDownloadPath->setPlaceholder(useDownloadPath ? categoryPath : Path());
+}
+
+void TorrentCategoryDialog::resetShareLimitsWidgetDefaults()
+{
+    const auto *btSession = BitTorrent::Session::instance();
+    m_ui->torrentShareLimitsWidget->setDefaults((m_parentCategoryName.isEmpty() ? TorrentShareLimitsWidget::UsedDefaults::Global : TorrentShareLimitsWidget::UsedDefaults::Category)
+            , btSession->categoryShareLimits(m_parentCategoryName));
 }

@@ -88,6 +88,7 @@ public:
         TR_REANNOUNCE,
         TR_PRIVATE,
     TR_GROUP, // Virtual torrent group (experimental)
+        TR_CREATE_DATE,
 
         NB_COLUMNS
     };

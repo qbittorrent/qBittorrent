@@ -267,7 +267,7 @@ TrackerListModel::TrackerListModel(BitTorrent::Session *btSession, QObject *pare
         if (torrent == m_torrent)
             onTrackersRemoved(deletedTrackers);
     });
-    connect(m_btSession, &BitTorrent::Session::trackersChanged, this
+    connect(m_btSession, &BitTorrent::Session::trackersReset, this
             , [this](BitTorrent::Torrent *torrent)
     {
         if (torrent == m_torrent)
@@ -316,15 +316,14 @@ void TrackerListModel::populate()
     m_items->emplace_back(std::make_shared<Item>(u"** [PeX] **", privateTorrentMessage));
     m_items->emplace_back(std::make_shared<Item>(u"** [LSD] **", privateTorrentMessage));
 
-    using TorrentPtr = QPointer<const BitTorrent::Torrent>;
-    m_torrent->fetchPeerInfo().then(this, [this, torrent = TorrentPtr(m_torrent)](const QList<BitTorrent::PeerInfo> &peers)
+    m_torrent->fetchPeerInfo().then(this, [this, torrent = QPointer(m_torrent)](const QList<BitTorrent::PeerInfo> &peers)
     {
         if (!m_torrent || (m_torrent != torrent))
            return;
 
         // XXX: libtorrent should provide this info...
         // Count peers from DHT, PeX, LSD
-        uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;
+        qsizetype seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;
         for (const BitTorrent::PeerInfo &peer : peers)
         {
             if (peer.isConnecting())

@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Jonathan Ketchker
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2006-2012  Ishan Arora <ishan@qbittorrent.org>
  *
@@ -121,6 +121,15 @@ void AppController::buildInfoAction()
     setResult(versions);
 }
 
+void AppController::processInfoAction()
+{
+    const QJsonObject info =
+    {
+        {u"launch_time"_s, app()->launchTimeSecsSinceEpoch()}
+    };
+    setResult(info);
+}
+
 void AppController::shutdownAction()
 {
     // Special handling for shutdown, we
@@ -174,7 +183,6 @@ void AppController::preferencesAction()
     data[u"torrent_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategoryChanged();
     data[u"save_path_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
     data[u"category_changed_tmm_enabled"_s] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
-    data[u"use_subcategories"] = session->isSubcategoriesEnabled();
     data[u"save_path"_s] = session->savePath().toString();
     data[u"temp_path_enabled"_s] = session->isDownloadPathEnabled();
     data[u"temp_path"_s] = session->downloadPath().toString();
@@ -305,13 +313,15 @@ void AppController::preferencesAction()
     data[u"slow_torrent_ul_rate_threshold"_s] = session->uploadRateForSlowTorrents();
     data[u"slow_torrent_inactive_timer"_s] = session->slowTorrentsInactivityTimer();
     // Share Ratio Limiting
-    data[u"max_ratio_enabled"_s] = (session->globalMaxRatio() >= 0.);
-    data[u"max_ratio"_s] = session->globalMaxRatio();
-    data[u"max_seeding_time_enabled"_s] = (session->globalMaxSeedingMinutes() >= 0.);
-    data[u"max_seeding_time"_s] = session->globalMaxSeedingMinutes();
-    data[u"max_inactive_seeding_time_enabled"_s] = (session->globalMaxInactiveSeedingMinutes() >= 0.);
-    data[u"max_inactive_seeding_time"_s] = session->globalMaxInactiveSeedingMinutes();
-    data[u"max_ratio_act"_s] = static_cast<int>(session->shareLimitAction());
+    const BitTorrent::ShareLimits &shareLimits = session->shareLimits();
+    data[u"max_ratio_enabled"_s] = (shareLimits.ratioLimit >= 0.);
+    data[u"max_ratio"_s] = shareLimits.ratioLimit;
+    data[u"max_seeding_time_enabled"_s] = (shareLimits.seedingTimeLimit >= 0);
+    data[u"max_seeding_time"_s] = shareLimits.seedingTimeLimit;
+    data[u"max_inactive_seeding_time_enabled"_s] = (shareLimits.inactiveSeedingTimeLimit >= 0);
+    data[u"max_inactive_seeding_time"_s] = shareLimits.inactiveSeedingTimeLimit;
+    data[u"share_limits_mode"_s] = Utils::String::fromEnum(shareLimits.mode);
+    data[u"max_ratio_act"_s] = static_cast<int>(shareLimits.action);
     // Add trackers
     data[u"add_trackers_enabled"_s] = session->isAddTrackersEnabled();
     data[u"add_trackers"_s] = session->additionalTrackers();
@@ -399,6 +409,8 @@ void AppController::preferencesAction()
     data[u"app_instance_name"_s] = app()->instanceName();
     // Refresh interval
     data[u"refresh_interval"_s] = session->refreshInterval();
+    // Resolve peer host names
+    data[u"resolve_peer_host_names"_s] = pref->resolvePeerHostNames();
     // Resolve peer countries
     data[u"resolve_peer_countries"_s] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
@@ -462,7 +474,7 @@ void AppController::preferencesAction()
     // UPnP lease duration
     data[u"upnp_lease_duration"_s] = session->UPnPLeaseDuration();
     // Type of service
-    data[u"peer_tos"_s] = session->peerToS();
+    data[u"peer_tos"_s] = session->peerDSCP();
     // uTP-TCP mixed mode
     data[u"utp_tcp_mixed_mode"_s] = static_cast<int>(session->utpMixedMode());
     // Hostname resolver cache TTL
@@ -593,8 +605,6 @@ void AppController::setPreferencesAction()
         session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
     if (hasKey(u"category_changed_tmm_enabled"_s))
         session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
-    if (hasKey(u"use_subcategories"_s))
-        session->setSubcategoriesEnabled(it.value().toBool());
     if (hasKey(u"save_path"_s))
         session->setSavePath(Path(it.value().toString()));
     if (hasKey(u"temp_path_enabled"_s))
@@ -838,37 +848,41 @@ void AppController::setPreferencesAction()
     if (hasKey(u"slow_torrent_inactive_timer"_s))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
+    BitTorrent::ShareLimits shareLimits = session->shareLimits();
     if (hasKey(u"max_ratio_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxRatio(-1);
+        shareLimits.ratioLimit = BitTorrent::NO_RATIO_LIMIT;
     else if (hasKey(u"max_ratio"_s))
-        session->setGlobalMaxRatio(it.value().toReal());
+        shareLimits.ratioLimit = it.value().toReal();
     if (hasKey(u"max_seeding_time_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxSeedingMinutes(-1);
+        shareLimits.seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_seeding_time"_s))
-        session->setGlobalMaxSeedingMinutes(it.value().toInt());
+        shareLimits.seedingTimeLimit = it.value().toInt();
     if (hasKey(u"max_inactive_seeding_time_enabled"_s) && !it.value().toBool())
-        session->setGlobalMaxInactiveSeedingMinutes(-1);
+        shareLimits.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_inactive_seeding_time"_s))
-        session->setGlobalMaxInactiveSeedingMinutes(it.value().toInt());
+        shareLimits.inactiveSeedingTimeLimit = it.value().toInt();
+    if (hasKey(u"share_limits_mode"_s))
+        shareLimits.mode = Utils::String::toEnum(it.value().toString(), BitTorrent::ShareLimitsMode::MatchAny);
     if (hasKey(u"max_ratio_act"_s))
     {
         switch (it.value().toInt())
         {
         default:
         case 0:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::Stop);
+            shareLimits.action = BitTorrent::ShareLimitAction::Stop;
             break;
         case 1:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::Remove);
+            shareLimits.action = BitTorrent::ShareLimitAction::Remove;
             break;
         case 2:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::EnableSuperSeeding);
+            shareLimits.action = BitTorrent::ShareLimitAction::EnableSuperSeeding;
             break;
         case 3:
-            session->setShareLimitAction(BitTorrent::ShareLimitAction::RemoveWithContent);
+            shareLimits.action = BitTorrent::ShareLimitAction::RemoveWithContent;
             break;
         }
     }
+    session->setShareLimits(std::move(shareLimits));
     // Add trackers
     if (hasKey(u"add_trackers_enabled"_s))
         session->setAddTrackersEnabled(it.value().toBool());
@@ -897,9 +911,21 @@ void AppController::setPreferencesAction()
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
     // Authentication
     if (hasKey(u"web_ui_username"_s))
-        pref->setWebUIUsername(it.value().toString());
+    {
+        const QString username = it.value().toString();
+        if (username.length() < 3)
+            throw APIError(APIErrorType::BadParams, tr("WebUI username must be at least 3 characters long"));
+        if (username.contains(u":"))
+            throw APIError(APIErrorType::BadParams, tr("WebUI username cannot contain a colon"));
+        pref->setWebUIUsername(username);
+    }
     if (hasKey(u"web_ui_password"_s))
+    {
+        const QString password = it.value().toString();
+        if (password.length() < 6)
+            throw APIError(APIErrorType::BadParams, tr("WebUI password must be at least 6 characters long"));
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
+    }
     if (hasKey(u"bypass_local_auth"_s))
         pref->setWebUILocalAuthEnabled(!it.value().toBool());
     if (hasKey(u"bypass_auth_subnet_whitelist_enabled"_s))
@@ -1020,6 +1046,9 @@ void AppController::setPreferencesAction()
     // Refresh interval
     if (hasKey(u"refresh_interval"_s))
         session->setRefreshInterval(it.value().toInt());
+    // Resolve peer host names
+    if (hasKey(u"resolve_peer_host_names"_s))
+        pref->resolvePeerHostNames(it.value().toBool());
     // Resolve peer countries
     if (hasKey(u"resolve_peer_countries"_s))
         pref->resolvePeerCountries(it.value().toBool());
@@ -1117,7 +1146,7 @@ void AppController::setPreferencesAction()
         session->setUPnPLeaseDuration(it.value().toInt());
     // Type of service
     if (hasKey(u"peer_tos"_s))
-        session->setPeerToS(it.value().toInt());
+        session->setPeerDSCP(it.value().toInt());
     // uTP-TCP mixed mode
     if (hasKey(u"utp_tcp_mixed_mode"_s))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
@@ -1254,6 +1283,23 @@ void AppController::getDirectoryContentAction()
         }
     }
     setResult(ret);
+}
+
+void AppController::getFreeSpaceAtPathAction()
+{
+    requireParams({u"path"_s});
+    Path current {params().value(u"path"_s)};
+    const Path root = current.rootItem();
+    qint64 freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+
+    // for non-existent directories (which will be created on demand) `Utils::Fs::freeDiskSpaceOnPath`
+    // will return invalid value so instead query its parent/ancestor paths
+    while ((freeSpace < 0) && (current != root))
+    {
+        current = current.parentPath();
+        freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+    }
+    setResult(QString::number(freeSpace));
 }
 
 void AppController::cookiesAction()

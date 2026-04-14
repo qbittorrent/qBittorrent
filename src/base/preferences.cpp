@@ -544,8 +544,7 @@ void Preferences::setMailNotificationEnabled(const bool enabled)
 
 QString Preferences::getMailNotificationSender() const
 {
-    return value<QString>(u"Preferences/MailNotification/sender"_s
-        , u"qBittorrent_notification@example.com"_s);
+    return value<QString>(u"Preferences/MailNotification/sender"_s);
 }
 
 void Preferences::setMailNotificationSender(const QString &mail)
@@ -571,7 +570,7 @@ void Preferences::setMailNotificationEmail(const QString &mail)
 
 QString Preferences::getMailNotificationSMTP() const
 {
-    return value<QString>(u"Preferences/MailNotification/smtp_server"_s, u"smtp.changeme.com"_s);
+    return value<QString>(u"Preferences/MailNotification/smtp_server"_s);
 }
 
 void Preferences::setMailNotificationSMTP(const QString &smtpServer)
@@ -1297,6 +1296,19 @@ void Preferences::setShutdownWhenDownloadsComplete(const bool shutdown)
     setValue(u"Preferences/Downloads/AutoShutDownOnCompletion"_s, shutdown);
 }
 
+bool Preferences::rebootWhenDownloadsComplete() const
+{
+    return value(u"Preferences/Downloads/AutoRebootOnCompletion"_s, false);
+}
+
+void Preferences::setRebootWhenDownloadsComplete(const bool reboot)
+{
+    if (reboot == rebootWhenDownloadsComplete())
+        return;
+
+    setValue(u"Preferences/Downloads/AutoRebootOnCompletion"_s, reboot);
+}
+
 bool Preferences::suspendWhenDownloadsComplete() const
 {
     return value(u"Preferences/Downloads/AutoSuspendOnCompletion"_s, false);
@@ -1493,6 +1505,34 @@ void Preferences::setUpdateCheckEnabled(const bool enabled)
         return;
 
     setValue(u"Preferences/Advanced/updateCheck"_s, enabled);
+}
+#endif
+
+#ifdef Q_OS_MACOS
+bool Preferences::isSpeedInDockEnabled() const
+{
+    return value(u"Preferences/Desktop/ShowSpeedInDock"_s, true);
+}
+
+void Preferences::setSpeedInDockEnabled(const bool enabled)
+{
+    if (enabled == isSpeedInDockEnabled())
+        return;
+
+    setValue(u"Preferences/Desktop/ShowSpeedInDock"_s, enabled);
+}
+
+bool Preferences::isMacOSMenuBarIconEnabled() const
+{
+    return value(u"Preferences/Desktop/ShowMacOSMenuBarIcon"_s, true);
+}
+
+void Preferences::setMacOSMenuBarIconEnabled(const bool enabled)
+{
+    if (enabled == isMacOSMenuBarIconEnabled())
+        return;
+
+    setValue(u"Preferences/Desktop/ShowMacOSMenuBarIcon"_s, enabled);
 }
 #endif
 
@@ -1889,6 +1929,32 @@ void Preferences::setTrackerFilterState(const bool checked)
         return;
 
     setValue(u"TransferListFilters/trackerFilterState"_s, checked);
+}
+
+bool Preferences::getTrackerStatusFilterState() const
+{
+    return value(u"TransferListFilters/TrackerStatusFilterState"_s, true);
+}
+
+void Preferences::setTrackerStatusFilterState(const bool checked)
+{
+    if (checked == getTrackerStatusFilterState())
+        return;
+
+    setValue(u"TransferListFilters/TrackerStatusFilterState"_s, checked);
+}
+
+bool Preferences::useSeparateTrackerStatusFilter() const
+{
+    return value(u"TransferListFilters/SeparateTrackerStatusFilter"_s, false);
+}
+
+void Preferences::setUseSeparateTrackerStatusFilter(const bool value)
+{
+    if (value == useSeparateTrackerStatusFilter())
+        return;
+
+    setValue(u"TransferListFilters/SeparateTrackerStatusFilter"_s, value);
 }
 
 int Preferences::getTransSelFilter() const

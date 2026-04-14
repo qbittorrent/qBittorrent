@@ -31,7 +31,6 @@
 #include <algorithm>
 #include <chrono>
 #include <concepts>
-#include <functional>
 
 #include <QBitArray>
 #include <QFileInfo>
@@ -506,6 +505,50 @@ namespace
             return nonstd::make_unexpected(TorrentsController::tr("Priority is not valid"));
         return priority;
     }
+
+    TorrentFilter::Status parseTorrentStatus(const QString &statusStr)
+    {
+        if (statusStr == u"downloading")
+            return TorrentFilter::Downloading;
+
+        if (statusStr == u"seeding")
+            return TorrentFilter::Seeding;
+
+        if (statusStr == u"completed")
+            return TorrentFilter::Completed;
+
+        if (statusStr == u"stopped")
+            return TorrentFilter::Stopped;
+
+        if (statusStr == u"running")
+            return TorrentFilter::Running;
+
+        if (statusStr == u"active")
+            return TorrentFilter::Active;
+
+        if (statusStr == u"inactive")
+            return TorrentFilter::Inactive;
+
+        if (statusStr == u"stalled")
+            return TorrentFilter::Stalled;
+
+        if (statusStr == u"stalled_uploading")
+            return TorrentFilter::StalledUploading;
+
+        if (statusStr == u"stalled_downloading")
+            return TorrentFilter::StalledDownloading;
+
+        if (statusStr == u"checking")
+            return TorrentFilter::Checking;
+
+        if (statusStr == u"moving")
+            return TorrentFilter::Moving;
+
+        if (statusStr == u"errored")
+            return TorrentFilter::Errored;
+
+        return TorrentFilter::All;
+    }
 }
 
 TorrentsController::TorrentsController(IApplication *app, QObject *parent)
@@ -574,7 +617,7 @@ void TorrentsController::infoAction()
             idSet->insert(BitTorrent::TorrentID::fromString(hash));
     }
 
-    const TorrentFilter torrentFilter {filter, idSet, category, tag, isPrivate};
+    const TorrentFilter torrentFilter {parseTorrentStatus(filter), idSet, category, tag, isPrivate};
     QVariantList torrentList;
     for (const BitTorrent::Torrent *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {
@@ -676,6 +719,7 @@ void TorrentsController::infoAction()
 //   - "peers_total": Torrent total number of peers
 //   - "share_ratio": Torrent share ratio
 //   - "popularity": Torrent popularity
+//   - "availability": Torrent distributed copies
 //   - "reannounce": Torrent next reannounce time
 //   - "total_size": Torrent total size
 //   - "pieces_num": Torrent pieces count
@@ -742,6 +786,7 @@ void TorrentsController::propertiesAction()
         {KEY_PROP_PEERS_TOTAL, torrent->totalLeechersCount()},
         {KEY_PROP_RATIO, ((ratio >= BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio)},
         {KEY_PROP_POPULARITY, ((popularity >= BitTorrent::Torrent::MAX_RATIO) ? -1 : popularity)},
+        {KEY_TORRENT_AVAILABILITY, torrent->distributedCopies()},
         {KEY_PROP_REANNOUNCE, torrent->nextAnnounce()},
         {KEY_PROP_TOTAL_SIZE, torrent->totalSize()},
         {KEY_PROP_PIECES_NUM, torrent->piecesCount()},
@@ -1005,6 +1050,25 @@ void TorrentsController::pieceStatesAction()
     setResult(pieceStates);
 }
 
+// Returns an array of availability counts for each piece of a torrent in JSON format.
+// Each value represents the number of peers that have that piece.
+void TorrentsController::pieceAvailabilityAction()
+{
+    requireParams({u"hash"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const QList<int> avail = torrent->fetchPieceAvailability().takeResult();
+    QJsonArray pieceAvailability;
+    for (const int count : avail)
+        pieceAvailability.append(count);
+
+    setResult(pieceAvailability);
+}
+
 void TorrentsController::addAction()
 {
     const QStringList urls = params()[u"urls"_s].split(u'\n', Qt::SkipEmptyParts);
@@ -1023,9 +1087,9 @@ void TorrentsController::addAction()
     const QString torrentName = params()[u"rename"_s].trimmed();
     const int upLimit = parseInt(params()[u"upLimit"_s]).value_or(-1);
     const int dlLimit = parseInt(params()[u"dlLimit"_s]).value_or(-1);
-    const double ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_RATIO);
-    const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
-    const int inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::Torrent::USE_GLOBAL_INACTIVE_SEEDING_TIME);
+    const double ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::DEFAULT_RATIO_LIMIT);
+    const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
+    const int inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
     const BitTorrent::ShareLimitAction shareLimitAction = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
     const std::optional<bool> autoTMM = parseBool(params()[u"autoTMM"_s]);
 
@@ -1085,10 +1149,13 @@ void TorrentsController::addAction()
         .useAutoTMM = autoTMM,
         .uploadLimit = upLimit,
         .downloadLimit = dlLimit,
-        .seedingTimeLimit = seedingTimeLimit,
-        .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
-        .ratioLimit = ratioLimit,
-        .shareLimitAction = shareLimitAction,
+        .shareLimits =
+        {
+            .ratioLimit = ratioLimit,
+            .seedingTimeLimit = seedingTimeLimit,
+            .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
+            .action = shareLimitAction
+        },
         .sslParameters =
         {
             .certificate = QSslCertificate(params()[KEY_PROP_SSL_CERTIFICATE].toLatin1()),
@@ -1490,21 +1557,21 @@ void TorrentsController::setDownloadLimitAction()
 
 void TorrentsController::setShareLimitsAction()
 {
-    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s, u"shareLimitAction"_s});
+    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s, u"shareLimitAction"_s, u"shareLimitsMode"_s});
 
-    const qreal ratioLimit = params()[u"ratioLimit"_s].toDouble();
-    const qlonglong seedingTimeLimit = params()[u"seedingTimeLimit"_s].toLongLong();
-    const qlonglong inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toLongLong();
-    const BitTorrent::ShareLimitAction shareLimitAction = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
+    const BitTorrent::ShareLimits shareLimits {
+        .ratioLimit = params()[u"ratioLimit"_s].toDouble(),
+        .seedingTimeLimit = params()[u"seedingTimeLimit"_s].toInt(),
+        .inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toInt(),
+        .mode = Utils::String::toEnum(params()[u"shareLimitsMode"_s], BitTorrent::ShareLimitsMode::Default),
+        .action = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default)
+    };
 
     const QStringList hashes = params()[u"hashes"_s].split(u'|');
 
-    applyToTorrents(hashes, [ratioLimit, seedingTimeLimit, inactiveSeedingTimeLimit, shareLimitAction](BitTorrent::Torrent *const torrent)
+    applyToTorrents(hashes, [shareLimits](BitTorrent::Torrent *const torrent)
     {
-        torrent->setRatioLimit(ratioLimit);
-        torrent->setSeedingTimeLimit(seedingTimeLimit);
-        torrent->setInactiveSeedingTimeLimit(inactiveSeedingTimeLimit);
-        torrent->setShareLimitAction(shareLimitAction);
+        torrent->setShareLimits(shareLimits);
     });
 
     setResult(QString());
@@ -1854,8 +1921,8 @@ void TorrentsController::editCategoryAction()
         categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
     }
 
-    if (!BitTorrent::Session::instance()->editCategory(category, categoryOptions))
-        throw APIError(APIErrorType::Conflict, tr("Unable to edit category"));
+    if (!BitTorrent::Session::instance()->setCategoryOptions(category, categoryOptions))
+        throw APIError(APIErrorType::NotFound, tr("Category does not exist"));
 
     setResult(QString());
 }

@@ -6,9 +6,38 @@ root = true
 charset = utf-8
 end_of_line = lf
 indent_style = space
-indent_size = 4
+indent_size = unset  # set it specifically for each language
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[**.yml]
+[**.css]
+indent_size = 4
+
+[**.json]
 indent_size = 2
+
+[**.plist]
+indent_style = tab
+
+[**.{yaml,yml}]
+indent_size = 2
+
+[dist/windows/license.txt]
+end_of_line = crlf
+
+[test/testdata/crlf.txt]
+end_of_line = crlf
+
+# ignore paths
+[dist/windows/3rdparty/*,
+  src/base/3rdparty/*,
+  src/lang/*.ts,
+  src/webui/www/private/css/lib/*,
+  src/webui/www/private/scripts/lib/*,
+  src/webui/www/translations/*.ts]
+charset = unset
+end_of_line = unset
+indent_style = unset
+indent_size = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset

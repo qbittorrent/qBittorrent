@@ -36,6 +36,8 @@
 #include <QLabel>
 #include <QNetworkInterface>
 
+#include <libtorrent/version.hpp>
+
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/preferences.h"
@@ -149,7 +151,7 @@ namespace
         OUTGOING_PORT_MIN,
         OUTGOING_PORT_MAX,
         UPNP_LEASE_DURATION,
-        PEER_TOS,
+        PEER_DSCP,
         UTP_MIX_MODE,
         HOSTNAME_CACHE_TTL,
         IDN_SUPPORT,
@@ -276,7 +278,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     // UPnP lease duration
     session->setUPnPLeaseDuration(m_spinBoxUPnPLeaseDuration.value());
     // Type of service
-    session->setPeerToS(m_spinBoxPeerToS.value());
+    session->setPeerDSCP(m_spinBoxPeerDSCP.value());
     // uTP-TCP mixed mode
     session->setUtpMixedMode(m_comboBoxUtpMixedMode.currentData().value<BitTorrent::MixedModeAlgorithm>());
     // Hostname resolver cache TTL
@@ -599,6 +601,9 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxDiskIOType.addItem(tr("Memory mapped files"), QVariant::fromValue(BitTorrent::DiskIOType::MMap));
     m_comboBoxDiskIOType.addItem(tr("POSIX-compliant"), QVariant::fromValue(BitTorrent::DiskIOType::Posix));
     m_comboBoxDiskIOType.addItem(tr("Simple pread/pwrite"), QVariant::fromValue(BitTorrent::DiskIOType::SimplePreadPwrite));
+#if LIBTORRENT_VERSION_NUM >= 20100
+    m_comboBoxDiskIOType.addItem(tr("Pread/pwrite"), QVariant::fromValue(BitTorrent::DiskIOType::PreadPwrite));
+#endif
     m_comboBoxDiskIOType.setCurrentIndex(m_comboBoxDiskIOType.findData(QVariant::fromValue(session->diskIOType())));
     addRow(DISK_IO_TYPE, tr("Disk IO type (requires restart)") + u' ' + makeLink(u"https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor", u"(?)")
            , &m_comboBoxDiskIOType);
@@ -723,11 +728,11 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(UPNP_LEASE_DURATION, (tr("UPnP lease duration [0: permanent lease]") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration", u"(?)"))
         , &m_spinBoxUPnPLeaseDuration);
     // Type of service
-    m_spinBoxPeerToS.setMinimum(0);
-    m_spinBoxPeerToS.setMaximum(255);
-    m_spinBoxPeerToS.setValue(session->peerToS());
-    addRow(PEER_TOS, (tr("Type of service (ToS) for connections to peers") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_tos", u"(?)"))
-        , &m_spinBoxPeerToS);
+    m_spinBoxPeerDSCP.setMinimum(0);
+    m_spinBoxPeerDSCP.setMaximum(255);
+    m_spinBoxPeerDSCP.setValue(session->peerDSCP());
+    addRow(PEER_DSCP, (tr("Differentiated Services Code Point (DSCP) for connections to peers") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_dscp", u"(?)"))
+        , &m_spinBoxPeerDSCP);
     // uTP-TCP mixed mode
     m_comboBoxUtpMixedMode.addItem(tr("Prefer TCP"), QVariant::fromValue(BitTorrent::MixedModeAlgorithm::TCP));
     m_comboBoxUtpMixedMode.addItem(tr("Peer proportional (throttles TCP)"), QVariant::fromValue(BitTorrent::MixedModeAlgorithm::Proportional));
@@ -771,7 +776,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &m_checkBoxRecheckCompleted);
     // Customize application instance name
     m_lineEditAppInstanceName.setText(app()->instanceName());
-    m_lineEditAppInstanceName.setToolTip(tr("It appends the text to the window title to help distinguish qBittorent instances"));
+    m_lineEditAppInstanceName.setToolTip(tr("It appends the text to the window title to help distinguish qBittorrent instances"));
     addRow(APP_INSTANCE_NAME, tr("Customize application instance name"), &m_lineEditAppInstanceName);
     // Refresh interval
     m_spinBoxListRefresh.setMinimum(30);
