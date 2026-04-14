@@ -45,9 +45,7 @@ public:
 
     T get(const T &defaultValue = {}) const
     {
-        if (auto *instance = SettingsStorage::instance()) [[likely]]
-            return instance->loadValue(m_keyName, defaultValue);
-        return defaultValue;
+        return SettingsStorage::instance()->loadValue(m_keyName, defaultValue);
     }
 
     operator T() const
@@ -57,8 +55,7 @@ public:
 
     SettingValue<T> &operator=(const T &value)
     {
-        if (auto *instance = SettingsStorage::instance()) [[likely]]
-            instance->storeValue(m_keyName, value);
+        SettingsStorage::instance()->storeValue(m_keyName, value);
         return *this;
     }
 

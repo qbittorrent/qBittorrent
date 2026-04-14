@@ -1405,6 +1405,18 @@ void Application::cleanup()
         // though we created a ShutdownBlockReason
         m_window->cleanup();
     }
+
+    // Close and delete any remaining top-level widgets (e.g. parentless dialogs
+    // like AddNewTorrentDialog on macOS). These must be destroyed before core
+    // components like SettingsStorage are freed, because their destructors or
+    // done() handlers may save state via SettingValue.
+    // https://github.com/qbittorrent/qBittorrent/issues/23461
+    const QWidgetList topLevelWidgets = QApplication::topLevelWidgets();
+    for (QWidget *widget : topLevelWidgets)
+    {
+        if (widget != m_window)
+            delete widget;
+    }
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
