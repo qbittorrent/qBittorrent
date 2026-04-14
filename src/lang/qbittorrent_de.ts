@@ -908,7 +908,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="729"/>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Differentiated Services Code Point (DSCP) für Verbindungen zu Peers</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="835"/>
@@ -3842,7 +3842,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datumsforma
     <message>
         <location filename="../gui/mainwindow.ui" line="406"/>
         <source>&amp;Reboot System</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;System neu starten</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="414"/>
@@ -6065,12 +6065,12 @@ Mindestens erforderlich ist: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="462"/>
         <source>Use separate &quot;Tracker status&quot; filter. Otherwise it gets merged with &quot;Trackers&quot; filter.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden Sie einen separaten Filter „Tracker-Status“. Andernfalls wird es mit dem Filter „Tracker“ zusammengeführt.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="465"/>
         <source>Use separate &quot;Tracker status&quot; filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwenden Sie einen separaten Filter „Tracker-Status“.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
@@ -9984,17 +9984,17 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="138"/>
         <source>The computer is going to reboot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Computer wird neu gestartet.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="139"/>
         <source>&amp;Reboot Now</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Jetzt neu starten</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="140"/>
         <source>Reboot confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestätigung des Neustarts</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="150"/>
@@ -10659,7 +10659,7 @@ Daher wird eine Sicherungsdatei zur Wiederherstellung der Einstellungen verwende
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="146"/>
         <source>Torrent share limits</source>
-        <translation type="unfinished">Verhältnisbegrenzungen für Torrent</translation>
+        <translation>Torrent-Tauschbeschränkungen</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="45"/>
@@ -10794,7 +10794,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="115"/>
         <source>Do not download</source>
         <comment>Do not download (priority)</comment>
-        <translation type="unfinished">Nicht herunterladen</translation>
+        <translation>Nicht herunterladen</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodelitem.cpp" line="117"/>
@@ -11079,7 +11079,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="233"/>
         <source>Calculating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Berechnen...</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="278"/>
@@ -11377,7 +11377,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="417"/>
         <source>Default (%1)</source>
         <comment>Default (share limit action)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Standard (%1)</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="421"/>
@@ -11385,13 +11385,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="423"/>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="427"/>
         <source>From category</source>
-        <translation type="unfinished"></translation>
+        <translation>Aus der Kategorie</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="428"/>
         <source>From category (%1)</source>
         <comment>From category (share limit action)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Aus Kategorie (%1)</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="19"/>
@@ -11916,37 +11916,37 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="60"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
-        <translation type="unfinished">Alle (%1)</translation>
+        <translation>Alle (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="62"/>
         <source>Warning (%1)</source>
-        <translation type="unfinished">Warnung (%1)</translation>
+        <translation>Warnung (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="64"/>
         <source>Tracker error (%1)</source>
-        <translation type="unfinished">Tracker-Fehler (%1)</translation>
+        <translation>Tracker-Fehler (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="66"/>
         <source>Other error (%1)</source>
-        <translation type="unfinished">Anderer Fehler (%1)</translation>
+        <translation>Anderer Fehler (%1)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="146"/>
         <source>Start torrents</source>
-        <translation type="unfinished">Torrents starten</translation>
+        <translation>Torrents starten</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="148"/>
         <source>Stop torrents</source>
-        <translation type="unfinished">Torrents anhalten</translation>
+        <translation>Torrents stoppen</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackerstatusfilterwidget.cpp" line="150"/>
         <source>Remove torrents</source>
-        <translation type="unfinished">Torrents entfernen</translation>
+        <translation>Torrents entfernen</translation>
     </message>
 </context>
 <context>
@@ -12094,7 +12094,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="139"/>
         <source>Tracker status</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker-Status</translation>
     </message>
 </context>
 <context>
@@ -13195,7 +13195,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/os.cpp" line="98"/>
         <source>qBittorrent will reboot the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent startet den Computer jetzt neu, da alle Downloads abgeschlossen sind.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="237"/>
