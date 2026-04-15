@@ -96,7 +96,11 @@ bool PeerInfo::isSupportsExtensions() const
 
 bool PeerInfo::isLocalConnection() const
 {
+#if QBT_USES_LIBTORRENT2
+    return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::outgoing_connection);
+#else
     return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::local_connection);
+#endif
 }
 
 bool PeerInfo::isHandshake() const
