@@ -60,6 +60,7 @@
 #include <QSessionManager>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MACOS
+#include <QAccessible>
 #include <QFileOpenEvent>
 #endif // Q_OS_MACOS
 #endif
@@ -1385,6 +1386,15 @@ void Application::cleanup()
         ::ShutdownBlockReasonCreate(reinterpret_cast<HWND>(m_window->effectiveWinId())
             , msg.c_str());
 #endif // Q_OS_WIN
+
+#ifdef Q_OS_MACOS
+        // Remove all accessibility interface factories before destroying widgets.
+        // On macOS, widget destruction triggers accessibility notifications via
+        // the native AX API, which can deadlock with the Qt event loop causing
+        // the app to freeze on quit.
+        // https://github.com/qbittorrent/qBittorrent/issues/23695
+        QAccessible::cleanup();
+#endif
 
         // Do manual cleanup in MainWindow to force widgets
         // to save their Preferences, stop all timers and
