@@ -49,4 +49,9 @@ namespace MacUtils
     {
         [m_impl->itemView setRatesWithDownload:downloadRate upload:uploadRate];
     }
+
+    void StatusItem::setVisible(const bool visible)
+    {
+        [m_impl->itemView setVisible:visible];
+    }
 }
