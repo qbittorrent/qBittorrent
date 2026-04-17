@@ -2483,7 +2483,6 @@ void SessionImpl::banIP(const QString &ip)
     QStringList bannedIPs = m_bannedIPs;
     bannedIPs << Utils::Net::ipRangeToString(ipRange.value());
     bannedIPs.sort();
-    bannedIPs.removeDuplicates();
     m_bannedIPs = bannedIPs;
 }
 
