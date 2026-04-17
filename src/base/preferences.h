@@ -80,8 +80,7 @@ namespace TrayIcon
     enum class Style : int
     {
         Normal = 0,
-        MonoDark = 1,
-        MonoLight = 2
+        Monochrome = 1
     };
     Q_ENUM_NS(Style)
 }

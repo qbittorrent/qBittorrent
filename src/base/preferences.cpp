@@ -1604,7 +1604,7 @@ void Preferences::setConfirmRemoveTrackerFromAllTorrents(const bool enabled)
 #ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {
-    return value(u"Preferences/Advanced/TrayIconStyle"_s, TrayIcon::Style::Normal);
+    return value(u"GUI/TrayIconStyle"_s, TrayIcon::Style::Normal);
 }
 
 void Preferences::setTrayIconStyle(const TrayIcon::Style style)
@@ -1612,7 +1612,7 @@ void Preferences::setTrayIconStyle(const TrayIcon::Style style)
     if (style == trayIconStyle())
         return;
 
-    setValue(u"Preferences/Advanced/TrayIconStyle"_s, style);
+    setValue(u"GUI/TrayIconStyle"_s, style);
 }
 #endif
 

@@ -254,11 +254,8 @@ QIcon DesktopIntegration::getSystrayIcon() const
     case TrayIcon::Style::Normal:
         icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_s);
         break;
-    case TrayIcon::Style::MonoDark:
-        icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_s);
-        break;
-    case TrayIcon::Style::MonoLight:
-        icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_s);
+    case TrayIcon::Style::Monochrome:
+        icon = UIThemeManager::instance()->getIcon(u"qbittorrent-tray-monochrome"_s);
         break;
     }
 #ifdef Q_OS_UNIX
