@@ -1373,6 +1373,28 @@ void Application::cleanup()
             m_desktopIntegration->menu()->setEnabled(false);
     }
 
+#ifdef Q_OS_MACOS
+    // Remove all accessibility interface factories before destroying widgets.
+    // On macOS, widget destruction triggers accessibility notifications via
+    // the native AX API, which can deadlock with the Qt event loop causing
+    // the app to freeze on quit.
+    // https://github.com/qbittorrent/qBittorrent/issues/23695
+    if (m_window)
+        QAccessible::cleanup();
+#endif
+
+    // Close and delete any remaining top-level widgets (e.g. parentless dialogs
+    // like AddNewTorrentDialog on macOS). These must be destroyed before core
+    // components like SettingsStorage are freed, because their destructors or
+    // done() handlers may save state via SettingValue.
+    // https://github.com/qbittorrent/qBittorrent/issues/23461
+    const QWidgetList topLevelWidgets = QApplication::topLevelWidgets();
+    for (QWidget *widget : topLevelWidgets)
+    {
+        if (widget != m_window)
+            delete widget;
+    }
+
     if (m_window)
     {
         // Hide the window and don't leave it on screen as
@@ -1387,15 +1409,6 @@ void Application::cleanup()
             , msg.c_str());
 #endif // Q_OS_WIN
 
-#ifdef Q_OS_MACOS
-        // Remove all accessibility interface factories before destroying widgets.
-        // On macOS, widget destruction triggers accessibility notifications via
-        // the native AX API, which can deadlock with the Qt event loop causing
-        // the app to freeze on quit.
-        // https://github.com/qbittorrent/qBittorrent/issues/23695
-        QAccessible::cleanup();
-#endif
-
         // Do manual cleanup in MainWindow to force widgets
         // to save their Preferences, stop all timers and
         // delete as many widgets as possible to leave only
@@ -1404,18 +1417,6 @@ void Application::cleanup()
         // otherwise the system shutdown will continue even
         // though we created a ShutdownBlockReason
         m_window->cleanup();
-    }
-
-    // Close and delete any remaining top-level widgets (e.g. parentless dialogs
-    // like AddNewTorrentDialog on macOS). These must be destroyed before core
-    // components like SettingsStorage are freed, because their destructors or
-    // done() handlers may save state via SettingValue.
-    // https://github.com/qbittorrent/qBittorrent/issues/23461
-    const QWidgetList topLevelWidgets = QApplication::topLevelWidgets();
-    for (QWidget *widget : topLevelWidgets)
-    {
-        if (widget != m_window)
-            delete widget;
     }
 #endif // DISABLE_GUI
 
