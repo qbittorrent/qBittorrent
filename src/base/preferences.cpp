@@ -43,10 +43,10 @@
 
 #include "algorithm.h"
 #include "global.h"
+#include "net/smtp.h"
 #include "path.h"
 #include "profile.h"
 #include "settingsstorage.h"
-#include "net/smtp.h"
 #include "utils/fs.h"
 
 namespace
