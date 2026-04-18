@@ -44,6 +44,7 @@
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QSystemTrayIcon>
+#include <QTimer>
 #include <QTranslator>
 
 #include "base/bittorrent/session.h"
@@ -2169,6 +2170,12 @@ bool OptionsDialog::isAlternativeWebUIPathValid()
 void OptionsDialog::showConnectionTab()
 {
     m_ui->tabSelection->setCurrentRow(TAB_CONNECTION);
+}
+
+void OptionsDialog::showSpeedWidgetSetting()
+{
+    m_ui->tabSelection->setCurrentRow(TAB_ADVANCED);
+    QTimer::singleShot(0, m_advancedSettings, &AdvancedSettings::showSpeedWidgetSetting);
 }
 
 #ifndef DISABLE_WEBUI

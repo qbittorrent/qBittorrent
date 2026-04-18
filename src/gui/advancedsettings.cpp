@@ -35,6 +35,7 @@
 #include <QHostAddress>
 #include <QLabel>
 #include <QNetworkInterface>
+#include <QTimer>
 
 #include <libtorrent/version.hpp>
 
@@ -197,12 +198,25 @@ AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
     verticalHeader()->setVisible(false);
     // etc.
     setAlternatingRowColors(true);
+    setSelectionBehavior(QAbstractItemView::SelectItems);
     setSelectionMode(QAbstractItemView::NoSelection);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_showSettingResetTimer.setSingleShot(true);
+    connect(&m_showSettingResetTimer, &QTimer::timeout, this, [this]
+    {
+        clearSelection();
+        setSelectionBehavior(m_previousSelectionBehavior);
+        setSelectionMode(m_previousSelectionMode);
+    });
     // Load settings
     loadAdvancedSettings();
     resizeColumnToContents(0);
     horizontalHeader()->setStretchLastSection(true);
+}
+
+void AdvancedSettings::showSpeedWidgetSetting()
+{
+    showSetting(ENABLE_SPEED_WIDGET, m_checkBoxSpeedWidgetEnabled);
 }
 
 void AdvancedSettings::saveAdvancedSettings() const
@@ -1032,4 +1046,23 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
         connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
+}
+
+void AdvancedSettings::showSetting(const int row, QWidget &widget)
+{
+    if (!m_showSettingResetTimer.isActive())
+    {
+        m_previousSelectionBehavior = selectionBehavior();
+        m_previousSelectionMode = selectionMode();
+    }
+
+    m_showSettingResetTimer.stop();
+    clearSelection();
+    setSelectionMode(QAbstractItemView::SingleSelection);
+    setSelectionBehavior(QAbstractItemView::SelectRows);
+    setCurrentCell(row, VALUE);
+    selectRow(row);
+    scrollTo(model()->index(row, PROPERTY), QAbstractItemView::PositionAtCenter);
+    widget.setFocus(Qt::OtherFocusReason);
+    m_showSettingResetTimer.start(3000);
 }
