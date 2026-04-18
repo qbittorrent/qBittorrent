@@ -1154,6 +1154,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("popularity", "", "QBT_TR(Popularity)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("category", "", "QBT_TR(Category)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("tags", "", "QBT_TR(Tags)QBT_TR[CONTEXT=TransferListModel]", 100, true);
+            this.newColumn("creation_date", "", "QBT_TR(Created On)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("completion_on", "", "QBT_TR(Completed On)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("tracker", "", "QBT_TR(Tracker)QBT_TR[CONTEXT=TransferListModel]", 100, false);
@@ -1475,6 +1476,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = date;
                 }
             };
+
+            // creation_date
+            this.columns["creation_date"].updateTd = this.columns["completion_on"].updateTd;
 
             // tracker
             this.columns["tracker"].updateTd = function(td, row) {
