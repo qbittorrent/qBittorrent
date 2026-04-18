@@ -29,12 +29,15 @@
 #include "statusbar.h"
 
 #include <QFrame>
+#include <QHBoxLayout>
+#include <QHostAddress>
 #include <QLabel>
 #include <QPushButton>
 #include <QStyle>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
+#include "base/net/geoipmanager.h"
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "speedlimitdialog.h"
@@ -97,8 +100,12 @@ StatusBar::StatusBar(QWidget *parent)
     m_freeDiskSpaceLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_freeDiskSpaceSeparator = createSeparator(this);
 
-    m_lastExternalIPsLbl = new QLabel(tr("External IP: N/A"));
-    m_lastExternalIPsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_externalIPsContainer = new QWidget(this);
+    m_externalIPsContainer->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    auto *externalIPsLayout = new QHBoxLayout(m_externalIPsContainer);
+    externalIPsLayout->setContentsMargins(0, 0, 0, 0);
+    externalIPsLayout->setSpacing(0);
+    externalIPsLayout->addWidget(new QLabel(tr("External IP: N/A"), m_externalIPsContainer));
     m_lastExternalIPsSeparator = createSeparator(this);
 
     const bool isDHTVisible = session->isDHTEnabled();
@@ -127,7 +134,7 @@ StatusBar::StatusBar(QWidget *parent)
 
     addPermanentWidget(m_freeDiskSpaceLbl);
     addPermanentWidget(m_freeDiskSpaceSeparator);
-    addPermanentWidget(m_lastExternalIPsLbl);
+    addPermanentWidget(m_externalIPsContainer);
     addPermanentWidget(m_lastExternalIPsSeparator);
     addPermanentWidget(m_DHTLbl);
     addPermanentWidget(m_DHTSeparator);
@@ -226,23 +233,92 @@ void StatusBar::updateExternalAddressesLabel()
 {
     const QString lastExternalIPv4Address = BitTorrent::Session::instance()->lastExternalIPv4Address();
     const QString lastExternalIPv6Address = BitTorrent::Session::instance()->lastExternalIPv6Address();
-    QString addressText = tr("External IP: N/A");
+    const bool resolveCountries = Preferences::instance()->resolvePeerCountries();
+
+    if ((resolveCountries == m_cachedResolveCountries)
+        && (lastExternalIPv4Address == m_cachedExternalIPv4)
+        && (lastExternalIPv6Address == m_cachedExternalIPv6))
+    {
+        return;
+    }
+
+    m_cachedResolveCountries = resolveCountries;
+    m_cachedExternalIPv4 = lastExternalIPv4Address;
+    m_cachedExternalIPv6 = lastExternalIPv6Address;
+
+    QHBoxLayout *const externalIPsLayout = qobject_cast<QHBoxLayout *>(m_externalIPsContainer->layout());
+    Q_ASSERT(externalIPsLayout);
+
+    while (QLayoutItem *item = externalIPsLayout->takeAt(0))
+    {
+        delete item->widget();
+        delete item;
+    }
 
     const bool hasIPv4Address = !lastExternalIPv4Address.isEmpty();
     const bool hasIPv6Address = !lastExternalIPv6Address.isEmpty();
 
-    if (hasIPv4Address && hasIPv6Address)
-        addressText = tr("External IPs: %1, %2").arg(lastExternalIPv4Address, lastExternalIPv6Address);
-    else if (hasIPv4Address || hasIPv6Address)
-        addressText = tr("External IP: %1%2").arg(lastExternalIPv4Address, lastExternalIPv6Address);
+    Net::GeoIPManager *const geoIP = Net::GeoIPManager::instance();
 
-    m_lastExternalIPsLbl->setText(addressText);
+    QString prefix = tr("External IP: ");
+    if (!hasIPv4Address && !hasIPv6Address)
+        prefix = tr("External IP: N/A");
+    else if (hasIPv4Address && hasIPv6Address)
+        prefix = tr("External IPs: ");
+
+    externalIPsLayout->addWidget(new QLabel(prefix, m_externalIPsContainer));
+
+    const auto addIPWithOptionalFlag = [this, externalIPsLayout, resolveCountries, geoIP]
+            (const QString &address)
+    {
+        if (address.isEmpty())
+            return;
+
+        QString countryCode;
+        QString countryName;
+        if (resolveCountries && geoIP)
+        {
+            const QHostAddress hostAddr(address);
+            if (!hostAddr.isNull())
+            {
+                countryCode = geoIP->lookup(hostAddr);
+                if (!countryCode.isEmpty())
+                {
+                    countryName = Net::GeoIPManager::CountryName(countryCode);
+                    countryCode = countryCode.toLower();
+                }
+            }
+        }
+
+        if (!countryCode.isEmpty())
+        {
+            const QIcon flagIcon = UIThemeManager::instance()->getFlagIcon(countryCode);
+            if (!flagIcon.isNull())
+            {
+                auto *flagLbl = new QLabel(m_externalIPsContainer);
+                flagLbl->setPixmap(flagIcon.pixmap(Utils::Gui::smallIconSize()));
+                flagLbl->setToolTip(countryName);
+                flagLbl->setContentsMargins(0, 0, 3, 0);
+                externalIPsLayout->addWidget(flagLbl);
+            }
+        }
+
+        auto *ipLbl = new QLabel(address, m_externalIPsContainer);
+        externalIPsLayout->addWidget(ipLbl);
+    };
+
+    if (hasIPv4Address)
+        addIPWithOptionalFlag(lastExternalIPv4Address);
+    if (hasIPv4Address && hasIPv6Address)
+        externalIPsLayout->addWidget(new QLabel(u", "_s, m_externalIPsContainer));
+    if (hasIPv6Address)
+        addIPWithOptionalFlag(lastExternalIPv6Address);
 }
 
 void StatusBar::updateExternalAddressesVisibility()
 {
     const bool isVisible = Preferences::instance()->isStatusbarExternalIPDisplayed();
-    m_lastExternalIPsLbl->setVisible(isVisible);
+    m_externalIPsContainer->setVisible(isVisible);
     m_lastExternalIPsSeparator->setVisible(isVisible);
 }
 
