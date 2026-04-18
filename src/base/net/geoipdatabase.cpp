@@ -118,15 +118,16 @@ GeoIPDatabase *GeoIPDatabase::load(const Path &filename, QString &error)
 
 GeoIPDatabase *GeoIPDatabase::load(const QByteArray &data, QString &error)
 {
-    if (data.size() > MAX_FILE_SIZE)
+    if ((data.size() <= 0) || (data.size() > MAX_FILE_SIZE))
     {
         error = tr("Unsupported database file size.");
         return nullptr;
     }
 
-    auto *db = new GeoIPDatabase(data.size());
+    const auto dataSize = static_cast<quint32>(data.size());
+    auto *db = new GeoIPDatabase(dataSize);
 
-    memcpy(reinterpret_cast<char *>(db->m_data), data.constData(), db->m_size);
+    memcpy(reinterpret_cast<char *>(db->m_data), data.constData(), dataSize);
 
     if (!db->parseMetadata(db->readMetadata(), error) || !db->loadDB(error))
     {
