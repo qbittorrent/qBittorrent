@@ -315,6 +315,23 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkRelativeTransferListDates">
+                 <property name="text">
+                  <string>Display transfer list dates relatively</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkRelativeTransferListDatesAgo">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Append "ago" to relative transfer list dates</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QHBoxLayout" name="horizontalLayout">
                  <item>
                   <widget class="QCheckBox" name="checkHideZero">

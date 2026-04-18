@@ -212,6 +212,32 @@ void Preferences::setProgressBarFollowsTextColor(const bool value)
     setValue(u"GUI/TransferList/ProgressBarFollowsTextColor"_s, value);
 }
 
+bool Preferences::useRelativeDatesInTransferList() const
+{
+    return value(u"GUI/TransferList/RelativeDates"_s, false);
+}
+
+void Preferences::setUseRelativeDatesInTransferList(const bool value)
+{
+    if (value == useRelativeDatesInTransferList())
+        return;
+
+    setValue(u"GUI/TransferList/RelativeDates"_s, value);
+}
+
+bool Preferences::appendAgoToRelativeTransferListDates() const
+{
+    return value(u"GUI/TransferList/RelativeDatesAgo"_s, true);
+}
+
+void Preferences::setAppendAgoToRelativeTransferListDates(const bool value)
+{
+    if (value == appendAgoToRelativeTransferListDates())
+        return;
+
+    setValue(u"GUI/TransferList/RelativeDatesAgo"_s, value);
+}
+
 bool Preferences::getHideZeroValues() const
 {
     return value(u"Preferences/General/HideZeroValues"_s, false);

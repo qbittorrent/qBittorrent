@@ -117,6 +117,10 @@ public:
     void setUseTorrentStatesColors(bool value);
     bool getProgressBarFollowsTextColor() const;
     void setProgressBarFollowsTextColor(bool value);
+    bool useRelativeDatesInTransferList() const;
+    void setUseRelativeDatesInTransferList(bool value);
+    bool appendAgoToRelativeTransferListDates() const;
+    void setAppendAgoToRelativeTransferListDates(bool value);
     bool getHideZeroValues() const;
     void setHideZeroValues(bool b);
     int getHideZeroComboValues() const;
