@@ -27,6 +27,9 @@ feature_option(STACKTRACE "Enable stacktrace support" ON)
 feature_option(TESTING "Build internal testing suite" OFF)
 feature_option(VERBOSE_CONFIGURE "Show information about PACKAGES_FOUND and PACKAGES_NOT_FOUND in the configure output (only useful for debugging the CMake build scripts)" OFF)
 
+# [optionally] enable precompiled headers
+option(ENABLE_PCH "Enable precompiled headers" OFF)
+
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux" OR CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
     feature_option_dependent(DBUS
         "Enable support for notifications and power-management features via D-Bus"
