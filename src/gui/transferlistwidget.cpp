@@ -1356,9 +1356,15 @@ void TransferListWidget::applyAnnounceStatusFilter(const std::optional<BitTorren
 void TransferListWidget::applyFilter(const QString &name, const TransferListModel::Column &type)
 {
     m_sortFilterModel->setFilterKeyColumn(type);
-    const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
-                ? name : Utils::String::wildcardToRegexPattern(name));
-    m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
+    if (Preferences::instance()->getRegexAsFilteringPatternForTransferList())
+    {
+        m_sortFilterModel->setFilterRegularExpression(QRegularExpression(name, QRegularExpression::CaseInsensitiveOption));
+    }
+    else
+    {
+        m_sortFilterModel->setFilterFixedString(name);
+        m_sortFilterModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    }
 }
 
 void TransferListWidget::applyStatusFilter(const int filterIndex)
