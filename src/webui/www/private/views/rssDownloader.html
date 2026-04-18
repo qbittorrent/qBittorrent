@@ -326,6 +326,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <li><a href="#addRule"><img src="images/list-add.svg" alt="QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
     <li><a href="#deleteRule"><img src="images/edit-clear.svg" alt="QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
     <li class="separator"><a href="#renameRule"><img src="images/edit-rename.svg" alt="QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li class="separator"><a href="#cloneRule"><img src="images/edit-copy.svg" alt="QBT_TR(Clone rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Clone rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
     <li class="separator"><a href="#clearDownloadedEpisodes"><img src="images/edit-clear.svg" alt="QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]"> QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
 </ul>
 
@@ -340,6 +341,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 updateRulesList: updateRulesList,
                 showRule: showRule,
                 renameRule: renameRule,
+                cloneRule: cloneRule,
                 modifyRuleState: modifyRuleState,
                 saveSettings: saveSettings,
                 rssDownloaderRulesTable: rssDownloaderRulesTable,
@@ -396,6 +398,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     renameRule: (el) => {
                         renameRule(rssDownloaderRulesTable.getRow(rssDownloaderRulesTable.selectedRows[0]).full_data.name);
                     },
+                    cloneRule: (el) => {
+                        cloneRule(rssDownloaderRulesTable.getRow(rssDownloaderRulesTable.selectedRows[0]).full_data.name);
+                    },
                     clearDownloadedEpisodes: (el) => {
                         clearDownloadedEpisodes(rssDownloaderRulesTable.selectedRows
                             .map((sRow) => rssDownloaderRulesTable.getRow(sRow).full_data.name));
@@ -403,7 +408,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 },
                 offsets: {
                     x: 0,
-                    y: -3
+                    y: 0
                 }
             });
             rssDownloaderRulesTable.setup("rssDownloaderRuleTableDiv", "rssDownloaderRuleFixedHeaderDiv", rssDownloaderRuleContextMenu);
@@ -544,6 +549,21 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 maximizable: false,
                 width: window.qBittorrent.Dialog.limitWidthToViewport(350),
                 height: 100
+            });
+        };
+
+        const cloneRule = (rule) => {
+            new MochaUI.Window({
+                id: "cloneRulePage",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Rule cloning)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                loadMethod: "iframe",
+                contentURL: `clone_rule.html?v=${CACHEID}&rule=${encodeURIComponent(rule)}`,
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
+                height: 140
             });
         };
 

@@ -100,6 +100,7 @@ namespace RSS
         QList<AutoDownloadRule> rules() const;
 
         void setRule(const AutoDownloadRule &rule);
+        bool cloneRule(const QString &ruleName, const QString &cloneRuleName);
         bool renameRule(const QString &ruleName, const QString &newRuleName);
         void removeRule(const QString &ruleName);
 
