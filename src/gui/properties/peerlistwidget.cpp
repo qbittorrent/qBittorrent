@@ -524,16 +524,29 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
             , peer.relevance(), intDataTextAlignment);
 
     const qlonglong totalUpload = peer.totalUpload();
+    const qreal progress = peer.progress();
     qreal contribution = 0.0;
+    QString contributionTooltip = {};
 
     if (totalUpload > 0)
     {
-        const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
-        const qreal progressBytes = peer.progress() * totalSize;
-        contribution = static_cast<qreal>(totalUpload) / (progressBytes <= 0 ? totalSize : progressBytes);
+        if (progress > 0)
+        {
+            const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
+            const qreal totalProgress = progress * totalSize;
+            contribution = static_cast<qreal>(totalUpload) / totalProgress;
+        }
+        else
+        {
+            contribution = -1.0;
+            contributionTooltip = tr("Progress unknown");
+        }
     }
-    setModelData(m_listModel, row, PeerListColumns::CONTRIBUTION, (Utils::String::fromDouble(contribution * 100, 1) + u'%')
-            , contribution, intDataTextAlignment);
+
+    const QString contributionDisplayValue = (contribution < 0.0)
+            ? tr("N/A") : (Utils::String::fromDouble(contribution * 100, 1) + u'%');
+    setModelData(m_listModel, row, PeerListColumns::CONTRIBUTION, contributionDisplayValue
+            , contribution, intDataTextAlignment, contributionTooltip);
 
     const PathList filePaths = torrent->info().filesForPiece(peer.downloadingPieceIndex());
     QStringList downloadingFiles;

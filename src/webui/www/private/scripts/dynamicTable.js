@@ -1940,7 +1940,18 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["relevance"].staticWidth = 100;
 
             // contribution
-            this.columns["contribution"].updateTd = this.columns["progress"].updateTd;
+            this.columns["contribution"].updateTd = function(td, row) {
+                const contribution = this.getRowValue(row);
+                if (contribution < 0) {
+                    td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=PeerListWidget]";
+                    td.title = "QBT_TR(Progress unknown)QBT_TR[CONTEXT=PeerListWidget]";
+                }
+                else {
+                    const contributionFormatted = `${window.qBittorrent.Misc.toFixedPointString((contribution * 100), 1)}%`;
+                    td.textContent = contributionFormatted;
+                    td.title = contributionFormatted;
+                }
+            };
             this.columns["contribution"].staticWidth = 100;
 
             // files

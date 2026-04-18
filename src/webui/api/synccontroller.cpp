@@ -867,13 +867,21 @@ void SyncController::torrentPeersAction()
         };
 
         const qlonglong totalUpload = pi.totalUpload();
+        const qreal progress = pi.progress();
         qreal contribution = 0.0;
 
         if (totalUpload > 0)
         {
-            const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
-            const qreal progressBytes = pi.progress() * totalSize;
-            contribution = static_cast<qreal>(totalUpload) / (progressBytes <= 0 ? totalSize : progressBytes);
+            if (progress > 0)
+            {
+                const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
+                const qreal totalProgress = progress * totalSize;
+                contribution = static_cast<qreal>(totalUpload) / totalProgress;
+            }
+            else
+            {
+                contribution = -1.0;
+            }
         }
 
         peer[KEY_PEER_CONTRIBUTION] = contribution;
