@@ -995,7 +995,15 @@ ShareLimits SessionImpl::categoryShareLimits(const QString &categoryName) const
         return shareLimits();
 
     const ShareLimits categoryShareLimits = categoryOptions(categoryName).shareLimits;
-    const ShareLimits parentCategoryShareLimits = categoryOptions(parentCategoryName(categoryName)).shareLimits;
+    const bool hasDefaults = (categoryShareLimits.ratioLimit == DEFAULT_RATIO_LIMIT)
+            || (categoryShareLimits.seedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+            || (categoryShareLimits.inactiveSeedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+            || (categoryShareLimits.mode == ShareLimitsMode::Default)
+            || (categoryShareLimits.action == ShareLimitAction::Default);
+    if (!hasDefaults)
+        return categoryShareLimits;
+
+    const ShareLimits parentCategoryShareLimits = this->categoryShareLimits(parentCategoryName(categoryName));
     return {
         .ratioLimit = (categoryShareLimits.ratioLimit != DEFAULT_RATIO_LIMIT)
             ? categoryShareLimits.ratioLimit : parentCategoryShareLimits.ratioLimit,
