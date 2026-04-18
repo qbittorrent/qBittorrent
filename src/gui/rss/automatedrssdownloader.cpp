@@ -380,16 +380,19 @@ void AutomatedRssDownloader::onAddRuleBtnClicked()
 
     // Ask for a rule name
     const QString ruleName = AutoExpandableDialog::getText(
-                this, tr("New rule name"), tr("Please type the name of the new download rule."));
+            this, tr("New rule name"), tr("Please type the name of the new download rule."));
     if (ruleName.isEmpty()) return;
 
     // Check if this rule name already exists
     if (RSS::AutoDownloader::instance()->hasRule(ruleName))
     {
         QMessageBox::warning(this, tr("Rule name conflict")
-                             , tr("A rule with this name already exists, please choose another name."));
+                , tr("A rule with this name already exists, please choose another name."));
         return;
     }
+
+    // Clear the current selection, so that only the newly added rule will be selected
+    m_ui->ruleList->clearSelection();
 
     RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule(ruleName));
 }
@@ -825,7 +828,7 @@ void AutomatedRssDownloader::handleRuleDefinitionChanged()
 
 void AutomatedRssDownloader::handleRuleAdded(const QString &ruleName)
 {
-    createRuleItem(RSS::AutoDownloadRule(ruleName));
+    createRuleItem(RSS::AutoDownloader::instance()->ruleByName(ruleName));
 }
 
 void AutomatedRssDownloader::handleRuleRenamed(const QString &ruleName, const QString &oldRuleName)
