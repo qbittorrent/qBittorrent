@@ -152,6 +152,7 @@
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionDownloadFromURL"/>
+   <addaction name="actionOpenDestinationFolder"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
@@ -488,6 +489,14 @@
   <action name="actionCloseWindow">
    <property name="text">
     <string>Close Window</string>
+   </property>
+  </action>
+  <action name="actionOpenDestinationFolder">
+   <property name="iconText">
+    <string>Open Folder</string>
+   </property>
+   <property name="text">
+    <string>Open Destination Folder</string>
    </property>
   </action>
  </widget>
