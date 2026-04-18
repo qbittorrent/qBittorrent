@@ -157,7 +157,6 @@ void AppController::preferencesAction()
     // Transfer List
     data[u"confirm_torrent_deletion"_s] = pref->confirmTorrentDeletion();
     data[u"relative_transfer_list_dates"_s] = pref->useRelativeDatesInTransferList();
-    data[u"relative_transfer_list_dates_ago"_s] = pref->appendAgoToRelativeTransferListDates();
     // Log file
     data[u"file_log_enabled"_s] = app()->isFileLoggerEnabled();
     data[u"file_log_path"_s] = app()->fileLoggerPath().toString();
@@ -558,8 +557,6 @@ void AppController::setPreferencesAction()
         pref->setConfirmTorrentDeletion(it.value().toBool());
     if (hasKey(u"relative_transfer_list_dates"_s))
         pref->setUseRelativeDatesInTransferList(it.value().toBool());
-    if (hasKey(u"relative_transfer_list_dates_ago"_s))
-        pref->setAppendAgoToRelativeTransferListDates(it.value().toBool());
     // Log file
     if (hasKey(u"file_log_enabled"_s))
         app()->setFileLoggerEnabled(it.value().toBool());

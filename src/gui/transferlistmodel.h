@@ -141,7 +141,6 @@ private:
     HideZeroValuesMode m_hideZeroValuesMode = HideZeroValuesMode::Never;
     bool m_useTorrentStatesColors = false;
     bool m_useRelativeDates = false;
-    bool m_appendAgoToRelativeDates = true;
 
     // cached icons
     QIcon m_checkingIcon;

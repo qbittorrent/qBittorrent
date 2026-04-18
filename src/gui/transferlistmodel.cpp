@@ -397,11 +397,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         if (elapsedTime == 0)
             elapsedTime = 1;
 
-        const QString duration = Utils::Misc::userFriendlyDuration(elapsedTime);
-        if (!m_appendAgoToRelativeDates)
-            return duration;
-
-        return tr("%1 ago", "e.g.: 1h 20m ago").arg(duration);
+        return tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsedTime));
     };
 
     switch (column)
@@ -828,12 +824,6 @@ void TransferListModel::configure()
             else
                 m_relativeDateRefreshTimer->stop();
         }
-        isDataChanged = true;
-    }
-
-    if (const bool appendAgoToRelativeDates = pref->appendAgoToRelativeTransferListDates(); m_appendAgoToRelativeDates != appendAgoToRelativeDates)
-    {
-        m_appendAgoToRelativeDates = appendAgoToRelativeDates;
         isDataChanged = true;
     }
 

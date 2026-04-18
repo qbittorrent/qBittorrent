@@ -69,10 +69,6 @@ window.qBittorrent.DynamicTable ??= (() => {
         return window.qBittorrent.Cache.preferences.get().relative_transfer_list_dates ?? false;
     };
 
-    const shouldAppendAgoToRelativeTransferListDates = () => {
-        return window.qBittorrent.Cache.preferences.get().relative_transfer_list_dates_ago ?? true;
-    };
-
     const formatTransferListDate = (timestampSeconds) => {
         if ((timestampSeconds === 0xffffffff) || (timestampSeconds < 0)) {
             return {
@@ -90,11 +86,9 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         const elapsedSeconds = Math.max(Math.floor((Date.now() / 1000) - timestampSeconds), 1);
-        const duration = window.qBittorrent.Misc.friendlyDuration(elapsedSeconds);
         return {
-            text: shouldAppendAgoToRelativeTransferListDates()
-                ? "QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]".replace("%1", duration)
-                : duration,
+            text: "QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]"
+                .replace("%1", window.qBittorrent.Misc.friendlyDuration(elapsedSeconds)),
             title: absoluteDate
         };
     };
