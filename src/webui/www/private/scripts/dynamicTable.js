@@ -1282,14 +1282,15 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = string;
             };
             const displayDate = function(td, row) {
-                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
+                const value = this.getRowValue(row);
+                const date = window.qBittorrent.Misc.formatDate(new Date(value * 1000));
                 td.textContent = date;
                 td.title = date;
             };
             const displayDateOrBlank = function(td, row) {
-                const val = this.getRowValue(row);
-                const useBlank = (val === 0xffffffff) || (val < 0);
-                const date = useBlank ? "" : window.qBittorrent.Misc.formatDate(new Date(val * 1000));
+                const value = this.getRowValue(row);
+                const useBlank = (value === 0xffffffff) || (value < 0);
+                const date = useBlank ? "" : window.qBittorrent.Misc.formatDate(new Date(value * 1000));
                 td.textContent = date;
                 td.title = date;
             };
@@ -1975,7 +1976,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
             const displayDate = function(td, row) {
                 const value = this.getRowValue(row) * 1000;
-                const formattedValue = (Number.isNaN(value) || (value <= 0)) ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
+                const useBlank = (Number.isNaN(value) || (value <= 0));
+                const formattedValue = useBlank ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
                 td.textContent = formattedValue;
                 td.title = formattedValue;
             };
@@ -3414,11 +3416,14 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         initColumnsFunctions() {
-            this.columns["timestamp"].updateTd = function(td, row) {
-                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
+            const displayDate = function(td, row) {
+                const value = this.getRowValue(row);
+                const date = window.qBittorrent.Misc.formatDate(new Date(value * 1000));
                 td.textContent = date;
                 td.title = date;
             };
+
+            this.columns["timestamp"].updateTd = displayDate;
 
             this.columns["type"].updateTd = function(td, row) {
                 // Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
@@ -3492,11 +3497,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("blocked", "", "QBT_TR(Status)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
             this.newColumn("reason", "", "QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
 
-            this.columns["timestamp"].updateTd = function(td, row) {
-                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
+            const displayDate = function(td, row) {
+                const value = this.getRowValue(row);
+                const date = window.qBittorrent.Misc.formatDate(new Date(value * 1000));
                 td.textContent = date;
                 td.title = date;
             };
+
+            this.columns["timestamp"].updateTd = displayDate;
 
             this.columns["blocked"].updateTd = function(td, row) {
                 let status, addClass;
@@ -3711,16 +3719,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const val = this.getRowValue(row);
-                if (!val) {
-                    td.textContent = "";
-                    td.title = "";
-                }
-                else {
-                    const date = window.qBittorrent.Misc.formatDate(new Date(val));
-                    td.textContent = date;
-                    td.title = date;
-                }
+                const value = this.getRowValue(row);
+                const useBlank = !value;
+                const date = useBlank ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
+                td.textContent = date;
+                td.title = date;
             };
 
             // added_on, start_on, completion_on
