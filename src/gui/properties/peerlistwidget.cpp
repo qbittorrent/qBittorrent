@@ -532,8 +532,7 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
     {
         if (progress > 0)
         {
-            const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
-            const qreal totalProgress = progress * totalSize;
+            const qreal totalProgress = progress * torrent->totalSize();
             contribution = static_cast<qreal>(totalUpload) / totalProgress;
         }
         else
