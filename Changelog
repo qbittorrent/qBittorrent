@@ -1,3 +1,29 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
+    - FEATURE: Add an option to match all share limits (glassez) #24043
+	- FEATURE: Put Email examples in placeholder text (Chocobo1) #23949
+	- FEATURE: Add support for widely used image types in HTTP server (Chocobo1) #23886
+	- FEATURE: Allow to filter torrent list by infohash (stalkerok) #23829
+	- FEATURE: Add "Copy path" in Content tab (vafada) #23973
+	- FEATURE: Don't overwrite config file when it has no write permission (Chocobo1) #23817
+    - FEATURE: Allow banning IP range (KagurazakaNyaa) #23157
+	- BUGFIX: Fix Comment area background mismatch in Add New Torrent dialog (M-Hassan-Raza) #23916
+	- BUGFIX: Rename FYR Macedonia to North Macedonia (alphanumericcharter) #23825
+    - BUGFIX: Fix LineEdit dark corner artifacts on macOS (M-Hassan-Raza) #23909
+    - BUGFIX: Fix macOS delete shortcuts to match platform conventions (M-Hassan-Raza) #23908
+    - BUGFIX: Replace invisible toolbar spacers with visible separators on macOS (M-Hassan-Raza) #23905
+    - WEBUI: Add "Select All" and "Invert Selection" (aaron-kruse) #23975
+	- WEBUI: Enable virtual list by default (tehcneko) #23887
+    - WEBUI: Improve folder collapse behavior (Piccirello) #23878
+    - WEBUI: Show free disk space in add torrent window (Ryu481) #23856
+    - WEBUI: filter array elements in-place (Chocobo1) #23837
+    - WEBUI: improve 'set rows' operation performance (Chocobo1) #23818
+    - RSS: Fix the added RSS rule item doesn't follow "enabled" state (glassez) #24082
+    - RSS: Add "All" sticky RSS item (glassez) #23963
+	- SEARCH: Clean up documentation format (Chocobo1) #23911
+    - OTHER: Support build against latest version of libtorrent (arvidn) #23953
+    - OTHER: Don't use deprecated libtorrent features (glassez) #24007
+    - OTHER: Remove outdated setting keys (Chocobo1) #23952
+
 Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc1
     - FEATURE: Show free disk space in status bar (glassez)
     - FEATURE: Add control for 'hostname resolver cache expiry interval' (Chocobo1)
