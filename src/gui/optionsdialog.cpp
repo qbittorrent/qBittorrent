@@ -273,6 +273,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkUseTorrentStatesColors->setChecked(pref->useTorrentStatesColors());
     m_ui->checkProgressBarFollowsTextColor->setChecked(pref->getProgressBarFollowsTextColor());
     m_ui->checkProgressBarFollowsTextColor->setEnabled(m_ui->checkUseTorrentStatesColors->isChecked());
+    m_ui->checkRelativeTransferListDates->setChecked(pref->useRelativeDatesInTransferList());
     m_ui->checkHideZero->setChecked(pref->getHideZeroValues());
     m_ui->comboHideZero->setCurrentIndex(pref->getHideZeroComboValues());
     m_ui->comboHideZero->setEnabled(m_ui->checkHideZero->isChecked());
@@ -403,6 +404,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkUseTorrentStatesColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseTorrentStatesColors, &QAbstractButton::toggled, m_ui->checkProgressBarFollowsTextColor, &QWidget::setEnabled);
     connect(m_ui->checkProgressBarFollowsTextColor, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkRelativeTransferListDates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, m_ui->comboHideZero, &QWidget::setEnabled);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboHideZero, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -500,6 +502,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setUseTorrentStatesColors(m_ui->checkUseTorrentStatesColors->isChecked());
     pref->setProgressBarFollowsTextColor(m_ui->checkProgressBarFollowsTextColor->isChecked());
+    pref->setUseRelativeDatesInTransferList(m_ui->checkRelativeTransferListDates->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 
