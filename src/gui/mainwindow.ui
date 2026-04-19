@@ -152,11 +152,11 @@
    </attribute>
    <addaction name="actionOpen"/>
    <addaction name="actionDownloadFromURL"/>
-   <addaction name="actionOpenDestinationFolder"/>
    <addaction name="actionDelete"/>
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionStop"/>
+   <addaction name="actionOpenDestinationFolder"/>
    <addaction name="actionTopQueuePos"/>
    <addaction name="actionIncreaseQueuePos"/>
    <addaction name="actionDecreaseQueuePos"/>
