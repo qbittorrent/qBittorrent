@@ -57,6 +57,7 @@ private:
             , const QList<BitTorrent::TrackerEntry> &newEntries);
     void handleTorrentTrackerStatusesUpdated(const BitTorrent::Torrent *torrent);
 
+    void loadUIThemeResources();
     void refreshItems(const BitTorrent::Torrent *torrent);
 
     QSet<const BitTorrent::Torrent *> m_errors;

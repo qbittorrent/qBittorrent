@@ -32,10 +32,13 @@
 
 #include <QtSystemDetection>
 #include <QtVersionChecks>
+#include <QByteArray>
 #include <QColor>
+#include <QEvent>
 #include <QHash>
 #include <QIcon>
 #include <QObject>
+#include <QPalette>
 #include <QPixmap>
 #include <QString>
 
@@ -49,6 +52,8 @@
 #include "base/settingvalue.h"
 #include "colorscheme.h"
 #endif
+
+class UIThemeIconEngine;
 
 class UIThemeManager final : public QObject
 {
@@ -71,14 +76,33 @@ public:
 
     QColor getColor(const QString &id) const;
 
+    void applyThemeSettings();
+
 signals:
     void themeChanged();
 
 private:
-    UIThemeManager(); // singleton class
+    friend class UIThemeIconEngine;
 
+    UIThemeManager(); // singleton class
+    ~UIThemeManager() override;
+
+    bool eventFilter(QObject *object, QEvent *event) override;
+
+    void syncThemeSettings();
+    void applyThemeSettingsInternal();
+    void scheduleSystemAppearanceRefresh();
+    void refreshSystemAppearance();
+    void refreshNativeAppearance(bool useConfiguredStyle);
+    void refreshThemeResources(bool shouldRepolishWidgets);
+    QIcon loadIcon(const QString &iconId, const QString &fallback = {}) const;
+    void loadThemeSource();
+    void clearIconCaches();
+    void unregisterThemeResource();
+    bool applyThemeOverlay();
+    void applyStyle(bool useConfiguredStyle) const;
     void applyPalette() const;
-    void applyStyleSheet() const;
+    void applyStyleSheet(const QByteArray &styleSheet) const;
     void onColorSchemeChanged();
 
 #ifdef QBT_HAS_COLORSCHEME_OPTION
@@ -86,14 +110,21 @@ private:
 #endif
 
     static UIThemeManager *m_instance;
-    const bool m_useCustomTheme;
+    const QString m_defaultStyleName;
+    bool m_useCustomTheme;
+    bool m_isRefreshingAppearance = false;
+    bool m_isAppearanceRefreshPending = false;
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     SettingValue<ColorScheme> m_colorSchemeSetting;
 #endif
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    const bool m_useSystemIcons;
+    bool m_useSystemIcons;
 #endif
+    QPalette m_nativePalette;
     std::unique_ptr<UIThemeSource> m_themeSource;
+    Path m_registeredResourcePath;
+    bool m_hadCustomThemeOverlay = false;
+    QByteArray m_appliedStyleSheet;
     mutable QHash<QString, QIcon> m_icons;
     mutable QHash<QString, QIcon> m_darkModeIcons;
     mutable QHash<QString, QIcon> m_flags;

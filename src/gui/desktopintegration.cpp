@@ -97,6 +97,13 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 #endif
 
     connect(Preferences::instance(), &Preferences::changed, this, &DesktopIntegration::onPreferencesChanged);
+#ifndef Q_OS_MACOS
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
+    {
+        if (m_systrayIcon)
+            m_systrayIcon->setIcon(getSystrayIcon());
+    });
+#endif
 }
 
 DesktopIntegration::~DesktopIntegration()

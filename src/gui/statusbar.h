@@ -54,6 +54,7 @@ public slots:
     void showRestartRequired();
 
 private slots:
+    void applyTheme();
     void refresh();
     void updateAltSpeedsBtn(bool alternative);
     void capSpeed();
