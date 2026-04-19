@@ -809,6 +809,18 @@ void AddNewTorrentDialog::populateSavePaths()
 
 void AddNewTorrentDialog::accept()
 {
+    //Check "Save at" path selected is valid.
+    if (m_ui->comboTMM->currentIndex() == 0)
+    {
+        const Path savePath = m_ui->savePath->selectedPath();
+        if (!savePath.isValid())
+        {
+            QMessageBox::warning(this, tr("Invalid save path"),
+                                 tr("The \"Save at\" path contains invalid characters."));
+            return;
+        }
+    }
+
     Q_ASSERT(m_currentContext);
     if (!m_currentContext) [[unlikely]]
         return;

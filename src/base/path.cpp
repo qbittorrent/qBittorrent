@@ -41,6 +41,7 @@
 
 #include "base/concepts/stringable.h"
 #include "base/global.h"
+#include "base/utils/fs.h"
 
 #if defined(Q_OS_WIN)
 const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
@@ -83,34 +84,32 @@ Path::Path(const std::string_view pathStr)
 {
 }
 
+// Returns true if the path is non-empty and all its components are valid
 bool Path::isValid() const
 {
-    // does not support UNC path
-
-    if (isEmpty())
+    // Reject empty paths
+    if (m_pathStr.isEmpty())
         return false;
 
-    // https://stackoverflow.com/a/31976060
-#if defined(Q_OS_WIN)
-    QStringView view = m_pathStr;
-    if (hasDriveLetter(view))
-    {
-#if QT_VERSION >= QT_VERSION_CHECK(6, 8, 0)
-        view.slice(3);
-#else
-        view = view.sliced(3);
+    QStringView pathStrView = m_pathStr;
+
+#ifdef Q_OS_WIN
+    // Remove Windows drive letter prefix (e.g., "C:/") if present
+    if (hasDriveLetter(pathStrView))
+        pathStrView = pathStrView.sliced(3);
 #endif
+
+    // Split path into components and validate each one
+    for (const QStringView component : pathStrView.split(u'/', Qt::SkipEmptyParts))
+    {
+        if ((component == u"."_s) || (component == u".."_s))
+            continue;
+
+        if (!Utils::Fs::isValidFileName(component))
+            return false;
     }
 
-    // \\37 is using base-8 number system
-    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_s};
-    return !regex.matchView(view).hasMatch();
-#elif defined(Q_OS_MACOS)
-    const QRegularExpression regex {u"[\\0:]"_s};
-#else
-    const QRegularExpression regex {u"\\0"_s};
-#endif
-    return !m_pathStr.contains(regex);
+    return true;
 }
 
 bool Path::isEmpty() const
