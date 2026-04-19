@@ -73,6 +73,14 @@ namespace DNS
     Q_ENUM_NS(Service)
 }
 
+namespace Net
+{
+    inline namespace SMTPEncryptionNS
+    {
+        enum class SMTPEncryption;
+    }
+}
+
 namespace TrayIcon
 {
     Q_NAMESPACE
@@ -155,8 +163,8 @@ public:
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
     void setMailNotificationSMTP(const QString &smtpServer);
-    bool getMailNotificationSMTPSSL() const;
-    void setMailNotificationSMTPSSL(bool use);
+    Net::SMTPEncryption getMailNotificationSmtpEncryptionType() const;
+    void setMailNotificationSmtpEncryptionType(Net::SMTPEncryption mailEncryptionType);
     bool getMailNotificationSMTPAuth() const;
     void setMailNotificationSMTPAuth(bool use);
     QString getMailNotificationSMTPUsername() const;
