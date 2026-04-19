@@ -34,6 +34,7 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPalette>
 #include <QRegularExpression>
 #include <QShortcut>
 #include <QSignalBlocker>
@@ -744,13 +745,16 @@ void AutomatedRssDownloader::updateMustLineValidity()
 
     if (valid)
     {
-        m_ui->lineContains->setStyleSheet({});
+        m_ui->lineContains->setPalette({});
+        m_ui->lineContains->setAttribute(Qt::WA_SetPalette, false);
         m_ui->labelMustStat->setPixmap(QPixmap());
         m_ui->labelMustStat->setToolTip({});
     }
     else
     {
-        m_ui->lineContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
+        QPalette errorPalette = m_ui->lineContains->palette();
+        errorPalette.setColor(QPalette::Text, Qt::red);
+        m_ui->lineContains->setPalette(errorPalette);
         m_ui->labelMustStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
         m_ui->labelMustStat->setToolTip(error);
     }
@@ -791,13 +795,16 @@ void AutomatedRssDownloader::updateMustNotLineValidity()
 
     if (valid)
     {
-        m_ui->lineNotContains->setStyleSheet({});
+        m_ui->lineNotContains->setPalette({});
+        m_ui->lineNotContains->setAttribute(Qt::WA_SetPalette, false);
         m_ui->labelMustNotStat->setPixmap(QPixmap());
         m_ui->labelMustNotStat->setToolTip({});
     }
     else
     {
-        m_ui->lineNotContains->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
+        QPalette errorPalette = m_ui->lineNotContains->palette();
+        errorPalette.setColor(QPalette::Text, Qt::red);
+        m_ui->lineNotContains->setPalette(errorPalette);
         m_ui->labelMustNotStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
         m_ui->labelMustNotStat->setToolTip(error);
     }
@@ -810,12 +817,15 @@ void AutomatedRssDownloader::updateEpisodeFilterValidity()
 
     if (valid)
     {
-        m_ui->lineEFilter->setStyleSheet({});
+        m_ui->lineEFilter->setPalette({});
+        m_ui->lineEFilter->setAttribute(Qt::WA_SetPalette, false);
         m_ui->labelEpFilterStat->setPixmap({});
     }
     else
     {
-        m_ui->lineEFilter->setStyleSheet(u"QLineEdit { color: #ff0000; }"_s);
+        QPalette errorPalette = m_ui->lineEFilter->palette();
+        errorPalette.setColor(QPalette::Text, Qt::red);
+        m_ui->lineEFilter->setPalette(errorPalette);
         m_ui->labelEpFilterStat->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_s, u"task-attention"_s).pixmap(16, 16));
     }
 }
