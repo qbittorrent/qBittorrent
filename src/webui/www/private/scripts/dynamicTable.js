@@ -1916,16 +1916,17 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = this.getRowValue(row, 1);
             };
 
-            // progress
-            this.columns["progress"].updateTd = function(td, row) {
+            const displayProgress = function(td, row) {
                 const progress = this.getRowValue(row);
                 const progressFormatted = `${window.qBittorrent.Misc.toFixedPointString((progress * 100), 1)}%`;
                 td.textContent = progressFormatted;
                 td.title = progressFormatted;
             };
 
-            // dl_speed, up_speed
-            this.columns["dl_speed"].updateTd = function(td, row) {
+			// progress
+            this.columns["progress"].updateTd = displayProgress;
+
+            const displaySpeed = function(td, row) {
                 const speed = this.getRowValue(row);
                 if (speed === 0) {
                     td.textContent = "";
@@ -1937,18 +1938,23 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = formattedSpeed;
                 }
             };
-            this.columns["up_speed"].updateTd = this.columns["dl_speed"].updateTd;
+
+			// dl_speed, up_speed
+            this.columns["dl_speed"].updateTd = displaySpeed;
+            this.columns["up_speed"].updateTd = displaySpeed;
+
+            const displaySize = function(td, row) {
+                const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
+                td.textContent = size;
+                td.title = size;
+            };
 
             // downloaded, uploaded
-            this.columns["downloaded"].updateTd = function(td, row) {
-                const downloaded = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
-                td.textContent = downloaded;
-                td.title = downloaded;
-            };
-            this.columns["uploaded"].updateTd = this.columns["downloaded"].updateTd;
+            this.columns["downloaded"].updateTd = displaySize;
+            this.columns["uploaded"].updateTd = displaySize;
 
             // relevance
-            this.columns["relevance"].updateTd = this.columns["progress"].updateTd;
+            this.columns["relevance"].updateTd = displayProgress;
             this.columns["relevance"].staticWidth = 100;
 
             // files
