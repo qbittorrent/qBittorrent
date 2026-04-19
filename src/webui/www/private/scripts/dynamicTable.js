@@ -1238,6 +1238,69 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return `stateIcon ${stateClass}`;
             };
 
+            const displaySize = function(td, row) {
+                const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
+                td.textContent = size;
+                td.title = size;
+            };
+            const displaySeeds = function(td, row) {
+                const num_seeds = this.getRowValue(row, 0);
+                const num_complete = this.getRowValue(row, 1);
+                let value = num_seeds;
+                if (num_complete !== -1)
+                    value += ` (${num_complete})`;
+                td.textContent = value;
+                td.title = value;
+            };
+			const compareSeeds = function(row1, row2) {
+                const num_seeds1 = this.getRowValue(row1, 0);
+                const num_complete1 = this.getRowValue(row1, 1);
+
+                const num_seeds2 = this.getRowValue(row2, 0);
+                const num_complete2 = this.getRowValue(row2, 1);
+
+                const result = compareNumbers(num_complete1, num_complete2);
+                if (result !== 0)
+                    return result;
+                return compareNumbers(num_seeds1, num_seeds2);
+            };
+            const displaySpeed = function(td, row) {
+                const speed = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), true);
+                td.textContent = speed;
+                td.title = speed;
+            };
+			const displaySpeedOrInfinity = function(td, row) {
+                const speed = this.getRowValue(row);
+                const formattedSpeed = (speed === 0) ? "∞" : window.qBittorrent.Misc.friendlyUnit(speed, true);
+                td.textContent = formattedSpeed;
+                td.title = formattedSpeed;
+            };
+			const displayRatio = function(td, row) {
+                const ratio = this.getRowValue(row);
+                const string = (ratio === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(ratio, 2);
+                td.textContent = string;
+                td.title = string;
+            };
+            const displayDate = function(td, row) {
+                const value = this.getRowValue(row);
+                const date = window.qBittorrent.Misc.formatDate(new Date(value * 1000));
+                td.textContent = date;
+                td.title = date;
+            };
+            const displayDateOrBlank = function(td, row) {
+                const value = this.getRowValue(row);
+                const useBlank = (value === 0xffffffff) || (value < 0);
+                const date = useBlank ? "" : window.qBittorrent.Misc.formatDate(new Date(value * 1000));
+                td.textContent = date;
+                td.title = date;
+            };
+            const displayInfohash = function(td, row) {
+                const sourceInfohashV1 = this.getRowValue(row);
+                const infohashV1 = (sourceInfohashV1 !== "") ? sourceInfohashV1 : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
+                td.textContent = infohashV1;
+                td.title = infohashV1;
+            };
+
             // state_icon
             this.columns["state_icon"].updateTd = function(td, row) {
                 const state = this.getRowValue(row);
@@ -1362,22 +1425,20 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return compareNumbers(row1_val, row2_val);
             };
 
-            // name, category, tags
-            this.columns["name"].compareRows = function(row1, row2) {
+            const compareNames = function(row1, row2) {
                 const row1Val = this.getRowValue(row1);
                 const row2Val = this.getRowValue(row2);
                 return row1Val.localeCompare(row2Val, undefined, { numeric: true, sensitivity: "base" });
             };
-            this.columns["category"].compareRows = this.columns["name"].compareRows;
-            this.columns["tags"].compareRows = this.columns["name"].compareRows;
+
+			// name, category, tags
+            this.columns["name"].compareRows = compareNames;
+            this.columns["category"].compareRows = compareNames;
+            this.columns["tags"].compareRows = compareNames;
 
             // size, total_size
-            this.columns["size"].updateTd = function(td, row) {
-                const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
-                td.textContent = size;
-                td.title = size;
-            };
-            this.columns["total_size"].updateTd = this.columns["size"].updateTd;
+            this.columns["size"].updateTd = displaySize;
+            this.columns["total_size"].updateTd = displaySize;
 
             // progress
             this.columns["progress"].updateTd = function(td, row) {
@@ -1396,41 +1457,16 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["progress"].staticWidth = 100;
 
             // num_seeds
-            this.columns["num_seeds"].updateTd = function(td, row) {
-                const num_seeds = this.getRowValue(row, 0);
-                const num_complete = this.getRowValue(row, 1);
-                let value = num_seeds;
-                if (num_complete !== -1)
-                    value += ` (${num_complete})`;
-                td.textContent = value;
-                td.title = value;
-            };
-            this.columns["num_seeds"].compareRows = function(row1, row2) {
-                const num_seeds1 = this.getRowValue(row1, 0);
-                const num_complete1 = this.getRowValue(row1, 1);
-
-                const num_seeds2 = this.getRowValue(row2, 0);
-                const num_complete2 = this.getRowValue(row2, 1);
-
-                const result = compareNumbers(num_complete1, num_complete2);
-                if (result !== 0)
-                    return result;
-                return compareNumbers(num_seeds1, num_seeds2);
-            };
+            this.columns["num_seeds"].updateTd = displaySeeds;
+            this.columns["num_seeds"].compareRows = compareSeeds;
 
             // num_leechs
-            this.columns["num_leechs"].updateTd = this.columns["num_seeds"].updateTd;
-            this.columns["num_leechs"].compareRows = this.columns["num_seeds"].compareRows;
+            this.columns["num_leechs"].updateTd = displaySeeds;
+            this.columns["num_leechs"].compareRows = compareSeeds;
 
-            // dlspeed
-            this.columns["dlspeed"].updateTd = function(td, row) {
-                const speed = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), true);
-                td.textContent = speed;
-                td.title = speed;
-            };
-
-            // upspeed
-            this.columns["upspeed"].updateTd = this.columns["dlspeed"].updateTd;
+			// dlspeed, upspeed
+            this.columns["dlspeed"].updateTd = displaySpeed;
+            this.columns["upspeed"].updateTd = displaySpeed;
 
             // eta
             this.columns["eta"].updateTd = function(td, row) {
@@ -1439,42 +1475,17 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = eta;
             };
 
-            // ratio
-            this.columns["ratio"].updateTd = function(td, row) {
-                const ratio = this.getRowValue(row);
-                const string = (ratio === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(ratio, 2);
-                td.textContent = string;
-                td.title = string;
-            };
+			// ratio
+            this.columns["ratio"].updateTd = displayRatio;
 
             // popularity
-            this.columns["popularity"].updateTd = function(td, row) {
-                const value = this.getRowValue(row);
-                const popularity = (value === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(value, 2);
-                td.textContent = popularity;
-                td.title = popularity;
-            };
+            this.columns["popularity"].updateTd = displayRatio;
 
             // added on
-            this.columns["added_on"].updateTd = function(td, row) {
-                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
-                td.textContent = date;
-                td.title = date;
-            };
+            this.columns["added_on"].updateTd = displayDate;
 
-            // completion_on
-            this.columns["completion_on"].updateTd = function(td, row) {
-                const val = this.getRowValue(row);
-                if ((val === 0xffffffff) || (val < 0)) {
-                    td.textContent = "";
-                    td.title = "";
-                }
-                else {
-                    const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
-                    td.textContent = date;
-                    td.title = date;
-                }
-            };
+			// completion_on
+            this.columns["completion_on"].updateTd = displayDateOrBlank;
 
             // tracker
             this.columns["tracker"].updateTd = function(td, row) {
@@ -1485,27 +1496,15 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             //  dl_limit, up_limit
-            this.columns["dl_limit"].updateTd = function(td, row) {
-                const speed = this.getRowValue(row);
-                if (speed === 0) {
-                    td.textContent = "∞";
-                    td.title = "∞";
-                }
-                else {
-                    const formattedSpeed = window.qBittorrent.Misc.friendlyUnit(speed, true);
-                    td.textContent = formattedSpeed;
-                    td.title = formattedSpeed;
-                }
-            };
-
-            this.columns["up_limit"].updateTd = this.columns["dl_limit"].updateTd;
+            this.columns["dl_limit"].updateTd = displaySpeedOrInfinity;
+            this.columns["up_limit"].updateTd = displaySpeedOrInfinity;
 
             // downloaded, uploaded, downloaded_session, uploaded_session, amount_left
-            this.columns["downloaded"].updateTd = this.columns["size"].updateTd;
-            this.columns["uploaded"].updateTd = this.columns["size"].updateTd;
-            this.columns["downloaded_session"].updateTd = this.columns["size"].updateTd;
-            this.columns["uploaded_session"].updateTd = this.columns["size"].updateTd;
-            this.columns["amount_left"].updateTd = this.columns["size"].updateTd;
+            this.columns["downloaded"].updateTd = displaySize;
+            this.columns["uploaded"].updateTd = displaySize;
+            this.columns["downloaded_session"].updateTd = displaySize;
+            this.columns["uploaded_session"].updateTd = displaySize;
+            this.columns["amount_left"].updateTd = displaySize;
 
             // time active
             this.columns["time_active"].updateTd = function(td, row) {
@@ -1521,13 +1520,13 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             // completed
-            this.columns["completed"].updateTd = this.columns["size"].updateTd;
+            this.columns["completed"].updateTd = displaySize;
 
             // max_ratio
-            this.columns["max_ratio"].updateTd = this.columns["ratio"].updateTd;
+            this.columns["max_ratio"].updateTd = displayRatio;
 
             // seen_complete
-            this.columns["seen_complete"].updateTd = this.columns["completion_on"].updateTd;
+            this.columns["seen_complete"].updateTd = displayDateOrBlank;
 
             // last_activity
             this.columns["last_activity"].updateTd = function(td, row) {
@@ -1550,21 +1549,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = value;
             };
 
-            // infohash_v1
-            this.columns["infohash_v1"].updateTd = function(td, row) {
-                const sourceInfohashV1 = this.getRowValue(row);
-                const infohashV1 = (sourceInfohashV1 !== "") ? sourceInfohashV1 : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
-                td.textContent = infohashV1;
-                td.title = infohashV1;
-            };
-
-            // infohash_v2
-            this.columns["infohash_v2"].updateTd = function(td, row) {
-                const sourceInfohashV2 = this.getRowValue(row);
-                const infohashV2 = (sourceInfohashV2 !== "") ? sourceInfohashV2 : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
-                td.textContent = infohashV2;
-                td.title = infohashV2;
-            };
+			// infohash_v1, infohash_v2
+            this.columns["infohash_v1"].updateTd = displayInfohash;
+            this.columns["infohash_v2"].updateTd = displayInfohash;
 
             // reannounce
             this.columns["reannounce"].updateTd = function(td, row) {
@@ -1875,6 +1862,30 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         initColumnsFunctions() {
+            const displayProgress = function(td, row) {
+                const progress = this.getRowValue(row);
+                const progressFormatted = `${window.qBittorrent.Misc.toFixedPointString((progress * 100), 1)}%`;
+                td.textContent = progressFormatted;
+                td.title = progressFormatted;
+            };
+            const displaySpeed = function(td, row) {
+                const speed = this.getRowValue(row);
+                if (speed === 0) {
+                    td.textContent = "";
+                    td.title = "";
+                }
+                else {
+                    const formattedSpeed = window.qBittorrent.Misc.friendlyUnit(speed, true);
+                    td.textContent = formattedSpeed;
+                    td.title = formattedSpeed;
+                }
+            };
+            const displaySize = function(td, row) {
+                const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
+                td.textContent = size;
+                td.title = size;
+            };
+
             // country
             this.columns["country"].updateTd = function(td, row) {
                 const country = this.getRowValue(row, 0);
@@ -1913,39 +1924,19 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = this.getRowValue(row, 1);
             };
 
-            // progress
-            this.columns["progress"].updateTd = function(td, row) {
-                const progress = this.getRowValue(row);
-                const progressFormatted = `${window.qBittorrent.Misc.toFixedPointString((progress * 100), 1)}%`;
-                td.textContent = progressFormatted;
-                td.title = progressFormatted;
-            };
+			// progress
+            this.columns["progress"].updateTd = displayProgress;
 
-            // dl_speed, up_speed
-            this.columns["dl_speed"].updateTd = function(td, row) {
-                const speed = this.getRowValue(row);
-                if (speed === 0) {
-                    td.textContent = "";
-                    td.title = "";
-                }
-                else {
-                    const formattedSpeed = window.qBittorrent.Misc.friendlyUnit(speed, true);
-                    td.textContent = formattedSpeed;
-                    td.title = formattedSpeed;
-                }
-            };
-            this.columns["up_speed"].updateTd = this.columns["dl_speed"].updateTd;
+			// dl_speed, up_speed
+            this.columns["dl_speed"].updateTd = displaySpeed;
+            this.columns["up_speed"].updateTd = displaySpeed;
 
             // downloaded, uploaded
-            this.columns["downloaded"].updateTd = function(td, row) {
-                const downloaded = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
-                td.textContent = downloaded;
-                td.title = downloaded;
-            };
-            this.columns["uploaded"].updateTd = this.columns["downloaded"].updateTd;
+            this.columns["downloaded"].updateTd = displaySize;
+            this.columns["uploaded"].updateTd = displaySize;
 
             // relevance
-            this.columns["relevance"].updateTd = this.columns["progress"].updateTd;
+            this.columns["relevance"].updateTd = displayProgress;
             this.columns["relevance"].staticWidth = 100;
 
             // files
@@ -1985,7 +1976,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
             const displayDate = function(td, row) {
                 const value = this.getRowValue(row) * 1000;
-                const formattedValue = (Number.isNaN(value) || (value <= 0)) ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
+                const useBlank = (Number.isNaN(value) || (value <= 0));
+                const formattedValue = useBlank ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
                 td.textContent = formattedValue;
                 td.title = formattedValue;
             };
@@ -3424,11 +3416,14 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         initColumnsFunctions() {
-            this.columns["timestamp"].updateTd = function(td, row) {
-                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
+            const displayDate = function(td, row) {
+                const value = this.getRowValue(row);
+                const date = window.qBittorrent.Misc.formatDate(new Date(value * 1000));
                 td.textContent = date;
                 td.title = date;
             };
+
+            this.columns["timestamp"].updateTd = displayDate;
 
             this.columns["type"].updateTd = function(td, row) {
                 // Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
@@ -3502,11 +3497,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("blocked", "", "QBT_TR(Status)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
             this.newColumn("reason", "", "QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
 
-            this.columns["timestamp"].updateTd = function(td, row) {
-                const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
+            const displayDate = function(td, row) {
+                const value = this.getRowValue(row);
+                const date = window.qBittorrent.Misc.formatDate(new Date(value * 1000));
                 td.textContent = date;
                 td.title = date;
             };
+
+            this.columns["timestamp"].updateTd = displayDate;
 
             this.columns["blocked"].updateTd = function(td, row) {
                 let status, addClass;
@@ -3721,16 +3719,11 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const val = this.getRowValue(row);
-                if (!val) {
-                    td.textContent = "";
-                    td.title = "";
-                }
-                else {
-                    const date = window.qBittorrent.Misc.formatDate(new Date(val));
-                    td.textContent = date;
-                    td.title = date;
-                }
+                const value = this.getRowValue(row);
+                const useBlank = !value;
+                const date = useBlank ? "" : window.qBittorrent.Misc.formatDate(new Date(value));
+                td.textContent = date;
+                td.title = date;
             };
 
             // added_on, start_on, completion_on
