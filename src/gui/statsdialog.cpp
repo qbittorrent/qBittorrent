@@ -54,7 +54,7 @@ StatsDialog::StatsDialog(QWidget *parent)
     m_ui->labelCacheHits->hide();
 #endif
 
-    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &StatsDialog::close);
+    connect(m_ui->buttonBox, &QDialogButtonBox::clicked, this, &StatsDialog::close);
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
             , this, &StatsDialog::update);
