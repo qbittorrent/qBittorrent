@@ -1152,6 +1152,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("eta", "", "QBT_TR(ETA)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("ratio", "", "QBT_TR(Ratio)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("popularity", "", "QBT_TR(Popularity)QBT_TR[CONTEXT=TransferListModel]", 100, true);
+            this.newColumn("average_monthly_upload", "", "QBT_TR(Average Monthly Upload)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("category", "", "QBT_TR(Category)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("tags", "", "QBT_TR(Tags)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]", 100, true);
@@ -1454,6 +1455,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = popularity;
                 td.title = popularity;
             };
+
+            // average monthly upload
+            this.columns["average_monthly_upload"].updateTd = this.columns["size"].updateTd;
 
             // added on
             this.columns["added_on"].updateTd = function(td, row) {
