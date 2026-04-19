@@ -124,6 +124,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_DOWN, Qt::Horizontal, tr("Downloaded", "i.e: total data downloaded"));
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
+    m_listModel->setHeaderData(PeerListColumns::CONTRIBUTION, Qt::Horizontal, tr("Contribution", "i.e: How much of this peer's current progress was provided by us"));
     m_listModel->setHeaderData(PeerListColumns::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
     // Set header text alignment
     m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
@@ -133,6 +134,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_DOWN, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::CONTRIBUTION, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     // Proxy model to support sorting without actually altering the underlying model
     m_proxyModel = new PeerListSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
@@ -519,6 +521,30 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
             , peer.progress(), intDataTextAlignment);
     setModelData(m_listModel, row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + u'%')
             , peer.relevance(), intDataTextAlignment);
+
+    const qlonglong totalUpload = peer.totalUpload();
+    const qreal progress = peer.progress();
+    qreal contribution = 0.0;
+    QString contributionTooltip = {};
+
+    if (totalUpload > 0)
+    {
+        if (progress > 0)
+        {
+            const qreal totalProgress = progress * torrent->totalSize();
+            contribution = static_cast<qreal>(totalUpload) / totalProgress;
+        }
+        else
+        {
+            contribution = -1.0;
+            contributionTooltip = tr("Progress unknown");
+        }
+    }
+
+    const QString contributionDisplayValue = (contribution < 0.0)
+            ? tr("N/A") : (Utils::String::fromDouble(contribution * 100, 1) + u'%');
+    setModelData(m_listModel, row, PeerListColumns::CONTRIBUTION, contributionDisplayValue
+            , contribution, intDataTextAlignment, contributionTooltip);
 
     const PathList filePaths = torrent->info().filesForPiece(peer.downloadingPieceIndex());
     QStringList downloadingFiles;
