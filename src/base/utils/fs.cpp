@@ -294,8 +294,8 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     }
 
 #ifdef Q_OS_WIN
-    // Remove trailing dots (Windows forbids filenames ending with '.')
-    while (validName.endsWith(u'.'))
+    // Remove trailing dots and spaces (Windows forbids filenames ending with '.' or " ")
+    while (validName.endsWith(u'.') || validName.endsWith(u' '))
         validName.chop(1);
 
     // Append pad+"1" to Windows reserved device names (e.g. "con.txt" → "con_1.txt")
