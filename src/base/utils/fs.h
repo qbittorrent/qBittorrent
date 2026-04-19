@@ -47,7 +47,6 @@ namespace Utils::Fs
     qint64 freeDiskSpaceOnPath(const Path &path);
 
     bool isValidFileName(QStringView name);
-    bool isValidPathComponent(QStringView component);
     bool isRegularFile(const Path &path);
     bool isDir(const Path &path);
     bool isReadable(const Path &path);

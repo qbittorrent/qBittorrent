@@ -65,22 +65,22 @@
 namespace
 {
 #ifdef Q_OS_WIN
-    // Set of Windows reserved device names
-    const QSet<QString> reservedDeviceNames
-    {
-        u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
-        u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
-        u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
-        u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
-        u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
-        u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
-        u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
-    };
-
-    // Check if name is a Windows reserved device name,
-    // including when immediately followed by an extension (e.g. CON.txt)
     bool isReservedDeviceName(const QStringView name)
     {
+        // Set of Windows reserved device names
+        const QSet<QString> reservedDeviceNames
+        {
+            u"CON"_s, u"PRN"_s, u"AUX"_s, u"NUL"_s,
+            u"COM1"_s, u"COM2"_s, u"COM3"_s, u"COM4"_s,
+            u"COM5"_s, u"COM6"_s, u"COM7"_s, u"COM8"_s,
+            u"COM9"_s, u"COM¹"_s, u"COM²"_s, u"COM³"_s,
+            u"LPT1"_s, u"LPT2"_s, u"LPT3"_s, u"LPT4"_s,
+            u"LPT5"_s, u"LPT6"_s, u"LPT7"_s, u"LPT8"_s,
+            u"LPT9"_s, u"LPT¹"_s, u"LPT²"_s, u"LPT³"_s
+        };
+
+        // Check if name is a Windows reserved device name,
+        // including when immediately followed by an extension (e.g. CON.txt)
         const qsizetype lastDotIndex = name.lastIndexOf(u'.');
         const QStringView baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
         for (const QString &reserved : reservedDeviceNames)
@@ -108,40 +108,6 @@ namespace
 #endif
 
         return false;
-    }
-
-    // Check if an individual filename or path component is valid.
-    bool isValidFsComponent(const QStringView name, bool isFileName)
-    {
-        if (name.isEmpty())
-            return false;
-
-        // "." and ".." are only allowed for path components, not for filenames
-        if (isFileName && (name == u"."_s || name == u".."_s))
-            return false;
-
-        if (std::ranges::any_of(name, isReservedCharacter))
-            return false;
-
-#ifdef Q_OS_WIN
-        // Windows restricts file names to 255 characters
-        if (name.length() > 255)
-            return false;
-
-        // Windows prohibits trailing dots for file names
-        if (isFileName && name.endsWith(u'.'))
-            return false;
-
-        // Reserved device names (CON, PRN, AUX, etc.) cannot be used as file or directory names in Windows
-        if (isReservedDeviceName(name))
-            return false;
-#else
-        // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
-        if (name.toUtf8().length() > 255)
-            return false;
-#endif
-
-        return true;
     }
 }
 
@@ -270,16 +236,35 @@ bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 }
 
 // Check if a filename is valid without sanitizing
-bool Utils::Fs::isValidFileName(QStringView name)
+bool Utils::Fs::isValidFileName(const QStringView name)
 {
-    return isValidFsComponent(name, true);
-}
+    // The empty string, "." and ".." are not valid filenames
+    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
+        return false;
 
-// Check if a path component is valid without sanitizing
-// Allows "." and ".." which are valid in directory parts of a path.
-bool Utils::Fs::isValidPathComponent(QStringView component)
-{
-    return isValidFsComponent(component, false);
+    // Check for OS specific reserved characters
+    if (std::ranges::any_of(name, isReservedCharacter))
+        return false;
+
+#ifdef Q_OS_WIN
+    // Windows restricts file names to 255 characters
+    if (name.length() > 255)
+        return false;
+
+    // Windows prohibits trailing dots or spaces for filenames
+    if (name.endsWith(u'.') || name.endsWith(u' '))
+        return false;
+
+    // Reserved device names (CON, PRN, AUX, etc.) cannot be used as file or directory names in Windows
+    if (isReservedDeviceName(name))
+        return false;
+#else
+    // Non-Windows systems limit file name lengths to 255 bytes in UTF-8 encoding
+    if (name.toUtf8().length() > 255)
+        return false;
+#endif
+
+    return true;
 }
 
 // Sanitize filename using pad
@@ -287,7 +272,7 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
 {
     name = name.trimmed();
 
-    // Empty, '.' and '..' are not considered valid filenames
+    // The empty string, "." and ".." are not valid filenames
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return pad;
 
@@ -295,7 +280,7 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     validName.reserve(name.size());
 
     // Replace one or more reserved characters with a single pad
-    for (const QChar c : name)
+    for (const QChar c : asConst(name))
     {
         if (isReservedCharacter(c))
         {
@@ -318,7 +303,7 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     {
         const qsizetype lastDotIndex = validName.lastIndexOf(u'.');
         const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
-        const QString suffix   = (lastDotIndex == -1) ? QString() : validName.sliced(lastDotIndex);
+        const QString suffix = (lastDotIndex == -1) ? QString() : validName.sliced(lastDotIndex);
 
         validName = baseName + pad + u"1"_s + suffix;
     }

@@ -102,7 +102,10 @@ bool Path::isValid() const
     // Split path into components and validate each one
     for (const QStringView component : pathStrView.split(u'/', Qt::SkipEmptyParts))
     {
-        if (!Utils::Fs::isValidPathComponent(component))
+        if ((component == u"."_s) || (component == u".."_s))
+            continue;
+
+        if (!Utils::Fs::isValidFileName(component))
             return false;
     }
 
