@@ -1270,6 +1270,12 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = speed;
                 td.title = speed;
             };
+			const displaySpeedOrInfinity = function(td, row) {
+                const speed = this.getRowValue(row);
+                const formattedSpeed = (speed === 0) ? "∞" : window.qBittorrent.Misc.friendlyUnit(speed, true);
+                td.textContent = formattedSpeed;
+                td.title = formattedSpeed;
+            };
 			const displayRatio = function(td, row) {
                 const ratio = this.getRowValue(row);
                 const string = (ratio === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(ratio, 2);
@@ -1286,18 +1292,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                     const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
                     td.textContent = date;
                     td.title = date;
-                }
-            };
-			const displayLimit = function(td, row) {
-                const speed = this.getRowValue(row);
-                if (speed === 0) {
-                    td.textContent = "∞";
-                    td.title = "∞";
-                }
-                else {
-                    const formattedSpeed = window.qBittorrent.Misc.friendlyUnit(speed, true);
-                    td.textContent = formattedSpeed;
-                    td.title = formattedSpeed;
                 }
             };
             const displayInfohash = function(td, row) {
@@ -1509,8 +1503,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             //  dl_limit, up_limit
-            this.columns["dl_limit"].updateTd = displayLimit;
-            this.columns["up_limit"].updateTd = displayLimit;
+            this.columns["dl_limit"].updateTd = displaySpeedOrInfinity;
+            this.columns["up_limit"].updateTd = displaySpeedOrInfinity;
 
             // downloaded, uploaded, downloaded_session, uploaded_session, amount_left
             this.columns["downloaded"].updateTd = displaySize;
