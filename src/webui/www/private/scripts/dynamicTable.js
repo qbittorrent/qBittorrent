@@ -1456,6 +1456,20 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = popularity;
             };
 
+            // creation_date
+            this.columns["creation_date"].updateTd = function(td, row) {
+                const val = this.getRowValue(row);
+                if ((val === 0xffffffff) || (val < 0)) {
+                    td.textContent = "";
+                    td.title = "";
+                }
+                else {
+                    const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
+                    td.textContent = date;
+                    td.title = date;
+                }
+            };
+
             // added on
             this.columns["added_on"].updateTd = function(td, row) {
                 const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
@@ -1476,9 +1490,6 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = date;
                 }
             };
-
-            // creation_date
-            this.columns["creation_date"].updateTd = this.columns["completion_on"].updateTd;
 
             // tracker
             this.columns["tracker"].updateTd = function(td, row) {
