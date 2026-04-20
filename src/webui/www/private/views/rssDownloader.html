@@ -553,17 +553,20 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         };
 
         const cloneRule = (rule) => {
-            new MochaUI.Window({
-                id: "cloneRulePage",
+            new MochaUI.Modal({
+                ...window.qBittorrent.Dialog.baseModalOptions,
+                id: "rssCloneRuleDialog",
                 icon: "images/qbittorrent-tray.svg",
                 title: "QBT_TR(Rule cloning)QBT_TR[CONTEXT=AutomatedRssDownloader]",
-                loadMethod: "iframe",
-                contentURL: `clone_rule.html?v=${CACHEID}&rule=${encodeURIComponent(rule)}`,
-                scrollbars: false,
-                resizable: false,
-                maximizable: false,
-                width: window.qBittorrent.Dialog.limitWidthToViewport(350),
-                height: 140
+                data: {
+                    sourceName: rule
+                },
+                contentURL: `views/rssCloneRule.html?v=${CACHEID}`,
+                modalOverlayClose: false,
+                onContentLoaded: (w) => {
+                    MochaUI.resizeWindow(w, { centered: true });
+                    MochaUI.centerWindow(w);
+                }
             });
         };
 

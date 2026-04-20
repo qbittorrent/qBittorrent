@@ -1,0 +1,94 @@
+<div id="rssCloneRuleDialog">
+    <label id="cloneRssCloneRuleLabel" for="cloneRssCloneRuleText">QBT_TR(Please type the name for the clone of the download rule.)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+    <input type="text" id="cloneRssCloneRuleText" class="fullWidth" autocorrect="off" autocapitalize="none">
+    <div>
+        <span id="cloneRssCloneRuleMessage">QBT_TR(The cloned rule will be set as disabled and the downloaded episodes history will be cleared.)QBT_TR[CONTEXT=AutomatedRssDownloader]</span>
+    </div>
+</div>
+<div>
+    <input type="button" value="QBT_TR(Clone)QBT_TR[CONTEXT=MainWindow]" id="cloneRssCloneRuleButton">
+    <input type="button" value="QBT_TR(Cancel)QBT_TR[CONTEXT=MainWindow]" id="cancelRssCloneRuleButton">
+</div>
+
+<script>
+    "use strict";
+
+    (() => {
+        const cancelButton = document.getElementById("cancelRssCloneRuleButton");
+        const cloneButton = document.getElementById("cloneRssCloneRuleButton");
+        const cloneText = document.getElementById("cloneRssCloneRuleText");
+
+        const {
+            options: { data: { sourceName } },
+            windowEl
+        } = window.MUI.Windows.instances["rssCloneRuleDialog"];
+
+        const alertDialog = (alertText) => {
+            new MochaUI.Window({
+                id: "alertDialog",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Alert)QBT_TR[CONTEXT=AutomatedRssDownloader]",
+                loadMethod: "html",
+                closeAfter: 3000,
+                type: "notification",
+                addClass: "notification",
+                content: alertText,
+                width: 300,
+                height: 60,
+                padding: { top: 10, right: 12, bottom: 10, left: 12 },
+            });
+        };
+
+        cloneText.value = sourceName;
+
+        cancelButton.addEventListener("click", (e) => { window.qBittorrent.Client.closeWindow(windowEl); });
+        cloneButton.addEventListener("click", (e) => {
+            const cloneName = cloneText.value.trim();
+            if (cloneName === "") {
+                alertDialog("QBT_TR(The rule name cannot be empty.)QBT_TR[CONTEXT=AutomatedRssDownloader]");
+                return;
+            }
+
+            if (cloneName === sourceName) {
+                alertDialog("QBT_TR(The rule name is unchanged. You must type a new rule name for the clone.)QBT_TR[CONTEXT=AutomatedRssDownloader]");
+                return;
+            }
+
+            cloneButton.disabled = true;
+            fetch("api/v2/rss/cloneRule", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        sourceName: sourceName,
+                        cloneName: cloneName
+                    })
+                })
+                .then((response) => {
+                    if (!response.ok) {
+                        alertDialog("QBT_TR(Unable to clone the selected rule.)QBT_TR[CONTEXT=AutomatedRssDownloader]");
+                        return;
+                    }
+
+                    window.parent.qBittorrent.RssDownloader.updateRulesList();
+                    window.qBittorrent.Client.closeWindow(windowEl);
+                });
+        });
+
+        // set tabindex so window element receives keydown events
+        windowEl.setAttribute("tabindex", "-1");
+        windowEl.focus();
+        windowEl.addEventListener("keydown", (e) => {
+            switch (e.key) {
+                case "Enter":
+                    e.preventDefault();
+                    e.stopPropagation();
+                    cloneButton.click();
+                    break;
+                case "Escape":
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.qBittorrent.Client.closeWindow(windowEl);
+                    break;
+            }
+        });
+    })();
+</script>

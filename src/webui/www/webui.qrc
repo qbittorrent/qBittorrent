@@ -4,7 +4,6 @@
         <file>private/addtorrent.html</file>
         <file>private/addtrackers.html</file>
         <file>private/addwebseeds.html</file>
-        <file>private/clone_rule.html</file>
         <file>private/confirmfeeddeletion.html</file>
         <file>private/confirmruleclear.html</file>
         <file>private/confirmruledeletion.html</file>
@@ -438,6 +437,7 @@
         <file>private/views/properties.html</file>
         <file>private/views/propertiesToolbar.html</file>
         <file>private/views/rss.html</file>
+        <file>private/views/rssCloneRule.html</file>
         <file>private/views/rssDownloader.html</file>
         <file>private/views/search.html</file>
         <file>private/views/searchplugins.html</file>

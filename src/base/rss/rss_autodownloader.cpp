@@ -212,14 +212,14 @@ void AutoDownloader::setRule(const AutoDownloadRule &rule)
     }
 }
 
-bool AutoDownloader::cloneRule(const QString &sourceName, const QString &cloneName)
+bool AutoDownloader::cloneRule(const QString &ruleName, const QString &cloneRuleName)
 {
-    if (!hasRule(sourceName) || hasRule(cloneName))
+    if (!hasRule(ruleName) || hasRule(cloneRuleName))
         return false;
 
     // Copy the existing rule and change its name to the new one
-    AutoDownloadRule clonedRule = ruleByName(sourceName);
-    clonedRule.setName(cloneName);
+    AutoDownloadRule clonedRule = ruleByName(ruleName);
+    clonedRule.setName(cloneRuleName);
     // Disable the cloned rule by default to prevent accidental downloads
     clonedRule.setEnabled(false);
     // Clear previously matched episodes to allow matching all episodes for the new rule

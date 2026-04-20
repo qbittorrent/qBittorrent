@@ -61,9 +61,6 @@
          </item>
          <item>
           <widget class="QToolButton" name="cloneRuleBtn">
-           <property name="enabled">
-            <bool>false</bool>
-           </property>
            <property name="iconSize">
             <size>
              <width>24</width>

@@ -86,7 +86,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     connect(m_ui->exportBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onExportBtnClicked);
     connect(m_ui->importBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onImportBtnClicked);
     connect(m_ui->renameRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onRenameRuleBtnClicked);
-    connect(m_ui->cloneRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onCloneRuleBtnClicked);
+    connect(m_ui->cloneRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::cloneSelectedRule);
 
     // Icons
     m_ui->cloneRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_s));
@@ -94,8 +94,8 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_s, u"list-remove"_s));
     m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_s));
 
-    m_ui->cloneRuleBtn->setToolTip(tr("Clone selected rule to a new rule.") + u"\n"
-        + tr("The cloned rule will be set as disabled and the downloaded episodes history will be cleared."));
+    m_ui->cloneRuleBtn->setToolTip(u"%1\n%2"_s.arg(tr("Clone selected rule to a new rule.")
+        , tr("The cloned rule will be set as disabled and the downloaded episodes history will be cleared.")));
 
     // Ui Settings
     m_ui->ruleList->setSortingEnabled(true);
@@ -408,11 +408,6 @@ void AutomatedRssDownloader::onAddRuleBtnClicked()
     RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule(ruleName));
 }
 
-void AutomatedRssDownloader::onCloneRuleBtnClicked()
-{
-    cloneSelectedRule();
-}
-
 void AutomatedRssDownloader::onRemoveRuleBtnClicked()
 {
     const QList<QListWidgetItem *> selection = m_ui->ruleList->selectedItems();
@@ -558,17 +553,17 @@ void AutomatedRssDownloader::cloneSelectedRule()
     if (selection.isEmpty())
         return;
 
+    auto *autoDownloader = RSS::AutoDownloader::instance();
     QListWidgetItem *item = selection.first();
-    forever
+    while (true)
     {
         QString cloneName = AutoExpandableDialog::getText(
             this, tr("Rule cloning"), tr("Please type the name for the clone of the download rule.")
-            , QLineEdit::Normal, item->text());
-        cloneName = cloneName.trimmed();
+            , QLineEdit::Normal, item->text()).trimmed();
         if (cloneName.isEmpty())
             return;
 
-        if (RSS::AutoDownloader::instance()->hasRule(cloneName))
+        if (autoDownloader->hasRule(cloneName))
         {
             QMessageBox::warning(this, tr("Rule name conflict")
                 , tr("A rule with this name already exists, please choose another name."));
@@ -579,7 +574,7 @@ void AutomatedRssDownloader::cloneSelectedRule()
             // will be selected after cloning and not the original one as well
             m_ui->ruleList->clearSelection();
             // Clone the rule
-            RSS::AutoDownloader::instance()->cloneRule(item->text(), cloneName);
+            autoDownloader->cloneRule(item->text(), cloneName);
             return;
         }
     }
