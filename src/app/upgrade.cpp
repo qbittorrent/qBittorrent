@@ -492,7 +492,7 @@ namespace
         settingsStorage->removeValue(oldKey);
     }
 
-    void migrateMaxConnectionSetting()
+    void migrateMaxConnectionSettings()
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"BitTorrent/Session/MaxConnectionsPerTorrent"_s;
