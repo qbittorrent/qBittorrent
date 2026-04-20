@@ -1,3 +1,16 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0
+    - FEATURE: Add option to show/hide status bar icon on macOS (eshishki)
+    - BUGFIX: Fix crash when exiting immediately after adding the torrent (glassez)
+    - BUGFIX: Fix crash due to invalid entry in ipfilter.dat (glassez)
+    - BUGFIX: Fix inappropriate NULL use (FTA7700)
+    - BUGFIX: Fix app freezing on quit due to Qt accessibility deadlock on macOS (zubeyralmaho)
+    - BUGFIX: Fix crash on macOS when deleting torrents (zubeyralmaho)
+    - BUGFIX: Fix crash when closing app with AddNewTorrentDialog opened (glassez)
+    - WEBUI: Fix checkbox rendering in RssDownloaded DynamicTables (LewpyUK)
+    - WEBUI: Fix RSS Dialog Box Title Text (LewpyUK)
+    - WEBUI: Fix sync using wrong key for full update check (linuxhd0)
+    - WEBUI: Add "Created On" column to transfer list (aaron-kruse)
+
 Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc1
     - FEATURE: Show free disk space in status bar (glassez)
     - FEATURE: Add control for 'hostname resolver cache expiry interval' (Chocobo1)
