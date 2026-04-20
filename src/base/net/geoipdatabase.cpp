@@ -85,7 +85,7 @@ GeoIPDatabase::GeoIPDatabase(const quint32 size)
 GeoIPDatabase *GeoIPDatabase::load(const Path &filename, QString &error)
 {
     QFile file {filename.data()};
-    if (file.size() > MAX_FILE_SIZE)
+    if ((file.size() <= 0) || (file.size() > MAX_FILE_SIZE))
     {
         error = tr("Unsupported database file size.");
         return nullptr;
@@ -97,9 +97,10 @@ GeoIPDatabase *GeoIPDatabase::load(const Path &filename, QString &error)
         return nullptr;
     }
 
-    auto *db = new GeoIPDatabase(file.size());
+    const auto fileSize = static_cast<quint32>(file.size());
+    auto *db = new GeoIPDatabase(fileSize);
 
-    if (file.read(reinterpret_cast<char *>(db->m_data), db->m_size) != db->m_size)
+    if (file.read(reinterpret_cast<char *>(db->m_data), fileSize) != fileSize)
     {
         error = file.errorString();
         delete db;
