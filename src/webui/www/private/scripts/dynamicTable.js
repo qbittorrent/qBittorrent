@@ -1253,7 +1253,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = value;
                 td.title = value;
             };
-			const compareSeeds = function(row1, row2) {
+            const compareSeeds = function(row1, row2) {
                 const num_seeds1 = this.getRowValue(row1, 0);
                 const num_complete1 = this.getRowValue(row1, 1);
 
@@ -1270,13 +1270,13 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = speed;
                 td.title = speed;
             };
-			const displaySpeedOrInfinity = function(td, row) {
+            const displaySpeedOrInfinity = function(td, row) {
                 const speed = this.getRowValue(row);
                 const formattedSpeed = (speed === 0) ? "∞" : window.qBittorrent.Misc.friendlyUnit(speed, true);
                 td.textContent = formattedSpeed;
                 td.title = formattedSpeed;
             };
-			const displayRatio = function(td, row) {
+            const displayRatio = function(td, row) {
                 const ratio = this.getRowValue(row);
                 const string = (ratio === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(ratio, 2);
                 td.textContent = string;
@@ -1432,7 +1432,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return row1Val.localeCompare(row2Val, undefined, { numeric: true, sensitivity: "base" });
             };
 
-			// name, category, tags
+            // name, category, tags
             this.columns["name"].compareRows = compareNames;
             this.columns["category"].compareRows = compareNames;
             this.columns["tags"].compareRows = compareNames;
@@ -1465,7 +1465,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["num_leechs"].updateTd = displaySeeds;
             this.columns["num_leechs"].compareRows = compareSeeds;
 
-			// dlspeed, upspeed
+            // dlspeed, upspeed
             this.columns["dlspeed"].updateTd = displaySpeed;
             this.columns["upspeed"].updateTd = displaySpeed;
 
@@ -1476,7 +1476,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = eta;
             };
 
-			// ratio
+            // ratio
             this.columns["ratio"].updateTd = displayRatio;
 
             // popularity
@@ -1488,7 +1488,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             // added on
             this.columns["added_on"].updateTd = displayDate;
 
-			// completion_on
+            // completion_on
             this.columns["completion_on"].updateTd = displayDateOrBlank;
 
             // tracker
@@ -1553,7 +1553,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = value;
             };
 
-			// infohash_v1, infohash_v2
+            // infohash_v1, infohash_v2
             this.columns["infohash_v1"].updateTd = displayInfohash;
             this.columns["infohash_v2"].updateTd = displayInfohash;
 
@@ -1928,10 +1928,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = this.getRowValue(row, 1);
             };
 
-			// progress
+            // progress
             this.columns["progress"].updateTd = displayProgress;
 
-			// dl_speed, up_speed
+            // dl_speed, up_speed
             this.columns["dl_speed"].updateTd = displaySpeed;
             this.columns["up_speed"].updateTd = displaySpeed;
 
