@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -1381,7 +1381,6 @@ void Application::cleanup()
     // https://github.com/qbittorrent/qBittorrent/issues/23695
     if (m_window)
         QAccessible::cleanup();
-#endif
 
     // Close and delete any remaining top-level widgets (e.g. parentless dialogs
     // like AddNewTorrentDialog on macOS). These must be destroyed before core
@@ -1394,6 +1393,7 @@ void Application::cleanup()
         if (widget != m_window)
             delete widget;
     }
+#endif
 
     if (m_window)
     {
