@@ -439,6 +439,11 @@ void TorrentContentWidget::displayContextMenu()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
+        subMenu->addAction(tr("Do not download + Delete"), this, [this]
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Ignored);
+            printf("TODO: delete file (single)");
+        });
         subMenu->addAction(tr("Normal"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
@@ -459,6 +464,11 @@ void TorrentContentWidget::displayContextMenu()
         menu->addAction(tr("Do not download"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
+        });
+        menu->addAction(tr("Do not download + Delete"), this, [this]
+        {
+            applyPriorities(BitTorrent::DownloadPriority::Ignored);
+            printf("TODO: delete files (many)");
         });
         menu->addAction(tr("Normal priority"), this, [this]
         {
