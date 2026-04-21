@@ -467,11 +467,17 @@ void TorrentContentWidget::displayContextMenu()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
-        subMenu->addAction(tr("Do not download + Delete"), this, [this]
+
+        // Only show "Do not download + Delete" in the normal window when torrent is already added.
+        // Avoid showing it in the window for adding a new torrent.
+        if (!contentHandler()->actualStorageLocation().isEmpty())
         {
-            applyPriorities(BitTorrent::DownloadPriority::Ignored);
-            deleteSelectedFiles();
-        });
+            subMenu->addAction(tr("Do not download + Delete"), this, [this]
+            {
+                applyPriorities(BitTorrent::DownloadPriority::Ignored);
+                deleteSelectedFiles();
+            });
+        }
         subMenu->addAction(tr("Normal"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
@@ -493,11 +499,17 @@ void TorrentContentWidget::displayContextMenu()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
-        menu->addAction(tr("Do not download + Delete"), this, [this]
+
+        // Only show "Do not download + Delete" in the normal window when torrent is already added.
+        // Avoid showing it in the window for adding a new torrent.
+        if (!contentHandler()->actualStorageLocation().isEmpty())
         {
-            applyPriorities(BitTorrent::DownloadPriority::Ignored);
-            deleteSelectedFiles();
-        });
+            menu->addAction(tr("Do not download + Delete"), this, [this]
+            {
+                applyPriorities(BitTorrent::DownloadPriority::Ignored);
+                deleteSelectedFiles();
+            });
+        }
         menu->addAction(tr("Normal priority"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
