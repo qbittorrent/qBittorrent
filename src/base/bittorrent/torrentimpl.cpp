@@ -2950,6 +2950,19 @@ void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
     manageActualFilePaths();
 }
 
+void TorrentImpl::deleteFiles(const QList<int> &fileIndexes)
+{
+    flushCache();
+    const Path storageLocation = actualStorageLocation();
+    for (const int index : fileIndexes)
+    {
+        const Path filePath = storageLocation / actualFilePath(index);
+        const auto result = Utils::Fs::removeFile(filePath);
+        if (!result)
+            LogMsg(tr("Failed to delete file \"%1\". Error: %2").arg(filePath.toString(), result.error()), Log::WARNING);
+    }
+}
+
 template <typename Func>
 QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
 {
