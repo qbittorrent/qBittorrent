@@ -99,10 +99,9 @@ GeoIPDatabase *GeoIPDatabase::load(const Path &filename, QString &error)
         return nullptr;
     }
 
-    const auto safeSize = static_cast<quint32>(fileSize);
-    auto *db = new GeoIPDatabase(safeSize);
+    auto *db = new GeoIPDatabase(static_cast<quint32>(fileSize));
 
-    if (file.read(reinterpret_cast<char *>(db->m_data), safeSize) != safeSize)
+    if (file.read(reinterpret_cast<char *>(db->m_data), fileSize) != fileSize)
     {
         error = file.errorString();
         delete db;
@@ -128,10 +127,9 @@ GeoIPDatabase *GeoIPDatabase::load(const QByteArray &data, QString &error)
         return nullptr;
     }
 
-    const auto safeSize = static_cast<quint32>(dataSize);
-    auto *db = new GeoIPDatabase(safeSize);
+    auto *db = new GeoIPDatabase(static_cast<quint32>(dataSize));
 
-    memcpy(reinterpret_cast<char *>(db->m_data), data.constData(), safeSize);
+    memcpy(reinterpret_cast<char *>(db->m_data), data.constData(), dataSize);
 
     if (!db->parseMetadata(db->readMetadata(), error) || !db->loadDB(error))
     {
