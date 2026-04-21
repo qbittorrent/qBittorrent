@@ -154,15 +154,15 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     // Decide connection method based on requested SMTP encryption type
     switch (pref->getMailNotificationSmtpEncryptionType())
     {
-    case SMTPEncryption::SMTPS:
+    case SMTPEncryptionType::SMTPS:
         m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT_SSL));
         break;
 
-    case SMTPEncryption::STARTTLS:
+    case SMTPEncryptionType::STARTTLS:
         m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT_STARTTLS));
         break;
 
-    case SMTPEncryption::None:  
+    case SMTPEncryptionType::None:  
         m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT));
         break;
     }
@@ -222,7 +222,7 @@ void Smtp::readyRead()
                 m_extensions.clear();
                 ehlo();
             }
-            else if (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryption::STARTTLS)
+            else if (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryptionType::STARTTLS)
             {
                 logError(tr("STARTTLS is required but was not enabled by the server. Unable to send the email."));
                 m_state = Quit;
@@ -426,11 +426,11 @@ void Smtp::parseEhloResponse(const QByteArray &code, const bool continued, const
     if (m_state != EhloDone) return;
 
     // Check if STARTTLS is available and should be used
-    if (m_extensions.contains(u"STARTTLS"_s) && (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryption::STARTTLS))
+    if (m_extensions.contains(u"STARTTLS"_s) && (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryptionType::STARTTLS))
     {
         startTLS();
     }
-    else if (!m_usingStartTls && (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryption::STARTTLS))
+    else if (!m_usingStartTls && (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryptionType::STARTTLS))
     {
         logError(tr("STARTTLS is required but was not offered by the server. Unable to send the email."));
         m_state = Quit;
@@ -583,7 +583,7 @@ void Smtp::error(QAbstractSocket::SocketError socketError)
     if (socketError != QAbstractSocket::RemoteHostClosedError)
     {
         logError(m_socket->errorString());
-        if ((socketError == QAbstractSocket::SslHandshakeFailedError) && (pref->getMailNotificationSmtpEncryptionType() == SMTPEncryption::SMTPS))
+        if ((socketError == QAbstractSocket::SslHandshakeFailedError) && (pref->getMailNotificationSmtpEncryptionType() == Net::SMTPEncryptionType::SMTPS))
             logError(tr("Check the email server supports SMTPS (SMTP over SSL) and you are using the correct port"));
     }
 }

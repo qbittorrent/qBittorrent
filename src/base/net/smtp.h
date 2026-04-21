@@ -38,6 +38,8 @@
 #include <QObject>
 #include <QString>
 
+#include "smtpencryptiontype.h"
+
 class QSslSocket;
 
 namespace Net
@@ -45,19 +47,6 @@ namespace Net
     const short SMTP_DEFAULT_PORT = 25;
     const short SMTP_DEFAULT_PORT_SSL = 465;
     const short SMTP_DEFAULT_PORT_STARTTLS = 587;
-
-    inline namespace SMTPEncryptionNS
-    {
-        Q_NAMESPACE
-
-        enum class SMTPEncryption
-        {
-            None = 0,
-            STARTTLS = 1,
-            SMTPS = 2
-        };
-        Q_ENUM_NS(SMTPEncryption)
-    }
 
     class Smtp : public QObject
     {

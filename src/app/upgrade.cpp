@@ -37,7 +37,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/proxyconfigurationmanager.h"
-#include "base/net/smtp.h"
+#include "base/net/smtpencryptiontype.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
@@ -501,9 +501,9 @@ namespace
 
         if (settingsStorage->hasKey(oldKey))
         {
-            const Net::SMTPEncryption setting = settingsStorage->loadValue<bool>(oldKey)
-                ? Net::SMTPEncryption::SMTPS
-                : Net::SMTPEncryption::None;
+            const Net::SMTPEncryptionType setting = settingsStorage->loadValue<bool>(oldKey)
+                ? Net::SMTPEncryptionType::SMTPS
+                : Net::SMTPEncryptionType::None;
             settingsStorage->storeValue(newKey, setting);
         }
     }

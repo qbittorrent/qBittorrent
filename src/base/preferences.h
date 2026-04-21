@@ -33,6 +33,7 @@
 #include <QtSystemDetection>
 #include <QObject>
 
+#include "base/net/smtpencryptiontype.h"
 #include "base/pathfwd.h"
 #include "base/utils/net.h"
 
@@ -71,14 +72,6 @@ namespace DNS
         None = -1
     };
     Q_ENUM_NS(Service)
-}
-
-namespace Net
-{
-    inline namespace SMTPEncryptionNS
-    {
-        enum class SMTPEncryption;
-    }
 }
 
 namespace TrayIcon
@@ -163,8 +156,8 @@ public:
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
     void setMailNotificationSMTP(const QString &smtpServer);
-    Net::SMTPEncryption getMailNotificationSmtpEncryptionType() const;
-    void setMailNotificationSmtpEncryptionType(Net::SMTPEncryption mailEncryptionType);
+    Net::SMTPEncryptionType getMailNotificationSmtpEncryptionType() const;
+    void setMailNotificationSmtpEncryptionType(Net::SMTPEncryptionType mailEncryptionType);
     bool getMailNotificationSMTPAuth() const;
     void setMailNotificationSMTPAuth(bool use);
     QString getMailNotificationSMTPUsername() const;

@@ -684,9 +684,9 @@ void OptionsDialog::loadDownloadsTabOptions()
         + u"<b>%1</b> <em>[%2] : [%3]</em>"_s.arg(tr("(best choice if supported)"), tr("Default port"), QString::number(Net::SMTP_DEFAULT_PORT_SSL))
         + u"</p>"
         + u"</body></html>");
-    m_ui->comboSmtpEncryption->addItem(tr("None"), QVariant::fromValue(Net::SMTPEncryption::None));
-    m_ui->comboSmtpEncryption->addItem(tr("STARTTLS"), QVariant::fromValue(Net::SMTPEncryption::STARTTLS));
-    m_ui->comboSmtpEncryption->addItem(tr("SMTPS"), QVariant::fromValue(Net::SMTPEncryption::SMTPS));
+    m_ui->comboSmtpEncryption->addItem(tr("None"), QVariant::fromValue(Net::SMTPEncryptionType::None));
+    m_ui->comboSmtpEncryption->addItem(tr("STARTTLS"), QVariant::fromValue(Net::SMTPEncryptionType::STARTTLS));
+    m_ui->comboSmtpEncryption->addItem(tr("SMTPS"), QVariant::fromValue(Net::SMTPEncryptionType::SMTPS));
     m_ui->comboSmtpEncryption->setCurrentIndex(m_ui->comboSmtpEncryption->findData(QVariant::fromValue(pref->getMailNotificationSmtpEncryptionType())));
     changeSmtpEncryptionPortInfoLabel();
     m_ui->groupMailNotifAuth->setChecked(pref->getMailNotificationSMTPAuth());
@@ -840,7 +840,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
     pref->setMailNotificationEmail(m_ui->lineEditDestEmail->text());
     pref->setMailNotificationSMTP(m_ui->lineEditSmtpServer->text());
-    pref->setMailNotificationSmtpEncryptionType(m_ui->comboSmtpEncryption->currentData().value<Net::SMTPEncryption>());
+    pref->setMailNotificationSmtpEncryptionType(m_ui->comboSmtpEncryption->currentData().value<Net::SMTPEncryptionType>());
     pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
@@ -1880,17 +1880,17 @@ void OptionsDialog::adjustProxyOptions()
 
 void OptionsDialog::changeSmtpEncryptionPortInfoLabel()
 {
-    const Net::SMTPEncryption encryptionType = m_ui->comboSmtpEncryption->currentData().value<Net::SMTPEncryption>();
+    const Net::SMTPEncryptionType encryptionType = m_ui->comboSmtpEncryption->currentData().value<Net::SMTPEncryptionType>();
     int port = 0;
     switch (encryptionType)
     {
-    case Net::SMTPEncryption::None:
+    case Net::SMTPEncryptionType::None:
         port = Net::SMTP_DEFAULT_PORT;
         break;
-    case Net::SMTPEncryption::STARTTLS:
+    case Net::SMTPEncryptionType::STARTTLS:
         port = Net::SMTP_DEFAULT_PORT_STARTTLS;
         break;
-    case Net::SMTPEncryption::SMTPS:
+    case Net::SMTPEncryptionType::SMTPS:
         port = Net::SMTP_DEFAULT_PORT_SSL;
         break;
     }
