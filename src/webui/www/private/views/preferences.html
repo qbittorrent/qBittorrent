@@ -2048,17 +2048,33 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("mail_password_text").disabled = !isMailAuthEnabled;
         };
 
+        const testEmailNotificationDialog = (notificationText, notificationWidth, notificationHeight, notificationDuration) => {
+            new MochaUI.Window({
+                id: "testEmailNotificationDialog",
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Notification)QBT_TR[CONTEXT=OptionsDialog]",
+                loadMethod: "html",
+                closeAfter: notificationDuration,
+                type: "notification",
+                addClass: "notification",
+                content: notificationText,
+                width: notificationWidth,
+                height: notificationHeight,
+                padding: { top: 10, right: 12, bottom: 10, left: 12 },
+            });
+        };
+
         const sendTestEmail = () => {
             fetch("api/v2/app/sendTestEmail", {
                     method: "POST"
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=HttpServer]");
+                        testEmailNotificationDialog("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]", 300, 60, 5000);
                         return;
                     }
 
-                    alert("QBT_TR(Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]");
+                    testEmailNotificationDialog("QBT_TR(Attempted to send test email.<br>Check your inbox to confirm success.<br>Check the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
                 });
         };
 
