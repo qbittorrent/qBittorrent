@@ -80,6 +80,7 @@ add_library(qbt_base STATIC
     net/geoipmanager.h
     net/portforwarder.h
     net/proxyconfigurationmanager.h
+    net/proxytype.h
     net/reverseresolution.h
     net/smtp.h
     orderedset.h
