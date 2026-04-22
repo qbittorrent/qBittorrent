@@ -88,7 +88,7 @@ GUIAddTorrentManager::~GUIAddTorrentManager()
         dialog->disconnect(this);
         dialog->reject();
         // `dialog` should be deleted here in order to avoid accessing 
-        // already deleted core components whwn deleting later
+        // already deleted core components when deleting later
         delete dialog;
     }
 }
