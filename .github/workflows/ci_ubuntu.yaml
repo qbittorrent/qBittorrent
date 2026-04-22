@@ -20,6 +20,10 @@ jobs:
       fail-fast: false
       matrix:
         libtorrent:
+          - version: "2.1.0-rc1"
+            boost_major_version: "1"
+            boost_minor_version: "77"
+            boost_patch_version: "0"
           - version: "2.0.11"
             boost_major_version: "1"
             boost_minor_version: "77"
