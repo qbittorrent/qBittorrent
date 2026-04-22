@@ -156,8 +156,8 @@ public:
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
     void setMailNotificationSMTP(const QString &smtpServer);
-    Net::SMTPEncryptionType getMailNotificationSmtpEncryptionType() const;
-    void setMailNotificationSmtpEncryptionType(Net::SMTPEncryptionType mailEncryptionType);
+    Net::SMTPEncryptionType getMailNotificationSMTPEncryptionType() const;
+    void setMailNotificationSMTPEncryptionType(Net::SMTPEncryptionType mailEncryptionType);
     bool getMailNotificationSMTPAuth() const;
     void setMailNotificationSMTPAuth(bool use);
     QString getMailNotificationSMTPUsername() const;

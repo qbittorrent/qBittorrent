@@ -26,13 +26,9 @@
 * exception statement from your version.
 */
 
-/*
-* This code is based on QxtSmtp from libqxt (http://libqxt.org)
-*/
-
 #pragma once
 
-#include <QObject>
+#include <QMetaEnum>
 
 namespace Net
 {

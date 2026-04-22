@@ -84,7 +84,7 @@ public slots:
 
 private slots:
     void adjustProxyOptions();
-    void changeSmtpEncryptionPortInfoLabel();
+    void changeSMTPEncryptionPortInfoLabel();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
     void enableApplyButton();

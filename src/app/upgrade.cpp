@@ -497,7 +497,7 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const QString oldKey = u"Preferences/MailNotification/req_ssl"_s;
-        const QString newKey = u"Preferences/MailNotification/EncryptionType"_s;
+        const QString newKey = u"Preferences/MailNotification/SMTPEncryptionType"_s;
 
         if (settingsStorage->hasKey(oldKey))
         {
@@ -505,6 +505,7 @@ namespace
                 ? Net::SMTPEncryptionType::SMTPS
                 : Net::SMTPEncryptionType::None;
             settingsStorage->storeValue(newKey, setting);
+            settingsStorage->removeValue(oldKey);
         }
     }
 }
