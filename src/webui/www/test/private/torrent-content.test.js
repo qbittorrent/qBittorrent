@@ -66,8 +66,7 @@ test("Test joinAbsolutePath()", () => {
 test("Test getNodeAbsolutePath() with root_path", () => {
     const getNodeAbsolutePath = window.qBittorrent.TorrentContent.getNodeAbsolutePath;
 
-    expect(getNodeAbsolutePath(
-        { path: "torrentA/subdir/file1", isFolder: false },
+    expect(getNodeAbsolutePath({ path: "torrentA/subdir/file1", isFolder: false },
         "/home/user/torrents/torrentA",
         "/home/user/torrents/torrentA",
         false
@@ -77,15 +76,13 @@ test("Test getNodeAbsolutePath() with root_path", () => {
 test("Test getNodeAbsolutePath() fallback paths", () => {
     const getNodeAbsolutePath = window.qBittorrent.TorrentContent.getNodeAbsolutePath;
 
-    expect(getNodeAbsolutePath(
-        { path: "subdir/file1", isFolder: false },
+    expect(getNodeAbsolutePath({ path: "subdir/file1", isFolder: false },
         "",
         "/home/user/torrents",
         false
     )).toBe("/home/user/torrents/subdir/file1");
 
-    expect(getNodeAbsolutePath(
-        { path: "file1", isFolder: false },
+    expect(getNodeAbsolutePath({ path: "file1", isFolder: false },
         "",
         "/home/user/torrents/file1",
         true

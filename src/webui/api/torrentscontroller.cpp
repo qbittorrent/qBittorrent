@@ -955,7 +955,6 @@ void TorrentsController::removeWebSeedsAction()
 //   - "size": File size
 //   - "progress": File progress
 //   - "priority": File priority
-//   - "availability": File availability
 //   - "is_seed": Flag indicating if torrent is seeding/complete
 //   - "piece_range": Piece index range, the first number is the starting piece index
 //        and the second number is the ending piece index (inclusive)
