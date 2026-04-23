@@ -290,7 +290,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
                 else {
                     this.currentHeaderAction = "drag";
-                    el.style.backgroundColor = "var(--color-background-blue)";
+                    el.style.backgroundColor = "#C1D5E7";
                 }
             }.bind(this);
 
