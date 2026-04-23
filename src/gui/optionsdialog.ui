@@ -139,18 +139,6 @@
               </property>
               <layout class="QVBoxLayout" name="UISettingsBoxLayout">
                <item>
-                <widget class="QLabel" name="labelRestartRequired">
-                 <property name="font">
-                  <font>
-                   <italic>true</italic>
-                  </font>
-                 </property>
-                 <property name="text">
-                  <string>Changing Interface settings requires application restart</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
                 <layout class="QHBoxLayout" name="layoutLanguage">
                  <item>
                   <widget class="QLabel" name="labelLanguage">
@@ -176,6 +164,18 @@
                   </spacer>
                  </item>
                 </layout>
+               </item>
+               <item>
+                <widget class="QLabel" name="labelRestartRequired">
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Changing language requires application restart</string>
+                 </property>
+                </widget>
                </item>
                <item>
                 <layout class="QGridLayout" name="layoutStyle">

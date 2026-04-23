@@ -33,6 +33,7 @@
 
 class QKeyEvent;
 class QTimer;
+class QAction;
 
 class LineEdit final : public QLineEdit
 {
@@ -48,5 +49,6 @@ signals:
 private:
     void keyPressEvent(QKeyEvent *event) override;
 
+    QAction *m_searchAction = nullptr;
     QTimer *m_delayedTextChangedTimer = nullptr;
 };

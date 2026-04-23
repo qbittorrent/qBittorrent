@@ -68,6 +68,7 @@ private slots:
     void subcategoriesSupportChanged();
 
 private:
+    void onUIThemeChanged();
     void populate();
     QModelIndex index(CategoryModelItem *item) const;
     CategoryModelItem *findItem(const QString &fullName) const;

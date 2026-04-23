@@ -28,6 +28,7 @@
 
 #include "statusbar.h"
 
+#include <QApplication>
 #include <QFrame>
 #include <QLabel>
 #include <QPushButton>
@@ -43,6 +44,17 @@
 
 namespace
 {
+    QString statusBarStyleSheet()
+    {
+        QString styleSheet = u"QWidget { margin: 0; }"_s;
+#ifndef Q_OS_MACOS
+        // Redefining global stylesheet breaks certain elements on mac like tabs.
+        // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
+        styleSheet += u"QStatusBar::item { border-width: 0; }";
+#endif
+        return styleSheet;
+    }
+
     QWidget *createSeparator(QWidget *parent)
     {
         auto *separator = new QFrame(parent);
@@ -68,13 +80,7 @@ namespace
 StatusBar::StatusBar(QWidget *parent)
     : QStatusBar(parent)
 {
-    QString styleSheet = u"QWidget { margin: 0; }"_s;
-#ifndef Q_OS_MACOS
-    // Redefining global stylesheet breaks certain elements on mac like tabs.
-    // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
-    styleSheet += u"QStatusBar::item { border-width: 0; }";
-#endif
-    setStyleSheet(styleSheet);
+    setStyleSheet(statusBarStyleSheet());
 
     const auto *session = BitTorrent::Session::instance();
     connect(session, &BitTorrent::Session::speedLimitModeChanged, this, &StatusBar::updateAltSpeedsBtn);
@@ -149,6 +155,7 @@ StatusBar::StatusBar(QWidget *parent)
     connect(session, &BitTorrent::Session::freeDiskSpaceChecked, this, &StatusBar::updateFreeDiskSpaceLabel);
 
     connect(Preferences::instance(), &Preferences::changed, this, &StatusBar::optionsSaved);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &StatusBar::applyTheme);
 }
 
 void StatusBar::showRestartRequired()
@@ -165,6 +172,17 @@ void StatusBar::showRestartRequired()
     auto *restartLbl = new QLabel(this);
     restartLbl->setText(restartText);
     insertWidget(1, restartLbl);
+}
+
+void StatusBar::applyTheme()
+{
+    setStyleSheet(statusBarStyleSheet());
+    setPalette(qApp->palette());
+    style()->unpolish(this);
+    style()->polish(this);
+    updateConnectionStatus();
+    updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
+    update();
 }
 
 void StatusBar::updateConnectionStatus()

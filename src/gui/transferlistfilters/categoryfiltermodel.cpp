@@ -194,6 +194,7 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     connect(session, &Session::subcategoriesSupportChanged, this, &CategoryFilterModel::subcategoriesSupportChanged);
     connect(session, &Session::torrentsLoaded, this, &CategoryFilterModel::torrentsLoaded);
     connect(session, &Session::torrentAboutToBeRemoved, this, &CategoryFilterModel::torrentAboutToBeRemoved);
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &CategoryFilterModel::onUIThemeChanged);
 
     populate();
 }
@@ -310,6 +311,23 @@ QString CategoryFilterModel::categoryName(const QModelIndex &index) const
         return {};
 
     return static_cast<CategoryModelItem *>(index.internalPointer())->fullName();
+}
+
+void CategoryFilterModel::onUIThemeChanged()
+{
+    const auto notify = [this](auto &&self, const QModelIndex &parent) -> void
+    {
+        const int rows = rowCount(parent);
+        if (rows <= 0)
+            return;
+
+        emit dataChanged(index(0, 0, parent), index((rows - 1), 0, parent), {Qt::DecorationRole});
+
+        for (int row = 0; row < rows; ++row)
+            self(self, index(row, 0, parent));
+    };
+
+    notify(notify, {});
 }
 
 QModelIndex CategoryFilterModel::index(CategoryModelItem *item) const

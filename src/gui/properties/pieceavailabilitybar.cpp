@@ -39,6 +39,7 @@
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
     : base {parent}
 {
+    initializeThemeRefresh();
 }
 
 QList<float> PieceAvailabilityBar::intToFloatVector(const QList<int> &vecin, int reqSize)

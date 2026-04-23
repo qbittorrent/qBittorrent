@@ -250,6 +250,14 @@ void SpeedPlotView::setPeriod(const TimePeriod period)
     viewport()->update();
 }
 
+void SpeedPlotView::changeEvent(QEvent *event)
+{
+    if ((event->type() == QEvent::PaletteChange) || (event->type() == QEvent::StyleChange))
+        viewport()->update();
+
+    QGraphicsView::changeEvent(event);
+}
+
 const SpeedPlotView::DataCircularBuffer &SpeedPlotView::currentData() const
 {
     return m_currentAverager->data();
@@ -282,6 +290,7 @@ quint64 SpeedPlotView::maxYValue() const
 void SpeedPlotView::paintEvent(QPaintEvent *)
 {
     QPainter painter(viewport());
+    const QPalette viewPalette = viewport()->palette();
 
     QRect fullRect = viewport()->rect();
     QRect rect = viewport()->rect();
@@ -309,6 +318,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     }
 
     int i = 0;
+    painter.setPen(viewPalette.color(QPalette::WindowText));
     for (const QString &label : speedLabels)
     {
         QRectF labelRect(rect.topLeft() + QPointF(-yAxisWidth, (i++) * 0.25 * rect.height() - fontMetrics.height()),
@@ -322,7 +332,9 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     QPen gridPen;
     gridPen.setStyle(Qt::DashLine);
     gridPen.setWidthF(1);
-    gridPen.setColor(QColor(128, 128, 128, 128));
+    QColor gridColor = viewPalette.color(QPalette::Mid);
+    gridColor.setAlpha(128);
+    gridPen.setColor(gridColor);
     painter.setPen(gridPen);
 
     painter.drawLine(fullRect.left(), rect.top(), rect.right(), rect.top());
@@ -393,7 +405,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     }
 
     QRectF legendBackgroundRect(QPoint(legendTopLeft.x() - 4, legendTopLeft.y() - 4), QSizeF(legendWidth + 8, legendHeight + 8));
-    QColor legendBackgroundColor = QWidget::palette().color(QWidget::backgroundRole());
+    QColor legendBackgroundColor = viewPalette.color(QPalette::Base);
     legendBackgroundColor.setAlpha(128);  // 50% transparent
     painter.fillRect(legendBackgroundRect, legendBackgroundColor);
 

@@ -137,20 +137,21 @@ void PiecesBar::clear()
 
 bool PiecesBar::event(QEvent *e)
 {
-    const QEvent::Type eventType = e->type();
-    if (eventType == QEvent::ToolTip)
+    if (e->type() == QEvent::ToolTip)
     {
         showToolTip(static_cast<QHelpEvent *>(e));
         return true;
     }
 
-    if (eventType == QEvent::PaletteChange)
-    {
-        updateColors();
-        redraw();
-    }
-
     return base::event(e);
+}
+
+void PiecesBar::changeEvent(QEvent *e)
+{
+    if ((e->type() == QEvent::PaletteChange) || (e->type() == QEvent::StyleChange))
+        refreshTheme();
+
+    base::changeEvent(e);
 }
 
 void PiecesBar::enterEvent(QEnterEvent *e)
@@ -213,6 +214,21 @@ void PiecesBar::redraw()
         m_image = image;
         update();
     }
+}
+
+void PiecesBar::initializeThemeRefresh()
+{
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &PiecesBar::refreshTheme);
+}
+
+void PiecesBar::refreshTheme()
+{
+    updateColors();
+
+    if (m_image.isNull())
+        update();
+    else
+        redraw();
 }
 
 QColor PiecesBar::backgroundColor() const
