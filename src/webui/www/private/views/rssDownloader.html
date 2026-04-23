@@ -437,11 +437,8 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         let rulesList = {};
 
         const ruleShareLimit = (() => {
-            const UseGlobalLimit = -2;
-            const NoLimit = -1;
-            const DefaultMode = "default";
-            const SetMode = "set";
-            const UnlimitedMode = "unlimited";
+            const shareLimitHelper = window.qBittorrent.RssRuleShareLimit;
+            const Mode = shareLimitHelper.Mode;
 
             const FromCategoryText = "QBT_TR(From category)QBT_TR[CONTEXT=UpDownRatioDialog]";
             const DefaultWithActionText = "QBT_TR(Default (%1))QBT_TR[CONTEXT=UpDownRatioDialog]";
@@ -458,17 +455,16 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             let saveButton = null;
 
             const defaultActionText = (categoryName) => {
-                if (categoryName === "") {
-                    const effectiveActionText = shareLimitActionText(globalShareLimitAction());
-                    return effectiveActionText
-                        ? DefaultWithActionText.replace("%1", effectiveActionText)
-                        : ruleShareLimitDefaultText;
-                }
-
-                const effectiveActionText = shareLimitActionText(effectiveShareLimitAction(categoryName));
-                return effectiveActionText
-                    ? FromCategoryWithActionText.replace("%1", effectiveActionText)
-                    : FromCategoryText;
+                return shareLimitHelper.defaultActionText({
+                    categoryName: categoryName,
+                    categoryList: categoryList,
+                    globalAction: globalShareLimitAction(),
+                    actionText: shareLimitActionText,
+                    defaultText: ruleShareLimitDefaultText,
+                    fromCategoryText: FromCategoryText,
+                    defaultWithActionText: DefaultWithActionText,
+                    fromCategoryWithActionText: FromCategoryWithActionText
+                });
             };
 
             const isValid = () => {
@@ -478,59 +474,24 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             };
 
             const isValidMode = (modeElement, valueElement) => {
-                if (modeElement.value !== SetMode)
+                if (modeElement.value !== Mode.Set)
                     return true;
 
                 return (valueElement.value !== "") && valueElement.validity.valid;
             };
 
             const loadLimit = (modeElement, valueElement, limitValue, valueFormatter = (value) => value) => {
-                if (limitValue === UseGlobalLimit) {
-                    modeElement.value = DefaultMode;
-                }
-                else if (limitValue === NoLimit) {
-                    modeElement.value = UnlimitedMode;
-                }
-                else {
-                    modeElement.value = SetMode;
+                modeElement.value = shareLimitHelper.modeFromLimit(limitValue);
+                if (modeElement.value === Mode.Set)
                     valueElement.value = valueFormatter(limitValue);
-                }
-            };
-
-            const parentCategoryName = (categoryName) => {
-                const separatorIndex = categoryName.lastIndexOf("/");
-                if (separatorIndex >= 0)
-                    return categoryName.slice(0, separatorIndex);
-
-                return "";
             };
 
             const saveLimit = (modeElement, valueElement) => {
-                switch (modeElement.value) {
-                    case DefaultMode:
-                        return UseGlobalLimit;
-                    case UnlimitedMode:
-                        return NoLimit;
-                    case SetMode:
-                        return Number(valueElement.value);
-                }
-
-                return UseGlobalLimit;
+                return shareLimitHelper.limitFromMode(modeElement.value, valueElement.value);
             };
 
             const globalShareLimitAction = () => {
-                switch (Number(window.parent.qBittorrent.Cache.preferences.get().max_ratio_act)) {
-                    case 0:
-                        return "Stop";
-                    case 1:
-                        return "Remove";
-                    case 2:
-                        return "EnableSuperSeeding";
-                    case 3:
-                        return "RemoveWithContent";
-                }
-
-                return "Default";
+                return shareLimitHelper.actionFromGlobalPreference(window.parent.qBittorrent.Cache.preferences.get().max_ratio_act);
             };
 
             const shareLimitActionText = (shareLimitAction) => {
@@ -540,17 +501,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 }
 
                 return "";
-            };
-
-            const effectiveShareLimitAction = (categoryName) => {
-                if (categoryName === "")
-                    return globalShareLimitAction();
-
-                const shareLimitAction = String(categoryList[categoryName]?.share_limit_action ?? "Default");
-                if (shareLimitAction !== "Default")
-                    return shareLimitAction;
-
-                return effectiveShareLimitAction(parentCategoryName(categoryName));
             };
 
             const updateDefaultTexts = (categoryName) => {
@@ -566,9 +516,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const updateState = () => {
                 const controlsEnabled = !ruleShareLimitRatioMode.disabled;
 
-                ruleShareLimitRatio.disabled = ruleShareLimitRatioMode.disabled || (ruleShareLimitRatioMode.value !== SetMode);
-                ruleShareLimitTotalMinutes.disabled = ruleShareLimitTotalMinutesMode.disabled || (ruleShareLimitTotalMinutesMode.value !== SetMode);
-                ruleShareLimitInactiveMinutes.disabled = ruleShareLimitInactiveMinutesMode.disabled || (ruleShareLimitInactiveMinutesMode.value !== SetMode);
+                ruleShareLimitRatio.disabled = ruleShareLimitRatioMode.disabled || (ruleShareLimitRatioMode.value !== Mode.Set);
+                ruleShareLimitTotalMinutes.disabled = ruleShareLimitTotalMinutesMode.disabled || (ruleShareLimitTotalMinutesMode.value !== Mode.Set);
+                ruleShareLimitInactiveMinutes.disabled = ruleShareLimitInactiveMinutesMode.disabled || (ruleShareLimitInactiveMinutesMode.value !== Mode.Set);
                 ruleShareLimitAction.disabled = !controlsEnabled;
 
                 saveButton.disabled = !controlsEnabled || !isValid();
@@ -600,9 +550,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
             const load = (torrentParams) => {
                 const categoryName = String(torrentParams.category ?? "");
-                const ratioLimit = Number(torrentParams.ratio_limit ?? UseGlobalLimit);
-                const seedingTimeLimit = Number(torrentParams.seeding_time_limit ?? UseGlobalLimit);
-                const inactiveSeedingTimeLimit = Number(torrentParams.inactive_seeding_time_limit ?? UseGlobalLimit);
+                const ratioLimit = Number(torrentParams.ratio_limit ?? shareLimitHelper.UseGlobalLimit);
+                const seedingTimeLimit = Number(torrentParams.seeding_time_limit ?? shareLimitHelper.UseGlobalLimit);
+                const inactiveSeedingTimeLimit = Number(torrentParams.inactive_seeding_time_limit ?? shareLimitHelper.UseGlobalLimit);
 
                 reset();
                 updateDefaultTexts(categoryName);
@@ -611,9 +561,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 loadLimit(ruleShareLimitTotalMinutesMode, ruleShareLimitTotalMinutes, seedingTimeLimit);
                 loadLimit(ruleShareLimitInactiveMinutesMode, ruleShareLimitInactiveMinutes, inactiveSeedingTimeLimit);
 
-                ruleShareLimitAction.value = (torrentParams.share_limit_action ?? "Default");
+                ruleShareLimitAction.value = (torrentParams.share_limit_action ?? shareLimitHelper.Action.Default);
                 if (ruleShareLimitAction.value === "")
-                    ruleShareLimitAction.value = "Default";
+                    ruleShareLimitAction.value = shareLimitHelper.Action.Default;
 
                 updateState();
             };
@@ -621,13 +571,13 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             const reset = () => {
                 updateDefaultTexts("");
 
-                ruleShareLimitRatioMode.value = DefaultMode;
+                ruleShareLimitRatioMode.value = Mode.Default;
                 ruleShareLimitRatio.value = "1.00";
-                ruleShareLimitTotalMinutesMode.value = DefaultMode;
+                ruleShareLimitTotalMinutesMode.value = Mode.Default;
                 ruleShareLimitTotalMinutes.value = 1440;
-                ruleShareLimitInactiveMinutesMode.value = DefaultMode;
+                ruleShareLimitInactiveMinutesMode.value = Mode.Default;
                 ruleShareLimitInactiveMinutes.value = 1440;
-                ruleShareLimitAction.value = "Default";
+                ruleShareLimitAction.value = shareLimitHelper.Action.Default;
 
                 updateState();
             };
