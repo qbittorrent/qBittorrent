@@ -1373,6 +1373,20 @@ void Application::cleanup()
             m_desktopIntegration->menu()->setEnabled(false);
     }
 
+#ifdef Q_OS_MACOS
+    // Remove all accessibility interface factories before destroying widgets.
+    // On macOS, widget destruction triggers accessibility notifications via
+    // the native AX API, which can deadlock with the Qt event loop causing
+    // the app to freeze on quit.
+    // https://github.com/qbittorrent/qBittorrent/issues/23695
+    if (m_window)
+        QAccessible::cleanup();
+#endif
+
+    // AddTorrentManager should be deleted before cleanup MainWindow
+    // in order to properly delete currently opened AddNewTorrentDialog instances
+    delete m_addTorrentManager;
+
     if (m_window)
     {
         // Hide the window and don't leave it on screen as
@@ -1386,15 +1400,6 @@ void Application::cleanup()
         ::ShutdownBlockReasonCreate(reinterpret_cast<HWND>(m_window->effectiveWinId())
             , msg.c_str());
 #endif // Q_OS_WIN
-
-#ifdef Q_OS_MACOS
-        // Remove all accessibility interface factories before destroying widgets.
-        // On macOS, widget destruction triggers accessibility notifications via
-        // the native AX API, which can deadlock with the Qt event loop causing
-        // the app to freeze on quit.
-        // https://github.com/qbittorrent/qBittorrent/issues/23695
-        QAccessible::cleanup();
-#endif
 
         // Do manual cleanup in MainWindow to force widgets
         // to save their Preferences, stop all timers and
@@ -1415,7 +1420,9 @@ void Application::cleanup()
     delete RSS::Session::instance();
 
     TorrentFilesWatcher::freeInstance();
+#ifdef DISABLE_GUI
     delete m_addTorrentManager;
+#endif
     BitTorrent::Session::freeInstance();
     Net::ReverseResolution::freeInstance();
     Net::GeoIPManager::freeInstance();
