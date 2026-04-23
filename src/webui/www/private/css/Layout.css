@@ -328,7 +328,7 @@ div.toolbox.divider {
 }
 
 .iconWrapper:hover {
-    border: 1px solid var(--color-border-default);
+    border: 1px solid #a0a0a0;
     border-radius: 3px;
 }
 

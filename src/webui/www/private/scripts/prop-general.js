@@ -247,8 +247,8 @@ window.qBittorrent.PropGeneral ??= (() => {
                         && !state.includes("stopped")
                         && !state.includes("queued")
                         && !state.includes("checking")
-                        && (state !== "error")
-                        && (state !== "missingFiles");
+                        && !state.includes("error")
+                        && !state.includes("missingFiles");
                     document.getElementById("propAvailabilityWrapper").style.display = shouldShowAvailability ? "contents" : "none";
                 }
                 else {
