@@ -939,7 +939,7 @@ Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOp
     Path path = options.savePath;
     if (path.isEmpty())
     {
-        // use implicit download path
+        // use implicit save path
         const QString subcatName = subcategoryName(categoryName);
         if (!subcatName.isEmpty()) // subcategoryName() returns empty string if input ends with "/"
             path = Path(Utils::Fs::toValidFileName(subcatName));
