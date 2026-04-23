@@ -1601,21 +1601,6 @@ void Preferences::setConfirmRemoveTrackerFromAllTorrents(const bool enabled)
     setValue(u"GUI/ConfirmActions/RemoveTrackerFromAllTorrents"_s, enabled);
 }
 
-#ifndef Q_OS_MACOS
-TrayIcon::Style Preferences::trayIconStyle() const
-{
-    return value(u"GUI/TrayIconStyle"_s, TrayIcon::Style::Normal);
-}
-
-void Preferences::setTrayIconStyle(const TrayIcon::Style style)
-{
-    if (style == trayIconStyle())
-        return;
-
-    setValue(u"GUI/TrayIconStyle"_s, style);
-}
-#endif
-
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
 

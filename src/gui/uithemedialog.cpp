@@ -300,7 +300,7 @@ void UIThemeDialog::loadIcons()
     {
         m_ui->iconsLayout->addWidget(new QLabel(id), row, 0);
 
-        if (id == u"qbittorrent-tray-monochrome")
+        if (id == u"qbittorrent-tray-mono")
             qDebug() << id;
 
         auto *lightIconWidget = new IconWidget(m_defaultThemeSource.getIconPath(id, ColorMode::Light)

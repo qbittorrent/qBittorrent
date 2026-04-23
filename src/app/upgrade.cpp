@@ -217,7 +217,7 @@ namespace
             switch (number)
             {
             case 0:
-                settingsStorage->storeValue(key, TrayIcon::Style::Normal);
+                settingsStorage->storeValue(key, u"Normal"_s);
                 break;
             case 1:
                 settingsStorage->storeValue(key, u"MonoDark"_s);
@@ -238,13 +238,13 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"Preferences/Advanced/TrayIconStyle"_s;
-        const auto newKey = u"GUI/TrayIconStyle"_s;
+        const auto newKey = u"Appearance/TrayIconStyle"_s;
         const auto value = settingsStorage->loadValue<QString>(oldKey);
 
         if ((value == u"MonoDark") || (value == u"MonoLight"))
-            settingsStorage->storeValue(newKey, TrayIcon::Style::Monochrome);
+            settingsStorage->storeValue(newKey, u"Monochrome"_s);
         else
-            settingsStorage->storeValue(newKey, TrayIcon::Style::Normal);
+            settingsStorage->storeValue(newKey, u"Normal"_s);
 
         settingsStorage->removeValue(oldKey);
     }
