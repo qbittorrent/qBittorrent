@@ -273,6 +273,9 @@ void OptionsDialog::updateSidebarMetrics()
 
 void OptionsDialog::loadUIThemeResources()
 {
+    const QList<int> splitterSizes = m_ui->hsplitter->sizes();
+    const bool preserveSplitterSizes = isVisible();
+
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_s));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_s, u"preferences-system-network"_s));
     m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_s, u"network-wired"_s));
@@ -285,6 +288,8 @@ void OptionsDialog::loadUIThemeResources()
 #endif
     m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_s, u"preferences-other"_s));
     updateSidebarMetrics();
+    if (preserveSplitterSizes)
+        m_ui->hsplitter->setSizes(splitterSizes);
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));

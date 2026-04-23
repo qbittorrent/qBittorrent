@@ -120,7 +120,6 @@ PiecesBar::PiecesBar(QWidget *parent)
 {
     setMouseTracking(true);
     updateColorsImpl();
-    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &PiecesBar::refreshTheme);
 }
 
 void PiecesBar::setTorrent(const BitTorrent::Torrent *torrent)
@@ -215,6 +214,11 @@ void PiecesBar::redraw()
         m_image = image;
         update();
     }
+}
+
+void PiecesBar::initializeThemeRefresh()
+{
+    connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, &PiecesBar::refreshTheme);
 }
 
 void PiecesBar::refreshTheme()

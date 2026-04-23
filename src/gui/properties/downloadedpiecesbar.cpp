@@ -55,6 +55,7 @@ DownloadedPiecesBar::DownloadedPiecesBar(QWidget *parent)
     : base(parent)
 {
     updateColorsImpl();
+    initializeThemeRefresh();
 }
 
 QList<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin, int reqSize)

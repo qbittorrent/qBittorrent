@@ -268,8 +268,8 @@ void UIThemeDialog::accept()
 
     const Path editedThemeConfig = userConfigPath() / Path(CONFIG_FILE_NAME);
     const auto *pref = Preferences::instance();
-    const bool shouldReapplyTheme = !pref->useCustomUITheme()
-        || (pref->customUIThemePath() == editedThemeConfig);
+    const bool shouldReapplyTheme = pref->useCustomUITheme()
+        && (pref->customUIThemePath() == editedThemeConfig);
     if (shouldReapplyTheme)
         UIThemeManager::instance()->applyThemeSettings();
 

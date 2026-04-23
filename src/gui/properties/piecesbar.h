@@ -63,6 +63,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *e) override;
     void paintEvent(QPaintEvent *e) override;
 
+    void initializeThemeRefresh();
     virtual void updateColors();
     void redraw();
 

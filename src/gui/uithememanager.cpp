@@ -389,7 +389,7 @@ void UIThemeManager::refreshSystemAppearance()
     const TopLevelWidgetUpdateBlocker updateBlocker;
     const AppearanceRefreshGuard refreshGuard {m_isRefreshingAppearance};
     syncThemeSettings();
-    refreshNativeAppearance(false);
+    refreshNativeAppearance(true);
     applyThemeOverlay();
     refreshThemeResources(true);
 }
@@ -421,8 +421,7 @@ void UIThemeManager::refreshThemeResources(const bool shouldRepolishWidgets)
 bool UIThemeManager::applyThemeOverlay()
 {
     const QByteArray styleSheet = m_useCustomTheme ? m_themeSource->readStyleSheet() : QByteArray {};
-    const bool shouldRepolishWidgets = ((styleSheet != m_appliedStyleSheet)
-            || (m_useCustomTheme != m_hadCustomThemeOverlay));
+    const QPalette nativePalette = qApp->palette();
 
     if (m_useCustomTheme)
     {
@@ -430,6 +429,10 @@ bool UIThemeManager::applyThemeOverlay()
         if (!styleSheet.isEmpty())
             applyStyleSheet(styleSheet);
     }
+
+    const bool shouldRepolishWidgets = ((styleSheet != m_appliedStyleSheet)
+            || (m_useCustomTheme != m_hadCustomThemeOverlay)
+            || (qApp->palette() != nativePalette));
 
     m_hadCustomThemeOverlay = m_useCustomTheme;
     m_appliedStyleSheet = styleSheet;
