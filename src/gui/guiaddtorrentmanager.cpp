@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -87,6 +87,9 @@ GUIAddTorrentManager::~GUIAddTorrentManager()
     {
         dialog->disconnect(this);
         dialog->reject();
+        // `dialog` should be deleted here in order to avoid accessing 
+        // already deleted core components when deleting later
+        delete dialog;
     }
 }
 
