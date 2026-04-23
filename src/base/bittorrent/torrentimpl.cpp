@@ -2957,10 +2957,18 @@ void TorrentImpl::deleteFiles(const QList<int> &fileIndexes)
     for (const int index : fileIndexes)
     {
         const Path filePath = storageLocation / actualFilePath(index);
+        // TODO: Maybe CustomDiskIOThread::async_delete_files is a better option.
         const auto result = Utils::Fs::removeFile(filePath);
         if (!result)
             LogMsg(tr("Failed to delete file \"%1\". Error: %2").arg(filePath.toString(), result.error()), Log::WARNING);
     }
+
+    // TODO: Update the internal state in libtorrent with the removed files more elegantly and precisely.
+    // Doing so requires changes/additions in libtorrent, and is a future upgrade.
+    // Related discussion: https://github.com/arvidn/libtorrent/issues/6579
+
+    // For now, we simply delete the files and force-recheck to update libtorrent's internal state of the deleted files.
+    forceRecheck();
 }
 
 template <typename Func>

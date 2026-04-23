@@ -309,8 +309,20 @@ void TorrentContentWidget::collectFileIndexes(const QModelIndex &index, QList<in
         collectFileIndexes(model()->index(i, 0, index), fileIndexes);
 }
 
-void TorrentContentWidget::deleteSelectedFiles()
+void TorrentContentWidget::ignoreAndDeleteSelectedFiles()
 {
+    const QMessageBox::StandardButton answer = RaisedMessageBox::question(
+            this
+            , tr("Delete files and recheck confirmation")
+            , tr("Are you sure you want to delete the selected file(s) from disk, and then recheck ALL remaining files? Rechecking may take some time.")
+            , QMessageBox::Yes | QMessageBox::No
+            , QMessageBox::No);
+    if (answer != QMessageBox::Yes)
+        return;
+
+    applyPriorities(BitTorrent::DownloadPriority::Ignored);
+
+    // Collect file indexes of selected rows and delete them.
     QList<int> fileIndexes;
     const QModelIndexList selectedRows = selectionModel()->selectedRows(0);
     for (const QModelIndex &index : selectedRows)
@@ -474,8 +486,7 @@ void TorrentContentWidget::displayContextMenu()
         {
             subMenu->addAction(tr("Do not download + Delete"), this, [this]
             {
-                applyPriorities(BitTorrent::DownloadPriority::Ignored);
-                deleteSelectedFiles();
+                ignoreAndDeleteSelectedFiles();
             });
         }
         subMenu->addAction(tr("Normal"), this, [this]
@@ -506,8 +517,7 @@ void TorrentContentWidget::displayContextMenu()
         {
             menu->addAction(tr("Do not download + Delete"), this, [this]
             {
-                applyPriorities(BitTorrent::DownloadPriority::Ignored);
-                deleteSelectedFiles();
+                ignoreAndDeleteSelectedFiles();
             });
         }
         menu->addAction(tr("Normal priority"), this, [this]

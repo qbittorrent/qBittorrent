@@ -120,7 +120,7 @@ private:
     void applyPriorities(BitTorrent::DownloadPriority priority);
     void applyPrioritiesByOrder();
     void collectFileIndexes(const QModelIndex &index, QList<int> &fileIndexes) const;
-    void deleteSelectedFiles();
+    void ignoreAndDeleteSelectedFiles();
     Path getFullPath(const QModelIndex &index) const;
     void onItemDoubleClicked(const QModelIndex &index);
     // Expand single-item folders recursively.
