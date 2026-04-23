@@ -51,6 +51,14 @@
     <noscript id="noscript">
         <h1>QBT_TR(JavaScript Required! You must enable JavaScript for the WebUI to work properly)QBT_TR[CONTEXT=HttpServer]</h1>
     </noscript>
+    <script>
+        (function() {
+            const colorScheme = localStorage.getItem("color_scheme") || "auto";
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            const shouldUseDark = (colorScheme === "dark") || (colorScheme === "auto" && prefersDark);
+            document.documentElement.classList.toggle("dark", shouldUseDark);
+        })();
+    </script>
     <div id="desktop">
         <div id="desktopHeader">
             <div id="desktopNavbar">
