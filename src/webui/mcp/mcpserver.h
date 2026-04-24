@@ -28,4 +28,59 @@
 
 #pragma once
 
-// Stub: MCPServer — to be implemented in a later task.
+#include <QByteArray>
+#include <QHash>
+#include <QHostAddress>
+#include <QJsonObject>
+#include <QString>
+
+#include "mcpsessionmanager.h"
+
+class IApplication;
+
+namespace MCP
+{
+    struct ServerResponse
+    {
+        int httpStatus = 200;
+        QHash<QByteArray, QByteArray> headers;  // additional headers beyond Content-Type
+        QByteArray body;
+    };
+
+    class Server
+    {
+    public:
+        Q_DISABLE_COPY_MOVE(Server)
+
+        explicit Server(IApplication *app = nullptr);
+
+        void setApplication(IApplication *app) { m_app = app; }
+
+        /**
+         * Handle a single MCP HTTP request.
+         * @param method         HTTP method ("POST", "DELETE", "GET", ...).
+         * @param remote         client IP.
+         * @param sessionHeader  value of Mcp-Session-Id header (may be empty).
+         * @param versionHeader  value of MCP-Protocol-Version header (may be empty).
+         * @param body           raw request body (for POST).
+         */
+        ServerResponse handle(const QByteArray &method,
+                              const QHostAddress &remote,
+                              const QString &sessionHeader,
+                              const QString &versionHeader,
+                              const QByteArray &body);
+
+    private:
+        IApplication *m_app = nullptr;
+        SessionManager m_sessions;
+
+        ServerResponse handlePost(const QHostAddress &remote,
+                                  const QString &sessionHeader,
+                                  const QString &versionHeader,
+                                  const QByteArray &body);
+        ServerResponse handleDelete(const QString &sessionHeader);
+        QJsonObject dispatchJsonRpc(const QJsonObject &req,
+                                    const QHostAddress &remote,
+                                    QString *newSessionId);
+    };
+}

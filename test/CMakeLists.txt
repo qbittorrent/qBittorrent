@@ -13,6 +13,7 @@ set(testFiles
     testconceptsstringable.cpp
     testglobal.cpp
     testmcperror.cpp
+    testmcpserver.cpp
     testmcpsessionmanager.cpp
     testorderedset.cpp
     testpath.cpp
