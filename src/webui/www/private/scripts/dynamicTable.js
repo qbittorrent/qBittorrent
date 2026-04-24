@@ -1144,6 +1144,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("popularity", "", "QBT_TR(Popularity)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("category", "", "QBT_TR(Category)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("tags", "", "QBT_TR(Tags)QBT_TR[CONTEXT=TransferListModel]", 100, true);
+            this.newColumn("creation_date", "", "QBT_TR(Created On)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TransferListModel]", 100, true);
             this.newColumn("completion_on", "", "QBT_TR(Completed On)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("tracker", "", "QBT_TR(Tracker)QBT_TR[CONTEXT=TransferListModel]", 100, false);
@@ -1443,6 +1444,20 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const popularity = (value === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(value, 2);
                 td.textContent = popularity;
                 td.title = popularity;
+            };
+
+            // creation_date
+            this.columns["creation_date"].updateTd = function(td, row) {
+                const val = this.getRowValue(row);
+                if ((val === 0xffffffff) || (val < 0)) {
+                    td.textContent = "";
+                    td.title = "";
+                }
+                else {
+                    const date = window.qBittorrent.Misc.formatDate(new Date(this.getRowValue(row) * 1000));
+                    td.textContent = date;
+                    td.title = date;
+                }
             };
 
             // added on
@@ -3273,8 +3288,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("name", "", "", -1, true);
 
             this.columns["checked"].updateTd = (td, row) => {
-                let checkbox = row.firstElementChild;
-                if (checkbox === undefined) {
+                let checkbox = td.firstElementChild;
+                if (checkbox === null) {
                     checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
                     checkbox.dataset.id = row.rowId;
@@ -3331,8 +3346,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("name", "", "", -1, true);
 
             this.columns["checked"].updateTd = (td, row) => {
-                let checkbox = row.firstElementChild;
-                if (checkbox === undefined) {
+                let checkbox = td.firstElementChild;
+                if (checkbox === null) {
                     checkbox = document.createElement("input");
                     checkbox.type = "checkbox";
                     checkbox.dataset.id = row.rowId;

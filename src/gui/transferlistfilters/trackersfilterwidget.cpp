@@ -304,7 +304,16 @@ void TrackersFilterWidget::decreaseTorrentsCount(const QString &trackerHost)
     {
         if (currentItem() == trackerData.item)
             setCurrentRow(0, QItemSelectionModel::SelectCurrent);
+#ifdef Q_OS_MACOS
+        // Use takeItem() to detach the item from the widget before deleting.
+        // Directly deleting a QListWidgetItem triggers model's endRemoveRows()
+        // during destruction, causing QAccessibleTable::modelChange() to crash
+        // on macOS due to stale accessible interface references.
+        // https://github.com/qbittorrent/qBittorrent/issues/22657
+        delete takeItem(row(trackerData.item));
+#else
         delete trackerData.item;
+#endif
         m_trackers.erase(iter);
         updateGeometry();
     }
