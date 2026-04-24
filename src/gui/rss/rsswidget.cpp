@@ -62,7 +62,7 @@ namespace
 {
     void convertRelativeUrlToAbsolute(QString &html, const QString &baseUrl)
     {
-        const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
+        const QRegularExpression rx {uR"(((<a\s+[^>]*?href|<img\s+[^>]*?src)\s*=\s*["'])((https?|ftp|magnet):)?(\/\/[^\/]*)?(\/?[^\/"].*?)(["']))"_s
             , QRegularExpression::CaseInsensitiveOption};
 
         const QString normalizedBaseUrl = baseUrl.endsWith(u'/') ? baseUrl : (baseUrl + u'/');
@@ -184,6 +184,21 @@ RSSWidget::RSSWidget(IGUIApplication *app, QWidget *parent)
             , this, &RSSWidget::handleUnreadCountChanged);
 
     m_ui->textBrowser->installEventFilter(this);
+    m_ui->textBrowser->setOpenLinks(false);
+
+    connect(m_ui->textBrowser, &QTextBrowser::anchorClicked, this, [app](const QUrl &link)
+    {
+        const QString urlStr = link.toString();
+        if ((Net::DownloadManager::hasSupportedScheme(urlStr) && link.path().endsWith(u".torrent"))
+                || (link.scheme() == u"magnet"))
+        {
+            app->addTorrentManager()->addTorrent(urlStr);
+        }
+        else
+        {
+            QDesktopServices::openUrl(link);
+        }
+    });
 }
 
 RSSWidget::~RSSWidget()
