@@ -28,4 +28,17 @@
 
 #pragma once
 
-// Stub: MCPSession — to be implemented in a later task.
+#include <QDateTime>
+#include <QHostAddress>
+#include <QString>
+
+namespace MCP
+{
+    struct Session
+    {
+        QString id;
+        QHostAddress remoteAddress;
+        QDateTime lastActivity;
+        QString negotiatedProtocolVersion;
+    };
+}

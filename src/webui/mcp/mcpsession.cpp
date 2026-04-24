@@ -28,4 +28,3 @@
 
 #include "mcpsession.h"
 
-// Stub: MCPSession — to be implemented in a later task.
