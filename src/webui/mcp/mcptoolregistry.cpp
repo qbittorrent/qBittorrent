@@ -255,7 +255,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"App get directory content"_s,
         .description = u"Lists the contents of a directory on the host filesystem."_s,
         .annotations = READ_ONLY,
-        .inputSchema = objSchema({{u"dirPath"_s, STRING_SCHEMA}}, {u"dirPath"_s}),
+        .inputSchema = objSchema({{u"dirPath"_s, STRING_SCHEMA}, {u"mode"_s, STRING_SCHEMA}, {u"withMetadata"_s, BOOL_SCHEMA}}, {u"dirPath"_s}),
         .handler = makeControllerHandler(app, u"app"_s, u"getDirectoryContent"_s)
     });
     r.registerTool({
@@ -433,7 +433,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents info"_s,
         .description = u"Returns a list of torrents with optional filtering and sorting."_s,
         .annotations = READ_ONLY,
-        .inputSchema = objSchema({{u"filter"_s, STRING_SCHEMA}, {u"category"_s, STRING_SCHEMA}, {u"tag"_s, STRING_SCHEMA}, {u"sort"_s, STRING_SCHEMA}, {u"reverse"_s, BOOL_SCHEMA}, {u"limit"_s, INT_SCHEMA}, {u"offset"_s, INT_SCHEMA}, {u"hashes"_s, STRING_SCHEMA}}),
+        .inputSchema = objSchema({{u"filter"_s, STRING_SCHEMA}, {u"category"_s, STRING_SCHEMA}, {u"tag"_s, STRING_SCHEMA}, {u"sort"_s, STRING_SCHEMA}, {u"reverse"_s, BOOL_SCHEMA}, {u"limit"_s, INT_SCHEMA}, {u"offset"_s, INT_SCHEMA}, {u"hashes"_s, STRING_SCHEMA}, {u"private"_s, BOOL_SCHEMA}, {u"includeFiles"_s, BOOL_SCHEMA}, {u"includeTrackers"_s, BOOL_SCHEMA}}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"info"_s)
     });
     r.registerTool({
@@ -555,7 +555,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents add"_s,
         .description = u"Adds one or more torrents by URL/magnet link."_s,
         .annotations = OPEN_WORLD,
-        .inputSchema = objSchema({{u"urls"_s, STRING_SCHEMA}, {u"savepath"_s, STRING_SCHEMA}, {u"category"_s, STRING_SCHEMA}, {u"tags"_s, STRING_SCHEMA}, {u"cookie"_s, STRING_SCHEMA}, {u"rename"_s, STRING_SCHEMA}, {u"sequentialDownload"_s, STRING_SCHEMA}, {u"firstLastPiecePrio"_s, STRING_SCHEMA}, {u"paused"_s, STRING_SCHEMA}, {u"stopped"_s, STRING_SCHEMA}, {u"autoTMM"_s, STRING_SCHEMA}, {u"upLimit"_s, INT_SCHEMA}, {u"dlLimit"_s, INT_SCHEMA}, {u"ratioLimit"_s, STRING_SCHEMA}, {u"seedingTimeLimit"_s, INT_SCHEMA}, {u"inactiveSeedingTimeLimit"_s, INT_SCHEMA}, {u"contentLayout"_s, STRING_SCHEMA}, {u"skip_checking"_s, STRING_SCHEMA}}),
+        .inputSchema = objSchema({{u"urls"_s, STRING_SCHEMA}, {u"savepath"_s, STRING_SCHEMA}, {u"category"_s, STRING_SCHEMA}, {u"tags"_s, STRING_SCHEMA}, {u"rename"_s, STRING_SCHEMA}, {u"sequentialDownload"_s, STRING_SCHEMA}, {u"firstLastPiecePrio"_s, STRING_SCHEMA}, {u"stopped"_s, STRING_SCHEMA}, {u"autoTMM"_s, STRING_SCHEMA}, {u"upLimit"_s, INT_SCHEMA}, {u"dlLimit"_s, INT_SCHEMA}, {u"ratioLimit"_s, STRING_SCHEMA}, {u"seedingTimeLimit"_s, INT_SCHEMA}, {u"inactiveSeedingTimeLimit"_s, INT_SCHEMA}, {u"contentLayout"_s, STRING_SCHEMA}, {u"skip_checking"_s, STRING_SCHEMA}, {u"downloadPath"_s, STRING_SCHEMA}, {u"useDownloadPath"_s, BOOL_SCHEMA}, {u"forced"_s, BOOL_SCHEMA}, {u"addToTopOfQueue"_s, BOOL_SCHEMA}, {u"stopCondition"_s, STRING_SCHEMA}, {u"shareLimitAction"_s, STRING_SCHEMA}, {u"filePriorities"_s, STRING_SCHEMA}, {u"downloader"_s, STRING_SCHEMA}}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"add"_s)
     });
     r.registerTool({
@@ -595,7 +595,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents reannounce"_s,
         .description = u"Forces a tracker reannounce for the specified torrents."_s,
         .annotations = MUTATE_NON_IDEMPOTENT,
-        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"urls"_s, STRING_SCHEMA}}, {u"hashes"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"reannounce"_s)
     });
     r.registerTool({
@@ -611,7 +611,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents set comment"_s,
         .description = u"Sets the user-visible comment on a torrent."_s,
         .annotations = MUTATE_IDEMPOTENT,
-        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"comment"_s, STRING_SCHEMA}}, {u"hash"_s, u"comment"_s}),
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"comment"_s, STRING_SCHEMA}}, {u"hashes"_s, u"comment"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"setComment"_s)
     });
     r.registerTool({
@@ -627,7 +627,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents create category"_s,
         .description = u"Creates a new torrent category."_s,
         .annotations = MUTATE_IDEMPOTENT,
-        .inputSchema = objSchema({{u"category"_s, STRING_SCHEMA}, {u"savePath"_s, STRING_SCHEMA}}, {u"category"_s}),
+        .inputSchema = objSchema({{u"category"_s, STRING_SCHEMA}, {u"savePath"_s, STRING_SCHEMA}, {u"downloadPathEnabled"_s, BOOL_SCHEMA}, {u"downloadPath"_s, STRING_SCHEMA}}, {u"category"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"createCategory"_s)
     });
     r.registerTool({
@@ -635,7 +635,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents edit category"_s,
         .description = u"Edits an existing torrent category."_s,
         .annotations = MUTATE_IDEMPOTENT,
-        .inputSchema = objSchema({{u"category"_s, STRING_SCHEMA}, {u"savePath"_s, STRING_SCHEMA}}, {u"category"_s}),
+        .inputSchema = objSchema({{u"category"_s, STRING_SCHEMA}, {u"savePath"_s, STRING_SCHEMA}, {u"downloadPathEnabled"_s, BOOL_SCHEMA}, {u"downloadPath"_s, STRING_SCHEMA}}, {u"category"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"editCategory"_s)
     });
     r.registerTool({
@@ -699,7 +699,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents edit tracker"_s,
         .description = u"Replaces a tracker URL on a torrent."_s,
         .annotations = MUTATE_IDEMPOTENT,
-        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"origUrl"_s, STRING_SCHEMA}, {u"newUrl"_s, STRING_SCHEMA}}, {u"hash"_s, u"origUrl"_s, u"newUrl"_s}),
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"url"_s, STRING_SCHEMA}, {u"newUrl"_s, STRING_SCHEMA}, {u"tier"_s, STRING_SCHEMA}}, {u"hash"_s, u"url"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"editTracker"_s)
     });
     r.registerTool({
@@ -747,7 +747,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents set share limits"_s,
         .description = u"Sets ratio and seeding time limits for one or more torrents."_s,
         .annotations = MUTATE_IDEMPOTENT,
-        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"ratioLimit"_s, STRING_SCHEMA}, {u"seedingTimeLimit"_s, INT_SCHEMA}, {u"inactiveSeedingTimeLimit"_s, INT_SCHEMA}}, {u"hashes"_s}),
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"ratioLimit"_s, STRING_SCHEMA}, {u"seedingTimeLimit"_s, INT_SCHEMA}, {u"inactiveSeedingTimeLimit"_s, INT_SCHEMA}, {u"shareLimitAction"_s, STRING_SCHEMA}, {u"shareLimitsMode"_s, STRING_SCHEMA}}, {u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s, u"shareLimitAction"_s, u"shareLimitsMode"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"setShareLimits"_s)
     });
     r.registerTool({
@@ -867,7 +867,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents set SSL parameters"_s,
         .description = u"Sets SSL certificate, private key, and DH params for a torrent."_s,
         .annotations = MUTATE_IDEMPOTENT,
-        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"ssl_certificate"_s, STRING_SCHEMA}, {u"ssl_private_key"_s, STRING_SCHEMA}, {u"ssl_dh_params"_s, STRING_SCHEMA}}, {u"hash"_s}),
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"ssl_certificate"_s, STRING_SCHEMA}, {u"ssl_private_key"_s, STRING_SCHEMA}, {u"ssl_dh_params"_s, STRING_SCHEMA}}, {u"hash"_s, u"ssl_certificate"_s, u"ssl_private_key"_s, u"ssl_dh_params"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"setSSLParameters"_s)
     });
     r.registerTool({
@@ -875,7 +875,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents fetch metadata"_s,
         .description = u"Fetches torrent metadata from a URL or magnet link (network I/O)."_s,
         .annotations = OPEN_WORLD,
-        .inputSchema = objSchema({{u"source"_s, STRING_SCHEMA}}, {u"source"_s}),
+        .inputSchema = objSchema({{u"source"_s, STRING_SCHEMA}, {u"downloader"_s, STRING_SCHEMA}}, {u"source"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"fetchMetadata"_s)
     });
     r.registerTool({
@@ -891,7 +891,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Torrents save metadata"_s,
         .description = u"Saves previously fetched metadata to a .torrent file on disk."_s,
         .annotations = MUTATE_IDEMPOTENT,
-        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"filePath"_s, STRING_SCHEMA}}, {u"hash"_s, u"filePath"_s}),
+        .inputSchema = objSchema({{u"source"_s, STRING_SCHEMA}}, {u"source"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"saveMetadata"_s)
     });
 
@@ -909,7 +909,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"RSS add feed"_s,
         .description = u"Subscribes to an RSS feed by URL, optionally placing it at a folder path."_s,
         .annotations = OPEN_WORLD,
-        .inputSchema = objSchema({{u"url"_s, STRING_SCHEMA}, {u"path"_s, STRING_SCHEMA}}, {u"url"_s}),
+        .inputSchema = objSchema({{u"url"_s, STRING_SCHEMA}, {u"path"_s, STRING_SCHEMA}, {u"refreshInterval"_s, INT_SCHEMA}}, {u"url"_s, u"path"_s}),
         .handler = makeControllerHandler(app, u"rss"_s, u"addFeed"_s)
     });
     r.registerTool({
@@ -1055,7 +1055,7 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .title = u"Search download torrent"_s,
         .description = u"Downloads a torrent from a URL returned by a search result."_s,
         .annotations = OPEN_WORLD,
-        .inputSchema = objSchema({{u"torrentUrl"_s, STRING_SCHEMA}}, {u"torrentUrl"_s}),
+        .inputSchema = objSchema({{u"torrentUrl"_s, STRING_SCHEMA}, {u"pluginName"_s, STRING_SCHEMA}}, {u"torrentUrl"_s, u"pluginName"_s}),
         .handler = makeControllerHandler(app, u"search"_s, u"downloadTorrent"_s)
     });
     r.registerTool({
