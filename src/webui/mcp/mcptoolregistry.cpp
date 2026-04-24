@@ -894,4 +894,208 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"filePath"_s, STRING_SCHEMA}}, {u"hash"_s, u"filePath"_s}),
         .handler = makeControllerHandler(app, u"torrents"_s, u"saveMetadata"_s)
     });
+
+    // ── RSS ──────────────────────────────────────────────────────────────────
+    r.registerTool({
+        .name = u"rss_add_folder"_s,
+        .title = u"RSS add folder"_s,
+        .description = u"Creates a new RSS folder at the given path."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"path"_s, STRING_SCHEMA}}, {u"path"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"addFolder"_s)
+    });
+    r.registerTool({
+        .name = u"rss_add_feed"_s,
+        .title = u"RSS add feed"_s,
+        .description = u"Subscribes to an RSS feed by URL, optionally placing it at a folder path."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"url"_s, STRING_SCHEMA}, {u"path"_s, STRING_SCHEMA}}, {u"url"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"addFeed"_s)
+    });
+    r.registerTool({
+        .name = u"rss_set_feed_url"_s,
+        .title = u"RSS set feed URL"_s,
+        .description = u"Changes the URL of an existing RSS feed."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"path"_s, STRING_SCHEMA}, {u"url"_s, STRING_SCHEMA}}, {u"path"_s, u"url"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"setFeedURL"_s)
+    });
+    r.registerTool({
+        .name = u"rss_set_feed_refresh_interval"_s,
+        .title = u"RSS set feed refresh interval"_s,
+        .description = u"Sets the refresh interval (in minutes) for an RSS feed or folder."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"itemPath"_s, STRING_SCHEMA}, {u"refreshInterval"_s, INT_SCHEMA}}, {u"itemPath"_s, u"refreshInterval"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"setFeedRefreshInterval"_s)
+    });
+    r.registerTool({
+        .name = u"rss_remove_item"_s,
+        .title = u"RSS remove item"_s,
+        .description = u"Removes an RSS feed or folder at the given path."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"path"_s, STRING_SCHEMA}}, {u"path"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"removeItem"_s)
+    });
+    r.registerTool({
+        .name = u"rss_move_item"_s,
+        .title = u"RSS move item"_s,
+        .description = u"Moves or renames an RSS feed or folder to a new path."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"itemPath"_s, STRING_SCHEMA}, {u"destPath"_s, STRING_SCHEMA}}, {u"itemPath"_s, u"destPath"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"moveItem"_s)
+    });
+    r.registerTool({
+        .name = u"rss_items"_s,
+        .title = u"RSS items"_s,
+        .description = u"Returns the RSS tree (feeds and folders). Pass withData=true to include article data."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"withData"_s, BOOL_SCHEMA}}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"items"_s)
+    });
+    r.registerTool({
+        .name = u"rss_mark_as_read"_s,
+        .title = u"RSS mark as read"_s,
+        .description = u"Marks an RSS feed item (or a specific article) as read."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"itemPath"_s, STRING_SCHEMA}, {u"articleId"_s, STRING_SCHEMA}}, {u"itemPath"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"markAsRead"_s)
+    });
+    r.registerTool({
+        .name = u"rss_refresh_item"_s,
+        .title = u"RSS refresh item"_s,
+        .description = u"Forces an immediate refresh of an RSS feed or folder (network I/O)."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"itemPath"_s, STRING_SCHEMA}}, {u"itemPath"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"refreshItem"_s)
+    });
+    r.registerTool({
+        .name = u"rss_set_rule"_s,
+        .title = u"RSS set rule"_s,
+        .description = u"Creates or updates an auto-download rule for RSS feeds."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"ruleName"_s, STRING_SCHEMA}, {u"ruleDef"_s, STRING_SCHEMA}}, {u"ruleName"_s, u"ruleDef"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"setRule"_s)
+    });
+    r.registerTool({
+        .name = u"rss_rename_rule"_s,
+        .title = u"RSS rename rule"_s,
+        .description = u"Renames an existing RSS auto-download rule."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"ruleName"_s, STRING_SCHEMA}, {u"newRuleName"_s, STRING_SCHEMA}}, {u"ruleName"_s, u"newRuleName"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"renameRule"_s)
+    });
+    r.registerTool({
+        .name = u"rss_remove_rule"_s,
+        .title = u"RSS remove rule"_s,
+        .description = u"Deletes an RSS auto-download rule by name."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"ruleName"_s, STRING_SCHEMA}}, {u"ruleName"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"removeRule"_s)
+    });
+    r.registerTool({
+        .name = u"rss_rules"_s,
+        .title = u"RSS rules"_s,
+        .description = u"Returns all RSS auto-download rules."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"rules"_s)
+    });
+    r.registerTool({
+        .name = u"rss_matching_articles"_s,
+        .title = u"RSS matching articles"_s,
+        .description = u"Returns articles that would be matched by a given RSS auto-download rule."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"ruleName"_s, STRING_SCHEMA}}, {u"ruleName"_s}),
+        .handler = makeControllerHandler(app, u"rss"_s, u"matchingArticles"_s)
+    });
+
+    // ── Search ───────────────────────────────────────────────────────────────
+    r.registerTool({
+        .name = u"search_start"_s,
+        .title = u"Search start"_s,
+        .description = u"Starts a torrent search job with the given pattern, plugins, and category."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"pattern"_s, STRING_SCHEMA}, {u"plugins"_s, STRING_SCHEMA}, {u"category"_s, STRING_SCHEMA}}, {u"pattern"_s, u"plugins"_s, u"category"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"start"_s)
+    });
+    r.registerTool({
+        .name = u"search_stop"_s,
+        .title = u"Search stop"_s,
+        .description = u"Stops a running search job by its ID."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"id"_s, INT_SCHEMA}}, {u"id"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"stop"_s)
+    });
+    r.registerTool({
+        .name = u"search_status"_s,
+        .title = u"Search status"_s,
+        .description = u"Returns the status of a search job (or all jobs if no ID is given)."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"id"_s, INT_SCHEMA}}),
+        .handler = makeControllerHandler(app, u"search"_s, u"status"_s)
+    });
+    r.registerTool({
+        .name = u"search_results"_s,
+        .title = u"Search results"_s,
+        .description = u"Returns the results of a search job, with optional limit and offset for pagination."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"id"_s, INT_SCHEMA}, {u"limit"_s, INT_SCHEMA}, {u"offset"_s, INT_SCHEMA}}, {u"id"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"results"_s)
+    });
+    r.registerTool({
+        .name = u"search_delete"_s,
+        .title = u"Search delete"_s,
+        .description = u"Deletes a search job and its results by ID."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"id"_s, INT_SCHEMA}}, {u"id"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"delete"_s)
+    });
+    r.registerTool({
+        .name = u"search_download_torrent"_s,
+        .title = u"Search download torrent"_s,
+        .description = u"Downloads a torrent from a URL returned by a search result."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"torrentUrl"_s, STRING_SCHEMA}}, {u"torrentUrl"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"downloadTorrent"_s)
+    });
+    r.registerTool({
+        .name = u"search_plugins"_s,
+        .title = u"Search plugins"_s,
+        .description = u"Returns a list of installed search plugins and their status."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({}),
+        .handler = makeControllerHandler(app, u"search"_s, u"plugins"_s)
+    });
+    r.registerTool({
+        .name = u"search_install_plugin"_s,
+        .title = u"Search install plugin"_s,
+        .description = u"Installs one or more search plugins from the given sources (URLs or local paths)."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"sources"_s, STRING_SCHEMA}}, {u"sources"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"installPlugin"_s)
+    });
+    r.registerTool({
+        .name = u"search_uninstall_plugin"_s,
+        .title = u"Search uninstall plugin"_s,
+        .description = u"Uninstalls one or more search plugins by name."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"names"_s, STRING_SCHEMA}}, {u"names"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"uninstallPlugin"_s)
+    });
+    r.registerTool({
+        .name = u"search_enable_plugin"_s,
+        .title = u"Search enable plugin"_s,
+        .description = u"Enables or disables one or more search plugins by name."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"names"_s, STRING_SCHEMA}, {u"enable"_s, BOOL_SCHEMA}}, {u"names"_s, u"enable"_s}),
+        .handler = makeControllerHandler(app, u"search"_s, u"enablePlugin"_s)
+    });
+    r.registerTool({
+        .name = u"search_update_plugins"_s,
+        .title = u"Search update plugins"_s,
+        .description = u"Triggers an update check for all installed search plugins (network I/O)."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({}),
+        .handler = makeControllerHandler(app, u"search"_s, u"updatePlugins"_s)
+    });
 }
