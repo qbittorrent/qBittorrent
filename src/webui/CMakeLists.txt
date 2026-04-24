@@ -54,3 +54,4 @@ add_library(qbt_webui STATIC
 target_sources(qbt_webui INTERFACE www/webui.qrc)
 
 target_link_libraries(qbt_webui PRIVATE qbt_base)
+target_link_libraries(qbt_webui INTERFACE Qt::Network)

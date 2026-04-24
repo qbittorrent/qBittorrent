@@ -43,6 +43,7 @@ namespace MCP
     {
     public:
         SessionManager() = default;
+        Q_DISABLE_COPY_MOVE(SessionManager)
 
         /**
          * Create a new session for the given client address.
@@ -63,6 +64,11 @@ namespace MCP
         void sweepExpired();
 
     private:
+        // Precondition: m_mutex is already held by the caller.
+        // Erases the entry pointed to by @it, decrements the per-IP counter,
+        // and returns the next valid iterator (suitable for use in erase loops).
+        QHash<QString, Session>::iterator removeInternal(QHash<QString, Session>::iterator it);
+
         mutable QMutex m_mutex;
         QHash<QString, Session> m_sessions;
         QHash<QString, int> m_perIpCount;

@@ -101,6 +101,30 @@ private slots:
         mgr.remove(ids.first());
         QVERIFY(!mgr.create(QHostAddress::LocalHost, u"2025-06-18"_s).isEmpty());
     }
+
+    void touch_preventsExpiry() const
+    {
+        MCP::SessionManager mgr;
+        const QString id = mgr.create(QHostAddress::LocalHost, u"2025-06-18"_s);
+        // We can't manipulate time, but we can verify touch doesn't throw or break find()
+        mgr.touch(id);
+        QVERIFY(mgr.find(id).has_value());
+    }
+
+    void touch_handlesUnknownId() const
+    {
+        MCP::SessionManager mgr;
+        mgr.touch(u"nonexistent"_s);  // no crash, no change
+        QVERIFY(!mgr.find(u"nonexistent"_s).has_value());
+    }
+
+    void sweepExpired_keepsActiveSessions() const
+    {
+        MCP::SessionManager mgr;
+        const QString id = mgr.create(QHostAddress::LocalHost, u"2025-06-18"_s);
+        mgr.sweepExpired();
+        QVERIFY(mgr.find(id).has_value());
+    }
 };
 
 QTEST_APPLESS_MAIN(TestMCPSessionManager)

@@ -56,16 +56,29 @@ QString MCP::SessionManager::create(const QHostAddress &remote, const QString &p
     return id;
 }
 
+QHash<QString, MCP::Session>::iterator MCP::SessionManager::removeInternal(QHash<QString, Session>::iterator it)
+{
+    const QString ipKey = it->remoteAddress.toString();
+    if (auto countIt = m_perIpCount.find(ipKey); countIt != m_perIpCount.end())
+    {
+        if (--countIt.value() <= 0)
+            m_perIpCount.erase(countIt);
+    }
+    return m_sessions.erase(it);
+}
+
 std::optional<MCP::Session> MCP::SessionManager::find(const QString &id)
 {
     const QMutexLocker locker {&m_mutex};
-    const auto it = m_sessions.constFind(id);
-    if (it == m_sessions.constEnd())
+    auto it = m_sessions.find(id);
+    if (it == m_sessions.end())
         return std::nullopt;
 
-    const qint64 ageSeconds = it->lastActivity.secsTo(QDateTime::currentDateTimeUtc());
-    if (ageSeconds > Protocol::SESSION_IDLE_TIMEOUT_SECONDS)
+    if (it->lastActivity.secsTo(QDateTime::currentDateTimeUtc()) > Protocol::SESSION_IDLE_TIMEOUT_SECONDS)
+    {
+        removeInternal(it);
         return std::nullopt;
+    }
 
     return *it;
 }
@@ -73,16 +86,10 @@ std::optional<MCP::Session> MCP::SessionManager::find(const QString &id)
 void MCP::SessionManager::remove(const QString &id)
 {
     const QMutexLocker locker {&m_mutex};
-    const auto it = m_sessions.constFind(id);
-    if (it == m_sessions.constEnd())
+    const auto it = m_sessions.find(id);
+    if (it == m_sessions.end())
         return;
-    const QString ipKey = it->remoteAddress.toString();
-    m_sessions.erase(it);
-    if (auto countIt = m_perIpCount.find(ipKey); countIt != m_perIpCount.end())
-    {
-        if (--countIt.value() <= 0)
-            m_perIpCount.erase(countIt);
-    }
+    removeInternal(it);
 }
 
 void MCP::SessionManager::touch(const QString &id)
@@ -99,18 +106,8 @@ void MCP::SessionManager::sweepExpired()
     for (auto it = m_sessions.begin(); it != m_sessions.end();)
     {
         if (it->lastActivity.secsTo(now) > Protocol::SESSION_IDLE_TIMEOUT_SECONDS)
-        {
-            const QString ipKey = it->remoteAddress.toString();
-            if (auto countIt = m_perIpCount.find(ipKey); countIt != m_perIpCount.end())
-            {
-                if (--countIt.value() <= 0)
-                    m_perIpCount.erase(countIt);
-            }
-            it = m_sessions.erase(it);
-        }
+            it = removeInternal(it);
         else
-        {
             ++it;
-        }
     }
 }
