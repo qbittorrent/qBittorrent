@@ -28,4 +28,89 @@
 
 #include "mcpsessionmanager.h"
 
-// Stub: MCPSessionManager — to be implemented in a later task.
+#include <QDateTime>
+#include <QMutexLocker>
+#include <QUuid>
+
+#include "base/global.h"
+#include "mcpprotocol.h"
+
+QString MCP::SessionManager::create(const QHostAddress &remote, const QString &protocolVersion)
+{
+    const QMutexLocker locker {&m_mutex};
+
+    const QString ipKey = remote.toString();
+    if (m_perIpCount.value(ipKey, 0) >= Protocol::SESSION_CAP_PER_IP)
+        return {};
+    if (m_sessions.size() >= Protocol::SESSION_CAP_GLOBAL)
+        return {};
+
+    const QString id = QUuid::createUuid().toString(QUuid::WithoutBraces);
+    m_sessions.insert(id, Session{
+        .id = id,
+        .remoteAddress = remote,
+        .lastActivity = QDateTime::currentDateTimeUtc(),
+        .negotiatedProtocolVersion = protocolVersion,
+    });
+    ++m_perIpCount[ipKey];
+    return id;
+}
+
+std::optional<MCP::Session> MCP::SessionManager::find(const QString &id)
+{
+    const QMutexLocker locker {&m_mutex};
+    const auto it = m_sessions.constFind(id);
+    if (it == m_sessions.constEnd())
+        return std::nullopt;
+
+    const qint64 ageSeconds = it->lastActivity.secsTo(QDateTime::currentDateTimeUtc());
+    if (ageSeconds > Protocol::SESSION_IDLE_TIMEOUT_SECONDS)
+        return std::nullopt;
+
+    return *it;
+}
+
+void MCP::SessionManager::remove(const QString &id)
+{
+    const QMutexLocker locker {&m_mutex};
+    const auto it = m_sessions.constFind(id);
+    if (it == m_sessions.constEnd())
+        return;
+    const QString ipKey = it->remoteAddress.toString();
+    m_sessions.erase(it);
+    if (auto countIt = m_perIpCount.find(ipKey); countIt != m_perIpCount.end())
+    {
+        if (--countIt.value() <= 0)
+            m_perIpCount.erase(countIt);
+    }
+}
+
+void MCP::SessionManager::touch(const QString &id)
+{
+    const QMutexLocker locker {&m_mutex};
+    if (auto it = m_sessions.find(id); it != m_sessions.end())
+        it->lastActivity = QDateTime::currentDateTimeUtc();
+}
+
+void MCP::SessionManager::sweepExpired()
+{
+    const QMutexLocker locker {&m_mutex};
+    const QDateTime now = QDateTime::currentDateTimeUtc();
+    for (auto it = m_sessions.begin(); it != m_sessions.end();)
+    {
+        if (it->lastActivity.secsTo(now) > Protocol::SESSION_IDLE_TIMEOUT_SECONDS)
+        {
+            const QString ipKey = it->remoteAddress.toString();
+            if (auto countIt = m_perIpCount.find(ipKey); countIt != m_perIpCount.end())
+            {
+                if (--countIt.value() <= 0)
+                    m_perIpCount.erase(countIt);
+            }
+            it = m_sessions.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}

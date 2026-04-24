@@ -1,4 +1,4 @@
-find_package(Qt6 REQUIRED COMPONENTS Test)
+find_package(Qt6 REQUIRED COMPONENTS Network Test)
 
 enable_testing(true)
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
@@ -13,6 +13,7 @@ set(testFiles
     testconceptsstringable.cpp
     testglobal.cpp
     testmcperror.cpp
+    testmcpsessionmanager.cpp
     testorderedset.cpp
     testpath.cpp
     testutilsbytearray.cpp
@@ -29,7 +30,9 @@ foreach(testFile ${testFiles})
     get_filename_component(testFilename "${testFile}" NAME_WLE)
 
     add_executable("${testFilename}" "${testFile}")
-    if(testFilename MATCHES "^testmcp")
+    if(testFilename STREQUAL "testmcpsessionmanager")
+        target_link_libraries("${testFilename}" PRIVATE Qt::Test Qt::Network qbt_webui)
+    elseif(testFilename MATCHES "^testmcp")
         target_link_libraries("${testFilename}" PRIVATE Qt::Test qbt_webui)
     else()
         target_link_libraries("${testFilename}" PRIVATE Qt::Test qbt_base)

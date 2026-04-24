@@ -28,4 +28,43 @@
 
 #pragma once
 
-// Stub: MCPSessionManager — to be implemented in a later task.
+#include <optional>
+
+#include <QHash>
+#include <QHostAddress>
+#include <QMutex>
+#include <QString>
+
+#include "mcpsession.h"
+
+namespace MCP
+{
+    class SessionManager
+    {
+    public:
+        SessionManager() = default;
+
+        /**
+         * Create a new session for the given client address.
+         * @return new session id, or empty string if cap exceeded.
+         */
+        QString create(const QHostAddress &remote, const QString &protocolVersion);
+
+        /** @return session if found and not expired, nullopt otherwise. */
+        std::optional<Session> find(const QString &id);
+
+        /** Remove session (idempotent). */
+        void remove(const QString &id);
+
+        /** Touch last-activity for an existing session. */
+        void touch(const QString &id);
+
+        /** Sweep sessions idle longer than the configured timeout. */
+        void sweepExpired();
+
+    private:
+        mutable QMutex m_mutex;
+        QHash<QString, Session> m_sessions;
+        QHash<QString, int> m_perIpCount;
+    };
+}
