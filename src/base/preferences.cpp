@@ -771,6 +771,26 @@ void Preferences::setWebUIEnabled(const bool enabled)
     setValue(u"Preferences/WebUI/Enabled"_s, enabled);
 }
 
+bool Preferences::isMCPEnabled() const
+{
+    return value<bool>(u"Preferences/WebUI/MCP/Enabled"_s, false);
+}
+
+void Preferences::setMCPEnabled(const bool enabled)
+{
+    setValue(u"Preferences/WebUI/MCP/Enabled"_s, enabled);
+}
+
+QString Preferences::mcpAllowedOrigins() const
+{
+    return value<QString>(u"Preferences/WebUI/MCP/AllowedOrigins"_s);
+}
+
+void Preferences::setMCPAllowedOrigins(const QString &csvOrigins)
+{
+    setValue(u"Preferences/WebUI/MCP/AllowedOrigins"_s, csvOrigins);
+}
+
 bool Preferences::isWebUILocalAuthEnabled() const
 {
     return value(u"Preferences/WebUI/LocalHostAuth"_s, true);

@@ -191,6 +191,10 @@ public:
     // HTTP Server
     bool isWebUIEnabled() const;
     void setWebUIEnabled(bool enabled);
+    bool isMCPEnabled() const;
+    void setMCPEnabled(bool enabled);
+    QString mcpAllowedOrigins() const;
+    void setMCPAllowedOrigins(const QString &csvOrigins);
     QString getServerDomains() const;
     void setServerDomains(const QString &str);
     QString getWebUIAddress() const;
