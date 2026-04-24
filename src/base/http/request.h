@@ -54,5 +54,6 @@ namespace Http
         QHash<QString, QByteArray> query;
         QHash<QString, QString> posts;
         QList<UploadedFile> files;
+        QByteArray body;
     };
 }
