@@ -169,7 +169,7 @@ private slots:
         QVERIFY(parse(resp.body).contains(u"result"_s));
     }
 
-    void deleteWithSessionReturns200() const
+    void deleteWithSessionReturns200AndRemovesSession() const
     {
         MCP::Server srv;
         const auto initResp = srv.handle("POST", QHostAddress::LocalHost, {}, {}, toJson(initRequest()));
@@ -177,6 +177,38 @@ private slots:
 
         const auto delResp = srv.handle("DELETE", QHostAddress::LocalHost, sid, {}, {});
         QCOMPARE(delResp.httpStatus, 200);
+
+        // Session should be gone — subsequent ping returns 400 Missing/invalid session.
+        const QJsonObject ping {{u"jsonrpc"_s, u"2.0"_s}, {u"id"_s, 99}, {u"method"_s, u"ping"_s}};
+        const auto pingResp = srv.handle("POST", QHostAddress::LocalHost, sid, u"2025-06-18"_s, toJson(ping));
+        QCOMPARE(pingResp.httpStatus, 400);
+    }
+
+    void unsupportedProtocolVersionHeaderReturns400() const
+    {
+        MCP::Server srv;
+        const auto initResp = srv.handle("POST", QHostAddress::LocalHost, {}, {}, toJson(initRequest()));
+        const QString sid = QString::fromUtf8(initResp.headers.value(MCP::Protocol::HEADER_SESSION_ID));
+
+        const QJsonObject req {{u"jsonrpc"_s, u"2.0"_s}, {u"id"_s, 2}, {u"method"_s, u"ping"_s}};
+        const auto resp = srv.handle("POST", QHostAddress::LocalHost, sid, u"1999-01-01"_s, toJson(req));
+        QCOMPARE(resp.httpStatus, 400);
+    }
+
+    void toolsCallWithoutRegistryReturnsInvalidParams() const
+    {
+        MCP::Server srv;
+        const auto initResp = srv.handle("POST", QHostAddress::LocalHost, {}, {}, toJson(initRequest()));
+        const QString sid = QString::fromUtf8(initResp.headers.value(MCP::Protocol::HEADER_SESSION_ID));
+
+        const QJsonObject req {
+            {u"jsonrpc"_s, u"2.0"_s}, {u"id"_s, 2}, {u"method"_s, u"tools/call"_s},
+            {u"params"_s, QJsonObject{{u"name"_s, u"nothing"_s}, {u"arguments"_s, QJsonObject{}}}}
+        };
+        const auto resp = srv.handle("POST", QHostAddress::LocalHost, sid, u"2025-06-18"_s, toJson(req));
+        QCOMPARE(resp.httpStatus, 200);
+        QCOMPARE(parse(resp.body).value(u"error"_s).toObject().value(u"code"_s).toInt(),
+                 MCP::Protocol::ERR_INVALID_PARAMS);
     }
 };
 

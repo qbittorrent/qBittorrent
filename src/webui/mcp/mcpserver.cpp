@@ -202,7 +202,7 @@ QJsonObject MCP::Server::dispatchJsonRpc(const QJsonObject &req,
     if (method == u"tools/list"_s)
         return makeJsonRpcResult(id, QJsonObject{{u"tools"_s, QJsonArray{}}});  // filled in Phase 3
     if (method == u"tools/call"_s)
-        return makeJsonRpcError(id, Protocol::ERR_METHOD_NOT_FOUND, u"Tools not yet registered"_s);
+        return makeJsonRpcError(id, Protocol::ERR_INVALID_PARAMS, u"No tools registered"_s);
 
     return makeJsonRpcError(id, Protocol::ERR_METHOD_NOT_FOUND,
         u"Method not found: %1"_s.arg(method));
