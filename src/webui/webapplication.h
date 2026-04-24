@@ -54,6 +54,7 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
+#include "mcp/mcpserver.h"
 
 using namespace std::chrono_literals;
 using namespace Qt::Literals::StringLiterals;
@@ -100,6 +101,8 @@ private:
     void sessionEnd() override;
 
     void processAPIRequest(const QString &endpoint);
+    void processMCPRequest();
+    bool isMCPOriginAllowed() const;
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
@@ -263,6 +266,7 @@ private:
 
     BitTorrent::TorrentCreationManager *m_torrentCreationManager = nullptr;
     ClientDataStorage *m_clientDataStorage = nullptr;
+    MCP::Server m_mcpServer;
 
     struct FailedLogin
     {

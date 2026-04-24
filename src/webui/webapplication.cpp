@@ -82,6 +82,7 @@ const QString BASIC_AUTH = u"Basic"_s;
 const QString BEARER_AUTH = u"Bearer"_s;
 
 const QString API_PATH = u"/api/v2/"_s;
+const QString MCP_PATH = u"/mcp/"_s;
 
 namespace
 {
@@ -173,6 +174,8 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
 {
+    m_mcpServer.setApplication(app);
+
     declarePublicAPI(u"auth/login"_s);
 
     configure();
@@ -681,6 +684,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
             processAPIRequest(endpoint);
         }
+        else if (request.path.startsWith(MCP_PATH))
+        {
+            processMCPRequest();
+        }
         else
         {
             if (isUsingApiKey)
@@ -1101,4 +1108,58 @@ void WebApplication::increaseFailedAttempts() const
         // Start ban period
         failedLogin.banTimer.setRemainingTime(Preferences::instance()->getWebUIBanDuration());
     }
+}
+
+void WebApplication::processMCPRequest()
+{
+    if (!Preferences::instance()->isMCPEnabled())
+        throw NotFoundHTTPError();
+
+    if (!isMCPOriginAllowed())
+        throw ForbiddenHTTPError();
+
+    const QString sessionId = m_request.headers.value(u"mcp-session-id"_s);
+    const QString version = m_request.headers.value(u"mcp-protocol-version"_s);
+
+    const MCP::ServerResponse mcpResp = m_mcpServer.handle(
+        m_request.method.toUtf8(),
+        m_clientAddress,
+        sessionId,
+        version,
+        m_request.body);
+
+    m_response.status.code = mcpResp.httpStatus;
+    // Leave status.text empty — Http layer fills it from the code.
+    for (auto it = mcpResp.headers.constBegin(); it != mcpResp.headers.constEnd(); ++it)
+        m_response.headers.insert(QString::fromLatin1(it.key()), QString::fromLatin1(it.value()));
+
+    if (!m_response.headers.contains(Http::HEADER_CONTENT_TYPE) && !mcpResp.body.isEmpty())
+        m_response.headers.insert(Http::HEADER_CONTENT_TYPE, u"application/json"_s);
+
+    m_response.content = mcpResp.body;
+
+    // 401 must advertise auth scheme per MCP spec
+    if (mcpResp.httpStatus == 401)
+        m_response.headers.insert(u"www-authenticate"_s, uR"(Bearer realm="qBittorrent-MCP")"_s);
+}
+
+bool WebApplication::isMCPOriginAllowed() const
+{
+    const QString origin = m_request.headers.value(Http::HEADER_ORIGIN);
+    if (origin.isEmpty())
+        return true;  // non-browser clients
+
+    const QString host = m_request.headers.value(Http::HEADER_HOST);
+    // Same-origin: Origin is "scheme://host[:port]"; compare the "host[:port]" portion.
+    if (origin.endsWith(u"://"_s + host))
+        return true;
+
+    const QString csv = Preferences::instance()->mcpAllowedOrigins();
+    const QStringList allowed = csv.split(u","_s, Qt::SkipEmptyParts);
+    for (const QString &a : allowed)
+    {
+        if (a.trimmed().compare(origin, Qt::CaseInsensitive) == 0)
+            return true;
+    }
+    return false;
 }
