@@ -68,6 +68,7 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "mcp/mcptoolregistry.h"
 #include "websession.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
@@ -175,6 +176,7 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_clientDataStorage {new ClientDataStorage(this)}
 {
     m_mcpServer.setApplication(app);
+    MCP::registerBuiltinTools(MCP::ToolRegistry::instance(), app);
 
     declarePublicAPI(u"auth/login"_s);
 

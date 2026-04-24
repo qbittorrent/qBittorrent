@@ -28,4 +28,61 @@
 
 #pragma once
 
-// Stub: MCPToolRegistry — to be implemented in a later task.
+#include <functional>
+#include <vector>
+
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QString>
+
+#include "webui/api/apicontroller.h"  // APIResult
+
+class IApplication;
+
+namespace MCP
+{
+    // Self-contained tool handler: receives JSON arguments, returns an APIResult.
+    // Bound at registration time to whatever qBittorrent logic should run.
+    // Keeping handlers as callables decouples the registry from MCPServer —
+    // a future library swap consumes these directly.
+    using ToolHandler = std::function<APIResult(const QJsonObject &arguments)>;
+
+    struct ToolDescriptor
+    {
+        QString name;
+        QString title;
+        QString description;
+        QJsonObject annotations;
+        QJsonObject inputSchema;
+        QJsonObject outputSchema;   // empty = not advertised
+        ToolHandler handler;
+    };
+
+    class ToolRegistry
+    {
+    public:
+        Q_DISABLE_COPY_MOVE(ToolRegistry)
+
+        static ToolRegistry &instance();
+
+        void registerTool(const ToolDescriptor &desc);
+
+        /** @return JSON array of tool objects formatted for tools/list. */
+        QJsonArray asCatalog() const;
+
+        /** @return nullptr if no tool with that name. */
+        const ToolDescriptor *find(const QString &name) const;
+
+        const std::vector<ToolDescriptor> &all() const { return m_tools; }
+
+    private:
+        ToolRegistry() = default;
+        std::vector<ToolDescriptor> m_tools;
+    };
+
+    /**
+     * Populate the given registry with every built-in qBittorrent MCP tool.
+     * Handlers bind to `app` via closure. Safe to call once per process.
+     */
+    void registerBuiltinTools(ToolRegistry &registry, IApplication *app);
+}
