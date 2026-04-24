@@ -16,6 +16,12 @@ add_library(qbt_webui STATIC
     api/transfercontroller.h
     api/serialize/serialize_torrent.h
     clientdatastorage.h
+    mcp/mcperror.h
+    mcp/mcpprotocol.h
+    mcp/mcpserver.h
+    mcp/mcpsession.h
+    mcp/mcpsessionmanager.h
+    mcp/mcptoolregistry.h
     webapplication.h
     websession.h
     webui.h
@@ -35,6 +41,11 @@ add_library(qbt_webui STATIC
     api/transfercontroller.cpp
     api/serialize/serialize_torrent.cpp
     clientdatastorage.cpp
+    mcp/mcperror.cpp
+    mcp/mcpserver.cpp
+    mcp/mcpsession.cpp
+    mcp/mcpsessionmanager.cpp
+    mcp/mcptoolregistry.cpp
     webapplication.cpp
     websession.cpp
     webui.cpp
