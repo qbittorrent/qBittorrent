@@ -37,7 +37,7 @@ namespace MCP
     /**
      * Build a JSON-RPC 2.0 error envelope.
      * @param id  the request id (can be null for parse errors).
-     * @param code  JSON-RPC error code (use constants in mcpprotocol.h).
+     * @param code  JSON-RPC error code (use MCP::Protocol::ERR_* from mcpprotocol.h).
      * @param message  human-readable error message.
      */
     QJsonObject makeJsonRpcError(const QJsonValue &id, int code, const QString &message);
