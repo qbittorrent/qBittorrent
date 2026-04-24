@@ -35,8 +35,10 @@
 
 #include "base/global.h"
 #include "base/version.h"
+#include "webui/api/apierror.h"
 #include "mcperror.h"
 #include "mcpprotocol.h"
+#include "mcptoolregistry.h"
 
 namespace
 {
@@ -200,10 +202,75 @@ QJsonObject MCP::Server::dispatchJsonRpc(const QJsonObject &req,
     if (method == u"ping"_s)
         return makeJsonRpcResult(id, QJsonObject{});
     if (method == u"tools/list"_s)
-        return makeJsonRpcResult(id, QJsonObject{{u"tools"_s, QJsonArray{}}});  // filled in Phase 3
+    {
+        return makeJsonRpcResult(id, QJsonObject{
+            {u"tools"_s, ToolRegistry::instance().asCatalog()}
+        });
+    }
     if (method == u"tools/call"_s)
-        return makeJsonRpcError(id, Protocol::ERR_INVALID_PARAMS, u"No tools registered"_s);
+    {
+        const QString toolName = params.value(u"name"_s).toString();
+        const QJsonObject arguments = params.value(u"arguments"_s).toObject();
+        const ToolDescriptor *tool = ToolRegistry::instance().find(toolName);
+        if (!tool)
+            return makeJsonRpcError(id, Protocol::ERR_INVALID_PARAMS,
+                u"Unknown tool: %1"_s.arg(toolName));
+
+        return makeJsonRpcResult(id, dispatchToolCall(*tool, arguments));
+    }
 
     return makeJsonRpcError(id, Protocol::ERR_METHOD_NOT_FOUND,
         u"Method not found: %1"_s.arg(method));
+}
+
+QJsonObject MCP::Server::dispatchToolCall(const ToolDescriptor &tool, const QJsonObject &arguments)
+{
+    try
+    {
+        const APIResult r = tool.handler(arguments);
+
+        // Serialize result
+        QJsonValue structured;
+        QString textRepr;
+        if (r.data.canConvert<QJsonDocument>())
+        {
+            const QJsonDocument doc = r.data.toJsonDocument();
+            if (doc.isObject()) structured = doc.object();
+            else if (doc.isArray()) structured = doc.array();
+            textRepr = QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
+        }
+        else if (r.data.metaType() == QMetaType::fromType<QByteArray>())
+        {
+            const QByteArray raw = r.data.toByteArray();
+            return {
+                {u"isError"_s, false},
+                {u"content"_s, QJsonArray{QJsonObject{
+                    {u"type"_s, u"resource"_s},
+                    {u"resource"_s, QJsonObject{
+                        {u"mimeType"_s, r.mimeType.isEmpty() ? u"application/octet-stream"_s : r.mimeType},
+                        {u"blob"_s, QString::fromUtf8(raw.toBase64())}
+                    }}
+                }}}
+            };
+        }
+        else
+        {
+            textRepr = r.data.toString();
+        }
+
+        QJsonObject out{
+            {u"isError"_s, false},
+            {u"content"_s, QJsonArray{QJsonObject{{u"type"_s, u"text"_s}, {u"text"_s, textRepr}}}}
+        };
+        if (!structured.isNull() && !structured.isUndefined())
+            out.insert(u"structuredContent"_s, structured);
+        return out;
+    }
+    catch (const APIError &e)
+    {
+        return {
+            {u"isError"_s, true},
+            {u"content"_s, QJsonArray{QJsonObject{{u"type"_s, u"text"_s}, {u"text"_s, e.message()}}}}
+        };
+    }
 }

@@ -40,6 +40,8 @@ class IApplication;
 
 namespace MCP
 {
+    struct ToolDescriptor;  // defined in mcptoolregistry.h
+
     struct ServerResponse
     {
         int httpStatus = 200;
@@ -82,5 +84,7 @@ namespace MCP
         QJsonObject dispatchJsonRpc(const QJsonObject &req,
                                     const QHostAddress &remote,
                                     QString *newSessionId);
+        QJsonObject dispatchToolCall(const ToolDescriptor &tool,
+                                     const QJsonObject &arguments);
     };
 }
