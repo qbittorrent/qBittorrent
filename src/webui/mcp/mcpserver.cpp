@@ -229,14 +229,21 @@ QJsonObject MCP::Server::dispatchToolCall(const ToolDescriptor &tool, const QJso
     {
         const APIResult r = tool.handler(arguments);
 
-        // Serialize result
+        // Serialize result.
+        // MCP 2025-06-18 requires `structuredContent` to be a JSON object (a
+        // record-like map from string keys to values). JSON arrays are NOT
+        // valid at that position. Wrap array-shaped results under the `items`
+        // key so clients can still access them structurally while staying
+        // spec-compliant.
         QJsonValue structured;
         QString textRepr;
         if (r.data.canConvert<QJsonDocument>())
         {
             const QJsonDocument doc = r.data.toJsonDocument();
-            if (doc.isObject()) structured = doc.object();
-            else if (doc.isArray()) structured = doc.array();
+            if (doc.isObject())
+                structured = doc.object();
+            else if (doc.isArray())
+                structured = QJsonObject{{u"items"_s, doc.array()}};
             textRepr = QString::fromUtf8(doc.toJson(QJsonDocument::Compact));
         }
         else if (r.data.metaType() == QMetaType::fromType<QByteArray>())
