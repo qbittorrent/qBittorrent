@@ -124,6 +124,14 @@ namespace
     const QJsonObject STRING_SCHEMA {{u"type"_s, u"string"_s}};
     const QJsonObject INT_SCHEMA {{u"type"_s, u"integer"_s}};
     const QJsonObject BOOL_SCHEMA {{u"type"_s, u"boolean"_s}};
+    const QJsonObject HASHES_SCHEMA {
+        {u"type"_s, u"string"_s},
+        {u"description"_s, u"Torrent hashes, separated by '|', or 'all'."_s}
+    };
+    const QJsonObject HASH_SCHEMA {
+        {u"type"_s, u"string"_s},
+        {u"description"_s, u"Single torrent hash."_s}
+    };
 }
 
 MCP::ToolRegistry &MCP::ToolRegistry::instance()
@@ -417,5 +425,473 @@ void MCP::registerBuiltinTools(ToolRegistry &r, IApplication *app)
         .annotations = READ_ONLY,
         .inputSchema = objSchema({{u"last_known_id"_s, INT_SCHEMA}}),
         .handler = makeControllerHandler(app, u"log"_s, u"peers"_s)
+    });
+
+    // ── torrents (read) ───────────────────────────────────────────────────────
+    r.registerTool({
+        .name = u"torrents_info"_s,
+        .title = u"Torrents info"_s,
+        .description = u"Returns a list of torrents with optional filtering and sorting."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"filter"_s, STRING_SCHEMA}, {u"category"_s, STRING_SCHEMA}, {u"tag"_s, STRING_SCHEMA}, {u"sort"_s, STRING_SCHEMA}, {u"reverse"_s, BOOL_SCHEMA}, {u"limit"_s, INT_SCHEMA}, {u"offset"_s, INT_SCHEMA}, {u"hashes"_s, STRING_SCHEMA}}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"info"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_count"_s,
+        .title = u"Torrents count"_s,
+        .description = u"Returns the total number of torrents."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"count"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_properties"_s,
+        .title = u"Torrents properties"_s,
+        .description = u"Returns detailed properties for a single torrent."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"properties"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_trackers"_s,
+        .title = u"Torrents trackers"_s,
+        .description = u"Returns the list of trackers for a torrent."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"trackers"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_webseeds"_s,
+        .title = u"Torrents webseeds"_s,
+        .description = u"Returns the list of web seeds for a torrent."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"webseeds"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_files"_s,
+        .title = u"Torrents files"_s,
+        .description = u"Returns the file list for a torrent, optionally filtered by indexes."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"indexes"_s, STRING_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"files"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_piece_hashes"_s,
+        .title = u"Torrents piece hashes"_s,
+        .description = u"Returns the SHA-1 hash of each piece for a torrent."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"pieceHashes"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_piece_states"_s,
+        .title = u"Torrents piece states"_s,
+        .description = u"Returns the download state of each piece for a torrent."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"pieceStates"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_piece_availability"_s,
+        .title = u"Torrents piece availability"_s,
+        .description = u"Returns the availability (swarm copy count) of each piece."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"pieceAvailability"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_categories"_s,
+        .title = u"Torrents categories"_s,
+        .description = u"Returns all defined torrent categories."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"categories"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_tags"_s,
+        .title = u"Torrents tags"_s,
+        .description = u"Returns all defined torrent tags."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"tags"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_upload_limit"_s,
+        .title = u"Torrents upload limit"_s,
+        .description = u"Returns the upload speed limit for the specified torrents."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"uploadLimit"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_download_limit"_s,
+        .title = u"Torrents download limit"_s,
+        .description = u"Returns the download speed limit for the specified torrents."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"downloadLimit"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_ssl_parameters"_s,
+        .title = u"Torrents SSL parameters"_s,
+        .description = u"Returns SSL parameters (certificate, key, DH params) for a torrent."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"SSLParameters"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_export"_s,
+        .title = u"Torrents export"_s,
+        .description = u"Exports a torrent as a .torrent file (returned as a base64 resource blob)."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"export"_s)
+    });
+
+    // ── torrents (mutation) ───────────────────────────────────────────────────
+    r.registerTool({
+        .name = u"torrents_add"_s,
+        .title = u"Torrents add"_s,
+        .description = u"Adds one or more torrents by URL/magnet link."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"urls"_s, STRING_SCHEMA}, {u"savepath"_s, STRING_SCHEMA}, {u"category"_s, STRING_SCHEMA}, {u"tags"_s, STRING_SCHEMA}, {u"cookie"_s, STRING_SCHEMA}, {u"rename"_s, STRING_SCHEMA}, {u"sequentialDownload"_s, STRING_SCHEMA}, {u"firstLastPiecePrio"_s, STRING_SCHEMA}, {u"paused"_s, STRING_SCHEMA}, {u"stopped"_s, STRING_SCHEMA}, {u"autoTMM"_s, STRING_SCHEMA}, {u"upLimit"_s, INT_SCHEMA}, {u"dlLimit"_s, INT_SCHEMA}, {u"ratioLimit"_s, STRING_SCHEMA}, {u"seedingTimeLimit"_s, INT_SCHEMA}, {u"inactiveSeedingTimeLimit"_s, INT_SCHEMA}, {u"contentLayout"_s, STRING_SCHEMA}, {u"skip_checking"_s, STRING_SCHEMA}}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"add"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_delete"_s,
+        .title = u"Torrents delete"_s,
+        .description = u"Deletes one or more torrents, optionally removing their files."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"deleteFiles"_s, BOOL_SCHEMA}}, {u"hashes"_s, u"deleteFiles"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"delete"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_start"_s,
+        .title = u"Torrents start"_s,
+        .description = u"Starts (resumes) the specified torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"start"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_stop"_s,
+        .title = u"Torrents stop"_s,
+        .description = u"Stops (pauses) the specified torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"stop"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_recheck"_s,
+        .title = u"Torrents recheck"_s,
+        .description = u"Forces a hash recheck of the specified torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"recheck"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_reannounce"_s,
+        .title = u"Torrents reannounce"_s,
+        .description = u"Forces a tracker reannounce for the specified torrents."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"reannounce"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_rename"_s,
+        .title = u"Torrents rename"_s,
+        .description = u"Renames a torrent."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"name"_s, STRING_SCHEMA}}, {u"hash"_s, u"name"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"rename"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_comment"_s,
+        .title = u"Torrents set comment"_s,
+        .description = u"Sets the user-visible comment on a torrent."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"comment"_s, STRING_SCHEMA}}, {u"hash"_s, u"comment"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setComment"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_category"_s,
+        .title = u"Torrents set category"_s,
+        .description = u"Assigns a category to one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"category"_s, STRING_SCHEMA}}, {u"hashes"_s, u"category"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setCategory"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_create_category"_s,
+        .title = u"Torrents create category"_s,
+        .description = u"Creates a new torrent category."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"category"_s, STRING_SCHEMA}, {u"savePath"_s, STRING_SCHEMA}}, {u"category"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"createCategory"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_edit_category"_s,
+        .title = u"Torrents edit category"_s,
+        .description = u"Edits an existing torrent category."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"category"_s, STRING_SCHEMA}, {u"savePath"_s, STRING_SCHEMA}}, {u"category"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"editCategory"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_remove_categories"_s,
+        .title = u"Torrents remove categories"_s,
+        .description = u"Removes one or more torrent categories (pipe-separated names)."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"categories"_s, STRING_SCHEMA}}, {u"categories"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"removeCategories"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_add_tags"_s,
+        .title = u"Torrents add tags"_s,
+        .description = u"Adds tags to one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"tags"_s, STRING_SCHEMA}}, {u"hashes"_s, u"tags"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"addTags"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_tags"_s,
+        .title = u"Torrents set tags"_s,
+        .description = u"Replaces all tags on one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"tags"_s, STRING_SCHEMA}}, {u"hashes"_s, u"tags"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setTags"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_remove_tags"_s,
+        .title = u"Torrents remove tags"_s,
+        .description = u"Removes tags from one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"tags"_s, STRING_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"removeTags"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_create_tags"_s,
+        .title = u"Torrents create tags"_s,
+        .description = u"Creates one or more tags (pipe-separated)."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"tags"_s, STRING_SCHEMA}}, {u"tags"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"createTags"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_delete_tags"_s,
+        .title = u"Torrents delete tags"_s,
+        .description = u"Deletes one or more tags (pipe-separated)."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"tags"_s, STRING_SCHEMA}}, {u"tags"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"deleteTags"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_add_trackers"_s,
+        .title = u"Torrents add trackers"_s,
+        .description = u"Adds tracker URLs to a torrent."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"urls"_s, STRING_SCHEMA}}, {u"hash"_s, u"urls"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"addTrackers"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_edit_tracker"_s,
+        .title = u"Torrents edit tracker"_s,
+        .description = u"Replaces a tracker URL on a torrent."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"origUrl"_s, STRING_SCHEMA}, {u"newUrl"_s, STRING_SCHEMA}}, {u"hash"_s, u"origUrl"_s, u"newUrl"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"editTracker"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_remove_trackers"_s,
+        .title = u"Torrents remove trackers"_s,
+        .description = u"Removes tracker URLs from a torrent."_s,
+        .annotations = DESTRUCTIVE,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"urls"_s, STRING_SCHEMA}}, {u"hash"_s, u"urls"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"removeTrackers"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_add_peers"_s,
+        .title = u"Torrents add peers"_s,
+        .description = u"Adds peers to one or more torrents."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"peers"_s, STRING_SCHEMA}}, {u"hashes"_s, u"peers"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"addPeers"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_file_prio"_s,
+        .title = u"Torrents file priority"_s,
+        .description = u"Sets the download priority for one or more files within a torrent."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"id"_s, STRING_SCHEMA}, {u"priority"_s, INT_SCHEMA}}, {u"hash"_s, u"id"_s, u"priority"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"filePrio"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_upload_limit"_s,
+        .title = u"Torrents set upload limit"_s,
+        .description = u"Sets the upload speed limit for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"limit"_s, INT_SCHEMA}}, {u"hashes"_s, u"limit"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setUploadLimit"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_download_limit"_s,
+        .title = u"Torrents set download limit"_s,
+        .description = u"Sets the download speed limit for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"limit"_s, INT_SCHEMA}}, {u"hashes"_s, u"limit"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setDownloadLimit"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_share_limits"_s,
+        .title = u"Torrents set share limits"_s,
+        .description = u"Sets ratio and seeding time limits for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"ratioLimit"_s, STRING_SCHEMA}, {u"seedingTimeLimit"_s, INT_SCHEMA}, {u"inactiveSeedingTimeLimit"_s, INT_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setShareLimits"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_increase_prio"_s,
+        .title = u"Torrents increase priority"_s,
+        .description = u"Increases the queue priority of the specified torrents."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"increasePrio"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_decrease_prio"_s,
+        .title = u"Torrents decrease priority"_s,
+        .description = u"Decreases the queue priority of the specified torrents."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"decreasePrio"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_top_prio"_s,
+        .title = u"Torrents top priority"_s,
+        .description = u"Moves the specified torrents to the top of the download queue."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"topPrio"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_bottom_prio"_s,
+        .title = u"Torrents bottom priority"_s,
+        .description = u"Moves the specified torrents to the bottom of the download queue."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"bottomPrio"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_location"_s,
+        .title = u"Torrents set location"_s,
+        .description = u"Sets the save location for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"location"_s, STRING_SCHEMA}}, {u"hashes"_s, u"location"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setLocation"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_save_path"_s,
+        .title = u"Torrents set save path"_s,
+        .description = u"Sets the save path for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"id"_s, HASHES_SCHEMA}, {u"path"_s, STRING_SCHEMA}}, {u"id"_s, u"path"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setSavePath"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_download_path"_s,
+        .title = u"Torrents set download path"_s,
+        .description = u"Sets the incomplete download path for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"id"_s, HASHES_SCHEMA}, {u"path"_s, STRING_SCHEMA}}, {u"id"_s, u"path"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setDownloadPath"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_auto_management"_s,
+        .title = u"Torrents set auto management"_s,
+        .description = u"Enables or disables automatic torrent management for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"enable"_s, BOOL_SCHEMA}}, {u"hashes"_s, u"enable"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setAutoManagement"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_super_seeding"_s,
+        .title = u"Torrents set super seeding"_s,
+        .description = u"Enables or disables super seeding mode for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"value"_s, BOOL_SCHEMA}}, {u"hashes"_s, u"value"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setSuperSeeding"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_force_start"_s,
+        .title = u"Torrents set force start"_s,
+        .description = u"Enables or disables force-start for one or more torrents."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}, {u"value"_s, BOOL_SCHEMA}}, {u"hashes"_s, u"value"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setForceStart"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_toggle_sequential_download"_s,
+        .title = u"Torrents toggle sequential download"_s,
+        .description = u"Toggles sequential download mode for one or more torrents."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"toggleSequentialDownload"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_toggle_first_last_piece_prio"_s,
+        .title = u"Torrents toggle first/last piece priority"_s,
+        .description = u"Toggles first/last piece priority for one or more torrents."_s,
+        .annotations = MUTATE_NON_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hashes"_s, HASHES_SCHEMA}}, {u"hashes"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"toggleFirstLastPiecePrio"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_rename_file"_s,
+        .title = u"Torrents rename file"_s,
+        .description = u"Renames a file within a torrent."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"oldPath"_s, STRING_SCHEMA}, {u"newPath"_s, STRING_SCHEMA}}, {u"hash"_s, u"oldPath"_s, u"newPath"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"renameFile"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_rename_folder"_s,
+        .title = u"Torrents rename folder"_s,
+        .description = u"Renames a folder within a torrent."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"oldPath"_s, STRING_SCHEMA}, {u"newPath"_s, STRING_SCHEMA}}, {u"hash"_s, u"oldPath"_s, u"newPath"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"renameFolder"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_set_ssl_parameters"_s,
+        .title = u"Torrents set SSL parameters"_s,
+        .description = u"Sets SSL certificate, private key, and DH params for a torrent."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"ssl_certificate"_s, STRING_SCHEMA}, {u"ssl_private_key"_s, STRING_SCHEMA}, {u"ssl_dh_params"_s, STRING_SCHEMA}}, {u"hash"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"setSSLParameters"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_fetch_metadata"_s,
+        .title = u"Torrents fetch metadata"_s,
+        .description = u"Fetches torrent metadata from a URL or magnet link (network I/O)."_s,
+        .annotations = OPEN_WORLD,
+        .inputSchema = objSchema({{u"source"_s, STRING_SCHEMA}}, {u"source"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"fetchMetadata"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_parse_metadata"_s,
+        .title = u"Torrents parse metadata"_s,
+        .description = u"Parses torrent metadata from a local .torrent file or magnet URI without network I/O."_s,
+        .annotations = READ_ONLY,
+        .inputSchema = objSchema({{u"source"_s, STRING_SCHEMA}}, {u"source"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"parseMetadata"_s)
+    });
+    r.registerTool({
+        .name = u"torrents_save_metadata"_s,
+        .title = u"Torrents save metadata"_s,
+        .description = u"Saves previously fetched metadata to a .torrent file on disk."_s,
+        .annotations = MUTATE_IDEMPOTENT,
+        .inputSchema = objSchema({{u"hash"_s, HASH_SCHEMA}, {u"filePath"_s, STRING_SCHEMA}}, {u"hash"_s, u"filePath"_s}),
+        .handler = makeControllerHandler(app, u"torrents"_s, u"saveMetadata"_s)
     });
 }
