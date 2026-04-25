@@ -35,7 +35,6 @@
 #include <QHostAddress>
 #include <QLabel>
 #include <QNetworkInterface>
-#include <QTimer>
 
 #include <libtorrent/version.hpp>
 
