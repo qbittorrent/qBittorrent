@@ -1244,6 +1244,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = size;
                 td.title = size;
             };
+
             const displaySeeds = function(td, row) {
                 const num_seeds = this.getRowValue(row, 0);
                 const num_complete = this.getRowValue(row, 1);
@@ -1253,6 +1254,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = value;
                 td.title = value;
             };
+
             const compareSeeds = function(row1, row2) {
                 const num_seeds1 = this.getRowValue(row1, 0);
                 const num_complete1 = this.getRowValue(row1, 1);
@@ -1265,29 +1267,34 @@ window.qBittorrent.DynamicTable ??= (() => {
                     return result;
                 return compareNumbers(num_seeds1, num_seeds2);
             };
+
             const displaySpeed = function(td, row) {
                 const speed = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), true);
                 td.textContent = speed;
                 td.title = speed;
             };
+
             const displaySpeedOrInfinity = function(td, row) {
                 const speed = this.getRowValue(row);
                 const formattedSpeed = (speed === 0) ? "∞" : window.qBittorrent.Misc.friendlyUnit(speed, true);
                 td.textContent = formattedSpeed;
                 td.title = formattedSpeed;
             };
+
             const displayRatio = function(td, row) {
                 const ratio = this.getRowValue(row);
                 const string = (ratio === -1) ? "∞" : window.qBittorrent.Misc.toFixedPointString(ratio, 2);
                 td.textContent = string;
                 td.title = string;
             };
+
             const displayDate = function(td, row) {
                 const value = this.getRowValue(row);
                 const date = window.qBittorrent.Misc.formatDate(new Date(value * 1000));
                 td.textContent = date;
                 td.title = date;
             };
+
             const displayDateOrBlank = function(td, row) {
                 const value = this.getRowValue(row);
                 const useBlank = (value === 0xffffffff) || (value < 0);
@@ -1295,6 +1302,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = date;
                 td.title = date;
             };
+
             const displayInfohash = function(td, row) {
                 const sourceInfohashV1 = this.getRowValue(row);
                 const infohashV1 = (sourceInfohashV1 !== "") ? sourceInfohashV1 : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
@@ -1872,12 +1880,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = progressFormatted;
                 td.title = progressFormatted;
             };
+
             const displaySpeed = function(td, row) {
                 const speed = this.getRowValue(row);
                 const formattedSpeed = (speed === 0) ? "" : window.qBittorrent.Misc.friendlyUnit(speed, true);
                 td.textContent = formattedSpeed;
                 td.title = formattedSpeed;
             };
+
             const displaySize = function(td, row) {
                 const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
                 td.textContent = size;
@@ -1966,12 +1976,14 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.textContent = size;
                 td.title = size;
             };
+
             const displayNum = function(td, row) {
                 const value = this.getRowValue(row);
                 const formattedValue = (value === "-1") ? "Unknown" : value;
                 td.textContent = formattedValue;
                 td.title = formattedValue;
             };
+
             const displayDate = function(td, row) {
                 const value = this.getRowValue(row) * 1000;
                 const useBlank = (Number.isNaN(value) || (value <= 0));
@@ -2616,11 +2628,13 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumnsFunctions() {
             const that = this;
+            
             const displaySize = function(td, row) {
                 const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
                 td.textContent = size;
                 td.title = size;
             };
+
             const displayPercentage = function(td, row) {
                 const value = window.qBittorrent.Misc.friendlyPercentage(this.getRowValue(row));
                 td.textContent = value;
