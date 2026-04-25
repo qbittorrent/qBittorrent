@@ -29,6 +29,7 @@
 
 #include "fs.h"
 
+#include <algorithm>
 #include <filesystem>
 
 #if defined(Q_OS_WIN)
@@ -83,13 +84,10 @@ namespace
         // including when immediately followed by an extension (e.g. CON.txt)
         const qsizetype lastDotIndex = name.lastIndexOf(u'.');
         const QStringView baseName = (lastDotIndex == -1) ? name : name.left(lastDotIndex);
-        for (const QString &reserved : reservedDeviceNames)
+        return std::ranges::any_of(reservedDeviceNames, [baseName](const QString &reserved)
         {
-            if (baseName.compare(reserved, Qt::CaseInsensitive) == 0)
-                return true;
-        }
-
-        return false;
+            return baseName.compare(reserved, Qt::CaseInsensitive) == 0;
+        });
     }
 #endif
 
@@ -242,10 +240,6 @@ bool Utils::Fs::isValidFileName(const QStringView name)
     if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
         return false;
 
-    // Check for OS specific reserved characters
-    if (std::ranges::any_of(name, isReservedCharacter))
-        return false;
-
 #ifdef Q_OS_WIN
     // Windows restricts file names to 255 characters
     if (name.length() > 255)
@@ -263,6 +257,10 @@ bool Utils::Fs::isValidFileName(const QStringView name)
     if (name.toUtf8().length() > 255)
         return false;
 #endif
+
+    // Check for OS specific reserved characters
+    if (std::ranges::any_of(name, isReservedCharacter))
+        return false;
 
     return true;
 }

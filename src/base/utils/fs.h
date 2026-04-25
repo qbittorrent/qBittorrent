@@ -40,6 +40,7 @@
 #include "base/pathfwd.h"
 
 class QDateTime;
+class QStringView;
 
 namespace Utils::Fs
 {
