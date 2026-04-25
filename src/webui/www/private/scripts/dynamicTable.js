@@ -66,7 +66,7 @@ window.qBittorrent.DynamicTable ??= (() => {
     };
 
     const formatValueAsDate = (value) => {
-        const useValue = value > 0 && value !== 0xffffffff;
+        const useValue = (value > 0) && (value !== 0xffffffff);
         return !useValue ? "" : window.qBittorrent.Misc.formatDate(new Date(value * 1000));
     };
 
