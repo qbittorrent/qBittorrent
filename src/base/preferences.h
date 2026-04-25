@@ -73,19 +73,6 @@ namespace DNS
     Q_ENUM_NS(Service)
 }
 
-namespace TrayIcon
-{
-    Q_NAMESPACE
-
-    enum class Style : int
-    {
-        Normal = 0,
-        MonoDark = 1,
-        MonoLight = 2
-    };
-    Q_ENUM_NS(Style)
-}
-
 class Preferences final : public QObject
 {
     Q_OBJECT
@@ -350,8 +337,6 @@ public:
     void setCloseToTray(bool b);
     bool closeToTrayNotified() const;
     void setCloseToTrayNotified(bool b);
-    TrayIcon::Style trayIconStyle() const;
-    void setTrayIconStyle(TrayIcon::Style style);
     bool iconsInMenusEnabled() const;
     void setIconsInMenusEnabled(bool enable);
 #endif // Q_OS_MACOS
