@@ -1874,15 +1874,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
             const displaySpeed = function(td, row) {
                 const speed = this.getRowValue(row);
-                if (speed === 0) {
-                    td.textContent = "";
-                    td.title = "";
-                }
-                else {
-                    const formattedSpeed = window.qBittorrent.Misc.friendlyUnit(speed, true);
-                    td.textContent = formattedSpeed;
-                    td.title = formattedSpeed;
-                }
+                const formattedSpeed = (speed === 0) ? "" : window.qBittorrent.Misc.friendlyUnit(speed, true);
+                td.textContent = formattedSpeed;
+                td.title = formattedSpeed;
             };
             const displaySize = function(td, row) {
                 const size = window.qBittorrent.Misc.friendlyUnit(this.getRowValue(row), false);
