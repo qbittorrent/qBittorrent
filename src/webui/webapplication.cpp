@@ -1117,6 +1117,17 @@ void WebApplication::processMCPRequest()
     if (!Preferences::instance()->isMCPEnabled())
         throw NotFoundHTTPError();
 
+    // Auth enforcement: the outer `processRequest` populates m_currentSession
+    // only if Bearer/Basic/Cookie auth succeeded (or localhost bypass is on).
+    // For /api/v2/ this is re-verified in processAPIRequest (line ~330). MCP
+    // has no public endpoints, so any missing session is a hard reject.
+    if (!session())
+    {
+        m_response.headers.insert(u"www-authenticate"_s,
+            uR"(Bearer realm="qBittorrent-MCP")"_s);
+        throw UnauthorizedHTTPError();
+    }
+
     if (!isMCPOriginAllowed())
         throw ForbiddenHTTPError();
 
@@ -1151,10 +1162,18 @@ bool WebApplication::isMCPOriginAllowed() const
     if (origin.isEmpty())
         return true;  // non-browser clients
 
-    const QString host = m_request.headers.value(Http::HEADER_HOST);
-    // Same-origin: Origin is "scheme://host[:port]"; compare the "host[:port]" portion.
-    if (origin.endsWith(u"://"_s + host))
-        return true;
+    // Parse the Origin value with QUrl so we compare host+port only, case-insensitively,
+    // and reject Origin values that carry a path (spec says Origin is scheme+host+port).
+    const QUrl originUrl {origin};
+    if (!originUrl.isValid() || !originUrl.path().isEmpty())
+        return false;
+    const QString originHostPort = originUrl.port() >= 0
+        ? (originUrl.host() + u":"_s + QString::number(originUrl.port()))
+        : originUrl.host();
+
+    const QString hostHeader = m_request.headers.value(Http::HEADER_HOST);
+    if (originHostPort.compare(hostHeader, Qt::CaseInsensitive) == 0)
+        return true;  // same-origin
 
     const QString csv = Preferences::instance()->mcpAllowedOrigins();
     const QStringList allowed = csv.split(u","_s, Qt::SkipEmptyParts);
