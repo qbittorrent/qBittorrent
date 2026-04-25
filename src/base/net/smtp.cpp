@@ -170,8 +170,8 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 
 void Smtp::readyRead()
 {
-    const Preferences *const pref = Preferences::instance();
     qDebug() << Q_FUNC_INFO;
+    const Preferences *const pref = Preferences::instance();
     // SMTP is line-oriented
     m_buffer += m_socket->readAll();
     while (true)
