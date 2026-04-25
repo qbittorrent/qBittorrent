@@ -6,9 +6,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
 	- FEATURE: Add "Copy path" in Content tab (vafada) #23973
 	- FEATURE: Don't overwrite config file when it has no write permission (Chocobo1) #23817
     - FEATURE: Allow banning IP range (KagurazakaNyaa) #23157
-    - FEATURE: Add native MCP (Model Context Protocol) server at the /mcp/
-              endpoint for LLM client integration. Disabled by default;
-              toggleable via Preferences > WebUI or --enable-mcp flag (Ortes)
+    - FEATURE: Add native MCP (Model Context Protocol) server endpoint (Ortes) #24124
 	- BUGFIX: Fix Comment area background mismatch in Add New Torrent dialog (M-Hassan-Raza) #23916
 	- BUGFIX: Rename FYR Macedonia to North Macedonia (alphanumericcharter) #23825
     - BUGFIX: Fix LineEdit dark corner artifacts on macOS (M-Hassan-Raza) #23909
