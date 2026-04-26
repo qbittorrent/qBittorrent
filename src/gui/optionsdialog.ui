@@ -615,12 +615,7 @@
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (for dark theme)</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Monochrome (for light theme)</string>
+                        <string>Monochrome</string>
                        </property>
                       </item>
                      </widget>

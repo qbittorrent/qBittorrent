@@ -34,7 +34,6 @@
 
 #include "base/bittorrent/sharelimits.h"
 #include "base/bittorrent/torrentcontentlayout.h"
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/smtpencryptiontype.h"
@@ -44,6 +43,8 @@
 #include "base/settingvalue.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -217,13 +218,13 @@ namespace
             switch (number)
             {
             case 0:
-                settingsStorage->storeValue(key, TrayIcon::Style::Normal);
+                settingsStorage->storeValue(key, u"Normal"_s);
                 break;
             case 1:
-                settingsStorage->storeValue(key, TrayIcon::Style::MonoDark);
+                settingsStorage->storeValue(key, u"MonoDark"_s);
                 break;
             case 2:
-                settingsStorage->storeValue(key, TrayIcon::Style::MonoLight);
+                settingsStorage->storeValue(key, u"MonoLight"_s);
                 break;
             default:
                 LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
@@ -232,6 +233,21 @@ namespace
                 break;
             }
         }
+    }
+
+    void upgradeTrayIconStyleSettings2()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto oldKey = u"Preferences/Advanced/TrayIconStyle"_s;
+        const auto newKey = u"Appearance/TrayIconStyle"_s;
+        const auto value = settingsStorage->loadValue<QString>(oldKey);
+
+        if ((value == u"MonoDark") || (value == u"MonoLight"))
+            settingsStorage->storeValue(newKey, u"Monochrome"_s);
+        else
+            settingsStorage->storeValue(newKey, u"Normal"_s);
+
+        settingsStorage->removeValue(oldKey);
     }
 
     enum class MigrateOption
@@ -556,7 +572,10 @@ bool upgrade()
             handleSettingKeys<MigrateOption::RemoveOldKeys>();
 
         if (version < 10)
+        {
+            upgradeTrayIconStyleSettings2();
             migrateSMTPEncryptionSetting();
+        }
 
         version = MIGRATION_VERSION;
     }

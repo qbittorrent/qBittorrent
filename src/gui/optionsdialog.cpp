@@ -333,7 +333,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkShowSystray->setChecked(pref->systemTrayEnabled());
     m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
     m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
-    m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
+    m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(UIThemeManager::instance()->trayIconStyle()));
 #endif
 
 #ifdef Q_OS_WIN
@@ -522,7 +522,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
 #ifndef Q_OS_MACOS
     pref->setSystemTrayEnabled(m_ui->checkShowSystray->isChecked());
-    pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
+    UIThemeManager::instance()->setTrayIconStyle(TrayIconStyle(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(m_ui->checkCloseToSystray->isChecked());
     pref->setMinimizeToTray(m_ui->checkMinimizeToSysTray->isChecked());
 #endif

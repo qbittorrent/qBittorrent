@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,16 +30,15 @@
 
 #include <QMetaEnum>
 
-inline namespace ColorSchemeNS
+inline namespace TrayIconStyleNS
 {
     Q_NAMESPACE
 
-    enum class ColorScheme
+    enum class TrayIconStyle
     {
-        System,
-        Light,
-        Dark
+        Normal,
+        Monochrome
     };
 
-    Q_ENUM_NS(ColorScheme)
+    Q_ENUM_NS(TrayIconStyle)
 }

@@ -1383,17 +1383,9 @@ void Application::cleanup()
         QAccessible::cleanup();
 #endif
 
-    // Close and delete any remaining top-level widgets (e.g. parentless dialogs
-    // like AddNewTorrentDialog on macOS). These must be destroyed before core
-    // components like SettingsStorage are freed, because their destructors or
-    // done() handlers may save state via SettingValue.
-    // https://github.com/qbittorrent/qBittorrent/issues/23461
-    const QWidgetList topLevelWidgets = QApplication::topLevelWidgets();
-    for (QWidget *widget : topLevelWidgets)
-    {
-        if (widget != m_window)
-            delete widget;
-    }
+    // AddTorrentManager should be deleted before cleanup MainWindow
+    // in order to properly delete currently opened AddNewTorrentDialog instances
+    delete m_addTorrentManager;
 
     if (m_window)
     {
@@ -1428,7 +1420,9 @@ void Application::cleanup()
     delete RSS::Session::instance();
 
     TorrentFilesWatcher::freeInstance();
+#ifdef DISABLE_GUI
     delete m_addTorrentManager;
+#endif
     BitTorrent::Session::freeInstance();
     Net::ReverseResolution::freeInstance();
     Net::GeoIPManager::freeInstance();

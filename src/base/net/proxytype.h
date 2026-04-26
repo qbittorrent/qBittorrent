@@ -28,7 +28,7 @@
 
 #pragma once
 
-#include <QObject>
+#include <QMetaEnum>
 
 namespace Net
 {
