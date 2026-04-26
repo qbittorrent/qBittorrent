@@ -557,18 +557,13 @@ void AutomatedRssDownloader::cloneSelectedRule()
     QListWidgetItem *item = selection.first();
     while (true)
     {
-        QString cloneName = AutoExpandableDialog::getText(
+        const QString cloneName = AutoExpandableDialog::getText(
             this, tr("Rule cloning"), tr("Please type the name for the clone of the download rule.")
             , QLineEdit::Normal, item->text()).trimmed();
         if (cloneName.isEmpty())
             return;
 
-        if (autoDownloader->hasRule(cloneName))
-        {
-            QMessageBox::warning(this, tr("Rule name conflict")
-                , tr("A rule with this name already exists, please choose another name."));
-        }
-        else
+        if (!autoDownloader->hasRule(cloneName))
         {
             // Clear the current selection, so that only the newly cloned rule
             // will be selected after cloning and not the original one as well
@@ -577,6 +572,9 @@ void AutomatedRssDownloader::cloneSelectedRule()
             autoDownloader->cloneRule(item->text(), cloneName);
             return;
         }
+
+        QMessageBox::warning(this, tr("Rule name conflict")
+                , tr("A rule with this name already exists, please choose another name."));
     }
 }
 

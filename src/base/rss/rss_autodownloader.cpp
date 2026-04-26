@@ -223,9 +223,9 @@ bool AutoDownloader::cloneRule(const QString &ruleName, const QString &cloneRule
     // Disable the cloned rule by default to prevent accidental downloads
     clonedRule.setEnabled(false);
     // Clear previously matched episodes to allow matching all episodes for the new rule
-    clonedRule.setPreviouslyMatchedEpisodes(QStringList());
+    clonedRule.setPreviouslyMatchedEpisodes({});
     // Clear last match time to allow matching old articles for the new rule
-    clonedRule.setLastMatch(QDateTime());
+    clonedRule.setLastMatch({});
     setRule(clonedRule);
     return true;
 }
