@@ -237,7 +237,7 @@ bool Utils::Fs::isSameFile(const Path &path1, const Path &path2)
 bool Utils::Fs::isValidFileName(const QStringView name)
 {
     // The empty string, "." and ".." are not valid filenames
-    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
+    if (name.isEmpty() || (name == u".") || (name == u".."))
         return false;
 
 #ifdef Q_OS_WIN
@@ -271,7 +271,7 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
     name = name.trimmed();
 
     // The empty string, "." and ".." are not valid filenames
-    if (name.isEmpty() || (name == u"."_s) || (name == u".."_s))
+    if (name.isEmpty() || (name == u".") || (name == u".."))
         return pad;
 
     QString validName;
@@ -303,7 +303,7 @@ QString Utils::Fs::toValidFileName(QStringView name, const QString &pad)
         const QString baseName = (lastDotIndex == -1) ? validName : validName.left(lastDotIndex);
         const QString suffix = (lastDotIndex == -1) ? QString() : validName.sliced(lastDotIndex);
 
-        validName = baseName + pad + u"1"_s + suffix;
+        validName = baseName + pad + u"1" + suffix;
     }
 #endif
 
