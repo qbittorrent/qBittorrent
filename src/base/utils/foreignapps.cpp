@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018-2025  Mike Tzou (Chocobo1)
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -50,6 +51,7 @@
 
 #if defined(Q_OS_WIN)
 #include "base/utils/compare.h"
+#include "base/utils/reg.h"
 #endif
 
 using namespace Utils::ForeignApps;
@@ -104,53 +106,6 @@ namespace
         SYSTEM_64BIT
     };
 
-    PathList getRegSubkeys(const HKEY handle)
-    {
-        PathList keys;
-
-        DWORD cSubKeys = 0;
-        DWORD cMaxSubKeyLen = 0;
-        const LSTATUS result = ::RegQueryInfoKeyW(handle, NULL, NULL, NULL, &cSubKeys, &cMaxSubKeyLen, NULL, NULL, NULL, NULL, NULL, NULL);
-
-        if (result == ERROR_SUCCESS)
-        {
-            ++cMaxSubKeyLen; // For null character
-            LPWSTR lpName = new WCHAR[cMaxSubKeyLen] {0};
-            [[maybe_unused]] const auto lpNameGuard = qScopeGuard([&lpName] { delete[] lpName; });
-
-            keys.reserve(cSubKeys);
-
-            for (DWORD i = 0; i < cSubKeys; ++i)
-            {
-                DWORD cName = cMaxSubKeyLen;
-                const LSTATUS res = ::RegEnumKeyExW(handle, i, lpName, &cName, NULL, NULL, NULL, NULL);
-                if (res == ERROR_SUCCESS)
-                    keys.append(Path(QString::fromWCharArray(lpName)));
-            }
-        }
-
-        return keys;
-    }
-
-    Path getRegValue(const HKEY handle, const QString &name = {})
-    {
-        const std::wstring nameWStr = name.toStdWString();
-        DWORD type = 0;
-        DWORD cbData = 0;
-        // Discover the size of the value
-        ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, NULL, &cbData);
-
-        const DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
-        LPWSTR lpData = new WCHAR[cBuffer] {0};
-        [[maybe_unused]] const auto lpDataGuard = qScopeGuard([&lpData] { delete[] lpData; });
-
-        const LSTATUS res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, reinterpret_cast<LPBYTE>(lpData), &cbData);
-        if (res == ERROR_SUCCESS)
-            return Path(QString::fromWCharArray(lpData));
-
-        return {};
-    }
-
     PathList pythonSearchReg(const REG_SEARCH_TYPE type)
     {
         const HKEY hkRoot = (type == USER) ? HKEY_CURRENT_USER : HKEY_LOCAL_MACHINE;
@@ -164,26 +119,26 @@ namespace
             [[maybe_unused]] const auto hkPythonCoreGuard = qScopeGuard([&hkPythonCore] { ::RegCloseKey(hkPythonCore); });
 
             // start with the largest version
-            PathList versions = getRegSubkeys(hkPythonCore);
+            QStringList versions = Utils::Reg::getSubkeys(hkPythonCore);
             // ordinary sort won't suffice, it needs to sort ["3.9", "3.10"] correctly
             const Utils::Compare::NaturalCompare<Qt::CaseInsensitive> comparator;
-            std::ranges::sort(versions, [&comparator](const Path &left, const Path &right)
+            std::ranges::sort(versions, [&comparator](const QString &left, const QString &right)
             {
-                return comparator(left.data(), right.data());
+                return comparator(left, right);
             });
 
             ret.reserve(versions.size() * 2);
 
             while (!versions.empty())
             {
-                const std::wstring version = (versions.takeLast() / Path(u"InstallPath"_s)).toString().toStdWString();
+                const std::wstring version = (Path(versions.takeLast()) / Path(u"InstallPath"_s)).toString().toStdWString();
 
                 HKEY hkInstallPath {0};
                 if (::RegOpenKeyExW(hkPythonCore, version.c_str(), 0, samDesired, &hkInstallPath) == ERROR_SUCCESS)
                 {
                     [[maybe_unused]] const auto hkInstallPathGuard = qScopeGuard([&hkInstallPath] { ::RegCloseKey(hkInstallPath); });
 
-                    const Path basePath = getRegValue(hkInstallPath);
+                    const Path basePath {Utils::Reg::getStringValue(hkInstallPath)};
                     if (basePath.isEmpty())
                         continue;
 

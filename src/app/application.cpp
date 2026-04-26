@@ -57,6 +57,7 @@
 #include <QPixmapCache>
 #include <QProgressDialog>
 #ifdef Q_OS_WIN
+#include <QAbstractNativeEventFilter>
 #include <QSessionManager>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MACOS
@@ -134,6 +135,41 @@ namespace
     const QString PARAM_SEQUENTIAL = u"@sequential"_s;
     const QString PARAM_SKIPCHECKING = u"@skipChecking"_s;
     const QString PARAM_SKIPDIALOG = u"@skipDialog"_s;
+
+#if !defined(DISABLE_GUI) && defined(Q_OS_WIN)
+    class NativeEventFilter final : public QAbstractNativeEventFilter
+    {
+    public:
+        explicit NativeEventFilter(UIThemeManager *uiThemeManager)
+            : m_uiThemeManager {uiThemeManager}
+        {
+        }
+
+        bool nativeEventFilter(const QByteArray &eventType, void *message, [[maybe_unused]] qintptr *result) override
+        {
+            if (eventType == "windows_generic_MSG")
+            {
+                auto *msg = static_cast<const MSG *>(message);
+                if (msg->message == WM_SETTINGCHANGE)
+                {
+                    // Only refresh the theme if the user changes the personalize settings
+                    if ((msg->wParam == 0) && (msg->lParam != 0) // lParam sometimes may be 0.
+                            && (wcscmp(reinterpret_cast<LPCWSTR>(msg->lParam), L"ImmersiveColorSet") == 0))
+                    {
+                        m_uiThemeManager->updateSystemColorMode();
+                    }
+                }
+            }
+
+            // We don't want to filter the message out, i.e.
+            // stop it being handled further, so return false.
+            return false;
+        }
+
+    private:
+        UIThemeManager *m_uiThemeManager = nullptr;
+    };
+#endif
 
     QString bindParamValue(const QStringView paramName, const QStringView paramValue)
     {
@@ -871,6 +907,10 @@ int Application::exec()
     BitTorrent::Session::initInstance();
 #ifndef DISABLE_GUI
     UIThemeManager::initInstance();
+
+#ifdef Q_OS_WIN
+    installNativeEventFilter(new NativeEventFilter(UIThemeManager::instance()));
+#endif
 
     m_desktopIntegration = new DesktopIntegration;
     m_desktopIntegration->setToolTip(tr("Loading torrents..."));
