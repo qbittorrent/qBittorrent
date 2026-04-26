@@ -1294,8 +1294,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const value = this.getRowValue(row);
-                const date = formatValueAsDate(value);
+                const date = formatValueAsDate(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -1982,8 +1981,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const value = this.getRowValue(row);
-                const date = formatValueAsDate(value);
+                const date = formatValueAsDate(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3425,8 +3423,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumnsFunctions() {
             this.columns["timestamp"].updateTd = function(td, row) {
-                const value = this.getRowValue(row);
-                const date = formatValueAsDate(value);
+                const date = formatValueAsDate(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3504,8 +3501,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("reason", "", "QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
 
             this.columns["timestamp"].updateTd = function(td, row) {
-                const value = this.getRowValue(row);
-                const date = formatValueAsDate(value);
+                const date = formatValueAsDate(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3723,8 +3719,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const value = this.getRowValue(row);
-                const date = formatValueAsDate(value);
+                const date = formatValueAsDate(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
