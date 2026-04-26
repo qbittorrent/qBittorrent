@@ -4204,6 +4204,42 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                 </widget>
                </item>
                <item>
+                <widget class="QGroupBox" name="groupMCP">
+                 <property name="title">
+                  <string>MCP (Model Context Protocol) server</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_MCP">
+                  <item>
+                   <layout class="QHBoxLayout" name="horizontalLayout_MCP">
+                    <item>
+                     <widget class="QLabel" name="lblMCPAllowedOrigins">
+                      <property name="text">
+                       <string>Allowed origins (comma-separated, empty = same-origin only):</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QLineEdit" name="textMCPAllowedOrigins">
+                      <property name="toolTip">
+                       <string>Comma-separated list of origins allowed to access the MCP endpoint. Leave empty to restrict access to same-origin requests only.</string>
+                      </property>
+                      <property name="placeholderText">
+                       <string>e.g. http://localhost:3000,https://example.com</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkDynDNS">
                  <property name="title">
                   <string>Upda&amp;te my dynamic domain name</string>

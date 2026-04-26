@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Ortes <malo.allee@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,33 +26,5 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "mcpsession.h"
 
-#include <QByteArray>
-#include <QHash>
-#include <QList>
-#include <QString>
-
-#include "headermap.h"
-
-namespace Http
-{
-    struct UploadedFile
-    {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
-
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-        QByteArray body;
-    };
-}

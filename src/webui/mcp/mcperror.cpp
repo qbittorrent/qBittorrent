@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Ortes <malo.allee@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,33 +26,27 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "mcperror.h"
 
-#include <QByteArray>
-#include <QHash>
-#include <QList>
-#include <QString>
+#include "base/global.h"
 
-#include "headermap.h"
-
-namespace Http
+QJsonObject MCP::makeJsonRpcError(const QJsonValue &id, const int code, const QString &message)
 {
-    struct UploadedFile
-    {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
+    return {
+        {u"jsonrpc"_s, u"2.0"_s},
+        {u"id"_s, id},
+        {u"error"_s, QJsonObject{
+            {u"code"_s, code},
+            {u"message"_s, message}
+        }}
     };
+}
 
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-        QByteArray body;
+QJsonObject MCP::makeJsonRpcResult(const QJsonValue &id, const QJsonValue &result)
+{
+    return {
+        {u"jsonrpc"_s, u"2.0"_s},
+        {u"id"_s, id},
+        {u"result"_s, result}
     };
 }

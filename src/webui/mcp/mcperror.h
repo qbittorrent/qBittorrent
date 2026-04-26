@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Ortes <malo.allee@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,31 +28,22 @@
 
 #pragma once
 
-#include <QByteArray>
-#include <QHash>
-#include <QList>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QString>
 
-#include "headermap.h"
-
-namespace Http
+namespace MCP
 {
-    struct UploadedFile
-    {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
+    /**
+     * Build a JSON-RPC 2.0 error envelope.
+     * @param id  the request id (can be null for parse errors).
+     * @param code  JSON-RPC error code (use MCP::Protocol::ERR_* from mcpprotocol.h).
+     * @param message  human-readable error message.
+     */
+    QJsonObject makeJsonRpcError(const QJsonValue &id, int code, const QString &message);
 
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-        QByteArray body;
-    };
+    /**
+     * Build a JSON-RPC 2.0 success envelope.
+     */
+    QJsonObject makeJsonRpcResult(const QJsonValue &id, const QJsonValue &result);
 }

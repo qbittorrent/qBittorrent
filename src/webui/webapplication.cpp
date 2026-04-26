@@ -68,6 +68,7 @@
 #include "api/torrentscontroller.h"
 #include "api/transfercontroller.h"
 #include "clientdatastorage.h"
+#include "mcp/mcptoolregistry.h"
 #include "websession.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
@@ -82,6 +83,7 @@ const QString BASIC_AUTH = u"Basic"_s;
 const QString BEARER_AUTH = u"Bearer"_s;
 
 const QString API_PATH = u"/api/v2/"_s;
+const QString MCP_PATH = u"/mcp/"_s;
 
 namespace
 {
@@ -173,6 +175,9 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     , m_torrentCreationManager {new BitTorrent::TorrentCreationManager(app, this)}
     , m_clientDataStorage {new ClientDataStorage(this)}
 {
+    m_mcpServer.setApplication(app);
+    MCP::registerBuiltinTools(MCP::ToolRegistry::instance(), app);
+
     declarePublicAPI(u"auth/login"_s);
 
     configure();
@@ -681,6 +686,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
 
             processAPIRequest(endpoint);
         }
+        else if (request.path.startsWith(MCP_PATH))
+        {
+            processMCPRequest();
+        }
         else
         {
             if (isUsingApiKey)
@@ -1101,4 +1110,77 @@ void WebApplication::increaseFailedAttempts() const
         // Start ban period
         failedLogin.banTimer.setRemainingTime(Preferences::instance()->getWebUIBanDuration());
     }
+}
+
+void WebApplication::processMCPRequest()
+{
+    if (!Preferences::instance()->isMCPEnabled())
+        throw NotFoundHTTPError();
+
+    // Auth enforcement: the outer `processRequest` populates m_currentSession
+    // only if Bearer/Basic/Cookie auth succeeded (or localhost bypass is on).
+    // For /api/v2/ this is re-verified in processAPIRequest (line ~330). MCP
+    // has no public endpoints, so any missing session is a hard reject.
+    if (!session())
+    {
+        m_response.headers.insert(u"www-authenticate"_s,
+            uR"(Bearer realm="qBittorrent-MCP")"_s);
+        throw UnauthorizedHTTPError();
+    }
+
+    if (!isMCPOriginAllowed())
+        throw ForbiddenHTTPError();
+
+    const QString sessionId = m_request.headers.value(u"mcp-session-id"_s);
+    const QString version = m_request.headers.value(u"mcp-protocol-version"_s);
+
+    const MCP::ServerResponse mcpResp = m_mcpServer.handle(
+        m_request.method.toUtf8(),
+        m_clientAddress,
+        sessionId,
+        version,
+        m_request.body);
+
+    m_response.status.code = mcpResp.httpStatus;
+    // Leave status.text empty — Http layer fills it from the code.
+    for (auto it = mcpResp.headers.constBegin(); it != mcpResp.headers.constEnd(); ++it)
+        m_response.headers.insert(QString::fromLatin1(it.key()), QString::fromLatin1(it.value()));
+
+    if (!m_response.headers.contains(Http::HEADER_CONTENT_TYPE) && !mcpResp.body.isEmpty())
+        m_response.headers.insert(Http::HEADER_CONTENT_TYPE, u"application/json"_s);
+
+    m_response.content = mcpResp.body;
+
+    // 401 must advertise auth scheme per MCP spec
+    if (mcpResp.httpStatus == 401)
+        m_response.headers.insert(u"www-authenticate"_s, uR"(Bearer realm="qBittorrent-MCP")"_s);
+}
+
+bool WebApplication::isMCPOriginAllowed() const
+{
+    const QString origin = m_request.headers.value(Http::HEADER_ORIGIN);
+    if (origin.isEmpty())
+        return true;  // non-browser clients
+
+    // Parse the Origin value with QUrl so we compare host+port only, case-insensitively,
+    // and reject Origin values that carry a path (spec says Origin is scheme+host+port).
+    const QUrl originUrl {origin};
+    if (!originUrl.isValid() || !originUrl.path().isEmpty())
+        return false;
+    const QString originHostPort = originUrl.port() >= 0
+        ? (originUrl.host() + u":"_s + QString::number(originUrl.port()))
+        : originUrl.host();
+
+    const QString hostHeader = m_request.headers.value(Http::HEADER_HOST);
+    if (originHostPort.compare(hostHeader, Qt::CaseInsensitive) == 0)
+        return true;  // same-origin
+
+    const QString csv = Preferences::instance()->mcpAllowedOrigins();
+    const QStringList allowed = csv.split(u","_s, Qt::SkipEmptyParts);
+    for (const QString &a : allowed)
+    {
+        if (a.trimmed().compare(origin, Qt::CaseInsensitive) == 0)
+            return true;
+    }
+    return false;
 }

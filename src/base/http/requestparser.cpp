@@ -270,6 +270,13 @@ bool RequestParser::parsePostMessage(const QByteArrayView data)
     const QString contentType = m_request.headers[HEADER_CONTENT_TYPE];
     const QString contentTypeLower = contentType.toLower();
 
+    // application/json — store raw body for MCP; do not populate posts
+    if (contentTypeLower.startsWith(u"application/json"_s))
+    {
+        m_request.body = data.toByteArray();
+        return true;
+    }
+
     // application/x-www-form-urlencoded
     if (contentTypeLower.startsWith(CONTENT_TYPE_FORM_ENCODED))
     {

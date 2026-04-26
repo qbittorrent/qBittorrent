@@ -1403,6 +1403,9 @@ void OptionsDialog::loadWebUITabOptions()
     // Reverse proxy
     m_ui->groupEnableReverseProxySupport->setChecked(pref->isWebUIReverseProxySupportEnabled());
     m_ui->textTrustedReverseProxiesList->setText(pref->getWebUITrustedReverseProxiesList());
+    // MCP
+    m_ui->groupMCP->setChecked(pref->isMCPEnabled());
+    m_ui->textMCPAllowedOrigins->setText(pref->mcpAllowedOrigins());
     // DynDNS
     m_ui->checkDynDNS->setChecked(pref->isDynDNSEnabled());
     m_ui->comboDNSService->setCurrentIndex(static_cast<int>(pref->getDynDNSService()));
@@ -1447,6 +1450,9 @@ void OptionsDialog::loadWebUITabOptions()
 
     connect(m_ui->groupEnableReverseProxySupport, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrustedReverseProxiesList, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+
+    connect(m_ui->groupMCP, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textMCPAllowedOrigins, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkDynDNS, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboDNSService, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -1493,6 +1499,9 @@ void OptionsDialog::saveWebUITabOptions() const
     // Reverse proxy
     pref->setWebUIReverseProxySupportEnabled(m_ui->groupEnableReverseProxySupport->isChecked());
     pref->setWebUITrustedReverseProxiesList(m_ui->textTrustedReverseProxiesList->text());
+    // MCP
+    pref->setMCPEnabled(m_ui->groupMCP->isChecked());
+    pref->setMCPAllowedOrigins(m_ui->textMCPAllowedOrigins->text());
     // DynDNS
     pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
     pref->setDynDNSService(static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex()));

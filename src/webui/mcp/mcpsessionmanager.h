@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Ortes <malo.allee@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,31 +28,50 @@
 
 #pragma once
 
-#include <QByteArray>
+#include <optional>
+
 #include <QHash>
-#include <QList>
+#include <QHostAddress>
+#include <QMutex>
 #include <QString>
 
-#include "headermap.h"
+#include "mcpsession.h"
 
-namespace Http
+namespace MCP
 {
-    struct UploadedFile
+    class SessionManager
     {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
+    public:
+        SessionManager() = default;
 
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-        QByteArray body;
+        /**
+         * Create a new session for the given client address.
+         * @return new session id, or empty string if cap exceeded.
+         */
+        QString create(const QHostAddress &remote, const QString &protocolVersion);
+
+        /** @return session if found and not expired, nullopt otherwise. */
+        std::optional<Session> find(const QString &id);
+
+        /** Remove session (idempotent). */
+        void remove(const QString &id);
+
+        /** Touch last-activity for an existing session. */
+        void touch(const QString &id);
+
+        /** Sweep sessions idle longer than the configured timeout. */
+        void sweepExpired();
+
+    private:
+        Q_DISABLE_COPY_MOVE(SessionManager)
+
+        // Precondition: m_mutex is already held by the caller.
+        // Erases the entry pointed to by @it, decrements the per-IP counter,
+        // and returns the next valid iterator (suitable for use in erase loops).
+        QHash<QString, Session>::iterator removeInternal(QHash<QString, Session>::iterator it);
+
+        mutable QMutex m_mutex;
+        QHash<QString, Session> m_sessions;
+        QHash<QString, int> m_perIpCount;
     };
 }

@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
+ * Copyright (C) 2026  Ortes <malo.allee@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,30 +29,33 @@
 #pragma once
 
 #include <QByteArray>
-#include <QHash>
-#include <QList>
 #include <QString>
+#include <QStringList>
 
-#include "headermap.h"
+#include "base/global.h"
 
-namespace Http
+namespace MCP::Protocol
 {
-    struct UploadedFile
-    {
-        QString filename;
-        QString type;  // MIME type
-        QByteArray data;
-    };
+    // URL path
+    inline const QString PATH = u"/mcp/"_s;
 
-    struct Request
-    {
-        QString version;
-        QString method;
-        QString path;
-        HeaderMap headers;
-        QHash<QString, QByteArray> query;
-        QHash<QString, QString> posts;
-        QList<UploadedFile> files;
-        QByteArray body;
-    };
+    // Supported spec versions, newest first
+    inline const QStringList SUPPORTED_VERSIONS = {u"2025-06-18"_s};
+    inline const QString DEFAULT_BACKWARD_COMPAT_VERSION = u"2025-03-26"_s;
+
+    // HTTP header names (canonical casing per spec)
+    inline const QByteArray HEADER_SESSION_ID = "Mcp-Session-Id";
+    inline const QByteArray HEADER_PROTOCOL_VERSION = "MCP-Protocol-Version";
+
+    // Session caps
+    inline constexpr int SESSION_IDLE_TIMEOUT_SECONDS = 30 * 60;
+    inline constexpr int SESSION_CAP_PER_IP = 10;
+    inline constexpr int SESSION_CAP_GLOBAL = 100;
+
+    // JSON-RPC error codes
+    inline constexpr int ERR_PARSE = -32700;
+    inline constexpr int ERR_INVALID_REQUEST = -32600;
+    inline constexpr int ERR_METHOD_NOT_FOUND = -32601;
+    inline constexpr int ERR_INVALID_PARAMS = -32602;
+    inline constexpr int ERR_INTERNAL = -32603;
 }

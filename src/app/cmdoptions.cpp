@@ -317,6 +317,7 @@ namespace
 #endif
     constexpr const IntOption WEBUI_PORT_OPTION {u"webui-port"};
     constexpr const IntOption TORRENTING_PORT_OPTION {u"torrenting-port"};
+    constexpr const BoolOption ENABLE_MCP_OPTION {u"enable-mcp"};
     constexpr const StringOption PROFILE_OPTION {u"profile"};
     constexpr const StringOption CONFIGURATION_OPTION {u"configuration"};
     constexpr const BoolOption RELATIVE_FASTRESUME {u"relative-fastresume"};
@@ -378,6 +379,7 @@ namespace
             + TORRENTING_PORT_OPTION.usage(QCoreApplication::translate("CMD Options", "port"))
             + wrapText(QCoreApplication::translate("CMD Options", "Change the torrenting port"))
             + u'\n'
+            + ENABLE_MCP_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Enable the MCP (Model Context Protocol) endpoint")) + u'\n'
 #ifndef DISABLE_GUI
             + NO_SPLASH_OPTION.usage() + wrapText(QCoreApplication::translate("CMD Options", "Disable splash screen")) + u'\n'
 #elif !defined(Q_OS_WIN)
@@ -431,6 +433,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 #endif
     , webUIPort(WEBUI_PORT_OPTION.value(env, -1))
     , torrentingPort(TORRENTING_PORT_OPTION.value(env, -1))
+    , enableMCP(ENABLE_MCP_OPTION.value(env))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
     , profileDir(Utils::Fs::toAbsolutePath(Path(PROFILE_OPTION.value(env))))
     , configurationName(CONFIGURATION_OPTION.value(env))
@@ -497,6 +500,10 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             else if (arg == PROFILE_OPTION)
             {
                 result.profileDir = Utils::Fs::toAbsolutePath(Path(PROFILE_OPTION.value(arg)));
+            }
+            else if (arg == ENABLE_MCP_OPTION)
+            {
+                result.enableMCP = true;
             }
             else if (arg == RELATIVE_FASTRESUME)
             {
