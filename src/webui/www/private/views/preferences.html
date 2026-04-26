@@ -1462,6 +1462,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                             <option value="1">QBT_TR(Memory mapped files)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="2">QBT_TR(POSIX-compliant)QBT_TR[CONTEXT=OptionsDialog]</option>
                             <option value="3">QBT_TR(Simple pread/pwrite)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="4" id="diskIOTypePreadPwrite">QBT_TR(Pread/pwrite)QBT_TR[CONTEXT=OptionsDialog]</option>
                         </select>
                     </td>
                 </tr>
@@ -3306,6 +3307,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("rowDiskCache").style.display = "none";
                     document.getElementById("rowDiskCacheExpiryInterval").style.display = "none";
                     document.getElementById("rowCoalesceReadsAndWrites").style.display = "none";
+
+                    if ((libtorrentVersion.major === 2) && (libtorrentVersion.minor === 0)) {
+                        document.getElementById("diskIOTypePreadPwrite").hidden = true;
+
+                        if (libtorrentVersion.fix < 6)
+                            document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
+                    }
                 }
                 else {
                     document.getElementById("fieldsetI2p").style.display = "none";
@@ -3316,10 +3324,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("rowI2pOutboundQuantity").style.display = "none";
                     document.getElementById("rowI2pInboundLength").style.display = "none";
                     document.getElementById("rowI2pOutboundLength").style.display = "none";
-                }
 
-                if (!((libtorrentVersion.major >= 2) && (libtorrentVersion.minor >= 0) && (libtorrentVersion.fix >= 6)))
-                    document.getElementById("diskIOWriteModeWriteThrough").style.display = "none";
+                    document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
+                }
             }
 
             if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
