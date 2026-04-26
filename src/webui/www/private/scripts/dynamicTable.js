@@ -1301,10 +1301,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayInfohash = function(td, row) {
-                const sourceInfohashV1 = this.getRowValue(row);
-                const infohashV1 = (sourceInfohashV1 !== "") ? sourceInfohashV1 : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
-                td.textContent = infohashV1;
-                td.title = infohashV1;
+                const sourceInfohash = this.getRowValue(row);
+                const infohash = (sourceInfohash !== "") ? sourceInfohash : "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
+                td.textContent = infohash;
+                td.title = infohash;
             };
 
             // state_icon
