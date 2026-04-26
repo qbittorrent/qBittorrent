@@ -65,7 +65,7 @@ window.qBittorrent.DynamicTable ??= (() => {
         return 0;
     };
 
-    const formatValueAsDate = (value) => {
+    const toDateString = (value) => {
         return (value > 0) ? window.qBittorrent.Misc.formatDate(new Date(value * 1000)) : "";
     };
 
@@ -1293,7 +1293,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const date = formatValueAsDate(this.getRowValue(row));
+                const date = toDateString(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -1980,7 +1980,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const date = formatValueAsDate(this.getRowValue(row));
+                const date = toDateString(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3422,7 +3422,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         initColumnsFunctions() {
             this.columns["timestamp"].updateTd = function(td, row) {
-                const date = formatValueAsDate(this.getRowValue(row));
+                const date = toDateString(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3500,7 +3500,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("reason", "", "QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]", 150, true);
 
             this.columns["timestamp"].updateTd = function(td, row) {
-                const date = formatValueAsDate(this.getRowValue(row));
+                const date = toDateString(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
@@ -3718,7 +3718,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const date = formatValueAsDate(this.getRowValue(row));
+                const date = toDateString(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
