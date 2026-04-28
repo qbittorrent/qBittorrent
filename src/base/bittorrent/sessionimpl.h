@@ -131,6 +131,7 @@ namespace BitTorrent
             int hashJobs = -1;
             int queuedDiskJobs = -1;
             int diskJobTime = -1;
+            int requestLatency = -1;
         } disk;
 
         struct

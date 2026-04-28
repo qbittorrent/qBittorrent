@@ -1841,7 +1841,8 @@ void SessionImpl::initMetrics()
             .readJobs = findMetricIndex("disk.num_read_ops"),
             .hashJobs = findMetricIndex("disk.num_blocks_hashed"),
             .queuedDiskJobs = findMetricIndex("disk.queued_disk_jobs"),
-            .diskJobTime = findMetricIndex("disk.disk_job_time")
+            .diskJobTime = findMetricIndex("disk.disk_job_time"),
+            .requestLatency = findMetricIndex("disk.request_latency")
         },
         .tracker =
         {
@@ -6288,6 +6289,8 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
                   + stats[m_metricIndices.disk.hashJobs];
     m_cacheStatus.averageJobTime = (totalJobs > 0)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
+
+    m_cacheStatus.requestLatency = stats[m_metricIndices.disk.requestLatency];
 
     emit statsUpdated();
 }
