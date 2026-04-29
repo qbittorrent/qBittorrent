@@ -49,16 +49,16 @@ StatsDialog::StatsDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &StatsDialog::close);
-
-    update();
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
-            , this, &StatsDialog::update);
-
 #ifdef QBT_USES_LIBTORRENT2
     m_ui->labelCacheHitsText->hide();
     m_ui->labelCacheHits->hide();
 #endif
+
+    connect(m_ui->buttonBox, &QDialogButtonBox::clicked, this, &StatsDialog::close);
+
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
+            , this, &StatsDialog::update);
+    update();
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
@@ -114,4 +114,7 @@ void StatsDialog::update()
 
     // Total connected peers
     m_ui->labelPeers->setText(QString::number(ss.peersCount));
+
+    // Tracker statistics
+    m_ui->labelQueuedTrackerAnnounces->setText(QString::number(ss.queuedTrackerAnnounces));
 }

@@ -81,7 +81,6 @@ namespace BitTorrent
 
         ShareLimitAction action = ShareLimitAction::Default;
 
-
         friend bool operator==(const ShareLimits &lhs, const ShareLimits &rhs) = default;
     };
 }

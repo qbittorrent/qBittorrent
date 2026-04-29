@@ -132,6 +132,11 @@ namespace BitTorrent
             int queuedDiskJobs = -1;
             int diskJobTime = -1;
         } disk;
+
+        struct
+        {
+            int numQueuedTrackerAnnounces = -1;
+        } tracker;
     };
 
     class SessionImpl final : public Session
