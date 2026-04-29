@@ -23,14 +23,17 @@ jobs:
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            libt_build_flags: "-Dwebtorrent=ON"
           - version: "2.0.13"
             boost_major_version: "1"
             boost_minor_version: "91"
             boost_patch_version: "0"
+            libt_build_flags: ""
           - version: "1.2.20"
             boost_major_version: "1"
             boost_minor_version: "86"
             boost_patch_version: "0"
+            libt_build_flags: ""
         config:
         - os: windows-latest
           arch: x64
@@ -150,7 +153,8 @@ jobs:
             -DBUILD_SHARED_LIBS=OFF `
             -Ddeprecated-functions=OFF `
             -Dstatic_runtime=OFF `
-            -DVCPKG_TARGET_TRIPLET=${{ matrix.config.arch }}-windows-static-md-release
+            -DVCPKG_TARGET_TRIPLET=${{ matrix.config.arch }}-windows-static-md-release `
+            ${{ matrix.libtorrent.libt_build_flags }}
           cmake --build build
           cmake --install build
 
