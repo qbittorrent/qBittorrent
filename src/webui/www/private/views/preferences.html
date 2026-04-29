@@ -43,7 +43,7 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend>QBT_TR(Transfer list)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <legend>QBT_TR(Transfer List)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow" style="margin-bottom: 3px;" title="QBT_TR(Shows a confirmation dialog upon torrent deletion)QBT_TR[CONTEXT=OptionsDialog]">
             <input type="checkbox" id="confirmTorrentDeletion">
             <label for="confirmTorrentDeletion">QBT_TR(Confirm when deleting torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -93,6 +93,14 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Status bar)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="statusBarExternalIP">
+            <label for="statusBarExternalIP">QBT_TR(Show external IP)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();">
             <label for="filelog_checkbox">QBT_TR(Log Files)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -123,11 +131,6 @@
             </tbody>
         </table>
     </fieldset>
-
-    <div class="formRow" style="margin-bottom: 3px;">
-        <input type="checkbox" id="statusBarExternalIP">
-        <label for="statusBarExternalIP">QBT_TR(Show external IP in status bar)QBT_TR[CONTEXT=OptionsDialog]</label>
-    </div>
 
     <div class="formRow" style="margin-bottom: 5px;">
         <input type="checkbox" id="performanceWarning">
