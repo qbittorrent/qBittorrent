@@ -89,11 +89,11 @@ namespace BitTorrent
         void run() override;
 
 #ifdef QBT_USES_LIBTORRENT2
-        static int calculateTotalPieces(const Path &inputPath, const int pieceSize
-                , const TorrentFormat torrentFormat, const bool includeHiddenFiles = false);
+        static int calculateTotalPieces(const Path &inputPath, int pieceSize
+                , TorrentFormat torrentFormat, bool includeHiddenFiles = false);
 #else
         static int calculateTotalPieces(const Path &inputPath, const int pieceSize
-                , const bool isAlignmentOptimized, const int paddedFileSizeLimit, const bool includeHiddenFiles = false);
+                , bool isAlignmentOptimized, int paddedFileSizeLimit, bool includeHiddenFiles = false);
 #endif
 
     public slots:

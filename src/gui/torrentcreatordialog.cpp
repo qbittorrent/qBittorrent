@@ -143,7 +143,6 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     updateInputPath(defaultPath);
 
 #ifdef Q_OS_WIN
-    m_ui->checkIncludeHiddenFiles->setEnabled(false);
     m_ui->checkIncludeHiddenFiles->setVisible(false);
 #endif
 
