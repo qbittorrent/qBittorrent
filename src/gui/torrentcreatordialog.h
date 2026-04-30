@@ -90,6 +90,7 @@ private:
     SettingValue<bool> m_storePrivateTorrent;
     SettingValue<bool> m_storeStartSeeding;
     SettingValue<bool> m_storeIgnoreRatio;
+    SettingValue<bool> m_storeIncludeHiddenFiles;
 #ifdef QBT_USES_LIBTORRENT2
     SettingValue<int> m_storeTorrentFormat;
 #else

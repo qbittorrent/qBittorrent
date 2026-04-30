@@ -51,6 +51,7 @@ namespace BitTorrent
 
     struct TorrentCreatorParams
     {
+        bool includeHiddenFiles = false;
         bool isPrivate = false;
 #ifdef QBT_USES_LIBTORRENT2
         TorrentFormat torrentFormat = TorrentFormat::Hybrid;
@@ -88,10 +89,11 @@ namespace BitTorrent
         void run() override;
 
 #ifdef QBT_USES_LIBTORRENT2
-        static int calculateTotalPieces(const Path &inputPath, int pieceSize, TorrentFormat torrentFormat);
+        static int calculateTotalPieces(const Path &inputPath, const int pieceSize
+                , const TorrentFormat torrentFormat, const bool includeHiddenFiles = false);
 #else
         static int calculateTotalPieces(const Path &inputPath, const int pieceSize
-                , const bool isAlignmentOptimized, int paddedFileSizeLimit);
+                , const bool isAlignmentOptimized, const int paddedFileSizeLimit, const bool includeHiddenFiles = false);
 #endif
 
     public slots:

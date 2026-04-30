@@ -51,11 +51,17 @@
 
 namespace
 {
-    // do not include files and folders whose
-    // name starts with a .
-    bool fileFilter(const std::string &f)
+    // Windows: dotfiles are always included.
+    // Non-Windows: dotfiles are excluded by default, but may be opted in.
+    bool isFileAllowed(const std::string &f, const bool includeHiddenFiles = false)
     {
+#ifdef Q_OS_WIN
+        return true;
+#else
+        if (includeHiddenFiles)
+            return true;
         return !Path(f).filename().startsWith(u'.');
+#endif
     }
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -122,6 +128,10 @@ void TorrentCreator::run()
 #endif
         if (QFileInfo(m_params.sourcePath.data()).isFile())
         {
+            const auto fileFilter = [includeHidden = m_params.includeHiddenFiles](const std::string &f)
+            {
+                return isFileAllowed(f, includeHidden);
+            };
 #if LIBTORRENT_VERSION_NUM >= 20100
             files = lt::list_files(m_params.sourcePath.toString().toStdString(), fileFilter);
 #else
@@ -133,7 +143,11 @@ void TorrentCreator::run()
             // need to sort the file names by natural sort order
             QStringList dirs = {m_params.sourcePath.data()};
 
-            QDirIterator dirIter {m_params.sourcePath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
+            QDir::Filters dirFilters = QDir::AllDirs | QDir::NoDotAndDotDot;
+            if (m_params.includeHiddenFiles)
+                dirFilters |= QDir::Hidden;
+            QDirIterator dirIter {m_params.sourcePath.data(), dirFilters, QDirIterator::Subdirectories};
+
             while (dirIter.hasNext())
             {
                 const QFileInfo dirInfo = dirIter.nextFileInfo();
@@ -157,7 +171,7 @@ void TorrentCreator::run()
             {
                 QStringList tmpNames;  // natural sort files within each dir
 
-                QDirIterator fileIter {dir, QDir::Files};
+                QDirIterator fileIter {dir, (m_params.includeHiddenFiles ? (QDir::Files | QDir::Hidden) : QDir::Files)};
                 while (fileIter.hasNext())
                 {
                     const QFileInfo fileInfo = fileIter.nextFileInfo();
@@ -287,13 +301,20 @@ const TorrentCreatorParams &TorrentCreator::params() const
 }
 
 #ifdef QBT_USES_LIBTORRENT2
-int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
+int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize
+        , const TorrentFormat torrentFormat, const bool includeHiddenFiles)
 #else
-int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
+int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize
+        , const bool isAlignmentOptimized, const int paddedFileSizeLimit, const bool includeHiddenFiles)
 #endif
 {
     if (inputPath.isEmpty())
         return 0;
+
+    const auto fileFilter = [includeHidden = includeHiddenFiles](const std::string &f)
+    {
+        return isFileAllowed(f, includeHidden);
+    };
 
 #if LIBTORRENT_VERSION_NUM >= 20100
     const std::vector<lt::create_file_entry> files = lt::list_files(inputPath.toString().toStdString(), fileFilter);
