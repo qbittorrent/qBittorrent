@@ -1,5 +1,12 @@
 # WebAPI Changelog
 
+## 2.16.0
+* [#23838](https://github.com/qbittorrent/qBittorrent/pull/23838)
+  * `app/preferences` endpoint no longer includes `mail_notification_ssl_enabled` option as it no longer exists
+  * `app/preferences` endpoint includes `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
+  * `app/setPreferences` endpoint no longer allows setting `mail_notification_ssl_enabled` option as it no longer exists
+  * `app/setPreferences` endpoint allows to set `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
+
 ## 2.15.4
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
   * Add `rss/cloneRule` endpoint with `sourceName` and `cloneName` as parameters for cloning an existing RSS auto-download rule

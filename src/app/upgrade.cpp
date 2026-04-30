@@ -36,6 +36,7 @@
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/logger.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtpencryptiontype.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
@@ -507,6 +508,22 @@ namespace
         settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
         settingsStorage->removeValue(oldKey);
     }
+
+    void migrateSMTPEncryptionSetting()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const QString oldKey = u"Preferences/MailNotification/req_ssl"_s;
+        const QString newKey = u"Preferences/MailNotification/SMTPEncryptionType"_s;
+
+        if (settingsStorage->hasKey(oldKey))
+        {
+            const Net::SMTPEncryptionType setting = settingsStorage->loadValue<bool>(oldKey)
+                ? Net::SMTPEncryptionType::SMTPS
+                : Net::SMTPEncryptionType::None;
+            settingsStorage->storeValue(newKey, setting);
+            settingsStorage->removeValue(oldKey);
+        }
+    }
 }
 
 bool upgrade()
@@ -555,7 +572,10 @@ bool upgrade()
             handleSettingKeys<MigrateOption::RemoveOldKeys>();
 
         if (version < 10)
+        {
             upgradeTrayIconStyleSettings2();
+            migrateSMTPEncryptionSetting();
+        }
 
         version = MIGRATION_VERSION;
     }

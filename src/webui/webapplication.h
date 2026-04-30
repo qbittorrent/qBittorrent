@@ -58,7 +58,7 @@
 using namespace std::chrono_literals;
 using namespace Qt::Literals::StringLiterals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 15, 4};
+inline const Utils::Version<3, 2> API_VERSION {2, 16, 0};
 
 class QNetworkCookie;
 
