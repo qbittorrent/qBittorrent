@@ -437,6 +437,7 @@
         <file>private/views/properties.html</file>
         <file>private/views/propertiesToolbar.html</file>
         <file>private/views/rss.html</file>
+        <file>private/views/rssCloneRule.html</file>
         <file>private/views/rssDownloader.html</file>
         <file>private/views/search.html</file>
         <file>private/views/searchplugins.html</file>

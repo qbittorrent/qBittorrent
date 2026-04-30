@@ -364,7 +364,7 @@
         <file>view-statistics.svg</file>
         <file>wallet-open.svg</file>
         <file alias="qbittorrent.svg">qbittorrent-tray.svg</file>
-		<file alias="qbittorrent-tray-mono.svg">qbittorrent-tray-light.svg</file>
-		<file alias="dark/qbittorrent-tray-mono.svg">qbittorrent-tray-dark.svg</file>
+        <file alias="qbittorrent-tray-mono.svg">qbittorrent-tray-light.svg</file>
+        <file alias="dark/qbittorrent-tray-mono.svg">qbittorrent-tray-dark.svg</file>
     </qresource>
 </RCC>

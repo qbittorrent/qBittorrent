@@ -949,7 +949,10 @@ Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOp
     if (path.isEmpty())
     {
         // use implicit save path
-        path = Utils::Fs::toValidPath(subcategoryName(categoryName));
+        const QString subcatName = subcategoryName(categoryName);
+        if (!subcatName.isEmpty()) // subcategoryName() returns empty string if input ends with "/"
+            path = Path(Utils::Fs::toValidFileName(subcatName));
+
         basePath = categorySavePath(parentCategoryName(categoryName));
     }
 
@@ -970,10 +973,14 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     if (categoryName.isEmpty())
         return downloadPath();
 
-    const QString name = subcategoryName(categoryName);
-    const Path path = !downloadPathOption.path.isEmpty()
-            ? downloadPathOption.path
-            : Utils::Fs::toValidPath(name); // use implicit download path
+    Path path = downloadPathOption.path;
+    if (path.isEmpty())
+    {
+        // use implicit download path
+        const QString subcatName = subcategoryName(categoryName);
+        if (!subcatName.isEmpty())  // subcategoryName() returns empty string if input ends with "/"
+            path = Path(Utils::Fs::toValidFileName(subcatName));
+    }
 
     if (path.isAbsolute())
         return path;
