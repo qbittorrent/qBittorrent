@@ -148,7 +148,7 @@ namespace BitTorrent
         qlonglong timeSinceDownload() const override;
         qlonglong timeSinceActivity() const override;
 
-        ShareLimits shareLimits() const override;
+        const ShareLimits &shareLimits() const override;
         void setShareLimits(ShareLimits shareLimits) override;
         ShareLimits effectiveShareLimits() const override;
 

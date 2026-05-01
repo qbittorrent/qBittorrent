@@ -1285,6 +1285,20 @@ const initializeWindows = () => {
         }
     });
 
+    addClickEvent("selectAll", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        torrentsTable.selectAll();
+    });
+
+    addClickEvent("invertSelection", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        torrentsTable.selectInverse();
+    });
+
     for (const item of ["stop", "start", "recheck"]) {
         addClickEvent(item, (e) => {
             e.preventDefault();

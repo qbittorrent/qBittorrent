@@ -29,12 +29,7 @@ end_of_line = crlf
 end_of_line = crlf
 
 # ignore paths
-[dist/windows/3rdparty/*,
-  src/base/3rdparty/*,
-  src/lang/*.ts,
-  src/webui/www/private/css/lib/*,
-  src/webui/www/private/scripts/lib/*,
-  src/webui/www/translations/*.ts]
+[{dist/windows/3rdparty/*,src/base/3rdparty/*,src/lang/*.ts,src/webui/www/private/css/lib/*,src/webui/www/private/scripts/lib/*,src/webui/www/translations/*.ts}]
 charset = unset
 end_of_line = unset
 indent_style = unset

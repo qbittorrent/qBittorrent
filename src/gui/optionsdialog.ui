@@ -615,12 +615,7 @@
                       </item>
                       <item>
                        <property name="text">
-                        <string>Monochrome (for dark theme)</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Monochrome (for light theme)</string>
+                        <string>Monochrome</string>
                        </property>
                       </item>
                      </widget>
@@ -1681,20 +1676,47 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEditSmtpServer">
+                  <widget class="QLineEdit" name="lineEditSMTPServer">
                    <property name="placeholderText">
                     <string notr="true">smtp.example.com:465</string>
                    </property>
                   </widget>
                  </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="labelSMTPEncryption">
+                   <property name="text">
+                    <string>SMTP encryption:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <layout class="QHBoxLayout" name="layoutSMTPEncryption">
+                   <item>
+                    <widget class="QComboBox" name="comboSMTPEncryption"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelSMTPEncryptionPortInfo">
+                     <property name="text">
+                      <string>Default port: </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSMTPEncryptionSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkSmtpSSL">
-                 <property name="text">
-                  <string>This server requires a secure connection (SSL)</string>
-                 </property>
-                </widget>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupMailNotifAuth">
@@ -3213,7 +3235,54 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="3" column="0" colspan="3">
+                <layout class="QHBoxLayout" name="layoutShareLimitsMode">
+                 <item>
+                  <spacer name="horizontalSpacer_26">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButtonShareLimitsModeAny">
+                   <property name="text">
+                    <string>Any of the above</string>
+                   </property>
+                   <property name="checked">
+                    <bool>true</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QRadioButton" name="radioButtonShareLimitsModeAll">
+                   <property name="text">
+                    <string>All the above</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_25">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item row="4" column="0">
                 <widget class="QLabel" name="label">
                  <property name="text">
                   <string>then</string>
@@ -3223,7 +3292,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <widget class="QComboBox" name="comboRatioLimitAct">
                  <property name="enabled">
                   <bool>false</bool>

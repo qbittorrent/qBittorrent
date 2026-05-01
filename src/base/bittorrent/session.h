@@ -202,7 +202,7 @@ namespace BitTorrent
         virtual bool isDisableAutoTMMWhenCategorySavePathChanged() const = 0;
         virtual void setDisableAutoTMMWhenCategorySavePathChanged(bool value) = 0;
 
-        virtual ShareLimits shareLimits() const = 0;
+        virtual const ShareLimits &shareLimits() const = 0;
         virtual void setShareLimits(ShareLimits shareLimits) = 0;
 
         virtual QString getDHTBootstrapNodes() const = 0;

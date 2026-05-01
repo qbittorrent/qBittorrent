@@ -1557,12 +1557,13 @@ void TorrentsController::setDownloadLimitAction()
 
 void TorrentsController::setShareLimitsAction()
 {
-    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s, u"shareLimitAction"_s});
+    requireParams({u"hashes"_s, u"ratioLimit"_s, u"seedingTimeLimit"_s, u"inactiveSeedingTimeLimit"_s, u"shareLimitAction"_s, u"shareLimitsMode"_s});
 
     const BitTorrent::ShareLimits shareLimits {
         .ratioLimit = params()[u"ratioLimit"_s].toDouble(),
         .seedingTimeLimit = params()[u"seedingTimeLimit"_s].toInt(),
         .inactiveSeedingTimeLimit = params()[u"inactiveSeedingTimeLimit"_s].toInt(),
+        .mode = Utils::String::toEnum(params()[u"shareLimitsMode"_s], BitTorrent::ShareLimitsMode::Default),
         .action = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default)
     };
 
@@ -2057,7 +2058,7 @@ void TorrentsController::renameFileAction()
     requireParams({u"hash"_s, u"oldPath"_s, u"newPath"_s});
 
     const QString newFileName = QFileInfo(params()[u"newPath"_s]).fileName();
-    if (!Utils::Fs::isValidName(newFileName))
+    if (!Utils::Fs::isValidFileName(newFileName))
         throw APIError(APIErrorType::Conflict, tr("File name has invalid characters"));
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
@@ -2085,7 +2086,7 @@ void TorrentsController::renameFolderAction()
     requireParams({u"hash"_s, u"oldPath"_s, u"newPath"_s});
 
     const QString newFolderName = QFileInfo(params()[u"newPath"_s]).fileName();
-    if (!Utils::Fs::isValidName(newFolderName))
+    if (!Utils::Fs::isValidFileName(newFolderName))
         throw APIError(APIErrorType::Conflict, tr("Folder name has invalid characters"));
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);

@@ -31,6 +31,7 @@
 
 #include <QDialog>
 
+#include "base/net/proxytype.h"
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
@@ -48,11 +49,6 @@ enum DoubleClickAction
     NO_ACTION = 3,
     SHOW_OPTIONS = 4
 };
-
-namespace Net
-{
-    enum class ProxyType;
-}
 
 namespace Ui
 {
@@ -88,6 +84,7 @@ public slots:
 
 private slots:
     void adjustProxyOptions();
+    void changeSMTPEncryptionPortInfoLabel();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
     void enableApplyButton();

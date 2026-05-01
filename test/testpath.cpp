@@ -85,10 +85,60 @@ private slots:
         QCOMPARE(Path(uR"(\a/b)"_s).isValid(), true);
         QCOMPARE(Path(uR"(\a\b)"_s).isValid(), true);
 
+        QCOMPARE(Path(u"."_s).isValid(), true);
+        QCOMPARE(Path(u".."_s).isValid(), true);
+
+        QCOMPARE(Path(u"../"_s).isValid(), true);
+        QCOMPARE(Path(u"./"_s).isValid(), true);
+        QCOMPARE(Path(uR"(..\)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(.\)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"../a"_s).isValid(), true);
+        QCOMPARE(Path(u"./a"_s).isValid(), true);
+        QCOMPARE(Path(uR"(..\a)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(.\a)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a/../b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/./b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/./../b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/.././b"_s).isValid(), true);
+        QCOMPARE(Path(u"a/.././../b"_s).isValid(), true);
+
+        QCOMPARE(Path(uR"(a\..\b)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.\b)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.\..\b)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a/.."_s).isValid(), true);
+        QCOMPARE(Path(u"a/b/.."_s).isValid(), true);
+        QCOMPARE(Path(u"a/."_s).isValid(), true);
+        QCOMPARE(Path(u"a/b/."_s).isValid(), true);
+
+        QCOMPARE(Path(uR"(a\..)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\b\..)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\b\.)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"../../a/b"_s).isValid(), true);
+        QCOMPARE(Path(u"../.."_s).isValid(), true);
+        QCOMPARE(Path(u"../../../"_s).isValid(), true);
+        QCOMPARE(Path(u"./../a/../b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(..\..\a\b\..)"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\.\..\b\.)"_s).isValid(), true);
+
         QCOMPARE(Path(u"//"_s).isValid(), true);
         QCOMPARE(Path(uR"(\\)"_s).isValid(), true);
         QCOMPARE(Path(u"//a"_s).isValid(), true);
         QCOMPARE(Path(uR"(\\a)"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a//b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(a\\b)"_s).isValid(), true);
+        QCOMPARE(Path(u"/a//b"_s).isValid(), true);
+        QCOMPARE(Path(uR"(/a\\b)"_s).isValid(), true);
+
+        for (int i = 0; i <= 31; ++i)
+            QCOMPARE(Path(QChar(i)).isValid(), false);
+
+        QCOMPARE(Path(QChar(127)).isValid(), false);
 
 #if defined Q_OS_MACOS
         QCOMPARE(Path(u"\0"_s).isValid(), false);
@@ -100,8 +150,6 @@ private slots:
         QCOMPARE(Path(uR"(c:\a)"_s).isValid(), true);
         QCOMPARE(Path(uR"(c:\a\b)"_s).isValid(), true);
 
-        for (int i = 0; i <= 31; ++i)
-            QCOMPARE(Path(QChar(i)).isValid(), false);
         QCOMPARE(Path(u":"_s).isValid(), false);
         QCOMPARE(Path(u"?"_s).isValid(), false);
         QCOMPARE(Path(u"\""_s).isValid(), false);
@@ -109,6 +157,27 @@ private slots:
         QCOMPARE(Path(u"<"_s).isValid(), false);
         QCOMPARE(Path(u">"_s).isValid(), false);
         QCOMPARE(Path(u"|"_s).isValid(), false);
+
+        QCOMPARE(Path(u"a."_s).isValid(), false);
+        QCOMPARE(Path(u"a.txt."_s).isValid(), false);
+
+        QCOMPARE(Path(u"a "_s).isValid(), false);
+        QCOMPARE(Path(u"a.txt "_s).isValid(), false);
+
+        QCOMPARE(Path(u"CON"_s).isValid(), false);
+        QCOMPARE(Path(u"con"_s).isValid(), false);
+
+        QCOMPARE(Path(u"CON.txt"_s).isValid(), false);
+        QCOMPARE(Path(u"con.txt"_s).isValid(), false);
+
+        QCOMPARE(Path(u"CONCON"_s).isValid(), true);
+        QCOMPARE(Path(u"CONCON.txt"_s).isValid(), true);
+
+        QCOMPARE(Path(u"a/CON"_s).isValid(), false);
+        QCOMPARE(Path(u"a/CON.txt"_s).isValid(), false);
+
+        QCOMPARE(Path(u"CON."_s).isValid(), false);
+        QCOMPARE(Path(u"con."_s).isValid(), false);
 #else
         QCOMPARE(Path(u"\0"_s).isValid(), false);
 #endif

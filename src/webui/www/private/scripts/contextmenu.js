@@ -719,18 +719,19 @@ window.qBittorrent.ContextMenu ??= (() => {
 
     class RssDownloaderRuleContextMenu extends ContextMenu {
         adjustMenuPosition(e) {
+            const rssDownloaderPage = document.getElementById("rssdownloaderpage");
             this.updateMenuItems();
 
             // draw the menu off-screen to know the menu dimensions
             this.menu.style.left = "-999em";
             this.menu.style.top = "-999em";
             // position the menu
-            let xPosMenu = e.pageX + this.options.offsets.x - document.getElementById("rssdownloaderpage").offsetLeft;
-            let yPosMenu = e.pageY + this.options.offsets.y - document.getElementById("rssdownloaderpage").offsetTop;
-            if ((xPosMenu + this.menu.offsetWidth) > document.documentElement.clientWidth)
+            let xPosMenu = e.pageX + this.options.offsets.x - rssDownloaderPage.offsetLeft;
+            let yPosMenu = e.pageY + this.options.offsets.y - rssDownloaderPage.offsetTop;
+            if ((xPosMenu + this.menu.offsetWidth) > rssDownloaderPage.clientWidth)
                 xPosMenu -= this.menu.offsetWidth;
-            if ((yPosMenu + this.menu.offsetHeight) > document.documentElement.clientHeight)
-                yPosMenu = document.documentElement.clientHeight - this.menu.offsetHeight;
+            if ((yPosMenu + this.menu.offsetHeight) > rssDownloaderPage.clientHeight)
+                yPosMenu = rssDownloaderPage.clientHeight - this.menu.offsetHeight;
             xPosMenu = Math.max(xPosMenu, 0);
             yPosMenu = Math.max(yPosMenu, 0);
 
@@ -747,18 +748,21 @@ window.qBittorrent.ContextMenu ??= (() => {
                     // menu when nothing selected
                     this.hideItem("deleteRule");
                     this.hideItem("renameRule");
+                    this.hideItem("cloneRule");
                     this.hideItem("clearDownloadedEpisodes");
                     break;
                 case 1:
                     // menu when single item selected
                     this.showItem("deleteRule");
                     this.showItem("renameRule");
+                    this.showItem("cloneRule");
                     this.showItem("clearDownloadedEpisodes");
                     break;
                 default:
                     // menu when multiple items selected
                     this.showItem("deleteRule");
                     this.hideItem("renameRule");
+                    this.hideItem("cloneRule");
                     this.showItem("clearDownloadedEpisodes");
                     break;
             }

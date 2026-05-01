@@ -337,7 +337,7 @@
                         <label for="src_email_txt">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com">
+                        <input type="text" id="src_email_txt" placeholder="qBittorrent_notification@example.com" style="width: 40em;">
                     </td>
                 </tr>
                 <tr>
@@ -345,7 +345,7 @@
                         <label for="dest_email_txt">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="dest_email_txt">
+                        <input type="text" id="dest_email_txt" style="width: 40em;">
                     </td>
                 </tr>
                 <tr>
@@ -353,14 +353,32 @@
                         <label for="smtp_server_txt">QBT_TR(SMTP server:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465">
+                        <input type="text" id="smtp_server_txt" placeholder="smtp.example.com:465" style="width: 40em;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mailNotificationEncryptionCombobox">QBT_TR(SMTP encryption:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <select id="mailNotificationEncryptionCombobox" title="QBT_TR(Select the encryption type used when sending SMTP emails)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(no encryption used when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((last choice if no other option))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 25
+
+QBT_TR(STARTTLS)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(use STARTTLS encryption when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((alternative choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 587
+
+QBT_TR(SMTPS)QBT_TR[CONTEXT=OptionsDialog]: QBT_TR(use SMTPS encryption when sending emails)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default port)QBT_TR[CONTEXT=OptionsDialog] : 465">
+                            <option value="None">QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="STARTTLS">QBT_TR(STARTTLS)QBT_TR[CONTEXT=OptionsDialog]</option>
+                            <option value="SMTPS">QBT_TR(SMTPS)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        </select>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="formRow">
-            <input type="checkbox" id="mail_ssl_checkbox"><label for="mail_ssl_checkbox">QBT_TR(This server requires a secure connection (SSL))QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
         <fieldset class="settings">
             <legend>
                 <input type="checkbox" id="mail_auth_checkbox" onclick="qBittorrent.Preferences.updateMailAuthSettings();">
@@ -2000,7 +2018,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("src_email_txt").disabled = !isMailNotificationEnabled;
             document.getElementById("dest_email_txt").disabled = !isMailNotificationEnabled;
             document.getElementById("smtp_server_txt").disabled = !isMailNotificationEnabled;
-            document.getElementById("mail_ssl_checkbox").disabled = !isMailNotificationEnabled;
+            document.getElementById("mailNotificationEncryptionCombobox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_auth_checkbox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_test_button").disabled = !isMailNotificationEnabled;
 
@@ -2022,11 +2040,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Could not contact qBittorrent)QBT_TR[CONTEXT=HttpServer]");
+                        alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 
-                    alert("QBT_TR(Attempted to send email. Check your inbox to confirm success)QBT_TR[CONTEXT=OptionsDialog]");
+                    alert("QBT_TR(Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]");
                 });
         };
 
@@ -2452,7 +2470,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("src_email_txt").value = pref.mail_notification_sender;
                     document.getElementById("dest_email_txt").value = pref.mail_notification_email;
                     document.getElementById("smtp_server_txt").value = pref.mail_notification_smtp;
-                    document.getElementById("mail_ssl_checkbox").checked = pref.mail_notification_ssl_enabled;
+                    document.getElementById("mailNotificationEncryptionCombobox").value = pref.mail_notification_encryption_type;
                     document.getElementById("mail_auth_checkbox").checked = pref.mail_notification_auth_enabled;
                     document.getElementById("mail_username_text").value = pref.mail_notification_username;
                     document.getElementById("mail_password_text").value = pref.mail_notification_password;
@@ -2856,7 +2874,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["mail_notification_sender"] = document.getElementById("src_email_txt").value;
             settings["mail_notification_email"] = document.getElementById("dest_email_txt").value;
             settings["mail_notification_smtp"] = document.getElementById("smtp_server_txt").value;
-            settings["mail_notification_ssl_enabled"] = document.getElementById("mail_ssl_checkbox").checked;
+            settings["mail_notification_encryption_type"] = document.getElementById("mailNotificationEncryptionCombobox").value;
             settings["mail_notification_auth_enabled"] = document.getElementById("mail_auth_checkbox").checked;
             settings["mail_notification_username"] = document.getElementById("mail_username_text").value;
             settings["mail_notification_password"] = document.getElementById("mail_password_text").value;

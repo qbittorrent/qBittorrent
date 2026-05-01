@@ -558,6 +558,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_storedTags(BITTORRENT_SESSION_KEY(u"Tags"_s))
     , m_shareLimitAction(BITTORRENT_SESSION_KEY(u"ShareLimitAction"_s), ShareLimitAction::Stop
         , [](const ShareLimitAction action) { return (action == ShareLimitAction::Default) ? ShareLimitAction::Stop : action; })
+    , m_shareLimitsMode(BITTORRENT_SESSION_KEY(u"ShareLimitsMode"_s), ShareLimitsMode::MatchAny
+        , [](const ShareLimitsMode mode) { return (mode == ShareLimitsMode::Default) ? ShareLimitsMode::MatchAny : mode; })
     , m_savePath(BITTORRENT_SESSION_KEY(u"DefaultSavePath"_s), specialFolderLocation(SpecialFolder::Downloads))
     , m_downloadPath(BITTORRENT_SESSION_KEY(u"TempPath"_s), (savePath() / Path(u"temp"_s)))
     , m_isDownloadPathEnabled(BITTORRENT_SESSION_KEY(u"TempPathEnabled"_s), false)
@@ -595,6 +597,13 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_freeDiskSpaceCheckingTimer {new QTimer(this)}
     , m_minFreeDiskSpace {BITTORRENT_SESSION_KEY(u"MinFreeDiskSpace"_s), 0LL}
 {
+    m_shareLimits = {
+        .ratioLimit = m_globalMaxRatio,
+        .seedingTimeLimit = m_globalMaxSeedingMinutes,
+        .inactiveSeedingTimeLimit = m_globalMaxInactiveSeedingMinutes,
+        .mode = m_shareLimitsMode,
+        .action = m_shareLimitAction
+    };
     // It is required to perform async access to libtorrent sequentially
     m_asyncWorker->setMaxThreadCount(1);
     m_asyncWorker->setObjectName("SessionImpl m_asyncWorker");
@@ -943,7 +952,10 @@ Path SessionImpl::categorySavePath(const QString &categoryName, const CategoryOp
     if (path.isEmpty())
     {
         // use implicit save path
-        path = Utils::Fs::toValidPath(subcategoryName(categoryName));
+        const QString subcatName = subcategoryName(categoryName);
+        if (!subcatName.isEmpty()) // subcategoryName() returns empty string if input ends with "/"
+            path = Path(Utils::Fs::toValidFileName(subcatName));
+
         basePath = categorySavePath(parentCategoryName(categoryName));
     }
 
@@ -964,10 +976,14 @@ Path SessionImpl::categoryDownloadPath(const QString &categoryName, const Catego
     if (categoryName.isEmpty())
         return downloadPath();
 
-    const QString name = subcategoryName(categoryName);
-    const Path path = !downloadPathOption.path.isEmpty()
-            ? downloadPathOption.path
-            : Utils::Fs::toValidPath(name); // use implicit download path
+    Path path = downloadPathOption.path;
+    if (path.isEmpty())
+    {
+        // use implicit download path
+        const QString subcatName = subcategoryName(categoryName);
+        if (!subcatName.isEmpty())  // subcategoryName() returns empty string if input ends with "/"
+            path = Path(Utils::Fs::toValidFileName(subcatName));
+    }
 
     if (path.isAbsolute())
         return path;
@@ -989,7 +1005,15 @@ ShareLimits SessionImpl::categoryShareLimits(const QString &categoryName) const
         return shareLimits();
 
     const ShareLimits categoryShareLimits = categoryOptions(categoryName).shareLimits;
-    const ShareLimits parentCategoryShareLimits = categoryOptions(parentCategoryName(categoryName)).shareLimits;
+    const bool hasDefaults = (categoryShareLimits.ratioLimit == DEFAULT_RATIO_LIMIT)
+            || (categoryShareLimits.seedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+            || (categoryShareLimits.inactiveSeedingTimeLimit == DEFAULT_SEEDING_TIME_LIMIT)
+            || (categoryShareLimits.mode == ShareLimitsMode::Default)
+            || (categoryShareLimits.action == ShareLimitAction::Default);
+    if (!hasDefaults)
+        return categoryShareLimits;
+
+    const ShareLimits parentCategoryShareLimits = this->categoryShareLimits(parentCategoryName(categoryName));
     return {
         .ratioLimit = (categoryShareLimits.ratioLimit != DEFAULT_RATIO_LIMIT)
             ? categoryShareLimits.ratioLimit : parentCategoryShareLimits.ratioLimit,
@@ -997,6 +1021,8 @@ ShareLimits SessionImpl::categoryShareLimits(const QString &categoryName) const
             ? categoryShareLimits.seedingTimeLimit : parentCategoryShareLimits.seedingTimeLimit,
         .inactiveSeedingTimeLimit = (categoryShareLimits.inactiveSeedingTimeLimit != DEFAULT_SEEDING_TIME_LIMIT)
             ? categoryShareLimits.inactiveSeedingTimeLimit : parentCategoryShareLimits.inactiveSeedingTimeLimit,
+        .mode = (categoryShareLimits.mode != ShareLimitsMode::Default)
+            ? categoryShareLimits.mode : parentCategoryShareLimits.mode,
         .action = (categoryShareLimits.action != ShareLimitAction::Default)
             ? categoryShareLimits.action : parentCategoryShareLimits.action
     };
@@ -1212,14 +1238,9 @@ void SessionImpl::setDisableAutoTMMWhenCategorySavePathChanged(const bool value)
     m_isDisableAutoTMMWhenCategorySavePathChanged = value;
 }
 
-ShareLimits SessionImpl::shareLimits() const
+const ShareLimits &SessionImpl::shareLimits() const
 {
-    return {
-        .ratioLimit = m_globalMaxRatio,
-        .seedingTimeLimit = m_globalMaxSeedingMinutes,
-        .inactiveSeedingTimeLimit = m_globalMaxInactiveSeedingMinutes,
-        .action = m_shareLimitAction
-    };
+    return m_shareLimits;
 }
 
 void SessionImpl::setShareLimits(ShareLimits shareLimits)
@@ -1233,12 +1254,19 @@ void SessionImpl::setShareLimits(ShareLimits shareLimits)
     if (shareLimits.action == ShareLimitAction::Default) [[unlikely]]
         shareLimits.action = ShareLimitAction::Stop;
 
-    if (shareLimits != this->shareLimits())
+    Q_ASSERT(shareLimits.mode != ShareLimitsMode::Default);
+    if (shareLimits.mode == ShareLimitsMode::Default) [[unlikely]]
+        shareLimits.mode = ShareLimitsMode::MatchAny;
+
+    if (shareLimits != m_shareLimits)
     {
+        m_shareLimits = shareLimits;
+
         m_globalMaxRatio = shareLimits.ratioLimit;
         m_globalMaxSeedingMinutes = shareLimits.seedingTimeLimit;
         m_globalMaxInactiveSeedingMinutes = shareLimits.inactiveSeedingTimeLimit;
-        m_shareLimitAction  = shareLimits.action;
+        m_shareLimitAction = shareLimits.action;
+        m_shareLimitsMode = shareLimits.mode;
     }
 }
 
@@ -1817,6 +1845,10 @@ void SessionImpl::initMetrics()
             .hashJobs = findMetricIndex("disk.num_blocks_hashed"),
             .queuedDiskJobs = findMetricIndex("disk.queued_disk_jobs"),
             .diskJobTime = findMetricIndex("disk.disk_job_time")
+        },
+        .tracker =
+        {
+            .numQueuedTrackerAnnounces = findMetricIndex("tracker.num_queued_tracker_announces")
         }
     };
 }
@@ -2342,23 +2374,47 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     bool reached = false;
     QString description;
 
-    if (const qreal ratio = torrent->realRatio();
+    if (shareLimits.mode == ShareLimitsMode::MatchAny)
+    {
+        if (const qreal ratio = torrent->realRatio();
             (shareLimits.ratioLimit >= 0) && (ratio >= shareLimits.ratioLimit))
-    {
-        reached = true;
-        description = tr("Torrent reached the share ratio limit.");
-    }
-    else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+        {
+            reached = true;
+            description = tr("Torrent reached the share ratio limit.");
+        }
+        else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
             (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes >= shareLimits.seedingTimeLimit))
-    {
-        reached = true;
-        description = tr("Torrent reached the seeding time limit.");
-    }
-    else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+        {
+            reached = true;
+            description = tr("Torrent reached the seeding time limit.");
+        }
+        else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
             (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes >= shareLimits.inactiveSeedingTimeLimit))
+        {
+            reached = true;
+            description = tr("Torrent reached the inactive seeding time limit.");
+        }
+    }
+    else
     {
         reached = true;
-        description = tr("Torrent reached the inactive seeding time limit.");
+        description = tr("Torrent reached the share limit(s).");
+
+        if (const qreal ratio = torrent->realRatio();
+            (shareLimits.ratioLimit >= 0) && (ratio < shareLimits.ratioLimit))
+        {
+            reached = false;
+        }
+        else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+            (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes < shareLimits.seedingTimeLimit))
+        {
+            reached = false;
+        }
+        else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+            (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes < shareLimits.inactiveSeedingTimeLimit))
+        {
+            reached = false;
+        }
     }
 
     if (reached)
@@ -6306,6 +6362,8 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
     m_status.diskReadQueue = stats[m_metricIndices.peer.numPeersUpDisk];
     m_status.diskWriteQueue = stats[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
+
+    m_status.queuedTrackerAnnounces = stats[m_metricIndices.tracker.numQueuedTrackerAnnounces];
 
     if (totalDownload > m_status.totalDownload)
     {

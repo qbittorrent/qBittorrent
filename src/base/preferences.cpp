@@ -581,17 +581,17 @@ void Preferences::setMailNotificationSMTP(const QString &smtpServer)
     setValue(u"Preferences/MailNotification/smtp_server"_s, smtpServer);
 }
 
-bool Preferences::getMailNotificationSMTPSSL() const
+Net::SMTPEncryptionType Preferences::getMailNotificationSMTPEncryptionType() const
 {
-    return value(u"Preferences/MailNotification/req_ssl"_s, false);
+    return value(u"Preferences/MailNotification/SMTPEncryptionType"_s, Net::SMTPEncryptionType::SMTPS);
 }
 
-void Preferences::setMailNotificationSMTPSSL(const bool use)
+void Preferences::setMailNotificationSMTPEncryptionType(const Net::SMTPEncryptionType mailEncryptionType)
 {
-    if (use == getMailNotificationSMTPSSL())
+    if (mailEncryptionType == getMailNotificationSMTPEncryptionType())
         return;
 
-    setValue(u"Preferences/MailNotification/req_ssl"_s, use);
+    setValue(u"Preferences/MailNotification/SMTPEncryptionType"_s, mailEncryptionType);
 }
 
 bool Preferences::getMailNotificationSMTPAuth() const
@@ -1600,21 +1600,6 @@ void Preferences::setConfirmRemoveTrackerFromAllTorrents(const bool enabled)
 
     setValue(u"GUI/ConfirmActions/RemoveTrackerFromAllTorrents"_s, enabled);
 }
-
-#ifndef Q_OS_MACOS
-TrayIcon::Style Preferences::trayIconStyle() const
-{
-    return value(u"Preferences/Advanced/TrayIconStyle"_s, TrayIcon::Style::Normal);
-}
-
-void Preferences::setTrayIconStyle(const TrayIcon::Style style)
-{
-    if (style == trayIconStyle())
-        return;
-
-    setValue(u"Preferences/Advanced/TrayIconStyle"_s, style);
-}
-#endif
 
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
