@@ -162,7 +162,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
         m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT_STARTTLS));
         break;
 
-    case SMTPEncryptionType::None:  
+    case SMTPEncryptionType::None:
         m_socket->connectToHost(serverAddress, serverPort.value_or(SMTP_DEFAULT_PORT));
         break;
     }
