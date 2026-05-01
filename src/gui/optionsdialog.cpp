@@ -631,7 +631,7 @@ void OptionsDialog::loadDownloadsTabOptions()
         m_ui->spinMinFreeSpace->setEnabled(enabled);
     });
     connect(m_ui->checkMinFreeSpaceEnabled, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->spinMinFreeSpace, &QSpinBox::valueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMinFreeSpace, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
