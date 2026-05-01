@@ -48,7 +48,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup devcmd
-        uses: ilammy/msvc-dev-cmd@v1
+        uses: TheMrMilchmann/setup-msvc-dev@v4
         with:
           arch: ${{ matrix.config.arch }}
 
