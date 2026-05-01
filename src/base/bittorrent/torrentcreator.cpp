@@ -226,8 +226,8 @@ void TorrentCreator::run()
 #ifndef Q_OS_WIN
         if (!m_params.includeHiddenFiles && allFilesHidden)
         {
-            throw RuntimeError(tr("No files were added to the torrent because all files in the source are hidden files (dotfiles)."
-                " Enable the \"Include hidden files\" option to include them"));
+            throw RuntimeError(tr("\nAll files in the source are hidden files (dotfiles)."
+                " \nEnable the \"Include hidden files\" option to include them"));
         }
 #endif
 
