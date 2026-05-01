@@ -155,6 +155,7 @@ private:
         {{u"clientdata"_s, u"store"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
+        {{u"rss"_s, u"cloneRule"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"moveItem"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"refreshItem"_s}, Http::METHOD_POST},
