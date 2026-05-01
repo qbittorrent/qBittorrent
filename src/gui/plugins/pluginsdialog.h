@@ -28,60 +28,49 @@
 
 #pragma once
 
-#include <memory>
-#include <optional>
+#include <QDialog>
+#include <QSet>
 
-#include <QHash>
-#include <QObject>
-#include <QQueue>
+#include "base/plugins/pluginsengine.h"
+#include "base/settingvalue.h"
 
-#include "base/3rdparty/expected.hpp"
-#include "base/pathfwd.h"
-#include "base/utils/version.h"
-#include "pluginversion.h"
+class QDropEvent;
+class QTreeWidgetItem;
 
-using LuaVersion = Utils::Version<3>;
-using LuaBridgeVersion = Utils::Version<2>;
-
-class Plugin;
-
-namespace BitTorrent
+namespace Net
 {
-    class Torrent;
+    struct DownloadResult;
 }
 
-struct PluginInfo
+namespace Ui
 {
-    QString id;
-    QString name;
-    PluginVersion version;
-    bool invocable = false;
-    bool enabled = false;
-};
+    class PluginsDialog;
+}
 
-class PluginsEngine final : public QObject
+class PluginsDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PluginsEngine)
+    Q_DISABLE_COPY_MOVE(PluginsDialog)
 
 public:
-    static void initInstance();
-    static void freeInstance();
-    static PluginsEngine *instance();
+    explicit PluginsDialog(PluginsEngine *pluginsEngine, QWidget *parent = nullptr);
+    ~PluginsDialog() override;
 
-    static LuaVersion luaVersion();
-    static LuaBridgeVersion luaBridgeVersion();
+    QTreeWidgetItem *findItem(const QString &pluginID);
 
-    QHash<QString, PluginInfo> allPlugins() const;
-    std::optional<PluginInfo> pluginInfo(const QString &pluginID) const;
+protected:
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
 
-    bool installPlugin(const Path &pluginPath);
-    bool uninstallPlugin(const QString &pluginID);
-    void setPluginEnabled(const QString &pluginID, bool enabled);
+private slots:
+    void onActionInstallTriggered();
+    void onActionUninstallTriggered();
+    void togglePluginState(QTreeWidgetItem*);
+    void setRowColor(int row, const QString &color);
+    void displayContextMenu();
+    void enableSelection(bool enable);
 
-    void invokePlugin(const QString &pluginID);
-
-signals:
     void pluginInstalled(const Path &pluginPath, const PluginInfo &pluginInfo);
     void pluginInstallationFailed(const Path &pluginPath, const QString &reason);
     void pluginUpdated(const Path &pluginPath, const PluginInfo &oldPluginInfo
@@ -93,40 +82,21 @@ signals:
     void pluginEnabledChanged(const QString &pluginID, bool isEnabled);
 
 private:
-    struct PluginEntry
-    {
-        std::shared_ptr<Plugin> plugin;
-        QString id;
-        bool enabled = false;
-    };
-
-    static Path pluginsPath();
-
-    explicit PluginsEngine(QObject *parent = nullptr);
-    ~PluginsEngine() override;
-
-    nonstd::expected<PluginEntry, QString> loadPlugin(const Path &path);
-    void installPluginDeferred();
-    void installPluginImpl();
-    void uninstallPluginDeferred();
-    void uninstallPluginImpl();
-
-    void loadConfig();
     void loadPlugins();
-    void connectEventHandlers();
-    void storeConfig() const;
-    PluginInfo getPluginInfo(const PluginEntry &pluginEntry) const;
+    void addNewPlugin(const PluginInfo &pluginInfo);
+    void updatePlugin(const PluginInfo &pluginInfo);
+    void installPlugin(const Path &pluginPath);
+    void startAsyncOp();
+    void finishAsyncOp();
 
-    template <typename Signal>
-    void connectEventHandler(Signal &&signal, const char *eventHandlerName);
+    Ui::PluginsDialog *m_ui = nullptr;
+    PluginsEngine *m_pluginsEngine = nullptr;
 
-    template <typename... Args>
-    void callEventHandlers(const char *eventHandlerName, Args&&... args);
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeHeaderState;
+    SettingValue<QString> m_storeLastPath;
 
-    QHash<QString, PluginEntry> m_plugins;
-    QQueue<Path> m_pluginsToInstall;
-    QQueue<QString> m_pluginsToUninstall;
-    mutable bool m_configIsDirty = false;
-
-    inline static PluginsEngine *m_instance = nullptr;
+    int m_asyncOps = 0;
+    QSet<Path> m_installingPlugins;
+    QSet<QString> m_uninstallingPlugins;
 };
