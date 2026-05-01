@@ -205,6 +205,15 @@ QHash<QString, PluginInfo> PluginsEngine::allPlugins() const
     return plugins;
 }
 
+std::optional<PluginInfo> PluginsEngine::pluginInfo(const QString &pluginID) const
+{
+    const auto pluginIter = m_plugins.constFind(pluginID);
+    if (pluginIter == m_plugins.constEnd())
+        return std::nullopt;
+
+    return pluginIter->pluginInfo;
+}
+
 bool PluginsEngine::installPlugin(const Path &pluginPath)
 {
     if (!pluginPath.isAbsolute())

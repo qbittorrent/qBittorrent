@@ -14,6 +14,7 @@ qt_wrap_ui(UI_HEADERS
     ipsubnetwhitelistoptionsdialog.ui
     mainwindow.ui
     optionsdialog.ui
+    plugins/pluginsdialog.ui
     previewselectdialog.ui
     properties/peersadditiondialog.ui
     properties/propertieswidget.ui
@@ -71,6 +72,7 @@ add_library(qbt_gui STATIC
     log/logmodel.h
     mainwindow.h
     optionsdialog.h
+    plugins/pluginsdialog.h
     powermanagement/inhibitor.h
     powermanagement/powermanagement.h
     previewlistdelegate.h
@@ -177,6 +179,7 @@ add_library(qbt_gui STATIC
     log/logmodel.cpp
     mainwindow.cpp
     optionsdialog.cpp
+    plugins/pluginsdialog.cpp
     powermanagement/inhibitor.cpp
     powermanagement/powermanagement.cpp
     previewlistdelegate.cpp
