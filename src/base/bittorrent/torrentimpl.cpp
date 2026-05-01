@@ -2001,6 +2001,7 @@ void TorrentImpl::start(const TorrentOperatingMode mode)
         m_isStopped = false;
         m_stoppedDueLowDiskSpace = false;
         deferredRequestResumeData();
+        updateState();
         m_session->handleTorrentStarted(this);
     }
 
