@@ -3,12 +3,13 @@ version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
-    commit-message:
-      prefix: "GHA CI"
     groups:
       GHA_CI-dependency-update:
         patterns:
           - "*"
+    commit-message:
+      prefix: "GHA CI"
+      include: "Bump action versions"
     labels:
       - "CI"
     schedule:
@@ -16,12 +17,13 @@ updates:
 
   - package-ecosystem: "pre-commit"
     directory: "/"
-    commit-message:
-      prefix: "GHA CI"
     groups:
       GHA_CI-dependency-update:
         patterns:
           - "*"
+    commit-message:
+      prefix: "GHA CI"
+      include:  "Bump pre-commit hook versions"
     labels:
       - "CI"
     schedule:
