@@ -126,6 +126,9 @@ void TorrentCreator::run()
 #else
         lt::file_storage files;
 #endif
+#ifndef Q_OS_WIN
+        bool allFilesHidden = false;
+#endif
         if (QFileInfo(m_params.sourcePath.data()).isFile())
         {
             const auto fileFilter = [includeHidden = m_params.includeHiddenFiles](const std::string &f)
@@ -136,6 +139,9 @@ void TorrentCreator::run()
             files = lt::list_files(m_params.sourcePath.toString().toStdString(), fileFilter);
 #else
             lt::add_files(files, m_params.sourcePath.toString().toStdString(), fileFilter);
+#endif
+#ifndef Q_OS_WIN
+            allFilesHidden = !isFileAllowed(m_params.sourcePath.toString().toStdString(), m_params.includeHiddenFiles);
 #endif
         }
         else
@@ -208,7 +214,22 @@ void TorrentCreator::run()
             for (const QString &fileName : asConst(fileNames))
                 files.add_file(fileName.toStdString(), fileSizeMap[fileName]);
 #endif
+#ifndef Q_OS_WIN
+            if (fileNames.isEmpty())
+            {
+                QDirIterator it {m_params.sourcePath.data(), QDir::Files | QDir::Hidden, QDirIterator::Subdirectories};
+                allFilesHidden = it.hasNext();
+            }
+#endif
         }
+
+#ifndef Q_OS_WIN
+        if (!m_params.includeHiddenFiles && allFilesHidden)
+        {
+            throw RuntimeError(tr("No files were added to the torrent because all files in the source are hidden files (dotfiles)."
+                " Enable the \"Include hidden files\" option to include them"));
+        }
+#endif
 
         checkInterruptionRequested();
 
