@@ -260,6 +260,10 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         target_compile_definitions(qbt_base PUBLIC QBT_USES_GETRANDOM)
     endif()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(qbt_base PRIVATE
+        utils/reg.h
+        utils/reg.cpp
+    )
     target_link_libraries(qbt_base PRIVATE iphlpapi powrprof)
 endif()
 
