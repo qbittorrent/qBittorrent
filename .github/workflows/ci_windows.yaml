@@ -21,11 +21,11 @@ jobs:
         libtorrent:
           - version: "2.1.0-rc1"
             boost_major_version: "1"
-            boost_minor_version: "90"
+            boost_minor_version: "91"
             boost_patch_version: "0"
-          - version: "2.0.11"
+          - version: "2.0.12"
             boost_major_version: "1"
-            boost_minor_version: "90"
+            boost_minor_version: "91"
             boost_patch_version: "0"
           - version: "1.2.20"
             boost_major_version: "1"
@@ -120,7 +120,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
-          version: "6.10.1"
+          version: "6.10.3"
           arch: ${{ matrix.config.qt_arch }}
           archives: qtbase qtsvg qttools
           modules: qtimageformats
@@ -224,9 +224,9 @@ jobs:
           path: upload
 
       - name: Install NSIS
-        uses: repolevedavaj/install-nsis@a55ed92772254d1e51d880f85ce9b5719f907801 # v1.1.0
+        uses: repolevedavaj/install-nsis@c14d0ea1b829818b4e9313d8e009b43f0a65fddd # v1.2.0
         with:
-          nsis-version: '3.11'
+          nsis-version: '3.12'
 
       - name: Create installer
         run: |
