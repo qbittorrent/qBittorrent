@@ -1251,8 +1251,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             });
     });
 
-    document.getElementById("DlInfos").addEventListener("click", (event) => { globalDownloadLimitFN(); });
-    document.getElementById("UpInfos").addEventListener("click", (event) => { globalUploadLimitFN(); });
+    document.getElementById("DlInfos").addEventListener("click", (event) => { globalLimitFN(); });
+    document.getElementById("UpInfos").addEventListener("click", (event) => { globalLimitFN(); });
 
     document.getElementById("showTopToolbarLink").addEventListener("click", (e) => {
         showTopToolbar = !showTopToolbar;

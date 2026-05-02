@@ -1,0 +1,149 @@
+<script>
+    "use strict";
+
+    window.qBittorrent ??= {};
+    window.qBittorrent.GlobalSpeedLimits ??= (() => {
+        const exports = () => {
+            return {
+                init: init,
+            };
+        };
+
+        const setupSlider = (sliderId, input, limit) => {
+            const update = (value) => {
+                input.value = value === 0 ? "∞" : value;
+            };
+
+            input.addEventListener("change", (e) => {
+                let value = Number(e.target.value);
+                if (Number.isNaN(value) || (value < 0))
+                    value = 0;
+
+                slider.value = value;
+                update(value);
+            });
+
+            const slider = document.getElementById(sliderId);
+            if (limit > slider.max)
+                slider.max = limit;
+            slider.value = limit;
+            slider.addEventListener("input", (e) => {
+                update(Number(e.target.value));
+            });
+
+            update(limit);
+        };
+
+        const init = () => {
+            const uploadValue = document.getElementById("uploadValue");
+            const downloadValue = document.getElementById("downloadValue");
+            const altUploadValue = document.getElementById("altUploadValue");
+            const altDownloadValue = document.getElementById("altDownloadValue");
+
+            const applyButton = document.getElementById("applyButton");
+            applyButton.addEventListener("click", () => {
+                const upload = Number(uploadValue.value) * 1024 || 0;
+                const download = Number(downloadValue.value) * 1024 || 0;
+                const altUpload = Number(altUploadValue.value) * 1024 || 0;
+                const altDownload = Number(altDownloadValue.value) * 1024 || 0;
+
+                fetch("api/v2/transfer/setSpeedLimits", {
+                    method: "POST",
+                    body: new URLSearchParams({
+                        up_limit: upload,
+                        dl_limit: download,
+                        alt_up_limit: altUpload,
+                        alt_dl_limit: altDownload,
+                    })
+                }).then((response) => {
+                    if (!response.ok)
+                        alert("QBT_TR(Failed to set speed limits)QBT_TR[CONTEXT=SpeedLimit]");
+                }).then(() => {
+                    window.parent.updateMainData();
+                    window.parent.qBittorrent.Client.closeWindow(document.getElementById("globalSpeedLimitsPage"));
+                });
+            });
+
+            fetch("api/v2/transfer/getSpeedLimits")
+                .then((r) => r.json())
+                .then((limits) => {
+                    setupSlider("uploadSlider", uploadValue, limits.up_limit / 1024);
+                    setupSlider("downloadSlider", downloadValue, limits.dl_limit / 1024);
+                    setupSlider("altUploadSlider", altUploadValue, limits.alt_up_limit / 1024);
+                    setupSlider("altDownloadSlider", altDownloadValue, limits.alt_dl_limit / 1024);
+                });
+        };
+
+        return exports();
+    })();
+    Object.freeze(window.qBittorrent.GlobalSpeedLimits);
+
+    window.qBittorrent.GlobalSpeedLimits.init();
+</script>
+
+<style>
+    .speed-grid {
+        align-items: center;
+        display: grid;
+        gap: 4px;
+        grid-template-columns: 36px auto 1fr 100px auto;
+    }
+
+    .speed-icon {
+        grid-row: span 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .speed-icon img {
+        height: 24px;
+        width: 24px;
+    }
+
+</style>
+
+<fieldset class="settings">
+    <legend>QBT_TR(Speed limits)QBT_TR[CONTEXT=SpeedLimit]</legend>
+    <div class="speed-grid">
+        <div class="speed-icon">
+            <img alt="QBT_TR(Speed limits)QBT_TR[CONTEXT=SpeedLimit]" title="QBT_TR(Speed limits)QBT_TR[CONTEXT=SpeedLimit]" src="images/slow_off.svg">
+        </div>
+
+        <label for="uploadSlider">QBT_TR(Upload:)QBT_TR[CONTEXT=SpeedLimit]</label>
+        <input type="range" id="uploadSlider" min="0" max="10000">
+
+        <input type="text" id="uploadValue" aria-label="QBT_TR(Upload speed)QBT_TR[CONTEXT=SpeedLimit]">
+        <span>QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
+
+
+        <label for="downloadSlider">QBT_TR(Download:)QBT_TR[CONTEXT=SpeedLimit]</label>
+        <input type="range" id="downloadSlider" min="0" max="10000">
+
+        <input type="text" id="downloadValue" aria-label="QBT_TR(Download speed)QBT_TR[CONTEXT=SpeedLimit]">
+        <span>QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
+
+    </div>
+</fieldset>
+<fieldset class="settings">
+    <legend>QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=SpeedLimit]</legend>
+    <div class="speed-grid">
+        <div class="speed-icon">
+            <img alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=SpeedLimit]" title="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=SpeedLimit]" src="images/slow.svg">
+        </div>
+
+        <label for="altUploadSlider">QBT_TR(Upload:)QBT_TR[CONTEXT=SpeedLimit]</label>
+        <input type="range" id="altUploadSlider" min="0" max="10000">
+        <input type="text" id="altUploadValue" aria-label="QBT_TR(Alternative upload speed)QBT_TR[CONTEXT=SpeedLimit]">
+
+        <span>QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
+
+        <label for="altDownloadSlider">QBT_TR(Download:)QBT_TR[CONTEXT=SpeedLimit]</label>
+        <input type="range" id="altDownloadSlider" min="0" max="10000">
+        <input type="text" id="altDownloadValue" aria-label="QBT_TR(Alternative download speed)QBT_TR[CONTEXT=SpeedLimit]">
+        <span>QBT_TR(KiB/s)QBT_TR[CONTEXT=SpeedLimit]</span>
+    </div>
+</fieldset>
+<div style="text-align: center; margin-top: 10px;">
+    <button id="applyButton" type="button">QBT_TR(Apply)QBT_TR[CONTEXT=SpeedLimit]</button>
+</div>

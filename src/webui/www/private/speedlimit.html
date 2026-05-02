@@ -30,7 +30,6 @@
             const type = params.get("type");
             const hashes = params.get("hashes").split("|");
 
-            const isGlobal = (hashes[0] === "global");
             // Otherwise it's download limit
             const isUpload = (type === "upload");
 
@@ -64,36 +63,20 @@
 
             applyButton.addEventListener("click", (event) => {
                 const limit = Number(limitUpdateValue.value) * 1024;
-                if (isGlobal) {
-                    fetch(`api/v2/transfer/${setLimitMethod}`, {
-                            method: "POST",
-                            body: new URLSearchParams({
-                                limit: limit
-                            })
-                        })
-                        .then((response) => {
-                            if (!response.ok)
-                                return;
 
-                            window.parent.updateMainData();
-                            window.parent.qBittorrent.Client.closeFrameWindow(window);
-                        });
-                }
-                else {
-                    fetch(`api/v2/torrents/${setLimitMethod}`, {
-                            method: "POST",
-                            body: new URLSearchParams({
-                                hashes: hashes.join("|"),
-                                limit: limit
-                            })
+                fetch(`api/v2/torrents/${setLimitMethod}`, {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            hashes: hashes.join("|"),
+                            limit: limit
                         })
-                        .then((response) => {
-                            if (!response.ok)
-                                return;
+                    })
+                    .then((response) => {
+                        if (!response.ok)
+                            return;
 
-                            window.parent.qBittorrent.Client.closeFrameWindow(window);
-                        });
-                }
+                        window.parent.qBittorrent.Client.closeFrameWindow(window);
+                    });
             });
 
             document.getElementById("limitUpdateLabel").textContent =
@@ -115,29 +98,24 @@
 
                     // Get torrents download limit
                     // And create slider
-                    if (isGlobal) {
-                        setupSlider(globalLimit, 10000);
-                    }
-                    else {
-                        fetch(`api/v2/torrents/${getLimitMethod}`, {
-                                method: "POST",
-                                body: new URLSearchParams({
-                                    hashes: hashes.join("|")
-                                })
+                    fetch(`api/v2/torrents/${getLimitMethod}`, {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                hashes: hashes.join("|")
                             })
-                            .then(async (response) => {
-                                if (!response.ok)
-                                    return;
+                        })
+                        .then(async (response) => {
+                            if (!response.ok)
+                                return;
 
-                                const data = await response.json();
+                            const data = await response.json();
 
-                                const firstLimit = Math.max(data[hashes[0]], 0);
-                                const isAllFirstLimit = Object.values(data).every(value => value === firstLimit);
-                                const limit = isAllFirstLimit ? Math.round(firstLimit / 1024) : 0;
+                            const firstLimit = Math.max(data[hashes[0]], 0);
+                            const isAllFirstLimit = Object.values(data).every(value => value === firstLimit);
+                            const limit = isAllFirstLimit ? Math.round(firstLimit / 1024) : 0;
 
-                                setupSlider(limit, ((globalLimit > 0) ? globalLimit : 1000));
-                            });
-                    }
+                            setupSlider(limit, ((globalLimit > 0) ? globalLimit : 1000));
+                        });
                 });
 
             limitUpdateValue.focus();
