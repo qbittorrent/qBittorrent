@@ -11,7 +11,7 @@
 
         const setupSlider = (sliderId, input, limit) => {
             const update = (value) => {
-                input.value = value === 0 ? "∞" : value;
+                input.value = (value === 0) ? "∞" : value;
             };
 
             input.addEventListener("change", (e) => {
@@ -58,19 +58,22 @@
                 }).then((response) => {
                     if (!response.ok)
                         alert("QBT_TR(Failed to set speed limits)QBT_TR[CONTEXT=SpeedLimit]");
-                }).then(() => {
+
                     window.parent.updateMainData();
                     window.parent.qBittorrent.Client.closeWindow(document.getElementById("globalSpeedLimitsPage"));
                 });
             });
 
-            fetch("api/v2/transfer/getSpeedLimits")
-                .then((r) => r.json())
-                .then((limits) => {
-                    setupSlider("uploadSlider", uploadValue, limits.up_limit / 1024);
-                    setupSlider("downloadSlider", downloadValue, limits.dl_limit / 1024);
-                    setupSlider("altUploadSlider", altUploadValue, limits.alt_up_limit / 1024);
-                    setupSlider("altDownloadSlider", altDownloadValue, limits.alt_dl_limit / 1024);
+            fetch("api/v2/transfer/getSpeedLimits", {
+                    method: "GET",
+                    cache: "no-store"
+                })
+                .then(async (response) => {
+                    const limits = await response.json();
+                    setupSlider("uploadSlider", uploadValue, (limits.up_limit / 1024));
+                    setupSlider("downloadSlider", downloadValue, (limits.dl_limit / 1024));
+                    setupSlider("altUploadSlider", altUploadValue, (limits.alt_up_limit / 1024));
+                    setupSlider("altDownloadSlider", altDownloadValue, (limits.alt_dl_limit / 1024));
                 });
         };
 
@@ -82,21 +85,21 @@
 </script>
 
 <style>
-    .speed-grid {
+    .speedGrid {
         align-items: center;
         display: grid;
         gap: 4px;
         grid-template-columns: 36px auto 1fr 100px auto;
     }
 
-    .speed-icon {
+    .speedIcon {
         grid-row: span 2;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .speed-icon img {
+    .speedIcon img {
         height: 24px;
         width: 24px;
     }
@@ -105,8 +108,8 @@
 
 <fieldset class="settings">
     <legend>QBT_TR(Speed limits)QBT_TR[CONTEXT=SpeedLimit]</legend>
-    <div class="speed-grid">
-        <div class="speed-icon">
+    <div class="speedGrid">
+        <div class="speedIcon">
             <img alt="QBT_TR(Speed limits)QBT_TR[CONTEXT=SpeedLimit]" title="QBT_TR(Speed limits)QBT_TR[CONTEXT=SpeedLimit]" src="images/slow_off.svg">
         </div>
 
@@ -127,8 +130,8 @@
 </fieldset>
 <fieldset class="settings">
     <legend>QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=SpeedLimit]</legend>
-    <div class="speed-grid">
-        <div class="speed-icon">
+    <div class="speedGrid">
+        <div class="speedIcon">
             <img alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=SpeedLimit]" title="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=SpeedLimit]" src="images/slow.svg">
         </div>
 
