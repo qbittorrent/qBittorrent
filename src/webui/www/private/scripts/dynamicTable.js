@@ -3718,9 +3718,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             };
 
             const displayDate = function(td, row) {
-                const value = this.getRowValue(row);
-                const epoch = Date.parse(value) / 1000;
-                const date = toDateString(epoch);
+                const date = toDateString(this.getRowValue(row));
                 td.textContent = date;
                 td.title = date;
             };
