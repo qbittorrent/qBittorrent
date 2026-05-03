@@ -6,6 +6,9 @@
   * `app/preferences` endpoint includes `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
   * `app/setPreferences` endpoint no longer allows setting `mail_notification_ssl_enabled` option as it no longer exists
   * `app/setPreferences` endpoint allows to set `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
+* [#24134](https://github.com/qbittorrent/qBittorrent/pull/24134)
+  * `transfer/getSpeedLimits` endpoint was added to retrieve global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
+  * `transfer/setSpeedLimits` endpoint was added to set global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
 
 ## 2.15.4
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
