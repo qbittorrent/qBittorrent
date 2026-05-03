@@ -126,6 +126,18 @@
         background-image: url('images/edit-clear.svg');
     }
 
+    .rssRuleShareLimitHeader {
+        margin-top: 5px;
+    }
+
+    #ruleShareLimitTable td {
+        padding-bottom: 5px;
+    }
+
+    #ruleShareLimitTable input[type="number"] {
+        width: 6em;
+    }
+
 </style>
 
 <div id="RssDownloader" class="RssDownloader">
@@ -281,6 +293,72 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     </tr>
                 </tbody>
             </table>
+            <div class="formRow rssRuleShareLimitHeader">
+                <b>QBT_TR(Torrent Upload/Download Ratio Limiting)QBT_TR[CONTEXT=UpDownRatioDialog]</b>
+            </div>
+            <table class="fullWidth" id="ruleShareLimitTable">
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitRatioLabel" for="ruleShareLimitRatioMode">QBT_TR(Ratio:)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td>
+                            <select disabled id="ruleShareLimitRatioMode">
+                                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="unlimited">QBT_TR(Unlimited)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="set">QBT_TR(Set to)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input disabled type="number" id="ruleShareLimitRatio" value="1.00" step=".01" min="0" aria-labelledby="ruleShareLimitRatioLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitTotalMinutesLabel" for="ruleShareLimitTotalMinutesMode">QBT_TR(Seeding time:)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td>
+                            <select disabled id="ruleShareLimitTotalMinutesMode">
+                                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="unlimited">QBT_TR(Unlimited)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="set">QBT_TR(Set to)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input disabled type="number" id="ruleShareLimitTotalMinutes" value="1440" step="1" min="0" aria-labelledby="ruleShareLimitTotalMinutesLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitInactiveMinutesLabel" for="ruleShareLimitInactiveMinutesMode">QBT_TR(Inactive seeding time:)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td>
+                            <select disabled id="ruleShareLimitInactiveMinutesMode">
+                                <option value="default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="unlimited">QBT_TR(Unlimited)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="set">QBT_TR(Set to)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input disabled type="number" id="ruleShareLimitInactiveMinutes" value="1440" step="1" min="0" aria-labelledby="ruleShareLimitInactiveMinutesLabel">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="noWrap" id="ruleShareLimitActionLabel" for="ruleShareLimitAction">QBT_TR(Action when the limit is reached)QBT_TR[CONTEXT=UpDownRatioDialog]</label>
+                        </td>
+                        <td colspan="2" class="fullWidth">
+                            <select disabled id="ruleShareLimitAction" class="fullWidth" aria-labelledby="ruleShareLimitActionLabel">
+                                <option value="Default">QBT_TR(Default)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="Stop">QBT_TR(Stop torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="Remove">QBT_TR(Remove torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="RemoveWithContent">QBT_TR(Remove torrent and its content)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                                <option value="EnableSuperSeeding">QBT_TR(Enable super seeding for torrent)QBT_TR[CONTEXT=UpDownRatioDialog]</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </fieldset>
         <fieldset class="settings" id="rssDownloaderFeeds">
             <legend>QBT_TR(Apply Rule to Feeds:)QBT_TR[CONTEXT=AutomatedRssDownloader]</legend>
@@ -356,13 +434,188 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const rssDownloaderFeedSelectionTable = new window.qBittorrent.DynamicTable.RssDownloaderFeedSelectionTable();
         const rssDownloaderArticlesTable = new window.qBittorrent.DynamicTable.RssDownloaderArticlesTable();
 
-        let rulesList = {};
+        let categoryList = {};
         let feedList = [];
+        let rulesList = {};
+
+        const ruleShareLimit = (() => {
+            const shareLimitHelper = window.qBittorrent.RssRuleShareLimit;
+            const Mode = shareLimitHelper.Mode;
+
+            const FromCategoryText = "QBT_TR(From category)QBT_TR[CONTEXT=UpDownRatioDialog]";
+            const DefaultWithActionText = "QBT_TR(Default (%1))QBT_TR[CONTEXT=UpDownRatioDialog]";
+            const FromCategoryWithActionText = "QBT_TR(From category (%1))QBT_TR[CONTEXT=UpDownRatioDialog]";
+
+            let ruleShareLimitAction = null;
+            let ruleShareLimitDefaultText = "";
+            let ruleShareLimitInactiveMinutes = null;
+            let ruleShareLimitInactiveMinutesMode = null;
+            let ruleShareLimitRatio = null;
+            let ruleShareLimitRatioMode = null;
+            let ruleShareLimitTotalMinutes = null;
+            let ruleShareLimitTotalMinutesMode = null;
+            let saveButton = null;
+
+            const defaultActionText = (categoryName) => {
+                return shareLimitHelper.defaultActionText({
+                    categoryName: categoryName,
+                    categoryList: categoryList,
+                    globalAction: globalShareLimitAction(),
+                    actionText: shareLimitActionText,
+                    defaultText: ruleShareLimitDefaultText,
+                    fromCategoryText: FromCategoryText,
+                    defaultWithActionText: DefaultWithActionText,
+                    fromCategoryWithActionText: FromCategoryWithActionText
+                });
+            };
+
+            const isValid = () => {
+                return isValidMode(ruleShareLimitRatioMode, ruleShareLimitRatio)
+                    && isValidMode(ruleShareLimitTotalMinutesMode, ruleShareLimitTotalMinutes)
+                    && isValidMode(ruleShareLimitInactiveMinutesMode, ruleShareLimitInactiveMinutes);
+            };
+
+            const isValidMode = (modeElement, valueElement) => {
+                if (modeElement.value !== Mode.Set)
+                    return true;
+
+                return (valueElement.value !== "") && valueElement.validity.valid;
+            };
+
+            const loadLimit = (modeElement, valueElement, limitValue, valueFormatter = (value) => value) => {
+                modeElement.value = shareLimitHelper.modeFromLimit(limitValue);
+                if (modeElement.value === Mode.Set)
+                    valueElement.value = valueFormatter(limitValue);
+            };
+
+            const saveLimit = (modeElement, valueElement) => {
+                return shareLimitHelper.limitFromMode(modeElement.value, valueElement.value);
+            };
+
+            const globalShareLimitAction = () => {
+                return shareLimitHelper.actionFromGlobalPreference(window.parent.qBittorrent.Cache.preferences.get().max_ratio_act);
+            };
+
+            const shareLimitActionText = (shareLimitAction) => {
+                for (const option of ruleShareLimitAction.options) {
+                    if (option.value === shareLimitAction)
+                        return option.text;
+                }
+
+                return "";
+            };
+
+            const updateDefaultTexts = (categoryName) => {
+                const normalizedCategoryName = String(categoryName ?? "");
+                const defaultModeText = (normalizedCategoryName === "") ? ruleShareLimitDefaultText : FromCategoryText;
+
+                ruleShareLimitRatioMode.options[0].text = defaultModeText;
+                ruleShareLimitTotalMinutesMode.options[0].text = defaultModeText;
+                ruleShareLimitInactiveMinutesMode.options[0].text = defaultModeText;
+                ruleShareLimitAction.options[0].text = defaultActionText(normalizedCategoryName);
+            };
+
+            const updateState = () => {
+                const controlsEnabled = !ruleShareLimitRatioMode.disabled;
+
+                ruleShareLimitRatio.disabled = ruleShareLimitRatioMode.disabled || (ruleShareLimitRatioMode.value !== Mode.Set);
+                ruleShareLimitTotalMinutes.disabled = ruleShareLimitTotalMinutesMode.disabled || (ruleShareLimitTotalMinutesMode.value !== Mode.Set);
+                ruleShareLimitInactiveMinutes.disabled = ruleShareLimitInactiveMinutesMode.disabled || (ruleShareLimitInactiveMinutesMode.value !== Mode.Set);
+                ruleShareLimitAction.disabled = !controlsEnabled;
+
+                saveButton.disabled = !controlsEnabled || !isValid();
+            };
+
+            const init = () => {
+                ruleShareLimitAction = document.getElementById("ruleShareLimitAction");
+                ruleShareLimitInactiveMinutes = document.getElementById("ruleShareLimitInactiveMinutes");
+                ruleShareLimitInactiveMinutesMode = document.getElementById("ruleShareLimitInactiveMinutesMode");
+                ruleShareLimitRatio = document.getElementById("ruleShareLimitRatio");
+                ruleShareLimitRatioMode = document.getElementById("ruleShareLimitRatioMode");
+                ruleShareLimitTotalMinutes = document.getElementById("ruleShareLimitTotalMinutes");
+                ruleShareLimitTotalMinutesMode = document.getElementById("ruleShareLimitTotalMinutesMode");
+                saveButton = document.getElementById("saveButton");
+
+                ruleShareLimitDefaultText = ruleShareLimitRatioMode.options[0].text;
+
+                ruleShareLimitRatioMode.addEventListener("change", updateState);
+                ruleShareLimitTotalMinutesMode.addEventListener("change", updateState);
+                ruleShareLimitInactiveMinutesMode.addEventListener("change", updateState);
+
+                ruleShareLimitRatio.addEventListener("input", updateState);
+                ruleShareLimitTotalMinutes.addEventListener("input", updateState);
+                ruleShareLimitInactiveMinutes.addEventListener("input", updateState);
+
+                setEnabled(false);
+                reset();
+            };
+
+            const load = (torrentParams) => {
+                const categoryName = String(torrentParams.category ?? "");
+                const ratioLimit = Number(torrentParams.ratio_limit ?? shareLimitHelper.UseGlobalLimit);
+                const seedingTimeLimit = Number(torrentParams.seeding_time_limit ?? shareLimitHelper.UseGlobalLimit);
+                const inactiveSeedingTimeLimit = Number(torrentParams.inactive_seeding_time_limit ?? shareLimitHelper.UseGlobalLimit);
+
+                reset();
+                updateDefaultTexts(categoryName);
+
+                loadLimit(ruleShareLimitRatioMode, ruleShareLimitRatio, ratioLimit, (value) => value.toFixed(2));
+                loadLimit(ruleShareLimitTotalMinutesMode, ruleShareLimitTotalMinutes, seedingTimeLimit);
+                loadLimit(ruleShareLimitInactiveMinutesMode, ruleShareLimitInactiveMinutes, inactiveSeedingTimeLimit);
+
+                ruleShareLimitAction.value = (torrentParams.share_limit_action ?? shareLimitHelper.Action.Default);
+                if (ruleShareLimitAction.value === "")
+                    ruleShareLimitAction.value = shareLimitHelper.Action.Default;
+
+                updateState();
+            };
+
+            const reset = () => {
+                updateDefaultTexts("");
+
+                ruleShareLimitRatioMode.value = Mode.Default;
+                ruleShareLimitRatio.value = "1.00";
+                ruleShareLimitTotalMinutesMode.value = Mode.Default;
+                ruleShareLimitTotalMinutes.value = 1440;
+                ruleShareLimitInactiveMinutesMode.value = Mode.Default;
+                ruleShareLimitInactiveMinutes.value = 1440;
+                ruleShareLimitAction.value = shareLimitHelper.Action.Default;
+
+                updateState();
+            };
+
+            const save = (torrentParams) => {
+                if (!isValid())
+                    return false;
+
+                torrentParams.ratio_limit = saveLimit(ruleShareLimitRatioMode, ruleShareLimitRatio);
+                torrentParams.seeding_time_limit = saveLimit(ruleShareLimitTotalMinutesMode, ruleShareLimitTotalMinutes);
+                torrentParams.inactive_seeding_time_limit = saveLimit(ruleShareLimitInactiveMinutesMode, ruleShareLimitInactiveMinutes);
+                torrentParams.share_limit_action = ruleShareLimitAction.value;
+
+                return true;
+            };
+
+            const setEnabled = (enabled) => {
+                ruleShareLimitRatioMode.disabled = !enabled;
+                ruleShareLimitTotalMinutesMode.disabled = !enabled;
+                ruleShareLimitInactiveMinutesMode.disabled = !enabled;
+
+                updateState();
+            };
+
+            return {
+                init: init,
+                load: load,
+                reset: reset,
+                save: save,
+                setEnabled: setEnabled,
+                updateDefaultTexts: updateDefaultTexts
+            };
+        })();
 
         const setup = () => {
-            const pref = window.parent.qBittorrent.Cache.preferences.get();
-
-            if (!pref.rss_auto_downloading_enabled)
+            if (!window.parent.qBittorrent.Cache.preferences.get().rss_auto_downloading_enabled)
                 document.getElementById("rssDownloaderDisabled").classList.remove("invisible");
 
             // recalculate height
@@ -434,6 +687,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                         return;
 
                     const responseJSON = await response.json();
+                    categoryList = responseJSON;
 
                     const combobox = document.getElementById("assignCategoryCombobox");
                     for (const cat in responseJSON) {
@@ -444,6 +698,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                         option.text = option.value = cat;
                         combobox.add(option);
                     }
+
+                    const lastSelectedRow = rssDownloaderRulesTable.selectedRows.at(-1);
+                    if (lastSelectedRow === undefined)
+                        return;
+
+                    const ruleName = rssDownloaderRulesTable.getRow(lastSelectedRow).full_data.name;
+                    if (rulesList[ruleName] === undefined)
+                        return;
+
+                    combobox.value = rulesList[ruleName].torrentParams.category ? rulesList[ruleName].torrentParams.category : "";
+                    ruleShareLimit.updateDefaultTexts(rulesList[ruleName].torrentParams.category);
                 });
             // get all rss feed
             const url = new URL("api/v2/rss/items", window.location);
@@ -474,6 +739,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             document.getElementById("savetoDifferentDir").addEventListener("click", (event) => {
                 document.getElementById("saveToText").disabled = !event.target.checked;
             });
+            document.getElementById("assignCategoryCombobox").addEventListener("change", (event) => {
+                ruleShareLimit.updateDefaultTexts(event.target.value);
+            });
+            ruleShareLimit.init();
             updateRulesList();
         };
 
@@ -660,6 +929,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     break;
             }
 
+            if (!ruleShareLimit.save(rulesList[rule].torrentParams))
+                return;
+
             fetch("api/v2/rss/setRule", {
                     method: "POST",
                     body: new URLSearchParams({
@@ -715,7 +987,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         const showRule = (ruleName) => {
             if (ruleName === "") {
                 // disable all
-                document.getElementById("saveButton").disabled = true;
                 document.getElementById("useRegEx").disabled = true;
                 document.getElementById("mustContainText").disabled = true;
                 document.getElementById("mustNotContainText").disabled = true;
@@ -728,6 +999,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 document.getElementById("ignoreDaysValue").disabled = true;
                 document.getElementById("addStoppedCombobox").disabled = true;
                 document.getElementById("contentLayoutCombobox").disabled = true;
+                ruleShareLimit.setEnabled(false);
 
                 // reset all boxes
                 document.getElementById("useRegEx").checked = false;
@@ -743,6 +1015,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 document.getElementById("lastMatchText").textContent = "QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]";
                 document.getElementById("addStoppedCombobox").value = "default";
                 document.getElementById("contentLayoutCombobox").value = "Default";
+                ruleShareLimit.reset();
                 rssDownloaderFeedSelectionTable.clear();
                 rssDownloaderArticlesTable.clear();
 
@@ -752,7 +1025,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             }
             else {
                 // enable all
-                document.getElementById("saveButton").disabled = false;
                 document.getElementById("useRegEx").disabled = false;
                 document.getElementById("mustContainText").disabled = false;
                 document.getElementById("mustNotContainText").disabled = false;
@@ -764,6 +1036,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 document.getElementById("ignoreDaysValue").disabled = false;
                 document.getElementById("addStoppedCombobox").disabled = false;
                 document.getElementById("contentLayoutCombobox").disabled = false;
+                ruleShareLimit.setEnabled(true);
 
                 // load rule settings
                 document.getElementById("useRegEx").checked = rulesList[ruleName].useRegex;
@@ -798,6 +1071,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     document.getElementById("contentLayoutCombobox").value = "Default";
                 else
                     document.getElementById("contentLayoutCombobox").value = rulesList[ruleName].torrentParams.content_layout;
+                ruleShareLimit.load(rulesList[ruleName].torrentParams);
 
                 setElementTitles();
 
