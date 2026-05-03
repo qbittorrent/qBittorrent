@@ -3320,32 +3320,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // hide entries
             const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
-            if (libtorrentVersion.valid) {
-                if (libtorrentVersion.major >= 2) {
-                    document.getElementById("rowDiskCache").style.display = "none";
-                    document.getElementById("rowDiskCacheExpiryInterval").style.display = "none";
-                    document.getElementById("rowCoalesceReadsAndWrites").style.display = "none";
-
-                    if ((libtorrentVersion.major === 2) && (libtorrentVersion.minor === 0)) {
-                        document.getElementById("diskIOTypePreadPwrite").hidden = true;
-
-                        if (libtorrentVersion.fix < 6)
-                            document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
-                    }
-                }
-                else {
-                    document.getElementById("fieldsetI2p").style.display = "none";
-                    document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
-                    document.getElementById("rowHashingThreads").style.display = "none";
-                    document.getElementById("rowDiskIOType").style.display = "none";
-                    document.getElementById("rowI2pInboundQuantity").style.display = "none";
-                    document.getElementById("rowI2pOutboundQuantity").style.display = "none";
-                    document.getElementById("rowI2pInboundLength").style.display = "none";
-                    document.getElementById("rowI2pOutboundLength").style.display = "none";
-
-                    document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
-                }
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2") >= 0) {
+                document.getElementById("rowDiskCache").style.display = "none";
+                document.getElementById("rowDiskCacheExpiryInterval").style.display = "none";
+                document.getElementById("rowCoalesceReadsAndWrites").style.display = "none";
             }
+            else {
+                document.getElementById("fieldsetI2p").style.display = "none";
+                document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
+                document.getElementById("rowHashingThreads").style.display = "none";
+                document.getElementById("rowDiskIOType").style.display = "none";
+                document.getElementById("rowI2pInboundQuantity").style.display = "none";
+                document.getElementById("rowI2pOutboundQuantity").style.display = "none";
+                document.getElementById("rowI2pInboundLength").style.display = "none";
+                document.getElementById("rowI2pOutboundLength").style.display = "none";
+            }
+
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.0.6") < 0)
+                document.getElementById("diskIOWriteModeWriteThrough").hidden = true;
+
+            if (window.qBittorrent.Misc.compareVersions(libtorrentVersion, "2.1") < 0)
+                document.getElementById("diskIOTypePreadPwrite").hidden = true;
 
             if ((buildInfo.platform === "linux") || (buildInfo.platform === "macos"))
                 document.getElementById("rowMemoryWorkingSetLimit").style.display = "none";
