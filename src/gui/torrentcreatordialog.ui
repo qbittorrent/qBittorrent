@@ -250,6 +250,13 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="checkIncludeHiddenFiles">
+            <property name="text">
+             <string>Include hidden files (filenames starting with &quot;.&quot;)</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QGroupBox" name="checkOptimizeAlignment">
             <property name="title">
              <string>Optimize alignment</string>

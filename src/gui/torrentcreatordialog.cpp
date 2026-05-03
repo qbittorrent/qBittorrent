@@ -105,6 +105,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     , m_storePrivateTorrent(SETTINGS_KEY(u"PrivateTorrent"_s))
     , m_storeStartSeeding(SETTINGS_KEY(u"StartSeeding"_s))
     , m_storeIgnoreRatio(SETTINGS_KEY(u"IgnoreRatio"_s))
+    , m_storeIncludeHiddenFiles(SETTINGS_KEY(u"IncludeHiddenFiles"_s))
 #ifdef QBT_USES_LIBTORRENT2
     , m_storeTorrentFormat(SETTINGS_KEY(u"TorrentFormat"_s))
 #else
@@ -140,6 +141,10 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
 
     loadSettings();
     updateInputPath(defaultPath);
+
+#ifdef Q_OS_WIN
+    m_ui->checkIncludeHiddenFiles->setVisible(false);
+#endif
 
     m_threadPool.setMaxThreadCount(1);
     m_threadPool.setObjectName("TorrentCreatorDialog m_threadPool");
@@ -237,17 +242,19 @@ void TorrentCreatorDialog::onCalculatePiecesButtonClicked()
 #ifdef QBT_USES_LIBTORRENT2
     PieceCalculationThread::CalcFunc calc = [path = m_ui->textInputPath->selectedPath()
         , pieceSize = getPieceSize()
-        , torrentFormat = getTorrentFormat()]() -> int
+        , torrentFormat = getTorrentFormat()
+        , includeHidden = m_ui->checkIncludeHiddenFiles->isChecked()]() -> int
         {
-            return BitTorrent::TorrentCreator::calculateTotalPieces(path, pieceSize, torrentFormat);
+            return BitTorrent::TorrentCreator::calculateTotalPieces(path, pieceSize, torrentFormat, includeHidden);
         };
 #else
     PieceCalculationThread::CalcFunc calc = [path = m_ui->textInputPath->selectedPath()
         , pieceSize = getPieceSize()
         , isAlignmentOptimized = m_ui->checkOptimizeAlignment->isChecked()
-        , paddedFileSizeLimit = getPaddedFileSizeLimit()]() -> int
+        , paddedFileSizeLimit = getPaddedFileSizeLimit()
+        , includeHidden = m_ui->checkIncludeHiddenFiles->isChecked()]() -> int
         {
-            return BitTorrent::TorrentCreator::calculateTotalPieces(path, pieceSize, isAlignmentOptimized, paddedFileSizeLimit);
+            return BitTorrent::TorrentCreator::calculateTotalPieces(path, pieceSize, isAlignmentOptimized, paddedFileSizeLimit, includeHidden);
         };
 #endif
 
@@ -303,6 +310,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
         .replace(QRegularExpression(u"\n\n[\n]+"_s), u"\n\n"_s).split(u'\n');
     const BitTorrent::TorrentCreatorParams params
     {
+        .includeHiddenFiles = m_ui->checkIncludeHiddenFiles->isChecked(),
         .isPrivate = m_ui->checkPrivate->isChecked(),
 #ifdef QBT_USES_LIBTORRENT2
         .torrentFormat = getTorrentFormat(),
@@ -414,6 +422,7 @@ void TorrentCreatorDialog::saveSettings()
     m_storePrivateTorrent = m_ui->checkPrivate->isChecked();
     m_storeStartSeeding = m_ui->checkStartSeeding->isChecked();
     m_storeIgnoreRatio = m_ui->checkIgnoreShareLimits->isChecked();
+    m_storeIncludeHiddenFiles = m_ui->checkIncludeHiddenFiles->isChecked();
 #ifdef QBT_USES_LIBTORRENT2
     m_storeTorrentFormat = m_ui->comboTorrentFormat->currentIndex();
 #else
@@ -438,6 +447,7 @@ void TorrentCreatorDialog::loadSettings()
     m_ui->checkStartSeeding->setChecked(m_storeStartSeeding);
     m_ui->checkIgnoreShareLimits->setChecked(m_storeIgnoreRatio);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
+    m_ui->checkIncludeHiddenFiles->setChecked(m_storeIncludeHiddenFiles.get(false));
 #ifdef QBT_USES_LIBTORRENT2
     m_ui->comboTorrentFormat->setCurrentIndex(m_storeTorrentFormat.get(1));
 #else
