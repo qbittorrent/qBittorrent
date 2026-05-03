@@ -7999,37 +7999,37 @@ readme[0-9].txt: lọc &apos;readme1.txt&apos;, &apos;readme2.txt&apos; nhưng k
         <translation>Hệ thống</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2058"/>
+        <location filename="../gui/optionsdialog.cpp" line="2060"/>
         <source>Select folder to monitor</source>
         <translation>Chọn thư mục để theo dõi</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2080"/>
+        <location filename="../gui/optionsdialog.cpp" line="2082"/>
         <source>Adding entry failed</source>
         <translation>Thêm mục nhập thất bại</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2180"/>
+        <location filename="../gui/optionsdialog.cpp" line="2182"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Tên người dùng WebUI phải dài ít nhất 3 ký tự.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2185"/>
+        <location filename="../gui/optionsdialog.cpp" line="2187"/>
         <source>Character Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2185"/>
+        <location filename="../gui/optionsdialog.cpp" line="2187"/>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2192"/>
+        <location filename="../gui/optionsdialog.cpp" line="2194"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation>Mật khẩu WebUI phải dài ít nhất 6 ký tự.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2202"/>
+        <location filename="../gui/optionsdialog.cpp" line="2204"/>
         <source>Location Error</source>
         <translation>Lỗi Vị trí</translation>
     </message>
@@ -8099,27 +8099,27 @@ Check the Execution Log for errors.</source>
         <translation>Tất cả các bộ lọc được hỗ trợ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2202"/>
+        <location filename="../gui/optionsdialog.cpp" line="2204"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation>Vị trí tệp WebUI thay thế không được để trống.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2239"/>
+        <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Parsing error</source>
         <translation>Lỗi Phân tích cú pháp</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2239"/>
+        <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Không phân tích được bộ lọc IP đã cung cấp</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2241"/>
+        <location filename="../gui/optionsdialog.cpp" line="2243"/>
         <source>Successfully refreshed</source>
         <translation>Đã cập nhật thành công</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2241"/>
+        <location filename="../gui/optionsdialog.cpp" line="2243"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Đã phân tích cú pháp thành công bộ lọc IP đã cung cấp: %1 quy tắc đã được áp dụng.</translation>
@@ -8130,18 +8130,18 @@ Check the Execution Log for errors.</source>
         <translation>Tùy chỉnh</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2250"/>
+        <location filename="../gui/optionsdialog.cpp" line="2252"/>
         <source>Time Error</source>
         <translation>Lỗi Thời gian</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2250"/>
+        <location filename="../gui/optionsdialog.cpp" line="2252"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Thời gian bắt đầu và thời gian kết thúc không được phép giống nhau.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2180"/>
-        <location filename="../gui/optionsdialog.cpp" line="2192"/>
+        <location filename="../gui/optionsdialog.cpp" line="2182"/>
+        <location filename="../gui/optionsdialog.cpp" line="2194"/>
         <source>Length Error</source>
         <translation>Lỗi độ dài</translation>
     </message>

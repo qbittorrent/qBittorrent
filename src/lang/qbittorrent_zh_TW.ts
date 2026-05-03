@@ -7999,37 +7999,37 @@ readme[0-9].txt：過濾「readme1.txt」、「readme2.txt」但不包含「read
         <translation>系統</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2058"/>
+        <location filename="../gui/optionsdialog.cpp" line="2060"/>
         <source>Select folder to monitor</source>
         <translation>選擇資料夾以監視</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2080"/>
+        <location filename="../gui/optionsdialog.cpp" line="2082"/>
         <source>Adding entry failed</source>
         <translation>新增項目失敗</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2180"/>
+        <location filename="../gui/optionsdialog.cpp" line="2182"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>WebUI 使用者名稱必須至少 3 個字元長。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2185"/>
+        <location filename="../gui/optionsdialog.cpp" line="2187"/>
         <source>Character Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2185"/>
+        <location filename="../gui/optionsdialog.cpp" line="2187"/>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2192"/>
+        <location filename="../gui/optionsdialog.cpp" line="2194"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation>WebUI 密碼必須至少 6 個字元長。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2202"/>
+        <location filename="../gui/optionsdialog.cpp" line="2204"/>
         <source>Location Error</source>
         <translation>位置錯誤</translation>
     </message>
@@ -8099,27 +8099,27 @@ Check the Execution Log for errors.</source>
         <translation>所有支援的過濾器</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2202"/>
+        <location filename="../gui/optionsdialog.cpp" line="2204"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation>替補的 WebUI 檔案位置不應該為空白。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2239"/>
+        <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Parsing error</source>
         <translation>解析錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2239"/>
+        <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>所提供的 IP 過濾器解析失敗</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2241"/>
+        <location filename="../gui/optionsdialog.cpp" line="2243"/>
         <source>Successfully refreshed</source>
         <translation>重新更新成功</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2241"/>
+        <location filename="../gui/optionsdialog.cpp" line="2243"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>成功分析所提供的 IP 過濾器：套用 %1 個規則。</translation>
@@ -8130,18 +8130,18 @@ Check the Execution Log for errors.</source>
         <translation>偏好設定</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2250"/>
+        <location filename="../gui/optionsdialog.cpp" line="2252"/>
         <source>Time Error</source>
         <translation>時間錯誤</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2250"/>
+        <location filename="../gui/optionsdialog.cpp" line="2252"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>起始時間與終止時間不應該相同。</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2180"/>
-        <location filename="../gui/optionsdialog.cpp" line="2192"/>
+        <location filename="../gui/optionsdialog.cpp" line="2182"/>
+        <location filename="../gui/optionsdialog.cpp" line="2194"/>
         <source>Length Error</source>
         <translation>長度錯誤</translation>
     </message>

@@ -279,10 +279,12 @@ QString Utils::Misc::languageToLocalizedString(const QStringView localeStr)
     const QLocale locale {localeStr};
     switch (locale.language())
     {
+    case QLocale::Albanian: return C_LOCALE_ALBANIAN;
     case QLocale::Arabic: return C_LOCALE_ARABIC;
     case QLocale::Armenian: return C_LOCALE_ARMENIAN;
     case QLocale::Azerbaijani: return C_LOCALE_AZERBAIJANI;
     case QLocale::Basque: return C_LOCALE_BASQUE;
+    case QLocale::Bosnian: return C_LOCALE_BOSNIAN;
     case QLocale::Bulgarian: return C_LOCALE_BULGARIAN;
     case QLocale::Byelorussian: return C_LOCALE_BYELORUSSIAN;
     case QLocale::Catalan: return C_LOCALE_CATALAN;
@@ -318,11 +320,13 @@ QString Utils::Misc::languageToLocalizedString(const QStringView localeStr)
     case QLocale::Indonesian: return C_LOCALE_INDONESIAN;
     case QLocale::Italian: return C_LOCALE_ITALIAN;
     case QLocale::Japanese: return C_LOCALE_JAPANESE;
+    case QLocale::Kazakh: return C_LOCALE_KAZAKH;
     case QLocale::Korean: return C_LOCALE_KOREAN;
     case QLocale::Latvian: return C_LOCALE_LATVIAN;
     case QLocale::Lithuanian: return C_LOCALE_LITHUANIAN;
     case QLocale::Malay: return C_LOCALE_MALAY;
     case QLocale::Mongolian: return C_LOCALE_MONGOLIAN;
+    case QLocale::Nepali: return C_LOCALE_NEPALI;
     case QLocale::NorwegianBokmal: return C_LOCALE_NORWEGIAN;
     case QLocale::Occitan: return C_LOCALE_OCCITAN;
     case QLocale::Persian: return C_LOCALE_PERSIAN;
@@ -333,7 +337,10 @@ QString Utils::Misc::languageToLocalizedString(const QStringView localeStr)
         return C_LOCALE_PORTUGUESE;
     case QLocale::Romanian: return C_LOCALE_ROMANIAN;
     case QLocale::Russian: return C_LOCALE_RUSSIAN;
-    case QLocale::Serbian: return C_LOCALE_SERBIAN;
+    case QLocale::Serbian:
+        if (localeStr.contains(u"latin", Qt::CaseInsensitive))
+            return C_LOCALE_SERBIAN_LATIN;
+        return C_LOCALE_SERBIAN;
     case QLocale::Slovak: return C_LOCALE_SLOVAK;
     case QLocale::Slovenian: return C_LOCALE_SLOVENIAN;
     case QLocale::Spanish: return C_LOCALE_SPANISH;

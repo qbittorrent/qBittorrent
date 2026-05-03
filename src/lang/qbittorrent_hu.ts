@@ -7998,37 +7998,37 @@ readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos; szűrő, de ne
         <translation>Rendszer</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2058"/>
+        <location filename="../gui/optionsdialog.cpp" line="2060"/>
         <source>Select folder to monitor</source>
         <translation>Válasszon egy megfigyelni kívánt könyvtárat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2080"/>
+        <location filename="../gui/optionsdialog.cpp" line="2082"/>
         <source>Adding entry failed</source>
         <translation>Bejegyzés hozzáadása nem sikerült</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2180"/>
+        <location filename="../gui/optionsdialog.cpp" line="2182"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>A WebUI felhasználónévnek legalább 3 karakter hosszúnak kell lennie.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2185"/>
+        <location filename="../gui/optionsdialog.cpp" line="2187"/>
         <source>Character Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2185"/>
+        <location filename="../gui/optionsdialog.cpp" line="2187"/>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2192"/>
+        <location filename="../gui/optionsdialog.cpp" line="2194"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation>A WebUI jelszónak legalább 6 karakter hosszúnak kell lennie.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2202"/>
+        <location filename="../gui/optionsdialog.cpp" line="2204"/>
         <source>Location Error</source>
         <translation>Hely hiba</translation>
     </message>
@@ -8098,27 +8098,27 @@ Check the Execution Log for errors.</source>
         <translation>Minden támogatott szűrő</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2202"/>
+        <location filename="../gui/optionsdialog.cpp" line="2204"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation>Az alternatív WebUI-fájlok helye nem lehet üres.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2239"/>
+        <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Parsing error</source>
         <translation>Feldolgozási hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2239"/>
+        <location filename="../gui/optionsdialog.cpp" line="2241"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Megadott IP szűrő feldogozása nem sikerült</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2241"/>
+        <location filename="../gui/optionsdialog.cpp" line="2243"/>
         <source>Successfully refreshed</source>
         <translation>Sikeresen frissítve</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2241"/>
+        <location filename="../gui/optionsdialog.cpp" line="2243"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>IP-szűrő sikeresen feldolgozva: %1 szabály alkalmazva.</translation>
@@ -8129,18 +8129,18 @@ Check the Execution Log for errors.</source>
         <translation>Beállítások</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2250"/>
+        <location filename="../gui/optionsdialog.cpp" line="2252"/>
         <source>Time Error</source>
         <translation>Idő hiba</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2250"/>
+        <location filename="../gui/optionsdialog.cpp" line="2252"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>A kezdés és befejezés ideje nem lehet ugyanaz.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2180"/>
-        <location filename="../gui/optionsdialog.cpp" line="2192"/>
+        <location filename="../gui/optionsdialog.cpp" line="2182"/>
+        <location filename="../gui/optionsdialog.cpp" line="2194"/>
         <source>Length Error</source>
         <translation>Hossz hiba</translation>
     </message>
