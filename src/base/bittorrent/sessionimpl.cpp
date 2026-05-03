@@ -2480,20 +2480,27 @@ void SessionImpl::banIP(const QString &ip)
         return;
 
     lt::error_code ec;
-    const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+    const std::optional<Utils::Net::IPRange> ipRange = Utils::Net::parseIPRange(ip);
+    if (!ipRange)
+        return;
+    const lt::address firstAddr = lt::make_address(ipRange.value().first.toString().toLatin1().constData(), ec);
     Q_ASSERT(!ec);
-    if (ec)
+    if (ec) [[unlikely]]
+        return;
+    const lt::address lastAddr = lt::make_address(ipRange.value().second.toString().toLatin1().constData(), ec);
+    Q_ASSERT(!ec);
+    if (ec) [[unlikely]]
         return;
 
-    invokeAsync([session = m_nativeSession, addr]
+    invokeAsync([session = m_nativeSession, firstAddr, lastAddr]
     {
         lt::ip_filter filter = session->get_ip_filter();
-        filter.add_rule(addr, addr, lt::ip_filter::blocked);
+        filter.add_rule(firstAddr, lastAddr, lt::ip_filter::blocked);
         session->set_ip_filter(std::move(filter));
     });
 
     QStringList bannedIPs = m_bannedIPs;
-    bannedIPs.append(ip);
+    bannedIPs << Utils::Net::ipRangeToString(ipRange.value());
     bannedIPs.sort();
     m_bannedIPs = bannedIPs;
 }
