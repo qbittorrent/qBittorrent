@@ -571,7 +571,7 @@
         <translation>El DSCP de par debe estar entre 0 y 255.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -579,7 +579,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Error:</source>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2231,6 +2231,26 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Punto de código de servicios diferenciados (DSCP) para conexiones con pares</translation>
     </message>
     <message>
+        <source>Resolve peer host names:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished" />
     </message>
@@ -2239,27 +2259,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3086,11 +3086,15 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Icono de estado</translation>
     </message>
     <message>
-        <source>Session Uploaded</source>
+        <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Session Downloaded</source>
+        <source>Created On</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Uploaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4172,7 +4176,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation>Pestaña de actualización</translation>
     </message>
     <message>
-        <source>Open download window</source>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -4180,7 +4184,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop search</source>
+        <source>Open download window</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4573,6 +4577,10 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     <message>
         <source>Add Stopped:</source>
         <translation>Agregar detenido:</translation>
+    </message>
+    <message>
+        <source>Clear downloaded episodes confirmation</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

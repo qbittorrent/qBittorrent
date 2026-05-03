@@ -3101,12 +3101,12 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../webui/api/clientdatacontroller.cpp" line="67"/>
         <source>Items of `keys` must be strings</source>
-        <translation type="unfinished"/>
+        <translation>&quot;keys&quot; üçün elementlər sətirlər olmalıdır</translation>
     </message>
     <message>
         <location filename="../webui/api/clientdatacontroller.cpp" line="83"/>
         <source>`data` must be an object</source>
-        <translation type="unfinished"/>
+        <translation>&quot;data&quot; bir obyekt olmalıdır</translation>
     </message>
 </context>
 <context>
@@ -3114,27 +3114,27 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../webui/clientdatastorage.cpp" line="53"/>
         <source>Failed to load web client data. %1</source>
-        <translation type="unfinished"/>
+        <translation>Veb müştəri verilənlərini yükləmək alınmadı. %1</translation>
     </message>
     <message>
         <location filename="../webui/clientdatastorage.cpp" line="61"/>
         <source>Failed to parse web client data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Veb müştəri verilənləri təhlil edilmədi. Fayl: &quot;%1&quot;. Xəta: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../webui/clientdatastorage.cpp" line="68"/>
         <source>Failed to load web client data. File: &quot;%1&quot;. Error: &quot;Invalid data format&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Veb müştori verilənlənlərini yüklənmədi. Fayl: &quot;%1&quot;. Xəta: &quot;səhv verilən formatı&quot;</translation>
     </message>
     <message>
         <location filename="../webui/clientdatastorage.cpp" line="113"/>
         <source>Total web client data must not be larger than %1 bytes</source>
-        <translation type="unfinished"/>
+        <translation>Ümumi veb müştəri verilənləri %1 baytdan böyük olmamalıdır</translation>
     </message>
     <message>
         <location filename="../webui/clientdatastorage.cpp" line="116"/>
         <source>Failed to save web client data. Error: &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Veb müştəti verilənləri saxlanılmadı. Xəta: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -3340,7 +3340,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../app/filelogger.cpp" line="180"/>
         <source>An error occurred while trying to open the log file. Logging to file is disabled. File: &quot;%1&quot;. Error: &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Jurnal faylı açılarkən xəta baş verdi. Fayla giriş bağlanıb. Fayl: &quot;%1&quot;. Xəta: &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -3836,7 +3836,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../gui/mainwindow.ui" line="406"/>
         <source>&amp;Reboot System</source>
-        <translation type="unfinished"/>
+        <translation>Sistemi &amp;yenidən başatmaq</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="414"/>
@@ -4551,12 +4551,12 @@ Minimum tələb olunan versiya: %2.</translation>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
         <source>The access to the remote content was denied (403)</source>
-        <translation type="unfinished"/>
+        <translation>Uzaq serverdəki tərkiblərə giriş qadağan edildi (403)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
-        <translation type="unfinished"/>
+        <translation>Uzaq server tərkiblər üzərində işləmək üçün kimlik doğrulaması tələb edir, lakin, verilən istifadəçi adı və şifrəni qəbul etmədi (401)</translation>
     </message>
     <message>
         <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
@@ -6059,12 +6059,12 @@ Minimum tələb olunan versiya: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="462"/>
         <source>Use separate &quot;Tracker status&quot; filter. Otherwise it gets merged with &quot;Trackers&quot; filter.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;İzləyici vəziyyəti&quot; süzgəci ayırıcısından istifadə edin. Əks halda o, &quot;İzləyicilər&quot; süzgəci ilə birləşdirilir.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="465"/>
         <source>Use separate &quot;Tracker status&quot; filter</source>
-        <translation type="unfinished"/>
+        <translation>&quot;İzləyici vəziyyyəti&quot; süzgəci ayırıcısından istifadə edin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
@@ -6467,35 +6467,35 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
     <message>
         <location filename="../gui/optionsdialog.ui" line="3745"/>
         <source>User</source>
-        <translation type="unfinished"/>
+        <translation>İstifadəçi</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3781"/>
         <source>API Key</source>
-        <translation type="unfinished"/>
+        <translation>API açarı</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3799"/>
         <source>Generate a key</source>
-        <translation type="unfinished"/>
+        <translation>Bir açar yaradın</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3809"/>
         <source>Copy API key</source>
-        <translation type="unfinished"/>
+        <translation>API açarı kopyalayın</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3820"/>
         <location filename="../gui/optionsdialog.cpp" line="1485"/>
         <location filename="../gui/optionsdialog.cpp" line="1538"/>
         <source>Generate API key</source>
-        <translation type="unfinished"/>
+        <translation>API açar yaradın</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3831"/>
         <location filename="../gui/optionsdialog.cpp" line="1507"/>
         <source>Delete API key</source>
-        <translation type="unfinished"/>
+        <translation>API açarı silin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3876"/>
@@ -6613,13 +6613,13 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <location filename="../gui/optionsdialog.ui" line="303"/>
         <source>Use different text colors by torrent states</source>
-        <translation type="unfinished"/>
+        <translation>Torrent vəziyyəti üçün müxtəlif mətn rənglərindən istifadə edin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="313"/>
         <source>Make progress bars follow text colors</source>
         <extracomment>Progress bar color is based on text color.</extracomment>
-        <translation type="unfinished"/>
+        <translation>İrəliləmə zolağı mətn rəngini izləsin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="335"/>
@@ -6641,17 +6641,17 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <location filename="../gui/optionsdialog.ui" line="475"/>
         <source>Torrent Content View</source>
-        <translation type="unfinished"/>
+        <translation>Torrent tərkiblərinə baxış</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="481"/>
         <source>Replaces multi-selection (hold Alt key to invert)</source>
-        <translation type="unfinished"/>
+        <translation>Çoxsaylı seçimi əvəzləyir (çevirmək üçün API düyməsini basıb saxlayın)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="484"/>
         <source>Drag content from qBittorrent</source>
-        <translation type="unfinished"/>
+        <translation>Tərkibləri qBittorrent-dən götürün</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="605"/>
@@ -6732,12 +6732,12 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <location filename="../gui/optionsdialog.ui" line="1094"/>
         <source>When adding a duplicate torrent</source>
-        <translation type="unfinished"/>
+        <translation>Təkrar torrent əlavə olunduqda</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1110"/>
         <source>Ask to merge trackers for manually added torrent</source>
-        <translation type="unfinished"/>
+        <translation>Əl ilə əlavə edilmiş torrentlər üçün izləyicilərin birləşdirilməsini soruşmaq</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1138"/>
@@ -7670,7 +7670,7 @@ readme[0-9].txt: &quot;readme1ştxt&quot;, &quot;readme2ştxt&quot;-ni seçir, l
     <message>
         <location filename="../gui/optionsdialog.cpp" line="698"/>
         <source>%M: Comment</source>
-        <translation type="unfinished"/>
+        <translation>%M: Şərh</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="699"/>
@@ -7726,22 +7726,22 @@ readme[0-9].txt: &quot;readme1ştxt&quot;, &quot;readme2ştxt&quot;-ni seçir, l
         <location filename="../gui/optionsdialog.cpp" line="1486"/>
         <location filename="../gui/optionsdialog.cpp" line="1530"/>
         <source>Rotate API key</source>
-        <translation type="unfinished"/>
+        <translation>API açarı döndərmək</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1488"/>
         <source>Generate an API key? This key can be used to interact with qBittorrent&apos;s API.</source>
-        <translation type="unfinished"/>
+        <translation>Bir API açarı yaradaq? Bu açar qBittorrent ilə işləmək üçün istifadə oluna bilər.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1489"/>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished"/>
+        <translation>Bu API açarı döndərək? Bu açarın işləməsi dərhal dayandırılacaq və yeni bir açar yaradılacaq.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1508"/>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished"/>
+        <translation>Bu API açarını silək? Bu açarın işləməsi dərhal dayandırılacaq.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1840"/>
@@ -8516,7 +8516,7 @@ Bu qoşmalar söndürülüb.</translation>
         <location filename="../gui/programupdater.cpp" line="127"/>
         <location filename="../gui/programupdater.cpp" line="199"/>
         <source>Failed to download the program update info. URL: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Proqram yenilənməsi məlumatlarını endirmək mümkün olmadı. &quot;%1&quot;. Xəta: &quot;%2&quot;</translation>
     </message>
 </context>
 <context>
@@ -9034,12 +9034,12 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="410"/>
         <source>Failed to add RSS folder item. Reason: &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>RSS qovluq elementini əlavə etmək mümkün olmadı. Səbəb: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="417"/>
         <source>Failed to add RSS feed item. Reason: &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>RSS xəbər lenti elementini əlavə etmək mümkün olmadı. Səbəb: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="431"/>
@@ -9203,7 +9203,7 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="136"/>
         <source>Filter feed items...</source>
-        <translation type="unfinished"/>
+        <translation>Xəbər lenti elementlərini süzgəcləmək...</translation>
     </message>
     <message>
         <location filename="../gui/rss/rsswidget.cpp" line="289"/>
@@ -9335,7 +9335,7 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../base/search/searchdownloadhandler.cpp" line="72"/>
         <source>Error occurred when downloading torrent via search engine. Engine: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Axtarış mühərriki vasitəsi ilə torrentləri endirən zaman xəta baş verdi. Mühərrik: &quot;%1&quot;. URL: &quot;%2&quot;. Xəta: &quot;%3&quot;.</translation>
     </message>
 </context>
 <context>
@@ -9343,42 +9343,42 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="70"/>
         <source>Process failed to start</source>
-        <translation type="unfinished"/>
+        <translation>Prosesi başlatmaq mümkün olmadı</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="72"/>
         <source>Process crashed</source>
-        <translation type="unfinished"/>
+        <translation>Proses çökdü</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="74"/>
         <source>Process timed out</source>
-        <translation type="unfinished"/>
+        <translation>Prosesin vaxtı bitdi</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="76"/>
         <source>Process write error</source>
-        <translation type="unfinished"/>
+        <translation>Proses xətalı oldu</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="78"/>
         <source>Process read error</source>
-        <translation type="unfinished"/>
+        <translation>Prosesin oxunması xətası</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="80"/>
         <source>Process unknown error</source>
-        <translation type="unfinished"/>
+        <translation>Prosesdə naməlum xəta</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="117"/>
         <source>Search process failed. Search query: &quot;%1&quot;. Category: &quot;%2&quot;. Engines: &quot;%3&quot;. Error: &quot;%4&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Axtarış prosesi baş tutmadı. Axtarış sorğusu: &quot;%1&quot;. Kateqoriya: &quot;%2&quot;. Mühərrik: &quot;%3&quot;. Xəta: &quot;%4&quot;.</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="166"/>
         <source>Error occurred in search engine. Search query: &quot;%1&quot;. Category: &quot;%2&quot;. Engines: &quot;%3&quot;. Error: &quot;%4&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Axtarış müjərrikində xəta baş verdi. Axtarış sorğusu: &quot;%1&quot;. Kateqoriya: &quot;%2&quot;. Mühərrik: &quot;%3&quot;. Xəta: &quot;%4&quot;.</translation>
     </message>
 </context>
 <context>
@@ -9710,7 +9710,7 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="568"/>
         <source>Error occurred when fetching search engine capabilities. Error: &quot;%1&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Axtarış mühərriki imkanları əldə edilərkən xəta baş verdi. Xəta: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/search/searchpluginmanager.cpp" line="651"/>
@@ -9810,12 +9810,12 @@ Onlardan bəzilərini quraşdırmaq üçün pəncərənin aşağı-sağındakı 
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="831"/>
         <source>Refresh tab</source>
-        <translation type="unfinished"/>
+        <translation>Vərəqi yeniləyin</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="835"/>
         <source>Stop search</source>
-        <translation type="unfinished"/>
+        <translation>Axtarışı dayandırın</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="882"/>
@@ -9971,17 +9971,17 @@ Onlardan bəzilərini quraşdırmaq üçün pəncərənin aşağı-sağındakı 
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="138"/>
         <source>The computer is going to reboot.</source>
-        <translation type="unfinished"/>
+        <translation>Kompüter yenidən başladılmaq üzrədir.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="139"/>
         <source>&amp;Reboot Now</source>
-        <translation type="unfinished"/>
+        <translation>İndi &amp;yenidən başlat</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="140"/>
         <source>Reboot confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Yenidən başlatmanı təsdiqləyin</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="150"/>
@@ -10763,7 +10763,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="308"/>
         <source>The name is invalid: &quot;%1&quot;</source>
-        <translation type="unfinished"/>
+        <translation>Ad səhvdir: &quot;%1&quot;</translation>
     </message>
 </context>
 <context>
@@ -11063,7 +11063,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="233"/>
         <source>Calculating...</source>
-        <translation type="unfinished"/>
+        <translation>Hesablanır...</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="278"/>
@@ -11361,7 +11361,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="417"/>
         <source>Default (%1)</source>
         <comment>Default (share limit action)</comment>
-        <translation type="unfinished"/>
+        <translation>Standart (%1)</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="421"/>
@@ -11369,13 +11369,13 @@ Başqa ad verin və yenidən cəhd edin.</translation>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="423"/>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="427"/>
         <source>From category</source>
-        <translation type="unfinished"/>
+        <translation>Kateqoriyadan</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="428"/>
         <source>From category (%1)</source>
         <comment>From category (share limit action)</comment>
-        <translation type="unfinished"/>
+        <translation>(%1) kateqoriyasından</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="19"/>
@@ -11441,63 +11441,63 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1092"/>
         <source>Cannot specify filePriorities when adding multiple torrents</source>
-        <translation type="unfinished"/>
+        <translation>Birdən çox torrent əlavə olunarkən faylPrioritetlərini göstərmək mümkün deyil</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1094"/>
         <source>Cannot specify filePriorities when uploading torrent files</source>
-        <translation type="unfinished"/>
+        <translation>Torrrernt faylları yüklənərkən faylPrioritetlərini göstərmək mümkün deyil</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1108"/>
         <source>`downloader` must be a valid search plugin</source>
-        <translation type="unfinished"/>
+        <translation>`downloader` doğru axtarış əlavəsi olmalıdır</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1167"/>
         <source>Length of filePriorities must equal number of files in torrent</source>
-        <translation type="unfinished"/>
+        <translation>FaylPrioritetlərin üzunluğu torrent fayllarındakına bərabər olmalıdır</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1184"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="1199"/>
         <source>`filePriorities` may only be specified when metadata has already been fetched</source>
-        <translation type="unfinished"/>
+        <translation>`filePriorities` yalnız meta məlumatlar alındıqdan sonra göstərilə bilər</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1285"/>
         <source>Must specify at least one of [newUrl, tier]</source>
-        <translation type="unfinished"/>
+        <translation>bunlardan yalnız biri göstərilməlidir [newUrl, tier]</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1293"/>
         <source>tier must be an integer</source>
-        <translation type="unfinished"/>
+        <translation>səviyyə tam ədəd olmalıdır</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1295"/>
         <source>tier must be between 0 and 255</source>
-        <translation type="unfinished"/>
+        <translation>səviyyə 0 ilə 255 arasında olmalıdır</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1305"/>
         <source>New tracker URL is invalid</source>
-        <translation type="unfinished"/>
+        <translation>Yeni izləyici ünvanı səhvdir</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1323"/>
         <source>New tracker URL already exists</source>
-        <translation type="unfinished"/>
+        <translation>Yeni izləyici ünvanı artıq mövcuddur</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1346"/>
         <source>Tracker not found</source>
-        <translation type="unfinished"/>
+        <translation>İzləyici tapılmadı</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1387"/>
         <source>No valid peers were specified</source>
-        <translation type="unfinished"/>
+        <translation>Doğru iştirakçılar göstərilməyib</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1443"/>
@@ -11553,12 +11553,12 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2038"/>
         <source>File name has invalid characters</source>
-        <translation type="unfinished"/>
+        <translation>Fayl adında səhv işarələr var</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2066"/>
         <source>Folder name has invalid characters</source>
-        <translation type="unfinished"/>
+        <translation>Qovluq adından səhv işarələr var</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2099"/>
@@ -11569,57 +11569,57 @@ Başqa ad verin və yenidən cəhd edin.</translation>
         <location filename="../webui/api/torrentscontroller.cpp" line="2153"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="2261"/>
         <source>Must specify URI or hash</source>
-        <translation type="unfinished"/>
+        <translation>URL və ya heş göstərilməlidir</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2157"/>
         <source>downloader must be a valid search plugin</source>
-        <translation type="unfinished"/>
+        <translation>endirici doğru axtarış əlavəsi olmalıdır</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2188"/>
         <source>Unable to download metadata for &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; üçün meta məlumatlar endirmək mümkün olmadı</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2226"/>
         <source>Unable to parse &apos;%1&apos;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; təhlil etmək mümkün olmadı</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2235"/>
         <source>Must specify torrent file(s)</source>
-        <translation type="unfinished"/>
+        <translation>Torrent fayl(lar) göstərilməlidir</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2248"/>
         <source>&apos;%1&apos; is not a valid torrent file.</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; torrent fsaylı deyil.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2277"/>
         <source>Metadata is not yet available</source>
-        <translation type="unfinished"/>
+        <translation>Hələlik meta məlumatlar yoxdur</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2281"/>
         <source>Unable to export torrent metadata. Error: %1</source>
-        <translation type="unfinished"/>
+        <translation>Meta məlumatları ixrac etmək mümkün olmadı. Xəta: %1</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2305"/>
         <source>Parse magnet URI failed. URI: &quot;%1&quot;. Error: &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Magnet URI təhlil etmək mümkün olmadı: &quot;%1&quot;. Xəta: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2351"/>
         <source>Reading downloaded torrent data failed. Data: &quot;%1&quot;. Error: &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Endirilən torrent verilənlərinin oxunması mümkün olmadı. Verilən: &quot;%1&quot;. Xəta: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2367"/>
         <source>Parse torrent failed. URL: &quot;%1&quot;. Error: &quot;%2&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Torrent faylın təhlili mümkün olmadı. URL: &quot;%1&quot;. Xəta: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1680"/>
@@ -12078,7 +12078,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="139"/>
         <source>Tracker status</source>
-        <translation type="unfinished"/>
+        <translation>İzləyici vəziyyəti</translation>
     </message>
 </context>
 <context>
@@ -12608,7 +12608,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1017"/>
         <source>Content &amp;Path</source>
-        <translation type="unfinished"/>
+        <translation>Tərkiblərə &amp;yol</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1021"/>
@@ -12754,7 +12754,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/uithemedialog.ui" line="78"/>
         <source>Note that some custom colors may not be applied in some desktop environments.</source>
-        <translation type="unfinished"/>
+        <translation>Nəzərə alın ki, bəzi fərdi rənglər bəzi iş masası mühitlərində tətbiq edilməyə bilər.</translation>
     </message>
     <message>
         <location filename="../gui/uithemedialog.ui" line="100"/>
@@ -12878,7 +12878,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="243"/>
         <source>Python failed to meet minimum version requirement. Path: &quot;%1&quot;. Found version: &quot;%2&quot;. Minimum supported version: &quot;%3&quot;.</source>
-        <translation type="unfinished"/>
+        <translation>Python minimum versiya tələbatını qarşılaya bilmədi. Yol: &quot;%1&quot;. Tapılan versiya: &quot;%2&quot;. Minimum dəstəklənən versiya: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="258"/>
@@ -12888,7 +12888,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="282"/>
         <source>Failed to find `%1` executable in PATH environment variable. PATH: &quot;%2&quot;</source>
-        <translation type="unfinished"/>
+        <translation>&quot;%1&quot; icra faylı PATH mühit dəyişənində tapılmadı. PATH: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/utils/foreignapps.cpp" line="301"/>
@@ -13179,7 +13179,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../base/utils/os.cpp" line="98"/>
         <source>qBittorrent will reboot the computer now because all downloads are complete.</source>
-        <translation type="unfinished"/>
+        <translation>Endirmələr tamamlandığı üçün qBittorrent indi kompüteri yenidən başladacaq.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="237"/>

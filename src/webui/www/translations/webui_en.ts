@@ -3067,6 +3067,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Created On</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerListWidget</name>
@@ -4545,6 +4549,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Add Stopped:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear downloaded episodes confirmation</source>
         <translation type="unfinished" />
     </message>
 </context>
