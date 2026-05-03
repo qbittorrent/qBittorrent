@@ -28,6 +28,11 @@
 
 #include "autoexpandabledialog.h"
 
+#include <algorithm>
+
+#include <QGuiApplication>
+#include <QScreen>
+
 #include "base/path.h"
 #include "ui_autoexpandabledialog.h"
 #include "utils.h"
@@ -38,6 +43,27 @@ AutoExpandableDialog::AutoExpandableDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
+    // Grow the dialog symmetrically as the user types, capped at half the main window width.
+    // The leftward move keeps it centered; leftBound prevents it from sliding off-screen.
+    connect(m_ui->textEdit, &QLineEdit::textChanged, this, [this]
+    {
+        if (!isVisible())
+            return;
+        const int requiredWidth = m_ui->textEdit->fontMetrics().horizontalAdvance(m_ui->textEdit->text()) + 4;
+        const int delta = requiredWidth - m_ui->textEdit->width();
+        if (delta > 0)
+        {
+            const QWidget *const topLevel = parentWidget() ? parentWidget()->window() : nullptr;
+            const int maxWidth = topLevel ? (topLevel->width() / 2) : width();
+            const int newWidth = std::min((width() + delta), maxWidth);
+            const int widthDelta = newWidth - width();
+            resize(newWidth, height());
+            // Use the screen the dialog is actually on, not screen() which may return the wrong one on multi-monitor setups.
+            const QScreen *const currentScreen = QGuiApplication::screenAt(geometry().center());
+            const int leftBound = currentScreen ? currentScreen->availableGeometry().left() : 0;
+            move(std::max((x() - (widthDelta / 2)), leftBound), y());
+        }
+    });
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 }
@@ -105,5 +131,11 @@ void AutoExpandableDialog::showEvent(QShowEvent *e)
     {
         QSize size = {width() - m_ui->verticalLayout->sizeHint().width() + wd, height()};
         resize(size);
+        // Re-center after resize; safe to call here as the window is not yet committed to the compositor.
+        if (parentWidget())
+        {
+            const QRect parentGeom = parentWidget()->window()->frameGeometry();
+            move(parentGeom.center() - QPoint((width() / 2), (height() / 2)));
+        }
     }
 }
