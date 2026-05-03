@@ -37,6 +37,10 @@
 #include <shellapi.h>
 #endif
 
+#ifdef Q_OS_MACOS
+#include "macutilities.h"
+#endif
+
 #include <QApplication>
 #include <QDesktopServices>
 #include <QPixmap>
@@ -117,11 +121,6 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 // Open the given path with an appropriate application
 void Utils::Gui::openPath(const Path &path)
 {
-    // Hack to access samba shares with QDesktopServices::openUrl
-    const QUrl url = path.data().startsWith(u"//")
-        ? QUrl(u"file:" + path.data())
-        : QUrl::fromLocalFile(path.data());
-
 #ifdef Q_OS_WIN
     auto *thread = QThread::create([path]()
     {
@@ -137,7 +136,13 @@ void Utils::Gui::openPath(const Path &path)
     thread->setObjectName("Utils::Gui::openPath thread");
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
+#elif defined(Q_OS_MACOS)
+    MacUtils::openPath(path);
 #else
+    // Hack to access samba shares with QDesktopServices::openUrl
+    const QUrl url = path.data().startsWith(u"//")
+        ? QUrl(u"file:" + path.data())
+        : QUrl::fromLocalFile(path.data());
     QDesktopServices::openUrl(url);
 #endif
 }
