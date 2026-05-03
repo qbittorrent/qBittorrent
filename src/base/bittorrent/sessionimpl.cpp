@@ -475,6 +475,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY(u"SendBufferLowWatermark"_s), 10)
     , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY(u"SendBufferWatermarkFactor"_s), 50)
     , m_connectionSpeed(BITTORRENT_SESSION_KEY(u"ConnectionSpeed"_s), 30)
+    , m_isSeedingOutgoingConnectionsEnabled(BITTORRENT_SESSION_KEY(u"SeedingOutgoingConnectionsEnabled"_s), true)
     , m_socketSendBufferSize(BITTORRENT_SESSION_KEY(u"SocketSendBufferSize"_s), 0)
     , m_socketReceiveBufferSize(BITTORRENT_SESSION_KEY(u"SocketReceiveBufferSize"_s), 0)
     , m_socketBacklogSize(BITTORRENT_SESSION_KEY(u"SocketBacklogSize"_s), 30)
@@ -1866,6 +1867,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::alert_mask, alertMask);
 
     settingsPack.set_int(lt::settings_pack::connection_speed, connectionSpeed());
+    settingsPack.set_bool(lt::settings_pack::seeding_outgoing_connections, isSeedingOutgoingConnectionsEnabled());
 
     // from libtorrent doc:
     // It will not take affect until the listen_interfaces settings is updated
@@ -4689,6 +4691,19 @@ void SessionImpl::setConnectionSpeed(const int value)
     if (value == m_connectionSpeed) return;
 
     m_connectionSpeed = value;
+    configureDeferred();
+}
+
+bool SessionImpl::isSeedingOutgoingConnectionsEnabled() const
+{
+    return m_isSeedingOutgoingConnectionsEnabled;
+}
+
+void SessionImpl::setSeedingOutgoingConnections(const bool enabled)
+{
+    if (enabled == m_isSeedingOutgoingConnectionsEnabled) return;
+
+    m_isSeedingOutgoingConnectionsEnabled = enabled;
     configureDeferred();
 }
 

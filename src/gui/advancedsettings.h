@@ -80,7 +80,7 @@ private:
               m_checkBoxTrackerPortForwarding, m_checkBoxIgnoreSSLErrors, m_checkBoxConfirmTorrentRecheck, m_checkBoxConfirmRemoveAllTags, m_checkBoxAnnounceAllTrackers,
               m_checkBoxAnnounceAllTiers, m_checkBoxMultiConnectionsPerIp, m_checkBoxValidateHTTPSTrackerCertificate, m_checkBoxSSRFMitigation, m_checkBoxBlockPeersOnPrivilegedPorts,
               m_checkBoxPieceExtentAffinity, m_checkBoxSuggestMode, m_checkBoxSpeedWidgetEnabled, m_checkBoxIDNSupport, m_checkBoxConfirmRemoveTrackerFromAllTorrents,
-              m_checkBoxStartSessionPaused;
+              m_checkBoxStartSessionPaused, m_checkBoxSeedingOutgoingConnections;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxDiskIOReadMode, m_comboBoxDiskIOWriteMode, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm,
               m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage, m_comboBoxTorrentContentRemoveOption;
     QLineEdit m_lineEditAppInstanceName, m_pythonExecutablePath, m_lineEditAnnounceIP, m_lineEditDHTBootstrapNodes;

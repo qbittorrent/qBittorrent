@@ -463,6 +463,8 @@ void AppController::preferencesAction()
     data[u"send_buffer_watermark_factor"_s] = session->sendBufferWatermarkFactor();
     // Outgoing connections per second
     data[u"connection_speed"_s] = session->connectionSpeed();
+    // Outgoing connections when seeding
+    data[u"seeding_outgoing_connections"_s] = session->isSeedingOutgoingConnectionsEnabled();
     // Socket send buffer size
     data[u"socket_send_buffer_size"_s] = session->socketSendBufferSize();
     // Socket receive buffer size
@@ -1128,6 +1130,9 @@ void AppController::setPreferencesAction()
     // Outgoing connections per second
     if (hasKey(u"connection_speed"_s))
         session->setConnectionSpeed(it.value().toInt());
+    // Outgoing connections when seeding
+    if (hasKey(u"seeding_outgoing_connections"_s))
+        session->setSeedingOutgoingConnections(it.value().toBool());
     // Socket send buffer size
     if (hasKey(u"socket_send_buffer_size"_s))
         session->setSocketSendBufferSize(it.value().toInt());

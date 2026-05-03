@@ -359,6 +359,8 @@ namespace BitTorrent
         virtual void setSendBufferWatermarkFactor(int value) = 0;
         virtual int connectionSpeed() const = 0;
         virtual void setConnectionSpeed(int value) = 0;
+        virtual bool isSeedingOutgoingConnectionsEnabled() const = 0;
+        virtual void setSeedingOutgoingConnections(bool enabled) = 0;
         virtual int socketSendBufferSize() const = 0;
         virtual void setSocketSendBufferSize(int value) = 0;
         virtual int socketReceiveBufferSize() const = 0;
