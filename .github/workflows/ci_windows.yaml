@@ -63,7 +63,7 @@ jobs:
 
       # https://learn.microsoft.com/en-us/vcpkg/users/binarycaching#gha
       - name: Set variables for vcpkg
-        uses: actions/github-script@v8
+        uses: actions/github-script@v9
         with:
           script: |
             core.exportVariable('ACTIONS_CACHE_URL', (process.env.ACTIONS_CACHE_URL || ''));
