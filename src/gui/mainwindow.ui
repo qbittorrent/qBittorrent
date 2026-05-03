@@ -156,6 +156,7 @@
    <addaction name="separator"/>
    <addaction name="actionStart"/>
    <addaction name="actionStop"/>
+   <addaction name="actionOpenDestinationFolder"/>
    <addaction name="actionTopQueuePos"/>
    <addaction name="actionIncreaseQueuePos"/>
    <addaction name="actionDecreaseQueuePos"/>
@@ -488,6 +489,14 @@
   <action name="actionCloseWindow">
    <property name="text">
     <string>Close Window</string>
+   </property>
+  </action>
+  <action name="actionOpenDestinationFolder">
+   <property name="iconText">
+    <string>Open Folder</string>
+   </property>
+   <property name="text">
+    <string>Open Destination Folder</string>
    </property>
   </action>
  </widget>
