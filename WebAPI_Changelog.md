@@ -6,6 +6,9 @@
   * `app/preferences` endpoint includes `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
   * `app/setPreferences` endpoint no longer allows setting `mail_notification_ssl_enabled` option as it no longer exists
   * `app/setPreferences` endpoint allows to set `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
+* [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
+  * `app/preferences` endpoint includes `seeding_outgoing_connections` option
+  * `app/setPreferences` endpoint allows to set `seeding_outgoing_connections` option
 
 ## 2.15.4
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)

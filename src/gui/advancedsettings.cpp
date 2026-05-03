@@ -145,6 +145,7 @@ namespace
         SEND_BUF_WATERMARK_FACTOR,
         // networking & ports
         CONNECTION_SPEED,
+        SEEDING_OUTGOING_CONNECTIONS,
         SOCKET_SEND_BUFFER_SIZE,
         SOCKET_RECEIVE_BUFFER_SIZE,
         SOCKET_BACKLOG_SIZE,
@@ -260,6 +261,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setSendBufferWatermarkFactor(m_spinBoxSendBufferWatermarkFactor.value());
     // Outgoing connections per second
     session->setConnectionSpeed(m_spinBoxConnectionSpeed.value());
+    // Seeding outgoing connections
+    session->setSeedingOutgoingConnections(m_checkBoxSeedingOutgoingConnections.isChecked());
     // Socket send buffer size
     session->setSocketSendBufferSize(m_spinBoxSocketSendBufferSize.value() * 1024);
     // Socket receive buffer size
@@ -661,6 +664,10 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxConnectionSpeed.setValue(session->connectionSpeed());
     addRow(CONNECTION_SPEED, (tr("Outgoing connections per second") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#connection_speed", u"(?)"))
             , &m_spinBoxConnectionSpeed);
+    // Seeding outgoing connections
+    m_checkBoxSeedingOutgoingConnections.setChecked(session->isSeedingOutgoingConnectionsEnabled());
+    addRow(SEEDING_OUTGOING_CONNECTIONS, (tr("Outgoing connections when seeding") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#seeding_outgoing_connections", u"(?)"))
+            , &m_checkBoxSeedingOutgoingConnections);
     // Socket send buffer size
     m_spinBoxSocketSendBufferSize.setMinimum(0);
     m_spinBoxSocketSendBufferSize.setMaximum(std::numeric_limits<int>::max() / 1024);

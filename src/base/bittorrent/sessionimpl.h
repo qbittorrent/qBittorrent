@@ -333,6 +333,8 @@ namespace BitTorrent
         void setSendBufferWatermarkFactor(int value) override;
         int connectionSpeed() const override;
         void setConnectionSpeed(int value) override;
+        bool isSeedingOutgoingConnectionsEnabled() const override;
+        void setSeedingOutgoingConnections(bool enabled) override;
         int socketSendBufferSize() const override;
         void setSocketSendBufferSize(int value) override;
         int socketReceiveBufferSize() const override;
@@ -670,6 +672,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_sendBufferLowWatermark;
         CachedSettingValue<int> m_sendBufferWatermarkFactor;
         CachedSettingValue<int> m_connectionSpeed;
+        CachedSettingValue<bool> m_isSeedingOutgoingConnectionsEnabled;
         CachedSettingValue<int> m_socketSendBufferSize;
         CachedSettingValue<int> m_socketReceiveBufferSize;
         CachedSettingValue<int> m_socketBacklogSize;

@@ -1565,6 +1565,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
+                        <label for="seedingOutgoingConnections">QBT_TR(Outgoing connections when seeding:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#seeding_outgoing_connections" target="_blank">(?)</a></label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="seedingOutgoingConnections">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <label for="socketSendBufferSize">QBT_TR(Socket send buffer size [0: system default]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#send_socket_buffer_size" target="_blank">(?)</a></label>
                     </td>
                     <td>
@@ -2735,6 +2743,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("sendBufferLowWatermark").value = pref.send_buffer_low_watermark;
                     document.getElementById("sendBufferWatermarkFactor").value = pref.send_buffer_watermark_factor;
                     document.getElementById("connectionSpeed").value = pref.connection_speed;
+                    document.getElementById("seedingOutgoingConnections").checked = pref.seeding_outgoing_connections;
                     document.getElementById("socketSendBufferSize").value = (pref.socket_send_buffer_size / 1024);
                     document.getElementById("socketReceiveBufferSize").value = (pref.socket_receive_buffer_size / 1024);
                     document.getElementById("socketBacklogSize").value = pref.socket_backlog_size;
@@ -3231,6 +3240,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["send_buffer_low_watermark"] = Number(document.getElementById("sendBufferLowWatermark").value);
             settings["send_buffer_watermark_factor"] = Number(document.getElementById("sendBufferWatermarkFactor").value);
             settings["connection_speed"] = Number(document.getElementById("connectionSpeed").value);
+            settings["seeding_outgoing_connections"] = document.getElementById("seedingOutgoingConnections").checked;
             settings["socket_send_buffer_size"] = (document.getElementById("socketSendBufferSize").value * 1024);
             settings["socket_receive_buffer_size"] = (document.getElementById("socketReceiveBufferSize").value * 1024);
             settings["socket_backlog_size"] = Number(document.getElementById("socketBacklogSize").value);
