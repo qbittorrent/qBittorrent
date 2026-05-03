@@ -622,6 +622,17 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkUnwantedFolder->setChecked(session->isUnwantedFolderEnabled());
     m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
 
+    const qint64 minFreeSpace = session->minFreeDiskSpace();
+    m_ui->checkMinFreeSpaceEnabled->setChecked(minFreeSpace > 0);
+    m_ui->spinMinFreeSpace->setEnabled(minFreeSpace > 0);
+    m_ui->spinMinFreeSpace->setValue(minFreeSpace > 0 ? static_cast<int>(minFreeSpace / (1024 * 1024)) : 100);
+    connect(m_ui->checkMinFreeSpaceEnabled, &QCheckBox::toggled, this, [this](const bool enabled)
+    {
+        m_ui->spinMinFreeSpace->setEnabled(enabled);
+    });
+    connect(m_ui->checkMinFreeSpaceEnabled, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinMinFreeSpace, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
@@ -816,6 +827,9 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setUnwantedFolderEnabled(m_ui->checkUnwantedFolder->isChecked());
     pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
+    session->setMinFreeDiskSpace(m_ui->checkMinFreeSpaceEnabled->isChecked()
+        ? (static_cast<qint64>(m_ui->spinMinFreeSpace->value()) * 1024 * 1024)
+        : 0);
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
