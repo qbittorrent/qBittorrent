@@ -45,13 +45,14 @@ jobs:
           persist-credentials: false
 
       - name: Install dependencies
-        uses: Wandalen/wretry.action@v3
+        uses: nick-fields/retry@v4
         env:
           HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK: 1
           HOMEBREW_NO_INSTALL_CLEANUP: 1
         with:
-          attempt_delay: 20000
-          attempt_limit: 6
+          timeout_seconds: 90
+          retry_wait_seconds: 20
+          max_attempts: 6
           command: |
             brew update > /dev/null
             brew install \
