@@ -7826,37 +7826,37 @@ readme.txt: تصفية اسم الملف الدقيق.
         <translation>النظام</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2013"/>
+        <location filename="../gui/optionsdialog.cpp" line="2015"/>
         <source>Select folder to monitor</source>
         <translation>حدد المجلد المراد مراقبته</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2035"/>
+        <location filename="../gui/optionsdialog.cpp" line="2037"/>
         <source>Adding entry failed</source>
         <translation>فشل إضافة الإدخال</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2135"/>
+        <location filename="../gui/optionsdialog.cpp" line="2137"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2140"/>
+        <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2140"/>
+        <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2147"/>
+        <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2157"/>
+        <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>Location Error</source>
         <translation>خطأ في المكان</translation>
     </message>
@@ -7919,27 +7919,27 @@ readme.txt: تصفية اسم الملف الدقيق.
         <translation>جميع التصفيات المدعومة</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2157"/>
+        <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2194"/>
+        <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Parsing error</source>
         <translation>خطأ تحليل</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2194"/>
+        <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>فشل تحليل عامل تصفية آي بي المقدم</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2196"/>
+        <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully refreshed</source>
         <translation>تم التحديث بنجاح</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2196"/>
+        <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>تم تحليل عامل تصفية الآي بي المقدم بنجاح: تم تطبيق %1 قواعد.</translation>
@@ -7950,18 +7950,18 @@ readme.txt: تصفية اسم الملف الدقيق.
         <translation>التفضيلات</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2205"/>
+        <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>Time Error</source>
         <translation>خطأ في الوقت</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2205"/>
+        <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>لا يمكن أن يكون وقت البدء مطابق لوقت الانتهاء.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2135"/>
-        <location filename="../gui/optionsdialog.cpp" line="2147"/>
+        <location filename="../gui/optionsdialog.cpp" line="2137"/>
+        <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>Length Error</source>
         <translation>خطأ في الطول</translation>
     </message>

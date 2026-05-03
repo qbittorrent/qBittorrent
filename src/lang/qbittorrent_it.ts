@@ -8020,37 +8020,37 @@ La chiave attuale smetterà immediatamente di funzionare.</translation>
         <translation>Sistema</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2013"/>
+        <location filename="../gui/optionsdialog.cpp" line="2015"/>
         <source>Select folder to monitor</source>
         <translation>Seleziona cartella da monitorare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2035"/>
+        <location filename="../gui/optionsdialog.cpp" line="2037"/>
         <source>Adding entry failed</source>
         <translation>Aggiunta voce non riuscita</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2135"/>
+        <location filename="../gui/optionsdialog.cpp" line="2137"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Il nome utente WebUI deve contenere almeno 3 caratteri.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2140"/>
+        <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2140"/>
+        <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2147"/>
+        <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation>La password WebUI deve contenere almeno 6 caratteri.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2157"/>
+        <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>Location Error</source>
         <translation>Errore percorso</translation>
     </message>
@@ -8114,27 +8114,27 @@ Questa modalità verrà applicato &lt;strong&gt;non solo&lt;/strong&gt; ai file 
         <translation>Tutti i filtri supportati</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2157"/>
+        <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation>Il percorso alternativo dei file WebUI non può essere vuoto.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2194"/>
+        <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Parsing error</source>
         <translation>Errore di elaborazione</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2194"/>
+        <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Impossibile analizzare il filtro IP fornito</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2196"/>
+        <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully refreshed</source>
         <translation>Aggiornato correttamente</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2196"/>
+        <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Analisi filtro IP completata: sono state applicate %1 regole.</translation>
@@ -8145,18 +8145,18 @@ Questa modalità verrà applicato &lt;strong&gt;non solo&lt;/strong&gt; ai file 
         <translation>Preferenze</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2205"/>
+        <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>Time Error</source>
         <translation>Errore Orario</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2205"/>
+        <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Gli orari di inizio e fine non possono coincidere.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2135"/>
-        <location filename="../gui/optionsdialog.cpp" line="2147"/>
+        <location filename="../gui/optionsdialog.cpp" line="2137"/>
+        <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>Length Error</source>
         <translation>Errore di Lunghezza</translation>
     </message>

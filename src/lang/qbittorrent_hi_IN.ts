@@ -7786,37 +7786,37 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2013"/>
+        <location filename="../gui/optionsdialog.cpp" line="2015"/>
         <source>Select folder to monitor</source>
         <translation>निरीक्षण के लिए फोल्डर चुनें</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2035"/>
+        <location filename="../gui/optionsdialog.cpp" line="2037"/>
         <source>Adding entry failed</source>
         <translation>प्रविष्टि जोड़ना में असफल</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2135"/>
+        <location filename="../gui/optionsdialog.cpp" line="2137"/>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2140"/>
+        <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2140"/>
+        <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2147"/>
+        <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>The WebUI password must be at least 6 characters long.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2157"/>
+        <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>Location Error</source>
         <translation>स्थान त्रुटि</translation>
     </message>
@@ -7879,27 +7879,27 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>सभी समर्थित छन्नियां</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2157"/>
+        <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>The alternative WebUI files location cannot be blank.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2194"/>
+        <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Parsing error</source>
         <translation>समझने में त्रुटि</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2194"/>
+        <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>दिया गया IP फिल्टर समझ से बाहर</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2196"/>
+        <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully refreshed</source>
         <translation>ताजा कर दिया</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2196"/>
+        <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>दिए गए IP फिल्टर को समझ लिया : %1 नियमों को लागू किया।</translation>
@@ -7910,18 +7910,18 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <translation>वरीयताएं</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2205"/>
+        <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>Time Error</source>
         <translation>समय त्रुटि</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2205"/>
+        <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>शुरुआत और अन्त का समय एक जैसे नहीं हो सकते।</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="2135"/>
-        <location filename="../gui/optionsdialog.cpp" line="2147"/>
+        <location filename="../gui/optionsdialog.cpp" line="2137"/>
+        <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>Length Error</source>
         <translation>लम्बाई त्रुटि</translation>
     </message>

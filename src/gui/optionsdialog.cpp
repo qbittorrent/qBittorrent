@@ -1968,6 +1968,8 @@ void OptionsDialog::setLocale(const QString &localeStr)
             name = u"uz@Latn"_s;
         else if (locale.language() == QLocale::Azerbaijani)
             name = u"az@latin"_s;
+        else if ((locale.language() == QLocale::Serbian) && localeStr.contains(u"latin", Qt::CaseInsensitive))
+            name = u"sr@latin"_s;
         else
             name = locale.name();
     }
