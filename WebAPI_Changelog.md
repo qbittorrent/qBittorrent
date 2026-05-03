@@ -6,6 +6,12 @@
   * `app/preferences` endpoint includes `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
   * `app/setPreferences` endpoint no longer allows setting `mail_notification_ssl_enabled` option as it no longer exists
   * `app/setPreferences` endpoint allows to set `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
+* [#23095](https://github.com/qbittorrent/qBittorrent/pull/23095)
+  * Add `push/subscribe` endpoint with parameter `subscription` for registering WebPush notifications
+  * Add `push/subscriptions` endpoint for listing all subscribed WebPush subscriptions
+  * Add `push/test` endpoint for testing WebPush notifications
+  * Add `push/unsubscribe` endpoint with parameter `endpoint` for unregistering WebPush notifications
+  * Add `push/vapidPublicKey` endpoint for retrieving the VAPID public key for WebPush notifications subscribing
 
 ## 2.15.4
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
