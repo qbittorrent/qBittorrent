@@ -406,6 +406,10 @@ void PropertiesWidget::loadDynamicData()
     {
     case PropTabBar::MainTab:
         {
+            const auto *pref = Preferences::instance();
+            const auto speedType = pref->speedUnitType();
+            const bool speedDecimal = pref->speedUseDecimalPrefixes();
+
             m_ui->labelWastedVal->setText(Utils::Misc::friendlyUnit(m_torrent->wastedSize()));
 
             m_ui->labelUpTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalUpload())
@@ -414,9 +418,9 @@ void PropertiesWidget::loadDynamicData()
             m_ui->labelDlTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload())
                 , Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())));
 
-            m_ui->labelUpLimitVal->setText(m_torrent->uploadLimit() <= 0 ? C_INFINITY : Utils::Misc::friendlyUnit(m_torrent->uploadLimit(), true));
+            m_ui->labelUpLimitVal->setText(m_torrent->uploadLimit() <= 0 ? C_INFINITY : Utils::Misc::friendlyUnit(m_torrent->uploadLimit(), true, speedType, speedDecimal));
 
-            m_ui->labelDlLimitVal->setText(m_torrent->downloadLimit() <= 0 ? C_INFINITY : Utils::Misc::friendlyUnit(m_torrent->downloadLimit(), true));
+            m_ui->labelDlLimitVal->setText(m_torrent->downloadLimit() <= 0 ? C_INFINITY : Utils::Misc::friendlyUnit(m_torrent->downloadLimit(), true, speedType, speedDecimal));
 
             QString elapsedString;
             if (m_torrent->isFinished())
@@ -456,14 +460,14 @@ void PropertiesWidget::loadDynamicData()
                     , QString::number(m_torrent->totalLeechersCount())));
 
             const qlonglong dlDuration = m_torrent->activeTime() - m_torrent->finishedTime();
-            const QString dlAvg = Utils::Misc::friendlyUnit((m_torrent->totalDownload() / ((dlDuration == 0) ? -1 : dlDuration)), true);
+            const QString dlAvg = Utils::Misc::friendlyUnit((m_torrent->totalDownload() / ((dlDuration == 0) ? -1 : dlDuration)), true, speedType, speedDecimal);
             m_ui->labelDlSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true), dlAvg));
+                .arg(Utils::Misc::friendlyUnit(m_torrent->downloadPayloadRate(), true, speedType, speedDecimal), dlAvg));
 
             const qlonglong ulDuration = m_torrent->activeTime();
-            const QString ulAvg = Utils::Misc::friendlyUnit((m_torrent->totalUpload() / ((ulDuration == 0) ? -1 : ulDuration)), true);
+            const QString ulAvg = Utils::Misc::friendlyUnit((m_torrent->totalUpload() / ((ulDuration == 0) ? -1 : ulDuration)), true, speedType, speedDecimal);
             m_ui->labelUpSpeedVal->setText(tr("%1 (%2 avg.)", "%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)")
-                .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true), ulAvg));
+                .arg(Utils::Misc::friendlyUnit(m_torrent->uploadPayloadRate(), true, speedType, speedDecimal), ulAvg));
 
             m_ui->labelLastSeenCompleteVal->setText(m_torrent->lastSeenComplete().isValid() ? QLocale().toString(m_torrent->lastSeenComplete(), QLocale::ShortFormat) : tr("Never"));
 

@@ -2702,6 +2702,29 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupBoxSpeedDisplay">
+              <property name="title">
+               <string>Speed Display</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayoutSpeedDisplay">
+               <item>
+                <widget class="QCheckBox" name="checkSpeedInBits">
+                 <property name="text">
+                  <string>Display speeds in bits per second (e.g. Mbit/s)</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkSpeedDecimalPrefixes">
+                 <property name="text">
+                  <string>Use decimal prefixes for speed (KB, MB instead of KiB, MiB)</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_2">
               <property name="orientation">
                <enum>Qt::Orientation::Vertical</enum>
