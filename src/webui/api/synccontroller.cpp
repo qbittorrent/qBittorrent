@@ -77,6 +77,7 @@ namespace
     const QString KEY_PEER_PORT = u"port"_s;
     const QString KEY_PEER_PROGRESS = u"progress"_s;
     const QString KEY_PEER_RELEVANCE = u"relevance"_s;
+    const QString KEY_PEER_CONTRIBUTION = u"contribution"_s;
     const QString KEY_PEER_TOT_DOWN = u"downloaded"_s;
     const QString KEY_PEER_TOT_UP = u"uploaded"_s;
     const QString KEY_PEER_UP_SPEED = u"up_speed"_s;
@@ -868,6 +869,25 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
             {KEY_PEER_RELEVANCE, pi.relevance()}
         };
+
+        const qlonglong totalUpload = pi.totalUpload();
+        const qreal progress = pi.progress();
+        qreal contribution = 0.0;
+
+        if (totalUpload > 0)
+        {
+            if (progress > 0)
+            {
+                const qreal totalProgress = progress * torrent->totalSize();
+                contribution = static_cast<qreal>(totalUpload) / totalProgress;
+            }
+            else
+            {
+                contribution = -1.0;
+            }
+        }
+
+        peer[KEY_PEER_CONTRIBUTION] = contribution;
 
         if (torrent->hasMetadata())
         {
