@@ -294,6 +294,34 @@ void TorrentContentWidget::renameSelectedFile()
     model()->setData(modelIndex, newName);
 }
 
+void TorrentContentWidget::collectFileIndexes(const QModelIndex &index, QList<int> &fileIndexes) const
+{
+    const int fileIdx = getFileIndex(index);
+    if (fileIdx >= 0)
+    {
+        fileIndexes.append(fileIdx);
+        return;
+    }
+
+    // Folder: recurse into children
+    const int childCount = model()->rowCount(index);
+    for (int i = 0; i < childCount; ++i)
+        collectFileIndexes(model()->index(i, 0, index), fileIndexes);
+}
+
+void TorrentContentWidget::deleteSelectedFiles()
+{
+    QList<int> fileIndexes;
+    const QModelIndexList selectedRows = selectionModel()->selectedRows(0);
+    for (const QModelIndex &index : selectedRows)
+        collectFileIndexes(index, fileIndexes);
+
+    if (fileIndexes.isEmpty())
+        return;
+
+    contentHandler()->deleteFiles(fileIndexes);
+}
+
 void TorrentContentWidget::applyPriorities(const BitTorrent::DownloadPriority priority)
 {
     const QList<QPersistentModelIndex> selectedRows = toPersistentIndexes(selectionModel()->selectedRows(Priority));
@@ -439,6 +467,17 @@ void TorrentContentWidget::displayContextMenu()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
+
+        // Only show "Do not download + Delete" in the normal window when torrent is already added.
+        // Avoid showing it in the window for adding a new torrent.
+        if (!contentHandler()->actualStorageLocation().isEmpty())
+        {
+            subMenu->addAction(tr("Do not download + Delete"), this, [this]
+            {
+                applyPriorities(BitTorrent::DownloadPriority::Ignored);
+                deleteSelectedFiles();
+            });
+        }
         subMenu->addAction(tr("Normal"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
@@ -460,6 +499,17 @@ void TorrentContentWidget::displayContextMenu()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
         });
+
+        // Only show "Do not download + Delete" in the normal window when torrent is already added.
+        // Avoid showing it in the window for adding a new torrent.
+        if (!contentHandler()->actualStorageLocation().isEmpty())
+        {
+            menu->addAction(tr("Do not download + Delete"), this, [this]
+            {
+                applyPriorities(BitTorrent::DownloadPriority::Ignored);
+                deleteSelectedFiles();
+            });
+        }
         menu->addAction(tr("Normal priority"), this, [this]
         {
             applyPriorities(BitTorrent::DownloadPriority::Normal);
