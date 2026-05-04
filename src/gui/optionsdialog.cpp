@@ -667,8 +667,26 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
+    m_ui->senderEmailTxt->setToolTip(u"<html><body>"
+        + u"<p style='white-space:nowrap'>%1.</p>"_s.arg(tr("Provide the sending email address"))
+        + u"</body></html>");
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
+    m_ui->lineEditDestEmail->setToolTip(u"<html><body>"
+        + u"<p style='white-space:nowrap'>%1.</p>"_s.arg(tr("Provide the recipient email address"))
+        + u"<p style='white-space:nowrap'><b>%1</b>: %2.</p>"_s.arg(tr("Note"), tr("only a single recipient email address can be specified"))
+        + u"</body></html>");
     m_ui->lineEditSMTPServer->setText(pref->getMailNotificationSMTP());
+    m_ui->lineEditSMTPServer->setToolTip(u"<html><body>"
+        + u"<p style='white-space:nowrap'>%1.</p>"_s.arg(tr("Provide the SMTP server address for sending email notifications"))
+        + u"<p style='white-space:nowrap'>"
+        + u"%1 <b>(%2)</b>.<br>"_s.arg(tr("The server address can be entered either as a DNS name or an IP address"), tr("DNS name recommended"))
+        + u"%1."_s.arg(tr("To manually specify the server port, add a colon and then the port number to the end"))
+        + u"</p>"
+        + u"<p style='white-space:nowrap'>"
+        + u"<b>%1</b><br>"_s.arg(tr("Example:"))
+        + u"smtp.example.com:465 - %1 <b>smtp.example.com</b> %2 <b>465</b>"_s.arg(tr("connect to server"), tr("on port"))
+        + u"</p>"
+        + u"</body></html>");
     m_ui->comboSMTPEncryption->setToolTip(u"<html><body>"
         + u"<p>%1</p>"_s.arg(tr("Select the encryption type used when sending SMTP emails"))
         + u"<p>"
