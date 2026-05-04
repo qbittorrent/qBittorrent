@@ -33,6 +33,7 @@ window.qBittorrent.Misc ??= (() => {
     const exports = () => {
         return {
             getHost: getHost,
+            getTorrentStateInfo: getTorrentStateInfo,
             createDebounceHandler: createDebounceHandler,
             filterInPlace: filterInPlace,
             friendlyUnit: friendlyUnit,
@@ -90,6 +91,47 @@ window.qBittorrent.Misc ??= (() => {
             }, delay);
         };
     };
+
+    const defaultProgressColor = "var(--color-background-blue)";
+
+    const createTorrentStateInfo = (sortOrder, stateIconClass, progressColor, statusText) => ({
+        sortOrder,
+        stateIconClass,
+        progressColor,
+        statusText
+    });
+
+    // Frontend normalization for raw torrent states used by the WebUI.
+    // API states should stay in sync with torrentStateToString() in serialize_torrent.cpp.
+    const defaultTorrentStateInfo = createTorrentStateInfo(
+        -1,
+        "stateUnknown",
+        defaultProgressColor,
+        "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
+    );
+    const torrentStateInfo = {
+        unknown: createTorrentStateInfo(-1, "stateError", "var(--color-progress-error)", "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"),
+        forcedDL: createTorrentStateInfo(0, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]"),
+        downloading: createTorrentStateInfo(1, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]"),
+        forcedMetaDL: createTorrentStateInfo(2, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]"),
+        metaDL: createTorrentStateInfo(3, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stalledDL: createTorrentStateInfo(4, "stateStalledDL", "var(--color-progress-stalled)", "QBT_TR(Stalled)QBT_TR[CONTEXT=TransferListDelegate]"),
+        forcedUP: createTorrentStateInfo(5, "stateUploading", "var(--color-progress-seeding)", "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]"),
+        uploading: createTorrentStateInfo(6, "stateUploading", "var(--color-progress-seeding)", "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stalledUP: createTorrentStateInfo(7, "stateStalledUP", "var(--color-progress-seeding)", "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]"),
+        checkingResumeData: createTorrentStateInfo(8, "stateChecking", "var(--color-progress-checking)", "QBT_TR(Checking resume data)QBT_TR[CONTEXT=TransferListDelegate]"),
+        queuedDL: createTorrentStateInfo(9, "stateQueued", "var(--color-progress-queued)", "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]"),
+        queuedUP: createTorrentStateInfo(10, "stateQueued", "var(--color-progress-queued)", "QBT_TR(Queued)QBT_TR[CONTEXT=TransferListDelegate]"),
+        checkingUP: createTorrentStateInfo(11, "stateChecking", "var(--color-progress-checking)", "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]"),
+        checkingDL: createTorrentStateInfo(12, "stateChecking", "var(--color-progress-checking)", "QBT_TR(Checking)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stoppedDL: createTorrentStateInfo(13, "stateStoppedDL", "var(--color-progress-stopped)", "QBT_TR(Stopped)QBT_TR[CONTEXT=TransferListDelegate]"),
+        stoppedUP: createTorrentStateInfo(14, "stateStoppedUP", "var(--color-progress-stopped)", "QBT_TR(Completed)QBT_TR[CONTEXT=TransferListDelegate]"),
+        moving: createTorrentStateInfo(15, "stateMoving", "var(--color-progress-checking)", "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]"),
+        missingFiles: createTorrentStateInfo(16, "stateError", "var(--color-progress-error)", "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]"),
+        error: createTorrentStateInfo(17, "stateError", "var(--color-progress-error)", "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]")
+    };
+
+    const getTorrentStateInfo = (state) => torrentStateInfo[state] ?? defaultTorrentStateInfo;
 
     const filterInPlace = (array, predicate) => {
         let j = 0;

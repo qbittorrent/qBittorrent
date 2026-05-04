@@ -19,6 +19,13 @@
     --color-border-default: hsl(0deg 0% 85%);
     --color-icon-hover: brightness(0) invert(100%) sepia(100%) saturate(0%)
         hue-rotate(108deg) brightness(104%) contrast(104%);
+    --color-progress-downloading: hsl(210deg 65% 55%);
+    --color-progress-seeding: hsl(110deg 50% 45%);
+    --color-progress-stopped: hsl(0deg 0% 60%);
+    --color-progress-error: hsl(0deg 65% 55%);
+    --color-progress-checking: hsl(40deg 70% 50%);
+    --color-progress-queued: hsl(210deg 20% 60%);
+    --color-progress-stalled: hsl(210deg 30% 60%);
 
     & #torrentTrackersTableDiv tr {
         --color-tracker-disabled: hsl(240deg 4% 46%);
@@ -43,6 +50,13 @@
         --color-background-default: hsl(0deg 0% 25%);
         --color-background-hover: hsl(26deg 50% 55%);
         --color-border-default: hsl(0deg 0% 33%);
+        --color-progress-downloading: hsl(210deg 45% 38%);
+        --color-progress-seeding: hsl(142deg 40% 38%);
+        --color-progress-stopped: hsl(220deg 8% 35%);
+        --color-progress-error: hsl(0deg 45% 42%);
+        --color-progress-checking: hsl(40deg 40% 38%);
+        --color-progress-queued: hsl(220deg 12% 35%);
+        --color-progress-stalled: hsl(210deg 18% 38%);
 
         & #torrentTrackersTableDiv tr {
             --color-tracker-disabled: hsl(240deg 6% 83%);
