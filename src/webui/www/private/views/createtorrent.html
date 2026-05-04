@@ -63,6 +63,11 @@
                 seeding
                 immediately)QBT_TR[CONTEXT=TorrentCreator]</label>
         </div>
+        <div id="includeHiddenFilesBox">
+            <input type="hidden" id="includeHiddenFilesHidden" name="includeHiddenFiles" value="0">
+            <input type="checkbox" id="includeHiddenFiles">
+            <label for="includeHiddenFiles">QBT_TR(Include hidden files (filenames starting with "."))QBT_TR[CONTEXT=TorrentCreator]</label>
+        </div>
         <fieldset id="optimizeAlignmentBox">
             <legend><input type="hidden" id="optimizeAlignmentHidden" name="optimizeAlignment" value="0"><input type="checkbox" id="optimizeAlignment"><label for="optimizeAlignment">QBT_TR(Optimize
                     alignment)QBT_TR[CONTEXT=TorrentCreator]</label></legend>
@@ -145,6 +150,8 @@
                 pieceSizeSelect.appendChild(createSizeOption(1024 << i));
 
             const buildInfo = window.qBittorrent.Cache.buildInfo.get();
+            if (buildInfo.platform === "windows")
+                document.getElementById("includeHiddenFilesBox").style.display = "none";
             const libtorrentVersion = window.qBittorrent.Misc.parseVersion(buildInfo.libtorrent);
             if (libtorrentVersion.valid) {
                 if (libtorrentVersion.major >= 2) {
@@ -170,6 +177,7 @@
         const submit = () => {
             document.getElementById("privateTorrentHidden").value = document.getElementById("privateTorrent").checked ? "true" : "false";
             document.getElementById("startSeedingHidden").value = document.getElementById("startSeeding").checked ? "true" : "false";
+            document.getElementById("includeHiddenFilesHidden").value = document.getElementById("includeHiddenFiles").checked ? "true" : "false";
             document.getElementById("optimizeAlignmentHidden").value = document.getElementById("optimizeAlignment").checked ? "true" : "false";
 
             document.getElementById("download_spinner").style.display = "block";

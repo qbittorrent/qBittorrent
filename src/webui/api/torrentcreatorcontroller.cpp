@@ -44,6 +44,7 @@
 const QString KEY_COMMENT = u"comment"_s;
 const QString KEY_ERROR_MESSAGE = u"errorMessage"_s;
 const QString KEY_FORMAT = u"format"_s;
+const QString KEY_INCLUDE_HIDDEN_FILES = u"includeHiddenFiles"_s;
 const QString KEY_OPTIMIZE_ALIGNMENT = u"optimizeAlignment"_s;
 const QString KEY_PADDED_FILE_SIZE_LIMIT = u"paddedFileSizeLimit"_s;
 const QString KEY_PIECE_SIZE = u"pieceSize"_s;
@@ -130,6 +131,7 @@ void TorrentCreatorController::addTaskAction()
 
     const BitTorrent::TorrentCreatorParams createTorrentParams
     {
+        .includeHiddenFiles = parseBool(params()[KEY_INCLUDE_HIDDEN_FILES]).value_or(false),
         .isPrivate = parseBool(params()[KEY_PRIVATE]).value_or(false),
 #ifdef QBT_USES_LIBTORRENT2
         .torrentFormat = parseTorrentFormat(params()[KEY_FORMAT].toLower()),
