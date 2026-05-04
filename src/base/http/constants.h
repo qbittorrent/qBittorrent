@@ -35,9 +35,6 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace Http
 {
-    inline const QString METHOD_GET = u"GET"_s;
-    inline const QString METHOD_POST = u"POST"_s;
-
     inline const QString HEADER_AUTHORIZATION = u"authorization"_s;
     inline const QString HEADER_CACHE_CONTROL = u"cache-control"_s;
     inline const QString HEADER_CONNECTION = u"connection"_s;
@@ -60,6 +57,9 @@ namespace Http
     inline const QString HEADER_X_FORWARDED_PROTO = u"x-forwarded-proto"_s;
     inline const QString HEADER_X_FRAME_OPTIONS = u"x-frame-options"_s;
     inline const QString HEADER_X_XSS_PROTECTION = u"x-xss-protection"_s;
+    inline const QString HEADER_ACCEPT_RANGES = u"accept-ranges"_s;
+    inline const QString HEADER_CONTENT_RANGE = u"content-range"_s;
+    inline const QString HEADER_RANGE = u"range"_s;
 
     inline const QString HEADER_REQUEST_METHOD_GET = u"GET"_s;
     inline const QString HEADER_REQUEST_METHOD_HEAD = u"HEAD"_s;

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -2305,6 +2305,54 @@ void TorrentsController::saveMetadataAction()
         throw APIError(APIErrorType::Conflict, tr("Unable to export torrent metadata. Error: %1").arg(result.error()));
 
     setResult(result.value(), u"application/x-bittorrent"_s, (torrentID.toString() + u".torrent"));
+}
+
+void TorrentsController::downloadFileAction()
+{
+    requireParams({u"hash"_s, u"file"_s});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_s]);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound, tr("Torrent not found"));
+
+    if (!torrent->hasMetadata())
+        throw APIError(APIErrorType::Conflict, tr("Torrent metadata not available"));
+
+    const int filesCount = torrent->filesCount();
+    const QString fileParam = params()[u"file"_s];
+    bool ok = false;
+    int fileIndex = fileParam.toInt(&ok);
+    if (ok)
+    {
+        if (fileIndex < 0)
+            throw APIError(APIErrorType::Conflict, tr("\"%1\" is not a valid file index").arg(fileParam));
+
+        if (fileIndex >= filesCount)
+            throw APIError(APIErrorType::Conflict, tr("File index %1 is out of bounds").arg(fileIndex));
+    }
+    else
+    {
+        const Path filePath {fileParam};
+        fileIndex = -1;
+        for (int i = 0; i < filesCount; ++i)
+        {
+            if (torrent->filePath(i) == filePath)
+            {
+                fileIndex = i;
+                break;
+            }
+        }
+
+        if (fileIndex < 0)
+            throw APIError(APIErrorType::Conflict, tr("\"%1\" is not a valid file path").arg(fileParam));
+    }
+
+    if (const QList<qreal> progress = torrent->filesProgress(); progress[fileIndex] < 1.0)
+        throw APIError(APIErrorType::Conflict, tr("File not fully downloaded"));
+
+    const Path filePath = torrent->actualStorageLocation() / torrent->actualFilePath(fileIndex);
+    setResult(filePath);
 }
 
 void TorrentsController::onDownloadFinished(const Net::DownloadResult &result)

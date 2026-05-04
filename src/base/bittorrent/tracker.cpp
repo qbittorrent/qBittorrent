@@ -39,6 +39,7 @@
 #include "base/global.h"
 #include "base/http/constants.h"
 #include "base/http/httperror.h"
+#include "base/http/responsewriter.h"
 #include "base/http/server.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -227,7 +228,7 @@ bool Tracker::start()
     return listenSuccess;
 }
 
-Http::Response Tracker::processRequest(const Http::Request &request, const Http::Environment &env)
+void Tracker::processRequest(const Http::Request &request, const Http::Environment &env, Http::ResponseWriter *responseWriter)
 {
     m_request = request;
     m_env = env;
@@ -268,7 +269,7 @@ Http::Response Tracker::processRequest(const Http::Request &request, const Http:
         m_response.content = reply;
     }
 
-    return m_response;
+    responseWriter->setResponse(m_response);
 }
 
 void Tracker::processAnnounceRequest()

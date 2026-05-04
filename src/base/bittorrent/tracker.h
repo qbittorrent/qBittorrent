@@ -91,7 +91,7 @@ namespace BitTorrent
         bool start();
 
     private:
-        Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
+        void processRequest(const Http::Request &request, const Http::Environment &env, Http::ResponseWriter *responseWriter) override;
         void processAnnounceRequest();
 
         void registerPeer(const TrackerAnnounceRequest &announceReq);

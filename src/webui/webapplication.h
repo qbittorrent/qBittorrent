@@ -47,9 +47,9 @@
 #include "base/applicationcomponent.h"
 #include "base/http/constants.h"
 #include "base/http/environment.h"
+#include "base/http/headermap.h"
 #include "base/http/irequesthandler.h"
 #include "base/http/request.h"
-#include "base/http/response.h"
 #include "base/path.h"
 #include "base/utils/net.h"
 #include "base/utils/version.h"
@@ -84,7 +84,7 @@ public:
     explicit WebApplication(IApplication *app, QObject *parent = nullptr);
     ~WebApplication() override;
 
-    Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
+    void processRequest(const Http::Request &request, const Http::Environment &env, Http::ResponseWriter *responseWriter) override;
 
     const Http::Request &request() const;
     const Http::Environment &env() const;
@@ -99,19 +99,19 @@ private:
     void sessionStartImpl(const QString &sessionId, WebSessionType sessionType);
     void sessionEnd() override;
 
-    void processAPIRequest(const QString &endpoint);
+    void processAPIRequest(const QString &endpoint, const Http::HeaderMap &commonHeaders, Http::ResponseWriter *responseWriter);
     void configure();
 
     void declarePublicAPI(const QString &apiPath);
 
-    void sendFile(const Path &path);
-    void sendWebUIFile();
+    void sendFile(const Path &path, const Http::HeaderMap &commonHeaders, Http::ResponseWriter *responseWriter);
+    void sendWebUIFile(const Http::HeaderMap &commonHeaders, Http::ResponseWriter *responseWriter);
 
     void translateDocument(QString &data) const;
 
     // Session management
     QString generateSid() const;
-    QNetworkCookie createSessionCookie(const QString &sessionID, std::chrono::seconds expireDuration) const;
+    void setSessionCookie(Http::HeaderMap &headers);
     void cookieSessionInitialize(const QString &authScheme, const QString &authData);
     void apiKeySessionInitialize(const QString &apiKey);
     bool isAuthNeeded();
@@ -137,92 +137,100 @@ private:
     WebSession *m_currentSession = nullptr;
     Http::Request m_request;
     Http::Environment m_env;
-    Http::Response m_response;
     const QString m_cacheID;
+
+    enum class SessionStateChange
+    {
+        None,
+        Start,
+        End
+    };
+
+    SessionStateChange m_sessionStateChange = SessionStateChange::None;
 
     QSet<QString> m_publicAPIs;
     const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
     {
         // <<controller name, action name>, HTTP method>
-        {{u"app"_s, u"deleteAPIKey"_s}, Http::METHOD_POST},
-        {{u"app"_s, u"rotateAPIKey"_s}, Http::METHOD_POST},
-        {{u"app"_s, u"sendTestEmail"_s}, Http::METHOD_POST},
-        {{u"app"_s, u"setCookies"_s}, Http::METHOD_POST},
-        {{u"app"_s, u"setPreferences"_s}, Http::METHOD_POST},
-        {{u"app"_s, u"shutdown"_s}, Http::METHOD_POST},
-        {{u"auth"_s, u"login"_s}, Http::METHOD_POST},
-        {{u"auth"_s, u"logout"_s}, Http::METHOD_POST},
-        {{u"clientdata"_s, u"store"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"cloneRule"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"moveItem"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"refreshItem"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"removeItem"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"removeRule"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"renameRule"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"setFeedURL"_s}, Http::METHOD_POST},
-        {{u"rss"_s, u"setRule"_s}, Http::METHOD_POST},
-        {{u"search"_s, u"delete"_s}, Http::METHOD_POST},
-        {{u"search"_s, u"enablePlugin"_s}, Http::METHOD_POST},
-        {{u"search"_s, u"installPlugin"_s}, Http::METHOD_POST},
-        {{u"search"_s, u"start"_s}, Http::METHOD_POST},
-        {{u"search"_s, u"stop"_s}, Http::METHOD_POST},
-        {{u"search"_s, u"uninstallPlugin"_s}, Http::METHOD_POST},
-        {{u"search"_s, u"updatePlugins"_s}, Http::METHOD_POST},
-        {{u"torrentcreator"_s, u"addTask"_s}, Http::METHOD_POST},
-        {{u"torrentcreator"_s, u"deleteTask"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"add"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"addPeers"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"addTags"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"addTrackers"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"addWebSeeds"_s}, Http::METHOD_POST},
-        {{u"transfer"_s, u"banPeers"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"bottomPrio"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"createCategory"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"createTags"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"decreasePrio"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"delete"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"deleteTags"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"editCategory"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"editTracker"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"editWebSeed"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"fetchMetadata"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"filePrio"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"increasePrio"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"parseMetadata"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"reannounce"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"recheck"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"removeCategories"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"removeTags"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"removeTrackers"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"removeWebSeeds"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"rename"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"renameFile"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"renameFolder"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setAutoManagement"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setCategory"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setComment"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setDownloadPath"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setForceStart"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setLocation"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setSavePath"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setShareLimits"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setSSLParameters"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setSuperSeeding"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setTags"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
-        {{u"transfer"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
-        {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::METHOD_POST},
-        {{u"transfer"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"start"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"stop"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"toggleFirstLastPiecePrio"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"toggleSequentialDownload"_s}, Http::METHOD_POST},
-        {{u"transfer"_s, u"toggleSpeedLimitsMode"_s}, Http::METHOD_POST},
-        {{u"torrents"_s, u"topPrio"_s}, Http::METHOD_POST},
+        {{u"app"_s, u"deleteAPIKey"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"app"_s, u"rotateAPIKey"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"app"_s, u"sendTestEmail"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"app"_s, u"setCookies"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"app"_s, u"setPreferences"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"app"_s, u"shutdown"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"auth"_s, u"login"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"auth"_s, u"logout"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"clientdata"_s, u"store"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"addFeed"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"addFolder"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"cloneRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"markAsRead"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"moveItem"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"refreshItem"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"removeItem"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"removeRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"renameRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"setFeedURL"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"rss"_s, u"setRule"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"delete"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"enablePlugin"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"installPlugin"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"start"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"stop"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"uninstallPlugin"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"search"_s, u"updatePlugins"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrentcreator"_s, u"addTask"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrentcreator"_s, u"deleteTask"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"add"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"addPeers"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"addTags"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"addTrackers"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"addWebSeeds"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"transfer"_s, u"banPeers"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"bottomPrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"createCategory"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"createTags"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"decreasePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"delete"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"deleteTags"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"editCategory"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"editTracker"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"editWebSeed"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"fetchMetadata"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"filePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"increasePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"parseMetadata"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"reannounce"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"recheck"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"removeCategories"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"removeTags"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"removeTrackers"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"removeWebSeeds"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"rename"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"renameFile"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"renameFolder"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setAutoManagement"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setCategory"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setComment"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setDownloadLimit"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setDownloadPath"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setForceStart"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setLocation"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setSavePath"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setShareLimits"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setSSLParameters"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setSuperSeeding"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setTags"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"setUploadLimit"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"transfer"_s, u"setDownloadLimit"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"transfer"_s, u"setUploadLimit"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"start"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"stop"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"toggleFirstLastPiecePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"toggleSequentialDownload"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"transfer"_s, u"toggleSpeedLimitsMode"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"topPrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
     };
     bool m_isAltUIUsed = false;
     Path m_rootFolder;

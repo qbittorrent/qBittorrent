@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,26 +28,34 @@
 
 #pragma once
 
+#include <variant>
+
 #include <QtContainerFwd>
 #include <QObject>
 #include <QString>
 #include <QVariant>
 
 #include "base/applicationcomponent.h"
+#include "base/path.h"
 #include "apistatus.h"
 
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
 
-struct APIResult
+struct RegularAPIResult
 {
-    QVariant data;
-    QString mimeType;
-    QString filename;
+    QVariant data {};
+    QString mimeType {};
+    QString filename {};
     APIStatus status = APIStatus::Ok;
-
-    void clear();
 };
+
+struct StreamFileAPIResult
+{
+    Path filePath;
+};
+
+using APIResult = std::variant<RegularAPIResult, StreamFileAPIResult>;
 
 class APIController : public ApplicationComponent<QObject>
 {
@@ -68,6 +76,7 @@ protected:
     void setResult(const QJsonArray &result);
     void setResult(const QJsonObject &result);
     void setResult(const QByteArray &result, const QString &mimeType = {}, const QString &filename = {});
+    void setResult(const Path &filePath);
 
     void setStatus(APIStatus status);
 
