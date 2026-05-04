@@ -37,6 +37,7 @@
 #include <QLabel>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPalette>
 
 #include "base/3rdparty/expected.hpp"
 #include "base/logger.h"
@@ -120,12 +121,17 @@ private:
     {
         if (color.isValid())
         {
-            setStyleSheet(u"#colorWidget { background-color: %1; }"_s.arg(color.name()));
+            QPalette pal = palette();
+            pal.setColor(QPalette::Window, color);
+            setPalette(pal);
+            setAutoFillBackground(true);
             setText({});
         }
         else
         {
-            setStyleSheet({});
+            setPalette({});
+            setAttribute(Qt::WA_SetPalette, false);
+            setAutoFillBackground(false);
             setText(tr("System"));
         }
     }
