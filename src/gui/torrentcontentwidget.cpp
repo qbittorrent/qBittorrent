@@ -92,6 +92,10 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     {
         RaisedMessageBox::warning(this, tr("Wrap in folder error"), errorMessage, QMessageBox::Ok);
     });
+    connect(m_model, &TorrentContentModel::unwrapFailed, this, [this](const QString &errorMessage)
+    {
+        RaisedMessageBox::warning(this, tr("Unwrap folder error"), errorMessage, QMessageBox::Ok);
+    });
 
     m_filterModel = new TorrentContentFilterModel(this);
     m_filterModel->setSourceModel(m_model);
@@ -317,6 +321,19 @@ void TorrentContentWidget::wrapSelectedItemInFolder()
     m_model->wrapItemInFolder(m_filterModel->mapToSource(modelIndex), folderPath);
 }
 
+void TorrentContentWidget::unwrapSelectedFolder()
+{
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
+    if (selectedIndexes.size() != 1)
+        return;
+
+    const QPersistentModelIndex modelIndex = selectedIndexes.first();
+    if (!modelIndex.isValid())
+        return;
+
+    m_model->unwrapFolder(m_filterModel->mapToSource(modelIndex));
+}
+
 void TorrentContentWidget::applyPriorities(const BitTorrent::DownloadPriority priority)
 {
     const QList<QPersistentModelIndex> selectedRows = toPersistentIndexes(selectionModel()->selectedRows(Priority));
@@ -456,6 +473,11 @@ void TorrentContentWidget::displayContextMenu()
                         , this, &TorrentContentWidget::renameSelectedFile);
         menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Wrap in folder...")
                         , this, &TorrentContentWidget::wrapSelectedItemInFolder);
+        if (m_filterModel->itemType(index) == TorrentContentModelItem::FolderType)
+        {
+            menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Unwrap folder")
+                            , this, &TorrentContentWidget::unwrapSelectedFolder);
+        }
         menu->addSeparator();
 
         QMenu *subMenu = menu->addMenu(tr("Priority"));

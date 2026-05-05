@@ -433,6 +433,72 @@ bool TorrentContentModel::wrapItemInFolder(const QModelIndex &index, const QStri
     return true;
 }
 
+bool TorrentContentModel::unwrapFolder(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return false;
+
+    auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
+    if (item->itemType() != TorrentContentModelItem::FolderType)
+        return false;
+
+    const Path folderPath = getItemPath(index);
+    const Path parentPath = folderPath.parentPath();
+
+    try
+    {
+        struct RenameTarget
+        {
+            int fileIndex = -1;
+            Path path;
+        };
+
+        QList<RenameTarget> renameTargets;
+        for (int i = 0; i < m_contentHandler->filesCount(); ++i)
+        {
+            const Path filePath = m_contentHandler->filePath(i);
+            if (!filePath.hasAncestor(folderPath))
+                continue;
+
+            const Path targetPath = parentPath / folderPath.relativePathOf(filePath);
+            for (const RenameTarget &target : asConst(renameTargets))
+            {
+                if (target.path == targetPath)
+                {
+                    throw RuntimeError(tr("The file already exists: '%1'.").arg(targetPath.toString()));
+                }
+            }
+
+            for (int j = 0; j < m_contentHandler->filesCount(); ++j)
+            {
+                const Path otherPath = m_contentHandler->filePath(j);
+                if (!otherPath.hasAncestor(folderPath) && (otherPath == targetPath))
+                {
+                    throw RuntimeError(tr("The file already exists: '%1'.").arg(targetPath.toString()));
+                }
+            }
+
+            renameTargets.append({i, targetPath});
+        }
+
+        for (const RenameTarget &target : asConst(renameTargets))
+            m_contentHandler->renameFile(target.fileIndex, target.path);
+    }
+    catch (const RuntimeError &error)
+    {
+        emit unwrapFailed(error.message());
+        return false;
+    }
+
+    beginResetModel();
+    m_filesIndex.clear();
+    m_rootItem->deleteAllChildren();
+    populate();
+    endResetModel();
+
+    return true;
+}
+
 Path TorrentContentModel::getItemPath(const QModelIndex &index) const
 {
     Path path;
