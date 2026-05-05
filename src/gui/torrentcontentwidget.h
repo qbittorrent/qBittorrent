@@ -120,6 +120,7 @@ private:
     void openSelectedFile();
     void renameSelectedFile();
     void wrapSelectedItemInFolder();
+    void unwrapSelectedFolder();
     void batchRenameFiles();
     void applyPriorities(BitTorrent::DownloadPriority priority);
     void applyPrioritiesByOrder();
