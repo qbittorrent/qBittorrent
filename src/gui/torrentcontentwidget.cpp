@@ -301,6 +301,25 @@ void TorrentContentWidget::batchRenameFiles()
     dialog->open();
 }
 
+void TorrentContentWidget::wrapSelectedItemInFolder()
+{
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
+    if (selectedIndexes.size() != 1)
+        return;
+
+    const QPersistentModelIndex modelIndex = selectedIndexes.first();
+    if (!modelIndex.isValid())
+        return;
+
+    bool ok = false;
+    const QString folderPath = AutoExpandableDialog::getText(this, tr("Wrap in folder"), tr("Folder path:")
+            , QLineEdit::Normal, {}, &ok).trimmed();
+    if (!ok || !modelIndex.isValid())
+        return;
+
+    m_model->wrapItemInFolder(m_filterModel->mapToSource(modelIndex), folderPath);
+}
+
 void TorrentContentWidget::applyPriorities(const BitTorrent::DownloadPriority priority)
 {
     const QList<QPersistentModelIndex> selectedRows = toPersistentIndexes(selectionModel()->selectedRows(Priority));
@@ -438,6 +457,8 @@ void TorrentContentWidget::displayContextMenu()
         }
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename...")
                 , this, &TorrentContentWidget::renameSelectedFile);
+        menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Wrap in folder...")
+                , this, &TorrentContentWidget::wrapSelectedItemInFolder);
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Batch rename...")
                 , this, &TorrentContentWidget::batchRenameFiles);
         menu->addSeparator();

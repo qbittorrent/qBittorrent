@@ -362,6 +362,72 @@ int TorrentContentModel::getFileIndex(const QModelIndex &index) const
     return -1;
 }
 
+bool TorrentContentModel::wrapItemInFolder(const QModelIndex &index, const QString &folderPath)
+{
+    if (!index.isValid())
+        return false;
+
+    auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
+    QString normalizedPath = folderPath.trimmed();
+    normalizedPath.replace(u'\\', u'/');
+
+    if (normalizedPath.isEmpty())
+    {
+        emit wrapFailed(tr("The folder path is empty."));
+        return false;
+    }
+
+    if (Path(normalizedPath).isAbsolute())
+    {
+        emit wrapFailed(tr("Absolute path isn't allowed: '%1'.").arg(folderPath));
+        return false;
+    }
+
+    Path wrapperPath;
+    const QList<QStringView> pathComponents = QStringView(normalizedPath).split(u'/', Qt::KeepEmptyParts);
+    for (const QStringView pathComponent : pathComponents)
+    {
+        const QString folderName = pathComponent.trimmed().toString();
+        if (!Utils::Fs::isValidFileName(folderName))
+        {
+            emit wrapFailed(tr("The folder name is invalid: \"%1\"").arg(folderName));
+            return false;
+        }
+
+        wrapperPath /= Path(folderName);
+    }
+
+    try
+    {
+        const QString currentName = item->name();
+        const Path parentPath = getItemPath(index.parent());
+        const Path oldPath = parentPath / Path(currentName);
+        const Path targetFolderPath = parentPath / wrapperPath;
+        const Path newPath = targetFolderPath / Path(currentName);
+
+        for (int i = 0; i < m_contentHandler->filesCount(); ++i)
+        {
+            const Path filePath = m_contentHandler->filePath(i);
+            if ((filePath == targetFolderPath) || filePath.hasAncestor(targetFolderPath))
+            {
+                throw RuntimeError(tr("The folder already exists: '%1'.").arg(targetFolderPath.toString()));
+            }
+        }
+
+        if (item->itemType() == TorrentContentModelItem::FileType)
+            m_contentHandler->renameFile(oldPath, newPath);
+        else
+            m_contentHandler->renameFolder(oldPath, newPath);
+    }
+    catch (const RuntimeError &error)
+    {
+        emit wrapFailed(error.message());
+        return false;
+    }
+
+    return true;
+}
+
 Path TorrentContentModel::getItemPath(const QModelIndex &index) const
 {
     Path path;
