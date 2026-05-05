@@ -117,6 +117,7 @@ private:
     void copyFullPath(const QModelIndex &index);
     void openSelectedFile();
     void renameSelectedFile();
+    void wrapSelectedItemInFolder();
     void applyPriorities(BitTorrent::DownloadPriority priority);
     void applyPrioritiesByOrder();
     Path getFullPath(const QModelIndex &index) const;
