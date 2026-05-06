@@ -166,7 +166,7 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QList<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
+    , m_rootItem {new TorrentContentModelFolder(QList<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") }))}
 #if defined(Q_OS_WIN)
     , m_fileIconProvider {new QFileIconProvider}
 #elif defined(Q_OS_MACOS)
