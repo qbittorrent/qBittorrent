@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2025  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,19 +31,21 @@
 #include <QObject>
 
 #include "base/pathfwd.h"
-#include "abstractfilestorage.h"
 #include "downloadpriority.h"
 
 template <typename T> class QFuture;
 
 namespace BitTorrent
 {
-    class TorrentContentHandler : public QObject, public AbstractFileStorage
+    class TorrentContentHandler : public QObject
     {
     public:
         using QObject::QObject;
 
         virtual bool hasMetadata() const = 0;
+        virtual int filesCount() const = 0;
+        virtual Path filePath(int index) const = 0;
+        virtual qlonglong fileSize(int index) const = 0;
         virtual Path actualStorageLocation() const = 0;
         virtual Path actualFilePath(int fileIndex) const = 0;
         virtual QList<DownloadPriority> filePriorities() const = 0;
@@ -56,7 +58,11 @@ namespace BitTorrent
          */
         virtual QFuture<QList<qreal>> fetchAvailableFileFractions() const = 0;
 
+        virtual void renameFile(int index, const Path &newPath) = 0;
         virtual void prioritizeFiles(const QList<DownloadPriority> &priorities) = 0;
         virtual void flushCache() const = 0;
+
+        void renameFile(const Path &oldPath, const Path &newPath);
+        void renameFolder(const Path &oldFolderPath, const Path &newFolderPath);
     };
 }
