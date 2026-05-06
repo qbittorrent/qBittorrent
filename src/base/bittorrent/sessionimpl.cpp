@@ -5408,6 +5408,22 @@ void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoH
     }
 }
 
+void SessionImpl::handleTorrentContentFileRenamed(TorrentImpl *torrent, const int index, const Path &oldFilePath)
+{
+    emit torrentContentFileRenamed(torrent, index, oldFilePath);
+}
+
+void SessionImpl::handleTorrentContentFolderRenamed(const Path &newFolderPath, const Path &oldFolderPath, const QHash<int, Path> &renamedFiles)
+{
+    emit torrentContentFolderRenamed(newFolderPath, oldFolderPath, renamedFiles);
+}
+
+void SessionImpl::handleTorrentContentFolderRenamingFailed(const Path &newFolderPath, const Path &oldFolderPath
+        , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes)
+{
+    emit torrentContentFolderRenamingFailed(newFolderPath, oldFolderPath, renamedFiles, failedFileIndexes);
+}
+
 void SessionImpl::handleTorrentStorageMovingStateChanged(TorrentImpl *torrent)
 {
     emit torrentsUpdated({torrent});

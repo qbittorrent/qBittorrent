@@ -115,8 +115,6 @@ void TorrentContentWidget::setContentHandler(BitTorrent::TorrentContentHandler *
     m_model->setContentHandler(contentHandler);
     if (!contentHandler)
         return;
-
-    expandRecursively();
 }
 
 BitTorrent::TorrentContentHandler *TorrentContentWidget::contentHandler() const
@@ -565,4 +563,18 @@ void TorrentContentWidget::wheelEvent(QWheelEvent *event)
     }
 
     QTreeView::wheelEvent(event);  // event delegated to base class
+}
+
+void TorrentContentWidget::rowsInserted(const QModelIndex &parent, int start, int end)
+{
+    QTreeView::rowsInserted(parent, start, end);
+
+    // Expand all parents if the parent(s) of the node are not expanded.
+    QModelIndex p = parent;
+    while (p.isValid())
+    {
+        if (!isExpanded(p))
+            expand(p);
+        p = model()->parent(p);
+    }
 }

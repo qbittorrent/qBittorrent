@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,6 +33,7 @@
 
 #include <QMetaType>
 #include <QString>
+#include <QStringView>
 
 #include "pathfwd.h"
 
@@ -57,6 +58,7 @@ public:
     Path parentPath() const;
 
     QString filename() const;
+    QList<QStringView> split() const;
 
     QString extension() const;
     bool hasExtension(QStringView ext) const;

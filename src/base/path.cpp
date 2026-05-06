@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -40,8 +40,9 @@
 #include <QStringView>
 
 #include "base/concepts/stringable.h"
-#include "base/global.h"
 #include "base/utils/fs.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 #if defined(Q_OS_WIN)
 const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
@@ -184,6 +185,11 @@ QString Path::filename() const
         return m_pathStr;
 
     return m_pathStr.sliced(slashIndex + 1);
+}
+
+QList<QStringView> Path::split() const
+{
+    return QStringView(m_pathStr).split(u'/', Qt::SkipEmptyParts);
 }
 
 QString Path::extension() const

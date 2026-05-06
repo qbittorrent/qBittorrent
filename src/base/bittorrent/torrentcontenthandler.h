@@ -39,6 +39,9 @@ namespace BitTorrent
 {
     class TorrentContentHandler : public QObject
     {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(TorrentContentHandler)
+
     public:
         using QObject::QObject;
 
@@ -64,5 +67,15 @@ namespace BitTorrent
 
         void renameFile(const Path &oldPath, const Path &newPath);
         void renameFolder(const Path &oldFolderPath, const Path &newFolderPath);
+
+    signals:
+        void metadataReceived();
+        void fileRenamed(int index, const Path &oldFilePath);
+        void folderRenamed(const Path &newFolderPath, const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
+        void folderRenamingFailed(const Path &newFolderPath, const Path &oldFolderPath
+                , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
+
+    protected:
+        virtual void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) = 0;
     };
 }
