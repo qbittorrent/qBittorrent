@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -81,15 +81,33 @@ public:
     QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = {}) const override;
 
+    QModelIndex index(const Path &itemPath) const;
+    QModelIndex index(const TorrentContentModelItem *item) const;
+
 signals:
     void renameFailed(const QString &errorMessage);
 
 private:
     using ColumnInterval = IndexInterval<int>;
 
+    enum PopulateFolderFlags
+    {
+        None = 0,
+        SuppressInsertRowsNotify = 1
+    };
+
     QMimeData *mimeData(const QModelIndexList &indexes) const override;
     QStringList mimeTypes() const override;
     void populate();
+    TorrentContentModelFolder *populateFolder(const Path &folderPath, PopulateFolderFlags flags = None);
+    void removeEmptyBranch(const Path &folderPath);
+
+    void onMetadataReceived();
+    void onFileRenamed(int index, const Path &oldFilePath);
+    void onFolderRenamed(const Path &newFolderPath, const Path &oldFolderPath);
+    void onFolderRenamingFailed(const Path &newFolderPath, const Path &oldFolderPath
+            , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
+
     void updateFilesProgress();
     void updateFilesPriorities();
     void updateFilesAvailability();
@@ -99,5 +117,6 @@ private:
     BitTorrent::TorrentContentHandler *m_contentHandler = nullptr;
     TorrentContentModelFolder *m_rootItem = nullptr;
     QList<TorrentContentModelFile *> m_filesIndex;
+    QHash<Path, TorrentContentModelItem *> m_itemByPath;
     QFileIconProvider *m_fileIconProvider = nullptr;
 };

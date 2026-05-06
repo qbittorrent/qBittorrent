@@ -480,6 +480,10 @@ namespace BitTorrent
         void handleTorrentUrlSeedsRemoved(TorrentImpl *torrent, const QList<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *torrent, LoadTorrentParams data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
+        void handleTorrentContentFileRenamed(TorrentImpl *torrent, int index, const Path &oldFilePath);
+        void handleTorrentContentFolderRenamed(const Path &newFolderPath, const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
+        void handleTorrentContentFolderRenamingFailed(const Path &newFolderPath, const Path &oldFolderPath
+                , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
         void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode, MoveStorageContext context);

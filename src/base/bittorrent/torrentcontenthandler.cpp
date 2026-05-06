@@ -70,25 +70,19 @@ void BitTorrent::TorrentContentHandler::renameFolder(const Path &oldFolderPath, 
     if (newFolderPath.isAbsolute())
         throw RuntimeError(tr("Absolute path isn't allowed: '%1'.").arg(newFolderPath.toString()));
 
-    QList<int> renamingFileIndexes;
-    renamingFileIndexes.reserve(filesCount());
-
+    bool oldFolderExists = false;
     for (int i = 0; i < filesCount(); ++i)
     {
         const Path path = filePath(i);
-
-        if (path.hasAncestor(oldFolderPath))
-            renamingFileIndexes.append(i);
-        else if (path.hasAncestor(newFolderPath))
+        if (path.hasAncestor(newFolderPath))
             throw RuntimeError(tr("The folder already exists: '%1'.").arg(newFolderPath.toString()));
+
+        if (!oldFolderExists && path.hasAncestor(oldFolderPath))
+            oldFolderExists = true;
     }
 
-    if (renamingFileIndexes.isEmpty())
+    if (!oldFolderExists)
         throw RuntimeError(tr("No such folder: '%1'.").arg(oldFolderPath.toString()));
 
-    for (const int index : renamingFileIndexes)
-    {
-        const Path newFilePath = newFolderPath / oldFolderPath.relativePathOf(filePath(index));
-        renameFile(index, newFilePath);
-    }
+    doRenameFolder(oldFolderPath, newFolderPath);
 }
