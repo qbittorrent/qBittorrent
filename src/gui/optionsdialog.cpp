@@ -666,6 +666,11 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->textExcludedFileNames->setPlainText(session->excludedFileNames().join(u'\n'));
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
+    m_ui->checkMailOnAdd->setChecked(pref->isMailNotificationOnAdd());
+    m_ui->checkMailOnAdd->setToolTip(tr("Send email notification when a torrent is added."));
+    m_ui->checkMailOnEnd->setChecked(pref->isMailNotificationOnEnd());
+    m_ui->checkMailOnEnd->setToolTip(tr("Send email notification when a torrent has finished downloading."));
+    updateMailWhenToSendStates();
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->senderEmailTxt->setToolTip(tr("Provide the sending email address."));
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
@@ -784,6 +789,10 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->removeWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
 
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMailOnAdd, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMailOnAdd, &QAbstractButton::toggled, this, &ThisType::updateMailWhenToSendStates);
+    connect(m_ui->checkMailOnEnd, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMailOnEnd, &QAbstractButton::toggled, this, &ThisType::updateMailWhenToSendStates);
     connect(m_ui->senderEmailTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditDestEmail, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->lineEditSMTPServer, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -850,6 +859,8 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setExcludedFileNames(m_ui->textExcludedFileNames->toPlainText().split(u'\n', Qt::SkipEmptyParts));
 
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
+    pref->setMailNotificationOnAdd(m_ui->checkMailOnAdd->isChecked());
+    pref->setMailNotificationOnEnd(m_ui->checkMailOnEnd->isChecked());
     pref->setMailNotificationSender(m_ui->senderEmailTxt->text());
     pref->setMailNotificationEmail(m_ui->lineEditDestEmail->text());
     pref->setMailNotificationSMTP(m_ui->lineEditSMTPServer->text());
@@ -1908,6 +1919,16 @@ void OptionsDialog::changeSMTPEncryptionPortInfoLabel()
         break;
     }
     m_ui->labelSMTPEncryptionPortInfo->setText(tr("Default port: %1").arg(QString::number(port)));
+}
+
+void OptionsDialog::updateMailWhenToSendStates()
+{
+    const bool isMailNotificationOnAddChecked = m_ui->checkMailOnAdd->isChecked();
+    const bool isMailNotificationOnEndChecked = m_ui->checkMailOnEnd->isChecked();
+    if (!isMailNotificationOnAddChecked && !isMailNotificationOnEndChecked)
+        return;
+    m_ui->checkMailOnAdd->setEnabled(isMailNotificationOnEndChecked);
+    m_ui->checkMailOnEnd->setEnabled(isMailNotificationOnAddChecked);
 }
 
 bool OptionsDialog::isSplashScreenDisabled() const

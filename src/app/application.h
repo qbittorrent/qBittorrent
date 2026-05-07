@@ -149,7 +149,7 @@ public:
 
 private slots:
     void processMessage(const QString &message);
-    void torrentAdded(const BitTorrent::Torrent *torrent) const;
+    void torrentAdded(const BitTorrent::Torrent *torrent);
     void torrentFinished(const BitTorrent::Torrent *torrent);
     void allTorrentsFinished();
     void cleanup();
@@ -167,7 +167,8 @@ private:
     void initializeTranslation();
     void processParams(const QBtCommandLineParameters &params);
     void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
-    void sendNotificationEmail(const BitTorrent::Torrent *torrent);
+    void sendNotificationEmailAdded(const BitTorrent::Torrent *torrent);
+    void sendNotificationEmailFinished(const BitTorrent::Torrent *torrent);
 
 #if defined(QBT_USES_LIBTORRENT2) && !defined(Q_OS_MACOS)
     void applyMemoryWorkingSetLimit() const;

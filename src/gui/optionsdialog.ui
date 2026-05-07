@@ -1593,7 +1593,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <widget class="QGroupBox" name="groupMailNotification">
               <property name="title">
-               <string>Email notification &amp;upon download completion</string>
+               <string>Email notification</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -1602,6 +1602,29 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <bool>false</bool>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_171">
+               <item>
+                <widget class="QGroupBox" name="groupMailNotificationWhen">
+                 <property name="title">
+                  <string>Send when</string>
+                 </property>
+                 <layout class="QVBoxLayout" name="groupMailNotificationWhenLayout">
+                  <item>
+                   <widget class="QCheckBox" name="checkMailOnAdd">
+                    <property name="text">
+                     <string>Torrent Added</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="checkMailOnEnd">
+                    <property name="text">
+                     <string>Torrent Finished</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_9">
                  <item row="0" column="0">
