@@ -54,7 +54,7 @@ AutoExpandableDialog::AutoExpandableDialog(QWidget *parent)
         if (delta > 0)
         {
             const QWidget *const topLevel = parentWidget() ? parentWidget()->window() : nullptr;
-            const int maxWidth = topLevel ? (topLevel->width() / 2) : width();
+            const int maxWidth = std::max((topLevel ? (topLevel->width() / 2) : width()), width());
             const int newWidth = std::min((width() + delta), maxWidth);
             const int widthDelta = newWidth - width();
             resize(newWidth, height());
