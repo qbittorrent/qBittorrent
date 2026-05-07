@@ -4,6 +4,11 @@
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
   * `torrentcreator/addTask` endpoint accepts a new bool option `ignoreDotfiles` to control whether dotfiles are ignored
   * `torrentcreator/status` endpoint returns a new bool field `ignoreDotfiles` for reporting whether dotfiles were ignored
+* [#24289](https://github.com/qbittorrent/qBittorrent/pull/24289)
+  * `app/preferences` endpoint includes `mail_notification_on_add` option
+  * `app/preferences` endpoint includes `mail_notification_on_end` option
+  * `app/setPreferences` endpoint allows to set `mail_notification_on_add` option
+  * `app/setPreferences` endpoint allows to set `mail_notification_on_end` option
 * [#24246](https://github.com/qbittorrent/qBittorrent/pull/24246)
   * `torrents/fetchMetadata` and `torrents/parseMetadata` endpoints include file `priority` when excluded file names apply
 * [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)

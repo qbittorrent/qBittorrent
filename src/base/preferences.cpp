@@ -542,6 +542,32 @@ void Preferences::setMailNotificationEnabled(const bool enabled)
     setValue(u"Preferences/MailNotification/enabled"_s, enabled);
 }
 
+bool Preferences::isMailNotificationOnAdd() const
+{
+    return value(u"Preferences/MailNotification/SendOnAdd"_s, false);
+}
+
+void Preferences::setMailNotificationOnAdd(const bool enabled)
+{
+    if (enabled == isMailNotificationOnAdd())
+        return;
+
+    setValue(u"Preferences/MailNotification/SendOnAdd"_s, enabled);
+}
+
+bool Preferences::isMailNotificationOnEnd() const
+{
+    return value(u"Preferences/MailNotification/SendOnEnd"_s, true);
+}
+
+void Preferences::setMailNotificationOnEnd(const bool enabled)
+{
+    if (enabled == isMailNotificationOnEnd())
+        return;
+
+    setValue(u"Preferences/MailNotification/SendOnEnd"_s, enabled);
+}
+
 QString Preferences::getMailNotificationSender() const
 {
     return value<QString>(u"Preferences/MailNotification/sender"_s);

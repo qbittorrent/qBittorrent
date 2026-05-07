@@ -137,6 +137,10 @@ public:
     void setScanDirsLastPath(const Path &path);
     bool isMailNotificationEnabled() const;
     void setMailNotificationEnabled(bool enabled);
+    bool isMailNotificationOnAdd() const;
+    void setMailNotificationOnAdd(bool enabled);
+    bool isMailNotificationOnEnd() const;
+    void setMailNotificationOnEnd(bool enabled);
     QString getMailNotificationSender() const;
     void setMailNotificationSender(const QString &mail);
     QString getMailNotificationEmail() const;

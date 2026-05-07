@@ -326,8 +326,19 @@
     <fieldset class="settings">
         <legend>
             <input type="checkbox" id="mail_notification_checkbox" onclick="qBittorrent.Preferences.updateMailNotification();">
-            <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="mail_notification_checkbox">QBT_TR(Email notification)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
+        <fieldset class="settings">
+            <legend>QBT_TR(Send when)QBT_TR[CONTEXT=OptionsDialog]</legend>
+            <div class="formRow">
+                <input type="checkbox" id="mailNotificationOnAddCheckbox" title="QBT_TR(Send email notification when a torrent is added.)QBT_TR[CONTEXT=OptionsDialog]" onclick="qBittorrent.Preferences.updateMailWhenToSend();">
+                <label id="mailNotificationOnAddLabel" for="mailNotificationOnAddCheckbox">QBT_TR(Torrent Added)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="mailNotificationOnEndCheckbox" title="QBT_TR(Send email notification when a torrent has finished downloading.)QBT_TR[CONTEXT=OptionsDialog]" onclick="qBittorrent.Preferences.updateMailWhenToSend();">
+                <label id="mailNotificationOnEndLabel" for="mailNotificationOnEndCheckbox">QBT_TR(Torrent Finished)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+        </fieldset>
         <table>
             <tbody>
                 <tr>
@@ -1866,6 +1877,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
+                updateMailWhenToSend: updateMailWhenToSend,
                 updateMailAuthSettings: updateMailAuthSettings,
                 sendTestEmail: sendTestEmail,
                 updateAutoRun: updateAutoRun,
@@ -2029,17 +2041,29 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
         const updateMailNotification = () => {
             const isMailNotificationEnabled = document.getElementById("mail_notification_checkbox").checked;
+            document.getElementById("mailNotificationOnAddCheckbox").disabled = !isMailNotificationEnabled;
+            document.getElementById("mailNotificationOnEndCheckbox").disabled = !isMailNotificationEnabled;
             document.getElementById("src_email_txt").disabled = !isMailNotificationEnabled;
             document.getElementById("dest_email_txt").disabled = !isMailNotificationEnabled;
             document.getElementById("smtp_server_txt").disabled = !isMailNotificationEnabled;
             document.getElementById("mailNotificationEncryptionCombobox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_auth_checkbox").disabled = !isMailNotificationEnabled;
             document.getElementById("mail_test_button").disabled = !isMailNotificationEnabled;
-
+            if (isMailNotificationEnabled)
+                updateMailWhenToSend();
             if (!isMailNotificationEnabled) {
                 document.getElementById("mail_auth_checkbox").checked = !isMailNotificationEnabled;
                 updateMailAuthSettings();
             }
+        };
+
+        const updateMailWhenToSend = () => {
+            const isMailNotificationOnAddChecked = document.getElementById("mailNotificationOnAddCheckbox").checked;
+            const isMailNotificationOnEndChecked = document.getElementById("mailNotificationOnEndCheckbox").checked;
+            if (!isMailNotificationOnAddChecked && !isMailNotificationOnEndChecked)
+                return;
+            document.getElementById("mailNotificationOnAddCheckbox").disabled = !isMailNotificationOnEndChecked;
+            document.getElementById("mailNotificationOnEndCheckbox").disabled = !isMailNotificationOnAddChecked;
         };
 
         const updateMailAuthSettings = () => {
@@ -2466,6 +2490,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                     // Email notification upon download completion
                     document.getElementById("mail_notification_checkbox").checked = pref.mail_notification_enabled;
+                    document.getElementById("mailNotificationOnAddCheckbox").checked = pref.mail_notification_on_add;
+                    document.getElementById("mailNotificationOnEndCheckbox").checked = pref.mail_notification_on_end;
                     document.getElementById("src_email_txt").value = pref.mail_notification_sender;
                     document.getElementById("dest_email_txt").value = pref.mail_notification_email;
                     document.getElementById("smtp_server_txt").value = pref.mail_notification_smtp;
@@ -2868,6 +2894,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Email notification upon download completion
             settings["mail_notification_enabled"] = document.getElementById("mail_notification_checkbox").checked;
+            settings["mail_notification_on_add"] = document.getElementById("mailNotificationOnAddCheckbox").checked;
+            settings["mail_notification_on_end"] = document.getElementById("mailNotificationOnEndCheckbox").checked;
             settings["mail_notification_sender"] = document.getElementById("src_email_txt").value;
             settings["mail_notification_email"] = document.getElementById("dest_email_txt").value;
             settings["mail_notification_smtp"] = document.getElementById("smtp_server_txt").value;

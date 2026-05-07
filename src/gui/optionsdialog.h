@@ -85,6 +85,7 @@ public slots:
 private slots:
     void adjustProxyOptions();
     void changeSMTPEncryptionPortInfoLabel();
+    void updateMailWhenToSendStates();
     void on_buttonBox_accepted();
     void on_buttonBox_rejected();
     void enableApplyButton();

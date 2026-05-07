@@ -733,7 +733,22 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
 #endif
 }
 
-void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
+void Application::sendNotificationEmailAdded(const BitTorrent::Torrent *torrent)
+{
+    // Prepare mail content
+    const QString content = tr("Torrent name: %1").arg(torrent->name()) + u'\n'
+        + tr("Torrent size: %1").arg(Utils::Misc::friendlyUnit(torrent->wantedSize())) + u'\n'
+        + tr("Save path: %1").arg(torrent->savePath().toString()) + u"\n\n"
+        + tr("The torrent has been added.") + u"\n\n\n"
+        + tr("Thank you for using qBittorrent.") + u'\n';
+
+    // Send the notification email
+    const Preferences* pref = Preferences::instance();
+    Net::SMTPClient::sendMail(pref->getMailNotificationSender(), pref->getMailNotificationEmail()
+            , tr("Torrent \"%1\" has been added").arg(torrent->name()), content, this);
+}
+
+void Application::sendNotificationEmailFinished(const BitTorrent::Torrent *torrent)
 {
     // Prepare mail content
     const QString content = tr("Torrent name: %1").arg(torrent->name()) + u'\n'
@@ -764,13 +779,20 @@ void Application::sendTestEmail()
     }
 }
 
-void Application::torrentAdded(const BitTorrent::Torrent *torrent) const
+void Application::torrentAdded(const BitTorrent::Torrent *torrent)
 {
     const Preferences *pref = Preferences::instance();
 
     // AutoRun program
     if (pref->isAutoRunOnTorrentAddedEnabled())
         runExternalProgram(pref->getAutoRunOnTorrentAddedProgram().trimmed(), torrent);
+
+    // Mail notification
+    if (pref->isMailNotificationEnabled() && pref->isMailNotificationOnAdd())
+    {
+        LogMsg(tr("Torrent: %1, sending added mail notification").arg(torrent->name()));
+        sendNotificationEmailAdded(torrent);
+    }
 }
 
 void Application::torrentFinished(const BitTorrent::Torrent *torrent)
@@ -782,10 +804,10 @@ void Application::torrentFinished(const BitTorrent::Torrent *torrent)
         runExternalProgram(pref->getAutoRunOnTorrentFinishedProgram().trimmed(), torrent);
 
     // Mail notification
-    if (pref->isMailNotificationEnabled())
+    if (pref->isMailNotificationEnabled() && pref->isMailNotificationOnEnd())
     {
-        LogMsg(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
-        sendNotificationEmail(torrent);
+        LogMsg(tr("Torrent: %1, sending finished mail notification").arg(torrent->name()));
+        sendNotificationEmailFinished(torrent);
     }
 
 #ifndef DISABLE_GUI
