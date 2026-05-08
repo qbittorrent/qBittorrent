@@ -3742,7 +3742,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     td.title = "";
                 }
                 else {
-                    const date = window.qBittorrent.Misc.formatDate(new Date(val));
+                    const date = window.qBittorrent.Misc.formatDate(new Date(val * 1000));
                     td.textContent = date;
                     td.title = date;
                 }
