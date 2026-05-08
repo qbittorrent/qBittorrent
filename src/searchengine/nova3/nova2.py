@@ -52,9 +52,6 @@ if current_path not in sys.path:
 
 import helpers
 
-# enable SOCKS proxy for all plugins by default
-helpers.enable_socks_proxy(True)
-
 THREADED: bool = True
 try:
     MAX_THREADS: int = cpu_count()
@@ -194,6 +191,9 @@ def run_search(search_params: tuple[type[Engine], str, Category]) -> bool:
 
     engine_class, what, cat = search_params
     try:
+        # Enable SOCKS proxying only while the plugin runs. Keeping the socket
+        # module monkeypatched in the parent process breaks multiprocessing IPC.
+        helpers.enable_socks_proxy(True)
         engine = engine_class()
         # avoid exceptions due to invalid category
         if hasattr(engine, 'supported_categories'):
@@ -205,6 +205,8 @@ def run_search(search_params: tuple[type[Engine], str, Category]) -> bool:
     except Exception:
         traceback.print_exc()
         return False
+    finally:
+        helpers.enable_socks_proxy(False)
 
 
 if __name__ == "__main__":
