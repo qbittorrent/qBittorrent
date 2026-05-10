@@ -171,6 +171,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_RATIO, adjustRatio(torrent.realRatio())},
         {KEY_TORRENT_RATIO_LIMIT, shareLimits.ratioLimit},
         {KEY_TORRENT_POPULARITY, torrent.popularity()},
+        {KEY_TORRENT_AVERAGE_MONTHLY_UPLOAD, torrent.averageMonthlyUpload()},
         {KEY_TORRENT_SEEDING_TIME_LIMIT, shareLimits.seedingTimeLimit},
         {KEY_TORRENT_INACTIVE_SEEDING_TIME_LIMIT, shareLimits.inactiveSeedingTimeLimit},
         {KEY_TORRENT_SHARE_LIMITS_MODE, Utils::String::fromEnum(shareLimits.mode)},

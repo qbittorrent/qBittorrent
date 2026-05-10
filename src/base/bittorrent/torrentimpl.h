@@ -184,6 +184,7 @@ namespace BitTorrent
         QString error() const override;
         qlonglong totalDownload() const override;
         qlonglong totalUpload() const override;
+        qlonglong averageMonthlyUpload() const override;
         qlonglong eta() const override;
         QList<qreal> filesProgress() const override;
         int seedsCount() const override;

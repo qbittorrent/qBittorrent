@@ -1632,6 +1632,13 @@ qreal TorrentImpl::popularity() const
     return (activeMonths > 0) ? (realRatio() / activeMonths) : 0;
 }
 
+qlonglong TorrentImpl::averageMonthlyUpload() const
+{
+    using months = std::chrono::duration<qreal, std::chrono::months::period>;
+    const auto activeMonths = std::chrono::duration_cast<months>(m_nativeStatus.active_duration).count();
+    return (activeMonths > 0) ? (totalUpload() / activeMonths) : 0;
+}
+
 void TorrentImpl::setName(const QString &name)
 {
     if (m_name != name)

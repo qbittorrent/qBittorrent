@@ -63,6 +63,7 @@ public:
         TR_ETA,
         TR_RATIO,
         TR_POPULARITY,
+        TR_AVERAGE_MONTHLY_UPLOAD,
         TR_CATEGORY,
         TR_TAGS,
         TR_ADD_DATE,
