@@ -59,6 +59,15 @@ namespace Scheduler
         Sunday = 9
     };
     Q_ENUM_NS(Days)
+
+    enum class AlternativeSessionState : int
+    {
+        Limited = 0,
+        Paused = 1
+    };
+    Q_ENUM_NS(AlternativeSessionState)
+
+
 }
 
 namespace DNS
@@ -163,6 +172,8 @@ public:
     void setSchedulerEndTime(const QTime &time);
     Scheduler::Days getSchedulerDays() const;
     void setSchedulerDays(Scheduler::Days days);
+    void setSchedulerSessionState(Scheduler::AlternativeSessionState state);
+    Scheduler::AlternativeSessionState getSchedulerSessionState() const;
 
     // Search
     bool isSearchEnabled() const;
