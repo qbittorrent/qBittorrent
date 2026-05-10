@@ -65,8 +65,13 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     mainWidgetLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
     {
-        auto *item = new TransferListFiltersWidgetItem(tr("Status"), new StatusFilterWidget(this, transferList), this);
-        item->setChecked(pref->getStatusFilterState());
+        auto *statusFilterWidget = new StatusFilterWidget(this, transferList);
+        auto *item = new TransferListFiltersWidgetItem(tr("Status"), statusFilterWidget, this);
+        connect(item, &TransferListFiltersWidgetItem::toggled, statusFilterWidget, &StatusFilterWidget::toggleFilter);
+        const bool filterEnabled = pref->getStatusFilterState();
+        item->setChecked(filterEnabled);
+        if (!filterEnabled)
+            statusFilterWidget->toggleFilter(false);
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setStatusFilterState);
         mainWidgetLayout->addWidget(item);
     }
@@ -119,7 +124,11 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
         m_trackersFilterWidget = new TrackersFilterWidget(this, transferList, downloadFavicon);
 
         auto *item = new TransferListFiltersWidgetItem(tr("Trackers"), m_trackersFilterWidget, this);
-        item->setChecked(pref->getTrackerFilterState());
+        connect(item, &TransferListFiltersWidgetItem::toggled, m_trackersFilterWidget, &TrackersFilterWidget::toggleFilter);
+        const bool filterEnabled = pref->getTrackerFilterState();
+        item->setChecked(filterEnabled);
+        if (!filterEnabled)
+            m_trackersFilterWidget->toggleFilter(false);
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerFilterState);
         mainWidgetLayout->addWidget(item);
     }
@@ -136,8 +145,13 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 
     const auto createTrackerStatusItem = [this, mainWidgetLayout, trackerStatusItemPos, pref]
     {
-        auto *item = new TransferListFiltersWidgetItem(tr("Tracker status"), new TrackerStatusFilterWidget(this, m_transferList), this);
-        item->setChecked(pref->getTrackerStatusFilterState());
+        auto *trackerStatusFilterWidget = new TrackerStatusFilterWidget(this, m_transferList);
+        auto *item = new TransferListFiltersWidgetItem(tr("Tracker status"), trackerStatusFilterWidget, this);
+        connect(item, &TransferListFiltersWidgetItem::toggled, trackerStatusFilterWidget, &TrackerStatusFilterWidget::toggleFilter);
+        const bool filterEnabled = pref->getTrackerStatusFilterState();
+        item->setChecked(filterEnabled);
+        if (!filterEnabled)
+            trackerStatusFilterWidget->toggleFilter(false);
         connect(item, &TransferListFiltersWidgetItem::toggled, pref, &Preferences::setTrackerStatusFilterState);
         mainWidgetLayout->insertWidget(trackerStatusItemPos, item);
     };
