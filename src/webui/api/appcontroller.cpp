@@ -293,6 +293,8 @@ void AppController::preferencesAction()
     data[u"schedule_to_hour"_s] = end_time.hour();
     data[u"schedule_to_min"_s] = end_time.minute();
     data[u"scheduler_days"_s] = static_cast<int>(pref->getSchedulerDays());
+    data[u"scheduler_alt_session_state"_s] = static_cast<int>(pref->getSchedulerSessionState());
+
 
     // Bittorrent
     // Privacy
@@ -807,6 +809,8 @@ void AppController::setPreferencesAction()
         pref->setSchedulerEndTime({hourIter.value().toInt(), minIter.value().toInt()});
     if (hasKey(u"scheduler_days"_s))
         pref->setSchedulerDays(static_cast<Scheduler::Days>(it.value().toInt()));
+    if (hasKey(u"scheduler_alt_session_state"_s))
+        pref->setSchedulerSessionState(static_cast<Scheduler::AlternativeSessionState>(it.value().toInt()));
 
     // Bittorrent
     // Privacy

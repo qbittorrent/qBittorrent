@@ -2579,7 +2579,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                <item row="2" column="0" colspan="4">
                 <widget class="QGroupBox" name="groupBoxSchedule">
                  <property name="title">
-                  <string>Schedule &amp;the use of alternative rate limits</string>
+                  <string>Scheduler</string>
                  </property>
                  <property name="checkable">
                   <bool>true</bool>
@@ -2686,6 +2686,27 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                     <item>
                      <property name="text">
                       <string>Weekends</string>
+                     </property>
+                    </item>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_9">
+                    <property name="text">
+                     <string>Do:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QComboBox" name="comboBoxScheduleActions">
+                    <item>
+                     <property name="text">
+                      <string>Use alternative limits</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Pause bittorrent session</string>
                      </property>
                     </item>
                    </widget>
