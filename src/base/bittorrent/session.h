@@ -36,6 +36,7 @@
 
 #include "base/pathfwd.h"
 #include "base/tagset.h"
+#include "base/preferences.h"
 #include "addtorrenterror.h"
 #include "addtorrentparams.h"
 #include "categoryoptions.h"
@@ -256,6 +257,7 @@ namespace BitTorrent
         virtual void setUploadSpeedLimit(int limit) = 0;
         virtual bool isAltGlobalSpeedLimitEnabled() const = 0;
         virtual void setAltGlobalSpeedLimitEnabled(bool enabled) = 0;
+        virtual void setAlternativeSessionState(Scheduler::AlternativeSessionState requestedState) = 0;
         virtual bool isBandwidthSchedulerEnabled() const = 0;
         virtual void setBandwidthSchedulerEnabled(bool enabled) = 0;
 
@@ -497,6 +499,7 @@ namespace BitTorrent
         void paused();
         void resumed();
         void speedLimitModeChanged(bool alternative);
+        void sessionStateChanged(Scheduler::AlternativeSessionState requestedState);
         void statsUpdated();
         void subcategoriesSupportChanged();
         void tagAdded(const Tag &tag);
