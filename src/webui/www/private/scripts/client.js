@@ -203,11 +203,12 @@ window.qBittorrent.Client ??= (() => {
                 saveWindowSize(staticId, id);
             }),
             onContentLoaded: () => {
-                if (metadata !== undefined)
+                if (metadata !== undefined) {
                     document.getElementById(`${id}_iframe`).contentWindow.postMessage({
                         ...metadata,
                         isQBittorrent: true,
                     }, window.origin);
+                }
             }
         });
     };
