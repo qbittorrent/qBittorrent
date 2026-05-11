@@ -204,7 +204,10 @@ window.qBittorrent.Client ??= (() => {
             }),
             onContentLoaded: () => {
                 if (metadata !== undefined)
-                    document.getElementById(`${id}_iframe`).contentWindow.postMessage(metadata, window.origin);
+                    document.getElementById(`${id}_iframe`).contentWindow.postMessage({
+                        ...metadata,
+                        isQBittorrent: true,
+                    }, window.origin);
             }
         });
     };

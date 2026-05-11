@@ -80,6 +80,10 @@
                 if (event.origin !== window.origin)
                     return;
 
+                // ensure event is from qBittorrent and not from a browser extension
+                if (event?.data?.isQBittorrent !== true)
+                    return;
+
                 window.qBittorrent.AddTorrent.populateMetadata(event.data);
                 window.qBittorrent.AddTorrent.metadataCompleted(false);
             });
