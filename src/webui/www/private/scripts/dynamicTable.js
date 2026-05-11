@@ -2901,7 +2901,11 @@ window.qBittorrent.DynamicTable ??= (() => {
                     return filteredRows;
                 }
 
-                return this.#filterNodes(root.children[0], this.filterTerms);
+                const nodes = [];
+                for (const node of root.children) {
+                    nodes.push(...this.#filterNodes(node, this.filterTerms));
+                }
+                return nodes;
             })();
 
             this.prevFilterTerms = this.filterTerms;
