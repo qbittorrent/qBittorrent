@@ -2902,9 +2902,9 @@ window.qBittorrent.DynamicTable ??= (() => {
                 }
 
                 const nodes = [];
-                for (const node of root.children) {
+                for (const node of root.children)
                     nodes.push(...this.#filterNodes(node, this.filterTerms));
-                }
+
                 return nodes;
             })();
 
