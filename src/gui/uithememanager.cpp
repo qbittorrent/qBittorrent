@@ -37,11 +37,16 @@
 #include <QStyle>
 #include <QStyleHints>
 
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "uithemecommon.h"
+
+#ifdef Q_OS_WIN
+#include "base/utils/reg.h"
+#endif
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -77,6 +82,10 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
+#ifdef Q_OS_WIN
+    updateSystemColorMode();
+#endif
+
     if (const QString styleName = Preferences::instance()->getStyle(); styleName.compare(u"system", Qt::CaseInsensitive) != 0)
     {
         if (!QApplication::setStyle(styleName))
@@ -211,8 +220,12 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
 
 QIcon UIThemeManager::getSystrayIcon() const
 {
+#ifdef Q_OS_WIN
+    const auto colorMode = m_systemColorMode;
+#else
     const auto colorMode = (qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark)
             ? ColorMode::Dark : ColorMode::Light;
+#endif
     const QString fallback = (colorMode == ColorMode::Light)
             ? u"qbittorrent-tray-light"_s : u"qbittorrent-tray-dark"_s;
 
@@ -267,6 +280,30 @@ QColor UIThemeManager::getColor(const QString &id) const
     const QColor color = m_themeSource->getColor(id, (isDarkTheme() ? ColorMode::Dark : ColorMode::Light));
     return color;
 }
+
+#ifdef Q_OS_WIN
+void UIThemeManager::updateSystemColorMode()
+{
+    const HKEY hkRoot = HKEY_CURRENT_USER;
+    const REGSAM samDesired = KEY_READ;
+
+    HKEY hkPersonalize = nullptr;
+    const LSTATUS status = ::RegOpenKeyExW(hkRoot, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", 0, samDesired, &hkPersonalize);
+    if (status != ERROR_SUCCESS)
+        return;
+
+    [[maybe_unused]] const auto hkPersonalizeGuard = qScopeGuard([&hkPersonalize] { ::RegCloseKey(hkPersonalize); });
+
+    const ulong val = Utils::Reg::getULongValue(hkPersonalize, u"SystemUsesLightTheme"_s);
+    const auto systemUsesLightTheme = static_cast<bool>(val);
+    const auto systemColorMode = systemUsesLightTheme ? ColorMode::Light : ColorMode::Dark;
+    if (systemColorMode != m_systemColorMode)
+    {
+        m_systemColorMode = systemColorMode;
+        onColorSchemeChanged();
+    }
+}
+#endif
 
 void UIThemeManager::applyPalette() const
 {

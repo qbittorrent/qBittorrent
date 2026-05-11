@@ -489,6 +489,29 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="statusBarGroup">
+              <property name="title">
+               <string>Status Bar</string>
+              </property>
+              <layout class="QVBoxLayout" name="statusBarGroupLayout">
+               <item>
+                <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
+                 <property name="text">
+                  <string>Show free disk space</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
+                 <property name="text">
+                  <string>Show external IP</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="systrayBox">
               <property name="title">
                <string>Desktop</string>
@@ -886,20 +909,6 @@
                 </layout>
                </item>
               </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
-              <property name="text">
-               <string>Show free disk space in status bar</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
-              <property name="text">
-               <string>Show external IP in status bar</string>
-              </property>
              </widget>
             </item>
             <item>

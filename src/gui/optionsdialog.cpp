@@ -678,8 +678,21 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
+    m_ui->senderEmailTxt->setToolTip(tr("Provide the sending email address."));
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
+    m_ui->lineEditDestEmail->setToolTip(tr("Provide the recipient email address.")
+        + u"\n\n"
+        + tr("Note: only a single recipient email address can be specified."));
     m_ui->lineEditSMTPServer->setText(pref->getMailNotificationSMTP());
+    m_ui->lineEditSMTPServer->setToolTip(tr("Provide the SMTP server address for sending email notifications.")
+        + u"\n\n"
+        + tr("The server address can be entered either as a DNS name or an IP address (DNS name recommended).")
+        + u"\n"
+        + tr("To manually specify the server port, add a colon and then the port number to the end.")
+        + u"\n\n"
+        + tr("Example:")
+        + u"\n"
+        + tr("smtp.example.com:465 - connect to server smtp.example.com on port 465"));
     m_ui->comboSMTPEncryption->setToolTip(u"<html><body>"
         + u"<p>%1</p>"_s.arg(tr("Select the encryption type used when sending SMTP emails"))
         + u"<p>"
@@ -2027,6 +2040,8 @@ void OptionsDialog::setLocale(const QString &localeStr)
             name = u"uz@Latn"_s;
         else if (locale.language() == QLocale::Azerbaijani)
             name = u"az@latin"_s;
+        else if ((locale.language() == QLocale::Serbian) && localeStr.contains(u"latin", Qt::CaseInsensitive))
+            name = u"sr@latin"_s;
         else
             name = locale.name();
     }

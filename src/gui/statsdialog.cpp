@@ -96,10 +96,10 @@ void StatsDialog::update()
 #endif
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
+
     // Disk overload (100%) equivalent
     // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
-
     m_ui->labelWriteStarve->setText(u"%1%"_s.arg(((ss.diskWriteQueue > 0) && (ss.peersCount > 0))
         ? Utils::String::fromDouble((100. * ss.diskWriteQueue / ss.peersCount), 2)
         : u"0"_s));
@@ -108,9 +108,11 @@ void StatsDialog::update()
         : u"0"_s));
 
     // Disk queues
+    const QString msSuffix = tr("%1 ms");
     m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength));
-    m_ui->labelJobsTime->setText(tr("%1 ms", "18 milliseconds").arg(cs.averageJobTime));
+    m_ui->labelJobsTime->setText(msSuffix.arg(cs.averageJobTime));
     m_ui->labelQueuedBytes->setText(Utils::Misc::friendlyUnit(cs.queuedBytes));
+    m_ui->labelRequestLatency->setText(msSuffix.arg(cs.requestLatency));
 
     // Total connected peers
     m_ui->labelPeers->setText(QString::number(ss.peersCount));

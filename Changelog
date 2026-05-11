@@ -6,25 +6,38 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.3.0alpha1
     - FEATURE: Add "Copy path" in Content tab (vafada) #23973
     - FEATURE: Don't overwrite config file when it has no write permission (Chocobo1) #23817
     - FEATURE: Allow banning IP range (KagurazakaNyaa) #23157
+    - FEATURE: Enhance filename validation (cocopaw) #23386
+    - FEATURE: Allow monochrome tray icon to follow color mode (glassez) #24083
+    - FEATURE: Add "Queued tracker announces" session metric (Chocobo1) #24084
+    - FEATURE: Improve "Deletion confirmation" dialog (glassez) #24117
+    - FEATURE: Add scroll bars to Statistics dialog (Chocobo1) #24122
+    - FEATURE: Decide system tray icon color based on Windows color scheme (glassez) #24127
+    - FEATURE: Create a group for status bar related settings (Chocobo1) #24150
+    - FEATURE: Add 'request latency' metric to Statistics dialog (Chocobo1) #24152
     - BUGFIX: Fix Comment area background mismatch in Add New Torrent dialog (M-Hassan-Raza) #23916
     - BUGFIX: Rename FYR Macedonia to North Macedonia (alphanumericcharter) #23825
     - BUGFIX: Fix LineEdit dark corner artifacts on macOS (M-Hassan-Raza) #23909
     - BUGFIX: Fix macOS delete shortcuts to match platform conventions (M-Hassan-Raza) #23908
     - BUGFIX: Replace invisible toolbar spacers with visible separators on macOS (M-Hassan-Raza) #23905
+    - BUGFIX: Fix STARTTLS implementation (LewpyUK) #23838
+    - BUGFIX: Don't try to load zero size GeoIP database (orbisai0security) #24087
     - WEBUI: Add "Select All" and "Invert Selection" (aaron-kruse) #23975
     - WEBUI: Enable virtual list by default (tehcneko) #23887
     - WEBUI: Improve folder collapse behavior (Piccirello) #23878
     - WEBUI: Show free disk space in add torrent window (Ryu481) #23856
     - WEBUI: filter array elements in-place (Chocobo1) #23837
     - WEBUI: improve 'set rows' operation performance (Chocobo1) #23818
+    - WEBUI: WebUI: add "Pread/pwrite"  disk IO type option (HanabishiRecca) #24109
     - RSS: Fix the added RSS rule item doesn't follow "enabled" state (glassez) #24082
     - RSS: Add "All" sticky RSS item (glassez) #23963
+    - RSS: Add "Clone Rule" feature to RSS AutoDownloader (LewpyUK) #24056
+    - RSS: Allow adding torrents from links in RSS content viewer (glassez) #24120
     - SEARCH: Clean up documentation format (Chocobo1) #23911
     - OTHER: Support build against latest version of libtorrent (arvidn) #23953
     - OTHER: Don't use deprecated libtorrent features (glassez) #24007
     - OTHER: Remove outdated setting keys (Chocobo1) #23952
 
-Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc1
+Sun May 03rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0
     - FEATURE: Show free disk space in status bar (glassez)
     - FEATURE: Add control for 'hostname resolver cache expiry interval' (Chocobo1)
     - FEATURE: Show info hash in log when a duplicate torrent is added (Chocobo1)
@@ -50,6 +63,7 @@ Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc
     - FEATURE: Persist additional trackers and load it on startup (vafada)
     - FEATURE: Add "Created On" column to transfer list ((aaron-kruse))
     - FEATURE: Add a small gap between progress bars (glassez)
+    - FEATURE: Add translations for Albanian, Bosnian, Kazakh, Nepali, Serbian (Latin)
     - PERFORMANCE: Improve resume queue load performance (TheLQ)
     - PERFORMANCE: Avoid copying resume data when loading torrents (glassez)
     - BUGFIX: Fix crash when exiting immediately after adding a torrent (glassez)
@@ -67,6 +81,9 @@ Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc
     - BUGFIX: Fix incorrect save path when torrent is added from watched folder (glassez)
     - BUGFIX: Change "Session" column headings to match non-"Session" (JohnVeness)
     - BUGFIX: Fix fail to start seeding newly created torrent in Torrent Creator (Chocobo1)
+    - BUGFIX: Fix crash when exiting immediately after adding the torrent (glassez)
+    - BUGFIX: Fix crash due to invalid entry in ipfilter.dat (glassez)
+    - BUGFIX: Fix crash when closing app with AddNewTorrentDialog opened (glassez)
     - WEBUI: Select next available search tab after closing last active tab with X button (sk0merko)
     - WEBUI: Support creating new torrents (tehcneko)
     - WEBUI: Add headers to RSS entry viewer (Chocobo1)
@@ -114,6 +131,9 @@ Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc
     - WEBUI: Search engine UX improvements (Piccirello)
     - WEBUI: Improve table performance (Piccirello)
     - WEBUI: Set appropriate autocomplete attribute on password fields (Chocobo1)
+    - WEBUI: Fix RSS Dialog Box Title Text (LewpyUK)
+    - WEBUI: Fix sync using wrong key for full update check (linuxhd0)
+    - WEBUI: Add "Created On" column to transfer list (aaron-kruse)
     - WEBAPI: Provide announce stats within "sync" data (scratchmex)
     - WEBAPI: Optionally include files info in torrent list (ShanaryS)
     - WEBAPI: Send 204 when WebAPI response contains no data (Piccirello)
@@ -141,15 +161,15 @@ Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc
     - SEARCH: Add CTRL+W search tab close functionality (e75ti)
     - SEARCH: Update Python installer version (Chocobo1)
     - SEARCH: Propagate error messages from search engine
-    - WINDOWS: Allow symbolic links in torrent creator on Windows (Chocobo1)
-    - WINDOWS: NSIS: Add support for Windows ARM64 build (namoen0301)
+    - WINDOWS: Allow symbolic links in torrent creator (Chocobo1)
+    - WINDOWS: NSIS: Add support for ARM64 build (namoen0301)
     - WINDOWS: NSIS: Update Turkish, Russian, Ukrainian, Swedish translations (BouRock and flowerey, adem4ik, misterjaaay, NickWick13)
     - WINDOWS: NSIS: Add Hindi, Bosnian translations (Javed-ahmed-shanto, jasminsehic)
     - WINDOWS: NSIS: Add missing strings to Hindi translation (sledgehammer999)
     - WINDOWS: NSIS: Enable more languages available in NSIS (sledgehammer999)
     - LINUX: Remove "Physical memory (RAM) usage limit" option (HanabishiRecca)
     - LINUX: Do not allow orphan processes (Chocobo1)
-    - MACOS: Use the proper keyboard shortcut for deleting items on macOS (Chocobo1)
+    - MACOS: Use the proper keyboard shortcut for deleting items (Chocobo1)
     - MACOS: Fix shift-click selection (lukemmtt)
     - MACOS: Add status bar menu with DL/UL display (drustill)
     - MACOS: Improve icons (Vaida12345)
@@ -157,6 +177,9 @@ Mon Mar 23rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0rc
     - MACOS: Fix text cutoff in About dialog (M-Hassan-Raza)
     - MACOS: Fix priority text overlap when editor is active (M-Hassan-Raza)
     - MACOS: Add option to toggle speed indicator in dock (Ritmix3300)
+    - MACOS: Add option to show/hide status bar icon (eshishki)
+    - MACOS: Fix app freezing on quit due to Qt accessibility deadlock (zubeyralmaho)
+    - MACOS: Fix crash when deleting torrents (zubeyralmaho)
     - OTHER: Drop support of Qt 6.5 (glassez)
     - OTHER: Compress images losslessly (Awqre)
 
