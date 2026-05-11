@@ -1,6 +1,8 @@
 # WebAPI Changelog
 
 ## 2.16.0
+* [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)
+  * `torrentcreator/status` endpoint now returns `timeAdded`, `timeStarted`, and `timeFinished` as Unix timestamps
 * [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
   * `app/preferences` endpoint includes `seeding_outgoing_connections` option
   * `app/setPreferences` endpoint allows to set `seeding_outgoing_connections` option
