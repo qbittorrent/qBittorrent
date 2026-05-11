@@ -1382,6 +1382,7 @@ void MainWindow::showFiltersSidebar(const bool show)
     else if (!show && m_transferListFiltersWidget)
     {
         saveSplitterSettings();
+        m_transferListFiltersWidget->clearFilters();
         delete m_transferListFiltersWidget;
         m_transferListFiltersWidget = nullptr;
     }

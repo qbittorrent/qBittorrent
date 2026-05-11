@@ -29,6 +29,8 @@
 
 #include "transferlistfilterswidget.h"
 
+#include <optional>
+
 #include <QIcon>
 #include <QListWidgetItem>
 #include <QMenu>
@@ -183,4 +185,13 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
 void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
 {
     m_trackersFilterWidget->setDownloadTrackerFavicon(value);
+}
+
+void TransferListFiltersWidget::clearFilters() const
+{
+    m_transferList->applyStatusFilter(0);
+    m_transferList->applyCategoryFilter(QString());
+    m_transferList->applyTagFilter(std::nullopt);
+    m_transferList->applyTrackerFilter(std::nullopt);
+    m_transferList->applyAnnounceStatusFilter(std::nullopt);
 }
