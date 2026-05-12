@@ -297,6 +297,33 @@ window.qBittorrent.AddTorrent ??= (() => {
         document.getElementById("errorIcon").classList.remove("invisible");
     };
 
+    const wildcardToRegExp = (pattern) => {
+        const escapedPattern = pattern.replace(/[|\\{}()[\]^$+?.]/g, "\\$&");
+        return new RegExp(`^${escapedPattern.replaceAll("*", ".*").replaceAll("?", ".")}$`, "i");
+    };
+
+    const isExcludedFileName = (path, patterns) => {
+        const pathParts = path.split(/[\\/]+/);
+        return pathParts.some((part) => patterns.some((pattern) => pattern.test(part)));
+    };
+
+    const getExcludedFileNamePatterns = () => {
+        const pref = window.parent.qBittorrent.Cache.preferences.get();
+        if (!pref.excluded_file_names_enabled)
+            return [];
+
+        return pref.excluded_file_names
+            .split("\n")
+            .filter((pattern) => pattern.length > 0)
+            .map(wildcardToRegExp);
+    };
+
+    const getFilePriority = (path, excludedFileNamePatterns) => {
+        return isExcludedFileName(path, excludedFileNamePatterns)
+            ? window.qBittorrent.FileTree.FilePriority.Ignored
+            : window.qBittorrent.FileTree.FilePriority.Normal;
+    };
+
     const populateMetadata = (metadata) => {
         // update window title
         if (metadata.info?.name !== undefined)
@@ -317,11 +344,12 @@ window.qBittorrent.AddTorrent ??= (() => {
             document.getElementById("comment").textContent = metadata.comment;
 
         if (metadata.info?.files !== undefined) {
+            const excludedFileNamePatterns = getExcludedFileNamePatterns();
             const files = metadata.info.files.map((file, index) => ({
                 index: index,
                 name: file.path,
                 size: file.length,
-                priority: window.qBittorrent.FileTree.FilePriority.Normal,
+                priority: getFilePriority(file.path, excludedFileNamePatterns),
             }));
             window.qBittorrent.TorrentContent.updateData(files);
         }
