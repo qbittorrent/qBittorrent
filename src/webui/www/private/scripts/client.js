@@ -204,8 +204,9 @@ window.qBittorrent.Client ??= (() => {
             }),
             onContentLoaded: () => {
                 if (metadata !== undefined) {
+                    const type = "addtorrent_metadata";
                     document.getElementById(`${id}_iframe`).contentWindow.postMessage({
-                        type: 'addtorrent_metadata',
+                        type,
                         metadata,
                     }, window.origin);
                 }
