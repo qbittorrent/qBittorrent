@@ -399,7 +399,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                         renameRule(rssDownloaderRulesTable.getRow(rssDownloaderRulesTable.getSelectedRowId()).full_data.name);
                     },
                     cloneRule: (el) => {
-                        cloneRule(rssDownloaderRulesTable.getRow(rssDownloaderRulesTable.selectedRows[0]).full_data.name);
+                        cloneRule(rssDownloaderRulesTable.getRow(rssDownloaderRulesTable.getSelectedRowId()).full_data.name);
                     },
                     clearDownloadedEpisodes: (el) => {
                         clearDownloadedEpisodes(rssDownloaderRulesTable.selectedRowsIds()

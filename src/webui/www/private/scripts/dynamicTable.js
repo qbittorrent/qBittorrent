@@ -86,6 +86,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.cachedElements = [];
             this.selectedRows = new Set();
             this._cachedFilteredRows = null;
+            this._cachedFilteredRowsKey = "";
+            this._filterCacheRevision = 0;
+            this._scrollRafId = 0;
             this.columns = [];
             this.contextMenu = contextMenu;
             this.sortedColumn = localPreferences.get(`sorted_column_${this.dynamicTableDivId}`, 0);
@@ -121,18 +124,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             const tableFixedHeaderDiv = document.getElementById(this.dynamicTableFixedHeaderDivId);
 
             const tableElement = tableFixedHeaderDiv.querySelector("table");
-            let scrollRafId = 0;
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
                 tableElement.style.left = `${-this.dynamicTableDiv.scrollLeft}px`;
-                if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    if (scrollRafId === 0) {
-                        scrollRafId = requestAnimationFrame(() => {
-                            scrollRafId = 0;
-                            this.rerender();
-                        });
-                    }
-                }
+                this.scheduleScrollRerender();
             });
 
             this.dynamicTableDiv.addEventListener("click", (e) => {
@@ -701,8 +695,9 @@ window.qBittorrent.DynamicTable ??= (() => {
         /**
          * @param {string} column name to sort by
          * @param {string|null} reverse defaults to implementation-specific behavior when not specified. Should only be passed when restoring previous state.
+         * @param {boolean} updateTable set to false when restoring a full table state that will update after all filters are restored.
          */
-        setSortedColumn(column, reverse = null) {
+        setSortedColumn(column, reverse = null, updateTable = true) {
             if (column !== this.sortedColumn) {
                 const oldColumn = this.sortedColumn;
                 this.sortedColumn = column;
@@ -717,7 +712,8 @@ window.qBittorrent.DynamicTable ??= (() => {
             localPreferences.set(`sorted_column_${this.dynamicTableDivId}`, column);
             localPreferences.set(`reverse_sort_${this.dynamicTableDivId}`, this.reverseSort);
             this.invalidateFilterCache();
-            this.updateTable(false);
+            if (updateTable)
+                this.updateTable(false);
         }
 
         setSortedColumnIcon(newColumn, oldColumn, isReverse) {
@@ -755,7 +751,40 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         invalidateFilterCache() {
+            ++this._filterCacheRevision;
             this._cachedFilteredRows = null;
+            this._cachedFilteredRowsKey = "";
+        }
+
+        getFilterCacheKeyParts() {
+            return [this._filterCacheRevision, this.sortedColumn, this.reverseSort];
+        }
+
+        getCachedFilteredRows() {
+            const cacheKey = this.getFilterCacheKeyParts().join("\0");
+            if ((this._cachedFilteredRows !== null) && (this._cachedFilteredRowsKey === cacheKey))
+                return this._cachedFilteredRows;
+            return null;
+        }
+
+        cacheFilteredRows(rows) {
+            this._cachedFilteredRows = rows;
+            this._cachedFilteredRowsKey = this.getFilterCacheKeyParts().join("\0");
+            return rows;
+        }
+
+        scheduleScrollRerender() {
+            if (!this.useVirtualList)
+                return;
+
+            this.renderedOffset = this.dynamicTableDiv.scrollTop;
+            if (this._scrollRafId !== 0)
+                return;
+
+            this._scrollRafId = requestAnimationFrame(() => {
+                this._scrollRafId = 0;
+                this.rerender();
+            });
         }
 
         selectAll() {
@@ -886,8 +915,9 @@ window.qBittorrent.DynamicTable ??= (() => {
         }
 
         getFilteredAndSortedRows() {
-            if (this._cachedFilteredRows !== null)
-                return this._cachedFilteredRows;
+            const cachedRows = this.getCachedFilteredRows();
+            if (cachedRows !== null)
+                return cachedRows;
 
             const filteredRows = [];
 
@@ -902,8 +932,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const result = column.compareRows(row1, row2);
                 return isReverseSort ? result : -result;
             });
-            this._cachedFilteredRows = filteredRows;
-            return filteredRows;
+            return this.cacheFilteredRows(filteredRows);
         }
 
         getTrByRowId(rowId) {
@@ -1809,9 +1838,24 @@ window.qBittorrent.DynamicTable ??= (() => {
             return rowsHashes;
         }
 
+        getFilterCacheKeyParts() {
+            const useRegex = document.getElementById("torrentsFilterRegexBox").checked;
+            const filterText = document.getElementById("torrentsFilterInput").value.trim().toLowerCase();
+            return [
+                ...super.getFilterCacheKeyParts(),
+                selectedStatus,
+                selectedCategory,
+                selectedTag,
+                selectedTracker,
+                useRegex,
+                filterText,
+            ];
+        }
+
         getFilteredAndSortedRows() {
-            if (this._cachedFilteredRows !== null)
-                return this._cachedFilteredRows;
+            const cachedRows = this.getCachedFilteredRows();
+            if (cachedRows !== null)
+                return cachedRows;
 
             const filteredRows = [];
 
@@ -1840,8 +1884,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 const result = column.compareRows(row1, row2);
                 return isReverseSort ? result : -result;
             });
-            this._cachedFilteredRows = filteredRows;
-            return filteredRows;
+            return this.cacheFilteredRows(filteredRows);
         }
 
         setupCommonEvents() {
@@ -2035,9 +2078,26 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["pubDate"].updateTd = displayDate;
         }
 
+        getFilterCacheKeyParts() {
+            const searchInTorrentName = document.getElementById("searchInTorrentName").value;
+            return [
+                ...super.getFilterCacheKeyParts(),
+                window.qBittorrent.Search.searchText.pattern,
+                window.qBittorrent.Search.searchText.filterPattern,
+                window.qBittorrent.Search.searchSizeFilter.min,
+                window.qBittorrent.Search.searchSizeFilter.minUnit,
+                window.qBittorrent.Search.searchSizeFilter.max,
+                window.qBittorrent.Search.searchSizeFilter.maxUnit,
+                window.qBittorrent.Search.searchSeedsFilter.min,
+                window.qBittorrent.Search.searchSeedsFilter.max,
+                searchInTorrentName,
+            ];
+        }
+
         getFilteredAndSortedRows() {
-            if (this._cachedFilteredRows !== null)
-                return this._cachedFilteredRows;
+            const cachedRows = this.getCachedFilteredRows();
+            if (cachedRows !== null)
+                return cachedRows;
 
             const getSizeFilters = () => {
                 let minSize = (window.qBittorrent.Search.searchSizeFilter.min > 0) ? (window.qBittorrent.Search.searchSizeFilter.min * Math.pow(1024, window.qBittorrent.Search.searchSizeFilter.minUnit)) : 0;
@@ -2113,8 +2173,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                 return isReverseSort ? result : -result;
             });
 
-            this._cachedFilteredRows = filteredRows;
-            return filteredRows;
+            return this.cacheFilteredRows(filteredRows);
         }
     }
 
@@ -3186,11 +3245,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             const headerDiv = document.getElementById("bulkRenameFilesTableFixedHeaderDiv");
             this.dynamicTableDiv.addEventListener("scroll", (e) => {
                 headerDiv.scrollLeft = this.dynamicTableDiv.scrollLeft;
-                // rerender on scroll
-                if (this.useVirtualList) {
-                    this.renderedOffset = this.dynamicTableDiv.scrollTop;
-                    this.rerender();
-                }
+                this.scheduleScrollRerender();
             });
         }
     }

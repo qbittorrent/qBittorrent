@@ -424,10 +424,9 @@ window.qBittorrent.Search ??= (() => {
             document.getElementById("searchMinSizePrefix").value = state.sizeFilter.minUnit;
             document.getElementById("searchMaxSizeFilter").value = state.sizeFilter.max;
             document.getElementById("searchMaxSizePrefix").value = state.sizeFilter.maxUnit;
-
-            searchResultsTable.setSortedColumn(state.sort.column, state.sort.reverse);
-
             document.getElementById("searchInTorrentName").value = state.searchIn;
+
+            searchResultsTable.setSortedColumn(state.sort.column, state.sort.reverse, false);
 
             // mark all results as seen
             state.lastSeenCount = state.rows.length;
@@ -887,7 +886,6 @@ window.qBittorrent.Search ??= (() => {
     };
 
     const searchFilterChanged = () => {
-        searchResultsTable.invalidateFilterCache();
         searchResultsTable.updateTable();
         document.getElementById("numSearchResultsVisible").textContent = searchResultsTable.getFilteredAndSortedRows().length;
     };

@@ -394,13 +394,18 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         }
     };
 
+    const updateSelectedTrackerFilter = (tracker) => {
+        localPreferences.set("selected_tracker", tracker);
+        selectedTracker = tracker;
+        highlightSelectedTracker();
+    };
+
     setStatusFilter = (name) => {
         const currentHash = torrentsTable.getCurrentTorrentID();
 
         localPreferences.set("selected_filter", name);
         selectedStatus = name;
         highlightSelectedStatus();
-        torrentsTable.invalidateFilterCache();
         updateMainData();
 
         const newHash = torrentsTable.getCurrentTorrentID();
@@ -413,7 +418,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         localPreferences.set("selected_category", category);
         selectedCategory = category;
         highlightSelectedCategory();
-        torrentsTable.invalidateFilterCache();
         updateMainData();
 
         const newHash = torrentsTable.getCurrentTorrentID();
@@ -426,7 +430,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         localPreferences.set("selected_tag", tag);
         selectedTag = tag;
         highlightSelectedTag();
-        torrentsTable.invalidateFilterCache();
         updateMainData();
 
         const newHash = torrentsTable.getCurrentTorrentID();
@@ -436,10 +439,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     setTrackerFilter = (tracker) => {
         const currentHash = torrentsTable.getCurrentTorrentID();
 
-        localPreferences.set("selected_tracker", tracker);
-        selectedTracker = tracker;
-        highlightSelectedTracker();
-        torrentsTable.invalidateFilterCache();
+        updateSelectedTrackerFilter(tracker);
         updateMainData();
 
         const newHash = torrentsTable.getCurrentTorrentID();
@@ -1009,8 +1009,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                                     if (trackerTorrentMap.size === 0) {
                                         trackerMap.delete(host);
                                         if (selectedTracker === host) {
-                                            selectedTracker = TRACKERS_ALL;
-                                            localPreferences.set("selected_tracker", selectedTracker);
+                                            updateSelectedTrackerFilter(TRACKERS_ALL);
+                                            updateTorrents = true;
                                         }
                                     }
                                 }
@@ -1769,13 +1769,11 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         clearTimeout(torrentsFilterInputTimer);
         torrentsFilterInputTimer = setTimeout(() => {
             torrentsFilterInputTimer = -1;
-            torrentsTable.invalidateFilterCache();
             torrentsTable.updateTable();
         }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
     });
 
     document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => {
-        torrentsTable.invalidateFilterCache();
         torrentsTable.updateTable();
     });
 
