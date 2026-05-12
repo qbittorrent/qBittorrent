@@ -38,6 +38,11 @@
 #endif
 
 #include <QApplication>
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusMessage>
+#endif
 #include <QDesktopServices>
 #include <QPixmap>
 #include <QPixmapCache>
@@ -47,6 +52,7 @@
 #include <QScreen>
 #include <QSize>
 #include <QStyle>
+#include <QStringList>
 #include <QThread>
 #include <QUrl>
 #include <QWidget>
@@ -57,6 +63,45 @@
 #include "base/tag.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
+
+namespace
+{
+    QUrl pathToFileUrl(const Path &path)
+    {
+        // Hack to access samba shares with QDesktopServices::openUrl
+        return path.data().startsWith(u"//")
+            ? QUrl(u"file:" + path.data())
+            : QUrl::fromLocalFile(path.data());
+    }
+
+#if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
+    bool showItemsInFileManager(const Path &path)
+    {
+        QDBusInterface fileManager {u"org.freedesktop.FileManager1"_s
+                , u"/org/freedesktop/FileManager1"_s
+                , u"org.freedesktop.FileManager1"_s
+                , QDBusConnection::sessionBus()};
+        if (!fileManager.isValid())
+            return false;
+
+        const QStringList urls {pathToFileUrl(path).toString()};
+        const QDBusMessage reply = fileManager.call(u"ShowItems"_s, urls, QString {});
+        return (reply.type() == QDBusMessage::ReplyMessage);
+    }
+
+    void openFolderSelectFallback(const Path &path)
+    {
+        if (!showItemsInFileManager(path))
+            Utils::Gui::openPath(path.parentPath());
+    }
+
+    void startDetachedOrFallback(const QString &program, const QStringList &arguments, const Path &path)
+    {
+        if (!QProcess::startDetached(program, arguments))
+            openFolderSelectFallback(path);
+    }
+#endif
+}
 
 QPixmap Utils::Gui::scaledPixmap(const Path &path, const int height)
 {
@@ -117,10 +162,7 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 // Open the given path with an appropriate application
 void Utils::Gui::openPath(const Path &path)
 {
-    // Hack to access samba shares with QDesktopServices::openUrl
-    const QUrl url = path.data().startsWith(u"//")
-        ? QUrl(u"file:" + path.data())
-        : QUrl::fromLocalFile(path.data());
+    const QUrl url = pathToFileUrl(path);
 
 #ifdef Q_OS_WIN
     auto *thread = QThread::create([path]()
@@ -186,7 +228,7 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
         const auto output = QString::fromLocal8Bit(lookupProc->readLine(lineMaxLength).simplified());
         if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
         {
-            QProcess::startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
+            startDetachedOrFallback(u"dolphin"_s, {u"--select"_s, path.toString()}, path);
         }
         else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
             || (output == u"nautilus-folder-handler.desktop"))
@@ -205,23 +247,23 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
                 const QString pathParam = (Fs::isDir(path) ? path.parentPath() : path).toString();
 
                 if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
-                    QProcess::startDetached(u"nautilus"_s, {pathParam});
+                    startDetachedOrFallback(u"nautilus"_s, {pathParam}, path);
                 else
-                    QProcess::startDetached(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
+                    startDetachedOrFallback(u"nautilus"_s, {u"--no-desktop"_s, pathParam}, path);
             });
             deProcess->start(u"nautilus"_s, {u"--version"_s});
         }
         else if (output == u"nemo.desktop")
         {
-            QProcess::startDetached(u"nemo"_s, {u"--no-desktop"_s, (Fs::isDir(path) ? path.parentPath() : path).toString()});
+            startDetachedOrFallback(u"nemo"_s, {u"--no-desktop"_s, (Fs::isDir(path) ? path.parentPath() : path).toString()}, path);
         }
         else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
         {
-            QProcess::startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
+            startDetachedOrFallback(u"konqueror"_s, {u"--select"_s, path.toString()}, path);
         }
         else if (output == u"thunar.desktop")
         {
-            QProcess::startDetached(u"thunar"_s, {path.toString()});
+            startDetachedOrFallback(u"thunar"_s, {path.toString()}, path);
         }
         else
         {
