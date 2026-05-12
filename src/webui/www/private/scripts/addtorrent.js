@@ -298,12 +298,44 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     const wildcardToRegExp = (pattern) => {
-        const escapedPattern = pattern.replace(/[|\\{}()[\]^$+?.]/g, "\\$&");
-        return new RegExp(`^${escapedPattern.replaceAll("*", ".*").replaceAll("?", ".")}$`, "i");
+        let expression = "^";
+        for (let i = 0; i < pattern.length; ++i) {
+            const char = pattern[i];
+            if (char === "*") {
+                expression += ".*";
+                continue;
+            }
+            if (char === "?") {
+                expression += ".";
+                continue;
+            }
+            if (char === "[") {
+                let end = i + 1;
+                if ((pattern[end] === "!") || (pattern[end] === "^"))
+                    ++end;
+                if (pattern[end] === "]")
+                    ++end;
+                while ((end < pattern.length) && (pattern[end] !== "]"))
+                    ++end;
+
+                if (end < pattern.length) {
+                    let charClass = pattern.slice(i + 1, end).replace(/\\/g, "\\\\");
+                    if (charClass.startsWith("!"))
+                        charClass = `^${charClass.slice(1)}`;
+                    else if (charClass.startsWith("^"))
+                        charClass = `\\${charClass}`;
+                    expression += `[${charClass}]`;
+                    i = end;
+                    continue;
+                }
+            }
+            expression += char.replace(/[|\\{}()[\]^$+?.]/g, "\\$&");
+        }
+        return new RegExp(`${expression}$`, "i");
     };
 
-    const isExcludedFileName = (path, patterns) => {
-        const pathParts = path.split(/[\\/]+/);
+    const isExcludedFileName = (path, rootName, patterns) => {
+        const pathParts = [rootName, ...path.split(/[\\/]+/)].filter((part) => part.length > 0);
         return pathParts.some((part) => patterns.some((pattern) => pattern.test(part)));
     };
 
@@ -318,8 +350,8 @@ window.qBittorrent.AddTorrent ??= (() => {
             .map(wildcardToRegExp);
     };
 
-    const getFilePriority = (path, excludedFileNamePatterns) => {
-        return isExcludedFileName(path, excludedFileNamePatterns)
+    const getFilePriority = (path, rootName, excludedFileNamePatterns) => {
+        return isExcludedFileName(path, rootName, excludedFileNamePatterns)
             ? window.qBittorrent.FileTree.FilePriority.Ignored
             : window.qBittorrent.FileTree.FilePriority.Normal;
     };
@@ -349,7 +381,8 @@ window.qBittorrent.AddTorrent ??= (() => {
                 index: index,
                 name: file.path,
                 size: file.length,
-                priority: getFilePriority(file.path, excludedFileNamePatterns),
+                priority: getFilePriority(file.path, metadata.info.name ?? "",
+                    excludedFileNamePatterns),
             }));
             window.qBittorrent.TorrentContent.updateData(files);
         }
