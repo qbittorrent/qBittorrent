@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019, 2021  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,10 +33,11 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/profile.h"
 #include "base/utils/io.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -138,16 +139,27 @@ Path DefaultThemeSource::getIconPath(const QString &iconId, const ColorMode colo
         {
             return iconPath;
         }
-
-        if (const Path iconPath = findIcon(iconId, (m_defaultPath / darkModeIconsPath))
+    }
+    else
+    {
+        if (const Path iconPath = findIcon(iconId, (m_userPath / lightModeIconsPath))
                 ; !iconPath.isEmpty())
         {
             return iconPath;
         }
     }
-    else
+
+    return getDefaultIconPath(iconId, colorMode);
+}
+
+Path DefaultThemeSource::getDefaultIconPath(const QString &iconId, const ColorMode colorMode) const
+{
+    const Path iconsPath {u"icons"_s};
+    const Path darkModeIconsPath = iconsPath / Path(u"dark"_s);
+
+    if (colorMode == ColorMode::Dark)
     {
-        if (const Path iconPath = findIcon(iconId, (m_userPath / lightModeIconsPath))
+        if (const Path iconPath = findIcon(iconId, (m_defaultPath / darkModeIconsPath))
                 ; !iconPath.isEmpty())
         {
             return iconPath;

@@ -1,4 +1,4 @@
-# VERSION: 1.55
+# VERSION: 1.56
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -46,7 +46,9 @@ import socks
 
 
 def _getBrowserUserAgent() -> str:
-    """ Disguise as browser to circumvent website blocking """
+    """
+    Disguise as browser to circumvent website blocking
+    """
 
     # Firefox release calendar
     # https://whattrainisitnow.com/calendar/
@@ -95,7 +97,9 @@ htmlentitydecode = html.unescape
 
 
 def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data: Optional[Any] = None, ssl_context: Optional[ssl.SSLContext] = None, unescape_html_entities: bool = True) -> str:
-    """ Return the content of the url page as a string """
+    """
+    Return the content of the url page as a string
+    """
 
     request = urllib.request.Request(url, request_data, {**_headers, **custom_headers})
     try:
@@ -126,7 +130,9 @@ def retrieve_url(url: str, custom_headers: Mapping[str, str] = {}, request_data:
 
 
 def download_file(url: str, referer: Optional[str] = None, ssl_context: Optional[ssl.SSLContext] = None) -> str:
-    """ Download file at url and write it to a file, return the path to the file and the url """
+    """
+    Download file at url and write it to a file, return both the path to the file and the url
+    """
 
     # Download url
     request = urllib.request.Request(url, headers=_headers)

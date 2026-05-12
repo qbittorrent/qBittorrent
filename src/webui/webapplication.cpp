@@ -378,6 +378,16 @@ void WebApplication::processAPIRequest(const QString &endpoint)
         }
         else
         {
+            switch (result.status)
+            {
+            case APIStatus::Async:
+                m_response.status = {.code = 202};
+                break;
+            case APIStatus::Ok:
+                m_response.status = {.code = 200};
+                break;
+            }
+
             switch (result.data.userType())
             {
             case QMetaType::QJsonDocument:
@@ -389,9 +399,7 @@ void WebApplication::processAPIRequest(const QString &endpoint)
                     const auto resultData = result.data.toByteArray();
                     m_response.headers.insert(Http::HEADER_CONTENT_TYPE, (!result.mimeType.isEmpty() ? result.mimeType : Http::CONTENT_TYPE_TXT));
                     if (!result.filename.isEmpty())
-                    {
                         m_response.headers.insert(Http::HEADER_CONTENT_DISPOSITION, u"attachment; filename=\"%1\""_s.arg(result.filename));
-                    }
                     m_response.content = resultData;
                 }
                 break;
@@ -399,17 +407,6 @@ void WebApplication::processAPIRequest(const QString &endpoint)
             default:
                 m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
                 m_response.content = result.data.toString().toUtf8();
-                break;
-            }
-
-            switch (result.status)
-            {
-            case APIStatus::Async:
-                m_response.status = {.code = 202};
-                break;
-            case APIStatus::Ok:
-            default:
-                m_response.status = {.code = 200};
                 break;
             }
         }
@@ -588,6 +585,7 @@ void WebApplication::sendFile(const Path &path)
     if (const auto it = m_translatedFiles.constFind(path);
         (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
     {
+        m_response.status = {.code = 200};
         m_response.headers.insert(Http::HEADER_CONTENT_TYPE, it->mimeType);
         m_response.headers.insert(Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType));
         m_response.content = it->data;
@@ -638,6 +636,7 @@ void WebApplication::sendFile(const Path &path)
         m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
     }
 
+    m_response.status = {.code = 200};
     m_response.headers.insert(Http::HEADER_CONTENT_TYPE, mimeType.name());
     m_response.headers.insert(Http::HEADER_CACHE_CONTROL, getCachingInterval(mimeType.name()));
     m_response.content = data;
@@ -652,12 +651,12 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     // clear response
     m_response = {.headers = m_prebuiltHeaders};
 
+    const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
+    const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
+    const bool isUsingApiKey = (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
+
     try
     {
-        const QString authHeader = m_request.headers.value(Http::HEADER_AUTHORIZATION);
-        const auto [authScheme, authData] = parseAuthorizationHeader(authHeader);
-        const bool isUsingApiKey = (authScheme.compare(BEARER_AUTH, Qt::CaseInsensitive) == 0);
-
         // block suspicious requests
         if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
             || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
@@ -692,9 +691,23 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
     }
     catch (const HTTPError &error)
     {
-        m_response.status = {.code = error.statusCode(), .text = error.statusText()};
+        const Http::ResponseStatus &errorStatus = error.status();
+        m_response.status = errorStatus;
         m_response.headers.insert(Http::HEADER_CONTENT_TYPE, Http::CONTENT_TYPE_TXT);
-        m_response.content = (!error.message().isEmpty() ? error.message() : error.statusText()).toUtf8();
+        m_response.content = (!error.message().isEmpty() ? error.message() : errorStatus.text).toUtf8();
+    }
+
+    if (!isUsingApiKey)
+    {
+        auto *currentSession = static_cast<CookieBasedWebSession *>(m_currentSession);
+        if (currentSession && currentSession->shouldRefreshCookie())
+        {
+            // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
+            const std::chrono::seconds cookieExpireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
+            const QNetworkCookie cookie = createSessionCookie(currentSession->id(), cookieExpireDuration);
+            m_response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
+            currentSession->setCookieRefreshTime(cookieExpireDuration);
+        }
     }
 
     return m_response;
@@ -705,16 +718,9 @@ QString WebApplication::clientId() const
     return m_clientAddress.toString();
 }
 
-void WebApplication::setSessionCookie()
+QNetworkCookie WebApplication::createSessionCookie(const QString &sessionID, const std::chrono::seconds expireDuration) const
 {
-    Q_ASSERT(m_currentSession->type() == WebSessionType::CookieBased);
-    if (m_currentSession->type() != WebSessionType::CookieBased) [[unlikely]]
-        return;
-
-    // 'Permanent Cookie' still require an expiration date so set it to a date in the distant future
-    const std::chrono::seconds expireDuration = (m_sessionTimeout > 0s) ? m_sessionTimeout : std::chrono::years(1);
-
-    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toLatin1()};
+    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), sessionID.toLatin1()};
     cookie.setExpirationDate(QDateTime::currentDateTime().addDuration(expireDuration));
     cookie.setHttpOnly(true);
     cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
@@ -724,8 +730,7 @@ void WebApplication::setSessionCookie()
     else if (cookie.isSecure())
         cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
 
-    m_response.headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
-    static_cast<CookieBasedWebSession *>(m_currentSession)->setCookieRefreshTime(expireDuration);
+    return cookie;
 }
 
 void WebApplication::cookieSessionInitialize(const QString &authScheme, const QString &authData)
@@ -745,8 +750,6 @@ void WebApplication::cookieSessionInitialize(const QString &authScheme, const QS
             {
                 m_currentSession = session;
                 m_currentSession->updateTimestamp();
-                if (static_cast<CookieBasedWebSession *>(m_currentSession)->shouldRefreshCookie())
-                    setSessionCookie();
             }
             else
             {
@@ -864,9 +867,6 @@ void WebApplication::sessionStartImpl(const QString &sessionId, const WebSession
     syncController->updateFreeDiskSpace(btSession->freeDiskSpace());
     connect(btSession, &BitTorrent::Session::freeDiskSpaceChecked, syncController, &SyncController::updateFreeDiskSpace);
     m_currentSession->registerAPIController(u"sync"_s, syncController);
-
-    if (sessionType == WebSessionType::CookieBased)
-        setSessionCookie();
 }
 
 void WebApplication::sessionEnd()

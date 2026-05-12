@@ -108,4 +108,9 @@ namespace
     return YES;
 }
 
+- (void)setVisible:(BOOL)visible
+{
+    self.statusItem.visible = visible;
+}
+
 @end

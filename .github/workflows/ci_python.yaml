@@ -45,9 +45,9 @@ jobs:
             --statistics \
             $PY_FILES
           isort \
-             --check \
-             --diff \
-             $PY_FILES
+            --check \
+            --diff \
+            $PY_FILES
 
       - name: Build code (auxiliary scripts)
         run: |

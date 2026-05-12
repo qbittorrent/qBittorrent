@@ -45,7 +45,6 @@ class StatusBar final : public QStatusBar
 
 public:
     StatusBar(QWidget *parent = nullptr);
-    ~StatusBar() override;
 
 signals:
     void alternativeSpeedsButtonClicked();

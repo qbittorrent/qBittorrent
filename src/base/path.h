@@ -44,7 +44,7 @@ public:
     Path() = default;
 
     explicit Path(const QString &pathStr);
-    explicit Path(const std::string &pathStr);
+    explicit Path(std::string_view pathStr);
 
     bool isValid() const;
     bool isEmpty() const;

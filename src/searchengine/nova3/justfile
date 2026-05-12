@@ -4,17 +4,17 @@ PY_FILES := `find . -maxdepth 1 -type f -name '*.py' ! -name 'socks.py' -printf 
 default:
     just --list
 
-# Run type check
-check files=PY_FILES: fetch_aux
-    mypy \
-        {{ files }}
-    pyright \
-        {{ files }}
-
 # Byte-compile files
 build files=PY_FILES:
     python \
         -m compileall \
+        {{ files }}
+
+# Run checks on typings
+check files=PY_FILES: fetch_aux
+    mypy \
+        {{ files }}
+    pyright \
         {{ files }}
 
 # Fetch auxiliary files
@@ -22,7 +22,8 @@ build files=PY_FILES:
 fetch_aux:
     #!/usr/bin/sh
     if [ ! -f 'socks.pyi' ]; then
-        curl -L -o socks.pyi "https://github.com/python/typeshed/raw/refs/heads/main/stubs/PySocks/socks.pyi"
+        # TODO: use `https://raw.githubusercontent.com/python/typeshed/refs/heads/main/stubs/PySocks/socks.pyi` after bumping python required version >= 3.10
+        curl -L -o socks.pyi "https://raw.githubusercontent.com/python/typeshed/61107f2860a525a1e868610dec030e1b59e3f21e/stubs/PySocks/socks.pyi"
     fi
 
 # Apply formatting
@@ -45,6 +46,8 @@ lint files=PY_FILES:
         {{ files }}
     bandit \
         --skip B110,B310,B314,B405 \
+        {{ files }}
+    pydoclint \
         {{ files }}
 
 # Run tests

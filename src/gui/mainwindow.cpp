@@ -148,8 +148,10 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     Preferences *const pref = Preferences::instance();
     m_uiLocked = pref->isUILocked();
     m_displaySpeedInTitle = pref->speedInTitleBar();
+#ifdef Q_OS_MACOS
+    m_statusItem->setVisible(pref->isMacOSMenuBarIconEnabled());
+#else
     // Setting icons
-#ifndef Q_OS_MACOS
     setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_s));
 #endif // Q_OS_MACOS
 
@@ -185,6 +187,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_s, u"preferences-web-browser-cookies"_s));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_s));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_s));
+    m_ui->actionOpenDestinationFolder->setIcon(UIThemeManager::instance()->getIcon(u"directory"_s));
 
     m_ui->actionPauseSession->setVisible(!BitTorrent::Session::instance()->isPaused());
     m_ui->actionResumeSession->setVisible(BitTorrent::Session::instance()->isPaused());
@@ -313,6 +316,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_ui->actionStop, &QAction::triggered, m_transferListWidget, &TransferListWidget::stopSelectedTorrents);
     connect(m_ui->actionPauseSession, &QAction::triggered, m_transferListWidget, &TransferListWidget::pauseSession);
     connect(m_ui->actionResumeSession, &QAction::triggered, m_transferListWidget, &TransferListWidget::resumeSession);
+    connect(m_ui->actionOpenDestinationFolder, &QAction::triggered, m_transferListWidget, &TransferListWidget::openSelectedTorrentsFolder);
     connect(m_ui->actionDelete, &QAction::triggered, m_transferListWidget, &TransferListWidget::softDeleteSelectedTorrents);
     connect(m_ui->actionTopQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::topQueuePosSelectedTorrents);
     connect(m_ui->actionIncreaseQueuePos, &QAction::triggered, m_transferListWidget, &TransferListWidget::increaseQueuePosSelectedTorrents);
@@ -1462,6 +1466,7 @@ void MainWindow::loadPreferences()
     // Clear dock badge immediately if speed display is disabled
     if (!pref->isSpeedInDockEnabled())
         m_badger->updateSpeed(0, 0);
+    m_statusItem->setVisible(pref->isMacOSMenuBarIconEnabled());
 #endif
 
     qDebug("GUI settings loaded");
@@ -1478,7 +1483,8 @@ void MainWindow::loadSessionStats()
 #ifdef Q_OS_MACOS
     if (Preferences::instance()->isSpeedInDockEnabled())
         m_badger->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
-    m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
+    if (Preferences::instance()->isMacOSMenuBarIconEnabled())
+        m_statusItem->updateSpeed(status.payloadDownloadRate, status.payloadUploadRate);
 #else
     refreshTrayIconTooltip();
 #endif  // Q_OS_MACOS

@@ -80,8 +80,10 @@ add_library(qbt_base STATIC
     net/geoipmanager.h
     net/portforwarder.h
     net/proxyconfigurationmanager.h
+    net/proxytype.h
     net/reverseresolution.h
     net/smtp.h
+    net/smtpencryptiontype.h
     orderedset.h
     path.h
     pathfwd.h
@@ -229,7 +231,9 @@ target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
         OpenSSL::SSL
-        ZLIB::ZLIB
+        # find whatever zlib target that exists while being compatible with both
+        # FindZLIB (from cmake) and zlib own scripts
+        $<IF:$<TARGET_EXISTS:ZLIB::ZLIB>,ZLIB::ZLIB,ZLIB::ZLIBSTATIC>
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
         Qt::Core
@@ -258,6 +262,10 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         target_compile_definitions(qbt_base PUBLIC QBT_USES_GETRANDOM)
     endif()
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    target_sources(qbt_base PRIVATE
+        utils/reg.h
+        utils/reg.cpp
+    )
     target_link_libraries(qbt_base PRIVATE iphlpapi powrprof)
 endif()
 

@@ -219,9 +219,8 @@ void TorrentContentModel::updateFilesAvailability()
 {
     Q_ASSERT(m_contentHandler && m_contentHandler->hasMetadata());
 
-    using HandlerPtr = QPointer<BitTorrent::TorrentContentHandler>;
     m_contentHandler->fetchAvailableFileFractions().then(this
-            , [this, handler = HandlerPtr(m_contentHandler)](const QList<qreal> &availableFileFractions)
+            , [this, handler = QPointer(m_contentHandler)](const QList<qreal> &availableFileFractions)
     {
         if (!m_contentHandler || (m_contentHandler != handler))
             return;
@@ -303,7 +302,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
                 if (currentName != newName)
                 {
-                    if (!Utils::Fs::isValidName(newName))
+                    if (!Utils::Fs::isValidFileName(newName))
                     {
                         emit renameFailed(tr("The name is invalid: \"%1\"").arg(newName));
                         return false;

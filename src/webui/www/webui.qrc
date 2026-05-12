@@ -429,6 +429,7 @@
         <file>private/views/cookies.html</file>
         <file>private/views/createtorrent.html</file>
         <file>private/views/filters.html</file>
+        <file>private/views/globalspeedlimits.html</file>
         <file>private/views/installsearchplugin.html</file>
         <file>private/views/log.html</file>
         <file>private/views/logTabs.html</file>
@@ -437,6 +438,7 @@
         <file>private/views/properties.html</file>
         <file>private/views/propertiesToolbar.html</file>
         <file>private/views/rss.html</file>
+        <file>private/views/rssCloneRule.html</file>
         <file>private/views/rssDownloader.html</file>
         <file>private/views/search.html</file>
         <file>private/views/searchplugins.html</file>

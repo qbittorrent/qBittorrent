@@ -28,61 +28,55 @@
 
 #include "httperror.h"
 
-#include "base/global.h"
+using namespace Qt::Literals::StringLiterals;
 
-HTTPError::HTTPError(const int statusCode, const QString &statusText, const QString &message)
+HTTPError::HTTPError(Http::ResponseStatus responseStatus, const QString &message)
     : RuntimeError {message}
-    , m_statusCode {statusCode}
-    , m_statusText {statusText}
+    , m_responseStatus {std::move(responseStatus)}
 {
 }
 
-int HTTPError::statusCode() const
+const Http::ResponseStatus &HTTPError::status() const
 {
-    return m_statusCode;
-}
-
-QString HTTPError::statusText() const
-{
-    return m_statusText;
+    return m_responseStatus;
 }
 
 BadRequestHTTPError::BadRequestHTTPError(const QString &message)
-    : HTTPError(400, u"Bad Request"_s, message)
+    : HTTPError({.code = 400, .text = u"Bad Request"_s}, message)
 {
 }
 
 UnauthorizedHTTPError::UnauthorizedHTTPError(const QString &message)
-    : HTTPError(401, u"Unauthorized"_s, message)
+    : HTTPError({.code = 401, .text = u"Unauthorized"_s}, message)
 {
 }
 
 ForbiddenHTTPError::ForbiddenHTTPError(const QString &message)
-    : HTTPError(403, u"Forbidden"_s, message)
+    : HTTPError({.code = 403, .text = u"Forbidden"_s}, message)
 {
 }
 
 NotFoundHTTPError::NotFoundHTTPError(const QString &message)
-    : HTTPError(404, u"Not Found"_s, message)
+    : HTTPError({.code = 404, .text = u"Not Found"_s}, message)
 {
 }
 
 MethodNotAllowedHTTPError::MethodNotAllowedHTTPError(const QString &message)
-    : HTTPError(405, u"Method Not Allowed"_s, message)
+    : HTTPError({.code = 405, .text = u"Method Not Allowed"_s}, message)
 {
 }
 
 ConflictHTTPError::ConflictHTTPError(const QString &message)
-    : HTTPError(409, u"Conflict"_s, message)
+    : HTTPError({.code = 409, .text = u"Conflict"_s}, message)
 {
 }
 
 UnsupportedMediaTypeHTTPError::UnsupportedMediaTypeHTTPError(const QString &message)
-    : HTTPError(415, u"Unsupported Media Type"_s, message)
+    : HTTPError({.code = 415, .text = u"Unsupported Media Type"_s}, message)
 {
 }
 
 InternalServerErrorHTTPError::InternalServerErrorHTTPError(const QString &message)
-    : HTTPError(500, u"Internal Server Error"_s, message)
+    : HTTPError({.code = 500, .text = u"Internal Server Error"_s}, message)
 {
 }

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2024  Radu Carpa <radu.carpa@cern.ch>
  * Copyright (C) 2017  Mike Tzou (Chocobo1)
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
@@ -286,6 +286,11 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     Path destPath {QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), lastSavePath.data(), tr("Torrent Files (*.torrent)"))};
     if (destPath.isEmpty())
         return;
+    if (!destPath.isValid())
+    {
+        QMessageBox::warning(this, tr("Invalid file name"), tr("The name is invalid: \"%1\"").arg(destPath.filename()));
+        return;
+    }
     if (!destPath.hasExtension(TORRENT_FILE_EXTENSION))
         destPath += TORRENT_FILE_EXTENSION;
     m_storeLastSavePath = destPath.parentPath();
@@ -356,9 +361,11 @@ void TorrentCreatorDialog::handleCreationSuccess(const BitTorrent::TorrentCreato
 
             if (m_ui->checkIgnoreShareLimits->isChecked())
             {
-                params.ratioLimit = BitTorrent::NO_RATIO_LIMIT;
-                params.seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
-                params.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
+                params.shareLimits = {
+                    .ratioLimit = BitTorrent::NO_RATIO_LIMIT,
+                    .seedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT,
+                    .inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT
+                };
             }
 
             BitTorrent::Session::instance()->addTorrent(loadResult.value(), params);
