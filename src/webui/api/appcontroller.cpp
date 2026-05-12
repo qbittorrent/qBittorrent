@@ -426,12 +426,10 @@ void AppController::preferencesAction()
     data[u"ignore_ssl_errors"_s] = pref->isIgnoreSSLErrors();
     // Python executable path
     data[u"python_executable_path"_s] = pref->getPythonExecutablePath().toString();
-
     // Start Session paused
-    data[u"StartPaused"_s] = pref->isSessionStartPaused();
+    data[u"StartPaused"_s] = session->isStartPaused();
     // Session shutdown timeout
-    data[u"ShutdownTimeout"_s] = pref->getSessionShutdownTimeout();
-
+    data[u"ShutdownTimeout"_s] = session->shutdownTimeout();
 
     // libtorrent preferences
     // Bdecode depth limit
@@ -1082,18 +1080,10 @@ void AppController::setPreferencesAction()
         pref->setPythonExecutablePath(Path(it.value().toString()));
     // Start session paused
     if (hasKey(u"StartPaused"_s))
-    {
         session->setStartPaused(it.value().toBool());
-        pref->setSessionStartPaused(it.value().toBool());
-    }
-
     // Session shutdown timeout
     if (hasKey(u"ShutdownTimeout"_s))
-    {
-            session->setShutdownTimeout(it.value().toInt());
-            pref->setSessionShutdownTimeout(it.value().toInt());
-    }
-
+        session->setShutdownTimeout(it.value().toInt());
 
     // libtorrent preferences
     // Bdecode depth limit
