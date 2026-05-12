@@ -75,6 +75,10 @@ public:
 
     QColor getColor(const QString &id) const;
 
+#ifdef Q_OS_WIN
+    void updateSystemColorMode();
+#endif
+
 signals:
     void themeChanged();
 
@@ -104,4 +108,8 @@ private:
     mutable QHash<QString, QIcon> m_icons;
     mutable QHash<QString, QIcon> m_darkModeIcons;
     mutable QHash<QString, QIcon> m_flags;
+
+#ifdef Q_OS_WIN
+    ColorMode m_systemColorMode = ColorMode::Light;
+#endif
 };

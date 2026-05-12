@@ -112,14 +112,13 @@ let saveWindowSize = () => {};
 let loadWindowWidth = () => {};
 let loadWindowHeight = () => {};
 let showDownloadPage = () => {};
-let globalUploadLimitFN = () => {};
+let globalLimitFN = () => {};
 let uploadLimitFN = () => {};
 let shareRatioFN = () => {};
 let toggleSequentialDownloadFN = () => {};
 let toggleFirstLastPiecePrioFN = () => {};
 let setSuperSeedingFN = () => {};
 let setForceStartFN = () => {};
-let globalDownloadLimitFN = () => {};
 let StatisticsLinkFN = () => {};
 let downloadLimitFN = () => {};
 let deleteSelectedTorrentsFN = () => {};
@@ -325,26 +324,20 @@ const initializeWindows = () => {
         });
     }
 
-    globalUploadLimitFN = () => {
-        const contentURL = new URL("speedlimit.html", window.location);
-        contentURL.search = new URLSearchParams({
-            v: "${CACHEID}",
-            hashes: "global",
-            type: "upload",
-        });
+    globalLimitFN = () => {
         new MochaUI.Window({
-            id: "uploadLimitPage",
+            id: "globalSpeedLimitsPage",
             icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Global Upload Speed Limit)QBT_TR[CONTEXT=MainWindow]",
-            loadMethod: "iframe",
-            contentURL: contentURL.toString(),
+            title: "QBT_TR(Global Speed Limits)QBT_TR[CONTEXT=MainWindow]",
+            loadMethod: "xhr",
+            contentURL: "views/globalspeedlimits.html?v=${CACHEID}",
             scrollbars: false,
             resizable: false,
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
-            height: 100
+            width: window.qBittorrent.Dialog.limitWidthToViewport(480),
+            height: 245
         });
     };
 
@@ -473,29 +466,6 @@ const initializeWindows = () => {
             });
             updateMainData();
         }
-    };
-
-    globalDownloadLimitFN = () => {
-        const contentURL = new URL("speedlimit.html", window.location);
-        contentURL.search = new URLSearchParams({
-            v: "${CACHEID}",
-            hashes: "global",
-            type: "download",
-        });
-        new MochaUI.Window({
-            id: "downloadLimitPage",
-            icon: "images/qbittorrent-tray.svg",
-            title: "QBT_TR(Global Download Speed Limit)QBT_TR[CONTEXT=MainWindow]",
-            loadMethod: "iframe",
-            contentURL: contentURL.toString(),
-            scrollbars: false,
-            resizable: false,
-            maximizable: false,
-            paddingVertical: 0,
-            paddingHorizontal: 0,
-            width: window.qBittorrent.Dialog.limitWidthToViewport(424),
-            height: 100
-        });
     };
 
     StatisticsLinkFN = () => {

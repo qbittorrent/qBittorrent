@@ -88,7 +88,7 @@
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Uložit do:</translation>
+        <translation>Cesta uložení:</translation>
     </message>
     <message>
         <source>Info hash v1:</source>
@@ -198,6 +198,14 @@
         <source>Limit download rate</source>
         <translation>Omezit rychlost stahování</translation>
     </message>
+    <message>
+        <source>%1 (Free space on disk: %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +305,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Nelze uložit předvolby programu, qBittorrent klient je pravděpodobně nedosažitelný.</translation>
+        <translation type="vanished">Nelze uložit předvolby programu, qBittorrent klient je pravděpodobně nedosažitelný.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -460,7 +468,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation>Nepodařilo se kontaktovat qBittorrent</translation>
+        <translation type="vanished">Nepodařilo se kontaktovat qBittorrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -531,10 +539,6 @@
         <translation>Limit času seedování nesmí být zadán jako záporné číslo.</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">Peer ToS musí mít délku mezi 0 a 255.</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>Limit poměru sdílení nesmí být zadán jako záporné číslo.</translation>
     </message>
@@ -568,6 +572,22 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>Peer DSCP musí být mezi 0 a 255.</translation>
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -829,6 +849,30 @@
         <source>Filter feed items...</source>
         <translation>Filtrovat položky feedu...</translation>
     </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invert Selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent and content</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v2</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -854,7 +898,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>Jazyk</translation>
+        <translation type="vanished">Jazyk</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -930,7 +974,7 @@
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Tento server vyžaduje zabezpečené připojení (SSL)</translation>
+        <translation type="vanished">Tento server vyžaduje zabezpečené připojení (SSL)</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1172,7 +1216,7 @@
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation>%D: Cesta pro uložení</translation>
+        <translation>%D: Cesta uložení</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
@@ -1228,7 +1272,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Výchozí cesta pro uložení:</translation>
+        <translation>Výchozí cesta uložení:</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1260,7 +1304,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Při změně výchozí cesty pro uložení:</translation>
+        <translation>Při změně výchozí cesty uložení:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1272,7 +1316,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>Při změně cesty pro uložení Kategorií:</translation>
+        <translation>Při změně cesty uložení u kategorie:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1579,10 +1623,6 @@
         <translation>Nevytvářet podsložku</translation>
     </message>
     <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">Typ služby (ToS) pro připojování k peerům</translation>
-    </message>
-    <message>
         <source>Outgoing connections per second:</source>
         <translation>Odchozích spojení za sekundu:</translation>
     </message>
@@ -1792,7 +1832,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Uložit do:</translation>
+        <translation>Cesta uložení:</translation>
     </message>
     <message>
         <source>months</source>
@@ -1821,10 +1861,6 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
         <translation>Velikost socket receive bufferu [0: výchozí systému]:</translation>
-    </message>
-    <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">Použít podkategorie</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -1972,7 +2008,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>Přidává text na konec titulku okna pro odlišení od ostatních instancí qBittorrentu</translation>
+        <translation type="vanished">Přidává text na konec titulku okna pro odlišení od ostatních instancí qBittorrentu</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2084,7 +2120,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation>Proveden pokus o odeslání e-mailu. Zkontrolujte svou doručenou poštu</translation>
+        <translation type="vanished">Proveden pokus o odeslání e-mailu. Zkontrolujte svou doručenou poštu</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2144,7 +2180,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation>Použít relativní cestu pro uložení podle Cesty kategorie namísto Výchozí cesty</translation>
+        <translation>Použít relativní cestu uložení podle cesty kategorie namísto výchozí cesty</translation>
     </message>
     <message>
         <source>No action</source>
@@ -2164,7 +2200,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation>Zapnout optimalizované vykreslování tabulek (experimentální)</translation>
+        <translation type="vanished">Zapnout optimalizované vykreslování tabulek (experimentální)</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
@@ -2224,6 +2260,94 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>Pro připojení k peerům DSCP (Differentiated Services Code Point)</translation>
+    </message>
+    <message>
+        <source>no encryption used when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTPS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(alternative choice if supported)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use SMTPS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTP encryption:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>STARTTLS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable optimized table rendering</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select the encryption type used when sending SMTP emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(last choice if no other option)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use STARTTLS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(best choice if supported)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2460,7 +2584,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Uložit do:</translation>
+        <translation>Cesta uložení:</translation>
     </message>
     <message>
         <source>Never</source>
@@ -2634,6 +2758,10 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <source>Private:</source>
         <translation>Soukromý:</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2730,6 +2858,14 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>Total queued size:</source>
         <translation>Celková velikost fronty:</translation>
+    </message>
+    <message>
+        <source>Tracker statistics</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queued tracker announces:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2962,12 +3098,12 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>Staženo po spuštění</translation>
+        <translation type="vanished">Staženo po spuštění</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>Odesláno po spuštění</translation>
+        <translation type="vanished">Odesláno po spuštění</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -2982,7 +3118,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Cesta pro uložení</translation>
+        <translation>Cesta uložení</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -3044,6 +3180,18 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>Status Icon</source>
         <translation>Stavová ikona</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Created On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3493,7 +3641,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation>Automatický režim znamená, že různé vlastnosti torrentu (např. cesta) bude nastavena podle kategorie, do které torrent spadá</translation>
+        <translation>Automatický režim znamená, že různé vlastnosti torrentu (např. cesta uložení) budou nastaveny podle kategorie, do které torrent spadá</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3668,7 +3816,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>Cesta pro uložení je prázdná</translation>
+        <translation>Cesta uložení je prázdná</translation>
     </message>
 </context>
 <context>
@@ -4123,6 +4271,18 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <source>Refresh tab</source>
         <translation>Obnovit kartu</translation>
     </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
@@ -4514,6 +4674,18 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <source>Add Stopped:</source>
         <translation>Přidat zastavené:</translation>
     </message>
+    <message>
+        <source>Rule cloning</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear downloaded episodes confirmation</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clone rule...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
@@ -4727,7 +4899,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Save path for incomplete torrents:</source>
-        <translation>Cesta pro uložení nedokončených torrentů:</translation>
+        <translation>Cesta uložení nedokončených torrentů:</translation>
     </message>
     <message>
         <source>Default</source>
@@ -4739,7 +4911,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Save path:</source>
-        <translation>Uložit do:</translation>
+        <translation>Cesta uložení:</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -4760,6 +4932,10 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>Použít jinou cestu pro uložení nedokončených torrentů:</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5132,6 +5308,41 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
         <translation>Nahradit tento API klíč? Současný klíč přestane fungovat okamžitě a bude vytvořen nový klíč.</translation>
+    </message>
+</context>
+<context>
+    <name>RSSCloneRule</name>
+    <message>
+        <source>Clone</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alert</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The cloned rule will be set as disabled and the downloaded episodes history will be cleared.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name is unchanged. You must type a new rule name for the clone.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Please type the name for the clone of the download rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name cannot be empty.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to clone the selected rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

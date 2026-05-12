@@ -31,6 +31,7 @@
 #include "torrentcreator.h"
 
 #include <functional>
+#include <string_view>
 
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/file_storage.hpp>
@@ -51,11 +52,16 @@
 
 namespace
 {
-    // do not include files and folders whose
-    // name starts with a .
-    bool fileFilter(const std::string &f)
+    bool isDotfile(const Path &path)
     {
-        return !Path(f).filename().startsWith(u'.');
+        return path.filename().startsWith(u'.');
+    }
+
+    bool fileFilter(const std::string_view f)
+    {
+        // do not include files and folders whose
+        // name starts with a `.`
+        return !isDotfile(Path(f));
     }
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -146,6 +152,9 @@ void TorrentCreator::run()
 #endif
 
                 const QString dirPath = dirInfo.filePath();
+                if (isDotfile(Path(dirPath)))
+                    continue;
+
                 dirs.append(dirPath);
             }
             std::ranges::sort(dirs, naturalLessThan);
@@ -162,6 +171,9 @@ void TorrentCreator::run()
                 {
                     const QFileInfo fileInfo = fileIter.nextFileInfo();
                     const Path filePath {fileInfo.filePath()};
+                    if (isDotfile(filePath))
+                        continue;
+
                     qint64 fileSize = fileInfo.size();
 
 #ifdef Q_OS_WIN

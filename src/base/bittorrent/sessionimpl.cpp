@@ -475,6 +475,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY(u"SendBufferLowWatermark"_s), 10)
     , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY(u"SendBufferWatermarkFactor"_s), 50)
     , m_connectionSpeed(BITTORRENT_SESSION_KEY(u"ConnectionSpeed"_s), 30)
+    , m_isSeedingOutgoingConnectionsEnabled(BITTORRENT_SESSION_KEY(u"SeedingOutgoingConnectionsEnabled"_s), true)
     , m_socketSendBufferSize(BITTORRENT_SESSION_KEY(u"SocketSendBufferSize"_s), 0)
     , m_socketReceiveBufferSize(BITTORRENT_SESSION_KEY(u"SocketReceiveBufferSize"_s), 0)
     , m_socketBacklogSize(BITTORRENT_SESSION_KEY(u"SocketBacklogSize"_s), 30)
@@ -1841,7 +1842,8 @@ void SessionImpl::initMetrics()
             .readJobs = findMetricIndex("disk.num_read_ops"),
             .hashJobs = findMetricIndex("disk.num_blocks_hashed"),
             .queuedDiskJobs = findMetricIndex("disk.queued_disk_jobs"),
-            .diskJobTime = findMetricIndex("disk.disk_job_time")
+            .diskJobTime = findMetricIndex("disk.disk_job_time"),
+            .requestLatency = findMetricIndex("disk.request_latency")
         },
         .tracker =
         {
@@ -1866,6 +1868,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::alert_mask, alertMask);
 
     settingsPack.set_int(lt::settings_pack::connection_speed, connectionSpeed());
+    settingsPack.set_bool(lt::settings_pack::seeding_outgoing_connections, isSeedingOutgoingConnectionsEnabled());
 
     // from libtorrent doc:
     // It will not take affect until the listen_interfaces settings is updated
@@ -4699,6 +4702,19 @@ void SessionImpl::setConnectionSpeed(const int value)
     configureDeferred();
 }
 
+bool SessionImpl::isSeedingOutgoingConnectionsEnabled() const
+{
+    return m_isSeedingOutgoingConnectionsEnabled;
+}
+
+void SessionImpl::setSeedingOutgoingConnections(const bool enabled)
+{
+    if (enabled == m_isSeedingOutgoingConnectionsEnabled) return;
+
+    m_isSeedingOutgoingConnectionsEnabled = enabled;
+    configureDeferred();
+}
+
 int SessionImpl::socketSendBufferSize() const
 {
     return m_socketSendBufferSize;
@@ -6295,6 +6311,8 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
                   + stats[m_metricIndices.disk.hashJobs];
     m_cacheStatus.averageJobTime = (totalJobs > 0)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
+
+    m_cacheStatus.requestLatency = stats[m_metricIndices.disk.requestLatency];
 
     emit statsUpdated();
 }

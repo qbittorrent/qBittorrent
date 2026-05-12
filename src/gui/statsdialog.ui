@@ -224,6 +224,23 @@
             </property>
            </widget>
           </item>
+          <item row="5" column="0">
+           <widget class="QLabel" name="labelRequestLatencyText">
+            <property name="toolTip">
+             <string>The time it takes from receiving a request from a peer until we're sending the response back on the socket</string>
+            </property>
+            <property name="text">
+             <string>Request latency:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1" alignment="Qt::AlignmentFlag::AlignRight">
+           <widget class="QLabel" name="labelRequestLatency">
+            <property name="text">
+             <string notr="true">TextLabel</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -243,7 +260,7 @@
           <item row="0" column="1" alignment="Qt::AlignmentFlag::AlignRight">
            <widget class="QLabel" name="labelQueuedTrackerAnnounces">
             <property name="text">
-             <string>TextLabel</string>
+             <string notr="true">TextLabel</string>
             </property>
            </widget>
           </item>

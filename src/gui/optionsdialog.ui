@@ -489,6 +489,29 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="statusBarGroup">
+              <property name="title">
+               <string>Status Bar</string>
+              </property>
+              <layout class="QVBoxLayout" name="statusBarGroupLayout">
+               <item>
+                <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
+                 <property name="text">
+                  <string>Show free disk space</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
+                 <property name="text">
+                  <string>Show external IP</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <widget class="QGroupBox" name="systrayBox">
               <property name="title">
                <string>Desktop</string>
@@ -886,20 +909,6 @@
                 </layout>
                </item>
               </layout>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxFreeDiskSpaceStatusBar">
-              <property name="text">
-               <string>Show free disk space in status bar</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxExternalIPStatusBar">
-              <property name="text">
-               <string>Show external IP in status bar</string>
-              </property>
              </widget>
             </item>
             <item>
@@ -1633,20 +1642,47 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QLineEdit" name="lineEditSmtpServer">
+                  <widget class="QLineEdit" name="lineEditSMTPServer">
                    <property name="placeholderText">
                     <string notr="true">smtp.example.com:465</string>
                    </property>
                   </widget>
                  </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="labelSMTPEncryption">
+                   <property name="text">
+                    <string>SMTP encryption:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <layout class="QHBoxLayout" name="layoutSMTPEncryption">
+                   <item>
+                    <widget class="QComboBox" name="comboSMTPEncryption"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="labelSMTPEncryptionPortInfo">
+                     <property name="text">
+                      <string>Default port: </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSMTPEncryptionSpacer">
+                     <property name="orientation">
+                      <enum>Qt::Orientation::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkSmtpSSL">
-                 <property name="text">
-                  <string>This server requires a secure connection (SSL)</string>
-                 </property>
-                </widget>
                </item>
                <item>
                 <widget class="QGroupBox" name="groupMailNotifAuth">

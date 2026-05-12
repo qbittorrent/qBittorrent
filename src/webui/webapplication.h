@@ -58,7 +58,7 @@
 using namespace std::chrono_literals;
 using namespace Qt::Literals::StringLiterals;
 
-inline const Utils::Version<3, 2> API_VERSION {2, 15, 3};
+inline const Utils::Version<3, 2> API_VERSION {2, 16, 0};
 
 class QNetworkCookie;
 
@@ -155,6 +155,7 @@ private:
         {{u"clientdata"_s, u"store"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFeed"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"addFolder"_s}, Http::METHOD_POST},
+        {{u"rss"_s, u"cloneRule"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"markAsRead"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"moveItem"_s}, Http::METHOD_POST},
         {{u"rss"_s, u"refreshItem"_s}, Http::METHOD_POST},
@@ -214,6 +215,7 @@ private:
         {{u"torrents"_s, u"setTags"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setDownloadLimit"_s}, Http::METHOD_POST},
+        {{u"transfer"_s, u"setSpeedLimits"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimitsMode"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"start"_s}, Http::METHOD_POST},

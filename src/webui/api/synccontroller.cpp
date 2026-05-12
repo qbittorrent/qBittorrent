@@ -100,14 +100,15 @@ namespace
     const QString KEY_TRANSFER_AVERAGE_TIME_QUEUE = u"average_time_queue"_s;
     const QString KEY_TRANSFER_GLOBAL_RATIO = u"global_ratio"_s;
     const QString KEY_TRANSFER_QUEUED_IO_JOBS = u"queued_io_jobs"_s;
+    const QString KEY_TRANSFER_QUEUED_TRACKER_ANNOUNCES = u"queued_tracker_announces"_s;
     const QString KEY_TRANSFER_READ_CACHE_HITS = u"read_cache_hits"_s;
     const QString KEY_TRANSFER_READ_CACHE_OVERLOAD = u"read_cache_overload"_s;
+    const QString KEY_TRANSFER_REQUEST_LATENCY = u"request_latency"_s;
     const QString KEY_TRANSFER_TOTAL_BUFFERS_SIZE = u"total_buffers_size"_s;
     const QString KEY_TRANSFER_TOTAL_PEER_CONNECTIONS = u"total_peer_connections"_s;
     const QString KEY_TRANSFER_TOTAL_QUEUED_SIZE = u"total_queued_size"_s;
     const QString KEY_TRANSFER_TOTAL_WASTE_SESSION = u"total_wasted_session"_s;
     const QString KEY_TRANSFER_WRITE_CACHE_OVERLOAD = u"write_cache_overload"_s;
-    const QString KEY_TRANSFER_QUEUED_TRACKER_ANNOUNCES = u"queued_tracker_announces"_s;
 
     const QString KEY_SUFFIX_REMOVED = u"_removed"_s;
 
@@ -186,6 +187,7 @@ namespace
         map[KEY_TRANSFER_QUEUED_IO_JOBS] = cacheStatus.jobQueueLength;
         map[KEY_TRANSFER_AVERAGE_TIME_QUEUE] = cacheStatus.averageJobTime;
         map[KEY_TRANSFER_TOTAL_QUEUED_SIZE] = cacheStatus.queuedBytes;
+        map[KEY_TRANSFER_REQUEST_LATENCY] = cacheStatus.requestLatency;
 
         map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V4] = session->lastExternalIPv4Address();
         map[KEY_TRANSFER_LAST_EXTERNAL_ADDRESS_V6] = session->lastExternalIPv6Address();

@@ -38,14 +38,16 @@
 #include <QObject>
 #include <QString>
 
-#ifndef QT_NO_OPENSSL
+#include "smtpencryptiontype.h"
+
 class QSslSocket;
-#else
-class QTcpSocket;
-#endif
 
 namespace Net
 {
+    const short SMTP_DEFAULT_PORT = 25;
+    const short SMTP_DEFAULT_PORT_SSL = 465;
+    const short SMTP_DEFAULT_PORT_STARTTLS = 587;
+
     class Smtp : public QObject
     {
         Q_OBJECT
@@ -101,18 +103,14 @@ namespace Net
         QString getCurrentDateTime() const;
 
         QByteArray m_message;
-#ifndef QT_NO_OPENSSL
         QSslSocket *m_socket = nullptr;
-#else
-        QTcpSocket *m_socket = nullptr;
-#endif
         QString m_from;
         QString m_rcpt;
         QString m_response;
-        int m_state = Init;
+        States m_state = Init;
         QHash<QString, QString> m_extensions;
         QByteArray m_buffer;
-        bool m_useSsl = false;
+        bool m_usingStartTls = false;
         AuthType m_authType = AuthPlain;
         QString m_username;
         QString m_password;

@@ -54,6 +54,7 @@
 #include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtpencryptiontype.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
@@ -218,7 +219,7 @@ void AppController::preferencesAction()
     data[u"mail_notification_sender"_s] = pref->getMailNotificationSender();
     data[u"mail_notification_email"_s] = pref->getMailNotificationEmail();
     data[u"mail_notification_smtp"_s] = pref->getMailNotificationSMTP();
-    data[u"mail_notification_ssl_enabled"_s] = pref->getMailNotificationSMTPSSL();
+    data[u"mail_notification_encryption_type"_s] = Utils::String::fromEnum(pref->getMailNotificationSMTPEncryptionType());
     data[u"mail_notification_auth_enabled"_s] = pref->getMailNotificationSMTPAuth();
     data[u"mail_notification_username"_s] = pref->getMailNotificationSMTPUsername();
     data[u"mail_notification_password"_s] = pref->getMailNotificationSMTPPassword();
@@ -462,6 +463,8 @@ void AppController::preferencesAction()
     data[u"send_buffer_watermark_factor"_s] = session->sendBufferWatermarkFactor();
     // Outgoing connections per second
     data[u"connection_speed"_s] = session->connectionSpeed();
+    // Allow outgoing connections when seeding
+    data[u"seeding_outgoing_connections"_s] = session->isSeedingOutgoingConnectionsEnabled();
     // Socket send buffer size
     data[u"socket_send_buffer_size"_s] = session->socketSendBufferSize();
     // Socket receive buffer size
@@ -683,8 +686,8 @@ void AppController::setPreferencesAction()
         pref->setMailNotificationEmail(it.value().toString());
     if (hasKey(u"mail_notification_smtp"_s))
         pref->setMailNotificationSMTP(it.value().toString());
-    if (hasKey(u"mail_notification_ssl_enabled"_s))
-        pref->setMailNotificationSMTPSSL(it.value().toBool());
+    if (hasKey(u"mail_notification_encryption_type"_s))
+        pref->setMailNotificationSMTPEncryptionType(Utils::String::toEnum(it.value().toString(), Net::SMTPEncryptionType::SMTPS));
     if (hasKey(u"mail_notification_auth_enabled"_s))
         pref->setMailNotificationSMTPAuth(it.value().toBool());
     if (hasKey(u"mail_notification_username"_s))
@@ -1127,6 +1130,9 @@ void AppController::setPreferencesAction()
     // Outgoing connections per second
     if (hasKey(u"connection_speed"_s))
         session->setConnectionSpeed(it.value().toInt());
+    // Allow outgoing connections when seeding
+    if (hasKey(u"seeding_outgoing_connections"_s))
+        session->setSeedingOutgoingConnections(it.value().toBool());
     // Socket send buffer size
     if (hasKey(u"socket_send_buffer_size"_s))
         session->setSocketSendBufferSize(it.value().toInt());

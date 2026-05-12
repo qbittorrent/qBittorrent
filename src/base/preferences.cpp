@@ -581,17 +581,17 @@ void Preferences::setMailNotificationSMTP(const QString &smtpServer)
     setValue(u"Preferences/MailNotification/smtp_server"_s, smtpServer);
 }
 
-bool Preferences::getMailNotificationSMTPSSL() const
+Net::SMTPEncryptionType Preferences::getMailNotificationSMTPEncryptionType() const
 {
-    return value(u"Preferences/MailNotification/req_ssl"_s, false);
+    return value(u"Preferences/MailNotification/SMTPEncryptionType"_s, Net::SMTPEncryptionType::SMTPS);
 }
 
-void Preferences::setMailNotificationSMTPSSL(const bool use)
+void Preferences::setMailNotificationSMTPEncryptionType(const Net::SMTPEncryptionType mailEncryptionType)
 {
-    if (use == getMailNotificationSMTPSSL())
+    if (mailEncryptionType == getMailNotificationSMTPEncryptionType())
         return;
 
-    setValue(u"Preferences/MailNotification/req_ssl"_s, use);
+    setValue(u"Preferences/MailNotification/SMTPEncryptionType"_s, mailEncryptionType);
 }
 
 bool Preferences::getMailNotificationSMTPAuth() const

@@ -33,6 +33,7 @@
 #include <QtSystemDetection>
 #include <QObject>
 
+#include "base/net/smtpencryptiontype.h"
 #include "base/pathfwd.h"
 #include "base/utils/net.h"
 
@@ -142,8 +143,8 @@ public:
     void setMailNotificationEmail(const QString &mail);
     QString getMailNotificationSMTP() const;
     void setMailNotificationSMTP(const QString &smtpServer);
-    bool getMailNotificationSMTPSSL() const;
-    void setMailNotificationSMTPSSL(bool use);
+    Net::SMTPEncryptionType getMailNotificationSMTPEncryptionType() const;
+    void setMailNotificationSMTPEncryptionType(Net::SMTPEncryptionType mailEncryptionType);
     bool getMailNotificationSMTPAuth() const;
     void setMailNotificationSMTPAuth(bool use);
     QString getMailNotificationSMTPUsername() const;

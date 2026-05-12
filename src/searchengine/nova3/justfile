@@ -22,7 +22,8 @@ check files=PY_FILES: fetch_aux
 fetch_aux:
     #!/usr/bin/sh
     if [ ! -f 'socks.pyi' ]; then
-        curl -L -o socks.pyi "https://github.com/python/typeshed/raw/refs/heads/main/stubs/PySocks/socks.pyi"
+        # TODO: use `https://raw.githubusercontent.com/python/typeshed/refs/heads/main/stubs/PySocks/socks.pyi` after bumping python required version >= 3.10
+        curl -L -o socks.pyi "https://raw.githubusercontent.com/python/typeshed/61107f2860a525a1e868610dec030e1b59e3f21e/stubs/PySocks/socks.pyi"
     fi
 
 # Apply formatting
