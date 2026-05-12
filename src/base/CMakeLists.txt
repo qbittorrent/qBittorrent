@@ -231,6 +231,9 @@ target_link_libraries(qbt_base
     PRIVATE
         OpenSSL::Crypto
         OpenSSL::SSL
+        # find whatever zlib target that exists while being compatible with both
+        # FindZLIB (from cmake) and zlib own scripts
+        $<IF:$<TARGET_EXISTS:ZLIB::ZLIB>,ZLIB::ZLIB,ZLIB::ZLIBSTATIC>
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
         Qt::Core
@@ -240,12 +243,6 @@ target_link_libraries(qbt_base
         Qt::Xml
         qbt_common_cfg
 )
-
-if (TARGET ZLIB::ZLIB)
-    target_link_libraries(qbt_base PRIVATE ZLIB::ZLIB)
-else()
-    target_link_libraries(qbt_base PRIVATE ZLIB::ZLIBSTATIC)
-endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     find_library(AppKit_LIBRARY AppKit)

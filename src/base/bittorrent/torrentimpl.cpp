@@ -1670,7 +1670,7 @@ bool TorrentImpl::setCategory(const QString &category)
 
 void TorrentImpl::forceReannounce(const int index)
 {
-    m_nativeHandle.force_reannounce(0, index);
+    m_nativeHandle.force_reannounce(0, index, lt::torrent_handle::ignore_min_interval);
 }
 
 void TorrentImpl::forceDHTAnnounce()

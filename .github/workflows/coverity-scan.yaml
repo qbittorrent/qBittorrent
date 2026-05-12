@@ -15,12 +15,12 @@ jobs:
     strategy:
       matrix:
         libtorrent:
-          - version: "2.0.11"
+          - version: "2.0.12"
             boost_major_version: "1"
-            boost_minor_version: "90"
+            boost_minor_version: "91"
             boost_patch_version: "0"
         qbt_gui: ["GUI=ON"]
-        qt_version: ["6.10.1"]
+        qt_version: ["6.10.3"]
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
