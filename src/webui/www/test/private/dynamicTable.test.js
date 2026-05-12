@@ -28,16 +28,110 @@
 
 import { beforeEach, expect, test, vi } from "vitest";
 
-import {
-    DynamicTable,
-    createTableFixture,
-    flushAnimationFrames,
-    resetDynamicTableTestState,
-    setClientData,
-}
-from "./dynamicTable.test-utils.js";
+const preferences = new Map();
+const clientData = new Map();
+let animationFrameCallbacks = [];
 
+class LocalPreferences {
+    get(key, defaultValue = null) {
+        return preferences.has(key) ? preferences.get(key) : defaultValue;
+    }
+
+    set(key, value) {
+        preferences.set(key, value);
+    }
+}
+
+class TestContextMenu {
+    constructor(options) {
+        this.options = options;
+    }
+
+    addTarget() {}
+    setItemChecked() {}
+}
+
+const qBittorrent = window.qBittorrent ??= {};
+qBittorrent.LocalPreferences = { LocalPreferences: LocalPreferences };
+qBittorrent.ClientData = {
+    get: (key) => clientData.get(key)
+};
+qBittorrent.ContextMenu = { ContextMenu: TestContextMenu };
+qBittorrent.Misc = {
+    containsAllTerms: (text, terms) => terms.every(term => text.toLowerCase().includes(term)),
+    createDebounceHandler: (delay, fn) => fn,
+    formatDate: (date) => date.toISOString(),
+    friendlyUnit: (value) => `${value}`,
+    naturalSortCollator: new Intl.Collator(undefined, { numeric: true, sensitivity: "base" }),
+};
+
+window.parent = window;
+window.requestAnimationFrame = (callback) => {
+    animationFrameCallbacks.push(callback);
+    return animationFrameCallbacks.length;
+};
+globalThis.requestAnimationFrame = window.requestAnimationFrame;
+globalThis.ResizeObserver = class {
+    observe() {}
+};
+HTMLElement.prototype.makeResizable = function() {};
+
+await import("../../private/scripts/dynamicTable.js");
+
+const DynamicTable = window.qBittorrent.DynamicTable;
 const rowIds = (rows) => rows.map(row => row.rowId);
+
+const resetDynamicTableTestState = () => {
+    preferences.clear();
+    clientData.clear();
+    clientData.set("display_density", "default");
+    clientData.set("use_virtual_list", false);
+    animationFrameCallbacks = [];
+    document.body.replaceChildren();
+
+    qBittorrent.Search = {
+        searchSeedsFilter: {
+            min: 0,
+            max: 0,
+        },
+        searchSizeFilter: {
+            min: 0,
+            minUnit: 0,
+            max: 0,
+            maxUnit: 0,
+        },
+        searchText: {
+            pattern: "",
+            filterPattern: "",
+        },
+    };
+};
+
+const createTableFixture = (TableClass) => {
+    document.body.insertAdjacentHTML("beforeend", `
+        <div id="dynamicTableFixedHeader"><table><thead><tr></tr></thead></table></div>
+        <div id="dynamicTable"><table><tbody></tbody></table></div>
+    `);
+
+    const table = new TableClass();
+    table.setup("dynamicTable", "dynamicTableFixedHeader");
+    return table;
+};
+
+const addSearchModeSelect = () => {
+    document.body.insertAdjacentHTML("beforeend", "<select id=\"searchInTorrentName\"><option value=\"everywhere\">Everywhere</option><option value=\"names\">Names</option></select>");
+};
+
+const addSearchResult = (table, rowId, fileName, nbSeeders) => {
+    table.updateRowData({ rowId: rowId, fileName: fileName, fileSize: 100, nbSeeders: nbSeeders, nbLeechers: 0, engineName: "Engine", siteUrl: "", pubDate: 0 });
+};
+
+const flushAnimationFrames = () => {
+    const callbacks = animationFrameCallbacks;
+    animationFrameCallbacks = [];
+    for (const callback of callbacks)
+        callback();
+};
 
 beforeEach(() => {
     resetDynamicTableTestState();
@@ -71,16 +165,15 @@ test("selected rows use a Set while preserving public array snapshots", () => {
 
 test("filtered rows cache invalidates on row data and filter key changes", () => {
     const table = createTableFixture(DynamicTable.SearchResultsTable);
-    document.body.insertAdjacentHTML("beforeend", "<select id=\"searchInTorrentName\"><option value=\"everywhere\">Everywhere</option><option value=\"names\">Names</option></select>");
-
-    table.updateRowData({ rowId: "1", fileName: "ubuntu.iso", fileSize: 100, nbSeeders: 2, nbLeechers: 0, engineName: "Engine", siteUrl: "", pubDate: 0 });
-    table.updateRowData({ rowId: "2", fileName: "debian.iso", fileSize: 200, nbSeeders: 8, nbLeechers: 0, engineName: "Engine", siteUrl: "", pubDate: 0 });
+    addSearchModeSelect();
+    addSearchResult(table, "1", "ubuntu.iso", 2);
+    addSearchResult(table, "2", "debian.iso", 8);
 
     const allRows = table.getFilteredAndSortedRows();
     expect(rowIds(allRows)).toStrictEqual(["2", "1"]);
     expect(table.getFilteredAndSortedRows()).toBe(allRows);
 
-    table.updateRowData({ rowId: "3", fileName: "arch.iso", fileSize: 300, nbSeeders: 5, nbLeechers: 0, engineName: "Engine", siteUrl: "", pubDate: 0 });
+    addSearchResult(table, "3", "arch.iso", 5);
     const rowsAfterUpdate = table.getFilteredAndSortedRows();
     expect(rowIds(rowsAfterUpdate)).toStrictEqual(["3", "2", "1"]);
     expect(rowsAfterUpdate).not.toBe(allRows);
@@ -94,10 +187,9 @@ test("filtered rows cache invalidates on row data and filter key changes", () =>
 
 test("search result filtering reacts to search-in mode without manual invalidation", () => {
     const table = createTableFixture(DynamicTable.SearchResultsTable);
-    document.body.insertAdjacentHTML("beforeend", "<select id=\"searchInTorrentName\"><option value=\"everywhere\">Everywhere</option><option value=\"names\">Names</option></select>");
-
-    table.updateRowData({ rowId: "1", fileName: "ubuntu.iso", fileSize: 100, nbSeeders: 2, nbLeechers: 0, engineName: "Engine", siteUrl: "", pubDate: 0 });
-    table.updateRowData({ rowId: "2", fileName: "debian.iso", fileSize: 200, nbSeeders: 8, nbLeechers: 0, engineName: "Engine", siteUrl: "", pubDate: 0 });
+    addSearchModeSelect();
+    addSearchResult(table, "1", "ubuntu.iso", 2);
+    addSearchResult(table, "2", "debian.iso", 8);
 
     window.qBittorrent.Search.searchText.pattern = "ubuntu";
     document.getElementById("searchInTorrentName").value = "names";
@@ -119,7 +211,7 @@ test("sort state can be restored without an early table update", () => {
 });
 
 test("virtual scroll rerendering is throttled through requestAnimationFrame", () => {
-    setClientData("use_virtual_list", true);
+    clientData.set("use_virtual_list", true);
     const table = createTableFixture(DynamicTable.SearchPluginsTable);
     const rerender = vi.spyOn(table, "rerender").mockImplementation(() => {});
 

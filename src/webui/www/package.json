@@ -6,7 +6,6 @@
     "url": "https://github.com/qbittorrent/qBittorrent.git"
   },
   "scripts": {
-    "bench": "node --no-warnings test/private/dynamicTable.benchmark.js",
     "format": "js-beautify -r *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && prettier --write **.css",
     "lint": "eslint --cache *.mjs private/*.html private/scripts/*.js private/views/*.html public/*.html public/scripts/*.js test/*/*.js && stylelint --cache **/*.css && html-validate private public",
     "test": "vitest run --dom"
