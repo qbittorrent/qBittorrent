@@ -29,6 +29,7 @@
 
 #include "mainwindow.h"
 
+#include <QtProcessorDetection>
 #include <QtSystemDetection>
 
 #include <algorithm>
@@ -122,10 +123,14 @@ namespace
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 
 #ifdef Q_OS_WIN
-    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.exe"_s;
-    const QByteArray PYTHON_INSTALLER_MD5 = QByteArrayLiteral("c887e19e66e66e6961c444283dafaa33");
-    const QByteArray PYTHON_INSTALLER_SHA3_512 = QByteArrayLiteral("b5d83ec914dcb0c3892a521d0cbd96bf9bcb267bdee36ea4ee48a54c53fabd0aea98531eda81d1c1db31be8830f7b94430e0c838f5c2f2f8999a273f2833e450");
+#ifdef Q_PROCESSOR_X86_64
+    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.5/python-3.14.5-amd64.exe"_s;
+    const QByteArray PYTHON_INSTALLER_SHA2_256 = QByteArrayLiteral("f9c09f5ed6f796fd1a8bc5ddfa41715a494b453c4781f0e35d5077cf9fa58f6d");
+#elif Q_PROCESSOR_ARM_64
+    const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.5/python-3.14.5-arm64.exe"_s;
+    const QByteArray PYTHON_INSTALLER_SHA2_256 = QByteArrayLiteral("f4a7df6ab4fa375cd7296127ff6b9a14fbd1313f51864ce020185deba10144fa");
 #endif
+#endif // Q_OS_WIN
 }
 
 MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, const QString &titleSuffix)
@@ -1934,9 +1939,6 @@ void MainWindow::installPython()
 bool MainWindow::verifyPythonInstaller(const Path &installerPath) const
 {
     // Verify installer hash
-    // Python.org only provides MD5 hash but MD5 is already broken and doesn't guarantee file is not tampered.
-    // Therefore, MD5 is only included to prove that the hash is still the same with upstream and we rely on
-    // SHA3-512 for the main check.
 
     QFile file {installerPath.data()};
     if (!file.open(QIODevice::ReadOnly))
@@ -1945,24 +1947,12 @@ bool MainWindow::verifyPythonInstaller(const Path &installerPath) const
         return false;
     }
 
-    QCryptographicHash md5Hash {QCryptographicHash::Md5};
-    md5Hash.addData(&file);
-    if (const QByteArray hashHex = md5Hash.result().toHex(); hashHex != PYTHON_INSTALLER_MD5)
+    QCryptographicHash sha2Hash {QCryptographicHash::Sha256};
+    sha2Hash.addData(&file);
+    if (const QByteArray hashHex = sha2Hash.result().toHex(); hashHex != PYTHON_INSTALLER_SHA2_256)
     {
-        LogMsg((tr("Failed MD5 hash check for Python installer. File: \"%1\". Result hash: \"%2\". Expected hash: \"%3\".")
-                .arg(installerPath.toString(), QString::fromLatin1(hashHex), QString::fromLatin1(PYTHON_INSTALLER_MD5)))
-            , Log::WARNING);
-        return false;
-    }
-
-    file.seek(0);
-
-    QCryptographicHash sha3Hash {QCryptographicHash::Sha3_512};
-    sha3Hash.addData(&file);
-    if (const QByteArray hashHex = sha3Hash.result().toHex(); hashHex != PYTHON_INSTALLER_SHA3_512)
-    {
-        LogMsg((tr("Failed SHA3-512 hash check for Python installer. File: \"%1\". Result hash: \"%2\". Expected hash: \"%3\".")
-                .arg(installerPath.toString(), QString::fromLatin1(hashHex), QString::fromLatin1(PYTHON_INSTALLER_SHA3_512)))
+        LogMsg((tr("Failed SHA2-256 hash check for Python installer. File: \"%1\". Result hash: \"%2\". Expected hash: \"%3\".")
+                .arg(installerPath.toString(), QString::fromLatin1(hashHex), QString::fromLatin1(PYTHON_INSTALLER_SHA2_256)))
             , Log::WARNING);
         return false;
     }
