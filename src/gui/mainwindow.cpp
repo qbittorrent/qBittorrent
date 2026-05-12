@@ -498,10 +498,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     }
     else
     {
-        m_transferListWidget->applyStatusFilter(pref->getTransSelFilter());
+        m_transferListWidget->applyStatusFilter(0);
         m_transferListWidget->applyCategoryFilter(QString());
         m_transferListWidget->applyTagFilter(std::nullopt);
-        m_transferListWidget->applyTrackerFilter({});
+        m_transferListWidget->applyTrackerFilter(std::nullopt);
+        m_transferListWidget->applyAnnounceStatusFilter(std::nullopt);
     }
 
     // Start watching the executable for updates
