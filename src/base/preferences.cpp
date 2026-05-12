@@ -1493,32 +1493,6 @@ void Preferences::setPythonExecutablePath(const Path &path)
     setValue(u"Preferences/Search/pythonExecutablePath"_s, path);
 }
 
-bool Preferences::isSessionStartPaused() const
-{
-    return value(u"Preferences/Advanced/StartPaused"_s, false);
-}
-
-void Preferences::setSessionStartPaused(const bool enabled)
-{
-    if (enabled == isSessionStartPaused())
-        return;
-
-    setValue(u"Preferences/Advanced/StartPaused"_s, enabled);
-}
-
-int Preferences::getSessionShutdownTimeout() const
-{
-    return value(u"Preferences/Advanced/ShutdownTimeout"_s, -1);
-}
-
-void Preferences::setSessionShutdownTimeout(const int timeout)
-{
-    if (timeout == getSessionShutdownTimeout())
-        return;
-
-    setValue(u"Preferences/Advanced/ShutdownTimeout"_s, timeout);
-}
-
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 bool Preferences::isUpdateCheckEnabled() const
 {
