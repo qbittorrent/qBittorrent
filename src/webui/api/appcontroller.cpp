@@ -1086,14 +1086,14 @@ void AppController::setPreferencesAction()
         session->setStartPaused(it.value().toBool());
         pref->setSessionStartPaused(it.value().toBool());
     }
-        
+
     // Session shutdown timeout
     if (hasKey(u"ShutdownTimeout"_s))
     {
             session->setShutdownTimeout(it.value().toInt());
             pref->setSessionShutdownTimeout(it.value().toInt());
     }
-        
+
 
     // libtorrent preferences
     // Bdecode depth limit
