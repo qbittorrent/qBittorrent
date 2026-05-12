@@ -363,10 +363,8 @@ void AdvancedSettings::saveAdvancedSettings() const
     pref->setPythonExecutablePath(m_pythonExecutablePath.selectedPath());
     // Start session paused
     session->setStartPaused(m_checkBoxStartSessionPaused.isChecked());
-    pref->setSessionStartPaused(m_checkBoxStartSessionPaused.isChecked());
     // Session shutdown timeout
     session->setShutdownTimeout(m_spinBoxSessionShutdownTimeout.value());
-    pref->setSessionShutdownTimeout(m_spinBoxSessionShutdownTimeout.value());
     // Choking algorithm
     session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
