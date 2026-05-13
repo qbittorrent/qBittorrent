@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -48,6 +48,7 @@
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentitemdelegate.h"
+#include "torrentcontentlayoutdialog.h"
 #include "torrentcontentmodel.h"
 #include "torrentcontentmodelitem.h"
 #include "uithememanager.h"
@@ -292,6 +293,14 @@ void TorrentContentWidget::renameSelectedFile()
     model()->setData(modelIndex, newName);
 }
 
+void TorrentContentWidget::batchRenameFiles()
+{
+    auto *dialog = new TorrentContentLayoutDialog(m_model->contentHandler(), this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    connect(m_model->contentHandler(), &QObject::destroyed, dialog, &QDialog::reject);
+    dialog->open();
+}
+
 void TorrentContentWidget::applyPriorities(const BitTorrent::DownloadPriority priority)
 {
     const QList<QPersistentModelIndex> selectedRows = toPersistentIndexes(selectionModel()->selectedRows(Priority));
@@ -421,14 +430,16 @@ void TorrentContentWidget::displayContextMenu()
         if (!contentHandler()->actualStorageLocation().isEmpty())
         {
             menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_s), tr("Open")
-                            , this, [this, index]() { openItem(index); });
+                    , this, [this, index]() { openItem(index); });
             menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_s), tr("Open containing folder")
-                            , this, [this, index]() { openParentFolder(index); });
+                    , this, [this, index]() { openParentFolder(index); });
             menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("Copy path")
-                            , this, [this, index]() { copyFullPath(index); });
+                    , this, [this, index]() { copyFullPath(index); });
         }
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Rename...")
-                        , this, &TorrentContentWidget::renameSelectedFile);
+                , this, &TorrentContentWidget::renameSelectedFile);
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_s), tr("Batch rename...")
+                , this, &TorrentContentWidget::batchRenameFiles);
         menu->addSeparator();
 
         QMenu *subMenu = menu->addMenu(tr("Priority"));
