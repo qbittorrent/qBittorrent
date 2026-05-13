@@ -28,6 +28,7 @@ qt_wrap_ui(UI_HEADERS
     speedlimitdialog.ui
     statsdialog.ui
     torrentcategorydialog.ui
+    torrentcontentlayoutdialog.ui
     torrentcreatordialog.ui
     torrentoptionsdialog.ui
     torrentsharelimitswidget.ui
@@ -104,6 +105,8 @@ add_library(qbt_gui STATIC
     torrentcategorydialog.h
     torrentcontentfiltermodel.h
     torrentcontentitemdelegate.h
+    torrentcontentlayoutdialog.h
+    torrentcontentlayoutmodel.h
     torrentcontentmodel.h
     torrentcontentmodelfile.h
     torrentcontentmodelfolder.h
@@ -208,6 +211,8 @@ add_library(qbt_gui STATIC
     torrentcategorydialog.cpp
     torrentcontentfiltermodel.cpp
     torrentcontentitemdelegate.cpp
+    torrentcontentlayoutdialog.cpp
+    torrentcontentlayoutmodel.cpp
     torrentcontentmodel.cpp
     torrentcontentmodelfile.cpp
     torrentcontentmodelfolder.cpp
