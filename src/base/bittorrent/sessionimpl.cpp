@@ -574,6 +574,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_s), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_s), 300)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_s), 500)
+    , m_maxOutstandingBlocks(BITTORRENT_SESSION_KEY(u"MaxOutstandingBlocks"_s), 500)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_s), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_s))
     , m_bannedIPs(u"State/BannedIPs"_s, QStringList(), Algorithm::sorted<QStringList>)
@@ -1974,6 +1975,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
     settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
+    settingsPack.set_int(lt::settings_pack::max_allowed_in_request_queue, maxOutstandingBlocks());
 
 #ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::metadata_token_limit, Preferences::instance()->getBdecodeTokenLimit());
@@ -4455,12 +4457,26 @@ int SessionImpl::requestQueueSize() const
     return m_requestQueueSize;
 }
 
+int SessionImpl::maxOutstandingBlocks() const
+{
+    return m_maxOutstandingBlocks;
+}
+
 void SessionImpl::setRequestQueueSize(const int val)
 {
     if (val == m_requestQueueSize)
         return;
 
     m_requestQueueSize = val;
+    configureDeferred();
+}
+
+void SessionImpl::setMaxOutstandingBlocks(const int val)
+{
+    if (val == m_maxOutstandingBlocks)
+        return;
+
+    m_maxOutstandingBlocks = val;
     configureDeferred();
 }
 

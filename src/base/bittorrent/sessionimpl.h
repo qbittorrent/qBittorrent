@@ -300,6 +300,8 @@ namespace BitTorrent
         void setPeerTurnoverInterval(int val) override;
         int requestQueueSize() const override;
         void setRequestQueueSize(int val) override;
+        int maxOutstandingBlocks() const override;
+        void setMaxOutstandingBlocks(int val) override;
         int asyncIOThreads() const override;
         void setAsyncIOThreads(int num) override;
         int hashingThreads() const override;
@@ -764,6 +766,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<int> m_requestQueueSize;
+        CachedSettingValue<int> m_maxOutstandingBlocks;
         CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
