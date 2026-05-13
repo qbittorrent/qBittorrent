@@ -52,7 +52,7 @@ test("Test ProgressBar bar color setter", () => {
     const barElement = progressBar.shadowRoot.firstElementChild;
     const trackElement = progressBar.shadowRoot.lastElementChild;
 
-    expect(barElement.style.backgroundColor).toBe("var(--color-background-blue)");
+    expect(barElement.style.backgroundColor).toBe("var(--color-progress-default)");
     expect(trackElement.style.backgroundColor).toBe("var(--color-background-default)");
 
     progressBar.setBarColor("rgb(255, 0, 0)");

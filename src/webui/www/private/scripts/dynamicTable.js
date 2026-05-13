@@ -1281,14 +1281,17 @@ window.qBittorrent.DynamicTable ??= (() => {
             // progress
             this.columns["progress"].updateTd = function(td, row) {
                 const progress = this.getRowValue(row);
-                const progressFormatted = window.qBittorrent.Misc.toFixedPointString((progress * 100), 1);
+                const progressValue = progress * 100;
 
-                if (td.firstElementChild === null)
-                    td.append(new window.qBittorrent.ProgressBar.ProgressBar(progressFormatted));
-                else
-                    td.firstElementChild.setValue(progressFormatted);
+                let progressBar = td.firstElementChild;
+                if (progressBar === null) {
+                    progressBar = new window.qBittorrent.ProgressBar.ProgressBar(progressValue);
+                    td.append(progressBar);
+                }
+                else {
+                    progressBar.setValue(progressValue);
+                }
 
-                const progressBar = td.firstElementChild;
                 const state = row.full_data.state;
                 progressBar.setBarColor(window.qBittorrent.Misc.getTorrentStateInfo(state).progressColor);
             };

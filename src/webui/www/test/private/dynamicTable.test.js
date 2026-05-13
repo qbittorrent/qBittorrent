@@ -103,5 +103,5 @@ test("Test progress column recolors when only state changes", () => {
     });
     table.updateRow(tr, false);
 
-    expect(barElement.style.backgroundColor).toBe("var(--color-background-blue)");
+    expect(barElement.style.backgroundColor).toBe("var(--color-progress-default)");
 });

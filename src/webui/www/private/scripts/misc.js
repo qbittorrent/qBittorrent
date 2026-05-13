@@ -93,9 +93,9 @@ window.qBittorrent.Misc ??= (() => {
         };
     };
 
-    const defaultProgressColor = "var(--color-background-blue)";
+    const defaultProgressColor = "var(--color-progress-default)";
 
-    const createTorrentStateInfo = (sortOrder, stateIconClass, progressColor, statusText) => ({
+    const createTorrentStateInfo = (sortOrder, stateIconClass, progressColor, statusText) => Object.freeze({
         sortOrder,
         stateIconClass,
         progressColor,
@@ -110,7 +110,7 @@ window.qBittorrent.Misc ??= (() => {
         defaultProgressColor,
         "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
     );
-    const torrentStateInfo = {
+    const torrentStateInfo = Object.freeze({
         unknown: createTorrentStateInfo(-1, "stateError", "var(--color-progress-error)", "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"),
         forcedDL: createTorrentStateInfo(0, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]"),
         downloading: createTorrentStateInfo(1, "stateDownloading", "var(--color-progress-downloading)", "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]"),
@@ -130,7 +130,7 @@ window.qBittorrent.Misc ??= (() => {
         moving: createTorrentStateInfo(15, "stateMoving", "var(--color-progress-checking)", "QBT_TR(Moving)QBT_TR[CONTEXT=TransferListDelegate]"),
         missingFiles: createTorrentStateInfo(16, "stateError", "var(--color-progress-error)", "QBT_TR(Missing Files)QBT_TR[CONTEXT=TransferListDelegate]"),
         error: createTorrentStateInfo(17, "stateError", "var(--color-progress-error)", "QBT_TR(Errored)QBT_TR[CONTEXT=TransferListDelegate]")
-    };
+    });
 
     const getTorrentStateInfo = (state) => torrentStateInfo[state] ?? defaultTorrentStateInfo;
 

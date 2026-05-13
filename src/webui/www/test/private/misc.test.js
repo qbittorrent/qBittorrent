@@ -124,6 +124,7 @@ test("Test getTorrentStateInfo()", () => {
         progressColor: "var(--color-progress-downloading)",
         statusText: "QBT_TR(Downloading)QBT_TR[CONTEXT=TransferListDelegate]"
     });
+    expect(Object.isFrozen(getTorrentStateInfo("downloading"))).toBe(true);
 
     expect(getTorrentStateInfo("stoppedUP")).toStrictEqual({
         sortOrder: 14,
@@ -142,7 +143,7 @@ test("Test getTorrentStateInfo()", () => {
     expect(getTorrentStateInfo("notARealState")).toStrictEqual({
         sortOrder: -1,
         stateIconClass: "stateUnknown",
-        progressColor: "var(--color-background-blue)",
+        progressColor: "var(--color-progress-default)",
         statusText: "QBT_TR(Unknown)QBT_TR[CONTEXT=HttpServer]"
     });
 });

@@ -40,13 +40,14 @@ window.qBittorrent.ProgressBar ??= (() => {
         static #progressBarUniqueId = 0;
         static #styles = {
             height: 12,
-            barBackground: "var(--color-background-blue)",
+            barBackground: "var(--color-progress-default)",
             barForeground: "var(--color-text-white)",
             trackBackground: "var(--color-background-default)",
             trackForeground: "var(--color-text-default)",
         };
 
-        #value = 0;
+        #value = null;
+        #barColor = ProgressBar.#styles.barBackground;
 
         #id = ++ProgressBar.#progressBarUniqueId;
 
@@ -58,7 +59,7 @@ window.qBittorrent.ProgressBar ??= (() => {
 
             this.#bar.style.width = "100%";
             this.#bar.style.height = `${ProgressBar.#styles.height}px`;
-            this.#bar.style.backgroundColor = ProgressBar.#styles.barBackground;
+            this.#bar.style.backgroundColor = this.#barColor;
             this.#bar.style.boxSizing = "content-box";
             this.#bar.style.color = ProgressBar.#styles.barForeground;
             this.#bar.style.position = "absolute";
@@ -97,6 +98,10 @@ window.qBittorrent.ProgressBar ??= (() => {
         }
 
         setBarColor(color) {
+            if (color === this.#barColor)
+                return;
+
+            this.#barColor = color;
             this.#bar.style.backgroundColor = color;
         }
 
@@ -104,7 +109,11 @@ window.qBittorrent.ProgressBar ??= (() => {
             value = Number(value);
             if (Number.isNaN(value))
                 value = 0;
-            this.#value = Math.min(Math.max(value, 0), 100);
+            value = Math.min(Math.max(value, 0), 100);
+            if (value === this.#value)
+                return;
+
+            this.#value = value;
 
             const displayedValue = `${window.qBittorrent.Misc.toFixedPointString(this.#value, 1)}%`;
             this.#bar.textContent = displayedValue;
