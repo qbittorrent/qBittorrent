@@ -1181,7 +1181,16 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #ifdef Q_OS_MACOS
     if (!m_forceExit)
     {
-        hide();
+        if (isFullScreen())
+        {
+            showNormal();
+            close();
+        }
+        else
+        {
+            hide();
+        }
+
         e->ignore();
         return;
     }
