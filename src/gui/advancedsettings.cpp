@@ -174,7 +174,7 @@ namespace
         PEER_TURNOVER_CUTOFF,
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
-        MAX_OUTSTANDING_BLOCKS,
+        MAX_OUTSTANDING_BLOCK_REQUESTS,
         DHT_BOOTSTRAP_NODES,
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
         I2P_INBOUND_QUANTITY,
@@ -377,7 +377,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Maximum outstanding requests to a single peer
     session->setRequestQueueSize(m_spinBoxRequestQueueSize.value());
     // The number of outstanding block requests a peer is allowed to queue up in the client
-    session->setMaxOutstandingBlocks(m_spinBoxMaxOutstandingBlocks.value());
+    session->setMaxOutstandingBlockRequests(m_spinBoxMaxOutstandingBlockRequests.value());
     // DHT bootstrap nodes
     session->setDHTBootstrapNodes(m_lineEditDHTBootstrapNodes.text());
 #if defined(QBT_USES_LIBTORRENT2) && TORRENT_USE_I2P
@@ -989,11 +989,11 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(REQUEST_QUEUE_SIZE, (tr("Maximum outstanding requests to a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_out_request_queue", u"(?)"))
             , &m_spinBoxRequestQueueSize);
     // Maximum outstanding block requests for a single peer
-    m_spinBoxMaxOutstandingBlocks.setMinimum(1);
-    m_spinBoxMaxOutstandingBlocks.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxMaxOutstandingBlocks.setValue(session->maxOutstandingBlocks());
-    addRow(MAX_OUTSTANDING_BLOCKS, (tr("Maximum outstanding block requests for a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue", u"(?)"))
-            , &m_spinBoxMaxOutstandingBlocks);
+    m_spinBoxMaxOutstandingBlockRequests.setMinimum(1);
+    m_spinBoxMaxOutstandingBlockRequests.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxMaxOutstandingBlockRequests.setValue(session->maxOutstandingBlockRequests());
+    addRow(MAX_OUTSTANDING_BLOCK_REQUESTS, (tr("Maximum outstanding block requests for a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue", u"(?)"))
+            , &m_spinBoxMaxOutstandingBlockRequests);
     // DHT bootstrap nodes
     m_lineEditDHTBootstrapNodes.setPlaceholderText(tr("Resets to default if empty"));
     m_lineEditDHTBootstrapNodes.setText(session->getDHTBootstrapNodes());

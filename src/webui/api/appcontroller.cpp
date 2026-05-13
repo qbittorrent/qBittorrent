@@ -510,7 +510,7 @@ void AppController::preferencesAction()
     // Maximum outstanding requests to a single peer
     data[u"request_queue_size"_s] = session->requestQueueSize();
     // Maximum outstanding block requests for a single peer
-    data[u"max_outstanding_blocks"_s] = session->maxOutstandingBlocks();
+    data[u"max_outstanding_block_requests"_s] = session->maxOutstandingBlockRequests();
     // DHT bootstrap nodes
     data[u"dht_bootstrap_nodes"_s] = session->getDHTBootstrapNodes();
 
@@ -1209,8 +1209,8 @@ void AppController::setPreferencesAction()
     if (hasKey(u"request_queue_size"_s))
         session->setRequestQueueSize(it.value().toInt());
     // Maximum outstanding block requests for a single peer
-    if (hasKey(u"max_outstanding_blocks"_s))
-        session->setMaxOutstandingBlocks(it.value().toInt());
+    if (hasKey(u"max_outstanding_block_requests"_s))
+        session->setMaxOutstandingBlockRequests(it.value().toInt());
     // DHT bootstrap nodes
     if (hasKey(u"dht_bootstrap_nodes"_s))
         session->setDHTBootstrapNodes(it.value().toString());

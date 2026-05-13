@@ -1802,10 +1802,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 </tr>
                 <tr>
                     <td>
-                        <label for="maxOutstandingBlocks">QBT_TR(Maximum outstanding block requests for a single peer:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue" target="_blank">(?)</a></label>
+                        <label for="maxOutstandingBlockRequests">QBT_TR(Maximum outstanding block requests for a single peer:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_allowed_in_request_queue" target="_blank">(?)</a></label>
                     </td>
                     <td>
-                        <input type="text" id="maxOutstandingBlocks" style="width: 15em;">
+                        <input type="text" id="maxOutstandingBlockRequests" style="width: 15em;">
                     </td>
                 </tr>
                 <tr>
@@ -2789,7 +2789,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("peerTurnoverCutoff").value = pref.peer_turnover_cutoff;
                     document.getElementById("peerTurnoverInterval").value = pref.peer_turnover_interval;
                     document.getElementById("requestQueueSize").value = pref.request_queue_size;
-                    document.getElementById("maxOutstandingBlocks").value = pref.max_outstanding_blocks;
+                    document.getElementById("maxOutstandingBlockRequests").value = pref.max_outstanding_block_requests;
                     document.getElementById("dhtBootstrapNodes").value = pref.dht_bootstrap_nodes;
                     document.getElementById("i2pInboundQuantity").value = pref.i2p_inbound_quantity;
                     document.getElementById("i2pOutboundQuantity").value = pref.i2p_outbound_quantity;
@@ -3318,7 +3318,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["peer_turnover_interval"] = peerTurnoverInterval;
 
             settings["request_queue_size"] = Number(document.getElementById("requestQueueSize").value);
-            settings["max_outstanding_blocks"] = Number(document.getElementById("maxOutstandingBlocks").value);
+            settings["max_outstanding_block_requests"] = Number(document.getElementById("maxOutstandingBlockRequests").value);
             settings["dht_bootstrap_nodes"] = document.getElementById("dhtBootstrapNodes").value;
             settings["i2p_inbound_quantity"] = Number(document.getElementById("i2pInboundQuantity").value);
             settings["i2p_outbound_quantity"] = Number(document.getElementById("i2pOutboundQuantity").value);
