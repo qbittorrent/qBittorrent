@@ -408,16 +408,25 @@ namespace
     {
         qlonglong torrentSize = 0;
         QJsonArray files;
+
+        QList<BitTorrent::DownloadPriority> filePriorities;
+        BitTorrent::Session::instance()->applyFilenameFilter(info.filePaths(), filePriorities);
+
         for (int fileIndex = 0; fileIndex < info.filesCount(); ++fileIndex)
         {
             const qlonglong fileSize = info.fileSize(fileIndex);
             torrentSize += fileSize;
-            files << QJsonObject
+            QJsonObject file
             {
                 // use platform-independent separators
                 {KEY_TORRENTINFO_FILE_PATH, info.filePath(fileIndex).data()},
                 {KEY_TORRENTINFO_FILE_LENGTH, fileSize}
             };
+
+            if (!filePriorities.isEmpty())
+                file.insert(KEY_FILE_PRIORITY, static_cast<int>(filePriorities.at(fileIndex)));
+
+            files << file;
         }
 
         const BitTorrent::InfoHash infoHash = info.infoHash();
