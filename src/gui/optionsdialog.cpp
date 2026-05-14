@@ -45,7 +45,6 @@
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QSystemTrayIcon>
-#include <QTimer>
 #include <QTranslator>
 
 #include "base/bittorrent/session.h"
@@ -2170,7 +2169,7 @@ void OptionsDialog::showConnectionTab()
 void OptionsDialog::showSpeedWidgetSetting()
 {
     m_ui->tabSelection->setCurrentRow(TAB_ADVANCED);
-    QTimer::singleShot(0, m_advancedSettings, &AdvancedSettings::showSpeedWidgetSetting);
+    m_advancedSettings->showSpeedWidgetSetting();
 }
 
 #ifndef DISABLE_WEBUI

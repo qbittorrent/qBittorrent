@@ -36,7 +36,6 @@
 #include <QLineEdit>
 #include <QSpinBox>
 #include <QTableWidget>
-#include <QTimer>
 
 #include "guiapplicationcomponent.h"
 
@@ -87,9 +86,6 @@ private:
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxDiskIOReadMode, m_comboBoxDiskIOWriteMode, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm,
               m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage, m_comboBoxTorrentContentRemoveOption;
     QLineEdit m_lineEditAppInstanceName, m_pythonExecutablePath, m_lineEditAnnounceIP, m_lineEditDHTBootstrapNodes;
-    QTimer m_showSettingResetTimer;
-    QAbstractItemView::SelectionBehavior m_previousSelectionBehavior = QAbstractItemView::SelectItems;
-    QAbstractItemView::SelectionMode m_previousSelectionMode = QAbstractItemView::NoSelection;
 
 #ifndef QBT_USES_LIBTORRENT2
     QSpinBox m_spinBoxCache, m_spinBoxCacheTTL;
