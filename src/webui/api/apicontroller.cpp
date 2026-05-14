@@ -28,7 +28,6 @@
 
 #include "apicontroller.h"
 
-#include <algorithm>
 #include <utility>
 
 #include <QHash>
@@ -39,14 +38,6 @@
 #include "base/global.h"
 #include "apierror.h"
 
-void APIResult::clear()
-{
-    data.clear();
-    mimeType.clear();
-    filename.clear();
-    status = APIStatus::Ok;
-}
-
 APIController::APIController(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
 {
@@ -54,7 +45,6 @@ APIController::APIController(IApplication *app, QObject *parent)
 
 APIResult APIController::run(const QString &action, const StringMap &params, const DataMap &data)
 {
-    m_result.clear(); // clear result
     m_params = params;
     m_data = data;
 
