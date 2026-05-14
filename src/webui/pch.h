@@ -1,0 +1,45 @@
+#pragma once
+
+// std
+#include <algorithm>
+#include <chrono>
+#include <concepts>
+#include <limits>
+#include <memory>
+#include <type_traits>
+#include <utility>
+
+// Qt
+#include <QCoreApplication>
+#include <QDateTime>
+#include <QDeadlineTimer>
+#include <QDebug>
+#include <QDir>
+#include <QElapsedTimer>
+#include <QFileInfo>
+#include <QFuture>
+#include <QHash>
+#include <QHostAddress>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QList>
+#include <QMap>
+#include <QMetaObject>
+#include <QNetworkCookie>
+#include <QObject>
+#include <QPointer>
+#include <QRegularExpression>
+#include <QSet>
+#include <QSharedPointer>
+#include <QString>
+#include <QStringList>
+#include <QTimer>
+#include <QTranslator>
+#include <QUrl>
+#include <QVariant>
+
+// libtorrent
+#include "libtorrent/torrent_info.hpp"
+#include "libtorrent/info_hash.hpp"
+#include "libtorrent/add_torrent_params.hpp"
