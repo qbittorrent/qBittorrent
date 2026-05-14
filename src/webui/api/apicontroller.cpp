@@ -29,6 +29,7 @@
 #include "apicontroller.h"
 
 #include <algorithm>
+#include <utility>
 
 #include <QHash>
 #include <QJsonDocument>
@@ -61,7 +62,7 @@ APIResult APIController::run(const QString &action, const StringMap &params, con
     if (!QMetaObject::invokeMethod(this, methodName.constData()))
         throw APIError(APIErrorType::NotFound, tr("Endpoint does not exist"));
 
-    return m_result;
+    return std::exchange(m_result, {});
 }
 
 const StringMap &APIController::params() const
