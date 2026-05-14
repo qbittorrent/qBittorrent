@@ -226,6 +226,8 @@ private:
         {{u"torrents"_s, u"toggleFirstLastPiecePrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"toggleSequentialDownload"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"torrents"_s, u"topPrio"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"pauseSession"_s}, Http::HEADER_REQUEST_METHOD_POST},
+        {{u"torrents"_s, u"resumeSession"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"transfer"_s, u"banPeers"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"transfer"_s, u"setDownloadLimit"_s}, Http::HEADER_REQUEST_METHOD_POST},
         {{u"transfer"_s, u"setSpeedLimits"_s}, Http::HEADER_REQUEST_METHOD_POST},
