@@ -37,6 +37,7 @@
 #include "base/global.h"
 #include "base/bittorrent/torrentcreationmanager.h"
 #include "base/preferences.h"
+#include "base/utils/datetime.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
 #include "apierror.h"
@@ -174,7 +175,7 @@ void TorrentCreatorController::statusAction()
             {KEY_SOURCE_PATH, task->params().sourcePath.toString()},
             {KEY_PIECE_SIZE, task->params().pieceSize},
             {KEY_PRIVATE, task->params().isPrivate},
-            {KEY_TIME_ADDED, task->timeAdded().toString()},
+            {KEY_TIME_ADDED, Utils::DateTime::toSecsSinceEpoch(task->timeAdded())},
 #ifdef QBT_USES_LIBTORRENT2
             {KEY_FORMAT, torrentFormatToString(task->params().torrentFormat)},
 #else
@@ -200,10 +201,10 @@ void TorrentCreatorController::statusAction()
             taskJson[KEY_URL_SEEDS] = QJsonArray::fromStringList(task->params().urlSeeds);
 
         if (const QDateTime timeStarted = task->timeStarted(); !timeStarted.isNull())
-            taskJson[KEY_TIME_STARTED] = timeStarted.toString();
+            taskJson[KEY_TIME_STARTED] = Utils::DateTime::toSecsSinceEpoch(timeStarted);
 
-        if (const QDateTime timeFinished = task->timeFinished(); !task->timeFinished().isNull())
-            taskJson[KEY_TIME_FINISHED] = timeFinished.toString();
+        if (const QDateTime timeFinished = task->timeFinished(); !timeFinished.isNull())
+            taskJson[KEY_TIME_FINISHED] = Utils::DateTime::toSecsSinceEpoch(timeFinished);
 
         if (task->isFinished())
         {

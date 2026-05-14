@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -84,9 +85,9 @@ const QByteArray ACK = QByteArrayLiteral("ack");
 
 QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
-    , m_socketName(path + u"/ipc-socket")
-    , m_server(new QLocalServer(this))
-    , m_lockFile(path + u"/lockfile")
+    , m_socketName {path + u"/ipc-socket"}
+    , m_server {new QLocalServer(this)}
+    , m_lockFile {path + u"/lockfile"}
 {
     m_server->setSocketOptions(QLocalServer::UserAccessOption);
     m_lockFile.setStaleLockTime(0);
@@ -98,7 +99,22 @@ bool QtLocalPeer::isClient()
         return false;
 
     if (!m_lockFile.tryLock())
-        return true;
+    {
+        // Since v5.2 `QLockFile` is adopted as part of "single instance" feature implementation.
+        // It may have conflict with old locking mechanism in case there is stale lockfile
+        // created by previous qBittorrent version exist when new one is starting.
+        // The following code is intended to prevent this issue by removing stale lockfile.
+        if ((m_lockFile.error() == QLockFile::LockFailedError)
+            && !m_lockFile.getLockInfo(nullptr, nullptr, nullptr))
+        {
+            if (!m_lockFile.removeStaleLockFile() || !m_lockFile.tryLock())
+                return true;
+        }
+        else
+        {
+            return true;
+        }
+    }
 
     bool res = m_server->listen(m_socketName);
 #if defined(Q_OS_UNIX)
