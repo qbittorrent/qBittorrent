@@ -206,6 +206,11 @@ AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
     horizontalHeader()->setStretchLastSection(true);
 }
 
+void AdvancedSettings::showSpeedWidgetSetting()
+{
+    showSetting(ENABLE_SPEED_WIDGET, m_checkBoxSpeedWidgetEnabled);
+}
+
 void AdvancedSettings::saveAdvancedSettings() const
 {
     Preferences *const pref = Preferences::instance();
@@ -1039,4 +1044,10 @@ void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
         connect(widget, qOverload<int>(&QComboBox::currentIndexChanged), this, &AdvancedSettings::settingsChanged);
     else if constexpr (std::is_same_v<T, QLineEdit>)
         connect(widget, &QLineEdit::textChanged, this, &AdvancedSettings::settingsChanged);
+}
+
+void AdvancedSettings::showSetting(const int row, QWidget &widget)
+{
+    scrollTo(model()->index(row, PROPERTY), QAbstractItemView::PositionAtCenter);
+    widget.setFocus(Qt::OtherFocusReason);
 }
