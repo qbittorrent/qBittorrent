@@ -124,6 +124,8 @@ let downloadLimitFN = () => {};
 let deleteSelectedTorrentsFN = () => {};
 let stopFN = () => {};
 let startFN = () => {};
+let pauseSessionFN = () => {};
+let resumeSessionFN = () => {};
 let autoTorrentManagementFN = () => {};
 let recheckFN = () => {};
 let reannounceFN = () => {};
@@ -592,6 +594,31 @@ const initializeWindows = () => {
             });
             updateMainData();
         }
+    };
+
+    pauseSessionFN = () => {
+        fetch("api/v2/torrents/pauseSession", {
+            method: "POST",
+        }).then((response) => {
+            if (!response.ok) {
+                alert("QBT_TR(Unable to pause the session.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+
+        });
+        updateMainData();
+    };
+
+    resumeSessionFN = () => {
+        fetch("api/v2/torrents/resumeSession", {
+            method: "POST",
+        }).then((response) => {
+            if (!response.ok) {
+                alert("QBT_TR(Unable to resume the session.)QBT_TR[CONTEXT=HttpServer]");
+                return;
+            }
+        });
+        updateMainData();
     };
 
     autoTorrentManagementFN = () => {
@@ -1274,6 +1301,38 @@ const initializeWindows = () => {
                     hashes: "all"
                 })
             });
+            updateMainData();
+        }
+    });
+
+    addClickEvent("pauseSession", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (confirm("QBT_TR(Would you like to pause bittorrent session?)QBT_TR[CONTEXT=MainWindow]")) {
+            fetch("api/v2/torrents/pauseSession", {
+                    method: "POST"
+                })
+                .then((response) => {
+                    if (!response.ok)
+                        return;
+                });
+            updateMainData();
+        }
+    });
+
+    addClickEvent("resumeSession", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (confirm("QBT_TR(Would you like to resume bittorrent session?)QBT_TR[CONTEXT=MainWindow]")) {
+            fetch("api/v2/torrents/resumeSession", {
+                    method: "POST"
+                })
+                .then((response) => {
+                    if (!response.ok)
+                        return;
+                });
             updateMainData();
         }
     });
