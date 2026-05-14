@@ -217,8 +217,15 @@ void Net::DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
     // Resolve relative urls
     const QUrl resolvedUrl = newUrl.isRelative() ? m_reply->url().resolved(newUrl) : newUrl;
     const QString newUrlString = resolvedUrl.toString();
-    qDebug("Redirecting from %s to %s...", qUtf8Printable(m_reply->url().toString()), qUtf8Printable(newUrlString));
 
+    // BLOCKED SSRF
+    const QString scheme = resolvedUrl.scheme().toLower();
+    if ((scheme != u"http") && (scheme != u"https") && (scheme != u"magnet"))
+    {
+        setError(tr("Redirect to unsupported or dangerous protocol: %1").arg(scheme));
+        finish();
+        return;
+    }
     // Redirect to magnet workaround
     if (newUrlString.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
