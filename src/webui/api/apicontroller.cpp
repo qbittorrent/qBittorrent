@@ -34,6 +34,7 @@
 #include <QJsonDocument>
 #include <QList>
 #include <QMetaObject>
+#include <QScopeGuard>
 
 #include "base/global.h"
 #include "apierror.h"
@@ -47,6 +48,11 @@ APIResult APIController::run(const QString &action, const StringMap &params, con
 {
     m_params = params;
     m_data = data;
+    [[maybe_unused]] const auto inputsGuard = qScopeGuard([this]
+    {
+        m_params = {};
+        m_data = {};
+    });
 
     const QByteArray methodName = action.toLatin1() + "Action";
     if (!QMetaObject::invokeMethod(this, methodName.constData()))
