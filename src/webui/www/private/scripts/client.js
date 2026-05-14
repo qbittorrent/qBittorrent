@@ -876,28 +876,6 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             tracker.classList.toggle("selectedFilter", (tracker.id === selectedTracker));
     };
 
-    const statusSortOrder = Object.freeze({
-        unknown: -1,
-        forcedDL: 0,
-        downloading: 1,
-        forcedMetaDL: 2,
-        metaDL: 3,
-        stalledDL: 4,
-        forcedUP: 5,
-        uploading: 6,
-        stalledUP: 7,
-        checkingResumeData: 8,
-        queuedDL: 9,
-        queuedUP: 10,
-        checkingUP: 11,
-        checkingDL: 12,
-        stoppedDL: 13,
-        stoppedUP: 14,
-        moving: 15,
-        missingFiles: 16,
-        error: 17
-    });
-
     let syncMainDataTimeoutID = -1;
     let syncRequestInProgress = false;
     const syncMainData = () => {
@@ -1023,7 +1001,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                                 if (responseJSON["torrents"][key]["state"]) {
                                     const state = responseJSON["torrents"][key]["state"];
                                     responseJSON["torrents"][key]["status"] = state;
-                                    responseJSON["torrents"][key]["_statusOrder"] = statusSortOrder[state];
+                                    responseJSON["torrents"][key]["_statusOrder"] = window.qBittorrent.Misc.getTorrentStateInfo(state).sortOrder;
                                     updateStatuses = true;
                                 }
                                 torrentsTable.updateRowData(responseJSON["torrents"][key]);
