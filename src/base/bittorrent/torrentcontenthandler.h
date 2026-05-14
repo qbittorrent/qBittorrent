@@ -57,6 +57,7 @@ namespace BitTorrent
         virtual QFuture<QList<qreal>> fetchAvailableFileFractions() const = 0;
 
         virtual void prioritizeFiles(const QList<DownloadPriority> &priorities) = 0;
+        virtual void deleteFiles(const QList<int> &fileIndexes) = 0;
         virtual void flushCache() const = 0;
     };
 }

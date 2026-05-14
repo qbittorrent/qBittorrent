@@ -221,6 +221,7 @@ namespace BitTorrent
         void forceRecheck() override;
         void renameFile(int index, const Path &path) override;
         void prioritizeFiles(const QList<DownloadPriority> &priorities) override;
+        void deleteFiles(const QList<int> &fileIndexes) override;
         void setUploadLimit(int limit) override;
         void setDownloadLimit(int limit) override;
         void setSuperSeeding(bool enable) override;
