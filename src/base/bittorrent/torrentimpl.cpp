@@ -2950,6 +2950,50 @@ void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
     manageActualFilePaths();
 }
 
+void TorrentImpl::deleteFiles(const QList<int> &fileIndexes)
+{
+    if (fileIndexes.isEmpty() || !hasMetadata())
+        return;
+
+    flushCache();
+    const Path storageLocation = actualStorageLocation();
+    for (const int index : fileIndexes)
+    {
+        const Path filePath = storageLocation / actualFilePath(index);
+        if (const auto result = Utils::Fs::removeFile(filePath); !result)
+            LogMsg(tr("Failed to delete file \"%1\". Error: %2").arg(filePath.toString(), result.error()), Log::WARNING);
+
+        // Zero per-file progress directly.  These are the fields filesProgress()
+        // reads for the GUI.  updateProgress() only ever *increments* m_filesProgress
+        // (on newly-acquired pieces) and handleFileCompleted() only ever *sets*
+        // m_completedFiles — neither fires for an Ignored file, so these zeroes stick.
+        m_filesProgress[index] = 0;
+        m_completedFiles.clearBit(index);
+    }
+
+    // Best-effort: clear the affected pieces from the resume-data bitfield so that
+    // on the next qBittorrent start libtorrent loads without stale "have" bits for
+    // the deleted files.
+    //
+    // TODO: prepareResumeData() may overwrite these when libtorrent asynchronously returns its save_resume_data response.
+    if (!m_ltAddTorrentParams.have_pieces.empty())
+    {
+        for (const int fileIndex : fileIndexes)
+        {
+            for (const int pieceIndex : m_torrentInfo.filePieces(fileIndex)) {
+                m_ltAddTorrentParams.have_pieces.clear_bit(lt::piece_index_t {pieceIndex});
+
+                m_pieces.clearBit(pieceIndex);
+            }
+        }
+    }
+
+    deferredRequestResumeData();
+    flushCache(); // TODO: Maybe unnecessary.
+
+    // FIXME: This function is not quite right. It seems that libtorrent is never fully informed of the removed file(s).
+}
+
 template <typename Func>
 QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
 {
