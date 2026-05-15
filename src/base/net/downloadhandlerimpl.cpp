@@ -230,7 +230,7 @@ void Net::DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
     }
 
     // SSRF protection: strict scheme whitelist
-    const QString scheme = resolvedUrl.scheme().toLower();
+    const QString scheme = resolvedUrl.scheme();
     if ((scheme != u"http") && (scheme != u"https"))
     {
         setError(tr("Redirect to unsupported or dangerous protocol: %1").arg(scheme));
