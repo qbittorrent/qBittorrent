@@ -70,8 +70,8 @@ public:
         TOT_UP,
         RELEVANCE,
         DOWNLOADING_PIECE,
-        IP_HIDDEN,
         CONTRIBUTION,
+        IP_HIDDEN,
 
         COL_COUNT
     };
