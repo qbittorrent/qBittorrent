@@ -220,7 +220,7 @@ void Net::DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
 
     // BLOCKED SSRF
     const QString scheme = resolvedUrl.scheme().toLower();
-    if ((scheme != u"http") && (scheme != u"https") && (scheme != u"magnet"))
+    if (scheme != u"http" && scheme != u"https")
     {
         setError(tr("Redirect to unsupported or dangerous protocol: %1").arg(scheme));
         finish();
