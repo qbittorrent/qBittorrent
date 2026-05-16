@@ -791,7 +791,7 @@ const initializeWindows = () => {
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Unable to start torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        alert("QBT_TR(Unable to force start torrents.)QBT_TR[CONTEXT=HttpServer]");
                         return;
                     }
 
