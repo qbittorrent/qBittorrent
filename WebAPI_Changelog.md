@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.16.1
+* [#24269](https://github.com/qbittorrent/qBittorrent/pull/24269)
+  * Add `torrents/pauseSession` endpoint for pausing bittorrent session
+  * Add `torrents/resumeSession` endpoint for resuming bittorrent session
+
 ## 2.16.0
 * [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
   * `app/preferences` endpoint includes `seeding_outgoing_connections` option
