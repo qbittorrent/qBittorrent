@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,42 +28,54 @@
 
 #pragma once
 
-#include <QElapsedTimer>
 #include <QObject>
+#include <QPointer>
 
-#include "responsewriterimpl.h"
+#include "base/pathfwd.h"
+#include "headermap.h"
+#include "request.h"
+#include "response.h"
+#include "responsewriter.h"
 
-class QTcpSocket;
+class QAbstractSocket;
+class QThread;
 
 namespace Http
 {
-    class IRequestHandler;
-    struct ResponseStatus;
-
-    class Connection : public QObject
+    class ResponseWriterImpl final : public ResponseWriter
     {
         Q_OBJECT
-        Q_DISABLE_COPY_MOVE(Connection)
+        Q_DISABLE_COPY_MOVE(ResponseWriterImpl)
 
     public:
-        Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
+        ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
+        ~ResponseWriterImpl() override;
 
-        bool hasExpired(qint64 timeout) const;
+        void prepare(const Request &request);
 
-    signals:
-        void closed();
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        void setResponse(const Response &response) override;
+
+        // Allow to stream file using separate IO thread for reading.
+        // Support Range requests.
+        void streamFile(const Path &filePath, const HeaderMap &headers) override;
+
+        bool isFinished() const override;
 
     private:
-        void abort(const ResponseStatus &responseStatus);
-        bool processRequest();
-        void read();
+        void writeData(const QByteArray &data);
+        void finish();
 
-        QTcpSocket *m_socket = nullptr;
-        IRequestHandler *m_requestHandler = nullptr;
-        QByteArray m_receivedData;
-        QElapsedTimer m_idleTimer;
-        bool m_isProcessingRequest = false;
-        bool m_isReadyRead = false;
-        ResponseWriterImpl m_responseWriter;
+        QPointer<QAbstractSocket> m_socket;
+        Request m_request;
+
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+        QThread *m_workerThread = nullptr;
+        bool m_isAsyncWorkerFinished = false;
+
+        bool m_isWritingContent = false;
+        bool m_isFinished = false;
     };
 }

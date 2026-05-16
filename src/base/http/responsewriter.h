@@ -29,53 +29,32 @@
 #pragma once
 
 #include <QObject>
-#include <QPointer>
 
 #include "base/pathfwd.h"
 #include "headermap.h"
-#include "request.h"
 #include "response.h"
-
-class QAbstractSocket;
-class QThread;
 
 namespace Http
 {
-    class ResponseWriter final : public QObject
+    class ResponseWriter : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(ResponseWriter)
 
     public:
-        ResponseWriter(QAbstractSocket *socket, Request request, QObject *parent = nullptr);
-        ~ResponseWriter() override;
+        using QObject::QObject;
 
         // Send entire response at once.
         // Allow response content to be gzip encoded.
-        void setResponse(const Response &response);
+        virtual void setResponse(const Response &response) = 0;
 
         // Allow to stream file using separate IO thread for reading.
         // Support Range requests.
-        void streamFile(const Path &filePath, const HeaderMap &headers);
+        virtual void streamFile(const Path &filePath, const HeaderMap &headers) = 0;
 
-        bool isFinished() const;
+        virtual bool isFinished() const = 0;
 
     signals:
-        void finished(QPrivateSignal);
-
-    private:
-        void writeData(const QByteArray &data);
-        void finish();
-
-        QPointer<QAbstractSocket> m_socket;
-        Request m_request;
-
-        class Worker;
-        Worker *m_asyncWorker = nullptr;
-        QThread *m_workerThread = nullptr;
-        bool m_isAsyncWorkerFinished = false;
-
-        bool m_isWritingContent = false;
-        bool m_isFinished = false;
+        void finished();
     };
 }

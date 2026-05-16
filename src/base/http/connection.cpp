@@ -37,12 +37,12 @@
 #include "environment.h"
 #include "irequesthandler.h"
 #include "requestparser.h"
-#include "responsewriter.h"
 
 Http::Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent)
     : QObject(parent)
     , m_socket {socket}
     , m_requestHandler {requestHandler}
+    , m_responseWriter {ResponseWriterImpl(socket)}
 {
     Q_ASSERT(socket);
     Q_ASSERT(requestHandler);
@@ -66,6 +66,15 @@ Http::Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler
     {
         m_idleTimer.start();
     });
+
+    connect(&m_responseWriter, &ResponseWriterImpl::finished, this, [this]
+    {
+        m_isProcessingRequest = false;
+        if (!m_receivedData.isEmpty())
+            processRequest(); // try to fetch next request
+        else if (m_isReadyRead)
+            read();
+    }, Qt::QueuedConnection); // need to use `Qt::QueuedConnection` to avoid possible recursion
 }
 
 void Http::Connection::read()
@@ -118,26 +127,10 @@ bool Http::Connection::processRequest()
 
             const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
-            auto *responseWriter = new ResponseWriter(m_socket, result.request, this);
-            m_requestHandler->processRequest(result.request, env, *responseWriter);
-            if (!responseWriter->isFinished())
-            {
-                connect(responseWriter, &ResponseWriter::finished, this, [this, responseWriter]
-                {
-                    responseWriter->deleteLater();
-                    m_isProcessingRequest = false;
-                    if (!m_receivedData.isEmpty())
-                        processRequest(); // try to fetch next request
-                    else if (m_isReadyRead)
-                        read();
-                }, Qt::QueuedConnection); // need to use `Qt::QueuedConnection` to avoid possible recursion
-
+            m_responseWriter.prepare(result.request);
+            m_requestHandler->processRequest(result.request, env, m_responseWriter);
+            if (!m_responseWriter.isFinished())
                 m_isProcessingRequest = true;
-            }
-            else
-            {
-                delete responseWriter;
-            }
         }
         return true;
 
@@ -176,7 +169,7 @@ bool Http::Connection::processRequest()
 
 void Http::Connection::abort(const ResponseStatus &responseStatus)
 {
-    ResponseWriter(m_socket, {}).setResponse({.status = responseStatus, .headers = {{HEADER_CONNECTION, u"close"_s}}});
+    ResponseWriterImpl(m_socket, {}).setResponse({.status = responseStatus, .headers = {{HEADER_CONNECTION, u"close"_s}}});
     m_socket->close();
 }
 
