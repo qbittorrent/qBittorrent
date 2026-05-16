@@ -624,24 +624,18 @@ TorrentContentModelFolder *TorrentContentModel::populateFolder(const Path &folde
 {
     Q_ASSERT(!m_itemByPath.contains(folderPath));
 
-    const QList<QStringView> pathFolders = folderPath.split();
-
-    QList<QString> parentPathFolders;
-    parentPathFolders.reserve(pathFolders.size());
-
     // rebuild the path from the root
     TorrentContentModelFolder *currentFolderItem = m_rootItem;
-    for (const QStringView pathPart : pathFolders)
+    // for (const QStringView pathPart : pathFolders)
+    for (const Path &currentFolderPath : folderPath)
     {
-        const QString folderName = pathPart.toString();
-        const Path parentPath = Path(parentPathFolders.join(u'/'));
-        const Path currentFolderPath = parentPath / Path(folderName);
         TorrentContentModelItem *item = m_itemByPath.value(currentFolderPath);
         Q_ASSERT(!item || (item->itemType() == TorrentContentModelItem::FolderType));
 
         auto *folderItem = static_cast<TorrentContentModelFolder *>(item);
         if (!folderItem)
         {
+            const QString folderName = currentFolderPath.filename();
             folderItem = new TorrentContentModelFolder(folderName);
 
             if (flags != SuppressInsertRowsNotify)
@@ -657,7 +651,6 @@ TorrentContentModelFolder *TorrentContentModel::populateFolder(const Path &folde
                 endInsertRows();
         }
 
-        parentPathFolders.push_back(folderName);
         currentFolderItem = folderItem;
     }
 
