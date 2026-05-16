@@ -4457,11 +4457,6 @@ int SessionImpl::requestQueueSize() const
     return m_requestQueueSize;
 }
 
-int SessionImpl::maxOutstandingBlockRequests() const
-{
-    return m_maxOutstandingBlockRequests;
-}
-
 void SessionImpl::setRequestQueueSize(const int val)
 {
     if (val == m_requestQueueSize)
@@ -4469,6 +4464,11 @@ void SessionImpl::setRequestQueueSize(const int val)
 
     m_requestQueueSize = val;
     configureDeferred();
+}
+
+int SessionImpl::maxOutstandingBlockRequests() const
+{
+    return m_maxOutstandingBlockRequests;
 }
 
 void SessionImpl::setMaxOutstandingBlockRequests(const int val)
