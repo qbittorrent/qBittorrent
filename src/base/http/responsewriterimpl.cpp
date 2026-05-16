@@ -26,7 +26,7 @@
  * exception statement from your version.
  */
 
-#include "responsewriter.h"
+#include "responsewriterimpl.h"
 
 #include <algorithm>
 #include <optional>
@@ -176,7 +176,7 @@ namespace
         const auto serializeHeader = [&buf](const QString &name, const QString &value)
         {
             buf.append(name.toLatin1())
-            .append(": ")
+                .append(": ")
                 .append(value.toLatin1())
                 .append(Http::CRLF);
         };
@@ -242,7 +242,7 @@ namespace
     }
 }
 
-class Http::ResponseWriter::Worker final : public QObject
+class Http::ResponseWriterImpl::Worker final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Worker)
@@ -279,20 +279,28 @@ private:
     bool m_isBufferRead = false;
 };
 
-Http::ResponseWriter::ResponseWriter(QAbstractSocket *socket, Request request, QObject *parent)
-    : QObject(parent)
+Http::ResponseWriterImpl::ResponseWriterImpl(QAbstractSocket *socket, QObject *parent)
+    : ResponseWriter(parent)
     , m_socket {socket}
-    , m_request {std::move(request)}
 {
 }
 
-Http::ResponseWriter::~ResponseWriter()
+Http::ResponseWriterImpl::~ResponseWriterImpl()
 {
     if (m_isWritingContent)
         m_asyncWorker->abort();
 }
 
-void Http::ResponseWriter::setResponse(const Response &response)
+void Http::ResponseWriterImpl::prepare(const Request &request)
+{
+    Q_ASSERT(!m_isWritingContent);
+
+    m_isAsyncWorkerFinished = false;
+    m_isFinished = false;
+    m_request = request;
+}
+
+void Http::ResponseWriterImpl::setResponse(const Response &response)
 {
     Q_ASSERT(!m_isFinished && !m_isWritingContent);
     if (m_isFinished || m_isWritingContent) [[unlikely]]
@@ -304,7 +312,7 @@ void Http::ResponseWriter::setResponse(const Response &response)
     finish();
 }
 
-void Http::ResponseWriter::streamFile(const Path &filePath, const HeaderMap &headers)
+void Http::ResponseWriterImpl::streamFile(const Path &filePath, const HeaderMap &headers)
 {
     Q_ASSERT(!m_isFinished && !m_isWritingContent);
     if (m_isFinished || m_isWritingContent) [[unlikely]]
@@ -377,22 +385,22 @@ void Http::ResponseWriter::streamFile(const Path &filePath, const HeaderMap &hea
     m_isWritingContent = true;
 }
 
-void Http::ResponseWriter::finish()
+void Http::ResponseWriterImpl::finish()
 {
     if (m_isFinished)
         return;
 
     m_isWritingContent = false;
     m_isFinished = true;
-    emit finished(QPrivateSignal());
+    emit finished();
 }
 
-bool Http::ResponseWriter::isFinished() const
+bool Http::ResponseWriterImpl::isFinished() const
 {
     return m_isFinished;
 }
 
-void Http::ResponseWriter::writeData(const QByteArray &data)
+void Http::ResponseWriterImpl::writeData(const QByteArray &data)
 {
     Q_ASSERT(!data.isEmpty());
     if (data.isEmpty()) [[unlikely]]
@@ -410,7 +418,7 @@ void Http::ResponseWriter::writeData(const QByteArray &data)
         m_socket->flush();
 }
 
-Http::ResponseWriter::Worker::Worker(const Path &filePath, const Request &request, const HeaderMap &headers)
+Http::ResponseWriterImpl::Worker::Worker(const Path &filePath, const Request &request, const HeaderMap &headers)
     : m_filePath {filePath}
     , m_request {request}
     , m_headers {headers}
@@ -421,7 +429,7 @@ Http::ResponseWriter::Worker::Worker(const Path &filePath, const Request &reques
     m_buffer.reserve(MAX_BUFFER_SIZE);
 }
 
-void Http::ResponseWriter::Worker::run()
+void Http::ResponseWriterImpl::Worker::run()
 {
     std::optional<RangeRequest> rangeRequest;
     if (const auto it = m_request.headers.constFind(Http::HEADER_RANGE); it != m_request.headers.constEnd())
@@ -559,7 +567,7 @@ void Http::ResponseWriter::Worker::run()
         emit finished();
 }
 
-QByteArray Http::ResponseWriter::Worker::fetchData(const qint64 maxSize)
+QByteArray Http::ResponseWriterImpl::Worker::fetchData(const qint64 maxSize)
 {
     const QReadLocker locker {&m_bufferLock};
     const qint64 sizeToFetch = std::min(maxSize, m_buffer.size());
@@ -570,7 +578,7 @@ QByteArray Http::ResponseWriter::Worker::fetchData(const qint64 maxSize)
     return data;
 }
 
-void Http::ResponseWriter::Worker::abort()
+void Http::ResponseWriterImpl::Worker::abort()
 {
     if (isAborted())
         return;
@@ -581,10 +589,10 @@ void Http::ResponseWriter::Worker::abort()
     emit failed();
 }
 
-bool Http::ResponseWriter::Worker::isAborted()
+bool Http::ResponseWriterImpl::Worker::isAborted()
 {
     const QReadLocker locker {&m_abortedStateLock};
     return m_isAborted;
 }
 
-#include "responsewriter.moc"
+#include "responsewriterimpl.moc"

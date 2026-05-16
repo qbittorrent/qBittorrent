@@ -33,6 +33,8 @@
 #include <QElapsedTimer>
 #include <QObject>
 
+#include "responsewriterimpl.h"
+
 class QTcpSocket;
 
 namespace Http
@@ -64,5 +66,6 @@ namespace Http
         QElapsedTimer m_idleTimer;
         bool m_isProcessingRequest = false;
         bool m_isReadyRead = false;
+        ResponseWriterImpl m_responseWriter;
     };
 }

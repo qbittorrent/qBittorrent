@@ -69,6 +69,7 @@ add_library(qbt_base STATIC
     http/requestparser.h
     http/response.h
     http/responsewriter.h
+    http/responsewriterimpl.h
     http/server.h
     indexrange.h
     interfaces/iapplication.h
@@ -173,7 +174,7 @@ add_library(qbt_base STATIC
     http/connection.cpp
     http/httperror.cpp
     http/requestparser.cpp
-    http/responsewriter.cpp
+    http/responsewriterimpl.cpp
     http/server.cpp
     logger.cpp
     net/dnsupdater.cpp
