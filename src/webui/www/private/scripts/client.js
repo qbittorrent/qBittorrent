@@ -1132,7 +1132,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
 
         let titlePrefix = "";
         if (serverState.sessionState === true) {
-            titlePrefix = "[PAUSED] ";
+            titlePrefix = "QBT_TR([PAUSED] )QBT_TR[CONTEXT=MainWindow] ";
         }
         else if (speedInTitle === true) {
             titlePrefix = "QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
