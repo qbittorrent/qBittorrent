@@ -29,9 +29,12 @@
 
 #include "transferlistmodel.h"
 
+#include <algorithm>
+
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
+#include <QTimer>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -48,6 +51,8 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
+    constexpr int RELATIVE_DATE_REFRESH_INTERVAL = 30 * 1000;
+
     QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
     {
         struct TorrentStateColorDescriptor
@@ -112,6 +117,10 @@ TransferListModel::TransferListModel(QObject *parent)
         {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
         {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}}
 {
+    m_relativeDateRefreshTimer = new QTimer(this);
+    m_relativeDateRefreshTimer->setInterval(RELATIVE_DATE_REFRESH_INTERVAL);
+    connect(m_relativeDateRefreshTimer, &QTimer::timeout, this, &TransferListModel::refreshRelativeDateColumns);
+
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
 
@@ -245,6 +254,8 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
 
 QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, const int column) const
 {
+    const QDateTime currentDateTime = QDateTime::currentDateTimeUtc();
+
     bool hideValues = false;
     if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
         hideValues = true;
@@ -369,6 +380,26 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return tr("N/A");
     };
 
+    const auto absoluteDateString = [](const QDateTime &dateTime) -> QString
+    {
+        return dateTime.isValid() ? QLocale().toString(dateTime.toLocalTime(), QLocale::ShortFormat) : QString();
+    };
+
+    const auto relativeDateString = [this, &currentDateTime, &absoluteDateString](const QDateTime &dateTime) -> QString
+    {
+        if (!m_useRelativeDates)
+            return absoluteDateString(dateTime);
+
+        if (!dateTime.isValid())
+            return {};
+
+        qint64 elapsedTime = std::max<qint64>(0, dateTime.secsTo(currentDateTime));
+        if (elapsedTime == 0)
+            elapsedTime = 1;
+
+        return tr("%1 ago", "e.g.: 1h 20m ago").arg(Utils::Misc::userFriendlyDuration(elapsedTime));
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -402,11 +433,11 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_TAGS:
         return Utils::String::joinIntoString(torrent->tags(), u", "_s);
     case TR_CREATE_DATE:
-        return QLocale().toString(torrent->creationDate().toLocalTime(), QLocale::ShortFormat);
+        return relativeDateString(torrent->creationDate());
     case TR_ADD_DATE:
-        return QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat);
+        return relativeDateString(torrent->addedTime());
     case TR_SEED_DATE:
-        return QLocale().toString(torrent->completedTime().toLocalTime(), QLocale::ShortFormat);
+        return relativeDateString(torrent->completedTime());
     case TR_TRACKER:
         return torrent->currentTracker();
     case TR_DLLIMIT:
@@ -432,7 +463,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
-        return QLocale().toString(torrent->lastSeenComplete().toLocalTime(), QLocale::ShortFormat);
+        return relativeDateString(torrent->lastSeenComplete());
     case TR_LAST_ACTIVITY:
         return lastActivityString(torrent->timeSinceActivity());
     case TR_AVAILABILITY:
@@ -569,12 +600,36 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_STATUS:
         case TR_CATEGORY:
         case TR_TAGS:
+        case TR_CREATE_DATE:
+        case TR_ADD_DATE:
+        case TR_SEED_DATE:
         case TR_TRACKER:
         case TR_SAVE_PATH:
         case TR_DOWNLOAD_PATH:
+        case TR_SEEN_COMPLETE_DATE:
         case TR_INFOHASH_V1:
         case TR_INFOHASH_V2:
-            return displayValue(torrent, index.column());
+            switch (index.column())
+            {
+            case TR_CREATE_DATE:
+                return torrent->creationDate().isValid()
+                    ? QLocale().toString(torrent->creationDate().toLocalTime(), QLocale::ShortFormat)
+                    : QString();
+            case TR_ADD_DATE:
+                return torrent->addedTime().isValid()
+                    ? QLocale().toString(torrent->addedTime().toLocalTime(), QLocale::ShortFormat)
+                    : QString();
+            case TR_SEED_DATE:
+                return torrent->completedTime().isValid()
+                    ? QLocale().toString(torrent->completedTime().toLocalTime(), QLocale::ShortFormat)
+                    : QString();
+            case TR_SEEN_COMPLETE_DATE:
+                return torrent->lastSeenComplete().isValid()
+                    ? QLocale().toString(torrent->lastSeenComplete().toLocalTime(), QLocale::ShortFormat)
+                    : QString();
+            default:
+                return displayValue(torrent, index.column());
+            }
         }
         break;
     case Qt::TextAlignmentRole:
@@ -716,6 +771,22 @@ void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *>
     }
 }
 
+void TransferListModel::refreshRelativeDateColumns()
+{
+    if (!m_useRelativeDates || (rowCount() <= 0))
+        return;
+
+    const auto refreshColumn = [this](const int column)
+    {
+        emit dataChanged(index(0, column), index((rowCount() - 1), column), {Qt::DisplayRole});
+    };
+
+    refreshColumn(TR_CREATE_DATE);
+    refreshColumn(TR_ADD_DATE);
+    refreshColumn(TR_SEED_DATE);
+    refreshColumn(TR_SEEN_COMPLETE_DATE);
+}
+
 void TransferListModel::configure()
 {
     const Preferences *pref = Preferences::instance();
@@ -740,6 +811,19 @@ void TransferListModel::configure()
     if (const bool useTorrentStatesColors = pref->useTorrentStatesColors(); m_useTorrentStatesColors != useTorrentStatesColors)
     {
         m_useTorrentStatesColors = useTorrentStatesColors;
+        isDataChanged = true;
+    }
+
+    if (const bool useRelativeDates = pref->useRelativeDatesInTransferList(); m_useRelativeDates != useRelativeDates)
+    {
+        m_useRelativeDates = useRelativeDates;
+        if (m_relativeDateRefreshTimer)
+        {
+            if (m_useRelativeDates)
+                m_relativeDateRefreshTimer->start();
+            else
+                m_relativeDateRefreshTimer->stop();
+        }
         isDataChanged = true;
     }
 
