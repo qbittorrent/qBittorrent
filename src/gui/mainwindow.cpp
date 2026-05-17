@@ -249,7 +249,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     auto *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_ui->toolBar->insertWidget(m_columnFilterAction, spacer);
+    m_spacerAction = m_ui->toolBar->insertWidget(m_columnFilterAction, spacer);
+    m_ui->toolBar->lockAction(m_spacerAction);
+    m_ui->toolBar->lockAction(m_columnFilterAction);
+    m_ui->toolBar->lockAction(m_ui->actionLock);
+    m_ui->toolBar->setLocked(Preferences::instance()->isToolbarLocked());
 
     // Transfer List tab
     m_transferListWidget = new TransferListWidget(app, this);
@@ -578,7 +582,6 @@ void MainWindow::addToolbarContextMenu()
 
     m_ui->toolBar->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_ui->toolBar, &QWidget::customContextMenuRequested, this, &MainWindow::toolbarMenuRequested);
-
     QAction *iconsOnly = m_toolbarMenu->addAction(tr("Icons Only"), this, &MainWindow::toolbarIconsOnly);
     QAction *textOnly = m_toolbarMenu->addAction(tr("Text Only"), this, &MainWindow::toolbarTextOnly);
     QAction *textBesideIcons = m_toolbarMenu->addAction(tr("Text Alongside Icons"), this, &MainWindow::toolbarTextBeside);
@@ -626,9 +629,111 @@ void MainWindow::manageCookies()
     cookieDialog->open();
 }
 
-void MainWindow::toolbarMenuRequested()
+void MainWindow::toolbarMenuRequested(const QPoint &pos)
 {
-    m_toolbarMenu->popup(QCursor::pos());
+    QAction *action = m_ui->toolBar->actionAt(pos);
+    if (action && !action->isSeparator()
+        && action != m_spacerAction && action != m_columnFilterAction
+        && action->objectName() != u"actionLock"_s)
+    {
+        const QList<QAction *> acts = m_ui->toolBar->actions();
+        const int idx = acts.indexOf(action);
+
+        // Find nearest visible action/separator before this one
+        int prevIdx = idx - 1;
+        while (prevIdx >= 0 && !acts[prevIdx]->isSeparator() && !acts[prevIdx]->isVisible())
+            --prevIdx;
+        const bool hasSepBefore = (prevIdx >= 0) && acts[prevIdx]->isSeparator();
+
+        // Find nearest visible action/separator after this one
+        int nextIdx = idx + 1;
+        while (nextIdx < acts.size() && !acts[nextIdx]->isSeparator() && !acts[nextIdx]->isVisible())
+            ++nextIdx;
+        const bool hasSepAfter = (nextIdx < acts.size()) && acts[nextIdx]->isSeparator();
+
+        QMenu buttonMenu(this);
+
+        if (hasSepBefore)
+        {
+            buttonMenu.addAction(tr("Remove separator before"), this, [this, acts, prevIdx]()
+            {
+                m_ui->toolBar->removeAction(acts[prevIdx]);
+                saveToolbarState();
+            });
+        }
+        else
+        {
+            buttonMenu.addAction(tr("Add separator before"), this, [this, action]()
+            {
+                m_ui->toolBar->insertSeparator(action);
+                saveToolbarState();
+            });
+        }
+
+        if (hasSepAfter)
+        {
+            buttonMenu.addAction(tr("Remove separator after"), this, [this, acts, nextIdx]()
+            {
+                m_ui->toolBar->removeAction(acts[nextIdx]);
+                saveToolbarState();
+            });
+        }
+        else
+        {
+            buttonMenu.addAction(tr("Add separator after"), this, [this, acts, nextIdx]()
+            {
+                if (nextIdx < acts.size())
+                    m_ui->toolBar->insertSeparator(acts[nextIdx]);
+                else
+                    m_ui->toolBar->addSeparator();
+                saveToolbarState();
+            });
+        }
+
+        buttonMenu.addSeparator();
+
+        // Show/Hide submenu
+        QMenu *visibilityMenu = buttonMenu.addMenu(tr("Show/Hide Buttons"));
+        visibilityMenu->addAction(tr("Reset to Default"), this, [this]()
+        {
+            for (QAction *a : m_ui->toolBar->actions())
+                a->setVisible(true);
+            saveToolbarState();
+        });
+        visibilityMenu->addSeparator();
+        for (QAction *a : m_ui->toolBar->actions())
+        {
+            if (a->isSeparator() || a->text().isEmpty()
+                || a == m_spacerAction || a == m_columnFilterAction
+                || a->objectName() == u"actionLock"_s)
+                continue;
+            QAction *checkAction = visibilityMenu->addAction(a->text());
+            checkAction->setCheckable(true);
+            checkAction->setChecked(a->isVisible());
+            connect(checkAction, &QAction::toggled, this, [this, a](bool checked)
+            {
+                a->setVisible(checked);
+                saveToolbarState();
+            });
+        }
+
+        buttonMenu.addSeparator();
+
+        QAction *lockToolbarAction = buttonMenu.addAction(tr("Lock Toolbar"));
+        lockToolbarAction->setCheckable(true);
+        lockToolbarAction->setChecked(Preferences::instance()->isToolbarLocked());
+        connect(lockToolbarAction, &QAction::toggled, this, [this](bool checked)
+        {
+            Preferences::instance()->setToolbarLocked(checked);
+            m_ui->toolBar->setLocked(checked);
+        });
+
+        buttonMenu.exec(QCursor::pos());
+    }
+    else
+    {
+        m_toolbarMenu->popup(QCursor::pos());
+    }
 }
 
 void MainWindow::toolbarIconsOnly()
@@ -660,6 +765,7 @@ void MainWindow::toolbarFollowSystem()
     m_ui->toolBar->setToolButtonStyle(Qt::ToolButtonFollowStyle);
     Preferences::instance()->setToolbarTextPosition(Qt::ToolButtonFollowStyle);
 }
+
 
 bool MainWindow::defineUILockPassword()
 {
@@ -826,6 +932,24 @@ void MainWindow::tabChanged([[maybe_unused]] const int newTab)
     }
 }
 
+
+void MainWindow::saveToolbarState() const
+{
+    QStringList toolbarState;
+    for (const QAction *action : m_ui->toolBar->actions())
+    {
+        if (action == m_spacerAction || action == m_columnFilterAction
+            || action->objectName() == u"actionLock"_s)
+            break;
+        if (action->isSeparator())
+            toolbarState << u"separator"_s;
+        else
+            toolbarState << u"%1:%2"_s.arg(action->objectName(), action->isVisible() ? u"1"_s : u"0"_s);
+    }
+    Preferences::instance()->setToolbarState(toolbarState.join(u","_s).toUtf8());
+    Preferences::instance()->apply();
+}
+
 void MainWindow::saveSettings() const
 {
     auto *pref = Preferences::instance();
@@ -848,6 +972,7 @@ void MainWindow::cleanup()
     {
         saveSettings();
         saveSplitterSettings();
+        saveToolbarState();
     }
 
     // delete RSSWidget explicitly to avoid crash in
@@ -877,6 +1002,46 @@ void MainWindow::loadSettings()
         !mainGeo.isEmpty() && restoreGeometry(mainGeo))
     {
         m_posInitialized = true;
+    }
+
+    if (const QByteArray toolbarStateData = pref->getToolbarState();
+        !toolbarStateData.isEmpty())
+    {
+        const QStringList savedState = QString::fromUtf8(toolbarStateData).split(u","_s);
+        QHash<QString, QAction *> actionMap;
+        for (QAction *a : m_ui->toolBar->actions())
+        {
+            if (!a->isSeparator() && !a->objectName().isEmpty())
+                actionMap[a->objectName()] = a;
+        }
+        for (QAction *a : m_ui->toolBar->actions())
+        {
+            if (a == m_spacerAction || a == m_columnFilterAction
+                || a->objectName() == u"actionLock"_s)
+                break;
+            if (a->isSeparator() || actionMap.contains(a->objectName()))
+                m_ui->toolBar->removeAction(a);
+        }
+        for (const QString &entry : savedState)
+        {
+            if (entry == u"separator"_s)
+            {
+                m_ui->toolBar->insertSeparator(m_spacerAction);
+            }
+            else
+            {
+                const QStringList parts = entry.split(u":"_s);
+                if (parts.size() != 2)
+                    continue;
+                const QString &name = parts[0];
+                const bool visible = (parts[1] == u"1"_s);
+                if (QAction *a = actionMap.value(name))
+                {
+                    m_ui->toolBar->insertAction(m_spacerAction, a);
+                    a->setVisible(visible);
+                }
+            }
+        }
     }
 }
 

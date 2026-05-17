@@ -1643,6 +1643,30 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
     setValue(u"MainWindow/geometry"_s, geometry);
 }
 
+QByteArray Preferences::getToolbarState() const
+{
+    return value<QByteArray>(u"MainWindow/toolbarState"_s);
+}
+
+void Preferences::setToolbarState(const QByteArray &state)
+{
+    if (state == getToolbarState())
+        return;
+    setValue(u"MainWindow/toolbarState"_s, state);
+}
+
+bool Preferences::isToolbarLocked() const
+{
+    return value(u"MainWindow/toolbarLocked"_s, true);
+}
+
+void Preferences::setToolbarLocked(bool locked)
+{
+    if (locked == isToolbarLocked())
+        return;
+    setValue(u"MainWindow/toolbarLocked"_s, locked);
+}
+
 bool Preferences::isFiltersSidebarVisible() const
 {
     return value(u"GUI/MainWindow/FiltersSidebarVisible"_s, true);
