@@ -85,6 +85,9 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     auto *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
     errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_s));
+    auto *insufficientDiskSpace = new QListWidgetItem(this);
+    insufficientDiskSpace->setData(Qt::DisplayRole, tr("Insufficient space (0)"));
+    insufficientDiskSpace->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_s));
 
     const QList<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
     update(torrents);
@@ -154,6 +157,7 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
     update(TorrentFilter::Checking, m_nbChecking);
     update(TorrentFilter::Moving, m_nbMoving);
     update(TorrentFilter::Errored, m_nbErrored);
+    update(TorrentFilter::InsufficientDiskSpace, m_nbInsufficientDiskSpace);
 
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
 }
@@ -175,6 +179,7 @@ void StatusFilterWidget::updateTexts()
     item(TorrentFilter::Checking)->setData(Qt::DisplayRole, tr("Checking (%1)").arg(m_nbChecking));
     item(TorrentFilter::Moving)->setData(Qt::DisplayRole, tr("Moving (%1)").arg(m_nbMoving));
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(m_nbErrored));
+    item(TorrentFilter::InsufficientDiskSpace)->setData(Qt::DisplayRole, tr("Insufficient space (%1)").arg(m_nbInsufficientDiskSpace));
 }
 
 void StatusFilterWidget::hideZeroItems()
@@ -192,6 +197,7 @@ void StatusFilterWidget::hideZeroItems()
     item(TorrentFilter::Checking)->setHidden(m_nbChecking == 0);
     item(TorrentFilter::Moving)->setHidden(m_nbMoving == 0);
     item(TorrentFilter::Errored)->setHidden(m_nbErrored == 0);
+    item(TorrentFilter::InsufficientDiskSpace)->setHidden(m_nbInsufficientDiskSpace == 0);
 
     if (currentItem() && currentItem()->isHidden())
         setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
@@ -264,6 +270,8 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
         --m_nbMoving;
     if (status[TorrentFilter::Errored])
         --m_nbErrored;
+    if (status[TorrentFilter::InsufficientDiskSpace])
+        --m_nbInsufficientDiskSpace;
 
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
 

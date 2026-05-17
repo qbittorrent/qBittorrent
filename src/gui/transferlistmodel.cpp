@@ -73,6 +73,7 @@ namespace
             {BitTorrent::TorrentState::CheckingResumeData, u"TransferList.CheckingResumeData"_s},
             {BitTorrent::TorrentState::StoppedDownloading, u"TransferList.StoppedDownloading"_s},
             {BitTorrent::TorrentState::StoppedUploading, u"TransferList.StoppedUploading"_s},
+            {BitTorrent::TorrentState::InsufficientDiskSpace, u"TransferList.InsufficientDiskSpace"_s},
             {BitTorrent::TorrentState::Moving, u"TransferList.Moving"_s},
             {BitTorrent::TorrentState::MissingFiles, u"TransferList.MissingFiles"_s},
             {BitTorrent::TorrentState::Error, u"TransferList.Error"_s}
@@ -108,6 +109,7 @@ TransferListModel::TransferListModel(QObject *parent)
         {BitTorrent::TorrentState::CheckingResumeData, tr("Checking resume data", "Used when loading the torrents from disk after qbt is launched. It checks the correctness of the .fastresume file. Normally it is completed in a fraction of a second, unless loading many many torrents.")},
         {BitTorrent::TorrentState::StoppedDownloading, tr("Stopped")},
         {BitTorrent::TorrentState::StoppedUploading, tr("Completed")},
+        {BitTorrent::TorrentState::InsufficientDiskSpace, tr("Insufficient space")},
         {BitTorrent::TorrentState::Moving, tr("Moving", "Torrent local data are being moved/relocated")},
         {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
         {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}}
@@ -249,7 +251,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     if (m_hideZeroValuesMode == HideZeroValuesMode::Always)
         hideValues = true;
     else if (m_hideZeroValuesMode == HideZeroValuesMode::Stopped)
-        hideValues = (torrent->state() == BitTorrent::TorrentState::StoppedDownloading);
+        hideValues = (torrent->state() == BitTorrent::TorrentState::StoppedDownloading)
+            || (torrent->state() == BitTorrent::TorrentState::InsufficientDiskSpace);
 
     const auto availabilityString = [hideValues](const qreal value) -> QString
     {
@@ -782,6 +785,8 @@ QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) co
         return m_uploadingIcon;
     case BitTorrent::TorrentState::StoppedDownloading:
         return m_stoppedIcon;
+    case BitTorrent::TorrentState::InsufficientDiskSpace:
+        return m_errorIcon;
     case BitTorrent::TorrentState::StoppedUploading:
         return m_completedIcon;
     case BitTorrent::TorrentState::QueuedDownloading:
