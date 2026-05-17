@@ -32,9 +32,9 @@
 #include <algorithm>
 
 #include <QClipboard>
-#include <QDebug>
 #include <QFileDialog>
 #include <QHeaderView>
+#include <QInputDialog>
 #include <QList>
 #include <QMenu>
 #include <QMessageBox>
@@ -133,6 +133,9 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     m_sortFilterModel->setSortRole(TransferListModel::UnderlyingDataRole);
     setModel(m_sortFilterModel);
 
+    connect(m_listModel, &TransferListModel::groupsChanged, this, &TransferListWidget::updateGroupingState);
+    connect(m_listModel, &QAbstractItemModel::modelReset, this, &TransferListWidget::updateGroupingState);
+
     // Visual settings
     setUniformRowHeights(true);
     setRootIsDecorated(false);
@@ -151,6 +154,22 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false);
     header()->setTextElideMode(Qt::ElideRight);
+
+    // Track expansion to persist (do after potential initial expansion restoration)
+    connect(this, &QTreeView::expanded, this, [this](const QModelIndex &proxyIdx)
+    {
+        const QModelIndex src = m_sortFilterModel->mapToSource(proxyIdx);
+        const QString group = m_listModel->groupName(src);
+        if (!group.isEmpty())
+            m_listModel->setGroupExpanded(group, true);
+    });
+    connect(this, &QTreeView::collapsed, this, [this](const QModelIndex &proxyIdx)
+    {
+        const QModelIndex src = m_sortFilterModel->mapToSource(proxyIdx);
+        const QString group = m_listModel->groupName(src);
+        if (!group.isEmpty())
+            m_listModel->setGroupExpanded(group, false);
+    });
 
     // Default hidden columns
     if (!columnLoaded)
@@ -179,6 +198,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
         setColumnHidden(TransferListModel::TR_TOTAL_SIZE, true);
         setColumnHidden(TransferListModel::TR_REANNOUNCE, true);
         setColumnHidden(TransferListModel::TR_PRIVATE, true);
+        setColumnHidden(TransferListModel::TR_GROUP, true);
     }
 
     //Ensure that at least one column is visible at all times
@@ -206,7 +226,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     setContextMenuPolicy(Qt::CustomContextMenu);
 
     // Listen for list events
-    connect(this, &QAbstractItemView::doubleClicked, this, &TransferListWidget::torrentDoubleClicked);
+    connect(this, &QAbstractItemView::doubleClicked, this, &TransferListWidget::torrentDoubleClickedIndex);
     connect(this, &QWidget::customContextMenuRequested, this, &TransferListWidget::displayListMenu);
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(header(), &QWidget::customContextMenuRequested, this, &TransferListWidget::displayColumnHeaderMenu);
@@ -228,6 +248,8 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
     connect(recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
     const auto *forceStartHotkey = new QShortcut((Qt::CTRL | Qt::Key_M), this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(forceStartHotkey, &QShortcut::activated, this, &TransferListWidget::forceStartSelectedTorrents);
+
+    updateGroupingState();
 }
 
 TransferListWidget::~TransferListWidget()
@@ -267,18 +289,24 @@ QModelIndexList TransferListWidget::mapToSource(const QModelIndexList &indexes) 
 QModelIndex TransferListWidget::mapFromSource(const QModelIndex &index) const
 {
     Q_ASSERT(index.isValid());
-    Q_ASSERT(index.model() == m_sortFilterModel);
+    Q_ASSERT(index.model() == m_listModel);
     return m_sortFilterModel->mapFromSource(index);
 }
 
-void TransferListWidget::torrentDoubleClicked()
+void TransferListWidget::torrentDoubleClickedIndex(const QModelIndex &proxyIndex)
 {
-    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid())
+    if (!proxyIndex.isValid())
         return;
 
-    const QModelIndex index = m_listModel->index(mapToSource(selectedIndexes.first()).row());
-    BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(index);
+    const QModelIndex sourceIndex = m_sortFilterModel->mapToSource(proxyIndex);
+    if (!m_listModel->groupName(sourceIndex).isEmpty())
+    {
+        const QModelIndex firstColumn = proxyIndex.sibling(proxyIndex.row(), 0);
+        setExpanded(firstColumn, !isExpanded(firstColumn));
+        return;
+    }
+
+    BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(sourceIndex);
     if (!torrent)
         return;
 
@@ -315,25 +343,54 @@ void TransferListWidget::torrentDoubleClicked()
     }
 }
 
+void TransferListWidget::torrentDoubleClicked()
+{
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+    if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid()) return;
+    torrentDoubleClickedIndex(selectedIndexes.first());
+}
+
 QList<BitTorrent::Torrent *> TransferListWidget::getSelectedTorrents() const
 {
     const QModelIndexList selectedRows = selectionModel()->selectedRows();
 
     QList<BitTorrent::Torrent *> torrents;
     torrents.reserve(selectedRows.size());
-    for (const QModelIndex &index : selectedRows)
-        torrents << m_listModel->torrentHandle(mapToSource(index));
+    for (const QModelIndex &idx : selectedRows)
+    {
+        if (BitTorrent::Torrent *t = resolveTorrent(idx)) torrents << t;
+    }
     return torrents;
+}
+
+BitTorrent::Torrent *TransferListWidget::resolveTorrent(const QModelIndex &proxyIndex) const
+{
+    if (!proxyIndex.isValid())
+        return nullptr;
+
+    const QModelIndex sourceIndex = m_sortFilterModel->mapToSource(proxyIndex);
+    return m_listModel->torrentHandle(sourceIndex);
 }
 
 QList<BitTorrent::Torrent *> TransferListWidget::getVisibleTorrents() const
 {
-    const int visibleTorrentsCount = m_sortFilterModel->rowCount();
-
     QList<BitTorrent::Torrent *> torrents;
-    torrents.reserve(visibleTorrentsCount);
-    for (int i = 0; i < visibleTorrentsCount; ++i)
-        torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
+
+    std::function<void(const QModelIndex &)> collectTorrents;
+    collectTorrents = [this, &torrents, &collectTorrents](const QModelIndex &parent)
+    {
+        const int rowCount = m_sortFilterModel->rowCount(parent);
+        for (int row = 0; row < rowCount; ++row)
+        {
+            const QModelIndex proxyIndex = m_sortFilterModel->index(row, 0, parent);
+            if (BitTorrent::Torrent *const torrent = resolveTorrent(proxyIndex))
+                torrents.append(torrent);
+
+            collectTorrents(proxyIndex);
+        }
+    };
+    collectTorrents({});
+
     return torrents;
 }
 
@@ -681,6 +738,29 @@ int TransferListWidget::visibleColumnsCount() const
     return count;
 }
 
+void TransferListWidget::updateGroupingState()
+{
+    const bool hasGroups = m_listModel->hasGroups();
+
+    setRootIsDecorated(hasGroups);
+    setItemsExpandable(hasGroups);
+    setExpandsOnDoubleClick(!hasGroups);
+
+    collapseAll();
+    if (!hasGroups)
+        return;
+
+    const QStringList expandedGroups = m_listModel->expandedGroups();
+    const int topLevelRows = m_sortFilterModel->rowCount({});
+    for (int row = 0; row < topLevelRows; ++row)
+    {
+        const QModelIndex proxyIndex = m_sortFilterModel->index(row, 0);
+        const QModelIndex sourceIndex = m_sortFilterModel->mapToSource(proxyIndex);
+        if (expandedGroups.contains(m_listModel->groupName(sourceIndex)))
+            expand(proxyIndex);
+    }
+}
+
 // hide/show columns menu
 void TransferListWidget::displayColumnHeaderMenu()
 {
@@ -912,13 +992,12 @@ void TransferListWidget::applyToSelectedTorrents(const std::function<void (BitTo
     // Changing the data may affect the layout of the sort/filter model, which in turn may invalidate
     // the indexes previously obtained from selection model before we process them all.
     // Therefore, we must map all the selected indexes to source before start processing them.
-    const QModelIndexList sourceRows = mapToSource(selectionModel()->selectedRows());
-    for (const QModelIndex &index : sourceRows)
-    {
-        BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(index);
-        Q_ASSERT(torrent);
-        fn(torrent);
-    }
+    const QModelIndexList selected = selectionModel()->selectedRows();
+    QList<BitTorrent::Torrent*> torrents;
+    torrents.reserve(selected.size());
+    for (const QModelIndex &proxy : selected)
+        if (BitTorrent::Torrent *t = resolveTorrent(proxy)) torrents << t;
+    for (BitTorrent::Torrent *t : torrents) fn(t);
 }
 
 void TransferListWidget::renameSelectedTorrent()
@@ -927,10 +1006,12 @@ void TransferListWidget::renameSelectedTorrent()
     if ((selectedIndexes.size() != 1) || !selectedIndexes.first().isValid())
         return;
 
-    const QModelIndex mi = m_listModel->index(mapToSource(selectedIndexes.first()).row(), TransferListModel::TR_NAME);
-    BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(mi);
+    const QModelIndex sourceIndex = mapToSource(selectedIndexes.first());
+    BitTorrent::Torrent *const torrent = m_listModel->torrentHandle(sourceIndex);
     if (!torrent)
         return;
+
+    const QModelIndex nameIndex = sourceIndex.sibling(sourceIndex.row(), TransferListModel::TR_NAME);
 
     // Ask for a new Name
     bool ok = false;
@@ -939,8 +1020,83 @@ void TransferListWidget::renameSelectedTorrent()
     {
         name.replace(QRegularExpression(u"\r?\n|\r"_s), u" "_s);
         // Rename the torrent
-        m_listModel->setData(mi, name, Qt::DisplayRole);
+        m_listModel->setData(nameIndex, name, Qt::DisplayRole);
     }
+}
+
+void TransferListWidget::createGroupFromSelection()
+{
+    const QList<BitTorrent::Torrent *> torrents = getSelectedTorrents();
+    if (torrents.isEmpty()) return;
+    bool ok = false;
+    const QString name = AutoExpandableDialog::getText(this, tr("Create Group"), tr("Group name:"), QLineEdit::Normal, {}, &ok).trimmed();
+    if (!ok || name.isEmpty()) return;
+    QSet<BitTorrent::TorrentID> ids;
+    for (const BitTorrent::Torrent *t : torrents) ids.insert(t->id());
+    if (!m_listModel->createGroup(name, ids))
+        QMessageBox::warning(this, tr("Group"), tr("Failed to create group (duplicate name?)."));
+}
+
+void TransferListWidget::addSelectionToGroup()
+{
+    const QList<BitTorrent::Torrent *> torrents = getSelectedTorrents();
+    if (torrents.isEmpty()) return;
+    const QStringList names = m_listModel->groupNames();
+    if (names.isEmpty()) return; // no groups yet
+    bool ok = false;
+    const QString name = QInputDialog::getItem(this, tr("Add to Group"), tr("Select group:"), names, 0, false, &ok).trimmed();
+    if (!ok || name.isEmpty()) return;
+    QSet<BitTorrent::TorrentID> ids; for (const BitTorrent::Torrent *t : torrents) ids.insert(t->id());
+    m_listModel->addMembers(name, ids);
+}
+
+void TransferListWidget::removeSelectionFromGroup()
+{
+    const QList<BitTorrent::Torrent *> torrents = getSelectedTorrents();
+    if (torrents.isEmpty()) return;
+    QSet<BitTorrent::TorrentID> toRemove;
+    for (const BitTorrent::Torrent *t : torrents)
+    {
+        if (!m_listModel->groupOf(t->id()).isEmpty())
+            toRemove.insert(t->id());
+    }
+    if (toRemove.isEmpty()) return;
+    m_listModel->removeMembers(toRemove);
+}
+
+void TransferListWidget::deleteGroup()
+{
+    QString name;
+    if (!m_contextGroupName.isEmpty())
+        name = m_contextGroupName;
+    else
+    {
+        const QStringList names = m_listModel->groupNames();
+        if (names.isEmpty()) return;
+        bool ok = false;
+        name = QInputDialog::getItem(this, tr("Delete Group"), tr("Select group:"), names, 0, false, &ok).trimmed();
+        if (!ok || name.isEmpty()) return;
+    }
+    m_listModel->deleteGroup(name);
+}
+
+void TransferListWidget::renameGroup()
+{
+    QString oldName;
+    if (!m_contextGroupName.isEmpty())
+        oldName = m_contextGroupName;
+    else
+    {
+        const QStringList names = m_listModel->groupNames();
+        if (names.isEmpty()) return;
+        bool ok = false;
+        oldName = QInputDialog::getItem(this, tr("Rename Group"), tr("Select group:"), names, 0, false, &ok).trimmed();
+        if (!ok || oldName.isEmpty()) return;
+    }
+    bool ok = false;
+    const QString newName = AutoExpandableDialog::getText(this, tr("Rename Group"), tr("New name:"), QLineEdit::Normal, oldName, &ok).trimmed();
+    if (!ok || newName.isEmpty()) return;
+    m_listModel->renameGroup(oldName, newName);
 }
 
 void TransferListWidget::setSelectionCategory(const QString &category)
@@ -968,13 +1124,48 @@ void TransferListWidget::displayListMenu()
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if (selectedIndexes.isEmpty())
         return;
+    // Determine if selection is exclusively group parents before constructing large torrent menu
+    bool anyTorrent = false;
+    bool anyGroupParent = false;
+    m_contextGroupName.clear();
+    for (const QModelIndex &idx : selectedIndexes)
+    {
+        if (BitTorrent::Torrent *t = resolveTorrent(idx))
+        { Q_UNUSED(t); anyTorrent = true; }
+        else
+        {
+            const QModelIndex src = m_sortFilterModel->mapToSource(idx);
+            const QString gName = m_listModel->groupName(src);
+            if (!gName.isEmpty())
+            {
+                anyGroupParent = true;
+                if (selectedIndexes.size() == 1)
+                    m_contextGroupName = gName;
+            }
+        }
+    }
+    const bool onlyGroups = anyGroupParent && !anyTorrent;
+
+    if (onlyGroups)
+    {
+        auto *groupMenu = new QMenu(this);
+        groupMenu->setAttribute(Qt::WA_DeleteOnClose);
+        auto *actionRenameGroup = new QAction(tr("Rename group"), groupMenu);
+        actionRenameGroup->setEnabled(selectedIndexes.size() == 1);
+        connect(actionRenameGroup, &QAction::triggered, this, &TransferListWidget::renameGroup);
+        groupMenu->addAction(actionRenameGroup);
+        auto *actionDeleteGroup = new QAction(tr("Delete group"), groupMenu);
+        connect(actionDeleteGroup, &QAction::triggered, this, &TransferListWidget::deleteGroup);
+        groupMenu->addAction(actionDeleteGroup);
+        groupMenu->popup(QCursor::pos());
+        return;
+    }
 
     auto *listMenu = new QMenu(this);
     listMenu->setAttribute(Qt::WA_DeleteOnClose);
     listMenu->setToolTipsVisible(true);
 
-    // Create actions
-
+    // Create torrent-related actions (since onlyGroups already handled)
     auto *actionStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("&Start", "Resume/start the torrent"), listMenu);
     connect(actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
     auto *actionStop = new QAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Sto&p", "Stop the torrent"), listMenu);
@@ -1032,9 +1223,9 @@ void TransferListWidget::displayListMenu()
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
     auto *actionExportTorrent = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_s), tr("E&xport .torrent..."), listMenu);
     connect(actionExportTorrent, &QAction::triggered, this, &TransferListWidget::exportTorrent);
-    // End of actions
+    // End of torrent actions
 
-    // Enable/disable stop/start action given the DL state
+    // Enable/disable stop/start action given the DL state (only if torrents selected exclusively)
     bool needsStop = false, needsStart = false, needsForce = false, needsPreview = false;
     bool allSameSuperSeeding = true;
     bool superSeedingMode = false;
@@ -1048,12 +1239,16 @@ void TransferListWidget::displayListMenu()
     bool first = true;
     TagSet tagsInAny;
     TagSet tagsInAll;
+    const bool hasAnyGroup = m_listModel->hasGroups();
+    bool anySelectedInGroup = false;
     bool hasInfohashV1 = false, hasInfohashV2 = false;
     bool oneCanForceReannounce = false;
 
-    for (const QModelIndex &index : selectedIndexes)
+    if (!onlyGroups)
     {
-        const BitTorrent::Torrent *torrent = m_listModel->torrentHandle(mapToSource(index));
+        for (const QModelIndex &index : selectedIndexes)
+        {
+            const BitTorrent::Torrent *torrent = resolveTorrent(index);
         if (!torrent)
             continue;
 
@@ -1112,6 +1307,9 @@ void TransferListWidget::displayListMenu()
         else
             needsStart = true;
 
+        if (!anySelectedInGroup && !m_listModel->groupOf(torrent->id()).isEmpty())
+            anySelectedInGroup = true;
+
         const bool isStopped = torrent->isStopped();
         if (isStopped)
             needsStart = true;
@@ -1154,6 +1352,7 @@ void TransferListWidget::displayListMenu()
         {
             break;
         }
+        }
     }
 
     if (needsStart)
@@ -1163,6 +1362,21 @@ void TransferListWidget::displayListMenu()
     if (needsForce)
         listMenu->addAction(actionForceStart);
     listMenu->addSeparator();
+    auto *actionCreateGroup = new QAction(tr("Create group from selection"), listMenu);
+    connect(actionCreateGroup, &QAction::triggered, this, &TransferListWidget::createGroupFromSelection);
+    listMenu->addAction(actionCreateGroup);
+    if (hasAnyGroup)
+    {
+        auto *actionAddToGroup = new QAction(tr("Add selection to group"), listMenu);
+        connect(actionAddToGroup, &QAction::triggered, this, &TransferListWidget::addSelectionToGroup);
+        listMenu->addAction(actionAddToGroup);
+    }
+    if (anySelectedInGroup)
+    {
+        auto *actionRemoveFromGroup = new QAction(tr("Remove selection from group"), listMenu);
+        connect(actionRemoveFromGroup, &QAction::triggered, this, &TransferListWidget::removeSelectionFromGroup);
+        listMenu->addAction(actionRemoveFromGroup);
+    }
     listMenu->addAction(actionDelete);
     listMenu->addSeparator();
     listMenu->addAction(actionSetTorrentPath);
@@ -1309,21 +1523,15 @@ void TransferListWidget::displayListMenu()
 
 void TransferListWidget::currentChanged(const QModelIndex &current, const QModelIndex &previous)
 {
-    qDebug("CURRENT CHANGED");
-
     // Call base class to ensure Qt's accessibility system is notified of focus changes.
     // This is critical for screen readers to announce the currently selected torrent.
     // Without this call, users relying on assistive technologies cannot effectively
     // navigate the torrent list with keyboard arrow keys.
     QTreeView::currentChanged(current, previous);
 
-    BitTorrent::Torrent *torrent = nullptr;
+    BitTorrent::Torrent *torrent = resolveTorrent(current);
     if (current.isValid())
-    {
-        torrent = m_listModel->torrentHandle(mapToSource(current));
-        // Fix scrolling to the lowermost visible torrent
-        QMetaObject::invokeMethod(this, [this, current] { scrollTo(current); }, Qt::QueuedConnection);
-    }
+        QMetaObject::invokeMethod(this, [this, current] { if (current.isValid()) scrollTo(current); }, Qt::QueuedConnection);
     emit currentTorrentChanged(torrent);
 }
 
