@@ -31,7 +31,19 @@
 
 #include <QHash>
 #include <QList>
+#include <QString>
 #include <QStringView>
+#include <QUrl>
+
+bool BitTorrent::isValidTrackerUrl(const QStringView url)
+{
+    const QUrl qurl(url.toString());
+    if (!qurl.isValid() || qurl.host().isEmpty())
+        return false;
+    const QString scheme = qurl.scheme().toLower();
+    return (scheme == u"http") || (scheme == u"https")
+        || (scheme == u"udp") || (scheme == u"wss");
+}
 
 QList<BitTorrent::TrackerEntry> BitTorrent::parseTrackerEntries(const QStringView str)
 {
@@ -52,7 +64,8 @@ QList<BitTorrent::TrackerEntry> BitTorrent::parseTrackerEntries(const QStringVie
             continue;
         }
 
-        entries.append({tracker.toString(), trackerTier});
+        if (isValidTrackerUrl(tracker))
+            entries.append({tracker.toString(), trackerTier});
     }
 
     return entries;

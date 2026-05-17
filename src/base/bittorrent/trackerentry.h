@@ -42,6 +42,7 @@ namespace BitTorrent
         int tier = 0;
     };
 
+    bool isValidTrackerUrl(QStringView url);
     QList<TrackerEntry> parseTrackerEntries(QStringView str);
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
