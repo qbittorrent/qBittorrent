@@ -394,6 +394,12 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         }
     };
 
+    const updateSelectedTrackerFilter = (tracker) => {
+        localPreferences.set("selected_tracker", tracker);
+        selectedTracker = tracker;
+        highlightSelectedTracker();
+    };
+
     setStatusFilter = (name) => {
         const currentHash = torrentsTable.getCurrentTorrentID();
 
@@ -433,9 +439,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     setTrackerFilter = (tracker) => {
         const currentHash = torrentsTable.getCurrentTorrentID();
 
-        localPreferences.set("selected_tracker", tracker);
-        selectedTracker = tracker;
-        highlightSelectedTracker();
+        updateSelectedTrackerFilter(tracker);
         updateMainData();
 
         const newHash = torrentsTable.getCurrentTorrentID();
@@ -1005,8 +1009,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                                     if (trackerTorrentMap.size === 0) {
                                         trackerMap.delete(host);
                                         if (selectedTracker === host) {
-                                            selectedTracker = TRACKERS_ALL;
-                                            localPreferences.set("selected_tracker", selectedTracker);
+                                            updateSelectedTrackerFilter(TRACKERS_ALL);
+                                            updateTorrents = true;
                                         }
                                     }
                                 }
@@ -1769,7 +1773,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         }, window.qBittorrent.Misc.FILTER_INPUT_DELAY);
     });
 
-    document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => { torrentsTable.updateTable(); });
+    document.getElementById("torrentsFilterToolbar").addEventListener("change", (e) => {
+        torrentsTable.updateTable();
+    });
 
     document.getElementById("transfersTabLink").addEventListener("click", (event) => { showTransfersTab(); });
     document.getElementById("searchTabLink").addEventListener("click", (event) => { showSearchTab(); });
