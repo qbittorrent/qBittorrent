@@ -168,6 +168,7 @@ TransferListWidget::TransferListWidget(IGUIApplication *app, QWidget *parent)
         setColumnHidden(TransferListModel::TR_AMOUNT_LEFT, true);
         setColumnHidden(TransferListModel::TR_TIME_ELAPSED, true);
         setColumnHidden(TransferListModel::TR_SAVE_PATH, true);
+        setColumnHidden(TransferListModel::TR_COMMENT, true);
         setColumnHidden(TransferListModel::TR_DOWNLOAD_PATH, true);
         setColumnHidden(TransferListModel::TR_INFOHASH_V1, true);
         setColumnHidden(TransferListModel::TR_INFOHASH_V2, true);
