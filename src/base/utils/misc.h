@@ -54,6 +54,32 @@ namespace Utils::Misc
         // YobiByte,   // 1024^8
     };
 
+    // Base unit type: bit or byte
+    enum class UnitType
+    {
+        Bit,
+        Byte
+    };
+
+    // Unit prefix/multiplier with values encoding the actual multiplier
+    // to simplify conversion logic (e.g. sizeInBytes)
+    enum class UnitPrefix : qint64
+    {
+        None = 1,
+        Kilo = 1000LL,
+        Kibi = 1024LL,
+        Mega = 1000LL * 1000,
+        Mebi = 1024LL * 1024,
+        Giga = 1000LL * 1000 * 1000,
+        Gibi = 1024LL * 1024 * 1024,
+        Tera = 1000LL * 1000 * 1000 * 1000,
+        Tebi = 1024LL * 1024 * 1024 * 1024,
+        Peta = 1000LL * 1000 * 1000 * 1000 * 1000,
+        Pebi = 1024LL * 1024 * 1024 * 1024 * 1024,
+        Exa  = 1000LL * 1000 * 1000 * 1000 * 1000 * 1000,
+        Exbi = 1024LL * 1024 * 1024 * 1024 * 1024 * 1024
+    };
+
     enum class TimeResolution
     {
         Seconds,
@@ -68,14 +94,15 @@ namespace Utils::Misc
     QString opensslVersionString();
     QString zlibVersionString();
 
-    QString unitString(SizeUnit unit, bool isSpeed = false);
+    QString unitString(SizeUnit unit, bool isSpeed = false, UnitType type = UnitType::Byte, bool useDecimalPrefix = false);
 
     // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
     // value must be given in bytes
-    QString friendlyUnit(qint64 bytes, bool isSpeed = false, int precision = -1);
+    QString friendlyUnit(qint64 bytes, bool isSpeed = false, UnitType type = UnitType::Byte, bool useDecimalPrefix = false, int precision = -1);
     QString friendlyUnitCompact(qint64 bytes);
     int friendlyUnitPrecision(SizeUnit unit);
-    qint64 sizeInBytes(qreal size, SizeUnit unit);
+    qint64 sizeInBytes(qreal size, SizeUnit unit, bool useDecimalPrefix = false);
+    qint64 sizeInBytes(qreal size, UnitPrefix prefix);
 
     bool isPreviewable(const Path &filePath);
     bool isTorrentLink(const QString &str);

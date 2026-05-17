@@ -1476,8 +1476,11 @@ void MainWindow::loadSessionStats()
 {
     const auto *btSession = BitTorrent::Session::instance();
     const BitTorrent::SessionStatus &status = btSession->status();
-    m_downloadRate = Utils::Misc::friendlyUnit(status.payloadDownloadRate, true);
-    m_uploadRate = Utils::Misc::friendlyUnit(status.payloadUploadRate, true);
+    const auto *pref = Preferences::instance();
+    const auto speedType = pref->speedUnitType();
+    const bool speedDecimal = pref->speedUseDecimalPrefixes();
+    m_downloadRate = Utils::Misc::friendlyUnit(status.payloadDownloadRate, true, speedType, speedDecimal);
+    m_uploadRate = Utils::Misc::friendlyUnit(status.payloadUploadRate, true, speedType, speedDecimal);
 
     // update global information
 #ifdef Q_OS_MACOS
