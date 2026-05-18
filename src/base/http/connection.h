@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -33,12 +33,14 @@
 #include <QElapsedTimer>
 #include <QObject>
 
+#include "responsewriterimpl.h"
+
 class QTcpSocket;
 
 namespace Http
 {
     class IRequestHandler;
-    struct Response;
+    struct ResponseStatus;
 
     class Connection : public QObject
     {
@@ -54,13 +56,16 @@ namespace Http
         void closed();
 
     private:
-        static bool acceptsGzipEncoding(QString codings);
+        void abort(const ResponseStatus &responseStatus);
+        bool processRequest();
         void read();
-        void sendResponse(const Response &response) const;
 
         QTcpSocket *m_socket = nullptr;
         IRequestHandler *m_requestHandler = nullptr;
         QByteArray m_receivedData;
         QElapsedTimer m_idleTimer;
+        bool m_isProcessingRequest = false;
+        bool m_isReadyRead = false;
+        ResponseWriterImpl m_responseWriter;
     };
 }

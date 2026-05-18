@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,16 +28,54 @@
 
 #pragma once
 
+#include <QObject>
+#include <QPointer>
+
+#include "base/pathfwd.h"
+#include "headermap.h"
+#include "request.h"
+#include "response.h"
+#include "responsewriter.h"
+
+class QAbstractSocket;
+class QThread;
+
 namespace Http
 {
-    class ResponseWriter;
-    struct Environment;
-    struct Request;
-
-    class IRequestHandler
+    class ResponseWriterImpl final : public ResponseWriter
     {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(ResponseWriterImpl)
+
     public:
-        virtual ~IRequestHandler() = default;
-        virtual void processRequest(const Request &request, const Environment &env, ResponseWriter &responseWriter) = 0;
+        ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
+        ~ResponseWriterImpl() override;
+
+        void prepare(const Request &request);
+
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        void setResponse(const Response &response) override;
+
+        // Allow to stream file using separate IO thread for reading.
+        // Support Range requests.
+        void streamFile(const Path &filePath, const HeaderMap &headers) override;
+
+        bool isFinished() const override;
+
+    private:
+        void writeData(const QByteArray &data);
+        void finish();
+
+        QPointer<QAbstractSocket> m_socket;
+        Request m_request;
+
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+        QThread *m_workerThread = nullptr;
+        bool m_isAsyncWorkerFinished = false;
+
+        bool m_isWritingContent = false;
+        bool m_isFinished = false;
     };
 }
