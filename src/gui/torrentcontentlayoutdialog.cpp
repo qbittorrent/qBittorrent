@@ -32,6 +32,7 @@
 #include <QStyledItemDelegate>
 
 #include "base/bittorrent/torrentcontenthandler.h"
+#include "raisedmessagebox.h"
 #include "torrentcontentlayoutmodel.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -93,6 +94,15 @@ TorrentContentLayoutDialog::TorrentContentLayoutDialog(BitTorrent::TorrentConten
     connect(m_model, &QAbstractItemModel::dataChanged, this, [this]
     {
         m_applyButton->setEnabled(m_model->haveChangedFilePaths());
+    });
+
+    connect(m_model, &TorrentContentLayoutModel::renameFailed, this
+            , [this](const QString &firstErrorMessage, const qsizetype errorsCount)
+    {
+        QString errorMessage = firstErrorMessage;
+        if (errorsCount > 1)
+            errorMessage.append(u'\n' + tr("There are %1 more error(s) occurred.").arg(errorsCount - 1));
+        RaisedMessageBox::warning(this, tr("Rename error"), errorMessage, QMessageBox::Ok);
     });
 
     m_ui->treeView->setItemDelegate(new TorrentContentLayoutItemDelegate(this));

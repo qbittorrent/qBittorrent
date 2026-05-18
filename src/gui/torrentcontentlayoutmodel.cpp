@@ -30,6 +30,7 @@
 
 #include "base/bittorrent/torrentcontenthandler.h"
 
+#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/path.h"
 
@@ -162,11 +163,25 @@ bool TorrentContentLayoutModel::haveChangedFilePaths() const
 
 void TorrentContentLayoutModel::applyChangedFilePaths()
 {
+    QString firstErrorMessage;
+    qsizetype failedCount = 0;
     for (const auto &[index, changedFilePath] : asConst(m_changedFilePaths).asKeyValueRange())
     {
-        const Path currentFilePath = m_contentHandler->filePath(index);
-        m_contentHandler->renameFile(currentFilePath, changedFilePath);
+        try
+        {
+            const Path currentFilePath = m_contentHandler->filePath(index);
+            m_contentHandler->renameFile(currentFilePath, changedFilePath);
+        }
+        catch (const RuntimeError &error)
+        {
+            if (failedCount == 0)
+                firstErrorMessage = error.message();
+
+            ++failedCount;
+        }
     }
+
+    emit renameFailed(firstErrorMessage, failedCount);
 }
 
 int TorrentContentLayoutModel::getFilesCount() const

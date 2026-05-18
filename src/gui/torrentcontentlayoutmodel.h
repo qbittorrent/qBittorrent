@@ -74,6 +74,9 @@ public:
     bool haveChangedFilePaths() const;
     void applyChangedFilePaths();
 
+signals:
+    void renameFailed(const QString &firstErrorMessage, qsizetype errorsCount);
+
 private:
     int getFilesCount() const;
     Path getFilePath(int index) const;
