@@ -1402,6 +1402,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         <input type="text" id="pythonExecutablePath" class="pathFile" placeholder="QBT_TR((Auto detect if empty))QBT_TR[CONTEXT=OptionsDialog]" style="width: 15em;">
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label for="start_paused">QBT_TR(Start Bittorrent session in paused state:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="start_paused">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="session_shutdown_timeout">QBT_TR(Bittorrent session shutdown timeout (seconds): [-1: unlimited])QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="session_shutdown_timeout" style="width: 15em;">
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -2734,6 +2750,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("markOfTheWeb").checked = pref.mark_of_the_web;
                     document.getElementById("ignoreSSLErrors").checked = pref.ignore_ssl_errors;
                     document.getElementById("pythonExecutablePath").value = pref.python_executable_path;
+                    document.getElementById("start_paused").checked = pref.StartPaused;
+                    document.getElementById("session_shutdown_timeout").value = pref.ShutdownTimeout;
                     // libtorrent section
                     document.getElementById("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     document.getElementById("bdecodeTokenLimit").value = pref.bdecode_token_limit;
@@ -3223,6 +3241,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["mark_of_the_web"] = document.getElementById("markOfTheWeb").checked;
             settings["ignore_ssl_errors"] = document.getElementById("ignoreSSLErrors").checked;
             settings["python_executable_path"] = document.getElementById("pythonExecutablePath").value;
+            settings["StartPaused"] = document.getElementById("start_paused").checked;
+            settings["ShutdownTimeout"] = Number(document.getElementById("session_shutdown_timeout").value);
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
