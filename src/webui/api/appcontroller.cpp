@@ -216,6 +216,8 @@ void AppController::preferencesAction()
 
     // Email notification upon download completion
     data[u"mail_notification_enabled"_s] = pref->isMailNotificationEnabled();
+    data[u"mail_notification_on_add"_s] = pref->isMailNotificationOnAdd();
+    data[u"mail_notification_on_end"_s] = pref->isMailNotificationOnEnd();
     data[u"mail_notification_sender"_s] = pref->getMailNotificationSender();
     data[u"mail_notification_email"_s] = pref->getMailNotificationEmail();
     data[u"mail_notification_smtp"_s] = pref->getMailNotificationSMTP();
@@ -680,6 +682,10 @@ void AppController::setPreferencesAction()
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))
         pref->setMailNotificationEnabled(it.value().toBool());
+    if (hasKey(u"mail_notification_on_add"_s))
+        pref->setMailNotificationOnAdd(it.value().toBool());
+    if (hasKey(u"mail_notification_on_end"_s))
+        pref->setMailNotificationOnEnd(it.value().toBool());
     if (hasKey(u"mail_notification_sender"_s))
         pref->setMailNotificationSender(it.value().toString());
     if (hasKey(u"mail_notification_email"_s))

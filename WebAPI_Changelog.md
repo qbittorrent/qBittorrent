@@ -1,6 +1,11 @@
 # WebAPI Changelog
 
 ## 2.16.0
+* [#24289](https://github.com/qbittorrent/qBittorrent/pull/24289)
+  * `app/preferences` endpoint includes `mail_notification_on_add` option
+  * `app/preferences` endpoint includes `mail_notification_on_end` option
+  * `app/setPreferences` endpoint allows to set `mail_notification_on_add` option
+  * `app/setPreferences` endpoint allows to set `mail_notification_on_end` option
 * [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)
   * `torrentcreator/status` endpoint now returns `timeAdded`, `timeStarted`, and `timeFinished` as Unix timestamps
 * [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
