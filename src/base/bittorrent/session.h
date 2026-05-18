@@ -325,6 +325,8 @@ namespace BitTorrent
         virtual void setPeerTurnoverInterval(int val) = 0;
         virtual int requestQueueSize() const = 0;
         virtual void setRequestQueueSize(int val) = 0;
+        virtual int maxOutstandingBlockRequests() const = 0;
+        virtual void setMaxOutstandingBlockRequests(int val) = 0;
         virtual int asyncIOThreads() const = 0;
         virtual void setAsyncIOThreads(int num) = 0;
         virtual int hashingThreads() const = 0;
