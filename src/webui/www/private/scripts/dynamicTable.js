@@ -1944,7 +1944,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["relevance"].staticWidth = 100;
 
             // contribution
-            this.columns["contribution"].updateTd = this.columns["progress"].updateTd;
+            this.columns["contribution"].updateTd = displayProgress;
             this.columns["contribution"].staticWidth = 100;
 
             // files
