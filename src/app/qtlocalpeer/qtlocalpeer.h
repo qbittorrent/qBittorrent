@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -68,6 +69,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QLockFile>
 #include <QObject>
 #include <QString>
@@ -92,6 +95,17 @@ private slots:
     void receiveConnection();
 
 private:
+    struct LockInfo
+    {
+        qint64 pid = -1;
+        QString appname;
+        QString hostname;
+        QByteArray hostid;
+        QByteArray bootid;
+    };
+
+    std::optional<LockInfo> getLockInfo() const;
+
     QString m_socketName;
     QLocalServer *m_server = nullptr;
     QLockFile m_lockFile;
