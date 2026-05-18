@@ -28,23 +28,16 @@
 
 #include "apicontroller.h"
 
-#include <algorithm>
+#include <utility>
 
 #include <QHash>
 #include <QJsonDocument>
 #include <QList>
 #include <QMetaObject>
+#include <QScopeGuard>
 
 #include "base/global.h"
 #include "apierror.h"
-
-void APIResult::clear()
-{
-    data.clear();
-    mimeType.clear();
-    filename.clear();
-    status = APIStatus::Ok;
-}
 
 APIController::APIController(IApplication *app, QObject *parent)
     : ApplicationComponent(app, parent)
@@ -53,15 +46,19 @@ APIController::APIController(IApplication *app, QObject *parent)
 
 APIResult APIController::run(const QString &action, const StringMap &params, const DataMap &data)
 {
-    m_result.clear(); // clear result
     m_params = params;
     m_data = data;
+    [[maybe_unused]] const auto inputsGuard = qScopeGuard([this]
+    {
+        m_params = {};
+        m_data = {};
+    });
 
     const QByteArray methodName = action.toLatin1() + "Action";
     if (!QMetaObject::invokeMethod(this, methodName.constData()))
         throw APIError(APIErrorType::NotFound, tr("Endpoint does not exist"));
 
-    return m_result;
+    return std::exchange(m_result, {});
 }
 
 const StringMap &APIController::params() const

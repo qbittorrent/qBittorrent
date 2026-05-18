@@ -45,8 +45,6 @@ struct APIResult
     QString mimeType;
     QString filename;
     APIStatus status = APIStatus::Ok;
-
-    void clear();
 };
 
 class APIController : public ApplicationComponent<QObject>

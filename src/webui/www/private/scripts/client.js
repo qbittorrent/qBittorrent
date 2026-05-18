@@ -203,8 +203,13 @@ window.qBittorrent.Client ??= (() => {
                 saveWindowSize(staticId, id);
             }),
             onContentLoaded: () => {
-                if (metadata !== undefined)
-                    document.getElementById(`${id}_iframe`).contentWindow.postMessage(metadata, window.origin);
+                if (metadata !== undefined) {
+                    const type = "addtorrent_metadata";
+                    document.getElementById(`${id}_iframe`).contentWindow.postMessage({
+                        type,
+                        metadata,
+                    }, window.origin);
+                }
             }
         });
     };
