@@ -6239,8 +6239,6 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
         return (((current - previous) * lt::microseconds(1s).count()) / interval);
     };
 
-    m_status.payloadDownloadRate = calcRate(m_status.totalPayloadDownload, totalPayloadDownload);
-    m_status.payloadUploadRate = calcRate(m_status.totalPayloadUpload, totalPayloadUpload);
     m_status.downloadRate = calcRate(m_status.totalDownload, totalDownload);
     m_status.uploadRate = calcRate(m_status.totalUpload, totalUpload);
     m_status.ipOverheadDownloadRate = calcRate(m_status.ipOverheadDownload, ipOverheadDownload);
@@ -6306,6 +6304,21 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
 
     m_cacheStatus.requestLatency = stats[m_metricIndices.disk.requestLatency];
+
+    // Use the sum of per-torrent payload rates instead of session-level
+    // instantaneous rate calculation. Per-torrent rates are smoothed by
+    // libtorrent, producing stable values consistent with the transfer list.
+    {
+        int64_t totalDlRate = 0;
+        int64_t totalUlRate = 0;
+        for (const TorrentImpl *torrent : asConst(m_torrents))
+        {
+            totalDlRate += torrent->downloadPayloadRate();
+            totalUlRate += torrent->uploadPayloadRate();
+        }
+        m_status.payloadDownloadRate = totalDlRate;
+        m_status.payloadUploadRate = totalUlRate;
+    }
 
     emit statsUpdated();
 }
