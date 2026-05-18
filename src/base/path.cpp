@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -34,14 +34,14 @@
 #include <QDataStream>
 #include <QDir>
 #include <QFileInfo>
-#include <QList>
 #include <QMimeDatabase>
 #include <QRegularExpression>
 #include <QStringView>
 
 #include "base/concepts/stringable.h"
-#include "base/global.h"
 #include "base/utils/fs.h"
+
+using namespace Qt::Literals::StringLiterals;
 
 #if defined(Q_OS_WIN)
 const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
@@ -275,6 +275,16 @@ Path &Path::operator+=(const QStringView str)
     return *this;
 }
 
+Path::Iterator Path::begin() const
+{
+    return Iterator(*this);
+}
+
+Path::Iterator Path::end() const
+{
+    return Iterator(*this, {});
+}
+
 Path Path::commonPath(const Path &left, const Path &right)
 {
     if (left.isEmpty() || right.isEmpty())
@@ -390,4 +400,86 @@ QDataStream &operator>>(QDataStream &in, Path &path)
 std::size_t qHash(const Path &key, const std::size_t seed)
 {
     return ::qHash(key.data(), seed);
+}
+
+Path::Iterator::Iterator(const Path &path)
+    : m_path {path}
+{
+    if (!m_path.m_pathStr.isEmpty())
+    {
+        m_itemsCount = m_path.m_pathStr.count(u'/');
+        if (!m_path.m_pathStr.startsWith(u'/'))
+            ++m_itemsCount;
+
+        qsizetype sepPos = 0;
+        for (qsizetype i = 0; i <= m_depth; ++i)
+            sepPos = m_path.m_pathStr.indexOf(u'/', (sepPos + 1));
+#ifdef Q_OS_WIN
+        if (hasDriveLetter(m_path.m_pathStr))
+            m_currentPath = Path::createUnchecked(m_path.m_pathStr.first(3));
+        else
+            m_currentPath = Path::createUnchecked((sepPos > 0) ? m_path.m_pathStr.first(sepPos) : m_path.m_pathStr);
+#else
+        m_currentPath = Path::createUnchecked((sepPos > 0) ? m_path.m_pathStr.first(sepPos) : m_path.m_pathStr);
+#endif
+    }
+}
+
+Path::Iterator::Iterator(const Path &path, EndIteratorTag)
+    : m_path {path}
+{
+    if (!m_path.m_pathStr.isEmpty())
+    {
+        m_itemsCount = m_path.m_pathStr.count(u'/');
+        if (!m_path.m_pathStr.startsWith(u'/'))
+            ++m_itemsCount;
+        m_depth = m_itemsCount;
+    }
+}
+
+Path::Iterator::reference Path::Iterator::operator*() const
+{
+    Q_ASSERT(m_depth < m_itemsCount);
+
+    return m_currentPath;
+}
+
+Path::Iterator::pointer Path::Iterator::operator->()
+{
+    Q_ASSERT(m_depth < m_itemsCount);
+
+    return &m_currentPath;
+}
+
+Path::Iterator &Path::Iterator::operator++()
+{
+    ++m_depth;
+    if (m_depth < m_itemsCount)
+    {
+        qsizetype sepPos = m_path.m_pathStr.indexOf(u'/', (m_currentPath.m_pathStr.size() + 1));
+        m_currentPath = Path::createUnchecked((sepPos > 0) ? m_path.m_pathStr.first(sepPos) : m_path.m_pathStr);
+    }
+    else
+    {
+        m_currentPath = {};
+    }
+
+    return *this;
+}
+
+Path::Iterator Path::Iterator::operator++(int)
+{
+    Iterator tmp = *this;
+    ++(*this);
+    return tmp;
+}
+
+bool operator==(const Path::Iterator &a, const Path::Iterator &b)
+{
+    return (&a.m_path == &b.m_path) && (a.m_depth == b.m_depth);
+}
+
+bool operator!=(const Path::Iterator &a, const Path::Iterator &b)
+{
+    return (&a.m_path != &b.m_path) || (a.m_depth != b.m_depth);
 }

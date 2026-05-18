@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,6 +28,8 @@
 
 #include "torrentcontentremover.h"
 
+#include <QSet>
+
 #include "base/utils/fs.h"
 
 void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, const Path &basePath
@@ -43,8 +45,13 @@ void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, c
                     ? Utils::Fs::moveFileToTrash : Utils::Fs::removeFile)(filePath);
         };
 
+        QSet<Path> topLevelFolders;
         for (const Path &fileName : fileNames)
         {
+            const Path rootItem = fileName.rootItem();
+            if (rootItem != fileName)
+                topLevelFolders.insert(rootItem);
+
             if (const auto result = removeFileFn(basePath / fileName)
                     ; !result && errorMessage.isEmpty())
             {
@@ -52,9 +59,8 @@ void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, c
             }
         }
 
-        const Path rootPath = Path::findRootFolder(fileNames);
-        if (!rootPath.isEmpty())
-            Utils::Fs::smartRemoveEmptyFolderTree(basePath / rootPath);
+        for (const Path &topLevelFolder : asConst(topLevelFolders))
+            Utils::Fs::smartRemoveEmptyFolderTree(basePath / topLevelFolder);
     }
 
     emit jobFinished(torrentName, errorMessage);
