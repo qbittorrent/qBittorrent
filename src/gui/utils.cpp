@@ -51,7 +51,6 @@
 #include <QRegularExpression>
 #include <QScreen>
 #include <QSize>
-#include <QStandardPaths>
 #include <QStyle>
 #include <QStringList>
 #include <QThread>
@@ -204,6 +203,9 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
+    if (showItemsInFileManager(path))
+        return;
+
     const int lineMaxLength = 64;
 
     auto lookupProc = new QProcess(parent);
@@ -223,13 +225,6 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
         else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
             || (output == u"nautilus-folder-handler.desktop"))
         {
-            if (QStandardPaths::findExecutable(u"nautilus"_s).isEmpty())
-            {
-                if (!showItemsInFileManager(path))
-                    openPath(path.parentPath());
-                return;
-            }
-
             auto deProcess = new QProcess(parent);
             deProcess->setProcessChannelMode(QProcess::ForwardedErrorChannel);
             deProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
