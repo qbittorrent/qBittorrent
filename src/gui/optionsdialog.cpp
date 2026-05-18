@@ -50,6 +50,7 @@
 #include "base/bittorrent/sharelimits.h"
 #include "base/exceptions.h"
 #include "base/global.h"
+#include "base/net/downloadmanager.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/smtp.h"
