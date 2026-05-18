@@ -1130,12 +1130,17 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         transfer_info += ` (${window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false)})`;
         document.getElementById("UpInfos").textContent = transfer_info;
 
-        document.title = (speedInTitle
-                ? ("QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
-                    .replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true))
-                    .replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true)))
-                : "")
-            + window.qBittorrent.Client.mainTitle();
+        let titlePrefix = "";
+        if (serverState.sessionState === true) {
+            titlePrefix = "QBT_TR([PAUSED] )QBT_TR[CONTEXT=MainWindow] ";
+        }
+        else if (speedInTitle === true) {
+            titlePrefix = "QBT_TR([D: %1, U: %2])QBT_TR[CONTEXT=MainWindow] "
+                .replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true))
+                .replace("%2", window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true));
+        }
+
+        document.title = titlePrefix + window.qBittorrent.Client.mainTitle();
 
         document.getElementById("freeSpaceOnDisk").textContent = "QBT_TR(Free space: %1)QBT_TR[CONTEXT=HttpServer]".replace("%1", window.qBittorrent.Misc.friendlyUnit(serverState.free_space_on_disk));
 

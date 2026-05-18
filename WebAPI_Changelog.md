@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.16.1
+* [#24269](https://github.com/qbittorrent/qBittorrent/pull/24269)
+  * Add `torrents/pauseSession` endpoint for pausing bittorrent session
+  * Add `torrents/resumeSession` endpoint for resuming bittorrent session
+
 ## 2.16.0
 * [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)
   * `torrentcreator/status` endpoint now returns `timeAdded`, `timeStarted`, and `timeFinished` as Unix timestamps

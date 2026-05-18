@@ -220,6 +220,8 @@ private:
         {{u"transfer"_s, u"setUploadLimit"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"start"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"stop"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"pauseSession"_s}, Http::METHOD_POST},
+        {{u"torrents"_s, u"resumeSession"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"toggleFirstLastPiecePrio"_s}, Http::METHOD_POST},
         {{u"torrents"_s, u"toggleSequentialDownload"_s}, Http::METHOD_POST},
         {{u"transfer"_s, u"toggleSpeedLimitsMode"_s}, Http::METHOD_POST},
