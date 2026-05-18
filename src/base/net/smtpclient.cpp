@@ -37,7 +37,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QHostInfo>
-#include <QStringList>
+#include <QRegularExpression>
 #include <QSslSocket>
 
 #include "base/global.h"
@@ -150,14 +150,16 @@ const int SOCKETERROR_TYPEID = qRegisterMetaType<QAbstractSocket::SocketError>()
 void Net::SMTPClient::sendMail(const QString &from, const QString &to
         , const QString &subject, const QString &body, QObject *context)
 {
-    [[maybe_unused]] auto *obj = new SMTPClient(from, to, subject, body, context);
+    const QStringList groupList = to.split(u';', Qt::SkipEmptyParts);
+    for (int i = 0; i < groupList.size(); ++i)
+        [[maybe_unused]] auto *obj = new SMTPClient(from, groupList[i], subject, body, context);
 }
 
 Net::SMTPClient::SMTPClient(const QString &from, const QString &to
         , const QString &subject, const QString &body, QObject *parent)
     : QObject(parent)
-    , m_from {from}
-    , m_rcpt {to}
+    , m_sender {from}
+    , m_recipients {to.split(QRegularExpression(u"[, ]"_s), Qt::SkipEmptyParts)}
 {
     m_socket = new QSslSocket(this);
 
@@ -174,9 +176,9 @@ Net::SMTPClient::SMTPClient(const QString &from, const QString &to
     const Preferences *const pref = Preferences::instance();
 
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-            + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(from))
+            + encodeMimeHeader(u"From"_s, u"qBittorrent <%1>"_s.arg(m_sender))
             + encodeMimeHeader(u"Subject"_s, subject)
-            + encodeMimeHeader(u"To"_s, to)
+            + encodeMimeHeader(u"To"_s, m_recipients.join(u", "_s))
             + "MIME-Version: 1.0\r\n"
             + "Content-Type: text/plain; charset=UTF-8\r\n"
             + "Content-Transfer-Encoding: base64\r\n"
@@ -296,7 +298,7 @@ void Net::SMTPClient::readyRead()
             if (code[0] == '2')
             {
                 qDebug() << "Sending <mail from>...";
-                m_socket->write("mail from:<" + m_from.toLatin1() + ">\r\n");
+                m_socket->write("mail from:<" + m_sender.toLatin1() + ">\r\n");
                 m_socket->flush();
                 m_state = Rcpt;
             }
@@ -310,13 +312,22 @@ void Net::SMTPClient::readyRead()
         case Rcpt:
             if (code[0] == '2')
             {
-                m_socket->write("rcpt to:<" + m_rcpt.toLatin1() + ">\r\n");
-                m_socket->flush();
-                m_state = Data;
+                const int recipientsSize = m_recipients.size();
+                if (m_recipientsIndex < recipientsSize)
+                {
+                    m_socket->write("rcpt to:<" + m_recipients[m_recipientsIndex++].toLatin1() + ">\r\n");
+                    m_socket->flush();
+                }
+
+                if (m_recipientsIndex >= recipientsSize)
+                    m_state = Data;
             }
             else
             {
-                logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                if (m_recipientsIndex == 0)
+                    logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                else
+                    logError(tr("<rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
                 m_state = Close;
             }
             break;
@@ -329,7 +340,7 @@ void Net::SMTPClient::readyRead()
             }
             else
             {
-                logError(tr("<Rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                logError(tr("<rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
                 m_state = Close;
             }
             break;
