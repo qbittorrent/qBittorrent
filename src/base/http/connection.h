@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -26,7 +26,6 @@
  * but you are not obligated to do so. If you do not wish to do so, delete this
  * exception statement from your version.
  */
-
 
 #pragma once
 
@@ -54,7 +53,7 @@ namespace Http
         void closed();
 
     private:
-        static bool acceptsGzipEncoding(QString codings);
+        static bool acceptsGzipEncoding(QString encodings);
         void read();
         void sendResponse(const Response &response) const;
 
