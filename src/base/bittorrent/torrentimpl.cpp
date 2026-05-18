@@ -3025,6 +3025,12 @@ void TorrentImpl::prioritizeFiles(const QList<DownloadPriority> &priorities)
     manageActualFilePaths();
 }
 
+int TorrentImpl::wantedFilesCount() const
+{
+    return std::ranges::count_if(asConst(filePriorities())
+        , [](const BitTorrent::DownloadPriority priority) { return priority != BitTorrent::DownloadPriority::Ignored; });
+}
+
 template <typename Func>
 QFuture<std::invoke_result_t<Func>> TorrentImpl::invokeAsync(Func &&func) const
 {

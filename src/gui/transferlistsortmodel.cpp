@@ -286,6 +286,9 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
             return threeWayCompare(totalL, totalR);
         }
 
+    case TransferListModel::TR_FILES_COUNT:
+        return threeWayCompare(leftValue.value<std::pair<int,int>>(), rightValue.value<std::pair<int,int>>());
+
     default:
         Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparison case");
         break;

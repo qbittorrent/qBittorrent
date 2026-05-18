@@ -144,6 +144,7 @@ namespace BitTorrent
         virtual qlonglong pieceLength() const = 0;
         virtual qlonglong wastedSize() const = 0;
         virtual QString currentTracker() const = 0;
+        virtual int wantedFilesCount() const = 0;
 
         // 1. savePath() - the path where all the files and subfolders of torrent are stored.
         // 1.1 downloadPath() - the path where all the files and subfolders of torrent are stored until torrent has finished downloading.

@@ -196,6 +196,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
+            case TR_FILES_COUNT: return tr("Files count", "i.e. number of files in the torrent");
             default: return {};
             }
         }
@@ -233,6 +234,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_LAST_ACTIVITY:
             case TR_AVAILABILITY:
             case TR_REANNOUNCE:
+            case TR_FILES_COUNT:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
                 return QAbstractListModel::headerData(section, orientation, role);
@@ -447,6 +449,10 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_FILES_COUNT:
+        return torrent->hasMetadata()
+            ? u"%1 (%2)"_s.arg(torrent->wantedFilesCount()).arg(torrent->filesCount())
+            : tr("N/A");
     }
 
     return {};
@@ -532,6 +538,10 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_FILES_COUNT:
+        return torrent->hasMetadata()
+            ? QVariant::fromValue(std::make_pair(torrent->wantedFilesCount(), torrent->filesCount()))
+            : QVariant();
     }
 
     return {};
@@ -602,6 +612,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_LAST_ACTIVITY:
         case TR_AVAILABILITY:
         case TR_REANNOUNCE:
+        case TR_FILES_COUNT:
             return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         }
         break;
