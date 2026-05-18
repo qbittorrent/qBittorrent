@@ -398,6 +398,12 @@ void TransferListWidget::startVisibleTorrents()
         torrent->start();
 }
 
+void TransferListWidget::forceStartVisibleTorrents()
+{
+    for (BitTorrent::Torrent *const torrent : asConst(getVisibleTorrents()))
+        torrent->start(BitTorrent::TorrentOperatingMode::Forced);
+}
+
 void TransferListWidget::stopSelectedTorrents()
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
