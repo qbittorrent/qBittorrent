@@ -321,7 +321,7 @@ window.qBittorrent.AddTorrent ??= (() => {
                 index: index,
                 name: file.path,
                 size: file.length,
-                priority: window.qBittorrent.FileTree.FilePriority.Normal,
+                priority: file.priority ?? window.qBittorrent.FileTree.FilePriority.Normal,
             }));
             window.qBittorrent.TorrentContent.updateData(files);
         }
