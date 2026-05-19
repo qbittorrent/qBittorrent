@@ -86,16 +86,16 @@ GeoIPDatabase *GeoIPDatabase::load(const Path &filename, QString &error)
 {
     QFile file {filename.data()};
 
+    if (!file.open(QFile::ReadOnly))
+    {
+        error = file.errorString();
+        return nullptr;
+    }
+
     const qint64 fileSize = file.size();
     if ((fileSize <= 0) || (fileSize > MAX_FILE_SIZE))
     {
         error = tr("Unsupported database file size.");
-        return nullptr;
-    }
-
-    if (!file.open(QFile::ReadOnly))
-    {
-        error = file.errorString();
         return nullptr;
     }
 
