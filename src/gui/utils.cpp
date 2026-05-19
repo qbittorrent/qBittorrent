@@ -51,7 +51,6 @@
 #include <QRegularExpression>
 #include <QScreen>
 #include <QSize>
-#include <QStandardPaths>
 #include <QStringList>
 #include <QStyle>
 #include <QThread>
@@ -231,12 +230,6 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
         else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
             || (output == u"nautilus-folder-handler.desktop"))
         {
-            if (QStandardPaths::findExecutable(u"nautilus"_s).isEmpty())
-            {
-                openPath(path.parentPath());
-                return;
-            }
-
             auto deProcess = new QProcess(parent);
             deProcess->setProcessChannelMode(QProcess::ForwardedErrorChannel);
             deProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
