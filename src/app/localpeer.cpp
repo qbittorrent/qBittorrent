@@ -67,7 +67,7 @@
 ****************************************************************************
 */
 
-#include "qtlocalpeer.h"
+#include "localpeer.h"
 
 #include <QtSystemDetection>
 
@@ -88,7 +88,7 @@
 
 const QByteArray ACK = QByteArrayLiteral("ack");
 
-QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
+LocalPeer::LocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
     , m_socketName {path + u"/ipc-socket"}
     , m_server {new QLocalServer(this)}
@@ -98,7 +98,7 @@ QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     m_lockFile.setStaleLockTime(0);
 }
 
-bool QtLocalPeer::isClient()
+bool LocalPeer::isClient()
 {
     if (m_lockFile.isLocked())
         return false;
@@ -139,11 +139,11 @@ bool QtLocalPeer::isClient()
     if (!res)
         qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qUtf8Printable(m_server->errorString()));
 
-    connect(m_server, &QLocalServer::newConnection, this, &QtLocalPeer::receiveConnection);
+    connect(m_server, &QLocalServer::newConnection, this, &LocalPeer::receiveConnection);
     return false;
 }
 
-bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
+bool LocalPeer::sendMessage(const QString &message, const int timeout)
 {
     if (!isClient())
         return false;
@@ -181,7 +181,7 @@ bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
     return res;
 }
 
-void QtLocalPeer::receiveConnection()
+void LocalPeer::receiveConnection()
 {
     QLocalSocket *socket = m_server->nextPendingConnection();
     if (!socket)
@@ -238,7 +238,7 @@ void QtLocalPeer::receiveConnection()
     emit messageReceived(message); //### (might take a long time to return)
 }
 
-std::optional<QtLocalPeer::LockInfo> QtLocalPeer::getLockInfo() const
+std::optional<LocalPeer::LockInfo> LocalPeer::getLockInfo() const
 {
     const auto readResult = Utils::IO::readFile(Path(m_lockFile.fileName()), 1024);
     if (!readResult)

@@ -32,7 +32,7 @@
 
 #include "base/pathfwd.h"
 
-class QtLocalPeer;
+class LocalPeer;
 
 class ApplicationInstanceManager final : public QObject
 {
@@ -51,6 +51,6 @@ signals:
     void messageReceived(const QString &message);
 
 private:
-    QtLocalPeer *m_peer = nullptr;
+    LocalPeer *m_peer = nullptr;
     const bool m_isFirstInstance;
 };
