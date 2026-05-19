@@ -51,6 +51,7 @@
 #include <QRegularExpression>
 #include <QScreen>
 #include <QSize>
+#include <QStandardPaths>
 #include <QStyle>
 #include <QStringList>
 #include <QThread>
@@ -208,28 +209,39 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
 
     const int lineMaxLength = 64;
 
+    const auto startFileManager = [path](const QString &command, const QStringList args)
+    {
+        if (!QProcess::startDetached(command, args))
+            openPath(path.parentPath());
+    };
+
     auto lookupProc = new QProcess(parent);
     lookupProc->setProcessChannelMode(QProcess::ForwardedErrorChannel);
     lookupProc->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
     QObject::connect(lookupProc, &QProcess::finished, lookupProc
-        , [parent, path, lookupProc]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
+        , [parent, path, startFileManager, lookupProc]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
     {
         lookupProc->deleteLater();
 
         const auto output = QString::fromLocal8Bit(lookupProc->readLine(lineMaxLength).simplified());
-        bool isFileManagerStarted = false;
         if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
         {
-            isFileManagerStarted = QProcess::startDetached(u"dolphin"_s, {u"--select"_s, path.toString()});
+            startFileManager(u"dolphin"_s, {u"--select"_s, path.toString()});
         }
         else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
             || (output == u"nautilus-folder-handler.desktop"))
         {
+            if (QStandardPaths::findExecutable(u"nautilus"_s).isEmpty())
+            {
+                openPath(path.parentPath());
+                return;
+            }
+
             auto deProcess = new QProcess(parent);
             deProcess->setProcessChannelMode(QProcess::ForwardedErrorChannel);
             deProcess->setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
             QObject::connect(deProcess, &QProcess::finished, deProcess
-                , [deProcess, path]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
+                , [deProcess, path, startFileManager]([[maybe_unused]] const int exitCode, [[maybe_unused]] const QProcess::ExitStatus exitStatus)
             {
                 deProcess->deleteLater();
 
@@ -238,45 +250,30 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
                 using NautilusVersion = Utils::Version<3>;
                 const QString pathParam = (Fs::isDir(path) ? path.parentPath() : path).toString();
 
-                bool isFileManagerStarted = false;
                 if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
-                    isFileManagerStarted = QProcess::startDetached(u"nautilus"_s, {pathParam});
+                    startFileManager(u"nautilus"_s, {pathParam});
                 else
-                    isFileManagerStarted = QProcess::startDetached(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
-
-                if (!isFileManagerStarted)
-                {
-                    if (!showItemsInFileManager(path))
-                        openPath(path.parentPath());
-                }
+                    startFileManager(u"nautilus"_s, {u"--no-desktop"_s, pathParam});
             });
             deProcess->start(u"nautilus"_s, {u"--version"_s});
-            return;
         }
         else if (output == u"nemo.desktop")
         {
-            isFileManagerStarted = QProcess::startDetached(u"nemo"_s
+            startFileManager(u"nemo"_s
                     , {u"--no-desktop"_s, (Fs::isDir(path) ? path.parentPath() : path).toString()});
         }
         else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
         {
-            isFileManagerStarted = QProcess::startDetached(u"konqueror"_s, {u"--select"_s, path.toString()});
+            startFileManager(u"konqueror"_s, {u"--select"_s, path.toString()});
         }
         else if (output == u"thunar.desktop")
         {
-            isFileManagerStarted = QProcess::startDetached(u"thunar"_s, {path.toString()});
+            startFileManager(u"thunar"_s, {path.toString()});
         }
         else
         {
             // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
             openPath(path.parentPath());
-            return;
-        }
-
-        if (!isFileManagerStarted)
-        {
-            if (!showItemsInFileManager(path))
-                openPath(path.parentPath());
         }
     });
     lookupProc->start(u"xdg-mime"_s, {u"query"_s, u"default"_s, u"inode/directory"_s});
