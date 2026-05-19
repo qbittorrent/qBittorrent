@@ -52,8 +52,8 @@
 #include <QScreen>
 #include <QSize>
 #include <QStandardPaths>
-#include <QStyle>
 #include <QStringList>
+#include <QStyle>
 #include <QThread>
 #include <QUrl>
 #include <QWidget>
@@ -76,7 +76,7 @@ namespace
     }
 
 #if defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
-    bool showItemsInFileManager(const Path &path)
+    bool showItemInFileManager(const Path &path)
     {
         QDBusInterface fileManager {u"org.freedesktop.FileManager1"_s
                 , u"/org/freedesktop/FileManager1"_s
@@ -204,7 +204,7 @@ void Utils::Gui::openFolderSelect(const Path &path, [[maybe_unused]] QObject *pa
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
-    if (showItemsInFileManager(path))
+    if (showItemInFileManager(path))
         return;
 
     const int lineMaxLength = 64;
