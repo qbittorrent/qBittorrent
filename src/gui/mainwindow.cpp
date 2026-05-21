@@ -28,6 +28,7 @@
  */
 
 #include "mainwindow.h"
+#include "customizabletoolbar.h"
 
 #include <QtSystemDetection>
 
@@ -254,6 +255,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_ui->toolBar->lockAction(m_columnFilterAction);
     m_ui->toolBar->lockAction(m_ui->actionLock);
     m_ui->toolBar->setLocked(Preferences::instance()->isToolbarLocked());
+    connect(m_ui->toolBar, &CustomizableToolBar::actionOrderChanged, this, &MainWindow::saveToolbarState);
 
     // Transfer List tab
     m_transferListWidget = new TransferListWidget(app, this);
@@ -696,8 +698,56 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
         QMenu *visibilityMenu = buttonMenu.addMenu(tr("Show/Hide Buttons"));
         visibilityMenu->addAction(tr("Reset to Default"), this, [this]()
         {
+            // Build action map BEFORE removing anything
+            QHash<QString, QAction *> actionMap;
             for (QAction *a : m_ui->toolBar->actions())
-                a->setVisible(true);
+            {
+                if (!a->isSeparator() && !a->objectName().isEmpty())
+                    actionMap[a->objectName()] = a;
+            }
+            // Remove all non-locked actions and separators
+            const QList<QAction *> current = m_ui->toolBar->actions();
+            for (QAction *a : current)
+            {
+                if (a == m_spacerAction || a == m_columnFilterAction
+                    || a->objectName() == u"actionLock"_s)
+                    break;
+                m_ui->toolBar->removeAction(a);
+            }
+            // Reinsert in default order, each action before spacer in sequence
+            struct DefaultEntry { QString name; bool sepAfter; };
+            const QList<DefaultEntry> defaultOrder = {
+                {u"actionOpen"_s, false},
+                {u"actionDownloadFromURL"_s, false},
+                {u"actionDelete"_s, true},
+                {u"actionStart"_s, false},
+                {u"actionStop"_s, true},
+                {u"actionOpenDestinationFolder"_s, true},
+                {u"actionCreateTorrent"_s, false},
+                {u"actionOptions"_s, false},
+            };
+            QAction *insertAnchor = m_spacerAction;
+            for (auto it = defaultOrder.rbegin(); it != defaultOrder.rend(); ++it)
+            {
+                if (QAction *a = actionMap.value(it->name))
+                {
+                    a->setVisible(true);
+                    m_ui->toolBar->insertAction(insertAnchor, a);
+                    if (it->sepAfter)
+                        m_ui->toolBar->insertSeparator(insertAnchor);
+                    insertAnchor = a;
+                }
+            }
+            // Hide queue actions which are not in default
+            const QStringList queueActions = {
+                u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
+                u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s
+            };
+            for (const QString &name : queueActions)
+            {
+                if (QAction *a = actionMap.value(name))
+                    a->setVisible(false);
+            }
             saveToolbarState();
         });
         visibilityMenu->addSeparator();
@@ -1014,7 +1064,8 @@ void MainWindow::loadSettings()
             if (!a->isSeparator() && !a->objectName().isEmpty())
                 actionMap[a->objectName()] = a;
         }
-        for (QAction *a : m_ui->toolBar->actions())
+        const QList<QAction *> currentActions = m_ui->toolBar->actions();
+        for (QAction *a : currentActions)
         {
             if (a == m_spacerAction || a == m_columnFilterAction
                 || a->objectName() == u"actionLock"_s)
