@@ -2,6 +2,8 @@
 
 ## 2.16.0
 
+* [#24326](https://github.com/qbittorrent/qBittorrent/pull/24326)
+  * `torrents/add` endpoint accepts optional `stats` JSON object to seed lifetime statistics (`total_uploaded`, `total_downloaded`, `added_time`, `completed_time`, `last_seen_complete`, `last_upload`, `last_download`, `active_time`, `finished_time`, `seeding_time`)
 * [#24684](https://github.com/qbittorrent/qBittorrent/pull/24684)
   * `app/preferences` endpoint includes `enable_multi_connections_from_same_peer_id` option
   * `app/setPreferences` endpoint allows to set `enable_multi_connections_from_same_peer_id` option
