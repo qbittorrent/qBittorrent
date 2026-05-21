@@ -1,6 +1,8 @@
 # WebAPI Changelog
 
 ## 2.16.0
+* [#24246](https://github.com/qbittorrent/qBittorrent/pull/24246)
+  * `torrents/fetchMetadata` and `torrents/parseMetadata` endpoints include file `priority` when excluded file names apply
 * [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)
   * `torrentcreator/status` endpoint now returns `timeAdded`, `timeStarted`, and `timeFinished` as Unix timestamps
 * [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
