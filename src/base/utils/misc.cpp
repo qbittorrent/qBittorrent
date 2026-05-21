@@ -121,10 +121,10 @@ QString Utils::Misc::friendlyUnitCompact(const qint64 bytes)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
 
     int precision = 0;          // >= 100
-    if (result->value < 10)
-        precision = 2;          // 0 - 9.99
     if (result->value < 100)
         precision = 1;          // 10 - 99.9
+    if (result->value < 10)
+        precision = 2;          // 0 - 9.99
 
     return Utils::String::fromDouble(result->value, precision)
            // use only one character for unit representation

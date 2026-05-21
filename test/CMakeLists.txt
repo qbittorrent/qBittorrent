@@ -19,6 +19,7 @@ set(testFiles
     testutilsdatetime.cpp
     testutilsgzip.cpp
     testutilsio.cpp
+    testutilsmisc.cpp
     testutilsnumber.cpp
     testutilsstring.cpp
     testutilsversion.cpp
