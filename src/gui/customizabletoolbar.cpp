@@ -146,7 +146,7 @@ void CustomizableToolBar::startDrag(QWidget *widget, const QPoint &globalPos)
     // Snapshot BEFORE making transparent
     const QPixmap snap = widget->grab();
 
-    // Make drag widget invisible but keep it in layout — no reflow
+    // Make drag widget invisible but keep it in layout â€” no reflow
     auto *effect = new QGraphicsOpacityEffect(widget);
     effect->setOpacity(0.0);
     widget->setGraphicsEffect(effect);
@@ -202,7 +202,7 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         }
     }
 
-    // Only swap when target slot changes � one atomic reorder per crossing
+    // Only swap when target slot changes — one atomic reorder per crossing
     if (newInsertBefore == m_gapTarget)
         return;
 
@@ -240,11 +240,11 @@ void CustomizableToolBar::endDrag(const QPoint &globalPos)
     delete m_floatLabel;
     m_floatLabel = nullptr;
 
-    // Remove opacity effect — restore widget appearance
+    // Remove opacity effect â€” restore widget appearance
     if (m_dragWidget)
         m_dragWidget->setGraphicsEffect(nullptr);
 
-    // Reorder already committed live in updateDrag � just save state
+    // Reorder already committed live in updateDrag — just save state
     emit actionOrderChanged();
 
     m_gapTarget = nullptr;
