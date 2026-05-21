@@ -1,6 +1,8 @@
 # WebAPI Changelog
 
 ## 2.16.0
+* [#24326](https://github.com/qbittorrent/qBittorrent/pull/24326)
+  * `torrents/add` endpoint accepts optional `stats` JSON object to seed lifetime statistics (`total_uploaded`, `total_downloaded`, `added_time`, `completed_time`, `last_seen_complete`, `last_upload`, `last_download`, `active_time`, `finished_time`, `seeding_time`)
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
   * `torrentcreator/addTask` endpoint accepts a new bool option `ignoreDotfiles` to control whether dotfiles are ignored
   * `torrentcreator/status` endpoint returns a new bool field `ignoreDotfiles` for reporting whether dotfiles were ignored
