@@ -1166,6 +1166,9 @@ void TorrentsController::addAction()
 
     const DataMap &torrents = data();
 
+    if (initialStats && ((urls.size() + torrents.size()) > 1))
+        throw APIError(APIErrorType::BadParams, tr("Cannot specify stats when adding multiple torrents"));
+
     QList<BitTorrent::DownloadPriority> filePriorities;
     const QStringList filePrioritiesParam = params()[u"filePriorities"_s].split(u',', Qt::SkipEmptyParts);
     if (!filePrioritiesParam.isEmpty())
