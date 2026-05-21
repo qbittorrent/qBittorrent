@@ -64,6 +64,7 @@
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
+#include "managededupedfilenames.h"
 
 using namespace Qt::Literals::StringLiterals;
 
@@ -713,6 +714,8 @@ LoadResumeDataResult DBResumeDataStorage::parseQueryResultRow(const QSqlQuery &q
         if (ec)
             return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
 #endif
+        if (pref->isFixMutatedFilenamesEnabled())
+            manageDedupedFilenames(p, DedupeAction::Revert);
     }
 
     p.save_path = Profile::instance()->fromPortablePath(Path(fromLTString(p.save_path)))

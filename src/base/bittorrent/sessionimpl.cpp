@@ -2833,6 +2833,17 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         if (filePaths.isEmpty())
         {
             filePaths = torrentInfo.filePaths();
+            if (Preferences::instance()->isUseDedupedFilenamesEnabled() && !p.renamed_files.empty())
+            {
+                const auto nativeIndexes = torrentInfo.nativeIndexes();
+                for (const auto &[renamedIndex, renamedFile] : p.renamed_files)
+                {
+                    const qsizetype fileIndex = nativeIndexes.indexOf(renamedIndex);
+                    if (fileIndex >= 0)
+                        filePaths[fileIndex] = Path(renamedFile);
+                }
+            }
+
             if (loadTorrentParams.contentLayout != TorrentContentLayout::Original)
             {
                 const Path originalRootFolder = Path::findRootFolder(filePaths);
