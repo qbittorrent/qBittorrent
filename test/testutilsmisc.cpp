@@ -40,8 +40,6 @@ public:
     TestUtilsMisc() = default;
 
 private slots:
-
-
     void testfriendlyUnitCompact() const
     {
         QCOMPARE(Utils::Misc::friendlyUnitCompact(500), u"500\u00A0B");
