@@ -35,6 +35,9 @@ jobs:
         - os: windows-latest
           arch: x64
           qt_arch: win64_msvc2022_64
+        - os: windows-11-arm
+          arch: arm64
+          qt_arch: win64_msvc2022_arm64
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
