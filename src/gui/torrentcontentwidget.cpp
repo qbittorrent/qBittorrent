@@ -534,6 +534,30 @@ void TorrentContentWidget::onItemDoubleClicked(const QModelIndex &index)
 
     if (!contentHandler || !contentHandler->hasMetadata()) [[unlikely]]
         return;
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
+    if (selectedIndexes.size() != 1)
+        return;
+
+    // If explicitly set by other element, assume that the other element knows what its doing
+    if (m_doubleClickAction == DoubleClickAction::Unset)
+    {
+        const qreal progress = model()->data(model()->index(index.row(), TorrentContentModelItem::COL_PROGRESS, index.parent())
+            , TorrentContentModel::UnderlyingDataRole).toDouble();
+        const BitTorrent::DownloadPriority priority = static_cast<BitTorrent::DownloadPriority>(model()->data(model()->index(index.row(), TorrentContentModelItem::COL_PRIO, index.parent())
+            , TorrentContentModel::UnderlyingDataRole).toInt());
+
+        if (
+            (priority == BitTorrent::DownloadPriority::Ignored) ||
+            progress < 100
+        )
+        {
+            renameSelectedFile();
+        } else {
+            openItem(index);
+        }
+        // If we set m_doubleClickAction it will remain set for all items (folder/file)
+        return;
+    }
 
     if (m_doubleClickAction == DoubleClickAction::Rename)
         renameSelectedFile();

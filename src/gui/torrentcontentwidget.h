@@ -66,7 +66,8 @@ public:
     enum class DoubleClickAction
     {
         Open,
-        Rename
+        Rename,
+        Unset
     };
 
     enum class ColumnsVisibilityMode
@@ -127,7 +128,7 @@ private:
 
     TorrentContentModel *m_model;
     TorrentContentFilterModel *m_filterModel;
-    DoubleClickAction m_doubleClickAction = DoubleClickAction::Rename;
+    DoubleClickAction m_doubleClickAction = DoubleClickAction::Unset;
     ColumnsVisibilityMode m_columnsVisibilityMode = ColumnsVisibilityMode::Editable;
     QShortcut *m_openFileHotkeyEnter = nullptr;
     QShortcut *m_openFileHotkeyReturn = nullptr;
