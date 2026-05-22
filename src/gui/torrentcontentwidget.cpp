@@ -98,6 +98,7 @@ TorrentContentWidget::TorrentContentWidget(QWidget *parent)
     setItemDelegate(itemDelegate);
 
     connect(this, &QAbstractItemView::clicked, this, qOverload<const QModelIndex &>(&QAbstractItemView::edit));
+    connect(this, &QAbstractItemView::clicked, this, &TorrentContentWidget::onItemClicked);
     connect(this, &QAbstractItemView::doubleClicked, this, &TorrentContentWidget::onItemDoubleClicked);
     connect(this, &QWidget::customContextMenuRequested, this, &TorrentContentWidget::displayContextMenu);
     connect(header(), &QWidget::customContextMenuRequested, this, &TorrentContentWidget::displayColumnHeaderMenu);
@@ -536,6 +537,45 @@ Path TorrentContentWidget::getFullPath(const QModelIndex &index) const
     return fullPath;
 }
 
+void TorrentContentWidget::onItemClicked(const QModelIndex &index)
+{
+    if (!index.isValid())
+        return;
+
+    const auto *contentHandler = m_model->contentHandler();
+    Q_ASSERT(contentHandler && contentHandler->hasMetadata());
+
+    if (!contentHandler || !contentHandler->hasMetadata()) [[unlikely]]
+        return;
+
+    if (m_lastClickedIndex != index)
+    {
+        m_lastClickedIndex = index;
+        m_lastClickTime = QDateTime::currentMSecsSinceEpoch();
+        return;
+    }
+
+    const qint64 elapsed = QDateTime::currentMSecsSinceEpoch() - m_lastClickTime;
+
+    // Without this check, we will hijack the double-click event
+    if (elapsed <= QApplication::doubleClickInterval())
+    {
+        return;
+    }
+
+    // First click "expires". Default double-click interval is 400ms so after 4s. Otherwise a double-click attempt would trigger rename on its first click
+    if (elapsed > (QApplication::doubleClickInterval() * 10))
+    {
+        m_lastClickedIndex = QModelIndex();
+        return;
+    }
+
+    m_lastClickTime = QDateTime::currentMSecsSinceEpoch();
+    m_lastClickedIndex = QModelIndex();
+
+    renameSelectedFile();
+}
+
 void TorrentContentWidget::onItemDoubleClicked(const QModelIndex &index)
 {
     const auto *contentHandler = m_model->contentHandler();
@@ -544,6 +584,7 @@ void TorrentContentWidget::onItemDoubleClicked(const QModelIndex &index)
     if (!contentHandler || !contentHandler->hasMetadata()) [[unlikely]]
         return;
 
+    m_lastClickedIndex = QModelIndex();
     if (m_doubleClickAction == DoubleClickAction::Rename)
         renameSelectedFile();
     else
