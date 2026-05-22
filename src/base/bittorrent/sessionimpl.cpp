@@ -2957,26 +2957,16 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     if (addTorrentParams.initialStats)
     {
         const InitialTorrentStats &s = *addTorrentParams.initialStats;
-        if (s.totalUploaded)
-            p.total_uploaded = *s.totalUploaded;
-        if (s.totalDownloaded)
-            p.total_downloaded = *s.totalDownloaded;
-        if (s.addedTime)
-            p.added_time = static_cast<std::time_t>(*s.addedTime);
-        if (s.completedTime)
-            p.completed_time = static_cast<std::time_t>(*s.completedTime);
-        if (s.lastSeenComplete)
-            p.last_seen_complete = static_cast<std::time_t>(*s.lastSeenComplete);
-        if (s.lastUpload)
-            p.last_upload = static_cast<std::time_t>(*s.lastUpload);
-        if (s.lastDownload)
-            p.last_download = static_cast<std::time_t>(*s.lastDownload);
-        if (s.activeTime)
-            p.active_time = *s.activeTime;
-        if (s.finishedTime)
-            p.finished_time = *s.finishedTime;
-        if (s.seedingTime)
-            p.seeding_time = *s.seedingTime;
+        p.total_uploaded = s.totalUploaded;
+        p.total_downloaded = s.totalDownloaded;
+        p.added_time = static_cast<std::time_t>(s.addedTime);
+        p.completed_time = static_cast<std::time_t>(s.completedTime);
+        p.last_seen_complete = static_cast<std::time_t>(s.lastSeenComplete);
+        p.last_upload = static_cast<std::time_t>(s.lastUpload);
+        p.last_download = static_cast<std::time_t>(s.lastDownload);
+        p.active_time = s.activeTime;
+        p.finished_time = s.finishedTime;
+        p.seeding_time = s.seedingTime;
     }
 
     // Limits

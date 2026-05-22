@@ -1095,23 +1095,23 @@ namespace
             throw APIError(APIErrorType::BadParams, u"`stats` must be a JSON object"_s);
 
         const QJsonObject obj = doc.object();
-        BitTorrent::InitialTorrentStats stats;
 
-        const auto readInt64 = [&obj](const QString &key) -> std::optional<qint64>
+        const auto readInt64 = [&obj](const QString &key) -> qint64
         {
             const QJsonValue v = obj.value(key);
             if (v.isUndefined() || v.isNull())
-                return std::nullopt;
+                throw APIError(APIErrorType::BadParams, u"`stats.%1` is required"_s.arg(key));
             return v.toVariant().toLongLong();
         };
-        const auto readInt = [&obj](const QString &key) -> std::optional<int>
+        const auto readInt = [&obj](const QString &key) -> int
         {
             const QJsonValue v = obj.value(key);
             if (v.isUndefined() || v.isNull())
-                return std::nullopt;
+                throw APIError(APIErrorType::BadParams, u"`stats.%1` is required"_s.arg(key));
             return v.toVariant().toInt();
         };
 
+        BitTorrent::InitialTorrentStats stats;
         stats.totalUploaded = readInt64(u"total_uploaded"_s);
         stats.totalDownloaded = readInt64(u"total_downloaded"_s);
         stats.addedTime = readInt64(u"added_time"_s);
