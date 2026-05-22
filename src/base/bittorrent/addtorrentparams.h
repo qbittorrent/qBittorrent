@@ -50,16 +50,16 @@ namespace BitTorrent
     // Optional lifetime stats to seed on torrent add
     struct InitialTorrentStats
     {
-        std::optional<qint64> totalUploaded;
-        std::optional<qint64> totalDownloaded;
-        std::optional<qint64> addedTime;          // posix seconds
-        std::optional<qint64> completedTime;      // posix seconds
-        std::optional<qint64> lastSeenComplete;   // posix seconds
-        std::optional<qint64> lastUpload;         // posix seconds
-        std::optional<qint64> lastDownload;       // posix seconds
-        std::optional<int> activeTime;            // seconds
-        std::optional<int> finishedTime;          // seconds
-        std::optional<int> seedingTime;           // seconds
+        qint64 totalUploaded = 0;
+        qint64 totalDownloaded = 0;
+        qint64 addedTime = 0;          // posix seconds
+        qint64 completedTime = 0;      // posix seconds
+        qint64 lastSeenComplete = 0;   // posix seconds
+        qint64 lastUpload = 0;         // posix seconds
+        qint64 lastDownload = 0;       // posix seconds
+        int activeTime = 0;            // seconds
+        int finishedTime = 0;          // seconds
+        int seedingTime = 0;           // seconds
 
         friend bool operator==(const InitialTorrentStats &lhs, const InitialTorrentStats &rhs) = default;
     };
