@@ -1090,9 +1090,9 @@ namespace
         QJsonParseError parseError;
         const QJsonDocument doc = QJsonDocument::fromJson(rawJson.toUtf8(), &parseError);
         if (parseError.error != QJsonParseError::NoError)
-            throw APIError(APIErrorType::BadParams, u"`stats` must be a JSON object: "_s + parseError.errorString());
+            throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats` must be a JSON object: %1").arg(parseError.errorString()));
         if (!doc.isObject())
-            throw APIError(APIErrorType::BadParams, u"`stats` must be a JSON object"_s);
+            throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats` must be a JSON object"));
 
         const QJsonObject obj = doc.object();
 
@@ -1100,14 +1100,14 @@ namespace
         {
             const QJsonValue v = obj.value(key);
             if (v.isUndefined() || v.isNull())
-                throw APIError(APIErrorType::BadParams, u"`stats.%1` is required"_s.arg(key));
+                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` is required").arg(key));
             return v.toVariant().toLongLong();
         };
         const auto readInt = [&obj](const QString &key) -> int
         {
             const QJsonValue v = obj.value(key);
             if (v.isUndefined() || v.isNull())
-                throw APIError(APIErrorType::BadParams, u"`stats.%1` is required"_s.arg(key));
+                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` is required").arg(key));
             return v.toVariant().toInt();
         };
 
