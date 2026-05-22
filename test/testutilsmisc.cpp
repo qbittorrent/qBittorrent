@@ -42,17 +42,17 @@ public:
 private slots:
     void testfriendlyUnitCompact() const
     {
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), u"500\u00A0B");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), u"0.97\u00A0K");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), u"4.88\u00A0K");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), u"9.76\u00A0K");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), u"14.6\u00A0K");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), u"97.6\u00A0K");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), u"146\u00A0K");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), u"976\u00A0K");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), u"9.53\u00A0M");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), u"14.3\u00A0M");
-        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), u"9.31\u00A0G");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), u"500" + QChar::Nbsp + u"B");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), u"0.97" + QChar::Nbsp + u"K");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), u"4.88" + QChar::Nbsp + u"K");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), u"9.76" + QChar::Nbsp + u"K");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), u"14.6" + QChar::Nbsp + u"K");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), u"97.6" + QChar::Nbsp + u"K");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), u"146" + QChar::Nbsp + u"K");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), u"976" + QChar::Nbsp + u"K");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), u"9.53" + QChar::Nbsp + u"M");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), u"14.3" + QChar::Nbsp + u"M");
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), u"9.31" + QChar::Nbsp + u"G");
     }
 };
 
