@@ -271,6 +271,11 @@ public:
         return {};
     }
 
+    void deleteFiles([[maybe_unused]] const QList<int> &fileIndexes) override
+    {
+        // No files exist on disk yet when adding a torrent; deletion is a no-op.
+    }
+
     void flushCache() const override
     {
     }
