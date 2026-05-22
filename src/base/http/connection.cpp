@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2014-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2018  Mike Tzou (Chocobo1)
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,6 +30,10 @@
 
 #include "connection.h"
 
+#include <ranges>
+
+#include <QStringTokenizer>
+#include <QStringView>
 #include <QTcpSocket>
 
 #include "irequesthandler.h"
@@ -182,45 +186,33 @@ bool Connection::hasExpired(const qint64 timeout) const
         && m_idleTimer.hasExpired(timeout);
 }
 
-bool Connection::acceptsGzipEncoding(QString codings)
+bool Connection::acceptsGzipEncoding(QString encodings)
 {
     // [rfc7231] 5.3.4. Accept-Encoding
 
-    const auto isCodingAvailable = [](const QList<QStringView> &list, const QStringView encoding) -> bool
+    const auto matchEncoding = [](const QStringView encodingEntry, const QStringView encoding) -> bool
     {
-        for (const QStringView &str : list)
-        {
-            if (!str.startsWith(encoding))
-                continue;
+        if (!encodingEntry.startsWith(encoding))
+            return false;
 
-            // without quality values
-            if (str == encoding)
-                return true;
-
-            // [rfc7231] 5.3.1. Quality Values
-            const QStringView substr = str.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
-
-            bool ok = false;
-            const double qvalue = substr.toDouble(&ok);
-            if (!ok || (qvalue <= 0))
-                return false;
-
+        // without quality values
+        if (encodingEntry == encoding)
             return true;
-        }
+
+        // [rfc7231] 5.3.1. Quality Values
+        const QStringView substr = encodingEntry.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
+
+        bool ok = false;
+        const double qvalue = substr.toDouble(&ok);
+        if (ok && (qvalue > 0))
+            return true;
+
         return false;
     };
 
-    const QList<QStringView> list = QStringView(codings.remove(u' ').remove(u'\t')).split(u',', Qt::SkipEmptyParts);
-    if (list.isEmpty())
-        return false;
-
-    const bool canGzip = isCodingAvailable(list, u"gzip"_s);
-    if (canGzip)
-        return true;
-
-    const bool canAny = isCodingAvailable(list, u"*"_s);
-    if (canAny)
-        return true;
-
-    return false;
+    encodings.remove(u' ').remove(u'\t');
+    return std::ranges::any_of(qTokenize(encodings, u',', Qt::SkipEmptyParts), [&matchEncoding](const QStringView encodingEntry)
+    {
+        return matchEncoding(encodingEntry, u"gzip") || matchEncoding(encodingEntry, u"*");
+    });
 }
