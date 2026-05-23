@@ -2180,16 +2180,15 @@ void TorrentsController::fetchMetadataAction()
 {
     requireParams({u"source"_s});
 
-    const QString sourceParam = params()[u"source"_s].trimmed();
+    const QString source = params()[u"source"_s].trimmed();
     // must provide some value to parse
-    if (sourceParam.isEmpty())
+    if (source.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
 
     const QString downloaderParam = params()[u"downloader"_s];
     if (!downloaderParam.isEmpty() && !SearchPluginManager::instance()->allPlugins().contains(downloaderParam))
         throw APIError(APIErrorType::BadParams, tr("downloader must be a valid search plugin"));
 
-    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
     const auto sourceTorrentDescr = BitTorrent::TorrentDescriptor::parse(source);
 
     const BitTorrent::InfoHash infoHash = sourceTorrentDescr ? sourceTorrentDescr.value().infoHash() : m_torrentSourceCache.value(source);
@@ -2289,11 +2288,9 @@ void TorrentsController::saveMetadataAction()
 {
     requireParams({u"source"_s});
 
-    const QString sourceParam = params()[u"source"_s].trimmed();
-    if (sourceParam.isEmpty())
+    const QString source = params()[u"source"_s].trimmed();
+    if (source.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Must specify URI or hash"));
-
-    const QString source = QUrl::fromPercentEncoding(sourceParam.toLatin1());
 
     BitTorrent::InfoHash infoHash;
     if (const auto iter = m_torrentSourceCache.constFind(source); iter != m_torrentSourceCache.constEnd())
