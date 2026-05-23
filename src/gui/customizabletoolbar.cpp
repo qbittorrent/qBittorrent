@@ -182,6 +182,7 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     m_floatLabel->move(clampedX, clampedY);
 
     const int dragFloatLeft = mapFromGlobal(QPoint(clampedX, 0)).x();
+    const int dragFloatRight = mapFromGlobal(QPoint(clampedX + fw, 0)).x();
     const int dragFloatCentre = mapFromGlobal(QPoint(clampedX + fw / 2, 0)).x();
     const bool movingLeft = (dragFloatCentre < m_lastFloatCentreX);
     m_lastFloatCentreX = dragFloatCentre;
@@ -212,7 +213,7 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         }
 
         // Use float left edge for separators when moving left, centre otherwise
-        const int compareX = (a->isSeparator() && movingLeft) ? dragFloatLeft : dragFloatCentre;
+        const int compareX = a->isSeparator() ? (movingLeft ? dragFloatLeft : dragFloatRight) : dragFloatCentre;
         if (compareX < threshold)
         {
             newInsertBefore = a;
