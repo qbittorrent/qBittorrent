@@ -86,7 +86,8 @@ namespace
 
     void normalExitHandler(const int signum)
     {
-        const char *msgs[] = {"Catching signal: ", sysSigName[signum], "\nExiting cleanly\n"};
+        const char *sigName = ((signum >= 0) && (signum < std::ssize(sysSigName))) ? sysSigName[signum] : "UNKNOWN";
+        const char *msgs[] = {"Catching signal: ", sigName, "\nExiting cleanly\n"};
         std::ranges::for_each(msgs, safePrint);
         signal(signum, SIG_DFL);
         QMetaObject::invokeMethod(qApp, [] { QCoreApplication::exit(); }, Qt::QueuedConnection);  // unsafe, but exit anyway
@@ -99,7 +100,7 @@ namespace
             "Please file a bug report at https://bug.qbittorrent.org and provide the following information:\n\n"
             "qBittorrent version: " QBT_VERSION "\n\n"
             "Caught signal: ";
-        const char *sigName = sysSigName[signum];
+        const char *sigName = ((signum >= 0) && (signum < std::ssize(sysSigName))) ? sysSigName[signum] : "UNKNOWN";
         const std::string stacktrace = getStacktrace();
 
         const char *msgs[] = {msg, sigName, "\n```\n", stacktrace.c_str(), "```\n\n"};
