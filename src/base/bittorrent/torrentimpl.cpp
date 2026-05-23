@@ -513,8 +513,18 @@ void TorrentImpl::setSavePath(const Path &path)
     const Path basePath = m_session->useCategoryPathsInManualMode()
             ? m_session->categorySavePath(category()) : m_session->savePath();
     const Path resolvedPath = (path.isAbsolute() ? path : (basePath / path));
-    if (resolvedPath == savePath())
+    const Path currentSavePath = savePath();
+    if (resolvedPath == currentSavePath)
         return;
+
+    const Path canonicalPath = Utils::Fs::toCanonicalPath(resolvedPath);
+    if (!canonicalPath.isEmpty() && (canonicalPath == Utils::Fs::toCanonicalPath(currentSavePath)))
+    {
+        m_savePath = resolvedPath;
+        m_session->handleTorrentSavePathChanged(this);
+        deferredRequestResumeData();
+        return;
+    }
 
     if (isFinished() || m_hasFinishedStatus || downloadPath().isEmpty())
     {
