@@ -86,7 +86,7 @@ public:
     virtual int memoryWorkingSetLimit() const = 0;
     virtual void setMemoryWorkingSetLimit(int size) = 0;
 
-    virtual void sendTestEmail() const = 0;
+    virtual void sendTestEmail() = 0;
 
 #ifdef Q_OS_WIN
     virtual MemoryPriority processMemoryPriority() const = 0;
