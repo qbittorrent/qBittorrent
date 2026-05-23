@@ -116,12 +116,17 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 void Server::incomingConnection(const qintptr socketDescriptor)
 {
     std::unique_ptr<QTcpSocket> serverSocket = isHttps() ? std::make_unique<QSslSocket>(this) : std::make_unique<QTcpSocket>(this);
-    if (!serverSocket->setSocketDescriptor(socketDescriptor))
-        return;
 
     if (m_connections.size() >= CONNECTIONS_LIMIT)
     {
+        serverSocket->close();
         qWarning("Too many connections. Exceeded CONNECTIONS_LIMIT (%d). Connection closed.", CONNECTIONS_LIMIT);
+        return;
+    }
+
+    if (!serverSocket->setSocketDescriptor(socketDescriptor))
+    {
+        serverSocket->close();
         return;
     }
 
