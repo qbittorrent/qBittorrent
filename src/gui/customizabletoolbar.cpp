@@ -146,7 +146,7 @@ void CustomizableToolBar::startDrag(QWidget *widget, const QPoint &globalPos)
     // Snapshot BEFORE making transparent
     const QPixmap snap = widget->grab();
 
-    // Make drag widget invisible but keep it in layout â€” no reflow
+    // Make drag widget invisible but keep it in layout, avoiding reflow
     auto *effect = new QGraphicsOpacityEffect(widget);
     effect->setOpacity(0.0);
     widget->setGraphicsEffect(effect);
@@ -177,45 +177,62 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     const QPoint toolbarTopLeft = mapToGlobal(QPoint(0, 0));
     const int boundaryGX = getBoundaryGlobalX();
 
-    const int clampedX = qBound(toolbarTopLeft.x(), globalPos.x() - m_dragOffsetX, boundaryGX - fw - 1);
+    const int clampedX = qBound(toolbarTopLeft.x(), globalPos.x() - m_dragOffsetX, boundaryGX - fw + 20);
     const int clampedY = toolbarTopLeft.y() + (height() - fh) / 2;
     m_floatLabel->move(clampedX, clampedY);
 
-    // Find which neighbour the float centre is over
-    const int floatCentreX = mapFromGlobal(QPoint(clampedX + fw / 2, 0)).x();
+    const int dragFloatLeft = mapFromGlobal(QPoint(clampedX, 0)).x();
+    const int dragFloatCentre = mapFromGlobal(QPoint(clampedX + fw / 2, 0)).x();
+    const bool movingLeft = (dragFloatCentre < m_lastFloatCentreX);
+    m_lastFloatCentreX = dragFloatCentre;
+
     const int bi = findBoundaryIndex();
     const QList<QAction *> acts = actions();
 
     QAction *newInsertBefore = (bi >= 0) ? acts[bi] : nullptr;
+    bool foundFirst = false;
     for (int i = 0; i < bi; ++i)
     {
         QAction *a = acts[i];
         if (a == m_dragAction)
             continue;
         QWidget *w = widgetForAction(a);
-        if (!w)
+        if (!w && !a->isSeparator())
             continue;
-        if (floatCentreX < w->x() + w->width() / 2)
+
+        int threshold = 0;
+        if (a->isSeparator())
+        {
+            threshold = w ? w->x() + w->width() : 0;
+        }
+        else
+        {
+            threshold = !foundFirst ? w->x() + w->width() : w->x() + w->width() / 2;
+            foundFirst = true;
+        }
+
+        // Use float left edge for separators when moving left, centre otherwise
+        const int compareX = (a->isSeparator() && movingLeft) ? dragFloatLeft : dragFloatCentre;
+        if (compareX < threshold)
         {
             newInsertBefore = a;
             break;
         }
     }
 
-    // Only swap when target slot changes — one atomic reorder per crossing
+    // Only swap when target slot changes, one atomic reorder per crossing
     if (newInsertBefore == m_gapTarget)
         return;
 
     m_gapTarget = newInsertBefore;
 
-    // Briefly hide the drag widget during reorder to avoid flash
+    // Briefly remove opacity effect during reorder, reapply to new widget
     if (m_dragWidget)
         m_dragWidget->setGraphicsEffect(nullptr);
 
     removeAction(m_dragAction);
     insertAction(m_gapTarget, m_dragAction);
 
-    // Restore opacity effect on new widget
     QWidget *newWidget = widgetForAction(m_dragAction);
     if (newWidget)
     {
@@ -240,11 +257,11 @@ void CustomizableToolBar::endDrag(const QPoint &globalPos)
     delete m_floatLabel;
     m_floatLabel = nullptr;
 
-    // Remove opacity effect â€” restore widget appearance
+    // Remove opacity effect, restore widget appearance
     if (m_dragWidget)
         m_dragWidget->setGraphicsEffect(nullptr);
 
-    // Reorder already committed live in updateDrag — just save state
+    // Reorder already committed live in updateDrag, just save state
     emit actionOrderChanged();
 
     m_gapTarget = nullptr;

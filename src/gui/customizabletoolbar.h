@@ -48,6 +48,7 @@ private:
     QTimer *m_dragTimer = nullptr;
     QPoint m_dragStartPos;
     int m_dragOffsetX = 0;
+    int m_lastFloatCentreX = 0;
     bool m_dragging = false;
     bool m_dragJustFinished = false;
 };
