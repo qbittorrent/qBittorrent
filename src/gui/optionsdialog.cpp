@@ -440,6 +440,21 @@ void OptionsDialog::loadBehaviorTabOptions()
 
 #ifdef Q_OS_WIN
     m_ui->assocPanel->hide();
+    connect(m_ui->buttonRestoreMagnetProtocolRegistration, &QAbstractButton::clicked, this, [this, pref]
+    {
+        const bool restored = pref->restoreMagnetProtocolRegistration();
+        if (restored)
+        {
+            QMessageBox::information(this, tr("Magnet protocol registration repaired")
+                    , tr("Magnet protocol registration has been repaired. You can now choose qBittorrent as the default app for magnet links in Windows."));
+        }
+        else
+        {
+            qWarning() << "Failed to repair magnet protocol registration";
+            QMessageBox::warning(this, tr("Magnet protocol registration repair failed")
+                    , tr("Could not repair magnet protocol registration. Check the execution log for details."));
+        }
+    });
 #endif
 
 #ifdef Q_OS_MAC

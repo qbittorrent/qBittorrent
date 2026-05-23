@@ -130,6 +130,7 @@ public:
 #ifdef Q_OS_WIN
     bool WinStartup() const;
     void setWinStartup(bool b);
+    bool restoreMagnetProtocolRegistration() const;
 #endif
 
     // Downloads
