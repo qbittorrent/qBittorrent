@@ -73,7 +73,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             ElementTree.indent(root, ' ')
 
             # workaround_1: cannot use `xml_declaration=True` since it uses single quotes instead of Qt preferred double quotes
-            ret = f'<?xml version="1.0" encoding="UTF-8"?>\n{ElementTree.tostring(root, 'unicode')}\n'
+            ret = f'<?xml version="1.0" encoding="UTF-8"?>\n{ElementTree.tostring(root, "unicode")}\n'
 
             # workaround_2b: ElementTree will turn `&quot;` into `&amp;quot;`, so revert it back
             ret = ret.replace('&amp;quot;', '&quot;')
