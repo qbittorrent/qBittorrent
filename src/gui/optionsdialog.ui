@@ -724,7 +724,7 @@
                      <item>
                       <widget class="QPushButton" name="buttonRestoreMagnetProtocolRegistration">
                        <property name="text">
-                        <string>Repair magnet protocol registration</string>
+                        <string>Restore magnet protocol registration</string>
                        </property>
                       </widget>
                      </item>

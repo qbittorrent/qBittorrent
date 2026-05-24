@@ -494,17 +494,6 @@ void Preferences::setWinStartup(const bool b)
         settings.remove(profileID);
     }
 }
-
-bool Preferences::restoreMagnetProtocolRegistration() const
-{
-    QSettings magnetProtocol {u"HKEY_CURRENT_USER\\Software\\Classes\\magnet"_s, QSettings::NativeFormat};
-    magnetProtocol.setValue(u"."_s, u"URL:Magnet URI"_s);
-    magnetProtocol.setValue(u"Content Type"_s, u"application/x-magnet"_s);
-    magnetProtocol.setValue(u"URL Protocol"_s, QString());
-    magnetProtocol.sync();
-
-    return (magnetProtocol.status() == QSettings::NoError);
-}
 #endif // Q_OS_WIN
 
 QString Preferences::getStyle() const
