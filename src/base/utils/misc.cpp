@@ -123,7 +123,7 @@ QString Utils::Misc::friendlyUnitCompact(const qint64 bytes)
     int precision = 0;          // >= 100
     if (result->value < 10)
         precision = 2;          // 0 - 9.99
-    if (result->value < 100)
+    else if (result->value < 100)
         precision = 1;          // 10 - 99.9
 
     return Utils::String::fromDouble(result->value, precision)
