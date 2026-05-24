@@ -356,6 +356,10 @@ public:
     void setDNSLastIP(const QString &ip);
     QByteArray getMainGeometry() const;
     void setMainGeometry(const QByteArray &geometry);
+#ifdef Q_OS_MACOS
+    bool isMainWindowMaximized() const;
+    void setMainWindowMaximized(bool value);
+#endif // Q_OS_MACOS
     bool isFiltersSidebarVisible() const;
     void setFiltersSidebarVisible(bool value);
     int getFiltersSidebarWidth() const;
