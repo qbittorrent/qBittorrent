@@ -80,6 +80,7 @@
 #include <QFileInfo>
 #include <QLocalServer>
 #include <QLocalSocket>
+#include <QSysInfo>
 
 #include "base/path.h"
 #include "base/utils/bytearray.h"
@@ -111,10 +112,14 @@ bool QtLocalPeer::isClient()
         if (m_lockFile.error() != QLockFile::LockFailedError)
             return true;
 
-        if (getLockInfo())
+        if (const std::optional<LockInfo> lockInfo = getLockInfo())
         {
-            // Containers can inherit the same machine ID while changing hostnames
-            // across recreations. Let QLockFile decide whether the lock is stale.
+            if ((lockInfo->hostid == QSysInfo::machineUniqueId())
+                    && (lockInfo->hostname == QSysInfo::machineHostName()))
+            {
+                return true;
+            }
+
             if (!m_lockFile.removeStaleLockFile() || !m_lockFile.tryLock())
                 return true;
         }
