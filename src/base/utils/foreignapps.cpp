@@ -164,7 +164,7 @@ namespace
         const QFileInfoList dirs = QDir(u"C:/"_s).entryInfoList({u"Python*"_s}, QDir::Dirs, (QDir::Name | QDir::Reversed));
         for (const QFileInfo &info : dirs)
         {
-            const Path absPath {info.absolutePath()};
+            const Path absPath {info.absoluteFilePath()};
 
             if (const Path path = (absPath / Path(u"python3.exe"_s)); path.exists())
                 ret.append(path);
