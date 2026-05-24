@@ -77,13 +77,13 @@
 
 class QLocalServer;
 
-class QtLocalPeer final : public QObject
+class LocalPeer final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(QtLocalPeer)
+    Q_DISABLE_COPY_MOVE(LocalPeer)
 
 public:
-    QtLocalPeer(const QString &path, QObject *parent = nullptr);
+    LocalPeer(const QString &path, QObject *parent = nullptr);
 
     bool isClient();
     bool sendMessage(const QString &message, int timeout);
