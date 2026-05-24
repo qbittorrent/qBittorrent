@@ -44,6 +44,9 @@
 #include <QRegularExpression>
 #include <QThread>
 
+#include <string>
+#include <vector>
+
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -104,6 +107,45 @@ namespace
         for (const Tag &setValue : input)
             entryList.emplace_back(setValue.toString().toStdString());
         return entryList;
+    }
+
+    void preserveSparseTrackerTiers(lt::add_torrent_params &params, const lt::bdecode_node &resumeDataRoot)
+    {
+        const lt::bdecode_node trackersNode = resumeDataRoot.dict_find_list("trackers");
+        if (trackersNode.type() != lt::bdecode_node::list_t)
+            return;
+
+        std::vector<std::string> trackers;
+        std::vector<int> trackerTiers;
+
+        for (int tier = 0; tier < trackersNode.list_size(); ++tier)
+        {
+            const lt::bdecode_node tierNode = trackersNode.list_at(tier);
+            if (tierNode.type() == lt::bdecode_node::string_t)
+            {
+                const lt::string_view tracker = tierNode.string_value();
+                if (!tracker.empty())
+                {
+                    trackers.emplace_back(tracker);
+                    trackerTiers.push_back(tier);
+                }
+            }
+            else if (tierNode.type() == lt::bdecode_node::list_t)
+            {
+                for (int i = 0; i < tierNode.list_size(); ++i)
+                {
+                    const lt::string_view tracker = tierNode.list_string_value_at(i);
+                    if (!tracker.empty())
+                    {
+                        trackers.emplace_back(tracker);
+                        trackerTiers.push_back(tier);
+                    }
+                }
+            }
+        }
+
+        if (trackers == params.trackers)
+            params.tracker_tiers = std::move(trackerTiers);
     }
 }
 
@@ -309,6 +351,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     p = lt::read_resume_data(resumeDataRoot, ec);
     if (ec)
         return nonstd::make_unexpected(tr("Cannot parse resume data: %1").arg(QString::fromStdString(ec.message())));
+    preserveSparseTrackerTiers(p, resumeDataRoot);
 
     if (!metadata.isEmpty())
     {
