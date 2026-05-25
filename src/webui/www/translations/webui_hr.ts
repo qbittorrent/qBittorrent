@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Ograničenje najvećeg broja mjesta za slanje po torrentu mora biti veći od 0 ili onemogućeno.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Nije moguće spremiti postavke programa. qBittorrent je vjerojatno nedostupan.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>Peer DSCP mora biti između 0 i 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Budući da nije moguće spremiti postavke, qBittorrent je vjerojatno nedostupan.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Nije moguće dodati torrente.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Greška:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Jezik</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
         <translation>I2P ulazna duljina:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Dodaje tekst u naslov prozora kako bi lakše razlikovao qBittorent instance</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>WebUI korisničko ime mora imati najmanje 3 znaka.</translation>
     </message>
@@ -2231,36 +2219,36 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
         <translation>Točka diferenciranog koda usluga (DSCP) za veze s peerovima</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>WebUI korisničko ime ne smije sadržavati dvotočku.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Format datuma:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Zadana postavka preglednika</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Lokalizacija</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Kompaktno</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Gustoća prikaza:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Dodaje tekst naslovu prozora kako bi pomogao razlikovati qBittorrent instance</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Rješavanje imena peer hostova:</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Dostupnost:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
         <translation>Poslano</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Preuzmanje u sesiji</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Slanje u sesiji</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Preostalo</translation>
@@ -3086,16 +3064,16 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
         <translation>Status ikona</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Sesija Poslano</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Sesija Preuzeto</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Stvoreno na</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4154,16 @@ Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</t
         <translation>Osvježi karticu</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Otvori prozor za preuzimanje</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Korištenje kao tekst za pretraživanje</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Zaustavi pretraživanje</translation>
     </message>
 </context>
 <context>
@@ -4579,7 +4557,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Potvrda brisanja preuzetih epizoda</translation>
     </message>
 </context>
 <context>
@@ -4830,7 +4808,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Kategorija ne postoji</translation>
     </message>
 </context>
 <context>

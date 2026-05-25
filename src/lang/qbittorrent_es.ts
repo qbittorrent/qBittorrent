@@ -4,12 +4,12 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
         <translation>El punto de conexión no existe.</translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
         <translation>Faltan parámetros obligatorios: %1</translation>
     </message>
@@ -105,13 +105,9 @@
         <translation>Un cliente BitTorrent avanzado programado en C++, basado en el toolkit Qt y en libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">Copyright %1 2006-2025 El Proyecto qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright %1 2006-2026 El proyecto qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -917,7 +913,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="774"/>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Añada el texto al título de la ventana para ayudar a distinguir las instancias de qBittorrent.</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="835"/>
@@ -1120,10 +1116,6 @@
         <location filename="../gui/advancedsettings.cpp" line="768"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>No permitir la conexión a pares en puertos privilegiados</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Añade el texto al título de la ventana para ayudar a distinguir las instancias de qBittorent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="775"/>
@@ -1404,17 +1396,17 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="911"/>
         <source>WebUI username must be at least 3 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>El nombre de usuario de la interfaz web debe tener al menos 3 caracteres</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="913"/>
         <source>WebUI username cannot contain a colon</source>
-        <translation type="unfinished"></translation>
+        <translation>El nombre de usuario de la interfaz web no puede contener dos puntos</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="920"/>
         <source>WebUI password must be at least 6 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>La contraseña de la interfaz web debe tener al menos 6 caracteres.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1224"/>
@@ -1678,25 +1670,6 @@
         <location filename="../base/asyncfilestorage.cpp" line="46"/>
         <source>Could not create directory &apos;%1&apos;.</source>
         <translation>No se pudo crear el directorio &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">WebAPI: falló el inicio de sesión. Razón: IP prohibida, IP: %1, usuario: %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">Tu dirección IP ha sido bloqueada después múltiples intentos de autenticación fallidos.</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">WebAPI: inicio de sesión exitoso. IP: %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">WebAPI: falló el inicio de sesión. Razón: credenciales invalidas, intento número: %1, IP: %2, usuario: %3</translation>
     </message>
 </context>
 <context>
@@ -3553,17 +3526,17 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>El tamaño de la solicitud Http excede la limitación, cerrando el socket. Límite:% 1, IP:% 2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation>Mal método de solicitud Http, cerrando socket. IP: %1. Método: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>Petición HTTP errónea, cerrando socket. IP: %1</translation>
     </message>
@@ -4531,112 +4504,117 @@ Requisito mínimo: %2.</translation>
         <translation>Redirigido al URI magnético</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>No se encontró el nombre de host remoto (nombre de host no válido)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>La operación ha sido cancelada</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>El servidor remoto cerró la conexión antes de tiempo, antes de que se recibiera y procesara la respuesta completa</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>La conexión con el servidor remoto ha expirado</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Fallo en la negociación SSL/TLS</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>El servidor remoto ha rechazado la conexión</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>La conexión al servidor proxy ha sido rechazada</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>El servidor proxy cerró la conexión antes de tiempo</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>No se encontró el nombre del host proxy</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Se agotó el tiempo de conexión con el proxy o el proxy no respondió a tiempo a la solicitud enviada</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>El proxy requiere autenticación para completar la petición, pero no acepta las credenciales ofrecidas</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation>El acceso al contenido remoto ha sido rechazado (403)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation>El servidor remoto requiere autenticación para servir el contenido, pero las credenciales introducidas no fueron aceptadas (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>No se permite la operación solicitada sobre el contenido remoto</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>El contenido remoto no se encontró en el servidor (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>La API de acceso a red no puede realizar la petición porque el protocolo es desconocido</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>La operación solicitada no es válida para este protocolo</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>Se ha detectado un error desconocido relacionado con la red</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Se ha detectado un error desconocido relacionado con el proxy</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Un error desconocido relacionado con el contenido remoto fue detectado</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Una violación de protocolo fue detectada</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>Error desconocido</translation>
     </message>
@@ -11609,10 +11587,6 @@ Por favor, elija otro nombre.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unable to edit category</source>
-        <translation type="vanished">No se pudo editar la categoría</translation>
-    </message>
-    <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
         <source>File name has invalid characters</source>
         <translation>El nombre del archivo tiene caracteres no válidos</translation>
@@ -12355,16 +12329,6 @@ Por favor, elija otro nombre.</translation>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>Subido</translation>
-    </message>
-    <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Desc. Sesión</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Sub. Sesión</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
@@ -13128,22 +13092,22 @@ Por favor, elija otro nombre.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">WebAPI: falló el inicio de sesión. Razón: IP prohibida, IP: %1, usuario: %2</translation>
+        <translation>WebAPI: falló el inicio de sesión. Razón: IP prohibida, IP: %1, usuario: %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Tu dirección IP ha sido bloqueada después múltiples intentos de autenticación fallidos.</translation>
+        <translation>Tu dirección IP ha sido bloqueada después múltiples intentos de autenticación fallidos.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">WebAPI: inicio de sesión exitoso. IP: %1</translation>
+        <translation>WebAPI: inicio de sesión exitoso. IP: %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">WebAPI: falló el inicio de sesión. Razón: credenciales invalidas, intento número: %1, IP: %2, usuario: %3</translation>
+        <translation>WebAPI: falló el inicio de sesión. Razón: credenciales invalidas, intento número: %1, IP: %2, usuario: %3</translation>
     </message>
 </context>
 <context>

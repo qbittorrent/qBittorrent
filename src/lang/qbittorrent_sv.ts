@@ -4,12 +4,12 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
         <translation>Slutpunkten finns inte</translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
         <translation>Saknar obligatoriska parametrar: %1</translation>
     </message>
@@ -105,13 +105,9 @@
         <translation>En avancerad BitTorrent-klient programmerad i C++, baserad på Qt-ramverket och libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">Copyright %1 2006-2025 The qBittorrent project</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright %1 2006-2026 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -766,7 +762,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="487"/>
         <source>Fastresume files</source>
-        <translation>Snabbåteruppta filer</translation>
+        <translation>Fastresume-filer</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="488"/>
@@ -846,7 +842,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="586"/>
         <source>Disk cache expiry interval</source>
-        <translation>Intervall för diskcache utgångsdatum</translation>
+        <translation>Utgångsintervall för diskcache</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="594"/>
@@ -902,12 +898,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="722"/>
         <source>0 (permanent lease)</source>
-        <translation>0 (permanent anslutning)</translation>
+        <translation>0 (permanent tilldelning)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="723"/>
         <source>UPnP lease duration [0: permanent lease]</source>
-        <translation>UPnP-anslutningstid [0: permanent anslutning]</translation>
+        <translation>UPnP-anslutningstid [0: permanent tilldelning]</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="729"/>
@@ -917,7 +913,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="774"/>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Den lägger till texten i fönsterrubriken för att hjälpa till att skilja qBittorrent-instanser åt</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="835"/>
@@ -1120,10 +1116,6 @@
         <location filename="../gui/advancedsettings.cpp" line="768"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Tillåt inte anslutning till jämlikar på privilegierade portar</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Den lägger till texten till fönstertiteln för att hjälpa till att särskilja qBittorent-instanser</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="775"/>
@@ -1404,17 +1396,17 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="911"/>
         <source>WebUI username must be at least 3 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamnet för webbanvändargränssnittet måste vara minst 3 tecken långt</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="913"/>
         <source>WebUI username cannot contain a colon</source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamnet för webbanvändargränssnittet får inte innehålla ett kolon</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="920"/>
         <source>WebUI password must be at least 6 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenordet för webbanvändargränssnittet måste vara minst 6 tecken långt</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1224"/>
@@ -1443,12 +1435,12 @@
     <message>
         <location filename="../app/application.cpp" line="324"/>
         <source>Running in portable mode. Auto detected profile folder at: %1</source>
-        <translation>Körs i bärbart läge. Automatisk upptäckt profilmapp i: %1</translation>
+        <translation>Körs i portabelt läge. Automatisk upptäckt profilmapp i: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="326"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
-        <translation>Redundant kommandoradsflagga upptäckt: &quot;%1&quot;. Bärbartläge innebär relativ fastresume.</translation>
+        <translation>Redundant kommandoradsflagga upptäckt: &quot;%1&quot;. Portabelt innebär relativ fastresume.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="330"/>
@@ -1681,25 +1673,6 @@
     </message>
 </context>
 <context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">WebAPI-inloggningsfel. Orsak: IP-adressen har förbjudits, IP: %1, användarnamn: %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">Din IP-adress har förbjudits efter alltför många misslyckade autentiseringsförsök.</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">WebAPI-inloggning lyckades. IP: %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">WebAPI-inloggningsfel. Orsak: ogiltiga inloggningsuppgifter, antal försök: %1, IP: %2, användarnamn: %3</translation>
-    </message>
-</context>
-<context>
     <name>AutomatedRssDownloader</name>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
@@ -1823,7 +1796,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="111"/>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Säsongsnummer är ett krav för värden över noll</translation>
+        <translation>Säsongsnumret måste vara ett värde som inte är noll</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="113"/>
@@ -2582,7 +2555,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6645"/>
         <source>Failed to load additional trackers from file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Det gick inte att ladda ytterligare spårare från filen. Orsak: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5338"/>
@@ -2604,7 +2577,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2754"/>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2765"/>
         <source>Detected an attempt to add a duplicate torrent. Existing torrent: &quot;%1&quot;. Torrent infohash: %2. Result: %3</source>
-        <translation>Upptäckte ett försök att lägga till en duplicerad torrent. Källa: %1. Torrent infohash: %2. Resultat: %3</translation>
+        <translation>Upptäckte ett försök att lägga till en duplicerad torrent. Befintlig torrent: &quot;%1&quot;. Torrent-infohash: %2. Resultat: %3</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5332"/>
@@ -2983,7 +2956,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../app/cmdoptions.cpp" line="528"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
-        <translation>Hacka in i libtorrents fastresume-filer och skapa filsökvägar relativa till profilmappen</translation>
+        <translation>Ändra libtorrents fastresume-filer och gör filsökvägarna relativa till profilmappen</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="530"/>
@@ -3043,7 +3016,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
-        <translation>Alternativvärden kan levereras via miljövariabler. För alternativ som heter &quot;parameter-name&quot; är miljövariabelnamnet &quot;QBT_PARAMETER_NAME&quot; (i övre fallet är &quot;-&quot; ersatt med &quot;_&quot;). För att skicka flaggvärden anger du variabeln till &quot;1&quot; eller &quot;TRUE&quot;. Till exempel, för att inaktivera startskärmen:</translation>
+        <translation>Alternativvärden kan anges via miljövariabler. För alternativet &quot;parameter-name&quot; är miljövariabelnamnet &quot;QBT_PARAMETER_NAME&quot; (med versaler och &quot;-&quot; ersatt med &quot;_&quot;). Ange variabeln till &quot;1&quot; eller &quot;TRUE&quot; för att skicka flaggvärden. Till exempel, för att inaktivera startskärmen:</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="554"/>
@@ -3438,7 +3411,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="264"/>
         <source>IP filter line %1 is malformed. End IP is lower than Start IP!</source>
-        <translation type="unfinished"></translation>
+        <translation>IP-filterraden %1 är felaktigt formaterad. Slut-IP är lägre än start-IP!</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="280"/>
@@ -3553,17 +3526,17 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>HTTP-förfrågans storlek överskrider begränsningen, stänger uttag. Gräns: %1, IP: %2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation>Dålig HTTP-förfrågningsmetod, stänger uttag. IP: %1. Metod: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>Dålig http-förfrågan, stänger uttag. IP: %1</translation>
     </message>
@@ -4100,7 +4073,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <location filename="../gui/mainwindow.cpp" line="346"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fönster</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="472"/>
@@ -4375,12 +4348,12 @@ Minimikrav: %2.</translation>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1955"/>
         <source>Failed MD5 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation>Misslyckades med MD5-hashkontroll för Python-installationsprogrammet. Fil: &quot;%1&quot;. Resultat hash: &quot;%2&quot;. Förväntad hash: &quot;%3&quot;.</translation>
+        <translation>Misslyckades med MD5-hashkontroll för Python-installationsprogrammet. Fil: &quot;%1&quot;. Resultathash: &quot;%2&quot;. Förväntad hash: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1967"/>
         <source>Failed SHA3-512 hash check for Python installer. File: &quot;%1&quot;. Result hash: &quot;%2&quot;. Expected hash: &quot;%3&quot;.</source>
-        <translation>Misslyckades med SHA3-512-hashkontroll för Python-installeraren. Fil: &quot;%1&quot;. Resultat hash: &quot;%2&quot;. Förväntad hash: &quot;%3&quot;.</translation>
+        <translation>Misslyckades med SHA3-512-hashkontroll för Python-installeraren. Fil: &quot;%1&quot;. Resultathash: &quot;%2&quot;. Förväntad hash: &quot;%3&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1988"/>
@@ -4463,7 +4436,7 @@ Minimikrav: %2.</translation>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="193"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
-        <translation>Dynamiskt DNS-fel: Tjänsten är tillfälligt otillgänglig, den kommer att försöka återupptas om 30 minuter.</translation>
+        <translation>Dynamiskt DNS-fel: Tjänsten är tillfälligt otillgänglig, ett nytt försök görs om 30 minuter.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="204"/>
@@ -4530,112 +4503,117 @@ Minimikrav: %2.</translation>
         <translation>Omdirigerad till magnet-URI</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Fjärrvärdens namn hittades inte (ogiltigt värdnamn)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>Operationen avbröts</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Fjärrservern stängde anslutningen för tidigt innan hela svaret mottogs och behandlades</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>Anslutningen till fjärrservern översteg tidsgränsen</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS-handskakning misslyckades</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>Fjärrservern nekade anslutningen</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Anslutningen till proxyservern nekades</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Proxyservern stängde anslutningen i förtid</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>Proxyserverns värdnamn hittades inte</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Anslutningen till proxyservern översteg tidsgränsen eller så svarade inte proxyservern i tid på den skickade förfrågan</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Proxyservern kräver autentisering för att hedra begäran men accepterade inte några referenser som erbjuds</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation>Åtkomst till fjärrinnehållet nekades (403)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation>Fjärrservern kräver autentisering för att leverera innehållet, men de angivna inloggningsuppgifterna accepterades inte (401).</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Åtgärden som begärdes på fjärrinnehållet är inte tillåten</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Fjärrinnehållet hittades inte på servern (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>API för nätverksåtkomst kan inte behandla begäran därför att protokollet inte är känt</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Den begärda åtgärden är ogiltig för detta protokoll</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>Ett okänt nätverksrelaterat fel upptäcktes</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Ett okänt proxyrelaterat fel upptäcktes</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Ett okänt fel relaterat till fjärrinnehållet upptäcktes</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Ett haveri i protokollet upptäcktes</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>Okänt fel</translation>
     </message>
@@ -6135,12 +6113,12 @@ Minimikrav: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="722"/>
         <source>Show speed in Dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa hastighet i Dock</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="729"/>
         <source>Show qBittorrent in menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa qBittorrent i menyfältet</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="806"/>
@@ -6175,7 +6153,7 @@ Minimikrav: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1042"/>
         <source>The torrent will be added to the top of the download queue</source>
-        <translation>Torrenten kommer att läggas till överst i hämtningsslistan</translation>
+        <translation>Torrenten kommer att läggas till överst i hämtningslistan</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1045"/>
@@ -6251,7 +6229,7 @@ Minimikrav: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2161"/>
         <source>If checked, hostname lookups are done via the proxy</source>
-        <translation>Vid aktivering, görs värdnamnsuppslag via proxy</translation>
+        <translation>Om detta är aktiverat görs värdnamnsuppslag via proxyn</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2164"/>
@@ -6508,7 +6486,7 @@ Inaktivera kryptering: Anslut endast till jämlikar utan protokollkryptering</tr
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
         <translation>IP-adress som webbgränssnittet kommer att binda till.
-Ange en IPv4- eller IPv6-adress. Du kan ange &quot;0.0.0.0&quot; för någon IPv4-adress,
+Ange en IPv4- eller IPv6-adress. Du kan ange &quot;0.0.0.0&quot; för valfri IPv4-adress,
 &quot;::&quot; för alla IPv6-adresser, eller &quot;*&quot; för både IPv4 och IPv6.</translation>
     </message>
     <message>
@@ -6547,7 +6525,7 @@ Ange en IPv4- eller IPv6-adress. Du kan ange &quot;0.0.0.0&quot; för någon IPv
     <message>
         <location filename="../gui/optionsdialog.ui" line="3890"/>
         <source>Ban client after consecutive failures:</source>
-        <translation>Förbud mot klient efter påföljande misslyckanden:</translation>
+        <translation>Förbjud klient efter upprepade misslyckanden:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3897"/>
@@ -6581,11 +6559,11 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</source>
-        <translation>Vitlista för filtrering av HTTP-värddatorrubrikvärden.
-För att försvara dig mot DNS-återbindingsattacker, bör du lägga in
+        <translation>Vitlista för filtrering av värden i HTTP-värdrubriken.
+För att skydda dig mot DNS-återbindingsattacker bör du ange
 domännamn som används av servern för webbanvändargränssnittet.
 
-Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertecknet &quot;*&quot;.</translation>
+Använd &quot;;&quot; för att dela upp flera poster. Du kan använda jokertecknet &quot;*&quot;.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3699"/>
@@ -6615,7 +6593,7 @@ Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertec
     <message>
         <location filename="../gui/optionsdialog.ui" line="4134"/>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation>Ange omvänd proxy-IP:er (eller undernät, t.ex. 0.0.0.0/24) för att använda vidarebefordrad klientadress (X-Forwarded-For header). Använd &apos;;&apos; för att dela upp flera poster.</translation>
+        <translation>Ange IP-adresser för omvänd proxy (eller undernät, t.ex. 0.0.0.0/24) för att använda vidarebefordrad klientadress (X-Forwarded-For-rubrik). Använd &apos;;&apos; för att dela upp flera poster.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4159"/>
@@ -7110,10 +7088,10 @@ Filer som matchar något av filtren i den här listan kommer att ha sin priorite
 Använd nyrader för att separera flera poster. Kan använda jokertecken enligt beskrivningen nedan.
 *: matchar noll eller fler av alla tecken.
 ?: matchar valfritt tecken.
-[...]: uppsättningar av tecken kan representeras inom hakparenteser.
+[...]: teckenuppsättningar kan anges inom hakparenteser.
 
 Exempel
-*.exe: filtrera &apos;.exe&apos; filändelse.
+*.exe: filtrera filändelsen &apos;.exe&apos;.
 readme.txt: filtrera exakt filnamn.
 ?.txt: filtrera &apos;a.txt&apos;, &apos;b.txt&apos; men inte &apos;aa.txt&apos;.
 readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men inte &apos;readme10.txt&apos;.</translation>
@@ -7421,7 +7399,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.ui" line="2744"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation>Utbyta jämlikar med kompatibla BitTorrent-klienter (µTorrent, Vuze, ...)</translation>
+        <translation>Utbyt jämlikar med kompatibla BitTorrent-klienter (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2747"/>
@@ -7566,7 +7544,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.ui" line="4047"/>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation>Aktivera säkerhetsflagga för kaka (kräver HTTPS eller lokal värdanslutning)</translation>
+        <translation>Aktivera säkerhetsflaggan för kakor (kräver HTTPS eller localhost-anslutning)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4054"/>
@@ -7741,7 +7719,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1134"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
-        <translation>En torrent kommer att anses vara långsam om dess hämtnings- och sändningshastigheter ligger under dessa värden i sekunder med &quot;torrentinaktivitetstidtagare&quot;</translation>
+        <translation>En torrent anses vara långsam om dess hämtnings- och sändningshastigheter ligger under dessa värden under det antal sekunder som anges av &quot;torrentinaktivitetstidtagare&quot;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1351"/>
@@ -7842,12 +7820,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Teckenfel</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamnet för webbanvändargränssnittet får inte innehålla ett kolon</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2149"/>
@@ -8085,7 +8063,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; men int
         <location filename="../gui/properties/peerlistwidget.cpp" line="120"/>
         <source>Peer ID Client</source>
         <comment>i.e.: Client resolved from Peer ID</comment>
-        <translation>Jämlike ID-klient</translation>
+        <translation>Jämlikens klient-ID</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="121"/>
@@ -9452,7 +9430,7 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="46"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vissa sökmotorer söker i torrentbeskrivningar och torrentfilnamn också. Om sådana resultat kommer att visas i listan nedan styrs det av detta läge.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Överallt &lt;/span&gt;inaktiveras filtrering och allt visar som returneras av sökmotorerna.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Endast torrentnamn&lt;/span&gt; visar endast torrenter vars namn matchar sökfrågan.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vissa sökmotorer söker även i torrentbeskrivningar och torrentfilnamn. Detta läge styr om sådana resultat ska visas i listan nedan.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Överallt &lt;/span&gt;inaktiverar filtrering och visar allt som sökmotorerna returnerar.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Endast torrentnamn&lt;/span&gt; visar endast torrenter vars namn matchar sökfrågan.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="69"/>
@@ -10270,7 +10248,7 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/statsdialog.ui" line="105"/>
         <source>Read cache hits:</source>
-        <translation>Läscache träffar:</translation>
+        <translation>Träffar i läscache:</translation>
     </message>
     <message>
         <location filename="../gui/statsdialog.ui" line="184"/>
@@ -11604,11 +11582,7 @@ Välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1922"/>
         <source>Category does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to edit category</source>
-        <translation type="vanished">Det går inte att redigera kategori</translation>
+        <translation>Kategorin finns inte</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
@@ -12311,7 +12285,7 @@ Välj ett annat namn och försök igen.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Created On</source>
         <comment>Torrent was initially created on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skapad:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
@@ -12355,16 +12329,6 @@ Välj ett annat namn och försök igen.</translation>
         <translation>Skickat</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Hämtat denna session</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Skickat denna session</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
@@ -12396,13 +12360,13 @@ Välj ett annat namn och försök igen.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Session Downloaded</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hämtat denna session</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Session Uploaded</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Skickat denna session</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
@@ -12738,7 +12702,7 @@ Välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1279"/>
         <source>Can not force reannounce if torrent is Stopped/Queued/Errored/Checking</source>
-        <translation>Det går inte att tvinga återannonsering om torrenten är stoppad/köad/felaktig/kontrolleras</translation>
+        <translation>Det går inte att tvinga återannonsering om torrenten är stoppad/köad/har felstatus/kontrolleras</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1286"/>
@@ -13126,22 +13090,22 @@ Välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">WebAPI-inloggningsfel. Orsak: IP-adressen har förbjudits, IP: %1, användarnamn: %2</translation>
+        <translation>WebAPI-inloggningsfel. Orsak: IP-adressen har förbjudits, IP: %1, användarnamn: %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Din IP-adress har förbjudits efter alltför många misslyckade autentiseringsförsök.</translation>
+        <translation>Din IP-adress har förbjudits efter alltför många misslyckade autentiseringsförsök.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">WebAPI-inloggning lyckades. IP: %1</translation>
+        <translation>WebAPI-inloggning lyckades. IP: %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">WebAPI-inloggningsfel. Orsak: ogiltiga inloggningsuppgifter, antal försök: %1, IP: %2, användarnamn: %3</translation>
+        <translation>WebAPI-inloggningsfel. Orsak: ogiltiga inloggningsuppgifter, antal försök: %1, IP: %2, användarnamn: %3</translation>
     </message>
 </context>
 <context>

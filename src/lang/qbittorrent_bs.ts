@@ -4,12 +4,12 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
         <translation>Krajnja tačka ne postoji</translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
         <translation>Nedostaju obavezni parametri: %1</translation>
     </message>
@@ -105,13 +105,9 @@
         <translation>Napredni BitTorrent klijent programiran u C++, baziran na Qt alatima i libtorrent-rasterbar-u.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">Autorska prava %1 2006-2025 Projekt qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorska prava %1 2006-2026 Projekt qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -917,7 +913,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="774"/>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodaje tekst naslovu prozora kako bi se lakše razlikovale instance qBittorent-a</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="835"/>
@@ -1120,10 +1116,6 @@
         <location filename="../gui/advancedsettings.cpp" line="768"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Zabrani povezivanje s peer-ovima na privilegovanim portovima</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Dodaje tekst naslovu prozora kako bi se lakše razlikovale instance qBittorent-a</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="775"/>
@@ -1404,17 +1396,17 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="911"/>
         <source>WebUI username must be at least 3 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Korisničko ime za WebUI mora imati najmanje 3 znaka.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="913"/>
         <source>WebUI username cannot contain a colon</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI korisničko ime ne može sadržavati dvotačku.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="920"/>
         <source>WebUI password must be at least 6 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Lozinka za WebUI mora imati najmanje 6 znakova.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1224"/>
@@ -1678,25 +1670,6 @@ Razlog: %2</translation>
         <location filename="../base/asyncfilestorage.cpp" line="46"/>
         <source>Could not create directory &apos;%1&apos;.</source>
         <translation>Nije moguće kreirati direktorij &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">Prijava na WebAPI nije uspjela. Razlog: IP adresa je zabranjena, IP: %1, korisničko ime: %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">Vaša IP adresa je zabranjena nakon previše neuspjelih pokušaja autentifikacije.</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">Prijava na WebAPI je uspješna. IP adresa: %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">Prijava na WebAPI nije uspjela. Razlog: nevažeći akreditivi, broj pokušaja: %1, IP adresa: %2, korisničko ime: %3</translation>
     </message>
 </context>
 <context>
@@ -2582,7 +2555,7 @@ Podržava formate: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Formati datuma također
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6645"/>
         <source>Failed to load additional trackers from file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Neuspjelo učitavanje dodatnih trackera iz datoteke. Razlog: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5338"/>
@@ -3438,7 +3411,7 @@ Podržava formate: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Formati datuma također
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="264"/>
         <source>IP filter line %1 is malformed. End IP is lower than Start IP!</source>
-        <translation type="unfinished"></translation>
+        <translation>IP filter linija %1 je neispravna. Krajnja IP adresa je manja od početne IP adrese.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="280"/>
@@ -3553,17 +3526,17 @@ Podržava formate: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Formati datuma također
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>Veličina HTTP zahtjeva premašuje ograničenje, zatvara se socket. Ograničenje: %1, IP: %2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation>Loša metoda HTTP zahtjeva, zatvaranje socketa. IP: %1. Metoda: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>Loš HTTP zahtjev, zatvaranje socketa. IP adresa: %1</translation>
     </message>
@@ -4100,7 +4073,7 @@ Podržava formate: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Formati datuma također
     <message>
         <location filename="../gui/mainwindow.cpp" line="346"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>P&amp;rozor</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="472"/>
@@ -4529,112 +4502,117 @@ Minimalni zahtjev: %2.</translation>
         <translation>Preusmjereno na magnet URI</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Naziv udaljenog hosta nije pronađen (nevažeći naziv hosta)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>Operacija je otkazana</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Udaljeni server je prerano prekinuo vezu, prije nego što je cijeli odgovor primljen i obrađen</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>Vremensko ograničenje veze sa udaljenim serverom je isteklo</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS rukovanje nije uspjelo</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>Udaljeni server je odbio vezu</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Veza sa proxy serverom je odbijena</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Proxy server je prerano prekinuo vezu</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>Naziv proxy hosta nije pronađen</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Vremensko ograničenje veze s proxyjem je isteklo ili proxy nije na vrijeme odgovorio na poslani zahtjev</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Proxy zahtijeva autentifikaciju kako bi ispunio zahtjev, ali nije prihvatio ponuđene akreditive</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation>Pristup udaljenom sadržaju je odbijen (403)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation>Udaljeni server zahtijeva autentifikaciju za posluživanje sadržaja, ali uneseni podaci za prijavu nisu prihvaćeni (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Operacija zatražena na udaljenom sadržaju nije dozvoljena</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Udaljeni sadržaj nije pronađen na serveru (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>API za mrežni pristup ne može obraditi zahtjev jer protokol nije poznat</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Zatražena operacija nije važeća za ovaj protokol</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>Otkrivena je nepoznata greška povezana s mrežom</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Otkrivena je nepoznata greška povezana s proxyjem</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Otkrivena je nepoznata greška povezana sa udaljenim sadržajem</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Otkriven je kvar u protokolu</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>Nepoznata greška</translation>
     </message>
@@ -6134,12 +6112,12 @@ Minimalni zahtjev: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="722"/>
         <source>Show speed in Dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži brzinu u Docku</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="729"/>
         <source>Show qBittorrent in menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Prikaži qBittorrent u traci izbornika</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="806"/>
@@ -7841,12 +7819,12 @@ readme[0-9].txt: filtrira &apos;readme1.txt&apos;, &apos;readme2.txt&apos; ali n
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Greška u znaku</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Korisničko ime za WebUI ne može sadržavati dvotačku.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2149"/>
@@ -11603,11 +11581,7 @@ Molimo odaberite drugi naziv i pokušajte ponovo.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1922"/>
         <source>Category does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to edit category</source>
-        <translation type="vanished">Nije moguće urediti kategoriju</translation>
+        <translation>Kategorija ne postoji</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
@@ -12310,7 +12284,7 @@ Molimo odaberite drugi naziv i pokušajte ponovo.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Created On</source>
         <comment>Torrent was initially created on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Kreirano</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
@@ -12354,16 +12328,6 @@ Molimo odaberite drugi naziv i pokušajte ponovo.</translation>
         <translation>Otpremljeno</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Preuzimanje sesije</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Otpremanje sesije</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
@@ -12395,13 +12359,13 @@ Molimo odaberite drugi naziv i pokušajte ponovo.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Session Downloaded</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Preuzeto u sesiji</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Session Uploaded</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Poslano u sesiji</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
@@ -13125,22 +13089,22 @@ Molimo odaberite drugi naziv i pokušajte ponovo.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">Prijava na WebAPI nije uspjela. Razlog: IP adresa je zabranjena, IP: %1, korisničko ime: %2</translation>
+        <translation>Prijava na WebAPI nije uspjela. Razlog: IP adresa je zabranjena, IP: %1, korisničko ime: %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Vaša IP adresa je zabranjena nakon previše neuspjelih pokušaja autentifikacije.</translation>
+        <translation>Vaša IP adresa je zabranjena nakon previše neuspjelih pokušaja autentifikacije.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">Prijava na WebAPI je uspješna. IP adresa: %1</translation>
+        <translation>Prijava na WebAPI je uspješna. IP adresa: %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">Prijava na WebAPI nije uspjela. Razlog: nevažeći akreditivi, broj pokušaja: %1, IP adresa: %2, korisničko ime: %3</translation>
+        <translation>Prijava na WebAPI nije uspjela. Razlog: nevažeći akreditivi, broj pokušaja: %1, IP adresa: %2, korisničko ime: %3</translation>
     </message>
 </context>
 <context>

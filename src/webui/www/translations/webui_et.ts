@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maksimum hulk üleslaadimiste kohti ühele torrenti limiidile peab olema enam kui 0 või väljalülitatud.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Ei saa salvestada programmi eelistusi, qBittorrent arvatavasti pole kättesaadav. </translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,7 +567,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Error:</source>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -579,7 +575,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Keel</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -2223,26 +2215,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished" />
     </message>
@@ -2251,7 +2223,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2664,7 +2656,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Saadavus:</translation>
     </message>
 </context>
 <context>
@@ -3068,15 +3060,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4158,15 +4150,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Ava allalaadimise aken</translation>
     </message>
     <message>
         <source>Use as search text</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
 </context>

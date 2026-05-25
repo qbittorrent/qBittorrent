@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Torrent başına en fazla gönderme yuvası sınırı sayısı 0'dan büyük olmak ya da etkisizleştirilmek zorundadır.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Program tercihleri kaydedilemiyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>Kişi DSCP, 0 ile 255 arasında olmak zorundadır.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Tercihler kaydedilemiyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Torrent'ler eklenemiyor.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Hata:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Dil</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>I2P gelen uzunluğu:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">QBittorent örneklerini ayırt etmeye yardımcı olmak için metni pencere başlığına ekler</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Web Arayüzü kullanıcı adı en az 3 karakter uzunluğunda olmak zorundadır.</translation>
     </message>
@@ -2231,36 +2219,36 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Kişilere bağlantılar için Farklılaştırılmış Hizmetler Kod Noktası (DSCP)</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Web Arayüzü kullanıcı adı iki nokta üst üste içermemek zorunda.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Tarih biçimi:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Tarayıcı varsayılanı</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Yerelleştirme</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Sıkışık</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Görüntü yoğunluğu:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent örneklerini ayırt etmeye yardımcı olmak için metni pencere başlığına ekler</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Kişi anamakine adlarını çöz:</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Kullanılabilirlik:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Gönderilen</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Oturumda İndirilen</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Oturumda Gönderilen</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Kalan</translation>
@@ -3086,16 +3064,16 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Durum Simgesi</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Oturumda Gönderilen</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Oturumda İndirilen</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Oluşturma</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4154,16 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <translation>Sekmeyi yenile</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>İndirme penceresini aç</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Arama metni olarak kullan</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Aramayı durdur</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>İndirilmiş bölümleri temizle onayı</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Kategori mevcut değil</translation>
     </message>
 </context>
 <context>

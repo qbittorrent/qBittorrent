@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>Kio/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>La limite du nombre maximum d'emplacements d'envoi par torrent doit être supérieure à 0 ou désactivée.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Impossible d'enregistrer les préférences du programme, qBittorrent est probablement inaccessible.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -464,7 +460,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation>Ne peux pas contacter qBittorrent</translation>
+        <translation>N'a pas pu contacter qBittorrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -571,16 +567,16 @@
         <translation>Le DSCP du pair doit être compris entre 0 et 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Impossible d'enregistrer les préférences, qBittorrent est probablement inaccessible.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Impossible d'ajouter les torrents.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Erreur :</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Langue</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1791,7 +1783,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation>Utiliser un proxy à des fins BitTorrent</translation>
+        <translation>Utiliser un proxy pour BitTorrent</translation>
     </message>
     <message>
         <source>years</source>
@@ -1815,7 +1807,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation>Utiliser un proxy à des fins RSS</translation>
+        <translation>Utiliser un proxy pour les flux RSS</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1871,7 +1863,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Perform hostname lookup via proxy</source>
-        <translation>Recherche du nom d'hôte via un proxy</translation>
+        <translation>Rechercher le nom d'hôte via un proxy</translation>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
@@ -1972,10 +1964,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>I2P inbound length:</source>
         <translation>Longueur entrante sur I2P :</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Cela ajoute le texte au titre de la fenêtre pour aider à distinguer les instances de qBittorent</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2115,7 +2103,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Run on torrent added:</source>
-        <translation>Exécution à l'ajout d'un torrent :</translation>
+        <translation>Exécuter lors de l'ajout d'un torrent :</translation>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
@@ -2230,36 +2218,36 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Point de code de services différenciés (DSCP) pour les connexions aux pairs</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Le nom d'utilisateur de l'IU Web ne doit pas contenir de deux-points.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Format de la date :</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Paramètres par défaut du navigateur</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Localisation</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Compacte</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Densité de l'affichage :</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Cela ajoute le texte au titre de la fenêtre pour aider à distinguer les instances de qBitTorrent</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Résoudre les noms d'hôtes des pairs :</translation>
     </message>
 </context>
 <context>
@@ -2671,7 +2659,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Disponibilité :</translation>
     </message>
 </context>
 <context>
@@ -2999,16 +2987,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Envoyé</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Téléchargement de la session</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Envoi durant la session</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Restant</translation>
@@ -3085,16 +3063,16 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Icône de status </translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Envoyé durant la session</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Téléchargé durant la session</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Créé le</translation>
     </message>
 </context>
 <context>
@@ -3316,7 +3294,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Dormants</translation>
+        <translation>Dormant</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -4175,16 +4153,16 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <translation>Actualiser l'onglet</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Ouvrir la fenêtre de téléchargement</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Utiliser comme texte de recherche</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Arrêter la recherche</translation>
     </message>
 </context>
 <context>
@@ -4579,7 +4557,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Confirmation de la suppression des épisodes téléchargés</translation>
     </message>
 </context>
 <context>
@@ -4830,7 +4808,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>La catégorie n'existe pas</translation>
     </message>
 </context>
 <context>

@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>КіБ/с</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Максимальна кількість з'єднань для відвантаження на торрент повинна бути більша 0 або відсутня.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Не вдалося зберегти налаштування програми, можливо qBittorrent недоступний.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>DSCP має бути від 0 до 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Не вдається зберегти налаштування; ймовірно, qBittorrent недоступний.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Не вдається додати торренти.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Помилка:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Мова</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Довжина вхідного I2P:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Він додає текст до заголовка вікна, щоб допомогти розрізнити екземпляри qBittorent</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Ім'я користувача WebUI повинно мати довжину не менше 3 символів.</translation>
     </message>
@@ -2231,36 +2219,36 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Поле DSCP для з'єднань з пірами</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Ім'я користувача для веб-інтерфейсу не повинно містити двокрапку.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Формат дати:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Браузер за замовчуванням</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Локалізація</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Компактно</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Щільність відображення:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Цей текст додається до заголовка вікна, щоб полегшити розрізнення екземплярів qBittorrent</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Визначити імена хостів:</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Доступно:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Відвантажено</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Завантажено за сеанс</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Відвантажено за сеанс</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Залишилось</translation>
@@ -3086,16 +3064,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Значок статусу</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Вивантажено за сеанс</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Завантажено за сеанс</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Дата створення</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4154,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Оновити вкладку</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Відкрити вікно завантаження</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Використати як текст для пошуку</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Зупинити пошук</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Очистити підтвердження завантажених епізодів</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Категорії не існує</translation>
     </message>
 </context>
 <context>

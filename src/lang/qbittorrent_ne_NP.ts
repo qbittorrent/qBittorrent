@@ -4,12 +4,12 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
         <translation>एण्डपोइन्ट अवस्थित छैन</translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
         <translation>आवश्यक प्यारामिटरहरू छुटेका छन्: %1</translation>
     </message>
@@ -105,13 +105,9 @@
         <translation>Qt toolkit र libtorrent-rasterbar मा आधारित C++ मा प्रोग्राम गरिएको उन्नत BitTorrent क्लाइन्ट।</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">सर्वाधिकार %1 2006-2025 The qBittorent Project</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>सर्वाधिकार %1 2006-2026 The qBittorent Project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -917,7 +913,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="774"/>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>यसले qBittorrent इन्स्ट्यान्सहरू छुट्याउन मद्दत गर्न विन्डो शीर्षकमा पाठ थप्छ।</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="835"/>
@@ -1120,10 +1116,6 @@
         <location filename="../gui/advancedsettings.cpp" line="768"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>विशेषाधिकार प्राप्त पोर्टहरूमा पियरहरूसँग जडान गर्न अनुमति नदिनुहोस्</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">यसले qBittorent इन्स्ट्यान्सहरू छुट्याउन मद्दत गर्न विन्डो शीर्षकमा लेख थप्छ।</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="775"/>
@@ -1404,17 +1396,17 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="911"/>
         <source>WebUI username must be at least 3 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI प्रयोगकर्ता नाम कम्तिमा 3 वर्ण लामो हुनुपर्छ</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="913"/>
         <source>WebUI username cannot contain a colon</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI प्रयोगकर्ता नाममा कोलोन हुनु हुँदैन</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="920"/>
         <source>WebUI password must be at least 6 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI पासवर्ड कम्तिमा 6 वर्ण लामो हुनुपर्छ</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1224"/>
@@ -1678,25 +1670,6 @@
         <location filename="../base/asyncfilestorage.cpp" line="46"/>
         <source>Could not create directory &apos;%1&apos;.</source>
         <translation>&apos;%1&apos; डाइरेक्टरी सिर्जना गर्न सकिएन।</translation>
-    </message>
-</context>
-<context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">WebAPI लगइन असफल भयो। कारण: IP प्रतिबन्धित गरिएको छ, IP: %1, प्रयोगकर्ता नाम: %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">धेरै असफल प्रमाणीकरण प्रयासहरू पछि तपाईंको IP ठेगाना प्रतिबन्धित गरिएको छ।</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">WebAPI लगइन सफल भयो। IP: %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">WebAPI लगइन असफल भयो। कारण: अमान्य प्रमाणपत्रहरू, प्रयास गणना: %1, IP: %2, प्रयोगकर्ता नाम: %3</translation>
     </message>
 </context>
 <context>
@@ -2582,7 +2555,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6645"/>
         <source>Failed to load additional trackers from file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइलबाट थप ट्रयाकरहरू लोड गर्न असफल भयो। कारण: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5338"/>
@@ -3438,7 +3411,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="264"/>
         <source>IP filter line %1 is malformed. End IP is lower than Start IP!</source>
-        <translation type="unfinished"></translation>
+        <translation>IP फिल्टर लाइन %1 विकृत छ। अन्त्य IP सुरुवात IP भन्दा कम छ!</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="280"/>
@@ -3553,17 +3526,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>Http अनुरोध आकारले सीमा नाघ्यो, सकेट बन्द गर्दै। सीमा: %1, IP: %2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation>खराब Http अनुरोध विधि, सकेट बन्द गर्दै। IP: %1। विधि: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>खराब Http अनुरोध, सकेट बन्द गर्दै। IP: %1</translation>
     </message>
@@ -4100,7 +4073,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.cpp" line="346"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>विन्डो (&amp;W)</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="472"/>
@@ -4530,112 +4503,117 @@ Minimum requirement: %2.</source>
         <translation>म्याग्नेट URI मा रिडिरेक्ट गरियो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>रिमोट होस्ट नाम फेला परेन (अवैध होस्टनाम)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>अपरेशन रद्द गरियो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>सम्पूर्ण जवाफ प्राप्त हुनु र प्रशोधन हुनुभन्दा पहिले नै रिमोट सर्भरले जडान समयभन्दा पहिले नै बन्द गर्यो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>रिमोट सर्भरसँगको जडानको समय सकियो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS ह्यान्डशेक असफल भयो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>रिमोट सर्भरले जडान अस्वीकार गर्‍यो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>प्रोक्सी सर्भरमा जडान अस्वीकार गरियो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>प्रोक्सी सर्भरले समयभन्दा पहिले नै जडान बन्द गर्यो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>प्रोक्सी होस्ट नाम फेला परेन</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>प्रोक्सीसँगको जडानको समय सकियो वा प्रोक्सीले पठाइएको अनुरोधको समयमा जवाफ दिएन</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>अनुरोधलाई सम्मान गर्न प्रोक्सीलाई प्रमाणीकरण आवश्यक पर्दछ तर प्रस्ताव गरिएको कुनै पनि प्रमाणपत्र स्वीकार गरेन</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation>रिमोट सामग्रीमा पहुँच अस्वीकार गरियो (403)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation>रिमोट सर्भरलाई सामग्री सेवा गर्न प्रमाणीकरण आवश्यक पर्दछ तर प्रदान गरिएका प्रमाणहरू स्वीकार गरिएनन् (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>रिमोट सामग्रीमा अनुरोध गरिएको सञ्चालनलाई अनुमति छैन</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>सर्भरमा रिमोट सामग्री फेला परेन (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>प्रोटोकल थाहा नभएको कारणले नेटवर्क पहुँच API ले अनुरोधलाई सम्मान गर्न सक्दैन</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>अनुरोध गरिएको सञ्चालन यस प्रोटोकलको लागि अमान्य छ</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>नेटवर्कसँग सम्बन्धित एउटा अज्ञात त्रुटि पत्ता लाग्यो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>एउटा अज्ञात प्रोक्सी-सम्बन्धित त्रुटि पत्ता लाग्यो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>रिमोट सामग्रीसँग सम्बन्धित एउटा अज्ञात त्रुटि पत्ता लाग्यो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>प्रोटोकलमा ब्रेकडाउन पत्ता लाग्यो</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>अज्ञात त्रुटि</translation>
     </message>
@@ -6135,12 +6113,12 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="722"/>
         <source>Show speed in Dock</source>
-        <translation type="unfinished"></translation>
+        <translation>डकमा गति देखाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="729"/>
         <source>Show qBittorrent in menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation>मेनु पट्टीमा qBittorrent देखाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="806"/>
@@ -6871,189 +6849,190 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     <message>
         <location filename="../gui/optionsdialog.ui" line="1140"/>
         <source>De&amp;lete .torrent files afterwards </source>
-        <translation type="unfinished"></translation>
+        <translation>पछि .torrent फाइलहरू मेटाउनुहोस् (&amp;E)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1443"/>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड सकिएपछि .torrent फाइलहरू यहाँ प्रतिलिपि गर्नुहोस्:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1195"/>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished"></translation>
+        <translation>सबै फाइलहरूको लागि डिस्क स्पेस पहिले नै बाँडफाँड गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="229"/>
         <source>Use custom UI Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>कस्टम UI थिम प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="238"/>
         <source>UI Theme file:</source>
-        <translation type="unfinished"></translation>
+        <translation>UI थिम फाइल:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="149"/>
         <source>Changing Interface settings requires application restart</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्टरफेस सेटिङहरू परिवर्तन गर्न एप्लिकेसन पुन: सुरु गर्न आवश्यक छ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="280"/>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्ट मेटाउँदा पुष्टिकरण संवाद देखाउँछ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="385"/>
         <location filename="../gui/optionsdialog.ui" line="434"/>
         <source>Preview file, otherwise open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइल पूर्वावलोकन गर्नुहोस्, अन्यथा गन्तव्य फोल्डर खोल्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="548"/>
         <source>Shows a confirmation dialog when exiting with active torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>सक्रिय टोरेन्टहरूसँग बाहिर निस्कँदा पुष्टिकरण संवाद देखाउँछ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="580"/>
         <source>When minimizing, the main window is closed and must be reopened from the systray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>न्यूनीकरण गर्दा, मुख्य विन्डो बन्द हुन्छ र सिस्ट्रे आइकनबाट पुन: खोल्नु पर्छ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="593"/>
         <source>The systray icon will still be visible when closing the main window</source>
-        <translation type="unfinished"></translation>
+        <translation>मुख्य विन्डो बन्द गर्दा पनि सिस्ट्रे आइकन देखिनेछ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="596"/>
         <source>Close qBittorrent to notification area</source>
         <extracomment>The systray icon will still be visible when closing the main window</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>सूचना क्षेत्रमा qBittorrent बन्द गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="618"/>
         <source>Monochrome (for dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>मोनोक्रोम (अँध्यारो थिमको लागि)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="623"/>
         <source>Monochrome (for light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>मोनोक्रोम (उज्यालो थिमको लागि)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="745"/>
         <source>Inhibit system sleep when torrents are downloading</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्टहरू डाउनलोड हुँदा सिस्टम स्लीपमा रोक लगाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="752"/>
         <source>Inhibit system sleep when torrents are seeding</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्टहरू सिडिङ हुँदा सिस्टम स्लीपमा रोक लगाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="796"/>
         <source>Creates an additional log file after the log file reaches the specified file size</source>
-        <translation type="unfinished"></translation>
+        <translation>लग फाइलले निर्दिष्ट फाइल आकारमा पुगेपछि थप लग फाइल सिर्जना गर्दछ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="863"/>
         <source>days</source>
         <extracomment>Delete backup logs older than 10 days</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>दिनहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="868"/>
         <source>months</source>
         <extracomment>Delete backup logs older than 10 months</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>महिनाहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="873"/>
         <source>years</source>
         <extracomment>Delete backup logs older than 10 years</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>वर्षहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="913"/>
         <source>Log performance warnings</source>
-        <translation type="unfinished"></translation>
+        <translation>कार्यसम्पादन चेतावनीहरू लग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1055"/>
         <source>Do not start the download automatically</source>
         <extracomment>The torrent will be added to download list in a stopped state</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड स्वतः सुरु नगर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1137"/>
         <source>Whether the .torrent file should be deleted after adding it</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent फाइल थपेपछि मेटाउनु पर्छ कि पर्दैन</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1192"/>
         <source>Allocate full file sizes on disk before starting downloads, to minimize fragmentation. Only useful for HDDs.</source>
-        <translation type="unfinished"></translation>
+        <translation>खण्डीकरण कम गर्न, डाउनलोड सुरु गर्नु अघि डिस्कमा पूरा फाइल आकारहरू छुट्याउनुहोस्। HDD हरूको लागि मात्र उपयोगी।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1202"/>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished"></translation>
+        <translation>अपूर्ण फाइलहरूमा .!qB एक्सटेन्सन थप्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1216"/>
         <source>When a torrent is downloaded, offer to add torrents from any .torrent files found inside it</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्ट डाउनलोड भएपछि, त्यस भित्र भेटिने कुनै पनि .torrent फाइलहरूबाट टोरेन्टहरू थप्न प्रस्ताव गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1219"/>
         <source>Enable recursive download dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>पुनरावर्ती डाउनलोड संवाद सक्षम पार्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1246"/>
         <source>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
 Manual: Various torrent properties (e.g. save path) must be assigned manually</source>
-        <translation type="unfinished"></translation>
+        <translation>स्वचालित: विभिन्न टोरेन्ट गुणहरू (जस्तै सञ्चय मार्ग) सम्बन्धित वर्गद्वारा निर्णय गरिनेछ
+म्यानुअल: विभिन्न टोरेन्ट गुणहरू (जस्तै सञ्चय मार्ग) म्यानुअल रूपमा तोकिएको हुनुपर्छ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1317"/>
         <source>When Default Save/Incomplete Path changed:</source>
-        <translation type="unfinished"></translation>
+        <translation>पूर्वनिर्धारित सञ्चय/अपूर्ण मार्ग परिवर्तन हुँदा:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1358"/>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished"></translation>
+        <translation>वर्ग सञ्चय मार्ग परिवर्तन हुँदा:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1404"/>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>म्यानुअल मोडमा वर्ग मार्गहरू प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1401"/>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished"></translation>
+        <translation>पूर्वनिर्धारित मार्गको सट्टा उपयुक्त वर्ग मार्ग विरुद्ध सापेक्ष सञ्चय मार्ग समाधान गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="251"/>
         <source>Use icons from system theme</source>
-        <translation type="unfinished"></translation>
+        <translation>सिस्टम थिमबाट आइकनहरू प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="519"/>
         <source>Window state on start up:</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरु गर्दा विन्डोको अवस्था:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="526"/>
         <source>qBittorrent window state on start up</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरु गर्दा qBittorrent विन्डोको अवस्था</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1064"/>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्ट रोकिने अवस्था:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1075"/>
@@ -7081,12 +7060,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1458"/>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished"></translation>
+        <translation>बाट स्वचालित रूपमा टोरेन्टहरू थप्नुहोस्:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1552"/>
         <source>Excluded file names</source>
-        <translation type="unfinished"></translation>
+        <translation>बहिष्कृत फाइल नामहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1564"/>
@@ -7103,12 +7082,24 @@ Examples
 readme.txt: filter exact file name.
 ?.txt: filter &apos;a.txt&apos;, &apos;b.txt&apos; but not &apos;aa.txt&apos;.
 readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not &apos;readme10.txt&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्ट(हरू) बाट डाउनलोड हुनबाट फिल्टर गरिएका फाइल नामहरूलाई कालोसूचीमा राख्नुहोस्।
+यस सूचीमा भएका कुनै पनि फिल्टरसँग मेल खाने फाइलहरूको प्राथमिकता स्वतः &quot;डाउनलोड नगर्नुहोस्&quot; मा सेट हुनेछ।
+
+धेरै प्रविष्टिहरू छुट्याउन नयाँ लाइनहरू प्रयोग गर्नुहोस्। तल उल्लिखित वाइल्डकार्डहरू प्रयोग गर्न सक्नुहुन्छ।
+*: कुनै पनि वर्णहरूको शून्य वा बढीसँग मेल हुन्छ।
+?: कुनै पनि एकल वर्णसँग मेल हुन्छ।
+[...]: वर्णहरूको सेट वर्ग कोष्ठकमा प्रतिनिधित्व गर्न सकिन्छ।
+
+उदाहरणहरू
+*.exe: &apos;.exe&apos; फाइल एक्सटेन्सन फिल्टर गर्नुहोस्।
+readme.txt: ठ्याक्कै फाइल नाम फिल्टर गर्नुहोस्।
+?.txt: &apos;a.txt&apos;, &apos;b.txt&apos; फिल्टर गर्नुहोस् तर &apos;aa.txt&apos; होइन।
+readme[0-9].txt: &apos;readme1.txt&apos;, &apos;readme2.txt&apos; फिल्टर गर्नुहोस् तर &apos;readme10.txt&apos; होइन।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1619"/>
         <source>Receiver</source>
-        <translation type="unfinished"></translation>
+        <translation>प्राप्त गर्ने</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1622"/>
@@ -7119,12 +7110,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.ui" line="1632"/>
         <source>SMTP server:</source>
-        <translation type="unfinished"></translation>
+        <translation>SMTP सर्भर:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1606"/>
         <source>Sender</source>
-        <translation type="unfinished"></translation>
+        <translation>पठाउने</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1609"/>
@@ -7141,7 +7132,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="1651"/>
         <location filename="../gui/optionsdialog.ui" line="3753"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रमाणीकरण</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1663"/>
@@ -7149,7 +7140,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="3765"/>
         <location filename="../gui/optionsdialog.ui" line="4217"/>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रयोगकर्ता नाम:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1673"/>
@@ -7157,150 +7148,150 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="3775"/>
         <location filename="../gui/optionsdialog.ui" line="4227"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>पासवर्ड:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1706"/>
         <source>Run external program</source>
-        <translation type="unfinished"></translation>
+        <translation>बाह्य प्रोग्राम चलाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1748"/>
         <source>Show console window</source>
-        <translation type="unfinished"></translation>
+        <translation>कन्सोल विन्डो देखाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1810"/>
         <source>TCP and μTP</source>
-        <translation type="unfinished"></translation>
+        <translation>TCP र μTP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1843"/>
         <source>Listening Port</source>
-        <translation type="unfinished"></translation>
+        <translation>सुन्ने पोर्ट</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1851"/>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>आगमन जडानहरूको लागि प्रयोग गरिने पोर्ट:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1858"/>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished"></translation>
+        <translation>तपाईंको सिस्टमलाई प्रयोग नगरिएको पोर्ट छनौट गर्न दिन 0 मा सेट गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1871"/>
         <source>Random</source>
-        <translation type="unfinished"></translation>
+        <translation>अनियमित</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1893"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>मेरो राउटरबाट UPnP / NAT-PMP पोर्ट फर्वार्डिङ प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1906"/>
         <source>Connections Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>जडान सीमाहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1951"/>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रति टोरेन्ट जडानहरूको अधिकतम संख्या:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1912"/>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished"></translation>
+        <translation>विश्वव्यापी अधिकतम जडान संख्या:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1991"/>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रति टोरेन्ट अपलोड स्लटहरूको अधिकतम संख्या:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1974"/>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड स्लटहरूको विश्वव्यापी अधिकतम संख्या:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2086"/>
         <source>Proxy Server</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रोक्सी सर्भर</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2094"/>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रकार:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="918"/>
         <source>SOCKS4</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="919"/>
         <source>SOCKS5</source>
-        <translation type="unfinished"></translation>
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="920"/>
         <source>HTTP</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2025"/>
         <location filename="../gui/optionsdialog.ui" line="2104"/>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>होस्ट:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2035"/>
         <location filename="../gui/optionsdialog.ui" line="2114"/>
         <location filename="../gui/optionsdialog.ui" line="3667"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>पोर्ट:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2236"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
-        <translation type="unfinished"></translation>
+        <translation>अन्यथा, प्रोक्सी सर्भर केवल ट्र्याकर जडानहरूको लागि प्रयोग गरिन्छ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2239"/>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished"></translation>
+        <translation>पियर जडानहरूको लागि प्रोक्सी प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2174"/>
         <source>A&amp;uthentication</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रमाणीकरण (&amp;U)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2286"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished"></translation>
+        <translation>फिल्टर मार्ग (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2296"/>
         <source>Reload the filter</source>
-        <translation type="unfinished"></translation>
+        <translation>फिल्टर पुन: लोड गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2311"/>
         <source>Manually banned IP addresses...</source>
-        <translation type="unfinished"></translation>
+        <translation>म्यानुअल रूपमा प्रतिबन्धित IP ठेगानाहरू...</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2318"/>
         <source>Apply to trackers</source>
-        <translation type="unfinished"></translation>
+        <translation>ट्र्याकरहरूमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2376"/>
         <source>Global Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>विश्वव्यापी दर सीमाहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2392"/>
@@ -7311,7 +7302,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="2950"/>
         <location filename="../gui/optionsdialog.ui" line="2970"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2395"/>
@@ -7321,164 +7312,164 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.ui" line="3002"/>
         <location filename="../gui/optionsdialog.ui" line="3038"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>किबी/से</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2385"/>
         <location filename="../gui/optionsdialog.ui" line="2462"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2424"/>
         <location filename="../gui/optionsdialog.ui" line="2501"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2453"/>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>वैकल्पिक दर सीमाहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2539"/>
         <source>Start time</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरु समय</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2569"/>
         <source>End time</source>
-        <translation type="unfinished"></translation>
+        <translation>अन्त्य समय</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2609"/>
         <source>When:</source>
-        <translation type="unfinished"></translation>
+        <translation>कहिले:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2623"/>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>हरेक दिन</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2628"/>
         <source>Weekdays</source>
-        <translation type="unfinished"></translation>
+        <translation>कार्यदिनहरु</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2633"/>
         <source>Weekends</source>
-        <translation type="unfinished"></translation>
+        <translation>सप्ताहांतहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2647"/>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>दर सीमा सेटिङहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2667"/>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished"></translation>
+        <translation>LAN मा पियरहरूलाई दर सीमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2660"/>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"></translation>
+        <translation>अतिरिक्त ढुवानीमा दर सीमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2070"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If &quot;mixed mode&quot; is enabled I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>यदि &quot;मिश्रित मोड&quot; सक्षम पारिएको छ भने I2P टोरेन्टहरूलाई कुनै पनि गुमनामीकरण प्रदान नगरी ट्र्याकर बाहेक अन्य स्रोतहरूबाट पनि पियरहरू प्राप्त गर्न र नियमित IP हरूमा जडान गर्न अनुमति दिइन्छ। यदि प्रयोगकर्ता I2P को गुमनामीकरणमा रुचि राख्दैन भने, तर अझै पनि I2P साथीहरूसँग जडान गर्न सक्षम हुन चाहन्छ भने यो उपयोगी हुन सक्छ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2653"/>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished"></translation>
+        <translation>µTP प्रोटोकलमा दर सीमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2725"/>
         <source>Privacy</source>
-        <translation type="unfinished"></translation>
+        <translation>गोपनीयता</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2734"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>थप पियरहरू फेला पार्न DHT (विकेन्द्रीकृत नेटवर्क) सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2744"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
-        <translation type="unfinished"></translation>
+        <translation>मिल्दो Bittorrent क्लाइन्टहरू (µTorrent, Vuze, ...) सँग पियरहरू साटासाट गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2747"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>थप पियरहरू फेला पार्न पियर एक्सचेन्ज (PeX) सक्षम पार्नुहोस्।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2757"/>
         <source>Look for peers on your local network</source>
-        <translation type="unfinished"></translation>
+        <translation>तपाईंको स्थानीय नेटवर्कमा पियरहरू खोज्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2760"/>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished"></translation>
+        <translation>थप पियरहरू फेला पार्न स्थानीय पियर खोज सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2772"/>
         <source>Encryption mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्क्रिप्शन मोड:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2790"/>
         <source>Require encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्क्रिप्सन आवश्यक पर्दछ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2795"/>
         <source>Disable encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्क्रिप्सन असक्षम पार्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2820"/>
         <source>Enable when using a proxy or a VPN connection</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रोक्सी वा VPN जडान प्रयोग गर्दा सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2823"/>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished"></translation>
+        <translation>बेनामी मोड सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2910"/>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished"></translation>
+        <translation>अधिकतम सक्रिय डाउनलोडहरू:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2943"/>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished"></translation>
+        <translation>अधिकतम सक्रिय अपलोडहरू:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2963"/>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>अधिकतम सक्रिय टोरेन्टहरू:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2983"/>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished"></translation>
+        <translation>यी सीमाहरूमा ढिलो टोरेन्टहरू गणना नगर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3031"/>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड दर सीमा:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2995"/>
         <source>Download rate threshold:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड दर सीमा:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3061"/>
@@ -7492,153 +7483,153 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.ui" line="3054"/>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्ट निष्क्रियता टाइमर:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3168"/>
         <source>then</source>
-        <translation type="unfinished"></translation>
+        <translation>त्यसपछि</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3689"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished"></translation>
+        <translation>मेरो राउटरबाट पोर्ट फर्वार्ड गर्न UPnP / NAT-PMP प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3714"/>
         <source>Certificate:</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रमाणपत्र:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3727"/>
         <location filename="../gui/optionsdialog.ui" line="3801"/>
         <source>Key:</source>
-        <translation type="unfinished"></translation>
+        <translation>कुञ्जी:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3737"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;प्रमाणपत्रहरूको बारेमा जानकारी&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3785"/>
         <source>Change current password</source>
-        <translation type="unfinished"></translation>
+        <translation>हालको पासवर्ड परिवर्तन गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3999"/>
         <source>Files location:</source>
-        <translation type="unfinished"></translation>
+        <translation>फाइल स्थान:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4011"/>
         <source>&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs&quot;&gt;List of alternative WebUI&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/List-of-known-alternate-WebUIs&quot;&gt;वैकल्पिक WebUI को सूची&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4027"/>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरक्षा</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4033"/>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished"></translation>
+        <translation>क्लिकज्याकिङ सुरक्षा सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4040"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished"></translation>
+        <translation>क्रस-साइट अनुरोध जालसाजी (CSRF) सुरक्षा सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4047"/>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished"></translation>
+        <translation>कुकी सुरक्षित फ्ल्याग सक्षम गर्नुहोस् (HTTPS वा स्थानीय होस्ट जडान आवश्यक छ)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4054"/>
         <source>Enable Host header validation</source>
-        <translation type="unfinished"></translation>
+        <translation>होस्ट हेडर प्रमाणीकरण सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4091"/>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished"></translation>
+        <translation>कस्टम HTTP हेडरहरू थप्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4106"/>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished"></translation>
+        <translation>हेडर: मान जोडी, प्रति लाइन एउटा</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4116"/>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished"></translation>
+        <translation>रिभर्स प्रोक्सी समर्थन सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4127"/>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished"></translation>
+        <translation>विश्वसनीय प्रोक्सीहरूको सूची:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4143"/>
         <source>&lt;a href=https://github.com/qbittorrent/qBittorrent/wiki#reverse-proxy-setup-for-webui-access&gt;Reverse proxy setup examples&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=https://github.com/qbittorrent/qBittorrent/wiki#reverse-proxy-setup-for-webui-access&gt;रिभर्स प्रोक्सी सेटअप उदाहरणहरू&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4171"/>
         <source>Service:</source>
-        <translation type="unfinished"></translation>
+        <translation>सेवा:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4194"/>
         <source>Register</source>
-        <translation type="unfinished"></translation>
+        <translation>दर्ता गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4203"/>
         <source>Domain name:</source>
-        <translation type="unfinished"></translation>
+        <translation>डोमेन नाम:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="611"/>
         <source>By enabling these options, you can &lt;strong&gt;irrevocably lose&lt;/strong&gt; your .torrent files!</source>
-        <translation type="unfinished"></translation>
+        <translation>यी विकल्पहरू सक्षम गरेर, तपाईंले आफ्नो .torrent फाइलहरू &lt;strong&gt;अपरिवर्तनीय रूपमा हराउन&lt;/strong&gt; सक्नुहुन्छ!</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="618"/>
         <source>If you enable the second option (&amp;ldquo;Also when addition is cancelled&amp;rdquo;) the .torrent file &lt;strong&gt;will be deleted&lt;/strong&gt; even if you press &amp;ldquo;&lt;strong&gt;Cancel&lt;/strong&gt;&amp;rdquo; in the &amp;ldquo;Add torrent&amp;rdquo; dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>यदि तपाईंले दोस्रो विकल्प (&amp;ldquo;थप रद्द हुँदा पनि&amp;rdquo;) सक्षम गर्नुभयो भने, &amp;ldquo;टोरेन्ट थप्नुहोस्&amp;rdquo; संवादमा &amp;ldquoरद्द गर्नुहोस्&amp;rdquo; थिच्दा पनि .torrent फाइल मेटिनेछ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="267"/>
         <source>Select qBittorrent UI Theme file</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent UI थिम फाइल चयन गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1357"/>
         <source>Choose Alternative UI files location</source>
-        <translation type="unfinished"></translation>
+        <translation>वैकल्पिक UI फाइल स्थान छनौट गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="690"/>
         <source>Supported parameters (case sensitive):</source>
-        <translation type="unfinished"></translation>
+        <translation>समर्थित प्यारामिटरहरू (केस सेन्सेटिभ):</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="317"/>
         <source>Minimized</source>
-        <translation type="unfinished"></translation>
+        <translation>न्यूनतम गरिएको</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="319"/>
         <source>Hidden</source>
-        <translation type="unfinished"></translation>
+        <translation>लुकेको</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="334"/>
         <source>Disabled due to failed to detect system tray presence</source>
-        <translation type="unfinished"></translation>
+        <translation>सिस्टम ट्रे उपस्थिति पत्ता लगाउन असफल भएको कारणले असक्षम पारिएको छ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="583"/>
@@ -7663,52 +7654,52 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="691"/>
         <source>%N: Torrent name</source>
-        <translation type="unfinished"></translation>
+        <translation>%N: टोरेन्ट नाम</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="692"/>
         <source>%L: Category</source>
-        <translation type="unfinished"></translation>
+        <translation>%L: वर्ग</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="694"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>%F: सामग्री मार्ग (बहुफाइल टोरेन्टको लागि मूल मार्ग जस्तै)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="695"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="unfinished"></translation>
+        <translation>%R: मूल मार्ग (पहिलो टोरेन्ट सबडाइरेक्टरी मार्ग)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="696"/>
         <source>%D: Save path</source>
-        <translation type="unfinished"></translation>
+        <translation>%D: सञ्चय मार्ग</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="697"/>
         <source>%C: Number of files</source>
-        <translation type="unfinished"></translation>
+        <translation>%C: फाइलहरूको संख्या</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="698"/>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished"></translation>
+        <translation>%Z: टोरेन्ट आकार (बाइट)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="699"/>
         <source>%T: Current tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>%T: हालको ट्रयाकर</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="703"/>
         <source>%M: Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>%M: टिप्पणी</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="704"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation type="unfinished"></translation>
+        <translation>सुझाव: ह्वाइटस्पेसमा पाठ काट्नबाट बच्नको लागि उद्धरण चिन्हहरू सहित प्यारामिटरलाई समेट्नुहोस् (जस्तै, &quot;%N&quot;)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="768"/>
@@ -7723,64 +7714,65 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="917"/>
         <source>(None)</source>
-        <translation type="unfinished"></translation>
+        <translation>(कुनै पनि होइन)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1134"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;टोरेन्ट निष्क्रियता टाइमर&quot; सेकेन्डको लागि यदि यसको डाउनलोड र अपलोड दर यी मानहरू भन्दा कम रह्यो भने टोरेन्टलाई ढिलो मानिनेछ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1351"/>
         <source>Certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रमाणपत्र</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1352"/>
         <source>Select certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रमाणपत्र चयन गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1354"/>
         <source>Private key</source>
-        <translation type="unfinished"></translation>
+        <translation>निजी कुञ्जी</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1355"/>
         <source>Select private key</source>
-        <translation type="unfinished"></translation>
+        <translation>&#xa0;
+निजी कुञ्जी चयन गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1360"/>
         <source>WebUI configuration failed. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI कन्फिगरेसन असफल भयो। कारण: %1</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1509"/>
         <location filename="../gui/optionsdialog.cpp" line="1553"/>
         <source>Rotate API key</source>
-        <translation type="unfinished"></translation>
+        <translation>API कुञ्जी घुमाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1511"/>
         <source>Generate an API key? This key can be used to interact with qBittorrent&apos;s API.</source>
-        <translation type="unfinished"></translation>
+        <translation>API कुञ्जी उत्पन्न गर्ने हो? यो कुञ्जी qBittorrent को API सँग अन्तर्क्रिया गर्न प्रयोग गर्न सकिन्छ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1512"/>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished"></translation>
+        <translation>यो API कुञ्जी घुमाउने हो? हालको कुञ्जीले तुरुन्तै काम गर्न छोड्नेछ र नयाँ कुञ्जी उत्पन्न हुनेछ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1531"/>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished"></translation>
+        <translation>यो API कुञ्जी मेटाउने हो? हालको कुञ्जीले तुरुन्तै काम गर्न बन्द गर्नेछ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1863"/>
         <source>%1 is recommended for best compatibility with Windows dark mode</source>
         <comment>Fusion is recommended for best compatibility with Windows dark mode</comment>
-        <translation type="unfinished"></translation>
+        <translation>विन्डोज अँध्यारो मोडसँग उत्तम अनुकूलताको लागि %1 सिफारिस गरिएको छ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1870"/>
@@ -7791,19 +7783,19 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1871"/>
         <source>Let Qt decide the style for this system</source>
-        <translation type="unfinished"></translation>
+        <translation>यो &#xa0;सिस्टमको लागि Qt लाई शैली निर्णय गर्न दिनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1888"/>
         <source>Dark</source>
         <comment>Dark color scheme</comment>
-        <translation type="unfinished"></translation>
+        <translation>अँध्यारो</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1889"/>
         <source>Light</source>
         <comment>Light color scheme</comment>
-        <translation type="unfinished"></translation>
+        <translation>उज्यालो</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1890"/>
@@ -7814,80 +7806,80 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2015"/>
         <source>Select folder to monitor</source>
-        <translation type="unfinished"></translation>
+        <translation>निगरानी गर्न फोल्डर चयन गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2037"/>
         <source>Adding entry failed</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रविष्टि थप्न असफल भयो</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2137"/>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI प्रयोगकर्ता नाम कम्तिमा 3 वर्ण लामो हुनुपर्छ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
-        <translation type="unfinished"></translation>
+        <translation>वर्ण त्रुटि</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI प्रयोगकर्ता नाममा कोलोन हुनु हुँदैन।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>The WebUI password must be at least 6 characters long.</source>
-        <translation type="unfinished"></translation>
+        <translation>WebUI पासवर्ड कम्तिमा 6 वर्ण लामो हुनुपर्छ।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>Location Error</source>
-        <translation type="unfinished"></translation>
+        <translation>स्थान त्रुटि</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="647"/>
         <location filename="../gui/optionsdialog.cpp" line="655"/>
         <source>Choose export directory</source>
-        <translation type="unfinished"></translation>
+        <translation>निर्यात डाइरेक्टरी छनौट गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="613"/>
         <source>When these options are enabled, qBittorrent will &lt;strong&gt;delete&lt;/strong&gt; .torrent files after they were successfully (the first option) or not (the second option) added to its download queue. This will be applied &lt;strong&gt;not only&lt;/strong&gt; to the files opened via &amp;ldquo;Add torrent&amp;rdquo; menu action but to those opened via &lt;strong&gt;file type association&lt;/strong&gt; as well</source>
-        <translation type="unfinished"></translation>
+        <translation>यी विकल्पहरू सक्षम पारिएपछि, qBittorrent ले .torrent फाइलहरू सफलतापूर्वक यसको डाउनलोड क्युमा थपिएको होस् (पहिलो विकल्प) वा नहोस् (दोस्रो विकल्प), &lt;strong&gt;मेटाउनेछ&lt;/strong&gt;। यो &amp;ldquo;टोरेन्ट थप्नुहोस्&amp;rdquo; मेनु कार्य मार्फत खोलिएका फाइलहरूमा &lt;strong&gt;मात्र लागू हुनेछैन&lt;/strong&gt; तर &lt;strong&gt;फाइल प्रकार सम्बद्धता&lt;/strong&gt; मार्फत खोलिएकाहरूमा पनि लागू हुनेछ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="268"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent UI थिम फाइल (*.qbtheme config.json)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="693"/>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>%G: ट्यागहरू (अल्पविरामद्वारा छुट्याइएको)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="700"/>
         <source>%I: Info hash v1 (or &apos;-&apos; if unavailable)</source>
-        <translation type="unfinished"></translation>
+        <translation>%I: जानकारी ह्यास v1 (वा &apos;-&apos; यदि उपलब्ध छैन भने)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="701"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
-        <translation type="unfinished"></translation>
+        <translation>%J: जानकारी ह्यास v2 (वा &apos;-&apos; यदि उपलब्ध छैन भने)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="702"/>
         <source>%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)</source>
-        <translation type="unfinished"></translation>
+        <translation>%K: टोरेन्ट ID (v1 टोरेन्टको लागि sha-1 जानकारी ह्यास वा v2/हाइब्रिड टोरेन्टको लागि काटिएको sha-256 जानकारी ह्यास)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="361"/>
         <location filename="../gui/optionsdialog.cpp" line="635"/>
         <location filename="../gui/optionsdialog.cpp" line="640"/>
         <source>Choose a save directory</source>
-        <translation type="unfinished"></translation>
+        <translation>सञ्चय डाइरेक्टरी छनौट गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="585"/>
@@ -7897,38 +7889,38 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="937"/>
         <source>Choose an IP filter file</source>
-        <translation type="unfinished"></translation>
+        <translation>IP फिल्टर फाइल छनौट गर्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="939"/>
         <source>All supported filters</source>
-        <translation type="unfinished"></translation>
+        <translation>सबै समर्थित फिल्टरहरू</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2159"/>
         <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished"></translation>
+        <translation>वैकल्पिक WebUI फाइलहरूको स्थान खाली हुन सक्दैन।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Parsing error</source>
-        <translation type="unfinished"></translation>
+        <translation>पार्सिङ त्रुटि</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2196"/>
         <source>Failed to parse the provided IP filter</source>
-        <translation type="unfinished"></translation>
+        <translation>प्रदान गरिएको IP फिल्टर पार्स गर्न असफल भयो</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully refreshed</source>
-        <translation type="unfinished"></translation>
+        <translation>सफलतापूर्वक पुनःताजा गरियो</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2198"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation type="unfinished"></translation>
+        <translation>प्रदान गरिएको IP फिल्टर सफलतापूर्वक पार्स गरियो: %1 नियमहरू लागू गरियो।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="167"/>
@@ -7938,18 +7930,18 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>Time Error</source>
-        <translation type="unfinished"></translation>
+        <translation>समय त्रुटि</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2207"/>
         <source>The start time and the end time can&apos;t be the same.</source>
-        <translation type="unfinished"></translation>
+        <translation>सुरु समय र अन्त्य समय एउटै हुन सक्दैन।</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2137"/>
         <location filename="../gui/optionsdialog.cpp" line="2149"/>
         <source>Length Error</source>
-        <translation type="unfinished"></translation>
+        <translation>लम्बाइ त्रुटि</translation>
     </message>
 </context>
 <context>
@@ -7962,12 +7954,12 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="303"/>
         <source>Interested (local) and choked (peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>इच्छुक (स्थानीय) र निसासिएको (पियर)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="308"/>
         <source>Interested (local) and unchoked (peer)</source>
-        <translation type="unfinished"></translation>
+        <translation>इच्छुक (स्थानीय) र ननिसासिएको (पियर)</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="317"/>
@@ -8022,17 +8014,17 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="360"/>
         <source>Encrypted traffic</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्क्रिप्ट गरिएको ट्राफिक</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="364"/>
         <source>Encrypted handshake</source>
-        <translation type="unfinished"></translation>
+        <translation>इन्क्रिप्ट गरिएको ह्यान्डशेक</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/peerinfo.cpp" line="372"/>
         <source>Peer is using NAT hole punching</source>
-        <translation type="unfinished"></translation>
+        <translation>पियरले NAT होल पंचिंग प्रयोग गर्दैछ</translation>
     </message>
 </context>
 <context>
@@ -8040,22 +8032,22 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="114"/>
         <source>Country/Region</source>
-        <translation type="unfinished"></translation>
+        <translation>देश/क्षेत्र</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="115"/>
         <source>IP/Address</source>
-        <translation type="unfinished"></translation>
+        <translation>IP/ठेगाना</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="116"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>पोर्ट</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="117"/>
         <source>Flags</source>
-        <translation type="unfinished"></translation>
+        <translation>फ्ल्यागहरू</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="118"/>
@@ -8066,13 +8058,13 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/properties/peerlistwidget.cpp" line="119"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation type="unfinished"></translation>
+        <translation>क्लाइन्ट</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="120"/>
         <source>Peer ID Client</source>
         <comment>i.e.: Client resolved from Peer ID</comment>
-        <translation type="unfinished"></translation>
+        <translation>पियर ID क्लाइन्ट</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="121"/>
@@ -8108,13 +8100,13 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/properties/peerlistwidget.cpp" line="126"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
-        <translation type="unfinished"></translation>
+        <translation>सान्दर्भिकता</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="127"/>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
-        <translation type="unfinished"></translation>
+        <translation>फाइलहरू</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="205"/>
@@ -8134,39 +8126,39 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="294"/>
         <source>Add peers...</source>
-        <translation type="unfinished"></translation>
+        <translation>पियरहरू थप्नुहोस्...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="303"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="305"/>
         <source>Adding peers</source>
-        <translation type="unfinished"></translation>
+        <translation>पियरहरू थप्दै</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="303"/>
         <source>Some peers cannot be added. Check the Log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>केही पियरहरू थप्न सकिँदैन। विवरणहरूको लागि लग जाँच गर्नुहोस्।</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="305"/>
         <source>Peers are added to this torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>यस टोरेन्टमा पियरहरू थपिएका छन्।</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="310"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="353"/>
         <source>Ban peer permanently</source>
-        <translation type="unfinished"></translation>
+        <translation>पियरलाई स्थायी रूपमा प्रतिबन्ध लगाउनुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="321"/>
         <source>Cannot add peers to a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>निजी टोरेन्टमा पियरहरू थप्न सकिँदैन</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="323"/>
         <source>Cannot add peers when the torrent is checking</source>
-        <translation type="unfinished"></translation>
+        <translation>टोरेन्ट जाँच गर्दा पियरहरू थप्न सकिँदैन</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="325"/>
@@ -8204,7 +8196,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="14"/>
         <source>Add Peers</source>
-        <translation type="unfinished"></translation>
+        <translation>पियरहरू थप्नुहोस्</translation>
     </message>
     <message>
         <location filename="../gui/properties/peersadditiondialog.ui" line="20"/>
@@ -9483,7 +9475,7 @@ Those plugins were disabled.</source>
         <location filename="../gui/search/searchjobwidget.ui" line="99"/>
         <location filename="../gui/search/searchjobwidget.ui" line="164"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="128"/>
@@ -10043,7 +10035,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/speedlimitdialog.ui" line="33"/>
         <location filename="../gui/speedlimitdialog.ui" line="109"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड:</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="47"/>
@@ -10051,7 +10043,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/speedlimitdialog.ui" line="123"/>
         <location filename="../gui/speedlimitdialog.ui" line="153"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="50"/>
@@ -10059,13 +10051,13 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
         <location filename="../gui/speedlimitdialog.ui" line="126"/>
         <location filename="../gui/speedlimitdialog.ui" line="156"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>किबी/से</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="63"/>
         <location filename="../gui/speedlimitdialog.ui" line="139"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड:</translation>
     </message>
     <message>
         <location filename="../gui/speedlimitdialog.ui" line="96"/>
@@ -10704,7 +10696,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="84"/>
         <source>New Category</source>
-        <translation type="unfinished"></translation>
+        <translation>नयाँ वर्ग</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="94"/>
@@ -11248,13 +11240,13 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="122"/>
         <source>Download:</source>
-        <translation type="unfinished"></translation>
+        <translation>डाउनलोड:</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="106"/>
         <location filename="../gui/torrentoptionsdialog.ui" line="136"/>
         <source>∞</source>
-        <translation type="unfinished"></translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
@@ -11265,7 +11257,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentoptionsdialog.ui" line="109"/>
         <location filename="../gui/torrentoptionsdialog.ui" line="139"/>
         <source> KiB/s</source>
-        <translation type="unfinished"></translation>
+        <translation>किबी/से</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="152"/>
@@ -11275,7 +11267,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="92"/>
         <source>Upload:</source>
-        <translation type="unfinished"></translation>
+        <translation>अपलोड:</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="176"/>
@@ -12153,7 +12145,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="102"/>
         <source>[F] Seeding</source>
         <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
-        <translation type="unfinished"></translation>
+        <translation>[F] सिड गर्दै</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="103"/>
@@ -12281,7 +12273,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Created On</source>
         <comment>Torrent was initially created on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>मा सिर्जना गरिएको</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
@@ -12325,16 +12317,6 @@ Please choose a different name and try again.</source>
         <translation>अपलोड गरिएको</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">सत्र डाउनलोड</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">सत्र अपलोड</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
@@ -12366,13 +12348,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Session Downloaded</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>सत्र डाउनलोड गरियो</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Session Uploaded</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>सत्र अपलोड गरियो</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
@@ -13096,22 +13078,22 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">WebAPI लगइन असफल भयो। कारण: IP प्रतिबन्धित गरिएको छ, IP: %1, प्रयोगकर्ता नाम: %2</translation>
+        <translation>WebAPI लगइन असफल भयो। कारण: IP प्रतिबन्धित गरिएको छ, IP: %1, प्रयोगकर्ता नाम: %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">धेरै असफल प्रमाणीकरण प्रयासहरू पछि तपाईंको IP ठेगाना प्रतिबन्धित गरिएको छ।</translation>
+        <translation>धेरै असफल प्रमाणीकरण प्रयासहरू पछि तपाईंको IP ठेगाना प्रतिबन्धित गरिएको छ।</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">WebAPI लगइन सफल भयो। IP: %1</translation>
+        <translation>WebAPI लगइन सफल भयो। IP: %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">WebAPI लगइन असफल भयो। कारण: अमान्य प्रमाणपत्रहरू, प्रयास गणना: %1, IP: %2, प्रयोगकर्ता नाम: %3</translation>
+        <translation>WebAPI लगइन असफल भयो। कारण: अमान्य प्रमाणपत्रहरू, प्रयास गणना: %1, IP: %2, प्रयोगकर्ता नाम: %3</translation>
     </message>
 </context>
 <context>

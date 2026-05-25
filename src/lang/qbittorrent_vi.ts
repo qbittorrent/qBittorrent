@@ -4,12 +4,12 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
         <translation>Điểm cuối không tồn tại</translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
         <translation>Thiếu tham số bắt buộc: %1</translation>
     </message>
@@ -105,13 +105,9 @@
         <translation>Ứng dụng khách BitTorrent nâng cao lập trình bằng C++, dựa trên Qt và libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">Bản quyền %1 2006-2025 Dự án qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Bản quyền %1 2006-2026 Dự án qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -912,12 +908,12 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="729"/>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation type="unfinished"></translation>
+        <translation>Mã điểm dịch vụ phân biệt (DSCP) để kết nối với các thiết bị ngang hàng</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="774"/>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Nó thêm chữ vào tiêu đề cửa sổ để giúp phân biệt các tiến trình qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="835"/>
@@ -1120,10 +1116,6 @@
         <location filename="../gui/advancedsettings.cpp" line="768"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Không kết nối ngang hàng trên các cổng đặc quyền</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Nó thêm chữ vào tiêu đề cửa sổ để giúp phân biệt các phiên bản qBittorent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="775"/>
@@ -1404,17 +1396,17 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="911"/>
         <source>WebUI username must be at least 3 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên đăng nhập WebUI phải có ít nhất 3 ký tự.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="913"/>
         <source>WebUI username cannot contain a colon</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên đăng nhập WebUI không được chứa dấu hai chấm.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="920"/>
         <source>WebUI password must be at least 6 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Mật khẩu WebUI phải có ít nhất 6 ký tự.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1224"/>
@@ -1678,25 +1670,6 @@
         <location filename="../base/asyncfilestorage.cpp" line="46"/>
         <source>Could not create directory &apos;%1&apos;.</source>
         <translation>Không thể tạo thư mục &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">Đăng nhập WebAPI thất bại. Lí do: IP đã bị cấm, IP: %1, tên đăng nhập: %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">Địa chỉ IP của bạn đã bị cấm sau quá nhiều lần xác thực không thành công.</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">Đăng nhập WebAPI thành công. IP: %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">Đăng nhập WebAPI thất bại. Lí do: chứng chỉ không hợp lệ, số lần thử: %1, IP: %2, tên người dùng: %3</translation>
     </message>
 </context>
 <context>
@@ -2456,7 +2429,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2436"/>
         <source>Failed to remove torrent content. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>Xnội dung torrent thất bại. Torrent: &quot;%1&quot;. Lỗi: &quot;%2&quot;</translation>
+        <translation>Xóa nội dung torrent thất bại. Torrent: &quot;%1&quot;. Lỗi: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2548"/>
@@ -2582,7 +2555,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6645"/>
         <source>Failed to load additional trackers from file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tải thêm máy theo dõi từ tệp thất bại. Lý do: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5338"/>
@@ -3438,7 +3411,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="264"/>
         <source>IP filter line %1 is malformed. End IP is lower than Start IP!</source>
-        <translation type="unfinished"></translation>
+        <translation>Dòng lọc IP %1 bị lỗi định dạng. Địa chỉ IP cuối thấp hơn địa chỉ IP bắt đầu!</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="280"/>
@@ -3553,17 +3526,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>Kích thước yêu cầu http vượt quá giới hạn, đóng socket. Giới hạn: %1, IP: %2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation>Phương thức yêu cầu HTTP không hợp lệ, đóng ổ cắm. IP: %1. Phương thức: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>Yêu cầu Http không hợp lệ, đóng ổ cắm. IP: %1</translation>
     </message>
@@ -4100,7 +4073,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.cpp" line="346"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Cửa sổ</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="472"/>
@@ -4530,112 +4503,117 @@ Yêu cầu tối thiểu: %2.</translation>
         <translation>Đã chuyển hướng đến URI nam châm</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Không tìm thấy tên máy chủ từ xa (tên máy chủ không hợp lệ)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>Các hoạt động đã bị hủy bỏ</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Máy chủ từ xa đã đóng kết nối sớm, trước khi toàn bộ phản hồi được nhận và xử lý</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>Đã hết thời gian kết nối với máy chủ từ xa</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Bắt tay SSL/TLS thất bại</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>Máy chủ từ xa từ chối kết nối</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Kết nối với máy chủ proxy bị từ chối</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Máy chủ proxy đã đóng kết nối sớm</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>Không tìm thấy tên máy chủ proxy</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Đã hết thời gian kết nối với proxy hoặc proxy không trả lời kịp thời yêu cầu được gửi</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Proxy yêu cầu xác thực để thực hiện yêu cầu nhưng không chấp nhận bất kỳ thông tin đăng nhập nào được cung cấp</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation>Quyền truy cập vào nội dung từ xa đã bị từ chối (403)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation>Máy chủ từ xa yêu cầu xác thực để phân phối nội dung nhưng thông tin xác thực đã cung cấp không được chấp nhận (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Hoạt động đã yêu cầu trên nội dung từ xa không được phép</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Không tìm thấy nội dung từ xa tại máy chủ (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>API Truy Cập Mạng không thể thực hiện yêu cầu vì giao thức không được xác định</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Thao tác đã yêu cầu không hợp lệ đối với giao thức này</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>Một lỗi không xác định liên quan đến mạng đã được phát hiện</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Đã phát hiện lỗi không xác định liên quan đến proxy</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Đã phát hiện lỗi không xác định liên quan đến nội dung từ xa</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Một sự cố trong giao thức đã được phát hiện</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>Không rõ lỗi</translation>
     </message>
@@ -6135,12 +6113,12 @@ Yêu cầu tối thiểu: %2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="722"/>
         <source>Show speed in Dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị tốc độ trong Dock</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="729"/>
         <source>Show qBittorrent in menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiển thị qBittorrent trong thanh menu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="806"/>
@@ -6390,7 +6368,7 @@ Tắt mã hóa: Chỉ kết nối đến máy ngang hàng không có giao thức
     <message>
         <location filename="../gui/optionsdialog.ui" line="3187"/>
         <source>Remove torrent</source>
-        <translation>Loại bỏ torrent</translation>
+        <translation>Xóa torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3192"/>
@@ -7842,12 +7820,12 @@ readme[0-9].txt: lọc &apos;readme1.txt&apos;, &apos;readme2.txt&apos; nhưng k
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Lỗi Ký Tự</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tên người dùng WebUI không được chứa dấu hai chấm.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2149"/>
@@ -11401,7 +11379,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="64"/>
         <source>Remove torrent</source>
-        <translation>Loại bỏ torrent</translation>
+        <translation>Xóa torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="67"/>
@@ -11604,11 +11582,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1922"/>
         <source>Category does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to edit category</source>
-        <translation type="vanished">Không thể sửa danh mục được</translation>
+        <translation>Danh mục không tồn tại</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
@@ -11911,7 +11885,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../gui/trackerlist/trackerlistwidget.cpp" line="370"/>
         <source>Edit tracker URL...</source>
-        <translation>Chỉnh sửa URL máy theo dõi...</translation>
+        <translation>Sửa URL máy theo dõi...</translation>
     </message>
     <message>
         <location filename="../gui/trackerlist/trackerlistwidget.cpp" line="372"/>
@@ -12311,7 +12285,7 @@ Vui lòng chọn một tên khác và thử lại.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Created On</source>
         <comment>Torrent was initially created on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Tạo Lúc</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
@@ -12355,16 +12329,6 @@ Vui lòng chọn một tên khác và thử lại.</translation>
         <translation>Đã tải lên</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Tải xuống phiên</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Tải lên phiên</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
@@ -12396,13 +12360,13 @@ Vui lòng chọn một tên khác và thử lại.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Session Downloaded</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Phiên Đã Tải Xuống</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Session Uploaded</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Phiên Dã Tải Lên</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
@@ -13126,22 +13090,22 @@ Vui lòng chọn một tên khác và thử lại.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">Đăng nhập WebAPI thất bại. Lí do: IP đã bị cấm, IP: %1, tên đăng nhập: %2</translation>
+        <translation>Đăng nhập WebAPI thất bại. Lí do: IP đã bị cấm, IP: %1, tên đăng nhập: %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Địa chỉ IP của bạn đã bị cấm sau quá nhiều lần xác thực không thành công.</translation>
+        <translation>Địa chỉ IP của bạn đã bị cấm sau quá nhiều lần xác thực không thành công.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">Đăng nhập WebAPI thành công. IP: %1</translation>
+        <translation>Đăng nhập WebAPI thành công. IP: %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">Đăng nhập WebAPI thất bại. Lí do: chứng chỉ không hợp lệ, số lần thử: %1, IP: %2, tên người dùng: %3</translation>
+        <translation>Đăng nhập WebAPI thất bại. Lí do: thông tin xác thực sai, số lần thử: %1, IP: %2, tên người dùng: %3</translation>
     </message>
 </context>
 <context>

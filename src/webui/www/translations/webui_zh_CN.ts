@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>每个 torrent 上传窗口数上限必须大于 0 或禁用。</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">无法保存程序偏好选项，可能是无法连接到 qBttorrent。</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>对等节点 DSCP 必须在 0 到 255 之间。</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>无法保存偏好设置，qBittorrent 可能无法访问。</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>无法添加种子文件。</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>错误：</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">语言</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>I2P 传入长度：</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">它将文件附加到窗口标题来区分不同的 qBittorrent 实例</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>WebUI 用户名长度至少为3个字符</translation>
     </message>
@@ -2231,36 +2219,36 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>与对等节点连接的区分服务代码点 (DSCP) </translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>The WebUI username must not contain a colon.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>日期格式：</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>浏览器默认</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>本地化</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>紧凑</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>显示密度：</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>它将文本附加到窗口标题来区分不同的 qBittorrent 实例</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>解析对等主机名：</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>可用性：</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>已上传</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">本次会话下载</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">本次会话上传</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>剩余</translation>
@@ -3086,16 +3064,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>状态图标</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Session Uploaded</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Session Downloaded</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Created On</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4154,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>刷新标签页</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>打开下载窗口</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>用作搜索关键词</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>停止搜索</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>清除已下载剧集确认</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Category does not exist</translation>
     </message>
 </context>
 <context>

@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Limit slotów wysyłania dla pliku torrent musi być większy od 0 lub wyłączony.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Nie można zapisać ustawień, prawdopodobnie qBittorrent jest nieosiągalny.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>DSCP partnerów musi mieścić się w przedziale od 0 do 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Nie można zapisać preferencji. Prawdopodobnie nie można uzyskać dostępu do qBittorrent.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Nie można dodać torrentów.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Błąd:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Język</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Długość ruchu przychodzącego I2P:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Dołącza tekst do tytułu okna, aby pomóc rozróżnić instancje qBittorent</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Nazwa użytkownika interfejsu WWW musi składać się z co najmniej 3 znaków.</translation>
     </message>
@@ -2231,36 +2219,36 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Differentiated Services Code Point (DSCP) dla połączeń z partnerami</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Nazwa użytkownika interfejsu WWW nie może zawierać dwukropka.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Format daty:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Domyślna przeglądarka</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Lokalizacja</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Zwarta</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Gęstość wyświetlania:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Dodaje tekst do tytułu okna, aby ułatwić rozróżnianie instancji qBittorrent</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Odczytuj nazwy hostów partnerów:</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Dostępność:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Wysłano</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Pobrane w sesji</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Wysłane w sesji</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Pozostało</translation>
@@ -3086,16 +3064,16 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Ikona stanu</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Wysłane sesji</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Pobrane sesji</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Utworzono</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4154,16 @@ Użyj ';' do rozdzielania wielu wpisów. Można użyć wieloznacznika '*'.</tran
         <translation>Odśwież kartę</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Otwórz okno pobierania</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Użyj jako tekstu wyszukiwania</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Zatrzymaj wyszukiwanie</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Wyczyść potwierdzenie pobranych odcinków</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Kategoria nie istnieje</translation>
     </message>
 </context>
 <context>

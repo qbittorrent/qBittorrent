@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>El nombre màxim de pujades de ranures per torrent ha de ser major que 0 o estar inhabilitat.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">No es poden desar les preferències del programa, probablement el qBittorrent no és accessible.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -572,16 +568,16 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>El DSCP del client ha de ser entre 0 i 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>No es poden desar les preferències, probablement no es pot accedir a qBittorrent.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>No es poden afegir torrents.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Error:</translation>
     </message>
 </context>
 <context>
@@ -864,10 +860,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>BitTorrent</source>
         <translation>Bittorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Llengua</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1976,10 +1968,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Longitud d'entrada I2P:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Afegeix el text al títol de la finestra per ajudar a distingir les instàncies del qBittorent.</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>El nom d'usuari de la interfície web ha de tenir almenys 3 caràcters.</translation>
     </message>
@@ -2232,36 +2220,36 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Punt de codi de serveis diferenciats (DSCP) per a connexions amb clients</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>El nom d'usuari de la interfície web no pot contenir dos punts.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Format de la data:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Navegador predeterminat</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Localització</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Compacte</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Densitat de visualització:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Afegeix el text al títol de la finestra per ajudar a distingir les instàncies de qBittorrent.</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Resol els noms d'amfitrió dels clients:</translation>
     </message>
 </context>
 <context>
@@ -2673,7 +2661,7 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Disponibilitat:</translation>
     </message>
 </context>
 <context>
@@ -3001,16 +2989,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Pujats</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Baixades durant la sessió</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Pujades durant la sessió</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Restants</translation>
@@ -3087,16 +3065,16 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Icona d'estat</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Sessió carregada</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Sessió baixada</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Creat el </translation>
     </message>
 </context>
 <context>
@@ -4177,16 +4155,16 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <translation>Refresca la pestanya</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Obre la finestra de baixades</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Usa com a text de cerca</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Atura la cerca</translation>
     </message>
 </context>
 <context>
@@ -4581,7 +4559,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Neteja la confirmació dels episodis baixats</translation>
     </message>
 </context>
 <context>
@@ -4832,7 +4810,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>La categoria no existeix.</translation>
     </message>
 </context>
 <context>

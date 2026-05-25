@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>O límite do número máximo de slots de envío por torrent ten que ser superior a 0 ou debe desactivalo.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Non foi posíbel gardar as preferencias do programa, probabelmente o qBittorrent estea inaccesíbel.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -572,7 +568,7 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>O DSCP do par debe estar entre 0 e 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -580,7 +576,7 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -864,10 +860,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Idioma</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1976,10 +1968,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Lonxitude de entrada I2P:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Engade o texto ao título da xanela para axudar a distinguir as instancias de qBittorent</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>O nome de usuario da WebUI debe ter polo menos 3 caracteres.</translation>
     </message>
@@ -2232,26 +2220,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Punto de código de servizos diferenciados (DSCP) para as conexións con pares</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished" />
     </message>
@@ -2260,7 +2228,27 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2673,7 +2661,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Dispoñíbel:</translation>
     </message>
 </context>
 <context>
@@ -3001,16 +2989,6 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Enviado</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Desc. na sesión</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Env. na sesión</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Restante</translation>
@@ -3087,15 +3065,15 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Icona de estado</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4177,16 +4155,16 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <translation>Actualizar pestana</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Abrir a xanela de descargas</translation>
     </message>
     <message>
         <source>Use as search text</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Deter a busca</translation>
     </message>
 </context>
 <context>

@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maximale Anzahle der Upload-Slots muss größer als 0 sein oder deaktiviert werden.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Programmeinstellungen konnten nicht gespeichert werden – qBittorrent ist vermutlich nicht erreichbar.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>Der Peer-DSCP muss zwischen 0 und 255 liegen.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Einstellungen konnten nicht gespeichert werden – qBittorrent ist vermutlich nicht erreichbar.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Konnte Torrents nicht hinzufügen.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Fehler:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Sprache</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1977,12 +1969,8 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>i2p Zwischenstationen eingehend</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Der Text wird an den Fenstertitel angehängt, um qBittorent-Instanzen zu unterscheiden</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation>Das Passwort für das Webinterface muss mindestens 3 Zeichen lang sein.</translation>
+        <translation>Der Benutzername für das Webinterface muss mindestens 3 Zeichen lang sein.</translation>
     </message>
     <message>
         <source>Same host request delay:</source>
@@ -2233,36 +2221,36 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Differentiated Services Code Point (DSCP) für Verbindungen zu Peers</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Der Benutzername für das Webinterface darf keinen Doppelpunkt enthalten.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Datumsformat:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Standardbrowser</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Lokalisierung</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Kompakt</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Anzeigedichte:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Der Text wird an den Fenstertitel angehängt, um qBittorent-Instanzen zu unterscheiden</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Hostnamen der Peers auflösen:</translation>
     </message>
 </context>
 <context>
@@ -2582,7 +2570,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation>Auswahl Umschalten</translation>
+        <translation>Auswahl Umkehren</translation>
     </message>
     <message>
         <source>Replacement Input</source>
@@ -2674,7 +2662,7 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Verfügbarkeit:</translation>
     </message>
 </context>
 <context>
@@ -3002,16 +2990,6 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Hochgeladen</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">DL in dieser Sitzung</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">UL in dieser Sitzung</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Verbleibend</translation>
@@ -3088,16 +3066,16 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Statussymbol</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>UL in dieser Sitzung</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>DL in dieser Sitzung</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Erstellt am</translation>
     </message>
 </context>
 <context>
@@ -4178,16 +4156,16 @@ Platzhalter '*' kann verwendet werden.</translation>
         <translation>Tab aktualisieren</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Das Download-Fenster öffnen</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Als Suchtext verwenden</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Suche anhalten</translation>
     </message>
 </context>
 <context>
@@ -4582,7 +4560,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Löschen der heruntergeladenen Folgen bestätigt</translation>
     </message>
 </context>
 <context>
@@ -4833,7 +4811,7 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Kategorie existiert nicht</translation>
     </message>
 </context>
 <context>

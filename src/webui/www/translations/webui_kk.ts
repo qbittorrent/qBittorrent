@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>КиБ/с</translation>
     </message>
 </context>
 <context>
@@ -567,15 +567,15 @@
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Unable to add torrents.</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Error:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -859,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Тіл</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -2219,11 +2215,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Date format:</source>
+        <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Compact</source>
+        <source>Date format:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2231,11 +2227,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <source>Localization</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Localization</source>
+        <source>Compact</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2243,11 +2239,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer host names:</source>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>The WebUI username must not contain a colon.</source>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3064,15 +3060,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4154,7 +4150,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop search</source>
+        <source>Open download window</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -4162,7 +4158,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
 </context>

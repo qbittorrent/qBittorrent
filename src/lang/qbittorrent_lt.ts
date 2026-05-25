@@ -4,14 +4,14 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Trūksta reikalingų parametrų: %1</translation>
     </message>
 </context>
 <context>
@@ -105,13 +105,9 @@
         <translation>Pažangus BitTorrent klientas, parašytas C++ programavimo kalba, naudojant Qt bei libtorrent-rasterbar bibliotekas.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">Autorių teisės %1 2006-2025 qBittorrent projektas</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Autorių teisės %1 2006-2026 qBittorrent projektas</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -1677,25 +1673,6 @@ Priežastis: %2</translation>
     </message>
 </context>
 <context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">Tinklo API prisijungimo nesėkmė. Priežastis: IP buvo užblokuotas, IP: %1, naudotojo vardas: %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">Jūsų IP adresas buvo užblokuotas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">Tinklo API prisijungimas pavyko. IP: %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">Tinklo API prisijungimo nesėkmė. Priežastis: neteisingi prisijungimo duomenys, bandymas nr.: %1, IP: %2, naudotojo vardas: %3</translation>
-    </message>
-</context>
-<context>
     <name>AutomatedRssDownloader</name>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="14"/>
@@ -2407,7 +2384,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6364"/>
         <source>I2P error. Message: &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>I2P klaida. Pranešimas: „%1“.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3028"/>
@@ -3174,7 +3151,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <location filename="../gui/uithemedialog.cpp" line="133"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistema</translation>
     </message>
 </context>
 <context>
@@ -3549,17 +3526,17 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>Http užklausos dydis viršija ribą, lizdas uždaromas. Riba: %1, IP: %2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>Bloga Http užklausa, uždaromas lizdas. IP: %1</translation>
     </message>
@@ -3918,7 +3895,7 @@ Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat
     <message>
         <location filename="../gui/mainwindow.ui" line="200"/>
         <source>Sto&amp;p</source>
-        <translation type="unfinished"></translation>
+        <translation>Sta&amp;bdyti</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="205"/>
@@ -4525,113 +4502,118 @@ Minimali versija yra: %2.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Nuotolinio serverio vardas nerastas (negaliojantis serverio vardas)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>Operacijos buvo atsisakyta</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Nuotolinis serveris per anksti nutraukė prisijungimą, nespėjus gauti bei apdoroti pilno atsakymo</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>Baigėsi prisijungimui prie nuotolinio serverio skirtas laikas</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>SSL/TLS ryšio suderinimas nepavyko</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>Nuotolinis serveris atmetė ryšį</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>Ryšys su įgaliotuoju serveriu buvo atmestas</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Įgaliotasis serveris per anksti nutraukė ryšį</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>Proxy hosto pavadinimas nebuvo rastas</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Baigėsi prisijungimui prie įgaliotojo serverio skirtas laikas arba įgaliotasis serveris laiku neatsakė į užklausą</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Įgaliotasis serveris reikalauja atpažinimo, norint įvykdyti užklausą, tačiau nepriėmė jokių siūlytų prisijungimo duomenų</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Su nuotoliniu turiniu užklausta operacija neleidžiama </translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Nuotolinis turinys serveryje nerastas (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Tinklo prieigos API negali įvykdyti užklausos, nes užklausos protokolas nežinomas</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>100%match
 Užklausta operacija šiam protokolui yra neteisinga</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>Aptikta nežinoma tinklo klaida</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Aptikta nežinoma su įgaliotuoju serveriu susijusi klaida</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Aptikta nežinoma su nuotoliniu turiniu susijusi klaida</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Protokole aptiktas gedimas</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>Nežinoma klaida</translation>
     </message>
@@ -7770,7 +7752,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1531"/>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ištrinti šį API raktą? Dabartinis raktas iš karto nebeveiks.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1863"/>
@@ -7782,7 +7764,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="1870"/>
         <source>System</source>
         <comment>System default Qt style</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1871"/>
@@ -7805,7 +7787,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="1890"/>
         <source>System</source>
         <comment>System color scheme</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sistema</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2015"/>
@@ -9381,12 +9363,12 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
     <message>
         <location filename="../base/search/searchhandler.cpp" line="70"/>
         <source>Process failed to start</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko paleisti proceso</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="72"/>
         <source>Process crashed</source>
-        <translation type="unfinished"></translation>
+        <translation>Procesas užstrigo</translation>
     </message>
     <message>
         <location filename="../base/search/searchhandler.cpp" line="74"/>
@@ -11100,7 +11082,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="235"/>
         <source>Calculating...</source>
-        <translation type="unfinished"></translation>
+        <translation>Skaičiuojama...</translation>
     </message>
     <message>
         <location filename="../gui/torrentcreatordialog.cpp" line="280"/>
@@ -11192,12 +11174,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="420"/>
         <source>Magnet file too big. File: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet failas per didelis. Failas: %1</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="425"/>
         <source>Failed to open magnet file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko atverti magnet failo: %1</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="495"/>
@@ -11569,7 +11551,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <location filename="../webui/api/torrentscontroller.cpp" line="1726"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="1752"/>
         <source>Cannot create target directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyksta sukurti paskirties katalogo</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1882"/>
@@ -11585,26 +11567,22 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1922"/>
         <source>Category does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to edit category</source>
-        <translation type="vanished">Nepavyko taisyti kategorijos</translation>
+        <translation>Kategorijos nėra</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
         <source>File name has invalid characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Failo pavadinime yra netinkamų simbolių</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2087"/>
         <source>Folder name has invalid characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplanko pavadinime yra netinkamų simbolių</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2120"/>
         <source>Unable to export torrent file. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nepavyko eksportuoti torento failo. Klaida: %1</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2174"/>
@@ -11640,7 +11618,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2298"/>
         <source>Metadata is not yet available</source>
-        <translation type="unfinished"></translation>
+        <translation>Metaduomenys kol kas neprieinami</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2302"/>
@@ -12072,7 +12050,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="686"/>
         <source>Don&apos;t ask me again.</source>
-        <translation type="unfinished"></translation>
+        <translation>Daugiau nebeklausti.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilters/trackersfilterwidget.cpp" line="116"/>
@@ -12329,16 +12307,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
         <translation>Išsiųsta</translation>
-    </message>
-    <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Atsiųsta per seansą</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Išsiųsta per seansą</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
@@ -12620,7 +12588,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1002"/>
         <source>Force rec&amp;heck</source>
-        <translation type="unfinished"></translation>
+        <translation>Priverstinai &amp;tikrinti iš naujo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1004"/>
@@ -12750,19 +12718,19 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="978"/>
         <source>&amp;Start</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Palei&amp;sti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="980"/>
         <source>Sto&amp;p</source>
         <comment>Stop the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sta&amp;bdyti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="982"/>
         <source>Force Star&amp;t</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Priverstinai paleis&amp;ti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="984"/>
@@ -13102,22 +13070,22 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">Tinklo API prisijungimo nesėkmė. Priežastis: IP buvo užblokuotas, IP: %1, naudotojo vardas: %2</translation>
+        <translation>Tinklo API prisijungimo nesėkmė. Priežastis: IP buvo užblokuotas, IP: %1, naudotojo vardas: %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Jūsų IP adresas buvo užblokuotas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
+        <translation>Jūsų IP adresas buvo užblokuotas po per didelio kiekio nepavykusių atpažinimo bandymų.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">Tinklo API prisijungimas pavyko. IP: %1</translation>
+        <translation>Tinklo API prisijungimas pavyko. IP: %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">Tinklo API prisijungimo nesėkmė. Priežastis: neteisingi prisijungimo duomenys, bandymas nr.: %1, IP: %2, naudotojo vardas: %3</translation>
+        <translation>Tinklo API prisijungimo nesėkmė. Priežastis: neteisingi prisijungimo duomenys, bandymas nr.: %1, IP: %2, naudotojo vardas: %3</translation>
     </message>
 </context>
 <context>

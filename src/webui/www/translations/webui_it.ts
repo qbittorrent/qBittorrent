@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Il numero massimo di posizioni in invio deve essere 0 o disattivato.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Impossibile salvare le preferenze, qBittorrent potrebbe essere irraggiungibile.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -572,16 +568,16 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
         <translation>DSCP peer deve essere compreso tra 0 e 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Impossibile salvare le preferenze, qBittorrent probabilmente non è raggiungibile.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Impossibile aggiungere torrent.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Errore:</translation>
     </message>
 </context>
 <context>
@@ -864,10 +860,6 @@ Per un funzionamento corretto della WebUI va abilitato JavaScript.</translation>
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Lingua</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1979,10 +1971,6 @@ Ciò può essere utile se l'utente non è interessato all'anonimizzazione di I2P
         <translation>Lunghezza I2P in entrata:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Aggiunge il testo al titolo della finestra per aiutare a distinguere le istanze di qBittorent</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Il nome utente WebUI deve contenere almeno 3 caratteri.</translation>
     </message>
@@ -2236,36 +2224,36 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
         <translation>DSCP (Differentiated Services Code Point) per connessioni ai peer</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Il nome utente del WebUI non può contenere i due punti</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Formato data:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Predefinita browser</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Localizzazione</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Compatta</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Densità schermo:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi il testo al titolo della finestra per aiutare a distinguere le istanze di qBittorrent</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Risolvi nomi host peer:</translation>
     </message>
 </context>
 <context>
@@ -2677,7 +2665,7 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Disponibilità:</translation>
     </message>
 </context>
 <context>
@@ -3005,16 +2993,6 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
         <translation>Inviati</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Scaricamento sessione</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Invio sessione</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Rimanente</translation>
@@ -3091,16 +3069,16 @@ Controlla la posta in arrivo per confermare la ricezione</translation>
         <translation>Icona di stato</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Sessione caricata</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Sessione scaricata</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Creato il</translation>
     </message>
 </context>
 <context>
@@ -4182,16 +4160,16 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
         <translation>Scheda Aggiorna</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Apri finestra download</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Usare come testo per la ricerca</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Ferma ricerca</translation>
     </message>
 </context>
 <context>
@@ -4587,7 +4565,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Cancella conferma episodi scaricati</translation>
     </message>
 </context>
 <context>
@@ -4838,7 +4816,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Categoria non esistente</translation>
     </message>
 </context>
 <context>

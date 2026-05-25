@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/giây</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Giới hạn số lượng tối đa các phần tải lên của mỗi torrent phải lớn hơn 0 nếu không sẽ bị vô hiệu hóa.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Không thể lưu tùy chọn chương trình, qBittorrent có thể không truy cập được.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>DSCP ngang hàng phải nằm trong khoảng từ 0 đến 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Không thể lưu cài đặt, có thể do qBittorrent không thể truy cập được.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Không thể thêm torrent.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Lỗi:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Ngôn ngữ</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>Độ dài gửi đến I2P:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Nó thêm chữ vào tiêu đề cửa sổ để giúp phân biệt các phiên bản qBittorent</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Tên người dùng WebUI phải dài ít nhất 3 ký tự.</translation>
     </message>
@@ -2228,39 +2216,39 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
+        <translation>Mã điểm dịch vụ phân biệt (DSCP) để kết nối với các thiết bị ngang hàng</translation>
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Tên người dùng WebUI không được chứa dấu hai chấm.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Định dạng ngày:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Trình duyệt mặc định</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Bản địa hóa</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Nhỏ gọn</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Mật độ hiển thị:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Nó thêm chữ vào tiêu đề cửa sổ để giúp phân biệt các tiến trình qBittorrent</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Xử lý tên máy chủ ngang hàng:</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Khả dụng:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>Đã tải lên</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Phiên Tải Về</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Phiên Tải Lên</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Còn lại</translation>
@@ -3086,16 +3064,16 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>Biểu Tượng Trạng Thái</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Phiên Dã Tải Lên</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Phiên Đã Tải Xuống</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Tạo Lúc</translation>
     </message>
 </context>
 <context>
@@ -3150,7 +3128,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Chỉnh sửa URL máy theo dõi...</translation>
+        <translation>Sửa URL máy theo dõi...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -3600,7 +3578,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation>Loại bỏ torrent</translation>
+        <translation>Xóa torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its content</source>
@@ -4176,16 +4154,16 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
         <translation>Làm mới tab</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Mở cửa sổ tải xuống</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng làm văn bản tìm kiếm</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Dừng tìm kiếm</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Xác nhận đã tải xuống các tập</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Danh mục không tồn tại</translation>
     </message>
 </context>
 <context>

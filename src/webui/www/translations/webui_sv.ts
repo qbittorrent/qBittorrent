@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Högst antal sändningsplatser per torrent måste vara större än 0 eller inaktiverat.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Det går inte att spara programinställningarna. qBittorrent är antagligen inte nåbar.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>DSCP för jämlikar måste vara mellan 0 och 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Det gick inte att spara inställningarna, qBittorrent är förmodligen inte nåbart.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Det gick inte att lägga till torrenter.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Fel:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Språk</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1484,7 +1476,7 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation>Förbud mot klient efter påföljande misslyckanden:</translation>
+        <translation>Förbjud klient efter upprepade misslyckanden:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1724,7 +1716,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation>Ange omvänd proxy-IP:er (eller undernät, t.ex. 0.0.0.0/24) för att använda vidarebefordrad klientadress (X-Forwarded-For header). Använd ';' för att dela upp flera poster.</translation>
+        <translation>Ange IP-adresser för omvänd proxy (eller undernät, t.ex. 0.0.0.0/24) för att använda vidarebefordrad klientadress (X-Forwarded-For-rubrik). Använd ';' för att dela upp flera poster.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1772,7 +1764,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation>Snabbåteruppta filer</translation>
+        <translation>Fastresume-filer</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
@@ -1844,7 +1836,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation>UPnP-anslutningstid [0: permanent anslutning]:</translation>
+        <translation>UPnP-anslutningstid [0: permanent tilldelning]:</translation>
     </message>
     <message>
         <source>Bdecode depth limit:</source>
@@ -1932,7 +1924,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Disk cache expiry interval:</source>
-        <translation>Intervall för diskcache utgångsdatum:</translation>
+        <translation>Utgångsintervall för diskcache:</translation>
     </message>
     <message>
         <source>I2P outbound length:</source>
@@ -1973,10 +1965,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     <message>
         <source>I2P inbound length:</source>
         <translation>I2P inkommande längd:</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Den lägger till texten till fönstertiteln för att hjälpa till att särskilja qBittorent-instanser</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2068,7 +2056,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation>Aktivera säkerhetsflagga för kaka (kräver HTTPS eller lokal värdanslutning)</translation>
+        <translation>Aktivera säkerhetsflaggan för kakor (kräver HTTPS eller localhost-anslutning)</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2231,36 +2219,36 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Differentierad tjänstekodpunkt (DSCP) för anslutningar till jämlikar</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Användarnamnet för webbanvändargränssnittet får inte innehålla ett kolon</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Datumformat:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Webbläsarstandard</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Lokalisering</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Kompakt</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Skärmdensitet:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Den lägger till texten i fönsterrubriken för att hjälpa till att skilja qBittorrent-instanser åt</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Slå upp jämlikevärdnamn:</translation>
     </message>
 </context>
 <context>
@@ -2339,7 +2327,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation>Jämlike ID-klient</translation>
+        <translation>Jämlikens klient-ID</translation>
     </message>
     <message>
         <source>IP/Address</source>
@@ -2672,7 +2660,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Tillgängligt:</translation>
     </message>
 </context>
 <context>
@@ -2721,7 +2709,7 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
     </message>
     <message>
         <source>Read cache hits:</source>
-        <translation>Läscache träffar:</translation>
+        <translation>Träffar i läscache:</translation>
     </message>
     <message>
         <source>Average time in queue:</source>
@@ -3000,16 +2988,6 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Skickat</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Hämtat denna session</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Skickat denna session</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Återstår</translation>
@@ -3086,16 +3064,16 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Statusikon</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Skickat denna session</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Hämtat denna session</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Skapad:</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4154,16 @@ Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".<
         <translation>Uppdatera flik</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Öppna hämtningsfönstret</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Använd som söktext</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Stoppa sökning</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Bekräftelse på att rensa hämtade avsnitt</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Kategorin finns inte</translation>
     </message>
 </context>
 <context>

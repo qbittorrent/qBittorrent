@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">O aplikaci</translation>
+        <translation type="vanished">O</translation>
     </message>
 </context>
 <context>
@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Limit maximálního počtu slotů na torrent musí být větší než 0 nebo vypnut.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Nelze uložit předvolby programu, qBittorrent klient je pravděpodobně nedosažitelný.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,16 +567,16 @@
         <translation>Peer DSCP musí být mezi 0 a 255.</translation>
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Nepodařilo se uložit předvolby, qBittorrent je pravděpodobně nedosažitelný.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Nepodařilo se přidat torrenty.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Chyba:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Jazyk</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation>I2P příchozí délka:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Přidává text na konec titulku okna pro odlišení od ostatních instancí qBittorrentu</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Uživatelské jméno WebUI musí mít délku nejméně 3 znaky.</translation>
     </message>
@@ -2231,36 +2219,36 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation>Pro připojení k peerům DSCP (Differentiated Services Code Point)</translation>
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>WebUI uživatelské jméno nesmí obsahovat dvojtečku.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Formát datumu:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Výchozí podle prohlížeče</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Překlad</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Kompaktní</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Hustota zobrazení:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Přidá text na konec titulku okna, kvůli rozlišení jednotlivých instancí qBittorrent</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Zjistit názvy hostitele peerů</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Dostupnost:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation>Odesláno</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Staženo po spuštění</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Odesláno po spuštění</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Zbývající</translation>
@@ -3086,16 +3064,16 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation>Stavová ikona</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Nahráno v rámci relace</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Staženo v rámci relace</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Vytvořeno</translation>
     </message>
 </context>
 <context>
@@ -4176,16 +4154,16 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
         <translation>Obnovit kartu</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Otevřít okno stahování</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Použít jako text vyhledávání</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Zastavit hledání</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Smazat potvrzení stažených epizod</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Kategorie neexistuje</translation>
     </message>
 </context>
 <context>

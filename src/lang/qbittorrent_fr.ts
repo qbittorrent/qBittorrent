@@ -4,12 +4,12 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
         <translation>Le point de terminaison n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
         <translation>Paramètres requis manquants&#xa0;: %1</translation>
     </message>
@@ -105,13 +105,9 @@
         <translation>Un client BitTorrent évolué programmé en C++, basé sur les bibliothèques Qt et libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">Copyright %1 2006-2025 Le projet qBittorrent</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Tous droits réservés %1 2006-2026 Le projet qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -917,7 +913,7 @@
     <message>
         <location filename="../gui/advancedsettings.cpp" line="774"/>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished"></translation>
+        <translation>Cela ajoute le texte au titre de la fenêtre pour aider à distinguer les instances de qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="835"/>
@@ -1120,10 +1116,6 @@
         <location filename="../gui/advancedsettings.cpp" line="768"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Interdire la connexion à des pairs sur des ports privilégiés</translation>
-    </message>
-    <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Cela ajoute le texte au titre de la fenêtre pour aider à distinguer les instances de qBitTorent</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="775"/>
@@ -1404,17 +1396,17 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="911"/>
         <source>WebUI username must be at least 3 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nom d&apos;utilisateur pour l&apos;IU Web doit comporter au moins 3 caractères.</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="913"/>
         <source>WebUI username cannot contain a colon</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nom d&apos;utilisateur de l&apos;IU Web ne doit pas contenir de doubles points</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="920"/>
         <source>WebUI password must be at least 6 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Le mot de passe pour l&apos;IU Web doit contenir au moins 6 caractères</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1224"/>
@@ -1515,7 +1507,7 @@
     <message>
         <location filename="../app/application.cpp" line="1003"/>
         <source>The WebUI is disabled! To enable the WebUI, edit the config file manually.</source>
-        <translation>L&apos;interface web est désactivée ! Pour activer l&apos;interface web, éditer le fichier de configuration manuellement.</translation>
+        <translation>L&apos;IU Web est désactivée ! Pour activer l&apos;IU Web, éditer le fichier de configuration manuellement.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="610"/>
@@ -1677,26 +1669,7 @@ Raison : %2</translation>
     <message>
         <location filename="../base/asyncfilestorage.cpp" line="46"/>
         <source>Could not create directory &apos;%1&apos;.</source>
-        <translation>Impossible de créer le dossier &apos;%1&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">Échec d&apos;authentification à l&apos;API Web. Raison : l&apos;IP est bannie, IP : %1, nom d&apos;utilisateur : %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">Votre adresse IP a été bannie après trop de tentatives d&apos;authentification infructueuses.</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">Authentification à l&apos;API Web réussie. IP : %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">Échec d&apos;authentification à l&apos;API Web. Raison : identifiants invalides, nombre de tentatives : %1, IP : %2, nom d&apos;utilisateur : %3</translation>
+        <translation>N&apos;a pas pu créer le dossier &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -2371,7 +2344,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2221"/>
         <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
-        <translation>Impossible de trouver le GUID de l’interface réseau. Interface : « %1 »</translation>
+        <translation>N&apos;a pas pu trouver le GUID de l’interface réseau. Interface : « %1 »</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="2238"/>
@@ -2582,7 +2555,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6645"/>
         <source>Failed to load additional trackers from file. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Échec du chargement des trackers additionnels depuis le fichier. Raison : %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5338"/>
@@ -3408,7 +3381,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
         <location filename="../base/bittorrent/filterparserthread.cpp" line="304"/>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="485"/>
         <source>I/O Error: Could not open IP filter file in read mode.</source>
-        <translation>Erreur d&apos;E/S : impossible d&apos;ouvrir le fichier du filtre IP en mode lecture.</translation>
+        <translation>Erreur d&apos;E/S : N&apos;a pas pu ouvrir le fichier du filtre IP en mode lecture.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="227"/>
@@ -3438,7 +3411,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="264"/>
         <source>IP filter line %1 is malformed. End IP is lower than Start IP!</source>
-        <translation type="unfinished"></translation>
+        <translation>La ligne %1 du filtre IP est mal formée. L&apos;IP de fin est plus basse que l&apos;IP de départ !</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="280"/>
@@ -3553,17 +3526,17 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>Taille de requête HTTP trop grande, fermeture du socket. Limite: %1, IP: %2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation>Mauvaise méthode de requête HTTP, fermeture du socket. IP : %1. Méthode : « %2 »</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>Mauvaise requête HTTP, fermeture du socket. IP : %1</translation>
     </message>
@@ -4100,7 +4073,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <message>
         <location filename="../gui/mainwindow.cpp" line="346"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fenêtre</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="472"/>
@@ -4244,7 +4217,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
         <location filename="../gui/mainwindow.cpp" line="1989"/>
         <source>Python installer could not be downloaded. Error: %1.
 Please install it manually.</source>
-        <translation>L’installateur de Python ne peut pas être téléchargé. Erreur : %1.
+        <translation>L’installateur de Python n&apos;a pas pu être téléchargé. Erreur : %1.
 Veuillez l’installer manuellement.</translation>
     </message>
     <message>
@@ -4530,112 +4503,117 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
         <translation>Redirigé vers l&apos;URI du magnet</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Le nom d&apos;hôte distant est introuvable (nom d&apos;hôte invalide)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>L&apos;opération a été annulée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Le serveur distant a fermé la connexion prématurément, avant que l&apos;intégralité de la réponse n&apos;ait été reçue et traitée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>La connexion au serveur distant a expiré</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Échec de l&apos;établissement d&apos;une liaison SSL/TLS</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>Le serveur distant a refusé la connexion</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>La connexion au serveur proxy a été refusée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Le serveur proxy a fermé la connexion prématurément</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>Le nom d&apos;hôte du proxy est introuvable</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>La connexion au proxy a expiré ou le proxy n&apos;a pas répondu à temps à la requête envoyée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Le proxy requiert une authentification afin d&apos;honorer la requête, mais n&apos;a accepté aucun identifiant proposé</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation>L&apos;accès au contenu distant a été refusé (403)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation>Le serveur distant requiert une authentification pour diffuser le contenu, mais les informations d&apos;identification fournies n&apos;ont pas été acceptées (401)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>L&apos;opération demandée sur le contenu distant n&apos;est pas autorisée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Le contenu distant n&apos;a pas été trouvé sur le serveur (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>L&apos;API d&apos;accès réseau ne peut pas honorer la requête car le protocole n&apos;est pas connu</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>L&apos;opération demandée est invalide pour ce protocole</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>Une erreur inconnue liée au réseau a été détectée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Une erreur inconnue liée au proxy a été détectée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Une erreur inconnue liée au contenu distant a été détectée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Une rupture de protocole a été détectée</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>Erreur inconnue</translation>
     </message>
@@ -5711,7 +5689,7 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="439"/>
         <source>Could not decompress IP geolocation database file.</source>
-        <translation>Impossible de décompresser la base de données de géolocalisation des IPs.</translation>
+        <translation>N&apos;a pas pu décompresser la base de données de géolocalisation des IPs.</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="466"/>
@@ -6095,12 +6073,12 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="462"/>
         <source>Use separate &quot;Tracker status&quot; filter. Otherwise it gets merged with &quot;Trackers&quot; filter.</source>
-        <translation>Utilisez un filtre distinct pour « État du tracker ». Sinon, il sera fusionné avec le filtre « Trackers ».</translation>
+        <translation>Utiliser un filtre distinct pour « État du tracker ». Sinon, il sera fusionné avec le filtre « Trackers ».</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="465"/>
         <source>Use separate &quot;Tracker status&quot; filter</source>
-        <translation>Utilisez un filtre « État du tracker » distinct</translation>
+        <translation>Utiliser un filtre « État du tracker » distinct</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="494"/>
@@ -6130,17 +6108,17 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="702"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;To set qBittorrent as default program for .torrent files and/or Magnet links&lt;br/&gt;you can use &lt;span style=&quot; font-weight:600;&quot;&gt;Default Programs&lt;/span&gt; dialog from &lt;span style=&quot; font-weight:600;&quot;&gt;Control Panel&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pour définir qBittorrent comme programme par défaut pour les fichiers .torrent et/ou les liens Magnet&lt;br/&gt;, vous pouvez utiliser la page &lt;span style=&quot; font-weight:600;&quot;&gt;Applications par défaut&lt;/span&gt; dans les &lt;span style=&quot; font-weight:600;&quot;&gt;Paramètres&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pour définir qBittorrent comme programme par défaut pour les fichiers .torrent et/ou les liens Magnet, &lt;br/&gt; vous pouvez utiliser la page &lt;span style=&quot; font-weight:600;&quot;&gt;Applications par défaut&lt;/span&gt; dans les &lt;span style=&quot; font-weight:600;&quot;&gt;Paramètres&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="722"/>
         <source>Show speed in Dock</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher la vitesse dans le Dock</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="729"/>
         <source>Show qBittorrent in menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher qBittorrent dans la barre de menu</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="806"/>
@@ -6221,7 +6199,7 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1712"/>
         <source>Run on torrent added:</source>
-        <translation>Exécution à l&apos;ajout d&apos;un torrent :</translation>
+        <translation>Exécuter lors de l&apos;ajout d&apos;un torrent :</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1730"/>
@@ -6256,12 +6234,12 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2164"/>
         <source>Perform hostname lookup via proxy</source>
-        <translation>Recherche du nom d&apos;hôte via un proxy</translation>
+        <translation>Rechercher le nom d&apos;hôte via un proxy</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2224"/>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation>Utiliser un proxy à des fins BitTorrent</translation>
+        <translation>Utiliser un proxy pour BitTorrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2249"/>
@@ -6271,7 +6249,7 @@ Configuration minimale requise&#xa0;:&#xa0;%2.</translation>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2252"/>
         <source>Use proxy for RSS purposes</source>
-        <translation>Utiliser un proxy à des fins RSS</translation>
+        <translation>Utiliser un proxy pour les flux RSS</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="2262"/>
@@ -6697,7 +6675,7 @@ Utiliser &apos;;&apos; pour diviser plusieurs entrées. Le caractère génériqu
     <message>
         <location filename="../gui/optionsdialog.ui" line="484"/>
         <source>Drag content from qBittorrent</source>
-        <translation>Glissez le contenu depuis qBittorrent</translation>
+        <translation>Glisser le contenu depuis qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="605"/>
@@ -6763,7 +6741,7 @@ Utiliser &apos;;&apos; pour diviser plusieurs entrées. Le caractère génériqu
     <message>
         <location filename="../gui/optionsdialog.ui" line="968"/>
         <source>When adding a torrent</source>
-        <translation>À l&apos;ajout d&apos;un torrent</translation>
+        <translation>Lors de l&apos;ajout d&apos;un torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="983"/>
@@ -6823,7 +6801,7 @@ Utiliser &apos;;&apos; pour diviser plusieurs entrées. Le caractère génériqu
     <message>
         <location filename="../gui/optionsdialog.ui" line="1279"/>
         <source>When Torrent Category changed:</source>
-        <translation>Quand la catégorie du torrent change :</translation>
+        <translation>Lorsque la catégorie du torrent change :</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1289"/>
@@ -7841,12 +7819,12 @@ readme[0-9].txt : filtre &apos;readme1.txt&apos; et &apos;readme2.txt&apos;, mai
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>Character Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur de caractère</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2142"/>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le nom d&apos;utilisateur de l&apos;IU Web ne doit pas contenir de deux-points.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="2149"/>
@@ -11603,11 +11581,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1922"/>
         <source>Category does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to edit category</source>
-        <translation type="vanished">Impossible d&apos;éditer la catégorie</translation>
+        <translation>La catégorie n&apos;existe pas</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
@@ -12151,7 +12125,7 @@ Veuillez en choisir un autre.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="96"/>
         <source>Stalled</source>
         <comment>Torrent is waiting for download to begin</comment>
-        <translation>Dormants</translation>
+        <translation>Dormant</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="97"/>
@@ -12310,7 +12284,7 @@ Veuillez en choisir un autre.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Created On</source>
         <comment>Torrent was initially created on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Créé le</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
@@ -12354,16 +12328,6 @@ Veuillez en choisir un autre.</translation>
         <translation>Envoyé</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Téléchargé durant la session</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Envoi durant la session</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
@@ -12395,13 +12359,13 @@ Veuillez en choisir un autre.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Session Downloaded</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Téléchargé durant la session</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Session Uploaded</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Envoyé durant la session</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
@@ -13125,22 +13089,22 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">Échec d&apos;authentification à l&apos;API Web. Raison : l&apos;IP est bannie, IP : %1, nom d&apos;utilisateur : %2</translation>
+        <translation>Échec d&apos;authentification à l&apos;API Web. Raison : l&apos;IP est bannie, IP : %1, nom d&apos;utilisateur : %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Votre adresse IP a été bannie après trop de tentatives d&apos;authentification infructueuses.</translation>
+        <translation>Votre adresse IP a été bannie après trop de tentatives d&apos;authentification infructueuses.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">Authentification à l&apos;API Web réussie. IP : %1</translation>
+        <translation>Authentification à l&apos;API Web réussie. IP : %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">Échec d&apos;authentification à l&apos;API Web. Raison : identifiants invalides, nombre de tentatives : %1, IP : %2, nom d&apos;utilisateur : %3</translation>
+        <translation>Échec d&apos;authentification à l&apos;API Web. Raison : identifiants invalides, nombre de tentatives : %1, IP : %2, nom d&apos;utilisateur : %3</translation>
     </message>
 </context>
 <context>

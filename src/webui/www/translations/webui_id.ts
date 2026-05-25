@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Jumlah maksimum batas slot unggah per torrent harus lebih besar dari 0 atau nonaktif.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Tidak bisa menyimpan preferensi program, qBittorrent mungkin tidak terjangkau.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,7 +567,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Error:</source>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -579,7 +575,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Bahasa</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -2227,26 +2219,6 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished" />
     </message>
@@ -2255,7 +2227,27 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2668,7 +2660,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Ketersediaan:</translation>
     </message>
 </context>
 <context>
@@ -2996,16 +2988,6 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation>Diunggah</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Sesi Unduh</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Sesi Unggah</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Sisa</translation>
@@ -3082,15 +3064,15 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4172,7 +4154,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop search</source>
+        <source>Open download window</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -4180,7 +4162,7 @@ Gunakan ';' untuk memisahkan banyak kata. Dapat menggunakan wildcard '*'.</trans
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
 </context>

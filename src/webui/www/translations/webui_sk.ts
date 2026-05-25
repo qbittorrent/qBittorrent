@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation type="unfinished" />
+        <translation>Nemožno stiahnuť torrent súbor</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maximálny počet nahrávacích pozící musí byť väčší ako 0 alebo vypnutý.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Nepodarilo sa uložiť nastavenia programu, qBittorrent je pravdepodobne nedostupný.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -528,7 +524,7 @@
     </message>
     <message>
         <source>Unable to delete API key.</source>
-        <translation type="unfinished" />
+        <translation>Nemožno zmazať API kľúč.</translation>
     </message>
     <message>
         <source>Seeding time limit must not have a negative value.</source>
@@ -544,11 +540,11 @@
     </message>
     <message>
         <source>Unable to parse response.</source>
-        <translation type="unfinished" />
+        <translation>Nemožno spracovať odpoveď.</translation>
     </message>
     <message>
         <source>Unable to rotate API key.</source>
-        <translation type="unfinished" />
+        <translation>Nemožno zrotovať API kľúč.</translation>
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
@@ -560,7 +556,7 @@
     </message>
     <message>
         <source>Unable to load program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Nepodarilo sa načítať nastavenia programu, qBittorrent je pravdepodobne nedostupný.</translation>
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
@@ -571,16 +567,16 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation>Nepodarilo sa uložiť nastavenia, qBittorrent je pravdepodobne nedostupný.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Nemožno pridať torrenty.</translation>
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <source>Error:</source>
+        <translation>Chyba:</translation>
     </message>
 </context>
 <context>
@@ -839,7 +835,7 @@
     </message>
     <message>
         <source>Filter feed items...</source>
-        <translation type="unfinished" />
+        <translation>Filtrovať položky kanálu...</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>Bittorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Jazyk</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>I2P prichádzajúca dĺžka:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Pripojí text k nadpisom okien pre lepšie rozpoznanie inštancií qBittorrentu</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Používateľské meno pre WebUI musí mať aspoň 3 znaky.</translation>
     </message>
@@ -2068,7 +2056,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished" />
+        <translation>Zapnúť Secure príznak pre cookie (vyžaduje HTTPS alebo localhost pripojenie)</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2172,11 +2160,11 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Poznámka: Heslo je uložené nešifrované</translation>
     </message>
     <message>
         <source>Internal hostname resolver cache expiry interval</source>
-        <translation type="unfinished" />
+        <translation>Interval vypršania platnosti cache interného prekladača názvov hostiteľov</translation>
     </message>
     <message>
         <source>sec</source>
@@ -2184,27 +2172,27 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Rotate API key</source>
-        <translation type="unfinished" />
+        <translation>Vymeniť API kľúč</translation>
     </message>
     <message>
         <source>Generate a key</source>
-        <translation type="unfinished" />
+        <translation>Vygenerovať kľúč</translation>
     </message>
     <message>
         <source>When adding a duplicate torrent</source>
-        <translation type="unfinished" />
+        <translation>Pri pridávaní duplicitného torrentu</translation>
     </message>
     <message>
         <source>Delete API key</source>
-        <translation type="unfinished" />
+        <translation>Zmazať API kľúč</translation>
     </message>
     <message>
         <source>%M: Comment</source>
-        <translation type="unfinished" />
+        <translation>%M: Komentár</translation>
     </message>
     <message>
         <source>Generate API key</source>
-        <translation type="unfinished" />
+        <translation>Vygenerovať API kľúč</translation>
     </message>
     <message>
         <source>Copied</source>
@@ -2212,55 +2200,55 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished" />
+        <translation>Používateľ</translation>
     </message>
     <message>
         <source>Reset filter selection</source>
-        <translation type="unfinished" />
+        <translation>Vynulovať výber filtra</translation>
     </message>
     <message>
         <source>API Key</source>
-        <translation type="unfinished" />
+        <translation>API kľúč</translation>
     </message>
     <message>
         <source>Copy API key</source>
-        <translation type="unfinished" />
+        <translation>Kopírovať API kľúč</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
+        <translation>Differentiated Services Code Point (DSCP) pre pripojenia k peerom</translation>
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>Meno používateľa pre WebUI nemôže obsahovať dvojbodku.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Formát dátumu:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>Predvolené nastavenie prehliadača</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>Lokalizácia</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>Kompaktná</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>Hustota zobrazenia:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Pridá text do záhlavia okna, kvôli rozlíšeniu jednotlivých inštancií qBittorrentu</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>Zisťovať sieťové názvy peerov:</translation>
     </message>
 </context>
 <context>
@@ -2310,7 +2298,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation>Dôležitosť:</translation>
+        <translation>Dôležitosť</translation>
     </message>
     <message>
         <source>Files</source>
@@ -2672,7 +2660,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Dostupnosť:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>Nahraté</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Stiahnuté od spustenia</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Nahraté od spustenia</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Ostáva</translation>
@@ -3086,16 +3064,16 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
         <translation>Stavová ikona</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Vytvorené</translation>
     </message>
 </context>
 <context>
@@ -3770,7 +3748,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>Zásuvné moduly vyhľadávania</translation>
+        <translation>Pluginy pre vyhľadávanie</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -4173,19 +4151,19 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Refresh tab</source>
-        <translation type="unfinished" />
+        <translation>Obnoviť kartu</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Otvoriť okno sťahovania</translation>
     </message>
     <message>
         <source>Use as search text</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Zastaviť hľadanie</translation>
     </message>
 </context>
 <context>
@@ -4315,7 +4293,7 @@ Použite ';' pre oddelenie viacerých položiek. Môžete použiť masku '*'.</t
     </message>
     <message>
         <source>Open link</source>
-        <translation type="unfinished" />
+        <translation>Otvoriť odkaz</translation>
     </message>
     <message>
         <source>Author: </source>
@@ -4619,7 +4597,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Other error</source>
-        <translation type="unfinished" />
+        <translation>Iná chyba</translation>
     </message>
 </context>
 <context>
@@ -4831,7 +4809,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Kategória neexistuje</translation>
     </message>
 </context>
 <context>
@@ -4954,7 +4932,8 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <message>
         <source>Private
                 torrent (Won't distribute on DHT network)</source>
-        <translation type="unfinished" />
+        <translation>Súkromný
+                torrent (nebude sa šíriť pomocou siete DHT)</translation>
     </message>
     <message>
         <source>Unable to export torrent file</source>
@@ -5074,7 +5053,9 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <source>Start
                 seeding
                 immediately</source>
-        <translation type="unfinished" />
+        <translation>Začať
+                seedovať
+                okamžite</translation>
     </message>
     <message>
         <source>Format</source>
@@ -5190,15 +5171,15 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation type="unfinished" />
+        <translation>Vygenerovať API kľúč? Tento kľúč bude možné použiť na komunikáciu s qBittorrent API.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished" />
+        <translation>Zmazať tento API kľúč? Súčasný kľúč prestane okamžite fungovať.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished" />
+        <translation>Vymeniť tento API kľúč? Súčasný kľúč prestane okamžite fungovať a vygeneruje sa nový kľúč.</translation>
     </message>
 </context>
 </TS>

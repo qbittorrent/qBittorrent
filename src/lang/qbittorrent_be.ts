@@ -4,12 +4,12 @@
 <context>
     <name>APIController</name>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="62"/>
+        <location filename="../webui/api/apicontroller.cpp" line="59"/>
         <source>Endpoint does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>Канцавы пункт (атрымальнік) не існуе</translation>
     </message>
     <message>
-        <location filename="../webui/api/apicontroller.cpp" line="89"/>
+        <location filename="../webui/api/apicontroller.cpp" line="86"/>
         <source>Missing required parameters: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -105,13 +105,9 @@
         <translation>Прасунуты кліент BitTorrent напісаны на мове C ++, заснаваны на Qt інструментарыі і Libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <source>Copyright %1 2006-2025 The qBittorrent project</source>
-        <translation type="vanished">Аўтарскае права %1 2006-2025 The qBittorrent project</translation>
-    </message>
-    <message>
         <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2026 The qBittorrent project</source>
-        <translation type="unfinished"></translation>
+        <translation>Аўтарскае права %1 2006-2026 The qBittorrent project</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="71"/>
@@ -1122,10 +1118,6 @@
         <translation>Забараніць злучэнне з пірамі на прывілеяваных партах</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Дадае тэкст да загалоўка акна з мэтай адрознення экзэмпляраў qBittorent</translation>
-    </message>
-    <message>
         <location filename="../gui/advancedsettings.cpp" line="775"/>
         <source>Customize application instance name</source>
         <translation>Дапоўніць назву гэтага экзэмпляра праграмы</translation>
@@ -1409,12 +1401,12 @@
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="913"/>
         <source>WebUI username cannot contain a colon</source>
-        <translation type="unfinished"></translation>
+        <translation>Імя карыстальніка для вэб-інтэрфейсу не можа змяшчаць двукроп&apos;е</translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="920"/>
         <source>WebUI password must be at least 6 characters long</source>
-        <translation type="unfinished"></translation>
+        <translation>Пароль для вэб-інтэрфейсу павінен змяшчаць прынамсі 6 сімвалаў </translation>
     </message>
     <message>
         <location filename="../webui/api/appcontroller.cpp" line="1224"/>
@@ -1448,7 +1440,7 @@
     <message>
         <location filename="../app/application.cpp" line="326"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
-        <translation type="unfinished"></translation>
+        <translation>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="330"/>
@@ -1678,25 +1670,6 @@
         <location filename="../base/asyncfilestorage.cpp" line="46"/>
         <source>Could not create directory &apos;%1&apos;.</source>
         <translation>Немагчыма стварыць каталог «%1».</translation>
-    </message>
-</context>
-<context>
-    <name>AuthController</name>
-    <message>
-        <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="vanished">Не ўдалося ўвайсці ў WebAPI. Прычына: IP быў забаронены, IP: %1, імя карыстальніка: %2</translation>
-    </message>
-    <message>
-        <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="vanished">Ваш IP-адрас быў заблакаваны пасля занадта шматлікіх няўдалых спробаў аўтэнтыфікацыі.</translation>
-    </message>
-    <message>
-        <source>WebAPI login success. IP: %1</source>
-        <translation type="vanished">Паспяховы ўваход у WebAPI. IP: %1</translation>
-    </message>
-    <message>
-        <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="vanished">Памылка ўваходу WebAPI. Прычына: памылковыя ўліковыя даныя, спроб: %1, IP: %2, імя карыстальніка: %3</translation>
     </message>
 </context>
 <context>
@@ -2006,7 +1979,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="689"/>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished"></translation>
+        <translation>Wildcard mode: you can use</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="476"/>
@@ -2318,7 +2291,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1604"/>
         <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="1618"/>
@@ -2770,7 +2743,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6281"/>
         <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="6297"/>
@@ -2983,7 +2956,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="528"/>
         <source>Hack into libtorrent fastresume files and make file paths relative to the profile directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Hack into libtorrent fastresume files and make file paths relative to the profile directory</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="530"/>
@@ -3043,7 +3016,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </source>
-        <translation type="unfinished"></translation>
+        <translation>Option values may be supplied via environment variables. For option named &apos;parameter-name&apos;, environment variable name is &apos;QBT_PARAMETER_NAME&apos; (in upper case, &apos;-&apos; replaced with &apos;_&apos;). To pass flag values, set the variable to &apos;1&apos; or &apos;TRUE&apos;. For example, to disable the splash screen: </translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="554"/>
@@ -3444,14 +3417,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/filterparserthread.cpp" line="280"/>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="434"/>
         <source>IP filter exception thrown for line %1. Exception is: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>IP filter exception thrown for line %1. Exception is: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="290"/>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="444"/>
         <source>%1 extra IP filter parsing errors occurred.</source>
         <comment>513 extra IP filter parsing errors occurred.</comment>
-        <translation type="unfinished"></translation>
+        <translation>%1 extra IP filter parsing errors occurred.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/filterparserthread.cpp" line="497"/>
@@ -3553,17 +3526,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>Http::Connection</name>
     <message>
-        <location filename="../base/http/connection.cpp" line="92"/>
+        <location filename="../base/http/connection.cpp" line="96"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
         <translation>Памер HTTP-запыту перавышае абмежаванне, сокет закрываецца. Абмежаванне: %1, IP: %2</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="106"/>
+        <location filename="../base/http/connection.cpp" line="110"/>
         <source>Bad Http request method, closing socket. IP: %1. Method: &quot;%2&quot;</source>
         <translation>Хібны метад запыту Http, закрыццё сокета. IP: %1. Метад: «%2»</translation>
     </message>
     <message>
-        <location filename="../base/http/connection.cpp" line="119"/>
+        <location filename="../base/http/connection.cpp" line="123"/>
         <source>Bad Http request, closing socket. IP: %1</source>
         <translation>Хібны запыт Http, закрыццё сокета. IP: %1</translation>
     </message>
@@ -3867,7 +3840,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.ui" line="406"/>
         <source>&amp;Reboot System</source>
-        <translation type="unfinished"></translation>
+        <translation>Пера&amp;запусціць камп&apos;ютар</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="414"/>
@@ -4113,7 +4086,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../gui/mainwindow.cpp" line="1195"/>
         <location filename="../gui/mainwindow.cpp" line="1288"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
-        <translation type="unfinished"></translation>
+        <translation>This behavior can be changed in the settings. You won&apos;t be reminded again.</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="581"/>
@@ -4529,112 +4502,117 @@ Minimum requirement: %2.</source>
         <translation>Перанакіравана да magnet-спасылкі</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="260"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="236"/>
+        <source>Redirect to unsupported or dangerous protocol: &apos;%1&apos;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="269"/>
         <source>The remote host name was not found (invalid hostname)</source>
         <translation>Аддалены хост не знойдзены (памылковая назва хоста)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="262"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="271"/>
         <source>The operation was canceled</source>
         <translation>Аперацыя скасавана</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="264"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="273"/>
         <source>The remote server closed the connection prematurely, before the entire reply was received and processed</source>
         <translation>Аддаленны сервер закрыў злучэнне перад тым, як увесь адказ быў атрыманы і апрацаваны</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="266"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="275"/>
         <source>The connection to the remote server timed out</source>
         <translation>Тэрмін чакання злучэння з аддаленым серверам скончыўся</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="268"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="277"/>
         <source>SSL/TLS handshake failed</source>
         <translation>Рукапацісканне SSL/TLS не выйшла</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="270"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="279"/>
         <source>The remote server refused the connection</source>
         <translation>Аддалены сервер адхіліў злучэнне</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="272"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="281"/>
         <source>The connection to the proxy server was refused</source>
         <translation>У злучэнні з проксі-серверам адмоўлена</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="274"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="283"/>
         <source>The proxy server closed the connection prematurely</source>
         <translation>Проксі-сервер заўчасна закрыў злучэнне</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="276"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="285"/>
         <source>The proxy host name was not found</source>
         <translation>Назва проксі-сервера не знойдзена</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="278"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="287"/>
         <source>The connection to the proxy timed out or the proxy did not reply in time to the request sent</source>
         <translation>Тэрмін чакання злучэння з проксі-серверам скончыўся, ці ён своечасова не адказаў на запыт</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="280"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="289"/>
         <source>The proxy requires authentication in order to honor the request but did not accept any credentials offered</source>
         <translation>Для выканання запыту проксі-сервер патрабуе аўтэнтыфікацыі, але пазначаныя ўліковыя даныя не прымаюцца</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="282"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="291"/>
         <source>The access to the remote content was denied (403)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="288"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="297"/>
         <source>The remote server requires authentication to serve the content but the credentials provided were not accepted (401)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="284"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="293"/>
         <source>The operation requested on the remote content is not permitted</source>
         <translation>Аперацыя, запытаная для аддаленага змесціва, забаронена</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="286"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="295"/>
         <source>The remote content was not found at the server (404)</source>
         <translation>Аддаленае змесціва не знойдзена на серверы (404)</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="290"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="299"/>
         <source>The Network Access API cannot honor the request because the protocol is not known</source>
         <translation>Невядомы пратакол, API сеткавага доступу не можа выканаць запыт</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="292"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="301"/>
         <source>The requested operation is invalid for this protocol</source>
         <translation>Запатрабаванае дзеянне памылковае для гэтага пратакола</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="294"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="303"/>
         <source>An unknown network-related error was detected</source>
         <translation>Узнікла невядомая сеткавая памылка</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="296"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="305"/>
         <source>An unknown proxy-related error was detected</source>
         <translation>Узнікла невядомая памылка проксі-сервера</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="298"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="307"/>
         <source>An unknown error related to the remote content was detected</source>
         <translation>Выяўлена невядомая памылка звязаная з аддаленым змесцівам</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="300"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="309"/>
         <source>A breakdown in protocol was detected</source>
         <translation>Паўстала памылка ў пратаколе</translation>
     </message>
     <message>
-        <location filename="../base/net/downloadhandlerimpl.cpp" line="302"/>
+        <location filename="../base/net/downloadhandlerimpl.cpp" line="311"/>
         <source>Unknown error</source>
         <translation>Невядомая памылка</translation>
     </message>
@@ -5973,12 +5951,12 @@ Minimum requirement: %2.</source>
     <message>
         <location filename="../base/net/smtp.cpp" line="397"/>
         <source>Both EHLO and HELO failed, msg: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Both EHLO and HELO failed, msg: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="478"/>
         <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</translation>
     </message>
     <message>
         <location filename="../base/net/smtp.cpp" line="566"/>
@@ -6513,35 +6491,35 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
     <message>
         <location filename="../gui/optionsdialog.ui" line="3759"/>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>Карыстальнік</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3795"/>
         <source>API Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Ключ API</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3813"/>
         <source>Generate a key</source>
-        <translation type="unfinished"></translation>
+        <translation>Стварыце ключ</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3823"/>
         <source>Copy API key</source>
-        <translation type="unfinished"></translation>
+        <translation>Скапіяваць ключ API</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3834"/>
         <location filename="../gui/optionsdialog.cpp" line="1508"/>
         <location filename="../gui/optionsdialog.cpp" line="1561"/>
         <source>Generate API key</source>
-        <translation type="unfinished"></translation>
+        <translation>Стварыць ключ API</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3845"/>
         <location filename="../gui/optionsdialog.cpp" line="1530"/>
         <source>Delete API key</source>
-        <translation type="unfinished"></translation>
+        <translation>Выдаліць ключ API</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3890"/>
@@ -6615,7 +6593,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="4134"/>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</source>
-        <translation type="unfinished"></translation>
+        <translation>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use &apos;;&apos; to split multiple entries.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4159"/>
@@ -6660,7 +6638,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="303"/>
         <source>Use different text colors by torrent states</source>
-        <translation type="unfinished"></translation>
+        <translation>Колер тэксту згодна са станам торэнта</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="313"/>
@@ -6688,7 +6666,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="475"/>
         <source>Torrent Content View</source>
-        <translation type="unfinished"></translation>
+        <translation>Акно змесціва торэнта</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="481"/>
@@ -6698,7 +6676,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="484"/>
         <source>Drag content from qBittorrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Перацягваць змесціва з qBittorrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="605"/>
@@ -6779,12 +6757,12 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="1108"/>
         <source>When adding a duplicate torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Пры паўторным дадаванні торэнта</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1124"/>
         <source>Ask to merge trackers for manually added torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Для торэнтаў, якія дадаюцца уручную, прапаноўваць аб&apos;яднаць трэкеры </translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1152"/>
@@ -6953,7 +6931,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="796"/>
         <source>Creates an additional log file after the log file reaches the specified file size</source>
-        <translation type="unfinished"></translation>
+        <translation>Creates an additional log file after the log file reaches the specified file size</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="863"/>
@@ -7034,7 +7012,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1401"/>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished"></translation>
+        <translation>Resolve relative Save Path against appropriate Category path instead of Default one</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="251"/>
@@ -7104,7 +7082,19 @@ Examples
 readme.txt: filter exact file name.
 ?.txt: filter &apos;a.txt&apos;, &apos;b.txt&apos; but not &apos;aa.txt&apos;.
 readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not &apos;readme10.txt&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Blacklist filtered file names from being downloaded from torrent(s).
+Files matching any of the filters in this list will have their priority automatically set to &quot;Do not download&quot;.
+
+Use newlines to separate multiple entries. Can use wildcards as outlined below.
+*: matches zero or more of any characters.
+?: matches any single character.
+[...]: sets of characters can be represented in square brackets.
+
+Examples
+*.exe: filter &apos;.exe&apos; file extension.
+readme.txt: filter exact file name.
+?.txt: filter &apos;a.txt&apos;, &apos;b.txt&apos; but not &apos;aa.txt&apos;.
+readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not &apos;readme10.txt&apos;.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1619"/>
@@ -7554,7 +7544,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.ui" line="4047"/>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished"></translation>
+        <translation>Ужываць для cookie пазнаку Secure (патрабуецца злучэнне HTTPS або з localhost)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="4054"/>
@@ -7704,7 +7694,7 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
     <message>
         <location filename="../gui/optionsdialog.cpp" line="703"/>
         <source>%M: Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>%M: Каментарый</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="704"/>
@@ -7760,22 +7750,22 @@ readme[0-9].txt: filter &apos;readme1.txt&apos;, &apos;readme2.txt&apos; but not
         <location filename="../gui/optionsdialog.cpp" line="1509"/>
         <location filename="../gui/optionsdialog.cpp" line="1553"/>
         <source>Rotate API key</source>
-        <translation type="unfinished"></translation>
+        <translation>Змяніць ключ API</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1511"/>
         <source>Generate an API key? This key can be used to interact with qBittorrent&apos;s API.</source>
-        <translation type="unfinished"></translation>
+        <translation>Стварыць ключ API? Гэты ключ можна выкарыстоўваць для ўзаемадзеяння з API qBittorrent.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1512"/>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Замяніць гэты ключ API? Будзе створаны новы ключ, а бягучы адразу ж перастане працаваць.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1531"/>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished"></translation>
+        <translation>Выдаліць гэты ключ API? Бягучы ключ адразу ж перастане працаваць.</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="1863"/>
@@ -9438,7 +9428,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="46"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.ui" line="69"/>
@@ -9856,7 +9846,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="843"/>
         <source>Stop search</source>
-        <translation type="unfinished"></translation>
+        <translation>Спыніць пошук</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="890"/>
@@ -10012,17 +10002,17 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="138"/>
         <source>The computer is going to reboot.</source>
-        <translation type="unfinished"></translation>
+        <translation>Камп’ютар будзе перазапушчаны.</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="139"/>
         <source>&amp;Reboot Now</source>
-        <translation type="unfinished"></translation>
+        <translation>Пера&amp;запусціць</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="140"/>
         <source>Reboot confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>Пацвярджэнне перазапуску</translation>
     </message>
     <message>
         <location filename="../gui/shutdownconfirmdialog.cpp" line="150"/>
@@ -10804,7 +10794,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="308"/>
         <source>The name is invalid: &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Недапушчальная назва: «%1»</translation>
     </message>
 </context>
 <context>
@@ -11206,7 +11196,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="495"/>
         <source>Rejecting failed torrent file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Rejecting failed torrent file: %1</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="534"/>
@@ -11410,13 +11400,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="423"/>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="427"/>
         <source>From category</source>
-        <translation type="unfinished"></translation>
+        <translation>З катэгорыі</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.cpp" line="428"/>
         <source>From category (%1)</source>
         <comment>From category (share limit action)</comment>
-        <translation type="unfinished"></translation>
+        <translation>З катэгорыі (%1)</translation>
     </message>
     <message>
         <location filename="../gui/torrentsharelimitswidget.ui" line="19"/>
@@ -11533,7 +11523,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1367"/>
         <source>Tracker not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Трэкер не знойдзены</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1408"/>
@@ -11589,21 +11579,17 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1922"/>
         <source>Category does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unable to edit category</source>
-        <translation type="vanished">Не атрымалася змяніць катэгорыю</translation>
+        <translation>Катэгорыя не існуе</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2059"/>
         <source>File name has invalid characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва файла змяшчае недапушчальныя сімвалы</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2087"/>
         <source>Folder name has invalid characters</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва папкі змяшчае недапушчальныя сімвалы</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="2120"/>
@@ -12296,7 +12282,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="174"/>
         <source>Created On</source>
         <comment>Torrent was initially created on 01/01/2010 08:00</comment>
-        <translation type="unfinished"></translation>
+        <translation>Створаны</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="175"/>
@@ -12340,16 +12326,6 @@ Please choose a different name and try again.</source>
         <translation>Раздадзена</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Спампавана за сеанс</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Раздадзена за сеанс</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
@@ -12381,13 +12357,13 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistmodel.cpp" line="182"/>
         <source>Session Downloaded</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Спампавана за сеанс</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Session Uploaded</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished"></translation>
+        <translation>Раздадзена за сеанс</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="187"/>
@@ -13111,22 +13087,22 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/webapplication.cpp" line="1016"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
-        <translation type="unfinished">Не ўдалося ўвайсці ў WebAPI. Прычына: IP быў забаронены, IP: %1, імя карыстальніка: %2</translation>
+        <translation>Не ўдалося ўвайсці ў WebAPI. Прычына: IP быў забаронены, IP: %1, імя карыстальніка: %2</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1019"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
-        <translation type="unfinished">Ваш IP-адрас быў заблакаваны пасля занадта шматлікіх няўдалых спробаў аўтэнтыфікацыі.</translation>
+        <translation>Ваш IP-адрас быў заблакаваны пасля занадта шматлікіх няўдалых спробаў аўтэнтыфікацыі.</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1028"/>
         <source>WebAPI login success. IP: %1</source>
-        <translation type="unfinished">Паспяховы ўваход у WebAPI. IP: %1</translation>
+        <translation>Паспяховы ўваход у WebAPI. IP: %1</translation>
     </message>
     <message>
         <location filename="../webui/webapplication.cpp" line="1036"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
-        <translation type="unfinished">Памылка ўваходу WebAPI. Прычына: памылковыя ўліковыя даныя, спроб: %1, IP: %2, імя карыстальніка: %3</translation>
+        <translation>Памылка ўваходу WebAPI. Прычына: памылковыя ўліковыя даныя, спроб: %1, IP: %2, імя карыстальніка: %3</translation>
     </message>
 </context>
 <context>
@@ -13260,7 +13236,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/utils/os.cpp" line="98"/>
         <source>qBittorrent will reboot the computer now because all downloads are complete.</source>
-        <translation type="unfinished"></translation>
+        <translation>Зараз qBittorrent перазапусціць камп&apos;ютар, бо ўсе спампоўванні завершаны.</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="237"/>

@@ -96,11 +96,11 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation type="unfinished" />
+        <translation>टोरेन्टको नाम बदल्नुहोस्</translation>
     </message>
     <message>
         <source>Add torrent</source>
-        <translation type="unfinished" />
+        <translation>टोरेन्ट थप्नुहोस्</translation>
     </message>
     <message>
         <source>Not available</source>
@@ -132,7 +132,7 @@
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>अपलोड दर सीमित गर्नुहोस्</translation>
     </message>
     <message>
         <source>Filter files...</source>
@@ -140,7 +140,7 @@
     </message>
     <message>
         <source>Add Torrent</source>
-        <translation type="unfinished" />
+        <translation>टोरेन्ट थप्नुहोस्</translation>
     </message>
     <message>
         <source>Use another path for incomplete torrent</source>
@@ -152,7 +152,7 @@
     </message>
     <message>
         <source>Save as .torrent file</source>
-        <translation type="unfinished" />
+        <translation>.torrent फाइलको रूपमा सेभ गर्नुहोस्</translation>
     </message>
     <message>
         <source>All</source>
@@ -180,7 +180,7 @@
     </message>
     <message>
         <source>Unable to download torrent file</source>
-        <translation type="unfinished" />
+        <translation>टोरेन्ट फाइल डाउनलोड गर्न सकिएन</translation>
     </message>
     <message>
         <source>Info hash v2:</source>
@@ -192,15 +192,15 @@
     </message>
     <message>
         <source>Files</source>
-        <translation type="unfinished" />
+        <translation>फाइलहरू</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड दर सीमित गर्नुहोस्</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>किबी/से</translation>
     </message>
 </context>
 <context>
@@ -230,7 +230,7 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>नयाँ वर्ग</translation>
     </message>
     <message>
         <source>Edit category...</source>
@@ -257,7 +257,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent बाट बाहिर निस्कनुहोस्</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -567,15 +567,15 @@
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Unable to add torrents.</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Error:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -861,10 +861,6 @@
         <translation>बिटटोरेन्ट</translation>
     </message>
     <message>
-        <source>Language</source>
-        <translation type="vanished">भाषा</translation>
-    </message>
-    <message>
         <source>Email notification upon download completion</source>
         <translation type="unfinished" />
     </message>
@@ -918,23 +914,23 @@
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड सकिएपछि .torrent फाइलहरू यहाँ प्रतिलिपि गर्नुहोस्:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished" />
+        <translation>सबै फाइलहरूको लागि डिस्क स्पेस पहिले नै बाँडफाँड गर्नुहोस्</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished" />
+        <translation>अपूर्ण फाइलहरूमा .!qB एक्सटेन्सन थप्नुहोस्</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished" />
+        <translation>बाट स्वचालित रूपमा टोरेन्टहरू थप्नुहोस्:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation type="unfinished" />
+        <translation>SMTP सर्भर:</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
@@ -942,111 +938,111 @@
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished" />
+        <translation>प्रमाणीकरण</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished" />
+        <translation>प्रयोगकर्ता नाम:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished" />
+        <translation>पासवर्ड:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
-        <translation type="unfinished" />
+        <translation>TCP र μTP</translation>
     </message>
     <message>
         <source>Listening Port</source>
-        <translation type="unfinished" />
+        <translation>सुन्ने पोर्ट</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished" />
+        <translation>आगमन जडानहरूको लागि प्रयोग गरिने पोर्ट:</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished" />
+        <translation>मेरो राउटरबाट UPnP / NAT-PMP पोर्ट फर्वार्डिङ प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation type="unfinished" />
+        <translation>जडान सीमाहरू</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished" />
+        <translation>प्रति टोरेन्ट जडानहरूको अधिकतम संख्या:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished" />
+        <translation>विश्वव्यापी अधिकतम जडान संख्या:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished" />
+        <translation>प्रति टोरेन्ट अपलोड स्लटहरूको अधिकतम संख्या:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished" />
+        <translation>अपलोड स्लटहरूको विश्वव्यापी अधिकतम संख्या:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
-        <translation type="unfinished" />
+        <translation>प्रोक्सी सर्भर</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished" />
+        <translation>प्रकार:</translation>
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished" />
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished" />
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished" />
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished" />
+        <translation>होस्ट:</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished" />
+        <translation>पोर्ट:</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished" />
+        <translation>पियर जडानहरूको लागि प्रोक्सी प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished" />
+        <translation>फिल्टर मार्ग (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation type="unfinished" />
+        <translation>म्यानुअल रूपमा प्रतिबन्धित IP ठेगानाहरू...</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation type="unfinished" />
+        <translation>ट्र्याकरहरूमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>विश्वव्यापी दर सीमाहरू</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>अपलोड:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड:</translation>
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>वैकल्पिक दर सीमाहरू</translation>
     </message>
     <message>
         <source>From:</source>
@@ -1060,143 +1056,143 @@
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished" />
+        <translation>कहिले:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished" />
+        <translation>हरेक दिन</translation>
     </message>
     <message>
         <source>Weekdays</source>
-        <translation type="unfinished" />
+        <translation>कार्यदिनहरु</translation>
     </message>
     <message>
         <source>Weekends</source>
-        <translation type="unfinished" />
+        <translation>सप्ताहांतहरू</translation>
     </message>
     <message>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished" />
+        <translation>दर सीमा सेटिङहरू</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished" />
+        <translation>अतिरिक्त ढुवानीमा दर सीमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished" />
+        <translation>µTP प्रोटोकलमा दर सीमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished" />
+        <translation>गोपनीयता</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished" />
+        <translation>थप पियरहरू फेला पार्न DHT (विकेन्द्रीकृत नेटवर्क) सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished" />
+        <translation>थप पियरहरू फेला पार्न पियर एक्सचेन्ज (PeX) सक्षम पार्नुहोस्।</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished" />
+        <translation>थप पियरहरू फेला पार्न स्थानीय पियर खोज सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished" />
+        <translation>इन्क्रिप्शन मोड:</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished" />
+        <translation>इन्क्रिप्सन आवश्यक पर्दछ</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished" />
+        <translation>इन्क्रिप्सन असक्षम पार्नुहोस्</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished" />
+        <translation>बेनामी मोड सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय डाउनलोडहरू:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय अपलोडहरू:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सक्रिय टोरेन्टहरू:</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished" />
+        <translation>यी सीमाहरूमा ढिलो टोरेन्टहरू गणना नगर्नुहोस्</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished" />
+        <translation>त्यसपछि</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished" />
+        <translation>मेरो राउटरबाट पोर्ट फर्वार्ड गर्न UPnP / NAT-PMP प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <source>Certificate:</source>
-        <translation type="unfinished" />
+        <translation>प्रमाणपत्र:</translation>
     </message>
     <message>
         <source>Key:</source>
-        <translation type="unfinished" />
+        <translation>कुञ्जी:</translation>
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished" />
+        <translation>दर्ता गर्नुहोस्</translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished" />
+        <translation>डोमेन नाम:</translation>
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
-        <translation type="unfinished" />
+        <translation>समर्थित प्यारामिटरहरू (केस सेन्सेटिभ):</translation>
     </message>
     <message>
         <source>%N: Torrent name</source>
-        <translation type="unfinished" />
+        <translation>%N: टोरेन्ट नाम</translation>
     </message>
     <message>
         <source>%L: Category</source>
-        <translation type="unfinished" />
+        <translation>%L: वर्ग</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="unfinished" />
+        <translation>%F: सामग्री मार्ग (बहुफाइल टोरेन्टको लागि मूल मार्ग जस्तै)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="unfinished" />
+        <translation>%R: मूल मार्ग (पहिलो टोरेन्ट सबडाइरेक्टरी मार्ग)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation type="unfinished" />
+        <translation>%D: सञ्चय मार्ग</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation type="unfinished" />
+        <translation>%C: फाइलहरूको संख्या</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished" />
+        <translation>%Z: टोरेन्ट आकार (बाइट)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
-        <translation type="unfinished" />
+        <translation>%T: हालको ट्रयाकर</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation type="unfinished" />
+        <translation>सुझाव: ह्वाइटस्पेसमा पाठ काट्नबाट बच्नको लागि उद्धरण चिन्हहरू सहित प्यारामिटरलाई समेट्नुहोस् (जस्तै, "%N")</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1204,15 +1200,15 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>किबी/से</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>क्लिकज्याकिङ सुरक्षा सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>क्रस-साइट अनुरोध जालसाजी (CSRF) सुरक्षा सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -1220,15 +1216,15 @@
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड दर सीमा:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>अपलोड दर सीमा:</translation>
     </message>
     <message>
         <source>Change current password</source>
-        <translation type="unfinished" />
+        <translation>हालको पासवर्ड परिवर्तन गर्नुहोस्</translation>
     </message>
     <message>
         <source>Automatic</source>
@@ -1240,7 +1236,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>डाउनलोड स्वतः सुरु नगर्नुहोस्</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1256,7 +1252,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished" />
+        <translation>LAN मा पियरहरूलाई दर सीमा लागू गर्नुहोस्</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1272,15 +1268,15 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation type="unfinished" />
+        <translation>होस्ट हेडर प्रमाणीकरण सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished" />
+        <translation>सुरक्षा</translation>
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>वर्ग सञ्चय मार्ग परिवर्तन हुँदा:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1292,7 +1288,7 @@
     </message>
     <message>
         <source>Files location:</source>
-        <translation type="unfinished" />
+        <translation>फाइल स्थान:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1300,7 +1296,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished" />
+        <translation>टोरेन्ट निष्क्रियता टाइमर:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
@@ -1320,7 +1316,7 @@
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: ट्यागहरू (अल्पविरामद्वारा छुट्याइएको)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
@@ -1484,11 +1480,11 @@
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished" />
+        <translation>हेडर: मान जोडी, प्रति लाइन एउटा</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished" />
+        <translation>कस्टम HTTP हेडरहरू थप्नुहोस्</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1592,7 +1588,7 @@
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>अनियमित</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
@@ -1604,11 +1600,11 @@
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>विश्वसनीय प्रोक्सीहरूको सूची:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>रिभर्स प्रोक्सी समर्थन सक्षम गर्नुहोस्</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1624,7 +1620,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>तपाईंको सिस्टमलाई प्रयोग नगरिएको पोर्ट छनौट गर्न दिन 0 मा सेट गर्नुहोस्</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1636,7 +1632,7 @@
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>कार्यसम्पादन चेतावनीहरू लग गर्नुहोस्</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
@@ -1696,7 +1692,7 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>बहिष्कृत फाइल नामहरू</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
@@ -1728,7 +1724,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>बाह्य प्रोग्राम चलाउनुहोस्</translation>
     </message>
     <message>
         <source>Files checked</source>
@@ -1748,7 +1744,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>टोरेन्ट रोकिने अवस्था:</translation>
     </message>
     <message>
         <source>None</source>
@@ -1776,7 +1772,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>दिनहरू</translation>
     </message>
     <message>
         <source>Behavior</source>
@@ -1792,7 +1788,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>वर्षहरू</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -1800,7 +1796,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>महिनाहरू</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1856,7 +1852,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(कुनै पनि होइन)</translation>
     </message>
     <message>
         <source>Python executable path (may require restart):</source>
@@ -1944,7 +1940,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>The alternative WebUI files location cannot be blank.</source>
-        <translation type="unfinished" />
+        <translation>वैकल्पिक WebUI फाइलहरूको स्थान खाली हुन सक्दैन।</translation>
     </message>
     <message>
         <source>Disk cache:</source>
@@ -1960,7 +1956,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>The WebUI password must be at least 6 characters long.</source>
-        <translation type="unfinished" />
+        <translation>WebUI पासवर्ड कम्तिमा 6 वर्ण लामो हुनुपर्छ।</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes:</source>
@@ -1971,12 +1967,8 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation type="unfinished" />
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">यसले qBittorent इन्स्ट्यान्सहरू छुट्याउन मद्दत गर्न विन्डो शीर्षकमा लेख थप्छ।</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
-        <translation type="unfinished" />
+        <translation>WebUI प्रयोगकर्ता नाम कम्तिमा 3 वर्ण लामो हुनुपर्छ।</translation>
     </message>
     <message>
         <source>Same host request delay:</source>
@@ -2008,7 +2000,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished" />
+        <translation>अँध्यारो</translation>
     </message>
     <message>
         <source>Delete files permanently</source>
@@ -2040,7 +2032,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished" />
+        <translation>उज्यालो</translation>
     </message>
     <message>
         <source>Automatically append these trackers to new downloads:</source>
@@ -2064,7 +2056,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished" />
+        <translation>कुकी सुरक्षित फ्ल्याग सक्षम गर्नुहोस् (HTTPS वा स्थानीय होस्ट जडान आवश्यक छ)</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2076,7 +2068,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished" />
+        <translation>टोरेन्ट मेटाउँदा पुष्टिकरण संवाद देखाउँछ</translation>
     </message>
     <message>
         <source>Run on torrent finished:</source>
@@ -2104,7 +2096,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>म्यानुअल मोडमा वर्ग मार्गहरू प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
         <source>List of alternative WebUI</source>
@@ -2144,7 +2136,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished" />
+        <translation>पूर्वनिर्धारित मार्गको सट्टा उपयुक्त वर्ग मार्ग विरुद्ध सापेक्ष सञ्चय मार्ग समाधान गर्नुहोस्</translation>
     </message>
     <message>
         <source>No action</source>
@@ -2180,7 +2172,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Rotate API key</source>
-        <translation type="unfinished" />
+        <translation>API कुञ्जी घुमाउनुहोस्</translation>
     </message>
     <message>
         <source>Generate a key</source>
@@ -2196,7 +2188,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>%M: Comment</source>
-        <translation type="unfinished" />
+        <translation>%M: टिप्पणी</translation>
     </message>
     <message>
         <source>Generate API key</source>
@@ -2227,11 +2219,11 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation>पिअरहरूसँगको सम्बन्धको लागि विभेदित सेवा कोड पोइन्ट (DSCP)</translation>
     </message>
     <message>
-        <source>Date format:</source>
-        <translation type="unfinished" />
+        <source>The WebUI username must not contain a colon.</source>
+        <translation>WebUI प्रयोगकर्ता नाममा कोलोन हुनु हुँदैन।</translation>
     </message>
     <message>
-        <source>Compact</source>
+        <source>Date format:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2239,11 +2231,11 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation type="unfinished" />
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <source>Localization</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Localization</source>
+        <source>Compact</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2251,11 +2243,11 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation>यसले qBittorrent इन्स्ट्यान्सहरू छुट्याउन मद्दत गर्न विन्डो शीर्षकमा पाठ थप्छ।</translation>
     </message>
     <message>
-        <source>The WebUI username must not contain a colon.</source>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2263,11 +2255,11 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     <name>PeerListWidget</name>
     <message>
         <source>Port</source>
-        <translation type="unfinished" />
+        <translation>पोर्ट</translation>
     </message>
     <message>
         <source>Flags</source>
-        <translation type="unfinished" />
+        <translation>फ्ल्यागहरू</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -2276,7 +2268,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     <message>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation type="unfinished" />
+        <translation>क्लाइन्ट</translation>
     </message>
     <message>
         <source>Progress</source>
@@ -2306,16 +2298,16 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation type="unfinished" />
+        <translation>सान्दर्भिकता</translation>
     </message>
     <message>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
-        <translation type="unfinished" />
+        <translation>फाइलहरू</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>पियरलाई स्थायी रूपमा प्रतिबन्ध लगाउनुहोस्</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
@@ -2327,19 +2319,19 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>देश/क्षेत्र</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>पियरहरू थप्नुहोस्...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>पियर ID क्लाइन्ट</translation>
     </message>
     <message>
         <source>IP/Address</source>
-        <translation type="unfinished" />
+        <translation>IP/ठेगाना</translation>
     </message>
 </context>
 <context>
@@ -2996,16 +2988,6 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation>अपलोड गरियो</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">सत्र डाउनलोड</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">सत्र अपलोड</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>बाँकी</translation>
@@ -3082,16 +3064,16 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>सत्र अपलोड गरियो</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>सत्र डाउनलोड गरियो</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>मा सिर्जना गरिएको</translation>
     </message>
 </context>
 <context>
@@ -3269,7 +3251,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[F] सिड गर्दै</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -3449,7 +3431,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>नयाँ वर्ग</translation>
     </message>
     <message>
         <source>Set location</source>
@@ -3950,7 +3932,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>पियरहरू थप्नुहोस्</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
@@ -4172,7 +4154,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop search</source>
+        <source>Open download window</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -4180,7 +4162,7 @@ DNS रिबाइन्डिङ आक्रमणबाट बचाउन�
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4799,7 +4781,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>नयाँ वर्ग</translation>
     </message>
     <message>
         <source>Save path:</source>
@@ -5168,7 +5150,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>किबी/से</translation>
     </message>
 </context>
 <context>
@@ -5186,15 +5168,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation type="unfinished" />
+        <translation>API कुञ्जी उत्पन्न गर्ने हो? यो कुञ्जी qBittorrent को API सँग अन्तर्क्रिया गर्न प्रयोग गर्न सकिन्छ।</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished" />
+        <translation>यो API कुञ्जी मेटाउने हो? हालको कुञ्जीले तुरुन्तै काम गर्न बन्द गर्नेछ।</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished" />
+        <translation>यो API कुञ्जी घुमाउने हो? हालको कुञ्जीले तुरुन्तै काम गर्न छोड्नेछ र नयाँ कुञ्जी उत्पन्न हुनेछ।</translation>
     </message>
 </context>
 </TS>

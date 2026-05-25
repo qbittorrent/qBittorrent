@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Maksimalni broj slotova za slanje Torenta pri limitiranju mora biti veći od 0 ili onemogućen.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Ne mogu da sačuvam programska podešavanja, qBittorrent je verovatno nedostupan.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,15 +567,15 @@
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Unable to add torrents.</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Error:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Jezik</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
         <translation>Dužina dolaznog I2P-a:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Dodaje tekst naslovu prozora kako bi pomogao u razlikovanju instanci qBittorent-a</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Korisničko ime za WebUI mora biti dugo najmanje 3 karaktera.</translation>
     </message>
@@ -2231,11 +2219,11 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Date format:</source>
+        <source>The WebUI username must not contain a colon.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Compact</source>
+        <source>Date format:</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2243,11 +2231,11 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <source>Localization</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Localization</source>
+        <source>Compact</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2255,11 +2243,11 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Resolve peer host names:</source>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>The WebUI username must not contain a colon.</source>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2672,7 +2660,7 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Dostupnost:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
         <translation>Poslato</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Preuzeto za sesiju</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Poslato za sesiju</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Preostalo</translation>
@@ -3086,15 +3064,15 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
         <translation>Ikona statusa</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>Session Downloaded</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -4176,15 +4154,15 @@ Koristite ';' da biste razdvojili više unosa. Možete koristiti džoker '*'.</t
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Otvori prozor za preuzimanje</translation>
     </message>
     <message>
         <source>Use as search text</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
+        <source>Stop search</source>
         <translation type="unfinished" />
     </message>
 </context>

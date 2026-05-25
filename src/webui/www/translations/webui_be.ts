@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>КБ/с</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>Максімальная колькасць слотаў раздачы на торэнт павінна быць большай за 0 або адключана.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">Не выйшла захаваць настáўленні. Магчыма, qBittorrent недасяжны.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -571,7 +567,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Error:</source>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -579,7 +575,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <source>Error:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">Мова</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1725,7 +1717,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1976,10 +1968,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Даўжыня ўваходных I2P:</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">Дадае тэкст да загалоўка акна з мэтай адрознення экзэмпляраў qBittorent</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>Імя карыстальніка вэб-інтэрфейсу павінна змяшчаць не менш за 3 сімвалы.</translation>
     </message>
@@ -2069,7 +2057,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS or localhost connection)</source>
-        <translation type="unfinished" />
+        <translation>Ужываць для cookie пазнаку Secure (патрабуецца злучэнне HTTPS або з localhost)</translation>
     </message>
     <message>
         <source>Action on double-click</source>
@@ -2185,27 +2173,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rotate API key</source>
-        <translation type="unfinished" />
+        <translation>Змяніць ключ API</translation>
     </message>
     <message>
         <source>Generate a key</source>
-        <translation type="unfinished" />
+        <translation>Стварыце ключ</translation>
     </message>
     <message>
         <source>When adding a duplicate torrent</source>
-        <translation type="unfinished" />
+        <translation>Пры паўторным дадаванні торэнта</translation>
     </message>
     <message>
         <source>Delete API key</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць ключ API</translation>
     </message>
     <message>
         <source>%M: Comment</source>
-        <translation type="unfinished" />
+        <translation>%M: Каментарый</translation>
     </message>
     <message>
         <source>Generate API key</source>
-        <translation type="unfinished" />
+        <translation>Стварыць ключ API</translation>
     </message>
     <message>
         <source>Copied</source>
@@ -2213,7 +2201,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished" />
+        <translation>Карыстальнік</translation>
     </message>
     <message>
         <source>Reset filter selection</source>
@@ -2221,34 +2209,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>API Key</source>
-        <translation type="unfinished" />
+        <translation>Ключ API</translation>
     </message>
     <message>
         <source>Copy API key</source>
-        <translation type="unfinished" />
+        <translation>Скапіяваць ключ API</translation>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -2260,7 +2228,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2625,7 +2613,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Replace option</source>
-        <translation type="unfinished" />
+        <translation>Замяніць параметр</translation>
     </message>
     <message>
         <source>Edit web seed URL...</source>
@@ -2673,7 +2661,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>Даступна:</translation>
     </message>
 </context>
 <context>
@@ -3001,16 +2989,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Раздадзена</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Спампавана за сеанс</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">Раздадзена за сеанс</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>Засталося</translation>
@@ -3087,16 +3065,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Значок стану</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>Раздадзена за сеанс</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Спампавана за сеанс</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Створаны</translation>
     </message>
 </context>
 <context>
@@ -4177,16 +4155,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>Адкрыць акно спампоўвання</translation>
     </message>
     <message>
         <source>Use as search text</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>Спыніць пошук</translation>
     </message>
 </context>
 <context>
@@ -4515,7 +4493,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished" />
+        <translation>Wildcard mode: you can use</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
@@ -4832,7 +4810,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>Катэгорыя не існуе</translation>
     </message>
 </context>
 <context>
@@ -5193,15 +5171,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>confirmRotateAPIKeyDialog</name>
     <message>
         <source>Generate an API key? This key can be used to interact with qBittorrent's API.</source>
-        <translation type="unfinished" />
+        <translation>Стварыць ключ API? Гэты ключ можна выкарыстоўваць для ўзаемадзеяння з API qBittorrent.</translation>
     </message>
     <message>
         <source>Delete this API key? The current key will immediately stop working.</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць гэты ключ API? Бягучы ключ адразу ж перастане працаваць.</translation>
     </message>
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
-        <translation type="unfinished" />
+        <translation>Замяніць гэты ключ API? Будзе створаны новы ключ, а бягучы адразу ж перастане працаваць.</translation>
     </message>
 </context>
 </TS>

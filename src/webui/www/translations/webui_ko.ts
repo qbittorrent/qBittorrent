@@ -200,7 +200,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -298,10 +298,6 @@
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
         <translation>토렌트 당 최대 업로드 슬롯 제한은 0보다 크거나 비활성화되어야 합니다.</translation>
-    </message>
-    <message>
-        <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation type="vanished">프로그램 환경설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -568,19 +564,19 @@
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Error:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>피어 DSCP는 0에서 255 사이여야 합니다.</translation>
     </message>
     <message>
         <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>기본 설정을 저장할 수 없어서 qBittorrent에 도달할 수 없을 것 같습니다.</translation>
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation>토렌트를 추가할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation>오류:</translation>
     </message>
 </context>
 <context>
@@ -863,10 +859,6 @@
     <message>
         <source>BitTorrent</source>
         <translation>BitTorrent</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation type="vanished">언어</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -1975,10 +1967,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>I2P 수신 길이 :</translation>
     </message>
     <message>
-        <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation type="vanished">qBittorent 인스턴스를 구별할 수 있도록 창 제목에 텍스트를 추가</translation>
-    </message>
-    <message>
         <source>The WebUI username must be at least 3 characters long.</source>
         <translation>WebUI 사용자이름은 3자 이상이어야 합니다.</translation>
     </message>
@@ -2228,39 +2216,39 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Localization</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Browser default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Display density:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="unfinished" />
+        <translation>피어 연결을 위한 차별화된 서비스 코드 포인트 (DSCP)</translation>
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>WebUI 사용자 이름에는 콜론이 포함되지 않아야 합니다.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>날짜 형식:</translation>
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation>브라우저 기본값</translation>
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation>지역화</translation>
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation>조밀한</translation>
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation>표시 밀도:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>텍스트를 창 제목에 추가하여 qBittorrent 인스턴스를 구별하는 데 도움을 줍니다</translation>
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation>피어 호스트 이름 확인:</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Availability:</source>
-        <translation type="unfinished" />
+        <translation>가용성:</translation>
     </message>
 </context>
 <context>
@@ -3000,16 +2988,6 @@ DNS 재결합 공격을 방어하기 위해
         <translation>업로드됨</translation>
     </message>
     <message>
-        <source>Session Download</source>
-        <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">세션 다운로드</translation>
-    </message>
-    <message>
-        <source>Session Upload</source>
-        <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="vanished">세션 업로드</translation>
-    </message>
-    <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
         <translation>남음</translation>
@@ -3086,16 +3064,16 @@ DNS 재결합 공격을 방어하기 위해
         <translation>상태 아이콘</translation>
     </message>
     <message>
+        <source>Session Uploaded</source>
+        <translation>업로드된 세션</translation>
+    </message>
+    <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>다운로드된 세션</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>생성됨</translation>
     </message>
 </context>
 <context>
@@ -3234,7 +3212,7 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Force reannounce to selected tracker(s)</source>
-        <translation>선택된 트래커에 다시 알림 강제 실행</translation>
+        <translation>선택한 트래커에 강제로 다시 알림</translation>
     </message>
     <message>
         <source>Min Announce</source>
@@ -3242,14 +3220,14 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Force reannounce to all trackers</source>
-        <translation>모든 트래커에 강제로 다시 알리기</translation>
+        <translation>모든 트래커에 강제로 다시 알림</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>트래커 목록 (한 줄에 하나씩 추가):</translation>
+        <translation>추가할 트래커 목록 (한 줄당 하나씩):</translation>
     </message>
     <message>
         <source>Add trackers</source>
@@ -4176,16 +4154,16 @@ DNS 재결합 공격을 방어하기 위해
         <translation>탭 새로 고침</translation>
     </message>
     <message>
-        <source>Stop search</source>
-        <translation type="unfinished" />
+        <source>Open download window</source>
+        <translation>다운로드 창 열기</translation>
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>검색 텍스트로 사용</translation>
     </message>
     <message>
-        <source>Open download window</source>
-        <translation type="unfinished" />
+        <source>Stop search</source>
+        <translation>검색 중지</translation>
     </message>
 </context>
 <context>
@@ -4580,7 +4558,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>다운로드된 에피소드 확인 지우기</translation>
     </message>
 </context>
 <context>
@@ -4815,7 +4793,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category:</source>
-        <translation>카테고리:</translation>
+        <translation>범주:</translation>
     </message>
     <message>
         <source>No</source>
@@ -4831,7 +4809,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>범주가 존재하지 않습니다</translation>
     </message>
 </context>
 <context>
@@ -4910,7 +4888,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the WebUI to work properly</source>
-        <translation>자바스크립트가 필요합니다! WebUI가 올바르게 작동하려면 자바스크립트를 활성화가 요구됨</translation>
+        <translation>JavaScript 필수! WebUI가 제대로 작동하려면 JavaScript를 활성화해야 합니다</translation>
     </message>
     <message>
         <source>Login</source>
@@ -4930,7 +4908,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>사용자 이름/암호가 올바르지 않습니다.</translation>
+        <translation>잘못된 사용자 이름 또는 비밀번호입니다.</translation>
     </message>
 </context>
 <context>
@@ -4963,7 +4941,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create New Torrent</source>
-        <translation>새로운 토렌트 만들기</translation>
+        <translation>새 토렌트 만들기</translation>
     </message>
     <message>
         <source>Comments:</source>
@@ -4983,7 +4961,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Failed</source>
-        <translation>실패함</translation>
+        <translation>실패</translation>
     </message>
     <message>
         <source>Comment</source>
@@ -4991,7 +4969,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Finished</source>
-        <translation>완료됨</translation>
+        <translation>완료</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -5145,7 +5123,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>One link per line (HTTP links, Magnet links and info-hashes are supported)</source>
-        <translation>한 줄에 링크 하나 (HTTP 링크, 마그넷 링크, 정보 해시 지원)</translation>
+        <translation>한 줄당 하나의 링크 (HTTP 링크, 마그네틱 링크 및 인포 해시 지원)</translation>
     </message>
     <message>
         <source>URLs</source>
