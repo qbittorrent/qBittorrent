@@ -669,9 +669,17 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->senderEmailTxt->setToolTip(tr("Provide the sending email address."));
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
-    m_ui->lineEditDestEmail->setToolTip(tr("Provide the recipient email address.")
+    m_ui->lineEditDestEmail->setToolTip(tr("Provide the recipient email address or addresses.")
         + u"\n\n"
-        + tr("Note: only a single recipient email address can be specified."));
+        + tr("Separate multiple emails with a semicolon.")
+        + u"\n"
+        + tr("Separate multiple email addresses within each email with a comma.")
+        + u"\n\n"
+        + tr("Example:")
+        + u"\n"
+        + tr("a@a.com;b@b.com,c@c.com - send two emails: the first to just a@a.com, the second to both b@b.com and c@c.com")
+        + u"\n\n"
+        + tr("Note: b&b.com & c@c.com will both see each other's email addresses, whereas a&a.com will not see them nor be seen."));
     m_ui->lineEditSMTPServer->setText(pref->getMailNotificationSMTP());
     m_ui->lineEditSMTPServer->setToolTip(tr("Provide the SMTP server address for sending email notifications.")
         + u"\n\n"
