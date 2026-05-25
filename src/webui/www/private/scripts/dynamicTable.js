@@ -3562,6 +3562,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("status", "", "QBT_TR(Status)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
             this.newColumn("torrent_format", "", "QBT_TR(Format)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
             this.newColumn("piece_size", "", "QBT_TR(Piece Size)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
+            this.newColumn("ignore_dotfiles", "", "QBT_TR(Ignore Dotfiles)QBT_TR[CONTEXT=TorrentCreator]", 30, true);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TorrentCreator]", 30, true);
             this.newColumn("added_on", "", "QBT_TR(Added On)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
             this.newColumn("start_on", "", "QBT_TR(Started On)QBT_TR[CONTEXT=TorrentCreator]", 100, true);
@@ -3707,14 +3708,22 @@ window.qBittorrent.DynamicTable ??= (() => {
                 td.title = size;
             };
 
+            // ignore dotfiles
+            this.columns["ignore_dotfiles"].updateTd = function(td, row) {
+                const text = this.getRowValue(row)
+                    ? "QBT_TR(Yes)QBT_TR[CONTEXT=TorrentCreator]"
+                    : "QBT_TR(No)QBT_TR[CONTEXT=TorrentCreator]";
+                td.textContent = text;
+                td.title = text;
+            };
+
             // private
             this.columns["private"].updateTd = function(td, row) {
-                const isPrivate = this.getRowValue(row);
-                const string = isPrivate
-                    ? "QBT_TR(Yes)QBT_TR[CONTEXT=PropertiesWidget]"
-                    : "QBT_TR(No)QBT_TR[CONTEXT=PropertiesWidget]";
-                td.textContent = string;
-                td.title = string;
+                const text = this.getRowValue(row)
+                    ? "QBT_TR(Yes)QBT_TR[CONTEXT=TorrentCreator]"
+                    : "QBT_TR(No)QBT_TR[CONTEXT=TorrentCreator]";
+                td.textContent = text;
+                td.title = text;
             };
 
             const displayDate = function(td, row) {
