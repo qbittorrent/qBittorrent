@@ -67,7 +67,7 @@ namespace
         proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
 #endif
         proc.start(exePath.data(), {u"--version"_s}, QIODevice::ReadOnly);
-        if (proc.waitForFinished() && (proc.exitCode() == QProcess::NormalExit))
+        if (proc.waitForFinished() && (proc.exitStatus() == QProcess::NormalExit))
         {
             QByteArray procOutput = proc.readAllStandardOutput();
             if (procOutput.isEmpty())
