@@ -690,7 +690,10 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
     try
     {
         // block suspicious requests
-        if ((!isUsingApiKey && m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
+        // CSRF check is skipped for the webroot so that cross-origin hyperlinks to
+        // the WebUI succeed; the root document is static and has no side effects.
+        const bool isWebRoot = (request.path == u"/") || (request.path == INDEX_HTML);
+        if ((!isUsingApiKey && m_isCSRFProtectionEnabled && !isWebRoot && isCrossSiteRequest(m_request))
             || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
         {
             throw UnauthorizedHTTPError();
