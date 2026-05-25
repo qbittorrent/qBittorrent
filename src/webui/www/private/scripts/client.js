@@ -61,8 +61,9 @@ window.qBittorrent.Client ??= (() => {
     const setup = () => {
         // fetch various data and store it in memory
         clientDataPromise = window.qBittorrent.ClientData.fetch([
-            "add_torrent_default_category",
             "add_new_torrent_dialog_enabled",
+            "add_torrent_default_category",
+            "add_torrent_separate_dialog_per_torrent",
             "color_scheme",
             "date_format",
             "dblclick_complete",
@@ -167,26 +168,32 @@ window.qBittorrent.Client ??= (() => {
         return showingLogViewer;
     };
 
-    const createAddTorrentWindow = (title, source, metadata = undefined, downloader = undefined) => {
+    const createAddTorrentWindow = (title, source, metadata = undefined, options = {}) => {
+        const { shared = false, engines } = options;
         const isFirefox = navigator.userAgent.includes("Firefox");
         const isSafari = navigator.userAgent.includes("AppleWebKit") && !navigator.userAgent.includes("Chrome");
-        let height = 855;
+        let height = shared ? 625 : 855;
         if (isSafari)
             height -= 40;
         else if (isFirefox)
             height -= 10;
 
-        const staticId = "uploadPage";
+        const staticId = shared ? "uploadPageShared" : "uploadPage";
         const id = `${staticId}-${encodeURIComponent(source)}`;
 
-        const contentURL = new URL("addtorrent.html", window.location);
-        contentURL.search = new URLSearchParams({
+        const shouldFetchMetadata = !shared && (metadata === undefined);
+
+        const params = {
             v: "${CACHEID}",
             source: source,
-            fetch: metadata === undefined,
+            fetch: shouldFetchMetadata,
             windowId: id,
-            downloader: downloader ?? ""
-        });
+            shared: shared
+        };
+        if (engines?.length > 0)
+            params.engines = engines.join("\n");
+        const contentURL = new URL("addtorrent.html", window.location);
+        contentURL.search = new URLSearchParams(params);
 
         new MochaUI.Window({
             id: id,
@@ -198,13 +205,14 @@ window.qBittorrent.Client ??= (() => {
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: loadWindowWidth(staticId, 980),
+            width: loadWindowWidth(staticId, shared ? 600 : 980),
             height: loadWindowHeight(staticId, height),
             onResize: window.qBittorrent.Misc.createDebounceHandler(500, (e) => {
                 saveWindowSize(staticId, id);
             }),
             onContentLoaded: () => {
-                if (metadata !== undefined) {
+                const shouldPostMetadata = !shared && (metadata !== undefined);
+                if (shouldPostMetadata) {
                     const type = "addtorrent_metadata";
                     document.getElementById(`${id}_iframe`).contentWindow.postMessage({
                         type,
