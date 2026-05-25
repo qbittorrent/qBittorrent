@@ -1,4 +1,4 @@
-Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.1
+Mon May 25th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.1
     - BUGFIX: Fix building with latest zlib (glassez) #24200
     - BUGFIX: Remove old-format lockfile when starting (glassez) #24218
     - BUGFIX: Prevent SSRF via HTTP redirection (AlexandrBlishun) #24270
@@ -8,7 +8,7 @@ Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.1
     - WEBUI: Work around browser extension interfering with Add Torrent Dialog (vafada) #24240
     - WEBUI: Filter all children of content root (vafada) #24243
     - WEBAPI: Don't store API result between calls (beryxz) #24262
-    - RSS: Fix refresh is indefinitely called when there is no feeds (glassez) #24199
+    - RSS: Fix refresh is indefinitely called when there are no feeds (glassez) #24199
     - SEARCH: Avoid proxy interfering with multiprocessing pool (Chocobo1) #24234
 
 Sun May 03rd 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.0
