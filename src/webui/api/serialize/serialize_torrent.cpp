@@ -108,7 +108,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
     };
 
     const bool hasMetadata = torrent.hasMetadata();
-    const BitTorrent::ShareLimits shareLimits = torrent.shareLimits();
+    const BitTorrent::ShareLimits &shareLimits = torrent.shareLimits();
     const BitTorrent::ShareLimits effectiveShareLimits = torrent.effectiveShareLimits();
 
     return {
@@ -173,6 +173,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_POPULARITY, torrent.popularity()},
         {KEY_TORRENT_SEEDING_TIME_LIMIT, shareLimits.seedingTimeLimit},
         {KEY_TORRENT_INACTIVE_SEEDING_TIME_LIMIT, shareLimits.inactiveSeedingTimeLimit},
+        {KEY_TORRENT_SHARE_LIMITS_MODE, Utils::String::fromEnum(shareLimits.mode)},
         {KEY_TORRENT_SHARE_LIMIT_ACTION, Utils::String::fromEnum(shareLimits.action)},
         {KEY_TORRENT_LAST_SEEN_COMPLETE_TIME, Utils::DateTime::toSecsSinceEpoch(torrent.lastSeenComplete())},
         {KEY_TORRENT_AUTO_TORRENT_MANAGEMENT, torrent.isAutoTMMEnabled()},

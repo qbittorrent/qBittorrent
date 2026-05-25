@@ -131,7 +131,13 @@ namespace BitTorrent
             int hashJobs = -1;
             int queuedDiskJobs = -1;
             int diskJobTime = -1;
+            int requestLatency = -1;
         } disk;
+
+        struct
+        {
+            int numQueuedTrackerAnnounces = -1;
+        } tracker;
     };
 
     class SessionImpl final : public Session
@@ -177,7 +183,7 @@ namespace BitTorrent
         bool isDisableAutoTMMWhenCategorySavePathChanged() const override;
         void setDisableAutoTMMWhenCategorySavePathChanged(bool value) override;
 
-        ShareLimits shareLimits() const override;
+        const ShareLimits &shareLimits() const override;
         void setShareLimits(ShareLimits shareLimits) override;
 
         QString getDHTBootstrapNodes() const override;
@@ -328,6 +334,8 @@ namespace BitTorrent
         void setSendBufferWatermarkFactor(int value) override;
         int connectionSpeed() const override;
         void setConnectionSpeed(int value) override;
+        bool isSeedingOutgoingConnectionsEnabled() const override;
+        void setSeedingOutgoingConnections(bool enabled) override;
         int socketSendBufferSize() const override;
         void setSocketSendBufferSize(int value) override;
         int socketReceiveBufferSize() const override;
@@ -665,6 +673,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_sendBufferLowWatermark;
         CachedSettingValue<int> m_sendBufferWatermarkFactor;
         CachedSettingValue<int> m_connectionSpeed;
+        CachedSettingValue<bool> m_isSeedingOutgoingConnectionsEnabled;
         CachedSettingValue<int> m_socketSendBufferSize;
         CachedSettingValue<int> m_socketReceiveBufferSize;
         CachedSettingValue<int> m_socketBacklogSize;
@@ -741,6 +750,7 @@ namespace BitTorrent
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<ShareLimitAction> m_shareLimitAction;
+        CachedSettingValue<ShareLimitsMode> m_shareLimitsMode;
         CachedSettingValue<Path> m_savePath;
         CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
@@ -867,6 +877,8 @@ namespace BitTorrent
         FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
         QTimer *m_freeDiskSpaceCheckingTimer = nullptr;
         qint64 m_freeDiskSpace = -1;
+
+        ShareLimits m_shareLimits;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

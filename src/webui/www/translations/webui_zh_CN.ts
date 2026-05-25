@@ -198,6 +198,14 @@
         <source>Limit download rate</source>
         <translation>限制下载速率</translation>
     </message>
+    <message>
+        <source>%1 (Free space on disk: %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>KiB/s</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -297,7 +305,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>无法保存程序偏好选项，可能是无法连接到 qBttorrent。</translation>
+        <translation type="vanished">无法保存程序偏好选项，可能是无法连接到 qBttorrent。</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -412,7 +420,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>无法添加节点。请确认你的格式符合 IP:端口 格式。</translation>
+        <translation>无法添加对等节点。请确认你的格式符合 IP:端口 格式。</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -460,7 +468,7 @@
     </message>
     <message>
         <source>Could not contact qBittorrent</source>
-        <translation>无法联系 qBittorrent</translation>
+        <translation type="vanished">无法联系 qBittorrent</translation>
     </message>
     <message>
         <source>Remember choice</source>
@@ -531,16 +539,12 @@
         <translation>做种时间限制不能为负值</translation>
     </message>
     <message>
-        <source>Peer ToS must be between 0 and 255.</source>
-        <translation type="vanished">Peer ToS 必须在 0 到 255 之间。</translation>
-    </message>
-    <message>
         <source>Share ratio limit must not have a negative value.</source>
         <translation>分享率限制不能为负值</translation>
     </message>
     <message>
         <source>Peer turnover interval must be greater than or equal to 0.</source>
-        <translation>Peer 周转间隔必须大于等于 0</translation>
+        <translation>对等节点周转间隔必须大于等于 0</translation>
     </message>
     <message>
         <source>Unable to parse response.</source>
@@ -552,7 +556,7 @@
     </message>
     <message>
         <source>Peer turnover must be between 0 and 100.</source>
-        <translation>Peer 周转截止时间必须在 0 到 100 之间</translation>
+        <translation>对等节点周转截止时间必须在 0 到 100 之间</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents must be greater than 0 and less than 1024.</source>
@@ -564,10 +568,26 @@
     </message>
     <message>
         <source>Peer turnover cutoff must be between 0 and 100.</source>
-        <translation>Peer 周转截止时间必须在 0 到 100 之间。</translation>
+        <translation>对等节点周转截止时间必须在 0 到 100 之间。</translation>
     </message>
     <message>
         <source>Peer DSCP must be between 0 and 255.</source>
+        <translation>对等节点 DSCP 必须在 0 到 255 之间。</translation>
+    </message>
+    <message>
+        <source>Unable to add torrents.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Error:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Could not contact qBittorrent.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -829,6 +849,30 @@
         <source>Filter feed items...</source>
         <translation>筛选源条目...</translation>
     </message>
+    <message>
+        <source>Info Hash v1</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Invert Selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent and content</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info Hash v2</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -854,7 +898,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation>语言</translation>
+        <translation type="vanished">语言</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -930,7 +974,7 @@
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>该服务器需要安全链接（SSL）</translation>
+        <translation type="vanished">该服务器需要安全链接（SSL）</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -1408,7 +1452,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>按用户比重 (抑制 TCP)</translation>
+        <translation>按对等节点比重（抑制 TCP）</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1464,7 +1508,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation>解析用户所在国家：</translation>
+        <translation>解析对等节点所在国家：</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1492,7 +1536,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation>Peer 进出阈值百分比：</translation>
+        <translation>对等节点进出阈值百分比：</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1524,7 +1568,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation>Peer 进出断开百分比：</translation>
+        <translation>对等节点进出断开百分比：</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1536,7 +1580,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>Peer 进出断开间隔：</translation>
+        <translation>对等节点进出断开间隔：</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1544,7 +1588,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>禁止连接到特权端口上的 Peer：</translation>
+        <translation>禁止连接到特权端口上的 对等节点：</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1560,7 +1604,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation>Peer 连接协议：</translation>
+        <translation>对等节点连接协议：</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1577,10 +1621,6 @@
     <message>
         <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
-    </message>
-    <message>
-        <source>Type of service (ToS) for connections to peers</source>
-        <translation type="vanished">与 peers 连接的服务类型（ToS）</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1636,7 +1676,7 @@
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>单一 peer 的最大未完成请求：</translation>
+        <translation>单一 对等节点的最大未完成请求：</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
@@ -1823,10 +1863,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>套接字接收缓存大小 [0: 系统默认值]：</translation>
     </message>
     <message>
-        <source>Use Subcategories</source>
-        <translation type="vanished">启用子分类：</translation>
-    </message>
-    <message>
         <source>Add to top of queue</source>
         <translation>添加到队列顶部</translation>
     </message>
@@ -1872,7 +1908,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>If &amp;quot;mixed mode&amp;quot; is enabled, I2P torrents are allowed to also get peers from other sources than the tracker, and connect to regular IPs, not providing any anonymization. This may be useful if the user is not interested in the anonymization of I2P, but still wants to be able to connect to I2P peers.</source>
-        <translation>如启用 “混合模式”，则 I2P Torrent 也被允许从 Tracker 之外的来源获得 peers，并连接到正常的 IP 地址，这样的结果是不提供任何的匿名性。对于对 I2P 匿名性不感兴趣，但让仍希望能连接到 I2P peer 的用户来说，此模式会有用处。</translation>
+        <translation>如启用 “混合模式”，则 I2P Torrent 也被允许从 Tracker 之外的来源获得对等节点，并连接到正常的 IP 地址，这样的结果不提供任何的匿名性。对 I2P 匿名性不在意，但让仍希望能连接到 I2P 对等节点的用户来说，此模式会有用处。</translation>
     </message>
     <message>
         <source>DHT bootstrap nodes:</source>
@@ -1972,7 +2008,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorent instances</source>
-        <translation>它将文件附加到窗口标题来区分不同的 qBittorrent 实例</translation>
+        <translation type="vanished">它将文件附加到窗口标题来区分不同的 qBittorrent 实例</translation>
     </message>
     <message>
         <source>The WebUI username must be at least 3 characters long.</source>
@@ -2084,7 +2120,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Attempted to send email. Check your inbox to confirm success</source>
-        <translation>已尝试发送邮件。检查你的收件箱确认是否发送成功</translation>
+        <translation type="vanished">已尝试发送邮件。检查你的收件箱确认是否发送成功</translation>
     </message>
     <message>
         <source>Automatically append trackers from URL to new downloads:</source>
@@ -2164,7 +2200,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enable optimized table rendering (experimental)</source>
-        <translation>启用优化的表格渲染（实验性）</translation>
+        <translation type="vanished">启用优化的表格渲染（实验性）</translation>
     </message>
     <message>
         <source>Note: The password is saved unencrypted</source>
@@ -2224,6 +2260,94 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Differentiated Services Code Point (DSCP) for connections to peers</source>
+        <translation>与对等节点连接的区分服务代码点 (DSCP) </translation>
+    </message>
+    <message>
+        <source>no encryption used when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTPS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(alternative choice if supported)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use SMTPS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Compact</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Display density:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SMTP encryption:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>STARTTLS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable optimized table rendering</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select the encryption type used when sending SMTP emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(last choice if no other option)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Date format:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Browser default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resolve peer host names:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Pread/pwrite</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>use STARTTLS encryption when sending emails</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The WebUI username must not contain a colon.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Localization</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(best choice if supported)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2299,11 +2423,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>添加 peers 用户...</translation>
+        <translation>添加对等节点...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation>Peer ID 客户端</translation>
+        <translation>对等节点 ID 客户端</translation>
     </message>
     <message>
         <source>IP/Address</source>
@@ -2634,6 +2758,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Private:</source>
         <translation>私密：</translation>
     </message>
+    <message>
+        <source>Availability:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>ScanFoldersModel</name>
@@ -2730,6 +2858,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Total queued size:</source>
         <translation>总队列大小：</translation>
+    </message>
+    <message>
+        <source>Tracker statistics</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Queued tracker announces:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2962,12 +3098,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation>本次会话下载</translation>
+        <translation type="vanished">本次会话下载</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation>本次会话上传</translation>
+        <translation type="vanished">本次会话上传</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -3044,6 +3180,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Status Icon</source>
         <translation>状态图标</translation>
+    </message>
+    <message>
+        <source>Session Uploaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Session Downloaded</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Created On</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4035,7 +4183,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>由 DB-IP 提供的免费 IP to Country Lite 数据库，用于解析节点所在的国家。该数据库已根据知识共享署名 4.0 国际许可协议获得许可</translation>
+        <translation>由 DB-IP 提供的免费 IP to Country Lite 数据库，用于解析对等节点所在的国家。该数据库已根据知识共享署名 4.0 国际许可协议获得许可</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -4122,6 +4270,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Refresh tab</source>
         <translation>刷新标签页</translation>
+    </message>
+    <message>
+        <source>Stop search</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use as search text</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Open download window</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -4514,6 +4674,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <source>Add Stopped:</source>
         <translation>添加已停止的：</translation>
     </message>
+    <message>
+        <source>Rule cloning</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear downloaded episodes confirmation</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clone rule...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
@@ -4760,6 +4932,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Use another path for incomplete torrents:</source>
         <translation>对不完整的 Torrent 使用另一个路径：</translation>
+    </message>
+    <message>
+        <source>Category does not exist</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -5127,6 +5303,41 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Rotate this API key? The current key will immediately stop working and a new key will be generated.</source>
         <translation>重置该 API key 吗？当前 key 会立即停止工作，会生成新 key。</translation>
+    </message>
+</context>
+<context>
+    <name>RSSCloneRule</name>
+    <message>
+        <source>Clone</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Alert</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The cloned rule will be set as disabled and the downloaded episodes history will be cleared.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name is unchanged. You must type a new rule name for the clone.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Please type the name for the clone of the download rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The rule name cannot be empty.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unable to clone the selected rule.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

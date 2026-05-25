@@ -32,20 +32,10 @@
 
 #include "base/global.h"
 #include "base/settingvalue.h"
+#include "proxytype.h"
 
 namespace Net
 {
-    Q_NAMESPACE
-
-    enum class ProxyType
-    {
-        None = 0,
-        HTTP = 1,
-        SOCKS5 = 2,
-        SOCKS4 = 5
-    };
-    Q_ENUM_NS(ProxyType)
-
     struct ProxyConfiguration
     {
         ProxyType type = ProxyType::None;

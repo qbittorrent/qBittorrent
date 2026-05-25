@@ -4,6 +4,7 @@
         <file>webui_az@latin.qm</file>
         <file>webui_be.qm</file>
         <file>webui_bg.qm</file>
+        <file>webui_bs.qm</file>
         <file>webui_ca.qm</file>
         <file>webui_cs.qm</file>
         <file>webui_da.qm</file>
@@ -30,6 +31,7 @@
         <file>webui_it.qm</file>
         <file>webui_ja.qm</file>
         <file>webui_ka.qm</file>
+        <file>webui_kk.qm</file>
         <file>webui_ko.qm</file>
         <file>webui_lt.qm</file>
         <file>webui_ltg.qm</file>
@@ -37,6 +39,7 @@
         <file>webui_mn_MN.qm</file>
         <file>webui_ms_MY.qm</file>
         <file>webui_nb.qm</file>
+        <file>webui_ne_NP.qm</file>
         <file>webui_nl.qm</file>
         <file>webui_oc.qm</file>
         <file>webui_pl.qm</file>
@@ -46,7 +49,9 @@
         <file>webui_ru.qm</file>
         <file>webui_sk.qm</file>
         <file>webui_sl.qm</file>
+        <file>webui_sq.qm</file>
         <file>webui_sr.qm</file>
+        <file>webui_sr@latin.qm</file>
         <file>webui_sv.qm</file>
         <file>webui_th.qm</file>
         <file>webui_tr.qm</file>

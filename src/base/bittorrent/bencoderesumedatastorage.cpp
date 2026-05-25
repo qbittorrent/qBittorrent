@@ -253,8 +253,8 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
             : fromLTString(ratioLimitString).toDouble(),
         .seedingTimeLimit = static_cast<int>(resumeDataRoot.dict_find_int_value("qBt-seedingTimeLimit", DEFAULT_SEEDING_TIME_LIMIT)),
         .inactiveSeedingTimeLimit = static_cast<int>(resumeDataRoot.dict_find_int_value("qBt-inactiveSeedingTimeLimit", DEFAULT_SEEDING_TIME_LIMIT)),
-        .action = Utils::String::toEnum(
-            fromLTString(resumeDataRoot.dict_find_string_value("qBt-shareLimitAction")), ShareLimitAction::Default)
+        .mode = Utils::String::toEnum(fromLTString(resumeDataRoot.dict_find_string_value("qBt-shareLimitsMode")), ShareLimitsMode::Default),
+        .action = Utils::String::toEnum(fromLTString(resumeDataRoot.dict_find_string_value("qBt-shareLimitAction")), ShareLimitAction::Default)
     };
 
     torrentParams.savePath = Profile::instance()->fromPortablePath(
@@ -455,6 +455,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-ratioLimit"] = static_cast<int>(resumeData.shareLimits.ratioLimit * 1000);
     data["qBt-seedingTimeLimit"] = resumeData.shareLimits.seedingTimeLimit;
     data["qBt-inactiveSeedingTimeLimit"] = resumeData.shareLimits.inactiveSeedingTimeLimit;
+    data["qBt-shareLimitsMode"] = Utils::String::fromEnum(resumeData.shareLimits.mode).toStdString();
     data["qBt-shareLimitAction"] = Utils::String::fromEnum(resumeData.shareLimits.action).toStdString();
 
     data["qBt-category"] = resumeData.category.toStdString();

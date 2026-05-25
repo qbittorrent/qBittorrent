@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2023-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2019, 2021  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -37,11 +37,16 @@
 #include <QStyle>
 #include <QStyleHints>
 
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "uithemecommon.h"
+
+#ifdef Q_OS_WIN
+#include "base/utils/reg.h"
+#endif
+
+using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
@@ -72,10 +77,15 @@ UIThemeManager::UIThemeManager()
 #ifdef QBT_HAS_COLORSCHEME_OPTION
     , m_colorSchemeSetting {u"Appearance/ColorScheme"_s}
 #endif
+    , m_trayIconStyleSetting {u"Appearance/TrayIconStyle"_s}
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
+#ifdef Q_OS_WIN
+    updateSystemColorMode();
+#endif
+
     if (const QString styleName = Preferences::instance()->getStyle(); styleName.compare(u"system", Qt::CaseInsensitive) != 0)
     {
         if (!QApplication::setStyle(styleName))
@@ -86,8 +96,7 @@ UIThemeManager::UIThemeManager()
     applyColorScheme();
 #endif
 
-    // NOTE: Qt::QueuedConnection can be omitted as soon as support for Qt 6.5 is dropped
-    connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged, Qt::QueuedConnection);
+    connect(QApplication::styleHints(), &QStyleHints::colorSchemeChanged, this, &UIThemeManager::onColorSchemeChanged);
 
     if (m_useCustomTheme)
     {
@@ -153,6 +162,19 @@ void UIThemeManager::applyColorScheme() const
 }
 #endif
 
+TrayIconStyle UIThemeManager::trayIconStyle() const
+{
+    return m_trayIconStyleSetting.get(TrayIconStyle::Normal);
+}
+
+void UIThemeManager::setTrayIconStyle(const TrayIconStyle value)
+{
+    if (value == trayIconStyle())
+        return;
+
+    m_trayIconStyleSetting = value;
+}
+
 void UIThemeManager::applyStyleSheet() const
 {
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
@@ -166,9 +188,8 @@ void UIThemeManager::onColorSchemeChanged()
     QApplication::setStyle(QApplication::style()->name());
 }
 
-QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
+QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback, const ColorMode colorMode) const
 {
-    const auto colorMode = isDarkTheme() ? ColorMode::Dark : ColorMode::Light;
     auto &icons = (colorMode == ColorMode::Dark) ? m_darkModeIcons : m_icons;
 
     const auto iter = icons.find(iconId);
@@ -189,6 +210,35 @@ QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QStr
     const QIcon icon {m_themeSource->getIconPath(iconId, colorMode).data()};
     icons[iconId] = icon;
     return icon;
+}
+
+QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
+{
+    const auto colorMode = isDarkTheme() ? ColorMode::Dark : ColorMode::Light;
+    return getIcon(iconId, fallback, colorMode);
+}
+
+QIcon UIThemeManager::getSystrayIcon() const
+{
+#ifdef Q_OS_WIN
+    const auto colorMode = m_systemColorMode;
+#else
+    const auto colorMode = (qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+            ? ColorMode::Dark : ColorMode::Light;
+#endif
+    const QString fallback = (colorMode == ColorMode::Light)
+            ? u"qbittorrent-tray-light"_s : u"qbittorrent-tray-dark"_s;
+
+    switch (trayIconStyle())
+    {
+    case TrayIconStyle::Normal:
+        return getIcon(u"qbittorrent-tray"_s, {}, colorMode);
+
+    case TrayIconStyle::Monochrome:
+        return getIcon(u"qbittorrent-tray-mono"_s, fallback, colorMode);
+    }
+
+    Q_UNREACHABLE_RETURN({});
 }
 
 QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
@@ -230,6 +280,30 @@ QColor UIThemeManager::getColor(const QString &id) const
     const QColor color = m_themeSource->getColor(id, (isDarkTheme() ? ColorMode::Dark : ColorMode::Light));
     return color;
 }
+
+#ifdef Q_OS_WIN
+void UIThemeManager::updateSystemColorMode()
+{
+    const HKEY hkRoot = HKEY_CURRENT_USER;
+    const REGSAM samDesired = KEY_READ;
+
+    HKEY hkPersonalize = nullptr;
+    const LSTATUS status = ::RegOpenKeyExW(hkRoot, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", 0, samDesired, &hkPersonalize);
+    if (status != ERROR_SUCCESS)
+        return;
+
+    [[maybe_unused]] const auto hkPersonalizeGuard = qScopeGuard([&hkPersonalize] { ::RegCloseKey(hkPersonalize); });
+
+    const ulong val = Utils::Reg::getULongValue(hkPersonalize, u"SystemUsesLightTheme"_s);
+    const auto systemUsesLightTheme = static_cast<bool>(val);
+    const auto systemColorMode = systemUsesLightTheme ? ColorMode::Light : ColorMode::Dark;
+    if (systemColorMode != m_systemColorMode)
+    {
+        m_systemColorMode = systemColorMode;
+        onColorSchemeChanged();
+    }
+}
+#endif
 
 void UIThemeManager::applyPalette() const
 {

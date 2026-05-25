@@ -1,5 +1,42 @@
 # WebAPI Changelog
 
+## 2.16.0
+* [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
+  * `torrentcreator/addTask` endpoint accepts a new bool option `ignoreDotfiles` to control whether dotfiles are ignored
+  * `torrentcreator/status` endpoint returns a new bool field `ignoreDotfiles` for reporting whether dotfiles were ignored
+* [#24246](https://github.com/qbittorrent/qBittorrent/pull/24246)
+  * `torrents/fetchMetadata` and `torrents/parseMetadata` endpoints include file `priority` when excluded file names apply
+* [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)
+  * `torrentcreator/status` endpoint now returns `timeAdded`, `timeStarted`, and `timeFinished` as Unix timestamps
+* [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
+  * `app/preferences` endpoint includes `seeding_outgoing_connections` option
+  * `app/setPreferences` endpoint allows to set `seeding_outgoing_connections` option
+* [#24152](https://github.com/qbittorrent/qBittorrent/pull/24152)
+  * `sync/maindata` endpoint now includes `request_latency` metric
+* [#24084](https://github.com/qbittorrent/qBittorrent/pull/24084)
+  * `sync/maindata` endpoint now includes `queued_tracker_announces` metric
+* [#23838](https://github.com/qbittorrent/qBittorrent/pull/23838)
+  * `app/preferences` endpoint no longer includes `mail_notification_ssl_enabled` option as it no longer exists
+  * `app/preferences` endpoint includes `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
+  * `app/setPreferences` endpoint no longer allows setting `mail_notification_ssl_enabled` option as it no longer exists
+  * `app/setPreferences` endpoint allows to set `mail_notification_encryption_type` option, replacing the removed `mail_notification_ssl_enabled` option
+* [#24134](https://github.com/qbittorrent/qBittorrent/pull/24134)
+  * `transfer/getSpeedLimits` endpoint was added to retrieve global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
+  * `transfer/setSpeedLimits` endpoint was added to set global and alternative speed limits (`up_limit`, `dl_limit`, `alt_up_limit`, `alt_dl_limit`)
+* [#24135](https://github.com/qbittorrent/qBittorrent/pull/24135)
+  * Add `torrents/downloadFile` endpoint with `hash` and `file` as parameters allowing to download a completed file from torrent content
+    * `file` accepts either file index or path relative to content root
+
+## 2.15.4
+* [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
+  * Add `rss/cloneRule` endpoint with `sourceName` and `cloneName` as parameters for cloning an existing RSS auto-download rule
+
+## 2.15.3
+* [#24043](https://github.com/qbittorrent/qBittorrent/pull/24043)
+  * `sync/maindata` endpoint includes `share_limits_mode` for torrents
+  * `app/preferences` endpoint includes `share_limits_mode` option
+  * `app/setPreferences` endpoint allows to set `share_limits_mode` option
+
 ## 2.15.2
 
 * [#23357](https://github.com/qbittorrent/qBittorrent/pull/23856)

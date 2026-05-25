@@ -57,9 +57,11 @@
 #include <QPixmapCache>
 #include <QProgressDialog>
 #ifdef Q_OS_WIN
+#include <QAbstractNativeEventFilter>
 #include <QSessionManager>
 #endif // Q_OS_WIN
 #ifdef Q_OS_MACOS
+#include <QAccessible>
 #include <QFileOpenEvent>
 #endif // Q_OS_MACOS
 #endif
@@ -75,7 +77,7 @@
 #include "base/net/geoipmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/reverseresolution.h"
-#include "base/net/smtp.h"
+#include "base/net/smtpclient.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
@@ -133,6 +135,41 @@ namespace
     const QString PARAM_SEQUENTIAL = u"@sequential"_s;
     const QString PARAM_SKIPCHECKING = u"@skipChecking"_s;
     const QString PARAM_SKIPDIALOG = u"@skipDialog"_s;
+
+#if !defined(DISABLE_GUI) && defined(Q_OS_WIN)
+    class NativeEventFilter final : public QAbstractNativeEventFilter
+    {
+    public:
+        explicit NativeEventFilter(UIThemeManager *uiThemeManager)
+            : m_uiThemeManager {uiThemeManager}
+        {
+        }
+
+        bool nativeEventFilter(const QByteArray &eventType, void *message, [[maybe_unused]] qintptr *result) override
+        {
+            if (eventType == "windows_generic_MSG")
+            {
+                auto *msg = static_cast<const MSG *>(message);
+                if (msg->message == WM_SETTINGCHANGE)
+                {
+                    // Only refresh the theme if the user changes the personalize settings
+                    if ((msg->wParam == 0) && (msg->lParam != 0) // lParam sometimes may be 0.
+                            && (wcscmp(reinterpret_cast<LPCWSTR>(msg->lParam), L"ImmersiveColorSet") == 0))
+                    {
+                        m_uiThemeManager->updateSystemColorMode();
+                    }
+                }
+            }
+
+            // We don't want to filter the message out, i.e.
+            // stop it being handled further, so return false.
+            return false;
+        }
+
+    private:
+        UIThemeManager *m_uiThemeManager = nullptr;
+    };
+#endif
 
     QString bindParamValue(const QStringView paramName, const QStringView paramValue)
     {
@@ -708,14 +745,11 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
 
     // Send the notification email
     const Preferences *pref = Preferences::instance();
-    auto *smtp = new Net::Smtp(this);
-    smtp->sendMail(pref->getMailNotificationSender(),
-                     pref->getMailNotificationEmail(),
-                     tr("Torrent \"%1\" has finished downloading").arg(torrent->name()),
-                     content);
+    Net::SMTPClient::sendMail(pref->getMailNotificationSender(), pref->getMailNotificationEmail()
+            , tr("Torrent \"%1\" has finished downloading").arg(torrent->name()), content, this);
 }
 
-void Application::sendTestEmail() const
+void Application::sendTestEmail()
 {
     const Preferences *pref = Preferences::instance();
     if (pref->isMailNotificationEnabled())
@@ -725,11 +759,8 @@ void Application::sendTestEmail() const
             + tr("Thank you for using qBittorrent.") + u'\n';
 
         // Send the notification email
-        auto *smtp = new Net::Smtp();
-        smtp->sendMail(pref->getMailNotificationSender(),
-                        pref->getMailNotificationEmail(),
-                        tr("Test email"),
-                        content);
+        Net::SMTPClient::sendMail(pref->getMailNotificationSender(), pref->getMailNotificationEmail()
+            , tr("Test email"), content, this);
     }
 }
 
@@ -870,6 +901,10 @@ int Application::exec()
     BitTorrent::Session::initInstance();
 #ifndef DISABLE_GUI
     UIThemeManager::initInstance();
+
+#ifdef Q_OS_WIN
+    installNativeEventFilter(new NativeEventFilter(UIThemeManager::instance()));
+#endif
 
     m_desktopIntegration = new DesktopIntegration;
     m_desktopIntegration->setToolTip(tr("Loading torrents..."));
@@ -1372,6 +1407,20 @@ void Application::cleanup()
             m_desktopIntegration->menu()->setEnabled(false);
     }
 
+#ifdef Q_OS_MACOS
+    // Remove all accessibility interface factories before destroying widgets.
+    // On macOS, widget destruction triggers accessibility notifications via
+    // the native AX API, which can deadlock with the Qt event loop causing
+    // the app to freeze on quit.
+    // https://github.com/qbittorrent/qBittorrent/issues/23695
+    if (m_window)
+        QAccessible::cleanup();
+#endif
+
+    // AddTorrentManager should be deleted before cleanup MainWindow
+    // in order to properly delete currently opened AddNewTorrentDialog instances
+    delete m_addTorrentManager;
+
     if (m_window)
     {
         // Hide the window and don't leave it on screen as
@@ -1405,7 +1454,9 @@ void Application::cleanup()
     delete RSS::Session::instance();
 
     TorrentFilesWatcher::freeInstance();
+#ifdef DISABLE_GUI
     delete m_addTorrentManager;
+#endif
     BitTorrent::Session::freeInstance();
     Net::ReverseResolution::freeInstance();
     Net::GeoIPManager::freeInstance();

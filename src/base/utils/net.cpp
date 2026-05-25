@@ -151,6 +151,10 @@ namespace Utils
             }
             if (addressFamily == QAbstractSocket::IPv6Protocol)
             {
+                // Special case: /128 is a single IP
+                if (prefixLength == 128)
+                    return std::make_pair(address, address);
+
                 Q_IPV6ADDR addressBytes = address.toIPv6Address();
 
                 const int headBytes = prefixLength / 8;

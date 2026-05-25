@@ -88,6 +88,7 @@ private:
         std::optional<qreal> ratio;
         std::optional<int> seedingTime;
         std::optional<int> inactiveSeedingTime;
+        std::optional<BitTorrent::ShareLimitsMode> shareLimitsMode;
         std::optional<BitTorrent::ShareLimitAction> shareLimitAction;
         int upSpeedLimit;
         int downSpeedLimit;

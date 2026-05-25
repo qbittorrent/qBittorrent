@@ -203,8 +203,13 @@ window.qBittorrent.Client ??= (() => {
                 saveWindowSize(staticId, id);
             }),
             onContentLoaded: () => {
-                if (metadata !== undefined)
-                    document.getElementById(`${id}_iframe`).contentWindow.postMessage(metadata, window.origin);
+                if (metadata !== undefined) {
+                    const type = "addtorrent_metadata";
+                    document.getElementById(`${id}_iframe`).contentWindow.postMessage({
+                        type,
+                        metadata,
+                    }, window.origin);
+                }
             }
         });
     };
@@ -925,7 +930,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
                         let updateTags = false;
                         let updateTrackers = false;
                         let updateTorrents = false;
-                        const fullUpdate = (responseJSON["fullUpdate"] === true);
+                        const fullUpdate = (responseJSON["full_update"] === true);
                         if (fullUpdate) {
                             torrentsTableSelectedRows = torrentsTable.selectedRowsIds();
                             updateStatuses = true;
@@ -1251,8 +1256,8 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             });
     });
 
-    document.getElementById("DlInfos").addEventListener("click", (event) => { globalDownloadLimitFN(); });
-    document.getElementById("UpInfos").addEventListener("click", (event) => { globalUploadLimitFN(); });
+    document.getElementById("DlInfos").addEventListener("click", (event) => { globalLimitFN(); });
+    document.getElementById("UpInfos").addEventListener("click", (event) => { globalLimitFN(); });
 
     document.getElementById("showTopToolbarLink").addEventListener("click", (e) => {
         showTopToolbar = !showTopToolbar;

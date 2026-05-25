@@ -147,6 +147,7 @@ BitTorrent::AddTorrentParams AddTorrentParamsWidget::addTorrentParams() const
     addTorrentParams.shareLimits.ratioLimit = m_ui->torrentShareLimitsWidget->ratioLimit().value();
     addTorrentParams.shareLimits.seedingTimeLimit = m_ui->torrentShareLimitsWidget->seedingTimeLimit().value();
     addTorrentParams.shareLimits.inactiveSeedingTimeLimit = m_ui->torrentShareLimitsWidget->inactiveSeedingTimeLimit().value();
+    addTorrentParams.shareLimits.mode = m_ui->torrentShareLimitsWidget->shareLimitsMode().value();
     addTorrentParams.shareLimits.action = m_ui->torrentShareLimitsWidget->shareLimitAction().value();
 
     return addTorrentParams;
@@ -275,6 +276,7 @@ void AddTorrentParamsWidget::populate()
     m_ui->torrentShareLimitsWidget->setRatioLimit(m_addTorrentParams.shareLimits.ratioLimit);
     m_ui->torrentShareLimitsWidget->setSeedingTimeLimit(m_addTorrentParams.shareLimits.seedingTimeLimit);
     m_ui->torrentShareLimitsWidget->setInactiveSeedingTimeLimit(m_addTorrentParams.shareLimits.inactiveSeedingTimeLimit);
+    m_ui->torrentShareLimitsWidget->setShareLimitsMode(m_addTorrentParams.shareLimits.mode);
     m_ui->torrentShareLimitsWidget->setShareLimitAction(m_addTorrentParams.shareLimits.action);
 }
 

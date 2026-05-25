@@ -66,7 +66,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     args = parser.parse_args(argv)
 
     for filename in args.filenames:
-        with open(filename, 'r+') as f:
+        with open(filename, 'r+', encoding='utf-8') as f:
             orig = f.read()
             root = ElementTree.fromstring(orig)
             traversePostOrder(root, modifyElement)

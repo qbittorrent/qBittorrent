@@ -1,7 +1,8 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018-2025  Mike Tzou (Chocobo1)
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,17 +28,16 @@
  * exception statement from your version.
  */
 
-
 #pragma once
 
-class QByteArray;
-class QString;
+#include <windows.h>
 
-namespace Http
+#include <QtContainerFwd>
+#include <QString>
+
+namespace Utils::Reg
 {
-    struct Response;
-
-    QByteArray toByteArray(Response response);
-    QString httpDate();
-    void compressContent(Response &response);
+    QStringList getSubkeys(const HKEY handle);
+    QString getStringValue(const HKEY handle, const QString &name = {});
+    ulong getULongValue(const HKEY handle, const QString &name = {});
 }

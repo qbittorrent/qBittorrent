@@ -34,9 +34,9 @@
 
 #include "base/bittorrent/sharelimits.h"
 #include "base/bittorrent/torrentcontentlayout.h"
-#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/net/smtpencryptiontype.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
@@ -44,9 +44,11 @@
 #include "base/utils/io.h"
 #include "base/utils/string.h"
 
+using namespace Qt::Literals::StringLiterals;
+
 namespace
 {
-    const int MIGRATION_VERSION = 9;
+    const int MIGRATION_VERSION = 10;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_s;
 
     void exportWebUIHttpsFiles()
@@ -216,13 +218,13 @@ namespace
             switch (number)
             {
             case 0:
-                settingsStorage->storeValue(key, TrayIcon::Style::Normal);
+                settingsStorage->storeValue(key, u"Normal"_s);
                 break;
             case 1:
-                settingsStorage->storeValue(key, TrayIcon::Style::MonoDark);
+                settingsStorage->storeValue(key, u"MonoDark"_s);
                 break;
             case 2:
-                settingsStorage->storeValue(key, TrayIcon::Style::MonoLight);
+                settingsStorage->storeValue(key, u"MonoLight"_s);
                 break;
             default:
                 LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
@@ -231,6 +233,21 @@ namespace
                 break;
             }
         }
+    }
+
+    void upgradeTrayIconStyleSettings2()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto oldKey = u"Preferences/Advanced/TrayIconStyle"_s;
+        const auto newKey = u"Appearance/TrayIconStyle"_s;
+        const auto value = settingsStorage->loadValue<QString>(oldKey);
+
+        if ((value == u"MonoDark") || (value == u"MonoLight"))
+            settingsStorage->storeValue(newKey, u"Monochrome"_s);
+        else
+            settingsStorage->storeValue(newKey, u"Normal"_s);
+
+        settingsStorage->removeValue(oldKey);
     }
 
     enum class MigrateOption
@@ -491,6 +508,22 @@ namespace
         settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
         settingsStorage->removeValue(oldKey);
     }
+
+    void migrateSMTPEncryptionSetting()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const QString oldKey = u"Preferences/MailNotification/req_ssl"_s;
+        const QString newKey = u"Preferences/MailNotification/SMTPEncryptionType"_s;
+
+        if (settingsStorage->hasKey(oldKey))
+        {
+            const Net::SMTPEncryptionType setting = settingsStorage->loadValue<bool>(oldKey)
+                ? Net::SMTPEncryptionType::SMTPS
+                : Net::SMTPEncryptionType::None;
+            settingsStorage->storeValue(newKey, setting);
+            settingsStorage->removeValue(oldKey);
+        }
+    }
 }
 
 bool upgrade()
@@ -537,6 +570,12 @@ bool upgrade()
 
         if (version < 9)
             handleSettingKeys<MigrateOption::RemoveOldKeys>();
+
+        if (version < 10)
+        {
+            upgradeTrayIconStyleSettings2();
+            migrateSMTPEncryptionSetting();
+        }
 
         version = MIGRATION_VERSION;
     }

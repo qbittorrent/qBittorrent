@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -38,24 +39,23 @@
 #include <QObject>
 #include <QString>
 
-#ifndef QT_NO_OPENSSL
 class QSslSocket;
-#else
-class QTcpSocket;
-#endif
 
 namespace Net
 {
-    class Smtp : public QObject
+    const short SMTP_DEFAULT_PORT = 25;
+    const short SMTP_DEFAULT_PORT_SSL = 465;
+    const short SMTP_DEFAULT_PORT_STARTTLS = 587;
+
+    class SMTPClient final : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY_MOVE(Smtp)
+        Q_DISABLE_COPY_MOVE(SMTPClient)
 
     public:
-        Smtp(QObject *parent = nullptr);
-        ~Smtp();
-
-        void sendMail(const QString &from, const QString &to, const QString &subject, const QString &body);
+        static void sendMail(const QString &from, const QString &to
+                , const QString &subject, const QString &body
+                , QObject *context = nullptr);
 
     private slots:
         void readyRead();
@@ -88,7 +88,10 @@ namespace Net
             AuthCramMD5
         };
 
-        QByteArray encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix = {});
+        SMTPClient(const QString &from, const QString &to, const QString &subject
+                   , const QString &body, QObject *parent = nullptr);
+        ~SMTPClient() override;
+
         void ehlo();
         void helo();
         void parseEhloResponse(const QByteArray &code, bool continued, const QString &line);
@@ -98,21 +101,16 @@ namespace Net
         void authPlain();
         void authLogin();
         void logError(const QString &msg);
-        QString getCurrentDateTime() const;
 
         QByteArray m_message;
-#ifndef QT_NO_OPENSSL
         QSslSocket *m_socket = nullptr;
-#else
-        QTcpSocket *m_socket = nullptr;
-#endif
         QString m_from;
         QString m_rcpt;
         QString m_response;
-        int m_state = Init;
+        States m_state = Init;
         QHash<QString, QString> m_extensions;
         QByteArray m_buffer;
-        bool m_useSsl = false;
+        bool m_usingStartTls = false;
         AuthType m_authType = AuthPlain;
         QString m_username;
         QString m_password;
