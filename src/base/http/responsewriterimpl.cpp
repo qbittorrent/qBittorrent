@@ -560,7 +560,7 @@ void Http::ResponseWriterImpl::Worker::run()
 QByteArray Http::ResponseWriterImpl::Worker::fetchData(const qint64 maxSize)
 {
     const QReadLocker locker {&m_bufferLock};
-    const qint64 sizeToFetch = std::min(maxSize, m_buffer.size());
+    const qint64 sizeToFetch = std::min(maxSize, static_cast<qint64>(m_buffer.size()));
     const QByteArray data = m_buffer.first(sizeToFetch);
     m_buffer.remove(0, sizeToFetch);
     m_bufferSemaphore.release(sizeToFetch);
