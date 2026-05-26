@@ -516,14 +516,14 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
             return tr("Leeches");
         case COL_TIMES_DOWNLOADED:
             return tr("Times Downloaded");
+        case COL_RETRIES:
+            return tr("Retries");
         case COL_MSG:
             return tr("Message");
         case COL_NEXT_ANNOUNCE:
             return tr("Next Announce");
         case COL_MIN_ANNOUNCE:
             return tr("Min Announce");
-        case COL_RETRIES:
-            return tr("Retries");
         default:
             return {};
         }
@@ -536,9 +536,9 @@ QVariant TrackerListModel::headerData(const int section, const Qt::Orientation o
         case COL_SEEDS:
         case COL_LEECHES:
         case COL_TIMES_DOWNLOADED:
+        case COL_RETRIES:
         case COL_NEXT_ANNOUNCE:
         case COL_MIN_ANNOUNCE:
-        case COL_RETRIES:
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};
         default:
             return {};
@@ -583,6 +583,7 @@ QVariant TrackerListModel::data(const QModelIndex &index, const int role) const
         case COL_SEEDS:
         case COL_LEECHES:
         case COL_TIMES_DOWNLOADED:
+        case COL_RETRIES:
         case COL_NEXT_ANNOUNCE:
         case COL_MIN_ANNOUNCE:
             return QVariant {Qt::AlignRight | Qt::AlignVCenter};

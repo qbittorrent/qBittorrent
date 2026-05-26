@@ -2245,6 +2245,9 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["seeds"].compareRows = sortMixed;
             this.columns["leeches"].compareRows = sortMixed;
             this.columns["downloaded"].compareRows = sortMixed;
+            this.columns["fails"].compareRows = sortMixed;
+            this.columns["nextAnnounce"].compareRows = sortNumbers;
+            this.columns["minAnnounce"].compareRows = sortNumbers;
 
             this.columns["status"].updateTd = function(td, row) {
                 let statusClass = "trackerUnknown";
