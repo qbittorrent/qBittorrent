@@ -442,7 +442,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->assocPanel->hide();
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_ui->defaultProgramPanel->hide();
 #endif
 
