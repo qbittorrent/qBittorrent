@@ -114,8 +114,11 @@ bool LocalPeer::isClient()
 
         if (const std::optional<LockInfo> lockInfo = getLockInfo())
         {
-            if (lockInfo->hostid == QSysInfo::machineUniqueId())
+            if ((lockInfo->hostid == QSysInfo::machineUniqueId())
+                    && (lockInfo->hostname == QSysInfo::machineHostName()))
+            {
                 return true;
+            }
 
             if (!m_lockFile.removeStaleLockFile() || !m_lockFile.tryLock())
                 return true;
