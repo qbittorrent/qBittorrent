@@ -2463,6 +2463,10 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.rerender();
         }
 
+        clearCollapseState() {
+            this.collapseState.clear();
+        }
+
         #updateNodeVisibility(node, shouldHide) {
             const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
@@ -2510,7 +2514,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         clear() {
             super.clear();
-            this.collapseState.clear();
+            this.clearCollapseState();
         }
 
         expandFolder(id) {
