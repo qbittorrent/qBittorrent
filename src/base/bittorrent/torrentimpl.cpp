@@ -147,6 +147,7 @@ namespace
                 trackerEndpointStatus.numSeeds = ltAnnounceInfo.scrape_complete;
                 trackerEndpointStatus.numLeeches = ltAnnounceInfo.scrape_incomplete;
                 trackerEndpointStatus.numDownloaded = ltAnnounceInfo.scrape_downloaded;
+                trackerEndpointStatus.numFails = ltAnnounceInfo.fails;
                 trackerEndpointStatus.nextAnnounceTime = ltAnnounceInfo.next_announce;
                 trackerEndpointStatus.minAnnounceTime = ltAnnounceInfo.min_announce;
 
@@ -249,6 +250,7 @@ namespace
         trackerEntryStatus.numSeeds = -1;
         trackerEntryStatus.numLeeches = -1;
         trackerEntryStatus.numDownloaded = -1;
+        trackerEntryStatus.numFails = -1;
         trackerEntryStatus.nextAnnounceTime = {};
         trackerEntryStatus.minAnnounceTime = {};
         trackerEntryStatus.message.clear();
@@ -259,6 +261,7 @@ namespace
             trackerEntryStatus.numSeeds = std::max(trackerEntryStatus.numSeeds, endpointStatus.numSeeds);
             trackerEntryStatus.numLeeches = std::max(trackerEntryStatus.numLeeches, endpointStatus.numLeeches);
             trackerEntryStatus.numDownloaded = std::max(trackerEntryStatus.numDownloaded, endpointStatus.numDownloaded);
+            trackerEntryStatus.numFails = std::max(trackerEntryStatus.numFails, endpointStatus.numFails);
 
             if (endpointStatus.state == trackerEntryStatus.state)
             {
