@@ -37,7 +37,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QHostInfo>
-#include <QRegularExpression>
 #include <QSslSocket>
 
 #include "base/global.h"
@@ -150,16 +149,23 @@ const int SOCKETERROR_TYPEID = qRegisterMetaType<QAbstractSocket::SocketError>()
 void Net::SMTPClient::sendMail(const QString &from, const QString &to
         , const QString &subject, const QString &body, QObject *context)
 {
-    const QStringList groupList = to.split(u';', Qt::SkipEmptyParts);
-    for (int i = 0; i < groupList.size(); ++i)
-        [[maybe_unused]] auto *obj = new SMTPClient(from, groupList[i], subject, body, context);
+    QString normalizedTo = to;
+    const QStringList groupList = normalizedTo.remove(u' ').split(u';', Qt::SkipEmptyParts);
+    QStringListIterator groupListIterator {groupList};
+    while (groupListIterator.hasNext())
+    {
+        [[maybe_unused]] auto *obj = new SMTPClient(from
+            , groupListIterator.next().split(u',', Qt::SkipEmptyParts)
+            , subject, body, context);
+    }
 }
 
-Net::SMTPClient::SMTPClient(const QString &from, const QString &to
+Net::SMTPClient::SMTPClient(const QString &sender, const QStringList &recipients
         , const QString &subject, const QString &body, QObject *parent)
     : QObject(parent)
-    , m_sender {from}
-    , m_recipients {to.split(QRegularExpression(u"[, ]"_s), Qt::SkipEmptyParts)}
+    , m_sender {sender}
+    , m_recipients {recipients}
+    , m_recipientsIterator {m_recipients}
 {
     m_socket = new QSslSocket(this);
 
@@ -312,22 +318,21 @@ void Net::SMTPClient::readyRead()
         case Rcpt:
             if (code[0] == '2')
             {
-                const int recipientsSize = m_recipients.size();
-                if (m_recipientsIndex < recipientsSize)
+                if (m_recipientsIterator.hasNext())
                 {
-                    m_socket->write("rcpt to:<" + m_recipients[m_recipientsIndex++].toLatin1() + ">\r\n");
+                    m_socket->write("rcpt to:<" + m_recipientsIterator.next().toLatin1() + ">\r\n");
                     m_socket->flush();
                 }
 
-                if (m_recipientsIndex >= recipientsSize)
+                if (!m_recipientsIterator.hasNext())
                     m_state = Data;
             }
             else
             {
-                if (m_recipientsIndex == 0)
-                    logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
-                else
+                if (m_recipientsIterator.hasPrevious())
                     logError(tr("<rcpt to> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
+                else
+                    logError(tr("<mail from> was rejected by server, msg: %1").arg(QString::fromUtf8(line)));
                 m_state = Close;
             }
             break;
