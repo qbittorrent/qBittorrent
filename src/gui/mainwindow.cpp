@@ -717,6 +717,10 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
             // Reinsert in default order, each action before spacer in sequence
             struct DefaultEntry { QString name; bool sepAfter; };
             const QList<DefaultEntry> defaultOrder = {
+                {u"actionBottomQueuePos"_s, false},
+                {u"actionDecreaseQueuePos"_s, false},
+                {u"actionIncreaseQueuePos"_s, false},
+                {u"actionTopQueuePos"_s, false},
                 {u"actionOpen"_s, false},
                 {u"actionDownloadFromURL"_s, false},
                 {u"actionDelete"_s, true},
@@ -738,7 +742,7 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
                     insertAnchor = a;
                 }
             }
-            // Hide queue actions which are not in default
+            // Hide queue actions and reset shown flag so loadPreferences re-evaluates
             const QStringList queueActions = {
                 u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
                 u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s
@@ -748,14 +752,19 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
                 if (QAction *a = actionMap.value(name))
                     a->setVisible(false);
             }
+            m_queueActionsShown = false;
+            loadPreferences();
             saveToolbarState();
         });
         visibilityMenu->addSeparator();
+        const QStringList queueActionNames = {u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
+            u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s};
         for (QAction *a : m_ui->toolBar->actions())
         {
             if (a->isSeparator() || a->text().isEmpty()
                 || a == m_spacerAction || a == m_columnFilterAction
-                || a->objectName() == u"actionLock"_s)
+                || a->objectName() == u"actionLock"_s
+                || queueActionNames.contains(a->objectName()))
                 continue;
             QAction *checkAction = visibilityMenu->addAction(a->text());
             checkAction->setCheckable(true);
@@ -765,6 +774,28 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
                 a->setVisible(checked);
                 saveToolbarState();
             });
+        }
+        visibilityMenu->addSeparator();
+        const bool queuingEnabled = BitTorrent::Session::instance()->isQueueingSystemEnabled();
+        for (QAction *a : m_ui->toolBar->actions())
+        {
+            if (!queueActionNames.contains(a->objectName()))
+                continue;
+            QAction *checkAction = visibilityMenu->addAction(a->text());
+            if (queuingEnabled)
+            {
+                checkAction->setCheckable(true);
+                checkAction->setChecked(a->isVisible());
+                connect(checkAction, &QAction::toggled, this, [this, a](bool checked)
+                {
+                    a->setVisible(checked);
+                    saveToolbarState();
+                });
+            }
+            else
+            {
+                checkAction->setEnabled(false);
+            }
         }
 
         buttonMenu.addSeparator();
@@ -1631,29 +1662,45 @@ void MainWindow::loadPreferences()
     // Queueing System
     if (BitTorrent::Session::instance()->isQueueingSystemEnabled())
     {
-        if (!m_ui->actionDecreaseQueuePos->isVisible())
+        m_transferListWidget->hideQueuePosColumn(false);
+        m_queueSeparator->setVisible(true);
+        m_queueSeparatorMenu->setVisible(true);
+        if (!m_queueActionsShown)
         {
-            m_transferListWidget->hideQueuePosColumn(false);
-            m_ui->actionDecreaseQueuePos->setVisible(true);
-            m_ui->actionIncreaseQueuePos->setVisible(true);
-            m_ui->actionTopQueuePos->setVisible(true);
-            m_ui->actionBottomQueuePos->setVisible(true);
+            // Move queue actions to end of toolbar in correct order before spacer
+            const QList<QAction *> queueOrder = {
+                m_ui->actionTopQueuePos,
+                m_ui->actionIncreaseQueuePos,
+                m_ui->actionDecreaseQueuePos,
+                m_ui->actionBottomQueuePos
+            };
+            for (QAction *a : queueOrder)
+            {
+                m_ui->toolBar->removeAction(a);
+                m_ui->toolBar->insertAction(m_spacerAction, a);
+                a->setVisible(true);
+            }
+            // Move queue separator to just before the group, unless one is already there
+            m_ui->toolBar->removeAction(m_queueSeparator);
+            const QList<QAction *> acts = m_ui->toolBar->actions();
+            const int topIdx = acts.indexOf(m_ui->actionTopQueuePos);
+            const bool hasSepBefore = (topIdx > 0) && acts[topIdx - 1]->isSeparator();
+            if (!hasSepBefore)
+                m_ui->toolBar->insertAction(m_ui->actionTopQueuePos, m_queueSeparator);
             m_queueSeparator->setVisible(true);
-            m_queueSeparatorMenu->setVisible(true);
+            m_queueActionsShown = true;
         }
     }
     else
     {
-        if (m_ui->actionDecreaseQueuePos->isVisible())
-        {
-            m_transferListWidget->hideQueuePosColumn(true);
-            m_ui->actionDecreaseQueuePos->setVisible(false);
-            m_ui->actionIncreaseQueuePos->setVisible(false);
-            m_ui->actionTopQueuePos->setVisible(false);
-            m_ui->actionBottomQueuePos->setVisible(false);
-            m_queueSeparator->setVisible(false);
-            m_queueSeparatorMenu->setVisible(false);
-        }
+        m_transferListWidget->hideQueuePosColumn(true);
+        m_ui->actionDecreaseQueuePos->setVisible(false);
+        m_ui->actionIncreaseQueuePos->setVisible(false);
+        m_ui->actionTopQueuePos->setVisible(false);
+        m_ui->actionBottomQueuePos->setVisible(false);
+        m_queueSeparator->setVisible(false);
+        m_queueSeparatorMenu->setVisible(false);
+        m_queueActionsShown = false;
     }
 
     // Torrent properties
