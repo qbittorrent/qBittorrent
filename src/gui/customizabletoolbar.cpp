@@ -191,7 +191,6 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     const QList<QAction *> acts = actions();
 
     QAction *newInsertBefore = (bi >= 0) ? acts[bi] : nullptr;
-    bool foundFirst = false;
     for (int i = 0; i < bi; ++i)
     {
         QAction *a = acts[i];
@@ -208,8 +207,7 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         }
         else
         {
-            threshold = !foundFirst ? w->x() + w->width() : w->x() + w->width() / 2;
-            foundFirst = true;
+            threshold = w->x() + w->width() / 2;
         }
 
         // Use float left edge for separators when moving left, centre otherwise
