@@ -1,6 +1,8 @@
 # WebAPI Changelog
 
 ## 2.16.0
+* [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
+  * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
 * [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)
   * `torrentcreator/status` endpoint now returns `timeAdded`, `timeStarted`, and `timeFinished` as Unix timestamps
 * [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
