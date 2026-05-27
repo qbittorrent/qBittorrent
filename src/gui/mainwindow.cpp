@@ -122,11 +122,11 @@ namespace
 
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 
-#ifdef Q_OS_WIN
-#ifdef Q_PROCESSOR_X86_64
+#if defined(Q_OS_WIN)
+#if defined(Q_PROCESSOR_X86_64)
     const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.5/python-3.14.5-amd64.exe"_s;
     const QByteArray PYTHON_INSTALLER_SHA2_256 = QByteArrayLiteral("f9c09f5ed6f796fd1a8bc5ddfa41715a494b453c4781f0e35d5077cf9fa58f6d");
-#elif Q_PROCESSOR_ARM_64
+#elif defined(Q_PROCESSOR_ARM_64)
     const QString PYTHON_INSTALLER_URL = u"https://www.python.org/ftp/python/3.14.5/python-3.14.5-arm64.exe"_s;
     const QByteArray PYTHON_INSTALLER_SHA2_256 = QByteArrayLiteral("f4a7df6ab4fa375cd7296127ff6b9a14fbd1313f51864ce020185deba10144fa");
 #endif

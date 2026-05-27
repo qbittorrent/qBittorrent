@@ -67,7 +67,7 @@
 ****************************************************************************
 */
 
-#include "qtlocalpeer.h"
+#include "localpeer.h"
 
 #include <QtSystemDetection>
 
@@ -80,10 +80,15 @@
 #include <QFileInfo>
 #include <QLocalServer>
 #include <QLocalSocket>
+#include <QSysInfo>
+
+#include "base/path.h"
+#include "base/utils/bytearray.h"
+#include "base/utils/io.h"
 
 const QByteArray ACK = QByteArrayLiteral("ack");
 
-QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
+LocalPeer::LocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
     , m_socketName {path + u"/ipc-socket"}
     , m_server {new QLocalServer(this)}
@@ -93,7 +98,7 @@ QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     m_lockFile.setStaleLockTime(0);
 }
 
-bool QtLocalPeer::isClient()
+bool LocalPeer::isClient()
 {
     if (m_lockFile.isLocked())
         return false;
@@ -104,15 +109,24 @@ bool QtLocalPeer::isClient()
         // It may have conflict with old locking mechanism in case there is stale lockfile
         // created by previous qBittorrent version exist when new one is starting.
         // The following code is intended to prevent this issue by removing stale lockfile.
-        if ((m_lockFile.error() == QLockFile::LockFailedError)
-            && !m_lockFile.getLockInfo(nullptr, nullptr, nullptr))
+        if (m_lockFile.error() != QLockFile::LockFailedError)
+            return true;
+
+        if (const std::optional<LockInfo> lockInfo = getLockInfo())
         {
+            if ((lockInfo->hostid == QSysInfo::machineUniqueId())
+                    && (lockInfo->hostname == QSysInfo::machineHostName()))
+            {
+                return true;
+            }
+
             if (!m_lockFile.removeStaleLockFile() || !m_lockFile.tryLock())
                 return true;
         }
         else
         {
-            return true;
+            if (!m_lockFile.removeStaleLockFile() || !m_lockFile.tryLock())
+                return true;
         }
     }
 
@@ -128,11 +142,11 @@ bool QtLocalPeer::isClient()
     if (!res)
         qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qUtf8Printable(m_server->errorString()));
 
-    connect(m_server, &QLocalServer::newConnection, this, &QtLocalPeer::receiveConnection);
+    connect(m_server, &QLocalServer::newConnection, this, &LocalPeer::receiveConnection);
     return false;
 }
 
-bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
+bool LocalPeer::sendMessage(const QString &message, const int timeout)
 {
     if (!isClient())
         return false;
@@ -170,7 +184,7 @@ bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
     return res;
 }
 
-void QtLocalPeer::receiveConnection()
+void LocalPeer::receiveConnection()
 {
     QLocalSocket *socket = m_server->nextPendingConnection();
     if (!socket)
@@ -184,12 +198,14 @@ void QtLocalPeer::receiveConnection()
             delete socket;
             return;
         }
+
         if (socket->bytesAvailable() >= qint64(sizeof(quint32)))
             break;
+
         socket->waitForReadyRead();
     }
 
-    QDataStream ds(socket);
+    QDataStream ds {socket};
     QByteArray uMsg;
     quint32 remaining;
     ds >> remaining;
@@ -208,17 +224,47 @@ void QtLocalPeer::receiveConnection()
         got = ds.readRawData(uMsgBuf, remaining);
         remaining -= got;
         uMsgBuf += got;
-    } while (remaining && got >= 0 && socket->waitForReadyRead(2000));
+    } while (remaining && (got >= 0) && socket->waitForReadyRead(2000));
+
     if (got < 0)
     {
         qWarning("QtLocalPeer: Message reception failed %s", socket->errorString().toLatin1().constData());
         delete socket;
         return;
     }
+
     QString message(QString::fromUtf8(uMsg));
     socket->write(ACK);
     socket->waitForBytesWritten(1000);
     socket->waitForDisconnected(1000); // make sure client reads ack
     delete socket;
     emit messageReceived(message); //### (might take a long time to return)
+}
+
+std::optional<LocalPeer::LockInfo> LocalPeer::getLockInfo() const
+{
+    const auto readResult = Utils::IO::readFile(Path(m_lockFile.fileName()), 1024);
+    if (!readResult)
+        return std::nullopt;
+
+    const QList<QByteArrayView> lines = Utils::ByteArray::splitToViews(readResult.value(), "\n", Qt::KeepEmptyParts);
+    if (lines.size() < 5)
+        return std::nullopt;
+
+    const QByteArrayView pidLine = lines.at(0);
+    if (pidLine.isEmpty())
+        return std::nullopt;
+
+    bool ok = false;
+    const qint64 pid = pidLine.toLongLong(&ok);
+    if (!ok || (pid <= 0))
+        return std::nullopt;
+
+    return LockInfo {
+        .pid = pid,
+        .appname = QString::fromUtf8(lines.at(1)),
+        .hostname = QString::fromUtf8(lines.at(2)),
+        .hostid = lines.at(3).toByteArray(),
+        .bootid = lines.at(4).toByteArray()
+    };
 }

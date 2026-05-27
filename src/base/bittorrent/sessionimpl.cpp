@@ -127,7 +127,7 @@ namespace
 {
     const char PEER_ID[] = "qB";
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2);
-    const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bittorrent.com:6881"_s;
+    const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bt.ouinet.work:6881"_s;
 
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
     {
@@ -2849,7 +2849,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         const auto nativeIndexes = torrentInfo.nativeIndexes();
 
-        Q_ASSERT(p.file_priorities.empty());
         Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
         QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
 

@@ -218,6 +218,8 @@ void StatusFilterWidget::showMenu()
 
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start"_s, u"media-playback-start"_s), tr("Start torrents")
         , transferList(), &TransferListWidget::startVisibleTorrents);
+    menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_s, u"media-playback-start"_s), tr("Force start torrents")
+        , transferList(), &TransferListWidget::forceStartVisibleTorrents);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_s, u"media-playback-pause"_s), tr("Stop torrents")
         , transferList(), &TransferListWidget::stopVisibleTorrents);
     menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_s), tr("Remove torrents")

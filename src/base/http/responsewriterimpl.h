@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,42 +26,56 @@
  * exception statement from your version.
  */
 
-#include "torrentcontentremover.h"
+#pragma once
 
-#include <QSet>
+#include <QObject>
+#include <QPointer>
 
-#include "base/utils/fs.h"
+#include "base/pathfwd.h"
+#include "headermap.h"
+#include "request.h"
+#include "response.h"
+#include "responsewriter.h"
 
-void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, const Path &basePath
-        , const PathList &fileNames, const TorrentContentRemoveOption option)
+class QAbstractSocket;
+class QThread;
+
+namespace Http
 {
-    QString errorMessage;
-
-    if (!fileNames.isEmpty())
+    class ResponseWriterImpl final : public ResponseWriter
     {
-        const auto removeFileFn = [&option](const Path &filePath)
-        {
-            return ((option == TorrentContentRemoveOption::MoveToTrash)
-                    ? Utils::Fs::moveFileToTrash : Utils::Fs::removeFile)(filePath);
-        };
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(ResponseWriterImpl)
 
-        QSet<Path> topLevelFolders;
-        for (const Path &fileName : fileNames)
-        {
-            const Path rootItem = fileName.rootItem();
-            if (rootItem != fileName)
-                topLevelFolders.insert(rootItem);
+    public:
+        ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
+        ~ResponseWriterImpl() override;
 
-            if (const auto result = removeFileFn(basePath / fileName)
-                    ; !result && errorMessage.isEmpty())
-            {
-                errorMessage = result.error();
-            }
-        }
+        void prepare(const Request &request);
 
-        for (const Path &topLevelFolder : asConst(topLevelFolders))
-            Utils::Fs::smartRemoveEmptyFolderTree(basePath / topLevelFolder);
-    }
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        void setResponse(const Response &response) override;
 
-    emit jobFinished(torrentName, errorMessage);
+        // Allow to stream file using separate IO thread for reading.
+        // Support Range requests.
+        void streamFile(const Path &filePath, const HeaderMap &headers) override;
+
+        bool isFinished() const override;
+
+    private:
+        void writeData(const QByteArray &data);
+        void finish();
+
+        QPointer<QAbstractSocket> m_socket;
+        Request m_request;
+
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+        QThread *m_workerThread = nullptr;
+        bool m_isAsyncWorkerFinished = false;
+
+        bool m_isWritingContent = false;
+        bool m_isFinished = false;
+    };
 }

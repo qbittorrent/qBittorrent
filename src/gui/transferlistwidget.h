@@ -73,6 +73,7 @@ public slots:
     void startSelectedTorrents();
     void forceStartSelectedTorrents();
     void startVisibleTorrents();
+    void forceStartVisibleTorrents();
     void stopSelectedTorrents();
     void stopVisibleTorrents();
     void softDeleteSelectedTorrents();

@@ -129,7 +129,7 @@ public:
     int memoryWorkingSetLimit() const override;
     void setMemoryWorkingSetLimit(int size) override;
 
-    void sendTestEmail() const override;
+    void sendTestEmail() override;
 
 #ifdef Q_OS_WIN
     MemoryPriority processMemoryPriority() const override;
