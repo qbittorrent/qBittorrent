@@ -1099,6 +1099,7 @@ void TorrentsController::addAction()
     const double ratioLimit = parseDouble(params()[u"ratioLimit"_s]).value_or(BitTorrent::DEFAULT_RATIO_LIMIT);
     const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
     const int inactiveSeedingTimeLimit = parseInt(params()[u"inactiveSeedingTimeLimit"_s]).value_or(BitTorrent::DEFAULT_SEEDING_TIME_LIMIT);
+    const BitTorrent::ShareLimitsMode shareLimitsMode = Utils::String::toEnum(params()[u"shareLimitsMode"_s], BitTorrent::ShareLimitsMode::Default);
     const BitTorrent::ShareLimitAction shareLimitAction = Utils::String::toEnum(params()[u"shareLimitAction"_s], BitTorrent::ShareLimitAction::Default);
     const std::optional<bool> autoTMM = parseBool(params()[u"autoTMM"_s]);
 
@@ -1163,6 +1164,7 @@ void TorrentsController::addAction()
             .ratioLimit = ratioLimit,
             .seedingTimeLimit = seedingTimeLimit,
             .inactiveSeedingTimeLimit = inactiveSeedingTimeLimit,
+            .mode = shareLimitsMode,
             .action = shareLimitAction
         },
         .sslParameters =
