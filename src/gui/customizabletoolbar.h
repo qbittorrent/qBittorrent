@@ -20,7 +20,7 @@ public:
     ~CustomizableToolBar() override = default;
 
     void lockAction(QAction *action);
-    void setLocked(bool locked);
+    void setLocked(const bool locked);
 
 signals:
     void actionOrderChanged();
@@ -49,6 +49,7 @@ private:
     QPoint m_dragStartPos;
     int m_dragOffsetX = 0;
     int m_lastFloatCentreX = 0;
+    int m_lastSwapX = -1;
     bool m_dragging = false;
     bool m_dragJustFinished = false;
 };

@@ -359,7 +359,7 @@ public:
     QByteArray getToolbarState() const;
     void setToolbarState(const QByteArray &state);
     bool isToolbarLocked() const;
-    void setToolbarLocked(bool locked);
+    void setToolbarLocked(const bool locked);
     bool isFiltersSidebarVisible() const;
     void setFiltersSidebarVisible(bool value);
     int getFiltersSidebarWidth() const;

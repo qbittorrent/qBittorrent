@@ -1660,7 +1660,7 @@ bool Preferences::isToolbarLocked() const
     return value(u"MainWindow/toolbarLocked"_s, true);
 }
 
-void Preferences::setToolbarLocked(bool locked)
+void Preferences::setToolbarLocked(const bool locked)
 {
     if (locked == isToolbarLocked())
         return;

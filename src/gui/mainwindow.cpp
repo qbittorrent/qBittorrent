@@ -28,7 +28,6 @@
  */
 
 #include "mainwindow.h"
-#include "customizabletoolbar.h"
 
 #include <QtSystemDetection>
 
@@ -78,6 +77,7 @@
 #include "aboutdialog.h"
 #include "autoexpandabledialog.h"
 #include "cookiesdialog.h"
+#include "customizabletoolbar.h"
 #include "desktopintegration.h"
 #include "downloadfromurldialog.h"
 #include "executionlogwidget.h"
@@ -427,7 +427,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 
     // Load Window state and sizes
     // Snapshot all customizable toolbar actions before loadSettings may reorder them
-    for (QAction *a : m_ui->toolBar->actions())
+    for (QAction *a : asConst(m_ui->toolBar->actions()))
     {
         if (a->isSeparator() || a->text().isEmpty()
             || a == m_spacerAction || a == m_columnFilterAction
@@ -709,7 +709,7 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
         {
             // Build action map from master list so hidden actions are included
             QHash<QString, QAction *> actionMap;
-            for (QAction *a : m_allToolbarActions)
+            for (QAction *a : asConst(m_allToolbarActions))
                 actionMap[a->objectName()] = a;
             m_hiddenToolbarActions.clear();
             // Remove all non-locked actions and separators
@@ -766,7 +766,7 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
         visibilityMenu->addSeparator();
         const QStringList queueActionNames = {u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
             u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s};
-        for (QAction *a : m_allToolbarActions)
+        for (QAction *a : asConst(m_allToolbarActions))
         {
             if (queueActionNames.contains(a->objectName()))
                 continue;
@@ -797,7 +797,7 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
         }
         visibilityMenu->addSeparator();
         const bool queuingEnabled = BitTorrent::Session::instance()->isQueueingSystemEnabled();
-        for (QAction *a : m_allToolbarActions)
+        for (QAction *a : asConst(m_allToolbarActions))
         {
             if (!queueActionNames.contains(a->objectName()))
                 continue;
@@ -1053,7 +1053,7 @@ void MainWindow::tabChanged([[maybe_unused]] const int newTab)
 void MainWindow::saveToolbarState() const
 {
     QStringList toolbarState;
-    for (const QAction *action : m_ui->toolBar->actions())
+    for (const QAction *action : asConst(m_ui->toolBar->actions()))
     {
         if (action == m_spacerAction || action == m_columnFilterAction
             || action->objectName() == u"actionLock"_s)
@@ -1126,7 +1126,7 @@ void MainWindow::loadSettings()
     {
         const QStringList savedState = QString::fromUtf8(toolbarStateData).split(u","_s);
         QHash<QString, QAction *> actionMap;
-        for (QAction *a : m_ui->toolBar->actions())
+        for (QAction *a : asConst(m_ui->toolBar->actions()))
         {
             if (!a->isSeparator() && !a->objectName().isEmpty())
                 actionMap[a->objectName()] = a;

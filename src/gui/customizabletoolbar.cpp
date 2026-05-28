@@ -1,4 +1,5 @@
 #include "customizabletoolbar.h"
+#include "base/global.h"
 
 #include <QAction>
 #include <QActionEvent>
@@ -28,7 +29,7 @@ void CustomizableToolBar::lockAction(QAction *action)
         m_lockedActions.append(action);
 }
 
-void CustomizableToolBar::setLocked(bool locked)
+void CustomizableToolBar::setLocked(const bool locked)
 {
     m_locked = locked;
 }
@@ -64,7 +65,7 @@ bool CustomizableToolBar::eventFilter(QObject *watched, QEvent *event)
             break;
 
         QAction *action = nullptr;
-        for (QAction *a : actions())
+        for (QAction *a : asConst(actions()))
         {
             if (widgetForAction(a) == widget)
             {
@@ -207,11 +208,10 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         }
         else
         {
-            threshold = w->x() + w->width() / 2;
+            threshold = w->x() + w->width() / 2 + (movingLeft ? -14 : 14);
         }
 
-        // Use float left edge for separators when moving left, centre otherwise
-        const int compareX = a->isSeparator() ? (movingLeft ? dragFloatLeft : dragFloatRight) : dragFloatCentre;
+        const int compareX = movingLeft ? dragFloatLeft : dragFloatRight;
         if (compareX < threshold)
         {
             newInsertBefore = a;
@@ -219,11 +219,14 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         }
     }
 
+    if (m_lastSwapX >= 0 && qAbs(dragFloatLeft - m_lastSwapX) < 14)
+        return;
     // Only swap when target slot changes, one atomic reorder per crossing
     if (newInsertBefore == m_gapTarget)
         return;
 
     m_gapTarget = newInsertBefore;
+    m_lastSwapX = dragFloatLeft;
 
     // Briefly remove opacity effect during reorder, reapply to new widget
     if (m_dragWidget)
@@ -264,6 +267,7 @@ void CustomizableToolBar::endDrag(const QPoint &globalPos)
     emit actionOrderChanged();
 
     m_gapTarget = nullptr;
+    m_lastSwapX = -1;
     m_dragAction = nullptr;
     m_dragWidget = nullptr;
     m_dragJustFinished = true;
