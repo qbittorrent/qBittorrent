@@ -63,14 +63,14 @@ QVariant CookiesModel::headerData(int section, Qt::Orientation orientation, int 
     return {};
 }
 
-QModelIndex CookiesModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex CookiesModel::index(const int row, const int column, const QModelIndex &parent) const
 {
     if (parent.isValid() // no items with valid parent
         || (row < 0) || (row >= m_cookies.size())
         || (column < 0) || (column >= NB_COLUMNS))
         return {};
 
-    return createIndex(row, column, &m_cookies[row]);
+    return createIndex(row, column);
 }
 
 QModelIndex CookiesModel::parent([[maybe_unused]] const QModelIndex &index) const
@@ -149,7 +149,7 @@ bool CookiesModel::insertRows(int row, int count, const QModelIndex &parent)
     QNetworkCookie newCookie;
     newCookie.setExpirationDate(QDateTime::currentDateTime().addYears(2));
 
-    beginInsertRows(parent, row, row + count - 1);
+    beginInsertRows(parent, row, (row + count - 1));
     while (count-- > 0)
         m_cookies.insert(row, newCookie);
     endInsertRows();
@@ -164,7 +164,7 @@ bool CookiesModel::removeRows(int row, int count, const QModelIndex &parent)
         || ((row + count) > m_cookies.size()))
         return false;
 
-    beginRemoveRows(parent, row, row + count - 1);
+    beginRemoveRows(parent, row, (row + count - 1));
     while (count-- > 0)
         m_cookies.removeAt(row);
     endRemoveRows();
