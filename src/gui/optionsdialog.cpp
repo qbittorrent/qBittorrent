@@ -52,7 +52,7 @@
 #include "base/global.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
-#include "base/net/smtp.h"
+#include "base/net/smtpclient.h"
 #include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
@@ -442,7 +442,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->assocPanel->hide();
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_ui->defaultProgramPanel->hide();
 #endif
 

@@ -503,7 +503,7 @@ void TorrentContentWidget::openParentFolder(const QModelIndex &index)
 #ifdef Q_OS_MACOS
     MacUtils::openFiles({path});
 #else
-    Utils::Gui::openFolderSelect(path, this);
+    Utils::Gui::openFolderSelect(path);
 #endif
 }
 

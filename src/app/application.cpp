@@ -77,7 +77,7 @@
 #include "base/net/geoipmanager.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/reverseresolution.h"
-#include "base/net/smtp.h"
+#include "base/net/smtpclient.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
@@ -745,14 +745,11 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
 
     // Send the notification email
     const Preferences *pref = Preferences::instance();
-    auto *smtp = new Net::Smtp(this);
-    smtp->sendMail(pref->getMailNotificationSender(),
-                     pref->getMailNotificationEmail(),
-                     tr("Torrent \"%1\" has finished downloading").arg(torrent->name()),
-                     content);
+    Net::SMTPClient::sendMail(pref->getMailNotificationSender(), pref->getMailNotificationEmail()
+            , tr("Torrent \"%1\" has finished downloading").arg(torrent->name()), content, this);
 }
 
-void Application::sendTestEmail() const
+void Application::sendTestEmail()
 {
     const Preferences *pref = Preferences::instance();
     if (pref->isMailNotificationEnabled())
@@ -762,11 +759,8 @@ void Application::sendTestEmail() const
             + tr("Thank you for using qBittorrent.") + u'\n';
 
         // Send the notification email
-        auto *smtp = new Net::Smtp();
-        smtp->sendMail(pref->getMailNotificationSender(),
-                        pref->getMailNotificationEmail(),
-                        tr("Test email"),
-                        content);
+        Net::SMTPClient::sendMail(pref->getMailNotificationSender(), pref->getMailNotificationEmail()
+            , tr("Test email"), content, this);
     }
 }
 

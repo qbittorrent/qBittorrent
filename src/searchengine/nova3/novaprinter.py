@@ -1,4 +1,4 @@
-# VERSION: 1.53
+# VERSION: 1.54
 
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,17 +25,17 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 import re
-from typing import TypedDict, Union
+from typing import NotRequired, TypedDict
 
 SearchResults = TypedDict('SearchResults', {
     'link': str,
     'name': str,
-    'size': Union[float, int, str],  # TODO: use `float | int | str` when using Python >= 3.10
+    'size': float | int | str,
     'seeds': int,
     'leech': int,
     'engine_url': str,
-    'desc_link': str,  # Optional  # TODO: use `NotRequired[str]` when using Python >= 3.11
-    'pub_date': int  # Optional  # TODO: use `NotRequired[int]` when using Python >= 3.11
+    'desc_link': NotRequired[str],  # Optional
+    'pub_date': NotRequired[int]  # Optional
 })
 
 
@@ -59,8 +59,7 @@ def prettyPrinter(dictionary: SearchResults) -> None:
 _sizeUnitRegex: re.Pattern[str] = re.compile(r"^(?P<size>\d*\.?\d+) *(?P<unit>[a-z]+)?", re.IGNORECASE)
 
 
-# TODO: use `float | int | str` when using Python >= 3.10
-def anySizeToBytes(size_string: Union[float, int, str]) -> int:
+def anySizeToBytes(size_string: float | int | str) -> int:
     """
     Convert a string like '1 KB' to '1024' (bytes)
 

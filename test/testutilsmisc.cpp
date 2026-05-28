@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2024-2026  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Mark Yu (vafada)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,42 +26,35 @@
  * exception statement from your version.
  */
 
-#include "torrentcontentremover.h"
+#include <QObject>
+#include <QTest>
 
-#include <QSet>
+#include "base/utils/misc.h"
 
-#include "base/utils/fs.h"
-
-void BitTorrent::TorrentContentRemover::performJob(const QString &torrentName, const Path &basePath
-        , const PathList &fileNames, const TorrentContentRemoveOption option)
+class TestUtilsMisc final : public QObject
 {
-    QString errorMessage;
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestUtilsMisc)
 
-    if (!fileNames.isEmpty())
+public:
+    TestUtilsMisc() = default;
+
+private slots:
+    void testfriendlyUnitCompact() const
     {
-        const auto removeFileFn = [&option](const Path &filePath)
-        {
-            return ((option == TorrentContentRemoveOption::MoveToTrash)
-                    ? Utils::Fs::moveFileToTrash : Utils::Fs::removeFile)(filePath);
-        };
-
-        QSet<Path> topLevelFolders;
-        for (const Path &fileName : fileNames)
-        {
-            const Path rootItem = fileName.rootItem();
-            if (rootItem != fileName)
-                topLevelFolders.insert(rootItem);
-
-            if (const auto result = removeFileFn(basePath / fileName)
-                    ; !result && errorMessage.isEmpty())
-            {
-                errorMessage = result.error();
-            }
-        }
-
-        for (const Path &topLevelFolder : asConst(topLevelFolders))
-            Utils::Fs::smartRemoveEmptyFolderTree(basePath / topLevelFolder);
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(500), (u"500" + QChar::Nbsp + u"B"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000), (u"0.97" + QChar::Nbsp + u"K"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(5000), (u"4.88" + QChar::Nbsp + u"K"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000), (u"9.76" + QChar::Nbsp + u"K"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000), (u"14.6" + QChar::Nbsp + u"K"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(100000), (u"97.6" + QChar::Nbsp + u"K"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(150000), (u"146" + QChar::Nbsp + u"K"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(1000000), (u"976" + QChar::Nbsp + u"K"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000), (u"9.53" + QChar::Nbsp + u"M"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(15000000), (u"14.3" + QChar::Nbsp + u"M"));
+        QCOMPARE(Utils::Misc::friendlyUnitCompact(10000000000), (u"9.31" + QChar::Nbsp + u"G"));
     }
+};
 
-    emit jobFinished(torrentName, errorMessage);
-}
+QTEST_APPLESS_MAIN(TestUtilsMisc)
+#include "testutilsmisc.moc"

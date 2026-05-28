@@ -127,7 +127,7 @@ namespace
 {
     const char PEER_ID[] = "qB";
     const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2);
-    const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bittorrent.com:6881"_s;
+    const QString DEFAULT_DHT_BOOTSTRAP_NODES = u"dht.libtorrent.org:25401, dht.transmissionbt.com:6881, router.bt.ouinet.work:6881"_s;
 
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
     {
@@ -2851,7 +2851,6 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
 
         const auto nativeIndexes = torrentInfo.nativeIndexes();
 
-        Q_ASSERT(p.file_priorities.empty());
         Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
         QList<DownloadPriority> filePriorities = addTorrentParams.filePriorities;
 
@@ -6255,8 +6254,6 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
         return (((current - previous) * lt::microseconds(1s).count()) / interval);
     };
 
-    m_status.payloadDownloadRate = calcRate(m_status.totalPayloadDownload, totalPayloadDownload);
-    m_status.payloadUploadRate = calcRate(m_status.totalPayloadUpload, totalPayloadUpload);
     m_status.downloadRate = calcRate(m_status.totalDownload, totalDownload);
     m_status.uploadRate = calcRate(m_status.totalUpload, totalUpload);
     m_status.ipOverheadDownloadRate = calcRate(m_status.ipOverheadDownload, ipOverheadDownload);
@@ -6322,6 +6319,21 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *alert)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
 
     m_cacheStatus.requestLatency = stats[m_metricIndices.disk.requestLatency];
+
+    // Use the sum of per-torrent payload rates instead of session-level
+    // instantaneous rate calculation. Per-torrent rates are smoothed by
+    // libtorrent, producing stable values consistent with the transfer list.
+    {
+        int64_t totalDlRate = 0;
+        int64_t totalUlRate = 0;
+        for (const TorrentImpl *torrent : asConst(m_torrents))
+        {
+            totalDlRate += torrent->downloadPayloadRate();
+            totalUlRate += torrent->uploadPayloadRate();
+        }
+        m_status.payloadDownloadRate = totalDlRate;
+        m_status.payloadUploadRate = totalUlRate;
+    }
 
     emit statsUpdated();
 }

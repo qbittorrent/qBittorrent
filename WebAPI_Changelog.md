@@ -1,6 +1,13 @@
 # WebAPI Changelog
 
 ## 2.16.0
+* [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
+  * `torrentcreator/addTask` endpoint accepts a new bool option `ignoreDotfiles` to control whether dotfiles are ignored
+  * `torrentcreator/status` endpoint returns a new bool field `ignoreDotfiles` for reporting whether dotfiles were ignored
+* [#24246](https://github.com/qbittorrent/qBittorrent/pull/24246)
+  * `torrents/fetchMetadata` and `torrents/parseMetadata` endpoints include file `priority` when excluded file names apply
+* [#24210](https://github.com/qbittorrent/qBittorrent/pull/24210)
+  * `torrentcreator/status` endpoint now returns `timeAdded`, `timeStarted`, and `timeFinished` as Unix timestamps
 * [#24158](https://github.com/qbittorrent/qBittorrent/pull/24158)
   * `app/preferences` endpoint includes `seeding_outgoing_connections` option
   * `app/setPreferences` endpoint allows to set `seeding_outgoing_connections` option
@@ -19,6 +26,9 @@
 * [#24253](https://github.com/qbittorrent/qBittorrent/pull/24253)
   * `app/preferences` endpoint includes `max_outstanding_block_requests` option
   * `app/setPreferences` endpoint allows to set `max_outstanding_block_requests` option
+* [#24135](https://github.com/qbittorrent/qBittorrent/pull/24135)
+  * Add `torrents/downloadFile` endpoint with `hash` and `file` as parameters allowing to download a completed file from torrent content
+    * `file` accepts either file index or path relative to content root
 
 ## 2.15.4
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
