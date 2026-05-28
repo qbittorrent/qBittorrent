@@ -217,3 +217,25 @@ test("Test formatDate() - Fallback Behavior", () => {
     // Restore original window.parent
     window.parent = originalParent;
 });
+
+test("Test torrentLinksFromText()", () => {
+    const { isTorrentLink, torrentLinksFromText } = window.qBittorrent.Misc;
+
+    expect(isTorrentLink("magnet:?xt=urn:btih:abc")).toBe(true);
+    expect(isTorrentLink("https://example.com/file.torrent")).toBe(true);
+    expect(isTorrentLink("not a torrent link")).toBe(false);
+
+    expect(torrentLinksFromText([
+        "  magnet:?xt=urn:btih:abc  ",
+        "\"magnet:?xt=urn:btih:abc\"",
+        "'magnet:?xt=urn:btih:abc'",
+        "<magnet:?xt=urn:btih:abc>",
+        "",
+        "https://example.com/file.torrent",
+        "not a torrent link",
+        "magnet:?xt=urn:btih:abc"
+    ].join("\n"))).toStrictEqual([
+        "magnet:?xt=urn:btih:abc",
+        "https://example.com/file.torrent"
+    ]);
+});

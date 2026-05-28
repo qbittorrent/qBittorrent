@@ -45,6 +45,7 @@ window.qBittorrent.Client ??= (() => {
             isShowRssReader: isShowRssReader,
             isShowLogViewer: isShowLogViewer,
             createAddTorrentWindow: createAddTorrentWindow,
+            pasteTorrentLinks: pasteTorrentLinks,
             uploadTorrentFiles: uploadTorrentFiles,
             categoryMap: categoryMap,
             tagMap: tagMap
@@ -55,6 +56,51 @@ window.qBittorrent.Client ??= (() => {
     const categoryMap = new Map();
     // Map<tag: String, torrents: Set>
     const tagMap = new Map();
+
+    const addTorrentUrls = async (urls) => {
+        if (urls.length === 0)
+            return false;
+
+        try {
+            const response = await fetch("api/v2/torrents/add", {
+                method: "POST",
+                body: new URLSearchParams({
+                    urls: urls.join("\n")
+                })
+            });
+
+            if (response.status === 409)
+                return true;
+            return response.ok;
+        }
+        catch {
+            return false;
+        }
+    };
+
+    const getClipboardText = (clipboardData) => {
+        for (const type of ["text/plain", "text/uri-list", "text"]) {
+            const text = clipboardData?.getData(type);
+            if (typeof text === "string" && text.length > 0)
+                return text;
+        }
+        return "";
+    };
+
+    const pasteTorrentLinks = async (event) => {
+        const text = getClipboardText(event.clipboardData);
+        if (typeof text !== "string")
+            return false;
+
+        const urls = window.qBittorrent.Misc.torrentLinksFromText(text);
+        if (urls.length === 0)
+            return false;
+
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        await addTorrentUrls(urls);
+        return true;
+    };
 
     let cacheAllSettled;
     let clientDataPromise;
@@ -1816,16 +1862,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
             if (droppedText.length > 0) {
                 // dropped text
 
-                const urls = droppedText.split("\n")
-                    .map((str) => str.trim())
-                    .filter((str) => {
-                        const lowercaseStr = str.toLowerCase();
-                        return lowercaseStr.startsWith("http:")
-                            || lowercaseStr.startsWith("https:")
-                            || lowercaseStr.startsWith("magnet:")
-                            || ((str.length === 40) && !(/[^0-9A-F]/i.test(str))) // v1 hex-encoded SHA-1 info-hash
-                            || ((str.length === 32) && !(/[^2-7A-Z]/i.test(str))); // v1 Base32 encoded SHA-1 info-hash
-                    });
+                const urls = window.qBittorrent.Misc.torrentLinksFromText(droppedText);
 
                 for (const url of urls)
                     qBittorrent.Client.createAddTorrentWindow(url, url);
@@ -1833,6 +1870,10 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         });
     };
     registerDragAndDrop();
+
+    document.addEventListener("paste", async (event) => {
+        await window.qBittorrent.Client.pasteTorrentLinks(event);
+    }, true);
 
     window.addEventListener("keydown", (event) => {
         switch (event.key) {
