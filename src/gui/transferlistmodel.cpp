@@ -639,10 +639,13 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrents(const QList<BitTorrent::Torrent *> &torrents)
 {
+    if (torrents.isEmpty())
+        return;
+
     qsizetype row = m_torrentList.size();
     const qsizetype total = row + torrents.size();
 
-    beginInsertRows({}, row, total);
+    beginInsertRows({}, row, (total - 1));
 
     m_torrentList.reserve(total);
     for (BitTorrent::Torrent *torrent : torrents)
