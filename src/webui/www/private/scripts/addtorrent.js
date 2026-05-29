@@ -46,6 +46,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     let source = "";
     let downloader = "";
     let torrentFiles = [];
+    let renderedRootFolder = "";
 
     const clientData = window.parent.qBittorrent.ClientData;
 
@@ -116,6 +117,7 @@ window.qBittorrent.AddTorrent ??= (() => {
             document.getElementById("contentLayout").selectedIndex = 2;
         else
             document.getElementById("contentLayout").selectedIndex = 0;
+        updateTorrentContent({ resetCollapseState: true });
     };
 
     const categorySavePath = (categoryName) => {
@@ -250,23 +252,35 @@ window.qBittorrent.AddTorrent ??= (() => {
         return filePath.substring(0, (filePath.length - filename.length) + dotIndex);
     };
 
-    const applyContentLayout = (filePaths) => {
+    const effectiveContentLayout = (filePaths) => {
         const originalRootFolder = findRootFolder(filePaths);
         const originalContentLayout = (originalRootFolder === "") ? "NoSubfolder" : "Subfolder";
         const selectedContentLayout = document.getElementById("contentLayout").value;
-        const newContentLayout = (selectedContentLayout === "Original")
+        return (selectedContentLayout === "Original")
             ? originalContentLayout
             : selectedContentLayout;
+    };
+
+    const contentLayoutRootFolder = (filePaths) => {
+        if (effectiveContentLayout(filePaths) !== "Subfolder")
+            return "";
+
+        const originalRootFolder = findRootFolder(filePaths);
+        return (originalRootFolder === "")
+            ? removeExtension(filePaths[0])
+            : originalRootFolder;
+    };
+
+    const applyContentLayout = (filePaths, rootFolder) => {
+        const originalRootFolder = findRootFolder(filePaths);
+        const originalContentLayout = (originalRootFolder === "") ? "NoSubfolder" : "Subfolder";
+        const newContentLayout = effectiveContentLayout(filePaths);
 
         if (newContentLayout === originalContentLayout)
             return filePaths;
 
         if (newContentLayout === "NoSubfolder")
             return filePaths.map((filePath) => stripRootFolder(filePath, originalRootFolder));
-
-        const rootFolder = (originalContentLayout === "Subfolder")
-            ? originalRootFolder
-            : removeExtension(filePaths[0]);
 
         return filePaths.map((filePath) => `${rootFolder}${window.qBittorrent.Filesystem.PathSeparator}${filePath}`);
     };
@@ -284,12 +298,17 @@ window.qBittorrent.AddTorrent ??= (() => {
         return filePriorities;
     };
 
-    const updateTorrentContent = ({ resetCollapseState = false } = {}) => {
+    const updateTorrentContent = ({ resetCollapseState = false, preserveCollapseState = false } = {}) => {
         if (torrentFiles.length === 0)
             return;
 
         const filePriorities = currentFilePriorities();
-        const filePaths = applyContentLayout(torrentFiles.map((file) => file.name));
+        const folderCollapseState = preserveCollapseState
+            ? table.getFolderCollapseState(renderedRootFolder)
+            : null;
+        const originalFilePaths = torrentFiles.map((file) => file.name);
+        const rootFolder = contentLayoutRootFolder(originalFilePaths);
+        const filePaths = applyContentLayout(originalFilePaths, rootFolder);
         const files = torrentFiles.map((file, index) => ({
             index: file.index,
             name: filePaths[index],
@@ -297,10 +316,14 @@ window.qBittorrent.AddTorrent ??= (() => {
             priority: filePriorities.get(file.index) ?? file.priority,
         }));
 
-        if (resetCollapseState)
+        if (resetCollapseState || preserveCollapseState)
             window.qBittorrent.TorrentContent.clearCollapseState();
 
         window.qBittorrent.TorrentContent.updateData(files);
+        renderedRootFolder = rootFolder;
+
+        if (folderCollapseState !== null)
+            table.restoreFolderCollapseState(folderCollapseState, renderedRootFolder);
     };
 
     const showFreeSpace = (path) => {
@@ -453,7 +476,7 @@ window.qBittorrent.AddTorrent ??= (() => {
     });
 
     window.addEventListener("DOMContentLoaded", (event) => {
-        document.getElementById("contentLayout").addEventListener("change", () => updateTorrentContent({ resetCollapseState: true }));
+        document.getElementById("contentLayout").addEventListener("change", () => updateTorrentContent({ preserveCollapseState: true }));
         document.getElementById("useDownloadPath").addEventListener("change", (e) => changeUseDownloadPath(e.target.checked));
         document.getElementById("tagsSelect").addEventListener("change", (e) => changeTagsSelect(e.target));
         document.getElementById("savepath").addEventListener("input", (event) => { showFreeSpace(event.target.value); });
