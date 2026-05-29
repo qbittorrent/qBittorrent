@@ -513,9 +513,15 @@ void WebApplication::configure()
             static_cast<CookieBasedWebSession *>(session)->setCookieRefreshTime(0s);
     }
 
-    m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
-    for (QString &entry : m_domainList)
-        entry = entry.trimmed();
+    m_serverDomains.clear();
+    const QStringList domains = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
+    m_serverDomains.reserve(domains.size());
+    for (const QString &domain : domains)
+    {
+        // regex must be anchored
+        const QString expr = QRegularExpression::wildcardToRegularExpression(domain.trimmed(), QRegularExpression::NonPathWildcardConversion);
+        m_serverDomains.emplace_back(expr, QRegularExpression::CaseInsensitiveOption);
+    }
 
     m_isCSRFProtectionEnabled = pref->isWebUICSRFProtectionEnabled();
     m_isSecureCookieEnabled = pref->isWebUISecureCookieEnabled();
@@ -694,7 +700,7 @@ void WebApplication::processRequest(const Http::Request &request, const Http::En
         // the WebUI succeed; the root document is static and has no side effects.
         const bool isWebRoot = (request.path == u"/") || (request.path == INDEX_HTML);
         if ((!isUsingApiKey && m_isCSRFProtectionEnabled && !isWebRoot && isCrossSiteRequest(m_request))
-            || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
+            || (m_isHostHeaderValidationEnabled && !validateHostHeader()))
         {
             throw UnauthorizedHTTPError();
         }
@@ -977,7 +983,7 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
     return true;
 }
 
-bool WebApplication::validateHostHeader(const QStringList &domains) const
+bool WebApplication::validateHostHeader() const
 {
     const QUrl hostHeader = urlFromHostHeader(m_request.headers[Http::HEADER_HOST]);
     const QString requestHost = hostHeader.host();
@@ -995,17 +1001,16 @@ bool WebApplication::validateHostHeader(const QStringList &domains) const
 
     // try matching host header with local address
     const bool sameAddr = m_env.localAddress.isEqual(QHostAddress(requestHost));
-
     if (sameAddr)
         return true;
 
     // try matching host header with domain list
-    for (const auto &domain : domains)
+    const bool hasMatch = std::ranges::any_of(asConst(m_serverDomains), [&requestHost](const QRegularExpression &expr)
     {
-        const QRegularExpression domainRegex {Utils::String::wildcardToRegexPattern(domain), QRegularExpression::CaseInsensitiveOption};
-        if (requestHost.contains(domainRegex))
-            return true;
-    }
+        return requestHost.contains(expr);
+    });
+    if (hasMatch)
+        return true;
 
     LogMsg(tr("WebUI: Invalid Host header. Request source IP: '%1'. Received Host header: '%2'")
            .arg(m_env.clientAddress.toString(), m_request.headers[Http::HEADER_HOST])

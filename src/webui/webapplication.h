@@ -119,7 +119,7 @@ private:
 
     bool isOriginTrustworthy() const;
     bool isCrossSiteRequest(const Http::Request &request) const;
-    bool validateHostHeader(const QStringList &domains) const;
+    bool validateHostHeader() const;
 
     bool validateCredentials(QStringView username, QStringView password) const override;
     bool validateBasicAuth(QStringView credentials) const;
@@ -258,7 +258,7 @@ private:
     QByteArray m_passwordHash;
 
     // security related
-    QStringList m_domainList;
+    QList<QRegularExpression> m_serverDomains;
     bool m_isCSRFProtectionEnabled = true;
     bool m_isSecureCookieEnabled = true;
     bool m_isHostHeaderValidationEnabled = true;
