@@ -868,6 +868,15 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                        <input type="checkbox" id="continueLonelyTorrentsCheckbox" onclick="qBittorrent.Preferences.updateContinueLonelyTorrentsEnabled();">
+                        <label id="continueLonelyTorrentsLabel" for="continueLonelyTorrentsCheckbox">QBT_TR(Continue seeding lonely torrents when there are fewer than)QBT_TR[CONTEXT=OptionsDialog]</label>
+                    </td>
+                    <td>
+                        <input type="text" id="continueLonelyTorrentsValue" style="width: 6em;" aria-labelledby="continueLonelyTorrentsLabel">QBT_TR(seeders)QBT_TR[CONTEXT=OptionsDialog]
+                    </td>
+                </tr>
+                <tr>
                     <td style="text-align: right;"><label for="maxRatioSelect">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                     <td>
                         <select id="maxRatioSelect">
@@ -1883,6 +1892,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateQueueingSystem: updateQueueingSystem,
                 updateSlowTorrentsSettings: updateSlowTorrentsSettings,
                 updateMaxRatioTimeEnabled: updateMaxRatioTimeEnabled,
+                updateContinueLonelyTorrentsEnabled: updateContinueLonelyTorrentsEnabled,
                 updateAddTrackersEnabled: updateAddTrackersEnabled,
                 updateAddTrackersFromURLEnabled: updateAddTrackersFromURLEnabled,
                 updateHttpsSettings: updateHttpsSettings,
@@ -2170,6 +2180,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("maxInactiveSeedingTimeValue").disabled = !isMaxInactiveSeedingTimeEnabled;
 
             document.getElementById("maxRatioSelect").disabled = !(isMaxRatioEnabled || isMaxSeedingTimeEnabled || isMaxInactiveSeedingTimeEnabled);
+        };
+
+        const updateContinueLonelyTorrentsEnabled = () => {
+            const isContinueLonelyTorrentsEnabled = document.getElementById("continueLonelyTorrentsCheckbox").checked;
+            document.getElementById("continueLonelyTorrentsValue").disabled = !isContinueLonelyTorrentsEnabled;
         };
 
         const updateAddTrackersEnabled = () => {
@@ -2614,6 +2629,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("maxSeedingTimeValue").value = (pref.max_seeding_time_enabled ? Number(pref.max_seeding_time) : 1440);
                     document.getElementById("maxInactiveSeedingTimeCheckbox").checked = pref.max_inactive_seeding_time_enabled;
                     document.getElementById("maxInactiveSeedingTimeValue").value = (pref.max_inactive_seeding_time_enabled ? Number(pref.max_inactive_seeding_time) : 1440);
+                    document.getElementById("continueLonelyTorrentsCheckbox").checked = pref.continue_seeding_lonely_torrents_enabled;
+                    document.getElementById("continueLonelyTorrentsValue").value = Number(pref.continue_seeding_lonely_torrents_seeders_limit);
                     let maxRatioAct = 0;
                     switch (Number(pref.max_ratio_act)) {
                         case 0: // Stop
@@ -2631,6 +2648,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     }
                     document.getElementById("maxRatioSelect").getChildren("option")[maxRatioAct].selected = true;
                     updateMaxRatioTimeEnabled();
+                    updateContinueLonelyTorrentsEnabled();
 
                     // Add trackers
                     document.getElementById("add_trackers_checkbox").checked = pref.add_trackers_enabled;
@@ -3096,6 +3114,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }
             settings["max_inactive_seeding_time_enabled"] = document.getElementById("maxInactiveSeedingTimeCheckbox").checked;
             settings["max_inactive_seeding_time"] = maxInactiveSeedingTime;
+            let continueLonelyTorrentsSeedersLimit = Number(document.getElementById("continueLonelyTorrentsValue").value);
+            if (Number.isNaN(continueLonelyTorrentsSeedersLimit) || (continueLonelyTorrentsSeedersLimit < 1)) {
+                if (document.getElementById("continueLonelyTorrentsCheckbox").checked) {
+                    alert("QBT_TR(Seeder threshold must be greater than 0.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+
+                continueLonelyTorrentsSeedersLimit = 4;
+            }
+            settings["continue_seeding_lonely_torrents_enabled"] = document.getElementById("continueLonelyTorrentsCheckbox").checked;
+            settings["continue_seeding_lonely_torrents_seeders_limit"] = continueLonelyTorrentsSeedersLimit;
             settings["max_ratio_act"] = Number(document.getElementById("maxRatioSelect").value);
 
             // Add trackers

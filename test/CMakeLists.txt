@@ -21,6 +21,7 @@ set(testFiles
     testutilsio.cpp
     testutilsmisc.cpp
     testutilsnumber.cpp
+    testsharelimits.cpp
     testutilsstring.cpp
     testutilsversion.cpp
 )

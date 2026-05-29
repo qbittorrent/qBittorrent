@@ -354,6 +354,10 @@ namespace BitTorrent
         void setUploadRateForSlowTorrents(int rateInKibiBytes) override;
         int slowTorrentsInactivityTimer() const override;
         void setSlowTorrentsInactivityTimer(int timeInSeconds) override;
+        bool continueSeedingLonelyTorrents() const override;
+        void setContinueSeedingLonelyTorrents(bool enabled) override;
+        int lonelyTorrentsSeedersLimit() const override;
+        void setLonelyTorrentsSeedersLimit(int seedersCount) override;
         int outgoingPortsMin() const override;
         void setOutgoingPortsMin(int min) override;
         int outgoingPortsMax() const override;
@@ -717,6 +721,8 @@ namespace BitTorrent
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<int> m_globalMaxInactiveSeedingMinutes;
+        CachedSettingValue<bool> m_continueSeedingLonelyTorrents;
+        CachedSettingValue<int> m_lonelyTorrentsSeedersLimit;
         CachedSettingValue<bool> m_isAddTorrentToQueueTop;
         CachedSettingValue<bool> m_isAddTorrentStopped;
         CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
