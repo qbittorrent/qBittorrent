@@ -879,7 +879,7 @@ void SyncController::torrentPeersAction()
         {
             const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
             const qreal progressBytes = pi.progress() * totalSize;
-            contribution = static_cast<qreal>(totalUpload) / (progressBytes <= 0 ? totalSize : progressBytes);
+            contribution = static_cast<qreal>(totalUpload) / ((progressBytes <= 0) ? totalSize : progressBytes);
         }
 
         peer[KEY_PEER_CONTRIBUTION] = contribution;

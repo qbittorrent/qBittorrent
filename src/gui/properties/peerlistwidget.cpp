@@ -529,9 +529,9 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
     {
         const qlonglong totalSize = (torrent->totalSize() <= 0) ? totalUpload : torrent->totalSize();
         const qreal progressBytes = peer.progress() * totalSize;
-        contribution = static_cast<qreal>(totalUpload) / (progressBytes <= 0 ? totalSize : progressBytes);
+        contribution = static_cast<qreal>(totalUpload) / ((progressBytes <= 0) ? totalSize : progressBytes);
     }
-    setModelData(m_listModel, row, PeerListColumns::CONTRIBUTION, (Utils::String::fromDouble(contribution * 100, 1) + u'%')
+    setModelData(m_listModel, row, PeerListColumns::CONTRIBUTION, (Utils::String::fromDouble((contribution * 100), 1) + u'%')
             , contribution, intDataTextAlignment);
 
     const PathList filePaths = torrent->info().filesForPiece(peer.downloadingPieceIndex());
