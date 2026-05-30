@@ -459,6 +459,14 @@ a.propButton img {
     margin-right: 10px;
 }
 
+.mochaToolButton:hover {
+    background-color: var(--color-background-hover);
+}
+
+.mochaToolButton:active {
+    background-color: hsl(from var(--color-background-hover) h s l / 0.5);
+}
+
 /* Mocha Customization */
 
 #mochaToolbar {
