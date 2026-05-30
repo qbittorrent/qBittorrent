@@ -339,6 +339,9 @@ void AppController::preferencesAction()
     data[u"use_https"_s] = pref->isWebUIHttpsEnabled();
     data[u"web_ui_https_cert_path"_s] = pref->getWebUIHttpsCertificatePath().toString();
     data[u"web_ui_https_key_path"_s] = pref->getWebUIHttpsKeyPath().toString();
+    data[u"web_ui_unix_socket"_s] = pref->isWebUIUnixSocketEnabled();
+    data[u"web_ui_unix_socket_path"_s] = pref->getWebUIUnixSocketPath();
+    data[u"web_ui_unix_socket_permissions"_s] = pref->getWebUIUnixSocketPermissions();
     // Authentication
     data[u"web_ui_username"_s] = pref->getWebUIUsername();
     data[u"bypass_local_auth"_s] = !pref->isWebUILocalAuthEnabled();
@@ -912,6 +915,12 @@ void AppController::setPreferencesAction()
         pref->setWebUIHttpsCertificatePath(Path(it.value().toString()));
     if (hasKey(u"web_ui_https_key_path"_s))
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
+    if (hasKey(u"web_ui_unix_socket"_s))
+        pref->setWebUIUnixSocketEnabled(it.value().toBool());
+    if (hasKey(u"web_ui_unix_socket_path"_s))
+        pref->setWebUIUnixSocketPath(it.value().toString());
+    if (hasKey(u"web_ui_unix_socket_permissions"_s))
+        pref->setWebUIUnixSocketPermissions(it.value().toInt());
     // Authentication
     if (hasKey(u"web_ui_username"_s))
     {
