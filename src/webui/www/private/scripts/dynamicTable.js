@@ -580,7 +580,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             column["caption"] = caption;
             column["style"] = style;
             if (defaultWidth !== -1)
-                column["width"] = localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth);
+                column["width"] = Number(localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth));
             column["dataProperties"] = [name];
             column["getRowValue"] = function(row, pos) {
                 if (pos === undefined)
