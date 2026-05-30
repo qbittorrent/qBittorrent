@@ -73,7 +73,7 @@ namespace
             .append(u" GMT");
     }
 
-    bool acceptsGzipEncoding(QStringView encodings)
+    bool acceptsGzipEncoding(const QStringView encodings)
     {
         // [rfc7231] 5.3.4. Accept-Encoding
 
