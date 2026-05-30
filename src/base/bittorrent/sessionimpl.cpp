@@ -549,6 +549,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_networkInterface(BITTORRENT_SESSION_KEY(u"Interface"_s))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY(u"InterfaceName"_s))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY(u"InterfaceAddress"_s))
+    , m_additionalNetworkInterfaces(BITTORRENT_SESSION_KEY(u"AdditionalInterfaces"_s))
     , m_encryption(BITTORRENT_SESSION_KEY(u"Encryption"_s), 0)
     , m_maxActiveCheckingTorrents(BITTORRENT_SESSION_KEY(u"MaxActiveCheckingTorrents"_s), 1)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY(u"ProxyPeerConnections"_s), false)
@@ -3385,6 +3386,29 @@ void SessionImpl::setDownloadPath(const Path &path)
 
 QStringList SessionImpl::getListeningIPs() const
 {
+    // The primary interface (plus its optional bound address) keeps its original
+    // single-interface semantics. Any additional Multi-WAN interfaces are appended
+    // as device NAMES so that applyNetworkInterfacesSettings() binds them via
+    // SO_BINDTODEVICE (the path validated by RFC-0001 Milestone 1).
+    QStringList IPs = getPrimaryListeningIPs();
+
+    // Skip blanks, exact duplicates, and the primary interface itself. The primary may
+    // already be present as an IP address rather than a name (when an address is bound),
+    // so a plain contains() check is not enough to catch it -- binding the same interface
+    // twice would collide on the listen port.
+    const QString primaryIface = networkInterface();
+    for (const QString &iface : asConst(additionalNetworkInterfaces()))
+    {
+        if (iface.isEmpty() || (iface == primaryIface) || IPs.contains(iface))
+            continue;
+        IPs.append(iface);
+    }
+
+    return IPs;
+}
+
+QStringList SessionImpl::getPrimaryListeningIPs() const
+{
     QStringList IPs;
 
     const QString ifaceName = networkInterface();
@@ -3791,6 +3815,20 @@ void SessionImpl::setNetworkInterfaceAddress(const QString &address)
     if (address != networkInterfaceAddress())
     {
         m_networkInterfaceAddress = address;
+        configureListeningInterface();
+    }
+}
+
+QStringList SessionImpl::additionalNetworkInterfaces() const
+{
+    return m_additionalNetworkInterfaces;
+}
+
+void SessionImpl::setAdditionalNetworkInterfaces(const QStringList &ifaces)
+{
+    if (ifaces != additionalNetworkInterfaces())
+    {
+        m_additionalNetworkInterfaces = ifaces;
         configureListeningInterface();
     }
 }
