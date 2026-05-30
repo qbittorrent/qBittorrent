@@ -873,7 +873,7 @@ void SyncController::torrentPeersAction()
         };
 
         const qlonglong totalUpload = pi.totalUpload();
-        qreal contribution = 0.0;
+        qreal contribution = 0;
 
         if (totalUpload > 0)
         {

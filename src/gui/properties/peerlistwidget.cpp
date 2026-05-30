@@ -523,7 +523,7 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
             , peer.relevance(), intDataTextAlignment);
 
     const qlonglong totalUpload = peer.totalUpload();
-    qreal contribution = 0.0;
+    qreal contribution = 0;
 
     if (totalUpload > 0)
     {
