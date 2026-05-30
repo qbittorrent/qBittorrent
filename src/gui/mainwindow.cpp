@@ -430,8 +430,8 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     for (QAction *a : asConst(m_ui->toolBar->actions()))
     {
         if (a->isSeparator() || a->text().isEmpty()
-            || a == m_spacerAction || a == m_columnFilterAction
-            || a->objectName() == u"actionLock"_s)
+            || (a == m_spacerAction) || (a == m_columnFilterAction)
+            || (a->objectName() == u"actionLock"_s))
             continue;
         m_allToolbarActions.append(a);
     }
@@ -644,8 +644,8 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
 {
     QAction *action = m_ui->toolBar->actionAt(pos);
     if (action && !action->isSeparator()
-        && action != m_spacerAction && action != m_columnFilterAction
-        && action->objectName() != u"actionLock"_s)
+        && (action != m_spacerAction) && (action != m_columnFilterAction)
+        && (action->objectName() != u"actionLock"_s))
     {
         const QList<QAction *> acts = m_ui->toolBar->actions();
         const int idx = acts.indexOf(action);
@@ -716,8 +716,8 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
             const QList<QAction *> current = m_ui->toolBar->actions();
             for (QAction *a : current)
             {
-                if (a == m_spacerAction || a == m_columnFilterAction
-                    || a->objectName() == u"actionLock"_s)
+                if ((a == m_spacerAction) || (a == m_columnFilterAction)
+                    || (a->objectName() == u"actionLock"_s))
                     break;
                 m_ui->toolBar->removeAction(a);
             }
@@ -1055,8 +1055,8 @@ void MainWindow::saveToolbarState() const
     QStringList toolbarState;
     for (const QAction *action : asConst(m_ui->toolBar->actions()))
     {
-        if (action == m_spacerAction || action == m_columnFilterAction
-            || action->objectName() == u"actionLock"_s)
+        if ((action == m_spacerAction) || (action == m_columnFilterAction)
+            || (action->objectName() == u"actionLock"_s))
             break;
         if (action->isSeparator())
             toolbarState << u"separator"_s;
@@ -1134,8 +1134,8 @@ void MainWindow::loadSettings()
         const QList<QAction *> currentActions = m_ui->toolBar->actions();
         for (QAction *a : currentActions)
         {
-            if (a == m_spacerAction || a == m_columnFilterAction
-                || a->objectName() == u"actionLock"_s)
+            if ((a == m_spacerAction) || (a == m_columnFilterAction)
+                || (a->objectName() == u"actionLock"_s))
                 break;
             if (a->isSeparator() || actionMap.contains(a->objectName()))
                 m_ui->toolBar->removeAction(a);
