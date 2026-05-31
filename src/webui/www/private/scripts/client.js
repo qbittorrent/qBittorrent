@@ -1713,7 +1713,9 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         tabsURL: "views/propertiesToolbar.html?v=${CACHEID}",
         tabsOnload: () => {}, // must be included, otherwise panel won't load properly
         onContentLoaded: function() {
-            this.panelHeaderCollapseBoxEl.classList.add("invisible");
+            this.panelHeaderCollapseBoxEl.addEvent("click", () => {
+                localPreferences.set("properties_panel_collapsed", this.isCollapsed.toString());
+            });
 
             const togglePropertiesPanel = () => {
                 this.collapseToggleEl.click();
