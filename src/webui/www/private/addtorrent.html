@@ -49,8 +49,6 @@
             if (sharedMode) {
                 for (const elementId of ["renameRow", "torrentInfoSection", "filesColumn", "saveTorrent", "metadataStatus", "loadingSpinner"])
                     document.getElementById(elementId).style.display = "none";
-                // the Torrent Information section is hidden in shared mode, so surface free space here instead
-                document.getElementById("freeSpaceRow").style.display = "";
             }
 
             // fetch unless explicitly told not to
@@ -88,7 +86,7 @@
             });
 
             window.qBittorrent.pathAutofill.attachPathAutofill();
-            window.qBittorrent.AddTorrent.init(source, fetchMetadata, sharedMode, engines);
+            window.qBittorrent.AddTorrent.init(source, fetchMetadata, sharedMode, engines, searchParams.get("size"));
         });
     </script>
 
@@ -182,14 +180,7 @@
                                 </td>
                                 <td class="fullWidth">
                                     <input type="text" id="savepath" name="savepath" class="pathDirectory" style="width: 100%;">
-                                </td>
-                            </tr>
-                            <tr id="freeSpaceRow" style="display: none;">
-                                <td class="noWrap">
-                                    <label>QBT_TR(Free space:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                                </td>
-                                <td class="fullWidth">
-                                    <span id="freeSpace">QBT_TR(Not available)QBT_TR[CONTEXT=AddNewTorrentDialog]</span>
+                                    <div id="diskInfo" style="margin-top: 4px; margin-left: 3px;"></div>
                                 </td>
                             </tr>
                         </tbody>
@@ -340,14 +331,6 @@
                     <legend>QBT_TR(Torrent information)QBT_TR[CONTEXT=AddNewTorrentDialog]</legend>
                     <table style="width: 100%">
                         <tbody>
-                            <tr>
-                                <td class="noWrap">
-                                    <label>QBT_TR(Size:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                                </td>
-                                <td class="fullWidth">
-                                    <span id="size">QBT_TR(Not available)QBT_TR[CONTEXT=AddNewTorrentDialog]</span>
-                                </td>
-                            </tr>
                             <tr>
                                 <td class="noWrap">
                                     <label>QBT_TR(Date:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>

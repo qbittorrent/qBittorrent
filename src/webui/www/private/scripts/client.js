@@ -46,6 +46,7 @@ window.qBittorrent.Client ??= (() => {
             isShowLogViewer: isShowLogViewer,
             createAddTorrentWindow: createAddTorrentWindow,
             uploadTorrentFiles: uploadTorrentFiles,
+            confirmAddTorrents: confirmAddTorrents,
             categoryMap: categoryMap,
             tagMap: tagMap
         };
@@ -169,7 +170,7 @@ window.qBittorrent.Client ??= (() => {
     };
 
     const createAddTorrentWindow = (title, source, metadata = undefined, options = {}) => {
-        const { shared = false, engines } = options;
+        const { shared = false, engines, totalSize } = options;
         const isFirefox = navigator.userAgent.includes("Firefox");
         const isSafari = navigator.userAgent.includes("AppleWebKit") && !navigator.userAgent.includes("Chrome");
         let height = shared ? 625 : 855;
@@ -192,6 +193,8 @@ window.qBittorrent.Client ??= (() => {
         };
         if (engines?.length > 0)
             params.engines = engines.join("\n");
+        if (totalSize !== undefined)
+            params.size = totalSize;
         const contentURL = new URL("addtorrent.html", window.location);
         contentURL.search = new URLSearchParams(params);
 
@@ -223,7 +226,59 @@ window.qBittorrent.Client ??= (() => {
         });
     };
 
-    const uploadTorrentFiles = (files) => {
+    let resolveAddTorrentsPrompt = null;
+
+    const showAddTorrentsPrompt = (count) => {
+        return new Promise((resolve) => {
+            resolveAddTorrentsPrompt = resolve;
+
+            const id = "confirmAddTorrentsPage";
+            const contentURL = new URL("confirmaddtorrents.html", window.location);
+            contentURL.search = new URLSearchParams({
+                v: "${CACHEID}",
+                count: count
+            });
+
+            new MochaUI.Window({
+                id: id,
+                icon: "images/qbittorrent-tray.svg",
+                title: "QBT_TR(Add Torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]",
+                loadMethod: "iframe",
+                contentURL: contentURL.toString(),
+                scrollbars: false,
+                maximizable: false,
+                closable: true,
+                paddingVertical: 0,
+                paddingHorizontal: 0,
+                width: 440,
+                height: 170,
+                onClose: () => {
+                    // closing dialog without confirming counts as cancel
+                    if (resolveAddTorrentsPrompt) {
+                        resolveAddTorrentsPrompt({ cancelled: true });
+                        resolveAddTorrentsPrompt = null;
+                    }
+                }
+            });
+        });
+    };
+
+    const confirmAddTorrents = (useSeparateDialogs) => {
+        if (resolveAddTorrentsPrompt) {
+            resolveAddTorrentsPrompt({ cancelled: false, useSeparateDialogs: useSeparateDialogs });
+            resolveAddTorrentsPrompt = null;
+        }
+    };
+
+    const uploadTorrentFiles = async (files) => {
+        let useSeparateDialogs = true;
+        if (files.length > 1) {
+            const result = await showAddTorrentsPrompt(files.length);
+            if (result.cancelled)
+                return;
+            useSeparateDialogs = result.useSeparateDialogs;
+        }
+
         const fileNames = [];
         const formData = new FormData();
         for (const [i, file] of Array.prototype.entries.call(files)) {
@@ -246,30 +301,38 @@ window.qBittorrent.Client ??= (() => {
                 const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
 
                 const json = await response.json();
-                const hashes = [];
-                for (const [i, metadata] of json.entries()) {
-                    const title = metadata.name || fileNames[i];
-                    const hash = metadata.infohash_v2 || metadata.infohash_v1;
-                    if (addTorrentWindowEnabled)
-                        createAddTorrentWindow(title, hash, metadata);
-                    else
-                        hashes.push(hash);
-                }
 
-                if ((hashes.length > 0) && !addTorrentWindowEnabled) {
-                    fetch("api/v2/torrents/add", {
-                            method: "POST",
-                            body: new URLSearchParams({
-                                urls: hashes.join("\n")
+                if (!addTorrentWindowEnabled) {
+                    const hashes = json.map((metadata) => metadata.infohash_v2 || metadata.infohash_v1);
+                    if (hashes.length > 0) {
+                        fetch("api/v2/torrents/add", {
+                                method: "POST",
+                                body: new URLSearchParams({
+                                    urls: hashes.join("\n")
+                                })
                             })
-                        })
-                        .then((response) => {
-                            if (!response.ok)
+                            .then((response) => {
+                                if (!response.ok)
+                                    alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                            })
+                            .catch((error) => {
                                 alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
-                        })
-                        .catch((error) => {
-                            alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
-                        });
+                            });
+                    }
+                }
+                else if (useSeparateDialogs) {
+                    for (const [i, metadata] of json.entries()) {
+                        const title = metadata.name || fileNames[i];
+                        const hash = metadata.infohash_v2 || metadata.infohash_v1;
+                        createAddTorrentWindow(title, hash, metadata);
+                    }
+                }
+                else {
+                    const sizeOf = (info) => (info?.length ?? (info?.files ?? []).reduce((sum, file) => sum + file.length, 0));
+                    const hashes = json.map((metadata) => metadata.infohash_v2 || metadata.infohash_v1);
+                    const totalSize = json.reduce((sum, metadata) => sum + sizeOf(metadata.info), 0);
+                    const title = "QBT_TR(Add %1 torrents)QBT_TR[CONTEXT=DownloadFromURLDialog]".replace("%1", hashes.length);
+                    createAddTorrentWindow(title, hashes.join("\n"), undefined, { shared: true, totalSize: totalSize });
                 }
             })
             .catch((error) => {
