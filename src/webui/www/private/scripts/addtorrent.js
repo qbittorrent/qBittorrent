@@ -38,7 +38,8 @@ window.qBittorrent.AddTorrent ??= (() => {
     };
 
     let table = null;
-    let torrentSize = "";
+    let torrentSizeBytes = null;
+    let freeSpaceBytes = null;
     let defaultSavePath = "";
     let defaultTempPath = "";
     let defaultTempPathEnabled = false;
@@ -222,6 +223,24 @@ window.qBittorrent.AddTorrent ??= (() => {
         }
     };
 
+    const updateDiskInfo = () => {
+        const el = document.getElementById("diskInfo");
+        if (freeSpaceBytes === null)
+            return;
+        const free = window.qBittorrent.Misc.friendlyUnit(freeSpaceBytes, false);
+        if (torrentSizeBytes === null) {
+            el.textContent = "QBT_TR(%1 free)QBT_TR[CONTEXT=AddNewTorrentDialog]".replace("%1", free);
+            el.classList.remove("red");
+        }
+        else {
+            const size = window.qBittorrent.Misc.friendlyUnit(torrentSizeBytes, false);
+            const fits = torrentSizeBytes <= freeSpaceBytes;
+            el.textContent = "QBT_TR(%1 needed · %2 free)QBT_TR[CONTEXT=AddNewTorrentDialog]"
+                .replace("%1", size).replace("%2", free);
+            el.classList.toggle("red", !fits);
+        }
+    };
+
     const showFreeSpace = (path) => {
         if (path === "")
             return;
@@ -236,15 +255,8 @@ window.qBittorrent.AddTorrent ??= (() => {
                 cache: "no-store"
             })
             .then(async (response) => {
-                const freeSpace = window.qBittorrent.Misc.friendlyUnit(await response.text(), false);
-                if (sharedMode) {
-                    document.getElementById("freeSpace").textContent = freeSpace;
-                }
-                else {
-                    document.getElementById("size").textContent = "QBT_TR(%1 (Free space on disk: %2))QBT_TR[CONTEXT=AddNewTorrentDialog]"
-                        .replace("%1", torrentSize)
-                        .replace("%2", freeSpace);
-                }
+                freeSpaceBytes = Number(await response.text());
+                updateDiskInfo();
             })
             .catch(error => {});
     };
@@ -314,9 +326,9 @@ window.qBittorrent.AddTorrent ??= (() => {
         document.getElementById("infoHashV1").textContent = (metadata.infohash_v1 === undefined) ? notAvailable : (metadata.infohash_v1 || notApplicable);
         document.getElementById("infoHashV2").textContent = (metadata.infohash_v2 === undefined) ? notAvailable : (metadata.infohash_v2 || notApplicable);
 
-        if (metadata.info?.length !== undefined) {
-            torrentSize = window.qBittorrent.Misc.friendlyUnit(metadata.info.length, false);
-            showFreeSpace(document.getElementById("savepath").value);
+        if (metadata.info !== undefined) {
+            torrentSizeBytes = metadata.info.length ?? (metadata.info.files ?? []).reduce((sum, file) => sum + file.length, 0);
+            updateDiskInfo();
         }
         if ((metadata.creation_date !== undefined) && (metadata.creation_date > 1))
             document.getElementById("createdDate").textContent = window.qBittorrent.Misc.formatDate(new Date(metadata.creation_date * 1000));
@@ -389,11 +401,17 @@ window.qBittorrent.AddTorrent ??= (() => {
         });
     };
 
-    const init = (source, fetchMetadata, sharedModeParam = false, enginesParam = []) => {
+    const init = (source, fetchMetadata, sharedModeParam = false, enginesParam = [], totalSizeBytes = null) => {
         sharedMode = sharedModeParam;
 
         // pair each URL with its (optional) engine
         urlEntries = source ? source.split("\n").map((url, i) => ({ url: url, engine: enginesParam[i] || "" })) : [];
+
+        // shared multi-file uploads pass a precomputed total; single/per-torrent adds get size from metadata instead
+        if (totalSizeBytes !== null) {
+            torrentSizeBytes = Number(totalSizeBytes);
+            updateDiskInfo();
+        }
 
         if (!sharedMode) {
             table = window.qBittorrent.TorrentContent.init("addTorrentFilesTableDiv", window.qBittorrent.DynamicTable.AddTorrentFilesTable);
