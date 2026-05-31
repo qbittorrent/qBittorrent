@@ -204,11 +204,11 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         int threshold = 0;
         if (a->isSeparator())
         {
-            threshold = w ? w->x() + w->width() : 0;
+            threshold = w ? w->x() + w->width() / 2 : 0;
         }
         else
         {
-            threshold = w->x() + w->width() / 2 + (movingLeft ? -14 : 14);
+            threshold = w->x() + w->width() / 2;
         }
 
         const int compareX = movingLeft ? dragFloatLeft : dragFloatRight;
