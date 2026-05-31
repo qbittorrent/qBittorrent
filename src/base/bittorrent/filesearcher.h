@@ -28,7 +28,9 @@
 
 #pragma once
 
+#include <QList>
 #include <QObject>
+#include <QSet>
 
 #include "base/path.h"
 
@@ -38,6 +40,7 @@ struct FileSearchResult
 {
     Path savePath;
     PathList fileNames;
+    Path rootFolder;
 };
 
 class FileSearcher final : public QObject
@@ -48,6 +51,10 @@ class FileSearcher final : public QObject
 public:
     using QObject::QObject;
 
+    static Path makeRootFolderUnique(PathList &fileNames, const Path &baseRootFolder, const QList<Path> &basePaths
+            , const QSet<Path> &occupiedRootPaths);
+
     void search(const PathList &originalFileNames, const Path &savePath
-            , const Path &downloadPath, bool forceAppendExt, QPromise<FileSearchResult> &promise);
+            , const Path &downloadPath, bool forceAppendExt, const QSet<Path> &occupiedRootPaths
+            , QPromise<FileSearchResult> &promise);
 };
