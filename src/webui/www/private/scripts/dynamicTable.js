@@ -69,6 +69,34 @@ window.qBittorrent.DynamicTable ??= (() => {
         return (value > 0) ? window.qBittorrent.Misc.formatDate(new Date(value * 1000)) : "";
     };
 
+    const shouldDisplayRelativeTransferListDates = () => {
+        return window.qBittorrent.Cache.preferences.get().relative_transfer_list_dates ?? false;
+    };
+
+    const formatTransferListDate = (timestampSeconds) => {
+        if ((timestampSeconds === 0xffffffff) || (timestampSeconds < 0)) {
+            return {
+                text: "",
+                title: ""
+            };
+        }
+
+        const absoluteDate = toDateString(timestampSeconds);
+        if (!shouldDisplayRelativeTransferListDates()) {
+            return {
+                text: absoluteDate,
+                title: absoluteDate
+            };
+        }
+
+        const elapsedSeconds = Math.max(Math.floor((Date.now() / 1000) - timestampSeconds), 1);
+        return {
+            text: "QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]"
+                .replace("%1", window.qBittorrent.Misc.friendlyDuration(elapsedSeconds)),
+            title: absoluteDate
+        };
+    };
+
     const localPreferences = new window.qBittorrent.LocalPreferences.LocalPreferences();
     const clientData = window.qBittorrent.ClientData ?? window.parent.qBittorrent.ClientData;
 
@@ -1489,10 +1517,18 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.columns["creation_date"].updateTd = displayDate;
 
             // added on
-            this.columns["added_on"].updateTd = displayDate;
+            this.columns["added_on"].updateTd = function(td, row) {
+                const formattedDate = formatTransferListDate(this.getRowValue(row));
+                td.textContent = formattedDate.text;
+                td.title = formattedDate.title;
+            };
 
             // completion_on
-            this.columns["completion_on"].updateTd = displayDate;
+            this.columns["completion_on"].updateTd = function(td, row) {
+                const formattedDate = formatTransferListDate(this.getRowValue(row));
+                td.textContent = formattedDate.text;
+                td.title = formattedDate.title;
+            };
 
             // tracker
             this.columns["tracker"].updateTd = function(td, row) {
