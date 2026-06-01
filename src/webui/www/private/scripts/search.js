@@ -383,8 +383,7 @@ window.qBittorrent.Search ??= (() => {
             reverse: searchResultsTable.reverseSort,
         };
 
-        // we must copy the array to avoid taking a reference to it
-        state.selectedRowIds = [...searchResultsTable.selectedRows];
+        state.selectedRowIds = searchResultsTable.selectedRowsIds();
     };
 
     const setActiveTab = (tab) => {
@@ -425,10 +424,9 @@ window.qBittorrent.Search ??= (() => {
             document.getElementById("searchMinSizePrefix").value = state.sizeFilter.minUnit;
             document.getElementById("searchMaxSizeFilter").value = state.sizeFilter.max;
             document.getElementById("searchMaxSizePrefix").value = state.sizeFilter.maxUnit;
-
-            searchResultsTable.setSortedColumn(state.sort.column, state.sort.reverse);
-
             document.getElementById("searchInTorrentName").value = state.searchIn;
+
+            searchResultsTable.setSortedColumn(state.sort.column, state.sort.reverse, false);
 
             // mark all results as seen
             state.lastSeenCount = state.rows.length;
