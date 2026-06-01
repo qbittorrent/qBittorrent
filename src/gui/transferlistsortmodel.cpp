@@ -320,11 +320,23 @@ bool TransferListSortModel::filterAcceptsRow(const int sourceRow, const QModelIn
 
 bool TransferListSortModel::matchFilter(const int sourceRow, const QModelIndex &sourceParent) const
 {
-    const auto *model = qobject_cast<TransferListModel *>(sourceModel());
-    if (!model) return false;
+    auto *model = qobject_cast<TransferListModel *>(sourceModel());
+    if (!model)
+        return false;
 
-    const BitTorrent::Torrent *torrent = model->torrentHandle(model->index(sourceRow, 0, sourceParent));
-    if (!torrent) return false;
+    const QModelIndex index = model->index(sourceRow, 0, sourceParent);
+    if (!index.isValid())
+        return false;
 
-    return m_filter.match(torrent);
+    if (const BitTorrent::Torrent *const torrent = model->torrentHandle(index))
+        return m_filter.match(torrent);
+
+    const int childCount = model->rowCount(index);
+    for (int childRow = 0; childRow < childCount; ++childRow)
+    {
+        if (matchFilter(childRow, index))
+            return true;
+    }
+
+    return false;
 }

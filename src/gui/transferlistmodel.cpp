@@ -31,12 +31,16 @@
 
 #include <QApplication>
 #include <QDateTime>
-#include <QDebug>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QPalette>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/preferences.h"
+#include "base/settingvalue.h"
 #include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -48,6 +52,49 @@ using namespace Qt::Literals::StringLiterals;
 
 namespace
 {
+    const QString kGroupsSettingKey = u"TorrentGroups/Groups"_s;
+    constexpr quintptr GroupInternalId = static_cast<quintptr>(-1);
+
+    struct GroupAggregates
+    {
+        qint64 wanted = 0;
+        qint64 completed = 0;
+        qint64 remaining = 0;
+        qint64 dlSpeed = 0;
+        qint64 upSpeed = 0;
+        qint64 seeds = 0;
+        qint64 totalSeeds = 0;
+        qint64 peers = 0;
+        qint64 totalPeers = 0;
+        qint64 downloaded = 0;
+        qint64 uploaded = 0;
+        qint64 totalSize = 0;
+    };
+
+    GroupAggregates computeAggregates(const QList<BitTorrent::Torrent *> &members)
+    {
+        GroupAggregates aggr;
+        for (const BitTorrent::Torrent *torrent : members)
+        {
+            if (!torrent)
+                continue;
+
+            aggr.wanted += torrent->wantedSize();
+            aggr.completed += torrent->completedSize();
+            aggr.remaining += torrent->remainingSize();
+            aggr.dlSpeed += torrent->downloadPayloadRate();
+            aggr.upSpeed += torrent->uploadPayloadRate();
+            aggr.seeds += torrent->seedsCount();
+            aggr.totalSeeds += torrent->totalSeedsCount();
+            aggr.peers += torrent->leechsCount();
+            aggr.totalPeers += torrent->totalLeechersCount();
+            aggr.downloaded += torrent->totalDownload();
+            aggr.uploaded += torrent->totalUpload();
+            aggr.totalSize += torrent->totalSize();
+        }
+        return aggr;
+    }
+
     QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
     {
         struct TorrentStateColorDescriptor
@@ -91,7 +138,7 @@ namespace
 // TransferListModel
 
 TransferListModel::TransferListModel(QObject *parent)
-    : QAbstractListModel {parent}
+    : QAbstractItemModel {parent}
     , m_statusStrings {
         {BitTorrent::TorrentState::Downloading, tr("Downloading")},
         {BitTorrent::TorrentState::StalledDownloading, tr("Stalled", "Torrent is waiting for download to begin")},
@@ -112,6 +159,8 @@ TransferListModel::TransferListModel(QObject *parent)
         {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
         {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}}
 {
+    loadGroups();
+
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
 
@@ -119,7 +168,19 @@ TransferListModel::TransferListModel(QObject *parent)
     connect(UIThemeManager::instance(), &UIThemeManager::themeChanged, this, [this]
     {
         loadUIThemeResources();
-        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)), {Qt::DecorationRole, Qt::ForegroundRole});
+
+        if (rowCount() <= 0)
+            return;
+
+        const QList<int> roles = {Qt::DecorationRole, Qt::ForegroundRole};
+        emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1), roles);
+        for (int groupRow = 0; groupRow < m_groups.size(); ++groupRow)
+        {
+            const QModelIndex parentIndex = makeGroupIndex(groupRow, 0);
+            const int childCount = rowCount(parentIndex);
+            if (childCount > 0)
+                emit dataChanged(index(0, 0, parentIndex), index(childCount - 1, columnCount() - 1, parentIndex), roles);
+        }
     });
 
     // Load the torrents
@@ -140,9 +201,74 @@ TransferListModel::TransferListModel(QObject *parent)
     connect(Session::instance(), &Session::trackerEntryStatusesUpdated, this, &TransferListModel::handleTorrentStatusUpdated);
 }
 
-int TransferListModel::rowCount(const QModelIndex &) const
+QModelIndex TransferListModel::index(const int row, const int column, const QModelIndex &parent) const
 {
-    return m_torrentList.size();
+    if ((row < 0) || (column < 0) || (column >= columnCount()) || (parent.column() > 0))
+        return {};
+
+    if (!parent.isValid())
+    {
+        if (row >= rowCount())
+            return {};
+
+        if (row < m_groups.size())
+            return makeGroupIndex(row, column);
+
+        const int ungroupedRow = (row - m_groups.size());
+        if ((ungroupedRow < 0) || (ungroupedRow >= m_ungroupedTorrents.size()))
+            return {};
+
+        if (BitTorrent::Torrent *const torrent = m_ungroupedTorrents.at(ungroupedRow))
+            return createIndex(row, column, reinterpret_cast<quintptr>(torrent));
+        return {};
+    }
+
+    if (!isGroupIndex(parent))
+        return {};
+
+    const int groupRow = parent.row();
+    if ((groupRow < 0) || (groupRow >= m_groupedTorrents.size()))
+        return {};
+
+    const QList<BitTorrent::Torrent *> &members = m_groupedTorrents.at(groupRow);
+    if ((row < 0) || (row >= members.size()))
+        return {};
+
+    if (BitTorrent::Torrent *const torrent = members.at(row))
+        return createIndex(row, column, reinterpret_cast<quintptr>(torrent));
+    return {};
+}
+
+QModelIndex TransferListModel::parent(const QModelIndex &index) const
+{
+    if (!index.isValid() || isGroupIndex(index))
+        return {};
+
+    const auto *const torrent = reinterpret_cast<BitTorrent::Torrent *>(index.internalId());
+    if (!torrent)
+        return {};
+
+    const QString group = groupOf(torrent->id());
+    if (group.isEmpty())
+        return {};
+
+    const int row = groupRow(group);
+    return (row >= 0) ? makeGroupIndex(row, 0) : QModelIndex {};
+}
+
+int TransferListModel::rowCount(const QModelIndex &parent) const
+{
+    if (!parent.isValid())
+        return (m_groups.size() + m_ungroupedTorrents.size());
+
+    if ((parent.column() > 0) || !isGroupIndex(parent))
+        return 0;
+
+    const int groupRow = parent.row();
+    if ((groupRow < 0) || (groupRow >= m_groupedTorrents.size()))
+        return 0;
+
+    return m_groupedTorrents.at(groupRow).size();
 }
 
 int TransferListModel::columnCount(const QModelIndex &) const
@@ -196,6 +322,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             case TR_REANNOUNCE: return tr("Reannounce In", "Indicates the time until next trackers reannounce");
             case TR_PRIVATE: return tr("Private", "Flags private torrents");
+            case TR_GROUP: return tr("Group", "Virtual group name aggregating multiple torrents");
             default: return {};
             }
         }
@@ -235,12 +362,12 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_REANNOUNCE:
                 return QVariant(Qt::AlignRight | Qt::AlignVCenter);
             default:
-                return QAbstractListModel::headerData(section, orientation, role);
+                return QAbstractItemModel::headerData(section, orientation, role);
             }
         }
     }
 
-    return QAbstractListModel::headerData(section, orientation, role);
+    return QAbstractItemModel::headerData(section, orientation, role);
 }
 
 QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, const int column) const
@@ -447,6 +574,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return reannounceString(torrent->nextAnnounce());
     case TR_PRIVATE:
         return privateString(torrent->isPrivate(), torrent->hasMetadata());
+    case TR_GROUP:
+        return groupOf(torrent->id());
     }
 
     return {};
@@ -532,6 +661,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->nextAnnounce();
     case TR_PRIVATE:
         return (torrent->hasMetadata() ? torrent->isPrivate() : QVariant());
+    case TR_GROUP:
+        return groupOf(torrent->id());
     }
 
     return {};
@@ -542,7 +673,121 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     if (!index.isValid())
         return {};
 
-    const BitTorrent::Torrent *torrent = m_torrentList.value(index.row());
+    if (isGroupIndex(index))
+    {
+        const int groupRow = index.row();
+        if ((groupRow < 0) || (groupRow >= m_groups.size()))
+            return {};
+
+        const GroupData &group = m_groups.at(groupRow);
+        const QList<BitTorrent::Torrent *> &members = m_groupedTorrents.value(groupRow);
+
+        if (role == Qt::BackgroundRole)
+        {
+            QColor baseColor = QApplication::palette().color(QPalette::Base);
+            baseColor = (baseColor.lightness() < 128) ? baseColor.lighter(135) : baseColor.darker(115);
+            return QBrush(baseColor);
+        }
+
+        if ((role == Qt::DecorationRole) && (index.column() == TR_NAME))
+        {
+            const bool expanded = m_expandedGroups.contains(group.name);
+            return UIThemeManager::instance()->getIcon(expanded ? u"folder-documents"_s : u"directory"_s);
+        }
+
+        if ((role != Qt::DisplayRole) && (role != UnderlyingDataRole) && (role != AdditionalUnderlyingDataRole))
+            return {};
+
+        const GroupAggregates aggr = computeAggregates(members);
+        const int column = index.column();
+
+        if (column == TR_NAME)
+        {
+            if (role == Qt::DisplayRole)
+                return u"%1 (%2)"_s.arg(group.name).arg(members.size());
+            return group.name;
+        }
+
+        if (role == UnderlyingDataRole)
+        {
+            switch (column)
+            {
+            case TR_SIZE: return aggr.wanted;
+            case TR_TOTAL_SIZE: return aggr.totalSize;
+            case TR_PROGRESS: return (aggr.wanted > 0) ? ((aggr.completed * 100.0) / aggr.wanted) : 0.0;
+            case TR_SEEDS: return aggr.seeds;
+            case TR_PEERS: return aggr.peers;
+            case TR_DLSPEED: return aggr.dlSpeed;
+            case TR_UPSPEED: return aggr.upSpeed;
+            case TR_ETA: return (aggr.dlSpeed > 0) ? (aggr.remaining / qMax<qint64>(1, aggr.dlSpeed)) : MAX_ETA;
+            case TR_RATIO: return (aggr.downloaded > 0) ? (static_cast<double>(aggr.uploaded) / aggr.downloaded) : BitTorrent::Torrent::MAX_RATIO;
+            case TR_AMOUNT_DOWNLOADED: return aggr.downloaded;
+            case TR_AMOUNT_UPLOADED: return aggr.uploaded;
+            case TR_AMOUNT_LEFT: return aggr.remaining;
+            case TR_COMPLETED: return aggr.completed;
+            default: return {};
+            }
+        }
+
+        if (role == AdditionalUnderlyingDataRole)
+        {
+            switch (column)
+            {
+            case TR_SEEDS: return aggr.totalSeeds;
+            case TR_PEERS: return aggr.totalPeers;
+            default: return {};
+            }
+        }
+
+        switch (column)
+        {
+        case TR_SIZE:
+            return Utils::Misc::friendlyUnit(aggr.wanted);
+        case TR_TOTAL_SIZE:
+            return Utils::Misc::friendlyUnit(aggr.totalSize);
+        case TR_PROGRESS:
+        {
+            if (aggr.wanted <= 0)
+                return QString {};
+            const double progress = static_cast<double>(aggr.completed) / static_cast<double>(aggr.wanted);
+            return (progress >= 1.0) ? QStringLiteral("100%") : (Utils::String::fromDouble(progress * 100.0, 1) + QLatin1Char('%'));
+        }
+        case TR_SEEDS:
+            return u"%1 (%2)"_s.arg(aggr.seeds).arg(aggr.totalSeeds);
+        case TR_PEERS:
+            return u"%1 (%2)"_s.arg(aggr.peers).arg(aggr.totalPeers);
+        case TR_DLSPEED:
+            return Utils::Misc::friendlyUnit(aggr.dlSpeed, true);
+        case TR_UPSPEED:
+            return Utils::Misc::friendlyUnit(aggr.upSpeed, true);
+        case TR_ETA:
+        {
+            const qint64 eta = (aggr.dlSpeed > 0) ? (aggr.remaining / qMax<qint64>(1, aggr.dlSpeed)) : MAX_ETA;
+            return Utils::Misc::userFriendlyDuration(eta, MAX_ETA);
+        }
+        case TR_RATIO:
+        {
+            if (aggr.downloaded <= 0)
+                return C_INFINITY;
+            const double ratio = static_cast<double>(aggr.uploaded) / aggr.downloaded;
+            if ((static_cast<int>(ratio) == -1) || (ratio >= BitTorrent::Torrent::MAX_RATIO))
+                return C_INFINITY;
+            return Utils::String::fromDouble(ratio, 2);
+        }
+        case TR_AMOUNT_DOWNLOADED:
+            return Utils::Misc::friendlyUnit(aggr.downloaded);
+        case TR_AMOUNT_UPLOADED:
+            return Utils::Misc::friendlyUnit(aggr.uploaded);
+        case TR_AMOUNT_LEFT:
+            return Utils::Misc::friendlyUnit(aggr.remaining);
+        case TR_COMPLETED:
+            return Utils::Misc::friendlyUnit(aggr.completed);
+        default:
+            return {};
+        }
+    }
+
+    const auto *const torrent = reinterpret_cast<BitTorrent::Torrent *>(index.internalId());
     if (!torrent)
         return {};
 
@@ -575,6 +820,16 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_INFOHASH_V1:
         case TR_INFOHASH_V2:
             return displayValue(torrent, index.column());
+        case TR_GROUP:
+            return displayValue(torrent, index.column());
+        }
+        break;
+    case Qt::BackgroundRole:
+        if (!groupOf(torrent->id()).isEmpty())
+        {
+            QColor baseColor = QApplication::palette().color(QPalette::Base);
+            baseColor = (baseColor.lightness() < 128) ? baseColor.lighter(120) : baseColor.darker(105);
+            return QBrush(baseColor);
         }
         break;
     case Qt::TextAlignmentRole:
@@ -614,10 +869,10 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 
 bool TransferListModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (!index.isValid() || (role != Qt::DisplayRole))
+    if (!index.isValid() || (role != Qt::DisplayRole) || isGroupIndex(index))
         return false;
 
-    BitTorrent::Torrent *const torrent = m_torrentList.value(index.row());
+    BitTorrent::Torrent *const torrent = torrentHandle(index);
     if (!torrent)
         return false;
 
@@ -639,21 +894,22 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrents(const QList<BitTorrent::Torrent *> &torrents)
 {
-    qsizetype row = m_torrentList.size();
-    const qsizetype total = row + torrents.size();
+    if (torrents.isEmpty())
+        return;
 
-    beginInsertRows({}, row, total);
-
-    m_torrentList.reserve(total);
+    beginResetModel();
+    m_torrentList.reserve(m_torrentList.size() + torrents.size());
+    int row = m_torrentList.size();
     for (BitTorrent::Torrent *torrent : torrents)
     {
-        Q_ASSERT(!m_torrentMap.contains(torrent));
+        if (m_torrentMap.contains(torrent))
+            continue;
 
         m_torrentList.append(torrent);
         m_torrentMap[torrent] = row++;
     }
-
-    endInsertRows();
+    rebuildGroupingLayout();
+    endResetModel();
 }
 
 Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
@@ -661,22 +917,234 @@ Qt::ItemFlags TransferListModel::flags(const QModelIndex &index) const
     if (!index.isValid())
         return Qt::NoItemFlags;
 
-    return QAbstractListModel::flags(index);
+    return QAbstractItemModel::flags(index);
 }
 
 BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) const
 {
-    if (!index.isValid()) return nullptr;
+    if (!index.isValid() || isGroupIndex(index))
+        return nullptr;
 
-    return m_torrentList.value(index.row());
+    return reinterpret_cast<BitTorrent::Torrent *>(index.internalId());
+}
+
+QModelIndex TransferListModel::indexForTorrent(const BitTorrent::Torrent *torrent, const int column) const
+{
+    return makeTorrentIndex(torrent, column);
+}
+
+QString TransferListModel::groupName(const QModelIndex &index) const
+{
+    if (!isGroupIndex(index))
+        return {};
+
+    const int row = index.row();
+    if ((row < 0) || (row >= m_groups.size()))
+        return {};
+    return m_groups.at(row).name;
+}
+
+QStringList TransferListModel::groupNames() const
+{
+    QStringList names;
+    names.reserve(m_groups.size());
+    for (const GroupData &group : m_groups)
+        names.append(group.name);
+    return names;
+}
+
+QString TransferListModel::groupOf(const BitTorrent::TorrentID &id) const
+{
+    return m_groupByMember.value(id);
+}
+
+QStringList TransferListModel::expandedGroups() const
+{
+    return m_expandedGroups;
+}
+
+bool TransferListModel::hasGroups() const
+{
+    return !m_groups.isEmpty();
+}
+
+bool TransferListModel::createGroup(const QString &name, const QSet<BitTorrent::TorrentID> &initialMembers)
+{
+    const QString trimmedName = name.trimmed();
+    if (trimmedName.isEmpty() || m_groupIndexByName.contains(trimmedName))
+        return false;
+
+    beginResetModel();
+    GroupData group;
+    group.name = trimmedName;
+    m_groups.append(group);
+    rebuildGroupNameIndex();
+
+    for (const BitTorrent::TorrentID &id : initialMembers)
+        moveMemberToGroup(id, trimmedName);
+
+    rebuildGroupingLayout();
+    endResetModel();
+
+    saveGroups();
+    emit groupsChanged();
+    return true;
+}
+
+bool TransferListModel::renameGroup(const QString &oldName, const QString &newName)
+{
+    const QString trimmedName = newName.trimmed();
+    if (trimmedName.isEmpty())
+        return false;
+
+    const int oldIndex = m_groupIndexByName.value(oldName, -1);
+    if ((oldIndex < 0) || ((oldName != trimmedName) && m_groupIndexByName.contains(trimmedName)))
+        return false;
+
+    beginResetModel();
+    GroupData &group = m_groups[oldIndex];
+    group.name = trimmedName;
+    rebuildGroupNameIndex();
+
+    for (auto it = m_groupByMember.begin(); it != m_groupByMember.end(); ++it)
+    {
+        if (it.value() == oldName)
+            it.value() = trimmedName;
+    }
+
+    if (m_expandedGroups.contains(oldName))
+    {
+        m_expandedGroups.removeAll(oldName);
+        if (!m_expandedGroups.contains(trimmedName))
+            m_expandedGroups.append(trimmedName);
+    }
+
+    rebuildGroupingLayout();
+    endResetModel();
+
+    saveGroups();
+    emit groupsChanged();
+    return true;
+}
+
+bool TransferListModel::deleteGroup(const QString &name)
+{
+    const int groupIndex = m_groupIndexByName.value(name, -1);
+    if (groupIndex < 0)
+        return false;
+
+    beginResetModel();
+    const GroupData deletedGroup = m_groups.takeAt(groupIndex);
+    rebuildGroupNameIndex();
+
+    for (const BitTorrent::TorrentID &id : deletedGroup.members)
+        m_groupByMember.remove(id);
+    for (auto it = m_groupByMember.begin(); it != m_groupByMember.end();)
+    {
+        if (it.value() == name)
+            it = m_groupByMember.erase(it);
+        else
+            ++it;
+    }
+
+    m_expandedGroups.removeAll(name);
+    rebuildGroupingLayout();
+    endResetModel();
+
+    saveGroups();
+    emit groupsChanged();
+    return true;
+}
+
+bool TransferListModel::addMembers(const QString &groupName, const QSet<BitTorrent::TorrentID> &members)
+{
+    if (members.isEmpty() || !m_groupIndexByName.contains(groupName))
+        return false;
+
+    bool changed = false;
+    for (const BitTorrent::TorrentID &id : members)
+    {
+        if (groupOf(id) != groupName)
+        {
+            changed = true;
+            break;
+        }
+    }
+    if (!changed)
+        return false;
+
+    beginResetModel();
+    for (const BitTorrent::TorrentID &id : members)
+        moveMemberToGroup(id, groupName);
+    rebuildGroupingLayout();
+    endResetModel();
+
+    saveGroups();
+    emit groupsChanged();
+    return true;
+}
+
+bool TransferListModel::removeMembers(const QSet<BitTorrent::TorrentID> &members)
+{
+    if (members.isEmpty())
+        return false;
+
+    bool changed = false;
+    for (const BitTorrent::TorrentID &id : members)
+    {
+        if (m_groupByMember.contains(id))
+        {
+            changed = true;
+            break;
+        }
+    }
+    if (!changed)
+        return false;
+
+    beginResetModel();
+    for (const BitTorrent::TorrentID &id : members)
+    {
+        if (m_groupByMember.contains(id))
+            removeMemberFromGroup(id);
+    }
+    rebuildGroupingLayout();
+    endResetModel();
+
+    saveGroups();
+    emit groupsChanged();
+    return true;
+}
+
+void TransferListModel::setGroupExpanded(const QString &name, const bool expanded)
+{
+    if (!m_groupIndexByName.contains(name))
+        return;
+
+    const bool contains = m_expandedGroups.contains(name);
+    if (expanded == contains)
+        return;
+
+    if (expanded)
+        m_expandedGroups.append(name);
+    else
+        m_expandedGroups.removeAll(name);
+
+    saveGroups();
+
+    const int row = groupRow(name);
+    if (row >= 0)
+        emit dataChanged(makeGroupIndex(row, 0), makeGroupIndex(row, columnCount() - 1), {Qt::DecorationRole});
 }
 
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
     const int row = m_torrentMap.value(torrent, -1);
-    Q_ASSERT(row >= 0);
+    if (row < 0)
+        return;
 
-    beginRemoveRows({}, row, row);
+    const bool hadGroup = !groupOf(torrent->id()).isEmpty();
+
+    beginResetModel();
     m_torrentList.removeAt(row);
     m_torrentMap.remove(torrent);
     for (int &value : m_torrentMap)
@@ -684,36 +1152,226 @@ void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const
         if (value > row)
             --value;
     }
-    endRemoveRows();
+    removeMemberFromGroup(torrent->id());
+    rebuildGroupingLayout();
+    endResetModel();
+
+    if (hadGroup)
+    {
+        saveGroups();
+        emit groupsChanged();
+    }
 }
 
 void TransferListModel::handleTorrentStatusUpdated(BitTorrent::Torrent *const torrent)
 {
-    const int row = m_torrentMap.value(torrent, -1);
-    Q_ASSERT(row >= 0);
+    const QModelIndex torrentIndex = makeTorrentIndex(torrent, 0);
+    if (!torrentIndex.isValid())
+        return;
 
-    emit dataChanged(index(row, 0), index(row, columnCount() - 1));
+    emit dataChanged(torrentIndex, torrentIndex.sibling(torrentIndex.row(), columnCount() - 1));
+
+    const QModelIndex parentIndex = parent(torrentIndex);
+    if (parentIndex.isValid())
+        emit dataChanged(parentIndex, parentIndex.sibling(parentIndex.row(), columnCount() - 1));
 }
 
 void TransferListModel::handleTorrentsUpdated(const QList<BitTorrent::Torrent *> &torrents)
 {
-    const int columns = (columnCount() - 1);
+    for (BitTorrent::Torrent *const torrent : torrents)
+        handleTorrentStatusUpdated(torrent);
+}
 
-    if (torrents.size() <= (m_torrentList.size() * 0.5))
+void TransferListModel::loadGroups()
+{
+    m_groups.clear();
+    m_groupIndexByName.clear();
+    m_groupByMember.clear();
+    m_expandedGroups.clear();
+
+    const SettingValue<QByteArray> groupsSetting {kGroupsSettingKey};
+    const QByteArray rawData = groupsSetting.get();
+    if (rawData.isEmpty())
+        return;
+
+    const QJsonDocument document = QJsonDocument::fromJson(rawData);
+    if (!document.isObject())
+        return;
+
+    const QJsonObject root = document.object();
+    const QJsonArray groupsArray = root.value(u"groups"_s).toArray();
+    for (const QJsonValue &value : groupsArray)
     {
-        for (BitTorrent::Torrent *const torrent : torrents)
+        if (!value.isObject())
+            continue;
+
+        const QJsonObject groupObject = value.toObject();
+        const QString groupName = groupObject.value(u"name"_s).toString().trimmed();
+        if (groupName.isEmpty() || m_groupIndexByName.contains(groupName))
+            continue;
+
+        GroupData group;
+        group.name = groupName;
+
+        const QJsonArray members = groupObject.value(u"members"_s).toArray();
+        for (const QJsonValue &memberValue : members)
         {
-            const int row = m_torrentMap.value(torrent, -1);
-            Q_ASSERT(row >= 0);
+            const BitTorrent::TorrentID id = BitTorrent::TorrentID::fromString(memberValue.toString());
+            if (!id.isValid() || m_groupByMember.contains(id))
+                continue;
 
-            emit dataChanged(index(row, 0), index(row, columns));
+            group.members.insert(id);
+            m_groupByMember.insert(id, groupName);
         }
+
+        m_groups.append(group);
+        m_groupIndexByName.insert(groupName, (m_groups.size() - 1));
     }
-    else
+
+    const QJsonArray expandedArray = root.value(u"expanded"_s).toArray();
+    for (const QJsonValue &value : expandedArray)
     {
-        // save the overhead when more than half of the torrent list needs update
-        emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
+        const QString groupName = value.toString();
+        if (m_groupIndexByName.contains(groupName) && !m_expandedGroups.contains(groupName))
+            m_expandedGroups.append(groupName);
     }
+
+    rebuildGroupingLayout();
+}
+
+void TransferListModel::saveGroups() const
+{
+    QJsonArray groupsArray;
+    for (const GroupData &group : m_groups)
+    {
+        QJsonObject groupObject;
+        groupObject.insert(u"name"_s, group.name);
+
+        QJsonArray membersArray;
+        for (const BitTorrent::TorrentID &id : group.members)
+            membersArray.append(id.toString());
+        groupObject.insert(u"members"_s, membersArray);
+
+        groupsArray.append(groupObject);
+    }
+
+    QJsonArray expandedArray;
+    for (const QString &groupName : m_expandedGroups)
+    {
+        if (m_groupIndexByName.contains(groupName))
+            expandedArray.append(groupName);
+    }
+
+    QJsonObject root;
+    root.insert(u"groups"_s, groupsArray);
+    root.insert(u"expanded"_s, expandedArray);
+
+    SettingValue<QByteArray> groupsSetting {kGroupsSettingKey};
+    groupsSetting = QJsonDocument(root).toJson(QJsonDocument::Compact);
+}
+
+void TransferListModel::rebuildGroupingLayout()
+{
+    m_groupedTorrents = QVector<QList<BitTorrent::Torrent *>>(m_groups.size());
+    m_ungroupedTorrents.clear();
+    m_torrentPositions.clear();
+    m_torrentPositions.reserve(m_torrentList.size());
+
+    int ungroupedRow = m_groups.size();
+    for (BitTorrent::Torrent *const torrent : m_torrentList)
+    {
+        const QString groupName = m_groupByMember.value(torrent->id());
+        const int row = groupRow(groupName);
+
+        TorrentPosition position;
+        if (row >= 0)
+        {
+            QList<BitTorrent::Torrent *> &groupMembers = m_groupedTorrents[row];
+            position.groupRow = row;
+            position.childRow = groupMembers.size();
+            position.topLevelRow = row;
+            groupMembers.append(torrent);
+        }
+        else
+        {
+            position.topLevelRow = ungroupedRow++;
+            m_ungroupedTorrents.append(torrent);
+        }
+
+        m_torrentPositions.insert(torrent, position);
+    }
+}
+
+void TransferListModel::rebuildGroupNameIndex()
+{
+    m_groupIndexByName.clear();
+    for (int i = 0; i < m_groups.size(); ++i)
+        m_groupIndexByName.insert(m_groups.at(i).name, i);
+}
+
+bool TransferListModel::isGroupIndex(const QModelIndex &index) const
+{
+    return index.isValid() && (index.internalId() == GroupInternalId);
+}
+
+QModelIndex TransferListModel::makeGroupIndex(const int row, const int column) const
+{
+    if ((row < 0) || (row >= m_groups.size()) || (column < 0) || (column >= columnCount()))
+        return {};
+    return createIndex(row, column, GroupInternalId);
+}
+
+QModelIndex TransferListModel::makeTorrentIndex(const BitTorrent::Torrent *torrent, const int column) const
+{
+    if (!torrent || (column < 0) || (column >= columnCount()))
+        return {};
+
+    const TorrentPosition position = m_torrentPositions.value(const_cast<BitTorrent::Torrent *>(torrent), {});
+    if (position.topLevelRow < 0)
+        return {};
+
+    auto *const mutableTorrent = const_cast<BitTorrent::Torrent *>(torrent);
+    if (position.groupRow >= 0)
+        return createIndex(position.childRow, column, reinterpret_cast<quintptr>(mutableTorrent));
+    return createIndex(position.topLevelRow, column, reinterpret_cast<quintptr>(mutableTorrent));
+}
+
+int TransferListModel::groupRow(const QString &name) const
+{
+    return m_groupIndexByName.value(name, -1);
+}
+
+bool TransferListModel::moveMemberToGroup(const BitTorrent::TorrentID &id, const QString &groupName)
+{
+    const int targetGroupIndex = m_groupIndexByName.value(groupName, -1);
+    if (targetGroupIndex < 0)
+        return false;
+
+    const QString oldGroup = m_groupByMember.value(id);
+    if (oldGroup == groupName)
+        return false;
+
+    if (!oldGroup.isEmpty())
+    {
+        const int oldGroupIndex = m_groupIndexByName.value(oldGroup, -1);
+        if (oldGroupIndex >= 0)
+            m_groups[oldGroupIndex].members.remove(id);
+    }
+
+    m_groups[targetGroupIndex].members.insert(id);
+    m_groupByMember.insert(id, groupName);
+    return true;
+}
+
+void TransferListModel::removeMemberFromGroup(const BitTorrent::TorrentID &id)
+{
+    const QString oldGroup = m_groupByMember.take(id);
+    if (oldGroup.isEmpty())
+        return;
+
+    const int groupIndex = m_groupIndexByName.value(oldGroup, -1);
+    if (groupIndex >= 0)
+        m_groups[groupIndex].members.remove(id);
 }
 
 void TransferListModel::configure()
@@ -743,8 +1401,17 @@ void TransferListModel::configure()
         isDataChanged = true;
     }
 
-    if (isDataChanged)
-        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    if (isDataChanged && (rowCount() > 0))
+    {
+        emit dataChanged(index(0, 0), index(rowCount() - 1, columnCount() - 1));
+        for (int groupRow = 0; groupRow < m_groups.size(); ++groupRow)
+        {
+            const QModelIndex parentIndex = makeGroupIndex(groupRow, 0);
+            const int childCount = rowCount(parentIndex);
+            if (childCount > 0)
+                emit dataChanged(index(0, 0, parentIndex), index(childCount - 1, columnCount() - 1, parentIndex));
+        }
+    }
 }
 
 void TransferListModel::loadUIThemeResources()
