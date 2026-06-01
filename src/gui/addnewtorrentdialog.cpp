@@ -53,6 +53,7 @@
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
+#include "base/bittorrent/lttypecast.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentcontenthandler.h"
@@ -820,6 +821,27 @@ void AddNewTorrentDialog::setupTreeview()
     BitTorrent::AddTorrentParams &addTorrentParams = m_currentContext->torrentParams;
     if (addTorrentParams.filePaths.isEmpty())
         addTorrentParams.filePaths = torrentInfo.filePaths();
+
+    if (addTorrentParams.filePriorities.isEmpty())
+    {
+        lt::add_torrent_params p = torrentDescr.ltAddTorrentParams();
+        if (p.file_priorities.empty())
+        {
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            addTorrentParams.filePriorities.resize(torrentInfo.filesCount(), BitTorrent::DownloadPriority::Normal);
+        }
+        else
+        {
+            addTorrentParams.filePriorities.resize(torrentInfo.filesCount(), BitTorrent::DownloadPriority::Ignored);
+            const auto nativeIndexes = torrentInfo.nativeIndexes();
+            for (qsizetype i = 0; i < nativeIndexes.size(); ++i)
+            {
+                const auto ordIndex = static_cast<std::size_t>(BitTorrent::LT::toUnderlyingType(nativeIndexes[i]));
+                if (ordIndex < p.file_priorities.size())
+                    addTorrentParams.filePriorities[i] = BitTorrent::LT::fromNative(p.file_priorities[ordIndex]);
+            }
+        }
+    }
 
     m_contentAdaptor = std::make_unique<TorrentContentAdaptor>(torrentInfo, addTorrentParams.filePaths
             , addTorrentParams.filePriorities, [this] { updateDiskSpaceLabel(); });
