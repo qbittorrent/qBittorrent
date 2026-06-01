@@ -755,7 +755,7 @@ void WebApplication::setSessionCookie(Http::HeaderMap &headers)
         cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
         cookie.setPath(u"/"_s);
         if (m_isCSRFProtectionEnabled)
-            cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
+            cookie.setSameSitePolicy(QNetworkCookie::SameSite::Lax);
         else if (cookie.isSecure())
             cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
         headers.insert(Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm()));
