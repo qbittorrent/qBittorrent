@@ -2176,6 +2176,16 @@ void Preferences::setAddNewTorrentDialogAttached(const bool attached)
     setValue(u"AddNewTorrentDialog/Attached"_s, attached);
 }
 
+bool Preferences::getShadowBan() const
+{
+    return value(u"Preferences/Advanced/ShadowBan"_s, false);
+}
+
+void Preferences::setShadowBan(const bool checked)
+{
+    setValue(u"Preferences/Advanced/ShadowBan"_s, checked);
+}
+
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())

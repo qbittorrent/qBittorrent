@@ -124,6 +124,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_DOWN, Qt::Horizontal, tr("Downloaded", "i.e: total data downloaded"));
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
+    m_listModel->setHeaderData(PeerListColumns::SHADOWBANNED, Qt::Horizontal, tr("Shadowbanned", "i.e: Is this peer shadowbanned?"));
     m_listModel->setHeaderData(PeerListColumns::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
     // Set header text alignment
     m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
@@ -133,6 +134,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_DOWN, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::SHADOWBANNED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     // Proxy model to support sorting without actually altering the underlying model
     m_proxyModel = new PeerListSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
@@ -309,6 +311,8 @@ void PeerListWidget::showPeerListMenu()
     menu->addSeparator();
     QAction *banPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"peers-remove"_s), tr("Ban peer permanently")
         , this, &PeerListWidget::banSelectedPeers);
+    QAction *shadowbanPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"peers-remove"_s), tr("Shadowban peer")
+        , this, &PeerListWidget::shadowbanSelectedPeers);
 
     // disable actions
     const auto disableAction = [](QAction *action, const QString &tooltip)
@@ -329,6 +333,7 @@ void PeerListWidget::showPeerListMenu()
         const QString tooltip = tr("No peer was selected");
         disableAction(copyPeers, tooltip);
         disableAction(banPeers, tooltip);
+        disableAction(shadowbanPeers, tooltip);
     }
 
     menu->popup(QCursor::pos());
@@ -339,14 +344,28 @@ void PeerListWidget::banSelectedPeers()
     // Store selected rows first as selected peers may disconnect
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
 
-    QList<QString> selectedIPs;
-    selectedIPs.reserve(selectedIndexes.size());
+    struct peerData {
+        QString ip;
+        QString client;
+        QString peerId;
+        QString country;
+    };
+
+    QVector<peerData> selectedPeers;
+    selectedPeers.reserve(selectedIndexes.size());
 
     for (const QModelIndex &index : selectedIndexes)
     {
         const int row = m_proxyModel->mapToSource(index).row();
         const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
-        selectedIPs += ip;
+        const QString client = m_listModel->item(row, PeerListColumns::CLIENT)->text();
+        const QString peerId = m_listModel->item(row, PeerListColumns::PEERID_CLIENT)->text();
+
+        QHostAddress host(ip);
+        const QString country = Net::GeoIPManager::CountryName(Net::GeoIPManager::instance()->lookup(host));
+
+        peerData tmp{ip, client, peerId, country};
+        selectedPeers += tmp;
     }
 
     // Confirm before banning peer
@@ -354,10 +373,53 @@ void PeerListWidget::banSelectedPeers()
         , tr("Are you sure you want to permanently ban the selected peers?"));
     if (btn != QMessageBox::Yes) return;
 
-    for (const QString &ip : selectedIPs)
+    for (const peerData &data : selectedPeers)
     {
-        BitTorrent::Session::instance()->banIP(ip);
-        LogMsg(tr("Peer \"%1\" is manually banned").arg(ip));
+        BitTorrent::Session::instance()->banIP(data.ip);
+        LogMsg(tr("Peer \"%1\" is manually banned. PeerID: '%2' Client: '%3' Country: '%4'").arg(data.ip, data.peerId, data.client, data.country));
+    }
+    // Refresh list
+    loadPeers(m_properties->getCurrentTorrent());
+}
+
+void PeerListWidget::shadowbanSelectedPeers()
+{
+    // Store selected rows first as selected peers may disconnect
+    const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
+
+    struct peerData {
+        QString ip;
+        QString client;
+        QString peerId;
+        QString country;
+    };
+
+    QVector<peerData> selectedPeers;
+    selectedPeers.reserve(selectedIndexes.size());
+
+    for (const QModelIndex &index : selectedIndexes)
+    {
+        const int row = m_proxyModel->mapToSource(index).row();
+        const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
+        const QString client = m_listModel->item(row, PeerListColumns::CLIENT)->text();
+        const QString peerId = m_listModel->item(row, PeerListColumns::PEERID_CLIENT)->text();
+
+        QHostAddress host(ip);
+        const QString country = Net::GeoIPManager::CountryName(Net::GeoIPManager::instance()->lookup(host));
+
+        peerData tmp{ip, client, peerId, country};
+        selectedPeers += tmp;
+    }
+
+    // Confirm before banning peer
+    const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Shadowban peer")
+            , tr("Are you sure you want to shadowban the selected peers?"));
+    if (btn != QMessageBox::Yes) return;
+
+    for (const peerData &data : selectedPeers)
+    {
+        BitTorrent::Session::instance()->shadowbanIP(data.ip);
+        LogMsg(tr("Peer \"%1\" is manually shadowbanned. PeerID: '%2' Client: '%3' Country: '%4'").arg(data.ip, data.peerId, data.client, data.country));
     }
     // Refresh list
     loadPeers(m_properties->getCurrentTorrent());
@@ -519,6 +581,8 @@ void PeerListWidget::updatePeer(const int row, const BitTorrent::Torrent *torren
             , peer.progress(), intDataTextAlignment);
     setModelData(m_listModel, row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + u'%')
             , peer.relevance(), intDataTextAlignment);
+    setModelData(m_listModel, row, PeerListColumns::SHADOWBANNED, peer.isShadowBanned() ? u"✓"_s : u""_s
+            , peer.isShadowBanned(), intDataTextAlignment);
 
     const PathList filePaths = torrent->info().filesForPiece(peer.downloadingPieceIndex());
     QStringList downloadingFiles;

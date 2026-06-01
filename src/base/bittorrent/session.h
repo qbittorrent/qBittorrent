@@ -242,6 +242,11 @@ namespace BitTorrent
         virtual void setAdditionalTrackersURL(const QString &url) = 0;
         virtual QString additionalTrackersFromURL() const = 0;
 
+        virtual bool isShadowBanEnabled() const = 0;
+        virtual void setShadowBan(bool value) = 0;
+        virtual QStringList shadowBannedIPs() const = 0;
+        virtual void setShadowBannedIPs(const QStringList &newList) = 0;
+
         virtual int globalDownloadSpeedLimit() const = 0;
         virtual void setGlobalDownloadSpeedLimit(int limit) = 0;
         virtual int globalUploadSpeedLimit() const = 0;
@@ -467,6 +472,7 @@ namespace BitTorrent
         virtual bool isListening() const = 0;
 
         virtual void banIP(const QString &ip) = 0;
+        virtual void shadowbanIP(const QString &ip) = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
         virtual bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) = 0;

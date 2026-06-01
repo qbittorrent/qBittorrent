@@ -70,6 +70,7 @@ public:
         TOT_UP,
         RELEVANCE,
         DOWNLOADING_PIECE,
+        SHADOWBANNED,
         IP_HIDDEN,
 
         COL_COUNT
@@ -89,6 +90,7 @@ private slots:
     void displayColumnHeaderMenu();
     void showPeerListMenu();
     void banSelectedPeers();
+    void shadowbanSelectedPeers();
     void copySelectedPeers();
     void handleSortColumnChanged(int col);
     void handleResolved(const QHostAddress &ip, const QString &hostname) const;

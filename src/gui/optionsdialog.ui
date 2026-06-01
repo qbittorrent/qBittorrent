@@ -2362,6 +2362,39 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="groupShadowBan">
+              <property name="title">
+               <string>Shadow Ban Settings</string>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_172">
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_111">
+                 <item>
+                  <widget class="QCheckBox" name="shadowBanEnabled">
+                   <property name="text">
+                    <string>Enable Shadow Ban (requires restart)</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <widget class="QPushButton" name="shadowBanListButton">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Manually shadow banned IP addresses...</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_3">
               <property name="orientation">
                <enum>Qt::Orientation::Vertical</enum>

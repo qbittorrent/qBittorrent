@@ -57,6 +57,7 @@
 #include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
+#include "base/net/downloadmanager.h"
 
 class QString;
 class QTimer;
@@ -442,6 +443,7 @@ namespace BitTorrent
         bool isListening() const override;
 
         void banIP(const QString &ip) override;
+        void shadowbanIP(const QString &ip) override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
         bool addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params = {}) override;
@@ -514,6 +516,11 @@ namespace BitTorrent
         QString additionalTrackersURL() const override;
         void setAdditionalTrackersURL(const QString &url) override;
         QString additionalTrackersFromURL() const override;
+
+        bool isShadowBanEnabled() const override;
+        void setShadowBan(bool value) override;
+        QStringList shadowBannedIPs() const override;
+        void setShadowBannedIPs(const QStringList &newList) override;
 
     signals:
         void addTorrentAlertsReceived(qsizetype count);
@@ -793,6 +800,9 @@ namespace BitTorrent
 
         QString m_additionalTrackersFromURL;
         QTimer *m_updateTrackersFromURLTimer = nullptr;
+
+        CachedSettingValue<bool> m_shadowBan;
+        CachedSettingValue<QStringList> m_shadowBannedIPs;
 
         bool m_isRestored = false;
         bool m_isPaused = isStartPaused();
