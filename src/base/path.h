@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,6 +30,7 @@
 #pragma once
 
 #include <filesystem>
+#include <iterator>
 
 #include <QMetaType>
 #include <QString>
@@ -41,6 +42,8 @@ class QStringView;
 class Path final
 {
 public:
+    class Iterator;
+
     Path() = default;
 
     explicit Path(const QString &pathStr);
@@ -75,6 +78,9 @@ public:
     Path &operator/=(const Path &other);
     Path &operator+=(QStringView str);
 
+    Iterator begin() const;
+    Iterator end() const;
+
     static Path commonPath(const Path &left, const Path &right);
 
     static Path findRootFolder(const PathList &filePaths);
@@ -92,6 +98,37 @@ private:
 };
 
 Q_DECLARE_METATYPE(Path)
+
+class Path::Iterator final
+{
+public:
+    using iterator_category = std::input_iterator_tag;
+    using difference_type = qsizetype;
+    using value_type = Path;
+    using const_pointer = const value_type *;
+    using pointer = const_pointer;
+    using const_reference = const value_type &;
+    using reference = const_reference;
+
+    struct EndIteratorTag {};
+
+    Iterator(const Path &path);
+    Iterator(const Path &path, EndIteratorTag);
+
+    reference operator*() const;
+    pointer operator->();
+    Iterator &operator++();
+    Iterator operator++(int);
+
+    friend bool operator==(const Iterator &a, const Iterator &b);
+    friend bool operator!=(const Iterator &a, const Iterator &b);
+
+private:
+    const Path &m_path;
+    qsizetype m_depth = 0;
+    qsizetype m_itemsCount = 0;
+    Path m_currentPath;
+};
 
 bool operator==(const Path &lhs, const Path &rhs);
 Path operator+(const Path &lhs, QStringView rhs);

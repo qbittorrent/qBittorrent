@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,28 +28,38 @@
 
 #pragma once
 
-#include <QCoreApplication>
+#include <QDialog>
 
-#include "base/pathfwd.h"
+#include "base/settingvalue.h"
 
-class QString;
+class TorrentContentLayoutModel;
 
 namespace BitTorrent
 {
-    class AbstractFileStorage
-    {
-        Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
-
-    public:
-        virtual ~AbstractFileStorage() = default;
-
-        virtual int filesCount() const = 0;
-        virtual Path filePath(int index) const = 0;
-        virtual qlonglong fileSize(int index) const = 0;
-
-        virtual void renameFile(int index, const Path &newPath) = 0;
-
-        void renameFile(const Path &oldPath, const Path &newPath);
-        void renameFolder(const Path &oldFolderPath, const Path &newFolderPath);
-    };
+    class TorrentContentHandler;
 }
+
+namespace Ui
+{
+    class TorrentContentLayoutDialog;
+}
+
+class TorrentContentLayoutDialog final : public QDialog
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TorrentContentLayoutDialog)
+
+public:
+    explicit TorrentContentLayoutDialog(BitTorrent::TorrentContentHandler *contentHandler, QWidget *parent = nullptr);
+    ~TorrentContentLayoutDialog();
+
+private:
+    void apply();
+
+    Ui::TorrentContentLayoutDialog *m_ui = nullptr;
+
+    TorrentContentLayoutModel *m_model = nullptr;
+
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeViewState;
+};
