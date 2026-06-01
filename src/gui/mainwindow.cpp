@@ -225,29 +225,31 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     connect(m_tabs.data(), &QTabWidget::currentChanged, this, &MainWindow::tabChanged);
 
     m_splitter = new QSplitter(Qt::Horizontal, this);
-    // vSplitter->setChildrenCollapsible(false);
 
     auto *hSplitter = new QSplitter(Qt::Vertical, this);
     hSplitter->setChildrenCollapsible(false);
     hSplitter->setFrameShape(QFrame::NoFrame);
 
     // Torrent filter
+    auto *columnFilterSpacer = new QWidget;
+    columnFilterSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
     m_columnFilterEdit = new LineEdit;
+    m_columnFilterEdit->setContextMenuPolicy(Qt::CustomContextMenu);
+    m_columnFilterEdit->setFixedWidth(200);
     m_columnFilterEdit->setPlaceholderText(tr("Filter torrents..."));
     m_columnFilterEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    m_columnFilterEdit->setFixedWidth(200);
-    m_columnFilterEdit->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_columnFilterEdit, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
-    auto *columnFilterLabel = new QLabel(tr("Filter by:"));
+
     m_columnFilterComboBox = new QComboBox;
-    QHBoxLayout *columnFilterLayout = new QHBoxLayout(m_columnFilterWidget);
+
+    QHBoxLayout *columnFilterLayout = new QHBoxLayout;
     columnFilterLayout->setContentsMargins(0, 0, 0, 0);
-    auto *columnFilterSpacer = new QWidget(this);
-    columnFilterSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     columnFilterLayout->addWidget(columnFilterSpacer);
     columnFilterLayout->addWidget(m_columnFilterEdit);
-    columnFilterLayout->addWidget(columnFilterLabel, 0);
+    columnFilterLayout->addWidget(new QLabel(tr("Filter by:")), 0);
     columnFilterLayout->addWidget(m_columnFilterComboBox, 0);
+
     m_columnFilterWidget = new QWidget(this);
     m_columnFilterWidget->setLayout(columnFilterLayout);
     m_columnFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_columnFilterWidget);
