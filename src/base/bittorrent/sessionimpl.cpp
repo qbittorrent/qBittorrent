@@ -2966,9 +2966,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
     };
 
-    // Start a watchdog timer to detect IO thread blockage during file search
+    // Start a watchdog timer to detect if the continuation never fires
     QPointer<QTimer> watchdogTimer;
-    if (needFindIncompleteFiles)
     {
         auto *timer = new QTimer(this);
         timer->setSingleShot(true);
@@ -2977,9 +2976,8 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
             m_addTorrentWatchdogTimers.remove(timer);
             timer->deleteLater();
 
-            LogMsg(tr("Warning: Torrent add file search is taking longer than expected. "
-                "The IO thread may be blocked. Torrent: %1. "
-                "Async calls: %2, Alerts received: %3.")
+            LogMsg(tr("Warning: Torrent add continuation did not execute within timeout. "
+                "Torrent: %1. Async calls: %2, Alerts received: %3.")
                 .arg(id.toString()
                     , QString::number(m_addTorrentCallCount)
                     , QString::number(m_addTorrentAlertReceivedCount))
@@ -2990,10 +2988,12 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         watchdogTimer = timer;
     }
 
-    resolveFileNames().then(this, [this, id, loadTorrentParams = std::move(loadTorrentParams),
+    QFuture<FileSearchResult> fileNamesFuture = resolveFileNames();
+
+    fileNamesFuture.then(this, [this, id, loadTorrentParams = std::move(loadTorrentParams),
             watchdogTimer = std::move(watchdogTimer)](const FileSearchResult &result) mutable
     {
-        // Cancel the watchdog timer since file search completed
+        // Cancel the watchdog timer since continuation is running
         if (watchdogTimer)
         {
             if (m_addTorrentWatchdogTimers.contains(watchdogTimer.data()))
