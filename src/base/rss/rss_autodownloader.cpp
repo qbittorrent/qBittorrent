@@ -100,7 +100,7 @@ QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
 
 QString computeSmartFilterRegex(const QStringList &filters)
 {
-    return u"(?:_|\\b)(?:(?:%1))(?:_|\\b)"_s.arg(filters.join(u")|(?:"));
+    return u"(?:_|\\b)(?:%1)(?:_|\\b)"_s.arg(filters.join(u"|"));
 }
 
 AutoDownloader::AutoDownloader(IApplication *app)
