@@ -181,8 +181,8 @@ window.qBittorrent.Search ??= (() => {
 
         // restore search tabs
         const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-        for (const { id, pattern } of searchJobs)
-            createSearchTab(id, pattern);
+        for (const { id, pattern, category, plugins } of searchJobs)
+            createSearchTab(id, pattern, category, plugins);
     };
 
     const numSearchTabs = () => {
@@ -207,7 +207,7 @@ window.qBittorrent.Search ??= (() => {
         tabTitle.textContent = state.searchPattern + ((unreadCount > 0) ? ` (+${unreadCount})` : "");
     };
 
-    const createSearchTab = (searchId, pattern) => {
+    const createSearchTab = (searchId, pattern, category, plugins) => {
         const newTabId = `${searchTabIdPrefix}${searchId}`;
         const tabElem = document.createElement("a");
 
@@ -256,6 +256,8 @@ window.qBittorrent.Search ??= (() => {
 
         searchState.set(searchId, {
             searchPattern: pattern,
+            category: category,
+            plugins: plugins,
             filterPattern: searchText.filterPattern,
             seedsFilter: { min: searchSeedsFilter.min, max: searchSeedsFilter.max },
             sizeFilter: { min: searchSizeFilter.min, minUnit: searchSizeFilter.minUnit, max: searchSizeFilter.max, maxUnit: searchSizeFilter.maxUnit },
@@ -484,10 +486,10 @@ window.qBittorrent.Search ??= (() => {
 
                 const responseJSON = await response.json();
                 const searchId = responseJSON.id;
-                createSearchTab(searchId, pattern);
+                createSearchTab(searchId, pattern, category, plugins);
 
                 const searchJobs = JSON.parse(localPreferences.get("search_jobs", "[]"));
-                searchJobs.push({ id: searchId, pattern: pattern });
+                searchJobs.push({ id: searchId, pattern: pattern, category: category, plugins: plugins });
                 localPreferences.set("search_jobs", JSON.stringify(searchJobs));
                 updateSearchButtonState();
             });
@@ -506,8 +508,8 @@ window.qBittorrent.Search ??= (() => {
                 method: "POST",
                 body: new URLSearchParams({
                     pattern: state.searchPattern,
-                    category: document.getElementById("categorySelect").value,
-                    plugins: document.getElementById("pluginsSelect").value
+                    category: state.category ?? document.getElementById("categorySelect").value,
+                    plugins: state.plugins ?? document.getElementById("pluginsSelect").value
                 })
             })
             .then(async (response) => {
