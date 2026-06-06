@@ -3354,7 +3354,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checkbox.dataset.id = row.rowId;
                     checkbox.addEventListener("click", (e) => {
                         const targetId = e.target.dataset.id;
-                        const row = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.getRow(targetId);
+                        const row = window.qBittorrent.RssDownloader.rssDownloaderFeedSelectionTable.getRow(targetId);
                         window.qBittorrent.RssDownloader.rssDownloaderFeedSelectionTable.updateRowData({
                             rowId: row.rowId,
                             checked: checkbox.checked
