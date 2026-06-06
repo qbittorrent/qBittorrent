@@ -151,11 +151,10 @@ void Net::SMTPClient::sendMail(const QString &from, const QString &to
 {
     QString normalizedTo = to;
     const QStringList groupList = normalizedTo.remove(u' ').split(u';', Qt::SkipEmptyParts);
-    QStringListIterator groupListIterator {groupList};
-    while (groupListIterator.hasNext())
+    for (const QString &group : groupList)
     {
         [[maybe_unused]] auto *obj = new SMTPClient(from
-            , groupListIterator.next().split(u',', Qt::SkipEmptyParts)
+            , group.split(u',', Qt::SkipEmptyParts)
             , subject, body, context);
     }
 }
