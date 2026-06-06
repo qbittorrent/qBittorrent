@@ -36,7 +36,9 @@
 #include <QFileInfo>
 #include <QFuture>
 #include <QJsonArray>
+#include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonValue>
 #include <QList>
 #include <QRegularExpression>
 #include <QUrl>
@@ -1078,6 +1080,53 @@ void TorrentsController::pieceAvailabilityAction()
     setResult(pieceAvailability);
 }
 
+namespace
+{
+    std::optional<BitTorrent::InitialTorrentStats> parseInitialStats(const QString &rawJson)
+    {
+        if (rawJson.isEmpty())
+            return std::nullopt;
+
+        QJsonParseError parseError;
+        const QJsonDocument doc = QJsonDocument::fromJson(rawJson.toUtf8(), &parseError);
+        if (parseError.error != QJsonParseError::NoError)
+            throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats` must be a JSON object: %1").arg(parseError.errorString()));
+        if (!doc.isObject())
+            throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats` must be a JSON object"));
+
+        const QJsonObject obj = doc.object();
+
+        const auto readInt64 = [&obj](const QString &key) -> qint64
+        {
+            const QJsonValue v = obj.value(key);
+            if (v.isUndefined() || v.isNull())
+                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` is required").arg(key));
+            return v.toVariant().toLongLong();
+        };
+        const auto readInt = [&obj](const QString &key) -> int
+        {
+            const QJsonValue v = obj.value(key);
+            if (v.isUndefined() || v.isNull())
+                throw APIError(APIErrorType::BadParams, QCoreApplication::translate("TorrentsController", "`stats.%1` is required").arg(key));
+            return v.toVariant().toInt();
+        };
+
+        BitTorrent::InitialTorrentStats stats;
+        stats.totalUploaded = readInt64(u"total_uploaded"_s);
+        stats.totalDownloaded = readInt64(u"total_downloaded"_s);
+        stats.addedTime = readInt64(u"added_time"_s);
+        stats.completedTime = readInt64(u"completed_time"_s);
+        stats.lastSeenComplete = readInt64(u"last_seen_complete"_s);
+        stats.lastUpload = readInt64(u"last_upload"_s);
+        stats.lastDownload = readInt64(u"last_download"_s);
+        stats.activeTime = readInt(u"active_time"_s);
+        stats.finishedTime = readInt(u"finished_time"_s);
+        stats.seedingTime = readInt(u"seeding_time"_s);
+
+        return stats;
+    }
+}
+
 void TorrentsController::addAction()
 {
     const QStringList urls = params()[u"urls"_s].split(u'\n', Qt::SkipEmptyParts);
@@ -1113,7 +1162,12 @@ void TorrentsController::addAction()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
 
+    const std::optional<BitTorrent::InitialTorrentStats> initialStats = parseInitialStats(params()[u"stats"_s]);
+
     const DataMap &torrents = data();
+
+    if (initialStats && ((urls.size() + torrents.size()) > 1))
+        throw APIError(APIErrorType::BadParams, tr("Cannot specify stats when adding multiple torrents"));
 
     QList<BitTorrent::DownloadPriority> filePriorities;
     const QStringList filePrioritiesParam = params()[u"filePriorities"_s].split(u',', Qt::SkipEmptyParts);
@@ -1172,7 +1226,8 @@ void TorrentsController::addAction()
             .certificate = QSslCertificate(params()[KEY_PROP_SSL_CERTIFICATE].toLatin1()),
             .privateKey = Utils::SSLKey::load(params()[KEY_PROP_SSL_PRIVATEKEY].toLatin1()),
             .dhParams = params()[KEY_PROP_SSL_DHPARAMS].toLatin1()
-        }
+        },
+        .initialStats = initialStats
     };
 
 
