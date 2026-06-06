@@ -1,5 +1,4 @@
 #include "customizabletoolbar.h"
-#include "base/global.h"
 
 #include <QAction>
 #include <QActionEvent>
@@ -10,6 +9,8 @@
 #include <QMouseEvent>
 #include <QPixmap>
 #include <QTimer>
+
+#include "base/global.h"
 
 CustomizableToolBar::CustomizableToolBar(QWidget *parent)
     : QToolBar(parent)
@@ -201,15 +202,7 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         if (!w && !a->isSeparator())
             continue;
 
-        int threshold = 0;
-        if (a->isSeparator())
-        {
-            threshold = w ? w->x() + w->width() / 2 : 0;
-        }
-        else
-        {
-            threshold = w->x() + w->width() / 2;
-        }
+        const int threshold = w ? (a->isSeparator() ? (movingLeft ? w->x() + w->width() : w->x()) : w->x() + w->width() / 2) : 0;
 
         const int compareX = movingLeft ? dragFloatLeft : dragFloatRight;
         if (compareX < threshold)
@@ -219,7 +212,8 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         }
     }
 
-    if (m_lastSwapX >= 0 && qAbs(dragFloatLeft - m_lastSwapX) < 14)
+    const bool targetIsSeparator = newInsertBefore && newInsertBefore->isSeparator();
+    if (!targetIsSeparator && m_lastSwapX >= 0 && qAbs(dragFloatLeft - m_lastSwapX) < 14)
         return;
     // Only swap when target slot changes, one atomic reorder per crossing
     if (newInsertBefore == m_gapTarget)
@@ -268,6 +262,7 @@ void CustomizableToolBar::endDrag(const QPoint &globalPos)
 
     m_gapTarget = nullptr;
     m_lastSwapX = -1;
+    m_lastFloatCentreX = 0;
     m_dragAction = nullptr;
     m_dragWidget = nullptr;
     m_dragJustFinished = true;
