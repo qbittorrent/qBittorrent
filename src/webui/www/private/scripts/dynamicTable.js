@@ -1181,12 +1181,14 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("infohash_v2", "", "QBT_TR(Info Hash v2)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("reannounce", "", "QBT_TR(Reannounce In)QBT_TR[CONTEXT=TransferListModel]", 100, false);
             this.newColumn("private", "", "QBT_TR(Private)QBT_TR[CONTEXT=TransferListModel]", 100, false);
+            this.newColumn("files_count", "", "QBT_TR(Files count)QBT_TR[CONTEXT=TransferListModel]", 100, false);
 
             this.columns["state_icon"].dataProperties[0] = "state";
             this.columns["name"].dataProperties.push("state");
             this.columns["num_seeds"].dataProperties.push("num_complete");
             this.columns["num_leechs"].dataProperties.push("num_incomplete");
             this.columns["time_active"].dataProperties.push("seeding_time");
+            this.columns["files_count"].dataProperties = ["wanted_files_count", "files_count"];
 
             this.initColumnsFunctions();
         }
@@ -1578,6 +1580,40 @@ window.qBittorrent.DynamicTable ??= (() => {
                     : "QBT_TR(N/A)QBT_TR[CONTEXT=PropertiesWidget]";
                 td.textContent = string;
                 td.title = string;
+            };
+
+            this.columns["files_count"].updateTd = function(td, row) {
+                const hasMetadata = row["full_data"].has_metadata;
+                if (!hasMetadata) {
+                    td.textContent = "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
+                    td.title = "QBT_TR(N/A)QBT_TR[CONTEXT=TransferListDelegate]";
+                    return;
+                }
+
+                const wantedFilesCount = this.getRowValue(row, 0);
+                const allFilesCount = this.getRowValue(row, 1);
+                const value = `${wantedFilesCount} (${allFilesCount})`;
+                td.textContent = value;
+                td.title = value;
+            };
+            this.columns["files_count"].compareRows = function(row1, row2) {
+                const hasMetadata1 = row1["full_data"].has_metadata;
+                const hasMetadata2 = row2["full_data"].has_metadata;
+                if (!hasMetadata1 || !hasMetadata2) {
+                    if (!hasMetadata1)
+                        return !hasMetadata2 ? 0 : 1;
+                    return -1;
+                }
+
+                const wanted1 = this.getRowValue(row1, 0);
+                const wanted2 = this.getRowValue(row2, 0);
+                const result = compareNumbers(wanted1, wanted2);
+                if (result !== 0)
+                    return result;
+
+                const total1 = this.getRowValue(row1, 1);
+                const total2 = this.getRowValue(row2, 1);
+                return compareNumbers(total1, total2);
             };
         }
 

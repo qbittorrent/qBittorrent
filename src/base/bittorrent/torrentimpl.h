@@ -135,6 +135,7 @@ namespace BitTorrent
         void removeAllTags() override;
 
         int filesCount() const override;
+        int wantedFilesCount() const override;
         int piecesCount() const override;
         int piecesHave() const override;
         qreal progress() const override;
