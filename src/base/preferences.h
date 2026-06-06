@@ -441,6 +441,9 @@ public:
     bool isAddNewTorrentDialogAttached() const;
     void setAddNewTorrentDialogAttached(bool attached);
 
+    bool getShadowBan() const;
+    void setShadowBan(bool checked);
+
 public slots:
     void setStatusFilterState(bool checked);
     void setCategoryFilterState(bool checked);

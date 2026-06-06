@@ -645,6 +645,22 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
             </fieldset>
         </div>
     </fieldset>
+
+    <fieldset class="settings">
+        <legend>
+            <label>QBT_TR(Shadow Ban)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div class="formRow">
+            <label for="shadowBan">QBT_TR(Enable Shadowban behavior:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="shadowBan">
+        </div>
+        <div class="formRow">
+            <fieldset class="settings">
+                <legend id="shadowBanLabel">QBT_TR(Manually shadow banned IP addresses...)QBT_TR[CONTEXT=OptionsDialog]</legend>
+                <textarea id="shadowBannedIPs" rows="5" cols="70" aria-labelledby="shadowBanLabel"></textarea>
+            </fieldset>
+        </div>
+    </fieldset>
 </div>
 
 <div id="SpeedTab" class="PrefTab invisible">
@@ -2734,6 +2750,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("markOfTheWeb").checked = pref.mark_of_the_web;
                     document.getElementById("ignoreSSLErrors").checked = pref.ignore_ssl_errors;
                     document.getElementById("pythonExecutablePath").value = pref.python_executable_path;
+                    document.getElementById("shadowBan").checked = pref.auto_ban_unknown_peer;
+                    document.getElementById("shadowBannedIPs").value = pref.auto_ban_unknown_peer;
                     // libtorrent section
                     document.getElementById("bdecodeDepthLimit").value = pref.bdecode_depth_limit;
                     document.getElementById("bdecodeTokenLimit").value = pref.bdecode_token_limit;
@@ -3223,6 +3241,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["mark_of_the_web"] = document.getElementById("markOfTheWeb").checked;
             settings["ignore_ssl_errors"] = document.getElementById("ignoreSSLErrors").checked;
             settings["python_executable_path"] = document.getElementById("pythonExecutablePath").value;
+            settings["shadow_ban_enabled"] = document.getElementById("shadowBan").checked;
+            settings["shadow_banned_IPs"] = document.getElementById("shadowBannedIPs").value;
 
             // libtorrent section
             settings["bdecode_depth_limit"] = Number(document.getElementById("bdecodeDepthLimit").value);
