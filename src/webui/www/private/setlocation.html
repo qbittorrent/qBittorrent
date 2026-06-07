@@ -38,6 +38,8 @@
             const useDownloadPathInput = document.getElementById("useDownloadPath");
             if (downloadPath !== null)
                 downloadPathInput.value = decodeURIComponent(downloadPath);
+            if (downloadPathInput.value === originalLocation)
+                downloadPathInput.value = "";
             useDownloadPathInput.checked = (downloadPathInput.value !== "");
             downloadPathInput.disabled = !useDownloadPathInput.checked;
 
@@ -80,7 +82,7 @@
                             location: location
                         })
                     })
-                    : Promise.resolve({ok: true});
+                    : Promise.resolve({ ok: true });
 
                 setLocation
                     .then(async (response) => {
