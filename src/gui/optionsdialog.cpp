@@ -1095,6 +1095,8 @@ void OptionsDialog::loadSpeedTabOptions()
     m_ui->checkShowMenuBarIcon->hide();
 #endif
 
+    m_ui->checkMinimizeOnEsc->setChecked(pref->isMinimizeOnEscEnabled());
+
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
@@ -1140,6 +1142,8 @@ void OptionsDialog::saveSpeedTabOptions() const
     pref->setSpeedInDockEnabled(m_ui->checkShowSpeedInDock->isChecked());
     pref->setMacOSMenuBarIconEnabled(m_ui->checkShowMenuBarIcon->isChecked());
 #endif
+
+    pref->setMinimizeOnEscEnabled(m_ui->checkMinimizeOnEsc->isChecked());
 }
 
 void OptionsDialog::loadBittorrentTabOptions()

@@ -931,6 +931,14 @@ void MainWindow::createKeyboardShortcuts()
     const auto *switchSearchFilterShortcutAlternative = new QShortcut((Qt::CTRL | Qt::Key_E), m_transferListWidget);
     connect(switchSearchFilterShortcutAlternative, &QShortcut::activated, this, &MainWindow::toggleFocusBetweenLineEdits);
 
+    Preferences *const pref = Preferences::instance();
+
+    if (pref->isMinimizeOnEscEnabled())
+    {
+        const auto *escMinimize = new QShortcut(Qt::Key_Escape, this);
+        connect(escMinimize, &QShortcut::activated, this, &MainWindow::hide);
+    }
+
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
     m_ui->actionOptions->setShortcut(Qt::ALT | Qt::Key_O);
     m_ui->actionStatistics->setShortcut(Qt::CTRL | Qt::Key_I);

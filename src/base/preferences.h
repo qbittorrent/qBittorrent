@@ -440,6 +440,9 @@ public:
     void setAddNewTorrentDialogSavePathHistoryLength(int value);
     bool isAddNewTorrentDialogAttached() const;
     void setAddNewTorrentDialogAttached(bool attached);
+    bool isMinimizeOnEscEnabled() const;
+    void setMinimizeOnEscEnabled(bool value);
+
 
 public slots:
     void setStatusFilterState(bool checked);
