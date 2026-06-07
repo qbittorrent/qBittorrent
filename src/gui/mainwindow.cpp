@@ -936,7 +936,7 @@ void MainWindow::createKeyboardShortcuts()
     if (pref->isMinimizeOnEscEnabled())
     {
         const auto *escMinimize = new QShortcut(Qt::Key_Escape, this);
-        connect(escMinimize, &QShortcut::activated, this, &MainWindow::hide);
+        connect(escMinimize, &QShortcut::activated, this, &MainWindow::showMinimized);
     }
 
     m_ui->actionDocumentation->setShortcut(QKeySequence::HelpContents);
