@@ -45,6 +45,7 @@ class QSplitter;
 class QString;
 class QTabWidget;
 class QTimer;
+class QShortcut;
 
 class AboutDialog;
 class DownloadFromURLDialog;
@@ -128,6 +129,7 @@ private slots:
     void displayRSSTab();
     void displayExecutionLogTab();
     void toggleFocusBetweenLineEdits();
+    void updateMinimizeOnEscShortcut();
     void loadSessionStats();
     void reloadTorrentStats(const QList<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
@@ -250,6 +252,7 @@ private:
     PowerManagement *m_pwr = nullptr;
     QTimer *m_preventTimer = nullptr;
     QMenu *m_toolbarMenu = nullptr;
+    QShortcut *m_minimizeOnEscShortcut = nullptr;
 
     SettingValue<bool> m_storeExecutionLogEnabled;
     SettingValue<bool> m_storeDownloadTrackerFavicon;

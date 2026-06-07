@@ -751,7 +751,7 @@
                <item>
                 <widget class="QCheckBox" name="checkMinimizeOnEsc">
                  <property name="text">
-                  <string>Minimize on ESC (Restart required)</string>
+                  <string>Minimize on ESC</string>
                  </property>
                 </widget>
                </item>
