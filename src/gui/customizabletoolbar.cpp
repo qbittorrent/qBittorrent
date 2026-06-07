@@ -186,12 +186,15 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     const int dragFloatLeft = mapFromGlobal(QPoint(clampedX, 0)).x();
     const int dragFloatRight = mapFromGlobal(QPoint(clampedX + fw, 0)).x();
     const int dragFloatCentre = mapFromGlobal(QPoint(clampedX + fw / 2, 0)).x();
-    const bool movingLeft = (dragFloatCentre < m_lastFloatCentreX);
+    const bool atLeftWall = (clampedX <= toolbarTopLeft.x());
+    const bool movingLeft = atLeftWall || (dragFloatCentre < m_lastFloatCentreX);
     m_lastFloatCentreX = dragFloatCentre;
 
     const int bi = findBoundaryIndex();
     const QList<QAction *> acts = actions();
 
+    if (!acts.isEmpty() && (acts.first() == m_dragAction) && !movingLeft && (m_lastSwapX >= 0) && (qAbs(dragFloatLeft - m_lastSwapX) < 20))
+        return;
     QAction *newInsertBefore = (bi >= 0) ? acts[bi] : nullptr;
     for (int i = 0; i < bi; ++i)
     {
@@ -213,7 +216,7 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     }
 
     const bool targetIsSeparator = newInsertBefore && newInsertBefore->isSeparator();
-    if (!targetIsSeparator && m_lastSwapX >= 0 && qAbs(dragFloatLeft - m_lastSwapX) < 14)
+    if (!targetIsSeparator && (m_lastSwapX >= 0) && (qAbs(dragFloatLeft - m_lastSwapX) < 14))
         return;
     // Only swap when target slot changes, one atomic reorder per crossing
     if (newInsertBefore == m_gapTarget)

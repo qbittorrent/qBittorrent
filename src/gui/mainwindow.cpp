@@ -714,7 +714,7 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
             m_hiddenToolbarActions.clear();
             // Remove all non-locked actions and separators
             const QList<QAction *> current = m_ui->toolBar->actions();
-            for (QAction *a : current)
+            for (QAction *a : asConst(current))
             {
                 if ((a == m_spacerAction) || (a == m_columnFilterAction)
                     || (a->objectName() == u"actionLock"_s))
@@ -754,7 +754,7 @@ void MainWindow::toolbarMenuRequested(const QPoint &pos)
                 u"actionTopQueuePos"_s, u"actionIncreaseQueuePos"_s,
                 u"actionDecreaseQueuePos"_s, u"actionBottomQueuePos"_s
             };
-            for (const QString &name : queueActions)
+            for (const QString &name : asConst(queueActions))
             {
                 if (QAction *a = actionMap.value(name))
                     a->setVisible(false);
@@ -1132,7 +1132,7 @@ void MainWindow::loadSettings()
                 actionMap[a->objectName()] = a;
         }
         const QList<QAction *> currentActions = m_ui->toolBar->actions();
-        for (QAction *a : currentActions)
+        for (QAction *a : asConst(currentActions))
         {
             if ((a == m_spacerAction) || (a == m_columnFilterAction)
                 || (a->objectName() == u"actionLock"_s))
@@ -1140,7 +1140,7 @@ void MainWindow::loadSettings()
             if (a->isSeparator() || actionMap.contains(a->objectName()))
                 m_ui->toolBar->removeAction(a);
         }
-        for (const QString &entry : savedState)
+        for (const QString &entry : asConst(savedState))
         {
             if (entry == u"separator"_s)
             {
@@ -1710,7 +1710,7 @@ void MainWindow::loadPreferences()
                 m_ui->actionDecreaseQueuePos,
                 m_ui->actionBottomQueuePos
             };
-            for (QAction *a : queueOrder)
+            for (QAction *a : asConst(queueOrder))
             {
                 m_ui->toolBar->removeAction(a);
                 m_ui->toolBar->insertAction(m_spacerAction, a);
