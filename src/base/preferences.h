@@ -443,7 +443,6 @@ public:
     bool isMinimizeOnEscEnabled() const;
     void setMinimizeOnEscEnabled(bool value);
 
-
 public slots:
     void setStatusFilterState(bool checked);
     void setCategoryFilterState(bool checked);
