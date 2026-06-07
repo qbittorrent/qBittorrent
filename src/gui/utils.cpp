@@ -52,6 +52,10 @@
 #include <QWidget>
 #include <QWindow>
 
+#ifdef Q_OS_MACOS
+#include "macutilities.h"
+#endif
+
 #ifdef QBT_USES_DBUS
 #include <QDBusConnection>
 #include <QDBusInterface>
@@ -219,6 +223,37 @@ void Utils::Gui::openPath(const Path &path)
     thread->start();
 #else
     QDesktopServices::openUrl(url);
+#endif
+}
+
+void Utils::Gui::openPaths(const PathList &paths)
+{
+    if (paths.empty())
+        return;
+
+    if (paths.size() == 1)
+    {
+        openPath(paths.first());
+        return;
+    }
+
+#ifdef Q_OS_MACOS
+    MacUtils::openFilesWithDefaultApplication(paths);
+#elif defined(Q_OS_UNIX)
+    QStringList urls;
+    urls.reserve(paths.size() + 1);
+    urls << u"open"_s;
+    for (const Path &path : paths)
+        urls << toURL(path).toString();
+
+    if (QProcess::startDetached(u"gio"_s, urls))
+        return;
+
+    for (const Path &path : paths)
+        openPath(path);
+#else
+    for (const Path &path : paths)
+        openPath(path);
 #endif
 }
 
