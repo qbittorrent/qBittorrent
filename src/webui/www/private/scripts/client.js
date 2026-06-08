@@ -62,6 +62,7 @@ window.qBittorrent.Client ??= (() => {
         // fetch various data and store it in memory
         clientDataPromise = window.qBittorrent.ClientData.fetch([
             "add_torrent_default_category",
+            "add_new_torrent_dialog_enabled",
             "color_scheme",
             "date_format",
             "dblclick_complete",
@@ -233,11 +234,34 @@ window.qBittorrent.Client ??= (() => {
                     return;
                 }
 
+                const clientData = window.qBittorrent.ClientData ?? window.parent.qBittorrent.ClientData;
+                const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
+
                 const json = await response.json();
+                const hashes = [];
                 for (const [i, metadata] of json.entries()) {
                     const title = metadata.name || fileNames[i];
                     const hash = metadata.infohash_v2 || metadata.infohash_v1;
-                    createAddTorrentWindow(title, hash, metadata);
+                    if (addTorrentWindowEnabled)
+                        createAddTorrentWindow(title, hash, metadata);
+                    else
+                        hashes.push(hash);
+                }
+
+                if ((hashes.length > 0) && !addTorrentWindowEnabled) {
+                    fetch("api/v2/torrents/add", {
+                            method: "POST",
+                            body: new URLSearchParams({
+                                urls: hashes.join("\n")
+                            })
+                        })
+                        .then((response) => {
+                            if (!response.ok)
+                                alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        })
+                        .catch((error) => {
+                            alert("QBT_TR(Unable to add torrents.)QBT_TR[CONTEXT=HttpServer]");
+                        });
                 }
             })
             .catch((error) => {

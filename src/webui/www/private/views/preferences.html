@@ -140,6 +140,10 @@
     <fieldset class="settings">
         <legend title="QBT_TR(Following settings are WebUI only)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Custom WebUI settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="addTorrentWindowEnabled">
+            <label for="addTorrentWindowEnabled">QBT_TR(Display torrent content and some options)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="displayFullURLTrackerColumn">
             <label for="displayFullURLTrackerColumn">QBT_TR(Display full announce URL in the Tracker column)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -2342,6 +2346,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
                     const dblclickFilter = clientData.get("dblclick_filter") ?? "1";
                     const useAltRowColors = clientData.get("use_alt_row_colors");
+                    const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
 
                     // Behavior tab
                     // Localization
@@ -2359,7 +2364,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Interface
                     updateColoSchemeSelect(colorScheme);
                     document.getElementById("displayDensitySelect").value = displayDensity;
-
+                    document.getElementById("addTorrentWindowEnabled").checked = addTorrentWindowEnabled === true;
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
@@ -2814,6 +2819,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
             clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
+            clientData.add_new_torrent_dialog_enabled = document.getElementById("addTorrentWindowEnabled").checked;
             clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
             clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;
