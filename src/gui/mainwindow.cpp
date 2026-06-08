@@ -1485,6 +1485,7 @@ void MainWindow::updateMinimizeOnEscShortcut()
 {
     if (Preferences::instance()->isMinimizeOnEscEnabled())
     {
+        // Intentionally separate if-statement so it doesn't call the else condition if m_minimizeOnEscShortcut is not null
         if (!m_minimizeOnEscShortcut)
         {
             m_minimizeOnEscShortcut = new QShortcut(Qt::Key_Escape, this);
