@@ -347,9 +347,15 @@
                         <label for="dest_email_txt">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="dest_email_txt" style="width: 40em;" title="QBT_TR(Provide the recipient email address.)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="dest_email_txt" style="width: 40em;" title="QBT_TR(Provide the recipient email address or addresses.)QBT_TR[CONTEXT=OptionsDialog]
 
-QBT_TR(Note: only a single recipient email address can be specified.)QBT_TR[CONTEXT=OptionsDialog]">
+QBT_TR(Separate multiple emails with a semicolon.)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(Separate multiple email addresses within each email with a comma.)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Example:)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(a@a.com;b@b.com,c@c.com - send two emails: the first to just a@a.com, the second to both b@b.com and c@c.com)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Note: b&b.com & c@c.com will both see each other's email addresses, whereas a&a.com will not see them nor be seen.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
