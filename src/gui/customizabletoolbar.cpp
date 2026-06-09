@@ -187,7 +187,8 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
     const int dragFloatRight = mapFromGlobal(QPoint(clampedX + fw, 0)).x();
     const int dragFloatCentre = mapFromGlobal(QPoint(clampedX + fw / 2, 0)).x();
     const bool atLeftWall = (clampedX <= toolbarTopLeft.x());
-    const bool movingLeft = atLeftWall || (dragFloatCentre < m_lastFloatCentreX);
+    const bool movingLeft = atLeftWall || (dragFloatCentre < m_lastFloatCentreX)
+        || ((m_lastFloatCentreX == 0) && (globalPos.x() < m_dragStartPos.x()));
     m_lastFloatCentreX = dragFloatCentre;
 
     const int bi = findBoundaryIndex();
