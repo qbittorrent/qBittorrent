@@ -205,9 +205,9 @@ void CustomizableToolBar::updateDrag(const QPoint &globalPos)
         if (!w && !a->isSeparator())
             continue;
 
-        const int threshold = w ? (a->isSeparator() ? (movingLeft ? w->x() + w->width() : w->x()) : w->x() + w->width() / 2) : 0;
+        const int threshold = w ? (a->isSeparator() ? (movingLeft ? w->x() + w->width() + fw / 2 : w->x() - fw / 2) : w->x() + w->width() / 2) : 0;
 
-        const int compareX = movingLeft ? dragFloatLeft : dragFloatRight;
+        const int compareX = a->isSeparator() ? dragFloatCentre : (movingLeft ? dragFloatLeft : dragFloatRight);
         if (compareX < threshold)
         {
             newInsertBefore = a;
