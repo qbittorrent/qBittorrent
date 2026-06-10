@@ -110,7 +110,7 @@ jobs:
       # to avoid scanning 3rdparty codebases, initialize it just before building qbt
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
-        if: startsWith(matrix.libtorrent.version, 2) && (matrix.qbt_gui == 'GUI=ON')
+        if: startsWith(matrix.libtorrent.version, 2.0) && (matrix.qbt_gui == 'GUI=ON')
         with:
           config-file: ./.github/workflows/helper/codeql/cpp.yaml
           languages: cpp
@@ -141,9 +141,27 @@ jobs:
 
       - name: Run CodeQL analysis
         uses: github/codeql-action/analyze@v4
-        if: startsWith(matrix.libtorrent.version, 2) && (matrix.qbt_gui == 'GUI=ON')
+        if: startsWith(matrix.libtorrent.version, 2.0) && (matrix.qbt_gui == 'GUI=ON')
         with:
-          category: ${{ github.base_ref || github.ref_name }}
+          category: "${{ github.base_ref || github.ref_name }} lt ${{ matrix.libtorrent.version }}"
+          output: sarif-results
+          upload: failure-only
+
+      # Filter out results from 3rdparty codebases
+      - name: Filter CodeQL results
+        uses: advanced-security/filter-sarif@2da736ff05ef065cb2894ac6892e47b5eac2c3c0 # v1.1
+        if: startsWith(matrix.libtorrent.version, 2.0) && (matrix.qbt_gui == 'GUI=ON')
+        with:
+          patterns: |
+            -src/base/3rdparty/**
+          input: sarif-results/cpp.sarif
+          output: sarif-results/cpp.sarif
+
+      - name: Upload CodeQL SARIF
+        uses: github/codeql-action/upload-sarif@v4
+        if: startsWith(matrix.libtorrent.version, 2.0) && (matrix.qbt_gui == 'GUI=ON')
+        with:
+          sarif_file: sarif-results/cpp.sarif
 
       - name: Prepare build artifacts
         run: |
