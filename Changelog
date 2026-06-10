@@ -1,3 +1,26 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.2
+    - FEATURE: Use D-Bus to show file in file managers (Chocobo1) #24340
+    - BUGFIX: Remove invalid assertion (vafada) #24321
+    - BUGFIX: Fix friendlyUnitCompact precision calculation (vafada) #24323
+    - BUGFIX: Fix Windows Python fallback search path (TurboTheTurtle) #24325
+    - BUGFIX: Remove all top-level folders (glassez) #24333
+    - BUGFIX: Use proper API for checking exit status (Chocobo1) #24349
+    - BUGFIX: Delete stale lockfile when hostname mismatch (TurboTheTurtle, glassez) #24363
+    - BUGFIX: Fix "RSS Smart Episode Filter" RegEx (nathanon-akk, glassez) #24398
+    - BUGFIX: Fix array copy (Chocobo1) #24410
+    - BUGFIX: Fix off-by-one error (Chocobo1) #24412
+    - BUGFIX: Fix wrong removal procedure (Chocobo1) #24413
+    - BUGFIX: Don't reannounce before interface changes are applied (glassez) #24447
+    - BUGFIX: Fix previously matched episode format (glassez) #24452
+    - WEBUI: Fix performance of global checkbox toggling (tehcneko) #24316
+    - WEBUI: Fix Safari transfer list header misalignment (Piccirello) #24377
+    - WEBUI: Fix error when submitting magnet before metadata loads (Piccirello) #24378
+    - WEBUI: Use correct row id when updating Rss Downloader feed selection (Chocobo1) #24402
+    - WEBUI: Use SameSite=Lax for session cookie to fix cross-site login (Piccirello) #24422
+    - WEBUI: Bring back properties panel expand/collapse button (vafada) #24430
+    - WEBAPI: Only use X-Forwarded-Host header when reverse proxy support is enabled (Chocobo1) #24457
+    - WINDOWS: NSIS: Allow to install x64 binary on ARM64 (Chocobo1) #24358
+
 Mon May 25th 2026 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v5.2.1
     - BUGFIX: Fix building with latest zlib (glassez) #24200
     - BUGFIX: Remove old-format lockfile when starting (glassez) #24218

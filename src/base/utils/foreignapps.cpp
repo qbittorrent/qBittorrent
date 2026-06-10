@@ -65,7 +65,7 @@ namespace
         proc.setUnixProcessParameters(QProcess::UnixProcessFlag::CloseFileDescriptors);
 #endif
         proc.start(exePath.data(), {u"--version"_s}, QIODevice::ReadOnly);
-        if (proc.waitForFinished() && (proc.exitCode() == QProcess::NormalExit))
+        if (proc.waitForFinished() && (proc.exitStatus() == QProcess::NormalExit))
         {
             QByteArray procOutput = proc.readAllStandardOutput();
             if (procOutput.isEmpty())
@@ -209,7 +209,7 @@ namespace
         const QFileInfoList dirs = QDir(u"C:/"_s).entryInfoList({u"Python*"_s}, QDir::Dirs, (QDir::Name | QDir::Reversed));
         for (const QFileInfo &info : dirs)
         {
-            const Path absPath {info.absolutePath()};
+            const Path absPath {info.absoluteFilePath()};
 
             if (const Path path = (absPath / Path(u"python3.exe"_s)); path.exists())
                 ret.append(path);

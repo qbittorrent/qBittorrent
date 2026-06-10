@@ -747,7 +747,7 @@ void WebApplication::setSessionCookie()
     cookie.setSecure(m_isSecureCookieEnabled && isOriginTrustworthy());  // [rfc6265] 4.1.2.5. The Secure Attribute
     cookie.setPath(u"/"_s);
     if (m_isCSRFProtectionEnabled)
-        cookie.setSameSitePolicy(QNetworkCookie::SameSite::Strict);
+        cookie.setSameSitePolicy(QNetworkCookie::SameSite::Lax);
     else if (cookie.isSecure())
         cookie.setSameSitePolicy(QNetworkCookie::SameSite::None);
 
@@ -898,7 +898,9 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
                 && (left.host() == right.host()));
     };
 
-    const QString targetOrigin = request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST));
+    const QString targetOrigin = m_isReverseProxySupportEnabled
+        ? request.headers.value(Http::HEADER_X_FORWARDED_HOST, request.headers.value(Http::HEADER_HOST))
+        : request.headers.value(Http::HEADER_HOST);
     const QString originValue = request.headers.value(Http::HEADER_ORIGIN);
     const QString refererValue = request.headers.value(Http::HEADER_REFERER);
 

@@ -574,7 +574,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             column["caption"] = caption;
             column["style"] = style;
             if (defaultWidth !== -1)
-                column["width"] = localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth);
+                column["width"] = Number(localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth));
             column["dataProperties"] = [name];
             column["getRowValue"] = function(row, pos) {
                 if (pos === undefined)
@@ -3353,7 +3353,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checkbox.dataset.id = row.rowId;
                     checkbox.addEventListener("click", (e) => {
                         const targetId = e.target.dataset.id;
-                        const row = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.getRow(targetId);
+                        const row = window.qBittorrent.RssDownloader.rssDownloaderFeedSelectionTable.getRow(targetId);
                         window.qBittorrent.RssDownloader.rssDownloaderFeedSelectionTable.updateRowData({
                             rowId: row.rowId,
                             checked: checkbox.checked
