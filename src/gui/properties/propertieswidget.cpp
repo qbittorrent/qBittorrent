@@ -87,7 +87,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
 
     m_ui->filesList->setContentDragAllowed(true);
-    m_ui->filesList->setDoubleClickAction(TorrentContentWidget::DoubleClickAction::Open);
     m_ui->filesList->setOpenByEnterKey(true);
 
     // SIGNAL/SLOTS
