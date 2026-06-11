@@ -68,6 +68,7 @@ class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
 class FreeDiskSpaceChecker;
+class KeyValueDataStorage;
 class NativeSessionExtension;
 
 struct FileSearchResult;
@@ -212,10 +213,17 @@ namespace BitTorrent
         void setRefreshInterval(int value) override;
         bool isPreallocationEnabled() const override;
         void setPreallocationEnabled(bool enabled) override;
-        Path torrentExportDirectory() const override;
-        void setTorrentExportDirectory(const Path &path) override;
-        Path finishedTorrentExportDirectory() const override;
-        void setFinishedTorrentExportDirectory(const Path &path) override;
+
+        bool isTorrentFileBackupEnabled() const override;
+        void setTorrentFileBackupEnabled(bool enabled) override;
+        Path torrentBackupDirectory() const override;
+        void setTorrentBackupDirectory(const Path &path) override;
+        bool isFinishedTorrentBackupDirectoryEnabled() const override;
+        void setFinishedTorrentBackupDirectoryEnabled(bool enabled) override;
+        Path finishedTorrentBackupDirectory() const override;
+        void setFinishedTorrentBackupDirectory(const Path &path) override;
+        bool removeTorrentFileBackup() const override;
+        void setRemoveTorrentFileBackup(bool remove) override;
 
         int globalDownloadSpeedLimit() const override;
         void setGlobalDownloadSpeedLimit(int limit) override;
@@ -580,7 +588,8 @@ namespace BitTorrent
         bool addTorrent_impl(const TorrentDescriptor &source, const AddTorrentParams &addTorrentParams);
 
         void updateShareLimitsTimer();
-        void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
+        void backupTorrentFile(const Torrent *torrent, const TorrentDescriptor &torrentDescr);
+        void backupTorrentFile(const Torrent *torrent, const QString &magnetURI, const Path &backupDirPathConf);
 
         void handleAlert(lt::alert *alert);
         void handleAddTorrentAlert(const lt::add_torrent_alert *alert);
@@ -733,8 +742,11 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isUnwantedFolderEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
-        CachedSettingValue<Path> m_torrentExportDirectory;
-        CachedSettingValue<Path> m_finishedTorrentExportDirectory;
+        CachedSettingValue<bool> m_isTorrentFileBackupEnabled;
+        CachedSettingValue<Path> m_torrentBackupDirectory;
+        CachedSettingValue<bool> m_isFinishedTorrentBackupDirectoryEnabled;
+        CachedSettingValue<Path> m_finishedTorrentBackupDirectory;
+        CachedSettingValue<bool> m_removeTorrentFileBackup;
         CachedSettingValue<int> m_globalDownloadSpeedLimit;
         CachedSettingValue<int> m_globalUploadSpeedLimit;
         CachedSettingValue<int> m_altGlobalDownloadSpeedLimit;
@@ -887,6 +899,8 @@ namespace BitTorrent
         qint64 m_freeDiskSpace = -1;
 
         ShareLimits m_shareLimits;
+
+        KeyValueDataStorage *m_backupTorrentFilesRegistry = nullptr;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

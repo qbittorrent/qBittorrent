@@ -404,6 +404,12 @@ bool Utils::Fs::copyFile(const Path &from, const Path &to)
 
 bool Utils::Fs::renameFile(const Path &from, const Path &to)
 {
+    if (!from.exists())
+        return false;
+
+    if (!mkpath(to.parentPath()))
+        return false;
+
     return QFile::rename(from.data(), to.data());
 }
 
