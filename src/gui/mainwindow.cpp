@@ -262,6 +262,7 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
     m_transferListWidget = new TransferListWidget(app, this);
     m_propertiesWidget = new PropertiesWidget(hSplitter);
     connect(m_transferListWidget, &TransferListWidget::currentTorrentChanged, m_propertiesWidget, &PropertiesWidget::loadTorrentInfos);
+    connect(m_propertiesWidget, &PropertiesWidget::openAdvancedSettingsLinkActivated, this, &MainWindow::showSpeedWidgetSetting);
     hSplitter->addWidget(m_transferListWidget);
     hSplitter->addWidget(m_propertiesWidget);
     m_splitter->addWidget(hSplitter);
@@ -1746,6 +1747,12 @@ void MainWindow::showConnectionSettings()
 {
     on_actionOptions_triggered();
     m_options->showConnectionTab();
+}
+
+void MainWindow::showSpeedWidgetSetting()
+{
+    on_actionOptions_triggered();
+    m_options->showSpeedWidgetSetting();
 }
 
 void MainWindow::minimizeWindow()
