@@ -2668,6 +2668,54 @@ qsizetype SessionImpl::torrentsCount() const
     return m_torrents.size();
 }
 
+QSet<Path> SessionImpl::occupiedTorrentRootPaths() const
+{
+    QSet<Path> result = m_pendingTorrentRootPaths;
+    for (const TorrentImpl *torrent : asConst(m_torrents))
+    {
+        const Path rootFolder = Path::findRootFolder(torrent->filePaths());
+        if (rootFolder.isEmpty())
+            continue;
+
+        const auto addRootPath = [&result, &rootFolder](const Path &basePath)
+        {
+            if (!basePath.isEmpty())
+                result.insert(basePath / rootFolder);
+        };
+        addRootPath(torrent->actualStorageLocation());
+        addRootPath(torrent->savePath());
+    }
+
+    return result;
+}
+
+QSet<Path> SessionImpl::reservePendingTorrentRootPaths(FileSearchResult &result, const Path &savePath)
+{
+    QList<Path> basePaths {result.savePath};
+    if (savePath != result.savePath)
+        basePaths.append(savePath);
+
+    const Path rootFolder = FileSearcher::makeRootFolderUnique(result.fileNames, result.rootFolder, basePaths, occupiedTorrentRootPaths());
+    if (rootFolder.isEmpty())
+        return {};
+
+    QSet<Path> rootPaths;
+    for (const Path &basePath : asConst(basePaths))
+    {
+        if (!basePath.isEmpty())
+            rootPaths.insert(basePath / rootFolder);
+    }
+
+    m_pendingTorrentRootPaths.unite(rootPaths);
+    return rootPaths;
+}
+
+void SessionImpl::releasePendingTorrentRootPaths(const QSet<Path> &rootPaths)
+{
+    for (const Path &rootPath : rootPaths)
+        m_pendingTorrentRootPaths.remove(rootPath);
+}
+
 bool SessionImpl::addTorrent(const TorrentDescriptor &torrentDescr, const AddTorrentParams &params)
 {
     if (!isRestored())
@@ -2967,16 +3015,22 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
     const auto resolveFileNames = [&, this]
     {
         if (!needFindIncompleteFiles)
-            return QtFuture::makeReadyValueFuture(FileSearchResult {.savePath = actualSavePath, .fileNames = filePaths});
+            return QtFuture::makeReadyValueFuture(FileSearchResult {
+                    .savePath = actualSavePath
+                    , .fileNames = filePaths
+                    , .rootFolder = Path::findRootFolder(filePaths)});
 
         const Path actualDownloadPath = loadTorrentParams.useAutoTMM
                 ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
         return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
     };
 
-    resolveFileNames().then(this, [this, id, loadTorrentParams = std::move(loadTorrentParams)](const FileSearchResult &result) mutable
+    resolveFileNames().then(this, [this, id, actualSavePath, needFindIncompleteFiles
+            , loadTorrentParams = std::move(loadTorrentParams)](FileSearchResult result) mutable
     {
         lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
+        const QSet<Path> pendingRootPaths = (needFindIncompleteFiles
+                ? reservePendingTorrentRootPaths(result, actualSavePath) : QSet<Path>());
 
         p.save_path = result.savePath.toString().toStdString();
         if (p.ti)
@@ -2988,8 +3042,10 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         }
 
         m_nativeSession->async_add_torrent(p);
-        m_addTorrentAlertHandlers.append([this, loadTorrentParams = std::move(loadTorrentParams)](const lt::add_torrent_alert *alert) mutable
+        m_addTorrentAlertHandlers.append([this, pendingRootPaths, loadTorrentParams = std::move(loadTorrentParams)](const lt::add_torrent_alert *alert) mutable
         {
+            releasePendingTorrentRootPaths(pendingRootPaths);
+
             if (alert->error)
             {
                 const QString msg = QString::fromStdString(alert->message());
@@ -3031,9 +3087,10 @@ QFuture<FileSearchResult> SessionImpl::findIncompleteFiles(const Path &savePath,
     QPromise<FileSearchResult> promise;
     QFuture<FileSearchResult> future = promise.future();
     promise.start();
+    const QSet<Path> occupiedRootPaths = occupiedTorrentRootPaths();
     QMetaObject::invokeMethod(m_fileSearcher, [=, this, promise = std::move(promise)]() mutable
     {
-        m_fileSearcher->search(filePaths, savePath, downloadPath, isAppendExtensionEnabled(), promise);
+        m_fileSearcher->search(filePaths, savePath, downloadPath, isAppendExtensionEnabled(), occupiedRootPaths, promise);
         promise.finish();
     });
 

@@ -28,12 +28,21 @@
 
 #include "filesearcher.h"
 
+#include <algorithm>
+
 #include <QPromise>
 
 #include "base/bittorrent/common.h"
 
 namespace
 {
+    Path makeRootFolderVariant(const Path &rootFolder, const int suffix)
+    {
+        Q_ASSERT(suffix > 0);
+
+        return Path(rootFolder.data() + u" (" + QString::number(suffix) + u")");
+    }
+
     bool findInDir(const Path &dirPath, PathList &fileNames, const bool forceAppendExt)
     {
         bool found = false;
@@ -62,11 +71,43 @@ namespace
     }
 }
 
+Path FileSearcher::makeRootFolderUnique(PathList &fileNames, const Path &baseRootFolder, const QList<Path> &basePaths
+        , const QSet<Path> &occupiedRootPaths)
+{
+    const Path rootFolder = Path::findRootFolder(fileNames);
+    if (rootFolder.isEmpty())
+        return {};
+
+    const Path baseVariantRootFolder = (baseRootFolder.isEmpty() ? rootFolder : baseRootFolder);
+    Path newRootFolder = rootFolder;
+    for (int suffix = 1; ; ++suffix)
+    {
+        const auto iter = std::ranges::find_if(basePaths, [&occupiedRootPaths, &newRootFolder](const Path &basePath)
+        {
+            return !basePath.isEmpty() && occupiedRootPaths.contains(basePath / newRootFolder);
+        });
+        if (iter == basePaths.cend())
+            break;
+
+        newRootFolder = makeRootFolderVariant(baseVariantRootFolder, suffix);
+    }
+
+    if (newRootFolder != rootFolder)
+    {
+        Path::stripRootFolder(fileNames);
+        Path::addRootFolder(fileNames, newRootFolder);
+    }
+
+    return newRootFolder;
+}
+
 void FileSearcher::search(const PathList &originalFileNames, const Path &savePath
-        , const Path &downloadPath, const bool forceAppendExt, QPromise<FileSearchResult> &promise)
+        , const Path &downloadPath, const bool forceAppendExt, const QSet<Path> &occupiedRootPaths
+        , QPromise<FileSearchResult> &promise)
 {
     Path usedPath = savePath;
     PathList adjustedFileNames = originalFileNames;
+    const Path rootFolder = Path::findRootFolder(originalFileNames);
     const bool found = findInDir(usedPath, adjustedFileNames, (forceAppendExt && downloadPath.isEmpty()));
     if (!found && !downloadPath.isEmpty())
     {
@@ -74,5 +115,10 @@ void FileSearcher::search(const PathList &originalFileNames, const Path &savePat
         findInDir(usedPath, adjustedFileNames, forceAppendExt);
     }
 
-    promise.addResult(FileSearchResult {.savePath = usedPath, .fileNames = adjustedFileNames});
+    QList<Path> basePaths {usedPath};
+    if (savePath != usedPath)
+        basePaths.append(savePath);
+    makeRootFolderUnique(adjustedFileNames, rootFolder, basePaths, occupiedRootPaths);
+
+    promise.addResult(FileSearchResult {.savePath = usedPath, .fileNames = adjustedFileNames, .rootFolder = rootFolder});
 }
