@@ -29,12 +29,15 @@
 #include "statusbar.h"
 
 #include <QFrame>
+#include <QHBoxLayout>
+#include <QHostAddress>
 #include <QLabel>
 #include <QPushButton>
 #include <QStyle>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
+#include "base/net/geoipmanager.h"
 #include "base/preferences.h"
 #include "base/utils/misc.h"
 #include "speedlimitdialog.h"
@@ -97,8 +100,33 @@ StatusBar::StatusBar(QWidget *parent)
     m_freeDiskSpaceLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
     m_freeDiskSpaceSeparator = createSeparator(this);
 
-    m_lastExternalIPsLbl = new QLabel(tr("External IP: N/A"));
-    m_lastExternalIPsLbl->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    m_externalIPsWidget = new QWidget(this);
+    m_externalIPsWidget->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Preferred);
+    auto *externalIPsLayout = new QHBoxLayout(m_externalIPsWidget);
+    externalIPsLayout->setContentsMargins(0, 0, 0, 0);
+    externalIPsLayout->setSpacing(0);
+
+    m_externalIPPrefixLbl = new QLabel(tr("External IP: N/A"), m_externalIPsWidget);
+    m_ipv4FlagLbl = new QLabel(m_externalIPsWidget);
+    m_ipv4FlagLbl->setContentsMargins(0, 0, 3, 0);
+    m_ipv4FlagLbl->setVisible(false);
+    m_ipv4AddressLbl = new QLabel(m_externalIPsWidget);
+    m_ipv4AddressLbl->setVisible(false);
+    m_ipSeparatorLbl = new QLabel(u", "_s, m_externalIPsWidget);
+    m_ipSeparatorLbl->setVisible(false);
+    m_ipv6FlagLbl = new QLabel(m_externalIPsWidget);
+    m_ipv6FlagLbl->setContentsMargins(0, 0, 3, 0);
+    m_ipv6FlagLbl->setVisible(false);
+    m_ipv6AddressLbl = new QLabel(m_externalIPsWidget);
+    m_ipv6AddressLbl->setVisible(false);
+
+    externalIPsLayout->addWidget(m_externalIPPrefixLbl);
+    externalIPsLayout->addWidget(m_ipv4FlagLbl);
+    externalIPsLayout->addWidget(m_ipv4AddressLbl);
+    externalIPsLayout->addWidget(m_ipSeparatorLbl);
+    externalIPsLayout->addWidget(m_ipv6FlagLbl);
+    externalIPsLayout->addWidget(m_ipv6AddressLbl);
+
     m_lastExternalIPsSeparator = createSeparator(this);
 
     const bool isDHTVisible = session->isDHTEnabled();
@@ -127,7 +155,7 @@ StatusBar::StatusBar(QWidget *parent)
 
     addPermanentWidget(m_freeDiskSpaceLbl);
     addPermanentWidget(m_freeDiskSpaceSeparator);
-    addPermanentWidget(m_lastExternalIPsLbl);
+    addPermanentWidget(m_externalIPsWidget);
     addPermanentWidget(m_lastExternalIPsSeparator);
     addPermanentWidget(m_DHTLbl);
     addPermanentWidget(m_DHTSeparator);
@@ -226,23 +254,58 @@ void StatusBar::updateExternalAddressesLabel()
 {
     const QString lastExternalIPv4Address = BitTorrent::Session::instance()->lastExternalIPv4Address();
     const QString lastExternalIPv6Address = BitTorrent::Session::instance()->lastExternalIPv6Address();
-    QString addressText = tr("External IP: N/A");
+    const bool resolveCountries = Preferences::instance()->resolvePeerCountries();
+    Net::GeoIPManager *const geoIP = Net::GeoIPManager::instance();
 
     const bool hasIPv4Address = !lastExternalIPv4Address.isEmpty();
     const bool hasIPv6Address = !lastExternalIPv6Address.isEmpty();
 
-    if (hasIPv4Address && hasIPv6Address)
-        addressText = tr("External IPs: %1, %2").arg(lastExternalIPv4Address, lastExternalIPv6Address);
-    else if (hasIPv4Address || hasIPv6Address)
-        addressText = tr("External IP: %1%2").arg(lastExternalIPv4Address, lastExternalIPv6Address);
+    if (!hasIPv4Address && !hasIPv6Address)
+        m_externalIPPrefixLbl->setText(tr("External IP: N/A"));
+    else if (hasIPv4Address && hasIPv6Address)
+        m_externalIPPrefixLbl->setText(tr("External IPs: "));
+    else
+        m_externalIPPrefixLbl->setText(tr("External IP: "));
 
-    m_lastExternalIPsLbl->setText(addressText);
+    const auto updateIPWidgets = [resolveCountries, geoIP]
+            (const QString &address, QLabel *flagLbl, QLabel *addressLbl)
+    {
+        const bool hasAddress = !address.isEmpty();
+        addressLbl->setVisible(hasAddress);
+        if (hasAddress)
+            addressLbl->setText(address);
+
+        bool hasFlag = false;
+        if (hasAddress && resolveCountries && geoIP)
+        {
+            const QHostAddress hostAddr(address);
+            if (!hostAddr.isNull())
+            {
+                const QString countryCode = geoIP->lookup(hostAddr);
+                if (!countryCode.isEmpty())
+                {
+                    const QIcon flagIcon = UIThemeManager::instance()->getFlagIcon(countryCode.toLower());
+                    if (!flagIcon.isNull())
+                    {
+                        flagLbl->setPixmap(flagIcon.pixmap(Utils::Gui::smallIconSize()));
+                        flagLbl->setToolTip(Net::GeoIPManager::CountryName(countryCode));
+                        hasFlag = true;
+                    }
+                }
+            }
+        }
+        flagLbl->setVisible(hasFlag);
+    };
+
+    updateIPWidgets(lastExternalIPv4Address, m_ipv4FlagLbl, m_ipv4AddressLbl);
+    updateIPWidgets(lastExternalIPv6Address, m_ipv6FlagLbl, m_ipv6AddressLbl);
+    m_ipSeparatorLbl->setVisible(hasIPv4Address && hasIPv6Address);
 }
 
 void StatusBar::updateExternalAddressesVisibility()
 {
     const bool isVisible = Preferences::instance()->isStatusbarExternalIPDisplayed();
-    m_lastExternalIPsLbl->setVisible(isVisible);
+    m_externalIPsWidget->setVisible(isVisible);
     m_lastExternalIPsSeparator->setVisible(isVisible);
 }
 
