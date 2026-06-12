@@ -2402,23 +2402,34 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     }
     else
     {
-        reached = true;
-        description = tr("Torrent reached the share limit(s).");
+        // In MatchAll mode, all configured limits must be reached.
+        // If no limits are configured (all disabled), the torrent should not be considered as reached.
+        if ((shareLimits.ratioLimit < 0)
+                && (shareLimits.seedingTimeLimit < 0)
+                && (shareLimits.inactiveSeedingTimeLimit < 0))
+        {
+            reached = false;
+        }
+        else
+        {
+            reached = true;
+            description = tr("Torrent reached the share limit(s).");
 
-        if (const qreal ratio = torrent->realRatio();
-            (shareLimits.ratioLimit >= 0) && (ratio < shareLimits.ratioLimit))
-        {
-            reached = false;
-        }
-        else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-            (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes < shareLimits.seedingTimeLimit))
-        {
-            reached = false;
-        }
-        else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-            (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes < shareLimits.inactiveSeedingTimeLimit))
-        {
-            reached = false;
+            if (const qreal ratio = torrent->realRatio();
+                (shareLimits.ratioLimit >= 0) && (ratio < shareLimits.ratioLimit))
+            {
+                reached = false;
+            }
+            else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
+                (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes < shareLimits.seedingTimeLimit))
+            {
+                reached = false;
+            }
+            else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
+                (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes < shareLimits.inactiveSeedingTimeLimit))
+            {
+                reached = false;
+            }
         }
     }
 
