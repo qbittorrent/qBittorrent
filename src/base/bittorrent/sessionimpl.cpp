@@ -1614,6 +1614,7 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
     qDebug() << "Starting up torrent" << torrentID.toString() << "...";
     m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
+    ++m_addTorrentCallCount;
     m_addTorrentAlertHandlers.append([this, resumeData = std::move(resumeData)](const lt::add_torrent_alert *alert) mutable
     {
         if (alert->error)
@@ -2974,8 +2975,49 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         return findIncompleteFiles(actualSavePath, actualDownloadPath, filePaths);
     };
 
-    resolveFileNames().then(this, [this, id, loadTorrentParams = std::move(loadTorrentParams)](const FileSearchResult &result) mutable
+    // Start a watchdog timer to detect if the continuation never fires
+    QPointer<QTimer> watchdogTimer;
     {
+        auto *timer = new QTimer(this);
+        timer->setSingleShot(true);
+        connect(timer, &QTimer::timeout, this, [this, id, timer]()
+        {
+            m_addTorrentWatchdogTimers.remove(timer);
+            timer->deleteLater();
+
+            LogMsg(tr("Warning: Torrent add continuation did not execute within timeout. "
+                "Torrent: %1. Async calls: %2, Alerts received: %3.")
+                .arg(id.toString()
+                    , QString::number(m_addTorrentCallCount)
+                    , QString::number(m_addTorrentAlertReceivedCount))
+                , Log::WARNING);
+        });
+        m_addTorrentWatchdogTimers.insert(timer);
+        timer->start(30s);
+        watchdogTimer = timer;
+    }
+
+    const QFuture<FileSearchResult> fileNamesFuture = resolveFileNames();
+    qDebug() << "Torrent" << id.toString() << "resolveFileNames future:"
+             << "isValid:" << fileNamesFuture.isValid()
+             << "isFinished:" << fileNamesFuture.isFinished();
+
+    fileNamesFuture.then(this, [this, id, loadTorrentParams = std::move(loadTorrentParams),
+            watchdogTimer = std::move(watchdogTimer)](const FileSearchResult &result) mutable
+    {
+        qDebug() << "Torrent add continuation invoked for torrent" << id.toString();
+
+        // Cancel the watchdog timer since continuation is running
+        if (watchdogTimer)
+        {
+            if (m_addTorrentWatchdogTimers.contains(watchdogTimer.data()))
+            {
+                m_addTorrentWatchdogTimers.remove(watchdogTimer.data());
+                watchdogTimer->stop();
+                watchdogTimer->deleteLater();
+            }
+        }
+
         lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
 
         p.save_path = result.savePath.toString().toStdString();
@@ -2988,6 +3030,7 @@ bool SessionImpl::addTorrent_impl(const TorrentDescriptor &source, const AddTorr
         }
 
         m_nativeSession->async_add_torrent(p);
+        ++m_addTorrentCallCount;
         m_addTorrentAlertHandlers.append([this, loadTorrentParams = std::move(loadTorrentParams)](const lt::add_torrent_alert *alert) mutable
         {
             if (alert->error)
@@ -3174,6 +3217,7 @@ bool SessionImpl::downloadMetadata(const TorrentDescriptor &torrentDescr)
 
     // Adding torrent to libtorrent session
     m_nativeSession->async_add_torrent(p);
+    ++m_addTorrentCallCount;
     m_downloadedMetadata.insert(id, {});
     m_addTorrentAlertHandlers.append([this](const lt::add_torrent_alert *alert)
     {
@@ -5496,7 +5540,9 @@ lt::torrent_handle SessionImpl::reloadTorrent(const lt::torrent_handle &currentH
 
     // libtorrent will post an add_torrent_alert anyway, so we have to add an empty handler to ignore it.
     m_addTorrentAlertHandlers.emplaceBack();
-    return m_nativeSession->add_torrent(std::move(params));
+    const lt::torrent_handle handle = m_nativeSession->add_torrent(std::move(params));
+    ++m_addTorrentCallCount;
+    return handle;
 }
 
 void SessionImpl::moveTorrentStorage(const MoveStorageJob &job) const
@@ -5814,9 +5860,32 @@ void SessionImpl::readAlerts()
 
 void SessionImpl::handleAddTorrentAlert(const lt::add_torrent_alert *alert)
 {
-    Q_ASSERT(!m_addTorrentAlertHandlers.isEmpty());
-    if (m_addTorrentAlertHandlers.isEmpty()) [[unlikely]]
+    ++m_addTorrentAlertReceivedCount;
+
+    if (m_addTorrentAlertHandlers.isEmpty())
+    {
+        LogMsg(tr("Warning: Received add_torrent_alert but handler queue is empty. "
+            "This indicates alert handler desynchronization. Torrent: \"%1\". "
+            "Async calls: %2, Alerts received: %3")
+            .arg(QString::fromStdString(alert->params.name)
+                , QString::number(m_addTorrentCallCount)
+                , QString::number(m_addTorrentAlertReceivedCount))
+            , Log::WARNING);
         return;
+    }
+
+    if (m_addTorrentAlertReceivedCount > m_addTorrentCallCount)
+    {
+        if (!m_desyncWarningLogged)
+        {
+            m_desyncWarningLogged = true;
+            LogMsg(tr("Warning: More add_torrent_alerts received (%1) than "
+                "async_add_torrent calls (%2). Alert handler queue may be desynchronized.")
+                .arg(QString::number(m_addTorrentAlertReceivedCount)
+                    , QString::number(m_addTorrentCallCount))
+                , Log::WARNING);
+        }
+    }
 
     if (const AddTorrentAlertHandler handleAlert = m_addTorrentAlertHandlers.takeFirst())
         handleAlert(alert);
@@ -6342,6 +6411,16 @@ void SessionImpl::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *alert
 {
     LogMsg(tr("Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: \"%1\". Message: \"%2\"")
         .arg(QString::fromStdString(alert->dropped_alerts.to_string()), QString::fromStdString(alert->message())), Log::CRITICAL);
+
+    if (alert->dropped_alerts.test(lt::add_torrent_alert::alert_type))
+    {
+        LogMsg(tr("Warning: add_torrent_alert was among dropped alerts. "
+            "This may cause alert handler queue desynchronization. "
+            "Async calls: %1, Alerts received: %2.")
+            .arg(QString::number(m_addTorrentCallCount)
+                , QString::number(m_addTorrentAlertReceivedCount))
+            , Log::WARNING);
+    }
 }
 
 void SessionImpl::handleStorageMovedAlert(const lt::storage_moved_alert *alert)
