@@ -185,6 +185,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
             case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not stopped)");
             case TR_SAVE_PATH: return tr("Save Path", "Torrent save path");
+            case TR_COMMENT: return tr("Comment", "Torrent comment");
             case TR_DOWNLOAD_PATH: return tr("Incomplete Save Path", "Torrent incomplete save path");
             case TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
             case TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
@@ -427,6 +428,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return timeElapsedString(torrent->activeTime(), torrent->finishedTime());
     case TR_SAVE_PATH:
         return torrent->savePath().toString();
+    case TR_COMMENT:
+        return torrent->comment();
     case TR_DOWNLOAD_PATH:
         return torrent->downloadPath().toString();
     case TR_COMPLETED:
@@ -508,6 +511,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->remainingSize();
     case TR_TIME_ELAPSED:
         return !alt ? torrent->activeTime() : torrent->finishedTime();
+    case TR_COMMENT:
+        return torrent->comment();
     case TR_DOWNLOAD_PATH:
         return torrent->downloadPath().data();
     case TR_SAVE_PATH:
@@ -571,6 +576,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_TAGS:
         case TR_TRACKER:
         case TR_SAVE_PATH:
+        case TR_COMMENT:
         case TR_DOWNLOAD_PATH:
         case TR_INFOHASH_V1:
         case TR_INFOHASH_V2:
