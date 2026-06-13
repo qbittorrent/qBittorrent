@@ -97,6 +97,44 @@ namespace
         return entry;
     }
 
+    QList<TrackerEntryStatus> makeTrackerEntryStatuses(const lt::add_torrent_params &params
+            , const std::vector<lt::announce_entry> &fallbackTrackers)
+    {
+        QList<TrackerEntryStatus> statuses;
+
+        if (!params.trackers.empty())
+        {
+            statuses.reserve(static_cast<decltype(statuses)::size_type>(params.trackers.size()));
+            for (std::size_t i = 0; i < params.trackers.size(); ++i)
+            {
+                const int tier = (i < params.tracker_tiers.size()) ? params.tracker_tiers[i] : 0;
+                statuses.append({QString::fromStdString(params.trackers[i]), tier});
+            }
+
+            return statuses;
+        }
+
+        statuses.reserve(static_cast<decltype(statuses)::size_type>(fallbackTrackers.size()));
+        for (const lt::announce_entry &announceEntry : fallbackTrackers)
+            statuses.append({QString::fromStdString(announceEntry.url), announceEntry.tier});
+
+        return statuses;
+    }
+
+    void applyTrackerEntryStatuses(lt::add_torrent_params &params, const QList<TrackerEntryStatus> &statuses)
+    {
+        params.trackers.clear();
+        params.tracker_tiers.clear();
+        params.trackers.reserve(static_cast<std::size_t>(statuses.size()));
+        params.tracker_tiers.reserve(static_cast<std::size_t>(statuses.size()));
+
+        for (const TrackerEntryStatus &status : statuses)
+        {
+            params.trackers.emplace_back(status.url.toStdString());
+            params.tracker_tiers.emplace_back(status.tier);
+        }
+    }
+
     QString toString(const lt::tcp::endpoint &ltTCPEndpoint)
     {
         static QCache<lt::tcp::endpoint, QString> cache;
@@ -113,8 +151,7 @@ namespace
             , const QSet<int> &btProtocols, const QHash<lt::tcp::endpoint, QMap<int, int>> &updateInfo)
     {
         Q_ASSERT(trackerEntryStatus.url == QString::fromStdString(nativeEntry.url));
-
-        trackerEntryStatus.tier = nativeEntry.tier;
+        // Keep qBittorrent's own tier value to preserve intentionally empty tiers.
 
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size()) * btProtocols.size();
 
@@ -378,9 +415,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, const lt::torrent_handle &nativeH
     setStopCondition(params.stopCondition);
 
     const auto *extensionData = static_cast<ExtensionData *>(m_ltAddTorrentParams.userdata);
-    m_trackerEntryStatuses.reserve(static_cast<decltype(m_trackerEntryStatuses)::size_type>(extensionData->trackers.size()));
-    for (const lt::announce_entry &announceEntry : extensionData->trackers)
-        m_trackerEntryStatuses.append({QString::fromStdString(announceEntry.url), announceEntry.tier});
+    m_trackerEntryStatuses = makeTrackerEntryStatuses(m_ltAddTorrentParams, extensionData->trackers);
     m_urlSeeds.reserve(static_cast<decltype(m_urlSeeds)::size_type>(extensionData->urlSeeds.size()));
     for (const std::string &urlSeed : extensionData->urlSeeds)
         m_urlSeeds.append(QString::fromStdString(urlSeed));
@@ -2288,6 +2323,8 @@ void TorrentImpl::prepareResumeData(lt::add_torrent_params params)
         if (preserveSeedMode)
             m_ltAddTorrentParams.flags |= lt::torrent_flags::seed_mode;
     }
+
+    applyTrackerEntryStatuses(m_ltAddTorrentParams, m_trackerEntryStatuses);
 
     // We shouldn't save upload_mode flag to allow torrent operate normally on next run
     m_ltAddTorrentParams.flags &= ~lt::torrent_flags::upload_mode;
