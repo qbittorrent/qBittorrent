@@ -44,6 +44,7 @@ namespace MacUtils
     void askForNotificationPermission();
     void displayNotification(const QString &title, const QString &message);
     void openFiles(const PathList &pathList);
+    void openPath(const Path &path);
 
     bool isMagnetLinkAssocSet();
     void setMagnetLinkAssoc();
