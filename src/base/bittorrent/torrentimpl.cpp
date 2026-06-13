@@ -2041,7 +2041,7 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext cont
         }
         else if (context == MoveStorageContext::ChangeDownloadPath)
         {
-            m_downloadPath = newPath;
+            m_downloadPath = (newPath == savePath()) ? Path() : newPath;
             m_session->handleTorrentSavePathChanged(this);
         }
 
@@ -2086,7 +2086,7 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStora
     if (context == MoveStorageContext::ChangeSavePath)
         m_savePath = path;
     else if (context == MoveStorageContext::ChangeDownloadPath)
-        m_downloadPath = path;
+        m_downloadPath = (path == savePath()) ? Path() : path;
     m_storageIsMoving = hasOutstandingJob;
     m_nativeStatus.save_path = path.toString().toStdString();
 
