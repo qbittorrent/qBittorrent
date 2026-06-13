@@ -24,9 +24,6 @@
        <italic>true</italic>
       </font>
      </property>
-     <property name="styleSheet">
-      <string notr="true">color: red;</string>
-     </property>
      <property name="text">
       <string>Fetching of RSS feeds is disabled now! You can enable it in application settings.</string>
      </property>
