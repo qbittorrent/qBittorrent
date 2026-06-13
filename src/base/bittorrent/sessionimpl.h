@@ -481,8 +481,9 @@ namespace BitTorrent
         void handleTorrentResumeDataReady(TorrentImpl *torrent, LoadTorrentParams data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
         void handleTorrentContentFileRenamed(TorrentImpl *torrent, int index, const Path &oldFilePath);
-        void handleTorrentContentFolderRenamed(const Path &newFolderPath, const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
-        void handleTorrentContentFolderRenamingFailed(const Path &newFolderPath, const Path &oldFolderPath
+        void handleTorrentContentFolderRenamed(TorrentImpl *torrent, const Path &newFolderPath
+                , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
+        void handleTorrentContentFolderRenamingFailed(TorrentImpl *torrent, const Path &newFolderPath, const Path &oldFolderPath
                 , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
         void handleTorrentStorageMovingStateChanged(TorrentImpl *torrent);
 
