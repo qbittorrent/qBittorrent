@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.16.1
+* [#24269](https://github.com/qbittorrent/qBittorrent/pull/24269)
+  * Add `torrents/pauseSession` endpoint for pausing bittorrent session
+  * Add `torrents/resumeSession` endpoint for resuming bittorrent session
+
 ## 2.16.0
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
   * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
