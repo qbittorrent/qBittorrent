@@ -955,7 +955,7 @@ int Application::exec()
 
 #ifndef DISABLE_GUI
         const auto *btSession = BitTorrent::Session::instance();
-        connect(btSession, &BitTorrent::Session::fullDiskError, this
+        connect(btSession, &BitTorrent::Session::torrentIOError, this
                 , [this](const BitTorrent::Torrent *torrent, const QString &msg)
         {
             m_desktopIntegration->showNotification(tr("I/O Error", "i.e: Input/Output Error")

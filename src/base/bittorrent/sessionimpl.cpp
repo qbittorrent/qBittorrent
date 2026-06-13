@@ -6084,7 +6084,7 @@ void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *alert)
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
                 .arg(torrent->name(), QString::fromUtf8(alert->filename()), msg)
             , Log::WARNING);
-        emit fullDiskError(torrent, msg);
+        emit torrentIOError(torrent, msg);
     }
 
     m_recentErroredTorrentsTimer->start();
