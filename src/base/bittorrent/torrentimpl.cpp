@@ -993,7 +993,7 @@ bool TorrentImpl::removeTag(const Tag &tag)
     return false;
 }
 
-void TorrentImpl::removeAllTags()
+void TorrentImpl::clearTags()
 {
     for (const Tag &tag : asConst(tags()))
         removeTag(tag);
