@@ -35,6 +35,8 @@ window.qBittorrent.Misc ??= (() => {
             getHost: getHost,
             createDebounceHandler: createDebounceHandler,
             filterInPlace: filterInPlace,
+            isTorrentLink: isTorrentLink,
+            torrentLinksFromText: torrentLinksFromText,
             friendlyUnit: friendlyUnit,
             friendlyDuration: friendlyDuration,
             friendlyPercentage: friendlyPercentage,
@@ -193,6 +195,50 @@ window.qBittorrent.Misc ??= (() => {
     const parseHtmlLinks = (text) => {
         const exp = /(\b(https?|ftp|file):\/\/[-\w+&@#/%?=~|!:,.;]*[-\w+&@#/%=~|])/gi;
         return text.replace(exp, "<a target='_blank' rel='noopener noreferrer' href='$1'>$1</a>");
+    };
+
+    const isTorrentLink = (str) => {
+        const lowercase = str.toLowerCase();
+        return lowercase.startsWith("http:")
+            || lowercase.startsWith("https:")
+            || lowercase.startsWith("magnet:")
+            || ((str.length === 40) && !(/[^0-9A-F]/i.test(str))) // v1 hex-encoded SHA-1 info-hash
+            || ((str.length === 32) && !(/[^2-7A-Z]/i.test(str))); // v1 Base32 encoded SHA-1 info-hash
+    };
+
+    const normalizeTorrentLink = (str) => {
+        const trimmed = safeTrim(str);
+        if (trimmed.length < 2)
+            return trimmed;
+
+        const firstChar = trimmed[0];
+        const lastChar = trimmed[trimmed.length - 1];
+        if (((firstChar === "'") && (lastChar === "'"))
+            || ((firstChar === "\"") && (lastChar === "\""))
+            || ((firstChar === "<") && (lastChar === ">"))) {
+            return trimmed.slice(1, -1).trim();
+        }
+
+        return trimmed;
+    };
+
+    const torrentLinksFromText = (text) => {
+        const urls = [];
+        const seen = new Set();
+
+        for (const line of text.split("\n")) {
+            const url = normalizeTorrentLink(line);
+            if (url.length === 0)
+                continue;
+
+            if (!isTorrentLink(url) || seen.has(url))
+                continue;
+
+            seen.add(url);
+            urls.push(url);
+        }
+
+        return urls;
     };
 
     /**
