@@ -1396,7 +1396,12 @@ qlonglong TorrentImpl::eta() const
 
         qlonglong ratioEta = MAX_ETA;
 
-        if ((speedAverage.upload > 0) && (shareLimits.ratioLimit >= 0))
+        const bool ignoreRatioLimit = (shareLimits.action == ShareLimitAction::Stop)
+                && shouldIgnoreShareRatioLimitForLonelyTorrent(
+                    m_session->continueSeedingLonelyTorrents()
+                    , m_session->lonelyTorrentsSeedersLimit(), totalSeedsCount());
+
+        if ((speedAverage.upload > 0) && (shareLimits.ratioLimit >= 0) && !ignoreRatioLimit)
         {
             qlonglong realDL = totalDownload();
             if (realDL <= 0)

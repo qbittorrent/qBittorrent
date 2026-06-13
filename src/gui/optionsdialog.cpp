@@ -1213,6 +1213,9 @@ void OptionsDialog::loadBittorrentTabOptions()
         m_ui->checkMaxInactiveSeedingMinutes->setChecked(false);
         m_ui->spinMaxInactiveSeedingMinutes->setEnabled(false);
     }
+    m_ui->checkContinueSeedingLonelyTorrents->setChecked(session->continueSeedingLonelyTorrents());
+    m_ui->spinContinueSeedingLonelyTorrents->setEnabled(session->continueSeedingLonelyTorrents());
+    m_ui->spinContinueSeedingLonelyTorrents->setValue(session->lonelyTorrentsSeedersLimit());
     m_ui->comboRatioLimitAct->setEnabled((shareLimits.ratioLimit >= 0.) || (shareLimits.seedingTimeLimit >= 0) || (shareLimits.inactiveSeedingTimeLimit >= 0));
 
     const QHash<BitTorrent::ShareLimitAction, int> actIndex =
@@ -1267,6 +1270,9 @@ void OptionsDialog::loadBittorrentTabOptions()
     connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
     connect(m_ui->checkMaxInactiveSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxInactiveSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkContinueSeedingLonelyTorrents, &QAbstractButton::toggled, m_ui->spinContinueSeedingLonelyTorrents, &QWidget::setEnabled);
+    connect(m_ui->checkContinueSeedingLonelyTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinContinueSeedingLonelyTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -1310,6 +1316,8 @@ void OptionsDialog::saveBittorrentTabOptions() const
         .mode = (m_ui->radioButtonShareLimitsModeAll->isChecked() ? BitTorrent::ShareLimitsMode::MatchAll : BitTorrent::ShareLimitsMode::MatchAny),
         .action = actIndex.value(m_ui->comboRatioLimitAct->currentIndex())
     });
+    session->setContinueSeedingLonelyTorrents(m_ui->checkContinueSeedingLonelyTorrents->isChecked());
+    session->setLonelyTorrentsSeedersLimit(m_ui->spinContinueSeedingLonelyTorrents->value());
 
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
@@ -1746,6 +1754,16 @@ int OptionsDialog::getMaxInactiveSeedingMinutes() const
     return m_ui->checkMaxInactiveSeedingMinutes->isChecked()
         ? m_ui->spinMaxInactiveSeedingMinutes->value()
         : -1;
+}
+
+bool OptionsDialog::isContinueSeedingLonelyTorrentsEnabled() const
+{
+    return m_ui->checkContinueSeedingLonelyTorrents->isChecked();
+}
+
+int OptionsDialog::getLonelyTorrentsSeedersLimit() const
+{
+    return m_ui->spinContinueSeedingLonelyTorrents->value();
 }
 
 // Return max connections number

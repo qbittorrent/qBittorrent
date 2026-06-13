@@ -320,6 +320,8 @@ void AppController::preferencesAction()
     data[u"max_seeding_time"_s] = shareLimits.seedingTimeLimit;
     data[u"max_inactive_seeding_time_enabled"_s] = (shareLimits.inactiveSeedingTimeLimit >= 0);
     data[u"max_inactive_seeding_time"_s] = shareLimits.inactiveSeedingTimeLimit;
+    data[u"continue_seeding_lonely_torrents_enabled"_s] = session->continueSeedingLonelyTorrents();
+    data[u"continue_seeding_lonely_torrents_seeders_limit"_s] = session->lonelyTorrentsSeedersLimit();
     data[u"share_limits_mode"_s] = Utils::String::fromEnum(shareLimits.mode);
     data[u"max_ratio_act"_s] = static_cast<int>(shareLimits.action);
     // Add trackers
@@ -852,6 +854,10 @@ void AppController::setPreferencesAction()
         shareLimits.inactiveSeedingTimeLimit = BitTorrent::NO_SEEDING_TIME_LIMIT;
     else if (hasKey(u"max_inactive_seeding_time"_s))
         shareLimits.inactiveSeedingTimeLimit = it.value().toInt();
+    if (hasKey(u"continue_seeding_lonely_torrents_enabled"_s))
+        session->setContinueSeedingLonelyTorrents(it.value().toBool());
+    if (hasKey(u"continue_seeding_lonely_torrents_seeders_limit"_s))
+        session->setLonelyTorrentsSeedersLimit(it.value().toInt());
     if (hasKey(u"share_limits_mode"_s))
         shareLimits.mode = Utils::String::toEnum(it.value().toString(), BitTorrent::ShareLimitsMode::MatchAny);
     if (hasKey(u"max_ratio_act"_s))

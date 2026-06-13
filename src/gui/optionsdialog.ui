@@ -3202,6 +3202,60 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                 </widget>
                </item>
                <item row="3" column="0" colspan="3">
+                <layout class="QHBoxLayout" name="layoutContinueSeedingLonelyTorrents">
+                 <item>
+                  <widget class="QCheckBox" name="checkContinueSeedingLonelyTorrents">
+                   <property name="text">
+                    <string>Continue seeding lonely torrents</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelContinueSeedingLonelyTorrents">
+                   <property name="text">
+                    <string>when there are fewer than</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinContinueSeedingLonelyTorrents">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>999999</number>
+                   </property>
+                   <property name="value">
+                    <number>4</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="labelContinueSeedingLonelyTorrentsSeeders">
+                   <property name="text">
+                    <string>seeders</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_27">
+                   <property name="orientation">
+                    <enum>Qt::Orientation::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </item>
+               <item row="4" column="0" colspan="3">
                 <layout class="QHBoxLayout" name="layoutShareLimitsMode">
                  <item>
                   <spacer name="horizontalSpacer_26">

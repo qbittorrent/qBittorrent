@@ -523,6 +523,9 @@ SessionImpl::SessionImpl(QObject *parent)
         , NO_SEEDING_TIME_LIMIT, lowerLimited(NO_SEEDING_TIME_LIMIT))
     , m_globalMaxInactiveSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxInactiveSeedingMinutes"_s)
         , NO_SEEDING_TIME_LIMIT, lowerLimited(NO_SEEDING_TIME_LIMIT))
+    , m_continueSeedingLonelyTorrents(BITTORRENT_SESSION_KEY(u"ContinueSeedingLonelyTorrents"_s), false)
+    , m_lonelyTorrentsSeedersLimit(BITTORRENT_SESSION_KEY(u"LonelyTorrentsSeedersLimit"_s)
+        , BitTorrent::DEFAULT_LONELY_TORRENTS_SEEDERS_LIMIT, lowerLimited(1))
     , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_s), false)
     , m_isAddTorrentStopped(BITTORRENT_SESSION_KEY(u"AddTorrentStopped"_s), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_s), Torrent::StopCondition::None)
@@ -2375,6 +2378,9 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
         return;
 
     const ShareLimits shareLimits = torrent->effectiveShareLimits();
+    const bool ignoreRatioLimit = (shareLimits.action == ShareLimitAction::Stop)
+            && shouldIgnoreShareRatioLimitForLonelyTorrent(m_continueSeedingLonelyTorrents
+                , m_lonelyTorrentsSeedersLimit, torrent->totalSeedsCount());
 
     bool reached = false;
     QString description;
@@ -2382,7 +2388,7 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     if (shareLimits.mode == ShareLimitsMode::MatchAny)
     {
         if (const qreal ratio = torrent->realRatio();
-            (shareLimits.ratioLimit >= 0) && (ratio >= shareLimits.ratioLimit))
+            (shareLimits.ratioLimit >= 0) && (ratio >= shareLimits.ratioLimit) && !ignoreRatioLimit)
         {
             reached = true;
             description = tr("Torrent reached the share ratio limit.");
@@ -2402,24 +2408,16 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
     }
     else
     {
-        reached = true;
-        description = tr("Torrent reached the share limit(s).");
+        const bool ratioLimitReached = (shareLimits.ratioLimit < 0) || ignoreRatioLimit
+                || (torrent->realRatio() >= shareLimits.ratioLimit);
+        const bool seedingTimeLimitReached = (shareLimits.seedingTimeLimit < 0)
+                || ((torrent->finishedTime() / 60) >= shareLimits.seedingTimeLimit);
+        const bool inactiveSeedingTimeLimitReached = (shareLimits.inactiveSeedingTimeLimit < 0)
+                || ((torrent->timeSinceActivity() / 60) >= shareLimits.inactiveSeedingTimeLimit);
 
-        if (const qreal ratio = torrent->realRatio();
-            (shareLimits.ratioLimit >= 0) && (ratio < shareLimits.ratioLimit))
-        {
-            reached = false;
-        }
-        else if (const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
-            (shareLimits.seedingTimeLimit >= 0) && (seedingTimeInMinutes < shareLimits.seedingTimeLimit))
-        {
-            reached = false;
-        }
-        else if (const qlonglong inactiveSeedingTimeInMinutes = torrent->timeSinceActivity() / 60;
-            (shareLimits.inactiveSeedingTimeLimit >= 0) && (inactiveSeedingTimeInMinutes < shareLimits.inactiveSeedingTimeLimit))
-        {
-            reached = false;
-        }
+        reached = ratioLimitReached && seedingTimeLimitReached && inactiveSeedingTimeLimitReached;
+        if (reached)
+            description = tr("Torrent reached the share limit(s).");
     }
 
     if (reached)
@@ -4885,6 +4883,33 @@ void SessionImpl::setSlowTorrentsInactivityTimer(const int timeInSeconds)
 
     m_slowTorrentsInactivityTimer = timeInSeconds;
     configureDeferred();
+}
+
+bool SessionImpl::continueSeedingLonelyTorrents() const
+{
+    return m_continueSeedingLonelyTorrents;
+}
+
+void SessionImpl::setContinueSeedingLonelyTorrents(const bool enabled)
+{
+    if (enabled == m_continueSeedingLonelyTorrents)
+        return;
+
+    m_continueSeedingLonelyTorrents = enabled;
+}
+
+int SessionImpl::lonelyTorrentsSeedersLimit() const
+{
+    return m_lonelyTorrentsSeedersLimit;
+}
+
+void SessionImpl::setLonelyTorrentsSeedersLimit(const int seedersCount)
+{
+    const int value = std::max(seedersCount, 1);
+    if (value == m_lonelyTorrentsSeedersLimit)
+        return;
+
+    m_lonelyTorrentsSeedersLimit = value;
 }
 
 int SessionImpl::outgoingPortsMin() const
