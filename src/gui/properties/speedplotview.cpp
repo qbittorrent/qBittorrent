@@ -37,6 +37,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 
@@ -49,52 +50,56 @@ namespace
     {
         qreal arg = 0;
         Utils::Misc::SizeUnit unit {};
+        int divisor = 1024;
         qlonglong sizeInBytes() const
         {
-            return Utils::Misc::sizeInBytes(arg, unit);
+            return Utils::Misc::sizeInBytes(arg, unit, (divisor == 1000));
         }
     };
 
-    SplitValue getRoundedYScale(qreal value)
+    SplitValue getRoundedYScale(qreal value, const int divisor = 1024)
     {
         using Utils::Misc::SizeUnit;
 
-        if (value == 0.0) return {0, SizeUnit::Byte};
-        if (value <= 12.0) return {12, SizeUnit::Byte};
+        if (value == 0.0) return {0, SizeUnit::Byte, divisor};
+        if (value <= 12.0) return {12, SizeUnit::Byte, divisor};
 
         SizeUnit calculatedUnit = SizeUnit::Byte;
-        while (value > 1024)
+        while (value > divisor)
         {
-            value /= 1024;
+            value /= divisor;
             calculatedUnit = static_cast<SizeUnit>(static_cast<int>(calculatedUnit) + 1);
         }
 
         if (value > 100)
         {
             const qreal roundedValue {std::ceil(value / 40) * 40};
-            return {roundedValue, calculatedUnit};
+            return {roundedValue, calculatedUnit, divisor};
         }
 
         if (value > 10)
         {
             const qreal roundedValue {std::ceil(value / 4) * 4};
-            return {roundedValue, calculatedUnit};
+            return {roundedValue, calculatedUnit, divisor};
         }
 
         for (const auto &roundedValue : roundingTable)
         {
             if (value <= roundedValue)
-                return {roundedValue, calculatedUnit};
+                return {roundedValue, calculatedUnit, divisor};
         }
-        return {10.0, calculatedUnit};
+        return {10.0, calculatedUnit, divisor};
     }
 
-    QString formatLabel(const qreal argValue, const Utils::Misc::SizeUnit unit)
+    QString formatLabel(const qreal argValue, const Utils::Misc::SizeUnit unit,
+                        const Utils::Misc::UnitType type, const bool useDecimalPrefix)
     {
+        using Utils::Misc::friendlyUnitPrecision;
+        using Utils::Misc::unitString;
         // check is there need for digits after decimal separator
         const int precision = (argValue < 10) ? friendlyUnitPrecision(unit) : 0;
         return QLocale::system().toString(argValue, 'f', precision)
-               + QChar::Nbsp + unitString(unit, true);
+               + QChar::Nbsp + unitString(unit, true, type, useDecimalPrefix);
     }
 }
 
@@ -288,17 +293,24 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     QFontMetrics fontMetrics = painter.fontMetrics();
 
     rect.adjust(4, 4, 0, -4); // Add padding
-    const SplitValue niceScale = getRoundedYScale(maxYValue());
+    const auto *pref = Preferences::instance();
+    const auto speedType = pref->speedUnitType();
+    const bool speedDecimal = pref->speedUseDecimalPrefixes();
+    const int divisor = speedDecimal ? 1000 : 1024;
+    qreal maxY = static_cast<qreal>(maxYValue());
+    if (speedType == Utils::Misc::UnitType::Bit)
+        maxY *= 8;
+    const SplitValue niceScale = getRoundedYScale(maxY, divisor);
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
     const QList<QString> speedLabels =
     {
-        formatLabel(niceScale.arg, niceScale.unit),
-        formatLabel((0.75 * niceScale.arg), niceScale.unit),
-        formatLabel((0.50 * niceScale.arg), niceScale.unit),
-        formatLabel((0.25 * niceScale.arg), niceScale.unit),
-        formatLabel(0.0, niceScale.unit),
+        formatLabel(niceScale.arg, niceScale.unit, speedType, speedDecimal),
+        formatLabel((0.75 * niceScale.arg), niceScale.unit, speedType, speedDecimal),
+        formatLabel((0.50 * niceScale.arg), niceScale.unit, speedType, speedDecimal),
+        formatLabel((0.25 * niceScale.arg), niceScale.unit, speedType, speedDecimal),
+        formatLabel(0.0, niceScale.unit, speedType, speedDecimal),
     };
 
     int yAxisWidth = 0;
@@ -352,6 +364,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     const milliseconds lastDuration {queue.empty() ? 0ms : queue.back().duration};
     const qreal xTickSize = static_cast<qreal>(rect.width()) / (m_currentMaxDuration - lastDuration).count();
     const qreal yMultiplier = (niceScale.arg == 0) ? 0 : (static_cast<qreal>(rect.height()) / niceScale.sizeInBytes());
+    const qreal bitMultiplier = (speedType == Utils::Misc::UnitType::Bit) ? 8.0 : 1.0;
 
     for (int id = UP; id < NB_GRAPHS; ++id)
     {
@@ -364,7 +377,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
         for (int i = static_cast<int>(queue.size()) - 1; i >= 0; --i)
         {
             const int newX = rect.right() - (duration.count() * xTickSize);
-            const int newY = rect.bottom() - (queue[i].data[id] * yMultiplier);
+            const int newY = rect.bottom() - (queue[i].data[id] * bitMultiplier * yMultiplier);
             points.push_back(QPoint(newX, newY));
 
             duration += queue[i].duration;

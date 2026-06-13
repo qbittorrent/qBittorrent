@@ -2119,6 +2119,45 @@ void Preferences::setSpeedWidgetGraphEnable(const int id, const bool enable)
     setValue(u"SpeedWidget/graph_enable_%1"_s.arg(id), enable);
 }
 
+Utils::Misc::UnitType Preferences::speedUnitType() const
+{
+    return static_cast<Utils::Misc::UnitType>(value<int>(u"Preferences/Units/SpeedUnitType"_s, static_cast<int>(Utils::Misc::UnitType::Byte)));
+}
+
+void Preferences::setSpeedUnitType(const Utils::Misc::UnitType type)
+{
+    if (type == speedUnitType())
+        return;
+
+    setValue(u"Preferences/Units/SpeedUnitType"_s, static_cast<int>(type));
+}
+
+bool Preferences::speedUseDecimalPrefixes() const
+{
+    return value(u"Preferences/Units/SpeedDecimalPrefixes"_s, false);
+}
+
+void Preferences::setSpeedUseDecimalPrefixes(const bool useDecimal)
+{
+    if (useDecimal == speedUseDecimalPrefixes())
+        return;
+
+    setValue(u"Preferences/Units/SpeedDecimalPrefixes"_s, useDecimal);
+}
+
+bool Preferences::sizeUseDecimalPrefixes() const
+{
+    return value(u"Preferences/Units/SizeDecimalPrefixes"_s, false);
+}
+
+void Preferences::setSizeUseDecimalPrefixes(const bool useDecimal)
+{
+    if (useDecimal == sizeUseDecimalPrefixes())
+        return;
+
+    setValue(u"Preferences/Units/SizeDecimalPrefixes"_s, useDecimal);
+}
+
 bool Preferences::isAddNewTorrentDialogEnabled() const
 {
     return value(u"AddNewTorrentDialog/Enabled"_s, true);

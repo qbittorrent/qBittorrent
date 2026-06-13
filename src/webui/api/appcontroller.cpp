@@ -293,6 +293,10 @@ void AppController::preferencesAction()
     data[u"schedule_to_hour"_s] = end_time.hour();
     data[u"schedule_to_min"_s] = end_time.minute();
     data[u"scheduler_days"_s] = static_cast<int>(pref->getSchedulerDays());
+    // Speed Display
+    data[u"speed_unit_type"_s] = static_cast<int>(pref->speedUnitType());
+    data[u"speed_use_decimal_prefixes"_s] = pref->speedUseDecimalPrefixes();
+    data[u"size_use_decimal_prefixes"_s] = pref->sizeUseDecimalPrefixes();
 
     // Bittorrent
     // Privacy
@@ -805,6 +809,13 @@ void AppController::setPreferencesAction()
         pref->setSchedulerEndTime({hourIter.value().toInt(), minIter.value().toInt()});
     if (hasKey(u"scheduler_days"_s))
         pref->setSchedulerDays(static_cast<Scheduler::Days>(it.value().toInt()));
+    // Speed Display
+    if (hasKey(u"speed_unit_type"_s))
+        pref->setSpeedUnitType(static_cast<Utils::Misc::UnitType>(it.value().toInt()));
+    if (hasKey(u"speed_use_decimal_prefixes"_s))
+        pref->setSpeedUseDecimalPrefixes(it.value().toBool());
+    if (hasKey(u"size_use_decimal_prefixes"_s))
+        pref->setSizeUseDecimalPrefixes(it.value().toBool());
 
     // Bittorrent
     // Privacy
