@@ -279,6 +279,8 @@ namespace BitTorrent
         virtual void setNetworkInterfaceName(const QString &name) = 0;
         virtual QString networkInterfaceAddress() const = 0;
         virtual void setNetworkInterfaceAddress(const QString &address) = 0;
+        virtual QStringList additionalNetworkInterfaces() const = 0;
+        virtual void setAdditionalNetworkInterfaces(const QStringList &ifaces) = 0;
         virtual int encryption() const = 0;
         virtual void setEncryption(int state) = 0;
         virtual int maxActiveCheckingTorrents() const = 0;

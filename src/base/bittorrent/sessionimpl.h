@@ -254,6 +254,8 @@ namespace BitTorrent
         void setNetworkInterfaceName(const QString &name) override;
         QString networkInterfaceAddress() const override;
         void setNetworkInterfaceAddress(const QString &address) override;
+        QStringList additionalNetworkInterfaces() const override;
+        void setAdditionalNetworkInterfaces(const QStringList &ifaces) override;
         int encryption() const override;
         void setEncryption(int state) override;
         int maxActiveCheckingTorrents() const override;
@@ -560,6 +562,7 @@ namespace BitTorrent
         void applyBandwidthLimits();
         void processBannedIPs(lt::ip_filter &filter);
         QStringList getListeningIPs() const;
+        QStringList getPrimaryListeningIPs() const;
         void configureListeningInterface();
         void enableTracker(bool enable);
         void enableBandwidthScheduler();
@@ -747,6 +750,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_networkInterface;
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;
+        CachedSettingValue<QStringList> m_additionalNetworkInterfaces;
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<int> m_maxActiveCheckingTorrents;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
