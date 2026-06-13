@@ -83,14 +83,14 @@ void WebUI::configure()
         }
         else
         {
+            const QString serverAddressString = pref->getWebUIAddress();
+            const auto serverAddress = ((serverAddressString == u"*") || serverAddressString.isEmpty())
+                ? QHostAddress::Any : QHostAddress(serverAddressString);
+
             const bool needsRestart = useUnixSocket
-                ? (!m_httpServer->isUnixSocket() || (m_httpServer->unixSocketPath() != pref->getWebUIUnixSocketPath().toString()))
+                ? (!m_httpServer->isUnixSocket() || (m_httpServer->unixSocketPath() != pref->getWebUIUnixSocketPath()))
                 : (m_httpServer->isUnixSocket() || (m_httpServer->serverPort() != pref->getWebUIPort())
-                    || (m_httpServer->serverAddress() != [&pref]()
-                    {
-                        const QString addr = pref->getWebUIAddress();
-                        return ((addr == u"*") || addr.isEmpty()) ? QHostAddress::Any : QHostAddress(addr);
-                    }()));
+                    || (m_httpServer->serverAddress() != serverAddress));
 
             if (needsRestart)
             {
