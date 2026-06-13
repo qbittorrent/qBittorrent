@@ -26,35 +26,38 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "searchpluginsourcedialog.h"
 
-#include <QDialog>
+#include "gui/utils.h"
+#include "ui_searchpluginsourcedialog.h"
 
-#include "base/settingvalue.h"
+#define SETTINGS_KEY(name) u"SearchPluginSourceDialog/" name
 
-namespace Ui
+SearchPluginSourceDialog::SearchPluginSourceDialog(QWidget *parent)
+    : QDialog(parent)
+    , m_ui {new Ui::SearchPluginSourceDialog}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
 {
-    class PluginSourceDialog;
+    m_ui->setupUi(this);
+
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
-class PluginSourceDialog final : public QDialog
+SearchPluginSourceDialog::~SearchPluginSourceDialog()
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PluginSourceDialog)
+    m_storeDialogSize = size();
+    delete m_ui;
+}
 
-public:
-    explicit PluginSourceDialog(QWidget *parent = nullptr);
-    ~PluginSourceDialog() override;
+void SearchPluginSourceDialog::on_localButton_clicked()
+{
+    emit askForLocalFile();
+    close();
+}
 
-signals:
-    void askForUrl();
-    void askForLocalFile();
-
-private slots:
-    void on_localButton_clicked();
-    void on_urlButton_clicked();
-
-private:
-    Ui::PluginSourceDialog *m_ui = nullptr;
-    SettingValue<QSize> m_storeDialogSize;
-};
+void SearchPluginSourceDialog::on_urlButton_clicked()
+{
+    emit askForUrl();
+    close();
+}

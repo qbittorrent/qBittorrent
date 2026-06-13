@@ -69,8 +69,8 @@
 #include "gui/desktopintegration.h"
 #include "gui/interfaces/iguiapplication.h"
 #include "gui/uithememanager.h"
-#include "pluginselectdialog.h"
 #include "searchjobwidget.h"
+#include "searchpluginselectdialog.h"
 #include "ui_searchwidget.h"
 
 const int HISTORY_FILE_MAX_SIZE = 10 * 1024 * 1024;
@@ -853,7 +853,7 @@ void SearchWidget::showTabMenu(const int index)
 
 void SearchWidget::pluginsButtonClicked()
 {
-    auto *dlg = new PluginSelectDialog(SearchPluginManager::instance(), this);
+    auto *dlg = new SearchPluginSelectDialog(SearchPluginManager::instance(), this);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->show();
 }

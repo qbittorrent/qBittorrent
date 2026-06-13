@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PluginSelectDialog</class>
- <widget class="QDialog" name="PluginSelectDialog">
+ <class>SearchPluginSelectDialog</class>
+ <widget class="QDialog" name="SearchPluginSelectDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
