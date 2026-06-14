@@ -296,6 +296,30 @@ namespace
     {
         return ((value < 0) || (value == std::numeric_limits<int>::max())) ? 0 : value;
     }
+
+    qlonglong finishedTorrentShareLimitsEta(const ShareLimits &shareLimits, const qlonglong ratioEta
+            , const qlonglong seedingTimeEta, const qlonglong inactiveSeedingTimeEta)
+    {
+        const bool matchAll = (shareLimits.mode == ShareLimitsMode::MatchAll);
+        qlonglong result = (matchAll ? 0 : MAX_ETA);
+        bool hasLimit = false;
+
+        const auto applyEta = [&](const bool enabled, const qlonglong eta)
+        {
+            if (!enabled)
+                return;
+
+            hasLimit = true;
+            const qlonglong normalizedEta = std::max<qlonglong>(eta, 0);
+            result = (matchAll ? std::max(result, normalizedEta) : std::min(result, normalizedEta));
+        };
+
+        applyEta((shareLimits.ratioLimit >= 0), ratioEta);
+        applyEta((shareLimits.seedingTimeLimit >= 0), seedingTimeEta);
+        applyEta((shareLimits.inactiveSeedingTimeLimit >= 0), inactiveSeedingTimeEta);
+
+        return (hasLimit ? result : MAX_ETA);
+    }
 }
 
 // TorrentImpl
@@ -1422,7 +1446,7 @@ qlonglong TorrentImpl::eta() const
             inactiveSeedingTimeEta = std::max<qlonglong>(inactiveSeedingTimeEta, 0);
         }
 
-        return std::min({ratioEta, seedingTimeEta, inactiveSeedingTimeEta});
+        return finishedTorrentShareLimitsEta(shareLimits, ratioEta, seedingTimeEta, inactiveSeedingTimeEta);
     }
 
     if (!speedAverage.download) return MAX_ETA;
