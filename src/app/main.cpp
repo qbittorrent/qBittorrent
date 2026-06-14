@@ -46,6 +46,9 @@
 #endif
 
 #include <QCoreApplication>
+#if defined(Q_OS_MACOS) && !defined(DISABLE_GUI)
+#include <QEventLoop>
+#endif
 #include <QString>
 #include <QThread>
 
@@ -246,7 +249,17 @@ int main(int argc, char *argv[])
             }
 #endif
 
+#if defined(Q_OS_MACOS) && !defined(DISABLE_GUI)
+            const auto eventDeliveryDeadline = std::chrono::steady_clock::now() + 300ms;
+            while (std::chrono::steady_clock::now() < eventDeliveryDeadline)
+            {
+                QCoreApplication::processEvents(QEventLoop::AllEvents);
+                QThread::msleep(10);
+            }
+            QCoreApplication::processEvents(QEventLoop::AllEvents);
+#else
             QThread::msleep(300);
+#endif
             app->callMainInstance();
 
             return EXIT_SUCCESS;
