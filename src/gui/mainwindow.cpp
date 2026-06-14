@@ -51,11 +51,17 @@
 #include <QMimeData>
 #include <QProcess>
 #include <QPushButton>
+#ifdef Q_OS_MACOS
+#include <QScreen>
+#endif
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
 #include <QString>
 #include <QTimer>
+#ifdef Q_OS_MACOS
+#include <QWindow>
+#endif
 
 #ifdef Q_OS_WIN
 #include <QCryptographicHash>
@@ -131,6 +137,30 @@ namespace
     const QByteArray PYTHON_INSTALLER_SHA2_256 = QByteArrayLiteral("f4a7df6ab4fa375cd7296127ff6b9a14fbd1313f51864ce020185deba10144fa");
 #endif
 #endif // Q_OS_WIN
+
+#ifdef Q_OS_MACOS
+    bool isCloseTo(const int value, const int reference, const int tolerance)
+    {
+        return ((value >= (reference - tolerance)) && (value <= (reference + tolerance)));
+    }
+
+    bool isFillingAvailableGeometry(const QWidget *window)
+    {
+        const QWindow *const windowHandle = window->windowHandle();
+        const QScreen *const screen = windowHandle ? windowHandle->screen() : window->screen();
+        if (!screen)
+            return false;
+
+        const QRect frameGeometry = window->frameGeometry();
+        const QRect availableGeometry = screen->availableGeometry();
+        const int tolerance = 4;
+
+        return isCloseTo(frameGeometry.left(), availableGeometry.left(), tolerance)
+            && isCloseTo(frameGeometry.top(), availableGeometry.top(), tolerance)
+            && isCloseTo(frameGeometry.right(), availableGeometry.right(), tolerance)
+            && isCloseTo(frameGeometry.bottom(), availableGeometry.bottom(), tolerance);
+    }
+#endif // Q_OS_MACOS
 }
 
 MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, const QString &titleSuffix)
@@ -451,7 +481,11 @@ MainWindow::MainWindow(IGUIApplication *app, const WindowState initialState, con
 #ifdef Q_OS_MACOS
     if (initialState == WindowState::Normal)
     {
-        show();
+        if (pref->isMainWindowMaximized())
+            showMaximized();
+        else
+            show();
+
         activateWindow();
         raise();
     }
@@ -836,6 +870,12 @@ void MainWindow::tabChanged([[maybe_unused]] const int newTab)
 void MainWindow::saveSettings() const
 {
     auto *pref = Preferences::instance();
+
+#ifdef Q_OS_MACOS
+    const bool isMaximizedLayout = isMaximized() || isFillingAvailableGeometry(this);
+    pref->setMainWindowMaximized(isMaximizedLayout);
+    if (!isMaximizedLayout)
+#endif
     pref->setMainGeometry(saveGeometry());
     m_propertiesWidget->saveSettings();
 }
