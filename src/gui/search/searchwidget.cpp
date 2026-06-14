@@ -52,6 +52,7 @@
 #include <QSortFilterProxyModel>
 #include <QStringList>
 #include <QStringListModel>
+#include <QTabBar>
 #include <QThread>
 
 #include "base/global.h"
@@ -352,7 +353,13 @@ SearchWidget::SearchWidget(IGUIApplication *app, QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->stopButton->hide();
-    m_ui->tabWidget->tabBar()->installEventFilter(this);
+    auto *tabBar = m_ui->tabWidget->tabBar();
+    tabBar->installEventFilter(this);
+#ifdef Q_OS_MACOS
+    tabBar->setElideMode(Qt::ElideRight);
+    tabBar->setExpanding(false);
+    tabBar->setUsesScrollButtons(true);
+#endif
 
     const QString searchPatternHint = u"<html><head/><body><p>"
         + tr("A phrase to search for.") + u"<br>"
