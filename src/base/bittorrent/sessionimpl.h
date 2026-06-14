@@ -231,6 +231,7 @@ namespace BitTorrent
         void setUploadSpeedLimit(int limit) override;
         bool isAltGlobalSpeedLimitEnabled() const override;
         void setAltGlobalSpeedLimitEnabled(bool enabled) override;
+        void setAlternativeSessionState(Scheduler::AlternativeSessionState requestedState) override;
         bool isBandwidthSchedulerEnabled() const override;
         void setBandwidthSchedulerEnabled(bool enabled) override;
 
@@ -239,7 +240,7 @@ namespace BitTorrent
         int saveResumeDataInterval() const override;
         void setSaveResumeDataInterval(int value) override;
         std::chrono::minutes saveStatisticsInterval() const override;
-        void setSaveStatisticsInterval(std::chrono::minutes value) override;
+        void setSaveStatisticsInterval(std::chrono::minutes timeInMinutes) override;
         int shutdownTimeout() const override;
         void setShutdownTimeout(int value) override;
         int port() const override;

@@ -700,7 +700,7 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
         <fieldset class="settings">
             <legend>
                 <input type="checkbox" id="limitSchedulingCheckbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();">
-                <label for="limitSchedulingCheckbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <label for="limitSchedulingCheckbox">QBT_TR(Scheduler)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <div class="formRow">
                 <label id="scheduleFromHourLabel">QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -721,6 +721,13 @@ QBT_TR((best choice if supported))QBT_TR[CONTEXT=OptionsDialog] QBT_TR(Default p
                     <option value="7">QBT_TR(Friday)QBT_TR[CONTEXT=HttpServer]</option>
                     <option value="8">QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]</option>
                     <option value="9">QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]</option>
+                </select>
+            </div>
+            <div class="formRow">
+                <label for="schedule_alt_session_state_select">QBT_TR(Do:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <select id="schedule_alt_session_state_select">
+                    <option value="0">QBT_TR(Use alternative limits)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    <option value="1">QBT_TR(Pause bittorrent session)QBT_TR[CONTEXT=OptionsDialog]</option>
                 </select>
             </div>
         </fieldset>
@@ -2166,6 +2173,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             document.getElementById("schedule_to_hour").disabled = !isLimitSchedulingEnabled;
             document.getElementById("schedule_to_min").disabled = !isLimitSchedulingEnabled;
             document.getElementById("schedule_freq_select").disabled = !isLimitSchedulingEnabled;
+            document.getElementById("schedule_alt_session_state_select").disabled = !isLimitSchedulingEnabled;
         };
 
         // Bittorrent tab
@@ -2610,6 +2618,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     document.getElementById("schedule_to_hour").value = time_padding(pref.schedule_to_hour);
                     document.getElementById("schedule_to_min").value = time_padding(pref.schedule_to_min);
                     document.getElementById("schedule_freq_select").value = pref.scheduler_days;
+                    document.getElementById("schedule_alt_session_state_select").value = pref.scheduler_alt_session_state;
                     updateSchedulingEnabled();
 
                     // Bittorrent tab
@@ -3032,6 +3041,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 settings["schedule_to_hour"] = Number(document.getElementById("schedule_to_hour").value);
                 settings["schedule_to_min"] = Number(document.getElementById("schedule_to_min").value);
                 settings["scheduler_days"] = Number(document.getElementById("schedule_freq_select").value);
+                settings["scheduler_alt_session_state"] = Number(document.getElementById("schedule_alt_session_state_select").value);
             }
 
             // Bittorrent tab
