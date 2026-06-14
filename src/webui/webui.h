@@ -60,6 +60,7 @@ public:
     bool isHttps() const;
     QHostAddress hostAddress() const;
     quint16 port() const;
+    QString unixSocketPath() const;
 
 signals:
     void error(const QString &message);

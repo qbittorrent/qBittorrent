@@ -3780,6 +3780,58 @@ Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv
                 </widget>
                </item>
                <item>
+                <widget class="QGroupBox" name="groupWebUIUnixSocket">
+                 <property name="title">
+                  <string>Use Unix domain socket</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayoutUnixSocket">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="lblUnixSocketPath">
+                    <property name="text">
+                     <string>Socket path:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="textUnixSocketPath">
+                    <property name="toolTip">
+                     <string>Path to the Unix domain socket. Use @socketname for abstract sockets.</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="lblUnixSocketPermissions">
+                    <property name="text">
+                     <string>Socket permissions:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="spinUnixSocketPermissions">
+                    <property name="prefix">
+                     <string>0o</string>
+                    </property>
+                    <property name="minimum">
+                     <number>0</number>
+                    </property>
+                    <property name="maximum">
+                     <number>511</number>
+                    </property>
+                    <property name="value">
+                     <number>438</number>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
                 <widget class="QGroupBox" name="checkWebUIHttps">
                  <property name="title">
                   <string>&amp;Use HTTPS instead of HTTP</string>

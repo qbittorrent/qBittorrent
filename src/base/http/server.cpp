@@ -37,12 +37,24 @@
 
 #include <QtLogging>
 #include <QNetworkProxy>
+#include <QSocketNotifier>
 #include <QSslCertificate>
 #include <QSslCipher>
 #include <QSslKey>
 #include <QSslSocket>
 #include <QStringList>
 #include <QTimer>
+#include <QTcpSocket>
+
+#if defined(Q_OS_UNIX)
+#include <cerrno>
+#include <cstring>
+#include <fcntl.h>
+#include <sys/socket.h>
+#include <sys/stat.h>
+#include <sys/un.h>
+#include <unistd.h>
+#endif
 
 #include "base/global.h"
 #include "base/utils/net.h"
@@ -111,6 +123,11 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
     dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL);
+}
+
+Server::~Server()
+{
+    closeUnixSocket();
 }
 
 void Server::incomingConnection(const qintptr socketDescriptor)
@@ -192,3 +209,228 @@ bool Server::isHttps() const
 {
     return m_https;
 }
+
+#if defined(Q_OS_UNIX)
+
+#ifndef SOCK_CLOEXEC
+#define SOCK_CLOEXEC 0
+#endif
+
+#ifndef SOCK_NONBLOCK
+#define SOCK_NONBLOCK 0
+#endif
+
+namespace
+{
+    int portableAccept4(int sockfd, struct sockaddr *addr, socklen_t *addrlen)
+    {
+#if defined(__linux__)
+        return ::accept4(sockfd, addr, addrlen, SOCK_CLOEXEC | SOCK_NONBLOCK);
+#else
+        const int fd = ::accept(sockfd, addr, addrlen);
+        if (fd < 0)
+            return fd;
+
+        if (::fcntl(fd, F_SETFD, ::fcntl(fd, F_GETFD) | FD_CLOEXEC) < 0)
+            qWarning("WebUI: Failed to set FD_CLOEXEC on accepted Unix socket: %s", ::strerror(errno));
+        if (::fcntl(fd, F_SETFL, ::fcntl(fd, F_GETFL) | O_NONBLOCK) < 0)
+            qWarning("WebUI: Failed to set O_NONBLOCK on accepted Unix socket: %s", ::strerror(errno));
+        return fd;
+#endif
+    }
+
+    bool setSocketFlags(const int fd)
+    {
+#if !defined(SOCK_CLOEXEC) || (SOCK_CLOEXEC == 0)
+        if (::fcntl(fd, F_SETFD, ::fcntl(fd, F_GETFD) | FD_CLOEXEC) < 0)
+            return false;
+#endif
+#if !defined(SOCK_NONBLOCK) || (SOCK_NONBLOCK == 0)
+        if (::fcntl(fd, F_SETFL, ::fcntl(fd, F_GETFL) | O_NONBLOCK) < 0)
+            return false;
+#endif
+        return true;
+    }
+}
+
+bool Server::listenUnixSocket(const QString &path, const int permissions)
+{
+    Q_ASSERT(!path.isEmpty());
+
+    // Close previous Unix socket if any
+    closeUnixSocket();
+
+    const QByteArray pathBytes = path.toUtf8();
+    const bool isAbstract = path.startsWith(u'@');
+
+    m_unixListenFd = ::socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC | SOCK_NONBLOCK, 0);
+    if (m_unixListenFd < 0)
+    {
+        m_unixErrorString = QString::fromUtf8(::strerror(errno));
+        qWarning() << "WebUI: Failed to create Unix socket:" << m_unixErrorString;
+        return false;
+    }
+
+    if (!setSocketFlags(m_unixListenFd))
+    {
+        m_unixErrorString = QString::fromUtf8(::strerror(errno));
+        qWarning() << "WebUI: Failed to set socket flags:" << m_unixErrorString;
+        ::close(m_unixListenFd);
+        m_unixListenFd = -1;
+        return false;
+    }
+
+    struct sockaddr_un addr;
+    std::memset(&addr, 0, sizeof(addr));
+    addr.sun_family = AF_UNIX;
+
+    int nameLen = 0;
+
+    if (isAbstract)
+    {
+        // Abstract socket: first byte of sun_path is null
+        const QByteArray name = pathBytes.mid(1);  // skip '@'
+        const auto maxLen = static_cast<qsizetype>(sizeof(addr.sun_path)) - 1;
+        nameLen = static_cast<int>(std::min(name.size(), maxLen));
+        if (nameLen > 0)
+            std::memcpy(addr.sun_path + 1, name.constData(), nameLen);
+    }
+    else
+    {
+        // Filesystem socket
+        const auto maxLen = static_cast<qsizetype>(sizeof(addr.sun_path)) - 1;
+        nameLen = static_cast<int>(std::min(pathBytes.size(), maxLen));
+        if (nameLen > 0)
+            std::memcpy(addr.sun_path, pathBytes.constData(), nameLen);
+
+        // Remove existing socket file
+        ::unlink(pathBytes.constData());
+    }
+
+    const int addrLen = (isAbstract
+        ? offsetof(struct sockaddr_un, sun_path) + 1 + nameLen
+        : sizeof(addr));
+
+    if (::bind(m_unixListenFd, reinterpret_cast<struct sockaddr *>(&addr), addrLen) < 0)
+    {
+        m_unixErrorString = QString::fromUtf8(::strerror(errno));
+        qWarning() << "WebUI: Failed to bind Unix socket:" << m_unixErrorString;
+        ::close(m_unixListenFd);
+        m_unixListenFd = -1;
+        return false;
+    }
+
+    // Set permissions for non-abstract sockets
+    if (!isAbstract)
+    {
+        if (::chmod(pathBytes.constData(), permissions) < 0)
+        {
+            qWarning() << "WebUI: Failed to set Unix socket permissions:" << ::strerror(errno);
+        }
+    }
+
+    if (::listen(m_unixListenFd, SOMAXCONN) < 0)
+    {
+        m_unixErrorString = QString::fromUtf8(::strerror(errno));
+        qWarning() << "WebUI: Failed to listen on Unix socket:" << m_unixErrorString;
+        ::close(m_unixListenFd);
+        m_unixListenFd = -1;
+        if (!isAbstract)
+            ::unlink(pathBytes.constData());
+        return false;
+    }
+
+    m_unixSocketNotifier = new QSocketNotifier(m_unixListenFd, QSocketNotifier::Read, this);
+    connect(m_unixSocketNotifier, &QSocketNotifier::activated, this, &Server::acceptUnixConnection);
+
+    m_unixErrorString.clear();
+    m_isUnixSocket = true;
+    m_unixSocketPath = path;
+    m_unixSocketPermissions = permissions;
+
+    return true;
+}
+
+void Server::closeUnixSocket()
+{
+    if (m_unixListenFd < 0)
+        return;
+
+    delete m_unixSocketNotifier;
+    m_unixSocketNotifier = nullptr;
+
+    ::close(m_unixListenFd);
+    m_unixListenFd = -1;
+
+    // Remove socket file for non-abstract sockets
+    if (!m_unixSocketPath.startsWith(u'@'))
+        ::unlink(m_unixSocketPath.toUtf8().constData());
+
+    m_isUnixSocket = false;
+    m_unixSocketPath.clear();
+}
+
+void Server::acceptUnixConnection()
+{
+    if (m_unixListenFd < 0)
+        return;
+
+    struct sockaddr_un peerAddr;
+    socklen_t peerAddrLen = sizeof(peerAddr);
+
+    const int clientFd = portableAccept4(m_unixListenFd, reinterpret_cast<struct sockaddr *>(&peerAddr)
+                                         , &peerAddrLen);
+    if (clientFd < 0)
+    {
+        if ((errno != EAGAIN) && (errno != EWOULDBLOCK))
+            qWarning() << "WebUI: Failed to accept Unix socket connection:" << ::strerror(errno);
+        return;
+    }
+
+    if (m_connections.size() >= CONNECTIONS_LIMIT)
+    {
+        qWarning("Too many connections on Unix socket. Exceeded CONNECTIONS_LIMIT (%d). Connection closed.", CONNECTIONS_LIMIT);
+        ::close(clientFd);
+        return;
+    }
+
+    // Wrap the Unix domain socket fd in a QTcpSocket to reuse the existing
+    // HTTP connection pipeline (Connection, ResponseWriterImpl) which operates
+    // on QAbstractSocket. QAbstractSocket methods that query TCP-specific info
+    // (peerAddress, localPort, etc.) will return invalid data for Unix sockets,
+    // but those are only used in log messages where empty/zero is acceptable.
+    std::unique_ptr<QTcpSocket> socket = std::make_unique<QTcpSocket>(this);
+    if (!socket->setSocketDescriptor(clientFd))
+    {
+        qWarning() << "WebUI: Failed to set socket descriptor for Unix connection";
+        ::close(clientFd);
+        return;
+    }
+
+    try
+    {
+        auto *connection = new Connection(socket.release(), m_requestHandler, this);
+        m_connections.insert(connection);
+        connect(connection, &Connection::closed, this, [this, connection] { removeConnection(connection); });
+    }
+    catch (const std::bad_alloc &)
+    {
+        qWarning("Failed to allocate memory for HTTP connection on Unix socket. Connection closed.");
+    }
+}
+#else
+bool Server::listenUnixSocket(const QString &path, int permissions)
+{
+    Q_UNUSED(path)
+    Q_UNUSED(permissions)
+    return false;
+}
+
+void Server::closeUnixSocket()
+{
+}
+
+void Server::acceptUnixConnection()
+{
+}
+#endif
