@@ -12,6 +12,7 @@ set(testFiles
     testconceptsexplicitlyconvertibleto.cpp
     testconceptsstringable.cpp
     testglobal.cpp
+    testhttprequestparser.cpp
     testorderedset.cpp
     testpath.cpp
     testutilsbytearray.cpp
@@ -19,6 +20,7 @@ set(testFiles
     testutilsdatetime.cpp
     testutilsgzip.cpp
     testutilsio.cpp
+    testutilsjson.cpp
     testutilsmisc.cpp
     testutilsnumber.cpp
     testutilsstring.cpp
