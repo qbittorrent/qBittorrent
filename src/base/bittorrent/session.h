@@ -517,8 +517,9 @@ namespace BitTorrent
         void torrentTagAdded(Torrent *torrent, const Tag &tag);
         void torrentTagRemoved(Torrent *torrent, const Tag &tag);
         void torrentContentFileRenamed(Torrent *torrent, int index, const Path &oldFilePath);
-        void torrentContentFolderRenamed(const Path &newFolderPath, const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
-        void torrentContentFolderRenamingFailed(const Path &newFolderPath, const Path &oldFolderPath
+        void torrentContentFolderRenamed(Torrent *torrent, const Path &newFolderPath
+                , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
+        void torrentContentFolderRenamingFailed(Torrent *torrent, const Path &newFolderPath, const Path &oldFolderPath
                 , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
         void trackerError(Torrent *torrent, const QString &tracker);
         void trackersAdded(Torrent *torrent, const QList<TrackerEntry> &trackers);

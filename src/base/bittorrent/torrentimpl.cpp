@@ -2391,7 +2391,7 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
                 {
                     emit folderRenamed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles);
 
-                    m_session->handleTorrentContentFolderRenamed(folderRenameInfo.newFolderPath
+                    m_session->handleTorrentContentFolderRenamed(this, folderRenameInfo.newFolderPath
                             , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles);
                 }
                 else
@@ -2399,8 +2399,8 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
                     emit folderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
                             , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
 
-                    m_session->handleTorrentContentFolderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
-                            , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+                    m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
+                            , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
                 }
             }
         }
@@ -2437,8 +2437,8 @@ void TorrentImpl::handleFileRenameFailed(const lt::file_index_t nativeFileIndex)
             emit folderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
                     , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
 
-            m_session->handleTorrentContentFolderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
-                    , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+            m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
+                    , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
         }
     }
 
