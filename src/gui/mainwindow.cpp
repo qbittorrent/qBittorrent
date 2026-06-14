@@ -916,6 +916,11 @@ void MainWindow::createKeyboardShortcuts()
     m_ui->actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
 #ifdef Q_OS_MACOS
     m_ui->actionCloseWindow->setShortcut(QKeySequence::Close);
+    const auto *toggleFullScreenShortcut = new QShortcut((Qt::CTRL | Qt::META | Qt::Key_F), this);
+    connect(toggleFullScreenShortcut, &QShortcut::activated, this, [this]
+    {
+        isFullScreen() ? showNormal() : showFullScreen();
+    });
 #else
     m_ui->actionCloseWindow->setVisible(false);
 #endif
