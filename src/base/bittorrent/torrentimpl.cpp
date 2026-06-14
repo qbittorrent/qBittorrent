@@ -1422,7 +1422,7 @@ qlonglong TorrentImpl::eta() const
             inactiveSeedingTimeEta = std::max<qlonglong>(inactiveSeedingTimeEta, 0);
         }
 
-        return std::min({ratioEta, seedingTimeEta, inactiveSeedingTimeEta});
+        return shareLimitsEta(shareLimits, ratioEta, seedingTimeEta, inactiveSeedingTimeEta);
     }
 
     if (!speedAverage.download) return MAX_ETA;
