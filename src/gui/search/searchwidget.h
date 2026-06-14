@@ -58,6 +58,7 @@ public:
     ~SearchWidget() override;
 
     void giveFocusToSearchInput();
+    bool closeCurrentTab();
 
 signals:
     void searchFinished(bool failed);
