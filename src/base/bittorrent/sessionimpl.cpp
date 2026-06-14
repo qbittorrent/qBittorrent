@@ -2376,6 +2376,14 @@ void SessionImpl::processTorrentShareLimits(TorrentImpl *torrent)
 
     const ShareLimits shareLimits = torrent->effectiveShareLimits();
 
+    // If all share limits are disabled, there is nothing to check
+    if ((shareLimits.ratioLimit < 0)
+            && (shareLimits.seedingTimeLimit < 0)
+            && (shareLimits.inactiveSeedingTimeLimit < 0))
+    {
+        return;
+    }
+
     bool reached = false;
     QString description;
 
