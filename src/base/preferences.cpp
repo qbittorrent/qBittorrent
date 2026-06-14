@@ -2176,6 +2176,19 @@ void Preferences::setAddNewTorrentDialogAttached(const bool attached)
     setValue(u"AddNewTorrentDialog/Attached"_s, attached);
 }
 
+bool Preferences::isMinimizeOnEscEnabled() const
+{
+    return value(u"Preferences/Desktop/MinimizeOnEsc"_s, false);
+}
+
+void Preferences::setMinimizeOnEscEnabled(const bool enabled)
+{
+    if (enabled == isMinimizeOnEscEnabled())
+        return;
+
+    setValue(u"Preferences/Desktop/MinimizeOnEsc"_s, enabled);
+}
+
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())
