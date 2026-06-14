@@ -31,6 +31,7 @@
 #include "uithememanager.h"
 
 #include <QApplication>
+#include <QCoreApplication>
 #include <QPalette>
 #include <QPixmapCache>
 #include <QResource>
@@ -55,6 +56,14 @@ namespace
         const QPalette palette = qApp->palette();
         const QColor &color = palette.color(QPalette::Active, QPalette::Base);
         return (color.lightness() < 127);
+    }
+
+    Path resolveThemePath(const Path &themePath)
+    {
+        if (themePath.isAbsolute())
+            return themePath;
+
+        return (Path(QCoreApplication::applicationDirPath()) / themePath);
     }
 }
 
@@ -100,7 +109,7 @@ UIThemeManager::UIThemeManager()
 
     if (m_useCustomTheme)
     {
-        const Path themePath = Preferences::instance()->customUIThemePath();
+        const Path themePath = resolveThemePath(Preferences::instance()->customUIThemePath());
 
         if (themePath.hasExtension(u".qbtheme"_s))
         {
