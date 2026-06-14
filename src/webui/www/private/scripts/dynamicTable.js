@@ -2468,6 +2468,55 @@ window.qBittorrent.DynamicTable ??= (() => {
                 this.rerender();
         }
 
+        clearCollapseState() {
+            this.collapseState.clear();
+        }
+
+        #normalizeFolderPath(folderPath, rootFolder) {
+            if (rootFolder === "")
+                return folderPath;
+
+            if (folderPath === rootFolder)
+                return "";
+
+            const rootPrefix = `${rootFolder}${window.qBittorrent.Filesystem.PathSeparator}`;
+            return folderPath.startsWith(rootPrefix)
+                ? folderPath.substring(rootPrefix.length)
+                : folderPath;
+        }
+
+        getFolderCollapseState(rootFolder = "") {
+            const folderCollapseState = new Map();
+
+            for (const node of this.getFileTreeArray()) {
+                if (!node.isFolder)
+                    continue;
+
+                const folderPath = this.#normalizeFolderPath(node.path, rootFolder);
+                if (folderPath !== "")
+                    folderCollapseState.set(folderPath, this.isCollapsed(node.rowId));
+            }
+
+            return folderCollapseState;
+        }
+
+        restoreFolderCollapseState(folderCollapseState, rootFolder = "") {
+            for (const node of this.getFileTreeArray()) {
+                if (!node.isFolder)
+                    continue;
+
+                const folderPath = this.#normalizeFolderPath(node.path, rootFolder);
+                const collapsed = folderCollapseState.get(folderPath);
+                if (collapsed === true)
+                    this.collapseNode(node.rowId);
+                else if (collapsed === false)
+                    this.expandNode(node.rowId);
+            }
+
+            if (this.useVirtualList)
+                this.rerender();
+        }
+
         #updateNodeVisibility(node, shouldHide) {
             const span = document.getElementById(`filesTablefileName${node.rowId}`);
             // span won't exist if row has been filtered out
@@ -2515,7 +2564,7 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         clear() {
             super.clear();
-            this.collapseState.clear();
+            this.clearCollapseState();
         }
 
         expandFolder(id) {
@@ -2563,23 +2612,25 @@ window.qBittorrent.DynamicTable ??= (() => {
 
         populateTable(root) {
             this.fileTree.setRoot(root);
+            const rows = new Map();
             for (const node of root.children)
-                this.#addNodeToTable(node, 0, root);
+                this.#addNodeToTable(node, 0, root, rows);
+            this.setRows(rows);
         }
 
-        #addNodeToTable(node, depth, parent) {
+        #addNodeToTable(node, depth, parent, rows) {
             node.depth = depth;
             node.parent = parent;
 
             if (node.isFolder && this.supportCollapsing && !this.collapseState.has(node.rowId))
                 this.collapseState.set(node.rowId, { depth: depth, collapsed: false });
 
-            this.updateRowData({
+            rows.set(`${node.rowId}`, {
                 rowId: node.rowId,
             });
 
             for (const child of node.children)
-                this.#addNodeToTable(child, depth + 1, node);
+                this.#addNodeToTable(child, depth + 1, node, rows);
         }
 
         getFileTreeArray() {
