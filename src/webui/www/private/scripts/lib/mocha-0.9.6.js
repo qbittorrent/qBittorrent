@@ -437,14 +437,14 @@ MUI.extend({
 		var windowUnderlay = new Element('div', {
 			'id': 'windowUnderlay',
 			'styles': {
-				'height': parent.getCoordinates().height,
+				'height': window.getCoordinates().height,
 				'opacity': .01,
 				'display': 'none'
 			}
 		}).inject(document.body);
 	},
 	setUnderlaySize: function(){
-		$('windowUnderlay').setStyle('height', parent.getCoordinates().height);
+		$('windowUnderlay').setStyle('height', window.getCoordinates().height);
 	}
 });
 
