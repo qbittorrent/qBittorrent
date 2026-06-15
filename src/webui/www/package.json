@@ -18,7 +18,7 @@
     "eslint-plugin-prefer-arrow-functions": "*",
     "eslint-plugin-qbt-webui": "https://github.com/Chocobo1/eslint-plugin-qbt-webui/tarball/v1",
     "eslint-plugin-regexp": "*",
-    "eslint-plugin-unicorn": "*",
+    "eslint-plugin-unicorn": "^62.0.0",
     "happy-dom": "*",
     "html-validate": "*",
     "js-beautify": "*",
