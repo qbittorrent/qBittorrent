@@ -454,6 +454,30 @@ class ExampleWidget : public QWidget
     };
     ```
 
+* When to omit lambda return type
+
+  There are advantages to explicitly specifying the return type of a lambda. It helps the compiler (and especially the reader) easily understand
+  the return type and leaves no ambiguity. It also helps the compiler emit useful error messages when something goes wrong in the lambda body. \
+  You may omit the return type when the following conditions apply:
+  1. The lambda is defined inline as an input parameter for another function, which already restricts the lambda's return type.
+
+  Examples:
+  ```c++
+  // Cannot omit return type
+  const auto findMetricIndex = [](const char *name) -> int
+  {
+      const int index = lt::find_metric_idx(name);
+      assert(index >= 0);
+      return index;
+  };
+
+  // Return type omittable
+  std::ranges::all_of(strings, [](const std::string &url)
+  {
+      return url.starts_with("magnet:");
+  });
+  ```
+
 * Prefer pre-increment, pre-decrement operators
 
   ```c++
