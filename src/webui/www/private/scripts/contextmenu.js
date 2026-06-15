@@ -252,12 +252,23 @@ window.qBittorrent.ContextMenu ??= (() => {
         setItemCheckState(item, state) {
             const icon = this.menu.querySelector(`a[href$="${item}"]`).firstElementChild;
             icon.dataset.checkState = state;
+            if (icon.type === "checkbox") {
+                icon.indeterminate = (state === "partial");
+                icon.checked = (state === "checked");
+                return this;
+            }
+            if (icon.classList.contains("contextMenuCheckBox"))
+                return this;
+
             icon.style.opacity = (state === "unchecked") ? "0" : ((state === "partial") ? "0.5" : "1");
             return this;
         }
 
         getItemCheckState(item) {
             const icon = this.menu.querySelector(`a[href$="${item}"]`).firstElementChild;
+            if (icon.type === "checkbox")
+                return (icon.indeterminate ? "partial" : (icon.checked ? "checked" : "unchecked"));
+
             return icon.dataset.checkState ?? ((icon.style.opacity === "0") ? "unchecked" : "checked");
         }
 
