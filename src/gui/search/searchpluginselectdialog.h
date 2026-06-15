@@ -45,17 +45,17 @@ namespace Net
 
 namespace Ui
 {
-    class PluginSelectDialog;
+    class SearchPluginSelectDialog;
 }
 
-class PluginSelectDialog final : public QDialog
+class SearchPluginSelectDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PluginSelectDialog)
+    Q_DISABLE_COPY_MOVE(SearchPluginSelectDialog)
 
 public:
-    explicit PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
-    ~PluginSelectDialog() override;
+    explicit SearchPluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent = nullptr);
+    ~SearchPluginSelectDialog() override;
 
     QList<QTreeWidgetItem*> findItemsWithUrl(const QString &url);
     QTreeWidgetItem *findItemWithID(const QString &id);
@@ -77,7 +77,7 @@ private slots:
     void askForPluginUrl();
     void iconDownloadFinished(const Net::DownloadResult &result);
 
-    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
+    void checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
     void pluginInstalled(const QString &name);
     void pluginInstallationFailed(const QString &name, const QString &reason);
@@ -91,7 +91,7 @@ private:
     void finishAsyncOp();
     void finishPluginUpdate();
 
-    Ui::PluginSelectDialog *m_ui = nullptr;
+    Ui::SearchPluginSelectDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
     SearchPluginManager *m_pluginManager = nullptr;
     QStringList m_updatedPlugins;

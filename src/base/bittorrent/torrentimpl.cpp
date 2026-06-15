@@ -993,7 +993,7 @@ bool TorrentImpl::removeTag(const Tag &tag)
     return false;
 }
 
-void TorrentImpl::removeAllTags()
+void TorrentImpl::clearTags()
 {
     for (const Tag &tag : asConst(tags()))
         removeTag(tag);
@@ -1829,6 +1829,28 @@ void TorrentImpl::resetTrackerEntryStatuses()
     m_announceStatus = TorrentAnnounceStatusFlag::HasNoProblem;
 }
 
+void TorrentImpl::doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath)
+{
+    const int folderRenameJobID = m_nextFolderRenameJobID++;
+    m_renamingFolders.enqueue(
+    {
+        .folderRenameJobID = folderRenameJobID,
+        .oldFolderPath = oldFolderPath,
+        .newFolderPath = newFolderPath
+    });
+
+    for (int i = 0; i < filesCount(); ++i)
+    {
+        const Path path = filePath(i);
+        if (path.hasAncestor(oldFolderPath))
+        {
+            const Path newFilePath = newFolderPath / oldFolderPath.relativePathOf(path);
+            const Path newActualFilePath = makeActualPath(i, newFilePath);
+            doRenameFile(i, newActualFilePath, folderRenameJobID);
+        }
+    }
+}
+
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
 {
     Q_ASSERT(!m_nativeStatus.torrent_file.expired());
@@ -1900,6 +1922,8 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 
     m_maintenanceJob = MaintenanceJob::None;
     prepareResumeData(std::move(p));
+
+    emit metadataReceived();
 
     m_session->handleTorrentMetadataReceived(this);
 }
@@ -2083,7 +2107,7 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStora
             reload();
         }
 
-        while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+        while (m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
             std::invoke(m_moveFinishedTriggers.dequeue());
     }
 }
@@ -2153,7 +2177,7 @@ void TorrentImpl::handleTorrentFinished()
         {
             m_hasFinishedStatus = true;
 
-            if (isMoveInProgress() || (m_renameCount > 0))
+            if (isMoveInProgress() || !m_renamingFiles.isEmpty())
                 m_moveFinishedTriggers.enqueue([this] { m_session->handleTorrentFinished(this); });
             else
                 m_session->handleTorrentFinished(this);
@@ -2352,10 +2376,43 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
             Utils::Fs::rmdir(actualStorageLocation() / oldParentPath);
             oldParentPath = oldParentPath.parentPath();
         }
+
+        const FileRenameInfo currentFileRenameInfo = m_renamingFiles.dequeue();
+        if (currentFileRenameInfo.folderRenameJobID >= 0)
+        {
+            m_renamingFolders.head().renamedFiles.insert(fileIndex, oldFilePath);
+
+            const FileRenameInfo &nextFileRenameInfo = m_renamingFiles.isEmpty() ? FileRenameInfo() : m_renamingFiles.head();
+            if (currentFileRenameInfo.folderRenameJobID != nextFileRenameInfo.folderRenameJobID)
+            {
+                // last file from current folder rename job
+                const FolderRenameInfo folderRenameInfo = m_renamingFolders.dequeue();
+                if (folderRenameInfo.failedFileIndexes.isEmpty())
+                {
+                    emit folderRenamed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles);
+
+                    m_session->handleTorrentContentFolderRenamed(this, folderRenameInfo.newFolderPath
+                            , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles);
+                }
+                else
+                {
+                    emit folderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
+                            , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+
+                    m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
+                            , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+                }
+            }
+        }
+        else
+        {
+            emit fileRenamed(fileIndex, oldFilePath);
+
+            m_session->handleTorrentContentFileRenamed(this, fileIndex, oldFilePath);
+        }
     }
 
-    --m_renameCount;
-    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+    while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
 
     deferredRequestResumeData();
@@ -2366,8 +2423,26 @@ void TorrentImpl::handleFileRenameFailed(const lt::file_index_t nativeFileIndex)
     const int fileIndex = fileIndexFromNative(nativeFileIndex);
     Q_ASSERT(fileIndex >= 0);
 
-    --m_renameCount;
-    while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
+    const FileRenameInfo currentFileRenameInfo = m_renamingFiles.dequeue();
+    if (currentFileRenameInfo.folderRenameJobID >= 0)
+    {
+        m_renamingFolders.head().failedFileIndexes.append(fileIndex);
+
+        const FileRenameInfo &nextFileRenameInfo = m_renamingFiles.isEmpty() ? FileRenameInfo() : m_renamingFiles.head();
+        if (currentFileRenameInfo.folderRenameJobID != nextFileRenameInfo.folderRenameJobID)
+        {
+            // last file from current folder rename job
+            const FolderRenameInfo folderRenameInfo = m_renamingFolders.dequeue();
+
+            emit folderRenamingFailed(folderRenameInfo.newFolderPath, folderRenameInfo.oldFolderPath
+                    , folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+
+            m_session->handleTorrentContentFolderRenamingFailed(this, folderRenameInfo.newFolderPath
+                    , folderRenameInfo.oldFolderPath, folderRenameInfo.renamedFiles, folderRenameInfo.failedFileIndexes);
+        }
+    }
+
+    while (!isMoveInProgress() && m_renamingFiles.isEmpty() && !m_moveFinishedTriggers.isEmpty())
         m_moveFinishedTriggers.takeFirst()();
 
     deferredRequestResumeData();
@@ -2470,7 +2545,7 @@ void TorrentImpl::adjustStorageLocation()
         moveStorage(targetPath, MoveStorageContext::AdjustCurrentLocation);
 }
 
-void TorrentImpl::doRenameFile(const int index, const Path &path)
+void TorrentImpl::doRenameFile(const int index, const Path &path, const int folderRenameJobID)
 {
     const QList<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
 
@@ -2479,7 +2554,7 @@ void TorrentImpl::doRenameFile(const int index, const Path &path)
     if ((index < 0) || (index >= nativeIndexes.size())) [[unlikely]]
         return;
 
-    ++m_renameCount;
+    m_renamingFiles.enqueue({.index = index, .folderRenameJobID = folderRenameJobID});
     m_nativeHandle.rename_file(nativeIndexes[index], path.toString().toStdString());
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2025  Mike Tzou (Chocobo1)
+ * Copyright (C) 2025-2026  Mike Tzou (Chocobo1)
  * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
@@ -57,7 +57,7 @@ private slots:
             using Latin1Views = QList<QLatin1StringView>;
 
             const Latin1Views reference = QLatin1StringView(in)
-                    .tokenize(QLatin1StringView(sep), Qt::SkipEmptyParts).toContainer();
+                .tokenize(QLatin1StringView(sep), Qt::SkipEmptyParts).toContainer();
             Latin1Views expectedStrings;
             for (const auto &string : expected)
                 expectedStrings.append(QLatin1StringView(string));
@@ -66,6 +66,8 @@ private slots:
 
         checkSkipEmptyParts({}, {}, {});
         checkSkipEmptyParts({}, "/", {});
+        checkSkipEmptyParts("/", {}, {"/"});
+        checkSkipEmptyParts("/ab", {}, (BAViews {"/", "a", "b"}));
         checkSkipEmptyParts("/", "/", {});
         checkSkipEmptyParts("/a", "/", {"a"});
         checkSkipEmptyParts("/a/", "/", {"a"});
@@ -87,7 +89,7 @@ private slots:
             using Latin1Views = QList<QLatin1StringView>;
 
             const Latin1Views reference = QLatin1StringView(in)
-                    .tokenize(QLatin1StringView(sep), Qt::KeepEmptyParts).toContainer();
+                .tokenize(QLatin1StringView(sep), Qt::KeepEmptyParts).toContainer();
             Latin1Views expectedStrings;
             for (const auto &string : expected)
                 expectedStrings.append(QLatin1StringView(string));
@@ -96,6 +98,8 @@ private slots:
 
         checkKeepEmptyParts({}, {}, {{}, {}});
         checkKeepEmptyParts({}, "/", {{}});
+        checkKeepEmptyParts("/", {}, {"", "/", ""});
+        checkKeepEmptyParts("/ab", {}, (BAViews {"", "/", "a", "b", ""}));
         checkKeepEmptyParts("/", "/", {"", ""});
         checkKeepEmptyParts("/a", "/", {"", "a"});
         checkKeepEmptyParts("/a/", "/", {"", "a", ""});

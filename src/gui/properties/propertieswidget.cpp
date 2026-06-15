@@ -96,7 +96,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->listWebSeeds, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayWebSeedListMenu);
     connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentMetadataReceived, this, &PropertiesWidget::updateTorrentInfos);
     connect(m_ui->filesList, &TorrentContentWidget::stateChanged, this, &PropertiesWidget::saveSettings);
 
     // set bar height relative to screen dpi
@@ -301,12 +300,6 @@ void PropertiesWidget::showContentFilterContextMenu()
 void PropertiesWidget::setContentFilterPattern()
 {
     m_ui->filesList->setFilterPattern(m_contentFilterLine->text(), m_storeFilterPatternFormat.get(FilterPatternFormat::Wildcards));
-}
-
-void PropertiesWidget::updateTorrentInfos(BitTorrent::Torrent *const torrent)
-{
-    if (torrent == m_torrent)
-        loadTorrentInfos(m_torrent);
 }
 
 void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)

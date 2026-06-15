@@ -608,7 +608,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             column["caption"] = caption;
             column["style"] = style;
             if (defaultWidth !== -1)
-                column["width"] = localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth);
+                column["width"] = Number(localPreferences.get(`column_${name}_width_${this.dynamicTableDivId}`, defaultWidth));
             column["dataProperties"] = [name];
             column["getRowValue"] = function(row, pos) {
                 if (pos === undefined)
@@ -1896,6 +1896,7 @@ window.qBittorrent.DynamicTable ??= (() => {
             this.newColumn("downloaded", "", "QBT_TR(Downloaded)QBT_TR[CONTEXT=PeerListWidget]", 50, true);
             this.newColumn("uploaded", "", "QBT_TR(Uploaded)QBT_TR[CONTEXT=PeerListWidget]", 50, true);
             this.newColumn("relevance", "", "QBT_TR(Relevance)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
+            this.newColumn("contribution", "", "QBT_TR(Contribution)QBT_TR[CONTEXT=PeerListWidget]", 30, true);
             this.newColumn("files", "", "QBT_TR(Files)QBT_TR[CONTEXT=PeerListWidget]", 100, true);
 
             this.columns["country"].dataProperties.push("country_code");
@@ -1977,6 +1978,10 @@ window.qBittorrent.DynamicTable ??= (() => {
             // relevance
             this.columns["relevance"].updateTd = displayProgress;
             this.columns["relevance"].staticWidth = 100;
+
+            // contribution
+            this.columns["contribution"].updateTd = displayProgress;
+            this.columns["contribution"].staticWidth = 100;
 
             // files
             this.columns["files"].updateTd = function(td, row) {
@@ -3390,7 +3395,7 @@ window.qBittorrent.DynamicTable ??= (() => {
                     checkbox.dataset.id = row.rowId;
                     checkbox.addEventListener("click", (e) => {
                         const targetId = e.target.dataset.id;
-                        const row = window.qBittorrent.RssDownloader.rssDownloaderRulesTable.getRow(targetId);
+                        const row = window.qBittorrent.RssDownloader.rssDownloaderFeedSelectionTable.getRow(targetId);
                         window.qBittorrent.RssDownloader.rssDownloaderFeedSelectionTable.updateRowData({
                             rowId: row.rowId,
                             checked: checkbox.checked

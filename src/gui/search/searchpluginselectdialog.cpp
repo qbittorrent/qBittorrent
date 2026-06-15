@@ -27,7 +27,7 @@
  * exception statement from your version.
  */
 
-#include "pluginselectdialog.h"
+#include "searchpluginselectdialog.h"
 
 #include <QClipboard>
 #include <QDropEvent>
@@ -45,9 +45,9 @@
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
-#include "pluginsourcedialog.h"
+#include "searchpluginsourcedialog.h"
 #include "searchwidget.h"
-#include "ui_pluginselectdialog.h"
+#include "ui_searchpluginselectdialog.h"
 
 #define SETTINGS_KEY(name) u"SearchPluginSelectDialog/" name
 
@@ -60,11 +60,11 @@ enum PluginColumns
     PLUGIN_ID
 };
 
-PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent)
+SearchPluginSelectDialog::SearchPluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent)
     : QDialog(parent)
-    , m_ui(new Ui::PluginSelectDialog)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
-    , m_pluginManager(pluginManager)
+    , m_ui {new Ui::SearchPluginSelectDialog}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_s)}
+    , m_pluginManager {pluginManager}
 {
     m_ui->setupUi(this);
 
@@ -75,30 +75,30 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
 
     m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_s));
 
-    connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
-    connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);
-    connect(m_ui->pluginsTree, &QTreeWidget::itemDoubleClicked, this, &PluginSelectDialog::togglePluginState);
+    connect(m_ui->actionEnable, &QAction::toggled, this, &SearchPluginSelectDialog::enableSelection);
+    connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &SearchPluginSelectDialog::displayContextMenu);
+    connect(m_ui->pluginsTree, &QTreeWidget::itemDoubleClicked, this, &SearchPluginSelectDialog::togglePluginState);
 
     loadSupportedSearchPlugins();
 
-    connect(m_pluginManager, &SearchPluginManager::pluginInstalled, this, &PluginSelectDialog::pluginInstalled);
-    connect(m_pluginManager, &SearchPluginManager::pluginInstallationFailed, this, &PluginSelectDialog::pluginInstallationFailed);
-    connect(m_pluginManager, &SearchPluginManager::pluginUpdated, this, &PluginSelectDialog::pluginUpdated);
-    connect(m_pluginManager, &SearchPluginManager::pluginUpdateFailed, this, &PluginSelectDialog::pluginUpdateFailed);
-    connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &PluginSelectDialog::checkForUpdatesFinished);
-    connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &PluginSelectDialog::checkForUpdatesFailed);
+    connect(m_pluginManager, &SearchPluginManager::pluginInstalled, this, &SearchPluginSelectDialog::pluginInstalled);
+    connect(m_pluginManager, &SearchPluginManager::pluginInstallationFailed, this, &SearchPluginSelectDialog::pluginInstallationFailed);
+    connect(m_pluginManager, &SearchPluginManager::pluginUpdated, this, &SearchPluginSelectDialog::pluginUpdated);
+    connect(m_pluginManager, &SearchPluginManager::pluginUpdateFailed, this, &SearchPluginSelectDialog::pluginUpdateFailed);
+    connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &SearchPluginSelectDialog::checkForUpdatesFinished);
+    connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &SearchPluginSelectDialog::checkForUpdatesFailed);
 
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
         resize(dialogSize);
 }
 
-PluginSelectDialog::~PluginSelectDialog()
+SearchPluginSelectDialog::~SearchPluginSelectDialog()
 {
     m_storeDialogSize = size();
     delete m_ui;
 }
 
-void PluginSelectDialog::dropEvent(QDropEvent *event)
+void SearchPluginSelectDialog::dropEvent(QDropEvent *event)
 {
     event->acceptProposedAction();
 
@@ -132,7 +132,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
 }
 
 // Decode if we accept drag 'n drop or not
-void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
+void SearchPluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
 {
     for (const QString &mime : asConst(event->mimeData()->formats()))
     {
@@ -145,15 +145,15 @@ void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
     }
 }
 
-void PluginSelectDialog::on_updateButton_clicked()
+void SearchPluginSelectDialog::on_updateButton_clicked()
 {
     startAsyncOp();
     m_pluginManager->checkForUpdates();
 }
 
-void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
+void SearchPluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
 {
-    PluginInfo *plugin = m_pluginManager->pluginInfo(item->text(PLUGIN_ID));
+    SearchPluginInfo *plugin = m_pluginManager->pluginInfo(item->text(PLUGIN_ID));
     m_pluginManager->enablePlugin(plugin->name, !plugin->enabled);
     if (plugin->enabled)
     {
@@ -167,7 +167,7 @@ void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
     }
 }
 
-void PluginSelectDialog::displayContextMenu()
+void SearchPluginSelectDialog::displayContextMenu()
 {
     const QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
     if (items.isEmpty())
@@ -185,12 +185,12 @@ void PluginSelectDialog::displayContextMenu()
     myContextMenu->popup(QCursor::pos());
 }
 
-void PluginSelectDialog::on_closeButton_clicked()
+void SearchPluginSelectDialog::on_closeButton_clicked()
 {
     close();
 }
 
-void PluginSelectDialog::on_actionUninstall_triggered()
+void SearchPluginSelectDialog::on_actionUninstall_triggered()
 {
     bool error = false;
     for (QTreeWidgetItem *item : asConst(m_ui->pluginsTree->selectedItems()))
@@ -218,7 +218,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
         QMessageBox::information(this, tr("Uninstall success"), tr("All selected plugins were uninstalled successfully"));
 }
 
-void PluginSelectDialog::enableSelection(bool enable)
+void SearchPluginSelectDialog::enableSelection(bool enable)
 {
     for (QTreeWidgetItem *item : asConst(m_ui->pluginsTree->selectedItems()))
     {
@@ -240,7 +240,7 @@ void PluginSelectDialog::enableSelection(bool enable)
 }
 
 // Set the color of a row in data model
-void PluginSelectDialog::setRowColor(const int row, const QString &color)
+void SearchPluginSelectDialog::setRowColor(const int row, const QString &color)
 {
     QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(row);
     for (int i = 0; i < m_ui->pluginsTree->columnCount(); ++i)
@@ -249,7 +249,7 @@ void PluginSelectDialog::setRowColor(const int row, const QString &color)
     }
 }
 
-QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
+QList<QTreeWidgetItem*> SearchPluginSelectDialog::findItemsWithUrl(const QString &url)
 {
     QList<QTreeWidgetItem*> res;
     res.reserve(m_ui->pluginsTree->topLevelItemCount());
@@ -264,7 +264,7 @@ QList<QTreeWidgetItem*> PluginSelectDialog::findItemsWithUrl(const QString &url)
     return res;
 }
 
-QTreeWidgetItem *PluginSelectDialog::findItemWithID(const QString &id)
+QTreeWidgetItem *SearchPluginSelectDialog::findItemWithID(const QString &id)
 {
     for (int i = 0; i < m_ui->pluginsTree->topLevelItemCount(); ++i)
     {
@@ -276,7 +276,7 @@ QTreeWidgetItem *PluginSelectDialog::findItemWithID(const QString &id)
     return nullptr;
 }
 
-void PluginSelectDialog::loadSupportedSearchPlugins()
+void SearchPluginSelectDialog::loadSupportedSearchPlugins()
 {
     // Some clean up first
     m_ui->pluginsTree->clear();
@@ -284,10 +284,10 @@ void PluginSelectDialog::loadSupportedSearchPlugins()
         addNewPlugin(name);
 }
 
-void PluginSelectDialog::addNewPlugin(const QString &pluginName)
+void SearchPluginSelectDialog::addNewPlugin(const QString &pluginName)
 {
     auto *item = new QTreeWidgetItem(m_ui->pluginsTree);
-    PluginInfo *plugin = m_pluginManager->pluginInfo(pluginName);
+    SearchPluginInfo *plugin = m_pluginManager->pluginInfo(pluginName);
     item->setText(PLUGIN_NAME, plugin->fullName);
     item->setText(PLUGIN_URL, plugin->url);
     item->setText(PLUGIN_ID, plugin->name);
@@ -313,26 +313,26 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
         using namespace Net;
         DownloadManager::instance()->download(
                 DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
-                , Preferences::instance()->useProxyForGeneralPurposes(), this, &PluginSelectDialog::iconDownloadFinished);
+                , Preferences::instance()->useProxyForGeneralPurposes(), this, &SearchPluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version.toString());
 }
 
-void PluginSelectDialog::startAsyncOp()
+void SearchPluginSelectDialog::startAsyncOp()
 {
     ++m_asyncOps;
     if (m_asyncOps == 1)
         setCursor(QCursor(Qt::WaitCursor));
 }
 
-void PluginSelectDialog::finishAsyncOp()
+void SearchPluginSelectDialog::finishAsyncOp()
 {
     --m_asyncOps;
     if (m_asyncOps == 0)
         setCursor(QCursor(Qt::ArrowCursor));
 }
 
-void PluginSelectDialog::finishPluginUpdate()
+void SearchPluginSelectDialog::finishPluginUpdate()
 {
     --m_pendingUpdates;
     if ((m_pendingUpdates == 0) && !m_updatedPlugins.isEmpty())
@@ -343,16 +343,16 @@ void PluginSelectDialog::finishPluginUpdate()
     }
 }
 
-void PluginSelectDialog::on_installButton_clicked()
+void SearchPluginSelectDialog::on_installButton_clicked()
 {
-    auto *dlg = new PluginSourceDialog(this);
+    auto *dlg = new SearchPluginSourceDialog(this);
     dlg->setAttribute(Qt::WA_DeleteOnClose);
-    connect(dlg, &PluginSourceDialog::askForLocalFile, this, &PluginSelectDialog::askForLocalPlugin);
-    connect(dlg, &PluginSourceDialog::askForUrl, this, &PluginSelectDialog::askForPluginUrl);
+    connect(dlg, &SearchPluginSourceDialog::askForLocalFile, this, &SearchPluginSelectDialog::askForLocalPlugin);
+    connect(dlg, &SearchPluginSourceDialog::askForUrl, this, &SearchPluginSelectDialog::askForPluginUrl);
     dlg->show();
 }
 
-void PluginSelectDialog::askForPluginUrl()
+void SearchPluginSelectDialog::askForPluginUrl()
 {
     bool ok = false;
     QString clipTxt = qApp->clipboard()->text();
@@ -380,7 +380,7 @@ void PluginSelectDialog::askForPluginUrl()
     }
 }
 
-void PluginSelectDialog::askForLocalPlugin()
+void SearchPluginSelectDialog::askForLocalPlugin()
 {
     const QStringList pathsList = QFileDialog::getOpenFileNames(
                 nullptr, tr("Select search plugins"), QDir::homePath(),
@@ -392,7 +392,7 @@ void PluginSelectDialog::askForLocalPlugin()
     }
 }
 
-void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
+void SearchPluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status != Net::DownloadStatus::Success)
     {
@@ -412,7 +412,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
         for (QTreeWidgetItem *item : asConst(findItemsWithUrl(result.url)))
         {
             QString id = item->text(PLUGIN_ID);
-            PluginInfo *plugin = m_pluginManager->pluginInfo(id);
+            SearchPluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
 
             const QString ext = result.url.endsWith(u".ico", Qt::CaseInsensitive) ? u".ico"_s : u".png"_s;
@@ -440,7 +440,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
     Utils::Fs::removeFile(filePath);
 }
 
-void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
+void SearchPluginSelectDialog::checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo)
 {
     finishAsyncOp();
     if (updateInfo.isEmpty())
@@ -457,13 +457,13 @@ void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVers
     }
 }
 
-void PluginSelectDialog::checkForUpdatesFailed(const QString &reason)
+void SearchPluginSelectDialog::checkForUpdatesFailed(const QString &reason)
 {
     finishAsyncOp();
     QMessageBox::warning(this, tr("Search plugin update"), tr("Sorry, couldn't check for plugin updates. %1").arg(reason));
 }
 
-void PluginSelectDialog::pluginInstalled(const QString &name)
+void SearchPluginSelectDialog::pluginInstalled(const QString &name)
 {
     addNewPlugin(name);
     finishAsyncOp();
@@ -471,7 +471,7 @@ void PluginSelectDialog::pluginInstalled(const QString &name)
     finishPluginUpdate();
 }
 
-void PluginSelectDialog::pluginInstallationFailed(const QString &name, const QString &reason)
+void SearchPluginSelectDialog::pluginInstallationFailed(const QString &name, const QString &reason)
 {
     finishAsyncOp();
     QMessageBox::information(this, tr("Search plugin install")
@@ -479,17 +479,17 @@ void PluginSelectDialog::pluginInstallationFailed(const QString &name, const QSt
     finishPluginUpdate();
 }
 
-void PluginSelectDialog::pluginUpdated(const QString &name)
+void SearchPluginSelectDialog::pluginUpdated(const QString &name)
 {
     finishAsyncOp();
-    PluginVersion version = m_pluginManager->pluginInfo(name)->version;
+    SearchPluginVersion version = m_pluginManager->pluginInfo(name)->version;
     QTreeWidgetItem *item = findItemWithID(name);
     item->setText(PLUGIN_VERSION, version.toString());
     m_updatedPlugins.append(name);
     finishPluginUpdate();
 }
 
-void PluginSelectDialog::pluginUpdateFailed(const QString &name, const QString &reason)
+void SearchPluginSelectDialog::pluginUpdateFailed(const QString &name, const QString &reason)
 {
     finishAsyncOp();
     QMessageBox::information(this, tr("Search plugin update")

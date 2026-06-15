@@ -44,7 +44,6 @@
 #include <QMessageBox>
 #include <QStyleFactory>
 #include <QSystemTrayIcon>
-#include <QTranslator>
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sharelimits.h"
@@ -444,7 +443,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->assocPanel->hide();
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     m_ui->defaultProgramPanel->hide();
 #endif
 
@@ -475,17 +474,11 @@ void OptionsDialog::saveBehaviorTabOptions() const
     auto *session = BitTorrent::Session::instance();
 
     // Load the translation
-    const QString locale = getLocale();
-    if (pref->getLocale() != locale)
+    if (const QString locale = getLocale(); locale != pref->getLocale())
     {
-        auto *translator = new QTranslator;
-        if (translator->load(u":/lang/qbittorrent_"_s + locale))
-            qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
-        else
-            qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
-        qApp->installTranslator(translator);
+        pref->setLocale(locale);
+        app()->loadTranslation(locale);
     }
-    pref->setLocale(locale);
 
     pref->setStyle(m_ui->comboStyle->currentData().toString());
 
@@ -672,9 +665,17 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->senderEmailTxt->setText(pref->getMailNotificationSender());
     m_ui->senderEmailTxt->setToolTip(tr("Provide the sending email address."));
     m_ui->lineEditDestEmail->setText(pref->getMailNotificationEmail());
-    m_ui->lineEditDestEmail->setToolTip(tr("Provide the recipient email address.")
+    m_ui->lineEditDestEmail->setToolTip(tr("Provide the recipient email address or addresses.")
         + u"\n\n"
-        + tr("Note: only a single recipient email address can be specified."));
+        + tr("Separate multiple emails with a semicolon.")
+        + u"\n"
+        + tr("Separate multiple email addresses within each email with a comma.")
+        + u"\n\n"
+        + tr("Example:")
+        + u"\n"
+        + tr("a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com")
+        + u"\n\n"
+        + tr("Note: b@y.com & c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen."));
     m_ui->lineEditSMTPServer->setText(pref->getMailNotificationSMTP());
     m_ui->lineEditSMTPServer->setToolTip(tr("Provide the SMTP server address for sending email notifications.")
         + u"\n\n"

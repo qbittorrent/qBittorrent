@@ -87,7 +87,6 @@ public slots:
     void reloadPreferences();
 
 protected slots:
-    void updateTorrentInfos(BitTorrent::Torrent *torrent);
     void loadUrlSeeds();
     void askWebSeed();
     void deleteSelectedUrlSeeds();

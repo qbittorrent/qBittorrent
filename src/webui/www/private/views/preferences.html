@@ -144,6 +144,10 @@
     <fieldset class="settings">
         <legend title="QBT_TR(Following settings are WebUI only)QBT_TR[CONTEXT=OptionsDialog]">QBT_TR(Custom WebUI settings)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow" style="margin-bottom: 3px;">
+            <input type="checkbox" id="addTorrentWindowEnabled">
+            <label for="addTorrentWindowEnabled">QBT_TR(Display torrent content and some options)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow" style="margin-bottom: 3px;">
             <input type="checkbox" id="displayFullURLTrackerColumn">
             <label for="displayFullURLTrackerColumn">QBT_TR(Display full announce URL in the Tracker column)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -347,9 +351,15 @@
                         <label for="dest_email_txt">QBT_TR(To:)QBT_TR[CONTEXT=OptionsDialog]</label>
                     </td>
                     <td>
-                        <input type="text" id="dest_email_txt" style="width: 40em;" title="QBT_TR(Provide the recipient email address.)QBT_TR[CONTEXT=OptionsDialog]
+                        <input type="text" id="dest_email_txt" style="width: 40em;" title="QBT_TR(Provide the recipient email address or addresses.)QBT_TR[CONTEXT=OptionsDialog]
 
-QBT_TR(Note: only a single recipient email address can be specified.)QBT_TR[CONTEXT=OptionsDialog]">
+QBT_TR(Separate multiple emails with a semicolon.)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(Separate multiple email addresses within each email with a comma.)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Example:)QBT_TR[CONTEXT=OptionsDialog]
+QBT_TR(a@x.com;b@y.com,c@z.com - send two emails: the first to just a@x.com, the second to both b@y.com and c@z.com)QBT_TR[CONTEXT=OptionsDialog]
+
+QBT_TR(Note: b@y.com & c@z.com will both see each other's email addresses, whereas a@x.com will not see them nor be seen.)QBT_TR[CONTEXT=OptionsDialog]">
                     </td>
                 </tr>
                 <tr>
@@ -2053,16 +2063,32 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const sendTestEmail = () => {
+            const showNotification = (text, width, height, duration) => {
+                new MochaUI.Window({
+                    id: "testEmailNotificationDialog",
+                    icon: "images/qbittorrent-tray.svg",
+                    title: "QBT_TR(Notification)QBT_TR[CONTEXT=OptionsDialog]",
+                    loadMethod: "html",
+                    closeAfter: duration,
+                    type: "notification",
+                    addClass: "notification",
+                    content: text,
+                    width: width,
+                    height: height,
+                    padding: { top: 10, right: 12, bottom: 10, left: 12 },
+                });
+            };
+
             fetch("api/v2/app/sendTestEmail", {
                     method: "POST"
                 })
                 .then((response) => {
                     if (!response.ok) {
-                        alert("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=HttpServer]");
+                        showNotification("QBT_TR(Could not contact qBittorrent.)QBT_TR[CONTEXT=OptionsDialog]", 300, 60, 5000);
                         return;
                     }
 
-                    alert("QBT_TR(Attempted to send test email.\nCheck your inbox to confirm success.\nCheck the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]");
+                    showNotification("QBT_TR(Attempted to send test email.<br>Check your inbox to confirm success.<br>Check the Execution Log for errors.)QBT_TR[CONTEXT=OptionsDialog]", 300, 80, 5000);
                 });
         };
 
@@ -2346,6 +2372,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     const dblclickComplete = clientData.get("dblclick_complete") ?? "1";
                     const dblclickFilter = clientData.get("dblclick_filter") ?? "1";
                     const useAltRowColors = clientData.get("use_alt_row_colors");
+                    const addTorrentWindowEnabled = clientData.get("add_new_torrent_dialog_enabled") ?? true;
 
                     // Behavior tab
                     // Localization
@@ -2363,7 +2390,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     // Interface
                     updateColoSchemeSelect(colorScheme);
                     document.getElementById("displayDensitySelect").value = displayDensity;
-
+                    document.getElementById("addTorrentWindowEnabled").checked = addTorrentWindowEnabled === true;
                     document.getElementById("statusBarExternalIP").checked = pref.status_bar_external_ip;
                     document.getElementById("performanceWarning").checked = pref.performance_warning;
                     document.getElementById("displayFullURLTrackerColumn").checked = fullUrlTrackerColumn === true;
@@ -2819,6 +2846,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings["performance_warning"] = document.getElementById("performanceWarning").checked;
             clientData.full_url_tracker_column = document.getElementById("displayFullURLTrackerColumn").checked;
             clientData.use_virtual_list = document.getElementById("useVirtualList").checked;
+            clientData.add_new_torrent_dialog_enabled = document.getElementById("addTorrentWindowEnabled").checked;
             clientData.hide_zero_status_filters = document.getElementById("hideZeroFiltersCheckbox").checked;
             clientData.dblclick_download = document.getElementById("dblclickDownloadSelect").value;
             clientData.dblclick_complete = document.getElementById("dblclickCompleteSelect").value;

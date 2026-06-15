@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,28 +28,33 @@
 
 #pragma once
 
-#include <QCoreApplication>
+#include <QDialog>
 
-#include "base/pathfwd.h"
+#include "base/settingvalue.h"
 
-class QString;
-
-namespace BitTorrent
+namespace Ui
 {
-    class AbstractFileStorage
-    {
-        Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
-
-    public:
-        virtual ~AbstractFileStorage() = default;
-
-        virtual int filesCount() const = 0;
-        virtual Path filePath(int index) const = 0;
-        virtual qlonglong fileSize(int index) const = 0;
-
-        virtual void renameFile(int index, const Path &newPath) = 0;
-
-        void renameFile(const Path &oldPath, const Path &newPath);
-        void renameFolder(const Path &oldFolderPath, const Path &newFolderPath);
-    };
+    class SearchPluginSourceDialog;
 }
+
+class SearchPluginSourceDialog final : public QDialog
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(SearchPluginSourceDialog)
+
+public:
+    explicit SearchPluginSourceDialog(QWidget *parent = nullptr);
+    ~SearchPluginSourceDialog() override;
+
+signals:
+    void askForUrl();
+    void askForLocalFile();
+
+private slots:
+    void on_localButton_clicked();
+    void on_urlButton_clicked();
+
+private:
+    Ui::SearchPluginSourceDialog *m_ui = nullptr;
+    SettingValue<QSize> m_storeDialogSize;
+};
