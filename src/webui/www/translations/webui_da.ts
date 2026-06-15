@@ -188,7 +188,7 @@
     </message>
     <message>
         <source>Tags:</source>
-        <translation type="unfinished" />
+        <translation>Mærkater:</translation>
     </message>
     <message>
         <source>Files</source>
@@ -2828,15 +2828,15 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Upload gået i stå (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Download gået i stå (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Download gået i stå (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
@@ -2844,11 +2844,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Upload gået i stå (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Gået i stå (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>

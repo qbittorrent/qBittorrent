@@ -2108,7 +2108,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Port reported to trackers (requires restart) [0: listening port]:</source>
-        <translation>Порт анонса трекерам (нужен перезапуск) [0: прослушиваемый]:</translation>
+        <translation>Порт анонса трекерам (нужен перезапуск) [0: слушаемый]:</translation>
     </message>
     <message>
         <source>User interface language:</source>
@@ -3370,12 +3370,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation>Повысить</translation>
+        <translation>Вверх</translation>
     </message>
     <message>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation>Понизить</translation>
+        <translation>Вниз</translation>
     </message>
     <message>
         <source>Move to top</source>
@@ -3800,7 +3800,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Нажмите на кнопку «Поисковые плагины…» в правой нижней части окна для их установки.</translation>
+        <translation>Нажмите кнопку «Поисковые плагины…» в правой нижней части окна для их установки.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>

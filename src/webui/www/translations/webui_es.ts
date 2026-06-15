@@ -576,7 +576,7 @@
     </message>
     <message>
         <source>Error:</source>
-        <translation type="unfinished" />
+        <translation>Error:</translation>
     </message>
 </context>
 <context>
@@ -2220,7 +2220,7 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>El nombre de usuario de WebUI no debe contener dos puntos.</translation>
     </message>
     <message>
         <source>Date format:</source>
@@ -3065,15 +3065,15 @@ Use ';' para dividir múltiples entradas. Puede usar el comodin '*'.</translatio
     </message>
     <message>
         <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Sesión cargada</translation>
     </message>
     <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Sesión descargada</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
+        <translation>Creado el</translation>
     </message>
 </context>
 <context>
@@ -4809,7 +4809,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>La categoría no existe</translation>
     </message>
 </context>
 <context>

@@ -569,15 +569,15 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Unable to save preferences, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Non foi posible gardar as preferencias, é probable que qBittorrent non estea accesible.</translation>
     </message>
     <message>
         <source>Unable to add torrents.</source>
-        <translation type="unfinished" />
+        <translation>Non é posible engadir torrents.</translation>
     </message>
     <message>
         <source>Error:</source>
-        <translation type="unfinished" />
+        <translation>Erro:</translation>
     </message>
 </context>
 <context>
@@ -2221,35 +2221,35 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>The WebUI username must not contain a colon.</source>
-        <translation type="unfinished" />
+        <translation>O nome de usuario da WebUI non debe conter dous puntos.</translation>
     </message>
     <message>
         <source>Date format:</source>
-        <translation type="unfinished" />
+        <translation>Formato de data:</translation>
     </message>
     <message>
         <source>Browser default</source>
-        <translation type="unfinished" />
+        <translation>Navegador predeterminado</translation>
     </message>
     <message>
         <source>Localization</source>
-        <translation type="unfinished" />
+        <translation>Localización</translation>
     </message>
     <message>
         <source>Compact</source>
-        <translation type="unfinished" />
+        <translation>Compacto</translation>
     </message>
     <message>
         <source>Display density:</source>
-        <translation type="unfinished" />
+        <translation>Densidade de visualización:</translation>
     </message>
     <message>
         <source>It appends the text to the window title to help distinguish qBittorrent instances</source>
-        <translation type="unfinished" />
+        <translation>Engade texto ao título da xanela para axudar a distinguir instancias de qBittorrent</translation>
     </message>
     <message>
         <source>Resolve peer host names:</source>
-        <translation type="unfinished" />
+        <translation>Resolver nomes de anfitrión dos pares:</translation>
     </message>
 </context>
 <context>
@@ -3066,15 +3066,15 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Session Uploaded</source>
-        <translation type="unfinished" />
+        <translation>Subido na sesión</translation>
     </message>
     <message>
         <source>Session Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Descargado na sesión</translation>
     </message>
     <message>
         <source>Created On</source>
-        <translation type="unfinished" />
+        <translation>Creado o</translation>
     </message>
 </context>
 <context>
@@ -4160,7 +4160,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Use as search text</source>
-        <translation type="unfinished" />
+        <translation>Usar como texto de busca</translation>
     </message>
     <message>
         <source>Stop search</source>
@@ -4559,7 +4559,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Clear downloaded episodes confirmation</source>
-        <translation type="unfinished" />
+        <translation>Confirmación de limpeza dos episodios descargados</translation>
     </message>
 </context>
 <context>
@@ -4810,7 +4810,7 @@ Compatíbel cos formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (os formatos da d
     </message>
     <message>
         <source>Category does not exist</source>
-        <translation type="unfinished" />
+        <translation>A categoría non existe</translation>
     </message>
 </context>
 <context>
