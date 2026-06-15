@@ -31,11 +31,17 @@
 #include <utility>
 
 #include <QHash>
+#include <QJsonArray>
 #include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonValue>
 #include <QList>
 #include <QMetaObject>
 #include <QScopeGuard>
+#include <QStringList>
+#include <QUrl>
 
+#include "base/utils/json.h"
 #include "apierror.h"
 
 using namespace Qt::Literals::StringLiterals;
@@ -45,14 +51,18 @@ APIController::APIController(IApplication *app, QObject *parent)
 {
 }
 
-APIResult APIController::run(const QString &action, const StringMap &params, const DataMap &data)
+APIResult APIController::run(const QString &action, const APIRequest &request)
 {
-    m_params = params;
-    m_data = data;
+    m_params = request.params;
+    m_data = request.data;
+    m_isJson = request.isJson;
+    m_jsonBody = request.jsonBody;
     [[maybe_unused]] const auto inputsGuard = qScopeGuard([this]
     {
         m_params = {};
         m_data = {};
+        m_isJson = false;
+        m_jsonBody = {};
     });
 
     const QByteArray methodName = action.toLatin1() + "Action";
@@ -72,6 +82,17 @@ const DataMap &APIController::data() const
     return m_data;
 }
 
+bool APIController::isJsonRequest() const
+{
+    return m_isJson;
+}
+
+void APIController::rejectArrayParam(const QString &key) const
+{
+    if (m_jsonBody.value(key).isArray())
+        throw APIError(APIErrorType::BadParams, tr("Parameter '%1' must not be a JSON array").arg(key));
+}
+
 void APIController::requireParams(const QList<QString> &requiredParams) const
 {
     QStringList missingParams;
@@ -85,6 +106,47 @@ void APIController::requireParams(const QList<QString> &requiredParams) const
 
     if (!missingParams.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Missing required parameters: %1").arg(missingParams.join(u", ")));
+}
+
+QStringList APIController::parseList(const QString &key, const QChar separator, const Qt::SplitBehavior behavior) const
+{
+    if (isJsonRequest())
+    {
+        const QJsonValue value = m_jsonBody.value(key);
+        // undefined/null = not provided
+        if (value.isUndefined() || value.isNull())
+            return {};
+        if (!value.isArray())
+            throw APIError(APIErrorType::BadParams, tr("Parameter '%1' must be a JSON array").arg(key));
+
+        const QJsonArray array = value.toArray();
+        QStringList result;
+        result.reserve(array.size());
+        for (const QJsonValue &item : array)
+        {
+            if (!item.isString() && !item.isBool() && !item.isDouble())
+                throw APIError(APIErrorType::BadParams, tr("List parameters must only contain strings, numbers or booleans"));
+            result.append(Utils::Json::flattenValue(item));
+        }
+        if (behavior == Qt::SkipEmptyParts)
+            result.removeIf([](const QString &element) { return element.isEmpty(); });
+        return result;
+    }
+
+    return params().value(key).split(separator, behavior);
+}
+
+QStringList APIController::parseUrlList(const QString &key, const QChar separator, const Qt::SplitBehavior behavior) const
+{
+    QStringList urls = parseList(key, separator, behavior);
+    for (QString &url : urls)
+        url = decodeUrl(url);
+    return urls;
+}
+
+QString APIController::decodeUrl(const QString &value) const
+{
+    return isJsonRequest() ? value : QUrl::fromPercentEncoding(value.toLatin1());
 }
 
 void APIController::setResult(const QString &result)
