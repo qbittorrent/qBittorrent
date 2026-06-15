@@ -53,7 +53,10 @@ namespace
     {
         const auto migrate = [](const QString &oldKey, const QString &newKey, const Path &savePath)
         {
-            SettingsStorage *settingsStorage {SettingsStorage::instance()};
+            auto *settingsStorage = SettingsStorage::instance();
+            if (!settingsStorage->hasKey(oldKey))
+                return;
+
             const auto oldData {settingsStorage->loadValue<QByteArray>(oldKey)};
             const auto newData {settingsStorage->loadValue<QString>(newKey)};
             const QString errorMsgFormat {QCoreApplication::translate("Upgrade", "Migrate preferences failed: WebUI https, file: \"%1\", error: \"%2\"")};
@@ -86,10 +89,13 @@ namespace
 
     void upgradeTorrentContentLayout()
     {
+        auto *settingsStorage = SettingsStorage::instance();
         const QString oldKey = u"BitTorrent/Session/CreateTorrentSubfolder"_s;
+        if (!settingsStorage->hasKey(oldKey))
+            return;
+
         const QString newKey = u"BitTorrent/Session/TorrentContentLayout"_s;
 
-        SettingsStorage *settingsStorage {SettingsStorage::instance()};
         const auto oldData {settingsStorage->loadValue<QVariant>(oldKey)};
         const auto newData {settingsStorage->loadValue<QString>(newKey)};
 
@@ -123,8 +129,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/Scheduler/days"_s;
-        const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
+        const auto value = settingsStorage->loadValue<QString>(key);
         bool ok = false;
         const auto number = value.toInt(&ok);
 
@@ -176,6 +184,8 @@ namespace
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/DynDNS/Service"_s;
         const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
         bool ok = false;
         const auto number = value.toInt(&ok);
@@ -206,8 +216,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Preferences/Advanced/TrayIconStyle"_s;
-        const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
+        const auto value = settingsStorage->loadValue<QString>(key);
         bool ok = false;
         const auto number = value.toInt(&ok);
 
@@ -335,8 +347,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto key = u"Network/Proxy/Type"_s;
-        const auto value = settingsStorage->loadValue<QString>(key);
+        if (!settingsStorage->hasKey(key))
+            return;
 
+        const auto value = settingsStorage->loadValue<QString>(key);
         bool ok = false;
         const auto number = value.toInt(&ok);
 
@@ -443,6 +457,9 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"BitTorrent/Session/MaxRatioAction"_s;
+        if (!settingsStorage->hasKey(oldKey))
+            return;
+
         const auto newKey = u"BitTorrent/Session/ShareLimitAction"_s;
         const auto value = settingsStorage->loadValue<int>(oldKey);
 
@@ -473,8 +490,10 @@ namespace
     {
         auto *settingsStorage = SettingsStorage::instance();
         const auto oldKey = u"BitTorrent/Session/AddTorrentPaused"_s;
-        const auto newKey = u"BitTorrent/Session/AddTorrentStopped"_s;
+        if (!settingsStorage->hasKey(oldKey))
+            return;
 
+        const auto newKey = u"BitTorrent/Session/AddTorrentStopped"_s;
         settingsStorage->storeValue(newKey, settingsStorage->loadValue<bool>(oldKey));
         settingsStorage->removeValue(oldKey);
     }
