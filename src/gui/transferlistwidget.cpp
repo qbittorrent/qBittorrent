@@ -34,6 +34,7 @@
 #include <QClipboard>
 #include <QDebug>
 #include <QFileDialog>
+#include <QGuiApplication>
 #include <QHeaderView>
 #include <QList>
 #include <QMenu>
@@ -1483,6 +1484,17 @@ void TransferListWidget::dropEvent(QDropEvent *event)
         // this is a stub that can be expanded later to create many torrents at once
         break;
     }
+}
+
+void TransferListWidget::timerEvent(QTimerEvent *event)
+{
+    if ((state() == QAbstractItemView::DragSelectingState) && (QGuiApplication::mouseButtons() == Qt::NoButton))
+    {
+        setState(QAbstractItemView::NoState);
+        return;
+    }
+
+    QTreeView::timerEvent(event);
 }
 
 void TransferListWidget::wheelEvent(QWheelEvent *event)
