@@ -315,9 +315,11 @@ window.qBittorrent.Search ??= (() => {
         if (!tab)
             return;
 
-        const searchId = getSearchIdFromTab(tab);
         const isTabSelected = tab.classList.contains("selected");
         const newTabToSelect = isTabSelected ? (tab.nextSibling || tab.previousSibling) : null;
+
+        const searchId = getSearchIdFromTab(tab);
+        resetSearchState(searchId);
 
         const state = searchState.get(searchId);
         // don't bother sending a stop request if already stopped
@@ -343,7 +345,6 @@ window.qBittorrent.Search ??= (() => {
         searchState.delete(searchId);
 
         if (numSearchTabs() === 0) {
-            resetSearchState();
             resetFilters();
 
             document.getElementById("numSearchResultsVisible").textContent = 0;

@@ -1327,8 +1327,7 @@ window.addEventListener("DOMContentLoaded", async (event) => {
         const templateHashString = hashParams.toString().replace("download=", "download=%s");
         const templateUrl = `${location.origin}${location.pathname}${location.search}#${templateHashString}`;
 
-        navigator.registerProtocolHandler("magnet", templateUrl,
-            "qBittorrent WebUI magnet handler");
+        navigator.registerProtocolHandler("magnet", templateUrl);
     };
     document.getElementById("registerMagnetHandlerLink").addEventListener("click", (e) => {
         registerMagnetHandler();
