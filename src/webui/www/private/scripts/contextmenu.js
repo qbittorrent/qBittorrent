@@ -249,14 +249,29 @@ window.qBittorrent.ContextMenu ??= (() => {
             return this;
         }
 
+        setItemCheckState(item, state) {
+            const icon = this.menu.querySelector(`a[href$="${item}"]`).firstElementChild;
+            icon.dataset.checkState = state;
+            icon.style.opacity = (state === "unchecked") ? "0" : ((state === "partial") ? "0.5" : "1");
+            return this;
+        }
+
+        getItemCheckState(item) {
+            const icon = this.menu.querySelector(`a[href$="${item}"]`).firstElementChild;
+            return icon.dataset.checkState ?? ((icon.style.opacity === "0") ? "unchecked" : "checked");
+        }
+
+        getNextItemChecked(item) {
+            return (this.getItemCheckState(item) !== "checked");
+        }
+
         setItemChecked(item, checked) {
-            this.menu.querySelector(`a[href$="${item}"]`).firstElementChild.style.opacity =
-                checked ? "1" : "0";
+            this.setItemCheckState(item, (checked ? "checked" : "unchecked"));
             return this;
         }
 
         getItemChecked(item) {
-            return this.menu.querySelector(`a[href$="${item}"]`).firstElementChild.style.opacity !== "0";
+            return (this.getItemCheckState(item) === "checked");
         }
 
         // hide an item
@@ -414,23 +429,13 @@ window.qBittorrent.ContextMenu ??= (() => {
                 this.setItemChecked("superSeeding", all_are_super_seeding);
             }
             else {
-                const show_seq_dl = (all_are_seq_dl || !there_are_seq_dl);
-                const show_f_l_piece_prio = (all_are_f_l_piece_prio || !there_are_f_l_piece_prio);
+                this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode.classList.remove("separator");
 
-                this.menu.querySelector("a[href$=firstLastPiecePrio]").parentNode.classList.toggle("separator", (!show_seq_dl && show_f_l_piece_prio));
+                this.showItem("sequentialDownload");
+                this.showItem("firstLastPiecePrio");
 
-                if (show_seq_dl)
-                    this.showItem("sequentialDownload");
-                else
-                    this.hideItem("sequentialDownload");
-
-                if (show_f_l_piece_prio)
-                    this.showItem("firstLastPiecePrio");
-                else
-                    this.hideItem("firstLastPiecePrio");
-
-                this.setItemChecked("sequentialDownload", all_are_seq_dl);
-                this.setItemChecked("firstLastPiecePrio", all_are_f_l_piece_prio);
+                this.setItemCheckState("sequentialDownload", (all_are_seq_dl ? "checked" : (there_are_seq_dl ? "partial" : "unchecked")));
+                this.setItemCheckState("firstLastPiecePrio", (all_are_f_l_piece_prio ? "checked" : (there_are_f_l_piece_prio ? "partial" : "unchecked")));
 
                 this.showItem("downloadLimit");
                 this.menu.querySelector("a[href$=uploadLimit]").parentNode.classList.remove("separator");
