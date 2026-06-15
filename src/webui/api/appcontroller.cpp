@@ -85,6 +85,29 @@ const QString KEY_FILE_METADATA_CREATION_DATE = u"creation_date"_s;
 const QString KEY_FILE_METADATA_LAST_ACCESS_DATE = u"last_access_date"_s;
 const QString KEY_FILE_METADATA_LAST_MODIFICATION_DATE = u"last_modification_date"_s;
 
+namespace
+{
+    // A list preference may arrive as a native JSON array (elements returned directly) or a delimited
+    // string (split by `separator`). A JSON request must use an array; a delimited string is rejected.
+    template <typename Separator>
+    QStringList parseListPreference(const QVariant &value, const Separator &separator
+            , const bool jsonRequest, const Qt::SplitBehavior behavior = Qt::KeepEmptyParts)
+    {
+        if (value.typeId() == QMetaType::QVariantList)
+        {
+            QStringList result = value.toStringList();
+            if (behavior == Qt::SkipEmptyParts)
+                result.removeIf([](const QString &element) { return element.isEmpty(); });
+            return result;
+        }
+
+        if (jsonRequest)
+            throw APIError(APIErrorType::BadParams, QCoreApplication::translate("AppController", "List preferences must be sent as JSON arrays"));
+
+        return value.toString().split(separator, behavior);
+    }
+}
+
 void AppController::webapiVersionAction()
 {
     setResult(API_VERSION.toString());
@@ -663,7 +686,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"excluded_file_names_enabled"_s))
         session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_s))
-        session->setExcludedFileNames(it.value().toString().split(u'\n'));
+        session->setExcludedFileNames(parseListPreference(it.value(), u'\n', isJsonRequest()));
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_s))
@@ -774,7 +797,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"ip_filter_trackers"_s))
         session->setTrackerFilteringEnabled(it.value().toBool());
     if (hasKey(u"banned_IPs"_s))
-        session->setBannedIPs(it.value().toString().split(u'\n', Qt::SkipEmptyParts));
+        session->setBannedIPs(parseListPreference(it.value(), u'\n', isJsonRequest(), Qt::SkipEmptyParts));
 
     // Speed
     // Global Rate Limits
@@ -924,7 +947,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"bypass_auth_subnet_whitelist"_s))
     {
         // recognize new lines and commas as delimiters
-        pref->setWebUIAuthSubnetWhitelist(it.value().toString().split(QRegularExpression(u"\n|,"_s), Qt::SkipEmptyParts));
+        pref->setWebUIAuthSubnetWhitelist(parseListPreference(it.value(), QRegularExpression(u"\n|,"_s), isJsonRequest(), Qt::SkipEmptyParts));
     }
     if (hasKey(u"web_ui_max_auth_fail_count"_s))
         pref->setWebUIMaxAuthFailCount(it.value().toInt());
@@ -981,7 +1004,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"rss_download_repack_proper_episodes"_s))
         RSS::AutoDownloader::instance()->setDownloadRepacks(it.value().toBool());
     if (hasKey(u"rss_smart_episode_filters"_s))
-        RSS::AutoDownloader::instance()->setSmartEpisodeFilters(it.value().toString().split(u'\n'));
+        RSS::AutoDownloader::instance()->setSmartEpisodeFilters(parseListPreference(it.value(), u'\n', isJsonRequest()));
 
     // Advanced settings
     // qBittorrent preferences
