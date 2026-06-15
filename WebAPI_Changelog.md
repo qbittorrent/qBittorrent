@@ -1,5 +1,10 @@
 # WebAPI Changelog
 
+## 2.16.1
+* [#XXXXX](https://github.com/qbittorrent/qBittorrent/pull/XXXXX)
+  * All WebAPI endpoints now accept request bodies in `application/json` format
+    * List parameters must be sent as JSON arrays (not delimited strings) and scalar parameters as their natural type (string/number/boolean). URL values are sent without percent-encoding
+
 ## 2.16.0
 * [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
   * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
