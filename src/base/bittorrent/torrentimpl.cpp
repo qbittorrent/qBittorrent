@@ -2192,7 +2192,12 @@ void TorrentImpl::handleSaveResumeData(lt::add_torrent_params params)
         // URL seed list have been changed by libtorrent for some reason, so we need to update cached one.
         // Unfortunately, URL seed list containing in "resume data" is generated according to different rules
         // than the list we usually cache, so we have to request it from the appropriate source.
-        fetchURLSeeds().then(this, [this](const QList<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
+        fetchURLSeeds().then(this, [thisTorrent = QPointer<TorrentImpl>(this)](const QList<QUrl> &urlSeeds)
+        {
+            if (!thisTorrent)
+                return;
+            thisTorrent->m_urlSeeds = urlSeeds;
+        });
     }
 
     if ((m_maintenanceJob == MaintenanceJob::HandleMetadata) && params.ti)
