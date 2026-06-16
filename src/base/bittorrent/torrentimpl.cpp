@@ -2345,7 +2345,8 @@ void TorrentImpl::handleFileRenamed(const lt::file_index_t nativeFileIndex, cons
 #ifdef Q_OS_WIN
                 const std::wstring winPath = (actualStorageLocation() / newActualParentPath).toString().toStdWString();
                 const DWORD dwAttrs = ::GetFileAttributesW(winPath.c_str());
-                ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
+                if (dwAttrs != INVALID_FILE_ATTRIBUTES)
+                    ::SetFileAttributesW(winPath.c_str(), (dwAttrs | FILE_ATTRIBUTE_HIDDEN));
 #endif
             }
         }
