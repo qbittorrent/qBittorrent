@@ -249,8 +249,13 @@ window.qBittorrent.ContextMenu ??= (() => {
             return this;
         }
 
+        getItemIcon(item) {
+            const anchor = this.menu.querySelector(`a[href$="${item}"]`);
+            return anchor.parentElement.querySelector(":scope > input[type='checkbox']") ?? anchor.firstElementChild;
+        }
+
         setItemCheckState(item, state) {
-            const icon = this.menu.querySelector(`a[href$="${item}"]`).firstElementChild;
+            const icon = this.getItemIcon(item);
             icon.dataset.checkState = state;
             if (icon.type === "checkbox") {
                 icon.indeterminate = (state === "partial");
@@ -265,7 +270,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         }
 
         getItemCheckState(item) {
-            const icon = this.menu.querySelector(`a[href$="${item}"]`).firstElementChild;
+            const icon = this.getItemIcon(item);
             if (icon.type === "checkbox")
                 return (icon.indeterminate ? "partial" : (icon.checked ? "checked" : "unchecked"));
 
