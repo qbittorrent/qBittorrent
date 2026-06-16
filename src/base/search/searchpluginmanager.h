@@ -112,7 +112,7 @@ private:
     void update();
     void updateNova();
     void parseVersionInfo(const QByteArray &info);
-    void installPlugin_impl(const QString &name, const Path &path);
+    void installPlugin_impl(const QString &name, const Path &srcPath);
     bool isUpdateNeeded(const QString &pluginName, const SearchPluginVersion &newVersion) const;
 
     void versionInfoDownloadFinished(const Net::DownloadResult &result);
