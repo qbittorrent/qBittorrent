@@ -41,13 +41,13 @@
             const getClipboardText = (clipboardData) => {
                 for (const type of ["text/plain", "text/uri-list", "text"]) {
                     const text = clipboardData?.getData(type);
-                    if (typeof text === "string" && text.length > 0)
+                    if ((typeof text === "string") && (text.length > 0))
                         return text;
                 }
                 return "";
             };
 
-            const pasteTorrentLinks = async (event) => {
+            const pasteTorrentLinks = (event) => {
                 const text = getClipboardText(event.clipboardData);
                 if (typeof text !== "string")
                     return false;
@@ -66,8 +66,8 @@
                 return true;
             };
 
-            document.addEventListener("paste", async (event) => {
-                await pasteTorrentLinks(event);
+            document.addEventListener("paste", (event) => {
+                pasteTorrentLinks(event);
             }, true);
 
             const source = searchParams.get("source");

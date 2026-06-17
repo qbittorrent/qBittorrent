@@ -215,9 +215,8 @@ window.qBittorrent.Misc ??= (() => {
         const lastChar = trimmed[trimmed.length - 1];
         if (((firstChar === "'") && (lastChar === "'"))
             || ((firstChar === "\"") && (lastChar === "\""))
-            || ((firstChar === "<") && (lastChar === ">"))) {
+            || ((firstChar === "<") && (lastChar === ">")))
             return trimmed.slice(1, -1).trim();
-        }
 
         return trimmed;
     };

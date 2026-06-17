@@ -81,7 +81,7 @@ window.qBittorrent.Client ??= (() => {
     const getClipboardText = (clipboardData) => {
         for (const type of ["text/plain", "text/uri-list", "text"]) {
             const text = clipboardData?.getData(type);
-            if (typeof text === "string" && text.length > 0)
+            if ((typeof text === "string") && (text.length > 0))
                 return text;
         }
         return "";
