@@ -464,7 +464,7 @@ window.qBittorrent.ContextMenu ??= (() => {
 
             const contextCategoryList = document.getElementById("contextCategoryList");
             for (const category of window.qBittorrent.Client.categoryMap.keys()) {
-                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${category}"] img`);
+                const categoryIcon = contextCategoryList.querySelector(`a[href$="#Category/${CSS.escape(category)}"] img`);
                 const count = categoryCount.get(category);
                 const isEqual = ((count !== undefined) && (count === selectedRows.length));
                 categoryIcon.classList.toggle("highlightedCategoryIcon", isEqual);
