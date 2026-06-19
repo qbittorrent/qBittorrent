@@ -1384,7 +1384,32 @@ qlonglong TorrentImpl::totalUpload() const
 
 qlonglong TorrentImpl::eta() const
 {
-    if (isStopped()) return MAX_ETA;
+    if (isStopped())
+    {
+        if (!isFinished())
+            return MAX_ETA;
+
+        const ShareLimits shareLimits = effectiveShareLimits();
+        const bool hasRatioLimit = (shareLimits.ratioLimit >= 0);
+        const bool hasSeedingTimeLimit = (shareLimits.seedingTimeLimit >= 0);
+        const bool hasInactiveSeedingTimeLimit = (shareLimits.inactiveSeedingTimeLimit >= 0);
+        if (!hasRatioLimit && !hasSeedingTimeLimit && !hasInactiveSeedingTimeLimit)
+            return MAX_ETA;
+
+        const bool ratioLimitReached = !hasRatioLimit || (realRatio() >= shareLimits.ratioLimit);
+        const bool seedingTimeLimitReached = !hasSeedingTimeLimit
+                || ((finishedTime() / 60) >= shareLimits.seedingTimeLimit);
+        const bool inactiveSeedingTimeLimitReached = !hasInactiveSeedingTimeLimit
+                || ((timeSinceActivity() / 60) >= shareLimits.inactiveSeedingTimeLimit);
+
+        const bool shareLimitsReached = (shareLimits.mode == ShareLimitsMode::MatchAny)
+                ? ((hasRatioLimit && ratioLimitReached)
+                    || (hasSeedingTimeLimit && seedingTimeLimitReached)
+                    || (hasInactiveSeedingTimeLimit && inactiveSeedingTimeLimitReached))
+                : (ratioLimitReached && seedingTimeLimitReached && inactiveSeedingTimeLimitReached);
+
+        return shareLimitsReached ? 0 : MAX_ETA;
+    }
 
     const SpeedSampleAvg speedAverage = m_payloadRateMonitor.average();
 
