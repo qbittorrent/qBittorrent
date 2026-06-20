@@ -175,6 +175,8 @@ private:
     qreal getMaxRatio() const;
     int getMaxSeedingMinutes() const;
     int getMaxInactiveSeedingMinutes() const;
+    bool isContinueSeedingLonelyTorrentsEnabled() const;
+    int getLonelyTorrentsSeedersLimit() const;
     // Proxy options
     bool isProxyEnabled() const;
     QString getProxyIp() const;
