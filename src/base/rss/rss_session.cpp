@@ -639,6 +639,13 @@ void Session::refresh()
         const auto interval = std::chrono::duration_cast<std::chrono::seconds>(timepoint - currentTimepoint);
         if ((interval < nextRefreshInterval) || (nextRefreshInterval == 0s))
             nextRefreshInterval = interval;
+
+        if (nextRefreshInterval == 0s)
+        {
+            const std::chrono::seconds feedRefreshInterval = feed->refreshInterval();
+            const std::chrono::seconds effectiveRefreshInterval = (feedRefreshInterval > 0s) ? feedRefreshInterval : std::chrono::minutes(refreshInterval());
+            nextRefreshInterval = effectiveRefreshInterval;
+        }
     }
 
     m_refreshTimer.start(nextRefreshInterval);
