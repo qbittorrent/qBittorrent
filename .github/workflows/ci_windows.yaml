@@ -135,6 +135,7 @@ jobs:
             https://github.com/arvidn/libtorrent.git `
             ${{ env.libtorrent_path }}
           cd ${{ env.libtorrent_path }}
+          $env:CFLAGS+=" /guard:cf"
           $env:CXXFLAGS+=" /guard:cf"
           $env:LDFLAGS+=" /GUARD:CF"
           cmake `
