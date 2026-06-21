@@ -633,19 +633,14 @@ void Session::refresh()
         Feed *feed = it.key();
         std::chrono::system_clock::time_point &timepoint = it.value();
 
-        if (timepoint <= currentTimepoint)
+        // Subtract 1 second from feed refresh timepoint to get more wiggle room and not end up with 0 "interval" below
+        // because currentTimepoint and timepoint have a difference of nanoseconds (~0 seconds)
+        if (currentTimepoint > (timepoint - 1s))
             timepoint = refreshFeed(feed, currentTimepoint);
 
         const auto interval = std::chrono::duration_cast<std::chrono::seconds>(timepoint - currentTimepoint);
         if ((interval < nextRefreshInterval) || (nextRefreshInterval == 0s))
             nextRefreshInterval = interval;
-
-        if (nextRefreshInterval == 0s)
-        {
-            const std::chrono::seconds feedRefreshInterval = feed->refreshInterval();
-            const std::chrono::seconds effectiveRefreshInterval = (feedRefreshInterval > 0s) ? feedRefreshInterval : std::chrono::minutes(refreshInterval());
-            nextRefreshInterval = effectiveRefreshInterval;
-        }
     }
 
     m_refreshTimer.start(nextRefreshInterval);
