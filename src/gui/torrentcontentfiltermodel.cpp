@@ -72,7 +72,8 @@ QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 
 bool TorrentContentFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (m_model->itemType(m_model->index(sourceRow, 0, sourceParent)) == TorrentContentModelItem::FolderType)
+    const QModelIndex sourceIndex = m_model->index(sourceRow, 0, sourceParent);
+    if (m_model->itemType(sourceIndex) == TorrentContentModelItem::FolderType)
     {
         // accept folders if they have at least one filtered item
         return hasFiltered(m_model->index(sourceRow, 0, sourceParent));
@@ -104,10 +105,9 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
 
             return false;
         }
+    }
 
-    default:
-        return QSortFilterProxyModel::lessThan(left, right);
-    };
+    return QSortFilterProxyModel::lessThan(left, right);
 }
 
 bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const

@@ -491,7 +491,6 @@ namespace BitTorrent
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
         void categoryOptionsChanged(const QString &categoryName);
-        void fullDiskError(Torrent *torrent, const QString &msg);
         void IPFilterParsed(bool error, int ruleCount);
         void metadataDownloaded(const TorrentInfo &info);
         void restored();
@@ -502,6 +501,10 @@ namespace BitTorrent
         void subcategoriesSupportChanged();
         void tagAdded(const Tag &tag);
         void tagRemoved(const Tag &tag);
+        void torrentsLoaded(const QList<Torrent *> &torrents);
+        void torrentsUpdated(const QList<Torrent *> &torrents);
+        void freeDiskSpaceChecked(qint64 result);
+
         void torrentAboutToBeRemoved(Torrent *torrent);
         void torrentAdded(Torrent *torrent);
         void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
@@ -512,17 +515,20 @@ namespace BitTorrent
         void torrentStarted(Torrent *torrent);
         void torrentSavePathChanged(Torrent *torrent);
         void torrentSavingModeChanged(Torrent *torrent);
-        void torrentsLoaded(const QList<Torrent *> &torrents);
-        void torrentsUpdated(const QList<Torrent *> &torrents);
         void torrentTagAdded(Torrent *torrent, const Tag &tag);
         void torrentTagRemoved(Torrent *torrent, const Tag &tag);
-        void trackerError(Torrent *torrent, const QString &tracker);
+        void torrentContentFileRenamed(Torrent *torrent, int index, const Path &oldFilePath);
+        void torrentContentFolderRenamed(Torrent *torrent, const Path &newFolderPath
+                , const Path &oldFolderPath, const QHash<int, Path> &renamedFiles);
+        void torrentContentFolderRenamingFailed(Torrent *torrent, const Path &newFolderPath, const Path &oldFolderPath
+                , const QHash<int, Path> &renamedFiles, const QList<int> &failedFileIndexes);
+        void torrentIOError(Torrent *torrent, const QString &message);
         void trackersAdded(Torrent *torrent, const QList<TrackerEntry> &trackers);
         void trackersReset(Torrent *torrent, const QList<TrackerEntryStatus> &oldEntries, const QList<TrackerEntry> &newEntries);
         void trackersRemoved(Torrent *torrent, const QStringList &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
+        void trackerError(Torrent *torrent, const QString &tracker);
         void trackerEntryStatusesUpdated(Torrent *torrent, const QHash<QString, TrackerEntryStatus> &updatedTrackers);
-        void freeDiskSpaceChecked(qint64 result);
     };
 }

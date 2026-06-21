@@ -64,6 +64,11 @@ namespace
         return !isDotfile(Path(f));
     }
 
+    bool noopFilter(std::string_view)
+    {
+        return true;
+    }
+
 #ifdef QBT_USES_LIBTORRENT2
     lt::create_flags_t toNativeTorrentFormatFlag(const BitTorrent::TorrentFormat torrentFormat)
     {
@@ -89,7 +94,7 @@ TorrentCreator::TorrentCreator(const TorrentCreatorParams &params, QObject *pare
 {
 }
 
-void TorrentCreator::sendProgressSignal(int currentPieceIdx, int totalPieces)
+void TorrentCreator::sendProgressSignal(const int currentPieceIdx, const int totalPieces)
 {
     emit progressUpdated(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
 }
@@ -128,10 +133,11 @@ void TorrentCreator::run()
 #endif
         if (QFileInfo(m_params.sourcePath.data()).isFile())
         {
+            const auto &filter = m_params.ignoreDotfiles ? fileFilter : noopFilter;
 #if LIBTORRENT_VERSION_NUM >= 20100
-            files = lt::list_files(m_params.sourcePath.toString().toStdString(), fileFilter);
+            files = lt::list_files(m_params.sourcePath.toString().toStdString(), filter);
 #else
-            lt::add_files(files, m_params.sourcePath.toString().toStdString(), fileFilter);
+            lt::add_files(files, m_params.sourcePath.toString().toStdString(), filter);
 #endif
         }
         else
@@ -139,7 +145,7 @@ void TorrentCreator::run()
             // need to sort the file names by natural sort order
             QStringList dirs = {m_params.sourcePath.data()};
 
-            QDirIterator dirIter {m_params.sourcePath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
+            QDirIterator dirIter {m_params.sourcePath.data(), (QDir::AllDirs | QDir::Hidden | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
                 const QFileInfo dirInfo = dirIter.nextFileInfo();
@@ -152,7 +158,7 @@ void TorrentCreator::run()
 #endif
 
                 const QString dirPath = dirInfo.filePath();
-                if (isDotfile(Path(dirPath)))
+                if (m_params.ignoreDotfiles && isDotfile(Path(dirPath)))
                     continue;
 
                 dirs.append(dirPath);
@@ -166,12 +172,12 @@ void TorrentCreator::run()
             {
                 QStringList tmpNames;  // natural sort files within each dir
 
-                QDirIterator fileIter {dir, QDir::Files};
+                QDirIterator fileIter {dir, (QDir::Files | QDir::Hidden)};
                 while (fileIter.hasNext())
                 {
                     const QFileInfo fileInfo = fileIter.nextFileInfo();
                     const Path filePath {fileInfo.filePath()};
-                    if (isDotfile(filePath))
+                    if (m_params.ignoreDotfiles && isDotfile(filePath))
                         continue;
 
                     qint64 fileSize = fileInfo.size();
@@ -209,6 +215,14 @@ void TorrentCreator::run()
         }
 
         checkInterruptionRequested();
+
+#if LIBTORRENT_VERSION_NUM >= 20100
+        const bool isFilesEmpty = files.empty();
+#else
+        const bool isFilesEmpty = files.num_files() == 0;
+#endif
+        if (m_params.ignoreDotfiles && isFilesEmpty)
+            throw RuntimeError(tr("All files have been filtered out by 'Ignore dotfiles' option"));
 
 #ifdef QBT_USES_LIBTORRENT2
         lt::create_torrent newTorrent {files, m_params.pieceSize, toNativeTorrentFormatFlag(m_params.torrentFormat)};
@@ -299,19 +313,24 @@ const TorrentCreatorParams &TorrentCreator::params() const
 }
 
 #ifdef QBT_USES_LIBTORRENT2
-int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
+int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool ignoreDotfiles, const TorrentFormat torrentFormat)
 #else
-int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
+int TorrentCreator::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool ignoreDotfiles, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
 #endif
 {
     if (inputPath.isEmpty())
         return 0;
 
+    const auto &filter = ignoreDotfiles ? fileFilter : noopFilter;
 #if LIBTORRENT_VERSION_NUM >= 20100
-    const std::vector<lt::create_file_entry> files = lt::list_files(inputPath.toString().toStdString(), fileFilter);
+    const std::vector<lt::create_file_entry> files = lt::list_files(inputPath.toString().toStdString(), filter);
+    if (files.empty())
+        return 0;
 #else
     lt::file_storage files;
-    lt::add_files(files, inputPath.toString().toStdString(), fileFilter);
+    lt::add_files(files, inputPath.toString().toStdString(), filter);
+    if (files.num_files() == 0)
+        return 0;
 #endif
 
 #ifdef QBT_USES_LIBTORRENT2

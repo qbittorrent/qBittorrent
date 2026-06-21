@@ -20,14 +20,15 @@ qt_wrap_ui(UI_HEADERS
     rss/automatedrssdownloader.ui
     rss/rssfeeddialog.ui
     rss/rsswidget.ui
-    search/pluginselectdialog.ui
-    search/pluginsourcedialog.ui
     search/searchjobwidget.ui
+    search/searchpluginselectdialog.ui
+    search/searchpluginsourcedialog.ui
     search/searchwidget.ui
     shutdownconfirmdialog.ui
     speedlimitdialog.ui
     statsdialog.ui
     torrentcategorydialog.ui
+    torrentcontentlayoutdialog.ui
     torrentcreatordialog.ui
     torrentoptionsdialog.ui
     torrentsharelimitswidget.ui
@@ -92,9 +93,9 @@ add_library(qbt_gui STATIC
     rss/htmlbrowser.h
     rss/rssfeeddialog.h
     rss/rsswidget.h
-    search/pluginselectdialog.h
-    search/pluginsourcedialog.h
     search/searchjobwidget.h
+    search/searchpluginselectdialog.h
+    search/searchpluginsourcedialog.h
     search/searchsortmodel.h
     search/searchwidget.h
     shutdownconfirmdialog.h
@@ -104,6 +105,8 @@ add_library(qbt_gui STATIC
     torrentcategorydialog.h
     torrentcontentfiltermodel.h
     torrentcontentitemdelegate.h
+    torrentcontentlayoutdialog.h
+    torrentcontentlayoutmodel.h
     torrentcontentmodel.h
     torrentcontentmodelfile.h
     torrentcontentmodelfolder.h
@@ -196,9 +199,9 @@ add_library(qbt_gui STATIC
     rss/htmlbrowser.cpp
     rss/rssfeeddialog.cpp
     rss/rsswidget.cpp
-    search/pluginselectdialog.cpp
-    search/pluginsourcedialog.cpp
     search/searchjobwidget.cpp
+    search/searchpluginselectdialog.cpp
+    search/searchpluginsourcedialog.cpp
     search/searchsortmodel.cpp
     search/searchwidget.cpp
     shutdownconfirmdialog.cpp
@@ -208,6 +211,8 @@ add_library(qbt_gui STATIC
     torrentcategorydialog.cpp
     torrentcontentfiltermodel.cpp
     torrentcontentitemdelegate.cpp
+    torrentcontentlayoutdialog.cpp
+    torrentcontentlayoutmodel.cpp
     torrentcontentmodel.cpp
     torrentcontentmodelfile.cpp
     torrentcontentmodelfolder.cpp

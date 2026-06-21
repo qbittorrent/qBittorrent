@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,33 +28,54 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QObject>
+#include <QPointer>
 
-#include "base/settingvalue.h"
+#include "base/pathfwd.h"
+#include "headermap.h"
+#include "request.h"
+#include "response.h"
+#include "responsewriter.h"
 
-namespace Ui
+class QAbstractSocket;
+class QThread;
+
+namespace Http
 {
-    class PluginSourceDialog;
+    class ResponseWriterImpl final : public ResponseWriter
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(ResponseWriterImpl)
+
+    public:
+        ResponseWriterImpl(QAbstractSocket *socket, QObject *parent = nullptr);
+        ~ResponseWriterImpl() override;
+
+        void prepare(const Request &request);
+
+        // Send entire response at once.
+        // Allow response content to be gzip encoded.
+        void setResponse(const Response &response) override;
+
+        // Allow to stream file using separate IO thread for reading.
+        // Support Range requests.
+        void streamFile(const Path &filePath, const HeaderMap &headers) override;
+
+        bool isFinished() const override;
+
+    private:
+        void writeData(const QByteArray &data);
+        void finish();
+
+        QPointer<QAbstractSocket> m_socket;
+        Request m_request;
+
+        class Worker;
+        Worker *m_asyncWorker = nullptr;
+        QThread *m_workerThread = nullptr;
+        bool m_isAsyncWorkerFinished = false;
+
+        bool m_isWritingContent = false;
+        bool m_isFinished = false;
+    };
 }
-
-class PluginSourceDialog final : public QDialog
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PluginSourceDialog)
-
-public:
-    explicit PluginSourceDialog(QWidget *parent = nullptr);
-    ~PluginSourceDialog() override;
-
-signals:
-    void askForUrl();
-    void askForLocalFile();
-
-private slots:
-    void on_localButton_clicked();
-    void on_urlButton_clicked();
-
-private:
-    Ui::PluginSourceDialog *m_ui = nullptr;
-    SettingValue<QSize> m_storeDialogSize;
-};

@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Ishan Arora and Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,17 +26,40 @@
  * exception statement from your version.
  */
 
-
 #pragma once
 
-class QByteArray;
-class QString;
+#include <QDialog>
 
-namespace Http
+#include "base/settingvalue.h"
+
+class TorrentContentLayoutModel;
+
+namespace BitTorrent
 {
-    struct Response;
-
-    QByteArray toByteArray(Response response);
-    QString httpDate();
-    void compressContent(Response &response);
+    class TorrentContentHandler;
 }
+
+namespace Ui
+{
+    class TorrentContentLayoutDialog;
+}
+
+class TorrentContentLayoutDialog final : public QDialog
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TorrentContentLayoutDialog)
+
+public:
+    explicit TorrentContentLayoutDialog(BitTorrent::TorrentContentHandler *contentHandler, QWidget *parent = nullptr);
+    ~TorrentContentLayoutDialog();
+
+private:
+    void apply();
+
+    Ui::TorrentContentLayoutDialog *m_ui = nullptr;
+
+    TorrentContentLayoutModel *m_model = nullptr;
+
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeViewState;
+};

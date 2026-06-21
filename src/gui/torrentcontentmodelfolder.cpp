@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -32,15 +33,12 @@
 
 #include "base/global.h"
 
-TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent)
-    : TorrentContentModelItem(parent)
+TorrentContentModelFolder::TorrentContentModelFolder(const QString &name)
 {
-    Q_ASSERT(parent);
     m_name = name;
 }
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QList<QString> &data)
-    : TorrentContentModelItem(nullptr)
 {
     Q_ASSERT(data.size() == NB_COL);
     m_itemData = data;
@@ -71,16 +69,36 @@ const QList<TorrentContentModelItem *> &TorrentContentModelFolder::children() co
 void TorrentContentModelFolder::appendChild(TorrentContentModelItem *item)
 {
     Q_ASSERT(item);
+    if (!item) [[unlikely]]
+        return;
+
     m_childItems.append(item);
+    item->m_parentItem = this;
     // Update own size
     if (item->itemType() == FileType)
         increaseSize(item->size());
 }
 
-TorrentContentModelItem *TorrentContentModelFolder::child(int row) const
+void TorrentContentModelFolder::removeChild(TorrentContentModelItem *item)
+{
+    Q_ASSERT(item);
+    if (!item) [[unlikely]]
+        return;
+
+    if (m_childItems.removeOne(item))
+    {
+        // Update own size
+        if (item->itemType() == FileType)
+            decreaseSize(item->size());
+        item->m_parentItem = nullptr;
+    }
+}
+
+TorrentContentModelItem *TorrentContentModelFolder::child(const int row) const
 {
     return m_childItems.value(row, nullptr);
 }
+
 int TorrentContentModelFolder::childCount() const
 {
     return m_childItems.count();
@@ -196,11 +214,20 @@ void TorrentContentModelFolder::recalculateAvailability()
     }
 }
 
-void TorrentContentModelFolder::increaseSize(qulonglong delta)
+void TorrentContentModelFolder::increaseSize(const qulonglong delta)
 {
     if (isRootItem())
         return;
 
     m_size += delta;
     m_parentItem->increaseSize(delta);
+}
+
+void TorrentContentModelFolder::decreaseSize(const qulonglong delta)
+{
+    if (isRootItem())
+        return;
+
+    m_size -= delta;
+    m_parentItem->decreaseSize(delta);
 }

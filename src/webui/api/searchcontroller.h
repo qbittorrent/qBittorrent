@@ -67,7 +67,7 @@ private slots:
 private:
     const int MAX_CONCURRENT_SEARCHES = 5;
 
-    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
+    void checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
     int generateSearchId() const;
     QJsonObject getResults(const QList<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;

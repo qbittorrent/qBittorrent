@@ -53,6 +53,7 @@
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
+#include "base/bittorrent/lttypecast.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentcontenthandler.h"
@@ -143,139 +144,32 @@ namespace
     }
 }
 
-class AddNewTorrentDialog::TorrentContentAdaptor final
-        : public BitTorrent::TorrentContentHandler
+class AddNewTorrentDialog::TorrentContentAdaptor final : public BitTorrent::TorrentContentHandler
 {
 public:
     TorrentContentAdaptor(const BitTorrent::TorrentInfo &torrentInfo, PathList &filePaths
-            , QList<BitTorrent::DownloadPriority> &filePriorities, std::function<void ()> onFilePrioritiesChanged)
-        : m_torrentInfo {torrentInfo}
-        , m_filePaths {filePaths}
-        , m_filePriorities {filePriorities}
-        , m_onFilePrioritiesChanged {std::move(onFilePrioritiesChanged)}
-    {
-        Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == m_torrentInfo.filesCount()));
+            , QList<BitTorrent::DownloadPriority> &filePriorities, std::function<void ()> onFilePrioritiesChanged);
 
-        m_originalRootFolder = Path::findRootFolder(m_torrentInfo.filePaths());
-        m_currentContentLayout = (m_originalRootFolder.isEmpty()
-                ? BitTorrent::TorrentContentLayout::NoSubfolder
-                : BitTorrent::TorrentContentLayout::Subfolder);
+    bool hasMetadata() const override;
+    int filesCount() const override;
+    qlonglong fileSize(int index) const override;
+    Path filePath(int index) const override;
+    PathList filePaths() const;
+    QList<BitTorrent::DownloadPriority> filePriorities() const override;
+    QList<qreal> filesProgress() const override;
+    QFuture<QList<qreal>> fetchAvailableFileFractions() const override;
+    Path actualStorageLocation() const override;
+    Path actualFilePath(int fileIndex) const override;
+    void flushCache() const override;
 
-        if (const int fileCount = filesCount(); !m_filePriorities.isEmpty() && (fileCount >= 0))
-            m_filePriorities.resize(fileCount, BitTorrent::DownloadPriority::Normal);
-    }
-
-    bool hasMetadata() const override
-    {
-        return m_torrentInfo.isValid();
-    }
-
-    int filesCount() const override
-    {
-        return m_torrentInfo.filesCount();
-    }
-
-    qlonglong fileSize(const int index) const override
-    {
-        Q_ASSERT((index >= 0) && (index < filesCount()));
-        return m_torrentInfo.fileSize(index);
-    }
-
-    Path filePath(const int index) const override
-    {
-        Q_ASSERT((index >= 0) && (index < filesCount()));
-        return (m_filePaths.isEmpty() ? m_torrentInfo.filePath(index) : m_filePaths.at(index));
-    }
-
-    PathList filePaths() const
-    {
-        return (m_filePaths.isEmpty() ? m_torrentInfo.filePaths() : m_filePaths);
-    }
-
-    void renameFile(const int index, const Path &newFilePath) override
-    {
-        Q_ASSERT((index >= 0) && (index < filesCount()));
-        const Path currentFilePath = filePath(index);
-        if (currentFilePath == newFilePath)
-            return;
-
-        if (m_filePaths.isEmpty())
-            m_filePaths = m_torrentInfo.filePaths();
-
-        m_filePaths[index] = newFilePath;
-    }
-
-    void applyContentLayout(const BitTorrent::TorrentContentLayout contentLayout)
-    {
-        Q_ASSERT(hasMetadata());
-        Q_ASSERT(!m_filePaths.isEmpty());
-
-        const auto originalContentLayout = (m_originalRootFolder.isEmpty()
-                ? BitTorrent::TorrentContentLayout::NoSubfolder
-                : BitTorrent::TorrentContentLayout::Subfolder);
-        const auto newContentLayout = ((contentLayout == BitTorrent::TorrentContentLayout::Original)
-                ? originalContentLayout : contentLayout);
-        if (newContentLayout != m_currentContentLayout)
-        {
-            if (newContentLayout == BitTorrent::TorrentContentLayout::NoSubfolder)
-            {
-                Path::stripRootFolder(m_filePaths);
-            }
-            else
-            {
-                const auto rootFolder = ((originalContentLayout == BitTorrent::TorrentContentLayout::Subfolder)
-                        ? m_originalRootFolder : m_filePaths.at(0).removedExtension());
-                Path::addRootFolder(m_filePaths, rootFolder);
-            }
-
-            m_currentContentLayout = newContentLayout;
-        }
-    }
-
-    QList<BitTorrent::DownloadPriority> filePriorities() const override
-    {
-        return m_filePriorities.isEmpty()
-                ? QList<BitTorrent::DownloadPriority>(filesCount(), BitTorrent::DownloadPriority::Normal)
-                : m_filePriorities;
-    }
-
-    QList<qreal> filesProgress() const override
-    {
-        return QList<qreal>(filesCount(), 0);
-    }
-
-    QFuture<QList<qreal>> fetchAvailableFileFractions() const override
-    {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
-        return QtFuture::makeReadyValueFuture(QList<qreal>(filesCount(), 0));
-#else
-        return QtFuture::makeReadyFuture(QList<qreal>(filesCount(), 0));
-#endif
-    }
-
-    void prioritizeFiles(const QList<BitTorrent::DownloadPriority> &priorities) override
-    {
-        Q_ASSERT(priorities.size() == filesCount());
-        m_filePriorities = priorities;
-        if (m_onFilePrioritiesChanged)
-            m_onFilePrioritiesChanged();
-    }
-
-    Path actualStorageLocation() const override
-    {
-        return {};
-    }
-
-    Path actualFilePath([[maybe_unused]] int fileIndex) const override
-    {
-        return {};
-    }
-
-    void flushCache() const override
-    {
-    }
+    void renameFile(int index, const Path &newFilePath) override;
+    void applyContentLayout(const BitTorrent::TorrentContentLayout contentLayout);
+    void prioritizeFiles(const QList<BitTorrent::DownloadPriority> &priorities) override;
 
 private:
+    void doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath) override;
+    void doRenameFile(int index, const Path &newFilePath);
+
     const BitTorrent::TorrentInfo &m_torrentInfo;
     PathList &m_filePaths;
     QList<BitTorrent::DownloadPriority> &m_filePriorities;
@@ -670,7 +564,6 @@ void AddNewTorrentDialog::contentLayoutChanged()
 
     const auto contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
     m_contentAdaptor->applyContentLayout(contentLayout);
-    m_ui->contentTreeView->setContentHandler(m_contentAdaptor.get()); // to cause reloading
 }
 
 void AddNewTorrentDialog::saveTorrentFile()
@@ -929,6 +822,27 @@ void AddNewTorrentDialog::setupTreeview()
     if (addTorrentParams.filePaths.isEmpty())
         addTorrentParams.filePaths = torrentInfo.filePaths();
 
+    if (addTorrentParams.filePriorities.isEmpty())
+    {
+        lt::add_torrent_params p = torrentDescr.ltAddTorrentParams();
+        if (p.file_priorities.empty())
+        {
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            addTorrentParams.filePriorities.resize(torrentInfo.filesCount(), BitTorrent::DownloadPriority::Normal);
+        }
+        else
+        {
+            addTorrentParams.filePriorities.resize(torrentInfo.filesCount(), BitTorrent::DownloadPriority::Ignored);
+            const auto nativeIndexes = torrentInfo.nativeIndexes();
+            for (qsizetype i = 0; i < nativeIndexes.size(); ++i)
+            {
+                const auto ordIndex = static_cast<std::size_t>(BitTorrent::LT::toUnderlyingType(nativeIndexes[i]));
+                if (ordIndex < p.file_priorities.size())
+                    addTorrentParams.filePriorities[i] = BitTorrent::LT::fromNative(p.file_priorities[ordIndex]);
+            }
+        }
+    }
+
     m_contentAdaptor = std::make_unique<TorrentContentAdaptor>(torrentInfo, addTorrentParams.filePaths
             , addTorrentParams.filePriorities, [this] { updateDiskSpaceLabel(); });
 
@@ -978,4 +892,166 @@ void AddNewTorrentDialog::TMMChanged(int index)
     }
 
     updateDiskSpaceLabel();
+}
+
+AddNewTorrentDialog::TorrentContentAdaptor::TorrentContentAdaptor(const BitTorrent::TorrentInfo &torrentInfo
+        , PathList &filePaths, QList<BitTorrent::DownloadPriority> &filePriorities, std::function<void ()> onFilePrioritiesChanged)
+    : m_torrentInfo {torrentInfo}
+    , m_filePaths {filePaths}
+    , m_filePriorities {filePriorities}
+    , m_onFilePrioritiesChanged {std::move(onFilePrioritiesChanged)}
+{
+    Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == m_torrentInfo.filesCount()));
+
+    m_originalRootFolder = Path::findRootFolder(m_torrentInfo.filePaths());
+    m_currentContentLayout = (m_originalRootFolder.isEmpty()
+            ? BitTorrent::TorrentContentLayout::NoSubfolder
+            : BitTorrent::TorrentContentLayout::Subfolder);
+
+    if (const int fileCount = filesCount(); !m_filePriorities.isEmpty() && (fileCount >= 0))
+        m_filePriorities.resize(fileCount, BitTorrent::DownloadPriority::Normal);
+}
+
+bool AddNewTorrentDialog::TorrentContentAdaptor::hasMetadata() const
+{
+    return m_torrentInfo.isValid();
+}
+
+int AddNewTorrentDialog::TorrentContentAdaptor::filesCount() const
+{
+    return m_torrentInfo.filesCount();
+}
+
+qlonglong AddNewTorrentDialog::TorrentContentAdaptor::fileSize(const int index) const
+{
+    Q_ASSERT((index >= 0) && (index < filesCount()));
+    return m_torrentInfo.fileSize(index);
+}
+
+Path AddNewTorrentDialog::TorrentContentAdaptor::filePath(const int index) const
+{
+    Q_ASSERT((index >= 0) && (index < filesCount()));
+    return (m_filePaths.isEmpty() ? m_torrentInfo.filePath(index) : m_filePaths.at(index));
+}
+
+PathList AddNewTorrentDialog::TorrentContentAdaptor::filePaths() const
+{
+    return (m_filePaths.isEmpty() ? m_torrentInfo.filePaths() : m_filePaths);
+}
+
+QList<BitTorrent::DownloadPriority> AddNewTorrentDialog::TorrentContentAdaptor::filePriorities() const
+{
+    return m_filePriorities.isEmpty()
+            ? QList<BitTorrent::DownloadPriority>(filesCount(), BitTorrent::DownloadPriority::Normal)
+            : m_filePriorities;
+}
+
+QList<qreal> AddNewTorrentDialog::TorrentContentAdaptor::filesProgress() const
+{
+    return QList<qreal>(filesCount(), 0);
+}
+
+QFuture<QList<qreal> > AddNewTorrentDialog::TorrentContentAdaptor::fetchAvailableFileFractions() const
+{
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 6, 0))
+    return QtFuture::makeReadyValueFuture(QList<qreal>(filesCount(), 0));
+#else
+    return QtFuture::makeReadyFuture(QList<qreal>(filesCount(), 0));
+#endif
+}
+
+Path AddNewTorrentDialog::TorrentContentAdaptor::actualStorageLocation() const
+{
+    return {};
+}
+
+Path AddNewTorrentDialog::TorrentContentAdaptor::actualFilePath([[maybe_unused]] const int fileIndex) const
+{
+    return {};
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::flushCache() const
+{
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::renameFile(const int index, const Path &newFilePath)
+{
+    Q_ASSERT((index >= 0) && (index < filesCount()));
+    if (!((index >= 0) && (index < filesCount()))) [[unlikely]]
+        return;
+
+    const Path oldFilePath = filePath(index);
+    if (oldFilePath == newFilePath)
+        return;
+
+    doRenameFile(index, newFilePath);
+
+    emit fileRenamed(index, oldFilePath);
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::applyContentLayout(const BitTorrent::TorrentContentLayout contentLayout)
+{
+    Q_ASSERT(hasMetadata());
+    Q_ASSERT(!m_filePaths.isEmpty());
+
+    const auto originalContentLayout = (m_originalRootFolder.isEmpty()
+            ? BitTorrent::TorrentContentLayout::NoSubfolder
+            : BitTorrent::TorrentContentLayout::Subfolder);
+    const auto newContentLayout = ((contentLayout == BitTorrent::TorrentContentLayout::Original)
+            ? originalContentLayout : contentLayout);
+    if (newContentLayout != m_currentContentLayout)
+    {
+        const PathList oldFilePaths = m_filePaths;
+
+        if (newContentLayout == BitTorrent::TorrentContentLayout::NoSubfolder)
+        {
+            Path::stripRootFolder(m_filePaths);
+        }
+        else
+        {
+            const auto rootFolder = ((originalContentLayout == BitTorrent::TorrentContentLayout::Subfolder)
+                    ? m_originalRootFolder : m_filePaths.at(0).removedExtension());
+            Path::addRootFolder(m_filePaths, rootFolder);
+        }
+
+        m_currentContentLayout = newContentLayout;
+
+        const qsizetype filesCount = m_filePaths.size();
+        for (int i = 0; i < filesCount; ++i)
+            emit fileRenamed(i, oldFilePaths.at(i));
+    }
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::prioritizeFiles(const QList<BitTorrent::DownloadPriority> &priorities)
+{
+    Q_ASSERT(priorities.size() == filesCount());
+    m_filePriorities = priorities;
+    if (m_onFilePrioritiesChanged)
+        m_onFilePrioritiesChanged();
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::doRenameFile(const int index, const Path &newFilePath)
+{
+    if (m_filePaths.isEmpty())
+        m_filePaths = m_torrentInfo.filePaths();
+
+    m_filePaths[index] = newFilePath;
+}
+
+void AddNewTorrentDialog::TorrentContentAdaptor::doRenameFolder(const Path &oldFolderPath, const Path &newFolderPath)
+{
+    QHash<int, Path> renamedFiles;
+    renamedFiles.reserve(filesCount());
+    for (int i = 0; i < filesCount(); ++i)
+    {
+        const Path path = filePath(i);
+        if (path.hasAncestor(oldFolderPath))
+        {
+            const Path newFilePath = newFolderPath / oldFolderPath.relativePathOf(path);
+            doRenameFile(i, newFilePath);
+            renamedFiles.insert(i, path);
+        }
+    }
+
+    emit folderRenamed(newFolderPath, oldFolderPath, renamedFiles);
 }

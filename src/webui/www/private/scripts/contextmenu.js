@@ -316,6 +316,7 @@ window.qBittorrent.ContextMenu ??= (() => {
         updateTorrentActions() {
             const torrentsVisible = torrentsTable.tableBody.children.length > 0;
             this.setEnabled("startTorrents", torrentsVisible)
+                .setEnabled("forceStartTorrents", torrentsVisible)
                 .setEnabled("stopTorrents", torrentsVisible)
                 .setEnabled("deleteTorrents", torrentsVisible);
         }
