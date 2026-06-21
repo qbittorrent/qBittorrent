@@ -1384,48 +1384,60 @@ qlonglong TorrentImpl::totalUpload() const
 
 qlonglong TorrentImpl::eta() const
 {
-    if (isStopped()) return MAX_ETA;
+    if (isStopped())
+        return MAX_ETA;
 
     const SpeedSampleAvg speedAverage = m_payloadRateMonitor.average();
 
     if (isFinished())
     {
+        const qint64 ZERO_ETA = 0;
+
         const ShareLimits shareLimits = effectiveShareLimits();
-        if ((shareLimits.ratioLimit < 0) && (shareLimits.seedingTimeLimit < 0) && (shareLimits.inactiveSeedingTimeLimit < 0))
-            return MAX_ETA;
+        QList<qint64> etaList;
 
-        qlonglong ratioEta = MAX_ETA;
-
-        if ((speedAverage.upload > 0) && (shareLimits.ratioLimit >= 0))
+        if (shareLimits.ratioLimit >= 0)
         {
-            qlonglong realDL = totalDownload();
+            qint64 realDL = totalDownload();
             if (realDL <= 0)
                 realDL = wantedSize();
 
-            ratioEta = ((realDL * shareLimits.ratioLimit) - totalUpload()) / speedAverage.upload;
+            const qreal uploadLimit = realDL * shareLimits.ratioLimit;
+            const qint64 uploaded = totalUpload();
+            qint64 ratioEta = ZERO_ETA;
+            if (uploadLimit > uploaded)
+            {
+                ratioEta = (speedAverage.upload > 0)
+                        ? (uploadLimit - uploaded) / speedAverage.upload
+                        : MAX_ETA;
+            }
+            etaList.append(ratioEta);
         }
-
-        qlonglong seedingTimeEta = MAX_ETA;
 
         if (shareLimits.seedingTimeLimit >= 0)
         {
-            seedingTimeEta = (shareLimits.seedingTimeLimit * 60) - finishedTime();
-            if (seedingTimeEta < 0)
-                seedingTimeEta = 0;
+            const qint64 seedingTimeEta = std::max(
+                    ((shareLimits.seedingTimeLimit * 60) - finishedTime()), ZERO_ETA);
+            etaList.append(seedingTimeEta);
         }
-
-        qlonglong inactiveSeedingTimeEta = MAX_ETA;
 
         if (shareLimits.inactiveSeedingTimeLimit >= 0)
         {
-            inactiveSeedingTimeEta = (shareLimits.inactiveSeedingTimeLimit * 60) - timeSinceActivity();
-            inactiveSeedingTimeEta = std::max<qlonglong>(inactiveSeedingTimeEta, 0);
+            const qint64 inactiveSeedingTimeEta = std::max(
+                    ((shareLimits.inactiveSeedingTimeLimit * 60) - timeSinceActivity()), ZERO_ETA);
+            etaList.append(inactiveSeedingTimeEta);
         }
 
-        return std::min({ratioEta, seedingTimeEta, inactiveSeedingTimeEta});
+        if (etaList.isEmpty())
+            return MAX_ETA;
+
+        return (shareLimits.mode == ShareLimitsMode::MatchAny)
+                ? std::ranges::min(etaList)
+                : std::ranges::max(etaList);
     }
 
-    if (!speedAverage.download) return MAX_ETA;
+    if (!speedAverage.download)
+        return MAX_ETA;
 
     return (wantedSize() - completedSize()) / speedAverage.download;
 }
