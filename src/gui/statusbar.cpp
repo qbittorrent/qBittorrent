@@ -278,7 +278,7 @@ void StatusBar::updateExternalAddressesLabel()
         bool hasFlag = false;
         if (hasAddress && resolveCountries && geoIP)
         {
-            const QHostAddress hostAddr(address);
+            const QHostAddress hostAddr {address};
             if (!hostAddr.isNull())
             {
                 const QString countryCode = geoIP->lookup(hostAddr);

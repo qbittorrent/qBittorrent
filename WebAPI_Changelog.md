@@ -28,12 +28,12 @@
 * [#24135](https://github.com/qbittorrent/qBittorrent/pull/24135)
   * Add `torrents/downloadFile` endpoint with `hash` and `file` as parameters allowing to download a completed file from torrent content
     * `file` accepts either file index or path relative to content root
+* [#23731](https://github.com/qbittorrent/qBittorrent/pull/23731)
+  * Add country information for external IP addresses in `sync/maindata` endpoint. `server_state` now includes `last_external_address_v4_country_code`, `last_external_address_v4_country`, `last_external_address_v6_country_code`, and `last_external_address_v6_country` when peer country resolution is enabled
 
 ## 2.15.4
 * [#24056](https://github.com/qbittorrent/qBittorrent/pull/24056)
   * Add `rss/cloneRule` endpoint with `sourceName` and `cloneName` as parameters for cloning an existing RSS auto-download rule
-* [#23731](https://github.com/qbittorrent/qBittorrent/pull/23731)
-  * Add country information for external IP addresses in `sync/maindata` endpoint. `server_state` now includes `last_external_address_v4_country_code`, `last_external_address_v4_country`, `last_external_address_v6_country_code`, and `last_external_address_v6_country` when peer country resolution is enabled
 
 ## 2.15.3
 * [#24043](https://github.com/qbittorrent/qBittorrent/pull/24043)
