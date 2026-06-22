@@ -94,6 +94,7 @@ jobs:
             https://github.com/arvidn/libtorrent.git \
             ${{ env.libtorrent_path }}
           cd ${{ env.libtorrent_path }}
+          CFLAGS="$CFLAGS ${{ env.harden_flags }}" \
           CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }}" \
           cmake \
             -B build \
@@ -117,6 +118,7 @@ jobs:
 
       - name: Build qBittorrent
         run: |
+          CFLAGS="$CFLAGS ${{ env.harden_flags }}" \
           CXXFLAGS="$CXXFLAGS ${{ env.harden_flags }} -DQT_FORCE_ASSERTS -Werror" \
           LDFLAGS="$LDFLAGS -gz" \
           cmake \
