@@ -39,6 +39,7 @@
 
 #include "base/logger.h"
 #include "base/path.h"
+#include "base/profile.h"
 #include "base/preferences.h"
 #include "uithemecommon.h"
 
@@ -59,10 +60,7 @@ namespace
 
     Path resolveThemePath(const Path &themePath)
     {
-        if (themePath.isAbsolute())
-            return themePath;
-
-        return (Path(QCoreApplication::applicationDirPath()) / themePath);
+        return Profile::instance()->fromPortablePath(themePath);
     }
 }
 
