@@ -78,6 +78,7 @@
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/net/reverseresolution.h"
 #include "base/net/smtpclient.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/rss/rss_autodownloader.h"
@@ -135,6 +136,29 @@ namespace
     const QString PARAM_SEQUENTIAL = u"@sequential"_s;
     const QString PARAM_SKIPCHECKING = u"@skipChecking"_s;
     const QString PARAM_SKIPDIALOG = u"@skipDialog"_s;
+
+    Path torrentRootPath(const BitTorrent::Torrent *torrent)
+    {
+        const Path rootPath = torrent->rootPath();
+        if (!rootPath.isEmpty() || !torrent->hasMetadata())
+            return rootPath;
+
+        const Path relativeRootPath = Path::findRootFolder(torrent->filePaths());
+        return relativeRootPath.isEmpty() ? Path() : (torrent->savePath() / relativeRootPath);
+    }
+
+    Path torrentContentPath(const BitTorrent::Torrent *torrent)
+    {
+        const Path contentPath = torrent->contentPath();
+        if (!contentPath.isEmpty() || !torrent->hasMetadata())
+            return contentPath;
+
+        if (torrent->filesCount() == 1)
+            return (torrent->savePath() / torrent->filePath(0));
+
+        const Path rootPath = torrentRootPath(torrent);
+        return rootPath.isEmpty() ? torrent->savePath() : rootPath;
+    }
 
 #if !defined(DISABLE_GUI) && defined(Q_OS_WIN)
     class NativeEventFilter final : public QAbstractNativeEventFilter
@@ -599,7 +623,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
                 str.replace(i, 2, torrent->savePath().toString());
                 break;
             case u'F':
-                str.replace(i, 2, torrent->contentPath().toString());
+                str.replace(i, 2, torrentContentPath(torrent).toString());
                 break;
             case u'G':
                 str.replace(i, 2, Utils::String::joinIntoString(torrent->tags(), u","_s));
@@ -623,7 +647,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
                 str.replace(i, 2, torrent->name());
                 break;
             case u'R':
-                str.replace(i, 2, torrent->rootPath().toString());
+                str.replace(i, 2, torrentRootPath(torrent).toString());
                 break;
             case u'T':
                 str.replace(i, 2, torrent->currentTracker());
