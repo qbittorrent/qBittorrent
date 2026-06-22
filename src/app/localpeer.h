@@ -105,6 +105,7 @@ private:
         QByteArray bootid;
     };
 
+    bool hasActiveServer(std::chrono::milliseconds timeout) const;
     std::optional<LockInfo> getLockInfo() const;
 
     const QString m_socketName;

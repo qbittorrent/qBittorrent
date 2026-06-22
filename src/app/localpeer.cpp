@@ -152,7 +152,8 @@ bool LocalPeer::isClient()
             if ((lockInfo->hostid == QSysInfo::machineUniqueId())
                     && (lockInfo->hostname == QSysInfo::machineHostName()))
             {
-                return true;
+                if (hasActiveServer(100ms))
+                    return true;
             }
 
             if (!m_lockFile.removeStaleLockFile() || !m_lockFile.tryLock())
@@ -230,6 +231,13 @@ bool LocalPeer::sendMessage(const QString &message, const std::chrono::milliseco
     }
 
     return true;
+}
+
+bool LocalPeer::hasActiveServer(const std::chrono::milliseconds timeout) const
+{
+    QLocalSocket socket;
+    socket.connectToServer(m_socketName);
+    return socket.waitForConnected(timeout.count());
 }
 
 void LocalPeer::receivedConnection()
