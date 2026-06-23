@@ -40,7 +40,6 @@
 #include <boost/multi_index/tag.hpp>
 
 #include <QColor>
-#include <QDateTime>
 #include <QFuture>
 #include <QList>
 #include <QPointer>
@@ -52,6 +51,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/bittorrent/trackerentrystatus.h"
 #include "base/global.h"
 #include "base/utils/misc.h"
 
