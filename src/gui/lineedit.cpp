@@ -75,6 +75,25 @@ LineEdit::LineEdit(QWidget *parent)
 
 void LineEdit::keyPressEvent(QKeyEvent *event)
 {
+#ifdef Q_OS_MACOS
+    if ((event->modifiers() & ~Qt::ShiftModifier) == Qt::NoModifier)
+    {
+        const bool mark = event->modifiers().testFlag(Qt::ShiftModifier);
+        if (event->key() == Qt::Key_Home)
+        {
+            home(mark);
+            event->accept();
+            return;
+        }
+        if (event->key() == Qt::Key_End)
+        {
+            end(mark);
+            event->accept();
+            return;
+        }
+    }
+#endif
+
     if ((event->modifiers() == Qt::NoModifier) && (event->key() == Qt::Key_Escape))
     {
         clear();
