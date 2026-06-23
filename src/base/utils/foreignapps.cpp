@@ -58,7 +58,7 @@ using namespace Utils::ForeignApps;
 
 namespace
 {
-    Path normalizedPythonPath(const Path &path)
+    Path unquotePath(const Path &path)
     {
         QString pathStr = path.toString().trimmed();
         if (((pathStr.startsWith(u'"') && pathStr.endsWith(u'"'))
@@ -204,7 +204,7 @@ PythonInfo Utils::ForeignApps::pythonInfo()
 {
     static PythonInfo pyInfo;
 
-    const Path preferredPythonPath = normalizedPythonPath(Preferences::instance()->getPythonExecutablePath());
+    const Path preferredPythonPath = unquotePath(Preferences::instance()->getPythonExecutablePath());
     if (pyInfo.isValid() && (preferredPythonPath == pyInfo.executablePath))
         return pyInfo;
 
