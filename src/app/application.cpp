@@ -955,7 +955,7 @@ int Application::exec()
 
 #ifndef DISABLE_GUI
         const auto *btSession = BitTorrent::Session::instance();
-        connect(btSession, &BitTorrent::Session::fullDiskError, this
+        connect(btSession, &BitTorrent::Session::torrentIOError, this
                 , [this](const BitTorrent::Torrent *torrent, const QString &msg)
         {
             m_desktopIntegration->showNotification(tr("I/O Error", "i.e: Input/Output Error")
@@ -1188,28 +1188,13 @@ bool Application::event(QEvent *ev)
 
 void Application::initializeTranslation()
 {
-    Preferences *const pref = Preferences::instance();
-    // Load translation
+    QCoreApplication::installTranslator(&m_qtTranslator);
+    QCoreApplication::installTranslator(&m_translator);
+
+    const auto *pref = Preferences::instance();
     const QString localeStr = pref->getLocale();
 
-    if (m_qtTranslator.load((u"qtbase_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath))
-        || m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::path(QLibraryInfo::TranslationsPath)))
-    {
-        qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
-    }
-    else
-    {
-        qDebug("Qt %s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
-    }
-
-    installTranslator(&m_qtTranslator);
-
-    if (m_translator.load(u":/lang/qbittorrent_" + localeStr))
-        qDebug("%s locale recognized, using translation.", qUtf8Printable(localeStr));
-    else
-        qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
-    installTranslator(&m_translator);
-
+    loadTranslation(localeStr);
 #ifndef DISABLE_GUI
     if (localeStr.startsWith(u"ar") || localeStr.startsWith(u"he"))
     {
@@ -1384,6 +1369,35 @@ void Application::adjustThreadPriority() const
     ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_ABOVE_NORMAL);
 }
 #endif
+
+bool Application::loadTranslation(const QString &locale)
+{
+    // Load Qt translation
+    const QString trPath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+    if (m_qtTranslator.load((u"qtbase_" + locale), trPath) || m_qtTranslator.load((u"qt_" + locale), trPath))
+    {
+        LogMsg(tr("Load Qt translation successful. Locale: %1.").arg(locale));
+    }
+    else
+    {
+        LogMsg(tr("Load Qt translation failed. Temporarily falling back to English. Locale not found: %1.")
+            .arg(locale), Log::WARNING);
+    }
+
+    // Load qbt translation
+    const bool success = m_translator.load(u":/lang/qbittorrent_" + locale);
+    if (success)
+    {
+        LogMsg(tr("Load qBittorrent translation successful. Locale: %1.").arg(locale));
+    }
+    else
+    {
+        LogMsg(tr("Load qBittorrent translation failed. Temporarily falling back to English. Locale not found: %1.")
+            .arg(locale), Log::WARNING);
+    }
+
+    return success;
+}
 
 qint64 Application::launchTimeSecsSinceEpoch() const
 {

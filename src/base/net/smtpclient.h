@@ -38,6 +38,7 @@
 #include <QHash>
 #include <QObject>
 #include <QString>
+#include <QStringList>
 
 class QSslSocket;
 
@@ -88,7 +89,7 @@ namespace Net
             AuthCramMD5
         };
 
-        SMTPClient(const QString &from, const QString &to, const QString &subject
+        SMTPClient(const QString &sender, const QStringList &recipients, const QString &subject
                    , const QString &body, QObject *parent = nullptr);
         ~SMTPClient() override;
 
@@ -104,8 +105,9 @@ namespace Net
 
         QByteArray m_message;
         QSslSocket *m_socket = nullptr;
-        QString m_from;
-        QString m_rcpt;
+        QString m_sender;
+        QStringList m_recipients;
+        QStringListIterator m_recipientsIterator;
         QString m_response;
         States m_state = Init;
         QHash<QString, QString> m_extensions;

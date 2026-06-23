@@ -129,7 +129,7 @@ QStringList SearchPluginManager::allPlugins() const
 QStringList SearchPluginManager::enabledPlugins() const
 {
     QStringList plugins;
-    for (const PluginInfo *plugin : asConst(m_plugins))
+    for (const SearchPluginInfo *plugin : asConst(m_plugins))
     {
         if (plugin->enabled)
             plugins << plugin->name;
@@ -141,7 +141,7 @@ QStringList SearchPluginManager::enabledPlugins() const
 QStringList SearchPluginManager::supportedCategories() const
 {
     QStringList result;
-    for (const PluginInfo *plugin : asConst(m_plugins))
+    for (const SearchPluginInfo *plugin : asConst(m_plugins))
     {
         if (plugin->enabled)
         {
@@ -169,7 +169,7 @@ QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) 
     QSet<QString> categories;
     for (const QString &name : asConst(plugins))
     {
-        const PluginInfo *plugin = pluginInfo(name);
+        const SearchPluginInfo *plugin = pluginInfo(name);
         if (!plugin) continue; // plugin wasn't found
         for (const QString &category : plugin->supportedCategories)
             categories << category;
@@ -178,14 +178,14 @@ QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) 
     return categories.values();
 }
 
-PluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
+SearchPluginInfo *SearchPluginManager::pluginInfo(const QString &name) const
 {
     return m_plugins.value(name);
 }
 
 QString SearchPluginManager::pluginNameBySiteURL(const QString &siteURL) const
 {
-    for (const PluginInfo *plugin : asConst(m_plugins))
+    for (const SearchPluginInfo *plugin : asConst(m_plugins))
     {
         if (plugin->url == siteURL)
             return plugin->name;
@@ -196,7 +196,7 @@ QString SearchPluginManager::pluginNameBySiteURL(const QString &siteURL) const
 
 void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 {
-    PluginInfo *plugin = m_plugins.value(name, nullptr);
+    SearchPluginInfo *plugin = m_plugins.value(name, nullptr);
     if (plugin)
     {
         plugin->enabled = enabled;
@@ -250,8 +250,8 @@ void SearchPluginManager::installPlugin(const QString &source)
 
 void SearchPluginManager::installPlugin_impl(const QString &name, const Path &path)
 {
-    const PluginVersion newVersion = getPluginVersion(path);
-    const PluginInfo *plugin = pluginInfo(name);
+    const SearchPluginVersion newVersion = getPluginVersion(path);
+    const SearchPluginInfo *plugin = pluginInfo(name);
     if (plugin && !(plugin->version < newVersion))
     {
         LogMsg(tr("Plugin already at version %1, which is greater than %2").arg(plugin->version.toString(), newVersion.toString()), Log::INFO);
@@ -324,7 +324,7 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
     return true;
 }
 
-void SearchPluginManager::updateIconPath(PluginInfo *const plugin)
+void SearchPluginManager::updateIconPath(SearchPluginInfo *const plugin)
 {
     if (!plugin) return;
 
@@ -591,7 +591,7 @@ void SearchPluginManager::update()
         {
             const QString pluginName = engineElem.tagName();
 
-            auto plugin = std::make_unique<PluginInfo>();
+            auto plugin = std::make_unique<SearchPluginInfo>();
             plugin->name = pluginName;
             plugin->version = getPluginVersion(pluginPath(pluginName));
             plugin->fullName = engineElem.elementsByTagName(u"name"_s).at(0).toElement().text();
@@ -627,25 +627,37 @@ void SearchPluginManager::update()
 
 void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 {
-    QHash<QString, PluginVersion> updateInfo;
+    QHash<QString, SearchPluginVersion> updateInfo;
     int numCorrectData = 0;
+    int numInvalidData = 0;
 
     const QList<QByteArrayView> lines = Utils::ByteArray::splitToViews(info, "\n");
     for (QByteArrayView line : lines)
     {
         line = line.trimmed();
-        if (line.isEmpty()) continue;
-        if (line.startsWith('#')) continue;
+
+        if (line.isEmpty())
+            continue;
+        if (line.startsWith('#'))
+            continue;
 
         const QList<QByteArrayView> list = Utils::ByteArray::splitToViews(line, ":");
-        if (list.size() != 2) continue;
+        if (list.size() != 2)
+        {
+            ++numInvalidData;
+            continue;
+        }
 
-        const auto pluginName = QString::fromUtf8(list.first().trimmed());
-        const auto version = PluginVersion::fromString(QString::fromLatin1(list.last().trimmed()));
-
-        if (!version.isValid()) continue;
+        const auto version = SearchPluginVersion::fromString(QString::fromLatin1(list.last().trimmed()));
+        if (!version.isValid())
+        {
+            ++numInvalidData;
+            continue;
+        }
 
         ++numCorrectData;
+
+        const auto pluginName = QString::fromUtf8(list.first().trimmed());
         if (isUpdateNeeded(pluginName, version))
         {
             LogMsg(tr("Plugin \"%1\" is outdated, updating to version %2").arg(pluginName, version.toString()), Log::INFO);
@@ -653,10 +665,10 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
         }
     }
 
-    if (numCorrectData < lines.size())
+    if (numInvalidData > 0)
     {
         emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.")
-            .arg(QString::number(lines.size() - numCorrectData), QString::number(lines.size())));
+            .arg(QString::number(numInvalidData), QString::number(numCorrectData + numInvalidData)));
     }
     else
     {
@@ -664,12 +676,12 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
     }
 }
 
-bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, const PluginVersion &newVersion) const
+bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, const SearchPluginVersion &newVersion) const
 {
-    const PluginInfo *plugin = pluginInfo(pluginName);
+    const SearchPluginInfo *plugin = pluginInfo(pluginName);
     if (!plugin) return true;
 
-    PluginVersion oldVersion = plugin->version;
+    SearchPluginVersion oldVersion = plugin->version;
     return (newVersion > oldVersion);
 }
 
@@ -678,7 +690,7 @@ Path SearchPluginManager::pluginPath(const QString &name)
     return (pluginsLocation() / Path(name + u".py"));
 }
 
-PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
+SearchPluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
 {
     const int lineMaxLength = 16;
 
@@ -693,7 +705,7 @@ PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
             continue;
 
         const QString versionStr = line.sliced(9);
-        const auto version = PluginVersion::fromString(versionStr);
+        const auto version = SearchPluginVersion::fromString(versionStr);
         if (version.isValid())
             return version;
 

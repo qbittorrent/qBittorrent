@@ -219,43 +219,26 @@ window.qBittorrent.TorrentContent ??= (() => {
     const switchGlobalCheckboxState = (e) => {
         e.stopPropagation();
 
-        const rowIds = [];
-        const fileIds = [];
-        const checkbox = document.getElementById("tristateCb");
-        const priority = (checkbox.state === TriState.Checked) ? FilePriority.Ignored : FilePriority.Normal;
-
-        if (checkbox.state === TriState.Checked) {
+        const checkbox = e.target;
+        const checked = (checkbox.state === TriState.Checked) ? TriState.Unchecked : TriState.Checked;
+        if (checked === TriState.Unchecked)
             setCheckboxUnchecked(checkbox);
-            for (const row of torrentFilesTable.getRowValues()) {
-                const rowId = row.rowId;
-                const node = torrentFilesTable.getNode(rowId);
-                const fileId = node.fileId;
-                const isChecked = (node.checked === TriState.Checked);
-                if (isChecked) {
-                    rowIds.push(rowId);
-                    fileIds.push(fileId);
-                }
-            }
-        }
-        else {
+        else
             setCheckboxChecked(checkbox);
-            for (const row of torrentFilesTable.getRowValues()) {
-                const rowId = row.rowId;
-                const node = torrentFilesTable.getNode(rowId);
-                const fileId = node.fileId;
-                const isUnchecked = (node.checked === TriState.Unchecked);
-                if (isUnchecked) {
-                    rowIds.push(rowId);
-                    fileIds.push(fileId);
-                }
-            }
-        }
 
-        if (rowIds.length > 0) {
-            setFilePriority(rowIds, fileIds, priority);
-            for (const id of rowIds)
-                updateParentFolder(id);
+        const fileIds = [];
+        const priority = (checkbox.state === TriState.Checked) ? FilePriority.Normal : FilePriority.Ignored;
+        for (const row of torrentFilesTable.rows.values()) {
+            const node = torrentFilesTable.getNode(row.rowId);
+            if (onFilePriorityChanged && (node.priority !== priority))
+                fileIds.push(node.fileId);
+            node.priority = priority;
+            node.checked = checked;
         }
+        torrentFilesTable.updateTable(true);
+
+        if (onFilePriorityChanged)
+            onFilePriorityChanged(fileIds, priority);
     };
 
     const setCheckboxChecked = (checkbox) => {

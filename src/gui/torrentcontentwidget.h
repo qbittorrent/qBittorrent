@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022-2024  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
@@ -109,6 +109,8 @@ private:
     void mousePressEvent(QMouseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
     void wheelEvent(QWheelEvent *event) override;
+    void rowsInserted(const QModelIndex &parent, int start, int end) override;
+
     QModelIndex currentNameCell() const;
     void displayColumnHeaderMenu();
     void displayContextMenu();
@@ -117,6 +119,7 @@ private:
     void copyFullPath(const QModelIndex &index);
     void openSelectedFile();
     void renameSelectedFile();
+    void batchRenameFiles();
     void applyPriorities(BitTorrent::DownloadPriority priority);
     void applyPrioritiesByOrder();
     Path getFullPath(const QModelIndex &index) const;

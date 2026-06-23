@@ -1,6 +1,8 @@
 # WebAPI Changelog
 
 ## 2.16.0
+* [#23989](https://github.com/qbittorrent/qBittorrent/pull/23989)
+  * `sync/torrentPeers` endpoint now includes calculated `contribution` to a peer's progress
 * [#24346](https://github.com/qbittorrent/qBittorrent/pull/24346)
   * `torrentcreator/addTask` endpoint accepts a new bool option `ignoreDotfiles` to control whether dotfiles are ignored
   * `torrentcreator/status` endpoint returns a new bool field `ignoreDotfiles` for reporting whether dotfiles were ignored
