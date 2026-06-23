@@ -60,7 +60,7 @@ namespace
 
     Path resolveThemePath(const Path &themePath)
     {
-        return Profile::instance()->fromPortablePath(themePath);
+        return (themePath.isAbsolute() ? themePath : (Profile::instance()->rootPath() / themePath));
     }
 }
 
