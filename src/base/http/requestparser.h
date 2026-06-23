@@ -56,6 +56,7 @@ namespace Http
         static ParseResult parse(const QByteArray &data);
 
         static const long MAX_CONTENT_SIZE = 64 * 1024 * 1024;  // 64 MB
+        static const long MAX_REQUEST_SIZE = MAX_CONTENT_SIZE * 1.1;   // some margin for headers
 
     private:
         RequestParser() = default;

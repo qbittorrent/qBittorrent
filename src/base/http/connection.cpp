@@ -87,6 +87,13 @@ void Http::Connection::read()
     const qint64 bytesAvailable = m_socket->bytesAvailable();
     if (bytesAvailable > 0)
     {
+        // drop suspiciously large input data
+        if (bytesAvailable > (RequestParser::MAX_REQUEST_SIZE))
+        {
+            m_socket->close();
+            return;
+        }
+
         // reuse existing buffer and avoid unnecessary memory allocation/relocation
         const qsizetype previousSize = m_receivedData.size();
         m_receivedData.resize(previousSize + bytesAvailable);
@@ -135,7 +142,7 @@ bool Http::Connection::processRequest()
         return true;
 
     case RequestParser::ParseStatus::Incomplete:
-        if (const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1; m_receivedData.size() > bufferLimit)  // some margin for headers
+        if (const long bufferLimit = RequestParser::MAX_REQUEST_SIZE; m_receivedData.size() > bufferLimit)
         {
             qWarning("%s", qUtf8Printable(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                     .arg(QString::number(bufferLimit), m_socket->peerAddress().toString())));
