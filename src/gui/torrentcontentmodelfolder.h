@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -39,7 +40,7 @@ class TorrentContentModelFolder final : public TorrentContentModelItem
 {
 public:
     // Folder constructor
-    TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
+    explicit TorrentContentModelFolder(const QString &name);
 
     // Invisible root item constructor
     explicit TorrentContentModelFolder(const QList<QString> &data);
@@ -48,7 +49,6 @@ public:
 
     ItemType itemType() const override;
 
-    void increaseSize(qulonglong delta);
     void recalculateProgress();
     void recalculateAvailability();
     void updatePriority();
@@ -58,9 +58,13 @@ public:
     void deleteAllChildren();
     const QList<TorrentContentModelItem*> &children() const;
     void appendChild(TorrentContentModelItem *item);
+    void removeChild(TorrentContentModelItem *item);
     TorrentContentModelItem *child(int row) const;
     int childCount() const;
 
 private:
+    void increaseSize(qulonglong delta);
+    void decreaseSize(qulonglong delta);
+
     QList<TorrentContentModelItem *> m_childItems;
 };

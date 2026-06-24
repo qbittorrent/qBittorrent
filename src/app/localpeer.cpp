@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2019  Mike Tzou (Chocobo1)
+ * Copyright (C) 2019-2026  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -67,28 +67,63 @@
 ****************************************************************************
 */
 
-#include "qtlocalpeer.h"
+#include "localpeer.h"
 
 #include <QtSystemDetection>
 
-#if defined(Q_OS_WIN)
-#include <windows.h>
-#endif
-
 #include <QByteArray>
+#include <QByteArrayView>
 #include <QDataStream>
-#include <QFileInfo>
+#include <QFile>
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QSysInfo>
+#include <QThread>
 
+#include "base/3rdparty/expected.hpp"
 #include "base/path.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/io.h"
 
-const QByteArray ACK = QByteArrayLiteral("ack");
+using namespace std::chrono_literals;
 
-QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
+const QByteArray ACK = QByteArrayLiteral("ack");
+const int MAX_MESSAGE_SIZE = 65535;
+
+namespace
+{
+    enum class ParseMessageErrorType
+    {
+        DataIncomplete,
+        DataInvalid
+    };
+
+    nonstd::expected<QString, ParseMessageErrorType> parseMessage(const QByteArray &data)
+    {
+        // Deserialize data from `QDataStream::writeBytes()`
+
+        const int lengthOffset = sizeof(quint32);
+        if (data.size() < lengthOffset)
+            return nonstd::make_unexpected(ParseMessageErrorType::DataIncomplete);
+
+        QDataStream ds {data};
+        quint32 remaining = 0;
+        ds >> remaining;
+
+        if (remaining == 0)
+            return QString();
+
+        if (remaining > MAX_MESSAGE_SIZE)  // drop suspiciously large data
+            return nonstd::make_unexpected(ParseMessageErrorType::DataInvalid);
+
+        if ((data.size() - lengthOffset) < remaining)
+            return nonstd::make_unexpected(ParseMessageErrorType::DataIncomplete);
+
+        return QString::fromUtf8((data.constData() + lengthOffset), remaining);
+    }
+}
+
+LocalPeer::LocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
     , m_socketName {path + u"/ipc-socket"}
     , m_server {new QLocalServer(this)}
@@ -98,7 +133,7 @@ QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     m_lockFile.setStaleLockTime(0);
 }
 
-bool QtLocalPeer::isClient()
+bool LocalPeer::isClient()
 {
     if (m_lockFile.isLocked())
         return false;
@@ -114,8 +149,11 @@ bool QtLocalPeer::isClient()
 
         if (const std::optional<LockInfo> lockInfo = getLockInfo())
         {
-            if (lockInfo->hostid == QSysInfo::machineUniqueId())
+            if ((lockInfo->hostid == QSysInfo::machineUniqueId())
+                    && (lockInfo->hostname == QSysInfo::machineHostName()))
+            {
                 return true;
+            }
 
             if (!m_lockFile.removeStaleLockFile() || !m_lockFile.tryLock())
                 return true;
@@ -137,108 +175,110 @@ bool QtLocalPeer::isClient()
     }
 #endif
     if (!res)
-        qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qUtf8Printable(m_server->errorString()));
+        qWarning("LocalPeer: failed to listen on local socket. Error: %s", qUtf8Printable(m_server->errorString()));
 
-    connect(m_server, &QLocalServer::newConnection, this, &QtLocalPeer::receiveConnection);
+    connect(m_server, &QLocalServer::newConnection, this, &LocalPeer::receivedConnection);
     return false;
 }
 
-bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
+bool LocalPeer::sendMessage(const QString &message, const std::chrono::milliseconds timeout)
 {
     if (!isClient())
         return false;
 
-    QLocalSocket socket;
-    bool connOk = false;
-    for(int i = 0; i < 2; i++)
-    {
-        // Try twice, in case the other instance is just starting up
-        socket.connectToServer(m_socketName);
-        connOk = socket.waitForConnected(timeout/2);
-        if (connOk || i)
-            break;
-        int ms = 250;
-#if defined(Q_OS_WIN)
-        ::Sleep(DWORD(ms));
-#else
-        struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
-        ::nanosleep(&ts, nullptr);
-#endif
-    }
-    if (!connOk)
+    const QByteArray buffer = message.toUtf8();
+    if (buffer.size() > MAX_MESSAGE_SIZE)  // drop suspiciously large data
         return false;
 
-    QByteArray uMsg(message.toUtf8());
-    QDataStream ds(&socket);
-    ds.writeBytes(uMsg.constData(), uMsg.size());
-    bool res = socket.waitForBytesWritten(timeout);
-    if (res)
+    QLocalSocket socket;
+    bool isConnected = false;
+
+    // Try a few times, in case the other instance is just starting up
+    const int retries = 2;
+    for (int i = 0; i < retries; ++i)
     {
-        res &= socket.waitForReadyRead(timeout);   // wait for ack
-        if (res)
-            res &= (socket.read(ACK.size()) == ACK);
+        socket.connectToServer(m_socketName);
+        isConnected = socket.waitForConnected(timeout.count() / retries);
+        if (isConnected)
+            break;
+
+        QThread::sleep(250ms);
     }
-    return res;
+
+    if (!isConnected)
+    {
+        qWarning("LocalPeer: failed to connect to server.");
+        return false;
+    }
+
+    QDataStream ds {&socket};
+    ds.writeBytes(buffer.constData(), buffer.size());
+    if (!socket.waitForBytesWritten(timeout.count()))
+    {
+        qWarning("LocalPeer: failed to write data to server.");
+        return false;
+    }
+    if (!socket.waitForReadyRead(timeout.count()))
+    {
+        qWarning("LocalPeer: failed to read data from server.");
+        return false;
+    }
+    if (socket.read(ACK.size()) != ACK)
+    {
+        qWarning("LocalPeer: failed to receive ACK from server.");
+        return false;
+    }
+
+    return true;
 }
 
-void QtLocalPeer::receiveConnection()
+void LocalPeer::receivedConnection()
 {
     QLocalSocket *socket = m_server->nextPendingConnection();
-    if (!socket)
+    if (!socket) [[unlikely]]
         return;
 
-    while (true)
+    auto *buffer = new QByteArray;
+
+    connect(socket, &QLocalSocket::disconnected, this, [buffer, socket]
     {
-        if (socket->state() == QLocalSocket::UnconnectedState)
+        socket->deleteLater();
+        delete buffer;
+    });
+    connect(socket, &QIODevice::readyRead, this, [this, buffer, socket]
+    {
+        const qint64 bytes = socket->bytesAvailable();
+        if ((buffer->size() + bytes) > MAX_MESSAGE_SIZE)
         {
-            qWarning("QtLocalPeer: Peer disconnected");
-            delete socket;
+            socket->disconnectFromServer();
+            qWarning("LocalPeer: received data exceeding max limit.");
             return;
         }
 
-        if (socket->bytesAvailable() >= qint64(sizeof(quint32)))
-            break;
+        buffer->append(socket->read(bytes));
 
-        socket->waitForReadyRead();
-    }
+        const auto result = parseMessage(*buffer);
+        if (!result)
+        {
+            switch (result.error())
+            {
+            case ParseMessageErrorType::DataIncomplete:
+                return;
+            case ParseMessageErrorType::DataInvalid:
+                socket->disconnectFromServer();
+                qWarning("LocalPeer: received invalid data.");
+                return;
+            }
+        }
 
-    QDataStream ds {socket};
-    QByteArray uMsg;
-    quint32 remaining;
-    ds >> remaining;
-    if (remaining > 65535)
-    {
-        // drop suspiciously large data
-        delete socket;
-        return;
-    }
+        socket->write(ACK);
+        socket->disconnectFromServer();
 
-    uMsg.resize(remaining);
-    int got = 0;
-    char* uMsgBuf = uMsg.data();
-    do
-    {
-        got = ds.readRawData(uMsgBuf, remaining);
-        remaining -= got;
-        uMsgBuf += got;
-    } while (remaining && (got >= 0) && socket->waitForReadyRead(2000));
-
-    if (got < 0)
-    {
-        qWarning("QtLocalPeer: Message reception failed %s", socket->errorString().toLatin1().constData());
-        delete socket;
-        return;
-    }
-
-    QString message(QString::fromUtf8(uMsg));
-    socket->write(ACK);
-    socket->waitForBytesWritten(1000);
-    socket->waitForDisconnected(1000); // make sure client reads ack
-    delete socket;
-    emit messageReceived(message); //### (might take a long time to return)
+        emit messageReceived(result.value()); // might take a long time to return
+    });
 }
 
-std::optional<QtLocalPeer::LockInfo> QtLocalPeer::getLockInfo() const
+std::optional<LocalPeer::LockInfo> LocalPeer::getLockInfo() const
 {
     const auto readResult = Utils::IO::readFile(Path(m_lockFile.fileName()), 1024);
     if (!readResult)

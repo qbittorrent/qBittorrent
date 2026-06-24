@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,40 @@
  * exception statement from your version.
  */
 
-#include "pluginsourcedialog.h"
+#pragma once
 
-#include "gui/utils.h"
-#include "ui_pluginsourcedialog.h"
+#include <QDialog>
 
-#define SETTINGS_KEY(name) u"SearchPluginSourceDialog/" name
+#include "base/settingvalue.h"
 
-PluginSourceDialog::PluginSourceDialog(QWidget *parent)
-    : QDialog(parent)
-    , m_ui(new Ui::PluginSourceDialog)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_s))
+class TorrentContentLayoutModel;
+
+namespace BitTorrent
 {
-    m_ui->setupUi(this);
-
-    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
-        resize(dialogSize);
+    class TorrentContentHandler;
 }
 
-PluginSourceDialog::~PluginSourceDialog()
+namespace Ui
 {
-    m_storeDialogSize = size();
-    delete m_ui;
+    class TorrentContentLayoutDialog;
 }
 
-void PluginSourceDialog::on_localButton_clicked()
+class TorrentContentLayoutDialog final : public QDialog
 {
-    emit askForLocalFile();
-    close();
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TorrentContentLayoutDialog)
 
-void PluginSourceDialog::on_urlButton_clicked()
-{
-    emit askForUrl();
-    close();
-}
+public:
+    explicit TorrentContentLayoutDialog(BitTorrent::TorrentContentHandler *contentHandler, QWidget *parent = nullptr);
+    ~TorrentContentLayoutDialog();
+
+private:
+    void apply();
+
+    Ui::TorrentContentLayoutDialog *m_ui = nullptr;
+
+    TorrentContentLayoutModel *m_model = nullptr;
+
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeViewState;
+};

@@ -37,18 +37,18 @@
 #include "base/path.h"
 #include "base/utils/version.h"
 
-using PluginVersion = Utils::Version<2>;
-Q_DECLARE_METATYPE(PluginVersion)
+using SearchPluginVersion = Utils::Version<2>;
+Q_DECLARE_METATYPE(SearchPluginVersion)
 
 namespace Net
 {
     struct DownloadResult;
 }
 
-struct PluginInfo
+struct SearchPluginInfo
 {
     QString name;
-    PluginVersion version;
+    SearchPluginVersion version;
     QString fullName;
     QString url;
     QStringList supportedCategories;
@@ -75,14 +75,14 @@ public:
     QStringList enabledPlugins() const;
     QStringList supportedCategories() const;
     QStringList getPluginCategories(const QString &pluginName) const;
-    PluginInfo *pluginInfo(const QString &name) const;
+    SearchPluginInfo *pluginInfo(const QString &name) const;
     QString pluginNameBySiteURL(const QString &siteURL) const;
 
     void enablePlugin(const QString &name, bool enabled = true);
     void updatePlugin(const QString &name);
     void installPlugin(const QString &source);
     bool uninstallPlugin(const QString &name);
-    static void updateIconPath(PluginInfo *plugin);
+    static void updateIconPath(SearchPluginInfo *plugin);
     void checkForUpdates();
 
     SearchHandler *startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
@@ -90,7 +90,7 @@ public:
 
     QProcessEnvironment proxyEnvironment() const;
 
-    static PluginVersion getPluginVersion(const Path &filePath);
+    static SearchPluginVersion getPluginVersion(const Path &filePath);
     static QString categoryFullName(const QString &categoryName);
     QString pluginFullName(const QString &pluginName) const;
     static Path pluginsLocation();
@@ -104,7 +104,7 @@ signals:
     void pluginUpdated(const QString &name);
     void pluginUpdateFailed(const QString &name, const QString &reason);
 
-    void checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo);
+    void checkForUpdatesFinished(const QHash<QString, SearchPluginVersion> &updateInfo);
     void checkForUpdatesFailed(const QString &reason);
 
 private:
@@ -113,7 +113,7 @@ private:
     void updateNova();
     void parseVersionInfo(const QByteArray &info);
     void installPlugin_impl(const QString &name, const Path &path);
-    bool isUpdateNeeded(const QString &pluginName, const PluginVersion &newVersion) const;
+    bool isUpdateNeeded(const QString &pluginName, const SearchPluginVersion &newVersion) const;
 
     void versionInfoDownloadFinished(const Net::DownloadResult &result);
     void pluginDownloadFinished(const Net::DownloadResult &result);
@@ -124,6 +124,6 @@ private:
 
     const QString m_updateUrl;
 
-    QHash<QString, PluginInfo*> m_plugins;
+    QHash<QString, SearchPluginInfo*> m_plugins;
     QProcessEnvironment m_proxyEnv;
 };

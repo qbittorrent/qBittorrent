@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2026  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2019  Mike Tzou (Chocobo1)
+ * Copyright (C) 2019-2026  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -69,6 +69,7 @@
 
 #pragma once
 
+#include <chrono>
 #include <optional>
 
 #include <QLockFile>
@@ -77,22 +78,22 @@
 
 class QLocalServer;
 
-class QtLocalPeer final : public QObject
+class LocalPeer final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(QtLocalPeer)
+    Q_DISABLE_COPY_MOVE(LocalPeer)
 
 public:
-    QtLocalPeer(const QString &path, QObject *parent = nullptr);
+    LocalPeer(const QString &path, QObject *parent = nullptr);
 
     bool isClient();
-    bool sendMessage(const QString &message, int timeout);
+    bool sendMessage(const QString &message, std::chrono::milliseconds timeout);
 
 signals:
     void messageReceived(const QString &message);
 
 private slots:
-    void receiveConnection();
+    void receivedConnection();
 
 private:
     struct LockInfo
@@ -106,7 +107,7 @@ private:
 
     std::optional<LockInfo> getLockInfo() const;
 
-    QString m_socketName;
+    const QString m_socketName;
     QLocalServer *m_server = nullptr;
     QLockFile m_lockFile;
 };

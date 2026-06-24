@@ -5,7 +5,6 @@ add_library(qbt_base STATIC
     algorithm.h
     applicationcomponent.h
     asyncfilestorage.h
-    bittorrent/abstractfilestorage.h
     bittorrent/addtorrenterror.h
     bittorrent/addtorrentparams.h
     bittorrent/announcetimepoint.h
@@ -83,7 +82,7 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.h
     net/proxytype.h
     net/reverseresolution.h
-    net/smtp.h
+    net/smtpclient.h
     net/smtpencryptiontype.h
     orderedset.h
     path.h
@@ -135,7 +134,6 @@ add_library(qbt_base STATIC
     addtorrentmanager.cpp
     applicationcomponent.cpp
     asyncfilestorage.cpp
-    bittorrent/abstractfilestorage.cpp
     bittorrent/addtorrentparams.cpp
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
@@ -185,7 +183,7 @@ add_library(qbt_base STATIC
     net/portforwarder.cpp
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
-    net/smtp.cpp
+    net/smtpclient.cpp
     path.cpp
     preferences.cpp
     profile.cpp

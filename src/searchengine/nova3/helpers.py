@@ -1,4 +1,4 @@
-# VERSION: 1.56
+# VERSION: 1.57
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -78,15 +78,6 @@ def enable_socks_proxy(enable: bool) -> None:
                 socket.socket = cast(type[socket.socket], socks.socksocket)  # type: ignore[misc]
             elif (parts.scheme == "socks5") or (parts.scheme == "socks5h"):
                 socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, resolveHostname, parts.username, parts.password)
-                socket.socket = cast(type[socket.socket], socks.socksocket)  # type: ignore[misc]
-        else:
-            # the following code provide backward compatibility for older qbt versions
-            # TODO: scheduled be removed with qbt >= 5.3
-            legacySocksURL = os.environ.get("sock_proxy")
-            if legacySocksURL is not None:
-                legacySocksURL = f"socks5h://{legacySocksURL.strip()}"
-                parts = urllib.parse.urlsplit(legacySocksURL)
-                socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, parts.hostname, parts.port, True, parts.username, parts.password)
                 socket.socket = cast(type[socket.socket], socks.socksocket)  # type: ignore[misc]
     else:
         socket.socket = _original_socket  # type: ignore[misc]
